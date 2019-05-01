@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <packaging>jar</packaging>
+    <name>no-name</name>
+    <profiles>
+        <profile>
+            <id>id1 text</id>
+            <id2>id2 text<koko><lala></lala></koko></id2>
+            <id3>id2 text<koko><lala></lala></koko></id3>
+        </profile>
+    </profiles>
+    <dependencies>
+        <dependency>
+            <artifactId>artifact1</artifactId>
+            <groupId>group</groupId>
+            <version>1</version>
+        </dependency>
+        <dependency>
+            <artifactId>artifact2</artifactId>
+            <groupId>group</groupId>
+            <version>1</version>
+        </dependency>
+        <dependency>
+            <artifactId>artifact3</artifactId>
+            <groupId>group</groupId>
+            <version>1</version>
+        </dependency>
+        <dependency>
+            <artifactId>artifact1</artifactId>
+            <groupId>other</groupId>
+            <version>a</version>
+        </dependency>
+        <dependency>
+            <artifactId>artifact2</artifactId>
+            <groupId>other</groupId>
+            <version>b</version>
+        </dependency>
+    </dependencies>
+</project>

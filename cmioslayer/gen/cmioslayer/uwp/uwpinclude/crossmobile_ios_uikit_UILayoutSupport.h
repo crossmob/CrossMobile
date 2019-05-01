@@ -1,0 +1,18 @@
+// (c) 2019 under LGPL by CrossMobile plugin tools
+
+// crossmobile.ios.uikit.UILayoutSupport definition
+
+#import "xmlvm.h"
+#import <CoreGraphics/CoreGraphics.h>
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+@class crossmobile_ios_uikit_NSLayoutDimension;
+@class crossmobile_ios_uikit_NSLayoutYAxisAnchor;
+
+CM_EXPORT_CLASS
+@protocol crossmobile_ios_uikit_UILayoutSupport
+- (NSLayoutYAxisAnchor*) bottomAnchor__;
+- (NSLayoutDimension*) heightAnchor__;
+- (double) length__;
+- (NSLayoutYAxisAnchor*) topAnchor__;
+@end

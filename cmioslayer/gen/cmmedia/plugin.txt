@@ -1,0 +1,7 @@
+# Plugin cmmedia
+objc.libs=AVFoundation.framework~;AudioToolbox.framework~;CoreMedia.framework~;MediaPlayer.framework~
+java.initializer=
+objc.pods=
+android.permissions=android.permission.VIBRATE
+android.extra.app=
+android.extra.dependencies=

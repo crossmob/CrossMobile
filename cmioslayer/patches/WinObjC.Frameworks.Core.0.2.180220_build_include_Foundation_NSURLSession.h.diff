@@ -1,0 +1,7 @@
+--- /Users/arktouros/crossmobile/cmioslayer/target/uwp/packages/WinObjC.Frameworks.Core.0.2.180220/build/include/Foundation/NSURLSession.h
++++ /Users/arktouros/crossmobile/cmioslayer/target/uwp/packages/include/Foundation/NSURLSession.h
+@@ -148,0 +148,4 @@
++FOUNDATION_EXPORT_CLASS
++@interface NSURLSessionStreamTask : NSURLSessionTask
++@end
++

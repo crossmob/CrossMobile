@@ -1,0 +1,16 @@
+// AppDelegate.m
+
+#ifdef WINOBJC
+
+#import "crossmobile_ios_uikit_UIApplication.h"
+
+// Tell the WinObjC runtime how to render the application
+@implementation UIApplication (UIApplicationInitialStartupMode)
+
++ (void)setStartupDisplayMode:(WOCDisplayMode*)mode {
+SIZE_PROPERTIES
+}
+
+@end
+
+#endif

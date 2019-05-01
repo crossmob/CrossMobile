@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <style name="Theme.NoBackground.Fullscreen" parent="android:style/Theme.Holo.Light.NoActionBar.TranslucentDecor">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item> 
+        <item name="android:windowActionBar">false</item>
+    </style>
+</resources>

@@ -1,0 +1,2674 @@
+/* (c) 2019 by Panayotis Katsaloulis
+ *
+ * CrossMobile is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, version 2.
+ *
+ * CrossMobile is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with CrossMobile; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
+package crossmobile.ios.uikit;
+
+import crossmobile.ios.coregraphics.CGAffineTransform;
+import crossmobile.ios.coregraphics.CGColor;
+import crossmobile.ios.coregraphics.CGContext;
+import crossmobile.ios.coregraphics.CGPoint;
+import crossmobile.ios.coregraphics.CGRect;
+import crossmobile.ios.coregraphics.CGSize;
+import crossmobile.ios.foundation.NSDate;
+import crossmobile.ios.quartzcore.CALayer;
+import org.crossmobile.bind.graphics.Geometry;
+import org.crossmobile.bind.graphics.GraphicsContext;
+import org.crossmobile.bind.graphics.Theme;
+import org.crossmobile.bind.system.Core;
+import org.crossmobile.bind.system.SystemUtilities;
+import org.crossmobile.bind.wrapper.NativeWrapper;
+import org.crossmobile.bind.wrapper.WidgetWrapper;
+import org.crossmobile.bridge.Native;
+import org.crossmobile.bridge.ann.CMClass;
+import org.crossmobile.bridge.ann.CMConstructor;
+import org.crossmobile.bridge.ann.CMGetter;
+import org.crossmobile.bridge.ann.CMSelector;
+import org.crossmobile.bridge.ann.CMSetter;
+import org.crossmobile.support.cassowary.ClSimplexSolver;
+import org.crossmobile.support.cassowary.ClVariable;
+import org.robovm.objc.block.VoidBlock1;
+
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static crossmobile.ios.coregraphics.$coregraphics.color;
+import static crossmobile.ios.coregraphics.$coregraphics.context;
+import static crossmobile.ios.coregraphics.$coregraphics.translateConcatTranslate;
+import static crossmobile.ios.foundation.$foundation.isUnderMainRunLoop;
+import static crossmobile.ios.uikit.UIViewContentMode.Bottom;
+import static crossmobile.ios.uikit.UIViewContentMode.BottomLeft;
+import static crossmobile.ios.uikit.UIViewContentMode.BottomRight;
+import static crossmobile.ios.uikit.UIViewContentMode.Center;
+import static crossmobile.ios.uikit.UIViewContentMode.Left;
+import static crossmobile.ios.uikit.UIViewContentMode.Right;
+import static crossmobile.ios.uikit.UIViewContentMode.ScaleAspectFill;
+import static crossmobile.ios.uikit.UIViewContentMode.ScaleAspectFit;
+import static crossmobile.ios.uikit.UIViewContentMode.ScaleToFill;
+import static crossmobile.ios.uikit.UIViewContentMode.Top;
+import static crossmobile.ios.uikit.UIViewContentMode.TopLeft;
+import static crossmobile.ios.uikit.UIViewContentMode.TopRight;
+import static org.crossmobile.bind.graphics.AbstractGraphicsBridge.DrawingDepth;
+import static org.crossmobile.bind.system.Debug.ENABLE_DEBUG;
+import static org.crossmobile.bind.system.Debug.Live_Graphics_Debug;
+
+/**
+ * UIView class defines a rectangular area on the screen that encloses the
+ * visible content of an application. The class contains methods related to
+ * modifications and controls over that area triggered by events such as user
+ * interaction with that area.
+ */
+@CMClass
+public class UIView extends UIResponder {
+
+    /* Constants */
+    public static final double NoIntrinsicMetric = 0;
+
+    private static final Object[] animationLock = new Object[0];
+    private static cmAnimation pendingAnim;
+    private static boolean animationsEnabled = true;
+    private final List<UIView> children = new ArrayList<>();
+    //parameters for auto layout
+    private final List<NSLayoutConstraint> constraints = new ArrayList<>();
+    //    private boolean initSolverFlag = true;
+    private final Map<Integer, ClVariable> variableMap = new HashMap<>();
+    final CGSize intrinsicContentSize = new CGSize(0, 0);
+    /*
+     * These properties need to be addressed form the animations, so they
+     * shouldn't be private
+     */
+    private CGRect frame = CGRect.zero();
+    private CGRect oldFrame = CGRect.zero();
+    double alpha = 1;
+    private double parentAlpha = 1;
+    private UIColor background = null;
+    CGAffineTransform transform = null;
+    /*
+     * This property is used in UIWindow to optimize gestures
+     */
+    List<UIGestureRecognizer> gestures = null;
+    /*
+     * This variable is also used in MainActivity to support hardware back
+     * button
+     */
+    UIViewController controller;
+    //Guides
+    private List<UILayoutGuide> layoutGuides;
+    private UILayoutGuide layoutMarginsGuide;
+    //Margin
+    UIEdgeInsets layoutMargins = new UIEdgeInsets(8, 8, 8, 8);
+    private boolean preservesSuperviewLayoutMargins;
+    /*
+     * These properties need to be addressed form the animations, so they
+     * shouldn't be private
+     */
+    private String restorationIdentifier = null;
+    private CGAffineTransform fullTransform = null;
+    private CGAffineTransform inverseTransform = null;
+    private Object nativeDrawingTransf = null;
+    private Object nativeDrawingTransfCache = null;
+    private WeakReference<UIView> parentRef = null;
+    private int tag = 0;
+    private boolean userInteraction = true;
+    private boolean opaque = true;
+    private boolean hidden = false;
+    private UIColor tintColor = null;
+    private int tintAdjustmentMode = -1;
+    private boolean clearcontext = false;
+    private boolean clipsToBounds = false;
+    private int autoResizing = UIViewAutoresizing.None;
+    private boolean autoresizesSubviews = true;
+    private int contentMode;
+    private boolean multipleTouchEnabled = false;
+    private CALayer layer;
+    private cmConstraints ARMconstraints;
+    private WidgetWrapper<UIView, NativeWrapper<? extends GraphicsContext>, GraphicsContext> widget;
+    // Debug variables
+    private boolean translatesAutoresizingMaskIntoConstraints = true;
+    private boolean needsUpdateConstraints = false;
+    private ClSimplexSolver solver = null;
+    private float horizontalHuggingPriority = 250;
+    private float verticalHuggingPriority = 250;
+    private float horizontalCompressionResistancePriority = 749;
+    private float verticalCompressionResistancePriority = 749;
+    private Map<String, NSLayoutConstraint> intrinsicConstraints;
+    private Map<String, NSLayoutConstraint> systemConstraints;
+    //Safe Area
+    private UIEdgeInsets safeAreaInsets = UIEdgeInsets.zero();
+    private UILayoutGuide safeAreaLayoutGuide;
+    private boolean insetsLayoutMarginsFromSafeArea = true;
+    private int userInterfaceLayoutDirection = UIApplication.sharedApplication().userInterfaceLayoutDirection();
+
+    private Anchor anchors;
+
+    /**
+     * Constructs a default UIWindow object located at (0,0) with 0 weight and 0
+     * height.
+     */
+    public UIView() {
+        this(CGRect.zero());
+    }
+
+    /**
+     * Initializes and returns a newly allocated view object with the specified
+     * frame rectangle.
+     *
+     * @param frame The frame rectangle for the view
+     */
+    @CMConstructor("- (instancetype)initWithFrame:(CGRect)frame;")
+    @SuppressWarnings("OverridableMethodCallInConstructor")
+    public UIView(CGRect frame) {
+        setFrameImpl(frame);
+    }
+
+    private static CGPoint convertPoint(CGPoint point, UIView from, UIView to) {
+        if (from == to)
+            return point;
+
+        point = Geometry.copy(point);
+        // performCallbacks up the chain, from the source view up to screen
+        UIView cur = from;
+        while (cur != null) {
+            point = cur.selfPointTransformations(point, false);
+            cur = cur.superview();
+        }
+        // performCallbacks down the chain, from the screen to the destination view
+        if (to != null) {
+            ArrayList<UIView> path = new ArrayList<>();
+            cur = to;
+            while (cur != null) {
+                path.add(cur);
+                cur = cur.superview();
+            }
+            for (int i = path.size() - 1; i >= 0; i--)
+                path.get(i).selfPointTransformations(point, true);
+        }
+        return point;
+    }
+
+    /**
+     * Animates changes between views using the specified duration.
+     *
+     * @param duration   The duration of the animations measured in seconds.
+     * @param animations The changes to commit to the views. Not NULL.
+     */
+    @CMSelector("+ (void)animateWithDuration:(NSTimeInterval)duration animations:(void (^)(void))animations")
+    public static void animateWithDuration(double duration, Runnable animations) {
+        animateWithDuration(duration, 0, UIViewAnimationOptions.CurveEaseInOut, animations, null);
+    }
+
+    @CMSelector("+ (void)animateWithDuration:(NSTimeInterval)duration \n"
+            + "                 animations:(void (^)(void))animations \n"
+            + "                 completion:(void (^)(BOOL finished))completion;")
+    public static void animateWithDuration(double duration, Runnable animations, VoidBlock1<Boolean> completion) {
+        animateWithDuration(duration, 0, UIViewAnimationOptions.CurveEaseInOut, animations, completion);
+    }
+
+    /**
+     * Animates changes between views using the specified options.
+     *
+     * @param duration               The duration of the animations measured in seconds.
+     * @param delay                  The delay before the beginning of the animations.
+     * @param UIViewAnimationOptions Options to perform the animations.
+     * @param animations             The changes to commit to the views. Not NULL.
+     * @param completion             A block object to be executed when the animations ends.
+     * @see crossmobile.ios.uikit.UIViewAnimationOptions
+     */
+    @CMSelector("+ (void)animateWithDuration:(NSTimeInterval)duration\n"
+            + "                      delay:(NSTimeInterval)delay\n"
+            + "                    options:(UIViewAnimationOptions)options\n"
+            + "                 animations:(void (^)(void))animations\n"
+            + "                 completion:(void (^)(BOOL finished))completion")
+    public static void animateWithDuration(double duration, double delay, int UIViewAnimationOptions, Runnable animations, VoidBlock1<Boolean> completion) {
+        if (animationsEnabled && animations != null) {
+            synchronized (animationLock) {
+                if (pendingAnim == null)
+                    pendingAnim = new cmAnimation(null, null);
+                pendingAnim.setDuration(duration);
+                pendingAnim.setDelay(delay);
+                pendingAnim.setCurve((UIViewAnimationOptions >>> 16) & 0xF);
+                pendingAnim.setDelegate(completion);
+            }
+            animations.run();
+            synchronized (animationLock) {
+                pendingAnim.commit();
+                pendingAnim = null;
+            }
+        }
+    }
+
+    /**
+     * Sets the time that the current animation block should begin.
+     *
+     * @param startTime The time that the current animation block should begin.
+     */
+    @CMSelector("+ (void)setAnimationStartDate:(NSDate *)startDate;")
+    public static void setAnimationStartDate(NSDate startTime) {
+        if (pendingAnim == null)
+            pendingAnim = new cmAnimation(null, null);
+        pendingAnim.setDelay(startTime.timeIntervalSinceReferenceDate() - NSDate.date().timeIntervalSinceReferenceDate());
+    }
+
+    /**
+     * Sets a Boolean that defines whether the animations are enabled.
+     *
+     * @param animationsEnabled A Boolean that defines whether the animations
+     *                          are enabled.
+     */
+    @CMSelector("+ (void)setAnimationsEnabled:(BOOL)enabled;")
+    public static void setAnimationsEnabled(boolean animationsEnabled) {
+        synchronized (animationLock) {
+            UIView.animationsEnabled = animationsEnabled;
+        }
+    }
+
+    /**
+     * Sets the duration of the animations of a block.
+     *
+     * @param duration The duration of the animations of a block expressed in
+     *                 seconds.
+     */
+    @CMSelector("+ (void)setAnimationDuration:(NSTimeInterval)duration;")
+    public static void setAnimationDuration(double duration) {
+        if (pendingAnim == null)
+            pendingAnim = new cmAnimation(null, null);
+        pendingAnim.setDuration(duration);
+    }
+
+    /**
+     * Sets the amount of time (in seconds) to wait before animating property
+     * changes within an animation block.
+     *
+     * @param delay The interval until the change of animation property within a
+     *              block expressed in seconds.
+     */
+    @CMSelector("+ (void)setAnimationDelay:(NSTimeInterval)delay;")
+    public static void setAnimationDelay(double delay) {
+        if (pendingAnim == null)
+            pendingAnim = new cmAnimation(null, null);
+        pendingAnim.setDelay(delay);
+    }
+
+    /**
+     * Sets the type of animation curve.
+     *
+     * @param UIViewAnimationCurve The type of animation curve.
+     */
+    @CMSelector("+ (void)setAnimationCurve:(UIViewAnimationCurve)curve;")
+    public static void setAnimationCurve(int UIViewAnimationCurve) {
+        if (pendingAnim == null)
+            pendingAnim = new cmAnimation(null, null);
+        pendingAnim.setCurve(UIViewAnimationCurve);
+    }
+
+    /**
+     * Sets the number of repetitions for the animations of a block.
+     *
+     * @param repeatCount The number of repetitions for the animations of a
+     *                    block.Zero means no repetition and this number can be a fraction for the
+     *                    repetitions.
+     */
+    @CMSelector("+ (void)setAnimationRepeatCount:(float)repeatCount;\n"
+            + "")
+    public static void setAnimationRepeatCount(float repeatCount) {
+        if (pendingAnim == null)
+            pendingAnim = new cmAnimation(null, null);
+        pendingAnim.setRepeats(repeatCount);
+    }
+
+    /**
+     * Sets a Boolean value that defines whether the animations of an animation
+     * block reverse themselves automatically.
+     *
+     * @param repeatAutoreverses A Boolean value that defines whether the
+     *                           animations of an animation block reverse themselves automatically.
+     */
+    @CMSelector("+ (void)setAnimationRepeatAutoreverses:(BOOL)repeatAutoreverses;")
+    public static void setAnimationRepeatAutoreverses(boolean repeatAutoreverses) {
+        if (pendingAnim == null)
+            pendingAnim = new cmAnimation(null, null);
+        pendingAnim.setAutoreverse(repeatAutoreverses);
+    }
+
+    /**
+     * Sets the transition to be applied to a view during an animation block. *
+     *
+     * @param UIViewAnimationTransition The transition that will be applied to
+     *                                  the view.
+     * @param view                      The view to which the transition will be applied.
+     * @param cache                     A Boolean that if is set to true then images before and
+     *                                  after are rendered once. If it is set false then the view and its
+     *                                  contents are updated are being updated for every frame of the transition.
+     */
+    @CMSelector("+ (void)setAnimationTransition:(UIViewAnimationTransition)transition \n"
+            + "                       forView:(UIView *)view \n"
+            + "                         cache:(BOOL)cache;")
+    public static void setAnimationTransition(int UIViewAnimationTransition, UIView view, boolean cache) {
+        if (pendingAnim == null)
+            pendingAnim = new cmAnimation(null, null);
+        pendingAnim.setAnimationTransition(UIViewAnimationTransition, view, cache);
+    }
+
+    /**
+     * Sets a Boolean value that defines whether the animation should start
+     * playing from its current state.
+     *
+     * @param fromCurrentState A Boolean value that defines whether the
+     *                         animation should start playing from its current state.
+     */
+    @CMSelector("+ (void)setAnimationBeginsFromCurrentState:(BOOL)fromCurrentState;")
+    public static void setAnimationBeginsFromCurrentState(boolean fromCurrentState) {
+        Native.lifecycle().notImplemented();
+    }
+
+    /**
+     * Returns a Boolean that shows whether the animations are enabled.
+     *
+     * @return A Boolean that shows whether the animations are enabled.
+     */
+    @CMSelector("+ (BOOL)areAnimationsEnabled;")
+    public static boolean areAnimationsEnabled() {
+        synchronized (animationLock) {
+            return animationsEnabled;
+        }
+    }
+
+    /**
+     * Returns a Boolean value that shows whether this view is based on the
+     * constraint based layout system.
+     *
+     * @return A Boolean value that shows whether this view is based on the
+     * constraint based layout system.
+     */
+    @CMSelector("+ (BOOL)requiresConstraintBasedLayout;")
+    public static boolean requiresConstraintBasedLayout() {
+        return false;
+    }
+
+    @Override
+    public UIResponder nextResponder() {
+        return controller == null ? superview() : controller.nextResponder();
+    }
+
+    /**
+     * Returns a structure that is used to define view's dimensions and position
+     * in the coordinate system of its superview.
+     *
+     * @return The structure that is used to define view's dimensions and
+     * position in the coordinate system of its superview.
+     */
+    @CMGetter("@property(nonatomic) CGRect frame;")
+    public CGRect frame() {
+        return Geometry.copy(frame);
+    }
+
+    /**
+     * Sets view's dimensions and position according to the structure specified
+     * as frame parameter.
+     *
+     * @param frame The structure that defines view's dimensions and position in
+     *              the coordinate system of its superview.
+     */
+    @CMSetter("@property(nonatomic) CGRect frame;")
+    public void setFrame(CGRect frame) {
+        if (!Geometry.equals(this.frame, frame))
+            if (pendingAnim != null)
+                pendingAnim.setFrame(this, frame);
+            else {
+                setFrameImpl(frame);
+                layoutIfNeeded();
+            }
+    }
+
+    /**
+     * Returns an integer bit bask that defines the way this view changes its
+     * size on a superview size change.
+     *
+     * @return An integer bit bask that defines the way this view changes its
+     * size on a superview size change.
+     */
+    @CMGetter("@property(nonatomic) UIViewAutoresizing autoresizingMask;")
+    public int autoresizingMask() {
+        return autoResizing;
+    }
+
+    /**
+     * Sets an integer bit bask that defines the way this view changes its size
+     * on a superview size change.
+     *
+     * @param UIViewAutoresizing integer bit bask that defines the way this view
+     *                           changes its size on a superview size change.
+     * @see crossmobile.ios.uikit.UIViewAutoresizing
+     */
+    @CMSetter("@property(nonatomic) UIViewAutoresizing autoresizingMask;")
+    public void setAutoresizingMask(int UIViewAutoresizing) {
+        if (autoResizing != UIViewAutoresizing) {
+            autoResizing = UIViewAutoresizing;
+            updateConstraints();
+        }
+    }
+
+    /**
+     * Returns a Boolean that defines if this view after a change on its size
+     * automatically changes the size of its subviews.
+     *
+     * @return A Boolean that defines if this view after a change on its size
+     * automatically changes the size of its subviews.
+     */
+    @CMGetter("@property(nonatomic) BOOL autoresizesSubviews;")
+    public boolean autoresizesSubviews() {
+        return autoresizesSubviews;
+    }
+
+    /**
+     * Returns a Boolean that shows if this view after a change on its size
+     * automatically changes the size of its subviews.
+     *
+     * @param autoresizesSubviews A Boolean that shows if this view after a
+     *                            change on its size automatically changes the size of its subviews.
+     */
+    @CMSetter("@property(nonatomic) BOOL autoresizesSubviews;")
+    public void setAutoresizesSubviews(boolean autoresizesSubviews) {
+        if (this.autoresizesSubviews != autoresizesSubviews) {
+            this.autoresizesSubviews = autoresizesSubviews;
+            if (autoresizesSubviews)
+                for (UIView child : children)
+                    child.updateConstraints();
+        }
+    }
+
+    /**
+     * Sets a flag that indicates that the layout of this view's subviews need
+     * to be updated and also defines that the update will take place on the
+     * next update cycle.
+     */
+    @CMSelector("- (void)setNeedsLayout;")
+    public void setNeedsLayout() {
+        layoutIfNeeded();
+    }
+
+    /**
+     * Forces the layout of this view's subviews to change immediately when
+     * needed.
+     */
+    @CMSelector("- (void)layoutIfNeeded;")
+    public void layoutIfNeeded() {
+        boolean sameSize = Geometry.equals(oldFrame.getSize(), frame.getSize());
+        boolean sameOrigin = Geometry.equals(oldFrame.getOrigin(), frame.getOrigin());
+        Geometry.set(oldFrame, frame);
+        if (!sameSize) {
+            updateConstraints();
+            layoutSubviews();
+        } else if (!sameOrigin) {
+            Geometry.set(oldFrame, frame);
+            layoutNativeFromRoot();
+            Native.graphics().refreshDisplay();
+        }
+    }
+
+    /**
+     * Changes the layout of this view's subviews.
+     */
+    @CMSelector("- (void)layoutSubviews;")
+    public void layoutSubviews() {
+        layoutNativeFromRoot();
+        safeAreaInsets();
+        if (autoresizesSubviews)
+            applyLayout();
+        Native.graphics().refreshDisplay();
+    }
+
+    /**
+     *
+     */
+    void layoutNativeFromRoot() {
+        CGPoint root = locationRelativeToRoot(CGPoint.zero());
+        layoutNative(root.getX(), root.getY());
+    }
+
+    void layoutNative(double dx, double dy) {
+        if (widget != null)
+            widget.setFrame(dx, dy, getWidth(), getHeight());
+        for (UIView child : children)
+            child.layoutNative(dx + child.getX(), dy + child.getY());
+    }
+
+    /**
+     * Update the constraints of this view
+     */
+    @CMSelector("- (void)updateConstraints;")
+    public void updateConstraints() {
+        ARMconstraints = cmConstraints.getConstraints(this, superview());
+        if (!translatesAutoresizingMaskIntoConstraints)
+            if (superview() != null) {
+                superview().updateConstraints();
+                superview().setNeedsLayout();
+            } else
+                setNeedsLayout();
+    }
+
+    @CMSelector("- (void)updateConstraintsIfNeeded;")
+    public void updateConstraintsIfNeeded() {
+        if (needsUpdateConstraints) {
+            updateConstraints();
+            needsUpdateConstraints = false;
+        }
+    }
+
+    /**
+     * Returns a Boolean value that shows whether the view's constraints need to
+     * be updated.
+     *
+     * @return A Boolean value that shows whether the view's constraints need to
+     * be updated.
+     */
+    @CMSelector("- (BOOL)needsUpdateConstraints;")
+    public boolean needsUpdateConstraints() {
+        return needsUpdateConstraints;
+    }
+
+    /**
+     * Sets a Boolean value that defines whether the view's constraints need to
+     * be updated.
+     */
+    @CMSelector("- (void)setNeedsUpdateConstraints;")
+    public void setNeedsUpdateConstraints() {
+        this.needsUpdateConstraints = true;
+        updateConstraintsIfNeeded();
+    }
+
+    /**
+     * Returns the bounds of this view in its own coordinate system expressed
+     * using CGRect structure.
+     *
+     * @return The bounds of this view in its own coordinate system expressed
+     * using CGRect structure.
+     */
+    @CMGetter("@property(nonatomic) CGRect bounds;")
+    public CGRect bounds() {
+        CGRect bounds = frame();
+        bounds.getOrigin().setX(0);
+        bounds.getOrigin().setY(0);
+        return bounds;
+    }
+
+    /**
+     * Sets the bounds for this view in its own coordinate system as described
+     * by the CGRect structure parameter.
+     *
+     * @param rect The CGRect parameter that defines the bounds for this view in
+     *             its own coordinate system.
+     */
+    @CMSetter("@property(nonatomic) CGRect bounds;")
+    public void setBounds(CGRect rect) {
+        setFrame(new CGRect(getX(), getY(), rect.getSize().getWidth(), rect.getSize().getHeight()));
+    }
+
+    /**
+     * Returns the center of this view.
+     *
+     * @return The center of this view.
+     */
+    @CMGetter("@property(nonatomic) CGPoint center;")
+    public CGPoint center() {
+        return new CGPoint((getX() + getWidth()) / 2, (getY() + getWidth()) / 2);
+    }
+
+    /**
+     * Sets the center for this view.
+     *
+     * @param center The center for this view.
+     */
+    @CMSetter("@property(nonatomic) CGPoint center;")
+    public void setCenter(CGPoint center) {
+        setFrame(new CGRect(center.getX() - getWidth() / 2, center.getY() - getHeight() / 2, getWidth(), getHeight()));
+    }
+
+    /**
+     * Set the location of this view.
+     *
+     * @param x The x coordinate.
+     * @param y The y coordinate.
+     */
+    void setLocation(double x, double y) {
+        setFrame(new CGRect(x, y, getWidth(), getHeight()));
+    }
+
+    /**
+     * Sets the size for this view.
+     *
+     * @param width  The width of this view.
+     * @param height The height of this view.
+     */
+    void setSize(double width, double height) {
+        setFrame(new CGRect(getX(), getY(), width, height));
+    }
+
+    /**
+     * We could not support transformations yet (how?) ; just try to calculate the offset from the root window
+     */
+    CGPoint locationRelativeToRoot(CGPoint rloc) {
+        rloc.setX(rloc.getX() + getX());
+        rloc.setY(rloc.getY() + getY());
+        UIView superview = superview();
+        return superview == null ? rloc : superview.locationRelativeToRoot(rloc);
+    }
+
+    /**
+     * Moves the subview defined as parameter behind the other subviews of this
+     * view.
+     *
+     * @param subView The subview that is be moved behind the other subviews.
+     */
+    @CMSelector("- (void)sendSubviewToBack:(UIView *)view;")
+    public void sendSubviewToBack(UIView subView) {
+        UIView oldParent = subView.superview();
+        if (oldParent == this) {
+            children.remove(subView);
+            children.add(0, subView);
+            Native.graphics().refreshDisplay();
+        }
+    }
+
+    /**
+     * Moves the subview defined as parameter in front of the other subviews of
+     * this view.
+     *
+     * @param subView The subview that is moved in front of the other subviews.
+     */
+    @CMSelector("- (void)bringSubviewToFront:(UIView *)view;")
+    public void bringSubviewToFront(final UIView subView) {
+        UIView oldParent = subView.superview();
+        if (oldParent == this) {
+            children.remove(subView);
+            children.add(subView);
+            Native.graphics().refreshDisplay();
+        }
+    }
+
+    /**
+     * Add the subview defined as parameter at this view's list of subviews.
+     *
+     * @param subView The subview that is added at this view's list of subviews.
+     *                This subview is displayed above the other subviews.
+     */
+    @CMSelector("- (void)addSubview:(UIView *)view;")
+    public void addSubview(UIView subView) {
+        if (subView == null || subView == this)
+            return;
+        UIView oldParent = subView.superview();
+        if (oldParent != this) {
+            delegateBefore(oldParent, this);
+
+            if (oldParent != null)
+                oldParent.children.remove(subView);
+            children.add(subView);
+
+            subView.parentRef = new WeakReference<>(this);
+            subView.setTintAdjustmentMode(tintAdjustmentMode);
+
+            subView.delegateAfter(oldParent, this);
+            Native.graphics().refreshDisplay();
+            if (pendingAnim != null)
+                pendingAnim.viewToEnter(subView, this);
+        }
+
+    }
+
+    /**
+     * Inserts the specified subview in the specified position of this view's
+     * list of subviews.The subview is displayed above the subviews that come
+     * before it in the list and below the subviews that come afterward.
+     *
+     * @param subView The subview to be inserted in the list.
+     * @param idx     The index in the list. Indexing from 0 to number of subviews.
+     */
+    @CMSelector("- (void)insertSubview:(UIView *)view \n"
+            + "              atIndex:(NSInteger)index;")
+    public void insertSubview(UIView subView, final int idx) {
+        if (subView == null)
+            return;
+        UIView oldParent = subView.superview();
+        if (oldParent != this) {
+            delegateBefore(oldParent, this);
+
+            if (oldParent != null)
+                oldParent.children.remove(subView);
+            children.add(idx, subView);
+            subView.parentRef = new WeakReference<>(this);
+
+            subView.delegateAfter(oldParent, this);
+            if (pendingAnim != null)
+                pendingAnim.viewToEnter(subView, this);
+        } else {
+            children.remove(subView);
+            children.add(idx, subView);
+        }
+        Native.graphics().refreshDisplay();
+    }
+
+    /**
+     * Removes this view and its subviews from its superview.
+     */
+    @CMSelector("- (void)removeFromSuperview;")
+    public void removeFromSuperview() {
+        UIView parent = superview();
+        if (parent != null) {
+            delegateBefore(parent, null);
+            if (pendingAnim == null || (pendingAnim != null && !pendingAnim.viewToLeave(this, parent)))
+                removeFromView(parent);
+        }
+    }
+
+    /**
+     * This method exists here, in order to delay the removal of a View, if an
+     * animation is underway
+     */
+    void removeFromView(UIView parent) {
+        if (parent != null) {
+//            if (!translatesAutoresizingMaskIntoConstraints) {
+//                componentVars.get(this).removeFromSolver(solver);
+//                componentVars.remove(this);
+//            }
+            parent.children.remove(this);
+            parentRef = null;
+            delegateAfter(parent, null);
+            Native.graphics().refreshDisplay();
+        }
+    }
+
+    /*
+     * Inform delegates before any change
+     */
+    private void delegateBefore(UIView oldParent, UIView newParent) {
+        if (oldParent != null)
+            oldParent.willRemoveSubview(this);
+        if (newParent != null)
+            newParent.willAddSubview(this);
+        willMoveToSuperview(newParent);
+    }
+
+    /*
+     * Inform delegates after all change
+     */
+    private void delegateAfter(UIView oldParent, UIView newParent) {
+        didMoveToSuperview();
+        if (oldParent != null)
+            oldParent.didRemoveSubview(this);
+        if (newParent != null)
+            newParent.didAddSubview(this);
+        attachWidget(newParent != null && isAttachedToWindow());
+        updateNativeUserInteraction();
+        /* Constraints only change when attaching/detaching - not when
+         * hidden/unhidden.
+         * So, they can not be called inside attachWidget
+         */
+        updateConstraints();
+    }
+
+    boolean isAttachedToWindow() {
+        UIView current = this;
+        UIWindow keyWindow = UIApplication.keyWindowIfExists();
+        while (current != null && current != keyWindow)
+            current = current.superview();
+        return current == keyWindow;
+    }
+
+    void attachWidget(boolean isAttached) {
+        if (widget != null) {
+            Native.widget().setAttached(widget.getNativeWidget(), isAttached);
+            if (isAttached)
+                layoutNativeFromRoot();
+        }
+        if (!isAttached)
+            resignFirstResponder();
+
+        if (!children.isEmpty())
+            for (UIView child : children)
+                child.attachWidget(isAttached);
+    }
+
+    void willAddSubview(UIView subview) {
+    }
+
+    void didRemoveSubview(UIView subview) {
+    }
+
+    /**
+     * Informs this view that a subview was added.
+     *
+     * @param subview The subview that was added to this view.
+     */
+    @CMSelector("- (void)didAddSubview:(UIView *)subview;")
+    public void didAddSubview(UIView subview) {
+    }
+
+    /**
+     * Informs this view that a subview will be removed.
+     *
+     * @param subview The subview that will be removed.
+     */
+    @CMSelector("- (void)willRemoveSubview:(UIView *)subview;")
+    public void willRemoveSubview(UIView subview) {
+    }
+
+    /**
+     * Informs this view that its superview will change to the one specified as
+     * parameter.
+     *
+     * @param newSuperview The new superview of this view.
+     */
+    @CMSelector("- (void)willMoveToSuperview:(UIView *)newSuperview;")
+    public void willMoveToSuperview(UIView newSuperview) {
+    }
+
+    /**
+     * Informs this view that its superview changed.
+     */
+    @CMSelector("- (void)didMoveToSuperview;")
+    public void didMoveToSuperview() {
+    }
+
+    /**
+     * Informs this view that its window will change.
+     *
+     * @param newWindow The new window object of this view.Null parameter is
+     *                  accepted.
+     */
+    @CMSelector("- (void)willMoveToWindow:(UIWindow *)newWindow;")
+    public void willMoveToWindow(UIWindow newWindow) {
+    }
+
+    /**
+     * Informs this view that its window changed.
+     */
+    @CMSelector("- (void)didMoveToWindow;")
+    public void didMoveToWindow() {
+    }
+
+    /**
+     * Returns a List with this view's direct descendant subviews in the
+     * hierarchy.
+     *
+     * @return The List of the direct descendant subviews.
+     */
+    @CMGetter("@property(nonatomic, readonly, copy) NSArray<__kindof UIView *> *subviews;")
+    public List<UIView> subviews() {
+        return new ArrayList<>(children);
+    }
+
+    UIView subview(Class<? extends UIView>... viewclasses) {
+        Class viewClass = getClass();
+        for (int i = 0; i < viewclasses.length; i++)
+            if (viewclasses[i].isAssignableFrom(viewClass))
+                return this;
+        for (UIView view : children) {
+            viewClass = view.getClass();
+            for (int i = 0; i < viewclasses.length; i++)
+                if (viewclasses[i].isAssignableFrom(viewClass))
+                    return view;
+        }
+        for (UIView view : children)
+            if (view != null) {
+                view = view.subview(viewclasses);
+                if (view != null)
+                    return view;
+            }
+        return null;
+    }
+
+    /**
+     * Retuns the superview of this view.Null if it has no superview.
+     *
+     * @return The superview of this view.Null if it has none.
+     */
+    @CMGetter("@property(nonatomic, readonly) UIView *superview;")
+    public UIView superview() {
+        return parentRef == null ? null : parentRef.get();
+    }
+
+    /**
+     * Returns a Boolean that shows whether this view accepts multi-touch
+     * events.
+     *
+     * @return A Boolean that shows whether this view accepts multi-touch
+     * events.
+     */
+    @CMGetter("@property(nonatomic, getter=isMultipleTouchEnabled) BOOL multipleTouchEnabled;")
+    public boolean isMultipleTouchEnabled() {
+        return multipleTouchEnabled;
+    }
+
+    /**
+     * Set a Boolean that defines whether this view accepts multi-touch events.
+     *
+     * @param multipleTouchEnabled A Boolean that defines whether this view
+     *                             accepts multi-touch events.
+     */
+    @CMSetter("@property(nonatomic, getter=isMultipleTouchEnabled) BOOL multipleTouchEnabled;")
+    public void setMultipleTouchEnabled(boolean multipleTouchEnabled) {
+        this.multipleTouchEnabled = multipleTouchEnabled;
+    }
+
+    /**
+     * Returns this view's window.
+     *
+     * @return The window of this view. Null if it has none.
+     */
+    @CMGetter("@property(nonatomic, readonly) UIWindow *window;")
+    public UIWindow window() {
+        UIView over = this;
+        while ((over = over.superview()) != null)
+            if (over instanceof UIWindow)
+                return (UIWindow) over;
+        return null;
+    }
+
+    /**
+     * Sets an integer used as an id of this view.
+     *
+     * @param tag An integer used as id of the view.
+     */
+    @CMSetter("@property(nonatomic) NSInteger tag;")
+    public void setTag(int tag) {
+        this.tag = tag;
+    }
+
+    /**
+     * Returns the id of this view.
+     *
+     * @return The id of this view.
+     */
+    @CMGetter("@property(nonatomic) NSInteger tag;")
+    public int tag() {
+        return tag;
+    }
+
+    /**
+     * Sets this view as one needed to be redrawn.
+     */
+    @CMSelector("- (void)setNeedsDisplay;")
+    public void setNeedsDisplay() {
+        if (Native.system().isEventThread() || isUnderMainRunLoop()) {
+            if (isAttachedToWindow())
+                Native.graphics().refreshDisplay();
+        } else
+            Native.system().debug("Calling setNeedsDisplay from outside main thread", null);
+    }
+
+    /**
+     * Set this view's background color.
+     *
+     * @param background The view’s background color.
+     */
+    @CMSetter("@property(nonatomic, copy) UIColor *backgroundColor;")
+    public void setBackgroundColor(UIColor background) {
+        if (Core.equals(this.background, background))
+            return;
+        if (pendingAnim != null) {
+            if (background != null)
+                pendingAnim.setBackground(this, color(background.cgcolor));
+        } else {
+            setBackgroundColorImpl(background);
+            Native.graphics().refreshDisplay();
+        }
+    }
+
+    void setBackgroundColorImpl(UIColor background) {
+        this.background = background;
+    }
+
+    /**
+     * Returns this view's background color.
+     *
+     * @return The view’s background color.
+     */
+    @CMGetter("@property(nonatomic, copy) UIColor *backgroundColor;")
+    public UIColor backgroundColor() {
+        return background;
+    }
+
+    /**
+     * Sets the tint color of this view as defined by the specified parameter.
+     *
+     * @param tintColor The new tint color of this view.
+     * @see crossmobile.ios.uikit.UIColor
+     */
+    @CMSetter("@property(nonatomic, strong) UIColor *tintColor;")
+    public void setTintColor(UIColor tintColor) {
+        this.tintColor = tintColor;
+        tintColorDidChange();
+        Native.graphics().refreshDisplay();
+    }
+
+    /**
+     * Returns the non-default tint color value of the short distant view in the
+     * view hierarchy.
+     *
+     * @return The non-default tint color value of the short distant view in the
+     * view hierarchy.
+     */
+    @CMGetter("@property(nonatomic, strong) UIColor *tintColor;")
+    public UIColor tintColor() {
+        if (tintColor != null)
+            return tintColor;
+        UIView parent = superview();
+        return parent == null ? Theme.Color.TINT : parent.tintColor();
+    }
+
+    @CMSelector("- (void)tintColorDidChange;")
+    public void tintColorDidChange() {
+        for (UIView child : children)
+            child.tintColorDidChange();
+    }
+
+    /**
+     * Sets the tint-adjustment mode value of this view as defined by the
+     * specified parameter.
+     *
+     * @param UIViewTintAdjustmentMode The new tint-adjustment mode value of
+     *                                 this view.
+     * @see crossmobile.ios.uikit.UIViewTintAdjustmentMode
+     */
+    @CMSetter("@property(nonatomic) UIViewTintAdjustmentMode tintAdjustmentMode;")
+    public void setTintAdjustmentMode(int UIViewTintAdjustmentMode) {
+        this.tintAdjustmentMode = UIViewTintAdjustmentMode;
+        for (UIView child : children)
+            child.setTintAdjustmentMode(UIViewTintAdjustmentMode);
+    }
+
+    /**
+     * Returns the non-default tint adjustment mode value of the short distant
+     * view in the view hierarchy.
+     *
+     * @return The non-default tint adjustment mode value of the short distant
+     * view in the view hierarchy.
+     */
+    @CMGetter("@property(nonatomic) UIViewTintAdjustmentMode tintAdjustmentMode;")
+    public int tintAdjustmentMode() {
+        return tintAdjustmentMode;
+    }
+
+    /**
+     * Returns the transform applied to this view relative to the center of its
+     * bounds.
+     *
+     * @return The transform applied to this view relative to the center of its
+     * bounds.
+     */
+    @CMGetter("@property(nonatomic) CGAffineTransform transform;")
+    public CGAffineTransform transform() {
+        return transform == null ? CGAffineTransform.identity() : Geometry.copy(transform);
+    }
+
+    /**
+     * Sets the transform that will be applied to this view relative to the
+     * center of its bounds.
+     *
+     * @param transform The transform that will be applied to this view relative
+     *                  to the center of its bounds.
+     */
+    @CMSetter("@property(nonatomic) CGAffineTransform transform;")
+    public void setTransform(CGAffineTransform transform) {
+        if (transform != null && transform.isIdentity())
+            transform = null;
+        if (pendingAnim != null)
+            pendingAnim.setTransformation(this, transform);
+        else {
+            setTransformImpl(transform);
+            Native.graphics().refreshDisplay();
+        }
+    }
+
+    synchronized void setTransformImpl(CGAffineTransform transform) {
+        nativeDrawingTransf = null;
+        fullTransform = inverseTransform = null;
+        this.transform = transform == null ? null : (this.transform == null ? Geometry.copy(transform) : Geometry.set(transform, this.transform));
+    }
+
+    private Object nativeTransformation() {
+        if (transform == null)
+            return null;
+        if (nativeDrawingTransf == null)
+            nativeDrawingTransfCache = nativeDrawingTransf = Native.graphics().targetToNative(fullTransformation(), nativeDrawingTransfCache);
+        return nativeDrawingTransf;
+    }
+
+    private CGAffineTransform fullTransformation() {
+        if (transform == null)
+            return null;
+        if (fullTransform == null) {
+            double anchorX, anchorY;
+            if (layer != null && layer.anchorPoint() != null) {
+                anchorX = layer.anchorPoint().getX();
+                anchorY = layer.anchorPoint().getY();
+            } else {
+                anchorX = 0.5;
+                anchorY = 0.5;
+            }
+            double dx = getWidth() * anchorX;
+            double dy = getHeight() * anchorY;
+            fullTransform = translateConcatTranslate(CGAffineTransform.identity(), dx, dy, transform, -dx, -dy);
+        }
+        return fullTransform;
+    }
+
+    CGAffineTransform inverseTransform() {
+        if (transform == null)
+            return null;
+        if (inverseTransform == null)
+            inverseTransform = fullTransformation().invert();
+        return inverseTransform;
+    }
+
+    /**
+     * Returns this view’s alpha value.
+     *
+     * @return The view’s alpha value.
+     */
+    @CMGetter("@property(nonatomic) CGFloat alpha;")
+    public double alpha() {
+        return alpha;
+    }
+
+    /**
+     * Sets this view’s alpha value.
+     *
+     * @param alpha The view’s alpha value.
+     */
+    @CMSetter("@property(nonatomic) CGFloat alpha;")
+    public void setAlpha(double alpha) {
+        if (this.alpha == alpha)
+            return;
+
+        if (alpha > 1)
+            alpha = 1;
+        if (alpha < 0)
+            alpha = 0;
+        if (pendingAnim != null)
+            pendingAnim.setAlpha(this, alpha);
+        else {
+            this.alpha = alpha;
+            Native.graphics().refreshDisplay();
+        }
+    }
+
+    /**
+     * Returns a Boolean value that shows if the view is opaque or not.
+     *
+     * @return A Boolean value that shows if the view is opaque or not.
+     */
+    @CMGetter("@property(nonatomic, getter=isOpaque) BOOL opaque;")
+    public boolean isOpaque() {
+        return opaque;
+    }
+
+    /**
+     * A Boolean value that determines whether the view is opaque. Sets a
+     * Boolean value that defines whether the view will be opaque or not.
+     *
+     * @param opaque A Boolean value that defines whether the view will be
+     *               opaque or not.
+     */
+    @CMSetter("@property(nonatomic, getter=isOpaque) BOOL opaque;")
+    public void setOpaque(boolean opaque) {
+        if (this.opaque == opaque)
+            return;
+        this.opaque = opaque;
+        Native.graphics().refreshDisplay();
+    }
+
+    /**
+     * Sets a Boolean value that defines whether the limits of this view will be
+     * cleared before a new drawing.
+     *
+     * @param clearcontext A Boolean value that defines whether the limits of
+     *                     this view will be cleared before a new drawing.
+     */
+    @CMSetter("@property(nonatomic) BOOL clearsContextBeforeDrawing;")
+    public void setClearsContextBeforeDrawing(boolean clearcontext) {
+        if (this.clearcontext == clearcontext)
+            return;
+        this.clearcontext = clearcontext;
+        Native.graphics().refreshDisplay();
+    }
+
+    /**
+     * Returns a Boolean value that shows whether this view is hidden or not.
+     *
+     * @return A boolean value that shows whether this view is hidden or not.
+     */
+    @CMGetter("@property(nonatomic, getter=isHidden) BOOL hidden;")
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    /**
+     * Sets a Boolean value that defines whether this view is hidden or not.
+     *
+     * @param hidden A Boolean value that defines whether this view is hidden or
+     *               not.
+     */
+    @CMSetter("@property(nonatomic, getter=isHidden) BOOL hidden;")
+    public void setHidden(boolean hidden) {
+        if (this.hidden == hidden)
+            return;
+        this.hidden = hidden;
+        attachWidget(!hidden);
+        if (!hidden)
+            updateNativeUserInteraction();
+        Native.graphics().refreshDisplay();
+    }
+
+    /**
+     * Sets an integer that defines how this view adjusts its content on a size
+     * change.
+     *
+     * @param UIViewContentMode An integer that defines how this view adjusts
+     *                          its content on a size change.
+     */
+    @CMSetter("@property(nonatomic) UIViewContentMode contentMode;")
+    public void setContentMode(int UIViewContentMode) {
+        contentMode = UIViewContentMode;
+        Native.graphics().refreshDisplay();
+    }
+
+    /**
+     * Returns an integer that shows how this view adjusts its content on a size
+     * change.
+     *
+     * @return An integer that shows how this view adjusts its content on a size
+     * change.
+     */
+    @CMGetter("@property(nonatomic) UIViewContentMode contentMode;")
+    public int contentMode() {
+        return contentMode;
+    }
+
+    private void updateNativeUserInteraction() {
+        updateNativeUserInteractionImpl(true);
+    }
+
+    private void updateNativeUserInteractionImpl(boolean inheritedStatus) {
+        inheritedStatus &= userInteraction;
+        if (widget != null)
+            widget.setUserInteraction(inheritedStatus);
+        for (UIView child : children)
+            child.updateNativeUserInteractionImpl(inheritedStatus);
+    }
+
+    /*
+     * View animations with block methods
+     */
+
+    /**
+     * Returns a Boolean that shows whether events triggered by user interaction
+     * are ignored.
+     *
+     * @return A Boolean that shows whether events triggered by user interaction
+     * are ignored.
+     */
+    @CMGetter("@property(nonatomic, getter=isUserInteractionEnabled) BOOL userInteractionEnabled;")
+    public boolean isUserInteractionEnabled() {
+        return userInteraction;
+    }
+
+    /**
+     * Sets a Boolean that defines whether events triggered by user interaction
+     * are ignored.
+     *
+     * @param userInteraction A Boolean that defines whether events triggered by
+     *                        user interaction are ignored.
+     */
+    @CMSetter("@property(nonatomic, getter=isUserInteractionEnabled) BOOL userInteractionEnabled;")
+    public void setUserInteractionEnabled(boolean userInteraction) {
+        this.userInteraction = userInteraction;
+        updateNativeUserInteraction();
+    }
+
+    /**
+     * Returns a Boolean that shows whether the subviews of this view are
+     * restricted within the view's boundaries.
+     *
+     * @param clipsToBounds A Boolean that shows whether the subviews of this
+     *                      view are restricted within the view's boundaries.
+     */
+    @CMSetter("@property(nonatomic) BOOL clipsToBounds;")
+    public void setClipsToBounds(boolean clipsToBounds) {
+        this.clipsToBounds = clipsToBounds;
+        Native.graphics().refreshDisplay();
+    }
+
+    /*
+     * View animations with static methods
+     */
+
+    /**
+     * A Boolean value that determines whether subviews are confined to the
+     * bounds of the view. Returns a Boolean
+     *
+     * @return A Boolean value that determines whether subviews are confined to
+     * the bounds of the view.
+     */
+    @CMGetter("@property(nonatomic) BOOL clipsToBounds;")
+    public boolean clipsToBounds() {
+        return clipsToBounds;
+    }
+
+    /**
+     * Return the view that contains the point parameter and is remotest one in
+     * the view hierarchy tree. This method is triggered by the specified event
+     * parameter.
+     *
+     * @param point The point for which the test takes place.
+     * @param event The event that triggers this method call.
+     * @return The remotest view of hierarchy that contains the point.
+     */
+    @CMSelector("- (UIView *)hitTest:(CGPoint)point \n"
+            + "          withEvent:(UIEvent *)event;")
+    public UIView hitTest(CGPoint point, UIEvent event) {
+        if (userInteraction && !hidden && alpha >= 0.1 && pointInside(point, event)) {
+            UIView view;
+            // Highest layer & highest Z-order, if required
+            for (int i = children.size() - 1; i >= 0; i--) {
+                view = children.get(i);
+                view = view.hitTest(view.selfPointTransformations(Geometry.copy(point), true), event);
+                if (view != null)
+                    return firstAnsestorThatUsesTouches(view);
+            }
+            if (event != null && event instanceof cmPrivateEvent) {
+                if (((cmPrivateEvent) event).isHitAllowed(this))
+                    return this;
+            } else
+                return this;
+        }
+        return null;
+    }
+
+    UIView firstAnsestorThatUsesTouches(UIView view) {
+        if (view != null) {
+            for (boolean usesTouch : view.usesTouches)
+                if (usesTouch)
+                    return view;
+            return firstAnsestorThatUsesTouches(view.superview());
+        }
+        return null;
+    }
+
+    /**
+     * Returns a Boolean value that shows whether the point parameter is in the
+     * coordinate system of this view.This method is triggered by the specified
+     * event parameter.
+     *
+     * @param point The point that is checked.
+     * @param event The event that triggered this method call.
+     * @return A Boolean value that shows whether this point belongs to this
+     * view's coordinate system.
+     */
+    @CMSelector("- (BOOL)pointInside:(CGPoint)point \n"
+            + "          withEvent:(UIEvent *)event;")
+    public boolean pointInside(CGPoint point, UIEvent event) {
+        return !(point.getX() < 0 || point.getY() < 0 || point.getX() > getWidth() - 1 || point.getY() > getHeight() - 1);
+    }
+
+    /**
+     * Returns the parameter point converted from this view's coordinate system
+     * to the coordinate system of the parameter.
+     *
+     * @param point The point expressed in the coordinate system of this view.
+     * @param view  The point to whose coordinate system the conversion will take
+     *              place.
+     * @return The final converted point.
+     */
+    @CMSelector("- (CGPoint)convertPoint:(CGPoint)point \n"
+            + "                 toView:(UIView *)view;")
+    public CGPoint convertPointToView(CGPoint point, UIView view) {
+        return convertPoint(point, this, view);
+    }
+
+    /**
+     * Returns the point parameter converted from the coordinate system of the
+     * view parameter to this view's coordinate system.
+     *
+     * @param point The point expressed in the coordinate system of the view
+     *              parameter.
+     * @param view  The point to whose coordinate system the rectangle is
+     *              expressed. If NULL then window's base coordinates are used.
+     * @return The final converted point.
+     */
+    @CMSelector("- (CGPoint)convertPoint:(CGPoint)point \n"
+            + "               fromView:(UIView *)view;")
+    public CGPoint convertPointFromView(CGPoint point, UIView view) {
+        return convertPoint(point, view, this);
+    }
+
+    final CGPoint selfPointTransformations(CGPoint p, boolean isInverse) {
+        if (isInverse) {
+            p.setX(p.getX() - getX());
+            p.setY(p.getY() - getY());
+            if (layer != null && layer.anchorPoint() != null) {
+                p.setX(p.getX() - (getWidth() * (0.5 - layer.anchorPoint().getX())));
+                p.setY(p.getY() - (getHeight() * (0.5 - layer.anchorPoint().getY())));
+            }
+
+            if (transform != null)
+                Geometry.apply(inverseTransform(), p);
+            UIView parent = superview();
+            if (parent != null)
+                parent.parentPointTransformations(p, isInverse);
+        } else {
+            UIView parent = superview();
+            if (parent != null)
+                parent.parentPointTransformations(p, isInverse);
+            p.setX(p.getX() + getX());
+            p.setY(p.getY() + getY());
+            if (layer != null && layer.anchorPoint() != null) {
+                p.setX(p.getX() + getWidth() * (0.5 - layer.anchorPoint().getX()));
+                p.setY(p.getY() + getHeight() * (0.5 - layer.anchorPoint().getY()));
+            }
+
+            if (transform != null)
+                Geometry.apply(fullTransformation(), p);
+        }
+        return p;
+    }
+
+    void parentPointTransformations(CGPoint point, boolean isInverse) {
+    }
+
+    /**
+     * Returns the parameter rectangle converted from this view's coordinate
+     * system to the coordinate system of the parameter.
+     *
+     * @param rect The rectangle expressed in the coordinate system of this
+     *             view.
+     * @param view The view to whose coordinate system the conversion will take
+     *             place.
+     * @return The final converted rectangle.
+     */
+    @CMSelector("- (CGRect)convertRect:(CGRect)rect \n"
+            + "               toView:(UIView *)view;")
+    public CGRect convertRectToView(CGRect rect, UIView view) {
+        Native.lifecycle().notImplemented();
+        return null;
+    }
+
+    /**
+     * Returns the parameter rectangle converted from the parameter's view
+     * coordinate system to this view coordinate system.
+     *
+     * @param rect The rectangle expressed in the coordinate system of the view
+     *             parameter.
+     * @param view The view to whose coordinate system the rectangle is
+     *             expressed. If NULL then window's base coordinates are used.
+     * @return The final converted rectangle.
+     */
+    @CMSelector("- (CGRect)convertRect:(CGRect)rect \n"
+            + "             fromView:(UIView *)view;")
+    public CGRect convertRectFromView(CGRect rect, UIView view) {
+        Native.lifecycle().notImplemented();
+        return null;
+    }
+
+    /**
+     * Connects a list of gesture recognizers to this view.
+     *
+     * @param gestureRecognizers The list of gesture recognizers that will be
+     *                           connected to this view.
+     */
+    @CMSetter("@property(nonatomic, copy) NSArray<__kindof UIGestureRecognizer *> *gestureRecognizers;")
+    public void setGestureRecognizers(List<UIGestureRecognizer> gestureRecognizers) {
+        this.gestures = gestureRecognizers;
+    }
+
+    /**
+     * Returns a list with the gesture recognizer objects that are connected to
+     * this view.
+     *
+     * @return The list of the gesture recognizer objects
+     * @see crossmobile.ios.uikit.UIGestureRecognizer
+     */
+    @CMGetter("@property(nonatomic, copy) NSArray<__kindof UIGestureRecognizer *> *gestureRecognizers;")
+    public List<UIGestureRecognizer> gestureRecognizers() {
+        return gestures == null ? null : new ArrayList<>(gestures);
+    }
+
+    /**
+     * Connects a gesture recognizer to this view.
+     *
+     * @param gesture The gesture recognizer that will be connected.
+     * @see crossmobile.ios.uikit.UIGestureRecognizer
+     */
+    @CMSelector("- (void)addGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer;")
+    public void addGestureRecognizer(UIGestureRecognizer gesture) {
+        if (gesture != null) {
+            UIView oldView = gesture.view();
+            if (gestures == null)
+                gestures = new ArrayList<>();
+
+            if (oldView != this) {
+                if (oldView != null)
+                    oldView.removeGestureRecognizer(gesture);
+                gesture.setView(this);
+                gestures.add(gesture);
+            }
+        }
+    }
+
+    /**
+     * Disconnects a gesture recognizer from this view.
+     *
+     * @param gesture The gesture recognizer that will be disconnected.
+     * @see crossmobile.ios.uikit.UIGestureRecognizer
+     */
+    @CMSelector("- (void)removeGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer;")
+    public void removeGestureRecognizer(UIGestureRecognizer gesture) {
+        if (gesture != null && gestures != null) {
+            int where = gestures.indexOf(gesture);
+            if (where >= 0) {
+                gestures.remove(where);
+                gesture.setView(null);
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder out = new StringBuilder();
+        out.append(SystemUtilities.getClassName(getClass()));
+        out.append(" frame=");
+        out.append(frame.toString());
+        if (tag != 0)
+            out.append(" tag=").append(tag);
+        if (transform != null)
+            out.append(" transf=").append(Geometry.toString(transform));
+        return out.toString();
+    }
+
+    String parentList() {
+        UIView sview = superview();
+        return sview == null ? "Orphan" : selfAndParentList();
+    }
+
+    String selfAndParentList() {
+        String self = SystemUtilities.getClassName(getClass());
+        UIView sview = superview();
+        return sview == null ? "/" + self : sview.selfAndParentList() + "/" + self;
+    }
+
+    /**
+     * Returns a size for this view that fits the specified size in an optimal
+     * way.
+     *
+     * @param size The size for which the view should calculate its
+     *             optimal-fitting size.
+     * @return A new size that fits the receiver’s subviews.
+     */
+    @CMSelector("- (CGSize)sizeThatFits:(CGSize)size;")
+    public CGSize sizeThatFits(CGSize size) {
+        return size;
+    }
+
+    /**
+     * Changes view's size and reloates it in order to encircle all its
+     * subviews.
+     */
+    @CMSelector("- (void)sizeToFit;")
+    public void sizeToFit() {
+    }
+
+    final void drawingSelf(CGContext cx) {
+        if (!shouldBeDrawn())
+            return;
+        GraphicsContext gcx = context(cx);
+
+        // update viewport
+        CGRect vframe = new CGRect(0, 0, getWidth(), getHeight());
+
+        if (clipsToBounds)
+            cx.clipToRect(vframe);
+
+        if (clearcontext && !opaque) {
+            gcx.setFillColorWithColor(0xFF000000);
+            cx.fillRect(vframe);
+        }
+
+        if (background != null && color(background.cgcolor) != 0) {
+            cx.setFillColorWithColor(background.cgcolor);
+            cx.fillRect(vframe);
+        }
+
+        drawRect(getDrawFrame());
+        if (ENABLE_DEBUG)
+            if (Live_Graphics_Debug && !shouldDrawOnTop())
+                debugGraphicsFrame(cx, vframe);
+
+        DrawingDepth++;
+        // probably create a matrix of some sort and store it, so that prepareToDraw could be executed only once?
+        drawingChildren(cx);
+        DrawingDepth--;
+
+        if (shouldDrawOnTop()) {
+            cx.setAlpha(parentAlpha * alpha);
+            drawOnTop(cx, vframe);
+            if (ENABLE_DEBUG)
+                if (Live_Graphics_Debug)
+                    debugGraphicsFrame(cx, vframe);
+        }
+    }
+
+    private void debugGraphicsFrame(CGContext cx, CGRect givenViewport) {
+        CGColor body = null, border = null;
+        if (layer != null && layer.style() != null) {
+            body = (CGColor) layer.style().get(Theme.Debug.StyleTags.FILL_COLOR_TAG);
+            border = (CGColor) layer.style().get(Theme.Debug.StyleTags.STRIKE_COLOR_TAG);
+        }
+        boolean isWindow = this instanceof UIWindow;
+        GraphicsContext gcx = context(cx);
+        gcx.setLineWidth(1);
+        gcx.setFillColorWithColor(color(body == null ? (isWindow ? Theme.Debug.WINDOW_FILL_COLOR.cgcolor : Theme.Debug.FILL_COLOR.cgcolor) : body));
+        cx.fillRect(givenViewport);
+        gcx.setDrawColorWithColor(color(border == null ? (isWindow ? Theme.Debug.WINDOW_STRIKE_COLOR.cgcolor : Theme.Debug.STRIKE_COLOR.cgcolor) : border));
+        cx.strokeRect(givenViewport);
+    }
+
+    void drawingChildren(CGContext cx) {
+        try {
+            for (UIView child : children)
+                drawingChild(cx, child, true);
+        } catch (ConcurrentModificationException ex) {
+            Native.system().error("Concurrent view hierarchy modification", null);
+            Native.graphics().refreshDisplay();
+        }
+    }
+
+    final void drawingChild(CGContext cx, UIView child, boolean setAlpha) {
+        GraphicsContext gcx = context(cx);
+        if (child.shouldBeDrawn()) {    // double check here to save the "save/restore" of context
+            cx.saveGState();
+            if (child.layer != null && child.layer.anchorPoint() != null)
+                gcx.translate(child.getWidth() * (0.5 - child.layer.anchorPoint().getX()) + child.getX(),
+                        child.getHeight() * (0.5 - child.layer.anchorPoint().getY()) + child.getY());
+            else
+                gcx.translate(child.getX(), child.getY());
+
+            if (child.transform != null)
+                gcx.concatCTM(child.nativeTransformation());
+            if (setAlpha) {
+                child.parentAlpha = parentAlpha * alpha;
+                cx.setAlpha(child.parentAlpha * child.alpha);
+            }
+            child.drawingSelf(cx);
+            cx.restoreGState();
+        }
+    }
+
+    /**
+     * This method is implicitly called when a view is first displayed or when
+     * an event occurs that invalidates a visible part of the view and the view
+     * needs to be redrawn.
+     *
+     * @param rect The part of the view that need to be redrawn.
+     */
+    @CMSelector("- (void)drawRect:(CGRect)rect;")
+    public void drawRect(CGRect rect) {
+    }
+
+    private boolean shouldBeDrawn() {
+        return !hidden && alpha > 0.01;
+    }
+
+    boolean shouldDrawOnTop() {
+        return false;
+    }
+
+    ///NEW CODE FOR CASSOWARY
+
+    /*
+     * all variables are known to this object
+     */
+    private CGRect getDrawFrame() {
+        CGSize has = frame.getSize();
+        CGSize wants = sizeThatFits(has);
+        CGRect dframe = CGRect.zero();
+
+        switch (contentMode) {
+            case ScaleToFill:
+                dframe.getOrigin().setX(0);
+                dframe.getOrigin().setY(0);
+                Geometry.set(dframe.getSize(), has);
+                break;
+            case ScaleAspectFit:
+            case ScaleAspectFill:
+                double hasAspect = has.getWidth() / has.getHeight();
+                double wantsAspect = wants.getWidth() / wants.getHeight();
+                double scale = hasAspect > wantsAspect
+                        ? (contentMode == ScaleAspectFill ? has.getWidth() / wants.getWidth() : has.getHeight() / wants.getHeight()) // width is bigger than required
+                        : (contentMode == ScaleAspectFill ? has.getHeight() / wants.getHeight() : has.getWidth() / wants.getWidth()); // height is bigger than required
+                dframe.getSize().setWidth(wants.getWidth() * scale);
+                dframe.getSize().setHeight(wants.getHeight() * scale);
+                dframe.getOrigin().setX((has.getWidth() - dframe.getSize().getWidth()) / 2);
+                dframe.getOrigin().setY((has.getHeight() - dframe.getSize().getHeight()) / 2);
+                break;
+            case Top:
+                dframe.getOrigin().setX((has.getWidth() - wants.getWidth()) / 2);
+                dframe.getOrigin().setY(0);
+                Geometry.set(dframe.getSize(), wants);
+                break;
+            case Bottom:
+                dframe.getOrigin().setX((has.getWidth() - wants.getWidth()) / 2);
+                dframe.getOrigin().setY(has.getHeight() - wants.getHeight());
+                Geometry.set(dframe.getSize(), wants);
+                break;
+            case Left:
+                dframe.getOrigin().setX(0);
+                dframe.getOrigin().setY((has.getHeight() - wants.getHeight()) / 2);
+                Geometry.set(dframe.getSize(), wants);
+                break;
+            case Right:
+                dframe.getOrigin().setX(has.getWidth() - wants.getWidth());
+                dframe.getOrigin().setY((has.getHeight() - wants.getHeight()) / 2);
+                Geometry.set(dframe.getSize(), wants);
+                break;
+            case TopLeft:
+                dframe.getOrigin().setX(0);
+                dframe.getOrigin().setY(0);
+                Geometry.set(dframe.getSize(), wants);
+                break;
+            case TopRight:
+                dframe.getOrigin().setX(has.getWidth() - wants.getWidth());
+                dframe.getOrigin().setY(0);
+                Geometry.set(dframe.getSize(), wants);
+                break;
+            case BottomLeft:
+                dframe.getOrigin().setX(0);
+                dframe.getOrigin().setY(has.getHeight() - wants.getHeight());
+                Geometry.set(dframe.getSize(), wants);
+                break;
+            case BottomRight:
+                dframe.getOrigin().setX(has.getWidth() - wants.getWidth());
+                dframe.getOrigin().setY(has.getHeight() - wants.getHeight());
+                Geometry.set(dframe.getSize(), wants);
+                break;
+            case Center:
+            default:
+                dframe.getOrigin().setY((has.getHeight() - wants.getHeight()) / 2);
+                dframe.getOrigin().setX((has.getWidth() - wants.getWidth()) / 2);
+                Geometry.set(dframe.getSize(), wants);
+        }
+        return dframe;
+    }
+
+    /*
+     * Use it to draw items above the children, i.e. scrollbars
+     */
+    void drawOnTop(CGContext cx, CGRect rect) {
+    }
+
+    /**
+     * Returns the Core Animation layer of this view that is used for rendering.
+     *
+     * @return the Core Animation layer of this view that is used for
+     * rendering.Not null.
+     */
+    @CMGetter("@property(nonatomic, readonly, strong) CALayer *layer;")
+    public CALayer layer() {
+        if (layer == null) {
+            layer = new CALayer();
+            layer.setDelegate(this);
+        }
+        return layer;
+    }
+
+    /**
+     * Returns a list with the layout constraints of this view.
+     *
+     * @return A list with the layout constraints of this view.
+     * @see crossmobile.ios.uikit.NSLayoutConstraint
+     */
+    @CMGetter("@property(nonatomic, readonly) NSArray<__kindof NSLayoutConstraint *> *constraints;")
+    public List<NSLayoutConstraint> constraints() {
+        return constraints;
+    }
+
+    /**
+     * Adds the specified constraint to this view.
+     *
+     * @param constraint The constraint to be added to the view.
+     */
+    @CMSelector("- (void)addConstraint:(NSLayoutConstraint *)constraint;")
+    public void addConstraint(NSLayoutConstraint constraint) {
+        if (constraint == null)
+            return;
+        if (constraint.firstItem() != this && checkConstraintItem(constraint.firstItem()) && (constraint.secondItem() != null && (constraint.secondItem() != this || checkConstraintItem(constraint.secondItem())))) {
+            System.out.println("Only constraints with relations to this view and its children may be added. \nThis error may occur if your view hierarchy has not yet been initialized.");
+            return;
+        }
+        if (constraints.contains(constraint))
+            return;
+        initItemsIfNeeded(constraint);
+        constraints.add(constraint);
+        constraint.addToSolver(solver());
+        needsUpdateConstraints = true;
+    }
+
+    private boolean checkConstraintItem(Object item) {
+        if (item instanceof UIView)
+            return !isAncestor((UIView) item);
+        else if (item instanceof UILayoutGuide)
+            return ((UILayoutGuide) item).owningView() != this;
+        else if (item instanceof UIViewController.LayoutSupport)
+            return ((UIViewController.LayoutSupport) item).owningView() != this;
+        return false;
+    }
+
+    private boolean isAncestor(UIView view) {
+        if (view == null)
+            return false;
+        if (view.superview() == this)
+            return true;
+        return isAncestor(view.superview());
+    }
+
+    void initItemsIfNeeded(NSLayoutConstraint constraint) {
+        solver();   // initialize self solver
+        if (constraint.firstItem() instanceof UIView) ((UIView) constraint.firstItem()).solver();
+        if (constraint.secondItem() != null && constraint.secondItem() instanceof UIView)
+            ((UIView) constraint.secondItem()).solver();
+    }
+
+    /**
+     * Adds the specified list of constraints to this view.
+     *
+     * @param constraints The list of constraints to be added to the view.
+     */
+    @CMSelector("- (void)addConstraints:(NSArray<__kindof NSLayoutConstraint *> *)constraints;")
+    public void addConstraints(List<NSLayoutConstraint> constraints) {
+        for (NSLayoutConstraint constraint : constraints)
+            addConstraint(constraint);
+    }
+
+    /**
+     * Removes the specified constraint from this view.
+     *
+     * @param constraint The constraint to be removed from this view.
+     */
+    @CMSelector("- (void)removeConstraint:(NSLayoutConstraint *)constraint;")
+    public void removeConstraint(NSLayoutConstraint constraint) {
+        if (solver != null)
+            constraint.removeFromSolver(solver);
+        if (constraint.secondItem() == null && constraint.firstItem() == this) {
+            UIView parent = superview();
+            if (parent != null && parent.solver != null)
+                constraint.removeFromSolver(parent.solver);
+        }
+        constraints.remove(constraint);
+        needsUpdateConstraints = true;
+    }
+
+    /**
+     * Removes the specified list of constraints from this view.
+     *
+     * @param constraints The list of constraints to be removed from this view.
+     */
+    @CMSelector("- (void)removeConstraints:(NSArray<__kindof NSLayoutConstraint *> *)constraints;")
+    public void removeConstraints(List<NSLayoutConstraint> constraints) {
+        for (NSLayoutConstraint constraint : constraints)
+            removeConstraint(constraint);
+    }
+
+    /**
+     * Returns a value that shows whether this view's autoresizing mask is
+     * interpreted in Auto Layout.
+     *
+     * @return A Boolean value that shows whether this view's autoresizing mask
+     * is interpreted in Auto Layout.
+     */
+    @CMGetter("@property(nonatomic) BOOL translatesAutoresizingMaskIntoConstraints;")
+    public boolean translatesAutoresizingMaskIntoConstraints() {
+        return translatesAutoresizingMaskIntoConstraints;
+    }
+
+    /**
+     * Sets a Boolean value that defines whether this view's autoresizing mask
+     * is interpreted in Auto Layout.
+     *
+     * @param translatesAutoresizingMaskIntoConstraints A Boolean value that
+     *                                                  defines whether this view's autoresizing mask is interpreted in Auto
+     *                                                  Layout.
+     */
+    @CMSetter("@property(nonatomic) BOOL translatesAutoresizingMaskIntoConstraints;")
+    public void setTranslatesAutoresizingMaskIntoConstraints(boolean translatesAutoresizingMaskIntoConstraints) {
+        this.translatesAutoresizingMaskIntoConstraints = translatesAutoresizingMaskIntoConstraints;
+    }
+
+    /**
+     * Returns the natural size of this view.
+     *
+     * @return The natural size of this view.
+     */
+    @CMSelector("- (CGSize)intrinsicContentSize;")
+    public CGSize intrinsicContentSize() {
+        return new CGSize(intrinsicContentSize.getWidth(), intrinsicContentSize.getHeight());
+    }
+
+    void setIntrinsicContentSize(double width, double height) {
+        intrinsicContentSize.setWidth(width);
+        intrinsicContentSize.setHeight(height);
+        updateIntrinsicConstraints(true);
+    }
+
+    /**
+     * Invalidates the intrinsic size of the content.
+     */
+    @CMSelector("- (void)invalidateIntrinsicContentSize;")
+    public void invalidateIntrinsicContentSize() {
+
+    }
+
+    /**
+     * Returns the priority with which the content of the view resists to
+     * enlarged concerning an axis.
+     *
+     * @param UILayoutConstraintAxis The axis for which the priority is set.
+     * @return The priority with which the content of the view resists to
+     * enlarged concerning an axis.
+     * @see crossmobile.ios.uikit.UILayoutConstraintAxis
+     */
+    @CMSelector("- (UILayoutPriority)contentCompressionResistancePriorityForAxis:(UILayoutConstraintAxis)axis;")
+    public float contentCompressionResistancePriorityForAxis(int UILayoutConstraintAxis) {
+        if (UILayoutConstraintAxis == 0)
+            return horizontalCompressionResistancePriority;
+        else if (UILayoutConstraintAxis == 1)
+            return verticalCompressionResistancePriority;
+        return 0;
+    }
+
+    /**
+     * Sets the priority with which the view resists to shrinking concerning the
+     * specified axis.
+     *
+     * @param UILayoutConstraintAxis The axis for which the priority is set.
+     * @param UILayoutPriority       The priority with which the view resists to
+     *                               shrinking concerning the specified axis.
+     * @see crossmobile.ios.uikit.UILayoutConstraintAxis
+     * @see crossmobile.ios.uikit.UILayoutPriority
+     */
+    @CMSelector("- (void)setContentCompressionResistancePriority:(UILayoutPriority)priority \n"
+            + "                                        forAxis:(UILayoutConstraintAxis)axis;")
+    public void setContentCompressionResistancePriority(float UILayoutPriority, int UILayoutConstraintAxis) {
+        if (UILayoutConstraintAxis == 0)
+            horizontalCompressionResistancePriority = UILayoutPriority;
+        else if (UILayoutConstraintAxis == 1)
+            verticalCompressionResistancePriority = UILayoutPriority;
+    }
+
+    /**
+     * Returns the priority with which the content of the view resists to
+     * shrinking concerning the specified axis.
+     *
+     * @param UILayoutConstraintAxis The axis for which the priority is
+     *                               returned.
+     * @return The priority with which the content resists to shrinking
+     * concerning the specified axis.
+     * @see crossmobile.ios.uikit.UILayoutConstraintAxis
+     */
+    @CMSelector("- (UILayoutPriority)contentHuggingPriorityForAxis:(UILayoutConstraintAxis)axis;")
+    public float contentHuggingPriorityForAxis(int UILayoutConstraintAxis) {
+        if (UILayoutConstraintAxis == 0)
+            return horizontalHuggingPriority;
+        else if (UILayoutConstraintAxis == 1)
+            return verticalHuggingPriority;
+        return 0;
+    }
+
+    /**
+     * Sets the priority with which the content of the view resists to enlarged
+     * concerning an axis.
+     *
+     * @param UILayoutConstraintAxis The axis to which the priority is set.
+     * @param UILayoutPriority       The priority with which the content resists to be
+     *                               enlarged.
+     * @see crossmobile.ios.uikit.UILayoutConstraintAxis
+     * @see crossmobile.ios.uikit.UILayoutPriority
+     */
+    @CMSelector("- (void)setContentHuggingPriority:(UILayoutPriority)priority \n"
+            + "                          forAxis:(UILayoutConstraintAxis)axis;")
+    public void setContentHuggingPriority(float UILayoutPriority, int UILayoutConstraintAxis) {
+        if (UILayoutConstraintAxis == 0)
+            verticalHuggingPriority = UILayoutPriority;
+        else if (UILayoutConstraintAxis == 1)
+            horizontalHuggingPriority = UILayoutPriority;
+    }
+
+    ClVariable getVariable(int attribute) {
+        return variableMap.get(attribute);
+    }
+
+    private void initVars() {
+        variableMap.put(NSLayoutAttribute.Left, new ClVariable(this.getClass().getSimpleName() + "@" + this.hashCode() + "_Left"));
+        variableMap.put(NSLayoutAttribute.Top, new ClVariable(this.getClass().getSimpleName() + "@" + this.hashCode() + "_Top"));
+        variableMap.put(NSLayoutAttribute.Width, new ClVariable(this.getClass().getSimpleName() + "@" + this.hashCode() + "_Width"));
+        variableMap.put(NSLayoutAttribute.Height, new ClVariable(this.getClass().getSimpleName() + "@" + this.hashCode() + "_Height"));
+        solver.beginEdit();
+        for (Integer attr : variableMap.keySet())
+            solver.addEditVar(getVariable(attr));
+        solver.resolve();
+    }
+
+    private void addDefaultConstraints() {
+        updateIntrinsicConstraints(false);
+        if (systemConstraints.isEmpty()) {
+            systemConstraints.put("width", NSLayoutConstraint.constraintWithItem(this, NSLayoutAttribute.Width, NSLayoutRelation.GreaterThanOrEqual, null, NSLayoutAttribute.NotAnAttribute, 1, 1));
+            systemConstraints.put("height", NSLayoutConstraint.constraintWithItem(this, NSLayoutAttribute.Height, NSLayoutRelation.GreaterThanOrEqual, null, NSLayoutAttribute.NotAnAttribute, 1,
+                    1));
+//            NSLayoutConstraint.activateConstraints(new ArrayList<>(systemConstraints.values()));
+        }
+
+    }
+
+    private void updateIntrinsicConstraints(boolean force) {
+        if (solver == null)
+            return;
+        if (intrinsicConstraints.isEmpty() && (intrinsicContentSize.getHeight() != 0 || intrinsicContentSize.getWidth() != 0)) {
+            intrinsicConstraints.put("contentHuggingX", NSLayoutConstraint.constraintWithItem(this, NSLayoutAttribute.Width, NSLayoutRelation.LessThanOrEqual, null, NSLayoutAttribute.NotAnAttribute, 1, intrinsicContentSize.getWidth()));
+            intrinsicConstraints.put("contentHuggingY", NSLayoutConstraint.constraintWithItem(this, NSLayoutAttribute.Height, NSLayoutRelation.LessThanOrEqual, null, NSLayoutAttribute.NotAnAttribute, 1, intrinsicContentSize.getHeight()));
+            intrinsicConstraints.get("contentHuggingX").setPriority(horizontalHuggingPriority);
+            intrinsicConstraints.get("contentHuggingY").setPriority(verticalHuggingPriority);
+            intrinsicConstraints.put("contentCompressionX", NSLayoutConstraint.constraintWithItem(this, NSLayoutAttribute.Width, NSLayoutRelation.GreaterThanOrEqual, null, NSLayoutAttribute.NotAnAttribute, 1, intrinsicContentSize.getWidth()));
+            intrinsicConstraints.put("contentCompressionY", NSLayoutConstraint.constraintWithItem(this, NSLayoutAttribute.Height, NSLayoutRelation.GreaterThanOrEqual, null, NSLayoutAttribute.NotAnAttribute, 1, intrinsicContentSize.getHeight()));
+            intrinsicConstraints.get("contentCompressionX").setPriority(horizontalCompressionResistancePriority);
+            intrinsicConstraints.get("contentCompressionY").setPriority(verticalCompressionResistancePriority);
+            NSLayoutConstraint.activateConstraints(new ArrayList<>(intrinsicConstraints.values()));
+        } else if (force) {
+            NSLayoutConstraint.deactivateConstraints(new ArrayList<>(intrinsicConstraints.values()));
+            intrinsicConstraints.clear();
+            updateIntrinsicConstraints(false);
+        }
+    }
+
+    private void setViewAttributes() {
+        if (!Geometry.isZero(frame)) {
+            CGSize activeSize = Geometry.isZero(frame.getSize()) ? intrinsicContentSize() : frame.getSize();
+            solver().beginEdit();
+            for (Integer attribute : variableMap.keySet())
+                solver().suggestValue(getVariable(attribute), lookup(attribute, activeSize.getWidth(), activeSize.getHeight()));
+            solver().resolve();
+            suggestGuide(safeAreaLayoutGuide, safeAreaInsets());
+            suggestGuide(layoutMarginsGuide, layoutMargins());
+            if (controller != null)
+                controller.suggestGuides(safeAreaInsets);
+        }
+    }
+
+    private void bequeathIrrelevantConstraints() {
+        for (NSLayoutConstraint constraint : constraints) {
+            Object firstItemO = constraint.firstItem();
+            Object secondItemO = constraint.secondItem();
+            if (!(firstItemO instanceof UIView) || !(secondItemO instanceof UIView))
+                continue;
+            UIView firstItem = (UIView) firstItemO;
+            UIView secondItem = (UIView) secondItemO;
+            UIView superFirsItem = firstItem.superview();
+            UIView superSecondItem = secondItem.superview();
+            if (superFirsItem == this || superSecondItem == this)
+                continue;
+            if (firstItem == this && secondItem == this)
+                continue;
+            if (firstItem.isAncestor(secondItem)) {
+                if (superSecondItem != null)
+                    constraint.addToSolverStay(superSecondItem.solver());
+            } else {
+                if (superFirsItem != null)
+                    constraint.addToSolverStay(superFirsItem.solver());
+            }
+        }
+    }
+
+    ClSimplexSolver solver() {
+        if (solver == null) {
+            systemConstraints = new HashMap<>();
+            intrinsicConstraints = new HashMap<>();
+            solver = new ClSimplexSolver();
+            initVars();
+            addDefaultConstraints();
+        }
+        return solver;
+    }
+
+    void applyLayout() {
+        try {
+            Native.system().runAndWaitOnEventThread(() -> {
+                if (!constraints().isEmpty()) {
+                    needsUpdateConstraints = false;
+                    setViewAttributes();
+                    bequeathIrrelevantConstraints();
+                    for (UIView child : children)
+                        if (!child.translatesAutoresizingMaskIntoConstraints())
+                            for (NSLayoutConstraint constraint : child.relevantConstraints(this))
+                                constraint.addToSolver(solver());
+                    solver().resolve();
+                }
+                for (UIView child : children) {
+                    applyARMConstraints(child);
+                    if (!child.translatesAutoresizingMaskIntoConstraints())
+                        child.applyResult();
+                    child.layoutSubviews();
+                    if (solver != null)
+                        solver.solve();
+                }
+                if (layoutGuides != null)
+                    for (UILayoutGuide layoutGuide : layoutGuides)
+                        layoutGuide.applyResult();
+            });
+        } catch (ConcurrentModificationException ex) {
+            Native.system().postOnEventThread(this::applyLayout);
+        }
+    }
+
+    private void applyARMConstraints(UIView view) {
+        if (view.ARMconstraints != null)
+            view.setFrameImpl(view.ARMconstraints.getFrame(getWidth(), getHeight()));
+    }
+
+    private void applyResult() {
+        if (solver == null)
+            return;
+        setFrameImpl((float) getVariable(NSLayoutAttribute.Left).getValue(),
+                (float) getVariable(NSLayoutAttribute.Top).getValue(),
+                (float) getVariable(NSLayoutAttribute.Width).getValue(),
+                (float) getVariable(NSLayoutAttribute.Height).getValue());
+    }
+
+    double lookup(int attr, double rwidth, double rheight) {
+        switch (attr) {
+            case NSLayoutAttribute.Left:
+                return 0;
+            case NSLayoutAttribute.Top:
+                return 0;
+            case NSLayoutAttribute.Width:
+                return rwidth;
+            case NSLayoutAttribute.Height:
+                return rheight;
+            default:
+                return 0;
+        }
+    }
+
+    /**
+     * Returns the bottom edge of the layout guide frame expressed as layout
+     * anchor.
+     *
+     * @return The bottom edge of the layout guide frame expressed as layout
+     * anchor.
+     */
+    @CMGetter("@property(readonly, strong) NSLayoutYAxisAnchor *bottomAnchor;")
+    public NSLayoutYAxisAnchor bottomAnchor() {
+        if (anchors == null)
+            anchors = new Anchor();
+        if (anchors.bottomAnchor == null)
+            anchors.bottomAnchor = new NSLayoutYAxisAnchor(UIView.this, NSLayoutAttribute.Bottom);
+        return anchors.bottomAnchor;
+
+    }
+
+    /**
+     * Returns the horizontal center of the layout guide frame expressed as
+     * layout anchor.
+     *
+     * @return The horizontal center of the layout guide frame expressed as
+     * layout anchor.
+     */
+    @CMGetter("@property(readonly, strong) NSLayoutXAxisAnchor *centerXAnchor;")
+    public NSLayoutXAxisAnchor centerXAnchor() {
+        if (anchors == null)
+            anchors = new Anchor();
+        if (anchors.centerXAnchor == null)
+            anchors.centerXAnchor = new NSLayoutXAxisAnchor(UIView.this, NSLayoutAttribute.CenterX);
+        return anchors.centerXAnchor;
+
+    }
+
+    /**
+     * Returns the vertical center of the layout guide frame expressed as layout
+     * anchor.
+     *
+     * @return The vertical center of the layout guide frame expressed as layout
+     * anchor.
+     */
+    @CMGetter("@property(readonly, strong) NSLayoutYAxisAnchor *centerYAnchor;")
+    public NSLayoutYAxisAnchor centerYAnchor() {
+        if (anchors == null)
+            anchors = new Anchor();
+        if (anchors.centerYAnchor == null)
+            anchors.centerYAnchor = new NSLayoutYAxisAnchor(UIView.this, NSLayoutAttribute.CenterY);
+        return anchors.centerYAnchor;
+    }
+
+    /**
+     * Returns the height of the layout guide frame expressed as layout anchor.
+     *
+     * @return The height of the layout guide frame expressed as layout anchor.
+     */
+    @CMGetter("@property(readonly, strong) NSLayoutDimension *heightAnchor;")
+    public NSLayoutDimension heightAnchor() {
+        if (anchors == null)
+            anchors = new Anchor();
+        if (anchors.heightAnchor == null)
+            anchors.heightAnchor = new NSLayoutDimension(UIView.this, NSLayoutAttribute.Height);
+        return anchors.heightAnchor;
+    }
+
+    /**
+     * Returns the leading edge of the layout guide frame expressed as layout
+     * anchor.
+     *
+     * @return The leading edge of the layout guide frame expressed as layout
+     * anchor.
+     */
+    @CMGetter("@property(readonly, strong) NSLayoutXAxisAnchor *leadingAnchor;")
+    public NSLayoutXAxisAnchor leadingAnchor() {
+        if (anchors == null)
+            anchors = new Anchor();
+        if (anchors.leadingAnchor == null)
+            anchors.leadingAnchor = new NSLayoutXAxisAnchor(UIView.this, NSLayoutAttribute.Leading);
+        return anchors.leadingAnchor;
+    }
+
+    /**
+     * Returns the left edge of the layout guide frame expressed as layout
+     * anchor.
+     *
+     * @return The left edge of the layout guide frame expressed as layout
+     * anchor.
+     */
+    @CMGetter("@property(readonly, strong) NSLayoutXAxisAnchor *leftAnchor;")
+    public NSLayoutXAxisAnchor leftAnchor() {
+        if (anchors == null)
+            anchors = new Anchor();
+        if (anchors.leftAnchor == null)
+            anchors.leftAnchor = new NSLayoutXAxisAnchor(UIView.this, NSLayoutAttribute.Left);
+        return anchors.leftAnchor;
+    }
+
+    /**
+     * Returns the right edge of the layout guide frame expressed as layout
+     * anchor.
+     *
+     * @return The right edge of the layout guide frame expressed as layout
+     * anchor.
+     */
+    @CMGetter("@property(readonly, strong) NSLayoutXAxisAnchor *rightAnchor;")
+    public NSLayoutXAxisAnchor rightAnchor() {
+        if (anchors == null)
+            anchors = new Anchor();
+        if (anchors.rightAnchor == null)
+            anchors.rightAnchor = new NSLayoutXAxisAnchor(UIView.this, NSLayoutAttribute.Right);
+        return anchors.rightAnchor;
+    }
+
+    /**
+     * Returns the top edge of the layout guide frame expressed as a layout
+     * anchor.
+     *
+     * @return The top edge of the layout guide frame expressed as a layout
+     * anchor.
+     */
+    @CMGetter("@property(readonly, strong) NSLayoutYAxisAnchor *topAnchor;")
+    public NSLayoutYAxisAnchor topAnchor() {
+        if (anchors == null)
+            anchors = new Anchor();
+        if (anchors.topAnchor == null)
+            anchors.topAnchor = new NSLayoutYAxisAnchor(UIView.this, NSLayoutAttribute.Top);
+        return anchors.topAnchor;
+    }
+
+    /**
+     * Returns the trailing edge of the layout guide frame expressed as an
+     * layout anchor.
+     *
+     * @return The trailing edge of the layout guide frame expressed as an
+     * layout anchor.
+     */
+    @CMGetter("@property(readonly, strong) NSLayoutXAxisAnchor *trailingAnchor;")
+    public NSLayoutXAxisAnchor trailingAnchor() {
+        if (anchors == null)
+            anchors = new Anchor();
+        if (anchors.trailingAnchor == null)
+            anchors.trailingAnchor = new NSLayoutXAxisAnchor(UIView.this, NSLayoutAttribute.Trailing);
+        return anchors.trailingAnchor;
+    }
+
+    /**
+     * Returns the width of the layout guide frame expressed as an layout
+     * anchor.
+     *
+     * @return The width of the layout guide frame expressed as an layout
+     * anchor.
+     */
+    @CMGetter("@property(readonly, strong) NSLayoutDimension *widthAnchor;")
+    public NSLayoutDimension widthAnchor() {
+        if (anchors == null)
+            anchors = new Anchor();
+        if (anchors.widthAnchor == null)
+            anchors.widthAnchor = new NSLayoutDimension(UIView.this, NSLayoutAttribute.Width);
+        return anchors.widthAnchor;
+    }
+
+    /**
+     * Adds the specified layout guide to this view.
+     *
+     * @param layoutGuide The layout guide that will be added to the view.
+     */
+    @CMSelector("- (void)addLayoutGuide:(UILayoutGuide *)layoutGuide;\n"
+            + "")
+    public void addLayoutGuide(UILayoutGuide layoutGuide) {
+        if (layoutGuides == null)
+            layoutGuides = new ArrayList<>();
+        layoutGuides.add(layoutGuide);
+        layoutGuide.setOwningView(this);
+    }
+
+    /**
+     * Returns the layout margins of this view.
+     *
+     * @return The layout margins of this view.
+     * @see crossmobile.ios.uikit.UIEdgeInsets
+     */
+    @CMGetter("@property(nonatomic) UIEdgeInsets layoutMargins;")
+    public UIEdgeInsets layoutMargins() {
+        refreshMarginsIfNeeded();
+        return layoutMargins;
+    }
+
+    /**
+     * Sets the layout margins to the specified UIEdgeInsets value
+     *
+     * @param layoutMargins The layout margins.
+     * @see crossmobile.ios.uikit.UIEdgeInsets
+     */
+    @CMSetter("@property(nonatomic) UIEdgeInsets layoutMargins;")
+    public void setLayoutMargins(UIEdgeInsets layoutMargins) {
+        this.layoutMargins = layoutMargins;
+        refreshMarginsIfNeeded();
+    }
+
+    /**
+     * Informs this view that there was a change to its margins.
+     */
+    @CMSelector("- (void)layoutMarginsDidChange;")
+    public void layoutMarginsDidChange() {
+    }
+
+    /**
+     * Returns a layout guides with this views margins.
+     *
+     * @return A layout guides with this views margins.
+     */
+    @CMGetter("@property(readonly, strong) UILayoutGuide *layoutMarginsGuide;")
+    public UILayoutGuide layoutMarginsGuide() {
+        if (layoutMarginsGuide == null) {
+            layoutMarginsGuide = new UILayoutGuide();
+            layoutMarginsGuide.setIdentifier("UIViewLayoutMarginsGuide");
+            layoutMarginsGuide.setOwningView(this);
+            addLayoutGuide(layoutMarginsGuide);
+            solver().beginEdit();
+            for (Integer attr : variableMap.keySet())
+                solver().addEditVar(layoutMarginsGuide.getVariable(attr));
+            solver().resolve();
+        }
+        return layoutMarginsGuide;
+    }
+
+
+    private void suggestGuide(UILayoutGuide guide, UIEdgeInsets insets) {
+        if (guide != null) {
+            CGSize current = frame.getSize();
+            solver().suggestValue(guide.getVariable(NSLayoutAttribute.Left), lookup(NSLayoutAttribute.Left, current.getWidth(), current.getHeight()) + insets.getLeft());
+            solver().suggestValue(guide.getVariable(NSLayoutAttribute.Top), lookup(NSLayoutAttribute.Top, current.getWidth(), current.getHeight()) + insets.getTop());
+            solver().suggestValue(guide.getVariable(NSLayoutAttribute.Width), lookup(NSLayoutAttribute.Width, current.getWidth(), current.getHeight()) - insets.getLeft() - insets.getRight());
+            solver().suggestValue(guide.getVariable(NSLayoutAttribute.Height), lookup(NSLayoutAttribute.Height, current.getWidth(), current.getHeight()) - insets.getTop() - insets.getBottom());
+            solver().resolve();
+        }
+    }
+
+
+    private void refreshMarginsIfNeeded() {
+        UIEdgeInsets uiEdgeInsets = safeAreaInsets;
+        UIEdgeInsets newLayoutMargins = layoutMargins;
+        if (insetsLayoutMarginsFromSafeArea) {
+            if (newLayoutMargins.getTop() < uiEdgeInsets.getTop())
+                newLayoutMargins.setTop(uiEdgeInsets.getTop());
+            if (newLayoutMargins.getLeft() < uiEdgeInsets.getLeft())
+                newLayoutMargins.setLeft(uiEdgeInsets.getLeft());
+            if (newLayoutMargins.getBottom() < uiEdgeInsets.getBottom())
+                newLayoutMargins.setBottom(uiEdgeInsets.getBottom());
+            if (newLayoutMargins.getRight() < uiEdgeInsets.getRight())
+                newLayoutMargins.setRight(uiEdgeInsets.getRight());
+        }
+        UIView parent;
+        if (preservesSuperviewLayoutMargins && (parent = superview()) != null) {
+            if (newLayoutMargins.getTop() < parent.layoutMargins().getTop() - frame.getOrigin().getY())
+                newLayoutMargins.setTop(parent.layoutMargins().getTop() - frame.getOrigin().getY());
+            if (newLayoutMargins.getLeft() < parent.layoutMargins().getLeft() - frame.getOrigin().getX())
+                newLayoutMargins.setLeft(parent.layoutMargins().getLeft() - frame.getOrigin().getX());
+            if (newLayoutMargins.getBottom() < frame.getOrigin().getY() + frame.getSize().getHeight() - parent.frame.getSize().getHeight() + parent.layoutMargins().getBottom())
+                newLayoutMargins.setBottom(frame.getOrigin().getY() + frame.getSize().getHeight() - parent.frame.getSize().getHeight() + parent.layoutMargins().getBottom());
+            if (newLayoutMargins.getRight() < frame.getOrigin().getX() + frame.getSize().getWidth() - parent.frame.getSize().getWidth() + parent.layoutMargins().getRight())
+                newLayoutMargins.setRight(frame.getOrigin().getX() + frame.getSize().getWidth() - parent.frame.getSize().getWidth() + parent.layoutMargins().getRight());
+        }
+        if (!newLayoutMargins.equals(layoutMargins)) {
+            layoutMarginsDidChange();
+        }
+    }
+
+    /**
+     * Retuns a Boolean that show whether this view adapts to its superview
+     * margins.
+     *
+     * @return A Boolean that show whether this view adapts to its superview
+     * margins.
+     */
+    @CMGetter("@property(nonatomic) BOOL preservesSuperviewLayoutMargins;")
+    public boolean preservesSuperviewLayoutMargins() {
+        return preservesSuperviewLayoutMargins;
+    }
+
+    /**
+     * Sets a Boolean value that defines whether this view adapts to its
+     * superview margins.
+     *
+     * @param preservesSuperviewLayoutMargins A Boolean value that defines
+     *                                        whether this view adapts to its superview margins.
+     */
+    @CMSetter("@property(nonatomic) BOOL preservesSuperviewLayoutMargins;")
+    public void setPreservesSuperviewLayoutMargins(boolean preservesSuperviewLayoutMargins) {
+        this.preservesSuperviewLayoutMargins = preservesSuperviewLayoutMargins;
+    }
+
+    /**
+     * Removes the layout guide from the related array.
+     *
+     * @param layoutGuide The layout that will be removed.
+     */
+    @CMSelector("- (void)removeLayoutGuide:(UILayoutGuide *)layoutGuide;")
+    public void removeLayoutGuide(UILayoutGuide layoutGuide) {
+        layoutGuides.remove(layoutGuide);
+        layoutGuide.setOwningView(null);
+        for (NSLayoutConstraint constraint : constraints)
+            if (constraint.firstItem().equals(layoutGuide) || constraint.secondItem().equals(layoutGuide))
+                removeConstraint(constraint);
+    }
+
+    /**
+     * Returns a view that is suitable for the top row baseline
+     *
+     * @return A view that is suitable for the top row baseline
+     */
+    @CMGetter("@property(readonly, strong) UIView *viewForFirstBaselineLayout;")
+    public UIView viewForFirstBaselineLayout() {
+        return viewForLastBaselineLayout();
+    }
+
+    /**
+     * Returns a view that is suitable for the bottom row baseline.
+     *
+     * @return A view that is suitable for the bottom row baseline.
+     */
+    @CMGetter("@property(readonly, strong) UIView *viewForLastBaselineLayout;")
+    public UIView viewForLastBaselineLayout() {
+        return this;
+    }
+
+    List<NSLayoutConstraint> relevantConstraints(Object view) {
+        if (constraints.isEmpty())
+            return constraints;
+        List<NSLayoutConstraint> relevant = new ArrayList<>();
+        for (NSLayoutConstraint constraint : constraints)
+            if (constraint.firstItem().equals(view) || (constraint.secondItem() != null && constraint.secondItem().equals(view)))
+                relevant.add(constraint);
+            else if (constraint.firstItem().equals(this) && (constraint.secondItem() == null))
+                relevant.add(constraint);
+        return relevant;
+    }
+
+    protected final void registerWidget(WidgetWrapper<UIView, NativeWrapper<? extends
+            GraphicsContext>, GraphicsContext> peer) {
+        this.widget = peer;
+        layoutNativeFromRoot();
+    }
+
+    protected final WidgetWrapper<UIView, NativeWrapper<? extends GraphicsContext>, GraphicsContext> getWidget() {
+        return widget;
+    }
+
+    @CMGetter("@property(nonatomic, readonly) UIEdgeInsets safeAreaInsets;")
+    public UIEdgeInsets safeAreaInsets() {
+        UIEdgeInsets oldInsets = safeAreaInsets;
+        UIView superview = superview();
+        if (controller != null) {
+            if (controller.navigationController() != null)
+                safeAreaInsets = controller.navigationController().getTotalSafeAreaInsets();
+            else
+                safeAreaInsets = controller.getTotalSafeAreaInsets();
+        } else if (superview != null) {
+            UIEdgeInsets superInsets = superview.safeAreaInsets();
+            double top = getY() > superInsets.getTop() ? 0 : superInsets.getTop() - getY();
+            double left = getX() > superInsets.getLeft() ? 0 : superInsets.getLeft() - getX();
+            double bottom = getHeight() < superview.getHeight() -
+                    (getY() > superInsets.getTop() ? getY() : top) - superInsets.getBottom() ?
+                    0 : superInsets.getBottom() - superview.getHeight() - (getY() > superInsets.getTop() ? getY() : top) - getHeight();
+            double right = getWidth() < superview.getWidth() -
+                    (getX() > superInsets.getLeft() ? getX() : left) - superInsets.getRight() ?
+                    0 : superInsets.getRight() - superview.getWidth() - (getX() > superInsets.getLeft() ? getX() : left) - getWidth();
+            safeAreaInsets = new UIEdgeInsets(top, left, bottom, right);
+        } else
+            safeAreaInsets = UIEdgeInsets.zero();
+        if (!Geometry.equals(safeAreaInsets, oldInsets)) {
+            // Safe area insets changed
+            if (controller != null)
+                controller.viewSafeAreaInsetsDidChange();
+        }
+        refreshMarginsIfNeeded();
+        return safeAreaInsets;
+    }
+
+    @CMGetter("@property(nonatomic) BOOL insetsLayoutMarginsFromSafeArea;")
+    public boolean insetsLayoutMarginsFromSafeArea() {
+        return insetsLayoutMarginsFromSafeArea;
+    }
+
+    @CMSetter("@property(nonatomic) BOOL insetsLayoutMarginsFromSafeArea;")
+    public void setInsetsLayoutMarginsFromSafeArea(boolean insetsLayoutMarginsFromSafeArea) {
+        this.insetsLayoutMarginsFromSafeArea = insetsLayoutMarginsFromSafeArea;
+    }
+
+
+    @CMGetter("@property(nonatomic, readonly, strong) UILayoutGuide *safeAreaLayoutGuide;")
+    public UILayoutGuide safeAreaLayoutGuide() {
+        if (safeAreaLayoutGuide == null) {
+            safeAreaLayoutGuide = new UILayoutGuide();
+            safeAreaLayoutGuide.setIdentifier("UIViewSafeAreaLayoutGuide");
+            addLayoutGuide(safeAreaLayoutGuide);
+            solver().beginEdit();
+            for (Integer attr : variableMap.keySet())
+                solver().addEditVar(safeAreaLayoutGuide.getVariable(attr));
+            solver().resolve();
+        }
+        return safeAreaLayoutGuide;
+    }
+
+    double getX() {
+        return frame.getOrigin().getX();
+    }
+
+    double getY() {
+        return frame.getOrigin().getY();
+    }
+
+    double getWidth() {
+        return frame.getSize().getWidth();
+    }
+
+    double getHeight() {
+        return frame.getSize().getHeight();
+    }
+
+    void setFrameImpl(double x, double y, double width, double height) {
+        frame.getOrigin().setX(x);
+        frame.getOrigin().setY(y);
+        frame.getSize().setWidth(width);
+        frame.getSize().setHeight(height);
+    }
+
+    private void setFrameImpl(CGRect otherFrame) {
+        setFrameImpl(otherFrame.getOrigin().getX(), otherFrame.getOrigin().getY(), otherFrame.getSize().getWidth(), otherFrame.getSize().getHeight());
+    }
+
+    private class Anchor {
+
+        private NSLayoutYAxisAnchor bottomAnchor;
+        private NSLayoutXAxisAnchor centerXAnchor;
+        private NSLayoutYAxisAnchor centerYAnchor;
+        private NSLayoutYAxisAnchor firstBaselineAnchor;
+        private NSLayoutDimension heightAnchor;
+        private NSLayoutYAxisAnchor lastBaselineAnchor;
+        private NSLayoutXAxisAnchor leadingAnchor;
+        private NSLayoutXAxisAnchor leftAnchor;
+        private NSLayoutXAxisAnchor rightAnchor;
+        private NSLayoutYAxisAnchor topAnchor;
+        private NSLayoutXAxisAnchor trailingAnchor;
+        private NSLayoutDimension widthAnchor;
+    }
+
+    @CMGetter("@property(nonatomic, copy) NSString *restorationIdentifier;")
+    public String restorationIdentifier() {
+        return restorationIdentifier;
+    }
+
+    @CMSetter("@property(nonatomic, copy) NSString *restorationIdentifier;")
+    public void setRestorationIdentifier(String restorationIdentifier) {
+        //TODO what it actually does
+        this.restorationIdentifier = restorationIdentifier;
+    }
+
+    @CMGetter("@property(nonatomic, readonly) UIUserInterfaceLayoutDirection userInterfaceLayoutDirection;")
+    public int userInterfaceLayoutDirection() {
+        return userInterfaceLayoutDirection;
+    }
+}

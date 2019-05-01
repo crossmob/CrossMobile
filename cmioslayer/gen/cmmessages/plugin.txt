@@ -1,0 +1,7 @@
+# Plugin cmmessages
+objc.libs=MessageUI.framework~
+java.initializer=
+objc.pods=
+android.permissions=
+android.extra.app=
+android.extra.dependencies=

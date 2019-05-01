@@ -1,0 +1,3817 @@
+Creating file cmplugin-cmaddressbook-<VERSION>.jar
+META-INF/PLUGIN.INF
+META-INF/REVERSE.INF
+crossmobile/ios/accounts/ACAccount.class v8
+crossmobile/ios/accounts/ACAccountCredential.class v8
+crossmobile/ios/accounts/ACAccountCredentialRenewResult.class v8
+crossmobile/ios/accounts/ACAccountStore.class v8
+crossmobile/ios/accounts/ACAccountStoreCredentialRenewalHandler.class v8
+crossmobile/ios/accounts/ACAccountStoreRemoveCompletionHandler.class v8
+crossmobile/ios/accounts/ACAccountStoreRequestAccessCompletionHandler.class v8
+crossmobile/ios/accounts/ACAccountStoreSaveCompletionHandler.class v8
+crossmobile/ios/accounts/ACAccountType.class v8
+crossmobile/ios/accounts/ACAccountTypeIdentifier.class v8
+crossmobile/ios/accounts/ACErrorCode.class v8
+crossmobile/ios/accounts/ACFacebook.class v8
+crossmobile/ios/accounts/ACFacebookAudience.class v8
+crossmobile/ios/accounts/package-info.class v8
+crossmobile/ios/addressbook/ABAddressBook.class v8
+crossmobile/ios/addressbook/ABAddressBookRequestAccessCompletionHandler.class v8
+crossmobile/ios/addressbook/ABAuthorizationStatus.class v8
+crossmobile/ios/addressbook/ABMultiValue.class v8
+crossmobile/ios/addressbook/ABMutableMultiValue.class v8
+crossmobile/ios/addressbook/ABNewPersonViewController.class v8
+crossmobile/ios/addressbook/ABNewPersonViewControllerDelegate.class v8
+crossmobile/ios/addressbook/ABPeoplePickerNavigationController.class v8
+crossmobile/ios/addressbook/ABPeoplePickerNavigationControllerDelegate.class v8
+crossmobile/ios/addressbook/ABPersonSortOrdering.class v8
+crossmobile/ios/addressbook/ABPersonViewController.class v8
+crossmobile/ios/addressbook/ABPersonViewControllerDelegate.class v8
+crossmobile/ios/addressbook/ABPropertyType.class v8
+crossmobile/ios/addressbook/ABRecord.class v8
+crossmobile/ios/addressbook/ABUnknownPersonViewController.class v8
+crossmobile/ios/addressbook/ABUnknownPersonViewControllerDelegate.class v8
+crossmobile/ios/addressbook/package-info.class v8
+crossmobile/ios/contacts/CNAuthorizationStatus.class v8
+crossmobile/ios/contacts/CNContact.class v8
+crossmobile/ios/contacts/CNContactDisplayNameOrder.class v8
+crossmobile/ios/contacts/CNContactFetchRequest.class v8
+crossmobile/ios/contacts/CNContactFormatter.class v8
+crossmobile/ios/contacts/CNContactFormatterStyle.class v8
+crossmobile/ios/contacts/CNContactProperty.class v8
+crossmobile/ios/contacts/CNContactRelation.class v8
+crossmobile/ios/contacts/CNContactSortOrder.class v8
+crossmobile/ios/contacts/CNContactStore.class v8
+crossmobile/ios/contacts/CNContactType.class v8
+crossmobile/ios/contacts/CNContactsUserDefaults.class v8
+crossmobile/ios/contacts/CNContainer.class v8
+crossmobile/ios/contacts/CNContainerType.class v8
+crossmobile/ios/contacts/CNEntityType.class v8
+crossmobile/ios/contacts/CNGroup.class v8
+crossmobile/ios/contacts/CNInstantMessageAddress.class v8
+crossmobile/ios/contacts/CNLabelPhoneNumber.class v8
+crossmobile/ios/contacts/CNLabeledValue.class v8
+crossmobile/ios/contacts/CNMutableContact.class v8
+crossmobile/ios/contacts/CNPhoneNumber.class v8
+crossmobile/ios/contacts/CNPostalAddress.class v8
+crossmobile/ios/contacts/CNSaveRequest.class v8
+crossmobile/ios/contacts/CNSocialProfile.class v8
+crossmobile/ios/contacts/CNValueType.class v8
+crossmobile/ios/contacts/package-info.class v8
+
+Creating file cmplugin-builddep-cmaddressbook-<VERSION>.jar
+
+
+Creating file cmplugin-ios-cmaddressbook-<VERSION>.jar
+crossmobile/ios/accounts/ACAccount.class v8
+crossmobile/ios/accounts/ACAccountCredential.class v8
+crossmobile/ios/accounts/ACAccountCredentialRenewResult.class v8
+crossmobile/ios/accounts/ACAccountStore.class v8
+crossmobile/ios/accounts/ACAccountStoreCredentialRenewalHandler.class v8
+crossmobile/ios/accounts/ACAccountStoreRemoveCompletionHandler.class v8
+crossmobile/ios/accounts/ACAccountStoreRequestAccessCompletionHandler.class v8
+crossmobile/ios/accounts/ACAccountStoreSaveCompletionHandler.class v8
+crossmobile/ios/accounts/ACAccountType.class v8
+crossmobile/ios/accounts/ACAccountTypeIdentifier.class v8
+crossmobile/ios/accounts/ACErrorCode.class v8
+crossmobile/ios/accounts/ACFacebook.class v8
+crossmobile/ios/accounts/ACFacebookAudience.class v8
+crossmobile/ios/addressbook/ABAddressBook.class v8
+crossmobile/ios/addressbook/ABAddressBookRequestAccessCompletionHandler.class v8
+crossmobile/ios/addressbook/ABAuthorizationStatus.class v8
+crossmobile/ios/addressbook/ABMultiValue.class v8
+crossmobile/ios/addressbook/ABMutableMultiValue.class v8
+crossmobile/ios/addressbook/ABNewPersonViewController.class v8
+crossmobile/ios/addressbook/ABNewPersonViewControllerDelegate.class v8
+crossmobile/ios/addressbook/ABPeoplePickerNavigationController.class v8
+crossmobile/ios/addressbook/ABPeoplePickerNavigationControllerDelegate.class v8
+crossmobile/ios/addressbook/ABPersonSortOrdering.class v8
+crossmobile/ios/addressbook/ABPersonViewController.class v8
+crossmobile/ios/addressbook/ABPersonViewControllerDelegate.class v8
+crossmobile/ios/addressbook/ABPropertyType.class v8
+crossmobile/ios/addressbook/ABRecord.class v8
+crossmobile/ios/addressbook/ABUnknownPersonViewController.class v8
+crossmobile/ios/addressbook/ABUnknownPersonViewControllerDelegate.class v8
+crossmobile/ios/contacts/CNAuthorizationStatus.class v8
+crossmobile/ios/contacts/CNContact.class v8
+crossmobile/ios/contacts/CNContactDisplayNameOrder.class v8
+crossmobile/ios/contacts/CNContactFetchRequest.class v8
+crossmobile/ios/contacts/CNContactFormatter.class v8
+crossmobile/ios/contacts/CNContactFormatterStyle.class v8
+crossmobile/ios/contacts/CNContactProperty.class v8
+crossmobile/ios/contacts/CNContactRelation.class v8
+crossmobile/ios/contacts/CNContactSortOrder.class v8
+crossmobile/ios/contacts/CNContactStore.class v8
+crossmobile/ios/contacts/CNContactType.class v8
+crossmobile/ios/contacts/CNContactsUserDefaults.class v8
+crossmobile/ios/contacts/CNContainer.class v8
+crossmobile/ios/contacts/CNContainerType.class v8
+crossmobile/ios/contacts/CNEntityType.class v8
+crossmobile/ios/contacts/CNGroup.class v8
+crossmobile/ios/contacts/CNInstantMessageAddress.class v8
+crossmobile/ios/contacts/CNLabelPhoneNumber.class v8
+crossmobile/ios/contacts/CNLabeledValue.class v8
+crossmobile/ios/contacts/CNMutableContact.class v8
+crossmobile/ios/contacts/CNPhoneNumber.class v8
+crossmobile/ios/contacts/CNPostalAddress.class v8
+crossmobile/ios/contacts/CNSaveRequest.class v8
+crossmobile/ios/contacts/CNSocialProfile.class v8
+crossmobile/ios/contacts/CNValueType.class v8
+native/cmaddressbook.a
+native/crossmobile_ios_accounts_ACAccount.h
+native/crossmobile_ios_accounts_ACAccountCredential.h
+native/crossmobile_ios_accounts_ACAccountStore.h
+native/crossmobile_ios_accounts_ACAccountStoreCredentialRenewalHandler.h
+native/crossmobile_ios_accounts_ACAccountStoreRemoveCompletionHandler.h
+native/crossmobile_ios_accounts_ACAccountStoreRequestAccessCompletionHandler.h
+native/crossmobile_ios_accounts_ACAccountStoreSaveCompletionHandler.h
+native/crossmobile_ios_accounts_ACAccountType.h
+native/crossmobile_ios_addressbook_ABAddressBook.h
+native/crossmobile_ios_addressbook_ABAddressBookRequestAccessCompletionHandler.h
+native/crossmobile_ios_addressbook_ABMultiValue.h
+native/crossmobile_ios_addressbook_ABMutableMultiValue.h
+native/crossmobile_ios_addressbook_ABNewPersonViewController.h
+native/crossmobile_ios_addressbook_ABNewPersonViewControllerDelegate.h
+native/crossmobile_ios_addressbook_ABPeoplePickerNavigationController.h
+native/crossmobile_ios_addressbook_ABPeoplePickerNavigationControllerDelegate.h
+native/crossmobile_ios_addressbook_ABPersonViewController.h
+native/crossmobile_ios_addressbook_ABPersonViewControllerDelegate.h
+native/crossmobile_ios_addressbook_ABRecord.h
+native/crossmobile_ios_addressbook_ABUnknownPersonViewController.h
+native/crossmobile_ios_addressbook_ABUnknownPersonViewControllerDelegate.h
+native/crossmobile_ios_contacts_CNContact.h
+native/crossmobile_ios_contacts_CNContactFetchRequest.h
+native/crossmobile_ios_contacts_CNContactFormatter.h
+native/crossmobile_ios_contacts_CNContactProperty.h
+native/crossmobile_ios_contacts_CNContactRelation.h
+native/crossmobile_ios_contacts_CNContactStore.h
+native/crossmobile_ios_contacts_CNContactsUserDefaults.h
+native/crossmobile_ios_contacts_CNContainer.h
+native/crossmobile_ios_contacts_CNGroup.h
+native/crossmobile_ios_contacts_CNInstantMessageAddress.h
+native/crossmobile_ios_contacts_CNLabeledValue.h
+native/crossmobile_ios_contacts_CNMutableContact.h
+native/crossmobile_ios_contacts_CNPhoneNumber.h
+native/crossmobile_ios_contacts_CNPostalAddress.h
+native/crossmobile_ios_contacts_CNSaveRequest.h
+native/crossmobile_ios_contacts_CNSocialProfile.h
+
+Creating file cmplugin-desktop-cmaddressbook-<VERSION>.jar
+crossmobile/ios/accounts/ACAccount.class v8
+crossmobile/ios/accounts/ACAccountCredential.class v8
+crossmobile/ios/accounts/ACAccountCredentialRenewResult.class v8
+crossmobile/ios/accounts/ACAccountStore.class v8
+crossmobile/ios/accounts/ACAccountStoreCredentialRenewalHandler.class v8
+crossmobile/ios/accounts/ACAccountStoreRemoveCompletionHandler.class v8
+crossmobile/ios/accounts/ACAccountStoreRequestAccessCompletionHandler.class v8
+crossmobile/ios/accounts/ACAccountStoreSaveCompletionHandler.class v8
+crossmobile/ios/accounts/ACAccountType.class v8
+crossmobile/ios/accounts/ACAccountTypeIdentifier.class v8
+crossmobile/ios/accounts/ACErrorCode.class v8
+crossmobile/ios/accounts/ACFacebook.class v8
+crossmobile/ios/accounts/ACFacebookAudience.class v8
+crossmobile/ios/addressbook/ABAddressBook.class v8
+crossmobile/ios/addressbook/ABAddressBookRequestAccessCompletionHandler.class v8
+crossmobile/ios/addressbook/ABAuthorizationStatus.class v8
+crossmobile/ios/addressbook/ABMultiValue.class v8
+crossmobile/ios/addressbook/ABMutableMultiValue.class v8
+crossmobile/ios/addressbook/ABNewPersonViewController.class v8
+crossmobile/ios/addressbook/ABNewPersonViewControllerDelegate.class v8
+crossmobile/ios/addressbook/ABPeoplePickerNavigationController.class v8
+crossmobile/ios/addressbook/ABPeoplePickerNavigationControllerDelegate.class v8
+crossmobile/ios/addressbook/ABPersonSortOrdering.class v8
+crossmobile/ios/addressbook/ABPersonViewController.class v8
+crossmobile/ios/addressbook/ABPersonViewControllerDelegate.class v8
+crossmobile/ios/addressbook/ABPropertyType.class v8
+crossmobile/ios/addressbook/ABRecord.class v8
+crossmobile/ios/addressbook/ABUnknownPersonViewController.class v8
+crossmobile/ios/addressbook/ABUnknownPersonViewControllerDelegate.class v8
+crossmobile/ios/contacts/CNAuthorizationStatus.class v8
+crossmobile/ios/contacts/CNContact.class v8
+crossmobile/ios/contacts/CNContactDisplayNameOrder.class v8
+crossmobile/ios/contacts/CNContactFetchRequest.class v8
+crossmobile/ios/contacts/CNContactFormatter.class v8
+crossmobile/ios/contacts/CNContactFormatterStyle.class v8
+crossmobile/ios/contacts/CNContactProperty.class v8
+crossmobile/ios/contacts/CNContactRelation.class v8
+crossmobile/ios/contacts/CNContactSortOrder.class v8
+crossmobile/ios/contacts/CNContactStore.class v8
+crossmobile/ios/contacts/CNContactType.class v8
+crossmobile/ios/contacts/CNContactsUserDefaults.class v8
+crossmobile/ios/contacts/CNContainer.class v8
+crossmobile/ios/contacts/CNContainerType.class v8
+crossmobile/ios/contacts/CNEntityType.class v8
+crossmobile/ios/contacts/CNGroup.class v8
+crossmobile/ios/contacts/CNInstantMessageAddress.class v8
+crossmobile/ios/contacts/CNLabelPhoneNumber.class v8
+crossmobile/ios/contacts/CNLabeledValue.class v8
+crossmobile/ios/contacts/CNMutableContact.class v8
+crossmobile/ios/contacts/CNPhoneNumber.class v8
+crossmobile/ios/contacts/CNPostalAddress.class v8
+crossmobile/ios/contacts/CNSaveRequest.class v8
+crossmobile/ios/contacts/CNSocialProfile.class v8
+crossmobile/ios/contacts/CNValueType.class v8
+
+Creating file cmplugin-android-cmaddressbook-<VERSION>.jar
+crossmobile/ios/accounts/ACAccount.class v8
+crossmobile/ios/accounts/ACAccountCredential.class v8
+crossmobile/ios/accounts/ACAccountCredentialRenewResult.class v8
+crossmobile/ios/accounts/ACAccountStore.class v8
+crossmobile/ios/accounts/ACAccountStoreCredentialRenewalHandler.class v8
+crossmobile/ios/accounts/ACAccountStoreRemoveCompletionHandler.class v8
+crossmobile/ios/accounts/ACAccountStoreRequestAccessCompletionHandler.class v8
+crossmobile/ios/accounts/ACAccountStoreSaveCompletionHandler.class v8
+crossmobile/ios/accounts/ACAccountType.class v8
+crossmobile/ios/accounts/ACAccountTypeIdentifier.class v8
+crossmobile/ios/accounts/ACErrorCode.class v8
+crossmobile/ios/accounts/ACFacebook.class v8
+crossmobile/ios/accounts/ACFacebookAudience.class v8
+crossmobile/ios/addressbook/ABAddressBook.class v8
+crossmobile/ios/addressbook/ABAddressBookRequestAccessCompletionHandler.class v8
+crossmobile/ios/addressbook/ABAuthorizationStatus.class v8
+crossmobile/ios/addressbook/ABMultiValue.class v8
+crossmobile/ios/addressbook/ABMutableMultiValue.class v8
+crossmobile/ios/addressbook/ABNewPersonViewController.class v8
+crossmobile/ios/addressbook/ABNewPersonViewControllerDelegate.class v8
+crossmobile/ios/addressbook/ABPeoplePickerNavigationController.class v8
+crossmobile/ios/addressbook/ABPeoplePickerNavigationControllerDelegate.class v8
+crossmobile/ios/addressbook/ABPersonSortOrdering.class v8
+crossmobile/ios/addressbook/ABPersonViewController.class v8
+crossmobile/ios/addressbook/ABPersonViewControllerDelegate.class v8
+crossmobile/ios/addressbook/ABPropertyType.class v8
+crossmobile/ios/addressbook/ABRecord.class v8
+crossmobile/ios/addressbook/ABUnknownPersonViewController.class v8
+crossmobile/ios/addressbook/ABUnknownPersonViewControllerDelegate.class v8
+crossmobile/ios/contacts/CNAuthorizationStatus.class v8
+crossmobile/ios/contacts/CNContact.class v8
+crossmobile/ios/contacts/CNContactDisplayNameOrder.class v8
+crossmobile/ios/contacts/CNContactFetchRequest.class v8
+crossmobile/ios/contacts/CNContactFormatter.class v8
+crossmobile/ios/contacts/CNContactFormatterStyle.class v8
+crossmobile/ios/contacts/CNContactProperty.class v8
+crossmobile/ios/contacts/CNContactRelation.class v8
+crossmobile/ios/contacts/CNContactSortOrder.class v8
+crossmobile/ios/contacts/CNContactStore.class v8
+crossmobile/ios/contacts/CNContactType.class v8
+crossmobile/ios/contacts/CNContactsUserDefaults.class v8
+crossmobile/ios/contacts/CNContainer.class v8
+crossmobile/ios/contacts/CNContainerType.class v8
+crossmobile/ios/contacts/CNEntityType.class v8
+crossmobile/ios/contacts/CNGroup.class v8
+crossmobile/ios/contacts/CNInstantMessageAddress.class v8
+crossmobile/ios/contacts/CNLabelPhoneNumber.class v8
+crossmobile/ios/contacts/CNLabeledValue.class v8
+crossmobile/ios/contacts/CNMutableContact.class v8
+crossmobile/ios/contacts/CNPhoneNumber.class v8
+crossmobile/ios/contacts/CNPostalAddress.class v8
+crossmobile/ios/contacts/CNSaveRequest.class v8
+crossmobile/ios/contacts/CNSocialProfile.class v8
+crossmobile/ios/contacts/CNValueType.class v8
+
+Creating file cmplugin-rvm-cmaddressbook-<VERSION>.jar
+
+
+Creating file cmplugin-cmgamekit-<VERSION>.jar
+META-INF/PLUGIN.INF
+META-INF/REVERSE.INF
+crossmobile/ios/gamekit/GKDataReceiveHandler.class v8
+crossmobile/ios/gamekit/GKPeerConnectionState.class v8
+crossmobile/ios/gamekit/GKPeerPickerConnectionType.class v8
+crossmobile/ios/gamekit/GKPeerPickerController.class v8
+crossmobile/ios/gamekit/GKPeerPickerControllerDelegate.class v8
+crossmobile/ios/gamekit/GKSendDataMode.class v8
+crossmobile/ios/gamekit/GKSession.class v8
+crossmobile/ios/gamekit/GKSessionDelegate.class v8
+crossmobile/ios/gamekit/GKSessionMode.class v8
+crossmobile/ios/gamekit/package-info.class v8
+
+Creating file cmplugin-builddep-cmgamekit-<VERSION>.jar
+
+
+Creating file cmplugin-ios-cmgamekit-<VERSION>.jar
+crossmobile/ios/gamekit/GKDataReceiveHandler.class v8
+crossmobile/ios/gamekit/GKPeerConnectionState.class v8
+crossmobile/ios/gamekit/GKPeerPickerConnectionType.class v8
+crossmobile/ios/gamekit/GKPeerPickerController.class v8
+crossmobile/ios/gamekit/GKPeerPickerControllerDelegate.class v8
+crossmobile/ios/gamekit/GKSendDataMode.class v8
+crossmobile/ios/gamekit/GKSession.class v8
+crossmobile/ios/gamekit/GKSessionDelegate.class v8
+crossmobile/ios/gamekit/GKSessionMode.class v8
+native/cmgamekit.a
+native/crossmobile_ios_gamekit_GKDataReceiveHandler.h
+native/crossmobile_ios_gamekit_GKPeerPickerController.h
+native/crossmobile_ios_gamekit_GKPeerPickerControllerDelegate.h
+native/crossmobile_ios_gamekit_GKSession.h
+native/crossmobile_ios_gamekit_GKSessionDelegate.h
+
+Creating file cmplugin-desktop-cmgamekit-<VERSION>.jar
+crossmobile/ios/gamekit/GKDataReceiveHandler.class v8
+crossmobile/ios/gamekit/GKPeerConnectionState.class v8
+crossmobile/ios/gamekit/GKPeerPickerConnectionType.class v8
+crossmobile/ios/gamekit/GKPeerPickerController.class v8
+crossmobile/ios/gamekit/GKPeerPickerControllerDelegate.class v8
+crossmobile/ios/gamekit/GKSendDataMode.class v8
+crossmobile/ios/gamekit/GKSession.class v8
+crossmobile/ios/gamekit/GKSessionDelegate.class v8
+crossmobile/ios/gamekit/GKSessionMode.class v8
+
+Creating file cmplugin-android-cmgamekit-<VERSION>.jar
+crossmobile/ios/gamekit/GKDataReceiveHandler.class v8
+crossmobile/ios/gamekit/GKPeerConnectionState.class v8
+crossmobile/ios/gamekit/GKPeerPickerConnectionType.class v8
+crossmobile/ios/gamekit/GKPeerPickerController.class v8
+crossmobile/ios/gamekit/GKPeerPickerControllerDelegate.class v8
+crossmobile/ios/gamekit/GKSendDataMode.class v8
+crossmobile/ios/gamekit/GKSession.class v8
+crossmobile/ios/gamekit/GKSessionDelegate.class v8
+crossmobile/ios/gamekit/GKSessionMode.class v8
+
+Creating file cmplugin-rvm-cmgamekit-<VERSION>.jar
+
+
+Creating file cmplugin-cmi18n-<VERSION>.jar
+META-INF/PLUGIN.INF
+META-INF/REVERSE.INF
+
+Creating file cmplugin-builddep-cmi18n-<VERSION>.jar
+
+
+Creating file cmplugin-ios-cmi18n-<VERSION>.jar
+
+
+Creating file cmplugin-desktop-cmi18n-<VERSION>.jar
+org/crossmobile/ci$1.class v8
+org/crossmobile/ci$a.class v8
+org/crossmobile/ci$b$1.class v8
+org/crossmobile/ci$b.class v8
+org/crossmobile/ci$c.class v8
+org/crossmobile/ci.class v8
+
+Creating file cmplugin-android-cmi18n-<VERSION>.jar
+org/crossmobile/ci$1.class v8
+org/crossmobile/ci$a.class v8
+org/crossmobile/ci$b$1.class v8
+org/crossmobile/ci$b.class v8
+org/crossmobile/ci$c.class v8
+org/crossmobile/ci.class v8
+
+Creating file cmplugin-rvm-cmi18n-<VERSION>.jar
+
+
+Creating file cmplugin-cmimage-<VERSION>.jar
+META-INF/PLUGIN.INF
+META-INF/REVERSE.INF
+crossmobile/ios/coreimage/CIContext.class v8
+crossmobile/ios/coreimage/CIFilter.class v8
+crossmobile/ios/coreimage/CIImage.class v8
+crossmobile/ios/coreimage/package-info.class v8
+crossmobile/ios/uikit/UIImagePickerController.class v8
+crossmobile/ios/uikit/UIImagePickerControllerCameraCaptureMode.class v8
+crossmobile/ios/uikit/UIImagePickerControllerCameraDevice.class v8
+crossmobile/ios/uikit/UIImagePickerControllerCameraFlashMode.class v8
+crossmobile/ios/uikit/UIImagePickerControllerDelegate.class v8
+crossmobile/ios/uikit/UIImagePickerControllerQualityType.class v8
+crossmobile/ios/uikit/UIImagePickerControllerSourceType.class v8
+
+Creating file cmplugin-builddep-cmimage-<VERSION>.jar
+
+
+Creating file cmplugin-ios-cmimage-<VERSION>.jar
+crossmobile/ios/coreimage/CIContext.class v8
+crossmobile/ios/coreimage/CIFilter.class v8
+crossmobile/ios/coreimage/CIImage.class v8
+crossmobile/ios/uikit/UIImagePickerController.class v8
+crossmobile/ios/uikit/UIImagePickerControllerCameraCaptureMode.class v8
+crossmobile/ios/uikit/UIImagePickerControllerCameraDevice.class v8
+crossmobile/ios/uikit/UIImagePickerControllerCameraFlashMode.class v8
+crossmobile/ios/uikit/UIImagePickerControllerDelegate.class v8
+crossmobile/ios/uikit/UIImagePickerControllerQualityType.class v8
+crossmobile/ios/uikit/UIImagePickerControllerSourceType.class v8
+native/cmimage.a
+native/crossmobile_ios_coreimage_CIContext.h
+native/crossmobile_ios_coreimage_CIFilter.h
+native/crossmobile_ios_coreimage_CIImage.h
+native/crossmobile_ios_uikit_UIImagePickerController.h
+native/crossmobile_ios_uikit_UIImagePickerControllerDelegate.h
+
+Creating file cmplugin-desktop-cmimage-<VERSION>.jar
+crossmobile/ios/coreimage/CIContext.class v8
+crossmobile/ios/coreimage/CIFilter.class v8
+crossmobile/ios/coreimage/CIImage.class v8
+crossmobile/ios/uikit/UIImagePickerController.class v8
+crossmobile/ios/uikit/UIImagePickerControllerCameraCaptureMode.class v8
+crossmobile/ios/uikit/UIImagePickerControllerCameraDevice.class v8
+crossmobile/ios/uikit/UIImagePickerControllerCameraFlashMode.class v8
+crossmobile/ios/uikit/UIImagePickerControllerDelegate.class v8
+crossmobile/ios/uikit/UIImagePickerControllerQualityType.class v8
+crossmobile/ios/uikit/UIImagePickerControllerSourceType.class v8
+
+Creating file cmplugin-android-cmimage-<VERSION>.jar
+crossmobile/ios/coreimage/CIContext.class v8
+crossmobile/ios/coreimage/CIFilter.class v8
+crossmobile/ios/coreimage/CIImage.class v8
+crossmobile/ios/uikit/UIImagePickerController.class v8
+crossmobile/ios/uikit/UIImagePickerControllerCameraCaptureMode.class v8
+crossmobile/ios/uikit/UIImagePickerControllerCameraDevice.class v8
+crossmobile/ios/uikit/UIImagePickerControllerCameraFlashMode.class v8
+crossmobile/ios/uikit/UIImagePickerControllerDelegate.class v8
+crossmobile/ios/uikit/UIImagePickerControllerQualityType.class v8
+crossmobile/ios/uikit/UIImagePickerControllerSourceType.class v8
+
+Creating file cmplugin-rvm-cmimage-<VERSION>.jar
+
+
+Creating file cmplugin-cmioslayer-<VERSION>.jar
+META-INF/PLUGIN.INF
+META-INF/REVERSE.INF
+crossmobile/ios/coregraphics/CGAffineTransform.class v8
+crossmobile/ios/coregraphics/CGBitmapContext.class v8
+crossmobile/ios/coregraphics/CGBitmapInfo.class v8
+crossmobile/ios/coregraphics/CGBlendMode.class v8
+crossmobile/ios/coregraphics/CGColor.class v8
+crossmobile/ios/coregraphics/CGColorRenderingIntent.class v8
+crossmobile/ios/coregraphics/CGColorSpace.class v8
+crossmobile/ios/coregraphics/CGContext.class v8
+crossmobile/ios/coregraphics/CGDataProvider.class v8
+crossmobile/ios/coregraphics/CGFont.class v8
+crossmobile/ios/coregraphics/CGGradient.class v8
+crossmobile/ios/coregraphics/CGGradientDrawingOptions.class v8
+crossmobile/ios/coregraphics/CGImage.class v8
+crossmobile/ios/coregraphics/CGInterpolationQuality.class v8
+crossmobile/ios/coregraphics/CGLayer.class v8
+crossmobile/ios/coregraphics/CGLineCap.class v8
+crossmobile/ios/coregraphics/CGLineJoin.class v8
+crossmobile/ios/coregraphics/CGPath.class v8
+crossmobile/ios/coregraphics/CGPathDrawingMode.class v8
+crossmobile/ios/coregraphics/CGPoint.class v8
+crossmobile/ios/coregraphics/CGRect.class v8
+crossmobile/ios/coregraphics/CGSize.class v8
+crossmobile/ios/coregraphics/CGTextDrawingMode.class v8
+crossmobile/ios/coregraphics/CGTextEncoding.class v8
+crossmobile/ios/coregraphics/package-info.class v8
+crossmobile/ios/foundation/CFNumberFormatterStyle.class v8
+crossmobile/ios/foundation/CFType.class v8
+crossmobile/ios/foundation/Foundation.class v8
+crossmobile/ios/foundation/NSAttributedStringKey.class v8
+crossmobile/ios/foundation/NSBundle.class v8
+crossmobile/ios/foundation/NSCalendar.class v8
+crossmobile/ios/foundation/NSCalendarOptions.class v8
+crossmobile/ios/foundation/NSCalendarUnit.class v8
+crossmobile/ios/foundation/NSCoder.class v8
+crossmobile/ios/foundation/NSData.class v8
+crossmobile/ios/foundation/NSDataBase64DecodingOptions.class v8
+crossmobile/ios/foundation/NSDataBase64EncodingOptions.class v8
+crossmobile/ios/foundation/NSDate.class v8
+crossmobile/ios/foundation/NSDateComponents.class v8
+crossmobile/ios/foundation/NSDictionary.class v8
+crossmobile/ios/foundation/NSError$Domain.class v8
+crossmobile/ios/foundation/NSError$ErrorCode.class v8
+crossmobile/ios/foundation/NSError$Key.class v8
+crossmobile/ios/foundation/NSError.class v8
+crossmobile/ios/foundation/NSExtensionContext.class v8
+crossmobile/ios/foundation/NSExtensionItem.class v8
+crossmobile/ios/foundation/NSFileHandle.class v8
+crossmobile/ios/foundation/NSFileManager.class v8
+crossmobile/ios/foundation/NSHTTPCookie.class v8
+crossmobile/ios/foundation/NSHTTPCookieAcceptPolicy.class v8
+crossmobile/ios/foundation/NSHTTPCookieStorage.class v8
+crossmobile/ios/foundation/NSHTTPURLResponse.class v8
+crossmobile/ios/foundation/NSIndexPath.class v8
+crossmobile/ios/foundation/NSItemProvider.class v8
+crossmobile/ios/foundation/NSItemProviderCompletionHandler.class v8
+crossmobile/ios/foundation/NSItemProviderLoadHandler.class v8
+crossmobile/ios/foundation/NSJSONReadingOptions.class v8
+crossmobile/ios/foundation/NSJSONSerialization.class v8
+crossmobile/ios/foundation/NSJSONWritingOptions.class v8
+crossmobile/ios/foundation/NSLineBreakMode.class v8
+crossmobile/ios/foundation/NSLocale.class v8
+crossmobile/ios/foundation/NSLog.class v8
+crossmobile/ios/foundation/NSMutableData.class v8
+crossmobile/ios/foundation/NSMutableURLRequest.class v8
+crossmobile/ios/foundation/NSNotification.class v8
+crossmobile/ios/foundation/NSNotificationCenter.class v8
+crossmobile/ios/foundation/NSNotificationName.class v8
+crossmobile/ios/foundation/NSNumberFormatter.class v8
+crossmobile/ios/foundation/NSNumberFormatterStyle.class v8
+crossmobile/ios/foundation/NSObject.class v8
+crossmobile/ios/foundation/NSOperationQueue.class v8
+crossmobile/ios/foundation/NSOrdered.class v8
+crossmobile/ios/foundation/NSPredicate.class v8
+crossmobile/ios/foundation/NSRange.class v8
+crossmobile/ios/foundation/NSRunLoop.class v8
+crossmobile/ios/foundation/NSRunLoopMode.class v8
+crossmobile/ios/foundation/NSSearchPathDirectory.class v8
+crossmobile/ios/foundation/NSSearchPathDomainMask.class v8
+crossmobile/ios/foundation/NSSecureCoding.class v8
+crossmobile/ios/foundation/NSSelector.class v8
+crossmobile/ios/foundation/NSString.class v8
+crossmobile/ios/foundation/NSStringCompareOptions.class v8
+crossmobile/ios/foundation/NSStringEncoding.class v8
+crossmobile/ios/foundation/NSTimeZone.class v8
+crossmobile/ios/foundation/NSTimer.class v8
+crossmobile/ios/foundation/NSTimerDelegate.class v8
+crossmobile/ios/foundation/NSURL.class v8
+crossmobile/ios/foundation/NSURLCache.class v8
+crossmobile/ios/foundation/NSURLConnection.class v8
+crossmobile/ios/foundation/NSURLConnectionDataDelegate.class v8
+crossmobile/ios/foundation/NSURLConnectionDelegate.class v8
+crossmobile/ios/foundation/NSURLRequest.class v8
+crossmobile/ios/foundation/NSURLRequestCachePolicy.class v8
+crossmobile/ios/foundation/NSURLResponse.class v8
+crossmobile/ios/foundation/NSURLSession.class v8
+crossmobile/ios/foundation/NSURLSessionAuthChallengeDisposition.class v8
+crossmobile/ios/foundation/NSURLSessionConfiguration.class v8
+crossmobile/ios/foundation/NSURLSessionDataTask.class v8
+crossmobile/ios/foundation/NSURLSessionDelegate.class v8
+crossmobile/ios/foundation/NSURLSessionDownloadTask.class v8
+crossmobile/ios/foundation/NSURLSessionStreamTask.class v8
+crossmobile/ios/foundation/NSURLSessionTask.class v8
+crossmobile/ios/foundation/NSURLSessionTaskPriority.class v8
+crossmobile/ios/foundation/NSURLSessionTaskState.class v8
+crossmobile/ios/foundation/NSURLSessionUploadTask.class v8
+crossmobile/ios/foundation/NSUUID.class v8
+crossmobile/ios/foundation/NSUserDefaults.class v8
+crossmobile/ios/foundation/NSXMLParser.class v8
+crossmobile/ios/foundation/NSXMLParserDelegate.class v8
+crossmobile/ios/foundation/package-info.class v8
+crossmobile/ios/mobilecoreservices/UTType.class v8
+crossmobile/ios/quartzcore/CAAction.class v8
+crossmobile/ios/quartzcore/CAAnimation.class v8
+crossmobile/ios/quartzcore/CALayer.class v8
+crossmobile/ios/quartzcore/CAMediaTiming.class v8
+crossmobile/ios/quartzcore/CATransition.class v8
+crossmobile/ios/quartzcore/package-info.class v8
+crossmobile/ios/uikit/NSLayoutAnchor.class v8
+crossmobile/ios/uikit/NSLayoutAttribute.class v8
+crossmobile/ios/uikit/NSLayoutConstraint.class v8
+crossmobile/ios/uikit/NSLayoutDimension.class v8
+crossmobile/ios/uikit/NSLayoutFormatOptions.class v8
+crossmobile/ios/uikit/NSLayoutRelation.class v8
+crossmobile/ios/uikit/NSLayoutXAxisAnchor.class v8
+crossmobile/ios/uikit/NSLayoutYAxisAnchor.class v8
+crossmobile/ios/uikit/NSTextAlignment.class v8
+crossmobile/ios/uikit/UIAcceleration.class v8
+crossmobile/ios/uikit/UIAccelerometer.class v8
+crossmobile/ios/uikit/UIAccelerometerDelegate.class v8
+crossmobile/ios/uikit/UIActionSheet.class v8
+crossmobile/ios/uikit/UIActionSheetDelegate.class v8
+crossmobile/ios/uikit/UIActivity.class v8
+crossmobile/ios/uikit/UIActivityCategory.class v8
+crossmobile/ios/uikit/UIActivityIndicatorView.class v8
+crossmobile/ios/uikit/UIActivityIndicatorViewStyle.class v8
+crossmobile/ios/uikit/UIActivityType.class v8
+crossmobile/ios/uikit/UIActivityViewController.class v8
+crossmobile/ios/uikit/UIActivityViewControllerCompletionHandler.class v8
+crossmobile/ios/uikit/UIActivityViewControllerCompletionWithItemsHandler.class v8
+crossmobile/ios/uikit/UIAlertAction.class v8
+crossmobile/ios/uikit/UIAlertActionStyle.class v8
+crossmobile/ios/uikit/UIAlertController.class v8
+crossmobile/ios/uikit/UIAlertControllerStyle.class v8
+crossmobile/ios/uikit/UIAlertView.class v8
+crossmobile/ios/uikit/UIAlertViewDelegate.class v8
+crossmobile/ios/uikit/UIAlertViewStyle.class v8
+crossmobile/ios/uikit/UIApplication.class v8
+crossmobile/ios/uikit/UIApplicationDelegate.class v8
+crossmobile/ios/uikit/UIApplicationLaunchOptions.class v8
+crossmobile/ios/uikit/UIBarButtonItem.class v8
+crossmobile/ios/uikit/UIBarButtonItemStyle.class v8
+crossmobile/ios/uikit/UIBarButtonSystemItem.class v8
+crossmobile/ios/uikit/UIBarItem.class v8
+crossmobile/ios/uikit/UIBarStyle.class v8
+crossmobile/ios/uikit/UIBaselineAdjustment.class v8
+crossmobile/ios/uikit/UIButton.class v8
+crossmobile/ios/uikit/UIButtonType.class v8
+crossmobile/ios/uikit/UIColor.class v8
+crossmobile/ios/uikit/UIControl.class v8
+crossmobile/ios/uikit/UIControlContentHorizontalAlignment.class v8
+crossmobile/ios/uikit/UIControlContentVerticalAlignment.class v8
+crossmobile/ios/uikit/UIControlDelegate.class v8
+crossmobile/ios/uikit/UIControlEvents.class v8
+crossmobile/ios/uikit/UIControlState.class v8
+crossmobile/ios/uikit/UIDataDetectorTypes.class v8
+crossmobile/ios/uikit/UIDatePicker.class v8
+crossmobile/ios/uikit/UIDatePickerMode.class v8
+crossmobile/ios/uikit/UIDevice.class v8
+crossmobile/ios/uikit/UIDeviceBatteryState.class v8
+crossmobile/ios/uikit/UIDeviceOrientation.class v8
+crossmobile/ios/uikit/UIEdgeInsets.class v8
+crossmobile/ios/uikit/UIEvent.class v8
+crossmobile/ios/uikit/UIEventSubtype.class v8
+crossmobile/ios/uikit/UIEventType.class v8
+crossmobile/ios/uikit/UIFont.class v8
+crossmobile/ios/uikit/UIGestureRecognizer.class v8
+crossmobile/ios/uikit/UIGestureRecognizerDelegate.class v8
+crossmobile/ios/uikit/UIGestureRecognizerState.class v8
+crossmobile/ios/uikit/UIGraphics.class v8
+crossmobile/ios/uikit/UIImage.class v8
+crossmobile/ios/uikit/UIImageOrientation.class v8
+crossmobile/ios/uikit/UIImageRenderingMode.class v8
+crossmobile/ios/uikit/UIImageResizingMode.class v8
+crossmobile/ios/uikit/UIImageView.class v8
+crossmobile/ios/uikit/UIImageWriteToPhotoAlbumHandler.class v8
+crossmobile/ios/uikit/UIInterfaceOrientation.class v8
+crossmobile/ios/uikit/UIInterfaceOrientationMask.class v8
+crossmobile/ios/uikit/UIKeyboardAppearance.class v8
+crossmobile/ios/uikit/UIKeyboardType.class v8
+crossmobile/ios/uikit/UILabel.class v8
+crossmobile/ios/uikit/UILayoutConstraintAxis.class v8
+crossmobile/ios/uikit/UILayoutGuide.class v8
+crossmobile/ios/uikit/UILayoutPriority.class v8
+crossmobile/ios/uikit/UILayoutSupport.class v8
+crossmobile/ios/uikit/UILocalNotification.class v8
+crossmobile/ios/uikit/UILongPressGestureRecognizer.class v8
+crossmobile/ios/uikit/UIModalPresentationStyle.class v8
+crossmobile/ios/uikit/UIModalTransitionStyle.class v8
+crossmobile/ios/uikit/UIMutableUserNotificationAction.class v8
+crossmobile/ios/uikit/UIMutableUserNotificationCategory.class v8
+crossmobile/ios/uikit/UINavigationBar.class v8
+crossmobile/ios/uikit/UINavigationBarDelegate.class v8
+crossmobile/ios/uikit/UINavigationController.class v8
+crossmobile/ios/uikit/UINavigationControllerDelegate.class v8
+crossmobile/ios/uikit/UINavigationItem.class v8
+crossmobile/ios/uikit/UINib.class v8
+crossmobile/ios/uikit/UIOffset.class v8
+crossmobile/ios/uikit/UIPageControl.class v8
+crossmobile/ios/uikit/UIPanGestureRecognizer.class v8
+crossmobile/ios/uikit/UIPickerView.class v8
+crossmobile/ios/uikit/UIPickerViewDataSource.class v8
+crossmobile/ios/uikit/UIPickerViewDelegate.class v8
+crossmobile/ios/uikit/UIPinchGestureRecognizer.class v8
+crossmobile/ios/uikit/UIPopoverArrowDirection.class v8
+crossmobile/ios/uikit/UIPopoverController.class v8
+crossmobile/ios/uikit/UIPopoverControllerDelegate.class v8
+crossmobile/ios/uikit/UIPrintInteractionCompletionHandler.class v8
+crossmobile/ios/uikit/UIPrintInteractionController.class v8
+crossmobile/ios/uikit/UIProgressView.class v8
+crossmobile/ios/uikit/UIProgressViewStyle.class v8
+crossmobile/ios/uikit/UIRectEdge.class v8
+crossmobile/ios/uikit/UIRemoteNotificationType.class v8
+crossmobile/ios/uikit/UIResponder.class v8
+crossmobile/ios/uikit/UIReturnKeyType.class v8
+crossmobile/ios/uikit/UIRotationGestureRecognizer.class v8
+crossmobile/ios/uikit/UIScreen.class v8
+crossmobile/ios/uikit/UIScrollView.class v8
+crossmobile/ios/uikit/UIScrollViewDecelerationRate.class v8
+crossmobile/ios/uikit/UIScrollViewDelegate.class v8
+crossmobile/ios/uikit/UIScrollViewIndicatorStyle.class v8
+crossmobile/ios/uikit/UISearchBar.class v8
+crossmobile/ios/uikit/UISearchBarDelegate.class v8
+crossmobile/ios/uikit/UISearchBarIcon.class v8
+crossmobile/ios/uikit/UISearchBarStyle.class v8
+crossmobile/ios/uikit/UISegmentedControl.class v8
+crossmobile/ios/uikit/UISegmentedControlStyle.class v8
+crossmobile/ios/uikit/UISlider.class v8
+crossmobile/ios/uikit/UISplitViewController.class v8
+crossmobile/ios/uikit/UISplitViewControllerDelegate.class v8
+crossmobile/ios/uikit/UISplitViewControllerDisplayMode.class v8
+crossmobile/ios/uikit/UIStackView.class v8
+crossmobile/ios/uikit/UIStackViewAlignment.class v8
+crossmobile/ios/uikit/UIStackViewDistribution.class v8
+crossmobile/ios/uikit/UIStatusBarStyle.class v8
+crossmobile/ios/uikit/UIStepper.class v8
+crossmobile/ios/uikit/UIStoryboard.class v8
+crossmobile/ios/uikit/UIStoryboardSegue.class v8
+crossmobile/ios/uikit/UIStoryboardUnwindSegueSource.class v8
+crossmobile/ios/uikit/UISwipeGestureRecognizer.class v8
+crossmobile/ios/uikit/UISwipeGestureRecognizerDirection.class v8
+crossmobile/ios/uikit/UISwitch.class v8
+crossmobile/ios/uikit/UITabBar.class v8
+crossmobile/ios/uikit/UITabBarController.class v8
+crossmobile/ios/uikit/UITabBarControllerDelegate.class v8
+crossmobile/ios/uikit/UITabBarDelegate.class v8
+crossmobile/ios/uikit/UITabBarItem.class v8
+crossmobile/ios/uikit/UITabBarItemPositioning.class v8
+crossmobile/ios/uikit/UITableView.class v8
+crossmobile/ios/uikit/UITableViewCell.class v8
+crossmobile/ios/uikit/UITableViewCellAccessoryType.class v8
+crossmobile/ios/uikit/UITableViewCellEditingStyle.class v8
+crossmobile/ios/uikit/UITableViewCellSelectionStyle.class v8
+crossmobile/ios/uikit/UITableViewCellSeparatorStyle.class v8
+crossmobile/ios/uikit/UITableViewCellStyle.class v8
+crossmobile/ios/uikit/UITableViewController.class v8
+crossmobile/ios/uikit/UITableViewDataSource.class v8
+crossmobile/ios/uikit/UITableViewDelegate.class v8
+crossmobile/ios/uikit/UITableViewRowAnimation.class v8
+crossmobile/ios/uikit/UITableViewScrollPosition.class v8
+crossmobile/ios/uikit/UITableViewStyle.class v8
+crossmobile/ios/uikit/UITapGestureRecognizer.class v8
+crossmobile/ios/uikit/UITextAlignment.class v8
+crossmobile/ios/uikit/UITextAttribute.class v8
+crossmobile/ios/uikit/UITextAutocapitalizationType.class v8
+crossmobile/ios/uikit/UITextAutocorrectionType.class v8
+crossmobile/ios/uikit/UITextBorderStyle.class v8
+crossmobile/ios/uikit/UITextContentType.class v8
+crossmobile/ios/uikit/UITextField.class v8
+crossmobile/ios/uikit/UITextFieldDelegate.class v8
+crossmobile/ios/uikit/UITextInputTraits.class v8
+crossmobile/ios/uikit/UITextSmartDashesType.class v8
+crossmobile/ios/uikit/UITextSmartInsertDeleteType.class v8
+crossmobile/ios/uikit/UITextSmartQuotesType.class v8
+crossmobile/ios/uikit/UITextSpellCheckingType.class v8
+crossmobile/ios/uikit/UITextView.class v8
+crossmobile/ios/uikit/UITextViewDelegate.class v8
+crossmobile/ios/uikit/UIToolbar.class v8
+crossmobile/ios/uikit/UITouch.class v8
+crossmobile/ios/uikit/UITouchPhase.class v8
+crossmobile/ios/uikit/UIUserInterfaceIdiom.class v8
+crossmobile/ios/uikit/UIUserInterfaceLayoutDirection.class v8
+crossmobile/ios/uikit/UIUserNotificationAction.class v8
+crossmobile/ios/uikit/UIUserNotificationActionBehavior.class v8
+crossmobile/ios/uikit/UIUserNotificationActionContext.class v8
+crossmobile/ios/uikit/UIUserNotificationActivationMode.class v8
+crossmobile/ios/uikit/UIUserNotificationCategory.class v8
+crossmobile/ios/uikit/UIUserNotificationSettings.class v8
+crossmobile/ios/uikit/UIUserNotificationType.class v8
+crossmobile/ios/uikit/UIView.class v8
+crossmobile/ios/uikit/UIViewAnimationCurve.class v8
+crossmobile/ios/uikit/UIViewAnimationOptions.class v8
+crossmobile/ios/uikit/UIViewAnimationTransition.class v8
+crossmobile/ios/uikit/UIViewAutoresizing.class v8
+crossmobile/ios/uikit/UIViewContentMode.class v8
+crossmobile/ios/uikit/UIViewController.class v8
+crossmobile/ios/uikit/UIViewTintAdjustmentMode.class v8
+crossmobile/ios/uikit/UIWebView.class v8
+crossmobile/ios/uikit/UIWebViewDelegate.class v8
+crossmobile/ios/uikit/UIWebViewNavigationType.class v8
+crossmobile/ios/uikit/UIWindow.class v8
+crossmobile/ios/uikit/package-info.class v8
+crossmobile/package-info.class v8
+crossmobile/rt/StrongReference.class v8
+crossmobile/rt/UnimplementedOptionalException.class v8
+crossmobile/rt/package-info.class v8
+org/crossmobile/bridge/CustomNotifications.class v8
+org/crossmobile/bridge/ann/AssociationType.class v8
+org/crossmobile/bridge/ann/BuildModule.class v8
+org/crossmobile/bridge/ann/CMClass.class v8
+org/crossmobile/bridge/ann/CMGetter.class v8
+org/crossmobile/bridge/ann/CMLibTarget$BaseTarget.class v8
+org/crossmobile/bridge/ann/CMLibTarget.class v8
+org/crossmobile/bridge/ann/CMSetter.class v8
+org/crossmobile/bridge/ann/NativeCode.class v8
+org/crossmobile/bridge/system/JsonHelper.class v8
+org/crossmobile/build/StoryBoardBinder.class v8
+org/crossmobile/build/package-info.class v8
+org/robovm/objc/annotation/IBAction.class v8
+org/robovm/objc/annotation/IBOutlet.class v8
+org/robovm/objc/annotation/package-info.class v8
+org/robovm/objc/block/Block0.class v8
+org/robovm/objc/block/Block1.class v8
+org/robovm/objc/block/Block2.class v8
+org/robovm/objc/block/Block3.class v8
+org/robovm/objc/block/Block4.class v8
+org/robovm/objc/block/Block5.class v8
+org/robovm/objc/block/Block6.class v8
+org/robovm/objc/block/VoidBlock1.class v8
+org/robovm/objc/block/VoidBlock2.class v8
+org/robovm/objc/block/VoidBlock3.class v8
+org/robovm/objc/block/VoidBlock4.class v8
+org/robovm/objc/block/VoidBlock5.class v8
+org/robovm/objc/block/VoidBlock6.class v8
+org/robovm/objc/block/VoidBooleanBlock.class v8
+org/robovm/objc/block/package-info.class v8
+
+Creating file cmplugin-builddep-cmioslayer-<VERSION>.jar
+org/crossmobile/backend/android/ActivityLifecycleListener.class v8
+org/crossmobile/backend/android/ActivityPermissionListener.class v8
+org/crossmobile/backend/android/ActivityResultListener.class v8
+org/crossmobile/backend/android/ActivityStateListener.class v8
+org/crossmobile/backend/android/ApplicationStateListener.class v8
+org/crossmobile/backend/android/MainActivity.class v8
+org/crossmobile/backend/android/MainApplication.class v8
+org/crossmobile/bridge/CrossMobilePlugin$Disabled.class v8
+org/crossmobile/bridge/CrossMobilePlugin.class v8
+org/crossmobile/bridge/FileBridge.class v8
+org/crossmobile/bridge/GraphicsBridge.class v8
+org/crossmobile/bridge/ImageBridge$ImageSource.class v8
+org/crossmobile/bridge/ImageBridge.class v8
+org/crossmobile/bridge/InAppBridge.class v8
+org/crossmobile/bridge/LifecycleBridge.class v8
+org/crossmobile/bridge/LocationBridge$LocationChangeDelegate.class v8
+org/crossmobile/bridge/LocationBridge.class v8
+org/crossmobile/bridge/MessageBridge.class v8
+org/crossmobile/bridge/Native.class v8
+org/crossmobile/bridge/NetworkBridge.class v8
+org/crossmobile/bridge/NotificationBridge.class v8
+org/crossmobile/bridge/SecurityBridge.class v8
+org/crossmobile/bridge/ShareBridge.class v8
+org/crossmobile/bridge/SocialBridge$Handler.class v8
+org/crossmobile/bridge/SocialBridge.class v8
+org/crossmobile/bridge/SoundBridge.class v8
+org/crossmobile/bridge/SystemBridge.class v8
+org/crossmobile/bridge/UIGuidelinesBridge.class v8
+org/crossmobile/bridge/WrapperBridge.class v8
+org/crossmobile/bridge/WrapperMapBridge.class v8
+org/crossmobile/bridge/ann/CMBlock.class v8
+org/crossmobile/bridge/ann/CMBundle.class v8
+org/crossmobile/bridge/ann/CMConstructor.class v8
+org/crossmobile/bridge/ann/CMEnum.class v8
+org/crossmobile/bridge/ann/CMFunction.class v8
+org/crossmobile/bridge/ann/CMJoinMEM.class v8
+org/crossmobile/bridge/ann/CMJoinSEL.class v8
+org/crossmobile/bridge/ann/CMLib.class v8
+org/crossmobile/bridge/ann/CMLibDepends.class v8
+org/crossmobile/bridge/ann/CMLibParam$ParamContext.class v8
+org/crossmobile/bridge/ann/CMLibParam.class v8
+org/crossmobile/bridge/ann/CMParamMod.class v8
+org/crossmobile/bridge/ann/CMPod.class v8
+org/crossmobile/bridge/ann/CMRef.class v8
+org/crossmobile/bridge/ann/CMReference.class v8
+org/crossmobile/bridge/ann/CMSelector.class v8
+org/crossmobile/bridge/ann/CMStruct.class v8
+org/crossmobile/bridge/ann/CMTarget.class v8
+org/crossmobile/bridge/ann/IOSSDK.class v8
+org/crossmobile/bridge/ann/SDKVersion.class v8
+org/crossmobile/bridge/ann/package-info.class v8
+org/crossmobile/bridge/package-info.class v8
+
+Creating file cmplugin-ios-cmioslayer-<VERSION>.jar
+crossmobile/ios/coregraphics/$coregraphics.class v8
+crossmobile/ios/coregraphics/CGAffineTransform.class v8
+crossmobile/ios/coregraphics/CGBitmapContext.class v8
+crossmobile/ios/coregraphics/CGBitmapInfo.class v8
+crossmobile/ios/coregraphics/CGBlendMode.class v8
+crossmobile/ios/coregraphics/CGColor.class v8
+crossmobile/ios/coregraphics/CGColorRenderingIntent.class v8
+crossmobile/ios/coregraphics/CGColorSpace$1.class v8
+crossmobile/ios/coregraphics/CGColorSpace$a.class v8
+crossmobile/ios/coregraphics/CGColorSpace$b.class v8
+crossmobile/ios/coregraphics/CGColorSpace.class v8
+crossmobile/ios/coregraphics/CGContext.class v8
+crossmobile/ios/coregraphics/CGDataProvider.class v8
+crossmobile/ios/coregraphics/CGFont.class v8
+crossmobile/ios/coregraphics/CGGradient.class v8
+crossmobile/ios/coregraphics/CGGradientDrawingOptions.class v8
+crossmobile/ios/coregraphics/CGImage.class v8
+crossmobile/ios/coregraphics/CGInterpolationQuality.class v8
+crossmobile/ios/coregraphics/CGLayer.class v8
+crossmobile/ios/coregraphics/CGLineCap.class v8
+crossmobile/ios/coregraphics/CGLineJoin.class v8
+crossmobile/ios/coregraphics/CGPath.class v8
+crossmobile/ios/coregraphics/CGPathDrawingMode.class v8
+crossmobile/ios/coregraphics/CGPoint.class v8
+crossmobile/ios/coregraphics/CGRect.class v8
+crossmobile/ios/coregraphics/CGSize.class v8
+crossmobile/ios/coregraphics/CGTextDrawingMode.class v8
+crossmobile/ios/coregraphics/CGTextEncoding.class v8
+crossmobile/ios/foundation/$foundation.class v8
+crossmobile/ios/foundation/CFNumberFormatterStyle.class v8
+crossmobile/ios/foundation/CFType.class v8
+crossmobile/ios/foundation/Foundation.class v8
+crossmobile/ios/foundation/NSAttributedStringKey.class v8
+crossmobile/ios/foundation/NSBundle.class v8
+crossmobile/ios/foundation/NSCalendar.class v8
+crossmobile/ios/foundation/NSCalendarOptions.class v8
+crossmobile/ios/foundation/NSCalendarUnit.class v8
+crossmobile/ios/foundation/NSCoder.class v8
+crossmobile/ios/foundation/NSData$1.class v8
+crossmobile/ios/foundation/NSData$a.class v8
+crossmobile/ios/foundation/NSData.class v8
+crossmobile/ios/foundation/NSDataBase64DecodingOptions.class v8
+crossmobile/ios/foundation/NSDataBase64EncodingOptions.class v8
+crossmobile/ios/foundation/NSDate.class v8
+crossmobile/ios/foundation/NSDateComponents.class v8
+crossmobile/ios/foundation/NSDictionary$1.class v8
+crossmobile/ios/foundation/NSDictionary$a.class v8
+crossmobile/ios/foundation/NSDictionary$b.class v8
+crossmobile/ios/foundation/NSDictionary$c.class v8
+crossmobile/ios/foundation/NSDictionary.class v8
+crossmobile/ios/foundation/NSError$Domain.class v8
+crossmobile/ios/foundation/NSError$ErrorCode.class v8
+crossmobile/ios/foundation/NSError$Key.class v8
+crossmobile/ios/foundation/NSError.class v8
+crossmobile/ios/foundation/NSExtensionContext.class v8
+crossmobile/ios/foundation/NSExtensionItem.class v8
+crossmobile/ios/foundation/NSFileHandle.class v8
+crossmobile/ios/foundation/NSFileManager.class v8
+crossmobile/ios/foundation/NSHTTPCookie.class v8
+crossmobile/ios/foundation/NSHTTPCookieAcceptPolicy.class v8
+crossmobile/ios/foundation/NSHTTPCookieStorage.class v8
+crossmobile/ios/foundation/NSHTTPURLResponse.class v8
+crossmobile/ios/foundation/NSIndexPath.class v8
+crossmobile/ios/foundation/NSItemProvider.class v8
+crossmobile/ios/foundation/NSItemProviderCompletionHandler.class v8
+crossmobile/ios/foundation/NSItemProviderLoadHandler.class v8
+crossmobile/ios/foundation/NSJSONReadingOptions.class v8
+crossmobile/ios/foundation/NSJSONSerialization.class v8
+crossmobile/ios/foundation/NSJSONWritingOptions.class v8
+crossmobile/ios/foundation/NSLineBreakMode.class v8
+crossmobile/ios/foundation/NSLocale.class v8
+crossmobile/ios/foundation/NSLog.class v8
+crossmobile/ios/foundation/NSMutableData.class v8
+crossmobile/ios/foundation/NSMutableURLRequest.class v8
+crossmobile/ios/foundation/NSNotification.class v8
+crossmobile/ios/foundation/NSNotificationCenter$a.class v8
+crossmobile/ios/foundation/NSNotificationCenter.class v8
+crossmobile/ios/foundation/NSNotificationName.class v8
+crossmobile/ios/foundation/NSNumberFormatter.class v8
+crossmobile/ios/foundation/NSNumberFormatterStyle.class v8
+crossmobile/ios/foundation/NSObject.class v8
+crossmobile/ios/foundation/NSOperationQueue.class v8
+crossmobile/ios/foundation/NSOrdered.class v8
+crossmobile/ios/foundation/NSPredicate.class v8
+crossmobile/ios/foundation/NSRange.class v8
+crossmobile/ios/foundation/NSRunLoop$a.class v8
+crossmobile/ios/foundation/NSRunLoop.class v8
+crossmobile/ios/foundation/NSRunLoopMode.class v8
+crossmobile/ios/foundation/NSSearchPathDirectory.class v8
+crossmobile/ios/foundation/NSSearchPathDomainMask.class v8
+crossmobile/ios/foundation/NSSecureCoding.class v8
+crossmobile/ios/foundation/NSSelector.class v8
+crossmobile/ios/foundation/NSString.class v8
+crossmobile/ios/foundation/NSStringCompareOptions.class v8
+crossmobile/ios/foundation/NSStringEncoding.class v8
+crossmobile/ios/foundation/NSTimeZone.class v8
+crossmobile/ios/foundation/NSTimer.class v8
+crossmobile/ios/foundation/NSTimerDelegate.class v8
+crossmobile/ios/foundation/NSURL.class v8
+crossmobile/ios/foundation/NSURLCache.class v8
+crossmobile/ios/foundation/NSURLConnection$1.class v8
+crossmobile/ios/foundation/NSURLConnection$2.class v8
+crossmobile/ios/foundation/NSURLConnection.class v8
+crossmobile/ios/foundation/NSURLConnectionDataDelegate.class v8
+crossmobile/ios/foundation/NSURLConnectionDelegate.class v8
+crossmobile/ios/foundation/NSURLRequest.class v8
+crossmobile/ios/foundation/NSURLRequestCachePolicy.class v8
+crossmobile/ios/foundation/NSURLResponse.class v8
+crossmobile/ios/foundation/NSURLSession.class v8
+crossmobile/ios/foundation/NSURLSessionAuthChallengeDisposition.class v8
+crossmobile/ios/foundation/NSURLSessionConfiguration.class v8
+crossmobile/ios/foundation/NSURLSessionDataTask.class v8
+crossmobile/ios/foundation/NSURLSessionDelegate.class v8
+crossmobile/ios/foundation/NSURLSessionDownloadTask.class v8
+crossmobile/ios/foundation/NSURLSessionStreamTask.class v8
+crossmobile/ios/foundation/NSURLSessionTask.class v8
+crossmobile/ios/foundation/NSURLSessionTaskPriority.class v8
+crossmobile/ios/foundation/NSURLSessionTaskState.class v8
+crossmobile/ios/foundation/NSURLSessionUploadTask.class v8
+crossmobile/ios/foundation/NSUUID.class v8
+crossmobile/ios/foundation/NSUserDefaults.class v8
+crossmobile/ios/foundation/NSXMLParser$1.class v8
+crossmobile/ios/foundation/NSXMLParser.class v8
+crossmobile/ios/foundation/NSXMLParserDelegate.class v8
+crossmobile/ios/mobilecoreservices/UTType.class v8
+crossmobile/ios/quartzcore/CAAction.class v8
+crossmobile/ios/quartzcore/CAAnimation.class v8
+crossmobile/ios/quartzcore/CALayer.class v8
+crossmobile/ios/quartzcore/CAMediaTiming.class v8
+crossmobile/ios/quartzcore/CATransition.class v8
+crossmobile/ios/uikit/$uikit$1.class v8
+crossmobile/ios/uikit/$uikit.class v8
+crossmobile/ios/uikit/NSLayoutAnchor.class v8
+crossmobile/ios/uikit/NSLayoutAttribute.class v8
+crossmobile/ios/uikit/NSLayoutConstraint.class v8
+crossmobile/ios/uikit/NSLayoutDimension.class v8
+crossmobile/ios/uikit/NSLayoutFormatOptions.class v8
+crossmobile/ios/uikit/NSLayoutRelation.class v8
+crossmobile/ios/uikit/NSLayoutXAxisAnchor.class v8
+crossmobile/ios/uikit/NSLayoutYAxisAnchor.class v8
+crossmobile/ios/uikit/NSTextAlignment.class v8
+crossmobile/ios/uikit/UIAcceleration.class v8
+crossmobile/ios/uikit/UIAccelerometer.class v8
+crossmobile/ios/uikit/UIAccelerometerDelegate.class v8
+crossmobile/ios/uikit/UIActionSheet.class v8
+crossmobile/ios/uikit/UIActionSheetDelegate.class v8
+crossmobile/ios/uikit/UIActivity.class v8
+crossmobile/ios/uikit/UIActivityCategory.class v8
+crossmobile/ios/uikit/UIActivityIndicatorView.class v8
+crossmobile/ios/uikit/UIActivityIndicatorViewStyle.class v8
+crossmobile/ios/uikit/UIActivityType.class v8
+crossmobile/ios/uikit/UIActivityViewController.class v8
+crossmobile/ios/uikit/UIActivityViewControllerCompletionHandler.class v8
+crossmobile/ios/uikit/UIActivityViewControllerCompletionWithItemsHandler.class v8
+crossmobile/ios/uikit/UIAlertAction.class v8
+crossmobile/ios/uikit/UIAlertActionStyle.class v8
+crossmobile/ios/uikit/UIAlertController$1.class v8
+crossmobile/ios/uikit/UIAlertController$2.class v8
+crossmobile/ios/uikit/UIAlertController.class v8
+crossmobile/ios/uikit/UIAlertControllerStyle.class v8
+crossmobile/ios/uikit/UIAlertView.class v8
+crossmobile/ios/uikit/UIAlertViewDelegate.class v8
+crossmobile/ios/uikit/UIAlertViewStyle.class v8
+crossmobile/ios/uikit/UIApplication.class v8
+crossmobile/ios/uikit/UIApplicationDelegate.class v8
+crossmobile/ios/uikit/UIApplicationLaunchOptions.class v8
+crossmobile/ios/uikit/UIBarButtonItem.class v8
+crossmobile/ios/uikit/UIBarButtonItemStyle.class v8
+crossmobile/ios/uikit/UIBarButtonSystemItem.class v8
+crossmobile/ios/uikit/UIBarItem$a.class v8
+crossmobile/ios/uikit/UIBarItem.class v8
+crossmobile/ios/uikit/UIBarStyle.class v8
+crossmobile/ios/uikit/UIBaselineAdjustment.class v8
+crossmobile/ios/uikit/UIButton.class v8
+crossmobile/ios/uikit/UIButtonType.class v8
+crossmobile/ios/uikit/UIColor.class v8
+crossmobile/ios/uikit/UIControl$1.class v8
+crossmobile/ios/uikit/UIControl$a.class v8
+crossmobile/ios/uikit/UIControl.class v8
+crossmobile/ios/uikit/UIControlContentHorizontalAlignment.class v8
+crossmobile/ios/uikit/UIControlContentVerticalAlignment.class v8
+crossmobile/ios/uikit/UIControlDelegate.class v8
+crossmobile/ios/uikit/UIControlEvents.class v8
+crossmobile/ios/uikit/UIControlState.class v8
+crossmobile/ios/uikit/UIDataDetectorTypes.class v8
+crossmobile/ios/uikit/UIDatePicker.class v8
+crossmobile/ios/uikit/UIDatePickerMode.class v8
+crossmobile/ios/uikit/UIDevice.class v8
+crossmobile/ios/uikit/UIDeviceBatteryState.class v8
+crossmobile/ios/uikit/UIDeviceOrientation.class v8
+crossmobile/ios/uikit/UIEdgeInsets.class v8
+crossmobile/ios/uikit/UIEvent.class v8
+crossmobile/ios/uikit/UIEventSubtype.class v8
+crossmobile/ios/uikit/UIEventType.class v8
+crossmobile/ios/uikit/UIFont.class v8
+crossmobile/ios/uikit/UIGestureRecognizer.class v8
+crossmobile/ios/uikit/UIGestureRecognizerDelegate.class v8
+crossmobile/ios/uikit/UIGestureRecognizerState.class v8
+crossmobile/ios/uikit/UIGraphics.class v8
+crossmobile/ios/uikit/UIImage.class v8
+crossmobile/ios/uikit/UIImageOrientation.class v8
+crossmobile/ios/uikit/UIImageRenderingMode.class v8
+crossmobile/ios/uikit/UIImageResizingMode.class v8
+crossmobile/ios/uikit/UIImageView$a.class v8
+crossmobile/ios/uikit/UIImageView.class v8
+crossmobile/ios/uikit/UIImageWriteToPhotoAlbumHandler.class v8
+crossmobile/ios/uikit/UIInterfaceOrientation.class v8
+crossmobile/ios/uikit/UIInterfaceOrientationMask.class v8
+crossmobile/ios/uikit/UIKeyboardAppearance.class v8
+crossmobile/ios/uikit/UIKeyboardType.class v8
+crossmobile/ios/uikit/UILabel.class v8
+crossmobile/ios/uikit/UILayoutConstraintAxis.class v8
+crossmobile/ios/uikit/UILayoutGuide.class v8
+crossmobile/ios/uikit/UILayoutPriority.class v8
+crossmobile/ios/uikit/UILayoutSupport.class v8
+crossmobile/ios/uikit/UILocalNotification.class v8
+crossmobile/ios/uikit/UILongPressGestureRecognizer.class v8
+crossmobile/ios/uikit/UIModalPresentationStyle.class v8
+crossmobile/ios/uikit/UIModalTransitionStyle.class v8
+crossmobile/ios/uikit/UIMutableUserNotificationAction.class v8
+crossmobile/ios/uikit/UIMutableUserNotificationCategory.class v8
+crossmobile/ios/uikit/UINavigationBar.class v8
+crossmobile/ios/uikit/UINavigationBarDelegate.class v8
+crossmobile/ios/uikit/UINavigationController$a.class v8
+crossmobile/ios/uikit/UINavigationController$b.class v8
+crossmobile/ios/uikit/UINavigationController.class v8
+crossmobile/ios/uikit/UINavigationControllerDelegate.class v8
+crossmobile/ios/uikit/UINavigationItem.class v8
+crossmobile/ios/uikit/UINib.class v8
+crossmobile/ios/uikit/UIOffset.class v8
+crossmobile/ios/uikit/UIPageControl.class v8
+crossmobile/ios/uikit/UIPanGestureRecognizer.class v8
+crossmobile/ios/uikit/UIPickerView$1.class v8
+crossmobile/ios/uikit/UIPickerView$2.class v8
+crossmobile/ios/uikit/UIPickerView.class v8
+crossmobile/ios/uikit/UIPickerViewDataSource.class v8
+crossmobile/ios/uikit/UIPickerViewDelegate.class v8
+crossmobile/ios/uikit/UIPinchGestureRecognizer.class v8
+crossmobile/ios/uikit/UIPopoverArrowDirection.class v8
+crossmobile/ios/uikit/UIPopoverController.class v8
+crossmobile/ios/uikit/UIPopoverControllerDelegate.class v8
+crossmobile/ios/uikit/UIPrintInteractionCompletionHandler.class v8
+crossmobile/ios/uikit/UIPrintInteractionController.class v8
+crossmobile/ios/uikit/UIProgressView.class v8
+crossmobile/ios/uikit/UIProgressViewStyle.class v8
+crossmobile/ios/uikit/UIRectEdge.class v8
+crossmobile/ios/uikit/UIRemoteNotificationType.class v8
+crossmobile/ios/uikit/UIResponder.class v8
+crossmobile/ios/uikit/UIReturnKeyType.class v8
+crossmobile/ios/uikit/UIRotationGestureRecognizer.class v8
+crossmobile/ios/uikit/UIScreen.class v8
+crossmobile/ios/uikit/UIScrollView$1.class v8
+crossmobile/ios/uikit/UIScrollView$a.class v8
+crossmobile/ios/uikit/UIScrollView$b.class v8
+crossmobile/ios/uikit/UIScrollView$c.class v8
+crossmobile/ios/uikit/UIScrollView.class v8
+crossmobile/ios/uikit/UIScrollViewDecelerationRate.class v8
+crossmobile/ios/uikit/UIScrollViewDelegate.class v8
+crossmobile/ios/uikit/UIScrollViewIndicatorStyle.class v8
+crossmobile/ios/uikit/UISearchBar$1.class v8
+crossmobile/ios/uikit/UISearchBar.class v8
+crossmobile/ios/uikit/UISearchBarDelegate.class v8
+crossmobile/ios/uikit/UISearchBarIcon.class v8
+crossmobile/ios/uikit/UISearchBarStyle.class v8
+crossmobile/ios/uikit/UISegmentedControl$1.class v8
+crossmobile/ios/uikit/UISegmentedControl$a.class v8
+crossmobile/ios/uikit/UISegmentedControl.class v8
+crossmobile/ios/uikit/UISegmentedControlStyle.class v8
+crossmobile/ios/uikit/UISlider.class v8
+crossmobile/ios/uikit/UISplitViewController$1.class v8
+crossmobile/ios/uikit/UISplitViewController$a.class v8
+crossmobile/ios/uikit/UISplitViewController.class v8
+crossmobile/ios/uikit/UISplitViewControllerDelegate.class v8
+crossmobile/ios/uikit/UISplitViewControllerDisplayMode.class v8
+crossmobile/ios/uikit/UIStackView.class v8
+crossmobile/ios/uikit/UIStackViewAlignment.class v8
+crossmobile/ios/uikit/UIStackViewDistribution.class v8
+crossmobile/ios/uikit/UIStatusBarStyle.class v8
+crossmobile/ios/uikit/UIStepper$1.class v8
+crossmobile/ios/uikit/UIStepper$2.class v8
+crossmobile/ios/uikit/UIStepper$3.class v8
+crossmobile/ios/uikit/UIStepper.class v8
+crossmobile/ios/uikit/UIStoryboard.class v8
+crossmobile/ios/uikit/UIStoryboardSegue.class v8
+crossmobile/ios/uikit/UIStoryboardUnwindSegueSource.class v8
+crossmobile/ios/uikit/UISwipeGestureRecognizer.class v8
+crossmobile/ios/uikit/UISwipeGestureRecognizerDirection.class v8
+crossmobile/ios/uikit/UISwitch.class v8
+crossmobile/ios/uikit/UITabBar.class v8
+crossmobile/ios/uikit/UITabBarController$a.class v8
+crossmobile/ios/uikit/UITabBarController.class v8
+crossmobile/ios/uikit/UITabBarControllerDelegate.class v8
+crossmobile/ios/uikit/UITabBarDelegate.class v8
+crossmobile/ios/uikit/UITabBarItem.class v8
+crossmobile/ios/uikit/UITabBarItemPositioning.class v8
+crossmobile/ios/uikit/UITableView$1.class v8
+crossmobile/ios/uikit/UITableView$a.class v8
+crossmobile/ios/uikit/UITableView.class v8
+crossmobile/ios/uikit/UITableViewCell$1.class v8
+crossmobile/ios/uikit/UITableViewCell$a.class v8
+crossmobile/ios/uikit/UITableViewCell.class v8
+crossmobile/ios/uikit/UITableViewCellAccessoryType.class v8
+crossmobile/ios/uikit/UITableViewCellEditingStyle.class v8
+crossmobile/ios/uikit/UITableViewCellSelectionStyle.class v8
+crossmobile/ios/uikit/UITableViewCellSeparatorStyle.class v8
+crossmobile/ios/uikit/UITableViewCellStyle.class v8
+crossmobile/ios/uikit/UITableViewController$a.class v8
+crossmobile/ios/uikit/UITableViewController.class v8
+crossmobile/ios/uikit/UITableViewDataSource.class v8
+crossmobile/ios/uikit/UITableViewDelegate.class v8
+crossmobile/ios/uikit/UITableViewRowAnimation.class v8
+crossmobile/ios/uikit/UITableViewScrollPosition.class v8
+crossmobile/ios/uikit/UITableViewStyle.class v8
+crossmobile/ios/uikit/UITapGestureRecognizer.class v8
+crossmobile/ios/uikit/UITextAlignment.class v8
+crossmobile/ios/uikit/UITextAttribute.class v8
+crossmobile/ios/uikit/UITextAutocapitalizationType.class v8
+crossmobile/ios/uikit/UITextAutocorrectionType.class v8
+crossmobile/ios/uikit/UITextBorderStyle.class v8
+crossmobile/ios/uikit/UITextContentType.class v8
+crossmobile/ios/uikit/UITextField.class v8
+crossmobile/ios/uikit/UITextFieldDelegate.class v8
+crossmobile/ios/uikit/UITextInputTraits.class v8
+crossmobile/ios/uikit/UITextSmartDashesType.class v8
+crossmobile/ios/uikit/UITextSmartInsertDeleteType.class v8
+crossmobile/ios/uikit/UITextSmartQuotesType.class v8
+crossmobile/ios/uikit/UITextSpellCheckingType.class v8
+crossmobile/ios/uikit/UITextView.class v8
+crossmobile/ios/uikit/UITextViewDelegate.class v8
+crossmobile/ios/uikit/UIToolbar.class v8
+crossmobile/ios/uikit/UITouch.class v8
+crossmobile/ios/uikit/UITouchPhase.class v8
+crossmobile/ios/uikit/UIUserInterfaceIdiom.class v8
+crossmobile/ios/uikit/UIUserInterfaceLayoutDirection.class v8
+crossmobile/ios/uikit/UIUserNotificationAction.class v8
+crossmobile/ios/uikit/UIUserNotificationActionBehavior.class v8
+crossmobile/ios/uikit/UIUserNotificationActionContext.class v8
+crossmobile/ios/uikit/UIUserNotificationActivationMode.class v8
+crossmobile/ios/uikit/UIUserNotificationCategory.class v8
+crossmobile/ios/uikit/UIUserNotificationSettings.class v8
+crossmobile/ios/uikit/UIUserNotificationType.class v8
+crossmobile/ios/uikit/UIView$1.class v8
+crossmobile/ios/uikit/UIView$a.class v8
+crossmobile/ios/uikit/UIView.class v8
+crossmobile/ios/uikit/UIViewAnimationCurve.class v8
+crossmobile/ios/uikit/UIViewAnimationOptions.class v8
+crossmobile/ios/uikit/UIViewAnimationTransition.class v8
+crossmobile/ios/uikit/UIViewAutoresizing.class v8
+crossmobile/ios/uikit/UIViewContentMode.class v8
+crossmobile/ios/uikit/UIViewController$a.class v8
+crossmobile/ios/uikit/UIViewController.class v8
+crossmobile/ios/uikit/UIViewTintAdjustmentMode.class v8
+crossmobile/ios/uikit/UIWebView.class v8
+crossmobile/ios/uikit/UIWebViewDelegate.class v8
+crossmobile/ios/uikit/UIWebViewNavigationType.class v8
+crossmobile/ios/uikit/UIWindow.class v8
+crossmobile/ios/uikit/a$1.class v8
+crossmobile/ios/uikit/a$a.class v8
+crossmobile/ios/uikit/a$b.class v8
+crossmobile/ios/uikit/a$c.class v8
+crossmobile/ios/uikit/a$d.class v8
+crossmobile/ios/uikit/a$e.class v8
+crossmobile/ios/uikit/a$f.class v8
+crossmobile/ios/uikit/a$g.class v8
+crossmobile/ios/uikit/a$h.class v8
+crossmobile/ios/uikit/a$i.class v8
+crossmobile/ios/uikit/a$j.class v8
+crossmobile/ios/uikit/a$k.class v8
+crossmobile/ios/uikit/a$l.class v8
+crossmobile/ios/uikit/a.class v8
+crossmobile/ios/uikit/b$1.class v8
+crossmobile/ios/uikit/b$a.class v8
+crossmobile/ios/uikit/b.class v8
+crossmobile/ios/uikit/c$a.class v8
+crossmobile/ios/uikit/c$b.class v8
+crossmobile/ios/uikit/c$c.class v8
+crossmobile/ios/uikit/c$d.class v8
+crossmobile/ios/uikit/c$e.class v8
+crossmobile/ios/uikit/c$f.class v8
+crossmobile/ios/uikit/c$g.class v8
+crossmobile/ios/uikit/c$h.class v8
+crossmobile/ios/uikit/c$i.class v8
+crossmobile/ios/uikit/c$j.class v8
+crossmobile/ios/uikit/c.class v8
+crossmobile/ios/uikit/d$a.class v8
+crossmobile/ios/uikit/d$b.class v8
+crossmobile/ios/uikit/d.class v8
+crossmobile/ios/uikit/e.class v8
+crossmobile/ios/uikit/f$1.class v8
+crossmobile/ios/uikit/f$a.class v8
+crossmobile/ios/uikit/f$b.class v8
+crossmobile/ios/uikit/f$c.class v8
+crossmobile/ios/uikit/f$d.class v8
+crossmobile/ios/uikit/f$e$1.class v8
+crossmobile/ios/uikit/f$e$2.class v8
+crossmobile/ios/uikit/f$e.class v8
+crossmobile/ios/uikit/f$f.class v8
+crossmobile/ios/uikit/f.class v8
+crossmobile/ios/uikit/g.class v8
+crossmobile/ios/uikit/h$a$1.class v8
+crossmobile/ios/uikit/h$a$2.class v8
+crossmobile/ios/uikit/h$a$a.class v8
+crossmobile/ios/uikit/h$a.class v8
+crossmobile/ios/uikit/h.class v8
+crossmobile/ios/uikit/i$1.class v8
+crossmobile/ios/uikit/i$a.class v8
+crossmobile/ios/uikit/i$b.class v8
+crossmobile/ios/uikit/i$c$1.class v8
+crossmobile/ios/uikit/i$c.class v8
+crossmobile/ios/uikit/i.class v8
+crossmobile/ios/uikit/j.class v8
+crossmobile/rt/StrongReference.class v8
+crossmobile/rt/UnimplementedOptionalException.class v8
+native/cmioslayer-Bridging-Header.h
+native/cmioslayer.a
+native/crossmobile_ios_coregraphics_CGAffineTransform.h
+native/crossmobile_ios_coregraphics_CGBitmapContext.h
+native/crossmobile_ios_coregraphics_CGColor.h
+native/crossmobile_ios_coregraphics_CGColorSpace.h
+native/crossmobile_ios_coregraphics_CGContext.h
+native/crossmobile_ios_coregraphics_CGDataProvider.h
+native/crossmobile_ios_coregraphics_CGFont.h
+native/crossmobile_ios_coregraphics_CGGradient.h
+native/crossmobile_ios_coregraphics_CGImage.h
+native/crossmobile_ios_coregraphics_CGLayer.h
+native/crossmobile_ios_coregraphics_CGPath.h
+native/crossmobile_ios_coregraphics_CGPoint.h
+native/crossmobile_ios_coregraphics_CGRect.h
+native/crossmobile_ios_coregraphics_CGSize.h
+native/crossmobile_ios_foundation_CFType.h
+native/crossmobile_ios_foundation_Foundation.h
+native/crossmobile_ios_foundation_NSBundle.h
+native/crossmobile_ios_foundation_NSCalendar.h
+native/crossmobile_ios_foundation_NSCoder.h
+native/crossmobile_ios_foundation_NSData.h
+native/crossmobile_ios_foundation_NSDate.h
+native/crossmobile_ios_foundation_NSDateComponents.h
+native/crossmobile_ios_foundation_NSDictionary.h
+native/crossmobile_ios_foundation_NSError.h
+native/crossmobile_ios_foundation_NSExtensionContext.h
+native/crossmobile_ios_foundation_NSExtensionItem.h
+native/crossmobile_ios_foundation_NSFileHandle.h
+native/crossmobile_ios_foundation_NSFileManager.h
+native/crossmobile_ios_foundation_NSHTTPCookie.h
+native/crossmobile_ios_foundation_NSHTTPCookieStorage.h
+native/crossmobile_ios_foundation_NSHTTPURLResponse.h
+native/crossmobile_ios_foundation_NSIndexPath.h
+native/crossmobile_ios_foundation_NSItemProvider.h
+native/crossmobile_ios_foundation_NSItemProviderCompletionHandler.h
+native/crossmobile_ios_foundation_NSItemProviderLoadHandler.h
+native/crossmobile_ios_foundation_NSJSONSerialization.h
+native/crossmobile_ios_foundation_NSLocale.h
+native/crossmobile_ios_foundation_NSLog.h
+native/crossmobile_ios_foundation_NSMutableData.h
+native/crossmobile_ios_foundation_NSMutableURLRequest.h
+native/crossmobile_ios_foundation_NSNotification.h
+native/crossmobile_ios_foundation_NSNotificationCenter.h
+native/crossmobile_ios_foundation_NSNumberFormatter.h
+native/crossmobile_ios_foundation_NSObject.h
+native/crossmobile_ios_foundation_NSOperationQueue.h
+native/crossmobile_ios_foundation_NSPredicate.h
+native/crossmobile_ios_foundation_NSRange.h
+native/crossmobile_ios_foundation_NSRunLoop.h
+native/crossmobile_ios_foundation_NSSecureCoding.h
+native/crossmobile_ios_foundation_NSSelector.h
+native/crossmobile_ios_foundation_NSString.h
+native/crossmobile_ios_foundation_NSTimeZone.h
+native/crossmobile_ios_foundation_NSTimer.h
+native/crossmobile_ios_foundation_NSTimerDelegate.h
+native/crossmobile_ios_foundation_NSURL.h
+native/crossmobile_ios_foundation_NSURLCache.h
+native/crossmobile_ios_foundation_NSURLConnection.h
+native/crossmobile_ios_foundation_NSURLConnectionDataDelegate.h
+native/crossmobile_ios_foundation_NSURLConnectionDelegate.h
+native/crossmobile_ios_foundation_NSURLRequest.h
+native/crossmobile_ios_foundation_NSURLResponse.h
+native/crossmobile_ios_foundation_NSURLSession.h
+native/crossmobile_ios_foundation_NSURLSessionConfiguration.h
+native/crossmobile_ios_foundation_NSURLSessionDataTask.h
+native/crossmobile_ios_foundation_NSURLSessionDelegate.h
+native/crossmobile_ios_foundation_NSURLSessionDownloadTask.h
+native/crossmobile_ios_foundation_NSURLSessionStreamTask.h
+native/crossmobile_ios_foundation_NSURLSessionTask.h
+native/crossmobile_ios_foundation_NSURLSessionUploadTask.h
+native/crossmobile_ios_foundation_NSUUID.h
+native/crossmobile_ios_foundation_NSUserDefaults.h
+native/crossmobile_ios_foundation_NSXMLParser.h
+native/crossmobile_ios_foundation_NSXMLParserDelegate.h
+native/crossmobile_ios_quartzcore_CAAction.h
+native/crossmobile_ios_quartzcore_CAAnimation.h
+native/crossmobile_ios_quartzcore_CALayer.h
+native/crossmobile_ios_quartzcore_CAMediaTiming.h
+native/crossmobile_ios_quartzcore_CATransition.h
+native/crossmobile_ios_uikit_NSLayoutAnchor.h
+native/crossmobile_ios_uikit_NSLayoutConstraint.h
+native/crossmobile_ios_uikit_NSLayoutDimension.h
+native/crossmobile_ios_uikit_NSLayoutXAxisAnchor.h
+native/crossmobile_ios_uikit_NSLayoutYAxisAnchor.h
+native/crossmobile_ios_uikit_UIAcceleration.h
+native/crossmobile_ios_uikit_UIAccelerometer.h
+native/crossmobile_ios_uikit_UIAccelerometerDelegate.h
+native/crossmobile_ios_uikit_UIActionSheet.h
+native/crossmobile_ios_uikit_UIActionSheetDelegate.h
+native/crossmobile_ios_uikit_UIActivity.h
+native/crossmobile_ios_uikit_UIActivityIndicatorView.h
+native/crossmobile_ios_uikit_UIActivityViewController.h
+native/crossmobile_ios_uikit_UIActivityViewControllerCompletionHandler.h
+native/crossmobile_ios_uikit_UIActivityViewControllerCompletionWithItemsHandler.h
+native/crossmobile_ios_uikit_UIAlertAction.h
+native/crossmobile_ios_uikit_UIAlertController.h
+native/crossmobile_ios_uikit_UIAlertView.h
+native/crossmobile_ios_uikit_UIAlertViewDelegate.h
+native/crossmobile_ios_uikit_UIApplication.h
+native/crossmobile_ios_uikit_UIApplicationDelegate.h
+native/crossmobile_ios_uikit_UIBarButtonItem.h
+native/crossmobile_ios_uikit_UIBarItem.h
+native/crossmobile_ios_uikit_UIButton.h
+native/crossmobile_ios_uikit_UIColor.h
+native/crossmobile_ios_uikit_UIControl.h
+native/crossmobile_ios_uikit_UIControlDelegate.h
+native/crossmobile_ios_uikit_UIDatePicker.h
+native/crossmobile_ios_uikit_UIDevice.h
+native/crossmobile_ios_uikit_UIEdgeInsets.h
+native/crossmobile_ios_uikit_UIEvent.h
+native/crossmobile_ios_uikit_UIFont.h
+native/crossmobile_ios_uikit_UIGestureRecognizer.h
+native/crossmobile_ios_uikit_UIGestureRecognizerDelegate.h
+native/crossmobile_ios_uikit_UIGraphics.h
+native/crossmobile_ios_uikit_UIImage.h
+native/crossmobile_ios_uikit_UIImageView.h
+native/crossmobile_ios_uikit_UIImageWriteToPhotoAlbumHandler.h
+native/crossmobile_ios_uikit_UILabel.h
+native/crossmobile_ios_uikit_UILayoutGuide.h
+native/crossmobile_ios_uikit_UILayoutSupport.h
+native/crossmobile_ios_uikit_UILocalNotification.h
+native/crossmobile_ios_uikit_UILongPressGestureRecognizer.h
+native/crossmobile_ios_uikit_UIMutableUserNotificationAction.h
+native/crossmobile_ios_uikit_UIMutableUserNotificationCategory.h
+native/crossmobile_ios_uikit_UINavigationBar.h
+native/crossmobile_ios_uikit_UINavigationBarDelegate.h
+native/crossmobile_ios_uikit_UINavigationController.h
+native/crossmobile_ios_uikit_UINavigationControllerDelegate.h
+native/crossmobile_ios_uikit_UINavigationItem.h
+native/crossmobile_ios_uikit_UINib.h
+native/crossmobile_ios_uikit_UIOffset.h
+native/crossmobile_ios_uikit_UIPageControl.h
+native/crossmobile_ios_uikit_UIPanGestureRecognizer.h
+native/crossmobile_ios_uikit_UIPickerView.h
+native/crossmobile_ios_uikit_UIPickerViewDataSource.h
+native/crossmobile_ios_uikit_UIPickerViewDelegate.h
+native/crossmobile_ios_uikit_UIPinchGestureRecognizer.h
+native/crossmobile_ios_uikit_UIPopoverController.h
+native/crossmobile_ios_uikit_UIPopoverControllerDelegate.h
+native/crossmobile_ios_uikit_UIPrintInteractionCompletionHandler.h
+native/crossmobile_ios_uikit_UIPrintInteractionController.h
+native/crossmobile_ios_uikit_UIProgressView.h
+native/crossmobile_ios_uikit_UIResponder.h
+native/crossmobile_ios_uikit_UIRotationGestureRecognizer.h
+native/crossmobile_ios_uikit_UIScreen.h
+native/crossmobile_ios_uikit_UIScrollView.h
+native/crossmobile_ios_uikit_UIScrollViewDelegate.h
+native/crossmobile_ios_uikit_UISearchBar.h
+native/crossmobile_ios_uikit_UISearchBarDelegate.h
+native/crossmobile_ios_uikit_UISegmentedControl.h
+native/crossmobile_ios_uikit_UISlider.h
+native/crossmobile_ios_uikit_UISplitViewController.h
+native/crossmobile_ios_uikit_UISplitViewControllerDelegate.h
+native/crossmobile_ios_uikit_UIStackView.h
+native/crossmobile_ios_uikit_UIStepper.h
+native/crossmobile_ios_uikit_UIStoryboard.h
+native/crossmobile_ios_uikit_UIStoryboardSegue.h
+native/crossmobile_ios_uikit_UIStoryboardUnwindSegueSource.h
+native/crossmobile_ios_uikit_UISwipeGestureRecognizer.h
+native/crossmobile_ios_uikit_UISwitch.h
+native/crossmobile_ios_uikit_UITabBar.h
+native/crossmobile_ios_uikit_UITabBarController.h
+native/crossmobile_ios_uikit_UITabBarControllerDelegate.h
+native/crossmobile_ios_uikit_UITabBarDelegate.h
+native/crossmobile_ios_uikit_UITabBarItem.h
+native/crossmobile_ios_uikit_UITableView.h
+native/crossmobile_ios_uikit_UITableViewCell.h
+native/crossmobile_ios_uikit_UITableViewController.h
+native/crossmobile_ios_uikit_UITableViewDataSource.h
+native/crossmobile_ios_uikit_UITableViewDelegate.h
+native/crossmobile_ios_uikit_UITapGestureRecognizer.h
+native/crossmobile_ios_uikit_UITextField.h
+native/crossmobile_ios_uikit_UITextFieldDelegate.h
+native/crossmobile_ios_uikit_UITextInputTraits.h
+native/crossmobile_ios_uikit_UITextView.h
+native/crossmobile_ios_uikit_UITextViewDelegate.h
+native/crossmobile_ios_uikit_UIToolbar.h
+native/crossmobile_ios_uikit_UITouch.h
+native/crossmobile_ios_uikit_UIUserNotificationAction.h
+native/crossmobile_ios_uikit_UIUserNotificationCategory.h
+native/crossmobile_ios_uikit_UIUserNotificationSettings.h
+native/crossmobile_ios_uikit_UIView.h
+native/crossmobile_ios_uikit_UIViewController.h
+native/crossmobile_ios_uikit_UIWebView.h
+native/crossmobile_ios_uikit_UIWebViewDelegate.h
+native/crossmobile_ios_uikit_UIWindow.h
+native/crossmobile_rt_StrongReference.h
+native/java_io_BufferedInputStream.h
+native/java_io_BufferedOutputStream.h
+native/java_io_BufferedReader.h
+native/java_io_BufferedWriter.h
+native/java_io_ByteArrayInputStream.h
+native/java_io_ByteArrayOutputStream.h
+native/java_io_DataInputStream.h
+native/java_io_DataOutputStream.h
+native/java_io_EOFException.h
+native/java_io_File.h
+native/java_io_FileDescriptor.h
+native/java_io_FileInputStream.h
+native/java_io_FileNotFoundException.h
+native/java_io_FileOutputStream.h
+native/java_io_FileReader.h
+native/java_io_FileWriter.h
+native/java_io_FilenameFilter.h
+native/java_io_IOException.h
+native/java_io_InputStream.h
+native/java_io_InputStreamReader.h
+native/java_io_ObjectInputStream.h
+native/java_io_ObjectOutputStream.h
+native/java_io_OutputStream.h
+native/java_io_OutputStreamWriter.h
+native/java_io_PrintStream.h
+native/java_io_PrintWriter.h
+native/java_io_Reader.h
+native/java_io_Serializable.h
+native/java_io_StringReader.h
+native/java_io_UnsupportedEncodingException.h
+native/java_io_Writer.h
+native/java_lang_ArithmeticException.h
+native/java_lang_ArrayIndexOutOfBoundsException.h
+native/java_lang_AssertionError.h
+native/java_lang_AutoCloseable.h
+native/java_lang_Boolean.h
+native/java_lang_Byte.h
+native/java_lang_CharSequence.h
+native/java_lang_Character.h
+native/java_lang_Class.h
+native/java_lang_ClassCastException.h
+native/java_lang_ClassNotFoundException.h
+native/java_lang_Comparable.h
+native/java_lang_Double.h
+native/java_lang_Enum.h
+native/java_lang_Exception.h
+native/java_lang_Float.h
+native/java_lang_IllegalAccessException.h
+native/java_lang_IllegalArgumentException.h
+native/java_lang_IllegalMonitorStateException.h
+native/java_lang_IllegalStateException.h
+native/java_lang_IndexOutOfBoundsException.h
+native/java_lang_InstantiationException.h
+native/java_lang_Integer.h
+native/java_lang_InterruptedException.h
+native/java_lang_Iterable.h
+native/java_lang_Long.h
+native/java_lang_Math.h
+native/java_lang_NegativeArraySizeException.h
+native/java_lang_NoSuchFieldError.h
+native/java_lang_NoSuchFieldException.h
+native/java_lang_NoSuchMethodException.h
+native/java_lang_NullPointerException.h
+native/java_lang_Number.h
+native/java_lang_NumberFormatException.h
+native/java_lang_Object.h
+native/java_lang_Runnable.h
+native/java_lang_Runtime.h
+native/java_lang_RuntimeException.h
+native/java_lang_SecurityException.h
+native/java_lang_Short.h
+native/java_lang_String.h
+native/java_lang_StringBuffer.h
+native/java_lang_StringBuilder.h
+native/java_lang_System.h
+native/java_lang_Thread.h
+native/java_lang_Throwable.h
+native/java_lang_UnsupportedOperationException.h
+native/java_lang_annotation_Annotation.h
+native/java_lang_annotation_Retention.h
+native/java_lang_ref_WeakReference.h
+native/java_lang_reflect_Array.h
+native/java_lang_reflect_Constructor.h
+native/java_lang_reflect_Field.h
+native/java_lang_reflect_InvocationTargetException.h
+native/java_lang_reflect_Method.h
+native/java_net_HttpURLConnection.h
+native/java_net_InetAddress.h
+native/java_net_InterfaceAddress.h
+native/java_net_NetworkInterface.h
+native/java_net_ServerSocket.h
+native/java_net_Socket.h
+native/java_net_SocketException.h
+native/java_net_SocketTimeoutException.h
+native/java_net_URI.h
+native/java_net_URL.h
+native/java_net_URLConnection.h
+native/java_nio_Buffer.h
+native/java_nio_ByteBuffer.h
+native/java_nio_FloatBuffer.h
+native/java_nio_IntBuffer.h
+native/java_security_Key.h
+native/java_security_MessageDigest.h
+native/java_security_SecureRandom.h
+native/java_sql_Connection.h
+native/java_sql_DriverManager.h
+native/java_sql_ResultSet.h
+native/java_sql_ResultSetMetaData.h
+native/java_sql_SQLException.h
+native/java_sql_Statement.h
+native/java_util_ArrayList.h
+native/java_util_Arrays.h
+native/java_util_Collection.h
+native/java_util_Collections.h
+native/java_util_Comparator.h
+native/java_util_Deque.h
+native/java_util_EmptyStackException.h
+native/java_util_Enumeration.h
+native/java_util_HashMap.h
+native/java_util_HashMap_EntrySet.h
+native/java_util_HashSet.h
+native/java_util_Hashtable.h
+native/java_util_Iterator.h
+native/java_util_IteratorImpl.h
+native/java_util_LinkedHashMap.h
+native/java_util_LinkedHashSet.h
+native/java_util_LinkedList.h
+native/java_util_List.h
+native/java_util_ListIterator.h
+native/java_util_Locale.h
+native/java_util_Map.h
+native/java_util_Map_Entry.h
+native/java_util_Map_Entry_Impl.h
+native/java_util_Objects.h
+native/java_util_Observable.h
+native/java_util_Observer.h
+native/java_util_Properties.h
+native/java_util_Queue.h
+native/java_util_Random.h
+native/java_util_Set.h
+native/java_util_SortedMap.h
+native/java_util_SortedSet.h
+native/java_util_Stack.h
+native/java_util_StringTokenizer.h
+native/java_util_TreeMap.h
+native/java_util_TreeSet.h
+native/java_util_Vector.h
+native/java_util_concurrent_Callable.h
+native/java_util_concurrent_CopyOnWriteArrayList.h
+native/javax_crypto_Cipher.h
+native/javax_crypto_KeyGenerator.h
+native/javax_crypto_SecretKey.h
+native/javax_crypto_spec_SecretKeySpec.h
+native/javax_xml_parsers_ParserConfigurationException.h
+native/javax_xml_xpath_XPathExpressionException.h
+native/org_apache_http_client_entity_UrlEncodedFormEntity.h
+native/org_apache_http_client_methods_HttpPost.h
+native/org_apache_http_message_BasicNameValuePair.h
+native/org_robovm_objc_block_Block0.h
+native/org_robovm_objc_block_Block1.h
+native/org_robovm_objc_block_Block2.h
+native/org_robovm_objc_block_Block3.h
+native/org_robovm_objc_block_Block4.h
+native/org_robovm_objc_block_Block5.h
+native/org_robovm_objc_block_Block6.h
+native/org_robovm_objc_block_VoidBlock1.h
+native/org_robovm_objc_block_VoidBlock2.h
+native/org_robovm_objc_block_VoidBlock3.h
+native/org_robovm_objc_block_VoidBlock4.h
+native/org_robovm_objc_block_VoidBlock5.h
+native/org_robovm_objc_block_VoidBlock6.h
+native/org_xml_sax_SAXException.h
+native/xmlvm.h
+org/crossmobile/a$a.class v1.5
+org/crossmobile/a.class v1.5
+org/crossmobile/b$1.class v1.5
+org/crossmobile/b.class v1.5
+org/crossmobile/bridge/CrossMobilePlugin.class v8
+org/crossmobile/bridge/FileBridge.class v8
+org/crossmobile/bridge/GraphicsBridge.class v8
+org/crossmobile/bridge/ImageBridge$a.class v8
+org/crossmobile/bridge/ImageBridge.class v8
+org/crossmobile/bridge/InAppBridge.class v8
+org/crossmobile/bridge/LifecycleBridge.class v8
+org/crossmobile/bridge/LocationBridge$a.class v8
+org/crossmobile/bridge/LocationBridge.class v8
+org/crossmobile/bridge/MessageBridge.class v8
+org/crossmobile/bridge/Native.class v8
+org/crossmobile/bridge/NetworkBridge.class v8
+org/crossmobile/bridge/NotificationBridge.class v8
+org/crossmobile/bridge/SecurityBridge.class v8
+org/crossmobile/bridge/ShareBridge.class v8
+org/crossmobile/bridge/SocialBridge$Handler.class v8
+org/crossmobile/bridge/SocialBridge.class v8
+org/crossmobile/bridge/SoundBridge.class v8
+org/crossmobile/bridge/SystemBridge.class v8
+org/crossmobile/bridge/UIGuidelinesBridge.class v8
+org/crossmobile/bridge/WrapperBridge.class v8
+org/crossmobile/bridge/WrapperMapBridge.class v8
+org/crossmobile/bridge/ann/CMGetter.class v8
+org/crossmobile/bridge/ann/CMSetter.class v8
+org/crossmobile/bridge/system/ClassWalker.class v8
+org/crossmobile/bridge/system/ExceptionUtils.class v8
+org/crossmobile/bridge/system/JsonHelper$1.class v8
+org/crossmobile/bridge/system/JsonHelper$a.class v8
+org/crossmobile/bridge/system/JsonHelper$b$a$a.class v8
+org/crossmobile/bridge/system/JsonHelper$b$a.class v8
+org/crossmobile/bridge/system/JsonHelper$b.class v8
+org/crossmobile/bridge/system/JsonHelper.class v8
+org/crossmobile/bridge/system/Pair.class v8
+org/crossmobile/build/StoryBoardBinder.class v8
+org/crossmobile/c.class v1.5
+org/crossmobile/cs.class v8
+org/crossmobile/ct.class v8
+org/crossmobile/cu.class v8
+org/crossmobile/d.class v1.5
+org/crossmobile/e.class v1.5
+org/crossmobile/f$1.class v1.5
+org/crossmobile/f$a.class v1.5
+org/crossmobile/f$b.class v1.5
+org/crossmobile/f.class v1.5
+org/crossmobile/g.class v1.5
+org/crossmobile/h.class v1.5
+org/crossmobile/i.class v1.5
+org/crossmobile/j.class v1.5
+org/crossmobile/k.class v1.5
+org/crossmobile/l.class v1.5
+org/crossmobile/m$1.class v1.5
+org/crossmobile/m$a.class v1.5
+org/crossmobile/m.class v1.5
+org/crossmobile/n$1.class v1.5
+org/crossmobile/n.class v1.5
+org/crossmobile/o.class v1.5
+org/robovm/objc/annotation/IBAction.class v8
+org/robovm/objc/annotation/IBOutlet.class v8
+org/robovm/objc/block/Block0.class v8
+org/robovm/objc/block/Block1.class v8
+org/robovm/objc/block/Block2.class v8
+org/robovm/objc/block/Block3.class v8
+org/robovm/objc/block/Block4.class v8
+org/robovm/objc/block/Block5.class v8
+org/robovm/objc/block/Block6.class v8
+org/robovm/objc/block/VoidBlock1.class v8
+org/robovm/objc/block/VoidBlock2.class v8
+org/robovm/objc/block/VoidBlock3.class v8
+org/robovm/objc/block/VoidBlock4.class v8
+org/robovm/objc/block/VoidBlock5.class v8
+org/robovm/objc/block/VoidBlock6.class v8
+org/robovm/objc/block/VoidBooleanBlock.class v8
+
+Creating file cmplugin-desktop-cmioslayer-<VERSION>.jar
+com/panayotis/appenh/Enhancer$FileOpenRunnable.class v1.5
+com/panayotis/appenh/Enhancer.class v1.5
+com/panayotis/appenh/EnhancerManager.class v1.5
+com/panayotis/appenh/MacEnhancer$1.class v1.5
+com/panayotis/appenh/MacEnhancer$2.class v1.5
+com/panayotis/appenh/MacEnhancer$3.class v1.5
+com/panayotis/appenh/MacEnhancer$4.class v1.5
+com/panayotis/appenh/MacEnhancer$5.class v1.5
+com/panayotis/appenh/MacEnhancer.class v1.5
+com/panayotis/appenh/a.class v1.5
+com/panayotis/appenh/b$1.class v1.5
+com/panayotis/appenh/b.class v1.5
+com/panayotis/appenh/libmacenh.dylib
+com/panayotis/ce/CEventCommons.class v8
+com/panayotis/ce/CEventListener.class v8
+com/panayotis/ce/CEventManager.class v8
+com/panayotis/ce/a.class v8
+com/panayotis/loadlib/LoadLib.class v1.6
+crossmobile/ios/coregraphics/$coregraphics.class v8
+crossmobile/ios/coregraphics/CGAffineTransform.class v8
+crossmobile/ios/coregraphics/CGBitmapContext.class v8
+crossmobile/ios/coregraphics/CGBitmapInfo.class v8
+crossmobile/ios/coregraphics/CGBlendMode.class v8
+crossmobile/ios/coregraphics/CGColor.class v8
+crossmobile/ios/coregraphics/CGColorRenderingIntent.class v8
+crossmobile/ios/coregraphics/CGColorSpace$1.class v8
+crossmobile/ios/coregraphics/CGColorSpace$a.class v8
+crossmobile/ios/coregraphics/CGColorSpace$b.class v8
+crossmobile/ios/coregraphics/CGColorSpace.class v8
+crossmobile/ios/coregraphics/CGContext.class v8
+crossmobile/ios/coregraphics/CGDataProvider.class v8
+crossmobile/ios/coregraphics/CGFont.class v8
+crossmobile/ios/coregraphics/CGGradient.class v8
+crossmobile/ios/coregraphics/CGGradientDrawingOptions.class v8
+crossmobile/ios/coregraphics/CGImage.class v8
+crossmobile/ios/coregraphics/CGInterpolationQuality.class v8
+crossmobile/ios/coregraphics/CGLayer.class v8
+crossmobile/ios/coregraphics/CGLineCap.class v8
+crossmobile/ios/coregraphics/CGLineJoin.class v8
+crossmobile/ios/coregraphics/CGPath.class v8
+crossmobile/ios/coregraphics/CGPathDrawingMode.class v8
+crossmobile/ios/coregraphics/CGPoint.class v8
+crossmobile/ios/coregraphics/CGRect.class v8
+crossmobile/ios/coregraphics/CGSize.class v8
+crossmobile/ios/coregraphics/CGTextDrawingMode.class v8
+crossmobile/ios/coregraphics/CGTextEncoding.class v8
+crossmobile/ios/foundation/$foundation.class v8
+crossmobile/ios/foundation/CFNumberFormatterStyle.class v8
+crossmobile/ios/foundation/CFType.class v8
+crossmobile/ios/foundation/Foundation.class v8
+crossmobile/ios/foundation/NSAttributedStringKey.class v8
+crossmobile/ios/foundation/NSBundle.class v8
+crossmobile/ios/foundation/NSCalendar.class v8
+crossmobile/ios/foundation/NSCalendarOptions.class v8
+crossmobile/ios/foundation/NSCalendarUnit.class v8
+crossmobile/ios/foundation/NSCoder.class v8
+crossmobile/ios/foundation/NSData$1.class v8
+crossmobile/ios/foundation/NSData$a.class v8
+crossmobile/ios/foundation/NSData.class v8
+crossmobile/ios/foundation/NSDataBase64DecodingOptions.class v8
+crossmobile/ios/foundation/NSDataBase64EncodingOptions.class v8
+crossmobile/ios/foundation/NSDate.class v8
+crossmobile/ios/foundation/NSDateComponents.class v8
+crossmobile/ios/foundation/NSDictionary$1.class v8
+crossmobile/ios/foundation/NSDictionary$a.class v8
+crossmobile/ios/foundation/NSDictionary$b.class v8
+crossmobile/ios/foundation/NSDictionary$c.class v8
+crossmobile/ios/foundation/NSDictionary.class v8
+crossmobile/ios/foundation/NSError$Domain.class v8
+crossmobile/ios/foundation/NSError$ErrorCode.class v8
+crossmobile/ios/foundation/NSError$Key.class v8
+crossmobile/ios/foundation/NSError.class v8
+crossmobile/ios/foundation/NSExtensionContext.class v8
+crossmobile/ios/foundation/NSExtensionItem.class v8
+crossmobile/ios/foundation/NSFileHandle.class v8
+crossmobile/ios/foundation/NSFileManager.class v8
+crossmobile/ios/foundation/NSHTTPCookie.class v8
+crossmobile/ios/foundation/NSHTTPCookieAcceptPolicy.class v8
+crossmobile/ios/foundation/NSHTTPCookieStorage.class v8
+crossmobile/ios/foundation/NSHTTPURLResponse.class v8
+crossmobile/ios/foundation/NSIndexPath.class v8
+crossmobile/ios/foundation/NSItemProvider.class v8
+crossmobile/ios/foundation/NSItemProviderCompletionHandler.class v8
+crossmobile/ios/foundation/NSItemProviderLoadHandler.class v8
+crossmobile/ios/foundation/NSJSONReadingOptions.class v8
+crossmobile/ios/foundation/NSJSONSerialization.class v8
+crossmobile/ios/foundation/NSJSONWritingOptions.class v8
+crossmobile/ios/foundation/NSLineBreakMode.class v8
+crossmobile/ios/foundation/NSLocale.class v8
+crossmobile/ios/foundation/NSLog.class v8
+crossmobile/ios/foundation/NSMutableData.class v8
+crossmobile/ios/foundation/NSMutableURLRequest.class v8
+crossmobile/ios/foundation/NSNotification.class v8
+crossmobile/ios/foundation/NSNotificationCenter$a.class v8
+crossmobile/ios/foundation/NSNotificationCenter.class v8
+crossmobile/ios/foundation/NSNotificationName.class v8
+crossmobile/ios/foundation/NSNumberFormatter.class v8
+crossmobile/ios/foundation/NSNumberFormatterStyle.class v8
+crossmobile/ios/foundation/NSObject.class v8
+crossmobile/ios/foundation/NSOperationQueue.class v8
+crossmobile/ios/foundation/NSOrdered.class v8
+crossmobile/ios/foundation/NSPredicate.class v8
+crossmobile/ios/foundation/NSRange.class v8
+crossmobile/ios/foundation/NSRunLoop$a.class v8
+crossmobile/ios/foundation/NSRunLoop.class v8
+crossmobile/ios/foundation/NSRunLoopMode.class v8
+crossmobile/ios/foundation/NSSearchPathDirectory.class v8
+crossmobile/ios/foundation/NSSearchPathDomainMask.class v8
+crossmobile/ios/foundation/NSSecureCoding.class v8
+crossmobile/ios/foundation/NSSelector.class v8
+crossmobile/ios/foundation/NSString.class v8
+crossmobile/ios/foundation/NSStringCompareOptions.class v8
+crossmobile/ios/foundation/NSStringEncoding.class v8
+crossmobile/ios/foundation/NSTimeZone.class v8
+crossmobile/ios/foundation/NSTimer.class v8
+crossmobile/ios/foundation/NSTimerDelegate.class v8
+crossmobile/ios/foundation/NSURL.class v8
+crossmobile/ios/foundation/NSURLCache.class v8
+crossmobile/ios/foundation/NSURLConnection$1.class v8
+crossmobile/ios/foundation/NSURLConnection$2.class v8
+crossmobile/ios/foundation/NSURLConnection.class v8
+crossmobile/ios/foundation/NSURLConnectionDataDelegate.class v8
+crossmobile/ios/foundation/NSURLConnectionDelegate.class v8
+crossmobile/ios/foundation/NSURLRequest.class v8
+crossmobile/ios/foundation/NSURLRequestCachePolicy.class v8
+crossmobile/ios/foundation/NSURLResponse.class v8
+crossmobile/ios/foundation/NSURLSession.class v8
+crossmobile/ios/foundation/NSURLSessionAuthChallengeDisposition.class v8
+crossmobile/ios/foundation/NSURLSessionConfiguration.class v8
+crossmobile/ios/foundation/NSURLSessionDataTask.class v8
+crossmobile/ios/foundation/NSURLSessionDelegate.class v8
+crossmobile/ios/foundation/NSURLSessionDownloadTask.class v8
+crossmobile/ios/foundation/NSURLSessionStreamTask.class v8
+crossmobile/ios/foundation/NSURLSessionTask.class v8
+crossmobile/ios/foundation/NSURLSessionTaskPriority.class v8
+crossmobile/ios/foundation/NSURLSessionTaskState.class v8
+crossmobile/ios/foundation/NSURLSessionUploadTask.class v8
+crossmobile/ios/foundation/NSUUID.class v8
+crossmobile/ios/foundation/NSUserDefaults.class v8
+crossmobile/ios/foundation/NSXMLParser$1.class v8
+crossmobile/ios/foundation/NSXMLParser.class v8
+crossmobile/ios/foundation/NSXMLParserDelegate.class v8
+crossmobile/ios/mobilecoreservices/UTType.class v8
+crossmobile/ios/quartzcore/CAAction.class v8
+crossmobile/ios/quartzcore/CAAnimation.class v8
+crossmobile/ios/quartzcore/CALayer.class v8
+crossmobile/ios/quartzcore/CAMediaTiming.class v8
+crossmobile/ios/quartzcore/CATransition.class v8
+crossmobile/ios/uikit/$uikit$1.class v8
+crossmobile/ios/uikit/$uikit.class v8
+crossmobile/ios/uikit/NSLayoutAnchor.class v8
+crossmobile/ios/uikit/NSLayoutAttribute.class v8
+crossmobile/ios/uikit/NSLayoutConstraint.class v8
+crossmobile/ios/uikit/NSLayoutDimension.class v8
+crossmobile/ios/uikit/NSLayoutFormatOptions.class v8
+crossmobile/ios/uikit/NSLayoutRelation.class v8
+crossmobile/ios/uikit/NSLayoutXAxisAnchor.class v8
+crossmobile/ios/uikit/NSLayoutYAxisAnchor.class v8
+crossmobile/ios/uikit/NSTextAlignment.class v8
+crossmobile/ios/uikit/UIAcceleration.class v8
+crossmobile/ios/uikit/UIAccelerometer.class v8
+crossmobile/ios/uikit/UIAccelerometerDelegate.class v8
+crossmobile/ios/uikit/UIActionSheet.class v8
+crossmobile/ios/uikit/UIActionSheetDelegate.class v8
+crossmobile/ios/uikit/UIActivity.class v8
+crossmobile/ios/uikit/UIActivityCategory.class v8
+crossmobile/ios/uikit/UIActivityIndicatorView.class v8
+crossmobile/ios/uikit/UIActivityIndicatorViewStyle.class v8
+crossmobile/ios/uikit/UIActivityType.class v8
+crossmobile/ios/uikit/UIActivityViewController.class v8
+crossmobile/ios/uikit/UIActivityViewControllerCompletionHandler.class v8
+crossmobile/ios/uikit/UIActivityViewControllerCompletionWithItemsHandler.class v8
+crossmobile/ios/uikit/UIAlertAction.class v8
+crossmobile/ios/uikit/UIAlertActionStyle.class v8
+crossmobile/ios/uikit/UIAlertController$1.class v8
+crossmobile/ios/uikit/UIAlertController$2.class v8
+crossmobile/ios/uikit/UIAlertController.class v8
+crossmobile/ios/uikit/UIAlertControllerStyle.class v8
+crossmobile/ios/uikit/UIAlertView.class v8
+crossmobile/ios/uikit/UIAlertViewDelegate.class v8
+crossmobile/ios/uikit/UIAlertViewStyle.class v8
+crossmobile/ios/uikit/UIApplication.class v8
+crossmobile/ios/uikit/UIApplicationDelegate.class v8
+crossmobile/ios/uikit/UIApplicationLaunchOptions.class v8
+crossmobile/ios/uikit/UIBarButtonItem.class v8
+crossmobile/ios/uikit/UIBarButtonItemStyle.class v8
+crossmobile/ios/uikit/UIBarButtonSystemItem.class v8
+crossmobile/ios/uikit/UIBarItem$a.class v8
+crossmobile/ios/uikit/UIBarItem.class v8
+crossmobile/ios/uikit/UIBarStyle.class v8
+crossmobile/ios/uikit/UIBaselineAdjustment.class v8
+crossmobile/ios/uikit/UIButton.class v8
+crossmobile/ios/uikit/UIButtonType.class v8
+crossmobile/ios/uikit/UIColor.class v8
+crossmobile/ios/uikit/UIControl$1.class v8
+crossmobile/ios/uikit/UIControl$a.class v8
+crossmobile/ios/uikit/UIControl.class v8
+crossmobile/ios/uikit/UIControlContentHorizontalAlignment.class v8
+crossmobile/ios/uikit/UIControlContentVerticalAlignment.class v8
+crossmobile/ios/uikit/UIControlDelegate.class v8
+crossmobile/ios/uikit/UIControlEvents.class v8
+crossmobile/ios/uikit/UIControlState.class v8
+crossmobile/ios/uikit/UIDataDetectorTypes.class v8
+crossmobile/ios/uikit/UIDatePicker.class v8
+crossmobile/ios/uikit/UIDatePickerMode.class v8
+crossmobile/ios/uikit/UIDevice.class v8
+crossmobile/ios/uikit/UIDeviceBatteryState.class v8
+crossmobile/ios/uikit/UIDeviceOrientation.class v8
+crossmobile/ios/uikit/UIEdgeInsets.class v8
+crossmobile/ios/uikit/UIEvent.class v8
+crossmobile/ios/uikit/UIEventSubtype.class v8
+crossmobile/ios/uikit/UIEventType.class v8
+crossmobile/ios/uikit/UIFont.class v8
+crossmobile/ios/uikit/UIGestureRecognizer.class v8
+crossmobile/ios/uikit/UIGestureRecognizerDelegate.class v8
+crossmobile/ios/uikit/UIGestureRecognizerState.class v8
+crossmobile/ios/uikit/UIGraphics.class v8
+crossmobile/ios/uikit/UIImage.class v8
+crossmobile/ios/uikit/UIImageOrientation.class v8
+crossmobile/ios/uikit/UIImageRenderingMode.class v8
+crossmobile/ios/uikit/UIImageResizingMode.class v8
+crossmobile/ios/uikit/UIImageView$a.class v8
+crossmobile/ios/uikit/UIImageView.class v8
+crossmobile/ios/uikit/UIImageWriteToPhotoAlbumHandler.class v8
+crossmobile/ios/uikit/UIInterfaceOrientation.class v8
+crossmobile/ios/uikit/UIInterfaceOrientationMask.class v8
+crossmobile/ios/uikit/UIKeyboardAppearance.class v8
+crossmobile/ios/uikit/UIKeyboardType.class v8
+crossmobile/ios/uikit/UILabel.class v8
+crossmobile/ios/uikit/UILayoutConstraintAxis.class v8
+crossmobile/ios/uikit/UILayoutGuide.class v8
+crossmobile/ios/uikit/UILayoutPriority.class v8
+crossmobile/ios/uikit/UILayoutSupport.class v8
+crossmobile/ios/uikit/UILocalNotification.class v8
+crossmobile/ios/uikit/UILongPressGestureRecognizer.class v8
+crossmobile/ios/uikit/UIModalPresentationStyle.class v8
+crossmobile/ios/uikit/UIModalTransitionStyle.class v8
+crossmobile/ios/uikit/UIMutableUserNotificationAction.class v8
+crossmobile/ios/uikit/UIMutableUserNotificationCategory.class v8
+crossmobile/ios/uikit/UINavigationBar.class v8
+crossmobile/ios/uikit/UINavigationBarDelegate.class v8
+crossmobile/ios/uikit/UINavigationController$a.class v8
+crossmobile/ios/uikit/UINavigationController$b.class v8
+crossmobile/ios/uikit/UINavigationController.class v8
+crossmobile/ios/uikit/UINavigationControllerDelegate.class v8
+crossmobile/ios/uikit/UINavigationItem.class v8
+crossmobile/ios/uikit/UINib.class v8
+crossmobile/ios/uikit/UIOffset.class v8
+crossmobile/ios/uikit/UIPageControl.class v8
+crossmobile/ios/uikit/UIPanGestureRecognizer.class v8
+crossmobile/ios/uikit/UIPickerView$1.class v8
+crossmobile/ios/uikit/UIPickerView$2.class v8
+crossmobile/ios/uikit/UIPickerView.class v8
+crossmobile/ios/uikit/UIPickerViewDataSource.class v8
+crossmobile/ios/uikit/UIPickerViewDelegate.class v8
+crossmobile/ios/uikit/UIPinchGestureRecognizer.class v8
+crossmobile/ios/uikit/UIPopoverArrowDirection.class v8
+crossmobile/ios/uikit/UIPopoverController.class v8
+crossmobile/ios/uikit/UIPopoverControllerDelegate.class v8
+crossmobile/ios/uikit/UIPrintInteractionCompletionHandler.class v8
+crossmobile/ios/uikit/UIPrintInteractionController.class v8
+crossmobile/ios/uikit/UIProgressView.class v8
+crossmobile/ios/uikit/UIProgressViewStyle.class v8
+crossmobile/ios/uikit/UIRectEdge.class v8
+crossmobile/ios/uikit/UIRemoteNotificationType.class v8
+crossmobile/ios/uikit/UIResponder.class v8
+crossmobile/ios/uikit/UIReturnKeyType.class v8
+crossmobile/ios/uikit/UIRotationGestureRecognizer.class v8
+crossmobile/ios/uikit/UIScreen.class v8
+crossmobile/ios/uikit/UIScrollView$1.class v8
+crossmobile/ios/uikit/UIScrollView$a.class v8
+crossmobile/ios/uikit/UIScrollView$b.class v8
+crossmobile/ios/uikit/UIScrollView$c.class v8
+crossmobile/ios/uikit/UIScrollView.class v8
+crossmobile/ios/uikit/UIScrollViewDecelerationRate.class v8
+crossmobile/ios/uikit/UIScrollViewDelegate.class v8
+crossmobile/ios/uikit/UIScrollViewIndicatorStyle.class v8
+crossmobile/ios/uikit/UISearchBar$1.class v8
+crossmobile/ios/uikit/UISearchBar.class v8
+crossmobile/ios/uikit/UISearchBarDelegate.class v8
+crossmobile/ios/uikit/UISearchBarIcon.class v8
+crossmobile/ios/uikit/UISearchBarStyle.class v8
+crossmobile/ios/uikit/UISegmentedControl$1.class v8
+crossmobile/ios/uikit/UISegmentedControl$a.class v8
+crossmobile/ios/uikit/UISegmentedControl.class v8
+crossmobile/ios/uikit/UISegmentedControlStyle.class v8
+crossmobile/ios/uikit/UISlider.class v8
+crossmobile/ios/uikit/UISplitViewController$1.class v8
+crossmobile/ios/uikit/UISplitViewController$a.class v8
+crossmobile/ios/uikit/UISplitViewController.class v8
+crossmobile/ios/uikit/UISplitViewControllerDelegate.class v8
+crossmobile/ios/uikit/UISplitViewControllerDisplayMode.class v8
+crossmobile/ios/uikit/UIStackView.class v8
+crossmobile/ios/uikit/UIStackViewAlignment.class v8
+crossmobile/ios/uikit/UIStackViewDistribution.class v8
+crossmobile/ios/uikit/UIStatusBarStyle.class v8
+crossmobile/ios/uikit/UIStepper$1.class v8
+crossmobile/ios/uikit/UIStepper$2.class v8
+crossmobile/ios/uikit/UIStepper$3.class v8
+crossmobile/ios/uikit/UIStepper.class v8
+crossmobile/ios/uikit/UIStoryboard.class v8
+crossmobile/ios/uikit/UIStoryboardSegue.class v8
+crossmobile/ios/uikit/UIStoryboardUnwindSegueSource.class v8
+crossmobile/ios/uikit/UISwipeGestureRecognizer.class v8
+crossmobile/ios/uikit/UISwipeGestureRecognizerDirection.class v8
+crossmobile/ios/uikit/UISwitch.class v8
+crossmobile/ios/uikit/UITabBar.class v8
+crossmobile/ios/uikit/UITabBarController$a.class v8
+crossmobile/ios/uikit/UITabBarController.class v8
+crossmobile/ios/uikit/UITabBarControllerDelegate.class v8
+crossmobile/ios/uikit/UITabBarDelegate.class v8
+crossmobile/ios/uikit/UITabBarItem.class v8
+crossmobile/ios/uikit/UITabBarItemPositioning.class v8
+crossmobile/ios/uikit/UITableView$1.class v8
+crossmobile/ios/uikit/UITableView$a.class v8
+crossmobile/ios/uikit/UITableView.class v8
+crossmobile/ios/uikit/UITableViewCell$1.class v8
+crossmobile/ios/uikit/UITableViewCell$a.class v8
+crossmobile/ios/uikit/UITableViewCell.class v8
+crossmobile/ios/uikit/UITableViewCellAccessoryType.class v8
+crossmobile/ios/uikit/UITableViewCellEditingStyle.class v8
+crossmobile/ios/uikit/UITableViewCellSelectionStyle.class v8
+crossmobile/ios/uikit/UITableViewCellSeparatorStyle.class v8
+crossmobile/ios/uikit/UITableViewCellStyle.class v8
+crossmobile/ios/uikit/UITableViewController$a.class v8
+crossmobile/ios/uikit/UITableViewController.class v8
+crossmobile/ios/uikit/UITableViewDataSource.class v8
+crossmobile/ios/uikit/UITableViewDelegate.class v8
+crossmobile/ios/uikit/UITableViewRowAnimation.class v8
+crossmobile/ios/uikit/UITableViewScrollPosition.class v8
+crossmobile/ios/uikit/UITableViewStyle.class v8
+crossmobile/ios/uikit/UITapGestureRecognizer.class v8
+crossmobile/ios/uikit/UITextAlignment.class v8
+crossmobile/ios/uikit/UITextAttribute.class v8
+crossmobile/ios/uikit/UITextAutocapitalizationType.class v8
+crossmobile/ios/uikit/UITextAutocorrectionType.class v8
+crossmobile/ios/uikit/UITextBorderStyle.class v8
+crossmobile/ios/uikit/UITextContentType.class v8
+crossmobile/ios/uikit/UITextField.class v8
+crossmobile/ios/uikit/UITextFieldDelegate.class v8
+crossmobile/ios/uikit/UITextInputTraits.class v8
+crossmobile/ios/uikit/UITextSmartDashesType.class v8
+crossmobile/ios/uikit/UITextSmartInsertDeleteType.class v8
+crossmobile/ios/uikit/UITextSmartQuotesType.class v8
+crossmobile/ios/uikit/UITextSpellCheckingType.class v8
+crossmobile/ios/uikit/UITextView.class v8
+crossmobile/ios/uikit/UITextViewDelegate.class v8
+crossmobile/ios/uikit/UIToolbar.class v8
+crossmobile/ios/uikit/UITouch.class v8
+crossmobile/ios/uikit/UITouchPhase.class v8
+crossmobile/ios/uikit/UIUserInterfaceIdiom.class v8
+crossmobile/ios/uikit/UIUserInterfaceLayoutDirection.class v8
+crossmobile/ios/uikit/UIUserNotificationAction.class v8
+crossmobile/ios/uikit/UIUserNotificationActionBehavior.class v8
+crossmobile/ios/uikit/UIUserNotificationActionContext.class v8
+crossmobile/ios/uikit/UIUserNotificationActivationMode.class v8
+crossmobile/ios/uikit/UIUserNotificationCategory.class v8
+crossmobile/ios/uikit/UIUserNotificationSettings.class v8
+crossmobile/ios/uikit/UIUserNotificationType.class v8
+crossmobile/ios/uikit/UIView$1.class v8
+crossmobile/ios/uikit/UIView$a.class v8
+crossmobile/ios/uikit/UIView.class v8
+crossmobile/ios/uikit/UIViewAnimationCurve.class v8
+crossmobile/ios/uikit/UIViewAnimationOptions.class v8
+crossmobile/ios/uikit/UIViewAnimationTransition.class v8
+crossmobile/ios/uikit/UIViewAutoresizing.class v8
+crossmobile/ios/uikit/UIViewContentMode.class v8
+crossmobile/ios/uikit/UIViewController$a.class v8
+crossmobile/ios/uikit/UIViewController.class v8
+crossmobile/ios/uikit/UIViewTintAdjustmentMode.class v8
+crossmobile/ios/uikit/UIWebView.class v8
+crossmobile/ios/uikit/UIWebViewDelegate.class v8
+crossmobile/ios/uikit/UIWebViewNavigationType.class v8
+crossmobile/ios/uikit/UIWindow.class v8
+crossmobile/ios/uikit/a$1.class v8
+crossmobile/ios/uikit/a$a.class v8
+crossmobile/ios/uikit/a$b.class v8
+crossmobile/ios/uikit/a$c.class v8
+crossmobile/ios/uikit/a$d.class v8
+crossmobile/ios/uikit/a$e.class v8
+crossmobile/ios/uikit/a$f.class v8
+crossmobile/ios/uikit/a$g.class v8
+crossmobile/ios/uikit/a$h.class v8
+crossmobile/ios/uikit/a$i.class v8
+crossmobile/ios/uikit/a$j.class v8
+crossmobile/ios/uikit/a$k.class v8
+crossmobile/ios/uikit/a$l.class v8
+crossmobile/ios/uikit/a.class v8
+crossmobile/ios/uikit/b$1.class v8
+crossmobile/ios/uikit/b$a.class v8
+crossmobile/ios/uikit/b.class v8
+crossmobile/ios/uikit/c$a.class v8
+crossmobile/ios/uikit/c$b.class v8
+crossmobile/ios/uikit/c$c.class v8
+crossmobile/ios/uikit/c$d.class v8
+crossmobile/ios/uikit/c$e.class v8
+crossmobile/ios/uikit/c$f.class v8
+crossmobile/ios/uikit/c$g.class v8
+crossmobile/ios/uikit/c$h.class v8
+crossmobile/ios/uikit/c$i.class v8
+crossmobile/ios/uikit/c$j.class v8
+crossmobile/ios/uikit/c.class v8
+crossmobile/ios/uikit/d$a.class v8
+crossmobile/ios/uikit/d$b.class v8
+crossmobile/ios/uikit/d.class v8
+crossmobile/ios/uikit/e.class v8
+crossmobile/ios/uikit/f$1.class v8
+crossmobile/ios/uikit/f$a.class v8
+crossmobile/ios/uikit/f$b.class v8
+crossmobile/ios/uikit/f$c.class v8
+crossmobile/ios/uikit/f$d.class v8
+crossmobile/ios/uikit/f$e$1.class v8
+crossmobile/ios/uikit/f$e$2.class v8
+crossmobile/ios/uikit/f$e.class v8
+crossmobile/ios/uikit/f$f.class v8
+crossmobile/ios/uikit/f.class v8
+crossmobile/ios/uikit/g.class v8
+crossmobile/ios/uikit/h$a$1.class v8
+crossmobile/ios/uikit/h$a$2.class v8
+crossmobile/ios/uikit/h$a$a.class v8
+crossmobile/ios/uikit/h$a.class v8
+crossmobile/ios/uikit/h.class v8
+crossmobile/ios/uikit/i$1.class v8
+crossmobile/ios/uikit/i$a.class v8
+crossmobile/ios/uikit/i$b.class v8
+crossmobile/ios/uikit/i$c$1.class v8
+crossmobile/ios/uikit/i$c.class v8
+crossmobile/ios/uikit/i.class v8
+crossmobile/ios/uikit/j.class v8
+crossmobile/rt/StrongReference.class v8
+crossmobile/rt/UnimplementedOptionalException.class v8
+javazoom/jl/decoder/au2lin.ser
+javazoom/jl/decoder/l3reorder.ser
+javazoom/jl/decoder/lin2au.ser
+javazoom/jl/decoder/sfd.ser
+org/crossmobile/a$a.class v1.5
+org/crossmobile/a.class v1.5
+org/crossmobile/aa.class v1.6
+org/crossmobile/ab$a.class v1.6
+org/crossmobile/ab$b.class v1.6
+org/crossmobile/ab$c.class v1.6
+org/crossmobile/ab$d.class v1.6
+org/crossmobile/ab.class v1.6
+org/crossmobile/ac$a.class v1.6
+org/crossmobile/ac$b.class v1.6
+org/crossmobile/ac$c.class v1.6
+org/crossmobile/ac.class v1.6
+org/crossmobile/ad$a.class v1.6
+org/crossmobile/ad$b.class v1.6
+org/crossmobile/ad$c.class v1.6
+org/crossmobile/ad$d.class v1.6
+org/crossmobile/ad$e.class v1.6
+org/crossmobile/ad$f.class v1.6
+org/crossmobile/ad.class v1.6
+org/crossmobile/ae.class v1.6
+org/crossmobile/af.class v1.6
+org/crossmobile/ag.class v1.6
+org/crossmobile/ah.class v1.6
+org/crossmobile/ai.class v1.6
+org/crossmobile/aj.class v1.6
+org/crossmobile/ak.class v1.6
+org/crossmobile/al.class v1.6
+org/crossmobile/av$1.class v8
+org/crossmobile/av$a.class v8
+org/crossmobile/av.class v8
+org/crossmobile/aw.class v8
+org/crossmobile/ax.class v8
+org/crossmobile/ay.class v8
+org/crossmobile/az.class v8
+org/crossmobile/b$1.class v1.5
+org/crossmobile/b.class v1.5
+org/crossmobile/ba.class v8
+org/crossmobile/backend/desktop/Chassis$1.class v8
+org/crossmobile/backend/desktop/Chassis$a.class v8
+org/crossmobile/backend/desktop/Chassis$b.class v8
+org/crossmobile/backend/desktop/Chassis$c.class v8
+org/crossmobile/backend/desktop/Chassis.class v8
+org/crossmobile/backend/desktop/a.class v8
+org/crossmobile/backend/desktop/aa.class v8
+org/crossmobile/backend/desktop/ab.class v8
+org/crossmobile/backend/desktop/b.class v8
+org/crossmobile/backend/desktop/c$a$1.class v8
+org/crossmobile/backend/desktop/c$a.class v8
+org/crossmobile/backend/desktop/c.class v8
+org/crossmobile/backend/desktop/cat/default.png
+org/crossmobile/backend/desktop/d.class v8
+org/crossmobile/backend/desktop/e.class v8
+org/crossmobile/backend/desktop/f.class v8
+org/crossmobile/backend/desktop/g$1.class v8
+org/crossmobile/backend/desktop/g$a$1.class v8
+org/crossmobile/backend/desktop/g$a$2.class v8
+org/crossmobile/backend/desktop/g$a$3.class v8
+org/crossmobile/backend/desktop/g$a.class v8
+org/crossmobile/backend/desktop/g$b.class v8
+org/crossmobile/backend/desktop/g.class v8
+org/crossmobile/backend/desktop/h.class v8
+org/crossmobile/backend/desktop/i.class v8
+org/crossmobile/backend/desktop/icons/delete.png
+org/crossmobile/backend/desktop/icons/double.png
+org/crossmobile/backend/desktop/icons/single.png
+org/crossmobile/backend/desktop/j.class v8
+org/crossmobile/backend/desktop/javazoom/au2lin.ser
+org/crossmobile/backend/desktop/javazoom/l3reorder.ser
+org/crossmobile/backend/desktop/javazoom/lin2au.ser
+org/crossmobile/backend/desktop/javazoom/sfd.ser
+org/crossmobile/backend/desktop/k$1.class v8
+org/crossmobile/backend/desktop/k.class v8
+org/crossmobile/backend/desktop/l.class v8
+org/crossmobile/backend/desktop/m.class v8
+org/crossmobile/backend/desktop/n$1.class v8
+org/crossmobile/backend/desktop/n.class v8
+org/crossmobile/backend/desktop/o.class v8
+org/crossmobile/backend/desktop/p.class v8
+org/crossmobile/backend/desktop/q.class v8
+org/crossmobile/backend/desktop/r.class v8
+org/crossmobile/backend/desktop/s.class v8
+org/crossmobile/backend/desktop/skin/fixed-l.xml
+org/crossmobile/backend/desktop/skin/fixed-m.xml
+org/crossmobile/backend/desktop/skin/fixed-s.xml
+org/crossmobile/backend/desktop/skin/pad-w.xml
+org/crossmobile/backend/desktop/skin/pad.xml
+org/crossmobile/backend/desktop/skin/pad/action_down.png
+org/crossmobile/backend/desktop/skin/pad/action_up.png
+org/crossmobile/backend/desktop/skin/pad/back_down.png
+org/crossmobile/backend/desktop/skin/pad/back_up.png
+org/crossmobile/backend/desktop/skin/pad/chassis.png
+org/crossmobile/backend/desktop/skin/pad/chassis_w.png
+org/crossmobile/backend/desktop/skin/pad/home_down.png
+org/crossmobile/backend/desktop/skin/pad/home_up.png
+org/crossmobile/backend/desktop/skin/pad/ledgreen.png
+org/crossmobile/backend/desktop/skin/pad/ledred.png
+org/crossmobile/backend/desktop/skin/pad/menu_down.png
+org/crossmobile/backend/desktop/skin/pad/menu_up.png
+org/crossmobile/backend/desktop/skin/pad/power_down.png
+org/crossmobile/backend/desktop/skin/pad/power_down_w.png
+org/crossmobile/backend/desktop/skin/pad/power_up.png
+org/crossmobile/backend/desktop/skin/pad/power_up_w.png
+org/crossmobile/backend/desktop/skin/phone-s.xml
+org/crossmobile/backend/desktop/skin/phone.xml
+org/crossmobile/backend/desktop/skin/phone/action_down.png
+org/crossmobile/backend/desktop/skin/phone/action_up.png
+org/crossmobile/backend/desktop/skin/phone/back_down.png
+org/crossmobile/backend/desktop/skin/phone/back_up.png
+org/crossmobile/backend/desktop/skin/phone/chassis.png
+org/crossmobile/backend/desktop/skin/phone/home_down.png
+org/crossmobile/backend/desktop/skin/phone/home_up.png
+org/crossmobile/backend/desktop/skin/phone/ledgreen.png
+org/crossmobile/backend/desktop/skin/phone/ledred.png
+org/crossmobile/backend/desktop/skin/phone/menu_down.png
+org/crossmobile/backend/desktop/skin/phone/menu_up.png
+org/crossmobile/backend/desktop/skin/phone/power_down.png
+org/crossmobile/backend/desktop/skin/phone/power_up.png
+org/crossmobile/backend/desktop/skin/skin.dtd
+org/crossmobile/backend/desktop/skin/system-l.xml
+org/crossmobile/backend/desktop/skin/system-o.xml
+org/crossmobile/backend/desktop/skin/system-s.xml
+org/crossmobile/backend/desktop/t$1.class v8
+org/crossmobile/backend/desktop/t.class v8
+org/crossmobile/backend/desktop/u.class v8
+org/crossmobile/backend/desktop/v.class v8
+org/crossmobile/backend/desktop/w$a.class v8
+org/crossmobile/backend/desktop/w.class v8
+org/crossmobile/backend/desktop/x$1.class v8
+org/crossmobile/backend/desktop/x.class v8
+org/crossmobile/backend/desktop/y.class v8
+org/crossmobile/backend/desktop/z.class v8
+org/crossmobile/backend/swing/NativeSwing.class v8
+org/crossmobile/backend/swing/a.class v8
+org/crossmobile/backend/swing/b$1.class v8
+org/crossmobile/backend/swing/b$2.class v8
+org/crossmobile/backend/swing/b.class v8
+org/crossmobile/backend/swing/c.class v8
+org/crossmobile/backend/swing/d.class v8
+org/crossmobile/backend/swing/e.class v8
+org/crossmobile/backend/swing/f.class v8
+org/crossmobile/backend/swing/g$a.class v8
+org/crossmobile/backend/swing/g.class v8
+org/crossmobile/backend/swing/h$1.class v8
+org/crossmobile/backend/swing/h$a.class v8
+org/crossmobile/backend/swing/h.class v8
+org/crossmobile/backend/swing/i.class v8
+org/crossmobile/backend/swing/j.class v8
+org/crossmobile/backend/swing/l$a.class v8
+org/crossmobile/backend/swing/l.class v8
+org/crossmobile/backend/swing/m.class v8
+org/crossmobile/backend/swing/n.class v8
+org/crossmobile/backend/swing/o$a$1.class v8
+org/crossmobile/backend/swing/o$a$2.class v8
+org/crossmobile/backend/swing/o$a$3.class v8
+org/crossmobile/backend/swing/o$a.class v8
+org/crossmobile/backend/swing/o.class v8
+org/crossmobile/backend/swing/p$a$1$1.class v8
+org/crossmobile/backend/swing/p$a$1$2.class v8
+org/crossmobile/backend/swing/p$a$1.class v8
+org/crossmobile/backend/swing/p$a.class v8
+org/crossmobile/backend/swing/p.class v8
+org/crossmobile/backend/swing/q$a$1.class v8
+org/crossmobile/backend/swing/q$a.class v8
+org/crossmobile/backend/swing/q.class v8
+org/crossmobile/backend/swing/r.class v8
+org/crossmobile/backend/swing/s.class v8
+org/crossmobile/bb$a.class v8
+org/crossmobile/bb.class v8
+org/crossmobile/bc.class v8
+org/crossmobile/bd.class v8
+org/crossmobile/be$a.class v8
+org/crossmobile/be.class v8
+org/crossmobile/bf.class v8
+org/crossmobile/bg$1.class v8
+org/crossmobile/bg$a.class v8
+org/crossmobile/bg$b.class v8
+org/crossmobile/bg.class v8
+org/crossmobile/bh$a.class v8
+org/crossmobile/bh$b$a.class v8
+org/crossmobile/bh$b$b.class v8
+org/crossmobile/bh$b$c.class v8
+org/crossmobile/bh$b.class v8
+org/crossmobile/bh$c.class v8
+org/crossmobile/bh$d.class v8
+org/crossmobile/bh$e.class v8
+org/crossmobile/bh$f.class v8
+org/crossmobile/bh$g.class v8
+org/crossmobile/bh$h.class v8
+org/crossmobile/bh$i.class v8
+org/crossmobile/bh$j.class v8
+org/crossmobile/bh$k.class v8
+org/crossmobile/bh$l.class v8
+org/crossmobile/bh$m.class v8
+org/crossmobile/bh$n.class v8
+org/crossmobile/bh$o.class v8
+org/crossmobile/bh.class v8
+org/crossmobile/bi$a.class v8
+org/crossmobile/bi.class v8
+org/crossmobile/bj.class v8
+org/crossmobile/bk.class v8
+org/crossmobile/bl.class v8
+org/crossmobile/bm.class v8
+org/crossmobile/bn.class v8
+org/crossmobile/bo.class v8
+org/crossmobile/bp.class v8
+org/crossmobile/bq.class v8
+org/crossmobile/br.class v8
+org/crossmobile/bridge/CrossMobilePlugin.class v8
+org/crossmobile/bridge/FileBridge.class v8
+org/crossmobile/bridge/GraphicsBridge.class v8
+org/crossmobile/bridge/ImageBridge$a.class v8
+org/crossmobile/bridge/ImageBridge.class v8
+org/crossmobile/bridge/InAppBridge.class v8
+org/crossmobile/bridge/LifecycleBridge.class v8
+org/crossmobile/bridge/LocationBridge$a.class v8
+org/crossmobile/bridge/LocationBridge.class v8
+org/crossmobile/bridge/MessageBridge.class v8
+org/crossmobile/bridge/Native.class v8
+org/crossmobile/bridge/NetworkBridge.class v8
+org/crossmobile/bridge/NotificationBridge.class v8
+org/crossmobile/bridge/SecurityBridge.class v8
+org/crossmobile/bridge/ShareBridge.class v8
+org/crossmobile/bridge/SocialBridge$Handler.class v8
+org/crossmobile/bridge/SocialBridge.class v8
+org/crossmobile/bridge/SoundBridge.class v8
+org/crossmobile/bridge/SystemBridge.class v8
+org/crossmobile/bridge/UIGuidelinesBridge.class v8
+org/crossmobile/bridge/WrapperBridge.class v8
+org/crossmobile/bridge/WrapperMapBridge.class v8
+org/crossmobile/bridge/ann/CMGetter.class v8
+org/crossmobile/bridge/ann/CMSetter.class v8
+org/crossmobile/bridge/system/ClassWalker.class v8
+org/crossmobile/bridge/system/ExceptionUtils.class v8
+org/crossmobile/bridge/system/JsonHelper$1.class v8
+org/crossmobile/bridge/system/JsonHelper$a.class v8
+org/crossmobile/bridge/system/JsonHelper$b$a$a.class v8
+org/crossmobile/bridge/system/JsonHelper$b$a.class v8
+org/crossmobile/bridge/system/JsonHelper$b.class v8
+org/crossmobile/bridge/system/JsonHelper.class v8
+org/crossmobile/bridge/system/Pair.class v8
+org/crossmobile/bs$a.class v8
+org/crossmobile/bs.class v8
+org/crossmobile/bt.class v8
+org/crossmobile/bu.class v8
+org/crossmobile/build/StoryBoardBinder.class v8
+org/crossmobile/bv$a.class v8
+org/crossmobile/bv.class v8
+org/crossmobile/bw.class v8
+org/crossmobile/bx.class v8
+org/crossmobile/by.class v8
+org/crossmobile/bz.class v8
+org/crossmobile/c.class v1.5
+org/crossmobile/ca.class v8
+org/crossmobile/cb.class v8
+org/crossmobile/cc.class v8
+org/crossmobile/cd$1.class v8
+org/crossmobile/cd$a.class v8
+org/crossmobile/cd.class v8
+org/crossmobile/ce.class v8
+org/crossmobile/cf$1.class v8
+org/crossmobile/cf$2.class v8
+org/crossmobile/cf.class v8
+org/crossmobile/cg.class v8
+org/crossmobile/ch.class v8
+org/crossmobile/cj.class v8
+org/crossmobile/ck$a.class v8
+org/crossmobile/ck.class v8
+org/crossmobile/cl.class v8
+org/crossmobile/cm.class v8
+org/crossmobile/cn.class v8
+org/crossmobile/co.class v8
+org/crossmobile/cp.class v8
+org/crossmobile/cq$a.class v8
+org/crossmobile/cq.class v8
+org/crossmobile/cr.class v8
+org/crossmobile/cs.class v8
+org/crossmobile/ct.class v8
+org/crossmobile/cu.class v8
+org/crossmobile/cv.class v8
+org/crossmobile/cw.class v8
+org/crossmobile/cx.class v8
+org/crossmobile/cy.class v8
+org/crossmobile/cz.class v8
+org/crossmobile/d.class v1.5
+org/crossmobile/da.class v8
+org/crossmobile/db.class v8
+org/crossmobile/dc.class v8
+org/crossmobile/dd.class v8
+org/crossmobile/de.class v8
+org/crossmobile/df.class v8
+org/crossmobile/dg.class v8
+org/crossmobile/dh.class v8
+org/crossmobile/di.class v8
+org/crossmobile/dj.class v8
+org/crossmobile/dk.class v8
+org/crossmobile/dl.class v8
+org/crossmobile/dm.class v8
+org/crossmobile/dn.class v8
+org/crossmobile/do.class v8
+org/crossmobile/dp.class v8
+org/crossmobile/dq.class v8
+org/crossmobile/dr.class v8
+org/crossmobile/ds.class v8
+org/crossmobile/dt.class v8
+org/crossmobile/du.class v8
+org/crossmobile/dv.class v8
+org/crossmobile/e.class v1.5
+org/crossmobile/f$1.class v1.5
+org/crossmobile/f$a.class v1.5
+org/crossmobile/f$b.class v1.5
+org/crossmobile/f.class v1.5
+org/crossmobile/g.class v1.5
+org/crossmobile/h.class v1.5
+org/crossmobile/i.class v1.5
+org/crossmobile/j.class v1.5
+org/crossmobile/k.class v1.5
+org/crossmobile/l.class v1.5
+org/crossmobile/m$1.class v1.5
+org/crossmobile/m$a.class v1.5
+org/crossmobile/m.class v1.5
+org/crossmobile/n$1.class v1.5
+org/crossmobile/n.class v1.5
+org/crossmobile/o.class v1.5
+org/crossmobile/p.class v1.6
+org/crossmobile/q.class v1.6
+org/crossmobile/r.class v1.6
+org/crossmobile/s.class v1.6
+org/crossmobile/t$a.class v1.6
+org/crossmobile/t.class v1.6
+org/crossmobile/u.class v1.6
+org/crossmobile/v.class v1.6
+org/crossmobile/w.class v1.6
+org/crossmobile/x.class v1.6
+org/crossmobile/y.class v1.6
+org/crossmobile/z.class v1.6
+org/robovm/objc/annotation/IBAction.class v8
+org/robovm/objc/annotation/IBOutlet.class v8
+org/robovm/objc/block/Block0.class v8
+org/robovm/objc/block/Block1.class v8
+org/robovm/objc/block/Block2.class v8
+org/robovm/objc/block/Block3.class v8
+org/robovm/objc/block/Block4.class v8
+org/robovm/objc/block/Block5.class v8
+org/robovm/objc/block/Block6.class v8
+org/robovm/objc/block/VoidBlock1.class v8
+org/robovm/objc/block/VoidBlock2.class v8
+org/robovm/objc/block/VoidBlock3.class v8
+org/robovm/objc/block/VoidBlock4.class v8
+org/robovm/objc/block/VoidBlock5.class v8
+org/robovm/objc/block/VoidBlock6.class v8
+org/robovm/objc/block/VoidBooleanBlock.class v8
+
+Creating file cmplugin-android-cmioslayer-<VERSION>.jar
+com/panayotis/ce/CEventCommons.class v8
+com/panayotis/ce/CEventListener.class v8
+com/panayotis/ce/CEventManager.class v8
+com/panayotis/ce/a.class v8
+crossmobile/ios/coregraphics/$coregraphics.class v8
+crossmobile/ios/coregraphics/CGAffineTransform.class v8
+crossmobile/ios/coregraphics/CGBitmapContext.class v8
+crossmobile/ios/coregraphics/CGBitmapInfo.class v8
+crossmobile/ios/coregraphics/CGBlendMode.class v8
+crossmobile/ios/coregraphics/CGColor.class v8
+crossmobile/ios/coregraphics/CGColorRenderingIntent.class v8
+crossmobile/ios/coregraphics/CGColorSpace$1.class v8
+crossmobile/ios/coregraphics/CGColorSpace$a.class v8
+crossmobile/ios/coregraphics/CGColorSpace$b.class v8
+crossmobile/ios/coregraphics/CGColorSpace.class v8
+crossmobile/ios/coregraphics/CGContext.class v8
+crossmobile/ios/coregraphics/CGDataProvider.class v8
+crossmobile/ios/coregraphics/CGFont.class v8
+crossmobile/ios/coregraphics/CGGradient.class v8
+crossmobile/ios/coregraphics/CGGradientDrawingOptions.class v8
+crossmobile/ios/coregraphics/CGImage.class v8
+crossmobile/ios/coregraphics/CGInterpolationQuality.class v8
+crossmobile/ios/coregraphics/CGLayer.class v8
+crossmobile/ios/coregraphics/CGLineCap.class v8
+crossmobile/ios/coregraphics/CGLineJoin.class v8
+crossmobile/ios/coregraphics/CGPath.class v8
+crossmobile/ios/coregraphics/CGPathDrawingMode.class v8
+crossmobile/ios/coregraphics/CGPoint.class v8
+crossmobile/ios/coregraphics/CGRect.class v8
+crossmobile/ios/coregraphics/CGSize.class v8
+crossmobile/ios/coregraphics/CGTextDrawingMode.class v8
+crossmobile/ios/coregraphics/CGTextEncoding.class v8
+crossmobile/ios/foundation/$foundation.class v8
+crossmobile/ios/foundation/CFNumberFormatterStyle.class v8
+crossmobile/ios/foundation/CFType.class v8
+crossmobile/ios/foundation/Foundation.class v8
+crossmobile/ios/foundation/NSAttributedStringKey.class v8
+crossmobile/ios/foundation/NSBundle.class v8
+crossmobile/ios/foundation/NSCalendar.class v8
+crossmobile/ios/foundation/NSCalendarOptions.class v8
+crossmobile/ios/foundation/NSCalendarUnit.class v8
+crossmobile/ios/foundation/NSCoder.class v8
+crossmobile/ios/foundation/NSData$1.class v8
+crossmobile/ios/foundation/NSData$a.class v8
+crossmobile/ios/foundation/NSData.class v8
+crossmobile/ios/foundation/NSDataBase64DecodingOptions.class v8
+crossmobile/ios/foundation/NSDataBase64EncodingOptions.class v8
+crossmobile/ios/foundation/NSDate.class v8
+crossmobile/ios/foundation/NSDateComponents.class v8
+crossmobile/ios/foundation/NSDictionary$1.class v8
+crossmobile/ios/foundation/NSDictionary$a.class v8
+crossmobile/ios/foundation/NSDictionary$b.class v8
+crossmobile/ios/foundation/NSDictionary$c.class v8
+crossmobile/ios/foundation/NSDictionary.class v8
+crossmobile/ios/foundation/NSError$Domain.class v8
+crossmobile/ios/foundation/NSError$ErrorCode.class v8
+crossmobile/ios/foundation/NSError$Key.class v8
+crossmobile/ios/foundation/NSError.class v8
+crossmobile/ios/foundation/NSExtensionContext.class v8
+crossmobile/ios/foundation/NSExtensionItem.class v8
+crossmobile/ios/foundation/NSFileHandle.class v8
+crossmobile/ios/foundation/NSFileManager.class v8
+crossmobile/ios/foundation/NSHTTPCookie.class v8
+crossmobile/ios/foundation/NSHTTPCookieAcceptPolicy.class v8
+crossmobile/ios/foundation/NSHTTPCookieStorage.class v8
+crossmobile/ios/foundation/NSHTTPURLResponse.class v8
+crossmobile/ios/foundation/NSIndexPath.class v8
+crossmobile/ios/foundation/NSItemProvider.class v8
+crossmobile/ios/foundation/NSItemProviderCompletionHandler.class v8
+crossmobile/ios/foundation/NSItemProviderLoadHandler.class v8
+crossmobile/ios/foundation/NSJSONReadingOptions.class v8
+crossmobile/ios/foundation/NSJSONSerialization.class v8
+crossmobile/ios/foundation/NSJSONWritingOptions.class v8
+crossmobile/ios/foundation/NSLineBreakMode.class v8
+crossmobile/ios/foundation/NSLocale.class v8
+crossmobile/ios/foundation/NSLog.class v8
+crossmobile/ios/foundation/NSMutableData.class v8
+crossmobile/ios/foundation/NSMutableURLRequest.class v8
+crossmobile/ios/foundation/NSNotification.class v8
+crossmobile/ios/foundation/NSNotificationCenter$a.class v8
+crossmobile/ios/foundation/NSNotificationCenter.class v8
+crossmobile/ios/foundation/NSNotificationName.class v8
+crossmobile/ios/foundation/NSNumberFormatter.class v8
+crossmobile/ios/foundation/NSNumberFormatterStyle.class v8
+crossmobile/ios/foundation/NSObject.class v8
+crossmobile/ios/foundation/NSOperationQueue.class v8
+crossmobile/ios/foundation/NSOrdered.class v8
+crossmobile/ios/foundation/NSPredicate.class v8
+crossmobile/ios/foundation/NSRange.class v8
+crossmobile/ios/foundation/NSRunLoop$a.class v8
+crossmobile/ios/foundation/NSRunLoop.class v8
+crossmobile/ios/foundation/NSRunLoopMode.class v8
+crossmobile/ios/foundation/NSSearchPathDirectory.class v8
+crossmobile/ios/foundation/NSSearchPathDomainMask.class v8
+crossmobile/ios/foundation/NSSecureCoding.class v8
+crossmobile/ios/foundation/NSSelector.class v8
+crossmobile/ios/foundation/NSString.class v8
+crossmobile/ios/foundation/NSStringCompareOptions.class v8
+crossmobile/ios/foundation/NSStringEncoding.class v8
+crossmobile/ios/foundation/NSTimeZone.class v8
+crossmobile/ios/foundation/NSTimer.class v8
+crossmobile/ios/foundation/NSTimerDelegate.class v8
+crossmobile/ios/foundation/NSURL.class v8
+crossmobile/ios/foundation/NSURLCache.class v8
+crossmobile/ios/foundation/NSURLConnection$1.class v8
+crossmobile/ios/foundation/NSURLConnection$2.class v8
+crossmobile/ios/foundation/NSURLConnection.class v8
+crossmobile/ios/foundation/NSURLConnectionDataDelegate.class v8
+crossmobile/ios/foundation/NSURLConnectionDelegate.class v8
+crossmobile/ios/foundation/NSURLRequest.class v8
+crossmobile/ios/foundation/NSURLRequestCachePolicy.class v8
+crossmobile/ios/foundation/NSURLResponse.class v8
+crossmobile/ios/foundation/NSURLSession.class v8
+crossmobile/ios/foundation/NSURLSessionAuthChallengeDisposition.class v8
+crossmobile/ios/foundation/NSURLSessionConfiguration.class v8
+crossmobile/ios/foundation/NSURLSessionDataTask.class v8
+crossmobile/ios/foundation/NSURLSessionDelegate.class v8
+crossmobile/ios/foundation/NSURLSessionDownloadTask.class v8
+crossmobile/ios/foundation/NSURLSessionStreamTask.class v8
+crossmobile/ios/foundation/NSURLSessionTask.class v8
+crossmobile/ios/foundation/NSURLSessionTaskPriority.class v8
+crossmobile/ios/foundation/NSURLSessionTaskState.class v8
+crossmobile/ios/foundation/NSURLSessionUploadTask.class v8
+crossmobile/ios/foundation/NSUUID.class v8
+crossmobile/ios/foundation/NSUserDefaults.class v8
+crossmobile/ios/foundation/NSXMLParser$1.class v8
+crossmobile/ios/foundation/NSXMLParser.class v8
+crossmobile/ios/foundation/NSXMLParserDelegate.class v8
+crossmobile/ios/mobilecoreservices/UTType.class v8
+crossmobile/ios/quartzcore/CAAction.class v8
+crossmobile/ios/quartzcore/CAAnimation.class v8
+crossmobile/ios/quartzcore/CALayer.class v8
+crossmobile/ios/quartzcore/CAMediaTiming.class v8
+crossmobile/ios/quartzcore/CATransition.class v8
+crossmobile/ios/uikit/$uikit$1.class v8
+crossmobile/ios/uikit/$uikit.class v8
+crossmobile/ios/uikit/NSLayoutAnchor.class v8
+crossmobile/ios/uikit/NSLayoutAttribute.class v8
+crossmobile/ios/uikit/NSLayoutConstraint.class v8
+crossmobile/ios/uikit/NSLayoutDimension.class v8
+crossmobile/ios/uikit/NSLayoutFormatOptions.class v8
+crossmobile/ios/uikit/NSLayoutRelation.class v8
+crossmobile/ios/uikit/NSLayoutXAxisAnchor.class v8
+crossmobile/ios/uikit/NSLayoutYAxisAnchor.class v8
+crossmobile/ios/uikit/NSTextAlignment.class v8
+crossmobile/ios/uikit/UIAcceleration.class v8
+crossmobile/ios/uikit/UIAccelerometer.class v8
+crossmobile/ios/uikit/UIAccelerometerDelegate.class v8
+crossmobile/ios/uikit/UIActionSheet.class v8
+crossmobile/ios/uikit/UIActionSheetDelegate.class v8
+crossmobile/ios/uikit/UIActivity.class v8
+crossmobile/ios/uikit/UIActivityCategory.class v8
+crossmobile/ios/uikit/UIActivityIndicatorView.class v8
+crossmobile/ios/uikit/UIActivityIndicatorViewStyle.class v8
+crossmobile/ios/uikit/UIActivityType.class v8
+crossmobile/ios/uikit/UIActivityViewController.class v8
+crossmobile/ios/uikit/UIActivityViewControllerCompletionHandler.class v8
+crossmobile/ios/uikit/UIActivityViewControllerCompletionWithItemsHandler.class v8
+crossmobile/ios/uikit/UIAlertAction.class v8
+crossmobile/ios/uikit/UIAlertActionStyle.class v8
+crossmobile/ios/uikit/UIAlertController$1.class v8
+crossmobile/ios/uikit/UIAlertController$2.class v8
+crossmobile/ios/uikit/UIAlertController.class v8
+crossmobile/ios/uikit/UIAlertControllerStyle.class v8
+crossmobile/ios/uikit/UIAlertView.class v8
+crossmobile/ios/uikit/UIAlertViewDelegate.class v8
+crossmobile/ios/uikit/UIAlertViewStyle.class v8
+crossmobile/ios/uikit/UIApplication.class v8
+crossmobile/ios/uikit/UIApplicationDelegate.class v8
+crossmobile/ios/uikit/UIApplicationLaunchOptions.class v8
+crossmobile/ios/uikit/UIBarButtonItem.class v8
+crossmobile/ios/uikit/UIBarButtonItemStyle.class v8
+crossmobile/ios/uikit/UIBarButtonSystemItem.class v8
+crossmobile/ios/uikit/UIBarItem$a.class v8
+crossmobile/ios/uikit/UIBarItem.class v8
+crossmobile/ios/uikit/UIBarStyle.class v8
+crossmobile/ios/uikit/UIBaselineAdjustment.class v8
+crossmobile/ios/uikit/UIButton.class v8
+crossmobile/ios/uikit/UIButtonType.class v8
+crossmobile/ios/uikit/UIColor.class v8
+crossmobile/ios/uikit/UIControl$1.class v8
+crossmobile/ios/uikit/UIControl$a.class v8
+crossmobile/ios/uikit/UIControl.class v8
+crossmobile/ios/uikit/UIControlContentHorizontalAlignment.class v8
+crossmobile/ios/uikit/UIControlContentVerticalAlignment.class v8
+crossmobile/ios/uikit/UIControlDelegate.class v8
+crossmobile/ios/uikit/UIControlEvents.class v8
+crossmobile/ios/uikit/UIControlState.class v8
+crossmobile/ios/uikit/UIDataDetectorTypes.class v8
+crossmobile/ios/uikit/UIDatePicker.class v8
+crossmobile/ios/uikit/UIDatePickerMode.class v8
+crossmobile/ios/uikit/UIDevice.class v8
+crossmobile/ios/uikit/UIDeviceBatteryState.class v8
+crossmobile/ios/uikit/UIDeviceOrientation.class v8
+crossmobile/ios/uikit/UIEdgeInsets.class v8
+crossmobile/ios/uikit/UIEvent.class v8
+crossmobile/ios/uikit/UIEventSubtype.class v8
+crossmobile/ios/uikit/UIEventType.class v8
+crossmobile/ios/uikit/UIFont.class v8
+crossmobile/ios/uikit/UIGestureRecognizer.class v8
+crossmobile/ios/uikit/UIGestureRecognizerDelegate.class v8
+crossmobile/ios/uikit/UIGestureRecognizerState.class v8
+crossmobile/ios/uikit/UIGraphics.class v8
+crossmobile/ios/uikit/UIImage.class v8
+crossmobile/ios/uikit/UIImageOrientation.class v8
+crossmobile/ios/uikit/UIImageRenderingMode.class v8
+crossmobile/ios/uikit/UIImageResizingMode.class v8
+crossmobile/ios/uikit/UIImageView$a.class v8
+crossmobile/ios/uikit/UIImageView.class v8
+crossmobile/ios/uikit/UIImageWriteToPhotoAlbumHandler.class v8
+crossmobile/ios/uikit/UIInterfaceOrientation.class v8
+crossmobile/ios/uikit/UIInterfaceOrientationMask.class v8
+crossmobile/ios/uikit/UIKeyboardAppearance.class v8
+crossmobile/ios/uikit/UIKeyboardType.class v8
+crossmobile/ios/uikit/UILabel.class v8
+crossmobile/ios/uikit/UILayoutConstraintAxis.class v8
+crossmobile/ios/uikit/UILayoutGuide.class v8
+crossmobile/ios/uikit/UILayoutPriority.class v8
+crossmobile/ios/uikit/UILayoutSupport.class v8
+crossmobile/ios/uikit/UILocalNotification.class v8
+crossmobile/ios/uikit/UILongPressGestureRecognizer.class v8
+crossmobile/ios/uikit/UIModalPresentationStyle.class v8
+crossmobile/ios/uikit/UIModalTransitionStyle.class v8
+crossmobile/ios/uikit/UIMutableUserNotificationAction.class v8
+crossmobile/ios/uikit/UIMutableUserNotificationCategory.class v8
+crossmobile/ios/uikit/UINavigationBar.class v8
+crossmobile/ios/uikit/UINavigationBarDelegate.class v8
+crossmobile/ios/uikit/UINavigationController$a.class v8
+crossmobile/ios/uikit/UINavigationController$b.class v8
+crossmobile/ios/uikit/UINavigationController.class v8
+crossmobile/ios/uikit/UINavigationControllerDelegate.class v8
+crossmobile/ios/uikit/UINavigationItem.class v8
+crossmobile/ios/uikit/UINib.class v8
+crossmobile/ios/uikit/UIOffset.class v8
+crossmobile/ios/uikit/UIPageControl.class v8
+crossmobile/ios/uikit/UIPanGestureRecognizer.class v8
+crossmobile/ios/uikit/UIPickerView$1.class v8
+crossmobile/ios/uikit/UIPickerView$2.class v8
+crossmobile/ios/uikit/UIPickerView.class v8
+crossmobile/ios/uikit/UIPickerViewDataSource.class v8
+crossmobile/ios/uikit/UIPickerViewDelegate.class v8
+crossmobile/ios/uikit/UIPinchGestureRecognizer.class v8
+crossmobile/ios/uikit/UIPopoverArrowDirection.class v8
+crossmobile/ios/uikit/UIPopoverController.class v8
+crossmobile/ios/uikit/UIPopoverControllerDelegate.class v8
+crossmobile/ios/uikit/UIPrintInteractionCompletionHandler.class v8
+crossmobile/ios/uikit/UIPrintInteractionController.class v8
+crossmobile/ios/uikit/UIProgressView.class v8
+crossmobile/ios/uikit/UIProgressViewStyle.class v8
+crossmobile/ios/uikit/UIRectEdge.class v8
+crossmobile/ios/uikit/UIRemoteNotificationType.class v8
+crossmobile/ios/uikit/UIResponder.class v8
+crossmobile/ios/uikit/UIReturnKeyType.class v8
+crossmobile/ios/uikit/UIRotationGestureRecognizer.class v8
+crossmobile/ios/uikit/UIScreen.class v8
+crossmobile/ios/uikit/UIScrollView$1.class v8
+crossmobile/ios/uikit/UIScrollView$a.class v8
+crossmobile/ios/uikit/UIScrollView$b.class v8
+crossmobile/ios/uikit/UIScrollView$c.class v8
+crossmobile/ios/uikit/UIScrollView.class v8
+crossmobile/ios/uikit/UIScrollViewDecelerationRate.class v8
+crossmobile/ios/uikit/UIScrollViewDelegate.class v8
+crossmobile/ios/uikit/UIScrollViewIndicatorStyle.class v8
+crossmobile/ios/uikit/UISearchBar$1.class v8
+crossmobile/ios/uikit/UISearchBar.class v8
+crossmobile/ios/uikit/UISearchBarDelegate.class v8
+crossmobile/ios/uikit/UISearchBarIcon.class v8
+crossmobile/ios/uikit/UISearchBarStyle.class v8
+crossmobile/ios/uikit/UISegmentedControl$1.class v8
+crossmobile/ios/uikit/UISegmentedControl$a.class v8
+crossmobile/ios/uikit/UISegmentedControl.class v8
+crossmobile/ios/uikit/UISegmentedControlStyle.class v8
+crossmobile/ios/uikit/UISlider.class v8
+crossmobile/ios/uikit/UISplitViewController$1.class v8
+crossmobile/ios/uikit/UISplitViewController$a.class v8
+crossmobile/ios/uikit/UISplitViewController.class v8
+crossmobile/ios/uikit/UISplitViewControllerDelegate.class v8
+crossmobile/ios/uikit/UISplitViewControllerDisplayMode.class v8
+crossmobile/ios/uikit/UIStackView.class v8
+crossmobile/ios/uikit/UIStackViewAlignment.class v8
+crossmobile/ios/uikit/UIStackViewDistribution.class v8
+crossmobile/ios/uikit/UIStatusBarStyle.class v8
+crossmobile/ios/uikit/UIStepper$1.class v8
+crossmobile/ios/uikit/UIStepper$2.class v8
+crossmobile/ios/uikit/UIStepper$3.class v8
+crossmobile/ios/uikit/UIStepper.class v8
+crossmobile/ios/uikit/UIStoryboard.class v8
+crossmobile/ios/uikit/UIStoryboardSegue.class v8
+crossmobile/ios/uikit/UIStoryboardUnwindSegueSource.class v8
+crossmobile/ios/uikit/UISwipeGestureRecognizer.class v8
+crossmobile/ios/uikit/UISwipeGestureRecognizerDirection.class v8
+crossmobile/ios/uikit/UISwitch.class v8
+crossmobile/ios/uikit/UITabBar.class v8
+crossmobile/ios/uikit/UITabBarController$a.class v8
+crossmobile/ios/uikit/UITabBarController.class v8
+crossmobile/ios/uikit/UITabBarControllerDelegate.class v8
+crossmobile/ios/uikit/UITabBarDelegate.class v8
+crossmobile/ios/uikit/UITabBarItem.class v8
+crossmobile/ios/uikit/UITabBarItemPositioning.class v8
+crossmobile/ios/uikit/UITableView$1.class v8
+crossmobile/ios/uikit/UITableView$a.class v8
+crossmobile/ios/uikit/UITableView.class v8
+crossmobile/ios/uikit/UITableViewCell$1.class v8
+crossmobile/ios/uikit/UITableViewCell$a.class v8
+crossmobile/ios/uikit/UITableViewCell.class v8
+crossmobile/ios/uikit/UITableViewCellAccessoryType.class v8
+crossmobile/ios/uikit/UITableViewCellEditingStyle.class v8
+crossmobile/ios/uikit/UITableViewCellSelectionStyle.class v8
+crossmobile/ios/uikit/UITableViewCellSeparatorStyle.class v8
+crossmobile/ios/uikit/UITableViewCellStyle.class v8
+crossmobile/ios/uikit/UITableViewController$a.class v8
+crossmobile/ios/uikit/UITableViewController.class v8
+crossmobile/ios/uikit/UITableViewDataSource.class v8
+crossmobile/ios/uikit/UITableViewDelegate.class v8
+crossmobile/ios/uikit/UITableViewRowAnimation.class v8
+crossmobile/ios/uikit/UITableViewScrollPosition.class v8
+crossmobile/ios/uikit/UITableViewStyle.class v8
+crossmobile/ios/uikit/UITapGestureRecognizer.class v8
+crossmobile/ios/uikit/UITextAlignment.class v8
+crossmobile/ios/uikit/UITextAttribute.class v8
+crossmobile/ios/uikit/UITextAutocapitalizationType.class v8
+crossmobile/ios/uikit/UITextAutocorrectionType.class v8
+crossmobile/ios/uikit/UITextBorderStyle.class v8
+crossmobile/ios/uikit/UITextContentType.class v8
+crossmobile/ios/uikit/UITextField.class v8
+crossmobile/ios/uikit/UITextFieldDelegate.class v8
+crossmobile/ios/uikit/UITextInputTraits.class v8
+crossmobile/ios/uikit/UITextSmartDashesType.class v8
+crossmobile/ios/uikit/UITextSmartInsertDeleteType.class v8
+crossmobile/ios/uikit/UITextSmartQuotesType.class v8
+crossmobile/ios/uikit/UITextSpellCheckingType.class v8
+crossmobile/ios/uikit/UITextView.class v8
+crossmobile/ios/uikit/UITextViewDelegate.class v8
+crossmobile/ios/uikit/UIToolbar.class v8
+crossmobile/ios/uikit/UITouch.class v8
+crossmobile/ios/uikit/UITouchPhase.class v8
+crossmobile/ios/uikit/UIUserInterfaceIdiom.class v8
+crossmobile/ios/uikit/UIUserInterfaceLayoutDirection.class v8
+crossmobile/ios/uikit/UIUserNotificationAction.class v8
+crossmobile/ios/uikit/UIUserNotificationActionBehavior.class v8
+crossmobile/ios/uikit/UIUserNotificationActionContext.class v8
+crossmobile/ios/uikit/UIUserNotificationActivationMode.class v8
+crossmobile/ios/uikit/UIUserNotificationCategory.class v8
+crossmobile/ios/uikit/UIUserNotificationSettings.class v8
+crossmobile/ios/uikit/UIUserNotificationType.class v8
+crossmobile/ios/uikit/UIView$1.class v8
+crossmobile/ios/uikit/UIView$a.class v8
+crossmobile/ios/uikit/UIView.class v8
+crossmobile/ios/uikit/UIViewAnimationCurve.class v8
+crossmobile/ios/uikit/UIViewAnimationOptions.class v8
+crossmobile/ios/uikit/UIViewAnimationTransition.class v8
+crossmobile/ios/uikit/UIViewAutoresizing.class v8
+crossmobile/ios/uikit/UIViewContentMode.class v8
+crossmobile/ios/uikit/UIViewController$a.class v8
+crossmobile/ios/uikit/UIViewController.class v8
+crossmobile/ios/uikit/UIViewTintAdjustmentMode.class v8
+crossmobile/ios/uikit/UIWebView.class v8
+crossmobile/ios/uikit/UIWebViewDelegate.class v8
+crossmobile/ios/uikit/UIWebViewNavigationType.class v8
+crossmobile/ios/uikit/UIWindow.class v8
+crossmobile/ios/uikit/a$1.class v8
+crossmobile/ios/uikit/a$a.class v8
+crossmobile/ios/uikit/a$b.class v8
+crossmobile/ios/uikit/a$c.class v8
+crossmobile/ios/uikit/a$d.class v8
+crossmobile/ios/uikit/a$e.class v8
+crossmobile/ios/uikit/a$f.class v8
+crossmobile/ios/uikit/a$g.class v8
+crossmobile/ios/uikit/a$h.class v8
+crossmobile/ios/uikit/a$i.class v8
+crossmobile/ios/uikit/a$j.class v8
+crossmobile/ios/uikit/a$k.class v8
+crossmobile/ios/uikit/a$l.class v8
+crossmobile/ios/uikit/a.class v8
+crossmobile/ios/uikit/b$1.class v8
+crossmobile/ios/uikit/b$a.class v8
+crossmobile/ios/uikit/b.class v8
+crossmobile/ios/uikit/c$a.class v8
+crossmobile/ios/uikit/c$b.class v8
+crossmobile/ios/uikit/c$c.class v8
+crossmobile/ios/uikit/c$d.class v8
+crossmobile/ios/uikit/c$e.class v8
+crossmobile/ios/uikit/c$f.class v8
+crossmobile/ios/uikit/c$g.class v8
+crossmobile/ios/uikit/c$h.class v8
+crossmobile/ios/uikit/c$i.class v8
+crossmobile/ios/uikit/c$j.class v8
+crossmobile/ios/uikit/c.class v8
+crossmobile/ios/uikit/d$a.class v8
+crossmobile/ios/uikit/d$b.class v8
+crossmobile/ios/uikit/d.class v8
+crossmobile/ios/uikit/e.class v8
+crossmobile/ios/uikit/f$1.class v8
+crossmobile/ios/uikit/f$a.class v8
+crossmobile/ios/uikit/f$b.class v8
+crossmobile/ios/uikit/f$c.class v8
+crossmobile/ios/uikit/f$d.class v8
+crossmobile/ios/uikit/f$e$1.class v8
+crossmobile/ios/uikit/f$e$2.class v8
+crossmobile/ios/uikit/f$e.class v8
+crossmobile/ios/uikit/f$f.class v8
+crossmobile/ios/uikit/f.class v8
+crossmobile/ios/uikit/g.class v8
+crossmobile/ios/uikit/h$a$1.class v8
+crossmobile/ios/uikit/h$a$2.class v8
+crossmobile/ios/uikit/h$a$a.class v8
+crossmobile/ios/uikit/h$a.class v8
+crossmobile/ios/uikit/h.class v8
+crossmobile/ios/uikit/i$1.class v8
+crossmobile/ios/uikit/i$a.class v8
+crossmobile/ios/uikit/i$b.class v8
+crossmobile/ios/uikit/i$c$1.class v8
+crossmobile/ios/uikit/i$c.class v8
+crossmobile/ios/uikit/i.class v8
+crossmobile/ios/uikit/j.class v8
+crossmobile/rt/StrongReference.class v8
+crossmobile/rt/UnimplementedOptionalException.class v8
+org/crossmobile/a$a.class v1.5
+org/crossmobile/a.class v1.5
+org/crossmobile/am.class v8
+org/crossmobile/an$1.class v8
+org/crossmobile/an$2$1.class v8
+org/crossmobile/an$2.class v8
+org/crossmobile/an$3$1.class v8
+org/crossmobile/an$3$2.class v8
+org/crossmobile/an$3.class v8
+org/crossmobile/an$a.class v8
+org/crossmobile/an$b.class v8
+org/crossmobile/an$c.class v8
+org/crossmobile/an$d.class v8
+org/crossmobile/an$e.class v8
+org/crossmobile/an.class v8
+org/crossmobile/ao.class v8
+org/crossmobile/ap.class v8
+org/crossmobile/aq.class v8
+org/crossmobile/ar.class v8
+org/crossmobile/as.class v8
+org/crossmobile/at$a.class v8
+org/crossmobile/at.class v8
+org/crossmobile/au$a.class v8
+org/crossmobile/au.class v8
+org/crossmobile/av$1.class v8
+org/crossmobile/av$a.class v8
+org/crossmobile/av.class v8
+org/crossmobile/aw.class v8
+org/crossmobile/ax.class v8
+org/crossmobile/ay.class v8
+org/crossmobile/az.class v8
+org/crossmobile/b$1.class v1.5
+org/crossmobile/b.class v1.5
+org/crossmobile/ba.class v8
+org/crossmobile/backend/android/ActivityLifecycleListener.class v8
+org/crossmobile/backend/android/ActivityResultListener.class v8
+org/crossmobile/backend/android/ActivityStateListener.class v8
+org/crossmobile/backend/android/AndroidGraphicsBridge.class v8
+org/crossmobile/backend/android/MainActivity$1.class v8
+org/crossmobile/backend/android/MainActivity$2.class v8
+org/crossmobile/backend/android/MainActivity$3.class v8
+org/crossmobile/backend/android/MainActivity.class v8
+org/crossmobile/backend/android/MainApplication.class v8
+org/crossmobile/backend/android/MainView.class v8
+org/crossmobile/backend/android/NativeAndroid$1.class v8
+org/crossmobile/backend/android/NativeAndroid.class v8
+org/crossmobile/backend/android/a.class v8
+org/crossmobile/backend/android/aa.class v8
+org/crossmobile/backend/android/ac.class v8
+org/crossmobile/backend/android/ad$1.class v8
+org/crossmobile/backend/android/ad$2.class v8
+org/crossmobile/backend/android/ad.class v8
+org/crossmobile/backend/android/b.class v8
+org/crossmobile/backend/android/c$a.class v8
+org/crossmobile/backend/android/c.class v8
+org/crossmobile/backend/android/d.class v8
+org/crossmobile/backend/android/e.class v8
+org/crossmobile/backend/android/f$1.class v8
+org/crossmobile/backend/android/f$a.class v8
+org/crossmobile/backend/android/f.class v8
+org/crossmobile/backend/android/g$1.class v8
+org/crossmobile/backend/android/g$2.class v8
+org/crossmobile/backend/android/g$3.class v8
+org/crossmobile/backend/android/g.class v8
+org/crossmobile/backend/android/i.class v8
+org/crossmobile/backend/android/m$a.class v8
+org/crossmobile/backend/android/m.class v8
+org/crossmobile/backend/android/n.class v8
+org/crossmobile/backend/android/o$1.class v8
+org/crossmobile/backend/android/o.class v8
+org/crossmobile/backend/android/q$1.class v8
+org/crossmobile/backend/android/q.class v8
+org/crossmobile/backend/android/s.class v8
+org/crossmobile/backend/android/t.class v8
+org/crossmobile/backend/android/u.class v8
+org/crossmobile/backend/android/v$1.class v8
+org/crossmobile/backend/android/v.class v8
+org/crossmobile/backend/android/w.class v8
+org/crossmobile/backend/android/x$a.class v8
+org/crossmobile/backend/android/x.class v8
+org/crossmobile/backend/android/y.class v8
+org/crossmobile/backend/android/z$1.class v8
+org/crossmobile/backend/android/z$a$1.class v8
+org/crossmobile/backend/android/z$a$2.class v8
+org/crossmobile/backend/android/z$a.class v8
+org/crossmobile/backend/android/z.class v8
+org/crossmobile/bb$a.class v8
+org/crossmobile/bb.class v8
+org/crossmobile/bc.class v8
+org/crossmobile/bd.class v8
+org/crossmobile/be$a.class v8
+org/crossmobile/be.class v8
+org/crossmobile/bf.class v8
+org/crossmobile/bg$1.class v8
+org/crossmobile/bg$a.class v8
+org/crossmobile/bg$b.class v8
+org/crossmobile/bg.class v8
+org/crossmobile/bh$a.class v8
+org/crossmobile/bh$b$a.class v8
+org/crossmobile/bh$b$b.class v8
+org/crossmobile/bh$b$c.class v8
+org/crossmobile/bh$b.class v8
+org/crossmobile/bh$c.class v8
+org/crossmobile/bh$d.class v8
+org/crossmobile/bh$e.class v8
+org/crossmobile/bh$f.class v8
+org/crossmobile/bh$g.class v8
+org/crossmobile/bh$h.class v8
+org/crossmobile/bh$i.class v8
+org/crossmobile/bh$j.class v8
+org/crossmobile/bh$k.class v8
+org/crossmobile/bh$l.class v8
+org/crossmobile/bh$m.class v8
+org/crossmobile/bh$n.class v8
+org/crossmobile/bh$o.class v8
+org/crossmobile/bh.class v8
+org/crossmobile/bi$a.class v8
+org/crossmobile/bi.class v8
+org/crossmobile/bj.class v8
+org/crossmobile/bk.class v8
+org/crossmobile/bl.class v8
+org/crossmobile/bm.class v8
+org/crossmobile/bn.class v8
+org/crossmobile/bo.class v8
+org/crossmobile/bp.class v8
+org/crossmobile/bq.class v8
+org/crossmobile/br.class v8
+org/crossmobile/bridge/CrossMobilePlugin.class v8
+org/crossmobile/bridge/FileBridge.class v8
+org/crossmobile/bridge/GraphicsBridge.class v8
+org/crossmobile/bridge/ImageBridge$a.class v8
+org/crossmobile/bridge/ImageBridge.class v8
+org/crossmobile/bridge/InAppBridge.class v8
+org/crossmobile/bridge/LifecycleBridge.class v8
+org/crossmobile/bridge/LocationBridge$a.class v8
+org/crossmobile/bridge/LocationBridge.class v8
+org/crossmobile/bridge/MessageBridge.class v8
+org/crossmobile/bridge/Native.class v8
+org/crossmobile/bridge/NetworkBridge.class v8
+org/crossmobile/bridge/NotificationBridge.class v8
+org/crossmobile/bridge/SecurityBridge.class v8
+org/crossmobile/bridge/ShareBridge.class v8
+org/crossmobile/bridge/SocialBridge$Handler.class v8
+org/crossmobile/bridge/SocialBridge.class v8
+org/crossmobile/bridge/SoundBridge.class v8
+org/crossmobile/bridge/SystemBridge.class v8
+org/crossmobile/bridge/UIGuidelinesBridge.class v8
+org/crossmobile/bridge/WrapperBridge.class v8
+org/crossmobile/bridge/WrapperMapBridge.class v8
+org/crossmobile/bridge/ann/CMGetter.class v8
+org/crossmobile/bridge/ann/CMSetter.class v8
+org/crossmobile/bridge/system/ClassWalker.class v8
+org/crossmobile/bridge/system/ExceptionUtils.class v8
+org/crossmobile/bridge/system/JsonHelper$1.class v8
+org/crossmobile/bridge/system/JsonHelper$a.class v8
+org/crossmobile/bridge/system/JsonHelper$b$a$a.class v8
+org/crossmobile/bridge/system/JsonHelper$b$a.class v8
+org/crossmobile/bridge/system/JsonHelper$b.class v8
+org/crossmobile/bridge/system/JsonHelper.class v8
+org/crossmobile/bridge/system/Pair.class v8
+org/crossmobile/bs$a.class v8
+org/crossmobile/bs.class v8
+org/crossmobile/bt.class v8
+org/crossmobile/bu.class v8
+org/crossmobile/build/StoryBoardBinder.class v8
+org/crossmobile/bv$a.class v8
+org/crossmobile/bv.class v8
+org/crossmobile/bw.class v8
+org/crossmobile/bx.class v8
+org/crossmobile/by.class v8
+org/crossmobile/bz.class v8
+org/crossmobile/c.class v1.5
+org/crossmobile/ca.class v8
+org/crossmobile/cb.class v8
+org/crossmobile/cc.class v8
+org/crossmobile/cd$1.class v8
+org/crossmobile/cd$a.class v8
+org/crossmobile/cd.class v8
+org/crossmobile/ce.class v8
+org/crossmobile/cf$1.class v8
+org/crossmobile/cf$2.class v8
+org/crossmobile/cf.class v8
+org/crossmobile/cg.class v8
+org/crossmobile/ch.class v8
+org/crossmobile/cj.class v8
+org/crossmobile/ck$a.class v8
+org/crossmobile/ck.class v8
+org/crossmobile/cl.class v8
+org/crossmobile/cm.class v8
+org/crossmobile/cn.class v8
+org/crossmobile/co.class v8
+org/crossmobile/cp.class v8
+org/crossmobile/cq$a.class v8
+org/crossmobile/cq.class v8
+org/crossmobile/cr.class v8
+org/crossmobile/cs.class v8
+org/crossmobile/ct.class v8
+org/crossmobile/cu.class v8
+org/crossmobile/cv.class v8
+org/crossmobile/cw.class v8
+org/crossmobile/cx.class v8
+org/crossmobile/cy.class v8
+org/crossmobile/cz.class v8
+org/crossmobile/d.class v1.5
+org/crossmobile/da.class v8
+org/crossmobile/db.class v8
+org/crossmobile/dc.class v8
+org/crossmobile/dd.class v8
+org/crossmobile/de.class v8
+org/crossmobile/df.class v8
+org/crossmobile/dg.class v8
+org/crossmobile/dh.class v8
+org/crossmobile/di.class v8
+org/crossmobile/dj.class v8
+org/crossmobile/dk.class v8
+org/crossmobile/dl.class v8
+org/crossmobile/dm.class v8
+org/crossmobile/dn.class v8
+org/crossmobile/do.class v8
+org/crossmobile/dp.class v8
+org/crossmobile/dq.class v8
+org/crossmobile/dr.class v8
+org/crossmobile/ds.class v8
+org/crossmobile/dt.class v8
+org/crossmobile/du.class v8
+org/crossmobile/dv.class v8
+org/crossmobile/e.class v1.5
+org/crossmobile/f$1.class v1.5
+org/crossmobile/f$a.class v1.5
+org/crossmobile/f$b.class v1.5
+org/crossmobile/f.class v1.5
+org/crossmobile/g.class v1.5
+org/crossmobile/h.class v1.5
+org/crossmobile/i.class v1.5
+org/crossmobile/j.class v1.5
+org/crossmobile/k.class v1.5
+org/crossmobile/l.class v1.5
+org/crossmobile/m$1.class v1.5
+org/crossmobile/m$a.class v1.5
+org/crossmobile/m.class v1.5
+org/crossmobile/n$1.class v1.5
+org/crossmobile/n.class v1.5
+org/crossmobile/o.class v1.5
+org/robovm/objc/annotation/IBAction.class v8
+org/robovm/objc/annotation/IBOutlet.class v8
+org/robovm/objc/block/Block0.class v8
+org/robovm/objc/block/Block1.class v8
+org/robovm/objc/block/Block2.class v8
+org/robovm/objc/block/Block3.class v8
+org/robovm/objc/block/Block4.class v8
+org/robovm/objc/block/Block5.class v8
+org/robovm/objc/block/Block6.class v8
+org/robovm/objc/block/VoidBlock1.class v8
+org/robovm/objc/block/VoidBlock2.class v8
+org/robovm/objc/block/VoidBlock3.class v8
+org/robovm/objc/block/VoidBlock4.class v8
+org/robovm/objc/block/VoidBlock5.class v8
+org/robovm/objc/block/VoidBlock6.class v8
+org/robovm/objc/block/VoidBooleanBlock.class v8
+
+Creating file cmplugin-rvm-cmioslayer-<VERSION>.jar
+
+
+Creating file cmplugin-cmlocation-<VERSION>.jar
+META-INF/PLUGIN.INF
+META-INF/REVERSE.INF
+crossmobile/ios/corelocation/CLDeviceOrientation.class v8
+crossmobile/ios/corelocation/CLDistanceFilter.class v8
+crossmobile/ios/corelocation/CLHeading.class v8
+crossmobile/ios/corelocation/CLHeadingFilter.class v8
+crossmobile/ios/corelocation/CLLocation.class v8
+crossmobile/ios/corelocation/CLLocationAccuracy.class v8
+crossmobile/ios/corelocation/CLLocationCoordinate2D.class v8
+crossmobile/ios/corelocation/CLLocationManager.class v8
+crossmobile/ios/corelocation/CLLocationManagerDelegate.class v8
+crossmobile/ios/corelocation/CLPlacemark.class v8
+crossmobile/ios/corelocation/CLRegion.class v8
+crossmobile/ios/corelocation/package-info.class v8
+crossmobile/ios/mapkit/MKAnnotation.class v8
+crossmobile/ios/mapkit/MKAnnotationView.class v8
+crossmobile/ios/mapkit/MKAnnotationViewDragState.class v8
+crossmobile/ios/mapkit/MKCoordinateRegion.class v8
+crossmobile/ios/mapkit/MKCoordinateSpan.class v8
+crossmobile/ios/mapkit/MKMapPoint.class v8
+crossmobile/ios/mapkit/MKMapRect.class v8
+crossmobile/ios/mapkit/MKMapSize.class v8
+crossmobile/ios/mapkit/MKMapType.class v8
+crossmobile/ios/mapkit/MKMapView.class v8
+crossmobile/ios/mapkit/MKMapViewDelegate.class v8
+crossmobile/ios/mapkit/MKOverlay.class v8
+crossmobile/ios/mapkit/MKOverlayView.class v8
+crossmobile/ios/mapkit/MKPinAnnotationColor.class v8
+crossmobile/ios/mapkit/MKPinAnnotationView.class v8
+crossmobile/ios/mapkit/MKPlacemark.class v8
+crossmobile/ios/mapkit/MKReverseGeocoder.class v8
+crossmobile/ios/mapkit/MKReverseGeocoderDelegate.class v8
+crossmobile/ios/mapkit/MKUserLocation.class v8
+crossmobile/ios/mapkit/package-info.class v8
+
+Creating file cmplugin-builddep-cmlocation-<VERSION>.jar
+
+
+Creating file cmplugin-ios-cmlocation-<VERSION>.jar
+crossmobile/ios/corelocation/CLDeviceOrientation.class v8
+crossmobile/ios/corelocation/CLDistanceFilter.class v8
+crossmobile/ios/corelocation/CLHeading.class v8
+crossmobile/ios/corelocation/CLHeadingFilter.class v8
+crossmobile/ios/corelocation/CLLocation.class v8
+crossmobile/ios/corelocation/CLLocationAccuracy.class v8
+crossmobile/ios/corelocation/CLLocationCoordinate2D.class v8
+crossmobile/ios/corelocation/CLLocationManager$1.class v8
+crossmobile/ios/corelocation/CLLocationManager$a.class v8
+crossmobile/ios/corelocation/CLLocationManager.class v8
+crossmobile/ios/corelocation/CLLocationManagerDelegate.class v8
+crossmobile/ios/corelocation/CLPlacemark.class v8
+crossmobile/ios/corelocation/CLRegion.class v8
+crossmobile/ios/mapkit/MKAnnotation.class v8
+crossmobile/ios/mapkit/MKAnnotationView.class v8
+crossmobile/ios/mapkit/MKAnnotationViewDragState.class v8
+crossmobile/ios/mapkit/MKCoordinateRegion.class v8
+crossmobile/ios/mapkit/MKCoordinateSpan.class v8
+crossmobile/ios/mapkit/MKMapPoint.class v8
+crossmobile/ios/mapkit/MKMapRect.class v8
+crossmobile/ios/mapkit/MKMapSize.class v8
+crossmobile/ios/mapkit/MKMapType.class v8
+crossmobile/ios/mapkit/MKMapView.class v8
+crossmobile/ios/mapkit/MKMapViewDelegate.class v8
+crossmobile/ios/mapkit/MKOverlay.class v8
+crossmobile/ios/mapkit/MKOverlayView.class v8
+crossmobile/ios/mapkit/MKPinAnnotationColor.class v8
+crossmobile/ios/mapkit/MKPinAnnotationView.class v8
+crossmobile/ios/mapkit/MKPlacemark.class v8
+crossmobile/ios/mapkit/MKReverseGeocoder.class v8
+crossmobile/ios/mapkit/MKReverseGeocoderDelegate.class v8
+crossmobile/ios/mapkit/MKUserLocation.class v8
+native/cmlocation.a
+native/crossmobile_ios_corelocation_CLHeading.h
+native/crossmobile_ios_corelocation_CLLocation.h
+native/crossmobile_ios_corelocation_CLLocationCoordinate2D.h
+native/crossmobile_ios_corelocation_CLLocationManager.h
+native/crossmobile_ios_corelocation_CLLocationManagerDelegate.h
+native/crossmobile_ios_corelocation_CLPlacemark.h
+native/crossmobile_ios_corelocation_CLRegion.h
+native/crossmobile_ios_mapkit_MKAnnotation.h
+native/crossmobile_ios_mapkit_MKAnnotationView.h
+native/crossmobile_ios_mapkit_MKCoordinateRegion.h
+native/crossmobile_ios_mapkit_MKCoordinateSpan.h
+native/crossmobile_ios_mapkit_MKMapPoint.h
+native/crossmobile_ios_mapkit_MKMapRect.h
+native/crossmobile_ios_mapkit_MKMapSize.h
+native/crossmobile_ios_mapkit_MKMapView.h
+native/crossmobile_ios_mapkit_MKMapViewDelegate.h
+native/crossmobile_ios_mapkit_MKOverlay.h
+native/crossmobile_ios_mapkit_MKOverlayView.h
+native/crossmobile_ios_mapkit_MKPinAnnotationView.h
+native/crossmobile_ios_mapkit_MKPlacemark.h
+native/crossmobile_ios_mapkit_MKReverseGeocoder.h
+native/crossmobile_ios_mapkit_MKReverseGeocoderDelegate.h
+native/crossmobile_ios_mapkit_MKUserLocation.h
+
+Creating file cmplugin-desktop-cmlocation-<VERSION>.jar
+crossmobile/ios/corelocation/CLDeviceOrientation.class v8
+crossmobile/ios/corelocation/CLDistanceFilter.class v8
+crossmobile/ios/corelocation/CLHeading.class v8
+crossmobile/ios/corelocation/CLHeadingFilter.class v8
+crossmobile/ios/corelocation/CLLocation.class v8
+crossmobile/ios/corelocation/CLLocationAccuracy.class v8
+crossmobile/ios/corelocation/CLLocationCoordinate2D.class v8
+crossmobile/ios/corelocation/CLLocationManager$1.class v8
+crossmobile/ios/corelocation/CLLocationManager$a.class v8
+crossmobile/ios/corelocation/CLLocationManager.class v8
+crossmobile/ios/corelocation/CLLocationManagerDelegate.class v8
+crossmobile/ios/corelocation/CLPlacemark.class v8
+crossmobile/ios/corelocation/CLRegion.class v8
+crossmobile/ios/mapkit/MKAnnotation.class v8
+crossmobile/ios/mapkit/MKAnnotationView.class v8
+crossmobile/ios/mapkit/MKAnnotationViewDragState.class v8
+crossmobile/ios/mapkit/MKCoordinateRegion.class v8
+crossmobile/ios/mapkit/MKCoordinateSpan.class v8
+crossmobile/ios/mapkit/MKMapPoint.class v8
+crossmobile/ios/mapkit/MKMapRect.class v8
+crossmobile/ios/mapkit/MKMapSize.class v8
+crossmobile/ios/mapkit/MKMapType.class v8
+crossmobile/ios/mapkit/MKMapView.class v8
+crossmobile/ios/mapkit/MKMapViewDelegate.class v8
+crossmobile/ios/mapkit/MKOverlay.class v8
+crossmobile/ios/mapkit/MKOverlayView.class v8
+crossmobile/ios/mapkit/MKPinAnnotationColor.class v8
+crossmobile/ios/mapkit/MKPinAnnotationView.class v8
+crossmobile/ios/mapkit/MKPlacemark.class v8
+crossmobile/ios/mapkit/MKReverseGeocoder.class v8
+crossmobile/ios/mapkit/MKReverseGeocoderDelegate.class v8
+crossmobile/ios/mapkit/MKUserLocation.class v8
+org/crossmobile/backend/swing/k$a.class v8
+org/crossmobile/backend/swing/k.class v8
+org/crossmobile/backend/swing/t.class v8
+
+Creating file cmplugin-android-cmlocation-<VERSION>.jar
+crossmobile/ios/corelocation/CLDeviceOrientation.class v8
+crossmobile/ios/corelocation/CLDistanceFilter.class v8
+crossmobile/ios/corelocation/CLHeading.class v8
+crossmobile/ios/corelocation/CLHeadingFilter.class v8
+crossmobile/ios/corelocation/CLLocation.class v8
+crossmobile/ios/corelocation/CLLocationAccuracy.class v8
+crossmobile/ios/corelocation/CLLocationCoordinate2D.class v8
+crossmobile/ios/corelocation/CLLocationManager$1.class v8
+crossmobile/ios/corelocation/CLLocationManager$a.class v8
+crossmobile/ios/corelocation/CLLocationManager.class v8
+crossmobile/ios/corelocation/CLLocationManagerDelegate.class v8
+crossmobile/ios/corelocation/CLPlacemark.class v8
+crossmobile/ios/corelocation/CLRegion.class v8
+crossmobile/ios/mapkit/MKAnnotation.class v8
+crossmobile/ios/mapkit/MKAnnotationView.class v8
+crossmobile/ios/mapkit/MKAnnotationViewDragState.class v8
+crossmobile/ios/mapkit/MKCoordinateRegion.class v8
+crossmobile/ios/mapkit/MKCoordinateSpan.class v8
+crossmobile/ios/mapkit/MKMapPoint.class v8
+crossmobile/ios/mapkit/MKMapRect.class v8
+crossmobile/ios/mapkit/MKMapSize.class v8
+crossmobile/ios/mapkit/MKMapType.class v8
+crossmobile/ios/mapkit/MKMapView.class v8
+crossmobile/ios/mapkit/MKMapViewDelegate.class v8
+crossmobile/ios/mapkit/MKOverlay.class v8
+crossmobile/ios/mapkit/MKOverlayView.class v8
+crossmobile/ios/mapkit/MKPinAnnotationColor.class v8
+crossmobile/ios/mapkit/MKPinAnnotationView.class v8
+crossmobile/ios/mapkit/MKPlacemark.class v8
+crossmobile/ios/mapkit/MKReverseGeocoder.class v8
+crossmobile/ios/mapkit/MKReverseGeocoderDelegate.class v8
+crossmobile/ios/mapkit/MKUserLocation.class v8
+org/crossmobile/backend/android/ab.class v8
+org/crossmobile/backend/android/j$1.class v8
+org/crossmobile/backend/android/j$2.class v8
+org/crossmobile/backend/android/j.class v8
+org/crossmobile/backend/android/k$a$1.class v8
+org/crossmobile/backend/android/k$a.class v8
+org/crossmobile/backend/android/k.class v8
+
+Creating file cmplugin-rvm-cmlocation-<VERSION>.jar
+
+
+Creating file cmplugin-cmmedia-<VERSION>.jar
+META-INF/PLUGIN.INF
+META-INF/REVERSE.INF
+crossmobile/ios/audiotoolbox/AudioServices.class v8
+crossmobile/ios/audiotoolbox/SystemSoundID.class v8
+crossmobile/ios/audiotoolbox/package-info.class v8
+crossmobile/ios/avfoundation/AVAudioPlayer.class v8
+crossmobile/ios/avfoundation/AVAudioPlayerDelegate.class v8
+crossmobile/ios/avfoundation/package-info.class v8
+crossmobile/ios/mediaplayer/MPMovieControlMode.class v8
+crossmobile/ios/mediaplayer/MPMoviePlayerController.class v8
+crossmobile/ios/mediaplayer/MPMoviePlayerViewController.class v8
+crossmobile/ios/mediaplayer/MPMovieScalingMode.class v8
+crossmobile/ios/mediaplayer/MPVolumeView.class v8
+crossmobile/ios/mediaplayer/package-info.class v8
+
+Creating file cmplugin-builddep-cmmedia-<VERSION>.jar
+
+
+Creating file cmplugin-ios-cmmedia-<VERSION>.jar
+crossmobile/ios/audiotoolbox/AudioServices.class v8
+crossmobile/ios/audiotoolbox/SystemSoundID.class v8
+crossmobile/ios/avfoundation/AVAudioPlayer$1.class v8
+crossmobile/ios/avfoundation/AVAudioPlayer.class v8
+crossmobile/ios/avfoundation/AVAudioPlayerDelegate.class v8
+crossmobile/ios/mediaplayer/MPMovieControlMode.class v8
+crossmobile/ios/mediaplayer/MPMoviePlayerController.class v8
+crossmobile/ios/mediaplayer/MPMoviePlayerViewController.class v8
+crossmobile/ios/mediaplayer/MPMovieScalingMode.class v8
+crossmobile/ios/mediaplayer/MPVolumeView.class v8
+native/cmmedia.a
+native/crossmobile_ios_audiotoolbox_AudioServices.h
+native/crossmobile_ios_avfoundation_AVAudioPlayer.h
+native/crossmobile_ios_avfoundation_AVAudioPlayerDelegate.h
+native/crossmobile_ios_mediaplayer_MPMoviePlayerController.h
+native/crossmobile_ios_mediaplayer_MPMoviePlayerViewController.h
+native/crossmobile_ios_mediaplayer_MPVolumeView.h
+
+Creating file cmplugin-desktop-cmmedia-<VERSION>.jar
+crossmobile/ios/audiotoolbox/AudioServices.class v8
+crossmobile/ios/audiotoolbox/SystemSoundID.class v8
+crossmobile/ios/avfoundation/AVAudioPlayer$1.class v8
+crossmobile/ios/avfoundation/AVAudioPlayer.class v8
+crossmobile/ios/avfoundation/AVAudioPlayerDelegate.class v8
+crossmobile/ios/mediaplayer/MPMovieControlMode.class v8
+crossmobile/ios/mediaplayer/MPMoviePlayerController.class v8
+crossmobile/ios/mediaplayer/MPMoviePlayerViewController.class v8
+crossmobile/ios/mediaplayer/MPMovieScalingMode.class v8
+crossmobile/ios/mediaplayer/MPVolumeView.class v8
+
+Creating file cmplugin-android-cmmedia-<VERSION>.jar
+crossmobile/ios/audiotoolbox/AudioServices.class v8
+crossmobile/ios/audiotoolbox/SystemSoundID.class v8
+crossmobile/ios/avfoundation/AVAudioPlayer$1.class v8
+crossmobile/ios/avfoundation/AVAudioPlayer.class v8
+crossmobile/ios/avfoundation/AVAudioPlayerDelegate.class v8
+crossmobile/ios/mediaplayer/MPMovieControlMode.class v8
+crossmobile/ios/mediaplayer/MPMoviePlayerController.class v8
+crossmobile/ios/mediaplayer/MPMoviePlayerViewController.class v8
+crossmobile/ios/mediaplayer/MPMovieScalingMode.class v8
+crossmobile/ios/mediaplayer/MPVolumeView.class v8
+
+Creating file cmplugin-rvm-cmmedia-<VERSION>.jar
+
+
+Creating file cmplugin-cmmessages-<VERSION>.jar
+META-INF/PLUGIN.INF
+META-INF/REVERSE.INF
+crossmobile/ios/messageui/MFMailComposeResult.class v8
+crossmobile/ios/messageui/MFMailComposeViewController.class v8
+crossmobile/ios/messageui/MFMailComposeViewControllerDelegate.class v8
+crossmobile/ios/messageui/MFMessageComposeViewController.class v8
+crossmobile/ios/messageui/MFMessageComposeViewControllerDelegate.class v8
+crossmobile/ios/messageui/MessageComposeResult.class v8
+crossmobile/ios/messageui/package-info.class v8
+
+Creating file cmplugin-builddep-cmmessages-<VERSION>.jar
+
+
+Creating file cmplugin-ios-cmmessages-<VERSION>.jar
+crossmobile/ios/messageui/MFMailComposeResult.class v8
+crossmobile/ios/messageui/MFMailComposeViewController.class v8
+crossmobile/ios/messageui/MFMailComposeViewControllerDelegate.class v8
+crossmobile/ios/messageui/MFMessageComposeViewController.class v8
+crossmobile/ios/messageui/MFMessageComposeViewControllerDelegate.class v8
+crossmobile/ios/messageui/MessageComposeResult.class v8
+native/cmmessages.a
+native/crossmobile_ios_messageui_MFMailComposeViewController.h
+native/crossmobile_ios_messageui_MFMailComposeViewControllerDelegate.h
+native/crossmobile_ios_messageui_MFMessageComposeViewController.h
+native/crossmobile_ios_messageui_MFMessageComposeViewControllerDelegate.h
+
+Creating file cmplugin-desktop-cmmessages-<VERSION>.jar
+crossmobile/ios/messageui/MFMailComposeResult.class v8
+crossmobile/ios/messageui/MFMailComposeViewController.class v8
+crossmobile/ios/messageui/MFMailComposeViewControllerDelegate.class v8
+crossmobile/ios/messageui/MFMessageComposeViewController.class v8
+crossmobile/ios/messageui/MFMessageComposeViewControllerDelegate.class v8
+crossmobile/ios/messageui/MessageComposeResult.class v8
+
+Creating file cmplugin-android-cmmessages-<VERSION>.jar
+crossmobile/ios/messageui/MFMailComposeResult.class v8
+crossmobile/ios/messageui/MFMailComposeViewController.class v8
+crossmobile/ios/messageui/MFMailComposeViewControllerDelegate.class v8
+crossmobile/ios/messageui/MFMessageComposeViewController.class v8
+crossmobile/ios/messageui/MFMessageComposeViewControllerDelegate.class v8
+crossmobile/ios/messageui/MessageComposeResult.class v8
+org/crossmobile/backend/android/l$1.class v8
+org/crossmobile/backend/android/l.class v8
+
+Creating file cmplugin-rvm-cmmessages-<VERSION>.jar
+
+
+Creating file cmplugin-cmnotifications-<VERSION>.jar
+META-INF/PLUGIN.INF
+META-INF/REVERSE.INF
+crossmobile/ios/usernotifications/UNAlertStyle.class v8
+crossmobile/ios/usernotifications/UNAuthorizationOptions.class v8
+crossmobile/ios/usernotifications/UNAuthorizationStatus.class v8
+crossmobile/ios/usernotifications/UNCalendarNotificationTrigger.class v8
+crossmobile/ios/usernotifications/UNErrorCode.class v8
+crossmobile/ios/usernotifications/UNLocationNotificationTrigger.class v8
+crossmobile/ios/usernotifications/UNMutableNotificationContent.class v8
+crossmobile/ios/usernotifications/UNNotification.class v8
+crossmobile/ios/usernotifications/UNNotificationAction.class v8
+crossmobile/ios/usernotifications/UNNotificationActionOptions.class v8
+crossmobile/ios/usernotifications/UNNotificationAttachment.class v8
+crossmobile/ios/usernotifications/UNNotificationAttachmentOptions.class v8
+crossmobile/ios/usernotifications/UNNotificationCategory.class v8
+crossmobile/ios/usernotifications/UNNotificationCategoryOptions.class v8
+crossmobile/ios/usernotifications/UNNotificationContent.class v8
+crossmobile/ios/usernotifications/UNNotificationPresentationOptions.class v8
+crossmobile/ios/usernotifications/UNNotificationRequest.class v8
+crossmobile/ios/usernotifications/UNNotificationResponse.class v8
+crossmobile/ios/usernotifications/UNNotificationServiceExtension.class v8
+crossmobile/ios/usernotifications/UNNotificationSetting.class v8
+crossmobile/ios/usernotifications/UNNotificationSettings.class v8
+crossmobile/ios/usernotifications/UNNotificationSound.class v8
+crossmobile/ios/usernotifications/UNNotificationTrigger.class v8
+crossmobile/ios/usernotifications/UNPushNotificationTrigger.class v8
+crossmobile/ios/usernotifications/UNTimeIntervalNotificationTrigger.class v8
+crossmobile/ios/usernotifications/UNUserNotificationCenter.class v8
+crossmobile/ios/usernotifications/UNUserNotificationCenterDelegate.class v8
+crossmobile/ios/usernotifications/package-info.class v8
+
+Creating file cmplugin-builddep-cmnotifications-<VERSION>.jar
+
+
+Creating file cmplugin-ios-cmnotifications-<VERSION>.jar
+crossmobile/ios/usernotifications/UNAlertStyle.class v8
+crossmobile/ios/usernotifications/UNAuthorizationOptions.class v8
+crossmobile/ios/usernotifications/UNAuthorizationStatus.class v8
+crossmobile/ios/usernotifications/UNCalendarNotificationTrigger.class v8
+crossmobile/ios/usernotifications/UNErrorCode.class v8
+crossmobile/ios/usernotifications/UNLocationNotificationTrigger.class v8
+crossmobile/ios/usernotifications/UNMutableNotificationContent.class v8
+crossmobile/ios/usernotifications/UNNotification.class v8
+crossmobile/ios/usernotifications/UNNotificationAction.class v8
+crossmobile/ios/usernotifications/UNNotificationActionOptions.class v8
+crossmobile/ios/usernotifications/UNNotificationAttachment.class v8
+crossmobile/ios/usernotifications/UNNotificationAttachmentOptions.class v8
+crossmobile/ios/usernotifications/UNNotificationCategory.class v8
+crossmobile/ios/usernotifications/UNNotificationCategoryOptions.class v8
+crossmobile/ios/usernotifications/UNNotificationContent.class v8
+crossmobile/ios/usernotifications/UNNotificationPresentationOptions.class v8
+crossmobile/ios/usernotifications/UNNotificationRequest.class v8
+crossmobile/ios/usernotifications/UNNotificationResponse.class v8
+crossmobile/ios/usernotifications/UNNotificationServiceExtension.class v8
+crossmobile/ios/usernotifications/UNNotificationSetting.class v8
+crossmobile/ios/usernotifications/UNNotificationSettings.class v8
+crossmobile/ios/usernotifications/UNNotificationSound.class v8
+crossmobile/ios/usernotifications/UNNotificationTrigger.class v8
+crossmobile/ios/usernotifications/UNPushNotificationTrigger.class v8
+crossmobile/ios/usernotifications/UNTimeIntervalNotificationTrigger.class v8
+crossmobile/ios/usernotifications/UNUserNotificationCenter.class v8
+crossmobile/ios/usernotifications/UNUserNotificationCenterDelegate.class v8
+native/cmnotifications.a
+native/crossmobile_ios_usernotifications_UNCalendarNotificationTrigger.h
+native/crossmobile_ios_usernotifications_UNLocationNotificationTrigger.h
+native/crossmobile_ios_usernotifications_UNMutableNotificationContent.h
+native/crossmobile_ios_usernotifications_UNNotification.h
+native/crossmobile_ios_usernotifications_UNNotificationAction.h
+native/crossmobile_ios_usernotifications_UNNotificationAttachment.h
+native/crossmobile_ios_usernotifications_UNNotificationCategory.h
+native/crossmobile_ios_usernotifications_UNNotificationContent.h
+native/crossmobile_ios_usernotifications_UNNotificationRequest.h
+native/crossmobile_ios_usernotifications_UNNotificationResponse.h
+native/crossmobile_ios_usernotifications_UNNotificationServiceExtension.h
+native/crossmobile_ios_usernotifications_UNNotificationSettings.h
+native/crossmobile_ios_usernotifications_UNNotificationSound.h
+native/crossmobile_ios_usernotifications_UNNotificationTrigger.h
+native/crossmobile_ios_usernotifications_UNPushNotificationTrigger.h
+native/crossmobile_ios_usernotifications_UNTimeIntervalNotificationTrigger.h
+native/crossmobile_ios_usernotifications_UNUserNotificationCenter.h
+native/crossmobile_ios_usernotifications_UNUserNotificationCenterDelegate.h
+
+Creating file cmplugin-desktop-cmnotifications-<VERSION>.jar
+crossmobile/ios/usernotifications/UNAlertStyle.class v8
+crossmobile/ios/usernotifications/UNAuthorizationOptions.class v8
+crossmobile/ios/usernotifications/UNAuthorizationStatus.class v8
+crossmobile/ios/usernotifications/UNCalendarNotificationTrigger.class v8
+crossmobile/ios/usernotifications/UNErrorCode.class v8
+crossmobile/ios/usernotifications/UNLocationNotificationTrigger.class v8
+crossmobile/ios/usernotifications/UNMutableNotificationContent.class v8
+crossmobile/ios/usernotifications/UNNotification.class v8
+crossmobile/ios/usernotifications/UNNotificationAction.class v8
+crossmobile/ios/usernotifications/UNNotificationActionOptions.class v8
+crossmobile/ios/usernotifications/UNNotificationAttachment.class v8
+crossmobile/ios/usernotifications/UNNotificationAttachmentOptions.class v8
+crossmobile/ios/usernotifications/UNNotificationCategory.class v8
+crossmobile/ios/usernotifications/UNNotificationCategoryOptions.class v8
+crossmobile/ios/usernotifications/UNNotificationContent.class v8
+crossmobile/ios/usernotifications/UNNotificationPresentationOptions.class v8
+crossmobile/ios/usernotifications/UNNotificationRequest.class v8
+crossmobile/ios/usernotifications/UNNotificationResponse.class v8
+crossmobile/ios/usernotifications/UNNotificationServiceExtension.class v8
+crossmobile/ios/usernotifications/UNNotificationSetting.class v8
+crossmobile/ios/usernotifications/UNNotificationSettings.class v8
+crossmobile/ios/usernotifications/UNNotificationSound.class v8
+crossmobile/ios/usernotifications/UNNotificationTrigger.class v8
+crossmobile/ios/usernotifications/UNPushNotificationTrigger.class v8
+crossmobile/ios/usernotifications/UNTimeIntervalNotificationTrigger.class v8
+crossmobile/ios/usernotifications/UNUserNotificationCenter.class v8
+crossmobile/ios/usernotifications/UNUserNotificationCenterDelegate.class v8
+
+Creating file cmplugin-android-cmnotifications-<VERSION>.jar
+crossmobile/ios/usernotifications/UNAlertStyle.class v8
+crossmobile/ios/usernotifications/UNAuthorizationOptions.class v8
+crossmobile/ios/usernotifications/UNAuthorizationStatus.class v8
+crossmobile/ios/usernotifications/UNCalendarNotificationTrigger.class v8
+crossmobile/ios/usernotifications/UNErrorCode.class v8
+crossmobile/ios/usernotifications/UNLocationNotificationTrigger.class v8
+crossmobile/ios/usernotifications/UNMutableNotificationContent.class v8
+crossmobile/ios/usernotifications/UNNotification.class v8
+crossmobile/ios/usernotifications/UNNotificationAction.class v8
+crossmobile/ios/usernotifications/UNNotificationActionOptions.class v8
+crossmobile/ios/usernotifications/UNNotificationAttachment.class v8
+crossmobile/ios/usernotifications/UNNotificationAttachmentOptions.class v8
+crossmobile/ios/usernotifications/UNNotificationCategory.class v8
+crossmobile/ios/usernotifications/UNNotificationCategoryOptions.class v8
+crossmobile/ios/usernotifications/UNNotificationContent.class v8
+crossmobile/ios/usernotifications/UNNotificationPresentationOptions.class v8
+crossmobile/ios/usernotifications/UNNotificationRequest.class v8
+crossmobile/ios/usernotifications/UNNotificationResponse.class v8
+crossmobile/ios/usernotifications/UNNotificationServiceExtension.class v8
+crossmobile/ios/usernotifications/UNNotificationSetting.class v8
+crossmobile/ios/usernotifications/UNNotificationSettings.class v8
+crossmobile/ios/usernotifications/UNNotificationSound.class v8
+crossmobile/ios/usernotifications/UNNotificationTrigger.class v8
+crossmobile/ios/usernotifications/UNPushNotificationTrigger.class v8
+crossmobile/ios/usernotifications/UNTimeIntervalNotificationTrigger.class v8
+crossmobile/ios/usernotifications/UNUserNotificationCenter.class v8
+crossmobile/ios/usernotifications/UNUserNotificationCenterDelegate.class v8
+org/crossmobile/backend/android/p$1.class v8
+org/crossmobile/backend/android/p.class v8
+
+Creating file cmplugin-rvm-cmnotifications-<VERSION>.jar
+
+
+Creating file cmplugin-cmpayment-<VERSION>.jar
+META-INF/PLUGIN.INF
+META-INF/REVERSE.INF
+crossmobile/ios/storekit/SKError.class v8
+crossmobile/ios/storekit/SKMutablePayment.class v8
+crossmobile/ios/storekit/SKPayment.class v8
+crossmobile/ios/storekit/SKPaymentQueue.class v8
+crossmobile/ios/storekit/SKPaymentTransaction.class v8
+crossmobile/ios/storekit/SKPaymentTransactionObserver.class v8
+crossmobile/ios/storekit/SKPaymentTransactionState.class v8
+crossmobile/ios/storekit/SKProduct.class v8
+crossmobile/ios/storekit/SKProductsRequest.class v8
+crossmobile/ios/storekit/SKProductsRequestDelegate.class v8
+crossmobile/ios/storekit/SKProductsResponse.class v8
+crossmobile/ios/storekit/SKRequest.class v8
+crossmobile/ios/storekit/SKRequestDelegate.class v8
+crossmobile/ios/storekit/package-info.class v8
+
+Creating file cmplugin-builddep-cmpayment-<VERSION>.jar
+
+
+Creating file cmplugin-ios-cmpayment-<VERSION>.jar
+crossmobile/ios/storekit/$storekit.class v8
+crossmobile/ios/storekit/SKError.class v8
+crossmobile/ios/storekit/SKMutablePayment.class v8
+crossmobile/ios/storekit/SKPayment.class v8
+crossmobile/ios/storekit/SKPaymentQueue.class v8
+crossmobile/ios/storekit/SKPaymentTransaction.class v8
+crossmobile/ios/storekit/SKPaymentTransactionObserver.class v8
+crossmobile/ios/storekit/SKPaymentTransactionState.class v8
+crossmobile/ios/storekit/SKProduct.class v8
+crossmobile/ios/storekit/SKProductsRequest.class v8
+crossmobile/ios/storekit/SKProductsRequestDelegate.class v8
+crossmobile/ios/storekit/SKProductsResponse.class v8
+crossmobile/ios/storekit/SKRequest.class v8
+crossmobile/ios/storekit/SKRequestDelegate.class v8
+native/cmpayment.a
+native/crossmobile_ios_storekit_SKMutablePayment.h
+native/crossmobile_ios_storekit_SKPayment.h
+native/crossmobile_ios_storekit_SKPaymentQueue.h
+native/crossmobile_ios_storekit_SKPaymentTransaction.h
+native/crossmobile_ios_storekit_SKPaymentTransactionObserver.h
+native/crossmobile_ios_storekit_SKProduct.h
+native/crossmobile_ios_storekit_SKProductsRequest.h
+native/crossmobile_ios_storekit_SKProductsRequestDelegate.h
+native/crossmobile_ios_storekit_SKProductsResponse.h
+native/crossmobile_ios_storekit_SKRequest.h
+native/crossmobile_ios_storekit_SKRequestDelegate.h
+
+Creating file cmplugin-desktop-cmpayment-<VERSION>.jar
+crossmobile/ios/storekit/$storekit.class v8
+crossmobile/ios/storekit/SKError.class v8
+crossmobile/ios/storekit/SKMutablePayment.class v8
+crossmobile/ios/storekit/SKPayment.class v8
+crossmobile/ios/storekit/SKPaymentQueue.class v8
+crossmobile/ios/storekit/SKPaymentTransaction.class v8
+crossmobile/ios/storekit/SKPaymentTransactionObserver.class v8
+crossmobile/ios/storekit/SKPaymentTransactionState.class v8
+crossmobile/ios/storekit/SKProduct.class v8
+crossmobile/ios/storekit/SKProductsRequest.class v8
+crossmobile/ios/storekit/SKProductsRequestDelegate.class v8
+crossmobile/ios/storekit/SKProductsResponse.class v8
+crossmobile/ios/storekit/SKRequest.class v8
+crossmobile/ios/storekit/SKRequestDelegate.class v8
+
+Creating file cmplugin-android-cmpayment-<VERSION>.jar
+com/android/vending/billing/IInAppBillingService$Stub$a.class v8
+com/android/vending/billing/IInAppBillingService$Stub.class v8
+com/android/vending/billing/IInAppBillingService.class v8
+crossmobile/ios/storekit/$storekit.class v8
+crossmobile/ios/storekit/SKError.class v8
+crossmobile/ios/storekit/SKMutablePayment.class v8
+crossmobile/ios/storekit/SKPayment.class v8
+crossmobile/ios/storekit/SKPaymentQueue.class v8
+crossmobile/ios/storekit/SKPaymentTransaction.class v8
+crossmobile/ios/storekit/SKPaymentTransactionObserver.class v8
+crossmobile/ios/storekit/SKPaymentTransactionState.class v8
+crossmobile/ios/storekit/SKProduct.class v8
+crossmobile/ios/storekit/SKProductsRequest.class v8
+crossmobile/ios/storekit/SKProductsRequestDelegate.class v8
+crossmobile/ios/storekit/SKProductsResponse.class v8
+crossmobile/ios/storekit/SKRequest.class v8
+crossmobile/ios/storekit/SKRequestDelegate.class v8
+org/crossmobile/backend/android/h.class v8
+
+Creating file cmplugin-rvm-cmpayment-<VERSION>.jar
+
+
+Creating file cmplugin-cmquicklook-<VERSION>.jar
+META-INF/PLUGIN.INF
+META-INF/REVERSE.INF
+crossmobile/ios/quicklook/QLPreviewController.class v8
+crossmobile/ios/quicklook/QLPreviewControllerDataSource.class v8
+crossmobile/ios/quicklook/QLPreviewControllerDelegate.class v8
+crossmobile/ios/quicklook/QLPreviewItem.class v8
+crossmobile/ios/quicklook/package-info.class v8
+
+Creating file cmplugin-builddep-cmquicklook-<VERSION>.jar
+
+
+Creating file cmplugin-ios-cmquicklook-<VERSION>.jar
+crossmobile/ios/quicklook/QLPreviewController.class v8
+crossmobile/ios/quicklook/QLPreviewControllerDataSource.class v8
+crossmobile/ios/quicklook/QLPreviewControllerDelegate.class v8
+crossmobile/ios/quicklook/QLPreviewItem.class v8
+native/cmquicklook.a
+native/crossmobile_ios_quicklook_QLPreviewController.h
+native/crossmobile_ios_quicklook_QLPreviewControllerDataSource.h
+native/crossmobile_ios_quicklook_QLPreviewControllerDelegate.h
+native/crossmobile_ios_quicklook_QLPreviewItem.h
+
+Creating file cmplugin-desktop-cmquicklook-<VERSION>.jar
+crossmobile/ios/quicklook/QLPreviewController.class v8
+crossmobile/ios/quicklook/QLPreviewControllerDataSource.class v8
+crossmobile/ios/quicklook/QLPreviewControllerDelegate.class v8
+crossmobile/ios/quicklook/QLPreviewItem.class v8
+
+Creating file cmplugin-android-cmquicklook-<VERSION>.jar
+crossmobile/ios/quicklook/QLPreviewController.class v8
+crossmobile/ios/quicklook/QLPreviewControllerDataSource.class v8
+crossmobile/ios/quicklook/QLPreviewControllerDelegate.class v8
+crossmobile/ios/quicklook/QLPreviewItem.class v8
+
+Creating file cmplugin-rvm-cmquicklook-<VERSION>.jar
+
+
+Creating file cmplugin-cmsocialbase-<VERSION>.jar
+META-INF/PLUGIN.INF
+META-INF/REVERSE.INF
+crossmobile/ios/social/SLComposeServiceViewController.class v8
+crossmobile/ios/social/SLComposeViewController.class v8
+crossmobile/ios/social/SLComposeViewControllerCompletionHandler.class v8
+crossmobile/ios/social/SLComposeViewControllerResult.class v8
+crossmobile/ios/social/SLRequest.class v8
+crossmobile/ios/social/SLRequestHandler.class v8
+crossmobile/ios/social/SLRequestMethod.class v8
+crossmobile/ios/social/SLServiceType.class v8
+crossmobile/ios/social/package-info.class v8
+
+Creating file cmplugin-builddep-cmsocialbase-<VERSION>.jar
+
+
+Creating file cmplugin-ios-cmsocialbase-<VERSION>.jar
+crossmobile/ios/social/SLComposeServiceViewController.class v8
+crossmobile/ios/social/SLComposeViewController.class v8
+crossmobile/ios/social/SLComposeViewControllerCompletionHandler.class v8
+crossmobile/ios/social/SLComposeViewControllerResult.class v8
+crossmobile/ios/social/SLRequest.class v8
+crossmobile/ios/social/SLRequestHandler.class v8
+crossmobile/ios/social/SLRequestMethod.class v8
+crossmobile/ios/social/SLServiceType.class v8
+native/cmsocialbase.a
+native/crossmobile_ios_social_SLComposeServiceViewController.h
+native/crossmobile_ios_social_SLComposeViewController.h
+native/crossmobile_ios_social_SLComposeViewControllerCompletionHandler.h
+native/crossmobile_ios_social_SLRequest.h
+native/crossmobile_ios_social_SLRequestHandler.h
+
+Creating file cmplugin-desktop-cmsocialbase-<VERSION>.jar
+crossmobile/ios/social/SLComposeServiceViewController.class v8
+crossmobile/ios/social/SLComposeViewController.class v8
+crossmobile/ios/social/SLComposeViewControllerCompletionHandler.class v8
+crossmobile/ios/social/SLComposeViewControllerResult.class v8
+crossmobile/ios/social/SLRequest.class v8
+crossmobile/ios/social/SLRequestHandler.class v8
+crossmobile/ios/social/SLRequestMethod.class v8
+crossmobile/ios/social/SLServiceType.class v8
+
+Creating file cmplugin-android-cmsocialbase-<VERSION>.jar
+crossmobile/ios/social/SLComposeServiceViewController.class v8
+crossmobile/ios/social/SLComposeViewController.class v8
+crossmobile/ios/social/SLComposeViewControllerCompletionHandler.class v8
+crossmobile/ios/social/SLComposeViewControllerResult.class v8
+crossmobile/ios/social/SLRequest.class v8
+crossmobile/ios/social/SLRequestHandler.class v8
+crossmobile/ios/social/SLRequestMethod.class v8
+crossmobile/ios/social/SLServiceType.class v8
+
+Creating file cmplugin-rvm-cmsocialbase-<VERSION>.jar
+
+
+Creating file cmplugin-cmtouchid-<VERSION>.jar
+META-INF/PLUGIN.INF
+META-INF/REVERSE.INF
+crossmobile/ios/touchid/LAAccessControlOperation.class v8
+crossmobile/ios/touchid/LABiometryType.class v8
+crossmobile/ios/touchid/LAContext.class v8
+crossmobile/ios/touchid/LACredentialType.class v8
+crossmobile/ios/touchid/LAError.class v8
+crossmobile/ios/touchid/LAPolicy.class v8
+crossmobile/ios/touchid/LATouchIDAuthentication.class v8
+crossmobile/ios/touchid/package-info.class v8
+
+Creating file cmplugin-builddep-cmtouchid-<VERSION>.jar
+
+
+Creating file cmplugin-ios-cmtouchid-<VERSION>.jar
+crossmobile/ios/touchid/LAAccessControlOperation.class v8
+crossmobile/ios/touchid/LABiometryType.class v8
+crossmobile/ios/touchid/LAContext.class v8
+crossmobile/ios/touchid/LACredentialType.class v8
+crossmobile/ios/touchid/LAError.class v8
+crossmobile/ios/touchid/LAPolicy.class v8
+crossmobile/ios/touchid/LATouchIDAuthentication.class v8
+native/cmtouchid.a
+native/crossmobile_ios_touchid_LAContext.h
+
+Creating file cmplugin-desktop-cmtouchid-<VERSION>.jar
+crossmobile/ios/touchid/LAAccessControlOperation.class v8
+crossmobile/ios/touchid/LABiometryType.class v8
+crossmobile/ios/touchid/LAContext.class v8
+crossmobile/ios/touchid/LACredentialType.class v8
+crossmobile/ios/touchid/LAError.class v8
+crossmobile/ios/touchid/LAPolicy.class v8
+crossmobile/ios/touchid/LATouchIDAuthentication.class v8
+
+Creating file cmplugin-android-cmtouchid-<VERSION>.jar
+crossmobile/ios/touchid/LAAccessControlOperation.class v8
+crossmobile/ios/touchid/LABiometryType.class v8
+crossmobile/ios/touchid/LAContext.class v8
+crossmobile/ios/touchid/LACredentialType.class v8
+crossmobile/ios/touchid/LAError.class v8
+crossmobile/ios/touchid/LAPolicy.class v8
+crossmobile/ios/touchid/LATouchIDAuthentication.class v8
+org/crossmobile/backend/android/r$1.class v8
+org/crossmobile/backend/android/r$a.class v8
+org/crossmobile/backend/android/r$b.class v8
+org/crossmobile/backend/android/r.class v8
+
+Creating file cmplugin-rvm-cmtouchid-<VERSION>.jar
+
+

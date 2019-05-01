@@ -1,0 +1,7 @@
+LIBRARY cmgamekit
+EXPORTS
+
+	_OBJC_CLASS_crossmobile_ios_gamekit_GKPeerPickerController$Ext DATA
+	__objc_class_name_crossmobile_ios_gamekit_GKPeerPickerController$Ext CONSTANT
+	_OBJC_CLASS_crossmobile_ios_gamekit_GKSession$Ext DATA
+	__objc_class_name_crossmobile_ios_gamekit_GKSession$Ext CONSTANT

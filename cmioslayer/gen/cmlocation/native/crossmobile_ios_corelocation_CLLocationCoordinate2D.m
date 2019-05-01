@@ -1,0 +1,61 @@
+// (c) 2019 under LGPL by CrossMobile plugin tools
+
+// crossmobile.ios.corelocation.CLLocationCoordinate2D implementation
+
+#import "crossmobile_ios_corelocation_CLLocationCoordinate2D.h"
+
+@implementation crossmobile_ios_corelocation_CLLocationCoordinate2D
+
+// direct binding of: CLLocationCoordinate2D CLLocationCoordinate2DMake(CLLocationDegrees latitude, CLLocationDegrees longitude);
+- (crossmobile_ios_corelocation_CLLocationCoordinate2D*) __init_crossmobile_ios_corelocation_CLLocationCoordinate2D___double_double:(double) latitude :(double) longitude 
+{
+    return [self initWithCLLocationCoordinate2D:CLLocationCoordinate2DMake(latitude, longitude)];
+}
+
+// direct binding of: CLLocationDegrees latitude;
+- (void) setLatitude___double:(double) latitude 
+{
+    self->latitude_double = latitude;
+}
+
+// direct binding of: CLLocationDegrees latitude;
+- (double) getLatitude__
+{
+    return self->latitude_double;
+}
+
+// direct binding of: CLLocationDegrees longitude;
+- (void) setLongitude___double:(double) longitude 
+{
+    self->longitude_double = longitude;
+}
+
+// direct binding of: CLLocationDegrees longitude;
+- (double) getLongitude__
+{
+    return self->longitude_double;
+}
+
+- (instancetype) initWithCLLocationCoordinate2D:(CLLocationCoordinate2D) other
+{
+    self = [super init];
+    self->latitude_double = other.latitude;
+    self->longitude_double = other.longitude;
+    return self;
+}
+
+- (void) setCLLocationCoordinate2D:(CLLocationCoordinate2D) other
+{
+    self->latitude_double = other.latitude;
+    self->longitude_double = other.longitude;
+}
+
+- (CLLocationCoordinate2D) getCLLocationCoordinate2D
+{
+    CLLocationCoordinate2D result;
+    result.latitude = self->latitude_double;
+    result.longitude = self->longitude_double;
+    return result;
+}
+
+@end

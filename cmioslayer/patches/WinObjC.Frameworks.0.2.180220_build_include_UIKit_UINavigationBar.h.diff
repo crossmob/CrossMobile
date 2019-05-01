@@ -1,0 +1,5 @@
+--- /Users/arktouros/crossmobile/cmioslayer/target/uwp/packages/WinObjC.Frameworks.0.2.180220/build/include/UIKit/UINavigationBar.h
++++ /Users/arktouros/crossmobile/cmioslayer/target/uwp/packages/include/UIKit/UINavigationBar.h
+@@ -45,1 +45,1 @@
+-- (void)popNavigationItemAnimated:(BOOL)animated;
++- (UINavigationItem *)popNavigationItemAnimated:(BOOL)animated;

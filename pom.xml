@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.crossmobile</groupId>
+    <artifactId>env</artifactId>
+    <packaging>pom</packaging>
+    <version>2.5.pre1.cm</version>
+    <name>CrossMobile SDK</name>
+
+    <modules>
+        <module>cmutils</module>
+        <module>cmframework</module>
+        <module>cmbuild</module>
+        <module>cmarchetypes</module>
+
+        <module>cmtheme</module>
+        <module>cmprojects/cmproject</module>
+        <module>cmprojects/cmforeign</module>
+    </modules>
+
+    <properties>
+        <long.version>2.0.0.4</long.version>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <version.maven-dependency-plugin>2.10</version.maven-dependency-plugin>
+        <version.maven-artifact>2.2.1</version.maven-artifact>
+
+        <version.dd-plist>1.16</version.dd-plist>
+        <version.javassist>3.22.0-CR1</version.javassist>
+        <version.minimal-json>0.9.5</version.minimal-json>
+        <version.proguard>6.0.3</version.proguard>
+        <version.loadlib>0.2.1</version.loadlib>
+        <version.robovm>2.3.5</version.robovm>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <configuration>
+                    <skipSource>true</skipSource>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>crossmobile</id>
+            <url>http://mvn.crossmobile.org/content/repositories/crossmobile/</url>
+        </repository>
+    </repositories>
+    <profiles>
+        <profile>
+            <id>release</id>
+            <distributionManagement>
+                <repository>
+                    <id>crossmobile</id>
+                    <url>https://mvn.crossmobile.org/content/repositories/crossmobile/</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+    </profiles>
+</project>

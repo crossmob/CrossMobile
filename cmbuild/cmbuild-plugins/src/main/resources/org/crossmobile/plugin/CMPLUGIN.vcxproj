@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\WinObjC.Frameworks.0.2.180220\build\WinObjC.Frameworks.props" Condition="Exists('..\packages\WinObjC.Frameworks.0.2.180220\build\WinObjC.Frameworks.props')" />
+  <Import Project="..\packages\WinObjC.Frameworks.UWP.0.2.180220\build\WinObjC.Frameworks.UWP.props" Condition="Exists('..\packages\WinObjC.Frameworks.UWP.0.2.180220\build\WinObjC.Frameworks.UWP.props')" />
+  <Import Project="..\packages\WinObjC.Packaging.0.2.180220\build\WinObjC.Packaging.props" Condition="Exists('..\packages\WinObjC.Packaging.0.2.180220\build\WinObjC.Packaging.props')" />
+  <Import Project="..\packages\WinObjC.Frameworks.UWP.Core.0.2.180220\build\WinObjC.Frameworks.UWP.Core.props" Condition="Exists('..\packages\WinObjC.Frameworks.UWP.Core.0.2.180220\build\WinObjC.Frameworks.UWP.Core.props')" />
+  <Import Project="..\packages\WinObjC.Frameworks.Core.0.2.180220\build\WinObjC.Frameworks.Core.props" Condition="Exists('..\packages\WinObjC.Frameworks.Core.0.2.180220\build\WinObjC.Frameworks.Core.props')" />
+  <Import Project="..\packages\WinObjC.Frameworks.ThirdParty.0.2.180220\build\WinObjC.Frameworks.ThirdParty.props" Condition="Exists('..\packages\WinObjC.Frameworks.ThirdParty.0.2.180220\build\WinObjC.Frameworks.ThirdParty.props')" />
+  <Import Project="..\packages\WinObjC.Language.0.2.180220\build\WinObjC.Language.props" Condition="Exists('..\packages\WinObjC.Language.0.2.180220\build\WinObjC.Language.props')" />
+  <Import Project="..\packages\NuGet.Build.Packaging.0.1.193\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.1.193\build\NuGet.Build.Packaging.props')" />
+  <Import Project="..\packages\WinObjC.Logging.0.2.180220\build\WinObjC.Logging.props" Condition="Exists('..\packages\WinObjC.Logging.0.2.180220\build\WinObjC.Logging.props')" />
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{e7e9d30b-b61c-4c1d-bb20-843a9426dd4a}</ProjectGuid>
+    <Keyword>StaticLibrary</Keyword>
+    <RootNamespace>CMPLUGIN</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <AppContainerApplication>true</AppContainerApplication>
+    <ApplicationType>Windows Store</ApplicationType>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.10586.0</WindowsTargetPlatformMinVersion>
+    <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="Shared">
+    <Import Project="..\packages\WinObjC.Logging.0.2.180220\build\WinObjC.Logging.targets" Condition="Exists('..\packages\WinObjC.Logging.0.2.180220\build\WinObjC.Logging.targets')" />
+    <Import Project="..\packages\WinObjC.Language.0.2.180220\build\WinObjC.Language.targets" Condition="Exists('..\packages\WinObjC.Language.0.2.180220\build\WinObjC.Language.targets')" />
+    <Import Project="..\packages\NuGet.Build.Packaging.0.1.193\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.1.193\build\NuGet.Build.Packaging.targets')" />
+    <Import Project="..\packages\WinObjC.Frameworks.ThirdParty.0.2.180220\build\WinObjC.Frameworks.ThirdParty.targets" Condition="Exists('..\packages\WinObjC.Frameworks.ThirdParty.0.2.180220\build\WinObjC.Frameworks.ThirdParty.targets')" />
+    <Import Project="..\packages\WinObjC.Frameworks.Core.0.2.180220\build\WinObjC.Frameworks.Core.targets" Condition="Exists('..\packages\WinObjC.Frameworks.Core.0.2.180220\build\WinObjC.Frameworks.Core.targets')" />
+    <Import Project="..\packages\WinObjC.Frameworks.UWP.Core.0.2.180220\build\WinObjC.Frameworks.UWP.Core.targets" Condition="Exists('..\packages\WinObjC.Frameworks.UWP.Core.0.2.180220\build\WinObjC.Frameworks.UWP.Core.targets')" />
+    <Import Project="..\packages\WinObjC.Packaging.0.2.180220\build\WinObjC.Packaging.targets" Condition="Exists('..\packages\WinObjC.Packaging.0.2.180220\build\WinObjC.Packaging.targets')" />
+    <Import Project="..\packages\ANGLE.WindowsStore.2.1.13\build\native\ANGLE.WindowsStore.targets" Condition="Exists('..\packages\ANGLE.WindowsStore.2.1.13\build\native\ANGLE.WindowsStore.targets')" />
+    <Import Project="..\packages\WinObjC.Frameworks.UWP.0.2.180220\build\WinObjC.Frameworks.UWP.targets" Condition="Exists('..\packages\WinObjC.Frameworks.UWP.0.2.180220\build\WinObjC.Frameworks.UWP.targets')" />
+    <Import Project="..\packages\WinObjC.Frameworks.0.2.180220\build\WinObjC.Frameworks.targets" Condition="Exists('..\packages\WinObjC.Frameworks.0.2.180220\build\WinObjC.Frameworks.targets')" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <GenerateManifest>true</GenerateManifest>
+    <OutDir>..\..\..\gen\lib</OutDir>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <GenerateManifest>true</GenerateManifest>
+    <OutDir>..\..\..\gen\lib</OutDir>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <GenerateManifest>true</GenerateManifest>
+    <OutDir>..\..\..\gen\lib</OutDir>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <GenerateManifest>true</GenerateManifest>
+    <OutDir>..\..\..\gen\lib</OutDir>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
+      <ModuleDefinitionFile>lib.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <ModuleDefinitionFile>lib.def</ModuleDefinitionFile>
+    </Link>
+    <ClangCompile>
+      <ObjectiveCARC>false</ObjectiveCARC>
+    </ClangCompile>
+    <ClangCompile>
+      <ObjectiveCModules>true</ObjectiveCModules>
+    </ClangCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|arm'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|arm'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="CMPLUGIN.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CMPLUGIN.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lib.def" />
+    <None Include="packages.config" />
+  </ItemGroup>  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\WinObjC.Logging.0.2.180220\build\WinObjC.Logging.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WinObjC.Logging.0.2.180220\build\WinObjC.Logging.props'))" />
+    <Error Condition="!Exists('..\packages\WinObjC.Logging.0.2.180220\build\WinObjC.Logging.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WinObjC.Logging.0.2.180220\build\WinObjC.Logging.targets'))" />
+    <Error Condition="!Exists('..\packages\NuGet.Build.Packaging.0.1.193\build\NuGet.Build.Packaging.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NuGet.Build.Packaging.0.1.193\build\NuGet.Build.Packaging.props'))" />
+    <Error Condition="!Exists('..\packages\WinObjC.Language.0.2.180220\build\WinObjC.Language.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WinObjC.Language.0.2.180220\build\WinObjC.Language.props'))" />
+    <Error Condition="!Exists('..\packages\WinObjC.Language.0.2.180220\build\WinObjC.Language.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WinObjC.Language.0.2.180220\build\WinObjC.Language.targets'))" />
+    <Error Condition="!Exists('..\packages\NuGet.Build.Packaging.0.1.193\build\NuGet.Build.Packaging.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NuGet.Build.Packaging.0.1.193\build\NuGet.Build.Packaging.targets'))" />
+    <Error Condition="!Exists('..\packages\WinObjC.Frameworks.ThirdParty.0.2.180220\build\WinObjC.Frameworks.ThirdParty.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WinObjC.Frameworks.ThirdParty.0.2.180220\build\WinObjC.Frameworks.ThirdParty.props'))" />
+    <Error Condition="!Exists('..\packages\WinObjC.Frameworks.ThirdParty.0.2.180220\build\WinObjC.Frameworks.ThirdParty.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WinObjC.Frameworks.ThirdParty.0.2.180220\build\WinObjC.Frameworks.ThirdParty.targets'))" />
+    <Error Condition="!Exists('..\packages\WinObjC.Frameworks.Core.0.2.180220\build\WinObjC.Frameworks.Core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WinObjC.Frameworks.Core.0.2.180220\build\WinObjC.Frameworks.Core.props'))" />
+    <Error Condition="!Exists('..\packages\WinObjC.Frameworks.Core.0.2.180220\build\WinObjC.Frameworks.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WinObjC.Frameworks.Core.0.2.180220\build\WinObjC.Frameworks.Core.targets'))" />
+    <Error Condition="!Exists('..\packages\WinObjC.Frameworks.UWP.Core.0.2.180220\build\WinObjC.Frameworks.UWP.Core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WinObjC.Frameworks.UWP.Core.0.2.180220\build\WinObjC.Frameworks.UWP.Core.props'))" />
+    <Error Condition="!Exists('..\packages\WinObjC.Frameworks.UWP.Core.0.2.180220\build\WinObjC.Frameworks.UWP.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WinObjC.Frameworks.UWP.Core.0.2.180220\build\WinObjC.Frameworks.UWP.Core.targets'))" />
+    <Error Condition="!Exists('..\packages\WinObjC.Packaging.0.2.180220\build\WinObjC.Packaging.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WinObjC.Packaging.0.2.180220\build\WinObjC.Packaging.props'))" />
+    <Error Condition="!Exists('..\packages\WinObjC.Packaging.0.2.180220\build\WinObjC.Packaging.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WinObjC.Packaging.0.2.180220\build\WinObjC.Packaging.targets'))" />
+    <Error Condition="!Exists('..\packages\ANGLE.WindowsStore.2.1.13\build\native\ANGLE.WindowsStore.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ANGLE.WindowsStore.2.1.13\build\native\ANGLE.WindowsStore.targets'))" />
+    <Error Condition="!Exists('..\packages\WinObjC.Frameworks.UWP.0.2.180220\build\WinObjC.Frameworks.UWP.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WinObjC.Frameworks.UWP.0.2.180220\build\WinObjC.Frameworks.UWP.props'))" />
+    <Error Condition="!Exists('..\packages\WinObjC.Frameworks.UWP.0.2.180220\build\WinObjC.Frameworks.UWP.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WinObjC.Frameworks.UWP.0.2.180220\build\WinObjC.Frameworks.UWP.targets'))" />
+    <Error Condition="!Exists('..\packages\WinObjC.Frameworks.0.2.180220\build\WinObjC.Frameworks.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WinObjC.Frameworks.0.2.180220\build\WinObjC.Frameworks.props'))" />
+    <Error Condition="!Exists('..\packages\WinObjC.Frameworks.0.2.180220\build\WinObjC.Frameworks.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WinObjC.Frameworks.0.2.180220\build\WinObjC.Frameworks.targets'))" />
+  </Target>
+</Project>

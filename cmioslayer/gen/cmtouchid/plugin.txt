@@ -1,0 +1,7 @@
+# Plugin cmtouchid
+objc.libs=
+java.initializer=
+objc.pods=
+android.permissions=
+android.extra.app=
+android.extra.dependencies=

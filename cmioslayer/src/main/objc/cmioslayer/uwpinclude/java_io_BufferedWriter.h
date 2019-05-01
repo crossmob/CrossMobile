@@ -1,0 +1,49 @@
+/* Copyright (c) 2002-2011 by XMLVM.org
+ *
+ * Project Info:  http://www.xmlvm.org
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
+ * (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
+ * USA.
+ */
+
+#import "xmlvm.h"
+#import "java_io_Writer.h"
+#import "java_lang_String.h"
+
+CM_EXPORT_CLASS
+@interface java_io_BufferedWriter : java_io_Writer {
+	java_io_Writer* writer;
+	XMLVMArray* cb;
+	int nChars;
+	int nextChar;
+}
+
+- (id) initWithWriter:(java_io_Writer*)ioWriter;
+
+- (instancetype) __init_java_io_BufferedWriter___java_io_Writer: (java_io_Writer*)ioWriter;
+- (instancetype) __init_java_io_BufferedWriter___java_io_Writer_int: (java_io_Writer*)ioWriter: (int)sz;
+
+- (int) min:(int)a:(int)b;
+- (void) ensureOpen;
+
+- (void) write___int: (int) c;
+- (void) write___char_ARRAYTYPE_int_int: (XMLVMArray *) cbuf: (int) off: (int) len;
+- (void) write___java_lang_String_int_int: (java_lang_String*)str: (int)off: (int)len;
+- (void) newLine__;
+- (void) close__;
+- (void) flushBuffer__;
+- (void) flush__;
+
+@end

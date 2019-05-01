@@ -1,0 +1,52 @@
+/* (c) 2019 by Panayotis Katsaloulis
+ *
+ * CrossMobile is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, version 2.
+ *
+ * CrossMobile is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with CrossMobile; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
+package crossmobile.ios.uikit;
+
+import org.crossmobile.bridge.ann.CMClass;
+import org.crossmobile.bridge.ann.CMSelector;
+
+/**
+ * UIPickerViewDataSource provides the structure to be implemented when
+ * information related to number of components and rows of picker view is
+ * needed.
+ */
+@CMClass
+public interface UIPickerViewDataSource {
+
+    /**
+     * Used when the number of components of the specified picker view is
+     * needed.
+     *
+     * @param view The picker view for which the number of components is needed.
+     * @return The number of components for this picker view.
+     */
+    @CMSelector("- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView;")
+    public int numberOfComponentsInPickerView(UIPickerView view);
+
+    /**
+     * Used when the number of rows of a specified component of a picker view is
+     * needed.
+     *
+     * @param view      The picker view for which the number of rows is needed.
+     * @param component The component of the picker view for which the number of
+     *                  rows is needed.
+     * @return The number of rows for the specified component of the picker
+     * view.
+     */
+    @CMSelector("- (NSInteger)pickerView:(UIPickerView *)pickerView \n"
+            + "numberOfRowsInComponent:(NSInteger)component;")
+    public int numberOfRowsInComponent(UIPickerView view, int component);
+}

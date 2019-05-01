@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>${groupId}</groupId>
+    <artifactId>${artifactId}</artifactId>
+    <version>${version}</version>
+    <name>${name}</name>
+    <parent>
+        <groupId>org.crossmobile</groupId>
+        <artifactId>cmproject</artifactId>
+        <version>2.5.pre1.cm</version>
+        <relativePath/>
+    </parent>
+    <properties>
+        <main.class>${groupId}.${artifactId}.Main</main.class>
+        <launch.storyboard>Launch Screen</launch.storyboard>
+        <main.storyboard>Main</main.storyboard>
+    </properties>
+    <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>org.crossmobile</groupId>
+            <artifactId>cmtheme-bright</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+    </dependencies>
+    <repositories>
+        <repository>
+            <id>crossmobile</id>
+            <url>https://mvn.crossmobile.org/content/repositories/crossmobile/</url>
+        </repository>
+    </repositories>
+</project>

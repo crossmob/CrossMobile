@@ -1,0 +1,5 @@
+LIBRARY cmtouchid
+EXPORTS
+
+	_OBJC_CLASS_crossmobile_ios_touchid_LAContext$Ext DATA
+	__objc_class_name_crossmobile_ios_touchid_LAContext$Ext CONSTANT

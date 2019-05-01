@@ -1,0 +1,53 @@
+/* (c) 2019 by Panayotis Katsaloulis
+ *
+ * CrossMobile is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, version 2.
+ *
+ * CrossMobile is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with CrossMobile; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
+package org.crossmobile.plugin.reg;
+
+import org.crossmobile.bridge.ann.CMLibParam.ParamContext;
+
+import static org.crossmobile.bridge.ann.CMLibParam.ParamContext.Regular;
+import static org.crossmobile.utils.TextUtils.replaceOld;
+import static org.crossmobile.utils.TextUtils.replaceOldString;
+
+public class PluginParam {
+
+    private String description = "";
+    private String paramMeta = "";
+    private ParamContext paramContext = Regular;
+
+    public void setDescription(String description, String info) {
+        this.description = replaceOldString(this.description, description, info);
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setMeta(String paramMeta, String info) {
+        this.paramMeta = replaceOldString(this.paramMeta, paramMeta, info);
+    }
+
+    public String getMeta() {
+        return paramMeta;
+    }
+
+    public void setContext(ParamContext paramContext, String info) {
+        this.paramContext = replaceOld(this.paramContext == Regular ? null : this.paramContext, paramContext, info);
+    }
+
+    public ParamContext getContext() {
+        return paramContext;
+    }
+}

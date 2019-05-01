@@ -1,0 +1,184 @@
+{
+  "crossmobile.ios.accounts.ACAccount": {
+    "accountDescription()": "- (NSString *) accountDescription\n{\n    NSString * re$ult = [self accountDescription__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "accountType()": "- (ACAccountType *) accountType\n{\n    ACAccountType * re$ult = [self accountType__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "credential()": "- (ACAccountCredential *) credential\n{\n    ACAccountCredential * re$ult = [self credential__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "identifier()": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "setAccountDescription(java.lang.String)": "- (void) setAccountDescription:(NSString *) accountDescription\n{\n    [self setAccountDescription___java_lang_String:(accountDescription ? accountDescription : JAVA_NULL)];\n}\n\n",
+    "setAccountType(crossmobile.ios.accounts.ACAccountType)": "- (void) setAccountType:(ACAccountType *) accountType\n{\n    [self setAccountType___crossmobile_ios_accounts_ACAccountType:(accountType ? accountType : JAVA_NULL)];\n}\n\n",
+    "setCredential(crossmobile.ios.accounts.ACAccountCredential)": "- (void) setCredential:(ACAccountCredential *) credential\n{\n    [self setCredential___crossmobile_ios_accounts_ACAccountCredential:(credential ? credential : JAVA_NULL)];\n}\n\n",
+    "setUsername(java.lang.String)": "- (void) setUsername:(NSString *) username\n{\n    [self setUsername___java_lang_String:(username ? username : JAVA_NULL)];\n}\n\n",
+    "username()": "- (NSString *) username\n{\n    NSString * re$ult = [self username__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+  },
+  "crossmobile.ios.accounts.ACAccountCredential": {
+    "oauthToken()": "- (NSString *) oauthToken\n{\n    NSString * re$ult = [self oauthToken__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "setOauthToken(java.lang.String)": "- (void) setOauthToken:(NSString *) oauthToken\n{\n    [self setOauthToken___java_lang_String:(oauthToken ? oauthToken : JAVA_NULL)];\n}\n\n"
+  },
+  "crossmobile.ios.accounts.ACAccountStore": {
+    "accountTypeWithAccountTypeIdentifier(java.lang.String)": "- (ACAccountType *) accountTypeWithAccountTypeIdentifier:(NSString *) typeIdentifier\n{\n    ACAccountType * re$ult = [self accountTypeWithAccountTypeIdentifier___java_lang_String:(typeIdentifier ? typeIdentifier : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "accountWithIdentifier(java.lang.String)": "- (ACAccount *) accountWithIdentifier:(NSString *) identifier\n{\n    ACAccount * re$ult = [self accountWithIdentifier___java_lang_String:(identifier ? identifier : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "accounts()": "- (NSArray *) accounts\n{\n    NSArray * re$ult = [self accounts__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "accountsWithAccountType(crossmobile.ios.accounts.ACAccountType)": "- (NSArray *) accountsWithAccountType:(ACAccountType *) accountType\n{\n    NSArray * re$ult = [self accountsWithAccountType___crossmobile_ios_accounts_ACAccountType:(accountType ? accountType : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+  },
+  "crossmobile.ios.accounts.ACAccountType": {
+    "accessGranted()": "- (BOOL) accessGranted\n{\n    return [self accessGranted__];\n}\n\n",
+    "accountTypeDescription()": "- (NSString *) accountTypeDescription\n{\n    NSString * re$ult = [self accountTypeDescription__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "identifier()": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+  },
+  "crossmobile.ios.addressbook.ABNewPersonViewController": {
+    "addressBook()": "- (ABAddressBookRef) addressBook\n{\n    crossmobile_ios_addressbook_ABAddressBook* re$ult = [self addressBook__];\n    [re$ult autorelease];\n    return re$ult->$reference;\n}\n\n",
+    "displayedPerson()": "- (ABRecordRef) displayedPerson\n{\n    crossmobile_ios_addressbook_ABRecord* re$ult = [self displayedPerson__];\n    [re$ult autorelease];\n    return re$ult->$reference;\n}\n\n",
+    "newPersonViewDelegate()": "- (id< ABNewPersonViewControllerDelegate >) newPersonViewDelegate\n{\n    id< ABNewPersonViewControllerDelegate > re$ult = [self newPersonViewDelegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "parentGroup()": "- (ABRecordRef) parentGroup\n{\n    crossmobile_ios_addressbook_ABRecord* re$ult = [self parentGroup__];\n    [re$ult autorelease];\n    return re$ult->$reference;\n}\n\n",
+    "setAddressBook(crossmobile.ios.addressbook.ABAddressBook)": "- (void) setAddressBook:(ABAddressBookRef) addressBook\n{\n    crossmobile_ios_addressbook_ABAddressBook* addressBook$conv = [[crossmobile_ios_addressbook_ABAddressBook alloc] initWithABAddressBook:addressBook];\n    [self setAddressBook___crossmobile_ios_addressbook_ABAddressBook:addressBook$conv];\n    [addressBook$conv release];\n}\n\n",
+    "setDisplayedPerson(crossmobile.ios.addressbook.ABRecord)": "- (void) setDisplayedPerson:(ABRecordRef) displayedPerson\n{\n    crossmobile_ios_addressbook_ABRecord* displayedPerson$conv = [[crossmobile_ios_addressbook_ABRecord alloc] initWithABRecord:displayedPerson];\n    [self setDisplayedPerson___crossmobile_ios_addressbook_ABRecord:displayedPerson$conv];\n    [displayedPerson$conv release];\n}\n\n",
+    "setNewPersonViewDelegate(crossmobile.ios.addressbook.ABNewPersonViewControllerDelegate)": "- (void) setNewPersonViewDelegate:(id< ABNewPersonViewControllerDelegate >) newPersonViewDelegate\n{\n    [self setNewPersonViewDelegate___crossmobile_ios_addressbook_ABNewPersonViewControllerDelegate:(newPersonViewDelegate ? newPersonViewDelegate : JAVA_NULL)];\n}\n\n",
+    "setParentGroup(crossmobile.ios.addressbook.ABRecord)": "- (void) setParentGroup:(ABRecordRef) parentGroup\n{\n    crossmobile_ios_addressbook_ABRecord* parentGroup$conv = [[crossmobile_ios_addressbook_ABRecord alloc] initWithABRecord:parentGroup];\n    [self setParentGroup___crossmobile_ios_addressbook_ABRecord:parentGroup$conv];\n    [parentGroup$conv release];\n}\n\n"
+  },
+  "crossmobile.ios.addressbook.ABNewPersonViewControllerDelegate": {
+    "didCompleteWithNewPerson(crossmobile.ios.addressbook.ABNewPersonViewController,crossmobile.ios.addressbook.ABRecord)": "- (void) newPersonViewController:(ABNewPersonViewController *) newPersonViewController didCompleteWithNewPerson:(ABRecordRef) person\n{\n    crossmobile_ios_addressbook_ABRecord* person$conv = [[crossmobile_ios_addressbook_ABRecord alloc] initWithABRecord:person];\n    [self didCompleteWithNewPerson___crossmobile_ios_addressbook_ABNewPersonViewController_crossmobile_ios_addressbook_ABRecord:(newPersonViewController ? newPersonViewController : JAVA_NULL) :person$conv];\n    [person$conv release];\n}\n\n"
+  },
+  "crossmobile.ios.addressbook.ABPeoplePickerNavigationController": {
+    "addressBook()": "- (ABAddressBookRef) addressBook\n{\n    crossmobile_ios_addressbook_ABAddressBook* re$ult = [self addressBook__];\n    [re$ult autorelease];\n    return re$ult->$reference;\n}\n\n",
+    "displayedProperties()": "- (NSArray<NSNumber *> *) displayedProperties\n{\n    NSArray<NSNumber *> * re$ult = [self displayedProperties__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "peoplePickerDelegate()": "- (id<ABPeoplePickerNavigationControllerDelegate>) peoplePickerDelegate\n{\n    id<ABPeoplePickerNavigationControllerDelegate> re$ult = [self peoplePickerDelegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "setAddressBook(crossmobile.ios.addressbook.ABAddressBook)": "- (void) setAddressBook:(ABAddressBookRef) addressBook\n{\n    crossmobile_ios_addressbook_ABAddressBook* addressBook$conv = [[crossmobile_ios_addressbook_ABAddressBook alloc] initWithABAddressBook:addressBook];\n    [self setAddressBook___crossmobile_ios_addressbook_ABAddressBook:addressBook$conv];\n    [addressBook$conv release];\n}\n\n",
+    "setDisplayedProperties(java.util.List)": "- (void) setDisplayedProperties:(NSArray<NSNumber *> *) displayedProperties\n{\n    [self setDisplayedProperties___java_util_List:(displayedProperties ? displayedProperties : JAVA_NULL)];\n}\n\n",
+    "setPeoplePickerDelegate(crossmobile.ios.addressbook.ABPeoplePickerNavigationControllerDelegate)": "- (void) setPeoplePickerDelegate:(id<ABPeoplePickerNavigationControllerDelegate>) peoplePickerDelegate\n{\n    [self setPeoplePickerDelegate___crossmobile_ios_addressbook_ABPeoplePickerNavigationControllerDelegate:(peoplePickerDelegate ? peoplePickerDelegate : JAVA_NULL)];\n}\n\n"
+  },
+  "crossmobile.ios.addressbook.ABPeoplePickerNavigationControllerDelegate": {
+    "didCancel(crossmobile.ios.addressbook.ABPeoplePickerNavigationController)": "- (void) peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *) peoplePicker\n{\n    [self didCancel___crossmobile_ios_addressbook_ABPeoplePickerNavigationController:(peoplePicker ? peoplePicker : JAVA_NULL)];\n}\n\n",
+    "shouldContinueAfterSelectingPerson(crossmobile.ios.addressbook.ABPeoplePickerNavigationController,crossmobile.ios.addressbook.ABRecord)": "- (BOOL) peoplePickerNavigationController:(ABPeoplePickerNavigationController *) peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef) person\n{\n    crossmobile_ios_addressbook_ABRecord* person$conv = [[crossmobile_ios_addressbook_ABRecord alloc] initWithABRecord:person];\n    BOOL re$ult = [self shouldContinueAfterSelectingPerson___crossmobile_ios_addressbook_ABPeoplePickerNavigationController_crossmobile_ios_addressbook_ABRecord:(peoplePicker ? peoplePicker : JAVA_NULL) :person$conv];\n    [person$conv release];\n    return re$ult;\n}\n\n",
+    "shouldContinueAfterSelectingPersonProperty(crossmobile.ios.addressbook.ABPeoplePickerNavigationController,crossmobile.ios.addressbook.ABRecord,int,int)": "- (BOOL) peoplePickerNavigationController:(ABPeoplePickerNavigationController *) peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef) person property:(ABPropertyID) property identifier:(ABMultiValueIdentifier) identifier\n{\n    crossmobile_ios_addressbook_ABRecord* person$conv = [[crossmobile_ios_addressbook_ABRecord alloc] initWithABRecord:person];\n    BOOL re$ult = [self shouldContinueAfterSelectingPersonProperty___crossmobile_ios_addressbook_ABPeoplePickerNavigationController_crossmobile_ios_addressbook_ABRecord_int_int:(peoplePicker ? peoplePicker : JAVA_NULL) :person$conv :property :identifier];\n    [person$conv release];\n    return re$ult;\n}\n\n"
+  },
+  "crossmobile.ios.addressbook.ABPersonViewController": {
+    "addressBook()": "- (ABAddressBookRef) addressBook\n{\n    crossmobile_ios_addressbook_ABAddressBook* re$ult = [self addressBook__];\n    [re$ult autorelease];\n    return re$ult->$reference;\n}\n\n",
+    "allowsActions()": "- (BOOL) allowsActions\n{\n    return [self allowsActions__];\n}\n\n",
+    "allowsEditing()": "- (BOOL) allowsEditing\n{\n    return [self allowsEditing__];\n}\n\n",
+    "displayedPerson()": "- (ABRecordRef) displayedPerson\n{\n    crossmobile_ios_addressbook_ABRecord* re$ult = [self displayedPerson__];\n    [re$ult autorelease];\n    return re$ult->$reference;\n}\n\n",
+    "displayedProperties()": "- (NSArray<NSNumber *> *) displayedProperties\n{\n    NSArray<NSNumber *> * re$ult = [self displayedProperties__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "personViewDelegate()": "- (id<ABPersonViewControllerDelegate>) personViewDelegate\n{\n    id<ABPersonViewControllerDelegate> re$ult = [self personViewDelegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "setAddressBook(crossmobile.ios.addressbook.ABAddressBook)": "- (void) setAddressBook:(ABAddressBookRef) addressBook\n{\n    crossmobile_ios_addressbook_ABAddressBook* addressBook$conv = [[crossmobile_ios_addressbook_ABAddressBook alloc] initWithABAddressBook:addressBook];\n    [self setAddressBook___crossmobile_ios_addressbook_ABAddressBook:addressBook$conv];\n    [addressBook$conv release];\n}\n\n",
+    "setAllowsActions(boolean)": "- (void) setAllowsActions:(BOOL) allowsActions\n{\n    [self setAllowsActions___boolean:allowsActions];\n}\n\n",
+    "setAllowsEditing(boolean)": "- (void) setAllowsEditing:(BOOL) allowsEditing\n{\n    [self setAllowsEditing___boolean:allowsEditing];\n}\n\n",
+    "setDisplayedPerson(crossmobile.ios.addressbook.ABRecord)": "- (void) setDisplayedPerson:(ABRecordRef) displayedPerson\n{\n    crossmobile_ios_addressbook_ABRecord* displayedPerson$conv = [[crossmobile_ios_addressbook_ABRecord alloc] initWithABRecord:displayedPerson];\n    [self setDisplayedPerson___crossmobile_ios_addressbook_ABRecord:displayedPerson$conv];\n    [displayedPerson$conv release];\n}\n\n",
+    "setDisplayedProperties(java.util.List)": "- (void) setDisplayedProperties:(NSArray<NSNumber *> *) displayedProperties\n{\n    [self setDisplayedProperties___java_util_List:(displayedProperties ? displayedProperties : JAVA_NULL)];\n}\n\n",
+    "setHighlightedItemForProperty(int,int)": "- (void) setHighlightedItemForProperty:(ABPropertyID) property withIdentifier:(ABMultiValueIdentifier) identifier\n{\n    [self setHighlightedItemForProperty___int_int:property :identifier];\n}\n\n",
+    "setPersonViewDelegate(crossmobile.ios.addressbook.ABPersonViewControllerDelegate)": "- (void) setPersonViewDelegate:(id<ABPersonViewControllerDelegate>) personViewDelegate\n{\n    [self setPersonViewDelegate___crossmobile_ios_addressbook_ABPersonViewControllerDelegate:(personViewDelegate ? personViewDelegate : JAVA_NULL)];\n}\n\n",
+    "setShouldShowLinkedPeople(boolean)": "- (void) setShouldShowLinkedPeople:(BOOL) shouldShowLinkedPeople\n{\n    [self setShouldShowLinkedPeople___boolean:shouldShowLinkedPeople];\n}\n\n",
+    "shouldShowLinkedPeople()": "- (BOOL) shouldShowLinkedPeople\n{\n    return [self shouldShowLinkedPeople__];\n}\n\n"
+  },
+  "crossmobile.ios.addressbook.ABPersonViewControllerDelegate": {
+    "shouldPerformDefaultActionForPerson(crossmobile.ios.addressbook.ABPersonViewController,crossmobile.ios.addressbook.ABRecord,int,int)": "- (BOOL) personViewController:(ABPersonViewController *) personViewController shouldPerformDefaultActionForPerson:(ABRecordRef) person property:(ABPropertyID) property identifier:(ABMultiValueIdentifier) identifier\n{\n    crossmobile_ios_addressbook_ABRecord* person$conv = [[crossmobile_ios_addressbook_ABRecord alloc] initWithABRecord:person];\n    BOOL re$ult = [self shouldPerformDefaultActionForPerson___crossmobile_ios_addressbook_ABPersonViewController_crossmobile_ios_addressbook_ABRecord_int_int:(personViewController ? personViewController : JAVA_NULL) :person$conv :property :identifier];\n    [person$conv release];\n    return re$ult;\n}\n\n"
+  },
+  "crossmobile.ios.addressbook.ABUnknownPersonViewControllerDelegate": {
+    "didResolveToPerson(crossmobile.ios.addressbook.ABUnknownPersonViewController,crossmobile.ios.addressbook.ABRecord)": "- (void) unknownPersonViewController:(ABUnknownPersonViewController *) unknownCardViewController didResolveToPerson:(ABRecordRef) person\n{\n    crossmobile_ios_addressbook_ABRecord* person$conv = [[crossmobile_ios_addressbook_ABRecord alloc] initWithABRecord:person];\n    [self didResolveToPerson___crossmobile_ios_addressbook_ABUnknownPersonViewController_crossmobile_ios_addressbook_ABRecord:(unknownCardViewController ? unknownCardViewController : JAVA_NULL) :person$conv];\n    [person$conv release];\n}\n\n",
+    "shouldPerformDefaultActionForPerson(crossmobile.ios.addressbook.ABUnknownPersonViewController,crossmobile.ios.addressbook.ABRecord,int,int)": "- (BOOL) unknownPersonViewController:(ABUnknownPersonViewController *) personViewController shouldPerformDefaultActionForPerson:(ABRecordRef) person property:(ABPropertyID) property identifier:(ABMultiValueIdentifier) identifier\n{\n    crossmobile_ios_addressbook_ABRecord* person$conv = [[crossmobile_ios_addressbook_ABRecord alloc] initWithABRecord:person];\n    BOOL re$ult = [self shouldPerformDefaultActionForPerson___crossmobile_ios_addressbook_ABUnknownPersonViewController_crossmobile_ios_addressbook_ABRecord_int_int:(personViewController ? personViewController : JAVA_NULL) :person$conv :property :identifier];\n    [person$conv release];\n    return re$ult;\n}\n\n"
+  },
+  "crossmobile.ios.contacts.CNContact": {
+    "birthday()": "- (NSDate *) birthday\n{\n    NSDate * re$ult = [self birthday__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "contactRelations()": "- (NSArray<CNLabeledValue<CNContactRelation *> *> *) contactRelations\n{\n    NSArray<CNLabeledValue<CNContactRelation *> *> * re$ult = [self contactRelations__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "contactType()": "- (CNContactType) contactType\n{\n    return [self contactType__];\n}\n\n",
+    "departmentName()": "- (NSString *) departmentName\n{\n    NSString * re$ult = [self departmentName__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "familyName()": "- (NSString *) familyName\n{\n    NSString * re$ult = [self familyName__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "identifier()": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "imageData()": "- (NSData *) imageData\n{\n    NSData * re$ult = [self imageData__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "imageDataAvailable()": "- (BOOL) imageDataAvailable\n{\n    return [self imageDataAvailable__];\n}\n\n",
+    "instantMessageAddresses()": "- (NSArray<CNLabeledValue<CNInstantMessageAddress *> *> *) instantMessageAddresses\n{\n    NSArray<CNLabeledValue<CNInstantMessageAddress *> *> * re$ult = [self instantMessageAddresses__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "jobTitle()": "- (NSString *) jobTitle\n{\n    NSString * re$ult = [self jobTitle__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "middleName()": "- (NSString *) middleName\n{\n    NSString * re$ult = [self middleName__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "namePrefix()": "- (NSString *) namePrefix\n{\n    NSString * re$ult = [self namePrefix__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "nameSuffix()": "- (NSString *) nameSuffix\n{\n    NSString * re$ult = [self nameSuffix__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "nickname()": "- (NSString *) nickname\n{\n    NSString * re$ult = [self nickname__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "nonGregorianBirthday()": "- (NSDateComponents *) nonGregorianBirthday\n{\n    NSDateComponents * re$ult = [self nonGregorianBirthday__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "note()": "- (NSString *) note\n{\n    NSString * re$ult = [self note__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "organizationName()": "- (NSString *) organizationName\n{\n    NSString * re$ult = [self organizationName__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "phoneticFamilyName()": "- (NSString *) phoneticFamilyName\n{\n    NSString * re$ult = [self phoneticFamilyName__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "phoneticGivenName()": "- (NSString *) phoneticGivenName\n{\n    NSString * re$ult = [self phoneticGivenName__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "phoneticMiddleName()": "- (NSString *) phoneticMiddleName\n{\n    NSString * re$ult = [self phoneticMiddleName__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "postalAddresses()": "- (NSArray<CNLabeledValue<CNPostalAddress *> *> *) postalAddresses\n{\n    NSArray<CNLabeledValue<CNPostalAddress *> *> * re$ult = [self postalAddresses__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "previousFamilyName()": "- (NSString *) previousFamilyName\n{\n    NSString * re$ult = [self previousFamilyName__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "socialProfiles()": "- (NSArray<CNLabeledValue<CNSocialProfile *> *> *) socialProfiles\n{\n    NSArray<CNLabeledValue<CNSocialProfile *> *> * re$ult = [self socialProfiles__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "thumbnailImageData()": "- (NSData *) thumbnailImageData\n{\n    NSData * re$ult = [self thumbnailImageData__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "urlAddresses()": "- (NSArray<CNLabeledValue<NSString *> *> *) urlAddresses\n{\n    NSArray<CNLabeledValue<NSString *> *> * re$ult = [self urlAddresses__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+  },
+  "crossmobile.ios.contacts.CNContactFetchRequest": {
+    "keysToFetch()": "- (NSArray<id<CNKeyDescriptor>> *) keysToFetch\n{\n    NSArray<id<CNKeyDescriptor>> * re$ult = [self keysToFetch__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "mutableObjects()": "- (BOOL) mutableObjects\n{\n    return [self mutableObjects__];\n}\n\n",
+    "setKeysToFetch(java.util.List)": "- (void) setKeysToFetch:(NSArray<id<CNKeyDescriptor>> *) keysToFetch\n{\n    [self setKeysToFetch___java_util_List:(keysToFetch ? keysToFetch : JAVA_NULL)];\n}\n\n",
+    "setMutableObjects(boolean)": "- (void) setMutableObjects:(BOOL) mutableObjects\n{\n    [self setMutableObjects___boolean:mutableObjects];\n}\n\n",
+    "setSortOrder(int)": "- (void) setSortOrder:(CNContactSortOrder) sortOrder\n{\n    [self setSortOrder___int:sortOrder];\n}\n\n",
+    "setUnifyResults(boolean)": "- (void) setUnifyResults:(BOOL) unifyResults\n{\n    [self setUnifyResults___boolean:unifyResults];\n}\n\n",
+    "sortOrder()": "- (CNContactSortOrder) sortOrder\n{\n    return [self sortOrder__];\n}\n\n",
+    "unifyResults()": "- (BOOL) unifyResults\n{\n    return [self unifyResults__];\n}\n\n"
+  },
+  "crossmobile.ios.contacts.CNContactProperty": {
+    "contact()": "- (CNContact *) contact\n{\n    CNContact * re$ult = [self contact__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "identifier()": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "key()": "- (NSString *) key\n{\n    NSString * re$ult = [self key__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "label()": "- (NSString *) label\n{\n    NSString * re$ult = [self label__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "value()": "- (id) value\n{\n    id re$ult = [self value__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+  },
+  "crossmobile.ios.contacts.CNContactStore": {
+    "containersMatchingPredicate(crossmobile.ios.foundation.NSPredicate,crossmobile.rt.StrongReference)": "- (NSArray<CNContainer *> *) containersMatchingPredicate:(NSPredicate *) predicate error:(NSError * _Nullable *) error\n{\n    crossmobile_rt_StrongReference* error$conv = error ? [[crossmobile_rt_StrongReference alloc] __init_crossmobile_ios_StrongReference___java_lang_Object:*error] : JAVA_NULL;\n    NSArray<CNContainer *> * re$ult = [self containersMatchingPredicate___crossmobile_ios_foundation_NSPredicate_crossmobile_rt_StrongReference:(predicate ? predicate : JAVA_NULL) :error$conv];\n    [error$conv release];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "defaultContainerIdentifier()": "- (NSString *) defaultContainerIdentifier\n{\n    NSString * re$ult = [self defaultContainerIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "executeSaveRequest(crossmobile.ios.contacts.CNSaveRequest,crossmobile.rt.StrongReference)": "- (BOOL) executeSaveRequest:(CNSaveRequest *) saveRequest error:(NSError * _Nullable *) error\n{\n    crossmobile_rt_StrongReference* error$conv = error ? [[crossmobile_rt_StrongReference alloc] __init_crossmobile_ios_StrongReference___java_lang_Object:*error] : JAVA_NULL;\n    BOOL re$ult = [self executeSaveRequest___crossmobile_ios_contacts_CNSaveRequest_crossmobile_rt_StrongReference:(saveRequest ? saveRequest : JAVA_NULL) :error$conv];\n    [error$conv release];\n    return re$ult;\n}\n\n",
+    "groupsMatchingPredicate(crossmobile.ios.foundation.NSPredicate,crossmobile.rt.StrongReference)": "- (NSArray<CNGroup *> *) groupsMatchingPredicate:(NSPredicate *) predicate error:(NSError * _Nullable *) error\n{\n    crossmobile_rt_StrongReference* error$conv = error ? [[crossmobile_rt_StrongReference alloc] __init_crossmobile_ios_StrongReference___java_lang_Object:*error] : JAVA_NULL;\n    NSArray<CNGroup *> * re$ult = [self groupsMatchingPredicate___crossmobile_ios_foundation_NSPredicate_crossmobile_rt_StrongReference:(predicate ? predicate : JAVA_NULL) :error$conv];\n    [error$conv release];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "unifiedContactWithIdentifier(java.lang.String,java.util.List,crossmobile.rt.StrongReference)": "- (CNContact *) unifiedContactWithIdentifier:(NSString *) identifier keysToFetch:(NSArray<id<CNKeyDescriptor>> *) keys error:(NSError * _Nullable *) error\n{\n    crossmobile_rt_StrongReference* error$conv = error ? [[crossmobile_rt_StrongReference alloc] __init_crossmobile_ios_StrongReference___java_lang_Object:*error] : JAVA_NULL;\n    CNContact * re$ult = [self unifiedContactWithIdentifier___java_lang_String_java_util_List_crossmobile_rt_StrongReference:(identifier ? identifier : JAVA_NULL) :(keys ? keys : JAVA_NULL) :error$conv];\n    [error$conv release];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "unifiedContactsMatchingPredicate(crossmobile.ios.foundation.NSPredicate,java.util.List,crossmobile.rt.StrongReference)": "- (NSArray<CNContact *> *) unifiedContactsMatchingPredicate:(NSPredicate *) predicate keysToFetch:(NSArray<id<CNKeyDescriptor>> *) keys error:(NSError * _Nullable *) error\n{\n    crossmobile_rt_StrongReference* error$conv = error ? [[crossmobile_rt_StrongReference alloc] __init_crossmobile_ios_StrongReference___java_lang_Object:*error] : JAVA_NULL;\n    NSArray<CNContact *> * re$ult = [self unifiedContactsMatchingPredicate___crossmobile_ios_foundation_NSPredicate_java_util_List_crossmobile_rt_StrongReference:(predicate ? predicate : JAVA_NULL) :(keys ? keys : JAVA_NULL) :error$conv];\n    [error$conv release];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+  },
+  "crossmobile.ios.contacts.CNGroup": {
+    "identifier()": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "name()": "- (NSString *) name\n{\n    NSString * re$ult = [self name__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+  },
+  "crossmobile.ios.contacts.CNInstantMessageAddress": {
+    "service()": "- (NSString *) service\n{\n    NSString * re$ult = [self service__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "username()": "- (NSString *) username\n{\n    NSString * re$ult = [self username__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+  },
+  "crossmobile.ios.contacts.CNLabeledValue": {
+    "label()": "- (NSString *) label\n{\n    NSString * re$ult = [self label__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "labeledValueBySettingLabel(java.lang.String)": "- (instancetype) labeledValueBySettingLabel:(NSString *) label\n{\n    id re$ult = [self labeledValueBySettingLabel___java_lang_String:(label ? label : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "value()": "- (ValueType) value\n{\n    ValueType re$ult = [self value__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+  },
+  "crossmobile.ios.contacts.CNMutableContact": {
+    "setBirthday(crossmobile.ios.foundation.NSDate)": "- (void) setBirthday:(NSDate *) birthday\n{\n    [self setBirthday___crossmobile_ios_foundation_NSDate:(birthday ? birthday : JAVA_NULL)];\n}\n\n",
+    "setContactType(int)": "- (void) setContactType:(CNContactType) contactType\n{\n    [self setContactType___int:contactType];\n}\n\n",
+    "setDepartmentName(java.lang.String)": "- (void) setDepartmentName:(NSString *) departmentName\n{\n    [self setDepartmentName___java_lang_String:(departmentName ? departmentName : JAVA_NULL)];\n}\n\n",
+    "setFamilyName(java.lang.String)": "- (void) setFamilyName:(NSString *) familyName\n{\n    [self setFamilyName___java_lang_String:(familyName ? familyName : JAVA_NULL)];\n}\n\n",
+    "setImageData(crossmobile.ios.foundation.NSData)": "- (void) setImageData:(NSData *) imageData\n{\n    [self setImageData___crossmobile_ios_foundation_NSData:(imageData ? imageData : JAVA_NULL)];\n}\n\n",
+    "setImageDataAvailable(boolean)": "- (void) setImageDataAvailable:(BOOL) imageDataAvailable\n{\n    [self setImageDataAvailable___boolean:imageDataAvailable];\n}\n\n",
+    "setJobTitle(java.lang.String)": "- (void) setJobTitle:(NSString *) jobTitle\n{\n    [self setJobTitle___java_lang_String:(jobTitle ? jobTitle : JAVA_NULL)];\n}\n\n",
+    "setMiddleName(java.lang.String)": "- (void) setMiddleName:(NSString *) middleName\n{\n    [self setMiddleName___java_lang_String:(middleName ? middleName : JAVA_NULL)];\n}\n\n",
+    "setNamePrefix(java.lang.String)": "- (void) setNamePrefix:(NSString *) namePrefix\n{\n    [self setNamePrefix___java_lang_String:(namePrefix ? namePrefix : JAVA_NULL)];\n}\n\n",
+    "setNameSuffix(java.lang.String)": "- (void) setNameSuffix:(NSString *) nameSuffix\n{\n    [self setNameSuffix___java_lang_String:(nameSuffix ? nameSuffix : JAVA_NULL)];\n}\n\n",
+    "setNickname(java.lang.String)": "- (void) setNickname:(NSString *) nickname\n{\n    [self setNickname___java_lang_String:(nickname ? nickname : JAVA_NULL)];\n}\n\n",
+    "setNonGregorianBirthday(crossmobile.ios.foundation.NSDateComponents)": "- (void) setNonGregorianBirthday:(NSDateComponents *) nonGregorianBirthday\n{\n    [self setNonGregorianBirthday___crossmobile_ios_foundation_NSDateComponents:(nonGregorianBirthday ? nonGregorianBirthday : JAVA_NULL)];\n}\n\n",
+    "setNote(java.lang.String)": "- (void) setNote:(NSString *) note\n{\n    [self setNote___java_lang_String:(note ? note : JAVA_NULL)];\n}\n\n",
+    "setOrganizationName(java.lang.String)": "- (void) setOrganizationName:(NSString *) organizationName\n{\n    [self setOrganizationName___java_lang_String:(organizationName ? organizationName : JAVA_NULL)];\n}\n\n",
+    "setPhoneticFamilyName(java.lang.String)": "- (void) setPhoneticFamilyName:(NSString *) phoneticFamilyName\n{\n    [self setPhoneticFamilyName___java_lang_String:(phoneticFamilyName ? phoneticFamilyName : JAVA_NULL)];\n}\n\n",
+    "setPhoneticGivenName(java.lang.String)": "- (void) setPhoneticGivenName:(NSString *) phoneticGivenName\n{\n    [self setPhoneticGivenName___java_lang_String:(phoneticGivenName ? phoneticGivenName : JAVA_NULL)];\n}\n\n",
+    "setPhoneticMiddleName(java.lang.String)": "- (void) setPhoneticMiddleName:(NSString *) phoneticMiddleName\n{\n    [self setPhoneticMiddleName___java_lang_String:(phoneticMiddleName ? phoneticMiddleName : JAVA_NULL)];\n}\n\n",
+    "setPreviousFamilyName(java.lang.String)": "- (void) setPreviousFamilyName:(NSString *) previousFamilyName\n{\n    [self setPreviousFamilyName___java_lang_String:(previousFamilyName ? previousFamilyName : JAVA_NULL)];\n}\n\n",
+    "setThumbnailImageData(crossmobile.ios.foundation.NSData)": "- (void) setThumbnailImageData:(NSData *) thumbnailImageData\n{\n    [self setThumbnailImageData___crossmobile_ios_foundation_NSData:(thumbnailImageData ? thumbnailImageData : JAVA_NULL)];\n}\n\n"
+  },
+  "crossmobile.ios.contacts.CNPostalAddress": {
+    "ISOCountryCode()": "- (NSString *) ISOCountryCode\n{\n    NSString * re$ult = [self ISOCountryCode__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "city()": "- (NSString *) city\n{\n    NSString * re$ult = [self city__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "country()": "- (NSString *) country\n{\n    NSString * re$ult = [self country__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "postalCode()": "- (NSString *) postalCode\n{\n    NSString * re$ult = [self postalCode__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "state()": "- (NSString *) state\n{\n    NSString * re$ult = [self state__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "street()": "- (NSString *) street\n{\n    NSString * re$ult = [self street__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "subAdministrativeArea()": "- (NSString *) subAdministrativeArea\n{\n    NSString * re$ult = [self subAdministrativeArea__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+  },
+  "crossmobile.ios.contacts.CNSaveRequest": {
+    "addContact(crossmobile.ios.contacts.CNMutableContact,java.lang.String)": "- (void) addContact:(CNMutableContact *) contact toContainerWithIdentifier:(NSString *) identifier\n{\n    [self addContact___crossmobile_ios_contacts_CNMutableContact_java_lang_String:(contact ? contact : JAVA_NULL) :(identifier ? identifier : JAVA_NULL)];\n}\n\n",
+    "deleteContact(crossmobile.ios.contacts.CNMutableContact)": "- (void) deleteContact:(CNMutableContact *) contact\n{\n    [self deleteContact___crossmobile_ios_contacts_CNMutableContact:(contact ? contact : JAVA_NULL)];\n}\n\n",
+    "updateContact(crossmobile.ios.contacts.CNMutableContact)": "- (void) updateContact:(CNMutableContact *) contact\n{\n    [self updateContact___crossmobile_ios_contacts_CNMutableContact:(contact ? contact : JAVA_NULL)];\n}\n\n"
+  },
+  "crossmobile.ios.contacts.CNSocialProfile": {
+    "service()": "- (NSString *) service\n{\n    NSString * re$ult = [self service__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "urlString()": "- (NSString *) urlString\n{\n    NSString * re$ult = [self urlString__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "userIdentifier()": "- (NSString *) userIdentifier\n{\n    NSString * re$ult = [self userIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "username()": "- (NSString *) username\n{\n    NSString * re$ult = [self username__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+  }
+}

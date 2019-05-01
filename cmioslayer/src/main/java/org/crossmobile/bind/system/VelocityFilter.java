@@ -1,0 +1,70 @@
+/* (c) 2019 by Panayotis Katsaloulis
+ *
+ * CrossMobile is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, version 2.
+ *
+ * CrossMobile is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with CrossMobile; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
+package org.crossmobile.bind.system;
+
+public final class VelocityFilter {
+
+    private double time[];
+    private double value[];
+    private int pointer;
+    private int size;
+
+    public VelocityFilter() {
+        this(2);
+    }
+
+    public VelocityFilter(int filtersize) {
+        time = new double[filtersize + 1];
+        value = new double[filtersize + 1];
+        reset();
+    }
+
+    public final void reset() {
+        pointer = -1;
+        size = 0;
+    }
+
+    public final double getValue() {
+        double result = 0;
+        for (int i = 0; i < size - 1; i++) {
+            int p1 = pointer - i;   // first current, then go backwards
+            if (p1 < 0)
+                p1 += size;
+            int p2 = p1 - 1;    // One box earlier than p1
+            if (p2 < 0)
+                p2 += size;
+            result += (value[p1] - value[p2]) / (time[p1] - time[p2]);
+        }
+        if (size > 1)
+            result /= (size);
+        return result;
+    }
+
+    public final void put(double time, double value) {
+        if (pointer >= 0 && this.time[pointer] == time) {   // Avoid infinite values
+            this.value[pointer] = value;
+            return;
+        }
+
+        pointer++;
+        if (pointer >= this.value.length)
+            pointer = 0;
+        else if (size < this.value.length)
+            size++;
+        this.time[pointer] = time;
+        this.value[pointer] = value;
+    }
+}

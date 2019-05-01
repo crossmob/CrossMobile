@@ -1,0 +1,11 @@
+LIBRARY cmimage
+EXPORTS
+
+	_OBJC_CLASS_crossmobile_ios_coreimage_CIContext$Ext DATA
+	__objc_class_name_crossmobile_ios_coreimage_CIContext$Ext CONSTANT
+	_OBJC_CLASS_crossmobile_ios_coreimage_CIFilter$Ext DATA
+	__objc_class_name_crossmobile_ios_coreimage_CIFilter$Ext CONSTANT
+	_OBJC_CLASS_crossmobile_ios_coreimage_CIImage$Ext DATA
+	__objc_class_name_crossmobile_ios_coreimage_CIImage$Ext CONSTANT
+	_OBJC_CLASS_crossmobile_ios_uikit_UIImagePickerController$Ext DATA
+	__objc_class_name_crossmobile_ios_uikit_UIImagePickerController$Ext CONSTANT

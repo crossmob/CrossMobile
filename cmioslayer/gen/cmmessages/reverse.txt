@@ -1,0 +1,26 @@
+{
+  "crossmobile.ios.messageui.MFMailComposeViewController": {
+    "addAttachmentData(crossmobile.ios.foundation.NSData,java.lang.String,java.lang.String)": "- (void) addAttachmentData:(NSData *) attachment mimeType:(NSString *) mimeType fileName:(NSString *) filename\n{\n    [self addAttachmentData___crossmobile_ios_foundation_NSData_java_lang_String_java_lang_String:(attachment ? attachment : JAVA_NULL) :(mimeType ? mimeType : JAVA_NULL) :(filename ? filename : JAVA_NULL)];\n}\n\n",
+    "mailComposeDelegate()": "- (id<MFMailComposeViewControllerDelegate>) mailComposeDelegate\n{\n    id<MFMailComposeViewControllerDelegate> re$ult = [self mailComposeDelegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "setBccRecipients(java.util.List)": "- (void) setBccRecipients:(NSArray<NSString *> *) bccRecipients\n{\n    [self setBccRecipients___java_util_List:(bccRecipients ? bccRecipients : JAVA_NULL)];\n}\n\n",
+    "setCcRecipients(java.util.List)": "- (void) setCcRecipients:(NSArray<NSString *> *) ccRecipients\n{\n    [self setCcRecipients___java_util_List:(ccRecipients ? ccRecipients : JAVA_NULL)];\n}\n\n",
+    "setMailComposeDelegate(crossmobile.ios.messageui.MFMailComposeViewControllerDelegate)": "- (void) setMailComposeDelegate:(id<MFMailComposeViewControllerDelegate>) mailComposeDelegate\n{\n    [self setMailComposeDelegate___crossmobile_ios_messageui_MFMailComposeViewControllerDelegate:(mailComposeDelegate ? mailComposeDelegate : JAVA_NULL)];\n}\n\n",
+    "setMessageBody(java.lang.String,boolean)": "- (void) setMessageBody:(NSString *) body isHTML:(BOOL) isHTML\n{\n    [self setMessageBody___java_lang_String_boolean:(body ? body : JAVA_NULL) :isHTML];\n}\n\n",
+    "setSubject(java.lang.String)": "- (void) setSubject:(NSString *) subject\n{\n    [self setSubject___java_lang_String:(subject ? subject : JAVA_NULL)];\n}\n\n",
+    "setToRecipients(java.util.List)": "- (void) setToRecipients:(NSArray<NSString *> *) toRecipients\n{\n    [self setToRecipients___java_util_List:(toRecipients ? toRecipients : JAVA_NULL)];\n}\n\n"
+  },
+  "crossmobile.ios.messageui.MFMailComposeViewControllerDelegate": {
+    "didFinishWithResult(crossmobile.ios.messageui.MFMailComposeViewController,int,crossmobile.ios.foundation.NSError)": "- (void) mailComposeController:(MFMailComposeViewController *) controller didFinishWithResult:(MFMailComposeResult) result error:(NSError *) error\n{\n    [self didFinishWithResult___crossmobile_ios_messageui_MFMailComposeViewController_int_crossmobile_ios_foundation_NSError:(controller ? controller : JAVA_NULL) :result :(error ? error : JAVA_NULL)];\n}\n\n"
+  },
+  "crossmobile.ios.messageui.MFMessageComposeViewController": {
+    "body()": "- (NSString *) body\n{\n    NSString * re$ult = [self body__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "messageComposeDelegate()": "- (id<MFMessageComposeViewControllerDelegate>) messageComposeDelegate\n{\n    id<MFMessageComposeViewControllerDelegate> re$ult = [self messageComposeDelegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "recipients()": "- (NSArray<NSString *> *) recipients\n{\n    NSArray<NSString *> * re$ult = [self recipients__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+    "setBody(java.lang.String)": "- (void) setBody:(NSString *) body\n{\n    [self setBody___java_lang_String:(body ? body : JAVA_NULL)];\n}\n\n",
+    "setMessageComposeDelegate(crossmobile.ios.messageui.MFMessageComposeViewControllerDelegate)": "- (void) setMessageComposeDelegate:(id<MFMessageComposeViewControllerDelegate>) messageComposeDelegate\n{\n    [self setMessageComposeDelegate___crossmobile_ios_messageui_MFMessageComposeViewControllerDelegate:(messageComposeDelegate ? messageComposeDelegate : JAVA_NULL)];\n}\n\n",
+    "setRecipients(java.util.List)": "- (void) setRecipients:(NSArray<NSString *> *) recipients\n{\n    [self setRecipients___java_util_List:(recipients ? recipients : JAVA_NULL)];\n}\n\n"
+  },
+  "crossmobile.ios.messageui.MFMessageComposeViewControllerDelegate": {
+    "didFinishWithResult(crossmobile.ios.messageui.MFMessageComposeViewController,int)": "- (void) messageComposeViewController:(MFMessageComposeViewController *) controller didFinishWithResult:(MessageComposeResult) result\n{\n    [self didFinishWithResult___crossmobile_ios_messageui_MFMessageComposeViewController_int:(controller ? controller : JAVA_NULL) :result];\n}\n\n"
+  }
+}

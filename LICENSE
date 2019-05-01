@@ -1,0 +1,36 @@
+                           CrossMobile License
+
+ This program is free software and it consists of four parts:
+
+ a) CrossMobile Runtime Library
+ c) CrossMobile Build Tools
+ d) CrossMobile Utilities
+ b) CrossMobile Manager
+
+ a) All software that is part of the application runtime, meaning the code is
+    required to be redistributed in the final target application (i.e. the
+    CrossMobile Runtime Library), is under the GNU Lesser General Public
+    License V2.1.
+
+ b) The sources of the tools themselves that process the user provided code, in
+    order to properly transform this code to be executed in the target device
+    (i.e. the CrossMobile Build Tools), is under the Affero General Public
+    License V2. 
+
+ c & d) The GUI front-end of the CrossMobile program (CrossMobile Manager), as
+    well as all helper utilities (CrossMobile Utilities), are under the GNU
+    General Public License V2.
+
+ All licensed parts are compatible to each other, as long as they are
+ redistributed as a whole and all terms of each license individually are
+ followed.
+
+ You are allowed to redistribute it and/or modify it under the terms of the
+ specified Licenses as declared above. Please see the corresponding LICENSE.*
+ file for more details.
+
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+

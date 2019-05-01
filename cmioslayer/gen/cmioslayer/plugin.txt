@@ -1,0 +1,7 @@
+# Plugin cmioslayer
+objc.libs=CFNetwork.framework~;CoreGraphics.framework;CoreMotion.framework;Foundation.framework;OpenGLES.framework~;QuartzCore.framework~;UIKit.framework
+java.initializer=
+objc.pods=
+android.permissions=
+android.extra.app=
+android.extra.dependencies=com.android.support\:support-core-utils\:26.1.0\:

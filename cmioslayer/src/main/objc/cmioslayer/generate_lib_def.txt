@@ -1,0 +1,1 @@
+grep "@interface\s[a-zA-Z_]*\s:\s[a-zA-Z_]*" *.h | grep '^java\|org\|crossmobile' | sed 's/[a-zA-Z_]*\.h:@interface /_OBJC_CLASS_/g' | sed 's/:.*$/ DATA/g'

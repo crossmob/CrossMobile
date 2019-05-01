@@ -1,0 +1,7 @@
+LIBRARY cmmessages
+EXPORTS
+
+	_OBJC_CLASS_crossmobile_ios_messageui_MFMailComposeViewController$Ext DATA
+	__objc_class_name_crossmobile_ios_messageui_MFMailComposeViewController$Ext CONSTANT
+	_OBJC_CLASS_crossmobile_ios_messageui_MFMessageComposeViewController$Ext DATA
+	__objc_class_name_crossmobile_ios_messageui_MFMessageComposeViewController$Ext CONSTANT

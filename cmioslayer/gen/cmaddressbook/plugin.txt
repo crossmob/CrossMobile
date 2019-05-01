@@ -1,0 +1,7 @@
+# Plugin cmaddressbook
+objc.libs=Accounts.framework;AddressBook.framework;AddressBookUI.framework;Contacts.framework
+java.initializer=
+objc.pods=
+android.permissions=
+android.extra.app=
+android.extra.dependencies=

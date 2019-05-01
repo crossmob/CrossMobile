@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<!DOCTYPE chassis SYSTEM "skin.dtd">-->
+<chassis width="816" height="1126" idiom="pad">
+    <meta priority="80" info="Pad" descr="A big screen resolution (768x1024) skin"/>
+    <image x="0" y="0" width="816" height="1126" file="pad/chassis.png"/>
+    <screen x="24" y="40" width="768" height="1024"/>
+    <led x="640" y="20" width="11" height="11" imageon="pad/ledgreen.png" imageoff="pad/ledred.png"/>
+    <power x="390" y="0" width="46" height="46" imagedown="pad/power_down.png" imageup="pad/power_up.png"/>
+    <back x="278" y="1068" width="42" height="42" imagedown="pad/back_down.png" imageup="pad/back_up.png"/>
+    <home x="424" y="1068" width="42" height="42" imagedown="pad/home_down.png" imageup="pad/home_up.png"/>
+    <action x="494" y="1068" width="42" height="42" imagedown="pad/action_down.png" imageup="pad/action_up.png"/>
+</chassis>

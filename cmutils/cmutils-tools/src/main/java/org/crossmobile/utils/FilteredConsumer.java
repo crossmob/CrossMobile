@@ -1,0 +1,37 @@
+/* (c) 2019 by Panayotis Katsaloulis
+ *
+ * CrossMobile is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, version 2.
+ *
+ * CrossMobile is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with CrossMobile; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
+package org.crossmobile.utils;
+
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+
+public class FilteredConsumer<T> implements Consumer<T> {
+
+    private final Consumer<T> parent;
+    private final Predicate<T> predicate;
+
+    public FilteredConsumer(Consumer<T> parent, Predicate<T> predicate) {
+        this.parent = parent;
+        this.predicate = predicate;
+    }
+
+    @Override
+    public final void accept(T t) {
+        if (parent != null && (predicate == null || predicate.test(t)))
+            parent.accept(t);
+    }
+
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor name="cmarchetype-single">
+    <fileSets>
+        <fileSet>
+            <directory>src/main/materials</directory>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/icons</directory>
+            <includes>
+                <include>**</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8" packaged="true">
+            <directory>src/main/java/</directory>
+            <includes>
+                <include>__artifactId__/*.java</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory></directory>
+            <includes>
+                <include>build.gradle</include>
+                <include>*.properties</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+    <requiredProperties>
+        <requiredProperty key="name">
+            <defaultValue>${artifactId}</defaultValue>
+        </requiredProperty>
+    </requiredProperties>
+</archetype-descriptor>

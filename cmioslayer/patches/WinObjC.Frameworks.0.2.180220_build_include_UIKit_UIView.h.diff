@@ -1,0 +1,8 @@
+--- /Users/arktouros/crossmobile/cmioslayer/target/uwp/packages/WinObjC.Frameworks.0.2.180220/build/include/UIKit/UIView.h
++++ /Users/arktouros/crossmobile/cmioslayer/target/uwp/packages/include/UIKit/UIView.h
+@@ -309,0 +309,1 @@
++- (void)safeAreaInsetsDidChange STUB_METHOD;
+@@ -363,0 +364,3 @@
++@property (nonatomic, readonly) UIEdgeInsets safeAreaInsets;
++@property (nonatomic, readonly, strong) UILayoutGuide *safeAreaLayoutGuide STUB_PROPERTY;
++@property (nonatomic) BOOL insetsLayoutMarginsFromSafeArea STUB_PROPERTY;

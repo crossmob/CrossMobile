@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skins>
+    <skin>
+        <name>fixed-l</name>
+        <info>Fixed large</info>
+        <description>Use system decorations while stretching display, with base height of 1024 pixels</description>
+    </skin>
+    <skin>
+        <name>fixed-m</name>
+        <info>Fixed medium</info>
+        <description>Use system decorations while stretching display, with base height of 568 pixels</description>
+    </skin>
+    <skin>
+        <name>fixed-s</name>
+        <info>Fixed small</info>
+        <description>Use system decorations while stretching display, with base height of 480 pixels</description>
+    </skin>
+    <skin>
+        <name>pad-w</name>
+        <info>Pad wide</info>
+        <description>A wide big screen resolution (800x1280) skin</description>
+    </skin>
+    <skin>
+        <name>pad</name>
+        <info>Pad</info>
+        <description>A big screen resolution (768x1024) skin</description>
+    </skin>
+    <skin>
+        <name>phone-s</name>
+        <info>Phone short</info>
+        <description>A short small screen resolution (320x480) skin</description>
+    </skin>
+    <skin>
+        <name>phone</name>
+        <info>Phone</info>
+        <description>A small screen resolution (320x568) skin</description>
+    </skin>
+    <skin>
+        <name>system-l</name>
+        <info>System large</info>
+        <description>Use system decorations and a resizable display, while keeping PPI, for a large display</description>
+    </skin>
+    <skin>
+        <name>system-o</name>
+        <info>System overlayed</info>
+        <description>Use system decorations and a resizable display, while keeping PPI, for a small display</description>
+    </skin>
+    <skin>
+        <name>system-s</name>
+        <info>System small</info>
+        <description>Use system decorations and a resizable display, while keeping PPI, for a small display</description>
+    </skin>
+</skins>

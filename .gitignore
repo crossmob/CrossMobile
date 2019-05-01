@@ -1,0 +1,12 @@
+**/target
+**/xcuserdata/
+**/*.xcworkspace/
+**/cmioslayer-ios/*/build
+**/cmioslayer-ios/cache/
+**/.gradle/
+cmdist/crossmobile-gradle-plugin/build
+cmioslayer/gen/lib
+.idea/
+*.iml
+/.project
+resources/keys/*

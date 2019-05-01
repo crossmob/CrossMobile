@@ -1,0 +1,9 @@
+LIBRARY cmsocialbase
+EXPORTS
+
+	_OBJC_CLASS_crossmobile_ios_social_SLComposeServiceViewController$Ext DATA
+	__objc_class_name_crossmobile_ios_social_SLComposeServiceViewController$Ext CONSTANT
+	_OBJC_CLASS_crossmobile_ios_social_SLComposeViewController$Ext DATA
+	__objc_class_name_crossmobile_ios_social_SLComposeViewController$Ext CONSTANT
+	_OBJC_CLASS_crossmobile_ios_social_SLRequest$Ext DATA
+	__objc_class_name_crossmobile_ios_social_SLRequest$Ext CONSTANT

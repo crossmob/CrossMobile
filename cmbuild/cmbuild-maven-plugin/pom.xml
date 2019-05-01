@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>cmbuild</artifactId>
+        <groupId>org.crossmobile</groupId>
+        <version>2.5.pre1.cm</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <artifactId>cmbuild-maven-plugin</artifactId>
+    <packaging>maven-plugin</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.crossmobile</groupId>
+            <artifactId>cmbuild-base</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.plist</groupId>
+            <artifactId>dd-plist</artifactId>
+            <version>${version.dd-plist}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>${version.javassist}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.antlr</groupId>
+            <artifactId>antlr4-runtime</artifactId>
+            <version>4.5.3</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>cmutils-maven</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <proguard.dont.obfuscate></proguard.dont.obfuscate>
+    </properties>
+    <profiles>
+        <profile>
+            <id>debug</id>
+            <properties>
+                <proguard.dont.obfuscate>-dontobfuscate</proguard.dont.obfuscate>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.antlr</groupId>
+                <artifactId>antlr4-maven-plugin</artifactId>
+                <version>4.5.3</version>
+                <configuration>
+                    <outputDirectory>src/main/java/org/crossmobile/build/antlr</outputDirectory>
+                    <treatWarningsAsErrors>true</treatWarningsAsErrors>
+                    <arguments>
+                        <argument>-package</argument>
+                        <argument>org.crossmobile.build.antlr</argument>
+                    </arguments>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>antlr</id>
+                        <goals>
+                            <goal>antlr4</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>3.5</version>
+                <executions>
+                    <execution>
+                        <id>default-descriptor</id>
+                        <goals>
+                            <goal>descriptor</goal>
+                        </goals>
+                        <phase>process-classes</phase>
+                    </execution>
+                    <execution>
+                        <id>help-descriptor</id>
+                        <goals>
+                            <goal>helpmojo</goal>
+                        </goals>
+                        <phase>process-classes</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <!-- Obfuscate code -->
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <id>obfuscate</id>
+                        <configuration>
+                            <target>
+                                <pathconvert refid="maven.compile.classpath" property="compile_classpath">
+                                    <filtermapper>
+                                        <replaceregex pattern=".*\${file.separator}classes"/>
+                                        <replaceregex
+                                                pattern=".*\${file.separator}cmutils-common-${project.version}.jar"/>
+                                        <replaceregex
+                                                pattern=".*\${file.separator}cmutils-tools-${project.version}.jar"/>
+                                        <replaceregex
+                                                pattern=".*\${file.separator}cmutils-maven-${project.version}.jar"/>
+                                        <replaceregex pattern=".*\${file.separator}loadlib-${version.loadlib}.jar"/>
+                                        <replaceregex
+                                                pattern=".*\${file.separator}minimal-json-${version.minimal-json}.jar"/>
+                                    </filtermapper>
+                                </pathconvert>
+                                <java fork="true" failonerror="true"
+                                      jar="${user.home}/.m2/repository/net/sf/proguard/proguard-base/${version.proguard}/proguard-base-${version.proguard}.jar">
+                                    <arg line="@proguard.conf ${proguard.dont.obfuscate}"/>
+                                    <arg line="-printmapping target/${project.artifactId}-${project.version}.map"/>
+                                    <arg line="-injars target/${project.artifactId}-${project.version}.jar"/>
+                                    <arg line="-injars ${user.home}/.m2/repository/org/crossmobile/cmutils-common/${project.version}/cmutils-common-${project.version}.jar(!META-INF/MANIFEST.MF)"/>
+                                    <arg line="-injars ${user.home}/.m2/repository/org/crossmobile/cmutils-tools/${project.version}/cmutils-tools-${project.version}.jar(!META-INF/MANIFEST.MF)"/>
+                                    <arg line="-injars ${user.home}/.m2/repository/org/crossmobile/cmutils-maven/${project.version}/cmutils-maven-${project.version}.jar(!META-INF/MANIFEST.MF)"/>
+                                    <arg line="-injars ${user.home}/.m2/repository/com/panayotis/loadlib/${version.loadlib}/loadlib-${version.loadlib}.jar(!META-INF/MANIFEST.MF)"/>
+                                    <arg line="-injars ${user.home}/.m2/repository/com/eclipsesource/minimal-json/minimal-json/${version.minimal-json}/minimal-json-${version.minimal-json}.jar(!META-INF/MANIFEST.MF)"/>
+                                    <arg line="-outjars target/${project.artifactId}-${project.version}-proguard.jar"/>
+                                    <arg value="-libraryjars"/>
+                                    <arg value="${java.home}/lib/rt.jar"/>
+                                    <arg line="-libraryjars"/>
+                                    <arg value="${java.home}/lib/jce.jar"/>
+                                    <arg line="-libraryjars"/>
+                                    <arg value="${compile_classpath}"/>
+                                </java>
+                                <move file="target/${project.artifactId}-${project.version}-proguard.jar"
+                                      tofile="target/${project.artifactId}-${project.version}.jar"/>
+                                <move file="target/${project.artifactId}-${project.version}.map"
+                                      todir="../../resources/installers/mapping" failonerror="false" />
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>net.sf.proguard</groupId>
+                        <artifactId>proguard-base</artifactId>
+                        <version>${version.proguard}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

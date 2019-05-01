@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "jvmargs": [
+    "-Dawt.useSystemAAFontSettings=on",
+    "-Dswing.aatext=true"
+  ]
+}

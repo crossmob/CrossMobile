@@ -1,0 +1,7 @@
+# Plugin cmpayment
+objc.libs=StoreKit.framework
+java.initializer=
+objc.pods=
+android.permissions=BILLING
+android.extra.app=
+android.extra.dependencies=
