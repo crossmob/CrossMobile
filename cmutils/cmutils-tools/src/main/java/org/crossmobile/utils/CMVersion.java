@@ -17,5 +17,5 @@ package org.crossmobile.utils;
 
 public class CMVersion {
 
-    public static final String VERSION = "2.5.pre1.cm";
+    public static final String VERSION = "2.5.pre2.cm";
 }
