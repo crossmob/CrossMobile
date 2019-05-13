@@ -1,14 +1,31 @@
                            CrossMobile License
 
- This program is free software and it consists of four parts:
+
+ CrossMobile comes in two flavours, Community Edition and Commercial Edition.
+ Community edition is Open Source and free. The Commercial Edition needs a
+ special License.
+
+ To use the Community Edition, you should either (a) use it in a project under
+ an open source license or (b) be a single developer. You are also allowed to
+ use CrossMobile for any commercial purpose, as long as any of the above
+ requirements are met. Also you are eligible to use CrossMobile in larger
+ teams as long as it is for evaluation purposes and the produced applications
+ are not distributed.
+
+ In all other cases the Commercial Edition is required. If you have any more
+ questions please contact us through https://crossmobile.tech/contact
+
+
+ The Community Edition consists of four parts:
 
  a) CrossMobile Runtime Library
  c) CrossMobile Build Tools
  d) CrossMobile Utilities
  b) CrossMobile Manager
 
+
  a) All software that is part of the application runtime, meaning the code is
-    required to be redistributed in the final target application (i.e. the
+    required to be redistributed in the produced target application (i.e. the
     CrossMobile Runtime Library), is under the GNU Lesser General Public
     License V2.1.
 
