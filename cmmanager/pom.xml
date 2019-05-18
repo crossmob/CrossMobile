@@ -216,27 +216,20 @@
                                         <copy tofile="${ldir}/usr/share/metainfo/crossmobile.appdata.xml"
                                               file="${resources.dir}/installers/linux/crossmobile.appdata.xml"/>
                                         <chmod file="${ldir}/AppRun" perm="a+x"/>
-                                        <exec executable="${resources.dir}/installers/linux/appimagetool.Darwin"
-                                              failonerror="true" osfamily="mac">
-                                            <env key="PATH"
-                                                 value="${resources.dir}/installers/linux/mksquashfs/Darwin:${env.PATH}"/>
-                                            <env key="ARCH" value="x86_64"/>
-                                            <arg value="--runtime-file"/>
-                                            <arg value="${resources.dir}/installers/linux/runtime64"/>
+                                        <exec executable="docker" failonerror="true">
+                                            <arg value="run"/>
+                                            <arg value="-t"/>
+                                            <arg value="--rm"/>
                                             <arg value="-v"/>
-                                            <arg value="${ldir}"/>
-                                            <arg value="--sign"/>
-                                            <arg value="${installers.dir}/CrossMobile-${project.version}.appimage"/>
-                                        </exec>
-                                        <exec executable="${resources.dir}/installers/linux/appimagetool.Linux"
-                                              failonerror="true" os="Linux">
-                                            <env key="ARCH" value="x86_64"/>
+                                            <arg value="${project.build.directory}:/usr/src/app"/>
                                             <arg value="-v"/>
-                                            <arg value="${ldir}"/>
-                                            <arg value="--no-appstream"/>
-                                            <arg value="--sign"/>
-                                            <arg value="${installers.dir}/CrossMobile-${project.version}.appimage"/>
+                                            <arg value="${user.home}/.gnupg:/root/.gnupg"/>
+                                            <arg value="teras/appimage-builder"/>
+                                            <arg value="bash"/>
+                                            <arg value="-c"/>
+                                            <arg value="gpg-agent --daemon; gpg2 --detach-sign --armor --pinentry-mode loopback --passphrase '${gnupgpass}' `mktemp` ; /opt/appimage/AppRun -v crossmobile/CrossMobile.AppDir --sign -n CrossMobile-${project.version}.appimage"/>
                                         </exec>
+                                        <move todir="target/installers" file="target/CrossMobile-${project.version}.appimage"/>
 
                                         <!-- OSX -->
                                         <property name="odir" value="${workinstall.dir}/CrossMobile.app/Contents"/>

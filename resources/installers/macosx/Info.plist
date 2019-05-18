@@ -1,72 +1,60 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-<key>CFBundleDevelopmentRegion</key>
-<string>English</string>
-<key>CFBundleExecutable</key>
-<string>CrossMobile</string>
-<key>CFBundleIconFile</key>
-<string>CrossMobile.icns</string>
-<key>CFBundleIdentifier</key>
-<string>org.crossmobile.gui</string>
-<key>CFBundleDisplayName</key>
-<string>CrossMobile</string>
-<key>CFBundleInfoDictionaryVersion</key>
-<string>6.0</string>
-<key>CFBundleName</key>
-<string>CrossMobile</string>
-<key>CFBundlePackageType</key>
-<string>APPL</string>
-<key>CFBundleShortVersionString</key>
-<string>@@VERSION@@</string>
-<key>CFBundleVersion</key>
-<string>1.0</string>
-<key>CFBundleSignature</key>
-<string>????</string>
-<key>NSHumanReadableCopyright</key>
-<string>2019 by Panayotis Katsaloulis</string>
-<key>LSApplicationCategoryType</key>
-<string>public.app-category.developer-tools</string>
-<key>NSHighResolutionCapable</key>
-<true/>
-<key>NSSupportsAutomaticGraphicsSwitching</key>
-<true/>
-<key>JVMMainClassName</key>
-<string>org.crossmobile.CrossMobile</string>
-<key>CFBundleDocumentTypes</key>
-<array>
-<dict>
-<key>CFBundleTypeExtensions</key>
-<array>
-<string>crossmobile</string>
-</array>
-<key>CFBundleTypeIconFile</key>
-<string>Crossmobile_Document.icns</string>
-<key>CFBundleTypeName</key>
-<string>Crossmobile Project</string>
-<key>CFBundleTypeRole</key>
-<string>Editor</string>
-</dict>
-</array>
-<key>LSArchitecturePriority</key>
-<array>
-</array>
-<key>LSEnvironment</key>
-<dict>
-<key>LC_CTYPE</key>
-<string>UTF-8</string>
-</dict>
-<key>JVMOptions</key>
-<array>
-<string>-splash:$APP_ROOT/Contents/Resources/splash.png</string>
-</array>
-<key>JVMDefaultOptions</key>
-<dict>
-</dict>
-<key>JVMArguments</key>
-<array>
-</array>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>CrossMobile</string>
+	<key>CFBundleIconFile</key>
+	<string>CrossMobile.icns</string>
+	<key>CFBundleIdentifier</key>
+	<string>org.crossmobile.gui</string>
+	<key>CFBundleDisplayName</key>
+	<string>CrossMobile</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>CrossMobile</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>@@VERSION@@</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>2019 by Panayotis Katsaloulis</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.developer-tools</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+	<key>NSSupportsAutomaticGraphicsSwitching</key>
+	<true/>
+	<key>JVMMainClassName</key>
+	<string>org.crossmobile.CrossMobile</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>crossmobile</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>Crossmobile_Document.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Crossmobile Project</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+	</array>
+	<key>LSArchitecturePriority</key>
+	<array/>
+	<key>LSEnvironment</key>
+	<dict>
+		<key>LC_CTYPE</key>
+		<string>UTF-8</string>
+	</dict>
 </dict>
 </plist>
-
