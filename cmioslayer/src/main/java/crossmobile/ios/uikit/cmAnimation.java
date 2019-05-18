@@ -25,10 +25,7 @@ import org.crossmobile.bind.system.TickerConsumer;
 import org.crossmobile.bridge.Native;
 import org.robovm.objc.block.VoidBlock1;
 
-import java.util.Collections;
-import java.util.ConcurrentModificationException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static crossmobile.ios.coregraphics.$coregraphics.color;
 import static crossmobile.ios.coregraphics.$coregraphics.selfRotateScaleTranslate;
@@ -49,8 +46,9 @@ class cmAnimation implements TickerConsumer {
     private InterpolationCurve animationCurve = InterpolationCurve.Linear;
     private double duration = GraphicsBridgeConstants.DefaultAnimationDuration;
     private UIView parent;
-    private Set<UIView> viewEnter;
-    private Set<UIView> viewLeave;
+    private Collection<UIView> viewEnter;
+    private Collection<UIView> viewLeave;
+    private Collection<UIView> viewFrames;  // Might not needed -- might be supported by setFrame itself
     private AnimationTransition animationTransition = AnimationTransition.None;
 
     cmAnimation(String ID, Object context) {
@@ -77,8 +75,12 @@ class cmAnimation implements TickerConsumer {
 
     // Recycle original frame
     private void setFrameImpl(UIView view, CGRect to) {
-        if (to != null && !view.frame().equals(to))
+        if (to != null && !view.frame().equals(to)) {
+            if (viewFrames == null)
+                viewFrames = new LinkedHashSet<>();
+            viewFrames.add(view);
             tuples.add(new FrameTuple(view, to));
+        }
     }
 
     // Recycle original transformation
@@ -238,6 +240,9 @@ class cmAnimation implements TickerConsumer {
             if (parent != null && viewLeave != null)
                 for (UIView child : viewLeave)
                     child.removeFromView(this.parent);
+            if (viewFrames != null)
+                for (UIView view : viewFrames)
+                    view.updateConstraints();
             if (delegate != null)
                 delegate.invoke(true);
         });
@@ -245,13 +250,13 @@ class cmAnimation implements TickerConsumer {
 
     private interface AnimationTransition {
 
-        static final AnimationTransition None = new NoneTransition();
-        static final AnimationTransition Left = new FlipFromLeftTransition();
-        static final AnimationTransition Right = new FlipFromRightTransition();
-        static final AnimationTransition Up = new CurlUpTransition();
-        static final AnimationTransition Down = new CurlDownTransition();
+        AnimationTransition None = new NoneTransition();
+        AnimationTransition Left = new FlipFromLeftTransition();
+        AnimationTransition Right = new FlipFromRightTransition();
+        AnimationTransition Up = new CurlUpTransition();
+        AnimationTransition Down = new CurlDownTransition();
 
-        public CGRect enterView(UIView view, UIView parent);
+        CGRect enterView(UIView view, UIView parent);
 
         public CGRect exitView(UIView view, UIView parent);
     }

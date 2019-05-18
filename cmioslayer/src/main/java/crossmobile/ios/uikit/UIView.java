@@ -2164,8 +2164,11 @@ public class UIView extends UIResponder {
                                 constraint.addToSolver(solver());
                     solver().resolve();
                 }
+                double cWidth = getWidth();
+                double cHeight = getHeight();
                 for (UIView child : children) {
-                    applyARMConstraints(child);
+                    if (child.ARMconstraints != null)
+                        child.setFrameImpl(child.ARMconstraints.getFrame(cWidth, cHeight));
                     if (!child.translatesAutoresizingMaskIntoConstraints())
                         child.applyResult();
                     child.layoutSubviews();
@@ -2179,11 +2182,6 @@ public class UIView extends UIResponder {
         } catch (ConcurrentModificationException ex) {
             Native.system().postOnEventThread(this::applyLayout);
         }
-    }
-
-    private void applyARMConstraints(UIView view) {
-        if (view.ARMconstraints != null)
-            view.setFrameImpl(view.ARMconstraints.getFrame(getWidth(), getHeight()));
     }
 
     private void applyResult() {

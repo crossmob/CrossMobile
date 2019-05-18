@@ -96,7 +96,6 @@ public class JEmulatorFrame extends JFrame {
                         if (win == null)
                             return;
                         Native.graphics().metrics().setVirtualDimension(d.width, d.height);
-                        win.setFrame(new CGRect(0, 0, d.width, d.height));
                         Native.graphics().relayoutMainView();
                     }
                 }
