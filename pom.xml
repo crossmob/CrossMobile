@@ -7,7 +7,7 @@
     <groupId>org.crossmobile</groupId>
     <artifactId>env</artifactId>
     <packaging>pom</packaging>
-    <version>2.5.pre2.cm</version>
+    <version>2.5.pre3.cm</version>
     <name>CrossMobile SDK</name>
 
     <modules>
