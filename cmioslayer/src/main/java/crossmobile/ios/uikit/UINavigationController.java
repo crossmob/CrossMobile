@@ -545,6 +545,7 @@ public class UINavigationController extends UIViewController {
                 updateInsets(old, -1);
                 old.viewDidDisappear(animated);
             }
+            view().layoutSubviews();
             if (current != null)
                 current.viewDidAppear(animated);
         }

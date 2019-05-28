@@ -138,7 +138,7 @@ public class UIApplication extends UIResponder {
                 throw new NullPointerException("Unable to locate main View Controller");
             instance.keyWindow.addSubview(instance.keyWindow.rootViewController().view());
             Native.graphics().relayoutMainView();
-            Native.system().postOnEventThread(instance.keyWindow.rootViewController().view()::layoutSubviews);
+            Native.system().postOnEventThread(instance.keyWindow::layoutSubviews);
             disableSplash(launchTime, splashWait, disableSpash);
         });
         if (!Native.system().isEventThread())
