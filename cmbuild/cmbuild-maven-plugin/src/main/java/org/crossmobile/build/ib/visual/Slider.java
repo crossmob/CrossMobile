@@ -35,7 +35,9 @@ public class Slider extends Control {
     @Override
     public String toCode() {
         StringBuilder out = new StringBuilder(super.toCode());
-
+        appendAttribute(out, "value");
+        appendAttribute(out, "minValue");
+        appendAttribute(out, "maxValue");
         return out.toString();
     }
 

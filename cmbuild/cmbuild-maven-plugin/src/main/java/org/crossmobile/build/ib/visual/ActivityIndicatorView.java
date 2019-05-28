@@ -34,7 +34,9 @@ public class ActivityIndicatorView extends View {
     @Override
     public String toCode() {
         StringBuilder out = new StringBuilder(super.toCode());
-
+        appendAttribute(out, "setActivityIndicatorViewStyle", "style");
+        appendAttribute(out, "hidesWhenStopped");
+        append(out, "setColor", item("color") == null ? null : item("color").toCode());
         return out.toString();
     }
 

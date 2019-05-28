@@ -6,6 +6,7 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+@class crossmobile_ios_uikit_UIColor;
 
 @interface crossmobile_ios_uikit_UIActivityIndicatorView$Ext : UIActivityIndicatorView
 @end
@@ -16,6 +17,9 @@
 - (instancetype) __init_crossmobile_ios_uikit_UIActivityIndicatorView___int:(int) style ;
 - (void) setActivityIndicatorViewStyle___int:(int) activityIndicatorViewStyle ;
 - (int) activityIndicatorViewStyle__;
+- (BOOL) isAnimating__;
+- (void) setColor___crossmobile_ios_uikit_UIColor:(UIColor*) color ;
+- (UIColor*) color__;
 - (void) setHidesWhenStopped___boolean:(BOOL) hidesWhenStopped ;
 - (BOOL) hidesWhenStopped__;
 - (void) startAnimating__;

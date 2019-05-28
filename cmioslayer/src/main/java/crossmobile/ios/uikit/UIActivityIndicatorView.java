@@ -15,6 +15,7 @@
  */
 package crossmobile.ios.uikit;
 
+import crossmobile.ios.coregraphics.$coregraphics;
 import crossmobile.ios.coregraphics.CGContext;
 import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.foundation.NSTimer;
@@ -32,7 +33,7 @@ import static crossmobile.ios.coregraphics.$coregraphics.context;
 public class UIActivityIndicatorView extends UIView {
 
     private int activityIndicatorViewStyle;
-    private int baseColor;
+    private UIColor color = UIColor.whiteColor;
     private boolean hidesWhenStopped = true;
 
     private boolean animating;
@@ -75,10 +76,39 @@ public class UIActivityIndicatorView extends UIView {
     public void setActivityIndicatorViewStyle(int style) {
         this.activityIndicatorViewStyle = style;
         if (style == UIActivityIndicatorViewStyle.White || style == UIActivityIndicatorViewStyle.WhiteLarge)
-            baseColor = 0xFFFFFFFF;
+            color = UIColor.whiteColor;
         else if (style == UIActivityIndicatorViewStyle.Gray)
-            baseColor = 0xFF808080;
+            color = UIColor.grayColor;
         Native.graphics().refreshDisplay();
+    }
+
+    /**
+     * Sets the color of the animator
+     * @param color The desired animator color
+     */
+    @CMSetter("@property(readwrite, nonatomic, strong) UIColor *color;")
+    public void setColor(UIColor color) {
+        if (color != null)
+            this.color = color;
+    }
+
+    /**
+     * Returns the color of the animator
+     * @return The current animator color
+     */
+    @CMGetter("@property(readwrite, nonatomic, strong) UIColor *color;")
+    public UIColor color() {
+        return color;
+    }
+
+
+    /**
+     * Returns whether the view is currently animating
+     * @return true if it is animating
+     */
+    @CMGetter("@property(nonatomic, readonly, getter=isAnimating) BOOL animating;")
+    public boolean isAnimating() {
+        return animating;
     }
 
     /**
@@ -143,6 +173,7 @@ public class UIActivityIndicatorView extends UIView {
         }
     }
 
+
     private void startTimer() {
         synchronized (this) {
             if (animateTimer != null)
@@ -177,6 +208,7 @@ public class UIActivityIndicatorView extends UIView {
     public final void drawRect(CGRect rect) {
         CGContext cgc = UIGraphics.getCurrentContext();
         boolean isBig = activityIndicatorViewStyle == UIActivityIndicatorViewStyle.WhiteLarge;
+        int baseColor = $coregraphics.color(color.cgcolor) & 0xFFFFFF;
         float fullRadius = isBig ? WIDTH_LARGE / 2 : WIDTH_SMALL / 2;
         double height = isBig ? Theme.ActivityIndicator.THICK : Theme.ActivityIndicator.THIN;
 
@@ -186,7 +218,7 @@ public class UIActivityIndicatorView extends UIView {
         double radius = (rest + 1) * fullRadius / 2;
         double length = (1 - rest) * fullRadius;
         for (int i = 0; i < Theme.ActivityIndicator.SLICES; i++) {
-            baseColor = (baseColor & 0xFFFFFF) | (((i + Theme.ActivityIndicator.ALPHA_SAFE) * 255 / (Theme.ActivityIndicator.SLICES + Theme.ActivityIndicator.ALPHA_SAFE - 1)) << 24);
+            baseColor = baseColor | (((i + Theme.ActivityIndicator.ALPHA_SAFE) * 255 / (Theme.ActivityIndicator.SLICES + Theme.ActivityIndicator.ALPHA_SAFE - 1)) << 24);
             double angle = (2 * Math.PI) * (i + progress) / Theme.ActivityIndicator.SLICES % (Math.PI * 2);
             double dx = centerX + (radius * Math.cos(angle));
             double dy = centerY + (radius * Math.sin(angle));

@@ -51,6 +51,12 @@
     return [super alpha];
 }
 
+// (UIActivityIndicatorView) @property(nonatomic, readonly, getter=isAnimating) BOOL animating;
+- (BOOL) isAnimating__
+{
+    return [super isAnimating];
+}
+
 // (UIView) @property(nonatomic) BOOL autoresizesSubviews;
 - (void) setAutoresizesSubviews___boolean:(BOOL) autoresizesSubviews 
 {
@@ -149,6 +155,19 @@
 - (BOOL) clipsToBounds__
 {
     return [super clipsToBounds];
+}
+
+// (UIActivityIndicatorView) @property(readwrite, nonatomic, strong) UIColor *color;
+- (void) setColor___crossmobile_ios_uikit_UIColor:(UIColor*) color 
+{
+    [super setColor:(color == JAVA_NULL ? nil : color)];
+}
+
+// (UIActivityIndicatorView) @property(readwrite, nonatomic, strong) UIColor *color;
+- (UIColor*) color__
+{
+    UIColor* re$ult = [super color];
+    return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 
 // (UIView) @property(nonatomic, readonly) NSArray<__kindof NSLayoutConstraint *> *constraints;
@@ -847,6 +866,25 @@
 - (int) activityIndicatorViewStyle__
 {
     return [self activityIndicatorViewStyle];
+}
+
+// direct binding of: @property(nonatomic, readonly, getter=isAnimating) BOOL animating;
+- (BOOL) isAnimating__
+{
+    return [self isAnimating];
+}
+
+// direct binding of: @property(readwrite, nonatomic, strong) UIColor *color;
+- (void) setColor___crossmobile_ios_uikit_UIColor:(UIColor*) color 
+{
+    [self setColor:(color == JAVA_NULL ? nil : color)];
+}
+
+// direct binding of: @property(readwrite, nonatomic, strong) UIColor *color;
+- (UIColor*) color__
+{
+    UIColor* re$ult = [self color];
+    return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 
 // direct binding of: @property(nonatomic) BOOL hidesWhenStopped ;

@@ -448,8 +448,11 @@
   },
   "crossmobile.ios.uikit.UIActivityIndicatorView": {
     "activityIndicatorViewStyle()": "- (UIActivityIndicatorViewStyle) activityIndicatorViewStyle\n{\n    return [self activityIndicatorViewStyle__];\n}\n\n",
+    "color()": "- (UIColor *) color\n{\n    UIColor * re$ult = [self color__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
     "hidesWhenStopped()": "- (BOOL) hidesWhenStopped\n{\n    return [self hidesWhenStopped__];\n}\n\n",
+    "isAnimating()": "- (BOOL) isAnimating\n{\n    return [self isAnimating__];\n}\n\n",
     "setActivityIndicatorViewStyle(int)": "- (void) setActivityIndicatorViewStyle:(UIActivityIndicatorViewStyle) activityIndicatorViewStyle\n{\n    [self setActivityIndicatorViewStyle___int:activityIndicatorViewStyle];\n}\n\n",
+    "setColor(crossmobile.ios.uikit.UIColor)": "- (void) setColor:(UIColor *) color\n{\n    [self setColor___crossmobile_ios_uikit_UIColor:(color ? color : JAVA_NULL)];\n}\n\n",
     "setHidesWhenStopped(boolean)": "- (void) setHidesWhenStopped:(BOOL) hidesWhenStopped\n{\n    [self setHidesWhenStopped___boolean:hidesWhenStopped];\n}\n\n",
     "startAnimating()": "- (void) startAnimating\n{\n    [self startAnimating__];\n}\n\n",
     "stopAnimating()": "- (void) stopAnimating\n{\n    [self stopAnimating__];\n}\n\n"
