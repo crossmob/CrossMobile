@@ -15,7 +15,22 @@
  */
 package org.crossmobile.utils;
 
+import java.io.IOException;
+import java.util.Properties;
+
 public class CMVersion {
 
-    public static final String VERSION = "2.5.pre3.cm";
+    public static final String VERSION;
+
+    static {
+        Properties p = new Properties();
+        String v = "0";
+        try {
+            p.load(CMVersion.class.getResourceAsStream("/META-INF/maven/org.crossmobile/cmutils-tools/pom.properties"));
+            v = p.getProperty("version");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        VERSION = v;
+    }
 }
