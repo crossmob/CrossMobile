@@ -17,15 +17,20 @@ package org.crossmobile.gui.parameters.impl;
 
 import org.crossmobile.gui.parameters.RadioParameter;
 import org.crossmobile.gui.utils.LaunchType;
+import org.crossmobile.gui.utils.Paths;
+import org.crossmobile.utils.FileUtils;
 import org.crossmobile.utils.ParamList;
+import org.crossmobile.utils.SystemDependent;
 
 public class ReleaseParameter extends RadioParameter {
 
+    private static final boolean XRay = Paths.getXRayPath() != null;
+
     public ReleaseParameter(ParamList list, LaunchType defaultType) {
         super(list, null,
-                new String[]{"images/debug", "images/xray", "images/release"},
-                new String[]{"Debug profile", "XRay profile", "Release profile"},
-                new String[]{"debug", "xray", "release"},
+                XRay ? new String[]{"images/debug", "images/xray", "images/release"} : new String[]{"images/debug", "images/release"},
+                XRay ? new String[]{"Debug profile", "XRay profile", "Release profile"} : new String[]{"Debug profile", "Release profile"},
+                XRay ? new String[]{"debug", "xray", "release"} : new String[]{"debug", "release"},
                 defaultType.name().toLowerCase(), false);
     }
 

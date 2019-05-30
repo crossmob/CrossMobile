@@ -18,7 +18,6 @@
         <module>cmutils-common</module>
         <module>cmutils-tools</module>
         <module>cmutils-maven</module>
-        <module>cmxray</module>
     </modules>
 
     <build>

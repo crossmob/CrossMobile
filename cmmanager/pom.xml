@@ -57,12 +57,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.crossmobile</groupId>
-            <artifactId>cmxray</artifactId>
-            <version>${project.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>net.sf.proguard</groupId>
             <artifactId>proguard-retrace</artifactId>
             <version>${version.proguard}</version>
@@ -179,8 +173,6 @@
                                                 <copy todir="@{dest}/lib/apache-maven">
                                                     <fileset dir="../resources/lib/apache-maven"/>
                                                 </copy>
-                                                <copy file="${user.home}/.m2/repository/org/crossmobile/cmxray/${project.version}/cmxray-${project.version}-all.jar"
-                                                      tofile="@{dest}/lib/cmxray.jar"/>
                                                 <chmod file="@{dest}/lib/apache-maven/bin/mvn" perm="a+x"/>
                                                 <copy todir="@{dest}" file="../LICENSE"/>
                                             </sequential>
