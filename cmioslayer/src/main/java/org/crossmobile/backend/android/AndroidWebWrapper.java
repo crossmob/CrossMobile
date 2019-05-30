@@ -132,7 +132,7 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
 
         public NativeW() {
             super(MainActivity.current);
-            setSettings(this);
+            updateSettings(getSettings());
             setWebChromeClient(new VideoEnabledWebChromeClient(MainView.current, MainView.current, null, this));
             setDownloadListener((String url, String userAgent, String contentDisposition, String mimetype, long contentLength) -> {
                 downloadFile(url, mimetype);
@@ -285,8 +285,7 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
         }
     }
 
-    private static void setSettings(NativeW ntv) {
-        WebSettings settings = ntv.getSettings();
+    private static void updateSettings(WebSettings settings) {
         settings.setUseWideViewPort(true);
         settings.setSupportZoom(true);
         settings.setJavaScriptEnabled(true);
