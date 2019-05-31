@@ -15,8 +15,8 @@
  */
 package org.crossmobile.build.tools;
 
+import org.crossmobile.Version;
 import org.crossmobile.bridge.system.ExceptionUtils;
-import org.crossmobile.utils.CMVersion;
 import org.crossmobile.utils.FileUtils;
 import org.crossmobile.utils.Log;
 import org.crossmobile.utils.ProjectException;
@@ -59,11 +59,11 @@ public class GradleManager {
     private static void updateVersion(File gradle) {
         String orig = FileUtils.read(gradle);
         String updated = pluginversion.matcher(orig.replaceAll(OLD_GRADLE_PLUGIN, GRADLE_PLUGIN)).
-                replaceAll("classpath 'org.crossmobile:" + GRADLE_PLUGIN + ":" + CMVersion.VERSION + "'").
+                replaceAll("classpath 'org.crossmobile:" + GRADLE_PLUGIN + ":" + Version.VERSION + "'").
                 replaceAll("com\\.android\\.tools\\.build:gradle:2\\.2\\.3", "com.android.tools.build:gradle:3.1.0").
                 replaceAll("com\\.android\\.tools\\.build:gradle:2\\.3\\.3", "com.android.tools.build:gradle:3.1.0");
         if (!orig.equals(updated)) {
-            Log.debug("Will update " + GRADLE_PLUGIN + " to version " + CMVersion.VERSION);
+            Log.debug("Will update " + GRADLE_PLUGIN + " to version " + Version.VERSION);
             FileUtils.write(gradle, updated);
         }
     }

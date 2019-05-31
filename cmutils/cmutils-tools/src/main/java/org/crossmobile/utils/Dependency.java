@@ -15,6 +15,7 @@
  */
 package org.crossmobile.utils;
 
+import org.crossmobile.Version;
 import org.crossmobile.bridge.ann.CMLibParam.ParamContext;
 
 import java.io.ByteArrayInputStream;
@@ -30,7 +31,7 @@ public class Dependency {
     private final static Map<String, List<Dependency>> THEMES = new TreeMap<>();
     private final static List<DesktopSkin> SKINS = new ArrayList<>();
 
-    private static Dependency DEFAULT_THEME = new Dependency(CROSSMOBILE_GROUP_ID, CROSSMOBILE_THEME_ID, CMVersion.VERSION, null, null, null, null, null, null);
+    private static Dependency DEFAULT_THEME = new Dependency(CROSSMOBILE_GROUP_ID, CROSSMOBILE_THEME_ID, Version.VERSION, null, null, null, null, null, null);
 
     private static XMLWalker loadWalker(String localresourse) {
         String resource = FileUtils.readResourceSafe(localresourse);

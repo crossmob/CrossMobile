@@ -49,8 +49,9 @@
                         </goals>                                
                         <configuration>
                             <target>
-                                <exec executable="git" failonerror="true" outputproperty="project.release">
-                                    <arg line="rev-list --count HEAD"/>
+                                <exec executable="bash" failonerror="true" outputproperty="project.release">
+                                    <arg value="-c"/>
+                                    <arg value="echo $((`git rev-list --count HEAD` + 2019))"/>
                                 </exec>
                             </target>
                             <exportAntProperties>true</exportAntProperties>

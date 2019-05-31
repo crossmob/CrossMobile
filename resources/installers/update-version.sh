@@ -1,33 +1,29 @@
 #!/bin/bash
 
-cd `dirname $0`
-cd ../..
+VERSION=$1
 
+if [ -z "$VERSION" ] ; then
+    echo New version shouild not be empty
+    exit -1
+fi
 
-RV=`hg tip | grep changeset | awk -F : '{print $2}' | tr -d '[ ]'`
-echo
-echo -n "Please provide display version: "
-read DV
-echo -n "Please provide full version: "
-read FV
+if [ -z `which xmlstarlet` ] ; then
+    echo xmlstarlet not installed
+    exit -1
+fi
 
-echo
-echo current.release=$RV
-echo current.version=$DV
-echo current.fullversion=$FV
-echo
+echo -n "Version will change to '$VERSION'. Press [RETURN] to accept..."
+read WAIT
 
-echo "Press [RETURN] to update version"
-read OK
+mvn versions:set -DnewVersion="$VERSION" -DgenerateBackupPoms=false
 
-cat >modules/cmmanager/src/main/resources/org/crossmobile/gui/version.properties <<EOF
-current.release=$RV
-current.version=$DV
-current.fullversion=$FV
-EOF
-
-mvn versions:set -DnewVersion=$DV
-mvn versions:commit
-
-sed <pom.xml -e "s/<long.version>.*<\/long.version>/<long.version>$FV<\/long.version>/g" >pom.back
-mv pom.back pom.xml
+xmlstarlet ed -P -L -u "/_:project/_:parent/_:version" -v "$VERSION" cmutils/cmutils-tools/src/main/resources/templates/pom_xml
+xmlstarlet ed -P -L -u "/_:project/_:parent/_:version" -v "$VERSION" cmarchetypes/cmarchetype-empty/src/main/resources/archetype-resources/pom.xml
+xmlstarlet ed -P -L -u "/_:project/_:parent/_:version" -v "$VERSION" cmarchetypes/cmarchetype-navigation/src/main/resources/archetype-resources/pom.xml
+xmlstarlet ed -P -L -u "/_:project/_:parent/_:version" -v "$VERSION" cmarchetypes/cmarchetype-sample/src/main/resources/archetype-resources/pom.xml
+xmlstarlet ed -P -L -u "/_:project/_:parent/_:version" -v "$VERSION" cmarchetypes/cmarchetype-single/src/main/resources/archetype-resources/pom.xml
+xmlstarlet ed -P -L -u "/_:project/_:parent/_:version" -v "$VERSION" cmarchetypes/cmarchetype-storyboard/src/main/resources/archetype-resources/pom.xml
+xmlstarlet ed -P -L -u "/_:project/_:properties/_:crossmobile.version" -v "$VERSION" cmprojects/cmproject-debug/pom.xml
+xmlstarlet ed -P -L -u "/_:project/_:properties/_:crossmobile.version" -v "$VERSION" cmprojects/cmproject/pom.xml
+xmlstarlet ed -P -L -u  '/repositories/repository[@id="themes"]/plugins/plugin/version' -v "$VERSION" cmutils/cmutils-tools/src/main/resources/plugins/baseplugins.xml
+xmlstarlet ed -P -L -u  '/repositories/repository[@id="crossmobile"]/plugins/plugin/version' -v "$VERSION" cmutils/cmutils-tools/src/main/resources/plugins/baseplugins.xml

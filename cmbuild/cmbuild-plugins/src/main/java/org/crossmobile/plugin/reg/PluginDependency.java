@@ -15,9 +15,9 @@
  */
 package org.crossmobile.plugin.reg;
 
+import org.crossmobile.Version;
 import org.crossmobile.bridge.ann.CMLibDepends;
 import org.crossmobile.bridge.ann.CMLibTarget;
-import org.crossmobile.utils.CMVersion;
 import org.crossmobile.utils.Log;
 
 public class PluginDependency implements Comparable<PluginDependency> {
@@ -56,7 +56,7 @@ public class PluginDependency implements Comparable<PluginDependency> {
     }
 
     public String version() {
-        return depends.version().equals("") ? CMVersion.VERSION : depends.version();
+        return depends.version().equals("") ? Version.VERSION : depends.version();
     }
 
     public String info() {

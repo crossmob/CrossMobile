@@ -16,6 +16,7 @@
 package org.crossmobile.gui.lic;
 
 import com.panayotis.hrgui.HiResDialog;
+import org.crossmobile.Version;
 import org.crossmobile.gui.actives.*;
 import org.crossmobile.gui.elements.FileChooser;
 import org.crossmobile.gui.elements.GradientPanel;
@@ -141,7 +142,7 @@ public class LicenseDialog extends HiResDialog {
         }
 
         pom.execIf(n -> n.nodeExists("version"), p -> p.add("version"));
-        pom.node("version").setText(CMVersion.VERSION);
+        pom.node("version").setText(Version.VERSION);
         if (pom.pathExists("/project/dependencies")) {
             pom.path("/project/dependencies");
             pom.nodes("dependency", d -> {
