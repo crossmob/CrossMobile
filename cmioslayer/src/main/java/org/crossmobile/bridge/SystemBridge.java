@@ -18,6 +18,7 @@ package org.crossmobile.bridge;
 import crossmobile.ios.foundation.NSSelector;
 import crossmobile.ios.uikit.UIAlertView;
 import crossmobile.ios.uikit.UIAlertViewDelegate;
+import org.crossmobile.backend.android.AndroidPermissions;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;

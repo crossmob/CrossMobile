@@ -15,7 +15,7 @@
  */
 package org.crossmobile.utils;
 
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
@@ -135,7 +135,7 @@ public class JarUtils {
             }
         } catch (IOException ex) {
             Log.error("Unable to extract JAR file " + injar + " into " + outdir);
-            ExceptionUtils.throwException(ex);
+            BaseUtils.throwException(ex);
         }
     }
 

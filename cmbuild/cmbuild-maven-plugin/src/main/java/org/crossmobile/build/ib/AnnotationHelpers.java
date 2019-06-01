@@ -15,12 +15,11 @@
  */
 package org.crossmobile.build.ib;
 
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.build.xcode.XcodeTargetRegistry;
 import org.crossmobile.utils.FileUtils;
 import org.crossmobile.utils.Log;
 import org.crossmobile.utils.ProjectException;
-import org.crossmobile.utils.XcodeTarget;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -56,9 +55,9 @@ public class AnnotationHelpers {
             try {
                 FileUtils.read(new FileInputStream(f), f.getName(), line -> parseLine(ann, name, line));
             } catch (IOException ex1) {
-                ExceptionUtils.throwException(ex1);
+                BaseUtils.throwException(ex1);
             } catch (ProjectException ex2) {
-                ExceptionUtils.throwException(ex2.getCause());
+                BaseUtils.throwException(ex2.getCause());
             }
         }
         return result;

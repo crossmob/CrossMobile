@@ -17,7 +17,7 @@ package org.crossmobile.build.tools;
 
 import javassist.CtClass;
 import javassist.CtMethod;
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.utils.Log;
 import org.crossmobile.utils.NativeCodeCollection;
 
@@ -48,7 +48,7 @@ public class GenerateReverseConnection {
                 if (!injection.isEmpty())
                     injections.put(classname.replace('.', '_').replace('$', '_'), injection);
             } catch (Exception ex) {
-                ExceptionUtils.throwException(ex);
+                BaseUtils.throwException(ex);
             }
         });
 

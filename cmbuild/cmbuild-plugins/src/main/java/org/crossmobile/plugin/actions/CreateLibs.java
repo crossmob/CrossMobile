@@ -18,7 +18,7 @@ package org.crossmobile.plugin.actions;
 import com.dd.plist.NSDictionary;
 import com.dd.plist.NSString;
 import com.dd.plist.PropertyListParser;
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.build.ArtifactInfo;
 import org.crossmobile.build.utils.PlistUtils.*;
 import org.crossmobile.plugin.reg.Plugin;
@@ -93,7 +93,7 @@ public class CreateLibs extends CreateLibsAbstract {
 
             Log.info("Compiling " + comCount + " native source file" + plural(comCount) + " for plugin " + plugin);
         } catch (Exception ex) {
-            ExceptionUtils.throwException(ex);
+            BaseUtils.throwException(ex);
         }
     }
 

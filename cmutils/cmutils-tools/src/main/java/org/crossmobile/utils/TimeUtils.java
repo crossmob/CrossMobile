@@ -15,7 +15,7 @@
  */
 package org.crossmobile.utils;
 
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 
 public class TimeUtils {
 
@@ -49,7 +49,7 @@ public class TimeUtils {
         } catch (Throwable th) {
             nano = System.nanoTime() - nano;
             error = true;
-            ExceptionUtils.throwException(th);
+            BaseUtils.throwException(th);
             return null;
         } finally {
             log(nano, description, error);

@@ -16,7 +16,7 @@
 package org.crossmobile.gui.project;
 
 import org.crossmobile.Version;
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.gui.codehound.source.FileHit;
 import org.crossmobile.gui.codehound.source.SourceParser;
 import org.crossmobile.gui.codehound.source.SourcePattern;
@@ -243,7 +243,7 @@ public class Project {
             Nullable.safeCall(saveCallback, s -> s.accept(this));
         } catch (Throwable th) {
             if (th instanceof ProjectException)
-                ExceptionUtils.throwException(th);
+                BaseUtils.throwException(th);
             else
                 throw new ProjectException(th);
         }

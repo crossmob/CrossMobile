@@ -26,8 +26,8 @@ import java.util.ArrayList;
 
 public class AndroidLifecycleBridge extends AbstractLifecycleBridge {
 
-    private static final ArrayList<WeakReference<Activity>> activitylist = new ArrayList<>();
-    private static final ArrayList<WeakReference<LocationListener>> locationlist = new ArrayList<>();
+    private final ArrayList<WeakReference<Activity>> activitylist = new ArrayList<>();
+    private final ArrayList<WeakReference<LocationListener>> locationlist = new ArrayList<>();
 
     private boolean isQuitting = false;
     boolean errorFound;
@@ -71,7 +71,7 @@ public class AndroidLifecycleBridge extends AbstractLifecycleBridge {
         return 0;
     }
 
-    static void register(Activity mapactivity) {
+    void register(Activity mapactivity) {
         activitylist.add(new WeakReference<>(mapactivity));
     }
 

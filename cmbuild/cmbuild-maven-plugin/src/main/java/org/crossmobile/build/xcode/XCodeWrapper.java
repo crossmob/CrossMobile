@@ -19,7 +19,7 @@ import com.dd.plist.NSDictionary;
 import com.dd.plist.NSObject;
 import com.dd.plist.PropertyListFormatException;
 import com.dd.plist.PropertyListParser;
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.utils.Log;
 import org.xml.sax.SAXException;
 
@@ -67,7 +67,7 @@ public class XCodeWrapper {
             if (obj instanceof NSDictionary)
                 return new XCodeWrapper((NSDictionary) obj);
         } catch (IOException | PropertyListFormatException | ParseException | ParserConfigurationException | SAXException ex) {
-            return ExceptionUtils.throwException(ex);
+            return BaseUtils.throwException(ex);
         }
         return null;
     }

@@ -19,8 +19,8 @@ import crossmobile.ios.foundation.NSData;
 import crossmobile.ios.foundation.NSJSONSerialization;
 import org.crossmobile.backend.desktop.OperatingSystem;
 import org.crossmobile.bridge.Native;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.bridge.system.ClassWalker;
-import org.crossmobile.bridge.system.ExceptionUtils;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -157,7 +157,7 @@ public class MobileApp implements Comparable<MobileApp> {
                     icon = ImageIO.read(getClass().getResource(DEFAULTICONPATH));
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Unable to load icon", "CrossMobile", JOptionPane.ERROR_MESSAGE);
-                    return ExceptionUtils.throwException(ex);
+                    return BaseUtils.throwException(ex);
                 }
             selectedicon = highlight.filter(this.icon, null);
         }

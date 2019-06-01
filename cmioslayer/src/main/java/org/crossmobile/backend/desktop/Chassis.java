@@ -22,7 +22,7 @@ import org.crossmobile.bind.graphics.Insets;
 import org.crossmobile.bind.graphics.NativeBitmap;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.system.ClassWalker;
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -85,7 +85,7 @@ public class Chassis implements Comparable<Chassis> {
                 skinlist[1].add(handler.info);
                 skinlist[2].add(handler.descr);
             } catch (Exception ex) {
-                return ExceptionUtils.throwException(ex);
+                return BaseUtils.throwException(ex);
             }
         return skinlist;
     }
@@ -120,7 +120,7 @@ public class Chassis implements Comparable<Chassis> {
             parser.parse(new InputSource(Chassis.class.getResourceAsStream(DesktopImageBridge.DESKTOPSKIN + chassisName + ".xml")), handler);
             return handler.ch;
         } catch (Exception ex) {
-            return ExceptionUtils.throwException(ex);
+            return BaseUtils.throwException(ex);
         }
     }
 

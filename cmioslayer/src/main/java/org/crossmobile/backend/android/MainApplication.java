@@ -41,7 +41,7 @@ public class MainApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Native.earlyInitialize(this);
+        Native.prepare(this);
     }
 
     @Override

@@ -86,7 +86,7 @@ public class AndroidLocation extends AbstractLocationBridge {
     public void startSysUpdating(LocationChangeDelegate delegate) {
         this.delegate = delegate;
         if (delegate != null)
-            AndroidPermissions.requestPermissions(notGranted -> {
+            AndroidPermissions.current().requestPermissions(notGranted -> {
                 if (notGranted.size() < 2)    // at least one granted
                     mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, null);
             }, AndroidPermission.ACCESS_COARSE_LOCATION, AndroidPermission.ACCESS_FINE_LOCATION);

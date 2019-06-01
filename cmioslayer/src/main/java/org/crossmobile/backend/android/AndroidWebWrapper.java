@@ -182,7 +182,7 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
         }
 
         private void downloadFile(String url, String mime) {
-            AndroidPermissions.requestPermissions(notGranted -> {
+            AndroidPermissions.current().requestPermissions(notGranted -> {
                 if (!notGranted.isEmpty()) {
                     Toast.makeText(MainActivity.current, "No permission given to write to external storage", 2).show();
                     return;
@@ -285,7 +285,7 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
         }
     }
 
-    private static void updateSettings(WebSettings settings) {
+    private void updateSettings(WebSettings settings) {
         settings.setUseWideViewPort(true);
         settings.setSupportZoom(true);
         settings.setJavaScriptEnabled(true);

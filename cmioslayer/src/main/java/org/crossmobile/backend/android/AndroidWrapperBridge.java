@@ -95,7 +95,7 @@ public class AndroidWrapperBridge implements WrapperBridge<View> {
                 MainView.current.addView(view);
                 if (listener != null) {
                     MainActivity.current.getStateListener().register(listener);
-                    listener.onCreate(MainActivity.current.getInstancestate());
+                    listener.onCreate(MainActivity.current.getInstanceState());
                     listener.onResume();
                 }
             }

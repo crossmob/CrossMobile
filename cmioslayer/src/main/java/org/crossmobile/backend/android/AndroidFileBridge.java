@@ -27,7 +27,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 
-import static org.crossmobile.backend.android.AndroidPermissions.getAuthority;
 import static org.crossmobile.bind.system.SystemUtilities.URIEncode;
 import static org.crossmobile.bind.system.SystemUtilities.closeR;
 
@@ -128,6 +127,6 @@ public class AndroidFileBridge extends AbstractFileBridge {
     public static Uri getExternalUri(File file) {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.N
                 ? Uri.fromFile(file)
-                : FileProvider.getUriForFile(MainActivity.current, getAuthority(), file);
+                : FileProvider.getUriForFile(MainActivity.current, AndroidPermissions.current().getAuthority(), file);
     }
 }

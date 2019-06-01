@@ -15,13 +15,24 @@
  */
 package org.crossmobile.bridge.system;
 
-public class ExceptionUtils {
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class BaseUtils {
 
     public static <R> R throwException(Throwable th) {
-        return (R) ExceptionUtils.<RuntimeException>throwExceptionImpl(th);
+        return (R) BaseUtils.<RuntimeException>throwExceptionImpl(th);
     }
 
     private static <T extends Throwable> Object throwExceptionImpl(Throwable th) throws T {
         throw (T) th;
+    }
+
+    public static <T> Collection<T> removeCommon(Collection<T> base, Collection<T> checkUpon) {
+        Collection<T> removed = new ArrayList<>();
+        for (T toCheck : checkUpon)
+            if (base.remove(toCheck))
+                removed.add(toCheck);
+        return removed;
     }
 }

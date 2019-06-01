@@ -15,11 +15,10 @@
  */
 package org.crossmobile.build.ng;
 
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.build.AnnotationConfig;
 import org.crossmobile.build.ib.helper.XIBList;
 import org.crossmobile.build.tools.*;
-import org.crossmobile.utils.Dependency;
 import org.crossmobile.utils.MaterialsUtils;
 
 import java.io.File;
@@ -133,7 +132,7 @@ public class ResourcesPipeline implements Runnable {
                     new File(environment().getBasedir(), environment().getProperties().getProperty(ARTIFACT_ID.tag().name) + ".xcodeproj" + File.separator + "project.pbxproj"),
                     "Creating missing Xcode project file");
         } catch (Throwable ex) {
-            ExceptionUtils.throwException(ex);
+            BaseUtils.throwException(ex);
         }
     }
 }

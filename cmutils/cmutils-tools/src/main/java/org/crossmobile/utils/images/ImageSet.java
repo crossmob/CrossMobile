@@ -15,7 +15,7 @@
  */
 package org.crossmobile.utils.images;
 
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.utils.CollectionUtils;
 import org.crossmobile.utils.FileUtils;
 import org.crossmobile.utils.Log;
@@ -46,7 +46,7 @@ public class ImageSet {
             try {
                 addImage(new MetaImage(ImageSet.class.getResourceAsStream(defaultIconResource)));
             } catch (IOException e) {
-                ExceptionUtils.throwException(new IOException("Unable to load default image at resource location " + defaultIconResource));
+                BaseUtils.throwException(new IOException("Unable to load default image at resource location " + defaultIconResource));
             }
         }
     }

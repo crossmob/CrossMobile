@@ -19,7 +19,11 @@ import static org.crossmobile.bridge.ann.CMLibTarget.ANDROID;
         version = "26.1.0", isCMPlugin = false))
 public class AndroidPermissions {
 
-    public static void requestPermissions(VoidBlock1<Collection<String>> notGrantedPermissions, String... permissions) {
+    public static AndroidPermissions current() {
+        return ((AndroidSystemBridge) Native.system()).permissions;
+    }
+
+    public void requestPermissions(VoidBlock1<Collection<String>> notGrantedPermissions, String... permissions) {
         Collection<String> reqPermissions = new LinkedHashSet<>();
         if (permissions != null && permissions.length > 0) {
             for (String permission : permissions)
@@ -54,7 +58,7 @@ public class AndroidPermissions {
         }
     }
 
-    public static String getAuthority() {
+    public String getAuthority() {
         return System.getProperty("cm.group.id") + "." + System.getProperty("cm.artifact.id") + ".provider";
     }
 }

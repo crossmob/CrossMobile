@@ -1628,8 +1628,8 @@ org/crossmobile/bridge/WrapperBridge.class v8
 org/crossmobile/bridge/WrapperMapBridge.class v8
 org/crossmobile/bridge/ann/CMGetter.class v8
 org/crossmobile/bridge/ann/CMSetter.class v8
+org/crossmobile/bridge/system/BaseUtils.class v8
 org/crossmobile/bridge/system/ClassWalker.class v8
-org/crossmobile/bridge/system/ExceptionUtils.class v8
 org/crossmobile/bridge/system/JsonHelper$1.class v8
 org/crossmobile/bridge/system/JsonHelper$a.class v8
 org/crossmobile/bridge/system/JsonHelper$b$a$a.class v8
@@ -2344,8 +2344,8 @@ org/crossmobile/bridge/WrapperBridge.class v8
 org/crossmobile/bridge/WrapperMapBridge.class v8
 org/crossmobile/bridge/ann/CMGetter.class v8
 org/crossmobile/bridge/ann/CMSetter.class v8
+org/crossmobile/bridge/system/BaseUtils.class v8
 org/crossmobile/bridge/system/ClassWalker.class v8
-org/crossmobile/bridge/system/ExceptionUtils.class v8
 org/crossmobile/bridge/system/JsonHelper$1.class v8
 org/crossmobile/bridge/system/JsonHelper$a.class v8
 org/crossmobile/bridge/system/JsonHelper$b$a$a.class v8
@@ -3034,8 +3034,8 @@ org/crossmobile/bridge/WrapperBridge.class v8
 org/crossmobile/bridge/WrapperMapBridge.class v8
 org/crossmobile/bridge/ann/CMGetter.class v8
 org/crossmobile/bridge/ann/CMSetter.class v8
+org/crossmobile/bridge/system/BaseUtils.class v8
 org/crossmobile/bridge/system/ClassWalker.class v8
-org/crossmobile/bridge/system/ExceptionUtils.class v8
 org/crossmobile/bridge/system/JsonHelper$1.class v8
 org/crossmobile/bridge/system/JsonHelper$a.class v8
 org/crossmobile/bridge/system/JsonHelper$b$a$a.class v8

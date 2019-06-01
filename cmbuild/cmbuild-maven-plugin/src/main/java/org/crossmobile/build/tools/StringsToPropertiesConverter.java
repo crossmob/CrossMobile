@@ -22,7 +22,7 @@ import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.build.antlr.LProjBaseListener;
 import org.crossmobile.build.antlr.LProjLexer;
 import org.crossmobile.build.antlr.LProjParser;
@@ -72,7 +72,7 @@ public class StringsToPropertiesConverter extends LProjBaseListener {
             walker.walk(converter, tree);
         } catch (IOException e) {
             Log.error("Unable to parse .strings file " + file.getAbsolutePath());
-            ExceptionUtils.throwException(e);
+            BaseUtils.throwException(e);
         }
         if (table != null && localizedType != null && !localizedType.isBase) {
             int howMany = converter.findMissing(table, file);
@@ -162,7 +162,7 @@ public class StringsToPropertiesConverter extends LProjBaseListener {
             return rootJ.toString();
         } catch (Exception e) {
             Log.error("Unable to parse .stringsdict file " + input.getAbsolutePath());
-            ExceptionUtils.throwException(e);
+            BaseUtils.throwException(e);
         }
         return null;
     }

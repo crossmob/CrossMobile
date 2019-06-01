@@ -64,9 +64,9 @@ public class MainActivity extends Activity {
         instancestate = savedInstanceState;
         MainActivity.current = this;
         setContentView(AndroidFileBridge.getResourceID("layout", "crossmobile_core"));
-        MainActivity.current = this;
         MainView.current = findViewById(AndroidFileBridge.getResourceID("id", "mainview"));
 
+        Native.destroy();  // Needs a fresh start
         Native.lifecycle().init(args);
         SystemUtilities.launchClass(System.getProperty("cm.main.class"), MainActivity.args);
         OrientationManager.register(this);
@@ -126,7 +126,7 @@ public class MainActivity extends Activity {
             Native.system().debug("Activity started", null);
     }
 
-    public Bundle getInstancestate() {
+    public Bundle getInstanceState() {
         return instancestate;
     }
 
@@ -200,6 +200,7 @@ public class MainActivity extends Activity {
         MainView.current = null;
         if (launchDebug)
             Native.system().debug("Activity destroyed" + (((AndroidLifecycleBridge) Native.lifecycle()).errorFound ? " with error" : ""), null);
+        Native.destroy();
         super.onDestroy();
     }
 

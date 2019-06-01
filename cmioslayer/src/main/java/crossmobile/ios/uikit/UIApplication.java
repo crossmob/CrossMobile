@@ -79,7 +79,7 @@ public class UIApplication extends UIResponder {
             + "NSString* " + NATIVE_PARAM + " = [delName stringByReplacingOccurrencesOfString: @\".\" withString: @\"_\"];\n"
             + "[delName release];\n"
             + "", type = String.class) Class<? extends UIApplicationDelegate> UIApplicationDelegate) {
-        Native.earlyInitialize(null);
+        Native.prepare(null);
         Native.lifecycle().init(args);
 
         // This is preferred since the constraint put during lifetime initialization under Android might not be enough, and a second one here might be required.

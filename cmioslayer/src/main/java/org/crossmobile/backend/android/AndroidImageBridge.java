@@ -190,7 +190,7 @@ public class AndroidImageBridge extends AbstractImageBridge {
 
     @Override
     public void requestCamera(VoidBlock1<CGImage> filepathResult) {
-        AndroidPermissions.requestPermissions(notGranted -> {
+        AndroidPermissions.current().requestPermissions(notGranted -> {
             Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             if (notGranted.isEmpty() && takePictureIntent.resolveActivity(MainActivity.current.getPackageManager()) != null) {
                 // Create output image file

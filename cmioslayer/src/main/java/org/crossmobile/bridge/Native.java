@@ -32,27 +32,27 @@ import static org.crossmobile.bridge.system.LauncherCommons.OUTPUT_PACKAGE;
 public abstract class Native {
 
     private static final boolean runsUnderAndroid;
+    private static boolean alreadyEarlyInitialized = false;
     private static Native bridge;
 
-    private static ImageBridge image;
-    private static SystemBridge system;
-    private static FileBridge file;
-    private static LifecycleBridge lifecycle;
-    private static GraphicsBridge graphics;
-    private static SoundBridge sound;
-    private static WrapperBridge widget;
-    private static WrapperMapBridge map;
-    private static InAppBridge inapp;
-    private static LocationBridge location;
-    private static NetworkBridge network;
-    private static SocialBridge social;
-    private static UIGuidelinesBridge uiguidelines;
-    private static NotificationBridge notification;
-    private static ShareBridge share;
-    private static SecurityBridge security;
-    private static MessageBridge message;
+    private ImageBridge image;
+    private SystemBridge system;
+    private FileBridge file;
+    private LifecycleBridge lifecycle;
+    private GraphicsBridge graphics;
+    private SoundBridge sound;
+    private WrapperBridge widget;
+    private WrapperMapBridge map;
+    private InAppBridge inapp;
+    private LocationBridge location;
+    private NetworkBridge network;
+    private SocialBridge social;
+    private UIGuidelinesBridge uiguidelines;
+    private NotificationBridge notification;
+    private ShareBridge share;
+    private SecurityBridge security;
+    private MessageBridge message;
 
-    private static boolean alreadyEarlyInitialized = false;
 
     static {
         runsUnderAndroid = System.getProperty("java.vm.specification.vendor", "").toLowerCase().contains("android")
@@ -71,6 +71,20 @@ public abstract class Native {
         return !runsUnderAndroid;
     }
 
+    public static void prepare(Object context) {
+        if (!alreadyEarlyInitialized)
+            try {
+                alreadyEarlyInitialized = true;
+                Class.forName("org.crossmobile.sys.PluginsLauncherList").getMethod("earlyInitialize", Object.class).invoke(null, context);
+            } catch (Exception ex) {
+                Native.system().error("Unable to early initialize plugins", ex);
+            }
+    }
+
+    public static void destroy() {
+        bridge = null;
+    }
+
     private static Native bridge() {
         if (bridge == null)
             if (runsUnderAndroid)
@@ -81,7 +95,7 @@ public abstract class Native {
                 try {
                     props.load(new InputStreamReader(Native.class.getResourceAsStream("/" + OUTPUT_PACKAGE + "/" + OUTPUT_FILE), "UTF-8"));
                     flavour = props.getProperty("flavour", "").toLowerCase().trim();
-                } catch (Exception ex) {
+                } catch (Exception ignored) {
                 }
                 switch (flavour) {
                     case "desktop":
@@ -102,118 +116,109 @@ public abstract class Native {
         return bridge;
     }
 
+    public static LifecycleBridge lifecycle() {
+        if (bridge().lifecycle == null)         // WARNING: NEEDS TO BE A METHOD CALL. It's the first to call after prepare
+            bridge.lifecycle = bridge.initLifecycle();
+        return bridge.lifecycle;
+    }
+
     public static ImageBridge image() {
-        if (image == null)
-            image = bridge().initImage();
-        return image;
+        if (bridge().image == null)
+            bridge.image = bridge.initImage();
+        return bridge.image;
     }
 
     public static SystemBridge system() {
-        if (system == null)
-            system = bridge().initSystem();
-        return system;
+        if (bridge().system == null)
+            bridge.system = bridge.initSystem();
+        return bridge.system;
     }
 
     public static FileBridge file() {
-        if (file == null)
-            file = bridge().initFile();
-        return file;
-    }
-
-    public static LifecycleBridge lifecycle() {
-        if (lifecycle == null)
-            lifecycle = bridge().initLifecycle();
-        return lifecycle;
+        if (bridge().file == null)
+            bridge.file = bridge.initFile();
+        return bridge.file;
     }
 
     public static GraphicsBridge graphics() {
-        if (graphics == null)
-            graphics = bridge().initGraphics();
-        return graphics;
+        if (bridge().graphics == null)
+            bridge.graphics = bridge.initGraphics();
+        return bridge.graphics;
     }
 
     public static SoundBridge sound() {
-        if (sound == null)
-            sound = bridge().initSound();
-        return sound;
+        if (bridge().sound == null)
+            bridge.sound = bridge.initSound();
+        return bridge.sound;
     }
 
     public static WrapperBridge widget() {
-        if (widget == null)
-            widget = bridge().initWidget();
-        return widget;
+        if (bridge().widget == null)
+            bridge.widget = bridge.initWidget();
+        return bridge.widget;
     }
 
     public static WrapperMapBridge mapWidget() {
-        if (map == null)
-            map = bridge().initMapWidget();
-        return map;
+        if (bridge().map == null)
+            bridge.map = bridge().initMapWidget();
+        return bridge.map;
     }
 
     public static InAppBridge inapp() {
-        if (inapp == null)
-            inapp = bridge().initInApp();
-        return inapp;
+        if (bridge().inapp == null)
+            bridge.inapp = bridge.initInApp();
+        return bridge.inapp;
     }
 
     public static LocationBridge location() {
-        if (location == null)
-            location = bridge().initLocation();
-        return location;
+        if (bridge().location == null)
+            bridge.location = bridge.initLocation();
+        return bridge.location;
     }
 
     public static NetworkBridge network() {
-        if (network == null)
-            network = bridge().initNetwork();
-        return network;
+        if (bridge().network == null)
+            bridge.network = bridge.initNetwork();
+        return bridge.network;
     }
 
     public static SocialBridge social() {
-        if (social == null)
-            social = bridge().initSocial();
-        return social;
+        if (bridge().social == null)
+            bridge.social = bridge.initSocial();
+        return bridge.social;
     }
 
     public static UIGuidelinesBridge uiguidelines() {
-        if (uiguidelines == null)
-            uiguidelines = bridge().initUIGuidelines();
-        return uiguidelines;
+        if (bridge().uiguidelines == null)
+            bridge.uiguidelines = bridge.initUIGuidelines();
+        return bridge.uiguidelines;
     }
 
     public static NotificationBridge notification() {
-        if (notification == null)
-            notification = bridge().initNotification();
-        return notification;
+        if (bridge().notification == null)
+            bridge.notification = bridge.initNotification();
+        return bridge.notification;
     }
 
     public static ShareBridge share() {
-        if (share == null)
-            share = bridge().initShare();
-        return share;
+        if (bridge().share == null)
+            bridge.share = bridge.initShare();
+        return bridge.share;
 
     }
 
     public static SecurityBridge security() {
-        if (security == null)
-            security = bridge().initSecurity();
-        return security;
+        if (bridge().security == null)
+            bridge.security = bridge.initSecurity();
+        return bridge.security;
     }
 
     public static MessageBridge message() {
-        if (message == null)
-            message = bridge().initMessage();
-        return message;
+        if (bridge().message == null)
+            bridge.message = bridge.initMessage();
+        return bridge.message;
     }
 
-    public static void earlyInitialize(Object context) {
-        if (!alreadyEarlyInitialized)
-            try {
-                alreadyEarlyInitialized = true;
-                Class.forName("org.crossmobile.sys.PluginsLauncherList").getMethod("earlyInitialize", Object.class).invoke(null, context);
-            } catch (Exception ex) {
-                Native.system().error("Unable to early initialize plugins", ex);
-            }
-    }
 
     protected abstract WrapperMapBridge initMapWidget();
 

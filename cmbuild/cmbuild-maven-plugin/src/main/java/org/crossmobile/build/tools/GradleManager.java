@@ -16,7 +16,7 @@
 package org.crossmobile.build.tools;
 
 import org.crossmobile.Version;
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.utils.FileUtils;
 import org.crossmobile.utils.Log;
 import org.crossmobile.utils.ProjectException;
@@ -52,7 +52,7 @@ public class GradleManager {
             }
             copyTemplateIfMissing(GRADLE, gradle, "Creating missing build.gradle file");
         } catch (Exception ex) {
-            ExceptionUtils.throwException(ex);
+            BaseUtils.throwException(ex);
         }
     }
 
@@ -72,7 +72,7 @@ public class GradleManager {
         try {
             copyTemplateIfMissing("gradle.properties", new File(basedir, "gradle.properties"), "Creating missing gradle.properties file");
         } catch (ProjectException ex) {
-            ExceptionUtils.throwException(ex);
+            BaseUtils.throwException(ex);
         }
     }
 

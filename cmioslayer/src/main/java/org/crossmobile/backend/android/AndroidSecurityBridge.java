@@ -56,11 +56,11 @@ import static org.crossmobile.bridge.ann.CMLibTarget.ANDROID;
 public class AndroidSecurityBridge implements SecurityBridge {
 
     private static final String KEY_NAME = "TOUCHKEY";
-    AlertDialog dialog;
     private Cipher cipher;
     private FingerprintManager fingerprintManager;
     private KeyStore keyStore;
     private KeyGenerator keyGenerator;
+    AlertDialog dialog;
 
     private Map<String, Object> getUserInfo(String description) {
         Map<String, Object> userInfo = new HashMap<>();

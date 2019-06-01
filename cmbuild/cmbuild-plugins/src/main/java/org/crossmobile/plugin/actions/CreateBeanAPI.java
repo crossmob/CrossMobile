@@ -17,7 +17,7 @@ package org.crossmobile.plugin.actions;
 
 import javassist.*;
 import org.crossmobile.bridge.ann.CMGetter;
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.plugin.reg.TargetRegistry;
 import org.crossmobile.utils.Log;
 import org.crossmobile.utils.TextUtils;
@@ -67,7 +67,7 @@ public class CreateBeanAPI {
             }
             return true;
         } catch (ClassNotFoundException | IOException | NotFoundException | CannotCompileException ex) {
-            ExceptionUtils.throwException(ex);
+            BaseUtils.throwException(ex);
             return false;
         }
     }
@@ -95,7 +95,7 @@ public class CreateBeanAPI {
         try {
             CtMethod found = s.getMethod(beanName, m.getMethodInfo().getDescriptor());
             if (found != null)
-                ExceptionUtils.throwException(new Exception("Name collision: requested to create method " + beanName + " based on " + currentName +
+                BaseUtils.throwException(new Exception("Name collision: requested to create method " + beanName + " based on " + currentName +
                         " in class " + s.getName() + ", but this method already exists" +
                         (found.getDeclaringClass().equals(s) ? "" : " in class " + found.getDeclaringClass().getName())));
         } catch (NotFoundException ignore) {

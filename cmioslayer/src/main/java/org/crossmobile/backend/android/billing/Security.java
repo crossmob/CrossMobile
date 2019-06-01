@@ -16,7 +16,7 @@ package org.crossmobile.backend.android.billing;
 
 import android.text.TextUtils;
 import android.util.Log;
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.support.MiGBase64;
 
 import java.security.*;
@@ -83,7 +83,7 @@ public class Security {
             KeyFactory keyFactory = KeyFactory.getInstance(KEY_FACTORY_ALGORITHM);
             return keyFactory.generatePublic(new X509EncodedKeySpec(decodedKey));
         } catch (NoSuchAlgorithmException e) {
-            return ExceptionUtils.throwException(e);
+            return BaseUtils.throwException(e);
         } catch (InvalidKeySpecException e) {
             Log.e(TAG, "Invalid key specification.");
             throw new IllegalArgumentException(e);

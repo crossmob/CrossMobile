@@ -15,7 +15,7 @@
  */
 package org.crossmobile.build.tools;
 
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.build.ib.Element;
 import org.crossmobile.build.ib.helper.XIBList;
 import org.crossmobile.build.ib.helper.XibClassStart;
@@ -85,7 +85,7 @@ public class IBObjectsCreator {
                 out.append(xiblist.toCode());
                 Log.info("Added " + size + " Interface Builder resource class" + plural(size, "es"));
             } catch (IOException ex) {
-                ExceptionUtils.throwException(ex);
+                BaseUtils.throwException(ex);
             }
         }
         if (cache.exists())

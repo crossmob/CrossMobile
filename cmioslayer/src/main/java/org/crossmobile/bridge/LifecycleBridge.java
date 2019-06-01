@@ -17,9 +17,9 @@ package org.crossmobile.bridge;
 
 public interface LifecycleBridge extends Thread.UncaughtExceptionHandler {
 
-    public static final String UNKNOWN_NAME = "Unknown";
-    public static final String CROSSMOBILE_PROPERTIES = "crossmobile.properties";
-    public static final String THEME_PROPERTIES = "theme.properties";
+    String UNKNOWN_NAME = "Unknown";
+    String CROSSMOBILE_PROPERTIES = "crossmobile.properties";
+    String THEME_PROPERTIES = "theme.properties";
 
     void init(String[] args);
 

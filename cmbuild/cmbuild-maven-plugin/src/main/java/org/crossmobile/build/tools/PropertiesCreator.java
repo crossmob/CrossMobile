@@ -15,7 +15,7 @@
  */
 package org.crossmobile.build.tools;
 
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.build.ng.CMBuildEnvironment;
 import org.crossmobile.build.utils.InfoPlist;
 import org.crossmobile.build.utils.SynchronizeHelpers;
@@ -59,7 +59,7 @@ public class PropertiesCreator extends GenericPropertiesCreator {
         try {
             crossmobile.store(out, null);
         } catch (IOException ex) {
-            ExceptionUtils.throwException(ex);
+            BaseUtils.throwException(ex);
         }
         write(out);
     }

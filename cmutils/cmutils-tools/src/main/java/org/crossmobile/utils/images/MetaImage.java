@@ -15,7 +15,7 @@
  */
 package org.crossmobile.utils.images;
 
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.utils.Log;
 
 import javax.imageio.ImageIO;
@@ -67,7 +67,7 @@ public class MetaImage {
         if (image == null)
             return this;
         if (crop.isInvalid())
-            ExceptionUtils.throwException(new InvalidObjectException("Selected crop image is not valid"));
+            BaseUtils.throwException(new InvalidObjectException("Selected crop image is not valid"));
         return new MetaImage(cropImage(image, crop.image), null, true);
     }
 

@@ -21,7 +21,7 @@ import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtMethod;
 import javassist.NotFoundException;
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -153,7 +153,7 @@ public class NativeCodeCollection {
                     ZipEntry codeentry = jar.getEntry(REVERSE_INF);
                     loadSources(jar.getInputStream(codeentry), classpath);
                 } catch (Exception ex) {
-                    ExceptionUtils.throwException(new IOException("Unable to locate reverse bindings for plugin " + classpath.getName(), ex));
+                    BaseUtils.throwException(new IOException("Unable to locate reverse bindings for plugin " + classpath.getName(), ex));
                 }
     }
 

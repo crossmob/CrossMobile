@@ -24,7 +24,7 @@ import org.apache.maven.shared.dependency.graph.DependencyGraphBuilder;
 import org.apache.maven.shared.dependency.graph.DependencyGraphBuilderException;
 import org.apache.maven.shared.dependency.graph.DependencyNode;
 import org.apache.maven.shared.dependency.graph.traversal.DependencyNodeVisitor;
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.build.ArtifactInfo;
 import org.crossmobile.utils.Log;
 import org.crossmobile.utils.plugin.DependencyItem;
@@ -81,7 +81,7 @@ public class DependencyDigger {
             });
 
         } catch (DependencyGraphBuilderException ex) {
-            ExceptionUtils.throwException(ex);
+            BaseUtils.throwException(ex);
         }
     }
 }

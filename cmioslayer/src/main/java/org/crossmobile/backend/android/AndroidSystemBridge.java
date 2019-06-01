@@ -49,8 +49,9 @@ import static org.crossmobile.bridge.ann.CMLibTarget.ANDROID;
 @CMLib(target = ANDROID, name = "cmioslayer")
 public class AndroidSystemBridge implements SystemBridgeExt {
 
-    public static final int SPLASH_ACTIVITY = 0;
     private static final String LOGTAG = "CrossMob";
+
+    AndroidPermissions permissions = new AndroidPermissions();
 
     @Override
     public void error(Object message, Throwable th) {

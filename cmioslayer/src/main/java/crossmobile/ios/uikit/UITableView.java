@@ -23,7 +23,7 @@ import org.crossmobile.bind.graphics.Theme;
 import org.crossmobile.bind.system.Optionals;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.*;
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
@@ -233,7 +233,7 @@ public class UITableView extends UIScrollView {
                 return reusableCells.get(id).getDeclaredConstructor(closestController.getClass()).newInstance(closestController);
             } catch (InstantiationException | IllegalAccessException | NoSuchMethodException ignore) {
             } catch (InvocationTargetException e) {
-                ExceptionUtils.throwException(e.getCause());
+                BaseUtils.throwException(e.getCause());
             }
         }
         return null;

@@ -39,9 +39,9 @@ import static org.crossmobile.bridge.CustomNotifications.AndroidBackButtonNotifi
 
 public abstract class AbstractLifecycleBridge implements LifecycleBridge {
 
-    private static final Set<String> NOT_IMPLEMENTED_ELEMENTS = new HashSet<>();
+    private final Set<String> NOT_IMPLEMENTED_ELEMENTS = new HashSet<>();
 
-    private static boolean applicationIsInitialized = false;
+    private boolean applicationIsInitialized = false;
     private Thread.UncaughtExceptionHandler systemhandler;
     private boolean isQuitting = false;
 

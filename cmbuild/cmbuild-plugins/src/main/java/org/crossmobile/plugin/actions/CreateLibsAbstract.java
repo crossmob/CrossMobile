@@ -173,7 +173,7 @@ public abstract class CreateLibsAbstract {
                         JarUtils.copyJarResources(new JarFile(f), PLATFORM.apply(asIOS), out, entry -> isInclude(entry.name));
                 } catch (Exception e) {
                     Log.warning("🐔\uD83D\uDD04🥚 Could not find artifact " + ai.toString());
-//                    ExceptionUtils.throwException(e);
+//                    BaseUtils.throwException(e);
                 }
             }
         return out;

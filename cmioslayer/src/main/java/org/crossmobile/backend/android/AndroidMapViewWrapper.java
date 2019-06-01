@@ -153,7 +153,7 @@ public class AndroidMapViewWrapper extends MapViewWrapper<AndroidMapViewWrapper.
 
     @Override
     public void setShowsUserLocation(final boolean showsUserLocation) {
-        AndroidPermissions.requestPermissions(notGranted -> {
+        AndroidPermissions.current().requestPermissions(notGranted -> {
             if (notGranted.size() < 2) // at least one
                 defer(() -> getNativeMap().setMyLocationEnabled(showsUserLocation));
         }, AndroidPermission.ACCESS_COARSE_LOCATION, AndroidPermission.ACCESS_FINE_LOCATION);

@@ -15,7 +15,7 @@
  */
 package org.crossmobile.build.xcode.resources;
 
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.utils.FileUtils;
 import org.crossmobile.utils.Log;
 import org.crossmobile.utils.PluginMetaData;
@@ -125,7 +125,7 @@ public class ObjCLibrary {
                         if (isLib)
                             libs.add(basedir + separator + XCODE_BASE + separator + XCODE_EXT_LIB + File.separator + name);
                     } catch (IOException ex) {
-                        ExceptionUtils.throwException(ex);
+                        BaseUtils.throwException(ex);
                     }
                 else
                     Log.warning("Unknown file type in plugin " + pluginname + ": " + name);

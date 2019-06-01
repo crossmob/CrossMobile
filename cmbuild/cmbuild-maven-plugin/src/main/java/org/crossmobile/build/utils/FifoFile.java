@@ -15,7 +15,7 @@
  */
 package org.crossmobile.build.utils;
 
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.utils.Commander;
 
 import java.io.*;
@@ -39,7 +39,7 @@ public class FifoFile {
             if (cmd.exitValue() != 0)
                 throw new RuntimeException("Unable to create FIFO file");
         } catch (IOException ex) {
-            ExceptionUtils.throwException(ex);
+            BaseUtils.throwException(ex);
         }
     }
 
@@ -50,7 +50,7 @@ public class FifoFile {
             try {
                 out = new OutputStreamWriter(new FileOutputStream(fifo), StandardCharsets.UTF_8);
             } catch (IOException ex) {
-                return ExceptionUtils.throwException(ex);
+                return BaseUtils.throwException(ex);
             }
         return out;
     }
@@ -62,7 +62,7 @@ public class FifoFile {
             try {
                 in = new InputStreamReader(new FileInputStream(fifo), StandardCharsets.UTF_8);
             } catch (IOException ex) {
-                return ExceptionUtils.throwException(ex);
+                return BaseUtils.throwException(ex);
             }
         return in;
     }
@@ -110,13 +110,13 @@ public class FifoFile {
             try {
                 in.close();
             } catch (IOException ex) {
-                ExceptionUtils.throwException(ex);
+                BaseUtils.throwException(ex);
             }
         if (out != null)
             try {
                 out.close();
             } catch (IOException ex) {
-                ExceptionUtils.throwException(ex);
+                BaseUtils.throwException(ex);
             }
         fifo.delete();
         fifo = null;

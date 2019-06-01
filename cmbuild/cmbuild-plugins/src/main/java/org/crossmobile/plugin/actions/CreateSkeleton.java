@@ -22,7 +22,7 @@ import javassist.bytecode.LocalVariableAttribute;
 import javassist.bytecode.ParameterAnnotationsAttribute;
 import javassist.bytecode.annotation.Annotation;
 import org.crossmobile.bridge.ann.CMLibTarget;
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.plugin.reg.PluginRegistry;
 import org.crossmobile.plugin.reg.TargetRegistry;
 
@@ -105,7 +105,7 @@ public class CreateSkeleton {
             s.writeFile(resolver.apply(PluginRegistry.getPlugin(name)).getAbsolutePath());
             return true;
         } catch (IOException | NotFoundException | CannotCompileException ex) {
-            ExceptionUtils.throwException(ex);
+            BaseUtils.throwException(ex);
             return false;
         }
     }
@@ -149,7 +149,7 @@ public class CreateSkeleton {
 //        try {
 //            code = new Javac(method.getDeclaringClass()).compileBody(method, null);
 //        } catch (CompileError ex) {
-//            ExceptionUtils.throwException(ex);
+//            BaseUtils.throwException(ex);
 //            return;
 //        }
 //        if (cattr != null) {
@@ -179,7 +179,7 @@ public class CreateSkeleton {
 //            }
 //            method.setBody(null);
 //        } catch (Exception ex) {
-//            ExceptionUtils.throwException(ex);
+//            BaseUtils.throwException(ex);
 //        }
 //    }
 //

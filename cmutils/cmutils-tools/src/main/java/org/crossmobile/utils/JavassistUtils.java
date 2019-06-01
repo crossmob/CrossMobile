@@ -18,7 +18,7 @@ package org.crossmobile.utils;
 import javassist.*;
 import javassist.bytecode.*;
 import javassist.bytecode.annotation.Annotation;
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 
 import java.io.File;
 import java.util.Collection;
@@ -118,7 +118,7 @@ public class JavassistUtils {
         try {
             return cclass.getClassPool().get(nameConv.apply(type));
         } catch (NotFoundException e) {
-            ExceptionUtils.throwException(e);
+            BaseUtils.throwException(e);
             return null;
         }
     }

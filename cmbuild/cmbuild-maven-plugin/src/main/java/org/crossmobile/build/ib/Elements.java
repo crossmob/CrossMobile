@@ -15,7 +15,7 @@
  */
 package org.crossmobile.build.ib;
 
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.build.ib.helper.Date;
 import org.crossmobile.build.ib.helper.Objects;
 import org.crossmobile.build.ib.helper.TimeZone;
@@ -125,7 +125,7 @@ public final class Elements {
                     Element e = (Element) f.get(null);
                     e.addSupported();
                 } catch (IllegalArgumentException | IllegalAccessException ex) {
-                    ExceptionUtils.throwException(ex);
+                    BaseUtils.throwException(ex);
                 }
     }
 

@@ -18,7 +18,7 @@ package org.crossmobile.plugin.bro;
 import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.NotFoundException;
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.plugin.model.NObject;
 import org.crossmobile.plugin.model.NParam;
 import org.crossmobile.plugin.model.NType;
@@ -83,7 +83,7 @@ public class JavaTransformer {
             init();
         } catch (Exception e) {
             Log.error(e);
-            ExceptionUtils.throwException(e);
+            BaseUtils.throwException(e);
         }
     }
 

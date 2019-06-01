@@ -15,7 +15,7 @@
  */
 package org.crossmobile.build.ib;
 
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.build.ib.helper.RealElement;
 import org.crossmobile.build.ib.i18n.IBParserMeta;
 import org.crossmobile.utils.Log;
@@ -126,7 +126,7 @@ public abstract class Element {
             child.meta = meta;
             return child;
         } catch (InstantiationException | IllegalAccessException ex) {
-            return ExceptionUtils.throwException(ex);
+            return BaseUtils.throwException(ex);
         }
     }
 

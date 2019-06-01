@@ -21,7 +21,7 @@ package org.crossmobile.utils;
  * To reduce the required dependencies, most irrelevant methods have been removed.
  */
 
-import org.crossmobile.bridge.system.ExceptionUtils;
+import org.crossmobile.bridge.system.BaseUtils;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -189,7 +189,7 @@ public class StringEscapeUtilsTrimmed {
             return writer.toString();
         } catch (IOException ioe) {
             // this should never ever happen while writing to a StringWriter
-            return ExceptionUtils.throwException(ioe);
+            return BaseUtils.throwException(ioe);
         }
     }
 
@@ -309,7 +309,7 @@ public class StringEscapeUtilsTrimmed {
             return writer.toString();
         } catch (IOException ioe) {
             // this should never ever happen while writing to a StringWriter
-            return ExceptionUtils.throwException(ioe);
+            return BaseUtils.throwException(ioe);
         }
     }
 
