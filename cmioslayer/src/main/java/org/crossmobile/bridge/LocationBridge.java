@@ -19,22 +19,22 @@ import crossmobile.ios.corelocation.CLLocation;
 
 public interface LocationBridge {
 
-    public boolean supportsCoarseLocations();
+    boolean supportsCoarseLocations();
 
-    public boolean supportsFineLocations();
+    boolean supportsFineLocations();
 
-    public void preferCoarseUpdating();
+    void preferCoarseUpdating();
 
-    public void preferFineUpdating();
+    void preferFineUpdating();
 
-    public void startUpdating(LocationChangeDelegate delegate);
+    void startUpdating(LocationChangeDelegate delegate);
 
-    public void stopUpdating(LocationChangeDelegate delegate);
+    void stopUpdating(LocationChangeDelegate delegate);
 
-    public CLLocation lastKnownLocation();
+    CLLocation lastKnownLocation();
 
-    public static interface LocationChangeDelegate {
+    interface LocationChangeDelegate {
 
-        public void updateLocation(double latitude, double longitude);
+        void updateLocation(double latitude, double longitude);
     }
 }

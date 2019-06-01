@@ -216,7 +216,8 @@ public class NSURLConnection extends NSObject {
                         if (req_m.body != null && req_m.body.data.length > 0) {
                             connection.setDoOutput(true);
                             out = new BufferedOutputStream(connection.getOutputStream());
-                            out.write(req_m.HTTPBody().data);
+                            if (req_m.HTTPBody() != null && req_m.HTTPBody().length() > 0)
+                                out.write(req_m.HTTPBody().data);
                             closeR(out);
                             out = null;
                         }

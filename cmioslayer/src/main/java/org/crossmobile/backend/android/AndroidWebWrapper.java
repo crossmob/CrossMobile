@@ -72,7 +72,7 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
     public void loadRequest(NSURLRequest req) {
         NSMutableURLRequest mreq = (NSMutableURLRequest) ((req instanceof NSMutableURLRequest) ? req : null);
         if (mreq != null)
-            getNativeWidget().postUrl(mreq.URL().absoluteString(), mreq.HTTPBody().bytes());
+            getNativeWidget().postUrl(mreq.URL().absoluteString(), mreq.HTTPBody() == null ? null : mreq.HTTPBody().bytes());
         else
             getNativeWidget().loadUrl(req.URL().absoluteString());
     }

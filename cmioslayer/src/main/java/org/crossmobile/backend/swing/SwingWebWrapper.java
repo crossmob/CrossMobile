@@ -60,7 +60,7 @@ public class SwingWebWrapper extends WebWrapper<SwingWebWrapper.NativeW, SwingGr
                 UIWebViewDelegate del = wv.delegate();
                 if (del != null)
                     del.didStartLoad(wv);
-                if ((req instanceof NSMutableURLRequest) && ((NSMutableURLRequest) req).HTTPBody() != null)
+                if ((req instanceof NSMutableURLRequest) && ((NSMutableURLRequest) req).HTTPBody() != null && ((NSMutableURLRequest) req).HTTPBody().length() > 0)
                     getNativeWidget().getDocument().putProperty("javax.desktop.JEditorPane.postdata", SystemUtilities.bytesToString(((NSMutableURLRequest) req).HTTPBody().bytes()));
                 getNativeWidget().setPage(req.URL().absoluteString());
             } catch (IOException ex) {
