@@ -6,11 +6,10 @@ import android.support.v4.content.ContextCompat;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.CMLib;
 import org.crossmobile.bridge.ann.CMLibDepends;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.robovm.objc.block.VoidBlock1;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedHashSet;
+import java.util.*;
 
 import static org.crossmobile.bridge.ann.CMLibTarget.ANDROID;
 
@@ -18,6 +17,7 @@ import static org.crossmobile.bridge.ann.CMLibTarget.ANDROID;
         pluginName = "support-core-utils",
         version = "26.1.0", isCMPlugin = false))
 public class AndroidPermissions {
+    private final Collection<String> alreadyAskedForPermission = new HashSet<>();
 
     public static AndroidPermissions current() {
         return ((AndroidSystemBridge) Native.system()).permissions;
@@ -38,9 +38,11 @@ public class AndroidPermissions {
                     Native.system().error("Requesting a null Android permission", null);
         } else
             Native.system().error("Requested Android permissions are empty", null);
+        Collection<String> alreadyAsked = BaseUtils.removeCommon(reqPermissions, alreadyAskedForPermission);
+        alreadyAskedForPermission.addAll(reqPermissions);
         if (reqPermissions.isEmpty()) {
             if (notGrantedPermissions != null)
-                notGrantedPermissions.invoke(Collections.emptyList());
+                notGrantedPermissions.invoke(alreadyAsked);
         } else {
             int reqCode = MainActivity.current.getStateListener().register(new ActivityPermissionListener() {
                 @Override
