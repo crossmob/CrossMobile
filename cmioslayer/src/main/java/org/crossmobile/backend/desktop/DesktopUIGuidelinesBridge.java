@@ -26,7 +26,7 @@ public class DesktopUIGuidelinesBridge implements UIGuidelinesBridge {
     }
 
     @Override
-    public boolean isTabbarOnTop() {
+    public boolean isTabBarOnTop() {
         return false;
     }
 

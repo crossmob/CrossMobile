@@ -19,7 +19,7 @@ public interface UIGuidelinesBridge {
 
     boolean shouldDisplayStatusBar();
 
-    boolean isTabbarOnTop();
+    boolean isTabBarOnTop();
 
     default void setStatusBarDark(boolean dark) {
         // Do nothing by default
