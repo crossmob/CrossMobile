@@ -24,13 +24,7 @@ public interface SystemBridgeExt extends SystemBridge {
 
     @Override
     default void runAndWaitOnEventThread(Runnable r) {
-        if (r != null)
-            SyncRunnable.start(new Runnable() {
-                @Override
-                public void run() {
-                    r.run();
-                }
-            });
+        SyncRunnable.start(r);
     }
 
     @Override
