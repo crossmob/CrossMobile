@@ -13,14 +13,14 @@
     <artifactId>cmioslayer</artifactId>
     <dependencies>
         <!--<dependency>-->
-            <!--<groupId>com.mobidevelop.robovm</groupId>-->
-            <!--<artifactId>robovm-rt</artifactId>-->
-            <!--<version>${version.robovm}</version>-->
+        <!--<groupId>com.mobidevelop.robovm</groupId>-->
+        <!--<artifactId>robovm-rt</artifactId>-->
+        <!--<version>${version.robovm}</version>-->
         <!--</dependency>-->
         <!--<dependency>-->
-            <!--<groupId>com.mobidevelop.robovm</groupId>-->
-            <!--<artifactId>robovm-cocoatouch</artifactId>-->
-            <!--<version>${version.robovm}</version>-->
+        <!--<groupId>com.mobidevelop.robovm</groupId>-->
+        <!--<artifactId>robovm-cocoatouch</artifactId>-->
+        <!--<version>${version.robovm}</version>-->
         <!--</dependency>-->
         <dependency>
             <groupId>org.crossmobile</groupId>
@@ -120,6 +120,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <skip>${skip.plugins}</skip>
                     <!--<skipIos>true</skipIos>-->
                     <skipUwp>true</skipUwp>
                     <skipDesktop>${skip.java.targets}</skipDesktop>
@@ -196,13 +197,21 @@
                 </os>
             </activation>
             <properties>
-                <!--<skip.java.targets>true</skip.java.targets>-->
+                <skip.java.targets>true</skip.java.targets>
+            </properties>
+        </profile>
+        <profile>
+            <id>fast-debug-build</id>
+            <properties>
+                <skip.plugins>true</skip.plugins>
             </properties>
         </profile>
     </profiles>
 
     <properties>
         <obfuscate.project>true</obfuscate.project>
+        <skip.java.targets>false</skip.java.targets>
+        <skip.plugins>false</skip.plugins>
     </properties>
     <!-- For private android packages -->
     <repositories>
