@@ -134,9 +134,7 @@ public class Theme {
 
             public static final int EDGEOFFSET = getInteger("cm.theme.bar.nav.edge.offset", 8);
             public static final int HEIGHTOFFSET = getInteger("cm.theme.bar.nav.height.offset", 6);
-            public static final int HEIGHTLARGE = getInteger("cm.theme.bar.nav.height.large", 44);
             public static final int HEIGHTNORMAL = getInteger("cm.theme.bar.nav.height.normal", 44);
-            public static final int HEIGHTSMALL = getInteger("cm.theme.bar.nav.height.small", 44);
             public static final boolean ISSHADOWED = propertyToCGSize("cm.theme.bar.nav.shadow.offset", null) != null;
             public static final CGSize SHADOWOFFSET = ISSHADOWED ? propertyToCGSize("cm.theme.bar.nav.shadow.offset", null) : null;
             public static final int TITLEOFFSET = getInteger("cm.theme.bar.nav.title.offset", 4);

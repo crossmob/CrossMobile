@@ -971,18 +971,18 @@ public class UIViewController extends UIResponder {
         return frame;
     }
 
+    UIEdgeInsets getTotalSafeAreaInsets() {
+        UIEdgeInsets metrics = getActiveInsets();
+        return new UIEdgeInsets(metrics.getTop() + additionalSafeAreaInsets.getTop(), metrics.getLeft() + additionalSafeAreaInsets.getLeft(),
+                metrics.getBottom() + additionalSafeAreaInsets.getBottom(), metrics.getRight() + additionalSafeAreaInsets.getRight());
+    }
+
     private UIEdgeInsets getActiveInsets() {
         if (UIApplication.sharedApplication().keyWindow() == null)
             return UIEdgeInsets.zero();
         DrawableMetrics metrics = Native.graphics().metrics();
         return new UIEdgeInsets(metrics.getInsetTop(), metrics.getInsetLeft(),
                 metrics.getInsetBottom(), metrics.getInsetRight());
-    }
-
-    UIEdgeInsets getTotalSafeAreaInsets() {
-        UIEdgeInsets metrics = getActiveInsets();
-        return new UIEdgeInsets(metrics.getTop() + additionalSafeAreaInsets.getTop(), metrics.getLeft() + additionalSafeAreaInsets.getLeft(),
-                metrics.getBottom() + additionalSafeAreaInsets.getBottom(), metrics.getRight() + additionalSafeAreaInsets.getRight());
     }
 
     boolean isView(UIView parent) {
@@ -1013,51 +1013,53 @@ public class UIViewController extends UIResponder {
 
     @CMGetter("@property(nonatomic, readonly, strong) id<UILayoutSupport> topLayoutGuide;")
     public UILayoutSupport topLayoutGuide() {
-            if (topLayoutGuide == null) topLayoutGuide = new LayoutSupport(view, true);
+        if (topLayoutGuide == null)
+            topLayoutGuide = new LayoutSupport(view, true);
         return topLayoutGuide;
     }
 
     @CMGetter("@property(nonatomic, readonly, strong) id<UILayoutSupport> bottomLayoutGuide;")
     public UILayoutSupport bottomLayoutGuide() {
-        if (bottomLayoutGuide == null) bottomLayoutGuide = new LayoutSupport(view, false);
+        if (bottomLayoutGuide == null)
+            bottomLayoutGuide = new LayoutSupport(view, false);
         return bottomLayoutGuide;
     }
 
     void suggestGuides(UIEdgeInsets insets) {
         if (topLayoutGuide != null) {
-            CGSize current =  ((LayoutSupport) topLayoutGuide).owningView().frame().getSize();
+            CGSize current = ((LayoutSupport) topLayoutGuide).owningView().frame().getSize();
             ((LayoutSupport) topLayoutGuide).owningView().solver().suggestValue(((LayoutSupport) topLayoutGuide).getVariable(NSLayoutAttribute.Top), view().lookup(NSLayoutAttribute.Top, current.getWidth(), current.getHeight()));
             ((LayoutSupport) topLayoutGuide).owningView().solver().suggestValue(((LayoutSupport) topLayoutGuide).getVariable(NSLayoutAttribute.Height), insets.getTop());
             ((LayoutSupport) topLayoutGuide).owningView().solver().resolve();
         }
         if (bottomLayoutGuide != null) {
-            CGSize current =  ((LayoutSupport) bottomLayoutGuide).owningView().frame().getSize();
+            CGSize current = ((LayoutSupport) bottomLayoutGuide).owningView().frame().getSize();
             ((LayoutSupport) bottomLayoutGuide).owningView().solver().suggestValue(((LayoutSupport) bottomLayoutGuide).getVariable(NSLayoutAttribute.Top), view().lookup(NSLayoutAttribute.Height, current.getWidth(), current.getHeight()) - insets.getBottom());
             ((LayoutSupport) bottomLayoutGuide).owningView().solver().suggestValue(((LayoutSupport) bottomLayoutGuide).getVariable(NSLayoutAttribute.Height), insets.getBottom());
             ((LayoutSupport) bottomLayoutGuide).owningView().solver().resolve();
         }
     }
 
-    private void setLayoutGuide(LayoutSupport guide){
+    private void setLayoutGuide(LayoutSupport guide) {
         guide.owningView().solver().beginEdit();
         for (Integer attr : guide.variableMap.keySet())
-           guide.owningView().solver().addEditVar(guide.getVariable(attr));
+            guide.owningView().solver().addEditVar(guide.getVariable(attr));
         guide.owningView().solver().resolve();
     }
 
-    private void resetLayoutGuide(LayoutSupport guide){
-        if(guide.owningView() == null)
+    private void resetLayoutGuide(LayoutSupport guide) {
+        if (guide.owningView() == null)
             return;
         guide.owningView().solver().beginEdit();
         for (Integer attr : guide.variableMap.keySet())
-            if(guide.owningView().solver().containsVariable(guide.getVariable(attr)))
+            if (guide.owningView().solver().containsVariable(guide.getVariable(attr)))
                 guide.owningView().solver().removeEditVar(guide.getVariable(attr));
         guide.owningView().solver().resolve();
     }
 
     /**
      * This should be called whenever a view is set
-     *
+     * <p>
      * Behaviour when UIViewControllers view is set as null by force cannot be tested
      * on linux.
      */
@@ -1206,6 +1208,7 @@ public class UIViewController extends UIResponder {
         UIViewController p = pcontroller;
         while (p != null) {
             if (clazz.isInstance(p))
+                //noinspection unchecked
                 return (T) p;
             p = p.pcontroller;
         }
@@ -1214,12 +1217,12 @@ public class UIViewController extends UIResponder {
 
 
     @CMGetter("@property(nonatomic, copy) NSString *restorationIdentifier;")
-    public String restorationIdentifier(){
+    public String restorationIdentifier() {
         return restorationIdentifier;
     }
 
     @CMSetter("@property(nonatomic, copy) NSString *restorationIdentifier;")
-    public void setRestorationIdentifier(String restorationIdentifier){
+    public void setRestorationIdentifier(String restorationIdentifier) {
         //TODO what it actually does
         this.restorationIdentifier = restorationIdentifier;
     }

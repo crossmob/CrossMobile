@@ -429,7 +429,6 @@ public class UINavigationBar extends UIView {
 
     void fixMetricsForStatusBar(double sisterWidth) {
         DrawableMetrics m = Native.graphics().metrics();
-
         setFrameImpl(m.getInsetLeft(),
                 m.getInsetTop(),
                 sisterWidth,

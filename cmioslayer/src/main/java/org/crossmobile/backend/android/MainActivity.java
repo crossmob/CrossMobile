@@ -248,11 +248,11 @@ public class MainActivity extends Activity {
                             for (ScanResult result : wifi.getScanResults())
                                 if (result.BSSID.equals(wifi.getConnectionInfo().getBSSID()))
                                     statusBar.setWifi(WifiManager.calculateSignalLevel(wifi.getConnectionInfo().getRssi(), result.level) / (float) result.level);
-                    } catch (Exception ex) {
+                    } catch (Exception ignored) {
                     }
                 }
             }, new IntentFilter(WifiManager.RSSI_CHANGED_ACTION));
-        } catch (Exception ex) {
+        } catch (Exception ignored) {
         }
 
         // GSM Listener
