@@ -1,5 +1,10 @@
 {
-  "version": 1,
+  "version": 2,
+  "macosx": {
+    "jvmargs": [
+      "-Xdock:icon=@@LAUNCH_LOCATION@@/../Resources/CrossMobile.icns"
+    ]
+  },
   "jvmargs": [
     "-Dawt.useSystemAAFontSettings=on",
     "-Dswing.aatext=true"
