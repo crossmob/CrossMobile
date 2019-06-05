@@ -196,8 +196,11 @@ public class Theme {
         public final static UIColor HEADERBACK = uicolor((int) ((long) getLong("cm.theme.cell.headerback", 0xFFF5F5F5)));
         public final static UIColor HEADERTEXT = uicolor((int) ((long) getLong("cm.theme.cell.headertext", 0xFFEDEDE5)));
         public final static int EDIT_SIZE = getInteger("cm.theme.cell.edit.size", 25);
-        public final static int EDIT_EDGE = getInteger("cm.theme.cell.edit.edge", 4);
-        public final static int TEXT_INSET_X = getInteger("cm.theme.cell.text.inset.x", 6);
+        public final static int ACCESSORY_SIZE = getInteger("cm.theme.cell.accessory.size", 22);
+        public final static int IMAGE_SIZE = getInteger("cm.theme.cell.image.size", 30);
+        public final static int INSET_LEFT = getInteger("cm.theme.cell.inset.left", 6);
+        public final static int INSET_RIGHT = getInteger("cm.theme.cell.inset.right", 22);
+        public final static int INSET_CONTENT = getInteger("cm.theme.cell.inset.content", 6);
 
         private Cell() {
         }

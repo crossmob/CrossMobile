@@ -57,13 +57,13 @@ class cmCells {
         }
     }
 
-    abstract static class AbstractCallendarCell extends UITableViewCell {
+    abstract static class AbstractCalendarCell extends UITableViewCell {
 
         UILabel label;
         Calendar calendar;
         CGRect rect;
 
-        AbstractCallendarCell(CGRect rect) {
+        AbstractCalendarCell(CGRect rect) {
             super(UITableViewCellStyle.Default, null);
             calendar = Calendar.getInstance();
             this.rect = rect;
@@ -82,7 +82,7 @@ class cmCells {
         abstract public void update(int idx);
     }
 
-    static class MinuteCell extends AbstractCallendarCell {
+    static class MinuteCell extends AbstractCalendarCell {
 
         int interval;
 
@@ -112,7 +112,7 @@ class cmCells {
         }
     }
 
-    static class HourCell extends AbstractCallendarCell {
+    static class HourCell extends AbstractCalendarCell {
 
         HourCell(CGRect rect) {
             super(rect);
@@ -149,7 +149,7 @@ class cmCells {
         }
     }
 
-    static class DateCell extends AbstractCallendarCell {
+    static class DateCell extends AbstractCalendarCell {
 
         long first = 0;
 
@@ -175,7 +175,7 @@ class cmCells {
         }
     }
 
-    static class DayCell extends AbstractCallendarCell {
+    static class DayCell extends AbstractCalendarCell {
 
         DayCell(CGRect rect) {
             super(rect);
@@ -190,7 +190,7 @@ class cmCells {
 
     }
 
-    static class MonthCell extends AbstractCallendarCell {
+    static class MonthCell extends AbstractCalendarCell {
 
         MonthCell(CGRect rect) {
             super(rect);
@@ -206,7 +206,7 @@ class cmCells {
 
     }
 
-    static class YearCell extends AbstractCallendarCell {
+    static class YearCell extends AbstractCalendarCell {
 
         YearCell(CGRect rect) {
             super(rect);
@@ -222,7 +222,7 @@ class cmCells {
 
     }
 
-    static class AMPMCell extends AbstractCallendarCell {
+    static class AMPMCell extends AbstractCalendarCell {
 
         AMPMCell(CGRect rect) {
             super(rect);

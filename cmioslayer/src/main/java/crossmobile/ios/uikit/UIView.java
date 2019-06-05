@@ -521,6 +521,12 @@ public class UIView extends UIResponder {
         }
     }
 
+    /* should be removed */
+    void forceLayout() {
+        updateConstraints();
+        layoutSubviews();
+    }
+
     /**
      * Changes the layout of this view's subviews.
      */

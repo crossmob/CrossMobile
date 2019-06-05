@@ -42,16 +42,16 @@ public class UITableViewCell extends UIView {
     NSIndexPath path = null;
     private boolean selected = false;
     private boolean highlighted = false;
-    private UIColor definedContentBackground;
+    private UIColor originalContentBackground;
     private UIView unselectedBV;
     private UIView selectedBV;
-    private UIView accessoryV;
     private UILabel textlabel;
     private UILabel detailedtextlabel;
     private UIButton editB;
     private int selectionStyle = UITableViewCellSelectionStyle.Gray;
     private int editingStyle = UITableViewCellEditingStyle.Delete;
-    private int accessorytype = UITableViewCellAccessoryType.None;
+    private int accessoryType = UITableViewCellAccessoryType.None;
+    private UIView accessoryView = null;
     private boolean isEditing = false;
     private UIImageView imageView = null;
     private float rowHeight = -1;
@@ -73,39 +73,54 @@ public class UITableViewCell extends UIView {
             + "              reuseIdentifier:(NSString *)reuseIdentifier;")
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public UITableViewCell(int UITableViewCellStyle, String reuseIdentifier) {
-        contentV = new ContentView();
-        addSubview(contentV);
-        setBackgroundColor(UIColor.whiteColor);
+        super(new CGRect(0, 0, 320, 44));
         this.reuseIdentifier = reuseIdentifier;
-        setFrame(new CGRect(0, 0, 320, 44));
+        setBackgroundColor(UIColor.whiteColor);
         setAutoresizesSubviews(false);
+        addSubview(contentV = new ContentView());
+    }
+
+    @Override
+    public void didAddSubview(UIView subview) {
+        forceLayout();
+    }
+
+    @Override
+    void didRemoveSubview(UIView subview) {
+        forceLayout();
     }
 
     @Override
     public void layoutSubviews() {
         if (contentV != null) { // Only when the object is fully initialized
-            CGRect innerframe = frame(); // create a new instance of CGFrame to play with it
-            innerframe.getOrigin().setX(isEditing ? Theme.Cell.EDIT_EDGE * 2 + editButtonSize().getWidth() : 0);
+            double leftInset = 0;
+            double rightInset = 0;
+            double width = getWidth();
+            double height = getHeight();
 
-            if (imageView != null && imageView.image() != null) {
-                imageView.setFrame(new CGRect(innerframe.getOrigin().getX(), 0, imageView.image().size().getWidth() + 2, this.getHeight()));
-                innerframe.getOrigin().setX(imageView.image().size().getWidth());
+            if (imageView != null) {
+                leftInset = Theme.Cell.INSET_LEFT + Theme.Cell.IMAGE_SIZE;
+                int topOffset = (int) (Math.max(0, height - Theme.Cell.IMAGE_SIZE) / 2);
+                imageView.setFrame(new CGRect(Theme.Cell.INSET_LEFT, topOffset, Theme.Cell.IMAGE_SIZE, height - 2 * topOffset));
+            } else if (isEditing)
+                leftInset = Theme.Cell.INSET_LEFT + editButtonSize().getWidth();
+
+            if (accessoryView != null) {
+                rightInset = Theme.Cell.ACCESSORY_SIZE + Theme.Cell.INSET_RIGHT;
+                int topOffset = (int) (Math.max(0, height - Theme.Cell.ACCESSORY_SIZE) / 2);
+                accessoryView.setFrame(new CGRect(width - rightInset, topOffset, Theme.Cell.ACCESSORY_SIZE, height - 2 * topOffset));
             }
 
-            innerframe.getOrigin().setY(0);
-            contentV.setFrame(innerframe);
+            if (textlabel != null)
+                textlabel.setFrame(new CGRect(leftInset + Theme.Cell.INSET_CONTENT, 0, width - rightInset - Theme.Cell.INSET_CONTENT * 2, height));
 
-            innerframe.getOrigin().setX(0);    // Editing offset has been performed already
+            contentV.setFrame(new CGRect(leftInset, 0, width - leftInset - rightInset, height));
+            CGRect otherF = contentV.frame();
+            otherF.getOrigin().setX(0);
             if (unselectedBV != null)
-                unselectedBV.setFrame(innerframe);
+                unselectedBV.setFrame(otherF);
             if (selectedBV != null)
-                selectedBV.setFrame(innerframe);
-
-            if (textlabel != null) {
-                innerframe.getOrigin().setX(Theme.Cell.TEXT_INSET_X);
-                innerframe.getSize().setWidth(innerframe.getSize().getWidth() - (Theme.Cell.TEXT_INSET_X * 2));
-                textlabel.setFrame(innerframe);
-            }
+                selectedBV.setFrame(otherF);
         }
     }
 
@@ -142,7 +157,7 @@ public class UITableViewCell extends UIView {
     }
 
     private void updateSelectionColors() {
-        UIColor background = definedContentBackground;
+        UIColor background = originalContentBackground;
         UIColor highlighted = null;
         if (this.highlighted && unselectedBV == null && selectedBV == null) {
             switch (selectionStyle) {
@@ -160,7 +175,7 @@ public class UITableViewCell extends UIView {
                     break;
             }
         }
-        contentV.setBackgroundColor(background, false);
+        setBackgroundColorImpl(background, false);
         if (textlabel != null)
             textlabel.setHighlightedTextColor(highlighted);
         if (detailedtextlabel != null)
@@ -194,7 +209,7 @@ public class UITableViewCell extends UIView {
         updateSelectionColors();
     }
 
-    private void updatebackgroundViews() {
+    private void updateBackgroundViews() {
         if (selected)
             if (selectedBV == null) {
                 if (unselectedBV != null)
@@ -235,7 +250,7 @@ public class UITableViewCell extends UIView {
             insertSubview(unselectedBV, 0);
             CGSize size = frame().getSize();
             unselectedBV.setSize(size.getWidth(), size.getHeight());
-            updatebackgroundViews();
+            updateBackgroundViews();
         }
         updateSelectionColors();
     }
@@ -272,7 +287,7 @@ public class UITableViewCell extends UIView {
             insertSubview(selectedBV, 0);
             CGSize size = frame().getSize();
             selectedBV.setSize(size.getWidth(), size.getHeight());
-            updatebackgroundViews();
+            updateBackgroundViews();
         }
         updateSelectionColors();
     }
@@ -352,7 +367,7 @@ public class UITableViewCell extends UIView {
      */
     @CMGetter("@property(nonatomic, strong) UIView *accessoryView;")
     public UIView accessoryView() {
-        return accessoryV;
+        return accessoryView;
     }
 
     /**
@@ -364,7 +379,7 @@ public class UITableViewCell extends UIView {
      */
     @CMSetter("@property(nonatomic, strong) UIView *accessoryView;")
     public void setAccessoryView(UIView accessoryView) {
-        this.accessoryV = accessoryView;
+        this.accessoryView = accessoryView;
     }
 
     /**
@@ -407,13 +422,25 @@ public class UITableViewCell extends UIView {
      */
     @CMSetter("@property(nonatomic) UITableViewCellAccessoryType accessoryType;")
     public void setAccessoryType(int UITableViewCellAccessoryType) {
-        this.accessorytype = UITableViewCellAccessoryType;
+        this.accessoryType = UITableViewCellAccessoryType;
     }
+
+    /**
+     * Returns the current type of accessory control that is used by the cell.
+     *
+     * @return The type of accessory control that is
+     * used by the cell.
+     * @see crossmobile.ios.uikit.UITableViewCellAccessoryType
+     */
+    @CMGetter("@property(nonatomic) UITableViewCellAccessoryType accessoryType;")
+    public int accessoryType() {
+        return accessoryType;
+    }
+
 
     @Override
     boolean shouldDrawOnTop() {
-        UIView parent = superview();
-        return parent != null && (parent instanceof UITableView);
+        return (superview() instanceof UITableView);
     }
 
     @Override
@@ -434,7 +461,7 @@ public class UITableViewCell extends UIView {
                 editB = UIButton.buttonWithType(UIButtonType.Custom);
                 updateEditingStyleButton(editingStyle);
                 CGSize size = editButtonSize();
-                editB.setFrame(new CGRect(Theme.Cell.EDIT_EDGE, size.getHeight(), size.getWidth(), size.getWidth()));
+                editB.setFrame(new CGRect(Theme.Cell.INSET_LEFT, size.getHeight(), size.getWidth(), size.getWidth()));
                 editB.setContentMode(UIViewContentMode.ScaleToFill);
                 editB.addTarget((UIControl sender, UIEvent event) -> {
                     UITableView tv = (UITableView) superview();
@@ -526,21 +553,31 @@ public class UITableViewCell extends UIView {
             setHighlighted(false);
         }
 
-        private UITableView parent() {
-            UIView parent = UITableViewCell.this.superview();
-            return path == null || !(parent instanceof UITableView)
-                    ? null : (UITableView) parent;
-        }
-
-        private void setBackgroundColor(UIColor background, boolean external) {
-            super.setBackgroundColor(background);
-            if (external)
-                definedContentBackground = background;
+        @Override
+        public void didAddSubview(UIView subview) {
+            UITableViewCell.this.forceLayout();
         }
 
         @Override
-        public void setBackgroundColor(UIColor background) {
-            setBackgroundColor(background, true);
+        void didRemoveSubview(UIView subview) {
+            UITableViewCell.this.forceLayout();
         }
+    }
+
+    private UITableView parent() {
+        UIView parent = superview();
+        return path == null || !(parent instanceof UITableView)
+                ? null : (UITableView) parent;
+    }
+
+    private void setBackgroundColorImpl(UIColor background, boolean external) {
+        super.setBackgroundColor(background);
+        if (external)
+            originalContentBackground = background;
+    }
+
+    @Override
+    public void setBackgroundColor(UIColor background) {
+        setBackgroundColorImpl(background, true);
     }
 }

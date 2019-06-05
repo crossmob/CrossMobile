@@ -325,7 +325,7 @@ class cmDatePickers {
 
                 @Override
                 public UITableViewCell cellForRowAtIndexPath(UITableView table, NSIndexPath idx) {
-                    cmCells.AbstractCallendarCell cell = getCell(table, type);
+                    cmCells.AbstractCalendarCell cell = getCell(table, type);
                     cell.update(idx.row());
                     return cell;
                 }
@@ -349,7 +349,7 @@ class cmDatePickers {
                             @Override
                             public void didSelectRowAtIndexPath(UITableView tableview, NSIndexPath indexPath) {
                                 scrollToRowAtIndexPath(indexPath, UITableViewScrollPosition.Top, true);
-                                setCalendar(((cmCells.AbstractCallendarCell) dataSource().cellForRowAtIndexPath(tableview, indexPath)).getCalendar());
+                                setCalendar(((cmCells.AbstractCalendarCell) dataSource().cellForRowAtIndexPath(tableview, indexPath)).getCalendar());
                                 if (superview() != null) {
                                     ((DatePicker) superview()).checkDate();
                                     if (type == cmPickers.CellType.HourCell)
@@ -373,7 +373,7 @@ class cmDatePickers {
             return calendar;
         }
 
-        cmCells.AbstractCallendarCell getCell(UITableView table, cmPickers.CellType type) {
+        cmCells.AbstractCalendarCell getCell(UITableView table, cmPickers.CellType type) {
             switch (type) {
                 case MinuteCell:
                     return new cmCells.MinuteCell(table.frame(), interval);

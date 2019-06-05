@@ -35,6 +35,12 @@
     [super setAccessoryType:accessoryType];
 }
 
+// (UITableViewCell) @property(nonatomic) UITableViewCellAccessoryType accessoryType;
+- (int) accessoryType__
+{
+    return [super accessoryType];
+}
+
 // (UITableViewCell) @property(nonatomic, strong) UIView *accessoryView;
 - (void) setAccessoryView___crossmobile_ios_uikit_UIView:(UIView*) accessoryView 
 {
@@ -923,6 +929,12 @@
 - (void) setAccessoryType___int:(int) accessoryType 
 {
     [self setAccessoryType:accessoryType];
+}
+
+// direct binding of: @property(nonatomic) UITableViewCellAccessoryType accessoryType;
+- (int) accessoryType__
+{
+    return [self accessoryType];
 }
 
 // direct binding of: @property(nonatomic, strong) UIView *accessoryView;

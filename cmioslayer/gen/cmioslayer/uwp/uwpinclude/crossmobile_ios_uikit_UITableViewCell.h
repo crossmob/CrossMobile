@@ -19,6 +19,7 @@ CM_EXPORT_CLASS
 @interface UITableViewCell (cm_crossmobile_ios_uikit_UITableViewCell)
 - (instancetype) __init_crossmobile_ios_uikit_UITableViewCell___int_java_lang_String:(int) style :(NSString*) reuseIdentifier ;
 - (void) setAccessoryType___int:(int) accessoryType ;
+- (int) accessoryType__;
 - (void) setAccessoryView___crossmobile_ios_uikit_UIView:(UIView*) accessoryView ;
 - (UIView*) accessoryView__;
 - (void) setBackgroundView___crossmobile_ios_uikit_UIView:(UIView*) backgroundView ;

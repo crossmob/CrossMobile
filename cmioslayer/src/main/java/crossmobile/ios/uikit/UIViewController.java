@@ -978,7 +978,7 @@ public class UIViewController extends UIResponder {
     }
 
     private UIEdgeInsets getActiveInsets() {
-        if (UIApplication.sharedApplication().keyWindow() == null)
+        if (UIApplication.sharedApplication() == null || UIApplication.sharedApplication().keyWindow() == null || UIApplication.sharedApplication().keyWindow().rootViewController() != this)
             return UIEdgeInsets.zero();
         DrawableMetrics metrics = Native.graphics().metrics();
         return new UIEdgeInsets(metrics.getInsetTop(), metrics.getInsetLeft(),
