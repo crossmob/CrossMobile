@@ -50,12 +50,13 @@ public class UITableViewCell extends UIView {
     private UIButton editB;
     private int selectionStyle = UITableViewCellSelectionStyle.Gray;
     private int editingStyle = UITableViewCellEditingStyle.Delete;
-    private int accessoryType = UITableViewCellAccessoryType.None;
-    private UIView accessoryView = null;
     private boolean isEditing = false;
     private UIImageView imageView = null;
     private float rowHeight = -1;
 
+    private int accessoryType = UITableViewCellAccessoryType.None;
+    private UIView accessoryView = null;
+    private UIView currentAccessoryView = null;
 
     private UIStoryboardSegue _selectionSegue;
     private UIStoryboardSegue _accessoryActionSegue;
@@ -105,10 +106,11 @@ public class UITableViewCell extends UIView {
             } else if (isEditing)
                 leftInset = Theme.Cell.INSET_LEFT + editButtonSize().getWidth();
 
-            if (accessoryView != null) {
-                rightInset = Theme.Cell.ACCESSORY_SIZE + Theme.Cell.INSET_RIGHT;
+            if (currentAccessoryView != null) {
+                double accSize = accessoryView == null ? currentAccessoryView.frame().getSize().getWidth() : Theme.Cell.ACCESSORY_SIZE;
+                rightInset = accSize + Theme.Cell.INSET_RIGHT_EDGE;
                 int topOffset = (int) (Math.max(0, height - Theme.Cell.ACCESSORY_SIZE) / 2);
-                accessoryView.setFrame(new CGRect(width - rightInset, topOffset, Theme.Cell.ACCESSORY_SIZE, height - 2 * topOffset));
+                currentAccessoryView.setFrame(new CGRect(width - rightInset, topOffset, accSize, height - 2 * topOffset));
             }
 
             if (textlabel != null)
@@ -359,30 +361,6 @@ public class UITableViewCell extends UIView {
     }
 
     /**
-     * Returns a view displayed on the right side of the UITableViewCell and is
-     * used for additional control options.
-     *
-     * @return A view displayed on the right side of the UITableViewCell and is
-     * used for additional control options.
-     */
-    @CMGetter("@property(nonatomic, strong) UIView *accessoryView;")
-    public UIView accessoryView() {
-        return accessoryView;
-    }
-
-    /**
-     * Sets a view displayed on the right side of the UITableViewCell and is
-     * used for additional control options.
-     *
-     * @param accessoryView A view displayed on the right side of the
-     *                      UITableViewCell and is used for additional control options.
-     */
-    @CMSetter("@property(nonatomic, strong) UIView *accessoryView;")
-    public void setAccessoryView(UIView accessoryView) {
-        this.accessoryView = accessoryView;
-    }
-
-    /**
      * Returns a string id for a reusable cell.
      *
      * @return A string id for a reusable cell.
@@ -422,7 +400,10 @@ public class UITableViewCell extends UIView {
      */
     @CMSetter("@property(nonatomic) UITableViewCellAccessoryType accessoryType;")
     public void setAccessoryType(int UITableViewCellAccessoryType) {
+        if (this.accessoryType == UITableViewCellAccessoryType)
+            return;
         this.accessoryType = UITableViewCellAccessoryType;
+        updateAccessoryView();
     }
 
     /**
@@ -437,6 +418,81 @@ public class UITableViewCell extends UIView {
         return accessoryType;
     }
 
+    /**
+     * Returns a view displayed on the right side of the UITableViewCell and is
+     * used for additional control options.
+     *
+     * @return A view displayed on the right side of the UITableViewCell and is
+     * used for additional control options.
+     */
+    @CMGetter("@property(nonatomic, strong) UIView *accessoryView;")
+    public UIView accessoryView() {
+        return accessoryView;
+    }
+
+    /**
+     * Sets a view displayed on the right side of the UITableViewCell and is
+     * used for additional control options.
+     *
+     * @param accessoryView A view displayed on the right side of the
+     *                      UITableViewCell and is used for additional control options.
+     */
+    @CMSetter("@property(nonatomic, strong) UIView *accessoryView;")
+    public void setAccessoryView(UIView accessoryView) {
+        if (this.accessoryView == accessoryView)
+            return;
+        this.accessoryView = accessoryView;
+        updateAccessoryView();
+    }
+
+    private void updateAccessoryView() {
+        if (accessoryView != null) {
+            if (currentAccessoryView == accessoryView) // typically when the accessory type has changed
+                return;
+            if (currentAccessoryView != null)
+                currentAccessoryView.removeFromSuperview();
+            currentAccessoryView = accessoryView;
+        } else {
+            if (currentAccessoryView != null)
+                currentAccessoryView.removeFromSuperview();
+            switch (accessoryType) {
+                case UITableViewCellAccessoryType.Checkmark:
+                    currentAccessoryView = new UIImageView(new CGRect(0, 0, Theme.Cell.ACCESSORY_SIZE, Theme.Cell.ACCESSORY_SIZE));
+                    ((UIImageView) currentAccessoryView).setImage(UIImage.imageWithContentsOfFile(Native.file().getSystemPrefix() + "tick").cacheTinted(true, currentAccessoryView));
+                    break;
+                case UITableViewCellAccessoryType.DetailDisclosureButton:
+
+                    UIButton info = UIButton.buttonWithType(UIButtonType.Custom);
+                    info.setFrame(new CGRect(0, 0, Theme.Cell.ACCESSORY_SIZE, Theme.Cell.ACCESSORY_SIZE));
+                    info.setImage(UIImage.imageWithContentsOfFile(Native.file().getSystemPrefix() + "info").cacheTinted(true, info), UIControlState.Normal);
+                    info.addTarget((sender, event) -> {
+                        UITableView parent = parent();
+                        UITableViewDelegate delegate = parent == null ? null : parent.tableViewDelegate();
+                        if (delegate != null)
+                            delegate.accessoryButtonTappedForRowWithIndexPath(parent, path);
+                    }, UIControlEvents.TouchUpInside);
+
+                    UIImageView arrow = new UIImageView();
+                    arrow.setFrame(new CGRect(Theme.Cell.ACCESSORY_SIZE + Theme.Cell.INSET_RIGHT_ACCESSORY_ACCESSORY, 0, Theme.Cell.ACCESSORY_SIZE, Theme.Cell.ACCESSORY_SIZE));
+                    arrow.setImage(UIImage.imageWithContentsOfFile(Native.file().getSystemPrefix() + "arrow"));
+
+                    currentAccessoryView = new UIView(new CGRect(0, 0, Theme.Cell.ACCESSORY_SIZE * 2 + Theme.Cell.INSET_RIGHT_ACCESSORY_ACCESSORY, Theme.Cell.ACCESSORY_SIZE));
+                    currentAccessoryView.setBackgroundColor(UIColor.clearColor);
+                    currentAccessoryView.addSubview(info);
+                    currentAccessoryView.addSubview(arrow);
+                    break;
+                case UITableViewCellAccessoryType.DisclosureIndicator:
+                    currentAccessoryView = new UIImageView();
+                    currentAccessoryView.setFrame(new CGRect(0, 0, Theme.Cell.ACCESSORY_SIZE, Theme.Cell.ACCESSORY_SIZE));
+                    ((UIImageView) currentAccessoryView).setImage(UIImage.imageWithContentsOfFile(Native.file().getSystemPrefix() + "arrow"));
+                    break;
+                default:
+                    currentAccessoryView = null;
+            }
+        }
+        if (currentAccessoryView != null)
+            addSubview(currentAccessoryView);
+    }
 
     @Override
     boolean shouldDrawOnTop() {
@@ -562,6 +618,7 @@ public class UITableViewCell extends UIView {
         void didRemoveSubview(UIView subview) {
             UITableViewCell.this.forceLayout();
         }
+
     }
 
     private UITableView parent() {

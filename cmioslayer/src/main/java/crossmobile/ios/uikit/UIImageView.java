@@ -73,7 +73,11 @@ public class UIImageView extends UIView {
      */
     @CMSetter("@property(nonatomic, strong) UIImage *image;")
     public void setImage(UIImage image) {
-        this.image = image == null ? null : image.cacheTinted(false, this);
+        setImage(image == null ? null : image.cacheTinted(false, this));
+    }
+
+    void setImage(Promise<UIImage> image) {
+        this.image = image;
         imageIsDirty = true;
         if (!isHighlighted())
             Native.graphics().refreshDisplay();
@@ -97,7 +101,11 @@ public class UIImageView extends UIView {
      */
     @CMSetter("@property(nonatomic, strong) UIImage *highlightedImage;")
     public void setHighlightedImage(UIImage highlightedImage) {
-        this.highlightedImage = highlightedImage == null ? null : highlightedImage.cacheTinted(false, this);
+        setHighlightedImage(highlightedImage == null ? null : highlightedImage.cacheTinted(false, this));
+    }
+
+    void setHighlightedImage(Promise<UIImage> highlightedImage) {
+        this.highlightedImage = highlightedImage;
         imageIsDirty = true;
         if (isHighlighted())
             Native.graphics().refreshDisplay();

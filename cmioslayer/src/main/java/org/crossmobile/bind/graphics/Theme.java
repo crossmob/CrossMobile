@@ -198,9 +198,10 @@ public class Theme {
         public final static int EDIT_SIZE = getInteger("cm.theme.cell.edit.size", 25);
         public final static int ACCESSORY_SIZE = getInteger("cm.theme.cell.accessory.size", 22);
         public final static int IMAGE_SIZE = getInteger("cm.theme.cell.image.size", 30);
-        public final static int INSET_LEFT = getInteger("cm.theme.cell.inset.left", 6);
-        public final static int INSET_RIGHT = getInteger("cm.theme.cell.inset.right", 22);
-        public final static int INSET_CONTENT = getInteger("cm.theme.cell.inset.content", 6);
+        public final static int INSET_LEFT = getInteger("cm.theme.cell.inset.left", 10);
+        public final static int INSET_RIGHT_EDGE = getInteger("cm.theme.cell.inset.right", 14);
+        public final static int INSET_RIGHT_ACCESSORY_ACCESSORY = getInteger("cm.theme.cell.inset.right", 4);
+        public final static int INSET_CONTENT = getInteger("cm.theme.cell.inset.right", 10);
 
         private Cell() {
         }
