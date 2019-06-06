@@ -21,9 +21,9 @@ import java.util.ListIterator;
 
 public interface CClickable {
 
-    public CEvent getEvent();
+    CEvent getEvent();
 
-    public static class Reverse<T> implements Iterable<T> {
+    class Reverse<T> implements Iterable<T> {
 
         private final List<T> forward;
 

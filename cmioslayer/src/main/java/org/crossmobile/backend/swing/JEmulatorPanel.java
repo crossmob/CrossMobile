@@ -82,19 +82,11 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
 
     @Override
     public void mouseExited(MouseEvent e) {
-        if (clicked.isWindow())
-            return;
-        else if (clicked.isButton()) {
-            clicked.performAction(this);
-            repaint();
-        }
-        clicked = CEvent.unset();
+        mouseReleased(e);
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        DesktopDrawableMetrics metrics = (DesktopDrawableMetrics) Native.graphics().metrics();
-        clicked = metrics.findArea(e.getX(), e.getY());
     }
 
     @Override
@@ -126,6 +118,8 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
 
     @Override
     public void mouseDragged(MouseEvent e) {
+        if (clicked.isUnset())
+            return;
         DesktopDrawableMetrics metrics = (DesktopDrawableMetrics) Native.graphics().metrics();
         if (e.getSource() instanceof SwingNativeDispatcher.DesktopNativeWidget) {
             widgetTouchCorrection(e, Moved);
