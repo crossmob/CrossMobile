@@ -60,6 +60,7 @@ public class UITableViewCell extends UIView {
 
     private UIStoryboardSegue _selectionSegue;
     private UIStoryboardSegue _accessoryActionSegue;
+    private final boolean supportsDetailedTextLabel;
 
     /**
      * Constructs a cell with the specified style and reuse identifier parameter
@@ -75,6 +76,11 @@ public class UITableViewCell extends UIView {
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public UITableViewCell(int UITableViewCellStyle, String reuseIdentifier) {
         super(new CGRect(0, 0, 320, 44));
+        supportsDetailedTextLabel = UITableViewCellStyle == crossmobile.ios.uikit.UITableViewCellStyle.Subtitle;
+        if (UITableViewCellStyle == crossmobile.ios.uikit.UITableViewCellStyle.Value1)
+            Native.lifecycle().notImplemented("Cell type UITableViewCellStyle.Value1");
+        else if (UITableViewCellStyle == crossmobile.ios.uikit.UITableViewCellStyle.Value2)
+            Native.lifecycle().notImplemented("Cell type UITableViewCellStyle.Value2");
         this.reuseIdentifier = reuseIdentifier;
         setBackgroundColor(UIColor.whiteColor);
         setAutoresizesSubviews(false);
@@ -113,8 +119,11 @@ public class UITableViewCell extends UIView {
                 currentAccessoryView.setFrame(new CGRect(width - rightInset, topOffset, accSize, height - 2 * topOffset));
             }
 
+            int textY = (int) Math.max(0, (height - (22 + (detailedtextlabel != null && detailedtextlabel.text() != null && !detailedtextlabel.text().isEmpty() ? 2 + 16 : 0))) / 2d);
             if (textlabel != null)
-                textlabel.setFrame(new CGRect(leftInset + Theme.Cell.INSET_CONTENT, 0, width - rightInset - Theme.Cell.INSET_CONTENT * 2, height));
+                textlabel.setFrame(new CGRect(leftInset + Theme.Cell.INSET_CONTENT, textY, width - rightInset - Theme.Cell.INSET_CONTENT * 2, 22));
+            if (detailedtextlabel != null)
+                detailedtextlabel.setFrame(new CGRect(leftInset + Theme.Cell.INSET_CONTENT, textY + 24, width - rightInset - Theme.Cell.INSET_CONTENT * 2, 16));
 
             contentV.setFrame(new CGRect(leftInset, 0, width - leftInset - rightInset, height));
             CGRect otherF = contentV.frame();
@@ -208,6 +217,8 @@ public class UITableViewCell extends UIView {
         this.highlighted = highlighted;
         if (textlabel != null)
             textlabel.setHighlighted(highlighted);
+        if (detailedtextlabel != null)
+            detailedtextlabel.setHighlighted(highlighted);
         updateSelectionColors();
     }
 
@@ -322,8 +333,7 @@ public class UITableViewCell extends UIView {
     @CMGetter("@property(nonatomic, readonly, strong) UILabel *textLabel;")
     public UILabel textLabel() {
         if (textlabel == null) {
-            CGSize size = frame().getSize();
-            textlabel = new UILabel(new CGRect(0, 0, size.getWidth(), size.getHeight()));
+            textlabel = new UILabel();
             textlabel.setHighlightedTextColor(selectionStyle == UITableViewCellSelectionStyle.None ? null : UIColor.whiteColor());
             contentV.addSubview(textlabel);
         }
@@ -337,10 +347,16 @@ public class UITableViewCell extends UIView {
      */
     @CMGetter("@property(nonatomic, readonly, strong) UILabel *detailTextLabel;")
     public UILabel detailTextLabel() {
-        if (detailedtextlabel == null) {
-            CGSize size = frame().getSize();
-            detailedtextlabel = new UILabel(new CGRect(0, 30, size.getWidth(), size.getHeight() - 30));
+        if (detailedtextlabel == null && supportsDetailedTextLabel) {
+            detailedtextlabel = new UILabel() {
+                @Override
+                public void setText(String text) {
+                    super.setText(text);
+                    UITableViewCell.this.layoutSubviews();
+                }
+            };
             detailedtextlabel.setHighlightedTextColor(selectionStyle == UITableViewCellSelectionStyle.None ? null : UIColor.whiteColor());
+            detailedtextlabel.setFont(UIFont.systemFontOfSize(Theme.Font.SMALLSYSTEMSIZE));
             contentV.addSubview(detailedtextlabel);
         }
         return detailedtextlabel;
