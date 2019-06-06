@@ -40,7 +40,7 @@ public interface UIApplicationDelegate {
      */
 //  @CMSelector("-(UIWindow*) window;")
     @CMGetter("@property(nonatomic, strong) UIWindow *window;")
-    public default UIWindow window() {
+    default UIWindow window() {
         return null;
     }
 
@@ -51,7 +51,7 @@ public interface UIApplicationDelegate {
      */
 //  @CMSelector("- (void) setWindow:(UIWindow *)window")
     @CMSetter("@property(nonatomic, strong) UIWindow *window;")
-    public default void setWindow(UIWindow window) {
+    default void setWindow(UIWindow window) {
     }
 
     /**
@@ -67,7 +67,7 @@ public interface UIApplicationDelegate {
      */
     @CMSelector("- (BOOL)application:(UIApplication *)application \n"
             + "didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;")
-    public default boolean didFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
+    default boolean didFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         return true;
     }
 
@@ -85,7 +85,7 @@ public interface UIApplicationDelegate {
             + "            openURL:(NSURL *)url \n"
             + "  sourceApplication:(NSString *)sourceApplication \n"
             + "         annotation:(id)annotation;")
-    public default boolean openURL(UIApplication app, NSURL url, String sourceApplication, Object annotation) {
+    default boolean openURL(UIApplication app, NSURL url, String sourceApplication, Object annotation) {
         return true;
     }
 
@@ -96,7 +96,7 @@ public interface UIApplicationDelegate {
      * @param app The singleton application object.
      */
     @CMSelector("- (void)applicationDidBecomeActive:(UIApplication *)application;")
-    public default void didBecomeActive(UIApplication app) {
+    default void didBecomeActive(UIApplication app) {
     }
 
     /**
@@ -106,7 +106,7 @@ public interface UIApplicationDelegate {
      * @param app The singleton application object.
      */
     @CMSelector("- (void)applicationWillResignActive:(UIApplication *)application;")
-    public default void willResignActive(UIApplication app) {
+    default void willResignActive(UIApplication app) {
     }
 
     /**
@@ -116,7 +116,7 @@ public interface UIApplicationDelegate {
      * @param app The singleton application object.
      */
     @CMSelector("- (void)applicationDidEnterBackground:(UIApplication *)application;")
-    public default void didEnterBackground(UIApplication app) {
+    default void didEnterBackground(UIApplication app) {
     }
 
     /**
@@ -126,7 +126,7 @@ public interface UIApplicationDelegate {
      * @param app The singleton application object.
      */
     @CMSelector("- (void)applicationWillEnterForeground:(UIApplication *)application;")
-    public default void willEnterForeground(UIApplication app) {
+    default void willEnterForeground(UIApplication app) {
     }
 
     /**
@@ -136,7 +136,7 @@ public interface UIApplicationDelegate {
      * @param app The singleton application object.
      */
     @CMSelector("- (void)applicationWillTerminate:(UIApplication *)application;")
-    public default void willTerminate(UIApplication app) {
+    default void willTerminate(UIApplication app) {
     }
 
     /**
@@ -147,7 +147,7 @@ public interface UIApplicationDelegate {
      */
     @CMSelector("- (void)application:(UIApplication *)application \n"
             + "didReceiveRemoteNotification:(NSDictionary *)userInfo;")
-    public default void didReceiveRemoteNotification(UIApplication app, Map<String, Object> userinfo) {
+    default void didReceiveRemoteNotification(UIApplication app, Map<String, Object> userinfo) {
     }
 
     /**
@@ -159,7 +159,7 @@ public interface UIApplicationDelegate {
      */
     @CMSelector("- (void)application:(UIApplication *)application \n"
             + "didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;")
-    public default void didRegisterForRemoteNotificationsWithDeviceToken(UIApplication app, NSData deviceToken) {
+    default void didRegisterForRemoteNotificationsWithDeviceToken(UIApplication app, NSData deviceToken) {
     }
 
     /**
@@ -171,7 +171,7 @@ public interface UIApplicationDelegate {
      */
     @CMSelector("- (void)application:(UIApplication *)application \n"
             + "didFailToRegisterForRemoteNotificationsWithError:(NSError *)error;")
-    public default void didFailToRegisterForRemoteNotificationsWithError(UIApplication app, NSError error) {
+    default void didFailToRegisterForRemoteNotificationsWithError(UIApplication app, NSError error) {
     }
 
     /**
@@ -182,7 +182,7 @@ public interface UIApplicationDelegate {
      */
     @CMSelector("- (void)application:(UIApplication *)application \n"
             + "didReceiveLocalNotification:(UILocalNotification *)notification;")
-    public default void didReceiveLocalNotification(UIApplication app, UILocalNotification notification) {
+    default void didReceiveLocalNotification(UIApplication app, UILocalNotification notification) {
     }
 
     /**
@@ -191,7 +191,7 @@ public interface UIApplicationDelegate {
      * @param app The singleton application object.
      */
     @CMSelector("- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application;")
-    public default void didReceiveMemoryWarning(UIApplication app) {
+    default void didReceiveMemoryWarning(UIApplication app) {
     }
 
     /**
@@ -200,7 +200,7 @@ public interface UIApplicationDelegate {
      * @param app The singleton application object.
      */
     @CMSelector("- (void)applicationSignificantTimeChange:(UIApplication *)application;")
-    public default void significantTimeChange(UIApplication app) {
+    default void significantTimeChange(UIApplication app) {
     }
 
     /**
@@ -214,7 +214,7 @@ public interface UIApplicationDelegate {
     @CMSelector("- (void)application:(UIApplication *)application \n"
             + "willChangeStatusBarOrientation:(UIInterfaceOrientation)newStatusBarOrientation \n"
             + "           duration:(NSTimeInterval)duration;")
-    public default void willChangeStatusBarOrientation(UIApplication app, int oldStatusBarOrientation, double duration) {
+    default void willChangeStatusBarOrientation(UIApplication app, int oldStatusBarOrientation, double duration) {
     }
 
     /**
@@ -227,7 +227,7 @@ public interface UIApplicationDelegate {
      */
     @CMSelector("- (void)application:(UIApplication *)application \n"
             + "didChangeStatusBarOrientation:(UIInterfaceOrientation)oldStatusBarOrientation;")
-    public default void didChangeStatusBarOrientation(UIApplication app, int oldStatusBarOrientation) {
+    default void didChangeStatusBarOrientation(UIApplication app, int oldStatusBarOrientation) {
     }
 
     /**
@@ -239,7 +239,7 @@ public interface UIApplicationDelegate {
      */
     @CMSelector("- (void)application:(UIApplication *)application \n"
             + "willChangeStatusBarFrame:(CGRect)newStatusBarFrame;")
-    public default void willChangeStatusBarFrame(UIApplication app, CGRect oldStatusBarFrame) {
+    default void willChangeStatusBarFrame(UIApplication app, CGRect oldStatusBarFrame) {
     }
 
     /**
@@ -251,7 +251,7 @@ public interface UIApplicationDelegate {
      */
     @CMSelector("- (void)application:(UIApplication *)application \n"
             + "didChangeStatusBarFrame:(CGRect)oldStatusBarFrame;")
-    public default void didChangeStatusBarFrame(UIApplication app, CGRect oldStatusBarFrame) {
+    default void didChangeStatusBarFrame(UIApplication app, CGRect oldStatusBarFrame) {
     }
 
     /**
@@ -261,7 +261,7 @@ public interface UIApplicationDelegate {
      * @param app The singleton application object.
      */
     @CMSelector("- (void)applicationProtectedDataWillBecomeUnavailable:(UIApplication *)application;")
-    public default void protectedDataWillBecomeUnavailable(UIApplication app) {
+    default void protectedDataWillBecomeUnavailable(UIApplication app) {
     }
 
     /**
@@ -271,25 +271,25 @@ public interface UIApplicationDelegate {
      * @param app The singleton application object.
      */
     @CMSelector("- (void)applicationProtectedDataDidBecomeAvailable:(UIApplication *)application;")
-    public default void protectedDataDidBecomeAvailable(UIApplication app) {
+    default void protectedDataDidBecomeAvailable(UIApplication app) {
     }
 
     @CMSelector("- (void)application:(UIApplication *)application \n"
             + "didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings;")
-    public default void didRegisterUserNotificationSettings(UIApplication application, UIUserNotificationSettings notificationSettings) {
+    default void didRegisterUserNotificationSettings(UIApplication application, UIUserNotificationSettings notificationSettings) {
     }
 
     @CMSelector("- (void)application:(UIApplication *)application \n"
             + "handleActionWithIdentifier:(NSString *)identifier \n"
             + "forRemoteNotification:(NSDictionary *)userInfo \n"
             + "  completionHandler:(void (^)(void))completionHandler;")
-    public default void handleActionWithIdentifierForRemoteNotification(UIApplication application, String identifier, Map userInfo, Runnable completionHandler) {
+    default void handleActionWithIdentifierForRemoteNotification(UIApplication application, String identifier, Map userInfo, Runnable completionHandler) {
     }
 
     @CMSelector("- (void)application:(UIApplication *)application \n"
             + "handleActionWithIdentifier:(NSString *)identifier \n"
             + "forLocalNotification:(UILocalNotification *)notification \n"
             + "  completionHandler:(void (^)(void))completionHandler;")
-    public default void handleActionWithIdentifierForLocalNotification(UIApplication application, String identifier, UILocalNotification notification, Runnable completionHandler) {
+    default void handleActionWithIdentifierForLocalNotification(UIApplication application, String identifier, UILocalNotification notification, Runnable completionHandler) {
     }
 }

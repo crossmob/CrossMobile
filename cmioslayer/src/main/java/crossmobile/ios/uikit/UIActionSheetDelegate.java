@@ -33,7 +33,7 @@ public interface UIActionSheetDelegate {
      */
     @Deprecated
     @CMSelector("- (void)willPresentActionSheet:(UIActionSheet *)actionSheet;")
-    public default void willPresentActionSheet(UIActionSheet actionSheet) {
+    default void willPresentActionSheet(UIActionSheet actionSheet) {
     }
 
     /**
@@ -44,7 +44,7 @@ public interface UIActionSheetDelegate {
      */
     @Deprecated
     @CMSelector("- (void)didPresentActionSheet:(UIActionSheet *)actionSheet;")
-    public default void didPresentActionSheet(UIActionSheet actionSheet) {
+    default void didPresentActionSheet(UIActionSheet actionSheet) {
     }
 
     /**
@@ -58,7 +58,7 @@ public interface UIActionSheetDelegate {
     @Deprecated
     @CMSelector("- (void)actionSheet:(UIActionSheet *)actionSheet \n" +
             "willDismissWithButtonIndex:(NSInteger)buttonIndex;")
-    public default void willDismissWithButtonIndex(UIActionSheet actionSheet, int buttonIndex) {
+    default void willDismissWithButtonIndex(UIActionSheet actionSheet, int buttonIndex) {
     }
 
     /**
@@ -72,7 +72,7 @@ public interface UIActionSheetDelegate {
     @Deprecated
     @CMSelector("- (void)actionSheet:(UIActionSheet *)actionSheet \n" +
             "didDismissWithButtonIndex:(NSInteger)buttonIndex;")
-    public default void didDismissWithButtonIndex(UIActionSheet actionSheet, int buttonIndex) {
+    default void didDismissWithButtonIndex(UIActionSheet actionSheet, int buttonIndex) {
     }
 
     /**
@@ -85,7 +85,7 @@ public interface UIActionSheetDelegate {
     @Deprecated
     @CMSelector("- (void)actionSheet:(UIActionSheet *)actionSheet \n" +
             "clickedButtonAtIndex:(NSInteger)buttonIndex;")
-    public default void clickedButtonAtIndex(UIActionSheet actionSheet, int buttonIndex) {
+    default void clickedButtonAtIndex(UIActionSheet actionSheet, int buttonIndex) {
     }
 
     /**
@@ -94,6 +94,6 @@ public interface UIActionSheetDelegate {
      * @param actionSheet The action sheet that corresponds to this delegate.
      */
     @CMSelector("- (void)actionSheetCancel:(UIActionSheet *)actionSheet;")
-    public default void cancel(UIActionSheet actionSheet) {
+    default void cancel(UIActionSheet actionSheet) {
     }
 }

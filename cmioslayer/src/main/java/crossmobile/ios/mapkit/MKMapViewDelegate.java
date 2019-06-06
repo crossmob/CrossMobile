@@ -38,7 +38,7 @@ public interface MKMapViewDelegate {
      */
     @CMSelector("- (void)mapView:(MKMapView *)mapView \n"
             + "regionWillChangeAnimated:(BOOL)animated;")
-    public default void regionWillChangeAnimated(MKMapView mapView, boolean animated) {
+    default void regionWillChangeAnimated(MKMapView mapView, boolean animated) {
     }
 
     /**
@@ -50,7 +50,7 @@ public interface MKMapViewDelegate {
      */
     @CMSelector("- (void)mapView:(MKMapView *)mapView \n"
             + "regionDidChangeAnimated:(BOOL)animated;")
-    public default void regionDidChangeAnimated(MKMapView mapView, boolean animated) {
+    default void regionDidChangeAnimated(MKMapView mapView, boolean animated) {
     }
 
     /**
@@ -60,7 +60,7 @@ public interface MKMapViewDelegate {
      */
     @CMSelector("- (void)mapViewWillStartLoadingMap:(MKMapView *)mapView;\n"
             + "")
-    public default void willStartLoadingMap(MKMapView mapView) {
+    default void willStartLoadingMap(MKMapView mapView) {
     }
 
     /**
@@ -69,7 +69,7 @@ public interface MKMapViewDelegate {
      * @param mapView The mapview that corresponds to this delegate.
      */
     @CMSelector("- (void)mapViewDidFinishLoadingMap:(MKMapView *)mapView;")
-    public default void didFinishLoadingMap(MKMapView mapView) {
+    default void didFinishLoadingMap(MKMapView mapView) {
     }
 
     /**
@@ -81,7 +81,7 @@ public interface MKMapViewDelegate {
      */
     @CMSelector("- (void)mapViewDidFailLoadingMap:(MKMapView *)mapView \n"
             + "                       withError:(NSError *)error;")
-    public default void didFailLoadingMap(MKMapView mapView, NSError error) {
+    default void didFailLoadingMap(MKMapView mapView, NSError error) {
     }
 
     /**
@@ -90,7 +90,7 @@ public interface MKMapViewDelegate {
      * @param mapView The mapview that corresponds to this delegate.
      */
     @CMSelector("- (void)mapViewWillStartLocatingUser:(MKMapView *)mapView;")
-    public default void willStartLocatingUser(MKMapView mapView) {
+    default void willStartLocatingUser(MKMapView mapView) {
     }
 
     /**
@@ -100,7 +100,7 @@ public interface MKMapViewDelegate {
      */
     @CMSelector("- (void)mapViewDidStopLocatingUser:(MKMapView *)mapView;\n"
             + "")
-    public default void didStopLocatingUser(MKMapView mapView) {
+    default void didStopLocatingUser(MKMapView mapView) {
     }
 
     /**
@@ -111,7 +111,7 @@ public interface MKMapViewDelegate {
      */
     @CMSelector("- (void)mapView:(MKMapView *)mapView \n"
             + "didUpdateUserLocation:(MKUserLocation *)userLocation;")
-    public default void didUpdateUserLocation(MKMapView mapView, MKUserLocation userLocation) {
+    default void didUpdateUserLocation(MKMapView mapView, MKUserLocation userLocation) {
     }
 
     /**
@@ -122,7 +122,7 @@ public interface MKMapViewDelegate {
      */
     @CMSelector("- (void)mapView:(MKMapView *)mapView \n"
             + "didFailToLocateUserWithError:(NSError *)error;")
-    public default void didFailToLocateUserWithError(MKMapView mapView, NSError error) {
+    default void didFailToLocateUserWithError(MKMapView mapView, NSError error) {
     }
 
     /**
@@ -134,7 +134,7 @@ public interface MKMapViewDelegate {
      */
     @CMSelector("- (MKAnnotationView *)mapView:(MKMapView *)mapView \n"
             + "            viewForAnnotation:(id<MKAnnotation>)annotation;")
-    public default MKAnnotationView viewForAnnotation(MKMapView mapView, MKAnnotation annotation) {
+    default MKAnnotationView viewForAnnotation(MKMapView mapView, MKAnnotation annotation) {
         return null;
     }
 
@@ -146,7 +146,7 @@ public interface MKMapViewDelegate {
      */
     @CMSelector("- (void)mapView:(MKMapView *)mapView \n"
             + "didAddAnnotationViews:(NSArray<MKAnnotationView *> *)views;")
-    public default void didAddAnnotationViews(MKMapView mapView, List<MKAnnotationView> views) {
+    default void didAddAnnotationViews(MKMapView mapView, List<MKAnnotationView> views) {
     }
 
     /**
@@ -160,7 +160,7 @@ public interface MKMapViewDelegate {
     @CMSelector("- (void)mapView:(MKMapView *)mapView \n"
             + " annotationView:(MKAnnotationView *)view \n"
             + "calloutAccessoryControlTapped:(UIControl *)control;")
-    public default void annotationViewCalloutAccessoryControlTapped(MKMapView mapView, MKAnnotationView annotationView, UIControl control) {
+    default void annotationViewCalloutAccessoryControlTapped(MKMapView mapView, MKAnnotationView annotationView, UIControl control) {
     }
 
     /**
@@ -178,7 +178,7 @@ public interface MKMapViewDelegate {
             + " annotationView:(MKAnnotationView *)view \n"
             + "didChangeDragState:(MKAnnotationViewDragState)newState \n"
             + "   fromOldState:(MKAnnotationViewDragState)oldState;")
-    public default void annotationViewDidChangeDragState(MKMapView mapView, MKAnnotationView annotationView, int MKAnnotationViewDragStateNew, int MKAnnotationViewDragStateOld) {
+    default void annotationViewDidChangeDragState(MKMapView mapView, MKAnnotationView annotationView, int MKAnnotationViewDragStateNew, int MKAnnotationViewDragStateOld) {
     }
 
     /**
@@ -189,7 +189,7 @@ public interface MKMapViewDelegate {
      */
     @CMSelector("- (void)mapView:(MKMapView *)mapView \n"
             + "didSelectAnnotationView:(MKAnnotationView *)view;")
-    public default void didSelectAnnotationView(MKMapView mapView, MKAnnotationView annotationView) {
+    default void didSelectAnnotationView(MKMapView mapView, MKAnnotationView annotationView) {
     }
 
     /**
@@ -200,7 +200,7 @@ public interface MKMapViewDelegate {
      */
     @CMSelector("- (void)mapView:(MKMapView *)mapView \n"
             + "didDeselectAnnotationView:(MKAnnotationView *)view;")
-    public default void didDeselectAnnotationView(MKMapView mapView, MKAnnotationView annotationView) {
+    default void didDeselectAnnotationView(MKMapView mapView, MKAnnotationView annotationView) {
     }
 
     /**
@@ -212,7 +212,7 @@ public interface MKMapViewDelegate {
      */
     @Deprecated
     @CMSelector("- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay;")
-    public default MKOverlayView viewForOverlay(MKMapView mapView, MKOverlay overlay) {
+    default MKOverlayView viewForOverlay(MKMapView mapView, MKOverlay overlay) {
         return null;
     }
 
@@ -225,6 +225,6 @@ public interface MKMapViewDelegate {
      */
     @Deprecated
     @CMSelector("- (void)mapView:(MKMapView *)mapView didAddOverlayViews:(NSArray *)overlayViews;")
-    public default void didAddOverlayViews(MKMapView mapView, List<MKOverlayView> overlayViews) {
+    default void didAddOverlayViews(MKMapView mapView, List<MKOverlayView> overlayViews) {
     }
 }

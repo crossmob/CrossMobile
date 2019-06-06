@@ -33,7 +33,7 @@ public interface GKPeerPickerControllerDelegate {
      */
     @CMSelector("- (void)peerPickerController:(GKPeerPickerController *)picker \n"
             + "     didSelectConnectionType:(GKPeerPickerConnectionType)type;")
-    public default void didSelectConnectionType(GKPeerPickerController p1, int p2) {
+    default void didSelectConnectionType(GKPeerPickerController p1, int p2) {
     }
 
     /**
@@ -46,7 +46,7 @@ public interface GKPeerPickerControllerDelegate {
      */
     @CMSelector("- (GKSession *)peerPickerController:(GKPeerPickerController *)picker \n"
             + "           sessionForConnectionType:(GKPeerPickerConnectionType)type;")
-    public default GKSession sessionForConnectionType(GKPeerPickerController p1, int p2) {
+    default GKSession sessionForConnectionType(GKPeerPickerController p1, int p2) {
         return null;
     }
 
@@ -60,7 +60,7 @@ public interface GKPeerPickerControllerDelegate {
     @CMSelector("- (void)peerPickerController:(GKPeerPickerController *)picker \n"
             + "              didConnectPeer:(NSString *)peerID \n"
             + "                   toSession:(GKSession *)session;")
-    public default void didConnectPeer(GKPeerPickerController p1, String p2, GKSession p3) {
+    default void didConnectPeer(GKPeerPickerController p1, String p2, GKSession p3) {
     }
 
     /**
@@ -69,6 +69,6 @@ public interface GKPeerPickerControllerDelegate {
      * @param p1 The GKPeerPickerController that corresponds to this delegate.
      */
     @CMSelector("- (void)peerPickerControllerDidCancel:(GKPeerPickerController *)picker;")
-    public default void didCancel(GKPeerPickerController p1) {
+    default void didCancel(GKPeerPickerController p1) {
     }
 }

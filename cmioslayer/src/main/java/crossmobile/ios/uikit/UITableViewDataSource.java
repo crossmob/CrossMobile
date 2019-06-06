@@ -46,7 +46,7 @@ public interface UITableViewDataSource {
      * @return The number of sections.
      */
     @CMSelector("- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;")
-    public default int numberOfSectionsInTableView(UITableView table) {
+    default int numberOfSectionsInTableView(UITableView table) {
         return 1;
     }
 
@@ -74,7 +74,7 @@ public interface UITableViewDataSource {
     @CMSelector("- (void)tableView:(UITableView *)tableView \n"
             + "commitEditingStyle:(UITableViewCellEditingStyle)editingStyle \n"
             + "forRowAtIndexPath:(NSIndexPath *)indexPath;")
-    public default void commitEditingStyle(UITableView table, int editingStyle, NSIndexPath indexPath) {
+    default void commitEditingStyle(UITableView table, int editingStyle, NSIndexPath indexPath) {
     }
 
     /**
@@ -86,7 +86,7 @@ public interface UITableViewDataSource {
      */
     @CMSelector("- (BOOL)tableView:(UITableView *)tableView \n"
             + "canEditRowAtIndexPath:(NSIndexPath *)indexPath;")
-    public default boolean canEditRowAtIndexPath(UITableView table, NSIndexPath indexPath) {
+    default boolean canEditRowAtIndexPath(UITableView table, NSIndexPath indexPath) {
         return true;
     }
 
@@ -99,7 +99,7 @@ public interface UITableViewDataSource {
      */
     @CMSelector("- (BOOL)tableView:(UITableView *)tableView \n"
             + "canMoveRowAtIndexPath:(NSIndexPath *)indexPath;")
-    public default boolean canMoveRowAtIndexPath(UITableView table, NSIndexPath indexPath) {
+    default boolean canMoveRowAtIndexPath(UITableView table, NSIndexPath indexPath) {
         throw new UnimplementedOptionalException();
     }
 
@@ -114,7 +114,7 @@ public interface UITableViewDataSource {
     @CMSelector("- (void)tableView:(UITableView *)tableView \n"
             + "moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath \n"
             + "      toIndexPath:(NSIndexPath *)destinationIndexPath;")
-    public default void moveRowAtIndexPath(UITableView table, NSIndexPath fromIndexPath, NSIndexPath toIndexPath) {
+    default void moveRowAtIndexPath(UITableView table, NSIndexPath fromIndexPath, NSIndexPath toIndexPath) {
         throw new UnimplementedOptionalException();
     }
 
@@ -128,7 +128,7 @@ public interface UITableViewDataSource {
     @CMSelector("- (NSString *)tableView:(UITableView *)tableView \n"
             + "titleForHeaderInSection:(NSInteger)section;\n"
             + "")
-    public default String titleForHeaderInSection(UITableView table, int section) {
+    default String titleForHeaderInSection(UITableView table, int section) {
         throw new UnimplementedOptionalException();
     }
 
@@ -141,7 +141,7 @@ public interface UITableViewDataSource {
      */
     @CMSelector("- (NSString *)tableView:(UITableView *)tableView \n"
             + "titleForFooterInSection:(NSInteger)section;")
-    public default String titleForFooterInSection(UITableView table, int section) {
+    default String titleForFooterInSection(UITableView table, int section) {
         throw new UnimplementedOptionalException();
     }
 }

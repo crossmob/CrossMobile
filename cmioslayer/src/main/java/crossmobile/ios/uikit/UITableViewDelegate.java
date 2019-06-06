@@ -35,7 +35,7 @@ public interface UITableViewDelegate {
      * @param indexPath The row of the cell,
      */
     @CMSelector("- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;")
-    public default void willDisplayCell(UITableView tableview, UITableViewCell cell, NSIndexPath indexPath) {
+    default void willDisplayCell(UITableView tableview, UITableViewCell cell, NSIndexPath indexPath) {
     }
 
     /**
@@ -46,7 +46,7 @@ public interface UITableViewDelegate {
      */
     @CMSelector("- (void)tableView:(UITableView *)tableView \n"
             + "accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath;")
-    public default void accessoryButtonTappedForRowWithIndexPath(UITableView tableview, NSIndexPath indexPath) {
+    default void accessoryButtonTappedForRowWithIndexPath(UITableView tableview, NSIndexPath indexPath) {
     }
 
     /**
@@ -57,7 +57,7 @@ public interface UITableViewDelegate {
      */
     @CMSelector("- (void)tableView:(UITableView *)tableView \n"
             + "didSelectRowAtIndexPath:(NSIndexPath *)indexPath;")
-    public default void didSelectRowAtIndexPath(UITableView tableview, NSIndexPath indexPath) {
+    default void didSelectRowAtIndexPath(UITableView tableview, NSIndexPath indexPath) {
     }
 
     /**
@@ -68,7 +68,7 @@ public interface UITableViewDelegate {
      */
     @CMSelector("- (void)tableView:(UITableView *)tableView \n"
             + "didDeselectRowAtIndexPath:(NSIndexPath *)indexPath;")
-    public default void didDeselectRowAtIndexPath(UITableView tableview, NSIndexPath indexPath) {
+    default void didDeselectRowAtIndexPath(UITableView tableview, NSIndexPath indexPath) {
     }
 
     /**
@@ -79,7 +79,7 @@ public interface UITableViewDelegate {
      */
     @CMSelector("- (void)tableView:(UITableView *)tableView \n"
             + "willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath;")
-    public default void willBeginEditingRowAtIndexPath(UITableView tableview, NSIndexPath indexPath) {
+    default void willBeginEditingRowAtIndexPath(UITableView tableview, NSIndexPath indexPath) {
     }
 
     /**
@@ -90,7 +90,7 @@ public interface UITableViewDelegate {
      */
     @CMSelector("- (void)tableView:(UITableView *)tableView \n"
             + "didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath;")
-    public default void didEndEditingRowAtIndexPath(UITableView tableview, NSIndexPath indexPath) {
+    default void didEndEditingRowAtIndexPath(UITableView tableview, NSIndexPath indexPath) {
     }
 
     /**
@@ -103,7 +103,7 @@ public interface UITableViewDelegate {
      */
     @CMSelector("- (BOOL)tableView:(UITableView *)tableView \n"
             + "shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath;")
-    public default boolean shouldIndentWhileEditingRowAtIndexPath(UITableView tableview, NSIndexPath indexPath) {
+    default boolean shouldIndentWhileEditingRowAtIndexPath(UITableView tableview, NSIndexPath indexPath) {
         return true;
     }
 
@@ -116,7 +116,7 @@ public interface UITableViewDelegate {
      */
     @CMSelector("- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView \n"
             + "           editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath;")
-    public default int editingStyleForRowAtIndexPath(UITableView tableview, NSIndexPath indexPath) {
+    default int editingStyleForRowAtIndexPath(UITableView tableview, NSIndexPath indexPath) {
         return UITableViewCellEditingStyle.Delete;
     }
 
@@ -129,7 +129,7 @@ public interface UITableViewDelegate {
      */
     @CMSelector("- (CGFloat)tableView:(UITableView *)tableView \n"
             + "heightForRowAtIndexPath:(NSIndexPath *)indexPath;")
-    public default double heightForRowAtIndexPath(UITableView tableView, NSIndexPath indexPath) {
+    default double heightForRowAtIndexPath(UITableView tableView, NSIndexPath indexPath) {
         throw new UnimplementedOptionalException();
     }
 
@@ -142,7 +142,7 @@ public interface UITableViewDelegate {
      */
     @CMSelector("- (UIView *)tableView:(UITableView *)tableView \n"
             + "viewForHeaderInSection:(NSInteger)section;")
-    public default UIView viewForHeaderInSection(UITableView tableview, int section) {
+    default UIView viewForHeaderInSection(UITableView tableview, int section) {
         throw new UnimplementedOptionalException();
     }
 
@@ -155,7 +155,7 @@ public interface UITableViewDelegate {
      */
     @CMSelector("- (UIView *)tableView:(UITableView *)tableView\n"
             + "viewForFooterInSection:(NSInteger)section;")
-    public default UIView viewForFooterInSection(UITableView tableview, int section) {
+    default UIView viewForFooterInSection(UITableView tableview, int section) {
         throw new UnimplementedOptionalException();
     }
 
@@ -168,7 +168,7 @@ public interface UITableViewDelegate {
      */
     @CMSelector("- (CGFloat)tableView:(UITableView *)tableView \n"
             + "heightForHeaderInSection:(NSInteger)section;")
-    public default double heightForHeaderInSection(UITableView tableview, int section) {
+    default double heightForHeaderInSection(UITableView tableview, int section) {
         throw new UnimplementedOptionalException();
     }
 
@@ -181,7 +181,7 @@ public interface UITableViewDelegate {
      */
     @CMSelector("- (CGFloat)tableView:(UITableView *)tableView \n"
             + "heightForFooterInSection:(NSInteger)section;")
-    public default double heightForFooterInSection(UITableView tableview, int section) {
+    default double heightForFooterInSection(UITableView tableview, int section) {
         throw new UnimplementedOptionalException();
     }
 
@@ -194,7 +194,7 @@ public interface UITableViewDelegate {
      */
     @CMSelector("- (NSString *)tableView:(UITableView *)tableView \n"
             + "titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath;")
-    public default String titleForDeleteConfirmationButtonForRowAtIndexPath(UITableView tableview, NSIndexPath indexPath) {
+    default String titleForDeleteConfirmationButtonForRowAtIndexPath(UITableView tableview, NSIndexPath indexPath) {
         throw new UnimplementedOptionalException();
     }
 }

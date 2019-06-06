@@ -37,7 +37,7 @@ public interface CLLocationManagerDelegate {
     @CMSelector("- (void)locationManager:(CLLocationManager *)manager \n"
             + "    didUpdateToLocation:(CLLocation *)newLocation \n"
             + "           fromLocation:(CLLocation *)oldLocation;")
-    public default void didUpdateToLocation(CLLocationManager manager, CLLocation newLocation, CLLocation oldLocation) {
+    default void didUpdateToLocation(CLLocationManager manager, CLLocation newLocation, CLLocation oldLocation) {
     }
 
     /**
@@ -49,7 +49,7 @@ public interface CLLocationManagerDelegate {
     @Deprecated
     @CMSelector("- (void)locationManager:(CLLocationManager *)manager \n"
             + "       didFailWithError:(NSError *)error;")
-    public default void didFailWithError(CLLocationManager manager, NSError error) {
+    default void didFailWithError(CLLocationManager manager, NSError error) {
     }
 
     /**
@@ -60,7 +60,7 @@ public interface CLLocationManagerDelegate {
      */
     @CMSelector("- (void)locationManager:(CLLocationManager *)manager \n"
             + "       didUpdateHeading:(CLHeading *)newHeading;")
-    public default void didUpdateHeading(CLLocationManager manager, CLHeading newHeading) {
+    default void didUpdateHeading(CLLocationManager manager, CLHeading newHeading) {
     }
 
     /**
@@ -71,7 +71,7 @@ public interface CLLocationManagerDelegate {
      * permitted.
      */
     @CMSelector("- (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager;")
-    public default boolean shouldDisplayHeadingCalibration(CLLocationManager manager) {
+    default boolean shouldDisplayHeadingCalibration(CLLocationManager manager) {
         return false;
     }
 
@@ -83,7 +83,7 @@ public interface CLLocationManagerDelegate {
      */
     @CMSelector("- (void)locationManager:(CLLocationManager *)manager \n"
             + "         didEnterRegion:(CLRegion *)region;")
-    public default void didEnterRegion(CLLocationManager manager, CLRegion region) {
+    default void didEnterRegion(CLLocationManager manager, CLRegion region) {
     }
 
     /**
@@ -94,7 +94,7 @@ public interface CLLocationManagerDelegate {
      */
     @CMSelector("- (void)locationManager:(CLLocationManager *)manager \n"
             + "          didExitRegion:(CLRegion *)region;")
-    public default void didExitRegion(CLLocationManager manager, CLRegion region) {
+    default void didExitRegion(CLLocationManager manager, CLRegion region) {
     }
 
     /**
@@ -107,6 +107,6 @@ public interface CLLocationManagerDelegate {
     @CMSelector("- (void)locationManager:(CLLocationManager *)manager \n"
             + "monitoringDidFailForRegion:(CLRegion *)region \n"
             + "              withError:(NSError *)error;")
-    public default void monitoringDidFailForRegion(CLLocationManager manager, CLRegion region, NSError error) {
+    default void monitoringDidFailForRegion(CLLocationManager manager, CLRegion region, NSError error) {
     }
 }

@@ -33,7 +33,7 @@ public interface UISearchBarDelegate {
      */
     @CMSelector("- (void)searchBar:(UISearchBar *)searchBar \n"
             + "    textDidChange:(NSString *)searchText;")
-    public default void textDidChange(UISearchBar p1, String p2) {
+    default void textDidChange(UISearchBar p1, String p2) {
     }
 
     /**
@@ -43,7 +43,7 @@ public interface UISearchBarDelegate {
      * @return TRUE if editing is permitted.
      */
     @CMSelector("- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar;")
-    public default boolean shouldBeginEditing(UISearchBar p1) {
+    default boolean shouldBeginEditing(UISearchBar p1) {
         return true;
     }
 
@@ -53,7 +53,7 @@ public interface UISearchBarDelegate {
      * @param p1 The search bar that corresponds to this delegate.
      */
     @CMSelector("- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar;")
-    public default void textDidBeginEditing(UISearchBar p1) {
+    default void textDidBeginEditing(UISearchBar p1) {
     }
 
     /**
@@ -63,7 +63,7 @@ public interface UISearchBarDelegate {
      * @return TRUE if editing should finish.
      */
     @CMSelector("- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar;")
-    public default boolean shouldEndEditing(UISearchBar p1) {
+    default boolean shouldEndEditing(UISearchBar p1) {
         return true;
     }
 
@@ -73,7 +73,7 @@ public interface UISearchBarDelegate {
      * @param p1 The search bar that corresponds to this delegate.
      */
     @CMSelector("- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar;")
-    public default void textDidEndEditing(UISearchBar p1) {
+    default void textDidEndEditing(UISearchBar p1) {
     }
 
     /**
@@ -82,7 +82,7 @@ public interface UISearchBarDelegate {
      * @param p1 The search bar that corresponds to this delegate.
      */
     @CMSelector("- (void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar;")
-    public default void bookmarkButtonClicked(UISearchBar p1) {
+    default void bookmarkButtonClicked(UISearchBar p1) {
     }
 
     /**
@@ -91,7 +91,7 @@ public interface UISearchBarDelegate {
      * @param p1 The search bar that corresponds to this delegate.
      */
     @CMSelector("- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar;")
-    public default void cancelButtonClicked(UISearchBar p1) {
+    default void cancelButtonClicked(UISearchBar p1) {
     }
 
     /**
@@ -100,7 +100,7 @@ public interface UISearchBarDelegate {
      * @param p1 The search bar that corresponds to this delegate.
      */
     @CMSelector("- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar;")
-    public default void searchButtonClicked(UISearchBar p1) {
+    default void searchButtonClicked(UISearchBar p1) {
     }
 
     /**
@@ -111,6 +111,6 @@ public interface UISearchBarDelegate {
      */
     @CMSelector("- (void)searchBar:(UISearchBar *)searchBar \n"
             + "selectedScopeButtonIndexDidChange:(NSInteger)selectedScope;")
-    public default void selectedScopeButtonIndexDidChange(UISearchBar p1, int p2) {
+    default void selectedScopeButtonIndexDidChange(UISearchBar p1, int p2) {
     }
 }

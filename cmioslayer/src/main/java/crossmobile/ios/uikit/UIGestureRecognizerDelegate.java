@@ -35,7 +35,7 @@ public interface UIGestureRecognizerDelegate {
      * touch interpretation is permitted.
      */
     @CMSelector("- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer;")
-    public default boolean shouldBegin(UIGestureRecognizer recognizer) {
+    default boolean shouldBegin(UIGestureRecognizer recognizer) {
         return true;
     }
 
@@ -51,7 +51,7 @@ public interface UIGestureRecognizerDelegate {
      */
     @CMSelector("- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer \n" +
             "shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer;")
-    public default boolean shouldRecognizeSimultaneouslyWithGestureRecognizer(UIGestureRecognizer recognizer, UIGestureRecognizer otherGestureRecognizer) {
+    default boolean shouldRecognizeSimultaneouslyWithGestureRecognizer(UIGestureRecognizer recognizer, UIGestureRecognizer otherGestureRecognizer) {
         return false;
     }
 
@@ -66,7 +66,7 @@ public interface UIGestureRecognizerDelegate {
      */
     @CMSelector("- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer \n" +
             "       shouldReceiveTouch:(UITouch *)touch;")
-    public default boolean shouldReceiveTouch(UIGestureRecognizer recognizer, UITouch touch) {
+    default boolean shouldReceiveTouch(UIGestureRecognizer recognizer, UITouch touch) {
         return true;
     }
 }

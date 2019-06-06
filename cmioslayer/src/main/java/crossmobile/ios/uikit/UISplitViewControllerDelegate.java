@@ -41,7 +41,7 @@ public interface UISplitViewControllerDelegate {
             + "     willHideViewController:(UIViewController *)aViewController \n"
             + "          withBarButtonItem:(UIBarButtonItem *)barButtonItem \n"
             + "       forPopoverController:(UIPopoverController *)pc;")
-    public default void willHideViewController(UISplitViewController svc, UIViewController aViewController, UIBarButtonItem barButtonItem, UIPopoverController pc) {
+    default void willHideViewController(UISplitViewController svc, UIViewController aViewController, UIBarButtonItem barButtonItem, UIPopoverController pc) {
 
     }
 
@@ -58,7 +58,7 @@ public interface UISplitViewControllerDelegate {
     @CMSelector("- (void)splitViewController:(UISplitViewController *)svc \n"
             + "     willShowViewController:(UIViewController *)aViewController \n"
             + "  invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem;")
-    public default void willShowViewController(UISplitViewController svc, UIViewController aViewController, UIBarButtonItem barButtonItem) {
+    default void willShowViewController(UISplitViewController svc, UIViewController aViewController, UIBarButtonItem barButtonItem) {
     }
 
     /**
@@ -74,7 +74,7 @@ public interface UISplitViewControllerDelegate {
     @CMSelector("- (void)splitViewController:(UISplitViewController *)svc \n"
             + "          popoverController:(UIPopoverController *)pc \n"
             + "  willPresentViewController:(UIViewController *)aViewController;")
-    public default void popoverController(UISplitViewController svc, UIPopoverController pc, UIViewController aViewController) {
+    default void popoverController(UISplitViewController svc, UIPopoverController pc, UIViewController aViewController) {
     }
 
     /**
@@ -89,7 +89,7 @@ public interface UISplitViewControllerDelegate {
     @CMSelector("- (BOOL)splitViewController:(UISplitViewController *)svc \n"
             + "   shouldHideViewController:(UIViewController *)vc \n"
             + "              inOrientation:(UIInterfaceOrientation)orientation;")
-    public default boolean shouldHideViewController(UISplitViewController svc, UIViewController vc, int orientation) {
+    default boolean shouldHideViewController(UISplitViewController svc, UIViewController vc, int orientation) {
         return true;
     }
 
@@ -103,7 +103,7 @@ public interface UISplitViewControllerDelegate {
      */
     @CMSelector("- (void)splitViewController:(UISplitViewController *)svc \n"
             + "    willChangeToDisplayMode:(UISplitViewControllerDisplayMode)displayMode;")
-    public default void willChangeToDisplayMode(UISplitViewController svc, int UISplitViewControllerDisplayMode) {
+    default void willChangeToDisplayMode(UISplitViewController svc, int UISplitViewControllerDisplayMode) {
     }
 
     /**
@@ -114,7 +114,7 @@ public interface UISplitViewControllerDelegate {
      * @return The display mode of the split view controller.
      */
     @CMSelector("- (UISplitViewControllerDisplayMode)targetDisplayModeForActionInSplitViewController:(UISplitViewController *)svc;")
-    public default int targetDisplayModeForActionInSplitViewController(UISplitViewController svc) {
+    default int targetDisplayModeForActionInSplitViewController(UISplitViewController svc) {
         return UISplitViewControllerDisplayMode.Automatic;
     }
 
@@ -127,7 +127,7 @@ public interface UISplitViewControllerDelegate {
      * @return The orientation of the split view controller.
      */
     @CMSelector("- (UIInterfaceOrientation)splitViewControllerPreferredInterfaceOrientationForPresentation:(UISplitViewController *)splitViewController;")
-    public default int preferredInterfaceOrientationForPresentation(UISplitViewController splitViewController) {
+    default int preferredInterfaceOrientationForPresentation(UISplitViewController splitViewController) {
         return UIInterfaceOrientationMask.All;
     }
 
@@ -140,7 +140,7 @@ public interface UISplitViewControllerDelegate {
      * @return The supported orientations of the split view controller.
      */
     @CMSelector("- (UIInterfaceOrientationMask)splitViewControllerSupportedInterfaceOrientations:(UISplitViewController *)splitViewController;")
-    public default int supportedInterfaceOrientations(UISplitViewController splitViewController) {
+    default int supportedInterfaceOrientations(UISplitViewController splitViewController) {
         return UIInterfaceOrientationMask.All;
     }
 
@@ -153,7 +153,7 @@ public interface UISplitViewControllerDelegate {
      * @return The single view controller to be displayed.
      */
     @CMSelector("- (UIViewController *)primaryViewControllerForCollapsingSplitViewController:(UISplitViewController *)splitViewController;")
-    public default UIViewController primaryViewControllerForCollapsingSplitViewController(UISplitViewController splitViewController) {
+    default UIViewController primaryViewControllerForCollapsingSplitViewController(UISplitViewController splitViewController) {
         return null;
     }
 
@@ -171,7 +171,7 @@ public interface UISplitViewControllerDelegate {
     @CMSelector("- (BOOL)splitViewController:(UISplitViewController *)splitViewController \n"
             + "collapseSecondaryViewController:(UIViewController *)secondaryViewController \n"
             + "  ontoPrimaryViewController:(UIViewController *)primaryViewController;")
-    public default boolean collapseSecondaryViewController(UISplitViewController splitViewController, UIViewController secondaryViewController, UIViewController primaryViewController) {
+    default boolean collapseSecondaryViewController(UISplitViewController splitViewController, UIViewController secondaryViewController, UIViewController primaryViewController) {
         return true;
     }
 
@@ -184,7 +184,7 @@ public interface UISplitViewControllerDelegate {
      * @return The view controller to use.
      */
     @CMSelector("- (UIViewController *)primaryViewControllerForExpandingSplitViewController:(UISplitViewController *)splitViewController;")
-    public default UIViewController primaryViewControllerForExpandingSplitViewController(UISplitViewController splitViewController) {
+    default UIViewController primaryViewControllerForExpandingSplitViewController(UISplitViewController splitViewController) {
         return null;
     }
 
@@ -198,7 +198,7 @@ public interface UISplitViewControllerDelegate {
      */
     @CMSelector("- (UIViewController *)splitViewController:(UISplitViewController *)splitViewController \n"
             + "separateSecondaryViewControllerFromPrimaryViewController:(UIViewController *)primaryViewController;")
-    public default UIViewController separateSecondaryViewControllerFromPrimaryViewController(UISplitViewController splitViewController, UIViewController primaryViewController) {
+    default UIViewController separateSecondaryViewControllerFromPrimaryViewController(UISplitViewController splitViewController, UIViewController primaryViewController) {
         return null;
     }
 
@@ -215,7 +215,7 @@ public interface UISplitViewControllerDelegate {
     @CMSelector("- (BOOL)splitViewController:(UISplitViewController *)splitViewController \n"
             + "         showViewController:(UIViewController *)vc \n"
             + "                     sender:(id)sender;")
-    public default boolean showViewController(UISplitViewController splitViewController, UIViewController vc, Object sender) {
+    default boolean showViewController(UISplitViewController splitViewController, UIViewController vc, Object sender) {
         return true;
     }
 
@@ -232,7 +232,7 @@ public interface UISplitViewControllerDelegate {
     @CMSelector("- (BOOL)splitViewController:(UISplitViewController *)splitViewController \n"
             + "   showDetailViewController:(UIViewController *)vc \n"
             + "                     sender:(id)sender;")
-    public default boolean showDetailViewController(UISplitViewController splitViewController, UIViewController vc, Object sender) {
+    default boolean showDetailViewController(UISplitViewController splitViewController, UIViewController vc, Object sender) {
         return true;
     }
 }

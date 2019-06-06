@@ -33,7 +33,7 @@ public interface UITextFieldDelegate {
      * @return TRUE if the editing of a text field can begin.
      */
     @CMSelector("- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField;")
-    public default boolean shouldBeginEditing(UITextField textField) {
+    default boolean shouldBeginEditing(UITextField textField) {
         return true;
     }
 
@@ -43,7 +43,7 @@ public interface UITextFieldDelegate {
      * @param textField The text field that corresponds to this delegate.
      */
     @CMSelector("- (void)textFieldDidBeginEditing:(UITextField *)textField;")
-    public default void didBeginEditing(UITextField textField) {
+    default void didBeginEditing(UITextField textField) {
     }
 
     /**
@@ -53,7 +53,7 @@ public interface UITextFieldDelegate {
      * @return TRUE the editing should stop.
      */
     @CMSelector("- (BOOL)textFieldShouldEndEditing:(UITextField *)textField;")
-    public default boolean shouldEndEditing(UITextField textField) {
+    default boolean shouldEndEditing(UITextField textField) {
         return true;
     }
 
@@ -63,7 +63,7 @@ public interface UITextFieldDelegate {
      * @param textField The text field that corresponds to this delegate.
      */
     @CMSelector("- (void)textFieldDidEndEditing:(UITextField *)textField;")
-    public default void didEndEditing(UITextField textField) {
+    default void didEndEditing(UITextField textField) {
     }
 
     /**
@@ -77,7 +77,7 @@ public interface UITextFieldDelegate {
     @CMSelector("- (BOOL)textField:(UITextField *)textField \n"
             + "shouldChangeCharactersInRange:(NSRange)range \n"
             + "replacementString:(NSString *)string;")
-    public default boolean shouldChangeCharactersInRange(UITextField textField, NSRange range, String replacementString) {
+    default boolean shouldChangeCharactersInRange(UITextField textField, NSRange range, String replacementString) {
         return true;
     }
 
@@ -88,7 +88,7 @@ public interface UITextFieldDelegate {
      * @return TRUE the removal of the text field's is allowed.
      */
     @CMSelector("- (BOOL)textFieldShouldClear:(UITextField *)textField;")
-    public default boolean shouldClear(UITextField textField) {
+    default boolean shouldClear(UITextField textField) {
         return true;
     }
 
@@ -99,7 +99,7 @@ public interface UITextFieldDelegate {
      * @return TRUE the process of the return button is allowed.
      */
     @CMSelector("- (BOOL)textFieldShouldReturn:(UITextField *)textField;")
-    public default boolean shouldReturn(UITextField textField) {
+    default boolean shouldReturn(UITextField textField) {
         return true;
     }
 }

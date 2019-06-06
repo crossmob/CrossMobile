@@ -41,7 +41,7 @@ public interface UIImagePickerControllerDelegate extends UINavigationControllerD
     @CMSelector("- (void)imagePickerController:(UIImagePickerController *)picker\n"
             + "didFinishPickingMediaWithInfo:(NSDictionary<NSString *,\n"
             + "                                       id> *)info")
-    public default void didFinishPickingMediaWithInfo(UIImagePickerController picker, Map<String, Object> info) {
+    default void didFinishPickingMediaWithInfo(UIImagePickerController picker, Map<String, Object> info) {
     }
 
     /**
@@ -52,6 +52,6 @@ public interface UIImagePickerControllerDelegate extends UINavigationControllerD
      *               delegate.
      */
     @CMSelector("- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker;")
-    public default void didCancel(UIImagePickerController picker) {
+    default void didCancel(UIImagePickerController picker) {
     }
 }

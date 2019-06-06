@@ -33,7 +33,7 @@ public interface UITextViewDelegate {
      * @return TRUE the editing is permitted.
      */
     @CMSelector("- (BOOL)textViewShouldBeginEditing:(UITextView *)textView")
-    public default boolean shouldBeginEditing(UITextView textView) {
+    default boolean shouldBeginEditing(UITextView textView) {
         return true;
     }
 
@@ -44,7 +44,7 @@ public interface UITextViewDelegate {
      * @return TRUE the editing should stop.
      */
     @CMSelector("- (BOOL)textViewShouldEndEditing:(UITextView *)textView")
-    public default boolean shouldEndEditing(UITextView textView) {
+    default boolean shouldEndEditing(UITextView textView) {
         return true;
     }
 
@@ -54,7 +54,7 @@ public interface UITextViewDelegate {
      * @param textView The text view that corresponds to this delegate.
      */
     @CMSelector("- (void)textViewDidBeginEditing:(UITextView *)textView")
-    public default void didBeginEditing(UITextView textView) {
+    default void didBeginEditing(UITextView textView) {
     }
 
     /**
@@ -63,7 +63,7 @@ public interface UITextViewDelegate {
      * @param textView The text view that corresponds to this delegate.
      */
     @CMSelector("- (void)textViewDidEndEditing:(UITextView *)textView")
-    public default void didEndEditing(UITextView textView) {
+    default void didEndEditing(UITextView textView) {
     }
 
     /**
@@ -78,7 +78,7 @@ public interface UITextViewDelegate {
     @CMSelector("- (BOOL)textView:(UITextView *)textView\n" +
             "shouldChangeTextInRange:(NSRange)range\n" +
             " replacementText:(NSString *)text")
-    public default boolean shouldChangeTextInRange(UITextView textView, NSRange range, String text) {
+    default boolean shouldChangeTextInRange(UITextView textView, NSRange range, String text) {
         return true;
     }
 
@@ -89,7 +89,7 @@ public interface UITextViewDelegate {
      * @param textView The text view that corresponds to this delegate.
      */
     @CMSelector("- (void)textViewDidChange:(UITextView *)textView")
-    public default void didChange(UITextView textView) {
+    default void didChange(UITextView textView) {
     }
 
     /**
@@ -98,6 +98,6 @@ public interface UITextViewDelegate {
      * @param textView The text view that corresponds to this delegate.
      */
     @CMSelector("- (void)textViewDidChangeSelection:(UITextView *)textView")
-    public default void didChangeSelection(UITextView textView) {
+    default void didChangeSelection(UITextView textView) {
     }
 }

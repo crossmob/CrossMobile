@@ -21,7 +21,7 @@ import org.crossmobile.bridge.ann.CMGetter;
 @CMClass
 public interface NSSecureCoding {
     @CMGetter("@property(class, readonly) BOOL supportsSecureCoding;")
-    public default boolean supportsSecureCoding() {
+    default boolean supportsSecureCoding() {
         return true;
     }
 }

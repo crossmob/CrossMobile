@@ -34,7 +34,7 @@ public interface UINavigationBarDelegate {
      */
     @CMSelector("- (BOOL)navigationBar:(UINavigationBar *)navigationBar \n"
             + "       shouldPushItem:(UINavigationItem *)item;")
-    public default boolean shouldPushItem(UINavigationBar bar, UINavigationItem item) {
+    default boolean shouldPushItem(UINavigationBar bar, UINavigationItem item) {
         return true;
     }
 
@@ -46,7 +46,7 @@ public interface UINavigationBarDelegate {
      */
     @CMSelector("- (void)navigationBar:(UINavigationBar *)navigationBar \n"
             + "          didPushItem:(UINavigationItem *)item;")
-    public default void didPushItem(UINavigationBar bar, UINavigationItem item) {
+    default void didPushItem(UINavigationBar bar, UINavigationItem item) {
     }
 
     /**
@@ -58,7 +58,7 @@ public interface UINavigationBarDelegate {
      */
     @CMSelector("- (BOOL)navigationBar:(UINavigationBar *)navigationBar \n"
             + "        shouldPopItem:(UINavigationItem *)item;")
-    public default boolean shouldPopItem(UINavigationBar bar, UINavigationItem item) {
+    default boolean shouldPopItem(UINavigationBar bar, UINavigationItem item) {
         return true;
     }
 

@@ -36,7 +36,7 @@ public interface UIPickerViewDelegate {
      */
     @CMSelector("- (CGFloat)pickerView:(UIPickerView *)pickerView \n"
             + "rowHeightForComponent:(NSInteger)component;")
-    public default double rowHeightForComponent(UIPickerView view, int component) {
+    default double rowHeightForComponent(UIPickerView view, int component) {
         return 0;
     }
 
@@ -50,7 +50,7 @@ public interface UIPickerViewDelegate {
      */
     @CMSelector("- (CGFloat)pickerView:(UIPickerView *)pickerView \n"
             + "    widthForComponent:(NSInteger)component;")
-    public default double widthForComponent(UIPickerView view, int component) {
+    default double widthForComponent(UIPickerView view, int component) {
         throw new UnimplementedOptionalException();
     }
 
@@ -68,7 +68,7 @@ public interface UIPickerViewDelegate {
             + "            viewForRow:(NSInteger)row \n"
             + "          forComponent:(NSInteger)component \n"
             + "           reusingView:(UIView *)view;")
-    public default UIView viewForRow(UIPickerView view, int row, int component, UIView reusedView) {
+    default UIView viewForRow(UIPickerView view, int row, int component, UIView reusedView) {
         return null;
     }
 
@@ -83,7 +83,7 @@ public interface UIPickerViewDelegate {
     @CMSelector("- (NSString *)pickerView:(UIPickerView *)pickerView \n"
             + "             titleForRow:(NSInteger)row \n"
             + "            forComponent:(NSInteger)component;")
-    public default String titleForRow(UIPickerView view, int row, int component) {
+    default String titleForRow(UIPickerView view, int row, int component) {
         return null;
     }
 
@@ -98,6 +98,6 @@ public interface UIPickerViewDelegate {
     @CMSelector("- (void)pickerView:(UIPickerView *)pickerView \n"
             + "      didSelectRow:(NSInteger)row \n"
             + "       inComponent:(NSInteger)component;")
-    public default void didSelectRow(UIPickerView view, int row, int component) {
+    default void didSelectRow(UIPickerView view, int row, int component) {
     }
 }

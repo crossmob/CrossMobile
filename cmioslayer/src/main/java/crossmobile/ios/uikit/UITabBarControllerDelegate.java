@@ -38,7 +38,7 @@ public interface UITabBarControllerDelegate {
      */
     @CMSelector("- (BOOL)tabBarController:(UITabBarController *)tabBarController \n"
             + "shouldSelectViewController:(UIViewController *)viewController;")
-    public default boolean shouldSelectViewController(UITabBarController controller, UIViewController view) {
+    default boolean shouldSelectViewController(UITabBarController controller, UIViewController view) {
         return true;
     }
 
@@ -51,7 +51,7 @@ public interface UITabBarControllerDelegate {
      */
     @CMSelector("- (void)tabBarController:(UITabBarController *)tabBarController \n"
             + " didSelectViewController:(UIViewController *)viewController;")
-    public default void didSelectViewController(UITabBarController controller, UIViewController view) {
+    default void didSelectViewController(UITabBarController controller, UIViewController view) {
     }
 
     /**
@@ -63,7 +63,7 @@ public interface UITabBarControllerDelegate {
      */
     @CMSelector("- (void)tabBarController:(UITabBarController *)tabBarController \n"
             + "willBeginCustomizingViewControllers:(NSArray<__kindof UIViewController *> *)viewControllers;")
-    public default void willBeginCustomizingViewControllers(UITabBarController controller, List<UIViewController> view) {
+    default void willBeginCustomizingViewControllers(UITabBarController controller, List<UIViewController> view) {
     }
 
     /**
@@ -77,7 +77,7 @@ public interface UITabBarControllerDelegate {
     @CMSelector("- (void)tabBarController:(UITabBarController *)tabBarController \n"
             + "willEndCustomizingViewControllers:(NSArray<__kindof UIViewController *> *)viewControllers \n"
             + "                 changed:(BOOL)changed;")
-    public default void willEndCustomizingViewControllers(UITabBarController controller, List<UIViewController> view, boolean changed) {
+    default void willEndCustomizingViewControllers(UITabBarController controller, List<UIViewController> view, boolean changed) {
     }
 
     /**
@@ -91,6 +91,6 @@ public interface UITabBarControllerDelegate {
     @CMSelector("- (void)tabBarController:(UITabBarController *)tabBarController \n"
             + "didEndCustomizingViewControllers:(NSArray<__kindof UIViewController *> *)viewControllers \n"
             + "                 changed:(BOOL)changed;")
-    public default void didEndCustomizingViewControllers(UITabBarController controller, List<UIViewController> view, boolean changed) {
+    default void didEndCustomizingViewControllers(UITabBarController controller, List<UIViewController> view, boolean changed) {
     }
 }

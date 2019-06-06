@@ -48,7 +48,7 @@ public interface SKPaymentTransactionObserver {
     @CMSelector("- (void)paymentQueue:(SKPaymentQueue *)queue \n" +
             " removedTransactions:(NSArray<SKPaymentTransaction *> *)transactions;\n" +
             "")
-    public default void removedTransactions(SKPaymentQueue queue, List<SKPaymentTransaction> transactions) {
+    default void removedTransactions(SKPaymentQueue queue, List<SKPaymentTransaction> transactions) {
     }
 
     /**
@@ -59,7 +59,7 @@ public interface SKPaymentTransactionObserver {
      */
     @CMSelector("- (void)paymentQueue:(SKPaymentQueue *)queue \n" +
             "restoreCompletedTransactionsFailedWithError:(NSError *)error;")
-    public default void restoreCompletedTransactionsFailedWithError(SKPaymentQueue queue, NSError error) {
+    default void restoreCompletedTransactionsFailedWithError(SKPaymentQueue queue, NSError error) {
     }
 
     /**
@@ -68,6 +68,6 @@ public interface SKPaymentTransactionObserver {
      * @param queue The queue that sent restored transactions.
      */
     @CMSelector("- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue;")
-    public default void restoreCompletedTransactionsFinished(SKPaymentQueue queue) {
+    default void restoreCompletedTransactionsFinished(SKPaymentQueue queue) {
     }
 }

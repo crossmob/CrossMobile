@@ -42,7 +42,7 @@ public interface MKOverlay extends MKAnnotation {
      * @return TRUE then the rectangle intersects the area of the object.
      */
     @CMSelector("- (BOOL)intersectsMapRect:(MKMapRect)mapRect")
-    public default boolean intersectsMapRect(MKMapRect mapRect) {
+    default boolean intersectsMapRect(MKMapRect mapRect) {
         return false;
     }
 
@@ -52,7 +52,7 @@ public interface MKOverlay extends MKAnnotation {
      * @return true, if the content can be replaced
      */
     @CMSelector("- (BOOL)canReplaceMapContent")
-    public default boolean canReplaceMapContent() {
+    default boolean canReplaceMapContent() {
         return true;
     }
 }

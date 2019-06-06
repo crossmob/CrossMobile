@@ -33,7 +33,7 @@ public interface NSURLConnectionDataDelegate extends NSURLConnectionDelegate {
      */
     @CMSelector("- (void)connection:(NSURLConnection *)connection \n"
             + "    didReceiveData:(NSData *)data;")
-    public default void didReceiveData(NSURLConnection connection, NSData data) {
+    default void didReceiveData(NSURLConnection connection, NSData data) {
     }
 
     /**
@@ -45,7 +45,7 @@ public interface NSURLConnectionDataDelegate extends NSURLConnectionDelegate {
      */
     @CMSelector("- (void)connection:(NSURLConnection *)connection \n"
             + "didReceiveResponse:(NSURLResponse *)response;")
-    public default void didReceiveResponse(NSURLConnection connection, NSURLResponse response) {
+    default void didReceiveResponse(NSURLConnection connection, NSURLResponse response) {
     }
 
     /**
@@ -54,6 +54,6 @@ public interface NSURLConnectionDataDelegate extends NSURLConnectionDelegate {
      * @param p1 The connection that sends the message.
      */
     @CMSelector("- (void)connectionDidFinishLoading:(NSURLConnection *)connection;")
-    public default void didFinishLoading(NSURLConnection p1) {
+    default void didFinishLoading(NSURLConnection p1) {
     }
 }

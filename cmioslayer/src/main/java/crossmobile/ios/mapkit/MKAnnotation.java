@@ -41,7 +41,7 @@ public interface MKAnnotation {
      * @param newCoordinate The annotation center's coordinates on the map view.
      */
     @CMSelector("- (void)setCoordinate:(CLLocationCoordinate2D) newCoordinate")
-    public default void setCoordinate(CLLocationCoordinate2D newCoordinate) {
+    default void setCoordinate(CLLocationCoordinate2D newCoordinate) {
     }
 
     /**
@@ -50,7 +50,7 @@ public interface MKAnnotation {
      * @return The title of the annotation on the map view.
      */
     @CMGetter("@property(nonatomic, readonly, copy) NSString *title")
-    public default String title() {
+    default String title() {
         return "";
     }
 
@@ -60,7 +60,7 @@ public interface MKAnnotation {
      * @return The subtitle of the annotation on the map view.
      */
     @CMGetter("@property(nonatomic, readonly, copy) NSString *subtitle")
-    public default String subtitle() {
+    default String subtitle() {
         return "";
     }
 }

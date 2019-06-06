@@ -34,7 +34,7 @@ public interface SKRequestDelegate {
      */
     @CMSelector("- (void)request:(SKRequest *)request \n" +
             "didFailWithError:(NSError *)error;")
-    public default void didFailWithError(SKRequest request, NSError error) {
+    default void didFailWithError(SKRequest request, NSError error) {
     }
 
     /**
@@ -43,6 +43,6 @@ public interface SKRequestDelegate {
      * @param request The SKRequest object that corresponds to this delegate.
      */
     @CMSelector("- (void)requestDidFinish:(SKRequest *)request;")
-    public default void didFinish(SKRequest request) {
+    default void didFinish(SKRequest request) {
     }
 }

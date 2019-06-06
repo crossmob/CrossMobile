@@ -35,7 +35,7 @@ public interface UITabBarDelegate {
      */
     @CMSelector("- (void)tabBar:(UITabBar *)tabBar \n"
             + "willBeginCustomizingItems:(NSArray<UITabBarItem *> *)items;")
-    public default void willBeginCustomizingItems(UITabBar bar, List<UITabBarItem> items) {
+    default void willBeginCustomizingItems(UITabBar bar, List<UITabBarItem> items) {
     }
 
     /**
@@ -46,7 +46,7 @@ public interface UITabBarDelegate {
      */
     @CMSelector("- (void)tabBar:(UITabBar *)tabBar \n"
             + "didBeginCustomizingItems:(NSArray<UITabBarItem *> *)items;")
-    public default void didBeginCustomizingItems(UITabBar bar, List<UITabBarItem> items) {
+    default void didBeginCustomizingItems(UITabBar bar, List<UITabBarItem> items) {
     }
 
     /**
@@ -59,7 +59,7 @@ public interface UITabBarDelegate {
     @CMSelector("- (void)tabBar:(UITabBar *)tabBar \n"
             + "willEndCustomizingItems:(NSArray<UITabBarItem *> *)items \n"
             + "       changed:(BOOL)changed;")
-    public default void willEndCustomizingItems(UITabBar bar, List<UITabBarItem> items, boolean changed) {
+    default void willEndCustomizingItems(UITabBar bar, List<UITabBarItem> items, boolean changed) {
     }
 
     /**
@@ -72,7 +72,7 @@ public interface UITabBarDelegate {
     @CMSelector("- (void)tabBar:(UITabBar *)tabBar \n"
             + "didEndCustomizingItems:(NSArray<UITabBarItem *> *)items \n"
             + "       changed:(BOOL)changed;")
-    public default void didEndCustomizingItems(UITabBar bar, List<UITabBarItem> items, boolean changed) {
+    default void didEndCustomizingItems(UITabBar bar, List<UITabBarItem> items, boolean changed) {
     }
 
     /**

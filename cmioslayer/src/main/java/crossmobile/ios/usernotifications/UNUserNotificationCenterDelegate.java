@@ -25,12 +25,12 @@ public interface UNUserNotificationCenterDelegate {
     @CMSelector("- (void)userNotificationCenter:(UNUserNotificationCenter *)center \n"
             + "       willPresentNotification:(UNNotification *)notification \n"
             + "         withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler;")
-    public default void willPresentNotification(UNUserNotificationCenter center, UNNotification notification, VoidBlock1<UNNotificationPresentationOptions> completionHandler) {
+    default void willPresentNotification(UNUserNotificationCenter center, UNNotification notification, VoidBlock1<UNNotificationPresentationOptions> completionHandler) {
     }
 
     @CMSelector("- (void)userNotificationCenter:(UNUserNotificationCenter *)center \n"
             + "didReceiveNotificationResponse:(UNNotificationResponse *)response \n"
             + "         withCompletionHandler:(void (^)(void))completionHandler;")
-    public default void didReceiveNotificationResponse(UNUserNotificationCenter center, UNNotificationResponse response, Runnable completionHandler) {
+    default void didReceiveNotificationResponse(UNUserNotificationCenter center, UNNotificationResponse response, Runnable completionHandler) {
     }
 }

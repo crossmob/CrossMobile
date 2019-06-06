@@ -37,7 +37,7 @@ public interface UINavigationControllerDelegate {
     @CMSelector("- (void)navigationController:(UINavigationController *)navigationController \n"
             + "      willShowViewController:(UIViewController *)viewController \n"
             + "                    animated:(BOOL)animated;")
-    public default void willShowViewController(UINavigationController navigationController, UIViewController viewController, boolean animated) {
+    default void willShowViewController(UINavigationController navigationController, UIViewController viewController, boolean animated) {
     }
 
     /**
@@ -52,6 +52,6 @@ public interface UINavigationControllerDelegate {
     @CMSelector("- (void)navigationController:(UINavigationController *)navigationController \n"
             + "       didShowViewController:(UIViewController *)viewController \n"
             + "                    animated:(BOOL)animated;")
-    public default void didShowViewController(UINavigationController navigationController, UIViewController viewController, boolean animated) {
+    default void didShowViewController(UINavigationController navigationController, UIViewController viewController, boolean animated) {
     }
 }

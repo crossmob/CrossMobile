@@ -35,7 +35,7 @@ public interface UIWebViewDelegate {
      */
     @CMSelector("- (void)webView:(UIWebView *)webView \n" +
             "didFailLoadWithError:(NSError *)error;")
-    public default void didFailLoadWithError(UIWebView webView, NSError error) {
+    default void didFailLoadWithError(UIWebView webView, NSError error) {
     }
 
     /**
@@ -51,7 +51,7 @@ public interface UIWebViewDelegate {
     @CMSelector("- (BOOL)webView:(UIWebView *)webView \n" +
             "shouldStartLoadWithRequest:(NSURLRequest *)request \n" +
             " navigationType:(UIWebViewNavigationType)navigationType;")
-    public default boolean shouldStartLoadWithRequest(UIWebView webView, NSURLRequest request, int UIWebViewNavigationType) {
+    default boolean shouldStartLoadWithRequest(UIWebView webView, NSURLRequest request, int UIWebViewNavigationType) {
         return true;
     }
 
@@ -61,7 +61,7 @@ public interface UIWebViewDelegate {
      * @param webView The web view that corresponds to this delegate.
      */
     @CMSelector("- (void)webViewDidFinishLoad:(UIWebView *)webView;")
-    public default void didFinishLoad(UIWebView webView) {
+    default void didFinishLoad(UIWebView webView) {
     }
 
     /**
@@ -70,6 +70,6 @@ public interface UIWebViewDelegate {
      * @param webView The web view that corresponds to this delegate.
      */
     @CMSelector("- (void)webViewDidStartLoad:(UIWebView *)webView;")
-    public default void didStartLoad(UIWebView webView) {
+    default void didStartLoad(UIWebView webView) {
     }
 }

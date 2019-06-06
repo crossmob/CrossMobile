@@ -31,7 +31,7 @@ public interface UIScrollViewDelegate {
      * @param scrollView The scroll view that corresponds to this delegate.
      */
     @CMSelector("- (void)scrollViewDidScroll:(UIScrollView *)scrollView;")
-    public default void didScroll(UIScrollView scrollView) {
+    default void didScroll(UIScrollView scrollView) {
     }
 
     /**
@@ -40,7 +40,7 @@ public interface UIScrollViewDelegate {
      * @param scrollView The scroll view that corresponds to this delegate.
      */
     @CMSelector("- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView;")
-    public default void willBeginDragging(UIScrollView scrollView) {
+    default void willBeginDragging(UIScrollView scrollView) {
     }
 
     /**
@@ -51,7 +51,7 @@ public interface UIScrollViewDelegate {
      */
     @CMSelector("- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView \n"
             + "                  willDecelerate:(BOOL)decelerate;")
-    public default void didEndDragging(UIScrollView scrollView, boolean willDecelerate) {
+    default void didEndDragging(UIScrollView scrollView, boolean willDecelerate) {
     }
 
     /**
@@ -62,7 +62,7 @@ public interface UIScrollViewDelegate {
      * @return TRUE it scrolls to the top.
      */
     @CMSelector("- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView;")
-    public default boolean shouldScrollToTop(UIScrollView scrollView) {
+    default boolean shouldScrollToTop(UIScrollView scrollView) {
         return true;
     }
 
@@ -72,7 +72,7 @@ public interface UIScrollViewDelegate {
      * @param scrollView The scroll view that corresponds to this delegate.
      */
     @CMSelector("- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView;")
-    public default void didScrollToTop(UIScrollView scrollView) {
+    default void didScrollToTop(UIScrollView scrollView) {
     }
 
     /**
@@ -81,7 +81,7 @@ public interface UIScrollViewDelegate {
      * @param scrollView The scroll view that corresponds to this delegate.
      */
     @CMSelector("- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView;")
-    public default void willBeginDecelerating(UIScrollView scrollView) {
+    default void willBeginDecelerating(UIScrollView scrollView) {
     }
 
     /**
@@ -90,7 +90,7 @@ public interface UIScrollViewDelegate {
      * @param scrollView The scroll view that corresponds to this delegate.
      */
     @CMSelector("- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView;")
-    public default void didEndDecelerating(UIScrollView scrollView) {
+    default void didEndDecelerating(UIScrollView scrollView) {
     }
 
     /**
@@ -100,7 +100,7 @@ public interface UIScrollViewDelegate {
      * @return The part of the content to be zoomed.
      */
     @CMSelector("- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView;")
-    public default UIView viewForZoomingInScrollView(UIScrollView scrollView) {
+    default UIView viewForZoomingInScrollView(UIScrollView scrollView) {
         return null;
     }
 
@@ -114,7 +114,7 @@ public interface UIScrollViewDelegate {
     @CMSelector("- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView \n"
             + "                       withView:(UIView *)view \n"
             + "                        atScale:(CGFloat)scale;")
-    public default void didEndZooming(UIScrollView scrollView, UIView withView, double atScale) {
+    default void didEndZooming(UIScrollView scrollView, UIView withView, double atScale) {
     }
 
     /**
@@ -123,6 +123,6 @@ public interface UIScrollViewDelegate {
      * @param scrollView The scroll view that corresponds to this delegate.
      */
     @CMSelector("- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView;")
-    public default void didEndScrollingAnimation(UIScrollView scrollView) {
+    default void didEndScrollingAnimation(UIScrollView scrollView) {
     }
 }

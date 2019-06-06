@@ -34,6 +34,6 @@ public interface NSURLConnectionDelegate {
     @CMSelector("- (void)connection:(NSURLConnection *)connection \n"
             + "  didFailWithError:(NSError *)error;\n"
             + "")
-    public default void didFailWithError(NSURLConnection p1, NSError p2) {
+    default void didFailWithError(NSURLConnection p1, NSError p2) {
     }
 }
