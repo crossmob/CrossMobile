@@ -407,6 +407,13 @@
     return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 
+// (UIViewController) @property(nonatomic, readonly, strong) UIView *viewIfLoaded;
+- (UIView*) viewIfLoaded__
+{
+    UIView* re$ult = [super viewIfLoaded];
+    return [(re$ult ? re$ult : JAVA_NULL) retain];
+}
+
 // (UIViewController) @property(nonatomic, readonly, getter=isViewLoaded) BOOL viewLoaded;
 - (BOOL) isViewLoaded__
 {
@@ -505,6 +512,12 @@
 - (void) loadView__
 {
     [super loadView];
+}
+
+// (UIViewController) - (void)loadViewIfNeeded;
+- (void) loadViewIfNeeded__
+{
+    [super loadViewIfNeeded];
 }
 
 // (UIResponder) - (UIResponder *)nextResponder;

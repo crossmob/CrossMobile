@@ -1385,6 +1385,7 @@
     "tableViewDelegate()": "- (id<UITableViewDelegate>) delegate\n{\n    id<UITableViewDelegate> re$ult = [self tableViewDelegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
   },
   "crossmobile.ios.uikit.UITableViewCell": {
+    "accessoryType()": "- (UITableViewCellAccessoryType) accessoryType\n{\n    return [self accessoryType__];\n}\n\n",
     "accessoryView()": "- (UIView *) accessoryView\n{\n    UIView * re$ult = [self accessoryView__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
     "backgroundView()": "- (UIView *) backgroundView\n{\n    UIView * re$ult = [self backgroundView__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
     "contentView()": "- (UIView *) contentView\n{\n    UIView * re$ult = [self contentView__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
@@ -1711,6 +1712,7 @@
     "isModalInPopover()": "- (BOOL) isModalInPopover\n{\n    return [self isModalInPopover__];\n}\n\n",
     "isViewLoaded()": "- (BOOL) isViewLoaded\n{\n    return [self isViewLoaded__];\n}\n\n",
     "loadView()": "- (void) loadView\n{\n    [self loadView__];\n}\n\n",
+    "loadViewIfNeeded()": "- (void) loadViewIfNeeded\n{\n    [self loadViewIfNeeded__];\n}\n\n",
     "modalPresentationStyle()": "- (UIModalPresentationStyle) modalPresentationStyle\n{\n    return [self modalPresentationStyle__];\n}\n\n",
     "modalTransitionStyle()": "- (UIModalTransitionStyle) modalTransitionStyle\n{\n    return [self modalTransitionStyle__];\n}\n\n",
     "navigationController()": "- (UINavigationController *) navigationController\n{\n    UINavigationController * re$ult = [self navigationController__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
@@ -1768,6 +1770,7 @@
     "viewDidLayoutSubviews()": "- (void) viewDidLayoutSubviews\n{\n    [self viewDidLayoutSubviews__];\n}\n\n",
     "viewDidLoad()": "- (void) viewDidLoad\n{\n    [self viewDidLoad__];\n}\n\n",
     "viewDidUnload()": "- (void) viewDidUnload\n{\n    [self viewDidUnload__];\n}\n\n",
+    "viewIfLoaded()": "- (UIView *) viewIfLoaded\n{\n    UIView * re$ult = [self viewIfLoaded__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
     "viewSafeAreaInsetsDidChange()": "- (void) viewSafeAreaInsetsDidChange\n{\n    [self viewSafeAreaInsetsDidChange__];\n}\n\n",
     "viewWillAppear(boolean)": "- (void) viewWillAppear:(BOOL) animated\n{\n    [self viewWillAppear___boolean:animated];\n}\n\n",
     "viewWillDisappear(boolean)": "- (void) viewWillDisappear:(BOOL) animated\n{\n    [self viewWillDisappear___boolean:animated];\n}\n\n",

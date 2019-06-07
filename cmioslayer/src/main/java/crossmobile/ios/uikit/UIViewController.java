@@ -178,6 +178,16 @@ public class UIViewController extends UIResponder {
     }
 
     /**
+     * Return controllers view if it is already loaded. It does not call loadView
+     *
+     * @return the current view, or null
+     */
+    @CMGetter("@property(nonatomic, readonly, strong) UIView *viewIfLoaded;")
+    public UIView viewIfLoaded() {
+        return view;
+    }
+
+    /**
      * Returns the header view that should be rotated after the interface
      * rotation.
      *
@@ -280,6 +290,15 @@ public class UIViewController extends UIResponder {
      */
     @CMGetter("@property(nonatomic, strong) UIView *view;")
     public UIView view() {
+        loadViewIfNeeded();
+        return view;
+    }
+
+    /**
+     * Loads the controller's view, if it is not loaded yet
+     */
+    @CMSelector("- (void)loadViewIfNeeded;")
+    public void loadViewIfNeeded() {
         if (view == null) {
             loadView();
             view.controller = this;
@@ -287,7 +306,6 @@ public class UIViewController extends UIResponder {
             resetLayoutSupport();
             viewDidLoad();
         }
-        return view;
     }
 
     /**

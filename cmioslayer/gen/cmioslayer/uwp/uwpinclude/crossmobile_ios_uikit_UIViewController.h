@@ -85,6 +85,7 @@ CM_EXPORT_CLASS
 - (id<UILayoutSupport>) topLayoutGuide__;
 - (void) setView___crossmobile_ios_uikit_UIView:(UIView*) view ;
 - (UIView*) view__;
+- (UIView*) viewIfLoaded__;
 - (BOOL) isViewLoaded__;
 - (void) setWantsFullScreenLayout___boolean:(BOOL) wantsFullScreenLayout ;
 - (BOOL) wantsFullScreenLayout__;
@@ -99,6 +100,7 @@ CM_EXPORT_CLASS
 - (UIBarButtonItem*) editButtonItem__;
 - (void) endAppearanceTransition__;
 - (void) loadView__;
+- (void) loadViewIfNeeded__;
 - (void) performSegueWithIdentifier___java_lang_String_java_lang_Object:(NSString*) identifier :(id) sender ;
 - (int) preferredInterfaceOrientationForPresentation__;
 - (BOOL) prefersStatusBarHidden__;
