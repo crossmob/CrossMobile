@@ -21,6 +21,7 @@
 
 #define crossmobile_ios_foundation_NSString NSString
 @interface NSString (cm_crossmobile_ios_foundation_NSString)
++ (BOOL) canBeConvertedToEncoding___java_lang_String_int:(NSString*) this :(int) encoding ;
 + (int) compare___java_lang_String_java_lang_String_int:(NSString*) this :(NSString*) aString :(int) mask ;
 + (NSArray*) componentsSeparatedByString___java_lang_String_java_lang_String:(NSString*) this :(NSString*) separator ;
 + (NSData*) dataUsingEncoding___java_lang_String_int:(NSString*) this :(int) encoding ;

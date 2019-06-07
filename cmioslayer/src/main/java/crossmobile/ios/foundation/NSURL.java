@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
 @CMClass
 public class NSURL extends NSObject implements NSSecureCoding {
 
-    private static final Pattern urlPattern = Pattern.compile("^[a-zA-Z][a-zA-Z0-9+.\\-]*?:");
+    private static final Pattern urlPattern = Pattern.compile("^[a-zA-Z][a-zA-Z0-9+.\\-]*?:[A-Za-z0-9\\-._~:/?#\\[\\]@!$&'()*+,;=%]*");
 
     private final String url;
 
@@ -53,7 +53,7 @@ public class NSURL extends NSObject implements NSSecureCoding {
      */
     @CMSelector("+ (instancetype)URLWithString:(NSString *)URLString;")
     public static NSURL URLWithString(String u) {
-        if (urlPattern.matcher(u).find())
+        if (urlPattern.matcher(u).matches())
             return new NSURL(u);
         return null;
     }

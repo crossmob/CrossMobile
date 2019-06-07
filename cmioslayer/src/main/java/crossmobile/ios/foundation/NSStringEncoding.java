@@ -146,19 +146,16 @@ public final class NSStringEncoding {
     static String convertIntToString(int value) {
         switch (value) {
             case ASCII:
+            case NonLossyASCII:
                 return "US-ASCII";
             case NEXTSTEP:
                 return null;
             case JapaneseEUC:
                 return "EUC-JP";
-            case UTF8:
-                return "UTF-8";
             case ISOLatin1:
                 return "ISO-8859-1";
             case Symbol:
                 return "x-MacSymbol";
-            case NonLossyASCII:
-                return "US-ASCII";
             case ShiftJIS:
                 return "Shift_JIS";
             case ISOLatin2:
@@ -184,11 +181,12 @@ public final class NSStringEncoding {
             case UTF16LittleEndian:
                 return "UTF-16LE";
             case UTF32:
-                return null;
+                return "UTF-32";
             case UTF32BigEndian:
-                return null;
+                return "UTF-32BE";
             case UTF32LittleEndian:
-                return null;
+                return "UTF-32LE";
+            case UTF8:
             default:
                 return "UTF-8";
         }

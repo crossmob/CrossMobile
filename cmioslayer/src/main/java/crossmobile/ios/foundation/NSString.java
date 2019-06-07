@@ -33,6 +33,8 @@ import java.io.*;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
+import java.nio.charset.UnsupportedCharsetException;
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
 import java.util.ArrayList;
@@ -40,6 +42,7 @@ import java.util.List;
 
 import static crossmobile.ios.coregraphics.$coregraphics.context;
 import static crossmobile.ios.coregraphics.$coregraphics.font;
+import static crossmobile.ios.foundation.NSStringEncoding.convertIntToString;
 import static crossmobile.ios.uikit.$uikit.cgfont;
 import static org.crossmobile.bind.system.SystemUtilities.closeR;
 import static org.crossmobile.bind.system.i18n.I18NBridge.I18N_SUPPORT;
@@ -68,7 +71,7 @@ public class NSString extends NSObject implements NSSecureCoding {
         try {
             if (string == null)
                 return null;
-            return new NSData(string.getBytes(crossmobile.ios.foundation.NSStringEncoding.convertIntToString(NSStringEncoding)));
+            return new NSData(string.getBytes(convertIntToString(NSStringEncoding)));
         } catch (UnsupportedEncodingException ex) {
         }
         return null;
@@ -91,7 +94,7 @@ public class NSString extends NSObject implements NSSecureCoding {
     public static String stringWithContentsOfURL(NSURL url, int NSStringEncoding, StrongReference<NSError> error) {
         if (url == null)
             return null;
-        return stringWithContentsOfURL(url.absoluteString(), crossmobile.ios.foundation.NSStringEncoding.convertIntToString(NSStringEncoding), error);
+        return stringWithContentsOfURL(url.absoluteString(), convertIntToString(NSStringEncoding), error);
     }
 
     /**
@@ -144,7 +147,7 @@ public class NSString extends NSObject implements NSSecureCoding {
             + "                                encoding:(NSStringEncoding)enc \n"
             + "                                   error:(NSError * _Nullable *)error;")
     public static String stringWithContentsOfFile(String path, int NSStringEncoding, StrongReference<NSError> error) {
-        return stringWithContentsOfFileImpl(path, crossmobile.ios.foundation.NSStringEncoding.convertIntToString(NSStringEncoding), error);
+        return stringWithContentsOfFileImpl(path, convertIntToString(NSStringEncoding), error);
     }
 
     private static String stringWithContentsOfFileImpl(String path, String encoding, StrongReference<NSError> error) {
@@ -178,6 +181,23 @@ public class NSString extends NSObject implements NSSecureCoding {
     }
 
     /**
+     * Check whether a string can be converted to the specified encoding
+     *
+     * @param string           the String to check if it can be converted
+     * @param NSStringEncoding the desired encoding
+     * @return true if the string can be converted
+     * @see NSStringEncoding
+     */
+    @CMSelector(value = "- (BOOL)canBeConvertedToEncoding:(NSStringEncoding)encoding;", staticMapping = true)
+    public static boolean canBeConvertedToEncoding(String string, int NSStringEncoding) {
+        try {
+            return Charset.forName(convertIntToString(NSStringEncoding)).newEncoder().canEncode(string);
+        } catch (UnsupportedCharsetException e) {
+            return false;
+        }
+    }
+
+    /**
      * Creates and returns a new NSString object from the interpretation of the
      * specified URL replacing all percent escapes with the matching characters
      * using the specified encoding.
@@ -189,7 +209,7 @@ public class NSString extends NSObject implements NSSecureCoding {
     @CMSelector(value = "- (NSString *)stringByReplacingPercentEscapesUsingEncoding:(NSStringEncoding)encoding", staticMapping = true)
     public static String stringByReplacingPercentEscapesUsingEncoding(String URL, int NSStringEncoding) {
         try {
-            return URLDecoder.decode(URL, crossmobile.ios.foundation.NSStringEncoding.convertIntToString(NSStringEncoding));
+            return URLDecoder.decode(URL, convertIntToString(NSStringEncoding));
         } catch (UnsupportedEncodingException ex) {
             return null;
         }
@@ -206,7 +226,7 @@ public class NSString extends NSObject implements NSSecureCoding {
     @CMSelector(value = "- (NSString *)stringByAddingPercentEscapesUsingEncoding:(NSStringEncoding)encoding", staticMapping = true)
     public static String stringByAddingPercentEscapesUsingEncoding(String URL, int NSStringEncoding) {
         try {
-            return URLEncoder.encode(URL, crossmobile.ios.foundation.NSStringEncoding.convertIntToString(NSStringEncoding)).replace("+", "%20");
+            return URLEncoder.encode(URL, convertIntToString(NSStringEncoding)).replace("+", "%20");
         } catch (UnsupportedEncodingException ex) {
             return null;
         }
@@ -325,7 +345,7 @@ public class NSString extends NSObject implements NSSecureCoding {
     @CMSelector(value = "- (instancetype)initWithData:(NSData *)data encoding:(NSStringEncoding)encoding", staticMapping = true)
     public static String initWithData(NSData data, int NSStringEncoding) {
         try {
-            return new String(data.bytes(), crossmobile.ios.foundation.NSStringEncoding.convertIntToString(NSStringEncoding));
+            return new String(data.bytes(), convertIntToString(NSStringEncoding));
         } catch (UnsupportedEncodingException ex) {
         }
         return null;
@@ -448,7 +468,7 @@ public class NSString extends NSObject implements NSSecureCoding {
         Writer out = null;
         String outpath = atomically ? path + Math.random() : path;
         try {
-            out = new OutputStreamWriter(new FileOutputStream(outpath), crossmobile.ios.foundation.NSStringEncoding.convertIntToString(NSStringEncoding));
+            out = new OutputStreamWriter(new FileOutputStream(outpath), convertIntToString(NSStringEncoding));
             out.write(content);
         } catch (IOException ex) {
             return false;

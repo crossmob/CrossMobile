@@ -35,6 +35,12 @@
 
 @implementation NSString (cm_crossmobile_ios_foundation_NSString)
 
+// direct binding of: - (BOOL)canBeConvertedToEncoding:(NSStringEncoding)encoding;
++ (BOOL) canBeConvertedToEncoding___java_lang_String_int:(NSString*) this :(int) encoding 
+{
+    return [(this == JAVA_NULL ? nil : this) canBeConvertedToEncoding:encoding];
+}
+
 // direct binding of: - (NSComparisonResult)compare:(NSString *)aString options:(NSStringCompareOptions)mask;
 + (int) compare___java_lang_String_java_lang_String_int:(NSString*) this :(NSString*) aString :(int) mask 
 {
