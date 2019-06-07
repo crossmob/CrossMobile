@@ -266,6 +266,11 @@ public class UITabBarController extends UIViewController {
         super.didReceiveMemoryWarning();
     }
 
+    @Override
+    boolean viewShouldNotOverlapWithParentDecorations() {
+        return true;
+    }
+
     private final class TabView extends UIView {
 
         private UIView childView;

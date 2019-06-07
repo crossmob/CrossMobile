@@ -575,9 +575,10 @@ public class UINavigationController extends UIViewController {
         // Update view needs not to re-layout, but to position new child view instead
         void layoutViewAsCore(UIView view, boolean updateInsets) {
             if (view != null) {
+                boolean needsClearViews = view.controller != null && view.controller.viewShouldNotOverlapWithParentDecorations();
                 CGRect activeRect = getActiveFrame();
-                double transNavBarHeight = navigationBar.isTranslucent() ? 0 : navBarHeight();
-                double transToolBarHeight = toolBar.isTranslucent() ? 0 : toolBarHeight();
+                double transNavBarHeight = navigationBar.isTranslucent() && !needsClearViews ? 0 : navBarHeight();
+                double transToolBarHeight = toolBar.isTranslucent() && !needsClearViews ? 0 : toolBarHeight();
                 activeRect.getOrigin().setY(activeRect.getOrigin().getY() + transNavBarHeight);
                 activeRect.getSize().setHeight(activeRect.getSize().getHeight() - (transNavBarHeight + transToolBarHeight));
                 view.setFrame(activeRect);
@@ -594,6 +595,10 @@ public class UINavigationController extends UIViewController {
         safeInsets.setTop(safeInsets.getTop() + navBarHeight());
         safeInsets.setBottom(safeInsets.getBottom() + toolBarHeight());
         return safeInsets;
+    }
+
+    boolean viewShouldNotOverlapWithParentDecorations() {
+        return true;
     }
 
     private double navBarHeight() {

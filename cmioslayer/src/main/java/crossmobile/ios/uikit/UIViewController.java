@@ -1215,6 +1215,9 @@ public class UIViewController extends UIResponder {
         return null;
     }
 
+    boolean viewShouldNotOverlapWithParentDecorations() {
+        return false;
+    }
 
     @CMGetter("@property(nonatomic, copy) NSString *restorationIdentifier;")
     public String restorationIdentifier() {

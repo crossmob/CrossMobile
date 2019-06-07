@@ -171,5 +171,4 @@ public abstract class UIResponder extends NSObject {
         else
             return SystemUtilities.getClassName(getClass());
     }
-
 }
