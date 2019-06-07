@@ -995,7 +995,7 @@ public class UIViewController extends UIResponder {
                 metrics.getBottom() + additionalSafeAreaInsets.getBottom(), metrics.getRight() + additionalSafeAreaInsets.getRight());
     }
 
-    private UIEdgeInsets getActiveInsets() {
+    UIEdgeInsets getActiveInsets() {
         if (UIApplication.sharedApplication() == null || UIApplication.sharedApplication().keyWindow() == null || UIApplication.sharedApplication().keyWindow().rootViewController() != this)
             return UIEdgeInsets.zero();
         DrawableMetrics metrics = Native.graphics().metrics();

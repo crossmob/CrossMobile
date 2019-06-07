@@ -427,11 +427,11 @@ public class UINavigationBar extends UIView {
         fillBackground(barTintColor, barGradient, rect.getOrigin().getX(), rect.getOrigin().getY(), rect.getSize().getWidth(), rect.getSize().getHeight());
     }
 
-    void fixMetricsForStatusBar(double sisterWidth) {
-        DrawableMetrics m = Native.graphics().metrics();
-        setFrameImpl(m.getInsetLeft(),
-                m.getInsetTop(),
-                sisterWidth,
+    void fixMetricsForStatusBar(UIViewController container, UIView parent) {
+        UIEdgeInsets insets = container.getActiveInsets();
+        setFrameImpl(insets.getLeft(),
+                insets.getTop(),
+                parent.getWidth(),
                 Theme.Bar.Nav.HEIGHTNORMAL + (!UIApplication.sharedApplication().isStatusBarHidden() ? UIStatusBar.HEIGHT : 0));
         layoutSubviews();
     }

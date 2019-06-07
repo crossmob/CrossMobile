@@ -556,7 +556,7 @@ public class UINavigationController extends UIViewController {
 
         public NavigationView() {
             super(new CGRect(0, 0, 300, 300));
-            navigationBar.fixMetricsForStatusBar(300);
+            navigationBar.fixMetricsForStatusBar(UINavigationController.this, this);
             addSubview(navigationBar);
             toolBar.setFrame(new CGRect(0, 300 - Theme.Bar.Tool.DEFAULTHEIGHT, 300, Theme.Bar.Tool.DEFAULTHEIGHT));
             toolBar.setAutoresizingMask(UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleTopMargin);
@@ -568,7 +568,7 @@ public class UINavigationController extends UIViewController {
             layoutViewAsCore(childView, false);
             if (childView != null) {    // null due to early initialization, i.e. at viewWillLoad
                 childView.layoutSubviews();
-                navigationBar.fixMetricsForStatusBar(childView.getWidth());
+                navigationBar.fixMetricsForStatusBar(UINavigationController.this, childView);
             }
         }
 
