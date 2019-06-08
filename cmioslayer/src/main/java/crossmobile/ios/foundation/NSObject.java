@@ -16,10 +16,10 @@
 package crossmobile.ios.foundation;
 
 import org.crossmobile.bridge.Native;
-import org.crossmobile.bridge.ann.CMClass;
-import org.crossmobile.bridge.ann.CMConstructor;
-import org.crossmobile.bridge.ann.CMSelector;
+import org.crossmobile.bridge.ann.*;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,8 +28,6 @@ import java.util.Map;
  */
 @CMClass
 public class NSObject {
-
-    private Map<String, Object> keyvalues;
 
     /**
      * The default constructor of the NSObject.
@@ -97,10 +95,28 @@ public class NSObject {
      * @param key   The name of the property whose value you want to retrieve.
      */
     @CMSelector("- (void)setValue:(id)value forKey:(NSString *)key;")
-    public void setValue(Object value, String key) {
-        if (keyvalues == null)
-            keyvalues = new HashMap<>();
-        keyvalues.put(key, value);
+    public void setValueForKey(Object value, String key) {
+        if (key == null || key.isEmpty())
+            return;
+        String uKey = key.substring(0, 1).toUpperCase() + (key.length() > 1 ? key.substring(1) : "");
+        String[] methodNames = {"set" + uKey, "_setKey" + uKey};
+        for (Method method : getClass().getMethods())
+            if (method.getParameterCount() == 1 && method.getParameters()[0].getClass().isInstance(value))
+                for (String methodName : methodNames)
+                    if (methodName.equals(method.getName())) {
+                        try {
+                            method.invoke(this, value);
+                        } catch (IllegalAccessException | InvocationTargetException ignored) {
+                        }
+                        return;
+                    }
+        setValueForUndefinedKey(value, key);
+    }
+
+    @CMSelector("- (void)setValue:(id)value \n" +
+            " forUndefinedKey:(NSString *)key;")
+    public void setValueForUndefinedKey(Object value, String key) {
+        throwUndefinedKeyException(key);
     }
 
     /**
@@ -111,7 +127,69 @@ public class NSObject {
      */
     @CMSelector("- (id)valueForKey:(NSString *)key;")
     public Object valueForKey(String key) {
-        return keyvalues == null ? null : keyvalues.get(key);
+        if (key == null || key.isEmpty())
+            return null;
+        String uKey = key.substring(0, 1).toUpperCase() + (key.length() > 1 ? key.substring(1) : "");
+        Class<? extends NSObject> cls = getClass();
+        Method method = getSafeMethod(cls, "get" + uKey);
+        if (method == null)
+            method = getSafeMethod(cls, key);
+        if (method == null)
+            method = getSafeMethod(cls, "is" + uKey);
+        if (method == null)
+            method = getSafeMethod(cls, "_" + key);
+        if (method == null)
+            return valueForUndefinedKey(key);
+        try {
+            return method.invoke(this);
+        } catch (IllegalAccessException | InvocationTargetException ignored) {
+            return null;
+        }
     }
 
+    @CMSelector("- (id)valueForUndefinedKey:(NSString *)key;")
+    public Object valueForUndefinedKey(String key) {
+        throwUndefinedKeyException(key);
+        return null;
+    }
+
+    private Method getSafeMethod(Class<? extends NSObject> cls, String methodName) {
+        try {
+            return cls.getMethod(methodName);
+        } catch (NoSuchMethodException e) {
+            return null;
+        }
+    }
+
+    @CMSelector("- (void)addObserver:(NSObject *)observer \n" +
+            "         forKeyPath:(NSString *)keyPath \n" +
+            "            options:(NSKeyValueObservingOptions)options \n" +
+            "            context:(void *)context;\n")
+    public void addObserver(NSObject observer, String keyPath, int NSKeyValueObservingOptions, Object context) {
+        Native.lifecycle().notImplemented();
+    }
+
+    @CMSelector("- (void)removeObserver:(NSObject *)observer \n" +
+            "            forKeyPath:(NSString *)keyPath;")
+    public void removeObserver(NSObject observer, String keyPath) {
+        Native.lifecycle().notImplemented();
+    }
+
+    @CMSelector("- (void)removeObserver:(NSObject *)observer \n" +
+            "            forKeyPath:(NSString *)keyPath \n" +
+            "               context:(void *)context;")
+    public void removeObserver(NSObject observer, String keyPath, Object context) {
+        Native.lifecycle().notImplemented();
+    }
+
+    @CMSelector("- (void)observeValueForKeyPath:(NSString *)keyPath \n" +
+            "                      ofObject:(id)object \n" +
+            "                        change:(NSDictionary<NSKeyValueChangeKey, id> *)change \n" +
+            "                       context:(void *)context;\n")
+    public void observeValueForKeyPath(String keyPath, Object object, Map<String, Object> change, Object context) {
+    }
+
+    private void throwUndefinedKeyException(String key) {
+        throw new RuntimeException("Undefined key " + key + " in object " + getClass().getName());
+    }
 }

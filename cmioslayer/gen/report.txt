@@ -484,6 +484,8 @@ crossmobile/ios/foundation/NSItemProviderLoadHandler.class v8
 crossmobile/ios/foundation/NSJSONReadingOptions.class v8
 crossmobile/ios/foundation/NSJSONSerialization.class v8
 crossmobile/ios/foundation/NSJSONWritingOptions.class v8
+crossmobile/ios/foundation/NSKeyValueChangeKey.class v8
+crossmobile/ios/foundation/NSKeyValueObservingOptions.class v8
 crossmobile/ios/foundation/NSLineBreakMode.class v8
 crossmobile/ios/foundation/NSLocale.class v8
 crossmobile/ios/foundation/NSLog.class v8
@@ -895,6 +897,8 @@ crossmobile/ios/foundation/NSItemProviderLoadHandler.class v8
 crossmobile/ios/foundation/NSJSONReadingOptions.class v8
 crossmobile/ios/foundation/NSJSONSerialization.class v8
 crossmobile/ios/foundation/NSJSONWritingOptions.class v8
+crossmobile/ios/foundation/NSKeyValueChangeKey.class v8
+crossmobile/ios/foundation/NSKeyValueObservingOptions.class v8
 crossmobile/ios/foundation/NSLineBreakMode.class v8
 crossmobile/ios/foundation/NSLocale.class v8
 crossmobile/ios/foundation/NSLog.class v8
@@ -1765,6 +1769,8 @@ crossmobile/ios/foundation/NSItemProviderLoadHandler.class v8
 crossmobile/ios/foundation/NSJSONReadingOptions.class v8
 crossmobile/ios/foundation/NSJSONSerialization.class v8
 crossmobile/ios/foundation/NSJSONWritingOptions.class v8
+crossmobile/ios/foundation/NSKeyValueChangeKey.class v8
+crossmobile/ios/foundation/NSKeyValueObservingOptions.class v8
 crossmobile/ios/foundation/NSLineBreakMode.class v8
 crossmobile/ios/foundation/NSLocale.class v8
 crossmobile/ios/foundation/NSLog.class v8
@@ -2368,7 +2374,6 @@ org/crossmobile/c.class v1.5
 org/crossmobile/ca.class v8
 org/crossmobile/cb.class v8
 org/crossmobile/cc.class v8
-org/crossmobile/cd$1.class v8
 org/crossmobile/cd$a.class v8
 org/crossmobile/cd.class v8
 org/crossmobile/ce.class v8
@@ -2539,6 +2544,8 @@ crossmobile/ios/foundation/NSItemProviderLoadHandler.class v8
 crossmobile/ios/foundation/NSJSONReadingOptions.class v8
 crossmobile/ios/foundation/NSJSONSerialization.class v8
 crossmobile/ios/foundation/NSJSONWritingOptions.class v8
+crossmobile/ios/foundation/NSKeyValueChangeKey.class v8
+crossmobile/ios/foundation/NSKeyValueObservingOptions.class v8
 crossmobile/ios/foundation/NSLineBreakMode.class v8
 crossmobile/ios/foundation/NSLocale.class v8
 crossmobile/ios/foundation/NSLog.class v8
@@ -3058,7 +3065,6 @@ org/crossmobile/c.class v1.5
 org/crossmobile/ca.class v8
 org/crossmobile/cb.class v8
 org/crossmobile/cc.class v8
-org/crossmobile/cd$1.class v8
 org/crossmobile/cd$a.class v8
 org/crossmobile/cd.class v8
 org/crossmobile/ce.class v8

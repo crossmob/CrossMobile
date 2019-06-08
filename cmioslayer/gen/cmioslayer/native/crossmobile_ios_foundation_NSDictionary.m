@@ -3,6 +3,7 @@
 // crossmobile.ios.foundation.NSDictionary implementation
 
 #import "crossmobile_ios_foundation_NSDictionary.h"
+#import "crossmobile_ios_foundation_NSObject.h"
 #import "java_lang_Object.h"
 #import "java_lang_String.h"
 #import "java_util_Map.h"

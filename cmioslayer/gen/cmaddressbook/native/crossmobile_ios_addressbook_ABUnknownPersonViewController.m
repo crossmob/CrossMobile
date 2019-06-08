@@ -8,6 +8,7 @@
 #import "crossmobile_ios_addressbook_ABUnknownPersonViewControllerDelegate.h"
 #import "crossmobile_ios_coregraphics_CGSize.h"
 #import "crossmobile_ios_foundation_NSExtensionContext.h"
+#import "crossmobile_ios_foundation_NSObject.h"
 #import "crossmobile_ios_uikit_UIBarButtonItem.h"
 #import "crossmobile_ios_uikit_UIEdgeInsets.h"
 #import "crossmobile_ios_uikit_UIEvent.h"
@@ -26,6 +27,7 @@
 #import "java_lang_Object.h"
 #import "java_lang_String.h"
 #import "java_util_List.h"
+#import "java_util_Map.h"
 #import "java_util_Set.h"
 
 @implementation ABUnknownPersonViewController (cm_crossmobile_ios_addressbook_ABUnknownPersonViewController)
