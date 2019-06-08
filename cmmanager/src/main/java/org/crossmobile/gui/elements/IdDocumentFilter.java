@@ -22,12 +22,10 @@ import java.util.regex.Pattern;
 
 public class IdDocumentFilter extends DocumentFilter {
 
-    public static final String TOOLTIP = "The id format is text.text(.text)* where text is [a-z_][a-z_0-9]*";
-    public static final String TOOLTIP_SIMPLE = "The name format is [a-z_][a-z_0-9]*";
-    public static final Pattern PATTERN = Pattern.compile("[a-zA-Z_][a-zA-Z0-9_]*\\.[a-zA-Z_][a-zA-Z0-9_]*(\\.[a-zA-Z_][a-zA-Z0-9_]*)*");
-    public static final Pattern PATTERN_SIMPLE = Pattern.compile("[a-z][a-z0-9_]*");
-    private static final Pattern CHECK = Pattern.compile("[a-zA-Z_][a-zA-Z0-9_]*(\\.[a-zA-Z_][a-zA-Z0-9_]*)*");
-    private static final Pattern CHECK_SIMPLE = Pattern.compile("[a-z][a-z0-9_]*");
+    public static final String TOOLTIP = "The id format is text(.text)* where text is [a-z][a-z0-9\\-]*";
+    public static final String TOOLTIP_SIMPLE = "The name format is [a-z][a-z0-9\\-]*";
+    public static final Pattern PATTERN = Pattern.compile("[a-zA-Z][a-zA-Z0-9\\-]*(\\.[a-zA-Z][a-zA-Z0-9\\-]*)*");
+    private static final Pattern PATTERN_SINGLE = Pattern.compile("[a-zA-Z][a-zA-Z0-9\\-]*");
 
     private final Pattern check;
     private final boolean simple;
@@ -37,7 +35,7 @@ public class IdDocumentFilter extends DocumentFilter {
     }
 
     public IdDocumentFilter(boolean asSimple) {
-        check = asSimple ? CHECK_SIMPLE : CHECK;
+        check = asSimple ? PATTERN_SINGLE : PATTERN;
         this.simple = asSimple;
     }
 
