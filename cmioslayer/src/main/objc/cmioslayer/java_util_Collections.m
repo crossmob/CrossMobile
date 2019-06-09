@@ -22,6 +22,7 @@
 #import "java_util_Arrays.h"
 #import "java_util_List.h"
 #import "java_util_ArrayList.h"
+#import "java_util_IteratorImpl.h"
 
 @implementation java_util_Collections
 
@@ -87,4 +88,70 @@
         result |= [c add___java_lang_Object:[elements objectAtIndex:i]];
     return result;
 }
+
++ (java_util_Map*) emptyMap__
+{
+    return [java_util_Collections _GET_EMPTY_MAP];
+}
+
++ (java_util_List*) emptyList__
+{
+   return [java_util_Collections _GET_EMPTY_LIST];
+}
+
++ (java_util_Set*) emptySet__
+{
+    return [java_util_Collections _GET_EMPTY_SET];
+}
+
++ (java_util_Enumeration*) emptyEnumeration__
+{
+    return [java_util_Collections emptyIterator__];
+}
+
++ (java_util_Iterator*) emptyIterator__
+{
+    return [[java_util_IteratorImpl alloc] init: [[java_util_Collections _GET_EMPTY_SET] objectEnumerator]];
+}
+
++ (java_util_ListIterator*) emptyListIterator__
+{
+    return [java_util_Collections emptyIterator__];
+}
+
++ (java_util_Map*) emptyNavigableMap__
+{
+    return [java_util_Collections emptyMap__];
+}
+
++ (java_util_Set*) emptyNavigableSet__
+{
+    return [java_util_Collections emptySet__];
+}
+
++ (java_util_SortedMap*) emptySortedMap__
+{
+    return [java_util_Collections emptyMap__];
+}
+
++ (java_util_SortedSet*) emptySortedSet__
+{
+    return [java_util_Collections emptySet__];
+}
+
++ (java_util_Set*) singleton___java_lang_Object:(java_lang_Object*) item
+{
+    return [[NSSet alloc] initWithObjects:item, nil];
+}
+
++ (java_util_List*) singletonList___java_lang_Object:(java_lang_Object*) item
+{
+    return [[NSArray alloc] initWithObjects:item, nil];
+}
+
++ (java_util_Map*) singletonMap___java_lang_Object_java_lang_Object:(java_lang_Object*) key :(java_lang_Object*) value
+{
+    return [[NSDictionary alloc] initWithObjectsAndKeys:value, key, nil];
+}
+
 @end
