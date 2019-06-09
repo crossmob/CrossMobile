@@ -124,7 +124,6 @@ public class UIToolbar extends UIView {
     public void layoutSubviews() {
         Native.system().runAndWaitOnEventThread(() -> {
             if (items == null) // be safe with early initialization, due to overiding of setFrame method
-
                 return;
             for (UIView v : subviews())
                 v.removeFromSuperview();

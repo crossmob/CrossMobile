@@ -565,6 +565,7 @@ public class UINavigationController extends UIViewController {
 
         @Override
         public void layoutSubviews() {
+            super.layoutSubviews();
             layoutViewAsCore(childView, false);
             if (childView != null) {    // null due to early initialization, i.e. at viewWillLoad
                 childView.layoutSubviews();

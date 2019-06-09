@@ -83,7 +83,6 @@ public class UITableViewCell extends UIView {
             Native.lifecycle().notImplemented("Cell type UITableViewCellStyle.Value2");
         this.reuseIdentifier = reuseIdentifier;
         setBackgroundColor(UIColor.whiteColor);
-        setAutoresizesSubviews(false);
         addSubview(contentV = new ContentView());
     }
 
@@ -99,6 +98,7 @@ public class UITableViewCell extends UIView {
 
     @Override
     public void layoutSubviews() {
+        super.layoutSubviews();
         if (contentV != null) { // Only when the object is fully initialized
             double leftInset = 0;
             double rightInset = 0;

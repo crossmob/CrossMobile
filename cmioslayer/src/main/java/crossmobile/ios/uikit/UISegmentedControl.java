@@ -411,8 +411,7 @@ public class UISegmentedControl extends UIControl {
 
     @Override
     public void layoutSubviews() {
-        if (items == null) // be safe with early initialization, due to overiding of setFrame method
-
+        if (items == null) // be safe with early initialization, due to overriding of setFrame method
             return;
         for (UIView v : subviews())
             v.removeFromSuperview();

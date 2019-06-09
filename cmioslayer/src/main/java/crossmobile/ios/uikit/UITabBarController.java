@@ -284,8 +284,8 @@ public class UITabBarController extends UIViewController {
 
         @Override
         public void layoutSubviews() {
-            layoutViewAsCore(childView);
             super.layoutSubviews();
+            layoutViewAsCore(childView);
         }
 
         // Update view needs not to re-layout, but to position new child view instead
