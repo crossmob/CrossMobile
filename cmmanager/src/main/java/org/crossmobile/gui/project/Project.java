@@ -117,7 +117,6 @@ public class Project {
         csheet.add(new ArtifactIdParameter(params));
         csheet.add(new GroupIdParameter(params));
         csheet.add(new VersionParameter(params));
-        csheet.add(new ApplicationExitsParameter(params));
         csheet.add(new MainClassParameter(params));
         ReleaseParameter releaseP = new ReleaseParameter(params, launchType);
         csheet.add(releaseP);

@@ -86,8 +86,6 @@ public class Templates {
             + "\t<PROPERTY_VIEWCONTROLLED_STATUSBAR/>\n"
             + "\t<key>UIFileSharingEnabled</key>\n"
             + "\t<PROPERTY_FILESHARINGENABLED/>\n"
-            + "\t<key>UIApplicationExitsOnSuspend</key>\n"
-            + "\t<PROPERTY_APPLICATIONEXITS/>\n"
             + "\t<key>CFBundleDevelopmentRegion</key>\n"
             + "\t<string>English</string>\n"
             + "\t<key>CFBundleDisplayName</key>\n"

@@ -62,10 +62,6 @@ public class InfoPlist {
         text = text.replace("PROPERTY_FILESHARINGENABLED", toBoolean(filesharingenabled));
     }
 
-    public void setApplicationExits(String applicationexits) {
-        text = text.replace("PROPERTY_APPLICATIONEXITS", toBoolean(applicationexits));
-    }
-
     public void setDefaultOrientation(String defaultorientation) {
         text = text.replace("PROPERTY_INTERFACE_ORIENTATION", defaultorientation);
     }

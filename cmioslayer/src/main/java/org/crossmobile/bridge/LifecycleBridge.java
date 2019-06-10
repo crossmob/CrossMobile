@@ -39,7 +39,4 @@ public interface LifecycleBridge extends Thread.UncaughtExceptionHandler {
     default void notImplemented() {
         notImplemented(null);
     }
-
-    // Whether the application should be stayed alive in the background
-    boolean staysAlive();
 }

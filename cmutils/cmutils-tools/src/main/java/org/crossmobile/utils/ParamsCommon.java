@@ -47,7 +47,6 @@ public enum ParamsCommon {
     STATUSBARHIDDEN("false"),
     VIEWCONTROLLED_STATUSBAR("false"),
     FILESHARINGENABLED("false"),
-    APPLICATIONEXITS("true"),
     CM_OBJC_SAFEMEMBERS("true"),
     ORIENTATIONS_INITIAL("UIInterfaceOrientationPortrait"),
     ORIENTATIONS_SUPPORTED("UIInterfaceOrientationPortrait:UIInterfaceOrientationLandscapeLeft:UIInterfaceOrientationLandscapeRight"),

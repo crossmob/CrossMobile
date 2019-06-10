@@ -170,11 +170,6 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
         return false;
     }
 
-    @Override
-    public boolean staysAlive() {
-        return !"true".equals(System.getProperty("cm.application.exits", "true").trim().toLowerCase());
-    }
-
     public static void memoryWarning() {
         Native.system().error("Memory warning", null);
         Native.image().recycle();

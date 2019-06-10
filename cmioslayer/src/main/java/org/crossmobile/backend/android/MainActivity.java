@@ -168,10 +168,8 @@ public class MainActivity extends Activity {
     @Override
     public void onBackPressed() {
         if (!((AbstractLifecycleBridge) Native.lifecycle()).backHandled())
-            if (Native.lifecycle().staysAlive())
-                moveTaskToBack(true);
-            else
-                super.onBackPressed();
+//            moveTaskToBack(true);
+            super.onBackPressed();
         if (launchDebug)
             Native.system().debug("Activity back pressed", null);
     }

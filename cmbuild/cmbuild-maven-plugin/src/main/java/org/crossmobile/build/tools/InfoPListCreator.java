@@ -52,7 +52,6 @@ public class InfoPListCreator extends GenericPropertiesCreator {
         info.setStatusBarHidden(prop(STATUSBARHIDDEN.tag().name));
         info.setViewControlledStatusBar(prop(VIEWCONTROLLED_STATUSBAR.tag().name));
         info.setFileSharing(prop(FILESHARINGENABLED.tag().name));
-        info.setApplicationExits(prop(APPLICATIONEXITS.tag().name));
         info.setDefaultOrientation(prop(ORIENTATIONS_INITIAL.tag().name));
         info.setSupportedOrientations(prop(ORIENTATIONS_SUPPORTED.tag().name));
         info.setMainNibPhone(prop(MAIN_NIB_NAME_PHONE.tag().name));

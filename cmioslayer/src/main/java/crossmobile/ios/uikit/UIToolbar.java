@@ -43,7 +43,6 @@ public class UIToolbar extends UIView {
     private UIColor barTintColor;
     private int[] barGradient;
     private WeakReference<UINavigationController> nbcontroller;
-    private final Runnable relayout = () -> layoutSubviews();
 
     /**
      * Constructs a default UIToolbar object located at (0,0) with 0 weight and
@@ -107,7 +106,7 @@ public class UIToolbar extends UIView {
             items = new ArrayList<>();
         this.items = items;
         for (UIBarButtonItem item : items)
-            item.setParentCallback(relayout);
+            item.setParentCallback(this::layoutSubviews);
         updateItemsColor();
         layoutSubviews();
     }
@@ -129,7 +128,7 @@ public class UIToolbar extends UIView {
                 v.removeFromSuperview();
 
             CGSize size = frame().getSize();
-            double metrics[][] = new double[items.size()][2];
+            double[][] metrics = new double[items.size()][2];
             double flexibleSize = 0;
             double cwidth;
             {   // Calculate metrics
@@ -262,7 +261,7 @@ public class UIToolbar extends UIView {
     void updateBar() {
         UINavigationController nc = nbcontroller != null ? nbcontroller.get() : null;
         if (nc != null && nc.isViewLoaded())
-            nbcontroller.get().view().layoutSubviews();
+            nc.view().layoutSubviews();
     }
 
     static void fillBackground(UIColor barTintColor, int[] barGradient, double x, double y, double width, double height) {
