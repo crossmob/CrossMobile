@@ -22,6 +22,7 @@ import crossmobile.ios.foundation.NSString;
 import crossmobile.ios.foundation.NSStringEncoding;
 import org.crossmobile.bind.system.i18n.I18NSelf.NumberTest;
 import org.crossmobile.bridge.ann.CMLib;
+import org.crossmobile.bridge.ann.CMLibParam;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -32,7 +33,8 @@ import static org.crossmobile.bridge.ann.CMLibTarget.JAVA;
 import static org.crossmobile.bridge.system.I18Nparser.*;
 
 @SuppressWarnings("Java8MapApi")
-@CMLib(name = "cmi18n", target = JAVA, displayName = "I18N support for Java", description = "CrossMobile© iOS compatible i18n support")
+@CMLib(name = "cmi18n", target = JAVA, displayName = "I18N support for Java", description = "CrossMobile© iOS compatible i18n support",
+        params = @CMLibParam(property = "lang", description = "Forced localized language"))
 public class I18N {
 
     private static final Map<String, Collection<StringsDict>> dictBook = new HashMap<>();   // Index of StringsDict based on NSLocalizedString (with equality)

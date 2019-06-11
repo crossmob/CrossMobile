@@ -99,6 +99,10 @@
                 <version>2.5.pre4</version>
                 <name>I18N support for Java</name>
                 <description>CrossMobile© iOS compatible i18n support</description>
+                <param>
+                    <property>lang</property>
+                    <description>Forced localized language</description>
+                </param>
             </plugin>
             <plugin>
                 <groupId>org.crossmobile</groupId>

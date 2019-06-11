@@ -51,7 +51,7 @@ public class DependencyEditor extends HiResPanel {
             listeners.add(listener);
     }
 
-    public void fireDepedenciesChange() {
+    public void fireDependenciesChange() {
         Collection<Dependency> deps = new ArrayList<>();
         if (theme != null)
             deps.add(theme);
@@ -87,7 +87,7 @@ public class DependencyEditor extends HiResPanel {
 
     private void appendDependency(Dependency dep) {
         appendDependencySilently(dep);
-        fireDepedenciesChange();
+        fireDependenciesChange();
     }
 
     private void removeDependency(DependencyEntry entry) {
@@ -96,12 +96,12 @@ public class DependencyEditor extends HiResPanel {
         for (DependencyParam param : entry.dependency.getConfigParams())
             list.getParamset().unregister(param.param);
         rearrange();
-        fireDepedenciesChange();
+        fireDependenciesChange();
     }
 
     private void setTheme(Dependency theme) {
         setThemeSilently(theme);
-        fireDepedenciesChange();
+        fireDependenciesChange();
     }
 
     private void rearrange() {

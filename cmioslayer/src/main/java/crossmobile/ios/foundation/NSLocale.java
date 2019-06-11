@@ -33,6 +33,12 @@ import java.util.Locale;
 @CMClass
 public class NSLocale extends NSObject implements NSSecureCoding {
 
+    static {
+        Locale givenLocale = getLocaleFromIdentifier(System.getProperty("org.crossmobile.cmplugin-cmi18n.lang"));
+        if (givenLocale != Locale.ROOT)
+            Locale.setDefault(givenLocale);
+    }
+
     private static NSLocale system;
     private static NSLocale current;
 
