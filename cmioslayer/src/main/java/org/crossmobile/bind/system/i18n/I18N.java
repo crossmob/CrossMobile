@@ -137,7 +137,7 @@ public class I18N {
         }
 
         /**
-         * Retrieve a StringsDict entry, by format. This is based on equlity of the reference String,
+         * Retrieve a StringsDict entry, by format. This is based on equality of the reference String,
          * not on equals() method, to be en-par with the iOS implementation.
          *
          * @param format the format of the StringsDict entry we search for

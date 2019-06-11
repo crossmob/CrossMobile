@@ -38,7 +38,10 @@ import java.nio.charset.UnsupportedCharsetException;
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
 
 import static crossmobile.ios.coregraphics.$coregraphics.context;
 import static crossmobile.ios.coregraphics.$coregraphics.font;
@@ -54,6 +57,16 @@ import static org.crossmobile.bind.system.i18n.I18NBridge.I18N_SUPPORT;
 @CMLib(target = CMLibTarget.API_NOUWP)
 @CMClass
 public class NSString extends NSObject implements NSSecureCoding {
+    private static final Map<Pattern, String> FORMAT_PATTERNS = new HashMap<>();
+
+    static {
+        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)?C"), "%$1c");
+        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)?lld"), "%$1d");
+        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)?llo"), "%$1o");
+        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)?llx"), "%$1x");
+        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)?llX"), "%$1X");
+        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)?@"), "%$1s");
+    }
 
     private NSString() {
     }
@@ -388,13 +401,9 @@ public class NSString extends NSObject implements NSSecureCoding {
     }
 
     private static String objcToJavaFormat(String format) {
-        return format.
-                replaceAll("%C", "%c").
-                replaceAll("%lld", "%d").
-                replaceAll("%llο", "%o").
-                replaceAll("%llx", "%x").
-                replaceAll("%llX", "%X").
-                replaceAll("%@", "%s");
+        for (Pattern pattern : FORMAT_PATTERNS.keySet())
+            format = pattern.matcher(format).replaceAll(FORMAT_PATTERNS.get(pattern));
+        return format;
     }
 
     /**

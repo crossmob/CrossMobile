@@ -17,11 +17,9 @@ package org.crossmobile.build.utils;
 
 public class Templates {
 
-    //    public static final String PACKAGENAME_ANCHOR = "__PACKAGENAME__";
     public static final String APPLICATIONEXTRAS_ANCHOR = "__APPLICATIONEXTRAS__";
     public static final String BUNDLEID_ANCHOR = "__BUNDLEID__";
     public static final String DISPLAYNAME_ANCHOR = "__DISPLAYNAME__";
-    public static final String DESKTOPFRAMEWORK_ANCHOR = "__DESKTOPFRAMEWORK__";
     public static final String DEBUGGABLE_ANCHOR = "__DEBUGGABLE__";
     public static final String PERMISSIONS_ANCHOR = "__USES_PERMISSION__";
     public static final String VERSIONCODE_ANCHOR = "__VERSIONCODE__";
@@ -34,7 +32,6 @@ public class Templates {
     public static final String CURRENT_APPLICATION = "CMApplication";
 
     public static final String APPLICATION_ID = "__APPLICATION_ID__";
-    public static final String RETROLAMDA = "__RETROLAMDA__";
     public static final String DEPENDENCIES = "__DEPENDENCIES__";
     public static final String ANDROID_ICON = "appicon";
 
