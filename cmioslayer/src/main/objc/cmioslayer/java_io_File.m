@@ -179,9 +179,17 @@
 - (bool) isDirectory__
 {	
 	BOOL isDir = true;
-	NSFileManager *man = [NSFileManager defaultManager];
-	[man fileExistsAtPath: path isDirectory: &isDir];
-	return isDir;
+	if ([[NSFileManager defaultManager] fileExistsAtPath: path isDirectory: &isDir])
+        return isDir;
+    return false;
+}
+
+- (bool) isFile__
+{
+    BOOL isDir = true;
+    if ([[NSFileManager defaultManager] fileExistsAtPath: path isDirectory: &isDir])
+        return !isDir;
+    return false;
 }
 
 - (bool) isHidden__
@@ -191,8 +199,7 @@
 	if (attrs == nil) {
 		return -1;
 	}
-	NSNumber *n = [attrs objectForKey: NSFileExtensionHidden];
-	return [n boolValue];
+	return [[attrs objectForKey: NSFileExtensionHidden] boolValue];
 }
 
 - (JAVA_LONG) lastModified__

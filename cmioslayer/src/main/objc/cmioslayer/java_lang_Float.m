@@ -19,6 +19,7 @@
  */
 
 #import "java_lang_Float.h"
+#import "java_lang_NumberFormatException.h"
 
 // java.lang.Float
 //----------------------------------------------------------------------------
@@ -41,7 +42,14 @@
 
 + (float) parseFloat___java_lang_String: (java_lang_String *) str
 {
-	return strtof([str UTF8String], NULL);
+    char * end;
+    float result = strtof([str UTF8String], &end);
+    if (*end!='\0') {
+        java_lang_NumberFormatException* ex = [[java_lang_NumberFormatException alloc] init];
+        [ex __init_java_lang_NumberFormatException__];
+        @throw ex;
+    } else
+        return result;
 }
 
 

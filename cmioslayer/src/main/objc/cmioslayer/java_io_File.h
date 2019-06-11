@@ -53,6 +53,7 @@ __declspec(dllexport)
 - (java_lang_String*) getPath__;
 - (java_net_URI*) toURI__;
 - (bool) isDirectory__;
+- (bool) isFile__;
 - (bool) isHidden__;
 - (JAVA_LONG) lastModified__;
 - (XMLVMArray*) listFiles__;
