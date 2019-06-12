@@ -68,6 +68,7 @@ public class MainActivity extends Activity {
 
         Native.destroy();  // Needs a fresh start
         Native.lifecycle().init(args);
+        AndroidUIGuidelinesBridge.setTranslucentStatusBar();
         SystemUtilities.launchClass(System.getProperty("cm.main.class"), MainActivity.args);
         OrientationManager.register(this);
         Native.graphics().setOrientation(DefaultInitialOrientation);

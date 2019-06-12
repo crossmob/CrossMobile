@@ -20,6 +20,7 @@ import android.os.Build;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import crossmobile.ios.foundation.NSLog;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.UIGuidelinesBridge;
 
@@ -41,21 +42,7 @@ public class AndroidUIGuidelinesBridge implements UIGuidelinesBridge {
             Native.system().runOnEventThread(() -> {
                 Window window = MainActivity.current.getWindow();
                 setStatusBarText(window, dark);
-                setTranslucentStatusBar(window);
             });
-        }
-    }
-
-    private void setTranslucentStatusBar(Window window) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-            // or this code, use both to be safe?
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            window.setStatusBarColor(Color.TRANSPARENT);
-        } else {
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
     }
 
@@ -72,5 +59,18 @@ public class AndroidUIGuidelinesBridge implements UIGuidelinesBridge {
         else
             visibility &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
         window.getDecorView().setSystemUiVisibility(visibility);
+    }
+
+    public static void setTranslucentStatusBar() {
+        Window window = MainActivity.current.getWindow();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+            // or this code, use both to be safe?
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            window.setStatusBarColor(Color.TRANSPARENT);
+        } else
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
     }
 }
