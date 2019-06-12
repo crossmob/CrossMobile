@@ -47,7 +47,7 @@ import static org.crossmobile.bind.graphics.Theme.Scroll.*;
 @CMClass
 public class UIScrollView extends UIView {
 
-    private static final double SELECTION_THRESHOLD = 1;
+    private static final double SELECTION_THRESHOLD = 5;
     private final UIEdgeInsets scrollIndicatorInsets = UIEdgeInsets.zero();
     // Used in UITable view: for optimization reasons this is friendly
     CGPoint contentOffset = new CGPoint(0, 0);
