@@ -155,8 +155,8 @@ public class UINavigationController extends UIViewController {
     private void pushViewController(UIViewController controller, boolean animated, boolean updateViews) {
         if (controller == null)
             return;
-        if (controller instanceof UINavigationController)
-            throw new IllegalArgumentException("Pushing a navigation controller is not supported");
+//        if (controller instanceof UINavigationController)
+//            throw new IllegalArgumentException("Pushing a navigation controller is not supported");
         controller.setParentController(this);
         UIViewController old = topViewController();
         items.add(controller);

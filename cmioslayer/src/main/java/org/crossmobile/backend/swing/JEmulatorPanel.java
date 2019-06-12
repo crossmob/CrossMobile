@@ -82,7 +82,12 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
 
     @Override
     public void mouseExited(MouseEvent e) {
-        mouseReleased(e);
+        if (clicked.isUnset())
+            return;
+        if (multiTouch)
+            fireTouchEvent(e.getX(), e.getY(), e, Ended, true, true);
+        fireTouchEvent(e.getX(), e.getY(), e, Ended, false, false);
+        clicked = CEvent.unset();
     }
 
     @Override
@@ -91,6 +96,8 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
 
     @Override
     public void mousePressed(MouseEvent e) {
+        if (e.getButton() != MouseEvent.BUTTON1)
+            return;
         DesktopDrawableMetrics metrics = (DesktopDrawableMetrics) Native.graphics().metrics();
         clicked = metrics.findArea(e.getX(), e.getY());
         if (clicked.isButton())
@@ -118,7 +125,7 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        if (clicked.isUnset())
+        if (e.getButton() != MouseEvent.BUTTON1 || clicked.isUnset())
             return;
         DesktopDrawableMetrics metrics = (DesktopDrawableMetrics) Native.graphics().metrics();
         if (e.getSource() instanceof SwingNativeDispatcher.DesktopNativeWidget) {
@@ -137,6 +144,8 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        if (e.getButton() != MouseEvent.BUTTON1 || clicked.isUnset())
+            return;
         if (e.getSource() instanceof SwingNativeDispatcher.DesktopNativeWidget)
             widgetTouchCorrection(e, Ended);
         else if (clicked.isWindow())
