@@ -143,10 +143,8 @@ public class SwingGraphicsBridge extends DesktopGraphicsBridge<Graphics2D, Swing
     }
 
     public static Graphics2D getDefaultGraphics() {
-        if (defaultGraphics == null) {
+        if (defaultGraphics == null)
             defaultGraphics = (Graphics2D) component.getGraphics();
-            DesktopGraphicsBridge.setHighQuality(defaultGraphics, true);
-        }
         return defaultGraphics;
     }
 

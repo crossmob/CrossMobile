@@ -29,7 +29,7 @@ import org.crossmobile.bind.graphics.NativeFont;
 import org.crossmobile.bind.wrapper.TextWrapper;
 import org.crossmobile.bridge.Native;
 
-public class AndroidTextWrapper extends TextWrapper<UIView, AndroidTextWidget, AndroidCanvasContext> implements TextWatcher {
+public class AndroidTextWrapper extends TextWrapper<UIView, AndroidTextWidget, AndroidGraphicsContext> implements TextWatcher {
 
     private TransformationMethod defaultTransfMode = null;
     private TransformationMethod passwordTransfMode = null;

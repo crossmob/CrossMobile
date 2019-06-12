@@ -48,7 +48,7 @@ import java.util.Iterator;
 
 import static android.content.Context.DOWNLOAD_SERVICE;
 
-public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, AndroidCanvasContext> {
+public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, AndroidGraphicsContext> {
 
     static {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
@@ -270,7 +270,7 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
         }
 
         @Override
-        public void superDraw(AndroidCanvasContext cxt) {
+        public void superDraw(AndroidGraphicsContext cxt) {
             if (!useNativeDrawPipeline)
                 try {
                     super.draw(cxt.cv);

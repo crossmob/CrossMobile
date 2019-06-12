@@ -434,7 +434,7 @@ public class UILabel extends UIView {
 
         int actualTextAlignment = textAlignment;
         if (textAlignment == NSTextAlignment.Natural)
-            actualTextAlignment = Native.system().getNaturalTextAlignment();
+            actualTextAlignment = Native.system().isRTL() ? NSTextAlignment.Right : NSTextAlignment.Left;
 
         double y = rect.getOrigin().getY() + (rect.getSize().getHeight() - blocks.size.getHeight()) / 2;
         for (TextLine tl : blocks.lines) {

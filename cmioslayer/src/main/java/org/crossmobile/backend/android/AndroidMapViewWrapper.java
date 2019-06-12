@@ -40,7 +40,7 @@ import static org.crossmobile.bridge.ann.CMLibTarget.ANDROID;
 @CMLib(target = ANDROID, name = "cmlocation", depends = @CMLibDepends(groupId = "com.google.android.gms",
         pluginName = "play-services-maps",
         version = "15.0.1", isCMPlugin = false))
-public class AndroidMapViewWrapper extends MapViewWrapper<AndroidMapViewWrapper.NativeW, AndroidCanvasContext> {
+public class AndroidMapViewWrapper extends MapViewWrapper<AndroidMapViewWrapper.NativeW, AndroidGraphicsContext> {
 
     private Map<MKAnnotation, Marker> markers = new HashMap<>();
     private GoogleMap currentmap;
@@ -432,7 +432,7 @@ public class AndroidMapViewWrapper extends MapViewWrapper<AndroidMapViewWrapper.
         }
 
         @Override
-        public void superDraw(AndroidCanvasContext cxt) {
+        public void superDraw(AndroidGraphicsContext cxt) {
             if (!useNativeDrawPipeline)
                 try {
                     super.draw(cxt.cv);

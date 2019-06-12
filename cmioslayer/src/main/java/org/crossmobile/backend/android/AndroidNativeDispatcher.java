@@ -26,7 +26,7 @@ import org.crossmobile.bind.wrapper.NativeWrapper;
 import org.crossmobile.bind.wrapper.WidgetWrapper;
 import org.crossmobile.bridge.Native;
 
-public class AndroidNativeDispatcher extends NativeDispatcher<UIView, AndroidNativeWidget, MotionEvent, AndroidCanvasContext> {
+public class AndroidNativeDispatcher extends NativeDispatcher<UIView, AndroidNativeWidget, MotionEvent, AndroidGraphicsContext> {
 
     public AndroidNativeDispatcher(WidgetWrapper<UIView, AndroidNativeWidget, GraphicsContext> holder) {
         super(holder);
@@ -65,7 +65,7 @@ public class AndroidNativeDispatcher extends NativeDispatcher<UIView, AndroidNat
     }
 
     @Override
-    public void draw(AndroidCanvasContext cx) {
+    public void draw(AndroidGraphicsContext cx) {
         AndroidNativeWidget view = getWidgetWrapper().getNativeWidget();
         int dx = view.getScrollX();
         int dy = view.getScrollY();
@@ -74,7 +74,7 @@ public class AndroidNativeDispatcher extends NativeDispatcher<UIView, AndroidNat
         cx.translate(dx, dy);
     }
 
-    public interface AndroidNativeWidget extends NativeWrapper<AndroidCanvasContext> {
+    public interface AndroidNativeWidget extends NativeWrapper<AndroidGraphicsContext> {
 
         void setLayoutParams(LayoutParams layoutParams);
 

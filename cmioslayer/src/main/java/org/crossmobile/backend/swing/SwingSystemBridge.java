@@ -154,8 +154,7 @@ public class SwingSystemBridge extends DesktopSystemBridge {
     }
 
     @Override
-    public int getNaturalTextAlignment() {
-        Locale locale = new Locale.Builder().setLanguage(System.getProperty("user.language")).setRegion(System.getProperty("user.country")).build();
-        return ComponentOrientation.getOrientation(locale).isLeftToRight() ? NSTextAlignment.Left : NSTextAlignment.Right;
+    public boolean isRTL() {
+        return !ComponentOrientation.getOrientation(Locale.getDefault()).isLeftToRight();
     }
 }

@@ -35,7 +35,7 @@ public class AndroidGraphicsBridge extends AbstractGraphicsBridge<Canvas, Androi
 
     @Override
     public GraphicsContext<AndroidNativePath, Matrix> newGraphicsContext(Canvas canvas, boolean isLive) {
-        return new AndroidCanvasContext(canvas == null ? new Canvas() : canvas, isLive);
+        return new AndroidGraphicsContext(canvas == null ? new Canvas() : canvas, isLive);
     }
 
     @Override

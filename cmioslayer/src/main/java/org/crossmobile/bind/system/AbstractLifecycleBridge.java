@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static crossmobile.ios.coregraphics.$coregraphics.newCGContext;
+import static crossmobile.ios.coregraphics.$coregraphics.convertBaseContextToCGContext;
 import static crossmobile.ios.foundation.$foundation.quitTimers;
 import static crossmobile.ios.uikit.$uikit.getViewControllerFromView;
 import static org.crossmobile.bridge.CustomNotifications.AndroidBackButtonNotification;
@@ -67,7 +67,7 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
 
         cleanTemporaryLocation();
         Native.graphics().metrics().initIdiom();
-        UIGraphics.pushContext(newCGContext(Native.graphics().newGraphicsContext(null, true)));
+        UIGraphics.pushContext(convertBaseContextToCGContext(Native.graphics().newGraphicsContext(null, true)));
 
         String cache = Native.file().getSystemCacheLocation();
         String button_up = cache + File.separator + Theme.Images.ROUNDRECT_RELEASED + ".png";

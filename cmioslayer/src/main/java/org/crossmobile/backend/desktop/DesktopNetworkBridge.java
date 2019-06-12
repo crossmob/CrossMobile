@@ -19,7 +19,7 @@ import org.crossmobile.bind.io.AbstractNetworkBridge;
 import org.crossmobile.bind.io.NativeCookieManager;
 import org.crossmobile.bridge.Native;
 
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.File;
 import java.net.URI;
 

@@ -25,7 +25,7 @@ import org.crossmobile.bridge.Native;
 
 import java.util.Stack;
 
-public class AndroidCanvasContext implements GraphicsContext<AndroidNativePath, Matrix> {
+public class AndroidGraphicsContext implements GraphicsContext<AndroidNativePath, Matrix> {
 
     Canvas cv;
     private final boolean isLive;
@@ -36,7 +36,7 @@ public class AndroidCanvasContext implements GraphicsContext<AndroidNativePath, 
     private Typeface typeface;
     private float fontSize;
 
-    public AndroidCanvasContext(Canvas canvas, boolean isLive) {
+    public AndroidGraphicsContext(Canvas canvas, boolean isLive) {
         this.cv = canvas;
         this.isLive = isLive;
         draw_paint = new Paint();

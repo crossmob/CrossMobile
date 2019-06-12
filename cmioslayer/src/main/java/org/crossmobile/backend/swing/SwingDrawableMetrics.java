@@ -16,7 +16,6 @@
 package org.crossmobile.backend.swing;
 
 import org.crossmobile.backend.desktop.DesktopDrawableMetrics;
-import org.crossmobile.backend.desktop.DesktopGraphicsBridge;
 import org.crossmobile.bind.graphics.GraphicsContext;
 
 import java.awt.*;
@@ -26,7 +25,6 @@ public class SwingDrawableMetrics extends DesktopDrawableMetrics {
     @Override
     public void preDraw(GraphicsContext ctx) {
         Graphics2D g = ((SwingGraphicsContext) ctx).g2;
-        DesktopGraphicsBridge.setHighQuality(g, true);
         g.setComposite(AlphaComposite.SrcOver);
         g.rotate(skinRotate);
         g.translate(skinTranslateX, skinTranslateY);

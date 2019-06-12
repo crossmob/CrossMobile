@@ -188,17 +188,9 @@ public class AndroidSystemBridge implements SystemBridgeExt {
     }
 
     @Override
-    public int getNaturalTextAlignment() {
-        if (Build.VERSION.SDK_INT >= 17) {
-            Configuration config = MainActivity.current().getResources().getConfiguration();
-            if (config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL)
-                return NSTextAlignment.Right;
-        }
-        return NSTextAlignment.Left;
-    }
-
-    @Override
     public boolean isRTL() {
-        return ViewCompat.getLayoutDirection(MainView.current) == ViewCompat.LAYOUT_DIRECTION_RTL;
+        if (Build.VERSION.SDK_INT >= 17)
+            return MainActivity.current().getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
+        return false;
     }
 }

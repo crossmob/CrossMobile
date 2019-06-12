@@ -105,7 +105,5 @@ public interface SystemBridge {
 
     boolean launchPhonecall(String phone);
 
-    int getNaturalTextAlignment();
-
     boolean isRTL();
 }

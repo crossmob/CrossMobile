@@ -16,9 +16,11 @@
 package org.crossmobile.backend.desktop;
 
 import crossmobile.ios.coregraphics.$coregraphics;
+import crossmobile.ios.coregraphics.CGContext;
 import crossmobile.ios.coregraphics.CGImage;
 import org.crossmobile.bind.graphics.AbstractImageBridge;
 import org.crossmobile.bind.graphics.NativeBitmap;
+import org.crossmobile.bridge.Native;
 import org.robovm.objc.block.VoidBlock1;
 
 import javax.imageio.ImageIO;
@@ -163,7 +165,7 @@ public abstract class DesktopImageBridge extends AbstractImageBridge {
         BufferedImage bi = nativeToBuffered(in);
         BufferedImage out = GFXCONF.createCompatibleImage(bi.getWidth(), bi.getHeight(), bi.getTransparency());
         Graphics2D g2 = out.createGraphics();
-        DesktopGraphicsBridge.setHighQuality(g2, true);
+        Native.graphics().newGraphicsContext(g2, false).setAntialias(true);
         g2.drawImage(bi, 0, 0, null);
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_IN, 1));
         g2.setColor(new Color(color, true));

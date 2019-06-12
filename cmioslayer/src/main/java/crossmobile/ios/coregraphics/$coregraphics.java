@@ -15,6 +15,7 @@
  */
 package crossmobile.ios.coregraphics;
 
+import crossmobile.ios.uikit.UIApplication;
 import crossmobile.ios.uikit.UIImage;
 import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.graphics.NativeBitmap;
@@ -74,7 +75,8 @@ public class $coregraphics {
             ((CGBitmapContext) ctx).destroy();
     }
 
-    public static CGContext newCGContext(GraphicsContext context) {
+    public static CGContext convertBaseContextToCGContext(GraphicsContext context) {
+        context.setAntialias(true);
         return new CGContext(context);
     }
 

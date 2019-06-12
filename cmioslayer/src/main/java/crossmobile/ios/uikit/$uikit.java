@@ -23,7 +23,7 @@ import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.wrapper.TextWrapper;
 import org.crossmobile.bridge.Native;
 
-import static crossmobile.ios.coregraphics.$coregraphics.newCGContext;
+import static crossmobile.ios.coregraphics.$coregraphics.convertBaseContextToCGContext;
 
 public class $uikit {
 
@@ -40,7 +40,7 @@ public class $uikit {
     }
 
     public static void drawWindow(GraphicsContext cxt) {
-        UIGraphics.pushContext(newCGContext(cxt));
+        UIGraphics.pushContext(convertBaseContextToCGContext(cxt));
         UIWindow window = UIApplication.splashWindow;
         if (window == null)
             window = UIApplication.sharedApplication() == null ? null : UIApplication.sharedApplication().keyWindow();

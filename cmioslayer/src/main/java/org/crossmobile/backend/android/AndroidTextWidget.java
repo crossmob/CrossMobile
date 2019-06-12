@@ -96,7 +96,7 @@ public class AndroidTextWidget extends EditText implements AndroidNativeWidget {
     }
 
     @Override
-    public void superDraw(AndroidCanvasContext cxt) {
+    public void superDraw(AndroidGraphicsContext cxt) {
         if (!useNativeDrawPipeline)
             try {
                 super.draw(cxt.cv);

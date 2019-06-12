@@ -120,13 +120,12 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <skip>${skip.plugins}</skip>
+                    <skip>${skip.all}</skip>
                     <skipIos>${skip.ios}</skipIos>
+                    <skipUwp>${skip.uwp}</skipUwp>
                     <skipDesktop>${skip.desktop}</skipDesktop>
-                    <skipUwp>true</skipUwp>
-                    <skipDesktop>${skip.java.targets}</skipDesktop>
-                    <skipAndroid>${skip.java.targets}</skipAndroid>
-                    <skipCore>${skip.java.targets}</skipCore>
+                    <skipAndroid>${skip.android}</skipAndroid>
+                    <skipCore>${skip.core}</skipCore>
                     <skipRvm>${skip.robovm}</skipRvm>
                     <obfuscate>${obfuscate.project}</obfuscate>
                     <proguardMap>../resources/installers/mapping/${project.artifactId}-${project.version}.map
@@ -192,28 +191,42 @@
             </properties>
         </profile>
         <profile>
-            <id>skipjavatargets</id>
+            <id>build-under-windows</id>
             <activation>
                 <os>
                     <family>Windows</family>
                 </os>
             </activation>
             <properties>
-                <skip.java.targets>true</skip.java.targets>
+                <skip.ios>true</skip.ios>
+                <skip.robovm>true</skip.robovm>
+                <skip.desktop>true</skip.desktop>
+                <skip.android>true</skip.android>
+                <skip.core>true</skip.core>
+                <skip.uwp>false</skip.uwp>
+            </properties>
+        </profile>
+        <profile>
+            <id>superfast-desktop-build</id>
+            <properties>
+                <skip.all>true</skip.all>
             </properties>
         </profile>
         <profile>
             <id>fast-desktop-build</id>
             <properties>
-                <skip.plugins>true</skip.plugins>
+                <skip.ios>true</skip.ios>
+                <skip.robovm>true</skip.robovm>
+                <skip.android>true</skip.android>
+                <obfuscate.project>false</obfuscate.project>
             </properties>
         </profile>
         <profile>
             <id>fast-android-build</id>
             <properties>
                 <skip.ios>true</skip.ios>
-                <skip.desktop>true</skip.desktop>
                 <skip.robovm>true</skip.robovm>
+                <skip.desktop>true</skip.desktop>
                 <obfuscate.project>false</obfuscate.project>
             </properties>
         </profile>
@@ -222,10 +235,13 @@
     <properties>
         <obfuscate.project>true</obfuscate.project>
         <skip.java.targets>false</skip.java.targets>
-        <skip.plugins>false</skip.plugins>
+        <skip.all>false</skip.all>
         <skip.ios>false</skip.ios>
-        <skip.desktop>false</skip.desktop>
         <skip.robovm>false</skip.robovm>
+        <skip.desktop>false</skip.desktop>
+        <skip.android>false</skip.android>
+        <skip.core>false</skip.core>
+        <skip.uwp>true</skip.uwp>
     </properties>
     <!-- For private android packages -->
     <repositories>

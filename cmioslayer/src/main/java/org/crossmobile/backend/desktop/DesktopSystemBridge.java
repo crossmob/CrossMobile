@@ -18,12 +18,10 @@ package org.crossmobile.backend.desktop;
 import crossmobile.ios.uikit.UIAlertView;
 import org.crossmobile.bind.system.SystemBridgeExt;
 
-import java.awt.*;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
-import java.util.Locale;
 
 import static org.crossmobile.bind.system.i18n.I18NSelf.ℑ;
 
@@ -75,10 +73,5 @@ public abstract class DesktopSystemBridge implements SystemBridgeExt {
     public boolean launchPhonecall(String phone) {
         new UIAlertView(ℑ("Unsupported protocol"), ℑ("Unable to use phone service") + "\n" + ℑ("Number:") + phone, null, ℑ("Acknowledge")).show();
         return false;
-    }
-
-    @Override
-    public boolean isRTL() {
-        return !ComponentOrientation.getOrientation(Locale.getDefault()).isLeftToRight();
     }
 }
