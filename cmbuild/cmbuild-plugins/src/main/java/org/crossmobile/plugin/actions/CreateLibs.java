@@ -45,7 +45,7 @@ public class CreateLibs extends CreateLibsAbstract {
     }
 
     @Override
-    protected void runEmiters(Function<String, File> prodResolv) throws IOException {
+    protected void runEmitters(Function<String, File> prodResolv) throws IOException {
         emitPlatformFiles(prodResolv, true);
     }
 

@@ -84,12 +84,12 @@ public class CreateArtifacts {
         File artBase = new File(target, "artifacts");
         for (PluginDependency dep : PluginRegistry.getPluginData(plugin).getDependencies())
             Log.info("Found dependency " + dep.info() + " with targets " + dep.target().listTargets());
-        if (buildCore)
+        if (buildCore) {
             install(installer, createJar(report, new File(artBase, "cmplugin-" + plugin + '-' + item.getVersion() + ".jar"), compileTarget),
                     plugin, "", item.getGroupID(), item.getVersion());
-        if (buildCore)
             install(installer, createJar(report, new File(artBase, "cmplugin-builddep-" + plugin + '-' + item.getVersion() + ".jar"), builddepTarget),
                     plugin, "builddep-", item.getGroupID(), item.getVersion());
+        }
         if (buildIos)
             install(installer, createJar(report, new File(artBase, "cmplugin-ios-" + plugin + "-" + item.getVersion() + ".jar"), iosTarget),
                     plugin, "ios-", item.getGroupID(), item.getVersion());

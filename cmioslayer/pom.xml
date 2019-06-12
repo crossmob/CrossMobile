@@ -121,11 +121,13 @@
                 </executions>
                 <configuration>
                     <skip>${skip.plugins}</skip>
-                    <!--<skipIos>true</skipIos>-->
+                    <skipIos>${skip.ios}</skipIos>
+                    <skipDesktop>${skip.desktop}</skipDesktop>
                     <skipUwp>true</skipUwp>
                     <skipDesktop>${skip.java.targets}</skipDesktop>
                     <skipAndroid>${skip.java.targets}</skipAndroid>
                     <skipCore>${skip.java.targets}</skipCore>
+                    <skipRvm>${skip.robovm}</skipRvm>
                     <obfuscate>${obfuscate.project}</obfuscate>
                     <proguardMap>../resources/installers/mapping/${project.artifactId}-${project.version}.map
                     </proguardMap>
@@ -201,9 +203,18 @@
             </properties>
         </profile>
         <profile>
-            <id>fast-debug-build</id>
+            <id>fast-desktop-build</id>
             <properties>
                 <skip.plugins>true</skip.plugins>
+            </properties>
+        </profile>
+        <profile>
+            <id>fast-android-build</id>
+            <properties>
+                <skip.ios>true</skip.ios>
+                <skip.desktop>true</skip.desktop>
+                <skip.robovm>true</skip.robovm>
+                <obfuscate.project>false</obfuscate.project>
             </properties>
         </profile>
     </profiles>
@@ -212,6 +223,9 @@
         <obfuscate.project>true</obfuscate.project>
         <skip.java.targets>false</skip.java.targets>
         <skip.plugins>false</skip.plugins>
+        <skip.ios>false</skip.ios>
+        <skip.desktop>false</skip.desktop>
+        <skip.robovm>false</skip.robovm>
     </properties>
     <!-- For private android packages -->
     <repositories>

@@ -68,7 +68,6 @@ public class PluginAssembler {
                                 boolean buildDesktop, boolean buildIos, boolean buildAndroid, boolean buildUwp, boolean buildRvm, boolean buildCore,
                                 File VStudioLocation, File report, Repository repository) {
 
-        File encjar = new File(target, root.getArtifactID() + "-" + root.getVersion() + ".pro.jar");
         File runtime = new File(target, "runtime");
         File runtime_rvm = new File(target, "runtime_rvm");
         File bundles = new File(target, BUNDLES);
@@ -84,28 +83,29 @@ public class PluginAssembler {
                             PackageRegistry.register(pack.getName(), pack.getPlugin(), pack.getTarget());
             }, "Initialize classes");
 
-            time(() -> {
-                if (obfuscate) {
-                    Obfuscator.obfuscate(proguard, proguardConf, proguardMap, root.getFile(), encjar, getLibAndBlacklistedJars(), getEmbedjars());
-                    ProguardRegistry.register(proguardMap);
-                } else
-                    JarUtils.createJar(null, encjar, getAppjars().toArray(new File[]{}));
+            if (buildIos || buildDesktop || buildUwp || buildAndroid)
+                time(() -> {
+                    File encjar = new File(target, root.getArtifactID() + "-" + root.getVersion() + ".pro.jar");
+                    if (obfuscate) {
+                        Obfuscator.obfuscate(proguard, proguardConf, proguardMap, root.getFile(), encjar, getLibAndBlacklistedJars(), getEmbedjars());
+                        ProguardRegistry.register(proguardMap);
+                        unzipJar(encjar, runtime);
+                    } else
+                        for (File f : getAppjars().toArray(new File[]{}))
+                            unzipJar(f, runtime);
+                }, "Encrypt and combine");
 
-                if (buildIos || buildDesktop || buildUwp || buildAndroid) {
-                    unzipJar(encjar, runtime);
-                }
-            }, "Encrypt and downgrade");
-
             time(() -> {
-                Log.info("Parse native API");
                 for (Class cls : buildUwp ? cc.getUWPNativeClasses() : cc.getIOsNativeClasses())
                     Parser.parse(cls);
                 XMLPluginWriter.updateXML(repository, root);
-            }, "Native Parser");
-            CodeReverse codeRev = time(() -> new CodeReverse(cc.getClassPool()), "Create reverse code");
+            }, "Parse native API");
+            CodeReverse codeRev = (buildIos || buildUwp) ? time(() -> new CodeReverse(cc.getClassPool()), "Create reverse code") : null;
+            if (buildIos || buildUwp) {
 //            time(() -> new JavaTransformer(cc.getClassPool(), runtime_rvm));
-            time(() -> new CreateLibs(resolver, target, cachedir, vendorFiles, null, buildIos), "Create iOS libraries");
-            time(() -> new CreateDlls(resolver, target, cachedir, vendorFiles, VStudioLocation, buildUwp), "Create UWP libraries");
+                time(() -> new CreateLibs(resolver, target, cachedir, vendorFiles, null, buildIos), "Create iOS libraries");
+                time(() -> new CreateDlls(resolver, target, cachedir, vendorFiles, VStudioLocation, buildUwp), "Create UWP libraries");
+            }
 
             time(() -> {
                 for (String plugin : PluginRegistry.plugins()) {
@@ -129,7 +129,6 @@ public class PluginAssembler {
 //                for (Class cls : cc.getCompileTimeClasses())
 //                    bean.beanClass(cls, runtime);
 
-                Log.info("Create stub compile-time files");
                 CreateSkeleton skel = new CreateSkeleton(cc.getClassPool());
                 int hm = 0;
                 for (Class cls : cc.getCompileTimeClasses())
@@ -143,7 +142,6 @@ public class PluginAssembler {
                 Log.debug(hm + " class" + plural(hm, "es") + " stripped");
             }, "Initialize and create stub compile-time files");
             time(() -> {
-                Log.info("Create distributions of artifacts");
                 if (buildDesktop)
                     CreateBundles.bundleFiles(runtime, plugin -> desktopBase.apply(target, plugin), CreateBundles.bundleResolver, BaseTarget.DESKTOP);
                 if (buildIos)
@@ -166,9 +164,9 @@ public class PluginAssembler {
                     } catch (Exception e) {
                         Log.error("Unable to store reports.txt", e);
                     }
-            }, "Install targets");
+            }, "Create distributions of artifacts");
 
-        }, "");
+        }, "Create target artifacts");
     }
 
 }

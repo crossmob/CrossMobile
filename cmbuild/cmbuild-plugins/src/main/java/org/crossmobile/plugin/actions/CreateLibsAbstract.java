@@ -21,7 +21,6 @@ import org.crossmobile.plugin.objc.ObjectEmitter;
 import org.crossmobile.plugin.objc.Templates;
 import org.crossmobile.plugin.reg.*;
 import org.crossmobile.plugin.utils.Streamer;
-import org.crossmobile.utils.Commander;
 import org.crossmobile.utils.FileUtils;
 import org.crossmobile.utils.JarUtils;
 import org.crossmobile.utils.Log;
@@ -30,7 +29,6 @@ import org.crossmobile.utils.reqgraph.Requirement;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.jar.JarFile;
 
@@ -44,6 +42,7 @@ import static org.crossmobile.plugin.utils.Texters.toObjC;
 import static org.crossmobile.utils.FileUtils.*;
 import static org.crossmobile.utils.NamingUtils.getClassNameBare;
 import static org.crossmobile.utils.TextUtils.plural;
+import static org.crossmobile.utils.TimeUtils.time;
 
 public abstract class CreateLibsAbstract {
 
@@ -57,76 +56,77 @@ public abstract class CreateLibsAbstract {
         Function<String, File> prodResolv = plugin -> new File(target, PLATFORM.apply(asIOS) + separator + plugin);
         final Function<String, String> LIBNAME = asIOS ? IOSLibName : UWPLibName;
 
-        for (String plugin : plugins())
-            delete(prodResolv.apply(plugin));
+        time(() -> {
+            for (String plugin : plugins())
+                delete(prodResolv.apply(plugin));
+            runEmitters(prodResolv);
+        }, "Creating " + PLATFORM.apply(asIOS) + " files");
 
-        runEmiters(prodResolv);
+        time(() -> {
+            Requirement<Plugin> root = new Requirement<>(new Plugin("root", false));
+            for (Plugin p : pluginsData())
+                root.setRequires(p.getRootRequirement());
 
-        Log.info("Synchronizing plugins");
-        Requirement<Plugin> root = new Requirement<>(new Plugin("root", false));
-        for (Plugin p : pluginsData())
-            root.setRequires(p.getRootRequirement());
+            Map<String, Collection<File>> pluginIncludes = new HashMap<>();
 
-        Map<String, Collection<File>> pluginIncludes = new HashMap<>();
+            //Sibling plugin Create iteration
+            root.listRequirements().stream().filter(r -> r != root).map(Requirement::getData).forEach(pData -> {
+                String plugin = pData.getName();
+                File prod = prodResolv.apply(plugin);
+                if (!prod.exists())
+                    prod.mkdirs();
+                File cached = new File(cache, plugin + separator + PLATFORM.apply(asIOS));
+                File lib = new File(cache, "lib" + separator + LIBNAME.apply(plugin));
+                File vendorFiles = new File(vendor, plugin);
+                int howmany = sync(prod, cached, true, "patches");
 
-        //Sibling plugin Create iteration
-        root.listRequirements().stream().filter(r -> r != root).map(Requirement::getData).forEach(pData -> {
-            String plugin = pData.getName();
-            File prod = prodResolv.apply(plugin);
-            if (!prod.exists())
-                prod.mkdirs();
-            File cached = new File(cache, plugin + separator + PLATFORM.apply(asIOS));
-            File lib = new File(cache, "lib" + separator + LIBNAME.apply(plugin));
-            File vendorFiles = new File(vendor, plugin);
-            int howmany = sync(prod, cached, true, "patches");
+                if (howmany > 0)
+                    Log.info("Updated " + howmany + " file" + plural(howmany) + " for plugin " + plugin);
+                else
+                    Log.debug("All source files are in sync for plugin " + plugin);
 
-            if (howmany > 0)
-                Log.info("Updated " + howmany + " file" + plural(howmany) + " for plugin " + plugin);
-            else
-                Log.debug("All source files are in sync for plugin " + plugin);
+                // Need to define these anyways, so that dependencies will work
+                Collection<File> compiled = getCompiled(cached, vendorFiles, prod);
 
-            // Need to define these anyways, so that dependencies will work
-            Collection<File> compiled = getCompiled(cached, vendorFiles, prod);
+                //Adding own include dirs to handle later
+                Collection<File> includeDir = new LinkedHashSet<>();
+                includeDir.add(cached);
+                includeDir.add(vendorFiles);
 
-            //Adding own include dirs to handle later
-            Collection<File> includeDir = new LinkedHashSet<>();
-            includeDir.add(cached);
-            includeDir.add(vendorFiles);
-
-            Collection<File> headerSearchPaths = new LinkedHashSet<>();
-            //Adding external plugins include directories (external = not sibling)
-            headerSearchPaths.add(external(pData, resolver, asIOS, target));
+                Collection<File> headerSearchPaths = new LinkedHashSet<>();
+                //Adding external plugins include directories (external = not sibling)
+                headerSearchPaths.add(external(pData, resolver, asIOS, target));
 
 
-            pluginIncludes.put(plugin, Arrays.asList(cached, vendorFiles));  // store include paths for possible future usage
+                pluginIncludes.put(plugin, Arrays.asList(cached, vendorFiles));  // store include paths for possible future usage
 
-            if ((!lib.exists() || getLastModified(cached) > lib.lastModified() || getLastModified(vendorFiles) > lib.lastModified())
-                    && prod.listFiles(pathname -> pathname.getName().endsWith(".h")).length > 0) {
-                Log.debug("Compiling native plugin " + plugin);
-                Collection<String> requirements = new HashSet<>();
-                pData.getRootRequirement().listRequirements().stream()
-                        .filter(p -> p.getData() != pData)
-                        .map(p -> p.getData().getName())
-                        .forEach(requirements::add);
-                requirements.forEach(p -> {
-                    // Add plugin dependencies include files
-                    Collection<File> depfiles = pluginIncludes.get(p);
-                    if (depfiles == null)
-                        Log.error("Unable to retrieve required dependency files of plugin " + p + " required by " + plugin);
-                    else
-                        headerSearchPaths.addAll(depfiles);
-                });
-                File proj = createProj(target, plugin);
-                updateProj(proj, pData, includeDir, headerSearchPaths, compiled, requirements);    // Update project with project files and includes
-                if (build)
-                    compile(proj, asIOS ? lib : IDELocation, pData, LIBNAME.apply(plugin));
-            } else
-                Log.debug("Plugin " + plugin + " is in sync with native cache files");
-        });
+                if ((!lib.exists() || getLastModified(cached) > lib.lastModified() || getLastModified(vendorFiles) > lib.lastModified())
+                        && prod.listFiles(pathname -> pathname.getName().endsWith(".h")).length > 0) {
+                    Log.debug("Compiling native plugin " + plugin);
+                    Collection<String> requirements = new HashSet<>();
+                    pData.getRootRequirement().listRequirements().stream()
+                            .filter(p -> p.getData() != pData)
+                            .map(p -> p.getData().getName())
+                            .forEach(requirements::add);
+                    requirements.forEach(p -> {
+                        // Add plugin dependencies include files
+                        Collection<File> depfiles = pluginIncludes.get(p);
+                        if (depfiles == null)
+                            Log.error("Unable to retrieve required dependency files of plugin " + p + " required by " + plugin);
+                        else
+                            headerSearchPaths.addAll(depfiles);
+                    });
+                    File proj = createProj(target, plugin);
+                    updateProj(proj, pData, includeDir, headerSearchPaths, compiled, requirements);    // Update project with project files and includes
+                    if (build)
+                        compile(proj, asIOS ? lib : IDELocation, pData, LIBNAME.apply(plugin));
+                } else
+                    Log.debug("Plugin " + plugin + " is in sync with native cache files");
+            });
+        }, "Synchronizing plugins");
     }
 
     protected static void emitPlatformFiles(Function<String, File> prodResolv, boolean asIOS) throws IOException {
-        Log.info("Creating " + PLATFORM.apply(asIOS) + " files");
         objectEmitter(prodResolv, false);
     }
 
@@ -193,7 +193,7 @@ public abstract class CreateLibsAbstract {
         return compiled;
     }
 
-    protected abstract void runEmiters(Function<String, File> prodResolv) throws IOException;
+    protected abstract void runEmitters(Function<String, File> prodResolv) throws IOException;
 
     protected abstract void compile(File projRoot, File lib, Plugin plugin, String libname);
 

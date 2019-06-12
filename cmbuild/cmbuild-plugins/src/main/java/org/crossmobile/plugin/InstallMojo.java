@@ -117,7 +117,7 @@ public class InstallMojo extends GenericMojo {
         );
     }
 
-    public boolean installAndKeepJar(ArtifactInfo info) {
+    private boolean installAndKeepJar(ArtifactInfo info) {
         synchronized (deployableArtifacts) {
             deployableArtifacts.add(info);
         }

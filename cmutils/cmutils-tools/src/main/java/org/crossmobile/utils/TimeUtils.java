@@ -19,28 +19,32 @@ import org.crossmobile.bridge.system.BaseUtils;
 
 public class TimeUtils {
 
-    public static void time(Procedure r) {
-        time(r, null);
-    }
 
     public static void time(Procedure r, String description) {
-        time(() -> {
+        timeImpl(() -> {
             r.run();
             return null;
         }, description);
     }
 
-    public static <R> R time(ProcedureR<R> r) {
-        return time(r, null);
+    public static <R> R time(ProcedureR<R> r, String description) {
+        return timeImpl(r, description);
     }
 
-    public static <R> R time(ProcedureR<R> r, String description) {
+    private static <R> R timeImpl(ProcedureR<R> r, String description) {
+        if (description == null || description.trim().isEmpty())
+            throw new NullPointerException("Description should not be empty");
         boolean error = false;
-        if (description == null)
-            description = "";
 
-        if (!description.isEmpty())
-            Log.debug("  ** Launching " + description);
+        int howmany = -1;   // ignore current
+        String myClassName = TimeUtils.class.getName();
+        String myMethod = "timeImpl";
+        for (StackTraceElement ste : Thread.currentThread().getStackTrace())
+            if (ste.getClassName().equals(myClassName) && ste.getMethodName().equals(myMethod))
+                howmany++;
+        description = TextUtils.repeatString("  ", howmany) + description.trim();
+
+        Log.info(description);
         long nano = System.nanoTime();
         try {
             R result = r.run();
@@ -57,22 +61,19 @@ public class TimeUtils {
     }
 
     private static void log(long nano, String description, boolean error) {
-        String reason = description == null || description.trim().isEmpty() ? "" : " for '" + description.trim() + "'";
-        if (error && !description.isEmpty())
-            Log.error("  !! Error found" + reason);
-        Log.debug("  ** Elapsed time" + reason + ": " + (nano / 1_000_000_000.d) + "s");
+        if (error)
+            Log.error(description + ": Error found");
+        Log.debug(description + ": time elapsed " + (nano / 1_000_000_000.d) + "s");
     }
 
-    public static interface Procedure {
+    public interface Procedure {
 
-        public void run() throws Throwable;
-
+        void run() throws Throwable;
     }
 
     public interface ProcedureR<R> {
 
-        public R run() throws Throwable;
-
+        R run() throws Throwable;
     }
 
 }

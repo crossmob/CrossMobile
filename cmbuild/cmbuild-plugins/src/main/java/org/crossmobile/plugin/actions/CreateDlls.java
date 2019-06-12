@@ -37,7 +37,7 @@ public class CreateDlls extends CreateLibsAbstract {
     }
 
     @Override
-    protected void runEmiters(Function<String, File> prodResolv) throws IOException {
+    protected void runEmitters(Function<String, File> prodResolv) throws IOException {
         emitPlatformFiles(prodResolv, false);
         emitIncludeHeaders(prodResolv);
         libDef(prodResolv);
@@ -83,7 +83,6 @@ public class CreateDlls extends CreateLibsAbstract {
     }
 
     private static void emitIncludeHeaders(Function<String, File> prodResolv) throws IOException {
-        Log.info("Creating " + PLATFORM.apply(false) + " include headers");
         objectEmitter(prodResolv, true);
     }
 
