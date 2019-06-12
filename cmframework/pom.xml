@@ -17,7 +17,6 @@
     <modules>
         <module>../cmmanager</module>
         <module>../cmioslayer</module>
-        <module>../cmprojects/cmproject-debug</module>
     </modules>
 
     <properties>
