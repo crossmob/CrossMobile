@@ -228,7 +228,7 @@ public class UITableView extends UIScrollView {
     private UITableViewCell getReusableCell(String id) {
         if ((closestController = getClosestController()) != null) {
             try {
-                if(reusableCells.get(id) == null)
+                if (reusableCells.get(id) == null)
                     return null;
                 return reusableCells.get(id).getDeclaredConstructor(closestController.getClass()).newInstance(closestController);
             } catch (InstantiationException | IllegalAccessException | NoSuchMethodException ignore) {
@@ -252,12 +252,12 @@ public class UITableView extends UIScrollView {
      * Deletes a list of rows specified by the index paths using animation or
      * not.
      *
-     * @param indexPaths                 The list of the index paths of the rows to be deleted.
-     * @param UITable​View​Row​Animation The type of the animation
+     * @param indexPaths              The list of the index paths of the rows to be deleted.
+     * @param UITableViewRowAnimation The type of the animation
      */
     @CMSelector("- (void)deleteRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths \n"
             + "              withRowAnimation:(UITableViewRowAnimation)animation;")
-    public void deleteRowsAtIndexPaths(List<NSIndexPath> indexPaths, int UITable​View​Row​Animation) {
+    public void deleteRowsAtIndexPaths(List<NSIndexPath> indexPaths, int UITableViewRowAnimation) {
         Native.lifecycle().notImplemented("will reload table instead");
         reloadData();
     }

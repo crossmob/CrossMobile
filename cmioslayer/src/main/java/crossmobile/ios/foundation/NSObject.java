@@ -59,6 +59,7 @@ public class NSObject {
      *                      has no arguments.
      * @param waitUntilDone TRUE then the current thread waits until the method
      *                      is applied.
+     * @param <A>           The type of the argument
      */
     @CMSelector(value = "- (void)performSelectorOnMainThread:(SEL)aSelector \n"
             + "                         withObject:(id)arg \n"

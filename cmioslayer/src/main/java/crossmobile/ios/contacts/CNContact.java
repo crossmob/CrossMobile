@@ -212,7 +212,8 @@ public class CNContact extends NSObject {
     }
 
     /**
-     * @return
+     * The name prefix of this contact
+     * @return The value of the name prefix
      */
     @CMGetter("@property(copy, nonatomic) NSString *namePrefix;")
     public String namePrefix() {

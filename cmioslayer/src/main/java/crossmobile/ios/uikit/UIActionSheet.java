@@ -110,6 +110,7 @@ public class UIActionSheet extends UIView {
      * Add a new button to the action sheet
      *
      * @param title the index number of this action sheet
+     * @return the new number of buttons
      */
     @CMSelector("- (NSInteger)addButtonWithTitle:(NSString *)title;")
     public int addButtonWithTitle(String title) {

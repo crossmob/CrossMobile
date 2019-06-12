@@ -276,7 +276,7 @@ public class UIViewController extends UIResponder {
      * The default value of this field is false. If true the owning controller
      * does not allow user interactions outside of the modal controllers view
      *
-     * @param modalInPopover
+     * @param modalInPopover Define if interactions are enabled or if the pop-over is modal
      */
     @CMSetter("@property(nonatomic, readwrite, getter=isModalInPopover) BOOL modalInPopover;")
     public void setModalInPopover(boolean modalInPopover) {

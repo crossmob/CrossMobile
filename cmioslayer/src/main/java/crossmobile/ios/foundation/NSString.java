@@ -382,6 +382,7 @@ public class NSString extends NSObject implements NSSecureCoding {
      *
      * @param format The iOS-type formatting
      * @param args   The possible arguments
+     * @param loc    The preferred locale
      * @return A localized version of the formatted String
      */
     @CMSelector(value = "- (instancetype)initWithFormat:(NSString *)format \n" +

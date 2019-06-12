@@ -177,8 +177,8 @@
                             <sourceFileExcludes>
                                 <exclude>crossmobile.ios.cm*</exclude>
                             </sourceFileExcludes>
-                            <excludePackageNames>org.crossmobile.*:crossmobile.ios.$</excludePackageNames>
-                            <failOnError>false</failOnError>
+                            <excludePackageNames>org.*:crossmobile.ios.$:com.*</excludePackageNames>
+                            <failOnError>true</failOnError>
                         </configuration>
                     </plugin>
                 </plugins>

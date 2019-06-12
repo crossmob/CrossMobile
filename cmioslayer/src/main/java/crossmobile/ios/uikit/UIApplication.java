@@ -469,7 +469,8 @@ public class UIApplication extends UIResponder {
     /**
      * Return whether the interface layout is left-to-right or right-to-left
      *
-     * @return
+     * @return Left-to-right or Right-to-left, as defined in UIUserInterfaceLayoutDirection
+     * @see UIUserInterfaceLayoutDirection
      */
     @CMGetter("@property(nonatomic, readonly) UIUserInterfaceLayoutDirection userInterfaceLayoutDirection;")
     public int userInterfaceLayoutDirection() {

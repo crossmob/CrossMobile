@@ -19,14 +19,18 @@ import org.crossmobile.bridge.ann.CMSelector;
 import org.crossmobile.bridge.ann.CMTarget;
 
 /**
- * @param <G>
+ * A Java mapping of the Objective-C Selector construct
+ *
+ * @param <G> The argument type of this selector
  */
 @CMTarget
 public interface NSSelector<G> {
 
     /**
-     * @param arg
+     * Execute this selector
+     *
+     * @param arg the argument of the selector
      */
     @CMSelector(("-(void) exec:(id) argument;"))
-    public void exec(G arg);
+    void exec(G arg);
 }
