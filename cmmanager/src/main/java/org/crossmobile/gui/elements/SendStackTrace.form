@@ -150,7 +150,6 @@
                           <Properties>
                             <Property name="columns" type="int" value="30"/>
                             <Property name="rows" type="int" value="15"/>
-                            <Property name="tabSize" type="int" value="4"/>
                           </Properties>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ActiveTextArea()"/>
@@ -193,7 +192,6 @@
                           <Properties>
                             <Property name="columns" type="int" value="30"/>
                             <Property name="rows" type="int" value="15"/>
-                            <Property name="tabSize" type="int" value="4"/>
                           </Properties>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ActiveTextArea()"/>

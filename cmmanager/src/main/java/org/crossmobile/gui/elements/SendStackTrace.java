@@ -104,7 +104,6 @@ public class SendStackTrace extends javax.swing.JDialog {
 
         outA.setColumns(30);
         outA.setRows(15);
-        outA.setTabSize(4);
         jScrollPane1.setViewportView(outA);
 
         outP.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -118,7 +117,6 @@ public class SendStackTrace extends javax.swing.JDialog {
 
         errorA.setColumns(30);
         errorA.setRows(15);
-        errorA.setTabSize(4);
         jScrollPane2.setViewportView(errorA);
 
         errorP.add(jScrollPane2, java.awt.BorderLayout.CENTER);

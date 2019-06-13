@@ -29,6 +29,7 @@ public class ActiveTextArea extends HiResTextArea implements ThemeChanged {
 
     {
         setOpaque(true);
+        setTabSize(4);
         ThemeNotifier.register(this);
         themeChanged(Theme.current() == Theme.dark());
     }

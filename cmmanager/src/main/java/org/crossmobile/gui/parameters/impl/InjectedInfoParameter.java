@@ -18,12 +18,19 @@ package org.crossmobile.gui.parameters.impl;
 import org.crossmobile.gui.parameters.FreeTextParameter;
 import org.crossmobile.utils.ParamList;
 
+import java.awt.*;
+
 import static org.crossmobile.utils.ParamsCommon.INJECTED_INFOPLIST;
 
 public class InjectedInfoParameter extends FreeTextParameter {
 
     public InjectedInfoParameter(ParamList list) {
         super(list, INJECTED_INFOPLIST.tag(), Type.TEXTAREA);
+    }
+
+    @Override
+    protected Font getTextFont(Font font) {
+        return new Font("monospaced", Font.PLAIN, font.getSize());
     }
 
     @Override

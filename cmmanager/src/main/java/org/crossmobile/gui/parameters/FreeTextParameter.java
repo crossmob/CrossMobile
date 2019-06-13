@@ -141,7 +141,12 @@ public abstract class FreeTextParameter extends ProjectParameter {
             });
         text.comp().setEditable(editable);
         text.comp().setToolTipText(tooltip);
+        text.comp().setFont(getTextFont(text.comp().getFont()));
         return data;
+    }
+
+    protected Font getTextFont(Font font) {
+        return font;
     }
 
     public enum Type {
