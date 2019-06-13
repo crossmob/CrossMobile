@@ -29,9 +29,9 @@ public class Versions {
 
     public static final class RetroLambda {
 
-        public static final String GROUP = "com.panayotis";
+        public static final String GROUP = "net.orfjackal.retrolambda";
         public static final String ARTIFACT = "retrolambda";
-        public static final String VERSION = "2.5.1-2.cm";
+        public static final String VERSION = "2.5.6";
 
         private RetroLambda() {
         }
