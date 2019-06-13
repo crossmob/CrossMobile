@@ -24,7 +24,7 @@ class cmConstraints {
 
     private final double left, width, right, top, height, bottom;
     private final boolean flexLeft, flexWidth, flexRight, flexTop, flexHeight, flexBottom;
-    private final double floatwidth, floatheight;
+    private final double floatWidth, floatHeight;
 
     static cmConstraints getConstraints(UIView child, UIView parent) {
         if (parent == null || !parent.autoresizesSubviews() || child.autoresizingMask() == UIViewAutoresizing.None)
@@ -71,13 +71,13 @@ class cmConstraints {
 
         double fw = (flexLeft ? left : 0) + (flexWidth ? width : 0) + (flexRight ? right : 0);
         double fh = (flexTop ? top : 0) + (flexHeight ? height : 0) + (flexBottom ? bottom : 0);
-        floatwidth = fw == 0 ? 1 : fw;
-        floatheight = fh == 0 ? 1 : fh;
+        floatWidth = fw == 0 ? 1 : fw;
+        floatHeight = fh == 0 ? 1 : fh;
     }
 
     CGRect getFrame(double vwidth, double vheight) {
-        double xfactor = (vwidth - (flexLeft ? 0 : left) - (flexWidth ? 0 : width) - (flexRight ? 0 : right)) / floatwidth;
-        double yfactor = (vheight - (flexTop ? 0 : top) - (flexHeight ? 0 : height) - (flexBottom ? 0 : bottom)) / floatheight;
+        double xfactor = (vwidth - (flexLeft ? 0 : left) - (flexWidth ? 0 : width) - (flexRight ? 0 : right)) / floatWidth;
+        double yfactor = (vheight - (flexTop ? 0 : top) - (flexHeight ? 0 : height) - (flexBottom ? 0 : bottom)) / floatHeight;
         return new CGRect(
                 flexLeft ? left * xfactor : left,
                 flexTop ? top * yfactor : top,

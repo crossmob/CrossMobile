@@ -50,7 +50,6 @@ public class Obfuscator {
 
         cmd.setOutListener(Log::info);
         cmd.setErrListener(ERROR);
-        Log.info("Encrypt files");
         cmd.exec();
         cmd.waitFor();
         if (cmd.exitValue() != 0)

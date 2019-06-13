@@ -75,53 +75,52 @@ public class PluginAssembler {
 
         ClassCollection cc = new ClassCollection();
         time(() -> {
-            time(() -> {
-                ProjectRegistry.register(root, embedlibs, cc);
-                if (packs != null && packs.length > 0)
-                    for (Packages pack : packs)
-                        if (pack != null)
-                            PackageRegistry.register(pack.getName(), pack.getPlugin(), pack.getTarget());
-            }, "Initialize classes");
+            ProjectRegistry.register(root, embedlibs, cc);
+            if (packs != null && packs.length > 0)
+                for (Packages pack : packs)
+                    if (pack != null)
+                        PackageRegistry.register(pack.getName(), pack.getPlugin(), pack.getTarget());
+        }, "Initialize classes");
 
-            if (buildIos || buildDesktop || buildUwp || buildAndroid)
-                time(() -> {
-                    File encjar = new File(target, root.getArtifactID() + "-" + root.getVersion() + ".pro.jar");
-                    if (obfuscate) {
-                        Obfuscator.obfuscate(proguard, proguardConf, proguardMap, root.getFile(), encjar, getLibAndBlacklistedJars(), getEmbedjars());
-                        ProguardRegistry.register(proguardMap);
-                        unzipJar(encjar, runtime);
-                    } else
-                        for (File f : getAppjars().toArray(new File[]{}))
-                            unzipJar(f, runtime);
-                }, "Encrypt and combine");
-
+        if (buildIos || buildDesktop || buildUwp || buildAndroid)
             time(() -> {
-                for (Class cls : buildUwp ? cc.getUWPNativeClasses() : cc.getIOsNativeClasses())
-                    Parser.parse(cls);
-                XMLPluginWriter.updateXML(repository, root);
-            }, "Parse native API");
-            CodeReverse codeRev = (buildIos || buildUwp) ? time(() -> new CodeReverse(cc.getClassPool()), "Create reverse code") : null;
-            if (buildIos || buildUwp) {
+                File encjar = new File(target, root.getArtifactID() + "-" + root.getVersion() + ".pro.jar");
+                if (obfuscate) {
+                    Obfuscator.obfuscate(proguard, proguardConf, proguardMap, root.getFile(), encjar, getLibAndBlacklistedJars(), getEmbedjars());
+                    ProguardRegistry.register(proguardMap);
+                    unzipJar(encjar, runtime);
+                } else
+                    for (File f : getAppjars().toArray(new File[]{}))
+                        unzipJar(f, runtime);
+            }, "Encrypt and combine");
+
+        time(() -> {
+            for (Class cls : buildUwp ? cc.getUWPNativeClasses() : cc.getIOsNativeClasses())
+                Parser.parse(cls);
+            XMLPluginWriter.updateXML(repository, root);
+        }, "Parse native API");
+        CodeReverse codeRev = (buildIos || buildUwp) ? time(() -> new CodeReverse(cc.getClassPool()), "Create reverse code") : null;
+        if (buildIos || buildUwp) {
 //            time(() -> new JavaTransformer(cc.getClassPool(), runtime_rvm));
-                time(() -> new CreateLibs(resolver, target, cachedir, vendorFiles, null, buildIos), "Create iOS libraries");
-                time(() -> new CreateDlls(resolver, target, cachedir, vendorFiles, VStudioLocation, buildUwp), "Create UWP libraries");
-            }
+            time(() -> new CreateLibs(resolver, target, cachedir, vendorFiles, null, buildIos), "Create iOS libraries");
+            time(() -> new CreateDlls(resolver, target, cachedir, vendorFiles, VStudioLocation, buildUwp), "Create UWP libraries");
+        }
 
-            time(() -> {
-                for (String plugin : PluginRegistry.plugins()) {
-                    mkdirs(compileBase.apply(target, plugin));
-                    mkdirs(builddepBase.apply(target, plugin));
-                    if (buildDesktop)
-                        mkdirs(desktopBase.apply(target, plugin));
-                    if (buildAndroid)
-                        mkdirs(androidBase.apply(target, plugin));
-                    if (buildIos)
-                        mkdirs(iosBase.apply(target, plugin));
-                    if (buildUwp)
-                        mkdirs(uwpBase.apply(target, plugin));
-                    if (buildRvm)
-                        mkdirs(rvmBase.apply(target, plugin));
-                }
+        time(() -> {
+            for (String plugin : PluginRegistry.plugins()) {
+                mkdirs(compileBase.apply(target, plugin));
+                mkdirs(builddepBase.apply(target, plugin));
+                if (buildDesktop)
+                    mkdirs(desktopBase.apply(target, plugin));
+                if (buildAndroid)
+                    mkdirs(androidBase.apply(target, plugin));
+                if (buildIos)
+                    mkdirs(iosBase.apply(target, plugin));
+                if (buildUwp)
+                    mkdirs(uwpBase.apply(target, plugin));
+                if (buildRvm)
+                    mkdirs(rvmBase.apply(target, plugin));
+            }
 //                Πιθανών να Μην χρειάζεαται
 //
 //                Log.info("Update API");
@@ -129,44 +128,42 @@ public class PluginAssembler {
 //                for (Class cls : cc.getCompileTimeClasses())
 //                    bean.beanClass(cls, runtime);
 
-                CreateSkeleton skel = new CreateSkeleton(cc.getClassPool());
-                int hm = 0;
-                for (Class cls : cc.getCompileTimeClasses())
-                    hm += skel.stripClass(cls, plugin -> compileBase.apply(target, plugin), SOURCE_TYPE) ? 1 : 0;
-                for (Class cls : cc.getBuildDependencyClasses())
-                    hm += skel.stripClass(cls, plugin -> builddepBase.apply(target, plugin), SOURCE_TYPE) ? 1 : 0;
-                // Still might need to add extra resource files
-                CreateBundles.bundleFiles(runtime, plugin -> compileBase.apply(target, plugin), CreateBundles.noClassResolver, BaseTarget.COMPILE, true);
-                CreateBundles.bundleFiles(runtime, plugin -> builddepBase.apply(target, plugin), CreateBundles.noClassResolver, BaseTarget.BUILDDEP, false);
+            CreateSkeleton skel = new CreateSkeleton(cc.getClassPool());
+            int hm = 0;
+            for (Class cls : cc.getCompileTimeClasses())
+                hm += skel.stripClass(cls, plugin -> compileBase.apply(target, plugin), SOURCE_TYPE) ? 1 : 0;
+            for (Class cls : cc.getBuildDependencyClasses())
+                hm += skel.stripClass(cls, plugin -> builddepBase.apply(target, plugin), SOURCE_TYPE) ? 1 : 0;
+            // Still might need to add extra resource files
+            CreateBundles.bundleFiles(runtime, plugin -> compileBase.apply(target, plugin), CreateBundles.noClassResolver, BaseTarget.COMPILE, true);
+            CreateBundles.bundleFiles(runtime, plugin -> builddepBase.apply(target, plugin), CreateBundles.noClassResolver, BaseTarget.BUILDDEP, false);
 
-                Log.debug(hm + " class" + plural(hm, "es") + " stripped");
-            }, "Initialize and create stub compile-time files");
-            time(() -> {
-                if (buildDesktop)
-                    CreateBundles.bundleFiles(runtime, plugin -> desktopBase.apply(target, plugin), CreateBundles.bundleResolver, BaseTarget.DESKTOP);
-                if (buildIos)
-                    CreateBundles.bundleFiles(runtime, plugin -> iosBase.apply(target, plugin), CreateBundles.bundleResolver, BaseTarget.IOS);
-                if (buildRvm)
-                    CreateBundles.bundleFiles(runtime_rvm, plugin -> rvmBase.apply(target, plugin), CreateBundles.bundleResolver, BaseTarget.IOS);
-                if (buildUwp)
-                    CreateBundles.bundleFiles(runtime, plugin -> uwpBase.apply(target, plugin), CreateBundles.bundleResolver, BaseTarget.UWP);
-                if (buildAndroid)
-                    CreateBundles.bundleFiles(runtime, plugin -> androidBase.apply(target, plugin), CreateBundles.bundleResolver, BaseTarget.ANDROID);
+            Log.debug(hm + " class" + plural(hm, "es") + " stripped");
+        }, "Initialize and create stub compile-time files");
+        time(() -> {
+            if (buildDesktop)
+                CreateBundles.bundleFiles(runtime, plugin -> desktopBase.apply(target, plugin), CreateBundles.bundleResolver, BaseTarget.DESKTOP);
+            if (buildIos)
+                CreateBundles.bundleFiles(runtime, plugin -> iosBase.apply(target, plugin), CreateBundles.bundleResolver, BaseTarget.IOS);
+            if (buildRvm)
+                CreateBundles.bundleFiles(runtime_rvm, plugin -> rvmBase.apply(target, plugin), CreateBundles.bundleResolver, BaseTarget.IOS);
+            if (buildUwp)
+                CreateBundles.bundleFiles(runtime, plugin -> uwpBase.apply(target, plugin), CreateBundles.bundleResolver, BaseTarget.UWP);
+            if (buildAndroid)
+                CreateBundles.bundleFiles(runtime, plugin -> androidBase.apply(target, plugin), CreateBundles.bundleResolver, BaseTarget.ANDROID);
 
-                StringWriter writer = report == null ? null : new StringWriter();
-                for (String plugin : PluginRegistry.plugins())
-                    CreateArtifacts.installPlugin(installer, plugin, target, root, cachedir, vendorFiles, codeRev,
-                            buildDesktop, buildIos, buildUwp, buildAndroid, buildRvm, buildCore, writer);
-                if (writer != null)
-                    try (OutputStreamWriter filewriter = new OutputStreamWriter(new FileOutputStream(report), StandardCharsets.UTF_8)) {
-                        filewriter.write(writer.toString().replaceAll(root.getVersion(), "<VERSION>"));
-                        filewriter.flush();
-                    } catch (Exception e) {
-                        Log.error("Unable to store reports.txt", e);
-                    }
-            }, "Create distributions of artifacts");
-
-        }, "Create target artifacts");
+            StringWriter writer = report == null ? null : new StringWriter();
+            for (String plugin : PluginRegistry.plugins())
+                CreateArtifacts.installPlugin(installer, plugin, target, root, cachedir, vendorFiles, codeRev,
+                        buildDesktop, buildIos, buildUwp, buildAndroid, buildRvm, buildCore, writer);
+            if (writer != null)
+                try (OutputStreamWriter filewriter = new OutputStreamWriter(new FileOutputStream(report), StandardCharsets.UTF_8)) {
+                    filewriter.write(writer.toString().replaceAll(root.getVersion(), "<VERSION>"));
+                    filewriter.flush();
+                } catch (Exception e) {
+                    Log.error("Unable to store reports.txt", e);
+                }
+        }, "Create distributions of artifacts");
     }
 
 }

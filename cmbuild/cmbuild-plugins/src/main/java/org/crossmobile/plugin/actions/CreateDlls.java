@@ -29,6 +29,7 @@ import static org.crossmobile.plugin.utils.Texters.toObjC;
 import static org.crossmobile.plugin.utils.Texters.toObjCTypeForLibDef;
 import static org.crossmobile.utils.FileUtils.*;
 import static org.crossmobile.utils.NamingUtils.getClassNameBare;
+import static org.crossmobile.utils.TimeUtils.time;
 
 public class CreateDlls extends CreateLibsAbstract {
 
@@ -149,14 +150,15 @@ public class CreateDlls extends CreateLibsAbstract {
     private static void restoreNuget(File solutionDir) {
         if (new File(solutionDir, "packages").exists())
             return;
-        Log.info("Restoring NuGets  ");
-        Commander cmd = new Commander("nuget", "restore");
-        cmd.setCurrentDir(solutionDir);
-        cmd.setOutListener(Log::debug);
-        cmd.setErrListener((Consumer<String>) Log::error);
-        cmd.exec();
-        cmd.waitFor();
-        applyPatches(solutionDir.getParentFile().getParentFile(), new File(solutionDir, "packages"));
+        time(() -> {
+            Commander cmd = new Commander("nuget", "restore");
+            cmd.setCurrentDir(solutionDir);
+            cmd.setOutListener(Log::debug);
+            cmd.setErrListener((Consumer<String>) Log::error);
+            cmd.exec();
+            cmd.waitFor();
+            applyPatches(solutionDir.getParentFile().getParentFile(), new File(solutionDir, "packages"));
+        }, "Restoring NuGets  ");
     }
 
     private static void updateProjectToken(File project, String token) {
