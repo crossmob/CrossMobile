@@ -34,15 +34,13 @@ import static crossmobile.ios.uikit.UIViewAnimationTransition.*;
 
 class cmAnimation implements TickerConsumer {
 
-    private static final boolean ignoreSmartTransf = true;
+    private static final boolean ignoreSmartTransformation = true;
 
-    private final String ID;
-    private final Object context;
-    private final Set<AnimationTuple> tuples = Collections.synchronizedSet(new HashSet<AnimationTuple>());
+    private final Set<AnimationTuple> tuples = Collections.synchronizedSet(new HashSet<>());
     private VoidBlock1<Boolean> delegate;
     private double delay = 0;
     private double repeats = 0;
-    private boolean pingpong = false;
+    private boolean ping_pong = false;
     private InterpolationCurve animationCurve = InterpolationCurve.Linear;
     private double duration = GraphicsBridgeConstants.DefaultAnimationDuration;
     private UIView parent;
@@ -50,11 +48,6 @@ class cmAnimation implements TickerConsumer {
     private Collection<UIView> viewLeave;
     private Collection<UIView> viewFrames;  // Might not needed -- might be supported by setFrame itself
     private AnimationTransition animationTransition = AnimationTransition.None;
-
-    cmAnimation(String ID, Object context) {
-        this.ID = ID;
-        this.context = context;
-    }
 
     void setAlpha(UIView view, double to) {
         if (view.alpha != to)
@@ -98,7 +91,7 @@ class cmAnimation implements TickerConsumer {
         double from_th2 = Math.atan(-from.getB() / from.getA());
         double to_th1 = Math.atan(to.getC() / to.getD());
         double to_th2 = Math.atan(-to.getB() / to.getA());
-        if (ignoreSmartTransf || Math.abs(from_th1 - from_th2) > 0.00001f || Math.abs(to_th1 - to_th2) > 0.00001f)
+        if (ignoreSmartTransformation || Math.abs(from_th1 - from_th2) > 0.00001f || Math.abs(to_th1 - to_th2) > 0.00001f)
             tuples.add(new SimpleTransformationTuple(view, from.getA(), from.getB(), from.getC(), from.getD(), from.getTx(),
                     from.getTy(), to.getA() - from.getA(), to.getB() - from.getB(), to.getC() - from.getC(), to.getD() - from.getD(), to.getTx() - from.getTx(), to.getTy() - from.getTy()));
         else {
@@ -109,33 +102,6 @@ class cmAnimation implements TickerConsumer {
             double toSy = (to.getD() > 0 ? 1 : -1) * Math.sqrt(to.getB() * to.getB() + to.getD() * to.getD());
             tuples.add(new SmartTransformationTuple(view, from_th1, fromSx, fromSy, from.getTx(), from.getTy(),
                     to_th1 - from_th1, toSx - fromSx, toSy - fromSy, to.getTx() - from.getTx(), to.getTy() - from.getTy()));
-        }
-    }
-
-    void setAnimationTransition(int UIViewAnimationTransition, UIView parent, boolean cache) {
-        if (this.parent != null)
-            throw new RuntimeException("Only one UIView allowed under setAnimationTransition");
-
-        this.parent = parent;
-        if (parent == null)
-            throw new NullPointerException("UIView under setAnimationTransition could not be null");
-
-        switch (UIViewAnimationTransition) {
-            case FlipFromLeft:
-                animationTransition = AnimationTransition.Left;
-                break;
-            case FlipFromRight:
-                animationTransition = AnimationTransition.Right;
-                break;
-            case CurlUp:
-                animationTransition = AnimationTransition.Up;
-                break;
-            case CurlDown:
-                animationTransition = AnimationTransition.Down;
-                break;
-            case None:
-            default:
-                animationTransition = AnimationTransition.None;
         }
     }
 
@@ -191,23 +157,52 @@ class cmAnimation implements TickerConsumer {
         }
     }
 
+    public void setParent(UIView parent) {
+        if (this.parent != null)
+            throw new RuntimeException("Only one UIView allowed under setAnimationTransition");
+        this.parent = parent;
+        if (this.parent == null)
+            throw new NullPointerException("UIView under setAnimationTransition could not be null");
+    }
+
+    public void setTransition(int animationTransition) {
+        switch (animationTransition) {
+            case FlipFromLeft:
+                this.animationTransition = AnimationTransition.Left;
+                break;
+            case FlipFromRight:
+                this.animationTransition = AnimationTransition.Right;
+                break;
+            case CurlUp:
+            case FlipFromTop:
+                this.animationTransition = AnimationTransition.Up;
+                break;
+            case CurlDown:
+            case FlipFromBottom:
+                this.animationTransition = AnimationTransition.Down;
+                break;
+            case CrossDissolve:
+            case None:
+            default:
+                this.animationTransition = AnimationTransition.None;
+        }
+    }
+
     void setRepeats(double repeatCount) {
         if (repeatCount < 0)
             repeatCount = 0;
         this.repeats = repeatCount;
     }
 
-    void setAutoreverse(boolean repeatAutoreverses) {
-        this.pingpong = repeatAutoreverses;
+    void setAutoReverse(boolean repeatAutoreverses) {
+        this.ping_pong = repeatAutoreverses;
     }
 
     void commit() {
         if (delay > 0)
-            NSTimer.scheduledTimerWithTimeInterval(delay, (NSTimer timer) -> {
-                Ticker.add(cmAnimation.this, animationCurve, duration, repeats, pingpong);
-            }, null, false);
+            NSTimer.scheduledTimerWithTimeInterval(delay, timer -> Ticker.add(cmAnimation.this, animationCurve, duration, repeats, ping_pong), null, false);
         else
-            Ticker.add(this, animationCurve, duration, repeats, pingpong);
+            Ticker.add(this, animationCurve, duration, repeats, ping_pong);
     }
 
     @Override
@@ -258,7 +253,7 @@ class cmAnimation implements TickerConsumer {
 
         CGRect enterView(UIView view, UIView parent);
 
-        public CGRect exitView(UIView view, UIView parent);
+        CGRect exitView(UIView view, UIView parent);
     }
 
     private abstract static class AnimationTuple {
@@ -358,10 +353,10 @@ class cmAnimation implements TickerConsumer {
     private static abstract class TransformationTuple extends AnimationTuple {
 
         private final UIView view;
-        protected CGAffineTransform transf;
-        private CGAffineTransform transfV, swap;
+        private CGAffineTransform transfV;
+        CGAffineTransform transf;
 
-        public TransformationTuple(UIView view) {
+        TransformationTuple(UIView view) {
             this.view = view;
             transfV = CGAffineTransform.identity();
             transf = CGAffineTransform.identity();
@@ -369,7 +364,7 @@ class cmAnimation implements TickerConsumer {
 
         @Override
         final void applyAt(double interpolatedTime) {
-            swap = transfV;
+            CGAffineTransform swap = transfV;
             applyAt(transf, interpolatedTime);
             view.setTransformImpl(transfV = transf);
             transf = swap;
@@ -394,7 +389,7 @@ class cmAnimation implements TickerConsumer {
         private final double deltaTx;
         private final double deltaTy;
 
-        public SimpleTransformationTuple(UIView view, double fromA, double fromB, double fromC, double fromD, double fromTx, double fromTy, double deltaA, double deltaB, double deltaC, double deltaD, double deltaTx, double deltaTy) {
+        SimpleTransformationTuple(UIView view, double fromA, double fromB, double fromC, double fromD, double fromTx, double fromTy, double deltaA, double deltaB, double deltaC, double deltaD, double deltaTx, double deltaTy) {
             super(view);
             this.fromA = fromA;
             this.fromB = fromB;
@@ -433,9 +428,9 @@ class cmAnimation implements TickerConsumer {
         private final double deltaSx;
         private final double deltaSy;
         private final double deltaTx;
-        private final double deltaTΥ;
+        private final double deltaTy;
 
-        public SmartTransformationTuple(UIView view, double fromTheta, double fromSx, double fromSy, double fromTx, double fromTy, double deltaTheta, double deltaSx, double deltaSy, double deltaTx, double deltaTΥ) {
+        SmartTransformationTuple(UIView view, double fromTheta, double fromSx, double fromSy, double fromTx, double fromTy, double deltaTheta, double deltaSx, double deltaSy, double deltaTx, double deltaTy) {
             super(view);
             this.fromTheta = fromTheta;
             this.fromSx = fromSx;
@@ -446,7 +441,7 @@ class cmAnimation implements TickerConsumer {
             this.deltaSx = deltaSx;
             this.deltaSy = deltaSy;
             this.deltaTx = deltaTx;
-            this.deltaTΥ = deltaTΥ;
+            this.deltaTy = deltaTy;
         }
 
         @Override
@@ -454,7 +449,7 @@ class cmAnimation implements TickerConsumer {
             selfRotateScaleTranslate(transf,
                     fromTheta + deltaTheta * interpolatedTime,
                     fromSx + deltaSx * interpolatedTime, fromSy + deltaSy * interpolatedTime,
-                    fromTx + deltaTx * interpolatedTime, fromTy + deltaTΥ * interpolatedTime);
+                    fromTx + deltaTx * interpolatedTime, fromTy + deltaTy * interpolatedTime);
         }
     }
 
@@ -475,16 +470,16 @@ class cmAnimation implements TickerConsumer {
 
         @Override
         public CGRect enterView(UIView view, UIView parent) {
-            CGRect lastpos = view.frame();
+            CGRect last = view.frame();
             view.setFrameImpl(view.getX() - parent.getWidth(), view.getY(), view.getWidth(), view.getHeight());
-            return lastpos;
+            return last;
         }
 
         @Override
         public CGRect exitView(UIView view, UIView parent) {
-            CGRect lastpos = view.frame();
-            lastpos.getOrigin().setX(lastpos.getOrigin().getX() + parent.getWidth() / 2);
-            return lastpos;
+            CGRect last = view.frame();
+            last.getOrigin().setX(last.getOrigin().getX() + parent.getWidth() / 2);
+            return last;
         }
     }
 
@@ -492,16 +487,16 @@ class cmAnimation implements TickerConsumer {
 
         @Override
         public CGRect enterView(UIView view, UIView parent) {
-            CGRect lastpos = view.frame();
+            CGRect last = view.frame();
             view.setFrameImpl(view.getX() + parent.getWidth(), view.getY(), view.getWidth(), view.getHeight());
-            return lastpos;
+            return last;
         }
 
         @Override
         public CGRect exitView(UIView view, UIView parent) {
-            CGRect lastpos = view.frame();
-            lastpos.getOrigin().setX(lastpos.getOrigin().getX() - (parent.getWidth() / 2));
-            return lastpos;
+            CGRect last = view.frame();
+            last.getOrigin().setX(last.getOrigin().getX() - (parent.getWidth() / 2));
+            return last;
         }
     }
 
@@ -509,16 +504,16 @@ class cmAnimation implements TickerConsumer {
 
         @Override
         public CGRect enterView(UIView view, UIView parent) {
-            CGRect lastpos = view.frame();
+            CGRect last = view.frame();
             view.setFrameImpl(view.getX() + parent.getWidth(), view.getY(), view.getWidth(), view.getHeight());
-            return lastpos;
+            return last;
         }
 
         @Override
         public CGRect exitView(UIView view, UIView parent) {
-            CGRect lastpos = view.frame();
-            lastpos.getOrigin().setX(lastpos.getOrigin().getX() - parent.getWidth());
-            return lastpos;
+            CGRect last = view.frame();
+            last.getOrigin().setX(last.getOrigin().getX() - parent.getWidth());
+            return last;
         }
     }
 
@@ -526,9 +521,9 @@ class cmAnimation implements TickerConsumer {
 
         @Override
         public CGRect enterView(UIView view, UIView parent) {
-            CGRect lastpos = view.frame();
+            CGRect last = view.frame();
             view.setFrameImpl(view.getX() - parent.getWidth(), view.getY(), view.getWidth(), view.getHeight());
-            return lastpos;
+            return last;
         }
 
         @Override

@@ -237,11 +237,10 @@ public class UIView extends UIResponder {
     public static void animateWithDuration(double duration, double delay, int UIViewAnimationOptions, Runnable animations, VoidBlock1<Boolean> completion) {
         if (animationsEnabled && animations != null) {
             synchronized (animationLock) {
-                if (pendingAnim == null)
-                    pendingAnim = new cmAnimation(null, null);
-                pendingAnim.setDuration(duration);
+                pendingAnim().setDuration(duration);
                 pendingAnim.setDelay(delay);
                 pendingAnim.setCurve((UIViewAnimationOptions >>> 16) & 0xF);
+                pendingAnim.setTransition((UIViewAnimationOptions >>> 20) & 0x7);
                 pendingAnim.setDelegate(completion);
             }
             animations.run();
@@ -253,15 +252,36 @@ public class UIView extends UIResponder {
     }
 
     /**
+     * Sets the transition to be applied to a parent view during an animation block.
+     * In the animation block, perform all required changes to the child views.
+     *
+     * @param view                   The view to which the transition will be applied.
+     * @param duration               The duration of the animation
+     * @param UIViewAnimationOptions The transition options. Usual values are UIViewAnimationOptions.Transition* values
+     * @param animations             The changes to commit to the views. Not NULL.
+     * @param completion             A block object to be executed when the animations ends.
+     * @see UIViewAnimationOptions
+     */
+    @CMSelector("+ (void)transitionWithView:(UIView *)view \n" +
+            "                  duration:(NSTimeInterval)duration \n" +
+            "                   options:(UIViewAnimationOptions)options \n" +
+            "                animations:(void (^)(void))animations \n" +
+            "                completion:(void (^)(BOOL finished))completion;")
+    public static void transitionWithView(UIView view, double duration, int UIViewAnimationOptions, Runnable animations, VoidBlock1<Boolean> completion) {
+        if (animationsEnabled && animations != null) {
+            pendingAnim().setParent(view);
+            animateWithDuration(duration, 0, UIViewAnimationOptions, animations, completion);
+        }
+    }
+
+    /**
      * Sets the time that the current animation block should begin.
      *
      * @param startTime The time that the current animation block should begin.
      */
     @CMSelector("+ (void)setAnimationStartDate:(NSDate *)startDate;")
     public static void setAnimationStartDate(NSDate startTime) {
-        if (pendingAnim == null)
-            pendingAnim = new cmAnimation(null, null);
-        pendingAnim.setDelay(startTime.timeIntervalSinceReferenceDate() - NSDate.date().timeIntervalSinceReferenceDate());
+        pendingAnim().setDelay(startTime.timeIntervalSinceReferenceDate() - NSDate.date().timeIntervalSinceReferenceDate());
     }
 
     /**
@@ -285,9 +305,7 @@ public class UIView extends UIResponder {
      */
     @CMSelector("+ (void)setAnimationDuration:(NSTimeInterval)duration;")
     public static void setAnimationDuration(double duration) {
-        if (pendingAnim == null)
-            pendingAnim = new cmAnimation(null, null);
-        pendingAnim.setDuration(duration);
+        pendingAnim().setDuration(duration);
     }
 
     /**
@@ -299,9 +317,7 @@ public class UIView extends UIResponder {
      */
     @CMSelector("+ (void)setAnimationDelay:(NSTimeInterval)delay;")
     public static void setAnimationDelay(double delay) {
-        if (pendingAnim == null)
-            pendingAnim = new cmAnimation(null, null);
-        pendingAnim.setDelay(delay);
+        pendingAnim().setDelay(delay);
     }
 
     /**
@@ -311,9 +327,7 @@ public class UIView extends UIResponder {
      */
     @CMSelector("+ (void)setAnimationCurve:(UIViewAnimationCurve)curve;")
     public static void setAnimationCurve(int UIViewAnimationCurve) {
-        if (pendingAnim == null)
-            pendingAnim = new cmAnimation(null, null);
-        pendingAnim.setCurve(UIViewAnimationCurve);
+        pendingAnim().setCurve(UIViewAnimationCurve);
     }
 
     /**
@@ -326,9 +340,7 @@ public class UIView extends UIResponder {
     @CMSelector("+ (void)setAnimationRepeatCount:(float)repeatCount;\n"
             + "")
     public static void setAnimationRepeatCount(float repeatCount) {
-        if (pendingAnim == null)
-            pendingAnim = new cmAnimation(null, null);
-        pendingAnim.setRepeats(repeatCount);
+        pendingAnim().setRepeats(repeatCount);
     }
 
     /**
@@ -340,28 +352,13 @@ public class UIView extends UIResponder {
      */
     @CMSelector("+ (void)setAnimationRepeatAutoreverses:(BOOL)repeatAutoreverses;")
     public static void setAnimationRepeatAutoreverses(boolean repeatAutoreverses) {
-        if (pendingAnim == null)
-            pendingAnim = new cmAnimation(null, null);
-        pendingAnim.setAutoreverse(repeatAutoreverses);
+        pendingAnim().setAutoReverse(repeatAutoreverses);
     }
 
-    /**
-     * Sets the transition to be applied to a view during an animation block. *
-     *
-     * @param UIViewAnimationTransition The transition that will be applied to
-     *                                  the view.
-     * @param view                      The view to which the transition will be applied.
-     * @param cache                     A Boolean that if is set to true then images before and
-     *                                  after are rendered once. If it is set false then the view and its
-     *                                  contents are updated are being updated for every frame of the transition.
-     */
-    @CMSelector("+ (void)setAnimationTransition:(UIViewAnimationTransition)transition \n"
-            + "                       forView:(UIView *)view \n"
-            + "                         cache:(BOOL)cache;")
-    public static void setAnimationTransition(int UIViewAnimationTransition, UIView view, boolean cache) {
+    private static cmAnimation pendingAnim() {
         if (pendingAnim == null)
-            pendingAnim = new cmAnimation(null, null);
-        pendingAnim.setAnimationTransition(UIViewAnimationTransition, view, cache);
+            pendingAnim = new cmAnimation();
+        return pendingAnim;
     }
 
     /**
@@ -776,7 +773,7 @@ public class UIView extends UIResponder {
         UIView parent = superview();
         if (parent != null) {
             delegateBefore(parent, null);
-            if (pendingAnim == null || (pendingAnim != null && !pendingAnim.viewToLeave(this, parent)))
+            if (pendingAnim == null || !pendingAnim.viewToLeave(this, parent))
                 removeFromView(parent);
         }
     }

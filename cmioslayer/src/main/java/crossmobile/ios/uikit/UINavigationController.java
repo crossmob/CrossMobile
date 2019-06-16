@@ -136,7 +136,7 @@ public class UINavigationController extends UIViewController {
         }
         navigationBar.setItems(navitems);
         preExchange(old, cur, animated);
-        updateView(animated ? UIViewAnimationTransition.FlipFromRight : -1, new PostExchangeDelegate(old, cur, animated));
+        updateView(new PostExchangeDelegate(old, cur, animated), animated ? UIViewAnimationOptions.TransitionFlipFromRight : UIViewAnimationOptions.TransitionNone);
     }
 
     /**
@@ -165,7 +165,7 @@ public class UINavigationController extends UIViewController {
 
         navigationBar.pushNavigationItem(controller.navigationItem(), animated);
         preExchange(old, controller, animated);
-        updateView(animated ? UIViewAnimationTransition.FlipFromRight : -1, new PostExchangeDelegate(old, controller, animated));
+        updateView(new PostExchangeDelegate(old, controller, animated), animated ? UIViewAnimationOptions.TransitionFlipFromRight : UIViewAnimationOptions.TransitionNone);
     }
 
     @Override
@@ -199,7 +199,7 @@ public class UINavigationController extends UIViewController {
         preExchange(old, cur, animated);
         navigationBar.popNavigationItemAnimated(animated);
         old.setParentController(null);
-        updateView(animated ? UIViewAnimationTransition.FlipFromLeft : -1, new PostExchangeDelegate(old, cur, animated));
+        updateView(new PostExchangeDelegate(old, cur, animated), animated ? UIViewAnimationOptions.TransitionFlipFromLeft : UIViewAnimationOptions.TransitionNone);
         return old;
     }
 
@@ -235,7 +235,7 @@ public class UINavigationController extends UIViewController {
         }
         navigationBar.setItems(navitems);
 
-        updateView(animated ? UIViewAnimationTransition.FlipFromLeft : -1, new PostExchangeDelegate(old, controller, animated));
+        updateView(new PostExchangeDelegate(old, controller, animated), animated ? UIViewAnimationOptions.TransitionFlipFromLeft : UIViewAnimationOptions.TransitionNone);
         return res;
     }
 
@@ -473,7 +473,7 @@ public class UINavigationController extends UIViewController {
             updateInsets(topViewController(), 1);
     }
 
-    void updateView(int animation, final PostExchangeDelegate postEx) {
+    void updateView(final PostExchangeDelegate postEx, int animationOptions) {
         Native.widget().resignFocus();
         UIViewController topVC = topViewController();
         NavigationView thisView = (NavigationView) view();
@@ -491,11 +491,10 @@ public class UINavigationController extends UIViewController {
                 oldChildView.removeFromSuperview();
         };
 
-        if (animation > 0) {
+        if (animationOptions != UIViewAnimationOptions.TransitionNone) {
             boolean originalInteractionsEnabled = thisView.isUserInteractionEnabled();
             thisView.setUserInteractionEnabled(false);
-            UIView.setAnimationTransition(animation, thisView, true);
-            UIView.animateWithDuration(GraphicsBridgeConstants.DefaultAnimationDuration, 0, animation, actions, result -> {
+            UIView.transitionWithView(thisView, GraphicsBridgeConstants.DefaultAnimationDuration, animationOptions, actions, result -> {
                 postEx.perform();
                 thisView.setUserInteractionEnabled(originalInteractionsEnabled);
             });
@@ -506,7 +505,7 @@ public class UINavigationController extends UIViewController {
         thisView.bringSubviewToFront(toolBar);
         thisView.bringSubviewToFront(navigationBar);
 
-        if (animation <= 0 && postEx != null)
+        if (animationOptions == UIViewAnimationOptions.TransitionNone && postEx != null)
             Native.system().postOnEventThread(postEx::perform);
     }
 

@@ -48,6 +48,10 @@ public final class UIViewAnimationTransition {
      */
     public static final int CurlDown = 4;
 
+    static final int CrossDissolve = 5;
+    static final int FlipFromTop = 6;
+    static final int FlipFromBottom = 7;
+
     private UIViewAnimationTransition() {
     }
 }

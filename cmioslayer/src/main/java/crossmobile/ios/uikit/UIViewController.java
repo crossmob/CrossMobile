@@ -627,8 +627,7 @@ public class UIViewController extends UIResponder {
                 };
                 viewControllerToPresent.viewWillAppear(flag);
                 viewControllerToPresent.viewSafeAreaInsetsDidChange();
-                UIView.setAnimationTransition(UIViewAnimationTransition.None, viewControllerToPresent.view(), true);
-                UIView.animateWithDuration(GraphicsBridgeConstants.DefaultAnimationDuration, animation);
+                UIView.transitionWithView(viewControllerToPresent.view(), GraphicsBridgeConstants.DefaultAnimationDuration, UIViewAnimationOptions.TransitionNone, animation, null);
                 viewControllerToPresent.viewDidAppear(flag);
                 if (completion != null)
                     completion.run();
@@ -664,8 +663,7 @@ public class UIViewController extends UIResponder {
                 modalViewController.view().removeFromSuperview();
             };
             modalViewController.viewWillDisappear(flag);
-            UIView.setAnimationTransition(UIViewAnimationTransition.None, UIApplication.sharedApplication().keyWindow().rootViewController().view(), true);
-            UIView.animateWithDuration(GraphicsBridgeConstants.DefaultAnimationDuration, animation);
+            UIView.transitionWithView(UIApplication.sharedApplication().keyWindow().rootViewController().view(), GraphicsBridgeConstants.DefaultAnimationDuration, UIViewAnimationOptions.TransitionNone, animation, null);
             modalViewController.viewDidDisappear(flag);
             if (completion != null)
                 completion.run();

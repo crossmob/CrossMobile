@@ -46,8 +46,8 @@ CM_EXPORT_CLASS
 + (void) setAnimationRepeatAutoreverses___boolean:(BOOL) repeatAutoreverses ;
 + (void) setAnimationRepeatCount___float:(float) repeatCount ;
 + (void) setAnimationStartDate___crossmobile_ios_foundation_NSDate:(NSDate*) startDate ;
-+ (void) setAnimationTransition___int_crossmobile_ios_uikit_UIView_boolean:(int) transition :(UIView*) view :(BOOL) cache ;
 + (void) setAnimationsEnabled___boolean:(BOOL) enabled ;
++ (void) transitionWithView___crossmobile_ios_uikit_UIView_double_int_java_lang_Runnable_org_robovm_objc_block_VoidBlock1:(UIView*) view :(double) duration :(int) options :(id<java_lang_Runnable>) animations :(id<org_robovm_objc_block_VoidBlock1>) completion ;
 - (instancetype) __init_crossmobile_ios_uikit_UIView__;
 - (instancetype) __init_crossmobile_ios_uikit_UIView___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) frame ;
 - (void) setAlpha___double:(double) alpha ;

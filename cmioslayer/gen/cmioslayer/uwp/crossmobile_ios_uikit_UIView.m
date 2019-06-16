@@ -917,16 +917,22 @@
     [UIView setAnimationStartDate:(startDate == JAVA_NULL ? nil : startDate)];
 }
 
-// direct binding of: + (void)setAnimationTransition:(UIViewAnimationTransition)transition forView:(UIView *)view cache:(BOOL)cache;
-+ (void) setAnimationTransition___int_crossmobile_ios_uikit_UIView_boolean:(int) transition :(UIView*) view :(BOOL) cache 
-{
-    [UIView setAnimationTransition:transition forView:(view == JAVA_NULL ? nil : view) cache:cache];
-}
-
 // direct binding of: + (void)setAnimationsEnabled:(BOOL)enabled;
 + (void) setAnimationsEnabled___boolean:(BOOL) enabled 
 {
     [UIView setAnimationsEnabled:enabled];
+}
+
+// direct binding of: + (void)transitionWithView:(UIView *)view duration:(NSTimeInterval)duration options:(UIViewAnimationOptions)options animations:(void (^)(void))animations completion:(void (^)(BOOL finished))completion;
++ (void) transitionWithView___crossmobile_ios_uikit_UIView_double_int_java_lang_Runnable_org_robovm_objc_block_VoidBlock1:(UIView*) view :(double) duration :(int) options :(id<java_lang_Runnable>) animations :(id<org_robovm_objc_block_VoidBlock1>) completion 
+{
+    [UIView transitionWithView:(view == JAVA_NULL ? nil : view) duration:duration options:options animations:(animations == JAVA_NULL ? nil : ^{
+        [animations run__];
+    }) completion:(completion == JAVA_NULL ? nil : ^(BOOL finished) {
+        java_lang_Boolean* finished$conv = [[java_lang_Boolean alloc] initWithBool:finished];
+        [completion invoke___java_lang_Object:finished$conv];
+        [finished$conv release];
+    })];
 }
 
 // direct binding of: -(instancetype) init;

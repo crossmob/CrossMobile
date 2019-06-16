@@ -302,7 +302,7 @@ public class UISplitViewController extends UIViewController {
             if (vc.view() == detail)
                 return;
             if (vc instanceof UINavigationController)
-                ((UINavigationController) vc).updateView(-1, null);
+                ((UINavigationController) vc).updateView(null, UIViewAnimationOptions.TransitionNone);
             vc.view().setFrame(new CGRect(splitView.getWidth(), detail.getY(), detail.getWidth(), detail.getHeight()));   // do this before animations!
             splitView.addSubview(vc.view());
             UIView.animateWithDuration(GraphicsBridgeConstants.DefaultAnimationDuration, 0, UIViewAnimationOptions.CurveEaseInOut, () -> vc.view().setLocation(detail.getX(), detail.getY()), result -> {
@@ -415,7 +415,7 @@ public class UISplitViewController extends UIViewController {
         master = masterController.view();
         detail = detailController.view();
         if (detailController instanceof UINavigationController)
-            ((UINavigationController) detailController).updateView(-1, null);
+            ((UINavigationController) detailController).updateView(null, UIViewAnimationOptions.TransitionNone);
         splitView.addSubview(detail);
         detail.setTranslatesAutoresizingMaskIntoConstraints(false);
         splitView.addSubview(master);
@@ -442,7 +442,7 @@ public class UISplitViewController extends UIViewController {
         displayMode = UISplitViewControllerDisplayMode.PrimaryOverlay;
         master = masterController.view();
         if (detailController instanceof UINavigationController)
-            ((UINavigationController) detailController).updateView(-1, null);
+            ((UINavigationController) detailController).updateView(null, UIViewAnimationOptions.TransitionNone);
         detail = detailController.view();
         splitView.addSubview(master);
         splitView.addSubview(detail);
@@ -473,7 +473,7 @@ public class UISplitViewController extends UIViewController {
             if (!detailController.isViewLoaded())
                 detailController.loadView();
             if (detailController instanceof UINavigationController) {
-                ((UINavigationController) detailController).updateView(-1, null);
+                ((UINavigationController) detailController).updateView(null, UIViewAnimationOptions.TransitionNone);
                 nc.pushViewController(((UINavigationController) detailController).popViewControllerAnimated(false), false);
             } else
                 nc.pushViewController(detailController, false);

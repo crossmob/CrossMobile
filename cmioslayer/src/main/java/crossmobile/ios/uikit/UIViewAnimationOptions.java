@@ -138,6 +138,22 @@ public final class UIViewAnimationOptions {
      */
     public static final int TransitionFlipFromBottom = 7 << 20;
 
+    /**
+     * Animation with default frames per second
+     */
+    public static final int PreferredFramesPerSecondDefault = 0 << 24;
+
+    /**
+     * Animation with 30 frames per second
+     */
+    public static final int PreferredFramesPerSecond30 = 7 << 24;
+
+    /**
+     * Animation with 60 frames per second
+     */
+    public static final int PreferredFramesPerSecond60 = 3 << 24;
+
+
     private UIViewAnimationOptions() {
     }
 
