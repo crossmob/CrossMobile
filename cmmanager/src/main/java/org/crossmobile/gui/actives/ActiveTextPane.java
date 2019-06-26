@@ -22,9 +22,11 @@ import org.crossmobile.gui.utils.StreamManager;
 import org.crossmobile.gui.utils.StreamQuality;
 
 import javax.swing.*;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
+import java.awt.*;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -56,6 +58,12 @@ public class ActiveTextPane extends HiResTextPane implements StreamListener, The
 
     private StreamManager sman;
     private final TooltipManager ttm = new TooltipManager(this);
+    private final UIDefaults uidefaults = new UIDefaults();
+
+    {
+        putClientProperty("Nimbus.Overrides", uidefaults);
+        putClientProperty("Nimbus.Overrides.InheritDefaults", true);
+    }
 
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public ActiveTextPane() {
@@ -101,5 +109,8 @@ public class ActiveTextPane extends HiResTextPane implements StreamListener, The
         updateAttributes();
         updateTheme(this, dark);
         getStyledDocument().setCharacterAttributes(0, getDocument().getLength(), INFOATTR, true);
+        Color backClr = getBackground();
+        uidefaults.put("TextPane.background", new ColorUIResource(backClr));
+        uidefaults.put("TextPane[Enabled].backgroundPainter", backClr);
     }
 }
