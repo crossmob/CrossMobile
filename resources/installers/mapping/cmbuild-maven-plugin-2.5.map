@@ -1,0 +1,2443 @@
+com.eclipsesource.json.Json -> org.crossmobile.build.a:
+    com.eclipsesource.json.JsonValue NULL -> a
+    com.eclipsesource.json.JsonValue TRUE -> b
+    com.eclipsesource.json.JsonValue FALSE -> c
+    133:133:com.eclipsesource.json.JsonValue value(java.lang.String) -> a
+    277:277:com.eclipsesource.json.JsonObject object() -> a
+    291:296:com.eclipsesource.json.JsonValue parse(java.lang.String) -> b
+    63:73:void <clinit>() -> <clinit>
+com.eclipsesource.json.Json$DefaultHandler -> org.crossmobile.build.a$a:
+    com.eclipsesource.json.JsonValue value -> a
+    331:331:void <init>() -> <init>
+    337:337:com.eclipsesource.json.JsonArray startArray() -> a
+    342:342:com.eclipsesource.json.JsonObject startObject() -> b
+    347:348:void endNull() -> c
+    352:353:void endBoolean(boolean) -> a
+    357:358:void endString(java.lang.String) -> a
+    362:363:void endNumber(java.lang.String) -> b
+    367:368:void endArray(com.eclipsesource.json.JsonArray) -> a
+    372:373:void endObject(com.eclipsesource.json.JsonObject) -> a
+    377:378:void endArrayValue(com.eclipsesource.json.JsonArray) -> b
+    382:383:void endObjectValue(com.eclipsesource.json.JsonObject,java.lang.String) -> a
+    386:386:com.eclipsesource.json.JsonValue getValue() -> d
+    331:331:void endObjectValue(java.lang.Object,java.lang.String) -> a
+    331:331:void endObject(java.lang.Object) -> a
+    331:331:java.lang.Object startObject() -> e
+    331:331:void endArrayValue(java.lang.Object) -> b
+    331:331:void endArray(java.lang.Object) -> c
+    331:331:java.lang.Object startArray() -> f
+com.eclipsesource.json.JsonArray -> org.crossmobile.build.b:
+    java.util.List values -> d
+    70:72:void <init>() -> <init>
+    237:241:com.eclipsesource.json.JsonArray add(com.eclipsesource.json.JsonValue) -> a
+    393:393:int size() -> a_
+    416:416:com.eclipsesource.json.JsonValue get(int) -> a
+    427:427:java.util.List values() -> b_
+    437:438:java.util.Iterator iterator() -> iterator
+    456:466:void write(com.eclipsesource.json.JsonWriter) -> a
+    470:470:boolean isArray() -> c
+    475:475:com.eclipsesource.json.JsonArray asArray() -> d
+    480:480:int hashCode() -> hashCode
+    498:508:boolean equals(java.lang.Object) -> equals
+com.eclipsesource.json.JsonArray$1 -> org.crossmobile.build.b$1:
+    java.util.Iterator val$iterator -> a
+    com.eclipsesource.json.JsonArray this$0 -> b
+    438:438:void <init>(com.eclipsesource.json.JsonArray,java.util.Iterator) -> <init>
+    441:441:boolean hasNext() -> hasNext
+    445:445:com.eclipsesource.json.JsonValue next() -> a
+    449:449:void remove() -> remove
+    438:438:java.lang.Object next() -> next
+com.eclipsesource.json.JsonHandler -> org.crossmobile.build.c:
+    com.eclipsesource.json.JsonParser parser -> b
+    55:55:void <init>() -> <init>
+    73:73:void startNull() -> g
+    80:80:void endNull() -> c
+    87:87:void startBoolean() -> h
+    97:97:void endBoolean(boolean) -> a
+    104:104:void startString() -> i
+    114:114:void endString(java.lang.String) -> a
+    121:121:void startNumber() -> j
+    131:131:void endNumber(java.lang.String) -> b
+    146:146:java.lang.Object startArray() -> f
+    158:158:void endArray(java.lang.Object) -> c
+    170:170:void startArrayValue(java.lang.Object) -> d
+    183:183:void endArrayValue(java.lang.Object) -> b
+    200:200:java.lang.Object startObject() -> e
+    211:211:void endObject(java.lang.Object) -> a
+    222:222:void startObjectName(java.lang.Object) -> e
+    234:234:void endObjectName(java.lang.Object,java.lang.String) -> b
+    247:247:void startObjectValue(java.lang.Object,java.lang.String) -> c
+    261:261:void endObjectValue(java.lang.Object,java.lang.String) -> a
+com.eclipsesource.json.JsonLiteral -> org.crossmobile.build.d:
+    java.lang.String value -> d
+    boolean isNull -> e
+    boolean isTrue -> f
+    boolean isFalse -> g
+    35:40:void <init>(java.lang.String) -> <init>
+    44:45:void write(com.eclipsesource.json.JsonWriter) -> a
+    49:49:java.lang.String toString() -> toString
+    54:54:int hashCode() -> hashCode
+    59:59:boolean isNull() -> a
+    64:64:boolean isTrue() -> b
+    74:74:boolean isBoolean() -> e
+    79:79:boolean asBoolean() -> f
+    84:94:boolean equals(java.lang.Object) -> equals
+com.eclipsesource.json.JsonNumber -> org.crossmobile.build.e:
+    java.lang.String string -> d
+    32:37:void <init>(java.lang.String) -> <init>
+    41:41:java.lang.String toString() -> toString
+    46:47:void write(com.eclipsesource.json.JsonWriter) -> a
+    56:56:int asInt() -> g
+    61:61:long asLong() -> h
+    66:66:float asFloat() -> i
+    71:71:double asDouble() -> j
+    76:76:int hashCode() -> hashCode
+    81:91:boolean equals(java.lang.Object) -> equals
+com.eclipsesource.json.JsonObject -> org.crossmobile.build.f:
+    java.util.List names -> d
+    java.util.List values -> e
+    com.eclipsesource.json.JsonObject$HashIndexTable table -> f
+    82:86:void <init>() -> <init>
+    305:306:com.eclipsesource.json.JsonObject add(java.lang.String,java.lang.String) -> a
+    328:337:com.eclipsesource.json.JsonObject add(java.lang.String,com.eclipsesource.json.JsonValue) -> a
+    557:561:com.eclipsesource.json.JsonValue get(java.lang.String) -> a
+    655:656:boolean getBoolean(java.lang.String,boolean) -> a
+    673:674:java.lang.String getString(java.lang.String,java.lang.String) -> b
+    683:683:int size() -> c_
+    703:703:java.util.List names() -> d_
+    713:715:java.util.Iterator iterator() -> iterator
+    736:751:void write(com.eclipsesource.json.JsonWriter) -> a
+    755:755:boolean isObject() -> m
+    760:760:com.eclipsesource.json.JsonObject asObject() -> n
+    765:768:int hashCode() -> hashCode
+    773:783:boolean equals(java.lang.Object) -> equals
+    787:791:int indexOf(java.lang.String) -> b
+com.eclipsesource.json.JsonObject$1 -> org.crossmobile.build.f$1:
+    java.util.Iterator val$namesIterator -> a
+    java.util.Iterator val$valuesIterator -> b
+    com.eclipsesource.json.JsonObject this$0 -> c
+    715:715:void <init>(com.eclipsesource.json.JsonObject,java.util.Iterator,java.util.Iterator) -> <init>
+    718:718:boolean hasNext() -> hasNext
+    722:724:com.eclipsesource.json.JsonObject$Member next() -> a
+    728:728:void remove() -> remove
+    715:715:java.lang.Object next() -> next
+com.eclipsesource.json.JsonObject$HashIndexTable -> org.crossmobile.build.f$a:
+    byte[] hashTable -> a
+    880:883:void <init>() -> <init>
+    890:897:void add(java.lang.String,int) -> a
+    910:912:int get(java.lang.Object) -> a
+    916:916:int hashSlotFor(java.lang.Object) -> b
+com.eclipsesource.json.JsonObject$Member -> org.crossmobile.build.f$b:
+    java.lang.String name -> a
+    com.eclipsesource.json.JsonValue value -> b
+    817:820:void <init>(java.lang.String,com.eclipsesource.json.JsonValue) -> <init>
+    828:828:java.lang.String getName() -> a
+    837:837:com.eclipsesource.json.JsonValue getValue() -> b
+    842:845:int hashCode() -> hashCode
+    863:873:boolean equals(java.lang.Object) -> equals
+com.eclipsesource.json.JsonParser -> org.crossmobile.build.g:
+    com.eclipsesource.json.JsonHandler handler -> a
+    java.io.Reader reader -> b
+    char[] buffer -> c
+    int bufferOffset -> d
+    int index -> e
+    int fill -> f
+    int line -> g
+    int lineOffset -> h
+    int current -> i
+    java.lang.StringBuilder captureBuffer -> j
+    int captureStart -> k
+    int nestingLevel -> l
+    68:74:void <init>(com.eclipsesource.json.JsonHandler) -> <init>
+    86:96:void parse(java.lang.String) -> a
+    135:157:void parse(java.io.Reader,int) -> a
+    160:195:void readValue() -> b
+    198:221:void readArray() -> c
+    224:255:void readObject() -> d
+    258:261:java.lang.String readName() -> e
+    265:271:void readNull() -> f
+    274:280:void readTrue() -> g
+    283:290:void readFalse() -> h
+    293:296:void readRequiredChar(char) -> a
+    299:301:void readString() -> i
+    304:319:java.lang.String readStringInternal() -> j
+    323:360:void readEscape() -> k
+    363:377:void readNumber() -> l
+    380:388:boolean readFraction() -> m
+    392:403:boolean readExponent() -> n
+    407:411:boolean readChar(char) -> b
+    415:419:boolean readDigit() -> o
+    423:426:void skipWhiteSpace() -> p
+    429:448:void read() -> q
+    451:455:void startCapture() -> r
+    458:461:void pauseCapture() -> s
+    464:473:java.lang.String endCapture() -> t
+    477:479:com.eclipsesource.json.Location getLocation() -> a
+    483:486:com.eclipsesource.json.ParseException expected(java.lang.String) -> b
+    490:490:com.eclipsesource.json.ParseException error(java.lang.String) -> c
+    494:494:boolean isWhiteSpace() -> u
+    498:498:boolean isDigit() -> v
+    502:502:boolean isHexDigit() -> w
+    508:508:boolean isEndOfText() -> x
+com.eclipsesource.json.JsonString -> org.crossmobile.build.h:
+    java.lang.String string -> d
+    32:37:void <init>(java.lang.String) -> <init>
+    41:42:void write(com.eclipsesource.json.JsonWriter) -> a
+    46:46:boolean isString() -> k
+    51:51:java.lang.String asString() -> l
+    56:56:int hashCode() -> hashCode
+    61:71:boolean equals(java.lang.Object) -> equals
+com.eclipsesource.json.JsonValue -> org.crossmobile.build.i:
+    com.eclipsesource.json.JsonValue TRUE -> a
+    com.eclipsesource.json.JsonValue FALSE -> b
+    com.eclipsesource.json.JsonValue NULL -> c
+    87:89:void <init>() -> <init>
+    213:213:boolean isObject() -> m
+    223:223:boolean isArray() -> c
+    241:241:boolean isString() -> k
+    251:251:boolean isBoolean() -> e
+    260:260:boolean isTrue() -> b
+    278:278:boolean isNull() -> a
+    290:290:com.eclipsesource.json.JsonObject asObject() -> n
+    302:302:com.eclipsesource.json.JsonArray asArray() -> d
+    321:321:int asInt() -> g
+    340:340:long asLong() -> h
+    356:356:float asFloat() -> i
+    372:372:double asDouble() -> j
+    384:384:java.lang.String asString() -> l
+    396:396:boolean asBoolean() -> f
+    429:438:void writeTo(java.io.Writer,com.eclipsesource.json.WriterConfig) -> a
+    449:449:java.lang.String toString() -> toString
+    460:467:java.lang.String toString(com.eclipsesource.json.WriterConfig) -> a
+    485:485:boolean equals(java.lang.Object) -> equals
+    490:490:int hashCode() -> hashCode
+    void write(com.eclipsesource.json.JsonWriter) -> a
+    71:85:void <clinit>() -> <clinit>
+com.eclipsesource.json.JsonWriter -> org.crossmobile.build.j:
+    char[] QUOT_CHARS -> b
+    char[] BS_CHARS -> c
+    char[] LF_CHARS -> d
+    char[] CR_CHARS -> e
+    char[] TAB_CHARS -> f
+    char[] UNICODE_2028_CHARS -> g
+    char[] UNICODE_2029_CHARS -> h
+    char[] HEX_DIGITS -> i
+    java.io.Writer writer -> a
+    46:48:void <init>(java.io.Writer) -> <init>
+    51:52:void writeLiteral(java.lang.String) -> a
+    55:56:void writeNumber(java.lang.String) -> b
+    59:62:void writeString(java.lang.String) -> c
+    65:66:void writeArrayOpen() -> a
+    69:70:void writeArrayClose() -> b
+    73:74:void writeArraySeparator() -> c
+    77:78:void writeObjectOpen() -> d
+    81:82:void writeObjectClose() -> e
+    85:88:void writeMemberName(java.lang.String) -> d
+    91:92:void writeMemberSeparator() -> f
+    95:96:void writeObjectSeparator() -> g
+    99:110:void writeJsonString(java.lang.String) -> e
+    113:142:char[] getReplacementChars(char) -> a
+    32:41:void <clinit>() -> <clinit>
+com.eclipsesource.json.Location -> org.crossmobile.build.k:
+    int offset -> a
+    int line -> b
+    int column -> c
+    45:49:void <init>(int,int,int) -> <init>
+    53:53:java.lang.String toString() -> toString
+    58:58:int hashCode() -> hashCode
+    63:73:boolean equals(java.lang.Object) -> equals
+com.eclipsesource.json.ParseException -> org.crossmobile.build.l:
+    com.eclipsesource.json.Location location -> a
+    33:35:void <init>(java.lang.String,com.eclipsesource.json.Location) -> <init>
+com.eclipsesource.json.PrettyPrint -> org.crossmobile.build.m:
+    char[] indentChars -> c
+    41:43:void <init>(char[]) -> <init>
+    62:67:com.eclipsesource.json.PrettyPrint indentWithSpaces(int) -> a
+    81:81:com.eclipsesource.json.JsonWriter createWriter(java.io.Writer) -> a
+com.eclipsesource.json.PrettyPrint$1 -> org.crossmobile.build.m$1:
+com.eclipsesource.json.PrettyPrint$PrettyPrintWriter -> org.crossmobile.build.m$a:
+    char[] indentChars -> b
+    int indent -> c
+    90:92:void <init>(java.io.Writer,char[]) -> <init>
+    96:99:void writeArrayOpen() -> a
+    103:106:void writeArrayClose() -> b
+    110:114:void writeArraySeparator() -> c
+    118:121:void writeObjectOpen() -> d
+    125:128:void writeObjectClose() -> e
+    132:134:void writeMemberSeparator() -> f
+    138:142:void writeObjectSeparator() -> g
+    145:152:boolean writeNewLine() -> h
+    84:84:void <init>(java.io.Writer,char[],com.eclipsesource.json.PrettyPrint$1) -> <init>
+com.eclipsesource.json.WriterConfig -> org.crossmobile.build.n:
+    com.eclipsesource.json.WriterConfig MINIMAL -> a
+    com.eclipsesource.json.WriterConfig PRETTY_PRINT -> b
+    30:30:void <init>() -> <init>
+    com.eclipsesource.json.JsonWriter createWriter(java.io.Writer) -> a
+    35:46:void <clinit>() -> <clinit>
+com.eclipsesource.json.WriterConfig$1 -> org.crossmobile.build.n$1:
+    35:35:void <init>() -> <init>
+    38:38:com.eclipsesource.json.JsonWriter createWriter(java.io.Writer) -> a
+com.eclipsesource.json.WritingBuffer -> org.crossmobile.build.o:
+    java.io.Writer writer -> a
+    char[] buffer -> b
+    int fill -> c
+    38:47:void <init>(java.io.Writer,int) -> <init>
+    51:55:void write(int) -> write
+    59:68:void write(char[],int,int) -> write
+    72:81:void write(java.lang.String,int,int) -> write
+    88:90:void flush() -> flush
+    97:97:void close() -> close
+com.panayotis.loadlib.LoadLib -> org.crossmobile.build.p:
+    28:28:void <init>() -> <init>
+    31:31:boolean load(java.lang.String) -> a
+    56:73:boolean load(java.lang.String,java.io.File) -> a
+    80:85:java.io.File tempLibLoc(java.lang.String) -> b
+    89:89:java.lang.String geFileName(java.lang.String) -> c
+    93:116:boolean dumpLib(java.io.File,java.lang.String) -> a
+org.crossmobile.NativeHandler -> org.crossmobile.NativeHandler:
+    boolean isLoaded -> a
+    31:31:long getPid(long) -> a
+    35:37:void killPid(long) -> b
+    void kill(long) -> kill
+    long handlerToPid(long) -> handlerToPid
+    25:28:void <clinit>() -> <clinit>
+org.crossmobile.Version -> org.crossmobile.a:
+    java.lang.String VERSION -> a
+    int RELEASE -> b
+    23:23:void <init>() -> <init>
+    29:41:void <clinit>() -> <clinit>
+org.crossmobile.bridge.ann.CMLibParam -> org.crossmobile.build.q:
+org.crossmobile.bridge.ann.CMLibParam$ParamContext -> org.crossmobile.build.q$a:
+    org.crossmobile.bridge.ann.CMLibParam$ParamContext Regular -> a
+    org.crossmobile.bridge.ann.CMLibParam$ParamContext Android -> b
+    org.crossmobile.bridge.ann.CMLibParam$ParamContext XcodeTarget -> c
+    org.crossmobile.bridge.ann.CMLibParam$ParamContext[] $VALUES -> d
+    61:61:org.crossmobile.bridge.ann.CMLibParam$ParamContext[] values() -> values
+    61:61:org.crossmobile.bridge.ann.CMLibParam$ParamContext valueOf(java.lang.String) -> valueOf
+    61:61:void <init>(java.lang.String,int) -> <init>
+    65:70:org.crossmobile.bridge.ann.CMLibParam$ParamContext retrieve(java.lang.String) -> a
+    61:62:void <clinit>() -> <clinit>
+org.crossmobile.bridge.system.BaseUtils -> org.crossmobile.build.r:
+    24:24:java.lang.Object throwException(java.lang.Throwable) -> a
+    28:28:java.lang.Object throwExceptionImpl(java.lang.Throwable) -> b
+org.crossmobile.bridge.system.JsonHelper -> org.crossmobile.build.s:
+    29:29:java.lang.Object decode(java.lang.String) -> a
+    140:163:java.lang.Object toCollection(com.eclipsesource.json.JsonValue) -> b
+    26:26:java.lang.Object access$100(com.eclipsesource.json.JsonValue) -> a
+org.crossmobile.bridge.system.JsonHelper$1 -> org.crossmobile.build.s$1:
+org.crossmobile.bridge.system.JsonHelper$JList -> org.crossmobile.build.s$a:
+    com.eclipsesource.json.JsonArray array -> a
+    115:117:void <init>(com.eclipsesource.json.JsonArray) -> <init>
+    125:125:java.lang.Object get(int) -> get
+    130:130:int size() -> size
+    111:111:void <init>(com.eclipsesource.json.JsonArray,org.crossmobile.bridge.system.JsonHelper$1) -> <init>
+org.crossmobile.bridge.system.JsonHelper$JMap -> org.crossmobile.build.s$b:
+    com.eclipsesource.json.JsonObject obj -> a
+    47:49:void <init>(com.eclipsesource.json.JsonObject) -> <init>
+    57:57:java.util.Set entrySet() -> entrySet
+    43:43:void <init>(com.eclipsesource.json.JsonObject,org.crossmobile.bridge.system.JsonHelper$1) -> <init>
+org.crossmobile.bridge.system.JsonHelper$JMap$JSet -> org.crossmobile.build.s$b$a:
+    com.eclipsesource.json.JsonObject obj -> a
+    68:70:void <init>(com.eclipsesource.json.JsonObject) -> <init>
+    74:74:java.util.Iterator iterator() -> iterator
+    79:79:int size() -> size
+org.crossmobile.bridge.system.JsonHelper$JMap$JSet$JSONIterator -> org.crossmobile.build.s$b$a$a:
+    com.eclipsesource.json.JsonObject obj -> a
+    java.util.Iterator it -> b
+    87:90:void <init>(com.eclipsesource.json.JsonObject) -> <init>
+    94:94:boolean hasNext() -> hasNext
+    99:100:void remove() -> remove
+    104:105:java.util.Map$Entry next() -> a
+    82:82:java.lang.Object next() -> next
+    82:82:void <init>(com.eclipsesource.json.JsonObject,org.crossmobile.bridge.system.JsonHelper$1) -> <init>
+org.crossmobile.bridge.system.Pair -> org.crossmobile.build.t:
+    java.lang.Object a -> a
+    java.lang.Object b -> b
+    22:25:void <init>(java.lang.Object,java.lang.Object) -> <init>
+    28:28:org.crossmobile.bridge.system.Pair pair(java.lang.Object,java.lang.Object) -> a
+org.crossmobile.build.CrossMobileMojo -> org.crossmobile.build.CrossMobileMojo:
+    org.apache.maven.settings.Settings settings -> settings
+    40:40:void <init>() -> <init>
+    48:80:void exec() -> exec
+    java.lang.Runnable initCoreWorker() -> initCoreWorker
+    85:88:boolean isRelease(java.util.List) -> a
+    92:98:java.util.Properties loadProperties(org.crossmobile.utils.ParamSet) -> a
+    103:110:org.crossmobile.utils.ParamSet getParamSet(org.crossmobile.utils.plugin.DependencyItem) -> a
+    boolean shouldAutomaticallyUpdateLicense() -> shouldAutomaticallyUpdateLicense
+    71:71:java.io.File lambda$exec$1() -> a
+    70:70:java.io.File lambda$exec$0() -> b
+org.crossmobile.build.PostCompileMojo -> org.crossmobile.build.PostCompileMojo:
+    24:24:void <init>() -> <init>
+    28:28:java.lang.Runnable initCoreWorker() -> initCoreWorker
+    33:33:boolean shouldAutomaticallyUpdateLicense() -> shouldAutomaticallyUpdateLicense
+org.crossmobile.build.ResourcesMojo -> org.crossmobile.build.ResourcesMojo:
+    24:24:void <init>() -> <init>
+    28:28:java.lang.Runnable initCoreWorker() -> initCoreWorker
+    33:33:boolean shouldAutomaticallyUpdateLicense() -> shouldAutomaticallyUpdateLicense
+org.crossmobile.build.antlr.LProjBaseListener -> org.crossmobile.build.u:
+    13:13:void <init>() -> <init>
+    21:21:void enterLproj(org.crossmobile.build.antlr.LProjParser$LprojContext) -> a
+    30:30:void exitLproj(org.crossmobile.build.antlr.LProjParser$LprojContext) -> b
+    39:39:void enterElements(org.crossmobile.build.antlr.LProjParser$ElementsContext) -> a
+    48:48:void exitElements(org.crossmobile.build.antlr.LProjParser$ElementsContext) -> b
+    57:57:void enterPair(org.crossmobile.build.antlr.LProjParser$PairContext) -> a
+    66:66:void exitPair(org.crossmobile.build.antlr.LProjParser$PairContext) -> b
+    75:75:void enterEveryRule(org.antlr.v4.runtime.ParserRuleContext) -> enterEveryRule
+    84:84:void exitEveryRule(org.antlr.v4.runtime.ParserRuleContext) -> exitEveryRule
+    93:93:void visitTerminal(org.antlr.v4.runtime.tree.TerminalNode) -> visitTerminal
+    102:102:void visitErrorNode(org.antlr.v4.runtime.tree.ErrorNode) -> visitErrorNode
+org.crossmobile.build.antlr.LProjLexer -> org.crossmobile.build.v:
+    org.antlr.v4.runtime.dfa.DFA[] _decisionToDFA -> a
+    org.antlr.v4.runtime.atn.PredictionContextCache _sharedContextCache -> b
+    java.lang.String[] modeNames -> c
+    java.lang.String[] ruleNames -> d
+    java.lang.String[] _LITERAL_NAMES -> h
+    java.lang.String[] _SYMBOLIC_NAMES -> i
+    org.antlr.v4.runtime.Vocabulary VOCABULARY -> e
+    java.lang.String[] tokenNames -> f
+    org.antlr.v4.runtime.atn.ATN _ATN -> g
+    62:62:java.lang.String[] getTokenNames() -> getTokenNames
+    68:68:org.antlr.v4.runtime.Vocabulary getVocabulary() -> getVocabulary
+    73:75:void <init>(org.antlr.v4.runtime.CharStream) -> <init>
+    79:79:java.lang.String getGrammarFileName() -> getGrammarFileName
+    84:84:java.lang.String[] getRuleNames() -> getRuleNames
+    89:89:java.lang.String getSerializedATN() -> getSerializedATN
+    94:94:java.lang.String[] getModeNames() -> getModeNames
+    99:99:org.antlr.v4.runtime.atn.ATN getATN() -> getATN
+    14:142:void <clinit>() -> <clinit>
+org.crossmobile.build.antlr.LProjListener -> org.crossmobile.build.w:
+    void enterLproj(org.crossmobile.build.antlr.LProjParser$LprojContext) -> a
+    void exitLproj(org.crossmobile.build.antlr.LProjParser$LprojContext) -> b
+    void enterElements(org.crossmobile.build.antlr.LProjParser$ElementsContext) -> a
+    void exitElements(org.crossmobile.build.antlr.LProjParser$ElementsContext) -> b
+    void enterPair(org.crossmobile.build.antlr.LProjParser$PairContext) -> a
+    void exitPair(org.crossmobile.build.antlr.LProjParser$PairContext) -> b
+org.crossmobile.build.antlr.LProjParser -> org.crossmobile.build.x:
+    org.antlr.v4.runtime.dfa.DFA[] _decisionToDFA -> a
+    org.antlr.v4.runtime.atn.PredictionContextCache _sharedContextCache -> b
+    java.lang.String[] ruleNames -> c
+    java.lang.String[] _LITERAL_NAMES -> g
+    java.lang.String[] _SYMBOLIC_NAMES -> h
+    org.antlr.v4.runtime.Vocabulary VOCABULARY -> d
+    java.lang.String[] tokenNames -> e
+    org.antlr.v4.runtime.atn.ATN _ATN -> f
+    63:63:java.lang.String[] getTokenNames() -> getTokenNames
+    69:69:org.antlr.v4.runtime.Vocabulary getVocabulary() -> getVocabulary
+    74:74:java.lang.String getGrammarFileName() -> getGrammarFileName
+    79:79:java.lang.String[] getRuleNames() -> getRuleNames
+    84:84:java.lang.String getSerializedATN() -> getSerializedATN
+    89:89:org.antlr.v4.runtime.atn.ATN getATN() -> getATN
+    93:95:void <init>(org.antlr.v4.runtime.TokenStream) -> <init>
+    123:138:org.crossmobile.build.antlr.LProjParser$LprojContext lproj() -> a
+    171:199:org.crossmobile.build.antlr.LProjParser$ElementsContext elements() -> b
+    235:256:org.crossmobile.build.antlr.LProjParser$PairContext pair() -> c
+    18:274:void <clinit>() -> <clinit>
+org.crossmobile.build.antlr.LProjParser$ElementsContext -> org.crossmobile.build.x$a:
+    151:152:void <init>(org.antlr.v4.runtime.ParserRuleContext,int) -> <init>
+    156:156:int getRuleIndex() -> getRuleIndex
+    161:162:void enterRule(org.antlr.v4.runtime.tree.ParseTreeListener) -> enterRule
+    166:167:void exitRule(org.antlr.v4.runtime.tree.ParseTreeListener) -> exitRule
+org.crossmobile.build.antlr.LProjParser$LprojContext -> org.crossmobile.build.x$b:
+    103:104:void <init>(org.antlr.v4.runtime.ParserRuleContext,int) -> <init>
+    108:108:int getRuleIndex() -> getRuleIndex
+    113:114:void enterRule(org.antlr.v4.runtime.tree.ParseTreeListener) -> enterRule
+    118:119:void exitRule(org.antlr.v4.runtime.tree.ParseTreeListener) -> exitRule
+org.crossmobile.build.antlr.LProjParser$PairContext -> org.crossmobile.build.x$c:
+    org.antlr.v4.runtime.Token key -> a
+    org.antlr.v4.runtime.Token value -> b
+    215:216:void <init>(org.antlr.v4.runtime.ParserRuleContext,int) -> <init>
+    220:220:int getRuleIndex() -> getRuleIndex
+    225:226:void enterRule(org.antlr.v4.runtime.tree.ParseTreeListener) -> enterRule
+    230:231:void exitRule(org.antlr.v4.runtime.tree.ParseTreeListener) -> exitRule
+org.crossmobile.build.ib.AnnotationHelpers -> org.crossmobile.build.y:
+    34:63:java.util.Map getAnnotations(java.io.File) -> a
+    67:80:void parseLine(org.crossmobile.build.ib.AnnotationHelpers$CodeAnnotations,java.lang.String,java.lang.String) -> a
+    83:89:java.lang.String[] validate(java.lang.String,int) -> a
+    56:56:void lambda$getAnnotations$0(org.crossmobile.build.ib.AnnotationHelpers$CodeAnnotations,java.lang.String,java.lang.String) -> b
+org.crossmobile.build.ib.AnnotationHelpers$CodeAnnotations -> org.crossmobile.build.y$a:
+    java.util.Set actions -> a
+    java.util.Map outlets -> b
+    java.util.Map nativeCode -> c
+    92:96:void <init>() -> <init>
+    99:99:java.lang.Iterable getActions() -> a
+    103:103:java.lang.Iterable getOutlets() -> b
+    107:107:java.lang.String getOutletType(java.lang.String) -> a
+    111:111:java.lang.Iterable getNatives() -> c
+    115:115:org.crossmobile.build.ib.AnnotationHelpers$NativeCode getNativeCode(java.lang.String) -> b
+    92:92:java.util.Set access$000(org.crossmobile.build.ib.AnnotationHelpers$CodeAnnotations) -> a
+    92:92:java.util.Map access$100(org.crossmobile.build.ib.AnnotationHelpers$CodeAnnotations) -> b
+    92:92:java.util.Map access$200(org.crossmobile.build.ib.AnnotationHelpers$CodeAnnotations) -> c
+org.crossmobile.build.ib.AnnotationHelpers$NativeCode -> org.crossmobile.build.y$b:
+    java.lang.String signature -> a
+    java.lang.String body -> b
+    124:127:void <init>(java.lang.String,java.lang.String) -> <init>
+org.crossmobile.build.ib.Element -> org.crossmobile.build.z:
+    java.util.Map supportedAttributes -> a
+    java.util.Map supportedNamed -> b
+    java.util.List supportedUnnamed -> c
+    java.util.Map attributes -> d
+    java.util.Map localizedAttributes -> e
+    java.util.Map named -> f
+    java.util.List unnamed -> g
+    org.crossmobile.build.ib.i18n.IBParserMeta meta -> h
+    39:51:void <init>() -> <init>
+    39:55:void <init>(org.crossmobile.build.ib.i18n.IBParserMeta) -> <init>
+    58:58:org.crossmobile.build.ib.i18n.IBParserMeta getMeta() -> a
+    62:63:void addSupportedAttribute(java.lang.String,org.crossmobile.build.ib.Value) -> a
+    66:67:void addSupportedChild(org.crossmobile.build.ib.Element) -> a
+    70:74:void addSupportedChild(java.lang.String,org.crossmobile.build.ib.Element) -> a
+    void addSupported() -> b
+    java.lang.String toCode() -> c
+    81:81:java.lang.String capitalize(java.lang.String) -> a
+    86:86:org.crossmobile.build.ib.Element model() -> e
+    90:99:void setAttribute(java.lang.String,java.lang.String) -> a
+    102:129:org.crossmobile.build.ib.Element addChild(java.lang.String,java.lang.String,org.crossmobile.build.ib.i18n.IBParserMeta) -> a
+    134:134:java.lang.String attr(java.lang.String) -> b
+    138:138:java.lang.String attr(java.lang.String,java.lang.String) -> b
+    142:142:java.lang.String attrName(java.lang.String) -> c
+    146:152:java.lang.String attr(java.lang.String,java.lang.String,boolean) -> a
+    156:161:java.util.Collection parts(org.crossmobile.build.ib.Element) -> b
+    165:170:java.util.Collection namedParts(org.crossmobile.build.ib.Element) -> c
+    174:174:org.crossmobile.build.ib.Element item(java.lang.String) -> d
+    178:179:java.lang.String value(java.lang.String) -> e
+    183:183:void performChecks() -> d
+    186:210:void applyLocalizations(org.crossmobile.build.ib.Element) -> d
+org.crossmobile.build.ib.Elements -> org.crossmobile.build.aa:
+    java.util.Map elementModels -> aF
+    java.util.Map elementNames -> aG
+    org.crossmobile.build.ib.helper.Action Action -> a
+    org.crossmobile.build.ib.visual.ActivityIndicatorView ActivityIndicatorView -> b
+    org.crossmobile.build.ib.visual.AdBannerView AdBannerView -> c
+    org.crossmobile.build.ib.helper.AutoresizingMask AutoresizingMask -> d
+    org.crossmobile.build.ib.visual.BarButtonItem BarButtonItem -> e
+    org.crossmobile.build.ib.visual.Button Button -> f
+    org.crossmobile.build.ib.helper.Cells Cells -> g
+    org.crossmobile.build.ib.helper.Color Color -> h
+    org.crossmobile.build.ib.visual.CollectionViewController CollectionViewController -> i
+    org.crossmobile.build.ib.helper.Connections Connections -> j
+    org.crossmobile.build.ib.helper.Constraints Constraints -> k
+    org.crossmobile.build.ib.helper.Constraint Constraint -> l
+    org.crossmobile.build.ib.visual.Control Control -> m
+    org.crossmobile.build.ib.helper.CustomObject CustomObject -> n
+    org.crossmobile.build.ib.helper.DataDetectorType DataDetectorType -> o
+    org.crossmobile.build.ib.helper.Date Date -> p
+    org.crossmobile.build.ib.visual.DatePicker DatePicker -> q
+    org.crossmobile.build.ib.helper.FontDescription FontDescription -> r
+    org.crossmobile.build.ib.visual.GestureRecognizer GestureRecognizer -> s
+    org.crossmobile.build.ib.visual.GlkViewController GlkViewController -> t
+    org.crossmobile.build.ib.visual.ImageView ImageView -> u
+    org.crossmobile.build.ib.helper.Inset Inset -> v
+    org.crossmobile.build.ib.helper.Items Items -> w
+    org.crossmobile.build.ib.visual.Label Label -> x
+    org.crossmobile.build.ib.helper.LayoutGuide ViewLayoutGuide -> y
+    org.crossmobile.build.ib.helper.LayoutGuides LayoutGuides -> z
+    org.crossmobile.build.ib.visual.MapView MapView -> A
+    org.crossmobile.build.ib.visual.NavigationBar NavigationBar -> B
+    org.crossmobile.build.ib.visual.NavigationController NavigationController -> C
+    org.crossmobile.build.ib.visual.NavigationItem NavigationItem -> D
+    org.crossmobile.build.ib.helper.Nil Nil -> E
+    org.crossmobile.build.ib.helper.Objects Objects -> F
+    org.crossmobile.build.ib.helper.OffsetWrapper OffsetWrapper -> G
+    org.crossmobile.build.ib.helper.Outlet Outlet -> H
+    org.crossmobile.build.ib.visual.PageControl PageControl -> I
+    org.crossmobile.build.ib.visual.PageViewController PageViewController -> J
+    org.crossmobile.build.ib.visual.PanGestureRecognizer PanGestureRecognizer -> K
+    org.crossmobile.build.ib.visual.PickerView PickerView -> L
+    org.crossmobile.build.ib.visual.PinchGestureRecognizer PinchGestureRecognizer -> M
+    org.crossmobile.build.ib.helper.Placeholder Placeholder -> N
+    org.crossmobile.build.ib.visual.PongPressGestureRecognizer PongPressGestureRecognizer -> O
+    org.crossmobile.build.ib.visual.ProgressView ProgressView -> P
+    org.crossmobile.build.ib.helper.Prototypes Prototypes -> Q
+    org.crossmobile.build.ib.helper.Rect Rect -> R
+    org.crossmobile.build.ib.visual.RotationGestureRecognizer RotationGestureRecognizer -> S
+    org.crossmobile.build.ib.visual.ScrollView ScrollView -> T
+    org.crossmobile.build.ib.visual.SearchBar SearchBar -> U
+    org.crossmobile.build.ib.helper.Sections Sections -> V
+    org.crossmobile.build.ib.helper.Segment Segment -> W
+    org.crossmobile.build.ib.visual.SegmentedControl SegmentedControl -> X
+    org.crossmobile.build.ib.helper.Segments Segments -> Y
+    org.crossmobile.build.ib.helper.Segue Segue -> Z
+    org.crossmobile.build.ib.visual.SwipeGestureRecognizer SwipeGestureRecognizer -> aa
+    org.crossmobile.build.ib.helper.Size Size -> ab
+    org.crossmobile.build.ib.visual.Slider Slider -> ac
+    org.crossmobile.build.ib.visual.StackView StackView -> ad
+    org.crossmobile.build.ib.helper.State State -> ae
+    org.crossmobile.build.ib.visual.Stepper Stepper -> af
+    org.crossmobile.build.ib.helper.Subviews Subviews -> ag
+    org.crossmobile.build.ib.visual.Switch Switch -> ah
+    org.crossmobile.build.ib.visual.TabBar TabBar -> ai
+    org.crossmobile.build.ib.visual.TabBarController TabBarController -> aj
+    org.crossmobile.build.ib.visual.TabBarItem TabBarItem -> ak
+    org.crossmobile.build.ib.visual.TableView TableView -> al
+    org.crossmobile.build.ib.visual.TableViewCell TableViewCell -> am
+    org.crossmobile.build.ib.visual.TableViewCellContentView TableViewCellContentView -> an
+    org.crossmobile.build.ib.visual.TableViewController TableViewController -> ao
+    org.crossmobile.build.ib.helper.TableViewSection TableViewSection -> ap
+    org.crossmobile.build.ib.visual.TapGestureRecognizer TapGestureRecognizer -> aq
+    org.crossmobile.build.ib.helper.TextAttributes TextAttributes -> ar
+    org.crossmobile.build.ib.visual.TextField TextField -> as
+    org.crossmobile.build.ib.helper.TextInputTraits TextInputTraits -> at
+    org.crossmobile.build.ib.visual.TextView TextView -> au
+    org.crossmobile.build.ib.helper.TimeZone TimeZone -> av
+    org.crossmobile.build.ib.visual.Toolbar Toolbar -> aw
+    org.crossmobile.build.ib.visual.View View -> ax
+    org.crossmobile.build.ib.visual.ViewController ViewController -> ay
+    org.crossmobile.build.ib.helper.ViewControllerLayoutGuide ViewControllerLayoutGuide -> az
+    org.crossmobile.build.ib.visual.WebView WebView -> aA
+    org.crossmobile.build.ib.visual.Window Window -> aB
+    org.crossmobile.build.ib.helper.XibClassEnd XibClassEnd -> aC
+    org.crossmobile.build.ib.helper.XibClassStart XibClassStart -> aD
+    org.crossmobile.build.ib.helper.XIBList XIBList -> aE
+    java.util.Set ignoreList -> aH
+    29:29:void <init>() -> <init>
+    133:135:org.crossmobile.build.ib.Element dec(java.lang.String,org.crossmobile.build.ib.Element) -> a
+    139:139:java.lang.String getName(org.crossmobile.build.ib.Element) -> a
+    147:152:org.crossmobile.build.ib.Element getModel(java.lang.String,java.lang.String) -> a
+    31:130:void <clinit>() -> <clinit>
+org.crossmobile.build.ib.Value -> org.crossmobile.build.ab:
+    21:21:void <init>() -> <init>
+    java.lang.String getPlainValue() -> a
+    26:26:java.lang.String getValue() -> b
+    org.crossmobile.build.ib.Value newInstance(java.lang.String) -> a
+org.crossmobile.build.ib.Value$Boolean -> org.crossmobile.build.ab$a:
+    boolean value -> a
+    36:37:void <init>() -> <init>
+    39:41:void <init>(boolean) -> <init>
+    45:45:org.crossmobile.build.ib.Value newInstance(java.lang.String) -> a
+    50:50:java.lang.String getPlainValue() -> a
+org.crossmobile.build.ib.Value$Double -> org.crossmobile.build.ab$b:
+    double value -> a
+    89:90:void <init>() -> <init>
+    92:94:void <init>(double) -> <init>
+    98:98:org.crossmobile.build.ib.Value newInstance(java.lang.String) -> a
+    103:103:java.lang.String getPlainValue() -> a
+org.crossmobile.build.ib.Value$Enum -> org.crossmobile.build.ab$c:
+    java.lang.String value -> a
+    264:266:void <init>() -> <init>
+    268:270:void <init>(java.lang.String) -> <init>
+    274:274:org.crossmobile.build.ib.Value newInstance(java.lang.String) -> a
+    279:279:java.lang.String getPlainValue() -> a
+    284:284:java.lang.String getValue() -> b
+    288:288:java.lang.String capitalize(java.lang.String) -> b
+org.crossmobile.build.ib.Value$Float -> org.crossmobile.build.ab$d:
+    float value -> a
+    60:61:void <init>() -> <init>
+    63:65:void <init>(float) -> <init>
+    69:69:org.crossmobile.build.ib.Value newInstance(java.lang.String) -> a
+    74:74:java.lang.String getPlainValue() -> a
+    79:79:java.lang.String getValue() -> b
+org.crossmobile.build.ib.Value$Integer -> org.crossmobile.build.ab$e:
+    int value -> a
+    112:114:void <init>() -> <init>
+    116:118:void <init>(int) -> <init>
+    122:122:org.crossmobile.build.ib.Value newInstance(java.lang.String) -> a
+    127:127:java.lang.String getPlainValue() -> a
+org.crossmobile.build.ib.Value$LocalizedString -> org.crossmobile.build.ab$f:
+    java.lang.String key -> a
+    java.lang.String table -> b
+    165:166:void <init>() -> <init>
+    169:170:void <init>(java.lang.String) -> <init>
+    174:174:org.crossmobile.build.ib.Value newInstance(java.lang.String) -> a
+    178:180:void updateLocalized(java.lang.String,java.lang.String) -> a
+    184:186:java.lang.String getValue() -> b
+org.crossmobile.build.ib.Value$Method -> org.crossmobile.build.ab$g:
+    java.lang.String value -> a
+    194:196:void <init>() -> <init>
+    198:200:void <init>(java.lang.String) -> <init>
+    204:204:org.crossmobile.build.ib.Value newInstance(java.lang.String) -> a
+    209:209:java.lang.String getPlainValue() -> a
+    214:214:java.lang.String getValue() -> b
+org.crossmobile.build.ib.Value$Selections -> org.crossmobile.build.ab$h:
+    java.util.Map values -> a
+    int value -> b
+    228:229:void <init>(java.lang.String[]) -> <init>
+    231:234:void <init>(java.util.Map) -> <init>
+    236:239:void <init>(int) -> <init>
+    243:244:org.crossmobile.build.ib.Value newInstance(java.lang.String) -> a
+    249:249:java.lang.String getPlainValue() -> a
+    253:257:java.util.Map arraysToKeys(java.lang.String[],int[]) -> a
+org.crossmobile.build.ib.Value$String -> org.crossmobile.build.ab$i:
+    java.lang.String value -> a
+    136:138:void <init>() -> <init>
+    140:142:void <init>(java.lang.String) -> <init>
+    146:146:org.crossmobile.build.ib.Value newInstance(java.lang.String) -> a
+    151:151:java.lang.String getPlainValue() -> a
+    156:156:java.lang.String getValue() -> b
+org.crossmobile.build.ib.Values -> org.crossmobile.build.ac:
+    org.crossmobile.build.ib.Value Boolean -> a
+    org.crossmobile.build.ib.Value Float -> b
+    org.crossmobile.build.ib.Value Double -> c
+    org.crossmobile.build.ib.Value Integer -> d
+    org.crossmobile.build.ib.Value String -> e
+    org.crossmobile.build.ib.Value LocalizedString -> f
+    org.crossmobile.build.ib.Value Method -> g
+    org.crossmobile.build.ib.Value Enum -> h
+    20:27:void <clinit>() -> <clinit>
+org.crossmobile.build.ib.helper.Action -> org.crossmobile.build.ad:
+    20:20:void <init>() -> <init>
+    24:28:void addSupported() -> b
+    32:32:java.lang.String toCode() -> c
+    36:42:java.lang.String addTarget(java.lang.String) -> f
+    48:58:java.lang.String getAction(java.lang.String) -> g
+org.crossmobile.build.ib.helper.AutoresizingMask -> org.crossmobile.build.ae:
+    21:21:void <init>() -> <init>
+    25:32:void addSupported() -> b
+    36:50:java.lang.String toCode() -> c
+org.crossmobile.build.ib.helper.Cells -> org.crossmobile.build.af:
+    6:6:void <init>() -> <init>
+    10:11:void addSupported() -> b
+    14:19:java.lang.String constructor() -> e
+org.crossmobile.build.ib.helper.Color -> org.crossmobile.build.ag:
+    21:21:void <init>() -> <init>
+    25:34:void addSupported() -> b
+    38:45:java.lang.String toCode() -> c
+org.crossmobile.build.ib.helper.Connections -> org.crossmobile.build.ah:
+    21:21:void <init>() -> <init>
+    25:28:void addSupported() -> b
+    32:32:java.lang.String toCode() -> c
+    36:39:java.lang.String getOutlets(java.lang.String,java.lang.String) -> c
+    43:46:java.lang.String getActions(java.lang.String) -> f
+    50:53:java.lang.String getSegues(java.lang.String) -> g
+org.crossmobile.build.ib.helper.Constraint -> org.crossmobile.build.ai:
+    22:22:void <init>() -> <init>
+    26:38:void addSupported() -> b
+    41:67:java.lang.String toCode(java.lang.String) -> f
+    72:73:java.lang.String variableFromID(java.lang.String) -> g
+    79:79:java.lang.String toCode() -> c
+org.crossmobile.build.ib.helper.Constraints -> org.crossmobile.build.aj:
+    23:23:void <init>() -> <init>
+    27:29:void addSupported() -> b
+    33:36:java.lang.String toCode() -> c
+org.crossmobile.build.ib.helper.CustomObject -> org.crossmobile.build.ak:
+    18:18:void <init>() -> <init>
+org.crossmobile.build.ib.helper.DataDetectorType -> org.crossmobile.build.al:
+    20:20:void <init>() -> <init>
+    24:27:void addSupported() -> b
+org.crossmobile.build.ib.helper.Date -> org.crossmobile.build.am:
+    21:21:void <init>() -> <init>
+    25:26:void addSupported() -> b
+    30:30:java.lang.String toCode() -> c
+org.crossmobile.build.ib.helper.FontDescription -> org.crossmobile.build.an:
+    21:21:void <init>() -> <init>
+    25:31:void addSupported() -> b
+    35:40:java.lang.String toCode() -> c
+org.crossmobile.build.ib.helper.Inset -> org.crossmobile.build.ao:
+    21:21:void <init>() -> <init>
+    26:31:void addSupported() -> b
+    35:35:java.lang.String toCode() -> c
+org.crossmobile.build.ib.helper.Items -> org.crossmobile.build.ap:
+    20:20:void <init>() -> <init>
+    24:24:void addSupported() -> b
+    28:28:java.lang.String toCode() -> c
+org.crossmobile.build.ib.helper.LayoutGuide -> org.crossmobile.build.aq:
+    5:5:void <init>() -> <init>
+    9:11:void addSupported() -> b
+    15:15:java.lang.String toCode() -> c
+    21:21:java.lang.String variable() -> e
+    25:26:java.lang.String toCode(java.lang.String) -> f
+org.crossmobile.build.ib.helper.LayoutGuides -> org.crossmobile.build.ar:
+    8:8:void <init>() -> <init>
+    11:12:void addSupported() -> b
+    16:21:java.lang.String toCode() -> c
+org.crossmobile.build.ib.helper.Nil -> org.crossmobile.build.as:
+    20:20:void <init>() -> <init>
+    24:24:void addSupported() -> b
+    28:28:java.lang.String toCode() -> c
+org.crossmobile.build.ib.helper.Objects -> org.crossmobile.build.at:
+    java.lang.String SCENE_VC -> a
+    java.util.Map VCIDENT -> b
+    31:31:void <init>() -> <init>
+    44:62:void addSupported() -> b
+    65:69:java.lang.String filename() -> e
+    73:73:java.lang.Boolean filenameIsSet() -> f
+    78:110:java.lang.String toCode() -> c
+    115:125:void viewConstructorMethod(java.lang.StringBuilder,java.lang.StringBuilder,java.lang.StringBuilder,org.crossmobile.build.ib.visual.View) -> a
+    128:136:java.util.Collection subviews(org.crossmobile.build.ib.helper.Subviews) -> a
+    140:161:void viewControllerConstructorMethod(java.lang.StringBuilder,org.crossmobile.build.ib.visual.ViewController) -> a
+    164:168:void lateInitMethod(java.lang.StringBuilder,org.crossmobile.build.ib.visual.View) -> a
+    172:178:void classMethod(java.lang.StringBuilder,java.lang.StringBuilder,org.crossmobile.build.ib.helper.RealElement) -> a
+    181:190:void getterMethod(java.lang.StringBuilder,java.lang.StringBuilder,org.crossmobile.build.ib.helper.RealElement) -> b
+    193:200:void getNewMethod(java.lang.StringBuilder,java.lang.StringBuilder,org.crossmobile.build.ib.helper.RealElement) -> c
+    203:220:void initterMethod(java.lang.StringBuilder,java.lang.StringBuilder,org.crossmobile.build.ib.helper.Placeholder) -> a
+    223:224:void simpleDef(java.lang.StringBuilder,org.crossmobile.build.ib.helper.RealElement) -> a
+    227:229:void addVC(java.lang.String,java.lang.String) -> c
+    39:40:void <clinit>() -> <clinit>
+org.crossmobile.build.ib.helper.OffsetWrapper -> org.crossmobile.build.au:
+    21:21:void <init>() -> <init>
+    25:27:void addSupported() -> b
+    31:31:java.lang.String toCode() -> c
+org.crossmobile.build.ib.helper.Outlet -> org.crossmobile.build.av:
+    25:25:void <init>() -> <init>
+    29:32:void addSupported() -> b
+    36:36:java.lang.String toCode() -> c
+    41:46:void performChecks() -> d
+    49:57:java.lang.String getOutlet(java.lang.String,java.lang.String) -> c
+    62:69:void writeOUT(java.lang.String,java.lang.String) -> d
+org.crossmobile.build.ib.helper.Placeholder -> org.crossmobile.build.aw:
+    20:20:void <init>() -> <init>
+    24:28:void addSupported() -> b
+    31:32:boolean isOwner() -> f
+    37:37:java.lang.String toCode() -> c
+org.crossmobile.build.ib.helper.Prototypes -> org.crossmobile.build.ax:
+    10:10:void <init>() -> <init>
+    13:14:void addSupported() -> b
+    18:35:java.lang.String toCode() -> c
+    39:45:void protoTypeClass(java.lang.StringBuilder,java.lang.StringBuilder,java.lang.StringBuilder,org.crossmobile.build.ib.visual.View,java.lang.String) -> a
+org.crossmobile.build.ib.helper.RealElement -> org.crossmobile.build.ay:
+    java.lang.String varname -> a
+    22:22:void <init>() -> <init>
+    27:31:java.lang.String variableFromID(java.lang.String) -> h
+    36:43:void addSupported() -> b
+    47:50:java.lang.String toCode() -> c
+    54:54:java.lang.String printConnections() -> g
+    58:61:java.lang.String printConnections(java.lang.String) -> i
+    65:67:java.lang.String variable() -> e
+    71:72:java.lang.String getClassName() -> h
+    76:77:java.lang.String getDefaultClassName() -> i
+    81:81:java.lang.String constructor() -> j
+    85:85:java.lang.String publicConstructor() -> k
+    89:90:void appendValue(java.lang.StringBuilder,java.lang.String) -> a
+    97:98:void appendEnumAttribute(java.lang.StringBuilder,java.lang.String,java.lang.String) -> a
+    101:102:void appendEnumAttributeTo(java.lang.StringBuilder,java.lang.String,java.lang.String,java.lang.String) -> a
+    105:106:void appendAttribute(java.lang.StringBuilder,java.lang.String) -> b
+    109:110:void appendAttributeCall(java.lang.StringBuilder,java.lang.String) -> c
+    113:114:void appendAttribute(java.lang.StringBuilder,java.lang.String,java.lang.String) -> b
+    117:118:void appendListAttribute(java.lang.StringBuilder,java.lang.String) -> d
+    121:122:void appendListAttribute(java.lang.StringBuilder,java.lang.String,java.lang.String) -> c
+    125:126:void appendValueTo(java.lang.StringBuilder,java.lang.String,java.lang.String) -> d
+    133:134:void appendAttributeTo(java.lang.StringBuilder,java.lang.String,java.lang.String) -> e
+    137:138:void appendAttributeTo(java.lang.StringBuilder,java.lang.String,java.lang.String,java.lang.String) -> b
+    149:150:void append(java.lang.StringBuilder,java.lang.String,java.lang.String) -> f
+    153:155:void appendCall(java.lang.StringBuilder,java.lang.String,java.lang.String) -> g
+    158:160:void appendTo(java.lang.StringBuilder,java.lang.String,java.lang.String,java.lang.String) -> c
+org.crossmobile.build.ib.helper.Rect -> org.crossmobile.build.az:
+    21:21:void <init>() -> <init>
+    25:30:void addSupported() -> b
+    34:34:java.lang.String toCode() -> c
+org.crossmobile.build.ib.helper.Sections -> org.crossmobile.build.ba:
+    5:5:void <init>() -> <init>
+    8:9:void addSupported() -> b
+    13:16:java.lang.String addSection() -> e
+org.crossmobile.build.ib.helper.Segment -> org.crossmobile.build.bb:
+    20:20:void <init>() -> <init>
+    24:26:void addSupported() -> b
+    30:34:java.lang.String toCode() -> c
+org.crossmobile.build.ib.helper.Segments -> org.crossmobile.build.bc:
+    20:20:void <init>() -> <init>
+    24:25:void addSupported() -> b
+    29:36:java.lang.String toCode() -> c
+org.crossmobile.build.ib.helper.Segue -> org.crossmobile.build.bd:
+    20:20:void <init>() -> <init>
+    24:31:void addSupported() -> b
+    35:46:java.lang.String constructor() -> j
+    50:50:java.lang.String getKind() -> f
+    54:54:java.lang.String getRelation() -> l
+    58:58:java.lang.String getDestination() -> m
+    62:62:java.lang.String identifier() -> n
+    66:66:java.lang.String trigger() -> o
+    70:74:java.lang.StringBuilder getTarget(java.lang.String) -> f
+    78:85:java.lang.String getSegway(java.lang.String) -> g
+    90:90:java.lang.String variable() -> e
+    95:95:java.lang.String getDefaultClassName() -> i
+org.crossmobile.build.ib.helper.Size -> org.crossmobile.build.be:
+    21:21:void <init>() -> <init>
+    25:28:void addSupported() -> b
+    32:32:java.lang.String toCode() -> c
+org.crossmobile.build.ib.helper.State -> org.crossmobile.build.bf:
+    22:22:void <init>() -> <init>
+    26:33:void addSupported() -> b
+    37:37:java.lang.String toCode() -> c
+    41:49:java.lang.String toCode(java.lang.String) -> f
+    53:54:void stateAttr(java.lang.StringBuilder,java.lang.String,java.lang.String,java.lang.String) -> a
+    57:60:void stateImage(java.lang.StringBuilder,java.lang.String,java.lang.String,java.lang.String) -> b
+    63:64:void stateChild(java.lang.StringBuilder,java.lang.String,java.lang.String,java.lang.String) -> c
+    67:70:void setState(java.lang.StringBuilder,java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> a
+org.crossmobile.build.ib.helper.Subviews -> org.crossmobile.build.bg:
+    22:22:void <init>() -> <init>
+    26:55:void addSupported() -> b
+    59:62:java.lang.String toCode() -> c
+org.crossmobile.build.ib.helper.TableViewSection -> org.crossmobile.build.bh:
+    23:23:void <init>() -> <init>
+    27:31:void addSupported() -> b
+    34:39:java.lang.String addSection() -> e
+org.crossmobile.build.ib.helper.TextAttributes -> org.crossmobile.build.bi:
+    22:22:void <init>() -> <init>
+    27:30:void addSupported() -> b
+    34:34:java.lang.String toCode() -> c
+org.crossmobile.build.ib.helper.TextInputTraits -> org.crossmobile.build.bj:
+    20:20:void <init>() -> <init>
+    24:31:void addSupported() -> b
+    35:35:java.lang.String toCode() -> c
+    39:45:void toCode(java.lang.StringBuilder,java.lang.String) -> e
+org.crossmobile.build.ib.helper.TimeZone -> org.crossmobile.build.bk:
+    20:20:void <init>() -> <init>
+    25:25:void addSupported() -> b
+    29:29:java.lang.String toCode() -> c
+org.crossmobile.build.ib.helper.ViewControllerLayoutGuide -> org.crossmobile.build.bl:
+    20:20:void <init>() -> <init>
+    24:26:void addSupported() -> b
+    30:30:java.lang.String getClassName() -> h
+    35:37:java.lang.String toCode() -> c
+org.crossmobile.build.ib.helper.XIBList -> org.crossmobile.build.bm:
+    25:26:void <init>(org.crossmobile.build.ib.i18n.IBParserMeta) -> <init>
+    30:33:void addSupported() -> b
+    37:55:java.lang.String toCode() -> c
+    59:59:int countItems() -> e
+org.crossmobile.build.ib.helper.XibClassEnd -> org.crossmobile.build.bn:
+    19:19:void <init>() -> <init>
+    24:24:void addSupported() -> b
+    28:41:java.lang.String toCode() -> c
+org.crossmobile.build.ib.helper.XibClassStart -> org.crossmobile.build.bo:
+    java.lang.String filename -> c
+    java.lang.String initialViewController -> d
+    21:21:void <init>() -> <init>
+    26:27:void setFilename(java.lang.String) -> f
+    31:32:void addSupported() -> b
+    36:58:java.lang.String toCode() -> c
+    62:64:void setInitialViewController(java.lang.String) -> g
+org.crossmobile.build.ib.i18n.IBParserMeta -> org.crossmobile.build.bp:
+    java.util.Map tables -> a
+    org.crossmobile.build.ib.i18n.TranslationTable current -> b
+    java.io.File annotationLocation -> c
+    23:29:void <init>(java.io.File) -> <init>
+    32:38:void beginFile(java.io.File,java.io.File) -> a
+    41:42:void endFile() -> a
+    45:48:void addLocalization(java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> a
+    51:51:boolean currentFileIsLocalizable() -> b
+    55:55:org.crossmobile.build.ib.i18n.TranslationTable current() -> c
+    59:59:org.crossmobile.build.ib.i18n.TranslationTable get(java.lang.String) -> a
+    63:63:java.io.File getAnnotationLocation() -> d
+org.crossmobile.build.ib.i18n.LocalizedType -> org.crossmobile.build.bq:
+    java.lang.String locale -> a
+    java.lang.String fullPath -> b
+    java.lang.String basePath -> c
+    java.lang.String tableName -> d
+    boolean isBase -> e
+    34:37:org.crossmobile.build.ib.i18n.LocalizedType getLocalized(java.io.File,java.io.File) -> a
+    41:44:org.crossmobile.build.ib.i18n.LocalizedType getLocalized(java.lang.String) -> a
+    49:57:void <init>(java.lang.String,java.util.List) -> <init>
+org.crossmobile.build.ib.i18n.TranslationElement -> org.crossmobile.build.br:
+    java.lang.String classType -> a
+    java.lang.String key -> b
+    java.lang.String objectId -> c
+    java.lang.String property -> d
+    java.lang.String text -> e
+    26:26:java.lang.String toKey(java.lang.String,java.lang.String) -> a
+    29:35:void <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> <init>
+    39:48:int compareTo(org.crossmobile.build.ib.i18n.TranslationElement) -> a
+    53:53:java.lang.String toString() -> toString
+    18:18:int compareTo(java.lang.Object) -> compareTo
+org.crossmobile.build.ib.i18n.TranslationTable -> org.crossmobile.build.bs:
+    java.lang.String table -> a
+    java.util.Collection elements -> b
+    25:30:void <init>(java.lang.String) -> <init>
+    34:34:int compareTo(org.crossmobile.build.ib.i18n.TranslationTable) -> a
+    38:39:void add(org.crossmobile.build.ib.i18n.TranslationElement) -> a
+    43:43:java.util.Iterator iterator() -> iterator
+    23:23:int compareTo(java.lang.Object) -> compareTo
+org.crossmobile.build.ib.visual.ActivityIndicatorView -> org.crossmobile.build.bt:
+    22:22:void <init>() -> <init>
+    26:32:void addSupported() -> b
+    36:40:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.AdBannerView -> org.crossmobile.build.bu:
+    18:18:void <init>() -> <init>
+    22:22:java.lang.String getDefaultClassName() -> i
+org.crossmobile.build.ib.visual.BarButtonItem -> org.crossmobile.build.bv:
+    25:25:void <init>() -> <init>
+    29:35:void addSupported() -> b
+    38:38:java.lang.String variable() -> e
+    43:73:java.lang.String constructor() -> j
+    77:78:void appendLambda(java.lang.StringBuilder,java.lang.String) -> e
+    82:82:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.Button -> org.crossmobile.build.bw:
+    23:23:void <init>() -> <init>
+    27:46:void addSupported() -> b
+    50:58:java.lang.String toCode() -> c
+    63:66:java.lang.String constructor() -> j
+    70:73:void appendState(java.lang.StringBuilder,java.lang.String,java.lang.String) -> h
+org.crossmobile.build.ib.visual.CollectionViewController -> org.crossmobile.build.bx:
+    18:18:void <init>() -> <init>
+    22:23:void addSupported() -> b
+    27:29:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.Control -> org.crossmobile.build.by:
+    23:23:void <init>() -> <init>
+    27:33:void addSupported() -> b
+    37:49:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.DatePicker -> org.crossmobile.build.bz:
+    22:22:void <init>() -> <init>
+    26:36:void addSupported() -> b
+    40:42:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.GestureRecognizer -> org.crossmobile.build.ca:
+    20:20:void <init>() -> <init>
+    24:25:void addSupported() -> b
+    29:31:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.GlkViewController -> org.crossmobile.build.cb:
+    18:18:void <init>() -> <init>
+    22:23:void addSupported() -> b
+    27:29:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.ImageView -> org.crossmobile.build.cc:
+    20:20:void <init>() -> <init>
+    24:31:void addSupported() -> b
+    35:39:java.lang.String toCode() -> c
+    43:46:void addImage(java.lang.StringBuilder,java.lang.String,java.lang.String) -> h
+org.crossmobile.build.ib.visual.Label -> org.crossmobile.build.cd:
+    21:21:void <init>() -> <init>
+    25:44:void addSupported() -> b
+    48:64:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.MapView -> org.crossmobile.build.ce:
+    21:21:void <init>() -> <init>
+    25:33:void addSupported() -> b
+    37:37:java.lang.String getDefaultClassName() -> i
+    42:44:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.NavigationBar -> org.crossmobile.build.cf:
+    22:22:void <init>() -> <init>
+    26:36:void addSupported() -> b
+    39:42:java.lang.String toCode(java.lang.String) -> f
+    47:49:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.NavigationController -> org.crossmobile.build.cg:
+    java.lang.String destination -> a
+    22:24:void <init>() -> <init>
+    28:31:void addSupported() -> b
+    35:39:java.lang.String toCode() -> c
+    44:47:java.lang.String toCodeSuper() -> f
+org.crossmobile.build.ib.visual.NavigationItem -> org.crossmobile.build.ch:
+    23:23:void <init>() -> <init>
+    27:33:void addSupported() -> b
+    36:44:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.PageControl -> org.crossmobile.build.ci:
+    18:18:void <init>() -> <init>
+    22:23:void addSupported() -> b
+    27:29:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.PageViewController -> org.crossmobile.build.cj:
+    18:18:void <init>() -> <init>
+    22:23:void addSupported() -> b
+    27:29:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.PanGestureRecognizer -> org.crossmobile.build.ck:
+    18:18:void <init>() -> <init>
+    22:23:void addSupported() -> b
+    27:29:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.PickerView -> org.crossmobile.build.cl:
+    18:18:void <init>() -> <init>
+    22:23:void addSupported() -> b
+    27:29:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.PinchGestureRecognizer -> org.crossmobile.build.cm:
+    18:18:void <init>() -> <init>
+    22:23:void addSupported() -> b
+    27:29:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.PongPressGestureRecognizer -> org.crossmobile.build.cn:
+    18:18:void <init>() -> <init>
+    22:23:void addSupported() -> b
+    27:29:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.ProgressView -> org.crossmobile.build.co:
+    20:20:void <init>() -> <init>
+    24:26:void addSupported() -> b
+    30:33:java.lang.String toCode() -> c
+    38:38:java.lang.String constructor() -> j
+org.crossmobile.build.ib.visual.RotationGestureRecognizer -> org.crossmobile.build.cp:
+    18:18:void <init>() -> <init>
+    22:23:void addSupported() -> b
+    27:29:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.ScrollView -> org.crossmobile.build.cq:
+    21:21:void <init>() -> <init>
+    25:42:void addSupported() -> b
+    46:57:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.SearchBar -> org.crossmobile.build.cr:
+    21:21:void <init>() -> <init>
+    25:30:void addSupported() -> b
+    34:38:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.SegmentedControl -> org.crossmobile.build.cs:
+    22:22:void <init>() -> <init>
+    26:33:void addSupported() -> b
+    38:40:java.lang.String constructor() -> j
+    46:47:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.Slider -> org.crossmobile.build.ct:
+    21:21:void <init>() -> <init>
+    25:33:void addSupported() -> b
+    37:41:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.StackView -> org.crossmobile.build.cu:
+    24:24:void <init>() -> <init>
+    28:40:java.lang.String toCode() -> c
+    45:45:java.lang.String constructor() -> j
+    50:59:void addSupported() -> b
+org.crossmobile.build.ib.visual.Stepper -> org.crossmobile.build.cv:
+    20:20:void <init>() -> <init>
+    24:33:void addSupported() -> b
+    37:39:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.SwipeGestureRecognizer -> org.crossmobile.build.cw:
+    18:18:void <init>() -> <init>
+    22:23:void addSupported() -> b
+    27:29:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.Switch -> org.crossmobile.build.cx:
+    21:21:void <init>() -> <init>
+    25:30:void addSupported() -> b
+    34:36:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.TabBar -> org.crossmobile.build.cy:
+    22:22:void <init>() -> <init>
+    26:36:void addSupported() -> b
+    40:42:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.TabBarController -> org.crossmobile.build.cz:
+    18:18:void <init>() -> <init>
+    22:23:void addSupported() -> b
+    27:29:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.TabBarItem -> org.crossmobile.build.da:
+    18:18:void <init>() -> <init>
+    22:23:void addSupported() -> b
+    27:29:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.TableView -> org.crossmobile.build.db:
+    26:26:void <init>() -> <init>
+    30:56:void addSupported() -> b
+    60:68:java.lang.String constructor() -> j
+    73:84:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.TableViewCell -> org.crossmobile.build.dc:
+    28:28:void <init>() -> <init>
+    32:46:void addSupported() -> b
+    50:50:java.lang.String variable() -> e
+    55:56:java.lang.String toCode() -> c
+    61:75:java.lang.String toCodeTo(java.lang.String) -> a_
+    80:80:java.lang.String constructor() -> j
+    85:90:java.lang.String prototype() -> f
+    94:102:void addSegues(java.lang.StringBuilder,java.lang.String) -> e
+    106:109:java.util.Collection getInnerParts(org.crossmobile.build.ib.Element) -> e
+    113:115:java.lang.String toCode(java.lang.String) -> g
+org.crossmobile.build.ib.visual.TableViewCellContentView -> org.crossmobile.build.dd:
+    20:20:void <init>() -> <init>
+    23:27:void addSupported() -> b
+    31:31:java.lang.String toCode() -> c
+    36:40:java.lang.String toCodeTo(java.lang.String) -> a_
+org.crossmobile.build.ib.visual.TableViewController -> org.crossmobile.build.de:
+    21:21:void <init>() -> <init>
+    25:27:void addSupported() -> b
+    31:43:void constructorOverrides(java.lang.StringBuilder) -> a
+org.crossmobile.build.ib.visual.TapGestureRecognizer -> org.crossmobile.build.df:
+    18:18:void <init>() -> <init>
+    22:23:void addSupported() -> b
+    28:30:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.TextField -> org.crossmobile.build.dg:
+    23:23:void <init>() -> <init>
+    27:46:void addSupported() -> b
+    50:60:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.TextView -> org.crossmobile.build.dh:
+    21:21:void <init>() -> <init>
+    25:30:void addSupported() -> b
+    34:39:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.Toolbar -> org.crossmobile.build.di:
+    22:22:void <init>() -> <init>
+    26:31:void addSupported() -> b
+    36:38:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.View -> org.crossmobile.build.dj:
+    27:27:void <init>() -> <init>
+    31:62:void addSupported() -> b
+    66:66:java.lang.String toCode() -> c
+    70:74:java.lang.String toCode(boolean) -> a
+    78:84:java.lang.String addSubviews(java.lang.String) -> j
+    88:109:java.lang.String toCodeTo(java.lang.String) -> a_
+    113:113:java.lang.String late() -> l
+    117:133:java.lang.String late(java.lang.String) -> k
+    137:137:java.lang.String prototype() -> f
+    141:141:java.util.Collection getInnerParts(org.crossmobile.build.ib.Element) -> e
+    145:155:java.lang.String segueMap(java.lang.String) -> l
+org.crossmobile.build.ib.visual.ViewController -> org.crossmobile.build.dk:
+    24:24:void <init>() -> <init>
+    28:37:void addSupported() -> b
+    40:47:java.lang.String toCodeBare() -> l
+    52:62:java.lang.String toCode() -> c
+    67:73:java.lang.String publicConstructor() -> k
+    77:86:void constructorOverrides(java.lang.StringBuilder) -> a
+    89:90:java.lang.String segueMap() -> m
+    94:94:java.lang.String toCodeSuper() -> f
+org.crossmobile.build.ib.visual.WebView -> org.crossmobile.build.dl:
+    22:22:void <init>() -> <init>
+    26:39:void addSupported() -> b
+    44:46:java.lang.String toCode() -> c
+org.crossmobile.build.ib.visual.Window -> org.crossmobile.build.dm:
+    20:20:void <init>() -> <init>
+    24:27:void addSupported() -> b
+    32:34:java.lang.String toCode() -> c
+org.crossmobile.build.ng.CMBuildEnvironment -> org.crossmobile.build.dn:
+    java.io.File basedir -> a
+    java.io.File builddir -> b
+    org.crossmobile.utils.launcher.Flavour flavour -> c
+    java.util.Properties properties -> d
+    org.crossmobile.utils.ParamSet paramset -> e
+    java.lang.String relativeTobase -> f
+    java.lang.String version -> g
+    java.lang.String appId -> h
+    java.lang.String artifactId -> i
+    boolean release -> j
+    java.util.function.Supplier xmlvm -> k
+    java.util.function.Supplier retrolambda -> l
+    org.crossmobile.utils.plugin.DependencyItem root -> m
+    java.io.File xmlvm_file -> n
+    java.io.File retrolambda_file -> o
+    org.crossmobile.build.ng.CMBuildEnvironment current -> p
+    47:47:org.crossmobile.build.ng.CMBuildEnvironment environment() -> a
+    51:52:void create(java.io.File,java.io.File,org.crossmobile.utils.launcher.Flavour,java.util.Properties,org.crossmobile.utils.ParamSet,java.util.function.Supplier,java.util.function.Supplier,java.lang.String,java.lang.String,java.lang.String,org.crossmobile.utils.plugin.DependencyItem,boolean) -> a
+    54:68:void <init>(java.io.File,java.io.File,org.crossmobile.utils.launcher.Flavour,java.util.Properties,org.crossmobile.utils.ParamSet,java.util.function.Supplier,java.util.function.Supplier,java.lang.String,java.lang.String,java.lang.String,org.crossmobile.utils.plugin.DependencyItem,boolean) -> <init>
+    71:71:java.io.File getBasedir() -> b
+    75:75:java.io.File getBuilddir() -> c
+    79:79:java.lang.String getRelativeBuildToBase() -> d
+    83:83:org.crossmobile.utils.launcher.Flavour getFlavour() -> e
+    87:87:java.util.Properties getProperties() -> f
+    91:91:org.crossmobile.utils.ParamSet getParamset() -> g
+    95:97:java.io.File getXMLVM() -> h
+    101:103:java.io.File getRetroLambda() -> i
+    111:111:java.lang.String getArtifactId() -> j
+    115:115:java.lang.String getAppId() -> k
+    119:119:boolean isRelease() -> l
+    123:123:org.crossmobile.utils.plugin.DependencyItem root() -> m
+org.crossmobile.build.ng.PostCompilePipeline -> org.crossmobile.build.do:
+    46:46:void <init>() -> <init>
+    50:58:void run() -> run
+    61:135:void postcompileUwp() -> a
+    138:149:void tweakProject(org.crossmobile.build.ng.CMBuildEnvironment,java.io.File) -> a
+    152:234:void postcompileIOS() -> b
+    147:147:void lambda$tweakProject$1(org.crossmobile.utils.XMLWalker) -> a
+    143:146:void lambda$tweakProject$0(java.io.File,org.crossmobile.utils.XMLWalker) -> a
+org.crossmobile.build.ng.PostCompilePipeline$1 -> org.crossmobile.build.do$1:
+    int[] $SwitchMap$org$crossmobile$utils$launcher$Flavour -> a
+    50:50:void <clinit>() -> <clinit>
+org.crossmobile.build.ng.ResourcesPipeline -> org.crossmobile.build.dp:
+    37:37:void <init>() -> <init>
+    41:63:void run() -> run
+    66:67:void resourcesUWP() -> a
+    70:90:void resourcesDesktop() -> b
+    93:126:void resourcesAndroid() -> c
+    130:137:void resourcesIOS() -> d
+    113:113:java.io.File lambda$resourcesAndroid$0(org.crossmobile.utils.plugin.DependencyItem) -> a
+org.crossmobile.build.ng.ResourcesPipeline$1 -> org.crossmobile.build.dp$1:
+    int[] $SwitchMap$org$crossmobile$utils$launcher$Flavour -> a
+    42:42:void <clinit>() -> <clinit>
+org.crossmobile.build.tools.AdbLauncher -> org.crossmobile.build.dq:
+    boolean isWindows -> a
+    java.io.File adb -> b
+    30:32:void <init>(java.lang.String) -> <init>
+    35:42:org.crossmobile.utils.Commander exec(java.lang.String[]) -> a
+    27:27:void <clinit>() -> <clinit>
+org.crossmobile.build.tools.AndroidProjectCreator -> org.crossmobile.build.dr:
+    36:53:void execute(org.crossmobile.build.ng.CMBuildEnvironment) -> a
+    56:73:int calculateNumVersion(java.lang.String) -> a
+    77:93:java.lang.String getApplicationExtras(org.crossmobile.build.ng.CMBuildEnvironment,java.lang.Iterable) -> a
+    97:118:java.lang.String getPermissions(org.crossmobile.build.ng.CMBuildEnvironment,java.lang.Iterable) -> b
+org.crossmobile.build.tools.AnnConnXcode -> org.crossmobile.build.ds:
+    java.util.regex.Pattern depack -> a
+    33:37:void exec(java.util.Map,java.io.File) -> a
+    40:97:void parseAnnotation(java.lang.String,org.crossmobile.build.ib.AnnotationHelpers$CodeAnnotations,java.io.File) -> a
+    100:101:java.lang.String simplifyType(java.lang.String) -> a
+    30:30:void <clinit>() -> <clinit>
+org.crossmobile.build.tools.CopyLibClasses -> org.crossmobile.build.dt:
+    31:42:void exec(java.io.File,org.crossmobile.utils.plugin.DependencyItem) -> a
+    37:37:boolean lambda$exec$0(java.util.jar.JarEntry,java.io.File) -> a
+org.crossmobile.build.tools.DiffSync -> org.crossmobile.build.du:
+    java.lang.String[] BLACK_LIST -> a
+    35:43:boolean exec(java.io.File,java.io.File,java.io.File) -> a
+    47:73:void execDo(java.io.File,java.io.File,java.io.File,java.util.Collection) -> a
+    76:79:boolean isBlackListed(java.io.File) -> a
+    30:30:void <clinit>() -> <clinit>
+org.crossmobile.build.tools.ExtProjectLauncher -> org.crossmobile.build.dv:
+    45:61:void store(java.io.File,org.crossmobile.utils.launcher.Flavour,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,boolean) -> a
+org.crossmobile.build.tools.FontExtractor -> org.crossmobile.build.dw:
+    32:37:java.util.Map findFonts(java.util.Collection) -> a
+    41:53:void findFonts(java.io.File,java.lang.String,java.util.Map) -> a
+    57:103:java.lang.String getFontDataAsResource(java.util.Map) -> a
+org.crossmobile.build.tools.FontExtractor$FontInfo -> org.crossmobile.build.dw$a:
+    java.lang.String location -> a
+    boolean bold -> b
+    boolean italic -> c
+    112:116:void <init>(java.lang.String,boolean,boolean) -> <init>
+    106:106:java.lang.String access$000(org.crossmobile.build.tools.FontExtractor$FontInfo) -> a
+    106:106:boolean access$100(org.crossmobile.build.tools.FontExtractor$FontInfo) -> b
+    106:106:boolean access$200(org.crossmobile.build.tools.FontExtractor$FontInfo) -> c
+org.crossmobile.build.tools.GenerateReverseConnection -> org.crossmobile.build.dx:
+    36:69:void exec(java.io.File,java.util.Collection,java.io.File) -> a
+    72:80:java.lang.String findInjectionsForClass(org.crossmobile.utils.NativeCodeCollection,javassist.CtClass) -> a
+    43:53:void lambda$exec$1(java.io.File,org.crossmobile.utils.NativeCodeCollection,java.util.Map,java.lang.String,java.io.File) -> a
+    42:42:boolean lambda$exec$0(java.io.File) -> a
+org.crossmobile.build.tools.GenerateSreenSizeSettings -> org.crossmobile.build.dy:
+    15:49:void exec(java.io.File,java.util.Properties) -> a
+org.crossmobile.build.tools.GenericPropertiesCreator -> org.crossmobile.build.dz:
+    java.io.File output -> b
+    java.io.File projectpath -> a
+    java.util.Properties prop -> c
+    30:35:void <init>(java.util.Properties,java.io.File,java.io.File) -> <init>
+    38:41:java.lang.String prop(java.lang.String) -> a
+    45:46:void write(java.lang.Object) -> a
+org.crossmobile.build.tools.GradleManager -> org.crossmobile.build.ea:
+    java.util.regex.Pattern pluginversion -> a
+    38:41:void createAndUpdate(java.io.File) -> a
+    46:57:void createAndUpdateBuild(java.io.File) -> b
+    73:77:void createAndUpdateProperties(java.io.File) -> c
+    35:35:void <clinit>() -> <clinit>
+org.crossmobile.build.tools.IBObjectsCreator -> org.crossmobile.build.eb:
+    38:42:org.crossmobile.build.ib.helper.XIBList parse(java.io.File,java.io.File) -> a
+    46:65:void parse(org.crossmobile.build.ib.helper.XIBList,java.io.File,java.io.File) -> b
+    68:77:void construct(org.crossmobile.build.ib.Element,org.crossmobile.utils.XMLWalker) -> a
+    80:93:void createJavaSource(org.crossmobile.build.ib.helper.XIBList,java.io.File,java.io.File) -> a
+    96:100:java.lang.String toFilename(java.io.File,java.io.File) -> b
+    69:76:void lambda$construct$4(org.crossmobile.build.ib.Element,org.crossmobile.utils.XMLWalker) -> b
+    62:62:void lambda$parse$3(org.crossmobile.build.ib.helper.XIBList,org.crossmobile.utils.XMLWalker) -> a
+    58:58:void lambda$parse$2(org.crossmobile.build.ib.helper.XIBList,org.crossmobile.utils.XMLWalker) -> b
+    39:39:void lambda$parse$1(java.lang.String,java.io.File) -> a
+    39:39:boolean lambda$parse$0(java.io.File) -> a
+org.crossmobile.build.tools.IconsCopier -> org.crossmobile.build.ec:
+    org.crossmobile.build.tools.IconsCopier$IconRequest[] DesktopIcons -> a
+    org.crossmobile.build.tools.IconsCopier$IconRequest[] AndroidIcons -> b
+    49:54:org.crossmobile.build.tools.IconsCopier$IconRequest[] IosIcons(java.lang.String) -> a
+    58:61:void copyIcons(java.io.File,java.io.File,org.crossmobile.build.tools.IconsCopier$IconRequest[]) -> a
+    33:40:void <clinit>() -> <clinit>
+org.crossmobile.build.tools.IconsCopier$IconRequest -> org.crossmobile.build.ec$a:
+    int size -> a
+    java.lang.String path -> b
+    boolean required -> c
+    69:70:void <init>(int,java.lang.String) -> <init>
+    72:76:void <init>(int,java.lang.String,boolean) -> <init>
+    63:63:java.lang.String access$000(org.crossmobile.build.tools.IconsCopier$IconRequest) -> a
+    63:63:int access$100(org.crossmobile.build.tools.IconsCopier$IconRequest) -> b
+    63:63:boolean access$200(org.crossmobile.build.tools.IconsCopier$IconRequest) -> c
+org.crossmobile.build.tools.InfoPListCreator -> org.crossmobile.build.ed:
+    java.util.Collection fontlist -> b
+    java.lang.String injected -> c
+    39:42:void <init>(java.util.Properties,java.io.File,java.util.Collection,java.lang.String,java.io.File) -> <init>
+    46:64:void execute(org.crossmobile.build.ng.CMBuildEnvironment) -> a
+    67:67:java.io.File getPlist(java.io.File,java.lang.String) -> a
+    71:78:void createExtensionPlist(java.io.File,java.lang.String,org.crossmobile.utils.XcodeTarget) -> a
+org.crossmobile.build.tools.JavaCleanFiles -> org.crossmobile.build.ee:
+    java.io.File java -> a
+    java.io.File objc -> b
+    34:37:void <init>(java.io.File,java.io.File) -> <init>
+    40:47:void execute() -> a
+    50:64:void findJavaFiles(java.io.File,java.lang.String,java.util.Set) -> a
+    67:68:java.lang.String getName(java.lang.String,java.lang.String) -> a
+    72:86:int matchObjcFiles(java.util.Set,java.io.File) -> a
+org.crossmobile.build.tools.LocalPropertiesManager -> org.crossmobile.build.ef:
+    28:35:void createIfNotExist(java.io.File) -> a
+org.crossmobile.build.tools.MaterialsCopier -> org.crossmobile.build.eg:
+    java.util.Collection BLACKLIST -> a
+    38:38:void <init>() -> <init>
+    45:53:void updateTranslationsOnly(java.util.Collection,java.io.File,org.crossmobile.build.ib.i18n.IBParserMeta) -> a
+    56:72:void copyMaterials(java.util.Collection,java.io.File,java.io.File,org.crossmobile.build.ib.i18n.IBParserMeta) -> a
+    76:98:void copyAndroidSys(java.util.Collection,java.io.File,java.io.File) -> a
+    57:70:boolean lambda$copyMaterials$0(java.io.File,org.crossmobile.build.ib.i18n.IBParserMeta,org.crossmobile.utils.MaterialsUtils$FileMaterial) -> a
+    42:42:void <clinit>() -> <clinit>
+org.crossmobile.build.tools.ObjCPostProcess -> org.crossmobile.build.eh:
+    java.util.regex.Pattern unicodeP -> a
+    java.util.regex.Pattern constrP -> b
+    java.util.regex.Pattern javaclass -> c
+    43:67:void exec(java.io.File,java.lang.String) -> a
+    70:78:java.lang.String parseIgnoreIncludes(java.lang.String,java.util.List,java.util.concurrent.atomic.AtomicInteger) -> a
+    82:96:java.util.List retrieveIgnoreIncludePattern(java.lang.String) -> a
+    100:104:java.lang.String parseConstructors(java.lang.String) -> b
+    108:113:java.lang.String parseUnicode(java.lang.String) -> c
+    33:35:void <clinit>() -> <clinit>
+org.crossmobile.build.tools.PID -> org.crossmobile.build.ei:
+    22:22:void <init>() -> <init>
+    25:26:void exec() -> a
+org.crossmobile.build.tools.PluginsLauncher -> org.crossmobile.build.ej:
+    java.lang.Iterable metadata -> a
+    java.io.File generated -> b
+    java.io.File cache -> c
+    35:39:void <init>(java.lang.Iterable,java.io.File,java.io.File) -> <init>
+    42:63:void execute() -> a
+    66:81:int getCode(java.lang.String,java.lang.String,java.lang.StringBuilder) -> a
+org.crossmobile.build.tools.PropertiesCreator -> org.crossmobile.build.ek:
+    java.lang.String mainclass -> b
+    35:37:void <init>(java.util.Properties,java.lang.String,java.io.File,java.io.File) -> <init>
+    41:65:void execute(org.crossmobile.build.ng.CMBuildEnvironment) -> a
+org.crossmobile.build.tools.StringsToPropertiesConverter -> org.crossmobile.build.el:
+    java.util.Map DICT_ENTRIES -> a
+    java.util.Collection DICT_TYPES -> b
+    com.eclipsesource.json.JsonObject entries -> c
+    java.lang.StringBuilder missing -> d
+    42:59:void <init>() -> <init>
+    63:84:java.lang.String parseStrings(java.io.File,org.crossmobile.build.ib.i18n.LocalizedType,org.crossmobile.build.ib.i18n.TranslationTable) -> a
+    88:110:int findMissing(org.crossmobile.build.ib.i18n.TranslationTable,java.io.File) -> a
+    115:120:void exitPair(org.crossmobile.build.antlr.LProjParser$PairContext) -> b
+    124:167:java.lang.String parseStringsDict(java.io.File) -> a
+    44:57:void <clinit>() -> <clinit>
+org.crossmobile.build.tools.SyncObjCFiles -> org.crossmobile.build.em:
+    java.util.List WHITELIST -> a
+    32:53:void exec(java.io.File,java.io.File,java.io.File) -> a
+    45:50:void lambda$exec$2(java.util.Collection,java.lang.StringBuilder,java.lang.String,java.io.File) -> a
+    36:39:void lambda$exec$1(java.util.Collection,java.lang.String,java.io.File) -> a
+    35:35:boolean lambda$exec$0(java.io.File) -> a
+    28:28:void <clinit>() -> <clinit>
+org.crossmobile.build.tools.UpdateAndroidDependencies -> org.crossmobile.build.en:
+    java.util.Set blackList -> a
+    36:47:void execute(java.io.File,java.lang.String,org.crossmobile.utils.plugin.DependencyItem) -> a
+    50:56:void apply(java.lang.Iterable,java.lang.StringBuilder) -> a
+    59:63:void apply(java.lang.Iterable,java.lang.String,java.lang.StringBuilder) -> a
+    66:69:boolean isBlacklisted(java.lang.String) -> a
+    73:77:void add(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.StringBuilder) -> a
+    51:55:void lambda$apply$1(java.lang.StringBuilder,org.crossmobile.utils.PluginMetaData) -> a
+    52:54:void lambda$null$0(java.lang.StringBuilder,java.lang.String) -> a
+    33:33:void <clinit>() -> <clinit>
+org.crossmobile.build.tools.XCodeProject -> org.crossmobile.build.eo:
+    java.lang.String name -> a
+    java.io.File plistDir -> b
+    java.lang.String projectType -> c
+    java.io.File basedir -> d
+    java.util.Set resources -> e
+    org.crossmobile.build.xcode.resources.ObjCLibrary libs -> f
+    33:56:void <init>(java.lang.String,java.io.File,java.lang.String,java.io.File) -> <init>
+    59:61:void addConfiguredResource(org.crossmobile.build.xcode.resources.ResourceItem) -> a
+    64:65:void setConfiguredLibrary(org.crossmobile.build.xcode.resources.ObjCLibrary) -> a
+    68:81:void execute() -> a
+org.crossmobile.build.tools.XMLVMLauncher -> org.crossmobile.build.ep:
+    30:60:void exec(java.io.File,java.io.File,java.io.File,boolean) -> a
+    47:50:void lambda$exec$0(java.lang.StringBuilder,java.util.concurrent.atomic.AtomicBoolean,java.lang.String) -> a
+org.crossmobile.build.tools.images.ContentsJson -> org.crossmobile.build.eq:
+    13:17:void exec(java.io.File) -> a
+    22:28:boolean createJSon(java.io.File,java.util.List) -> a
+    32:45:java.lang.String getJson(java.util.List) -> a
+    14:14:boolean lambda$exec$0(java.io.File,java.lang.String) -> a
+org.crossmobile.build.tools.images.JsonImage -> org.crossmobile.build.er:
+    java.lang.String idiom -> a
+    java.lang.String scale -> b
+    java.lang.String size -> c
+    java.lang.String filename -> d
+    24:30:void <init>(java.lang.String[]) -> <init>
+    33:35:void <init>(java.io.File) -> <init>
+    38:38:boolean isSet() -> a
+    43:55:java.lang.String toString() -> toString
+org.crossmobile.build.utils.Config -> org.crossmobile.build.es:
+    java.lang.String XCODE_EXT_INC -> a
+    java.lang.String XCODE_EXT_LIB -> b
+    java.lang.String GENERATED_CMSOURCES -> c
+    java.lang.String APP -> d
+    java.lang.String SYS -> e
+    java.lang.String PLUGIN_LAUNCHER -> f
+    java.lang.String IBOBJECTS -> g
+    java.lang.String ANDROID_MANIFEST -> h
+    java.lang.String ANDROID_ASSET -> i
+    java.lang.String ANDROID_RES -> j
+    java.lang.String ANDROID_PROP -> k
+    java.lang.String ANDROID_PLIST -> l
+    java.lang.String ANDROID_FONTLIST -> m
+    java.lang.String ANDROID_BASEPATH -> n
+    java.lang.String CROSSMOBILE_GRADLE -> o
+    java.lang.String ANDROID_GENERATED_CMSOURCES -> p
+    35:62:void <clinit>() -> <clinit>
+org.crossmobile.build.utils.DependencyDigger -> org.crossmobile.build.et:
+    org.crossmobile.utils.plugin.DependencyItem root -> a
+    43:51:org.crossmobile.utils.plugin.DependencyItem getDependencyTree(org.apache.maven.project.MavenProject,org.apache.maven.execution.MavenSession,org.apache.maven.shared.dependency.graph.DependencyGraphBuilder,java.util.function.Function,boolean) -> a
+    56:86:void parseTree(java.lang.String,org.crossmobile.utils.plugin.DependencyTreeConsumer,org.apache.maven.project.MavenProject,org.apache.maven.execution.MavenSession,org.apache.maven.shared.dependency.graph.DependencyGraphBuilder,java.util.function.Function) -> a
+    37:37:org.crossmobile.utils.plugin.DependencyItem access$000() -> a
+org.crossmobile.build.utils.DependencyDigger$1 -> org.crossmobile.build.et$1:
+    org.apache.maven.shared.dependency.graph.DependencyNode val$dnRoot -> a
+    java.util.Stack val$stack -> b
+    org.crossmobile.utils.plugin.DependencyTreeConsumer val$appender -> c
+    java.util.function.Function val$resolver -> d
+    org.crossmobile.utils.plugin.DependencyItem val$ignore -> e
+    61:61:void <init>(org.apache.maven.shared.dependency.graph.DependencyNode,java.util.Stack,org.crossmobile.utils.plugin.DependencyTreeConsumer,java.util.function.Function,org.crossmobile.utils.plugin.DependencyItem) -> <init>
+    65:73:boolean visit(org.apache.maven.shared.dependency.graph.DependencyNode) -> visit
+    78:79:boolean endVisit(org.apache.maven.shared.dependency.graph.DependencyNode) -> endVisit
+org.crossmobile.build.utils.DependencyJarResolver -> org.crossmobile.build.eu:
+    org.crossmobile.utils.FilteredConsumer ERROR -> a
+    37:39:java.util.Collection gatherLibs(org.crossmobile.utils.plugin.DependencyItem,boolean) -> a
+    43:68:void gatherProgramAndEmbeddedLibs(org.crossmobile.utils.plugin.DependencyItem,boolean,java.lang.String[],java.util.Collection,java.util.Collection,java.util.Collection) -> a
+    71:83:void addLibs(org.crossmobile.utils.plugin.DependencyItem,boolean,java.util.Collection,java.util.Collection) -> a
+    34:34:boolean lambda$static$0(java.lang.String) -> a
+    34:34:void <clinit>() -> <clinit>
+org.crossmobile.build.utils.InfoPlist -> org.crossmobile.build.ev:
+    java.lang.String text -> a
+    27:29:void <init>(java.lang.String) -> <init>
+    32:33:void setIdentifier(java.lang.String) -> a
+    36:43:void setVersion(java.lang.String) -> b
+    46:47:void setVersionShort(java.lang.String) -> c
+    50:51:void setDisplayName(java.lang.String) -> d
+    54:55:void setStatusBarHidden(java.lang.String) -> e
+    58:59:void setViewControlledStatusBar(java.lang.String) -> f
+    62:63:void setFileSharing(java.lang.String) -> g
+    66:67:void setDefaultOrientation(java.lang.String) -> h
+    70:72:void setSupportedOrientations(java.lang.String) -> i
+    75:76:void setFonts(java.util.Collection) -> a
+    79:80:void setApplication(java.lang.String) -> j
+    83:84:void setMainNibPhone(java.lang.String) -> k
+    87:88:void setMainNibPad(java.lang.String) -> l
+    91:92:void setLaunchStoryboard(java.lang.String) -> m
+    95:96:void setMainStoryboard(java.lang.String) -> n
+    99:100:void setInjected(java.lang.String) -> o
+    103:112:java.lang.String getCollectionAsArray(java.lang.String,java.lang.String,java.util.Collection) -> a
+    124:136:java.lang.String getPropertyAsArray(java.lang.String,java.lang.String,java.lang.String) -> a
+    141:141:java.lang.String toString() -> toString
+    145:145:java.lang.String toBoolean(java.lang.String) -> p
+    149:153:int getMaskedOrientations(java.lang.String) -> q
+    157:167:int getOrientation(java.lang.String,boolean) -> a
+org.crossmobile.build.utils.JavaVersionDowngrader -> org.crossmobile.build.ew:
+    32:48:void convertToJava7(java.io.File,java.io.File,java.util.Collection,boolean) -> a
+org.crossmobile.build.utils.MojoLogger -> org.crossmobile.build.ex:
+    boolean isRegistered -> a
+    org.apache.maven.plugin.logging.Log log -> b
+    33:37:void register(org.apache.maven.plugin.logging.Log) -> a
+    39:42:void <init>(org.apache.maven.plugin.logging.Log) -> <init>
+    46:47:void debug(java.lang.String) -> a
+    51:52:void info(java.lang.String) -> b
+    56:57:void warning(java.lang.String) -> c
+    61:62:void error(java.lang.String) -> d
+    66:67:void error(java.lang.Throwable) -> a
+    71:72:void error(java.lang.String,java.lang.Throwable) -> a
+org.crossmobile.build.utils.PlistUtils -> org.crossmobile.build.ey:
+    33:33:com.dd.plist.NSObject getPath(com.dd.plist.NSObject,java.lang.String[]) -> a
+    37:42:com.dd.plist.NSObject getPath(com.dd.plist.NSObject,java.util.Collection) -> a
+    46:46:java.lang.String getStringMaybe(com.dd.plist.NSObject) -> a
+    60:68:java.util.Collection filterObjects(com.dd.plist.NSDictionary,java.lang.String,java.util.function.BiFunction) -> a
+    72:75:java.util.Collection arrayToCollection(com.dd.plist.NSArray) -> a
+org.crossmobile.build.utils.SynchronizeHelpers -> org.crossmobile.build.ez:
+    java.util.regex.Pattern packagePattern -> a
+    java.util.regex.Pattern classPattern -> b
+    37:39:void createActivityAndApplication(java.lang.String,java.io.File) -> a
+    42:51:void createAndroidManifest(java.io.File,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,java.lang.String,boolean) -> a
+    54:57:void createBasePathAndroid(java.io.File,java.lang.String) -> a
+    60:60:java.io.File getClassFile(java.io.File,java.lang.String,java.lang.String) -> a
+    64:68:boolean checkValidDotNotation(java.lang.String,java.lang.String,boolean) -> a
+    72:73:void checkVariable(java.lang.String,java.lang.Object) -> a
+    76:78:void checkVariable(java.lang.String,boolean,java.lang.String) -> a
+    27:28:void <clinit>() -> <clinit>
+org.crossmobile.build.utils.Templates -> org.crossmobile.build.fa:
+    java.lang.String PROPERTY_MAIN_NIB_PHONE -> a
+    java.lang.String PROPERTY_MAIN_NIB_PAD -> b
+    java.lang.String PROPERTY_MAIN_STORYBOARD -> c
+    java.lang.String PROPERTY_LAUNCH_STORYBOARD -> d
+    148:160:void <clinit>() -> <clinit>
+org.crossmobile.build.xcode.PBXAny -> org.crossmobile.build.fb:
+    com.dd.plist.NSDictionary data -> a
+    25:27:void <init>(java.lang.String,com.dd.plist.NSDictionary) -> <init>
+    31:31:com.dd.plist.NSDictionary getData() -> a
+    36:36:java.lang.String toString() -> toString
+org.crossmobile.build.xcode.PBXBuildFile -> org.crossmobile.build.fc:
+    java.lang.String fileRef -> a
+    com.dd.plist.NSObject settings -> b
+    29:33:void <init>(java.lang.String,com.dd.plist.NSDictionary) -> <init>
+    37:37:java.lang.String toString() -> toString
+    42:46:com.dd.plist.NSDictionary getData() -> a
+org.crossmobile.build.xcode.PBXBuildPhase -> org.crossmobile.build.fd:
+    java.util.Collection files -> b
+    32:34:void <init>(java.lang.String,com.dd.plist.NSDictionary) -> <init>
+    38:39:java.lang.String toString() -> toString
+    45:46:void setFiles(java.util.Collection) -> a
+    50:51:com.dd.plist.NSDictionary getData() -> a
+org.crossmobile.build.xcode.PBXFileReference -> org.crossmobile.build.fe:
+    java.lang.String explicitFileType -> a
+    java.lang.String includeInIndex -> b
+    java.lang.String path -> c
+    java.lang.String sourceTree -> f
+    java.lang.String fileEncoding -> g
+    java.lang.String lastKnownFileType -> h
+    java.lang.String name -> i
+    34:42:void <init>(java.lang.String,com.dd.plist.NSDictionary) -> <init>
+    46:46:java.lang.String toString() -> toString
+    58:74:com.dd.plist.NSDictionary getData() -> a
+org.crossmobile.build.xcode.PBXGroup -> org.crossmobile.build.ff:
+    java.util.Collection children -> a
+    java.lang.String name -> b
+    java.lang.String sourceTree -> c
+    33:37:void <init>(java.lang.String,com.dd.plist.NSDictionary) -> <init>
+    40:40:java.lang.String getName() -> b
+    44:45:void addChild(java.lang.String) -> a
+    49:54:com.dd.plist.NSDictionary getData() -> a
+org.crossmobile.build.xcode.PBXNativeTarget -> org.crossmobile.build.fg:
+    java.lang.String name -> f
+    java.lang.String productName -> g
+    java.lang.String productReference -> h
+    java.lang.String productType -> b
+    java.lang.String buildConfigurationList -> c
+    java.util.Collection buildPhases -> i
+    java.util.Collection dependencies -> j
+    37:38:void <init>(java.lang.String,java.lang.String,org.crossmobile.build.xcode.XCConfigurationList,boolean) -> <init>
+    42:50:void <init>(java.lang.String,com.dd.plist.NSDictionary) -> <init>
+    53:53:java.lang.String getName() -> b
+    57:58:void setName(java.lang.String) -> a
+    61:62:void setProductName(java.lang.String) -> b
+    65:66:void setProductReference(java.lang.String) -> c
+    70:76:com.dd.plist.NSDictionary getData() -> a
+    80:81:void setBuildPhases(java.util.Collection) -> a
+    88:89:void addBuildPhase(java.lang.String) -> d
+    92:93:void setDependencies(java.util.Collection) -> b
+    96:106:com.dd.plist.NSDictionary getTargetData(java.lang.String,org.crossmobile.build.xcode.XCConfigurationList,boolean) -> a
+org.crossmobile.build.xcode.PBXObject -> org.crossmobile.build.fh:
+    java.lang.String id -> d
+    java.lang.String isa -> e
+    27:30:void <init>(java.lang.String,com.dd.plist.NSDictionary) -> <init>
+    com.dd.plist.NSDictionary getData() -> a
+    35:35:java.lang.String getId() -> c
+org.crossmobile.build.xcode.PBXObjectCondition -> org.crossmobile.build.fi:
+    boolean check(org.crossmobile.build.xcode.PBXObject) -> check
+org.crossmobile.build.xcode.PBXProject -> org.crossmobile.build.fj:
+    java.util.Collection knownRegions -> b
+    java.util.Collection targets -> c
+    java.lang.String mainGroup -> f
+    java.lang.String productRefGroup -> g
+    34:39:void <init>(java.lang.String,com.dd.plist.NSDictionary) -> <init>
+    46:47:void setTargets(java.util.Collection) -> a
+    50:50:java.lang.String getMainGroup() -> b
+    54:55:void setProductRefGroup(java.lang.String) -> a
+    59:63:com.dd.plist.NSDictionary getData() -> a
+org.crossmobile.build.xcode.XCBuildConfiguration -> org.crossmobile.build.fk:
+    java.util.Map buildSettings -> c
+    java.lang.String name -> b
+    32:33:void <init>(java.lang.String,java.lang.String,boolean,boolean) -> <init>
+    36:39:void <init>(java.lang.String,com.dd.plist.NSDictionary) -> <init>
+    42:43:void putToBuildSettings(java.lang.String,java.lang.Object) -> a
+    47:50:com.dd.plist.NSDictionary getData() -> a
+    55:73:com.dd.plist.NSDictionary getConfigurationData(java.lang.String,boolean,boolean) -> a
+org.crossmobile.build.xcode.XCConfigurationList -> org.crossmobile.build.fl:
+    java.util.Collection buildConfigurations -> b
+    32:33:void <init>(java.lang.String,org.crossmobile.build.xcode.XCBuildConfiguration[]) -> <init>
+    36:38:void <init>(java.lang.String,com.dd.plist.NSDictionary) -> <init>
+    41:51:com.dd.plist.NSDictionary getConfigData(org.crossmobile.build.xcode.XCBuildConfiguration[]) -> a
+org.crossmobile.build.xcode.XCodeCreator -> org.crossmobile.build.fm:
+    java.lang.String appName -> a
+    java.util.Collection headerSearchPath -> b
+    java.io.File plistDir -> c
+    org.crossmobile.build.xcode.XCodeWrapper wrapper -> d
+    java.lang.String projectType -> e
+    java.io.File projectPath -> f
+    java.lang.String mainGroup -> g
+    java.util.Collection resources -> h
+    java.io.File xcodeProject -> i
+    java.util.Collection plistIds -> j
+    java.util.Map productRefs -> k
+    java.util.Map buildConfLists -> l
+    java.lang.String productRefGroup -> m
+    43:65:void <init>(java.lang.String,java.util.Collection,java.util.Collection,java.io.File,java.io.File,java.util.Collection,java.lang.String) -> <init>
+    68:74:void addResources(java.util.Collection,java.io.File) -> a
+    77:95:void removeOldReferences() -> b
+    98:110:void addFileReferences() -> c
+    113:123:void createGroups() -> d
+    126:126:java.lang.String createGroup(java.lang.String,java.lang.String[]) -> a
+    130:138:void addLocalizedGroups() -> e
+    142:149:java.lang.String createGroup(java.lang.String,java.lang.String[],java.lang.String) -> a
+    153:155:java.lang.String addBuildReference(org.crossmobile.build.xcode.resources.AnyResource) -> a
+    159:168:org.crossmobile.build.xcode.PBXNativeTarget updateMainTarget() -> f
+    172:179:void addDependenciesIfNeeded(org.crossmobile.build.xcode.PBXNativeTarget) -> a
+    182:188:java.lang.String createDependency(org.crossmobile.build.xcode.PBXNativeTarget) -> b
+    192:200:java.lang.String createItemProxy(org.crossmobile.build.xcode.PBXNativeTarget) -> c
+    204:211:void addCopyTargetsIfNeeded(org.crossmobile.build.xcode.PBXNativeTarget) -> d
+    214:221:java.util.Collection getAppexBuildRefs() -> g
+    225:241:java.lang.String updateExtension(java.util.Collection,java.lang.String) -> a
+    245:259:java.util.List updateTargets() -> h
+    263:275:void updateProject() -> a
+    278:289:void updateBuildConfigurations() -> i
+    292:315:java.util.List updateTargetBuildPhases(java.lang.String) -> a
+    319:324:java.util.Map buildPhaseMap(java.lang.String) -> b
+    328:336:java.util.Map copyPhaseMap() -> j
+    340:346:java.util.Map appMap() -> k
+    350:356:java.util.Map appexFileReferenceMap(java.lang.String) -> c
+    360:366:java.util.Map appexPBXBuildFileMap(java.lang.String,java.lang.String) -> a
+    371:378:java.util.Map plistMap(java.io.File) -> a
+    382:384:org.crossmobile.build.xcode.PBXFileReference registerPlist(java.lang.String) -> d
+    307:307:boolean lambda$updateTargetBuildPhases$21(java.lang.String,org.crossmobile.build.xcode.resources.AnyResource) -> a
+    301:301:boolean lambda$updateTargetBuildPhases$20(java.lang.String,org.crossmobile.build.xcode.resources.AnyResource) -> b
+    295:295:boolean lambda$updateTargetBuildPhases$19(java.lang.String,org.crossmobile.build.xcode.resources.AnyResource) -> c
+    247:247:boolean lambda$updateTargets$18(org.crossmobile.build.xcode.PBXNativeTarget) -> e
+    225:225:boolean lambda$updateExtension$17(java.lang.String,org.crossmobile.build.xcode.PBXNativeTarget) -> a
+    173:173:boolean lambda$addDependenciesIfNeeded$16(org.crossmobile.build.xcode.PBXNativeTarget) -> f
+    160:160:boolean lambda$updateMainTarget$15(org.crossmobile.build.xcode.PBXNativeTarget) -> g
+    133:137:void lambda$addLocalizedGroups$14(java.util.Map,java.lang.String) -> a
+    131:131:void lambda$addLocalizedGroups$13(java.util.Map,org.crossmobile.build.xcode.resources.AnyResource) -> a
+    131:131:java.util.List lambda$null$12(java.lang.String) -> e
+    119:119:boolean lambda$createGroups$11(org.crossmobile.build.xcode.PBXGroup) -> a
+    116:116:boolean lambda$createGroups$10(org.crossmobile.build.xcode.resources.AnyResource) -> b
+    115:115:boolean lambda$createGroups$9(org.crossmobile.build.xcode.resources.AnyResource) -> c
+    114:114:boolean lambda$createGroups$8(org.crossmobile.build.xcode.resources.AnyResource) -> d
+    94:94:boolean lambda$removeOldReferences$7(org.crossmobile.build.xcode.PBXObject) -> a
+    93:93:boolean lambda$removeOldReferences$6(org.crossmobile.build.xcode.PBXGroup) -> b
+    91:91:boolean lambda$removeOldReferences$5(org.crossmobile.build.xcode.PBXGroup) -> c
+    89:89:boolean lambda$removeOldReferences$4(org.crossmobile.build.xcode.PBXGroup) -> d
+    87:87:boolean lambda$removeOldReferences$3(org.crossmobile.build.xcode.PBXGroup) -> e
+    84:84:boolean lambda$removeOldReferences$2(org.crossmobile.build.xcode.PBXGroup) -> f
+    69:73:void lambda$addResources$1(java.io.File,java.io.File) -> a
+    64:64:void lambda$new$0(java.lang.String) -> f
+org.crossmobile.build.xcode.XCodeWrapper -> org.crossmobile.build.fn:
+    java.util.Map objectMapper -> a
+    java.util.function.BiFunction defaultObjectMapper -> b
+    com.dd.plist.NSDictionary base -> c
+    java.util.Map objects -> d
+    java.math.BigInteger currentId -> e
+    65:72:org.crossmobile.build.xcode.XCodeWrapper load(java.lang.String) -> a
+    75:89:void <init>(com.dd.plist.NSDictionary) -> <init>
+    93:101:boolean save(java.io.File) -> a
+    106:106:java.util.Collection removeType(java.lang.String) -> b
+    110:111:void addType(java.lang.String,java.util.Collection) -> a
+    114:114:java.util.Collection getType(java.lang.String) -> c
+    118:122:org.crossmobile.build.xcode.PBXObject getObjectWithID(java.lang.String) -> d
+    127:132:org.crossmobile.build.xcode.PBXObject getObjectWithID(java.lang.String,java.lang.String) -> a
+    136:141:org.crossmobile.build.xcode.PBXObject getObjectWithCondition(java.lang.String,org.crossmobile.build.xcode.PBXObjectCondition) -> a
+    145:151:java.util.Collection getObjectsWithCondition(java.lang.Class,org.crossmobile.build.xcode.PBXObjectCondition) -> a
+    155:159:void removeObjectWithCondition(java.lang.String,org.crossmobile.build.xcode.PBXObjectCondition) -> b
+    162:166:void removeObject(java.lang.String,org.crossmobile.build.xcode.PBXObject) -> a
+    169:173:void addObject(org.crossmobile.build.xcode.PBXObject) -> a
+    176:182:java.math.BigInteger lastUsedID() -> b
+    186:189:java.lang.String getNextID() -> a
+    47:61:void <clinit>() -> <clinit>
+org.crossmobile.build.xcode.XcodeTargetRegistry -> org.crossmobile.build.fo:
+    java.util.Map targetsOfClass -> a
+    java.util.Map targetsOfMaterials -> b
+    java.util.Map targets -> c
+    43:59:void register(java.lang.String,boolean,boolean,java.lang.String[]) -> a
+    62:67:boolean classBelongsToTarget(java.lang.String,org.crossmobile.utils.XcodeTarget) -> a
+    71:77:boolean materialBelongsToTarget(java.lang.String,org.crossmobile.utils.XcodeTarget) -> b
+    85:85:java.lang.Iterable getAllTargets() -> a
+    89:91:java.lang.Iterable getExtraTargets() -> b
+    95:95:org.crossmobile.utils.XcodeTarget getTarget(java.lang.String) -> a
+    99:99:boolean hasTarget(java.lang.String) -> b
+    103:115:java.util.Map gatherTargets(org.crossmobile.build.ng.CMBuildEnvironment,java.io.File) -> a
+    119:119:boolean addTarget(org.crossmobile.utils.XcodeTarget) -> a
+    34:40:void <clinit>() -> <clinit>
+org.crossmobile.build.xcode.resources.AnyResource -> org.crossmobile.build.fp:
+    java.lang.String fileref -> a
+    java.lang.String name -> b
+    java.lang.String path -> c
+    37:38:void <init>(java.lang.String,java.lang.String) -> <init>
+    40:44:void <init>(java.lang.String,java.lang.String,java.lang.String) -> <init>
+    48:48:int hashCode() -> hashCode
+    53:55:boolean equals(java.lang.Object) -> equals
+    java.lang.String family() -> a
+    67:67:boolean isBuildable() -> b
+    71:71:boolean isLocalized() -> c
+    75:75:java.lang.String getFileref() -> d
+    79:79:java.lang.String name() -> e
+    83:83:java.lang.String path() -> f
+    java.util.Map dataMap() -> g
+    org.crossmobile.build.xcode.PBXFileReference fileReference() -> h
+    91:94:java.util.Map buildMap() -> i
+    org.crossmobile.build.xcode.PBXBuildFile buildFile(java.lang.String) -> a
+    100:103:java.lang.String abstractName() -> j
+    108:108:int compareTo(org.crossmobile.build.xcode.resources.AnyResource) -> a
+    112:112:boolean belongsToTarget(java.lang.String) -> b
+    boolean belongsToTarget(java.lang.String,org.crossmobile.utils.XcodeTarget) -> a
+    28:28:int compareTo(java.lang.Object) -> compareTo
+org.crossmobile.build.xcode.resources.FileResource -> org.crossmobile.build.fq:
+    java.util.HashMap sourcefiles -> a
+    java.util.HashMap hiddensourcefiles -> b
+    java.util.HashMap knownbinaryfiles -> c
+    java.util.HashMap knowntextfiles -> d
+    boolean isSource -> e
+    boolean isBuildable -> f
+    java.lang.String filetype -> g
+    boolean isText -> h
+    boolean isLocalized -> i
+    67:125:void <init>(java.lang.String,java.io.File,java.lang.String,java.io.File) -> <init>
+    129:129:java.lang.String family() -> a
+    149:156:java.util.Map dataMap() -> g
+    161:161:boolean isBuildable() -> b
+    166:166:boolean isLocalized() -> c
+    171:171:org.crossmobile.build.xcode.PBXFileReference fileReference() -> h
+    176:176:org.crossmobile.build.xcode.PBXBuildFile buildFile(java.lang.String) -> a
+    181:183:boolean belongsToTarget(java.lang.String,org.crossmobile.utils.XcodeTarget) -> a
+    38:58:void <clinit>() -> <clinit>
+org.crossmobile.build.xcode.resources.GroupResource -> org.crossmobile.build.fr:
+    java.lang.String[] filerRefs -> a
+    17:20:void <init>(java.lang.String,java.util.Collection,java.lang.String) -> <init>
+    24:24:java.lang.String family() -> a
+    44:44:boolean isBuildable() -> b
+    49:54:java.util.Map dataMap() -> g
+    59:59:org.crossmobile.build.xcode.PBXFileReference fileReference() -> h
+    63:63:org.crossmobile.build.xcode.PBXGroup group() -> k
+    68:68:org.crossmobile.build.xcode.PBXBuildFile buildFile(java.lang.String) -> a
+    73:73:boolean belongsToTarget(java.lang.String,org.crossmobile.utils.XcodeTarget) -> a
+    19:19:java.lang.String[] lambda$new$0(int) -> a
+org.crossmobile.build.xcode.resources.LibResource -> org.crossmobile.build.fs:
+    java.lang.String filetype -> a
+    boolean weak -> b
+    java.lang.String name -> c
+    java.lang.String path -> d
+    boolean inSDK -> e
+    36:54:void <init>(java.lang.String,java.lang.String) -> <init>
+    57:67:java.lang.String getFileType() -> k
+    72:72:java.lang.String family() -> a
+    81:83:java.util.Map buildSettings() -> l
+    98:104:java.util.Map dataMap() -> g
+    109:109:org.crossmobile.build.xcode.PBXFileReference fileReference() -> h
+    114:117:org.crossmobile.build.xcode.PBXBuildFile buildFile(java.lang.String) -> a
+    122:122:boolean belongsToTarget(java.lang.String,org.crossmobile.utils.XcodeTarget) -> a
+    127:127:int hashCode() -> hashCode
+    132:137:boolean equals(java.lang.Object) -> equals
+org.crossmobile.build.xcode.resources.ObjCLibrary -> org.crossmobile.build.ft:
+    java.util.Collection incl -> a
+    java.util.Collection libs -> b
+    java.util.Collection pods -> c
+    37:43:void <init>() -> <init>
+    46:47:void addLibraries(java.util.Collection) -> a
+    51:52:void addPods(java.util.Collection) -> b
+    55:56:void addInclude(java.lang.String) -> a
+    59:59:java.util.Collection getLibraries() -> a
+    63:63:java.util.Collection getIncludes() -> b
+    67:67:java.util.Collection getPods() -> c
+    73:92:org.crossmobile.build.xcode.resources.ObjCLibrary extract(org.crossmobile.utils.plugin.DependencyItem,java.io.File,java.io.File,java.lang.String) -> a
+    98:134:void extractFiles(java.io.File,java.util.Collection,java.io.File,java.io.File,java.lang.String,java.util.Collection) -> a
+org.crossmobile.build.xcode.resources.ResourceItem -> org.crossmobile.build.fu:
+    java.lang.String name -> a
+    java.lang.String[] elements -> b
+    java.util.Set files -> c
+    30:37:void <init>(java.lang.String,java.lang.String[]) -> <init>
+    40:62:void update(java.io.File) -> a
+    65:65:java.util.Set getResources() -> a
+org.crossmobile.prefs.Config -> org.crossmobile.build.fv:
+    java.lang.String[] EXCEPTIONS -> a
+    29:29:void <clinit>() -> <clinit>
+org.crossmobile.prefs.Prefs -> org.crossmobile.build.fw:
+    java.util.prefs.Preferences prefs -> a
+    137:138:java.lang.String getAndroidSDKLocation() -> a
+    190:190:java.lang.String getSafeFile(java.lang.String) -> a
+    194:194:java.lang.String getTagLocation(java.lang.String) -> b
+    59:59:void <clinit>() -> <clinit>
+org.crossmobile.utils.CollectionUtils -> org.crossmobile.build.fx:
+    29:29:java.util.List asList(java.lang.Object[]) -> a
+    33:33:java.util.List asList(java.util.Collection) -> a
+    39:44:java.util.List asList(java.util.Map) -> a
+    48:56:java.util.List asList(java.lang.Iterable,java.util.function.Function,java.util.function.Predicate) -> a
+    60:60:java.util.List asList(java.lang.Iterable,java.util.function.Function) -> a
+    70:73:java.util.Collection asCollection(java.lang.Iterable[]) -> a
+    77:77:java.util.Collection asCollection(java.lang.Iterable) -> a
+    81:81:java.util.Collection asCollection(java.lang.Class,java.lang.Iterable[]) -> a
+    85:96:java.util.Collection asCollection(java.lang.Class,java.lang.Iterable) -> a
+    157:161:java.lang.Object getWithCondition(java.util.Collection,java.util.function.Predicate) -> a
+    184:185:java.lang.Object head(java.lang.Iterable) -> b
+    189:194:java.util.List tail(java.lang.Iterable) -> c
+org.crossmobile.utils.Commander -> org.crossmobile.build.fy:
+    java.nio.charset.Charset ENCODING -> a
+    boolean AS_WINDOWS -> b
+    java.util.List command -> c
+    java.util.Map envp -> d
+    java.util.function.Consumer outS -> e
+    java.util.function.Consumer errS -> f
+    java.util.function.Consumer outC -> g
+    java.util.function.Consumer errC -> h
+    java.util.function.BiConsumer outB -> i
+    java.util.function.BiConsumer errB -> j
+    java.io.Writer outW -> k
+    java.io.Writer errW -> l
+    java.util.function.Consumer finish -> m
+    java.io.File currentDir -> n
+    java.lang.Process proc -> o
+    java.io.BufferedWriter bufferin -> p
+    org.crossmobile.utils.Commander$OutputProxy procout -> q
+    org.crossmobile.utils.Commander$OutputProxy procerr -> r
+    int exit_value -> s
+    boolean out_is_terminated -> t
+    boolean err_is_terminated -> u
+    java.lang.Thread waitThread -> v
+    long pid -> w
+    35:58:void <init>(java.util.List) -> <init>
+    61:62:void <init>(java.lang.String[]) -> <init>
+    65:67:org.crossmobile.utils.Commander add(java.lang.String) -> b
+    71:71:org.crossmobile.utils.Commander addArgument(java.lang.String) -> a
+    75:79:org.crossmobile.utils.Commander setOutListener(java.util.function.Consumer) -> a
+    107:111:org.crossmobile.utils.Commander setErrListener(java.util.function.Consumer) -> b
+    144:147:org.crossmobile.utils.Commander setCurrentDir(java.io.File) -> a
+    171:196:org.crossmobile.utils.Commander exec() -> a
+    201:230:void findPID() -> f
+    253:259:void terminateInput() -> g
+    262:277:void doWaitFor(long,java.util.concurrent.TimeUnit) -> b
+    280:280:org.crossmobile.utils.Commander waitFor() -> b
+    284:316:org.crossmobile.utils.Commander waitFor(long,java.util.concurrent.TimeUnit) -> a
+    322:329:org.crossmobile.utils.Commander kill() -> c
+    333:335:int exitValue() -> d
+    339:341:void doInterrupt() -> h
+    347:378:void outputTerminated(org.crossmobile.utils.Commander$OutputProxy,boolean) -> a
+    382:382:java.lang.String toString() -> toString
+    386:390:java.lang.String commandToString() -> i
+    394:398:java.lang.String environmentToString() -> j
+    402:404:java.lang.String pathToString() -> k
+    408:411:java.lang.String escapeIfRequired(java.lang.String) -> c
+    491:496:void sendLine(java.lang.String,java.util.function.Consumer,java.util.function.Consumer) -> a
+    29:29:void access$200(org.crossmobile.utils.Commander,long,java.util.concurrent.TimeUnit) -> a
+    29:29:boolean access$300(org.crossmobile.utils.Commander) -> a
+    29:29:boolean access$400(org.crossmobile.utils.Commander) -> b
+    29:29:java.lang.Thread access$500(org.crossmobile.utils.Commander) -> c
+    29:29:java.util.function.BiConsumer access$600(org.crossmobile.utils.Commander) -> d
+    29:29:java.lang.Process access$700(org.crossmobile.utils.Commander) -> e
+    29:29:java.nio.charset.Charset access$800() -> e
+    29:29:java.util.function.Consumer access$900(org.crossmobile.utils.Commander) -> f
+    29:29:java.util.function.Consumer access$1000(org.crossmobile.utils.Commander) -> g
+    29:29:java.io.Writer access$1100(org.crossmobile.utils.Commander) -> h
+    29:29:java.util.function.BiConsumer access$1200(org.crossmobile.utils.Commander) -> i
+    29:29:java.util.function.Consumer access$1300(org.crossmobile.utils.Commander) -> j
+    29:29:java.util.function.Consumer access$1400(org.crossmobile.utils.Commander) -> k
+    29:29:java.io.Writer access$1500(org.crossmobile.utils.Commander) -> l
+    29:29:void access$2200(org.crossmobile.utils.Commander,org.crossmobile.utils.Commander$OutputProxy,boolean) -> a
+    32:33:void <clinit>() -> <clinit>
+org.crossmobile.utils.Commander$1 -> org.crossmobile.build.fy$1:
+    long val$duration -> a
+    java.util.concurrent.TimeUnit val$tu -> b
+    org.crossmobile.utils.Commander this$0 -> c
+    294:294:void <init>(org.crossmobile.utils.Commander,long,java.util.concurrent.TimeUnit) -> <init>
+    299:308:void run() -> run
+org.crossmobile.utils.Commander$OutputProxy -> org.crossmobile.build.fy$a:
+    java.io.BufferedReader inR -> b
+    java.io.BufferedInputStream inS -> c
+    java.lang.Thread worker -> d
+    java.util.function.Consumer listenS -> e
+    java.util.function.Consumer listenC -> f
+    java.io.Writer listenW -> g
+    java.util.function.BiConsumer listenB -> h
+    org.crossmobile.utils.Commander this$0 -> a
+    424:487:void <init>(org.crossmobile.utils.Commander,boolean) -> <init>
+    414:414:void <init>(org.crossmobile.utils.Commander,boolean,org.crossmobile.utils.Commander$1) -> <init>
+    414:414:java.lang.Thread access$100(org.crossmobile.utils.Commander$OutputProxy) -> a
+    414:414:java.util.function.Consumer access$1600(org.crossmobile.utils.Commander$OutputProxy) -> b
+    414:414:java.io.BufferedReader access$1700(org.crossmobile.utils.Commander$OutputProxy) -> c
+    414:414:java.io.Writer access$1800(org.crossmobile.utils.Commander$OutputProxy) -> d
+    414:414:java.util.function.BiConsumer access$1900(org.crossmobile.utils.Commander$OutputProxy) -> e
+    414:414:java.io.BufferedInputStream access$2000(org.crossmobile.utils.Commander$OutputProxy) -> f
+    414:414:java.util.function.Consumer access$2100(org.crossmobile.utils.Commander$OutputProxy) -> g
+org.crossmobile.utils.Commander$OutputProxy$1 -> org.crossmobile.build.fy$a$1:
+    org.crossmobile.utils.Commander val$this$0 -> a
+    boolean val$asOut -> b
+    org.crossmobile.utils.Commander$OutputProxy this$1 -> c
+    450:450:void <init>(org.crossmobile.utils.Commander$OutputProxy,org.crossmobile.utils.Commander,boolean) -> <init>
+    456:485:void run() -> run
+org.crossmobile.utils.Dependency -> org.crossmobile.build.fz:
+    java.util.Map PLUGINS -> k
+    java.util.Map THEMES -> l
+    java.util.List SKINS -> m
+    org.crossmobile.utils.Dependency DEFAULT_THEME -> n
+    java.lang.String groupId -> a
+    java.lang.String artifactId -> b
+    java.lang.String version -> c
+    java.lang.String classifier -> d
+    java.lang.String scope -> e
+    java.lang.String name -> f
+    java.lang.String description -> g
+    java.lang.String url -> h
+    boolean cmplugin -> i
+    boolean theme -> j
+    java.util.Collection configParams -> o
+    37:40:org.crossmobile.utils.XMLWalker loadWalker(java.lang.String) -> a
+    60:95:void initSystemDependencies() -> d
+    98:99:java.util.List getSystemPlugins() -> a
+    103:104:java.util.List getSystemThemes() -> b
+    116:124:org.crossmobile.utils.Dependency findSystemDependency(java.lang.String,java.lang.String) -> a
+    160:174:void <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.Collection) -> <init>
+    177:177:java.util.Collection getConfigParams() -> c
+    186:186:java.lang.String toString() -> toString
+    67:94:void lambda$initSystemDependencies$4(org.crossmobile.utils.XMLWalker) -> a
+    69:93:void lambda$null$3(java.lang.String,org.crossmobile.utils.XMLWalker) -> a
+    90:90:java.util.List lambda$null$2(java.lang.String) -> b
+    74:81:void lambda$null$1(java.lang.String,java.lang.String,java.util.Collection,org.crossmobile.utils.XMLWalker) -> a
+    30:34:void <clinit>() -> <clinit>
+org.crossmobile.utils.DependencyParam -> org.crossmobile.build.ga:
+    java.lang.String description -> a
+    java.lang.String fullname -> b
+    java.lang.String meta -> c
+    org.crossmobile.bridge.ann.CMLibParam$ParamContext context -> d
+    org.crossmobile.utils.Param param -> e
+    35:41:void <init>(java.lang.String,java.lang.String,java.lang.String,org.crossmobile.bridge.ann.CMLibParam$ParamContext) -> <init>
+    45:45:int compareTo(org.crossmobile.utils.DependencyParam) -> a
+    50:52:int hashCode() -> hashCode
+    57:64:boolean equals(java.lang.Object) -> equals
+    69:70:java.lang.String toString() -> toString
+    27:27:int compareTo(java.lang.Object) -> compareTo
+org.crossmobile.utils.ExecLocator -> org.crossmobile.build.gb:
+    java.util.Collection paths -> a
+    33:38:java.io.File findPath(java.lang.String) -> a
+    24:30:void <clinit>() -> <clinit>
+org.crossmobile.utils.FileUtils -> org.crossmobile.build.gc:
+    java.text.SimpleDateFormat dateformat -> a
+    38:39:void <init>() -> <init>
+    74:74:java.lang.String readResourceSafe(java.lang.String) -> a
+    83:85:java.lang.String read(java.io.File) -> a
+    95:101:java.lang.String readSafe(java.io.InputStream,java.lang.String) -> a
+    106:126:void read(java.io.InputStream,java.lang.String,java.util.function.Consumer) -> a
+    129:134:java.lang.String removeExtension(java.lang.String) -> b
+    144:162:java.io.File write(java.io.File,java.lang.String) -> a
+    166:177:void copyResource(java.lang.String,java.lang.String) -> a
+    192:212:boolean copyStream(java.io.InputStream,java.io.OutputStream) -> a
+    216:222:void move(java.io.File,java.io.File,java.io.File) -> a
+    246:259:void backup(java.io.File,java.io.File,boolean) -> a
+    279:286:java.io.File getAbsFile(java.io.File,java.lang.String) -> b
+    312:312:java.lang.String getRelative(java.io.File,java.io.File) -> a
+    384:393:int delete(java.io.File) -> b
+    397:428:int copy(java.io.File,java.io.File) -> b
+    456:460:boolean isNewer(java.io.File,java.io.File) -> c
+    464:473:long getLastModified(java.io.File) -> c
+    477:490:long fixLastModified(java.io.File) -> d
+    494:508:boolean equalFiles(java.io.File,java.io.File) -> d
+    520:562:int sync(java.io.File,java.io.File,boolean,java.lang.String[]) -> a
+    566:569:java.lang.String getExtension(java.lang.String) -> c
+    573:576:java.lang.String getBasename(java.lang.String) -> d
+    580:580:java.util.Collection list(java.io.File) -> e
+    584:588:java.util.Collection list(java.io.File,java.io.FilenameFilter) -> a
+    592:607:void forAny(java.io.File,java.util.function.Predicate,java.util.function.BiConsumer,java.lang.String,boolean) -> a
+    610:613:void forEach(java.io.File,java.util.function.Predicate,java.util.function.BiConsumer) -> a
+    616:619:void forAll(java.io.File,java.util.function.Predicate,java.util.function.BiConsumer) -> b
+    630:630:boolean endsWithPathSeparator(java.lang.String) -> e
+    97:97:void lambda$readSafe$0(java.lang.StringBuilder,java.lang.String) -> a
+    35:35:void <clinit>() -> <clinit>
+org.crossmobile.utils.FileUtilsException -> org.crossmobile.build.gd:
+    21:22:void <init>(java.lang.String) -> <init>
+    29:30:void <init>(java.lang.Throwable) -> <init>
+org.crossmobile.utils.FilteredConsumer -> org.crossmobile.build.ge:
+    java.util.function.Consumer parent -> a
+    java.util.function.Predicate predicate -> b
+    26:29:void <init>(java.util.function.Consumer,java.util.function.Predicate) -> <init>
+    33:35:void accept(java.lang.Object) -> accept
+org.crossmobile.utils.JarUtils -> org.crossmobile.build.gf:
+    36:54:java.util.List getListOfEntries(java.util.jar.JarFile,java.lang.String) -> a
+    58:58:int copyJarResources(java.util.jar.JarFile,java.lang.String,java.io.File) -> a
+    62:81:int copyJarResources(java.util.jar.JarFile,java.lang.String,java.io.File,java.util.function.Predicate) -> a
+    120:140:void unzipJar(java.io.File,java.io.File,java.util.function.BiPredicate) -> a
+org.crossmobile.utils.JarUtils$1 -> org.crossmobile.build.gf$1:
+org.crossmobile.utils.JarUtils$JarPathEntry -> org.crossmobile.build.gf$a:
+    java.lang.String path -> a
+    java.lang.String name -> b
+    java.lang.String home -> c
+    java.lang.String toString -> d
+    238:243:void <init>(java.lang.String,java.lang.String,java.lang.String) -> <init>
+    247:247:java.lang.String toString() -> toString
+    251:251:java.util.zip.ZipEntry getEntry() -> a
+    231:231:void <init>(java.lang.String,java.lang.String,java.lang.String,org.crossmobile.utils.JarUtils$1) -> <init>
+org.crossmobile.utils.JavaCommander -> org.crossmobile.build.gg:
+    java.lang.String mainjar -> a
+    java.util.Collection params -> b
+    java.util.Collection args -> c
+    24:30:void <init>(java.lang.String) -> <init>
+    33:34:org.crossmobile.utils.JavaCommander addJavaParam(java.lang.String) -> b
+    39:40:org.crossmobile.utils.JavaCommander addArgument(java.lang.String) -> c
+    45:51:org.crossmobile.utils.Commander exec() -> a
+    21:21:org.crossmobile.utils.Commander addArgument(java.lang.String) -> a
+org.crossmobile.utils.Log -> org.crossmobile.build.gh:
+    org.crossmobile.utils.Logger logger -> a
+    org.crossmobile.utils.Log$Level level -> b
+    26:27:void register(org.crossmobile.utils.Logger) -> a
+    30:32:void debug(java.lang.String) -> a
+    35:37:void info(java.lang.String) -> b
+    40:42:void warning(java.lang.String) -> c
+    45:47:void error(java.lang.String) -> d
+    50:52:void error(java.lang.Throwable) -> a
+    55:57:void error(java.lang.String,java.lang.Throwable) -> a
+    22:23:void <clinit>() -> <clinit>
+org.crossmobile.utils.Log$Default -> org.crossmobile.build.gh$a:
+    70:70:void <init>() -> <init>
+    74:75:void debug(java.lang.String) -> a
+    79:80:void info(java.lang.String) -> b
+    84:85:void warning(java.lang.String) -> c
+    89:90:void error(java.lang.String) -> d
+    94:95:void error(java.lang.Throwable) -> a
+    99:103:void error(java.lang.String,java.lang.Throwable) -> a
+org.crossmobile.utils.Log$Level -> org.crossmobile.build.gh$b:
+    org.crossmobile.utils.Log$Level DEBUG -> a
+    org.crossmobile.utils.Log$Level INFO -> b
+    org.crossmobile.utils.Log$Level WARNING -> c
+    org.crossmobile.utils.Log$Level ERROR -> d
+    org.crossmobile.utils.Log$Level NONE -> e
+    org.crossmobile.utils.Log$Level[] $VALUES -> f
+    106:106:org.crossmobile.utils.Log$Level[] values() -> values
+    106:106:org.crossmobile.utils.Log$Level valueOf(java.lang.String) -> valueOf
+    106:106:void <init>(java.lang.String,int) -> <init>
+    106:107:void <clinit>() -> <clinit>
+org.crossmobile.utils.Logger -> org.crossmobile.build.gi:
+    void debug(java.lang.String) -> a
+    void info(java.lang.String) -> b
+    void warning(java.lang.String) -> c
+    void error(java.lang.String) -> d
+    void error(java.lang.Throwable) -> a
+    void error(java.lang.String,java.lang.Throwable) -> a
+org.crossmobile.utils.MaterialsUtils -> org.crossmobile.build.gj:
+    40:48:java.util.List getMaterials(java.io.File,java.lang.String) -> a
+    52:53:void copyFiles(java.util.Collection,java.io.File,java.util.function.Predicate) -> a
+    56:66:void copyFilesImpl(java.util.Collection,java.io.File,java.util.function.Predicate,java.lang.String) -> a
+org.crossmobile.utils.MaterialsUtils$FileMaterial -> org.crossmobile.build.gj$a:
+    java.io.File input -> a
+    java.io.File output -> b
+    java.lang.String path -> c
+    73:77:void <init>(java.io.File,java.io.File,java.lang.String) -> <init>
+org.crossmobile.utils.NamingUtils -> org.crossmobile.build.gk:
+    34:42:java.lang.String getClassNameFull(javassist.CtClass) -> a
+    85:100:java.lang.String execSignature(javassist.CtMethod) -> a
+org.crossmobile.utils.NativeCodeCollection -> org.crossmobile.build.gl:
+    java.util.Map methodClassCode -> a
+    javassist.ClassPool cp -> b
+    43:50:void <init>(javassist.ClassPool) -> <init>
+    53:55:void <init>(java.util.Collection) -> <init>
+    58:58:javassist.ClassPool getClassPool() -> a
+    67:71:void add(java.lang.String,java.lang.String,java.lang.String) -> a
+    74:99:void add(java.lang.String,javassist.CtClass,java.lang.String) -> a
+    125:138:java.lang.String getCode(javassist.CtClass,javassist.CtMethod) -> a
+    144:158:void loadSources(java.util.Collection) -> a
+    161:170:void loadSources(java.io.InputStream,java.io.File) -> a
+org.crossmobile.utils.Param -> org.crossmobile.build.gm:
+    boolean ommitIfMissing -> a
+    java.lang.String name -> b
+    java.lang.String anchor -> c
+    java.lang.String meta -> d
+    org.crossmobile.bridge.ann.CMLibParam$ParamContext context -> e
+    java.lang.String deflt -> f
+    org.crossmobile.utils.Param$TagType type -> g
+    35:43:void <init>(boolean,java.lang.String,java.lang.String,java.lang.String,java.lang.String,org.crossmobile.bridge.ann.CMLibParam$ParamContext,org.crossmobile.utils.Param$TagType) -> <init>
+    47:47:int hashCode() -> hashCode
+    52:59:boolean equals(java.lang.Object) -> equals
+    64:65:java.lang.String toString() -> toString
+org.crossmobile.utils.Param$TagType -> org.crossmobile.build.gm$a:
+    org.crossmobile.utils.Param$TagType SYSTEM -> a
+    org.crossmobile.utils.Param$TagType SYSTEMRUNTIME -> b
+    org.crossmobile.utils.Param$TagType BUILD -> c
+    org.crossmobile.utils.Param$TagType RUNTIME -> d
+    org.crossmobile.utils.Param$TagType LOCAL -> e
+    org.crossmobile.utils.Param$TagType[] $VALUES -> f
+    68:68:org.crossmobile.utils.Param$TagType[] values() -> values
+    68:68:org.crossmobile.utils.Param$TagType valueOf(java.lang.String) -> valueOf
+    68:68:void <init>(java.lang.String,int) -> <init>
+    68:88:void <clinit>() -> <clinit>
+org.crossmobile.utils.ParamList -> org.crossmobile.build.gn:
+    java.util.regex.Pattern VARIABLES -> a
+    java.util.regex.Pattern PROJECT -> b
+    org.crossmobile.utils.ParamSet paramset -> c
+    java.util.Properties props -> d
+    28:34:void <init>() -> <init>
+    57:57:java.lang.String get(org.crossmobile.utils.Param,boolean) -> a
+    61:64:java.lang.String get(java.lang.String,boolean) -> a
+    135:135:org.crossmobile.utils.ParamSet getParamset() -> a
+    30:31:void <clinit>() -> <clinit>
+org.crossmobile.utils.ParamSet -> org.crossmobile.build.go:
+    java.util.Set other -> a
+    java.util.Set build -> b
+    java.util.Set runtime -> c
+    java.util.Set local -> d
+    22:32:void <init>() -> <init>
+    35:54:void register(org.crossmobile.utils.Param) -> a
+    64:64:java.util.Set local() -> a
+    68:68:java.util.Set build() -> b
+    72:72:java.util.Set runtime() -> c
+    76:85:java.util.Properties getDefaults() -> d
+org.crossmobile.utils.ParamSet$1 -> org.crossmobile.build.go$1:
+    int[] $SwitchMap$org$crossmobile$utils$Param$TagType -> a
+    35:35:void <clinit>() -> <clinit>
+org.crossmobile.utils.ParamsCommon -> org.crossmobile.build.gp:
+    org.crossmobile.utils.ParamsCommon CM_PLUGINS -> a
+    org.crossmobile.utils.ParamsCommon GROUP_ID -> b
+    org.crossmobile.utils.ParamsCommon ARTIFACT_ID -> c
+    org.crossmobile.utils.ParamsCommon BUNDLE_VERSION -> d
+    org.crossmobile.utils.ParamsCommon DISPLAY_NAME -> e
+    org.crossmobile.utils.ParamsCommon INJECTED_INFOPLIST -> f
+    org.crossmobile.utils.ParamsCommon OBJC_IGNORE_INCLUDES -> g
+    org.crossmobile.utils.ParamsCommon PROGUARD_CONFIG -> h
+    org.crossmobile.utils.ParamsCommon USES_PERMISSIONS -> i
+    org.crossmobile.utils.ParamsCommon TARGET -> j
+    org.crossmobile.utils.ParamsCommon TARGET_NUMERIC -> k
+    org.crossmobile.utils.ParamsCommon JAVAC_SOURCE -> l
+    org.crossmobile.utils.ParamsCommon JAVAC_TARGET -> m
+    org.crossmobile.utils.ParamsCommon KEY_STORE -> n
+    org.crossmobile.utils.ParamsCommon KEY_ALIAS -> o
+    org.crossmobile.utils.ParamsCommon KEY_STORE_PASSWORD -> p
+    org.crossmobile.utils.ParamsCommon KEY_ALIAS_PASSWORD -> q
+    org.crossmobile.utils.ParamsCommon SDK_DIR -> r
+    org.crossmobile.utils.ParamsCommon STATUSBARHIDDEN -> s
+    org.crossmobile.utils.ParamsCommon VIEWCONTROLLED_STATUSBAR -> t
+    org.crossmobile.utils.ParamsCommon FILESHARINGENABLED -> u
+    org.crossmobile.utils.ParamsCommon CM_OBJC_SAFEMEMBERS -> v
+    org.crossmobile.utils.ParamsCommon ORIENTATIONS_INITIAL -> w
+    org.crossmobile.utils.ParamsCommon ORIENTATIONS_SUPPORTED -> x
+    org.crossmobile.utils.ParamsCommon MAIN_NIB_NAME_PHONE -> y
+    org.crossmobile.utils.ParamsCommon MAIN_NIB_NAME_PAD -> z
+    org.crossmobile.utils.ParamsCommon MAIN_STORYBOARD -> A
+    org.crossmobile.utils.ParamsCommon LAUNCH_STORYBOARD -> B
+    org.crossmobile.utils.ParamsCommon CM_SCREEN_SCALE -> C
+    org.crossmobile.utils.ParamsCommon CM_DESKTOP_FRAMEWORK -> D
+    org.crossmobile.utils.ParamsCommon CM_PROJECT -> E
+    org.crossmobile.utils.ParamsCommon CM_DESKTOP_SKIN -> F
+    org.crossmobile.utils.ParamsCommon CM_KEYBOARD_SUPPORT -> G
+    org.crossmobile.utils.ParamsCommon CM_SPLASH_DELAY -> H
+    org.crossmobile.utils.ParamsCommon MAIN_CLASS -> I
+    org.crossmobile.utils.Param tag -> J
+    org.crossmobile.utils.ParamsCommon[] $VALUES -> K
+    23:23:org.crossmobile.utils.ParamsCommon[] values() -> values
+    23:23:org.crossmobile.utils.ParamsCommon valueOf(java.lang.String) -> valueOf
+    70:70:org.crossmobile.utils.Param tag() -> a
+    74:75:void <init>(java.lang.String,int,java.lang.String) -> <init>
+    78:79:void <init>(java.lang.String,int,java.lang.String,org.crossmobile.utils.Param$TagType) -> <init>
+    81:84:void <init>(java.lang.String,int,java.lang.String,boolean,org.crossmobile.utils.Param$TagType) -> <init>
+    87:90:org.crossmobile.utils.Param getTag(java.lang.String) -> a
+    23:65:void <clinit>() -> <clinit>
+org.crossmobile.utils.PluginMetaData -> org.crossmobile.build.gq:
+    java.util.Collection libsObjC -> a
+    java.util.Collection androidPermissions -> b
+    java.util.Collection pods -> c
+    java.lang.String androidApp -> d
+    java.lang.String javaInitializer -> e
+    java.io.File infile -> f
+    java.util.Collection androidExtraDependencies -> g
+    53:54:void <init>(java.io.File) -> <init>
+    60:68:void <init>(java.util.Collection,java.util.Collection,java.util.Collection,java.lang.String,java.lang.String,java.util.Collection,java.io.File) -> <init>
+    71:79:void <init>(java.util.Properties,java.io.File) -> <init>
+    82:82:java.util.Collection getObjCLibs() -> a
+    86:86:java.util.Collection getPods() -> b
+    90:90:java.util.Collection getPermissions() -> c
+    94:94:java.lang.String getExtraManifest() -> d
+    98:98:java.lang.String getJavaInitializer() -> e
+    106:106:java.util.Collection getAndroidExtraDependencies() -> f
+    122:139:java.lang.String toString() -> toString
+    143:148:java.util.Properties retrieve(java.io.File) -> a
+org.crossmobile.utils.PluginPod -> org.crossmobile.build.gr:
+    java.lang.String name -> a
+    java.lang.String minVersion -> b
+    java.lang.String maxVersion -> c
+    34:34:java.lang.String getPlatform() -> a
+    41:45:void <init>(java.lang.String,java.lang.String,java.lang.String) -> <init>
+    61:63:int compareTo(org.crossmobile.utils.PluginPod) -> a
+    68:70:boolean equals(java.lang.Object) -> equals
+    75:75:int hashCode() -> hashCode
+    80:86:java.lang.String toString() -> toString
+    90:90:java.lang.String freeze() -> b
+    94:97:org.crossmobile.utils.PluginPod unfreeze(java.lang.String) -> a
+    101:101:java.lang.String esc(java.lang.String) -> b
+    106:106:java.lang.String unesc(java.lang.String) -> c
+    110:137:void create(java.io.File,java.lang.String,java.lang.Iterable,java.lang.Iterable) -> a
+    27:27:int compareTo(java.lang.Object) -> compareTo
+    110:110:java.lang.String lambda$create$0(org.crossmobile.utils.PluginPod) -> b
+org.crossmobile.utils.PreferencesUtils -> org.crossmobile.build.gs:
+    41:61:java.lang.String getPref(java.util.prefs.Preferences,java.lang.String) -> a
+org.crossmobile.utils.ProjectException -> org.crossmobile.build.gt:
+    java.io.File projectLocation -> a
+    25:26:void <init>() -> <init>
+    29:30:void <init>(java.lang.String) -> <init>
+    41:42:void <init>(java.lang.String,java.lang.Throwable) -> <init>
+    45:47:void <init>(java.lang.String,java.io.File,java.lang.Throwable) -> <init>
+    55:57:java.lang.String getMessage() -> getMessage
+org.crossmobile.utils.ReflectionUtils -> org.crossmobile.build.gu:
+    java.lang.ClassLoader cl -> a
+    java.lang.reflect.Method getPackage -> b
+    java.util.Collection reservedWords -> c
+    29:29:void <init>() -> <init>
+    41:50:java.lang.reflect.Method findMethod(java.lang.Class,java.lang.String,java.lang.Class[]) -> a
+    327:334:javassist.ClassPool getClassPool(java.lang.Iterable) -> a
+    31:54:void <clinit>() -> <clinit>
+org.crossmobile.utils.StringEscapeUtilsTrimmed -> org.crossmobile.build.gv:
+    102:102:java.lang.String escapeJava(java.lang.String) -> a
+    184:192:java.lang.String escapeJavaStyleString(java.lang.String,boolean,boolean) -> a
+    208:278:void escapeJavaStyleString(java.io.Writer,java.lang.String,boolean,boolean) -> a
+    289:289:java.lang.String hex(char) -> a
+org.crossmobile.utils.SystemDependent -> org.crossmobile.build.gw:
+    boolean IS_LINUX -> a
+    boolean IS_WINDOWS -> b
+    boolean IS_MACOSX -> c
+    java.lang.String HOME -> d
+    124:132:java.lang.String getJavaExec() -> a
+    40:45:void <clinit>() -> <clinit>
+org.crossmobile.utils.SystemDependent$Execs -> org.crossmobile.build.gw$a:
+    org.crossmobile.utils.SystemDependent$Execs JAVA -> a
+    org.crossmobile.utils.SystemDependent$Execs JAVAC -> b
+    org.crossmobile.utils.SystemDependent$Execs ANDROID -> c
+    org.crossmobile.utils.SystemDependent$Execs SDKMANAGER -> d
+    org.crossmobile.utils.SystemDependent$Execs ANT -> e
+    org.crossmobile.utils.SystemDependent$Execs AAPT -> f
+    org.crossmobile.utils.SystemDependent$Execs ADB -> g
+    org.crossmobile.utils.SystemDependent$Execs NETBEANS -> h
+    org.crossmobile.utils.SystemDependent$Execs IDEA -> i
+    org.crossmobile.utils.SystemDependent$Execs STUDIO -> j
+    org.crossmobile.utils.SystemDependent$Execs STUDIO64 -> k
+    org.crossmobile.utils.SystemDependent$Execs MVN -> l
+    java.lang.String ext -> m
+    java.lang.String lext -> n
+    org.crossmobile.utils.SystemDependent$Execs[] $VALUES -> o
+    218:218:org.crossmobile.utils.SystemDependent$Execs[] values() -> values
+    218:218:org.crossmobile.utils.SystemDependent$Execs valueOf(java.lang.String) -> valueOf
+    236:239:void <init>(java.lang.String,int,java.lang.String) -> <init>
+    241:244:void <init>(java.lang.String,int,java.lang.String,java.lang.String) -> <init>
+    247:247:java.lang.String filename() -> a
+    218:231:void <clinit>() -> <clinit>
+org.crossmobile.utils.TemplateUtils -> org.crossmobile.build.gx:
+    28:33:void copyTemplateIfMissing(java.lang.String,java.io.File,java.lang.String) -> a
+    36:37:void copyTemplate(java.lang.String,java.io.File,org.crossmobile.utils.ParamList) -> a
+    40:60:void copyTemplate(java.lang.String,java.io.File,org.crossmobile.utils.ParamList,java.io.File) -> a
+    63:123:void updateProperties(java.lang.String,java.io.File,org.crossmobile.utils.ParamList,java.io.File) -> b
+org.crossmobile.utils.TemplateUtils$1 -> org.crossmobile.build.gx$1:
+    java.lang.StringBuilder out -> a
+    java.lang.StringBuilder val$buffer -> b
+    java.util.Set val$missingTags -> c
+    org.crossmobile.utils.ParamList val$list -> d
+    76:77:void <init>(java.lang.StringBuilder,java.util.Set,org.crossmobile.utils.ParamList) -> <init>
+    81:97:void accept(java.lang.String) -> a
+    100:113:java.lang.String processLine(java.lang.String) -> b
+    76:76:void accept(java.lang.Object) -> accept
+org.crossmobile.utils.TextUtils -> org.crossmobile.build.gy:
+    java.util.regex.Pattern SPACE_TRIMMER -> a
+    32:41:java.lang.String iteratorToString(java.util.Iterator,java.lang.String,java.util.function.Function) -> a
+    49:49:java.lang.String iterableToString(java.lang.Iterable,java.lang.String,java.util.function.Function) -> a
+    53:53:java.lang.String iterableToString(java.lang.Iterable,java.lang.String) -> a
+    57:66:java.util.List listFromString(java.lang.String,java.lang.String) -> a
+    70:70:java.lang.String plural(int) -> a
+    74:74:java.lang.String plural(int,java.lang.String) -> a
+    203:208:java.lang.String safeXML(java.lang.String) -> a
+    212:218:int countCharacter(java.lang.String,char) -> a
+    247:256:java.lang.String getPairedParams(java.lang.String,java.lang.String,org.crossmobile.bridge.system.Pair[]) -> a
+    341:356:java.lang.String escape(java.lang.String,char,boolean,org.crossmobile.bridge.system.Pair[]) -> a
+    364:387:java.lang.String unescape(java.lang.String,char,boolean,org.crossmobile.bridge.system.Pair[]) -> b
+    391:396:java.util.Map getEscapedSet(char,org.crossmobile.bridge.system.Pair[]) -> a
+    29:29:void <clinit>() -> <clinit>
+org.crossmobile.utils.XMLUtils -> org.crossmobile.build.gz:
+    41:43:org.w3c.dom.Document loadXML(java.io.File) -> a
+    49:53:org.w3c.dom.Document loadXML(java.io.InputStream) -> a
+    67:71:org.w3c.dom.Document createXML() -> a
+    77:108:boolean saveXML(org.w3c.dom.Document,java.io.File,boolean) -> a
+    126:136:org.w3c.dom.Node addNode(org.w3c.dom.Document,org.w3c.dom.Node,java.lang.String) -> a
+    153:155:java.lang.String getNodeText(org.w3c.dom.Node) -> a
+    161:164:boolean setNodetext(org.w3c.dom.Node,java.lang.String) -> a
+    184:193:java.util.List getNodesWithName(org.w3c.dom.Node,java.lang.String,boolean) -> a
+    232:236:java.lang.String getAttribute(org.w3c.dom.Node,java.lang.String) -> b
+    240:248:boolean setAttribute(org.w3c.dom.Node,java.lang.String,java.lang.String) -> a
+    252:258:boolean deleteAttribute(org.w3c.dom.Node,java.lang.String) -> c
+    262:273:java.util.Map getAttributes(org.w3c.dom.Node) -> b
+org.crossmobile.utils.XMLWalker -> org.crossmobile.build.ha:
+    java.lang.Object defaultTag -> a
+    org.w3c.dom.Document document -> b
+    org.w3c.dom.Node current -> c
+    java.util.Map tags -> d
+    org.w3c.dom.Node nodeLast -> e
+    java.util.function.Consumer errorHandler -> f
+    50:51:org.crossmobile.utils.XMLWalker load(java.io.File) -> a
+    55:56:org.crossmobile.utils.XMLWalker load(java.io.InputStream) -> a
+    65:66:void <init>() -> <init>
+    45:70:void <init>(org.w3c.dom.Document) -> <init>
+    73:74:org.crossmobile.utils.XMLWalker store(java.io.File,boolean) -> a
+    89:89:org.crossmobile.utils.XMLWalker node(java.lang.String) -> a
+    110:111:org.crossmobile.utils.XMLWalker nodeWithText(java.lang.String,java.lang.String) -> a
+    121:121:boolean nodeExists(java.lang.String) -> b
+    142:143:boolean nodeWithTextExists(java.lang.String,java.lang.String) -> b
+    153:153:org.crossmobile.utils.XMLWalker exec(java.util.function.Consumer) -> a
+    157:165:org.crossmobile.utils.XMLWalker execIf(java.util.function.Predicate,java.util.function.Consumer) -> a
+    175:175:org.crossmobile.utils.XMLWalker nodes(java.util.function.Consumer) -> b
+    186:186:org.crossmobile.utils.XMLWalker nodes(java.lang.String,java.util.function.Consumer) -> a
+    209:210:org.crossmobile.utils.XMLWalker nodesWithText(java.lang.String,java.lang.String,java.util.function.Consumer) -> a
+    220:222:org.crossmobile.utils.XMLWalker path(java.lang.String) -> c
+    237:239:void locateNode(java.lang.String,java.lang.String,boolean,boolean) -> a
+    242:258:void locatePath(java.lang.String,boolean,boolean) -> a
+    261:262:void locateNodes(java.lang.String,java.lang.String,java.util.function.Consumer,boolean,boolean) -> a
+    284:284:org.crossmobile.utils.XMLWalker filterNodes(java.lang.String,java.util.function.Consumer) -> b
+    324:325:org.crossmobile.utils.XMLWalker filterNodesWithText(java.lang.String,java.lang.String,java.util.function.Consumer,java.util.function.Predicate) -> a
+    329:341:void filterNodes(java.lang.String,java.lang.String,java.util.function.Consumer,java.util.function.Predicate,boolean,boolean) -> a
+    349:352:org.crossmobile.utils.XMLWalker parent() -> a
+    376:380:org.crossmobile.utils.XMLWalker add(java.lang.String) -> d
+    384:384:java.lang.String text() -> b
+    394:395:org.crossmobile.utils.XMLWalker setText(java.lang.String) -> e
+    405:405:java.lang.String name() -> c
+    415:415:java.lang.String attribute(java.lang.String) -> f
+    419:425:org.crossmobile.utils.XMLWalker attributes(java.util.function.BiConsumer) -> a
+    429:431:org.crossmobile.utils.XMLWalker setAttribute(java.lang.String,java.lang.String) -> c
+    451:451:org.crossmobile.utils.XMLWalker tag() -> d
+    461:466:org.crossmobile.utils.XMLWalker tag(java.lang.Object) -> a
+    475:475:org.crossmobile.utils.XMLWalker toTag() -> e
+    485:492:org.crossmobile.utils.XMLWalker toTag(java.lang.Object) -> b
+    539:541:void error(java.lang.String) -> g
+    559:572:java.lang.String toString() -> toString
+    46:46:void lambda$new$0(java.lang.String) -> h
+    39:39:void <clinit>() -> <clinit>
+org.crossmobile.utils.XMLWalker$1 -> org.crossmobile.build.ha$1:
+org.crossmobile.utils.XMLWalker$XMLWalkerException -> org.crossmobile.build.ha$a:
+    552:553:void <init>(java.lang.String) -> <init>
+    549:549:void <init>(java.lang.String,org.crossmobile.utils.XMLWalker$1) -> <init>
+org.crossmobile.utils.XcodeTarget -> org.crossmobile.build.hb:
+    org.crossmobile.utils.XcodeTarget Main -> a
+    java.lang.String name -> b
+    java.lang.String meta -> c
+    java.lang.String principalClass -> d
+    27:28:void <init>(java.lang.String) -> <init>
+    30:38:void <init>(java.lang.String,boolean) -> <init>
+    42:44:boolean equals(java.lang.Object) -> equals
+    48:48:java.lang.String getMeta() -> a
+    52:52:java.lang.String getPrincipalClass() -> b
+    57:57:int hashCode() -> hashCode
+    61:62:void setMeta(java.lang.String) -> a
+    65:65:boolean isMain() -> c
+    69:73:boolean setPrincipalClass(java.lang.String) -> b
+    20:20:void <clinit>() -> <clinit>
+org.crossmobile.utils.images.ImageSet -> org.crossmobile.build.hc:
+    java.util.Map images -> a
+    33:52:void <init>(java.lang.String,java.io.File[]) -> <init>
+    63:68:org.crossmobile.utils.images.MetaImage find(int,boolean) -> a
+    72:78:org.crossmobile.utils.images.MetaImage addImage(org.crossmobile.utils.images.MetaImage) -> a
+    82:99:org.crossmobile.utils.images.MetaImage findOptimumImage(int,java.util.function.Predicate) -> a
+    63:63:boolean lambda$find$0(int,org.crossmobile.utils.images.MetaImage) -> a
+org.crossmobile.utils.images.MetaImage -> org.crossmobile.build.hd:
+    java.awt.image.BufferedImage image -> a
+    java.io.File file -> b
+    int size -> c
+    boolean resizable -> d
+    35:40:void <init>(int) -> <init>
+    43:44:void <init>(java.io.File) -> <init>
+    47:48:void <init>(java.io.InputStream) -> <init>
+    50:55:void <init>(java.awt.image.BufferedImage,java.io.File,boolean) -> <init>
+    58:63:org.crossmobile.utils.images.MetaImage resize(int) -> a
+    75:84:boolean save(java.io.File) -> a
+    88:97:java.awt.image.BufferedImage normalizeImage(java.awt.image.BufferedImage) -> a
+    101:109:java.awt.image.BufferedImage makeImage(java.awt.image.BufferedImage,int,int,int,boolean) -> a
+    127:127:boolean isInvalid() -> a
+org.crossmobile.utils.launcher.Flavour -> org.crossmobile.build.he:
+    org.crossmobile.utils.launcher.Flavour DESKTOP -> a
+    org.crossmobile.utils.launcher.Flavour IOS -> b
+    org.crossmobile.utils.launcher.Flavour ANDROID -> c
+    org.crossmobile.utils.launcher.Flavour UWP -> d
+    java.lang.String launcher -> e
+    org.crossmobile.utils.launcher.Flavour[] $VALUES -> f
+    24:24:org.crossmobile.utils.launcher.Flavour[] values() -> values
+    24:24:org.crossmobile.utils.launcher.Flavour valueOf(java.lang.String) -> valueOf
+    34:36:void <init>(java.lang.String,int,java.lang.String) -> <init>
+    43:63:org.crossmobile.utils.launcher.Flavour getFlavour(java.util.List) -> a
+    60:60:java.lang.String lambda$getFlavour$1(org.crossmobile.utils.launcher.Flavour) -> a
+    58:58:java.lang.String lambda$getFlavour$0(org.crossmobile.utils.launcher.Flavour) -> b
+    24:28:void <clinit>() -> <clinit>
+org.crossmobile.utils.lic.LicencedItems -> org.crossmobile.build.hf:
+    31:43:void checkLicense(org.crossmobile.utils.plugin.DependencyItem,java.lang.String,org.crossmobile.utils.launcher.Flavour) -> a
+    46:59:void cleanup(java.util.Collection,java.util.Collection,java.lang.String,org.crossmobile.utils.launcher.Flavour,java.util.Iterator) -> a
+org.crossmobile.utils.lic.LicenseManager -> org.crossmobile.build.hg:
+    java.util.prefs.Preferences BASE -> a
+    210:227:java.util.Collection getRegistered() -> a
+    38:38:void <clinit>() -> <clinit>
+org.crossmobile.utils.lic.LicensedApplication -> org.crossmobile.build.hh:
+    java.lang.String appId -> a
+    java.util.Collection artifacts -> b
+    26:30:void <init>(java.lang.String) -> <init>
+    33:34:void addArtifact(org.crossmobile.utils.lic.LicensedArtifact) -> a
+    37:41:boolean matches(java.lang.String,java.lang.String,org.crossmobile.utils.launcher.Flavour) -> a
+    50:50:int compareTo(org.crossmobile.utils.lic.LicensedApplication) -> a
+    23:23:int compareTo(java.lang.Object) -> compareTo
+org.crossmobile.utils.lic.LicensedArtifact -> org.crossmobile.build.hi:
+    java.lang.String name -> a
+    boolean android -> b
+    boolean ios -> c
+    boolean desktop -> d
+    java.lang.String displayName -> e
+    29:36:void <init>(java.lang.String,boolean,boolean,boolean) -> <init>
+    39:39:boolean matches(java.lang.String,org.crossmobile.utils.launcher.Flavour) -> a
+    47:47:int compareTo(org.crossmobile.utils.lic.LicensedArtifact) -> a
+    51:51:java.lang.String getDisplayName() -> a
+    21:21:int compareTo(java.lang.Object) -> compareTo
+org.crossmobile.utils.plugin.DependencyItem -> org.crossmobile.build.hj:
+    java.util.Set BlackListArtifacts -> a
+    java.lang.String groupID -> b
+    java.lang.String artifactID -> c
+    java.lang.String version -> d
+    java.lang.String type -> e
+    java.io.File file -> f
+    java.util.Collection runtime -> g
+    java.util.Collection compile -> h
+    java.util.Collection blacklisted -> i
+    36:46:void <init>() -> <init>
+    36:54:void <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.io.File) -> <init>
+    57:63:org.crossmobile.utils.plugin.DependencyItem add(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.Collection,java.io.File) -> a
+    68:68:org.crossmobile.utils.plugin.DependencyItem addCompiletime(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.io.File) -> a
+    72:72:org.crossmobile.utils.plugin.DependencyItem addRuntime(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.io.File) -> b
+    76:84:java.util.Collection getAllCompile(boolean) -> f
+    88:96:java.util.Collection getAllRuntime(boolean) -> g
+    100:105:void getBlacklisted(java.util.Collection) -> a
+    108:110:java.lang.Iterable getBlacklisted() -> a
+    114:114:java.lang.Iterable getPluginMetaData() -> b
+    118:118:java.lang.Iterable getCompiletimeDependencies(boolean) -> a
+    122:122:java.lang.Iterable getRuntimeDependencies(boolean) -> b
+    126:128:java.lang.Iterable getCompileOnlyDependencies(boolean) -> c
+    132:134:java.lang.Iterable getCompileAndRuntimeDependencies(boolean) -> d
+    138:140:java.lang.Iterable getRuntimeOnlyDependencies(boolean) -> e
+    144:144:java.lang.String getGroupID() -> c
+    148:148:java.lang.String getArtifactID() -> d
+    152:152:java.lang.String getVersion() -> e
+    156:156:java.lang.String getType() -> f
+    160:160:java.io.File getFile() -> g
+    165:169:boolean equals(java.lang.Object) -> equals
+    174:179:int hashCode() -> hashCode
+    184:184:java.lang.String toString() -> toString
+    189:198:int compareTo(org.crossmobile.utils.plugin.DependencyItem) -> a
+    25:25:int compareTo(java.lang.Object) -> compareTo
+    114:114:org.crossmobile.utils.PluginMetaData lambda$getPluginMetaData$0(org.crossmobile.utils.plugin.DependencyItem) -> b
+    28:28:void <clinit>() -> <clinit>
+org.crossmobile.utils.plugin.DependencyTreeConsumer -> org.crossmobile.build.hk:
+    org.crossmobile.utils.plugin.DependencyItem resolve(org.crossmobile.utils.plugin.DependencyItem,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.io.File) -> resolve
