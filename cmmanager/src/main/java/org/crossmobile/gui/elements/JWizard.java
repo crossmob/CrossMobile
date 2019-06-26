@@ -60,6 +60,8 @@ public class JWizard extends JDialog {
         this.name = name;
         initComponents();
         resolveTypeP.setVisible(false);
+        ((ActiveTextArea) WelcomeText).setInactiveColorFollowsActive(true);
+        WelcomeText.setBorder(null);
         setLocationRelativeTo(null);
     }
 

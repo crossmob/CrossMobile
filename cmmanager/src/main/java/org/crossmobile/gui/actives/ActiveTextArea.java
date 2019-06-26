@@ -26,6 +26,7 @@ import static org.crossmobile.gui.actives.ActiveTextField.updateTheme;
 public class ActiveTextArea extends HiResTextArea implements ThemeChanged {
 
     private final TooltipManager ttm = new TooltipManager(this);
+    private boolean inactiveColorFollowsActive = false;
 
     {
         setOpaque(true);
@@ -66,8 +67,17 @@ public class ActiveTextArea extends HiResTextArea implements ThemeChanged {
         ttm.setToolTip(toolTip);
     }
 
+    public void setInactiveColorFollowsActive(boolean inactiveColorFollowsActive) {
+        if (this.inactiveColorFollowsActive == inactiveColorFollowsActive)
+            return;
+        this.inactiveColorFollowsActive = inactiveColorFollowsActive;
+        themeChanged(Theme.current() == Theme.dark());
+    }
+
     @Override
     public void themeChanged(boolean dark) {
         updateTheme(this, dark);
+        if (inactiveColorFollowsActive)
+            setDisabledTextColor(getForeground());
     }
 }
