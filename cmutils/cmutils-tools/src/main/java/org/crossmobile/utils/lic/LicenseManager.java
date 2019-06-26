@@ -19,6 +19,7 @@ import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
 import crossmobile.rt.StrongReference;
+import org.crossmobile.prefs.Prefs;
 import org.crossmobile.utils.FileUtils;
 import org.crossmobile.utils.PreferencesUtils;
 import org.crossmobile.utils.ProjectException;
@@ -129,6 +130,8 @@ public class LicenseManager {
     }
 
     public static boolean isAllowed(String appId, String artifactId) {
+        if (!Prefs.CHECK_LICENSE)
+            return true;
         if (artifactId == null || artifactId.trim().isEmpty() || appId == null || appId.trim().isEmpty())
             return false;
         try {

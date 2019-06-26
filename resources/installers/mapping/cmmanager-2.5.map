@@ -657,10 +657,12 @@ org.crossmobile.gui.actives.ActiveScrollPane -> org.crossmobile.aa:
     35:36:void <init>() -> <init>
 org.crossmobile.gui.actives.ActiveTextArea -> org.crossmobile.ab:
     org.crossmobile.gui.actives.TooltipManager ttm -> a
-    28:38:void <init>() -> <init>
-    28:50:void <init>(java.lang.String,int,int) -> <init>
-    62:63:void setToolTipText(java.lang.String) -> setToolTipText
-    71:72:void themeChanged(boolean) -> a
+    boolean inactiveColorFollowsActive -> b
+    28:39:void <init>() -> <init>
+    28:51:void <init>(java.lang.String,int,int) -> <init>
+    63:64:void setToolTipText(java.lang.String) -> setToolTipText
+    71:75:void setInactiveColorFollowsActive(boolean) -> b
+    79:82:void themeChanged(boolean) -> a
 org.crossmobile.gui.actives.ActiveTextField -> org.crossmobile.ac:
     org.crossmobile.gui.actives.TooltipManager ttm -> a
     31:32:void <init>() -> <init>
@@ -676,15 +678,16 @@ org.crossmobile.gui.actives.ActiveTextPane -> org.crossmobile.ad:
     java.util.Map ATTRS -> e
     org.crossmobile.gui.utils.StreamManager sman -> f
     org.crossmobile.gui.actives.TooltipManager ttm -> g
-    51:55:void updateAttributes() -> b
-    58:65:void <init>() -> <init>
-    69:70:void setToolTipText(java.lang.String) -> setToolTipText
-    77:81:org.crossmobile.gui.utils.StreamManager getStreamManager() -> a
-    85:87:void setText(java.lang.CharSequence,org.crossmobile.gui.utils.StreamQuality) -> a
-    91:92:void addLine(java.lang.CharSequence,org.crossmobile.gui.utils.StreamQuality) -> addLine
-    95:97:void addChar(java.lang.Character,org.crossmobile.gui.utils.StreamQuality) -> a
-    101:104:void themeChanged(boolean) -> a
-    35:48:void <clinit>() -> <clinit>
+    javax.swing.UIDefaults uidefaults -> h
+    53:57:void updateAttributes() -> b
+    60:73:void <init>() -> <init>
+    77:78:void setToolTipText(java.lang.String) -> setToolTipText
+    85:89:org.crossmobile.gui.utils.StreamManager getStreamManager() -> a
+    93:95:void setText(java.lang.CharSequence,org.crossmobile.gui.utils.StreamQuality) -> a
+    99:100:void addLine(java.lang.CharSequence,org.crossmobile.gui.utils.StreamQuality) -> addLine
+    103:105:void addChar(java.lang.Character,org.crossmobile.gui.utils.StreamQuality) -> a
+    109:115:void themeChanged(boolean) -> a
+    37:50:void <clinit>() -> <clinit>
 org.crossmobile.gui.actives.ActiveToggleButton -> org.crossmobile.ae:
     org.crossmobile.gui.actives.TooltipManager ttm -> a
     boolean isPressed -> b
@@ -1249,18 +1252,18 @@ org.crossmobile.gui.elements.JWizard -> org.crossmobile.bg:
     javax.swing.JPanel jPanel4 -> G
     javax.swing.JLabel pleaseWaitL -> H
     javax.swing.JPanel resolveTypeP -> I
-    45:64:void <init>(java.lang.String) -> <init>
-    67:75:void fire(org.crossmobile.utils.TreeWalkerGenerator,java.lang.String[]) -> a
-    78:79:void setCallback(java.util.function.Consumer) -> a
-    82:121:void clickContinue() -> a
-    124:127:void performCallback() -> b
-    137:334:void initComponents() -> c
-    337:347:void BrowseBActionPerformed(java.awt.event.ActionEvent) -> a
-    350:351:void ContinueBActionPerformed(java.awt.event.ActionEvent) -> b
-    354:356:void CancelBActionPerformed(java.awt.event.ActionEvent) -> c
-    359:361:void AutoBActionPerformed(java.awt.event.ActionEvent) -> d
-    364:366:void ManualBActionPerformed(java.awt.event.ActionEvent) -> e
-    89:93:void lambda$clickContinue$0(java.util.Collection) -> a
+    45:66:void <init>(java.lang.String) -> <init>
+    69:77:void fire(org.crossmobile.utils.TreeWalkerGenerator,java.lang.String[]) -> a
+    80:81:void setCallback(java.util.function.Consumer) -> a
+    84:123:void clickContinue() -> a
+    126:129:void performCallback() -> b
+    139:336:void initComponents() -> c
+    339:349:void BrowseBActionPerformed(java.awt.event.ActionEvent) -> a
+    352:353:void ContinueBActionPerformed(java.awt.event.ActionEvent) -> b
+    356:358:void CancelBActionPerformed(java.awt.event.ActionEvent) -> c
+    361:363:void AutoBActionPerformed(java.awt.event.ActionEvent) -> d
+    366:368:void ManualBActionPerformed(java.awt.event.ActionEvent) -> e
+    91:95:void lambda$clickContinue$0(java.util.Collection) -> a
     43:43:java.util.List access$000(org.crossmobile.gui.elements.JWizard) -> a
     43:43:void access$100(org.crossmobile.gui.elements.JWizard,java.awt.event.ActionEvent) -> a
     43:43:void access$200(org.crossmobile.gui.elements.JWizard,java.awt.event.ActionEvent) -> b
@@ -1269,30 +1272,30 @@ org.crossmobile.gui.elements.JWizard -> org.crossmobile.bg:
     43:43:void access$500(org.crossmobile.gui.elements.JWizard,java.awt.event.ActionEvent) -> e
 org.crossmobile.gui.elements.JWizard$1 -> org.crossmobile.bg$1:
     org.crossmobile.gui.elements.JWizard this$0 -> a
-    103:103:void <init>(org.crossmobile.gui.elements.JWizard) -> <init>
-    106:106:int getSize() -> getSize
-    111:111:java.lang.String getElementAt(int) -> a
-    103:103:java.lang.Object getElementAt(int) -> getElementAt
+    105:105:void <init>(org.crossmobile.gui.elements.JWizard) -> <init>
+    108:108:int getSize() -> getSize
+    113:113:java.lang.String getElementAt(int) -> a
+    105:105:java.lang.Object getElementAt(int) -> getElementAt
 org.crossmobile.gui.elements.JWizard$2 -> org.crossmobile.bg$2:
     org.crossmobile.gui.elements.JWizard this$0 -> a
-    201:201:void <init>(org.crossmobile.gui.elements.JWizard) -> <init>
-    203:204:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
+    203:203:void <init>(org.crossmobile.gui.elements.JWizard) -> <init>
+    205:206:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
 org.crossmobile.gui.elements.JWizard$3 -> org.crossmobile.bg$3:
     org.crossmobile.gui.elements.JWizard this$0 -> a
-    219:219:void <init>(org.crossmobile.gui.elements.JWizard) -> <init>
-    221:222:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
+    221:221:void <init>(org.crossmobile.gui.elements.JWizard) -> <init>
+    223:224:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
 org.crossmobile.gui.elements.JWizard$4 -> org.crossmobile.bg$4:
     org.crossmobile.gui.elements.JWizard this$0 -> a
-    229:229:void <init>(org.crossmobile.gui.elements.JWizard) -> <init>
-    231:232:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
+    231:231:void <init>(org.crossmobile.gui.elements.JWizard) -> <init>
+    233:234:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
 org.crossmobile.gui.elements.JWizard$5 -> org.crossmobile.bg$5:
     org.crossmobile.gui.elements.JWizard this$0 -> a
-    306:306:void <init>(org.crossmobile.gui.elements.JWizard) -> <init>
-    308:309:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
+    308:308:void <init>(org.crossmobile.gui.elements.JWizard) -> <init>
+    310:311:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
 org.crossmobile.gui.elements.JWizard$6 -> org.crossmobile.bg$6:
     org.crossmobile.gui.elements.JWizard this$0 -> a
-    315:315:void <init>(org.crossmobile.gui.elements.JWizard) -> <init>
-    317:318:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
+    317:317:void <init>(org.crossmobile.gui.elements.JWizard) -> <init>
+    319:320:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
 org.crossmobile.gui.elements.KeystoreManager -> org.crossmobile.bh:
     javax.swing.JFileChooser KEY_CHOOSER -> a
     40:45:java.lang.String browseKeystore() -> a
@@ -2331,42 +2334,42 @@ org.crossmobile.gui.utils.StreamQuality -> org.crossmobile.ef:
     18:23:void <clinit>() -> <clinit>
 org.crossmobile.prefs.Prefs -> org.crossmobile.eg:
     java.util.prefs.Preferences prefs -> a
-    62:62:java.lang.String getProject(int) -> a
-    66:67:void storeProject(int,java.lang.String) -> a
-    70:73:boolean removeProject(int) -> b
-    78:82:void setCurrentDir(java.io.File) -> a
-    85:85:java.io.File getCurrentDir() -> a
-    89:91:java.io.File getProjectsDir() -> b
-    97:104:void setProjectsDir(java.io.File) -> b
-    107:109:void setNetbeansLocation(java.lang.String) -> a
-    112:112:java.lang.String getNetbeansLocation() -> c
-    116:118:void setIntelliJLocation(java.lang.String) -> b
-    121:121:java.lang.String getIntelliJLocation() -> d
-    125:127:void setJDKLocation(java.lang.String) -> c
-    130:131:java.lang.String getJDKLocation() -> e
-    137:138:java.lang.String getAndroidSDKLocation() -> f
-    144:144:boolean isAndroidLicenseLocationValid() -> g
-    148:148:java.lang.String getAndroidStudioLocation() -> h
-    152:152:java.lang.String getVisualStudioLocation() -> i
-    156:158:void setAndroidSDKLocation(java.lang.String) -> d
-    161:164:java.lang.String getAndroidManagerLocation() -> j
-    168:169:void setAndroidKeyLocation(java.lang.String) -> e
-    172:172:java.lang.String getAndroidKeyLocation() -> k
-    180:182:void setStudioLocation(java.lang.String) -> f
-    190:190:java.lang.String getSafeFile(java.lang.String) -> k
-    194:194:java.lang.String getTagLocation(java.lang.String) -> l
-    198:200:void setSelectedLaunchAction(java.lang.String,java.lang.String) -> a
-    203:203:java.lang.String getSelectedLaunchAction(java.lang.String) -> g
-    207:207:boolean isWizardExecuted() -> l
-    211:212:void setWizardExecuted(boolean) -> a
-    215:217:void setSelectedLaunchTarget(java.lang.String,java.lang.String) -> b
-    220:220:java.lang.String getSelectedLaunchTarget(java.lang.String) -> h
-    224:225:void setLaunchType(java.lang.String,java.lang.String) -> c
-    228:228:java.lang.String getLaunchType(java.lang.String) -> i
-    233:235:java.lang.String hash(java.lang.String) -> m
-    240:240:java.lang.String getTheme() -> m
-    244:246:void setTheme(java.lang.String) -> j
-    59:59:void <clinit>() -> <clinit>
+    64:64:java.lang.String getProject(int) -> a
+    68:69:void storeProject(int,java.lang.String) -> a
+    72:75:boolean removeProject(int) -> b
+    80:84:void setCurrentDir(java.io.File) -> a
+    87:87:java.io.File getCurrentDir() -> a
+    91:93:java.io.File getProjectsDir() -> b
+    99:106:void setProjectsDir(java.io.File) -> b
+    109:111:void setNetbeansLocation(java.lang.String) -> a
+    114:114:java.lang.String getNetbeansLocation() -> c
+    118:120:void setIntelliJLocation(java.lang.String) -> b
+    123:123:java.lang.String getIntelliJLocation() -> d
+    127:129:void setJDKLocation(java.lang.String) -> c
+    132:133:java.lang.String getJDKLocation() -> e
+    139:140:java.lang.String getAndroidSDKLocation() -> f
+    146:146:boolean isAndroidLicenseLocationValid() -> g
+    150:150:java.lang.String getAndroidStudioLocation() -> h
+    154:154:java.lang.String getVisualStudioLocation() -> i
+    158:160:void setAndroidSDKLocation(java.lang.String) -> d
+    163:166:java.lang.String getAndroidManagerLocation() -> j
+    170:171:void setAndroidKeyLocation(java.lang.String) -> e
+    174:174:java.lang.String getAndroidKeyLocation() -> k
+    182:184:void setStudioLocation(java.lang.String) -> f
+    192:192:java.lang.String getSafeFile(java.lang.String) -> k
+    196:196:java.lang.String getTagLocation(java.lang.String) -> l
+    200:202:void setSelectedLaunchAction(java.lang.String,java.lang.String) -> a
+    205:205:java.lang.String getSelectedLaunchAction(java.lang.String) -> g
+    209:209:boolean isWizardExecuted() -> l
+    213:214:void setWizardExecuted(boolean) -> a
+    217:219:void setSelectedLaunchTarget(java.lang.String,java.lang.String) -> b
+    222:222:java.lang.String getSelectedLaunchTarget(java.lang.String) -> h
+    226:227:void setLaunchType(java.lang.String,java.lang.String) -> c
+    230:230:java.lang.String getLaunchType(java.lang.String) -> i
+    235:237:java.lang.String hash(java.lang.String) -> m
+    242:242:java.lang.String getTheme() -> m
+    246:248:void setTheme(java.lang.String) -> j
+    61:61:void <clinit>() -> <clinit>
 org.crossmobile.utils.ClasspathUtils -> org.crossmobile.eh:
     int CLASS_SIG_SIZE -> a
     35:64:java.util.Set getClasspathClasses(java.lang.String) -> a
@@ -3002,31 +3005,31 @@ org.crossmobile.utils.launcher.Flavour -> org.crossmobile.fo:
     24:28:void <clinit>() -> <clinit>
 org.crossmobile.utils.lic.LicenseManager -> org.crossmobile.fp:
     java.util.prefs.Preferences BASE -> a
-    46:80:java.lang.String performQuery(org.crossmobile.utils.lic.LicenseManager$UserPass,java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> a
-    85:109:java.lang.String getLicense(org.crossmobile.utils.lic.LicenseManager$UserPass,boolean) -> a
-    114:128:boolean save(java.lang.String,java.lang.String,boolean) -> a
-    132:146:boolean isAllowed(java.lang.String,java.lang.String) -> a
-    151:162:java.io.File getSettingsFile() -> b
-    188:206:boolean saveUsernamePassword(org.crossmobile.utils.lic.LicenseManager$UserPass) -> a
-    210:227:java.util.Collection getRegistered() -> a
-    201:202:void lambda$saveUsernamePassword$15(org.crossmobile.utils.lic.LicenseManager$UserPass,org.crossmobile.utils.XMLWalker) -> a
-    201:201:boolean lambda$saveUsernamePassword$14(crossmobile.rt.StrongReference,org.crossmobile.utils.XMLWalker) -> a
-    195:195:void lambda$saveUsernamePassword$13(crossmobile.rt.StrongReference,org.crossmobile.utils.lic.LicenseManager$UserPass,org.crossmobile.utils.XMLWalker) -> a
-    197:200:void lambda$null$12(crossmobile.rt.StrongReference,org.crossmobile.utils.lic.LicenseManager$UserPass,org.crossmobile.utils.XMLWalker) -> b
-    199:199:void lambda$null$11(org.crossmobile.utils.XMLWalker) -> a
-    199:199:boolean lambda$null$10(org.crossmobile.utils.XMLWalker) -> b
-    198:198:void lambda$null$9(org.crossmobile.utils.XMLWalker) -> c
-    198:198:boolean lambda$null$8(org.crossmobile.utils.XMLWalker) -> d
-    195:195:boolean lambda$null$7(org.crossmobile.utils.XMLWalker) -> e
-    193:193:void lambda$saveUsernamePassword$6(org.crossmobile.utils.XMLWalker) -> f
-    193:193:boolean lambda$saveUsernamePassword$5(org.crossmobile.utils.XMLWalker) -> g
-    192:192:void lambda$saveUsernamePassword$4(org.crossmobile.utils.XMLWalker) -> h
-    192:192:boolean lambda$saveUsernamePassword$3(org.crossmobile.utils.XMLWalker) -> i
-    38:38:void <clinit>() -> <clinit>
+    47:81:java.lang.String performQuery(org.crossmobile.utils.lic.LicenseManager$UserPass,java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> a
+    86:110:java.lang.String getLicense(org.crossmobile.utils.lic.LicenseManager$UserPass,boolean) -> a
+    115:129:boolean save(java.lang.String,java.lang.String,boolean) -> a
+    134:134:boolean isAllowed(java.lang.String,java.lang.String) -> a
+    154:165:java.io.File getSettingsFile() -> b
+    191:209:boolean saveUsernamePassword(org.crossmobile.utils.lic.LicenseManager$UserPass) -> a
+    213:230:java.util.Collection getRegistered() -> a
+    204:205:void lambda$saveUsernamePassword$15(org.crossmobile.utils.lic.LicenseManager$UserPass,org.crossmobile.utils.XMLWalker) -> a
+    204:204:boolean lambda$saveUsernamePassword$14(crossmobile.rt.StrongReference,org.crossmobile.utils.XMLWalker) -> a
+    198:198:void lambda$saveUsernamePassword$13(crossmobile.rt.StrongReference,org.crossmobile.utils.lic.LicenseManager$UserPass,org.crossmobile.utils.XMLWalker) -> a
+    200:203:void lambda$null$12(crossmobile.rt.StrongReference,org.crossmobile.utils.lic.LicenseManager$UserPass,org.crossmobile.utils.XMLWalker) -> b
+    202:202:void lambda$null$11(org.crossmobile.utils.XMLWalker) -> a
+    202:202:boolean lambda$null$10(org.crossmobile.utils.XMLWalker) -> b
+    201:201:void lambda$null$9(org.crossmobile.utils.XMLWalker) -> c
+    201:201:boolean lambda$null$8(org.crossmobile.utils.XMLWalker) -> d
+    198:198:boolean lambda$null$7(org.crossmobile.utils.XMLWalker) -> e
+    196:196:void lambda$saveUsernamePassword$6(org.crossmobile.utils.XMLWalker) -> f
+    196:196:boolean lambda$saveUsernamePassword$5(org.crossmobile.utils.XMLWalker) -> g
+    195:195:void lambda$saveUsernamePassword$4(org.crossmobile.utils.XMLWalker) -> h
+    195:195:boolean lambda$saveUsernamePassword$3(org.crossmobile.utils.XMLWalker) -> i
+    39:39:void <clinit>() -> <clinit>
 org.crossmobile.utils.lic.LicenseManager$UserPass -> org.crossmobile.fp$a:
     java.lang.String username -> a
     java.lang.String password -> b
-    234:237:void <init>(java.lang.String,java.lang.String) -> <init>
+    237:240:void <init>(java.lang.String,java.lang.String) -> <init>
 org.crossmobile.utils.lic.LicensedApplication -> org.crossmobile.fq:
     java.lang.String appId -> a
     java.util.Collection artifacts -> b

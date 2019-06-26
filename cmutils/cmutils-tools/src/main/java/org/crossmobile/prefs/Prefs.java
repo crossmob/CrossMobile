@@ -27,6 +27,8 @@ import static org.crossmobile.utils.SystemDependent.Execs.*;
 
 public class Prefs {
 
+    public static final boolean CHECK_LICENSE = false;
+
     private static final String RECENT_ITEM = "recent.item";
     private static final String CURRENT_DIR = "current.dir";
     private static final String PROJECT_DIR = "project.dir";

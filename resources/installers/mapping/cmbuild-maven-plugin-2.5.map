@@ -1777,10 +1777,10 @@ org.crossmobile.prefs.Config -> org.crossmobile.build.fv:
     29:29:void <clinit>() -> <clinit>
 org.crossmobile.prefs.Prefs -> org.crossmobile.build.fw:
     java.util.prefs.Preferences prefs -> a
-    137:138:java.lang.String getAndroidSDKLocation() -> a
-    190:190:java.lang.String getSafeFile(java.lang.String) -> a
-    194:194:java.lang.String getTagLocation(java.lang.String) -> b
-    59:59:void <clinit>() -> <clinit>
+    139:140:java.lang.String getAndroidSDKLocation() -> a
+    192:192:java.lang.String getSafeFile(java.lang.String) -> a
+    196:196:java.lang.String getTagLocation(java.lang.String) -> b
+    61:61:void <clinit>() -> <clinit>
 org.crossmobile.utils.CollectionUtils -> org.crossmobile.build.fx:
     29:29:java.util.List asList(java.lang.Object[]) -> a
     33:33:java.util.List asList(java.util.Collection) -> a
@@ -2377,12 +2377,12 @@ org.crossmobile.utils.launcher.Flavour -> org.crossmobile.build.he:
     58:58:java.lang.String lambda$getFlavour$0(org.crossmobile.utils.launcher.Flavour) -> b
     24:28:void <clinit>() -> <clinit>
 org.crossmobile.utils.lic.LicencedItems -> org.crossmobile.build.hf:
-    31:43:void checkLicense(org.crossmobile.utils.plugin.DependencyItem,java.lang.String,org.crossmobile.utils.launcher.Flavour) -> a
-    46:59:void cleanup(java.util.Collection,java.util.Collection,java.lang.String,org.crossmobile.utils.launcher.Flavour,java.util.Iterator) -> a
+    32:45:void checkLicense(org.crossmobile.utils.plugin.DependencyItem,java.lang.String,org.crossmobile.utils.launcher.Flavour) -> a
+    48:61:void cleanup(java.util.Collection,java.util.Collection,java.lang.String,org.crossmobile.utils.launcher.Flavour,java.util.Iterator) -> a
 org.crossmobile.utils.lic.LicenseManager -> org.crossmobile.build.hg:
     java.util.prefs.Preferences BASE -> a
-    210:227:java.util.Collection getRegistered() -> a
-    38:38:void <clinit>() -> <clinit>
+    213:230:java.util.Collection getRegistered() -> a
+    39:39:void <clinit>() -> <clinit>
 org.crossmobile.utils.lic.LicensedApplication -> org.crossmobile.build.hh:
     java.lang.String appId -> a
     java.util.Collection artifacts -> b

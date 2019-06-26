@@ -15,6 +15,7 @@
  */
 package org.crossmobile.utils.lic;
 
+import org.crossmobile.prefs.Prefs;
 import org.crossmobile.utils.launcher.Flavour;
 import org.crossmobile.utils.plugin.DependencyItem;
 
@@ -38,7 +39,8 @@ public class LicencedItems {
             out.append("Due to licensing, these dependencies cannot be resolved:");
             for (String artifactId : unlicensed)
                 out.append(" '").append(findSystemDependency(null, artifactId)).append("',");
-            throw new RuntimeException(out.toString().substring(0, out.length() - 1));
+            if (Prefs.CHECK_LICENSE)
+                throw new RuntimeException(out.toString().substring(0, out.length() - 1));
         }
     }
 

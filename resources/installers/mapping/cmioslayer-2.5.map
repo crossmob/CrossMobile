@@ -311,23 +311,23 @@ com.eclipsesource.json.WritingBuffer -> org.crossmobile.o:
 com.panayotis.appenh.DefaultEnhancer -> com.panayotis.appenh.a:
     java.util.List frameImages -> a
     33:35:void <init>() -> <init>
-    39:46:boolean setNimbusLookAndFeel() -> a
-    52:59:boolean setSystemLookAndFeel() -> b
-    64:64:void registerPreferences(java.lang.Runnable) -> registerPreferences
-    68:68:void registerAbout(java.lang.Runnable) -> registerAbout
-    72:72:void registerQuit(java.lang.Runnable) -> registerQuit
-    76:76:void registerFileOpen(com.panayotis.appenh.Enhancer$FileOpenRunnable) -> registerFileOpen
-    80:80:void registerUpdate(java.lang.Runnable) -> registerUpdate
-    84:84:void registerUpdate(java.lang.String,java.lang.String,java.lang.Runnable) -> registerUpdate
-    88:88:boolean providesSystemMenus() -> providesSystemMenus
-    93:95:void setApplicationIcons(java.lang.String[]) -> setApplicationIcons
-    98:100:void setApplicationIcons(java.awt.image.BufferedImage[]) -> setApplicationIcons
-    104:108:void updateFrameIcons(javax.swing.JFrame,java.lang.String[]) -> updateFrameIcons
-    112:121:void updateFrameIcons(javax.swing.JFrame,java.util.Collection) -> updateFrameIcons
-    125:127:void setSafeLookAndFeel() -> setSafeLookAndFeel
-    131:132:void setDefaultLookAndFeel() -> setDefaultLookAndFeel
-    136:136:void registerApplication(java.lang.String,java.lang.String,java.lang.String[]) -> registerApplication
-    140:140:void unregisterApplication(java.lang.String) -> unregisterApplication
+    39:48:boolean setNimbusLookAndFeel() -> a
+    54:63:boolean setSystemLookAndFeel() -> b
+    68:68:void registerPreferences(java.lang.Runnable) -> registerPreferences
+    72:72:void registerAbout(java.lang.Runnable) -> registerAbout
+    76:76:void registerQuit(java.lang.Runnable) -> registerQuit
+    80:80:void registerFileOpen(com.panayotis.appenh.Enhancer$FileOpenRunnable) -> registerFileOpen
+    84:84:void registerUpdate(java.lang.Runnable) -> registerUpdate
+    88:88:void registerUpdate(java.lang.String,java.lang.String,java.lang.Runnable) -> registerUpdate
+    92:92:boolean providesSystemMenus() -> providesSystemMenus
+    97:99:void setApplicationIcons(java.lang.String[]) -> setApplicationIcons
+    102:104:void setApplicationIcons(java.awt.image.BufferedImage[]) -> setApplicationIcons
+    108:112:void updateFrameIcons(javax.swing.JFrame,java.lang.String[]) -> updateFrameIcons
+    116:125:void updateFrameIcons(javax.swing.JFrame,java.util.Collection) -> updateFrameIcons
+    129:131:void setSafeLookAndFeel() -> setSafeLookAndFeel
+    135:136:void setDefaultLookAndFeel() -> setDefaultLookAndFeel
+    140:140:void registerApplication(java.lang.String,java.lang.String,java.lang.String[]) -> registerApplication
+    144:144:void unregisterApplication(java.lang.String) -> unregisterApplication
 com.panayotis.appenh.Enhancer -> com.panayotis.appenh.Enhancer:
     void setSafeLookAndFeel() -> setSafeLookAndFeel
     void setDefaultLookAndFeel() -> setDefaultLookAndFeel
@@ -356,34 +356,34 @@ com.panayotis.appenh.EnhancerManager -> com.panayotis.appenh.EnhancerManager:
     94:100:void appendToList(java.util.List,java.lang.String,java.awt.image.BufferedImage) -> a
     37:44:void <clinit>() -> <clinit>
 com.panayotis.appenh.LinuxEnhancer -> com.panayotis.appenh.b:
-    46:46:void <init>() -> <init>
-    51:58:boolean setNoUglySystemLookAndFeel() -> c
-    63:65:void setSafeLookAndFeel() -> setSafeLookAndFeel
-    69:133:void registerApplication(java.lang.String,java.lang.String,java.lang.String[]) -> registerApplication
-    137:148:void unregisterApplication(java.lang.String) -> unregisterApplication
-    151:165:boolean writeFile(java.lang.String,java.lang.String) -> b
-    172:192:boolean writeThumbnail(java.io.File,java.io.File,java.lang.String) -> b
-    198:205:java.lang.String getMD5Hash(java.lang.String) -> c
-    209:217:void addMetaData(javax.imageio.metadata.IIOMetadata,java.lang.String,java.lang.String) -> a
-    220:220:java.lang.String getDesktopFileName(java.lang.String) -> d
-    224:224:java.lang.String getThumbFilename(java.lang.String) -> e
-    228:231:java.lang.String toURI(java.io.File) -> b
-    235:243:java.io.File getTempImage(java.util.Collection,int) -> b
-    248:253:boolean exec(java.lang.String[]) -> b
-    46:46:java.io.File access$000(java.util.Collection,int) -> a
-    46:46:java.lang.String access$100(java.io.File) -> a
-    46:46:boolean access$200(java.lang.String[]) -> a
-    46:46:java.lang.String access$300(java.lang.String) -> a
-    46:46:boolean access$400(java.io.File,java.io.File,java.lang.String) -> a
-    46:46:java.lang.String access$500(java.lang.String) -> b
-    46:46:boolean access$600(java.lang.String,java.lang.String) -> a
+    47:47:void <init>() -> <init>
+    52:61:boolean setNoUglySystemLookAndFeel() -> c
+    66:68:void setSafeLookAndFeel() -> setSafeLookAndFeel
+    72:138:void registerApplication(java.lang.String,java.lang.String,java.lang.String[]) -> registerApplication
+    142:153:void unregisterApplication(java.lang.String) -> unregisterApplication
+    156:171:boolean writeFile(java.lang.String,java.lang.String) -> b
+    177:197:boolean writeThumbnail(java.io.File,java.io.File,java.lang.String) -> b
+    203:210:java.lang.String getMD5Hash(java.lang.String) -> c
+    214:222:void addMetaData(javax.imageio.metadata.IIOMetadata,java.lang.String,java.lang.String) -> a
+    225:225:java.lang.String getDesktopFileName(java.lang.String) -> d
+    229:229:java.lang.String getThumbFilename(java.lang.String) -> e
+    233:236:java.lang.String toURI(java.io.File) -> b
+    240:248:java.io.File getTempImage(java.util.Collection,int) -> b
+    253:258:boolean exec(java.lang.String[]) -> b
+    47:47:java.io.File access$000(java.util.Collection,int) -> a
+    47:47:java.lang.String access$100(java.io.File) -> a
+    47:47:boolean access$200(java.lang.String[]) -> a
+    47:47:java.lang.String access$300(java.lang.String) -> a
+    47:47:boolean access$400(java.io.File,java.io.File,java.lang.String) -> a
+    47:47:java.lang.String access$500(java.lang.String) -> b
+    47:47:boolean access$600(java.lang.String,java.lang.String) -> a
 com.panayotis.appenh.LinuxEnhancer$1 -> com.panayotis.appenh.b$1:
     java.lang.String val$name_s -> a
     java.lang.String val$comment_s -> b
     java.lang.String[] val$categories -> c
     com.panayotis.appenh.LinuxEnhancer this$0 -> d
-    69:69:void <init>(com.panayotis.appenh.LinuxEnhancer,java.lang.String,java.lang.String,java.lang.String[]) -> <init>
-    73:131:void run() -> run
+    72:72:void <init>(com.panayotis.appenh.LinuxEnhancer,java.lang.String,java.lang.String,java.lang.String[]) -> <init>
+    76:136:void run() -> run
 com.panayotis.appenh.MacEnhancer -> com.panayotis.appenh.MacEnhancer:
     java.lang.Class appClass -> a
     java.lang.Object appInstance -> b
