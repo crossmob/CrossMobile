@@ -32,23 +32,26 @@ import static org.crossmobile.gui.actives.ActiveTextField.updateTheme;
 
 public class ActiveTextPane extends HiResTextPane implements StreamListener, ThemeChanged {
 
+    private static final SimpleAttributeSet INFOATTR = new SimpleAttributeSet();
+    private static final SimpleAttributeSet ERRORATTR = new SimpleAttributeSet();
+    private static final SimpleAttributeSet WARNATTR = new SimpleAttributeSet();
+    private static final SimpleAttributeSet DEBUGATTR = new SimpleAttributeSet();
+
     private static final Map<StreamQuality, AttributeSet> ATTRS = new EnumMap<>(StreamQuality.class);
 
     static {
-        SimpleAttributeSet INFOATTR = new SimpleAttributeSet();
-        SimpleAttributeSet ERRORATTR = new SimpleAttributeSet();
-        SimpleAttributeSet WARNATTR = new SimpleAttributeSet();
-        SimpleAttributeSet DEBUGATTR = new SimpleAttributeSet();
-
-        StyleConstants.setForeground(INFOATTR, Theme.current().textinfo);
-        StyleConstants.setForeground(ERRORATTR, Theme.current().texterror);
-        StyleConstants.setForeground(WARNATTR, Theme.current().textwarning);
-        StyleConstants.setForeground(DEBUGATTR, Theme.current().textwarning);
-
         ATTRS.put(StreamQuality.INFO, INFOATTR);
         ATTRS.put(StreamQuality.ERROR, ERRORATTR);
         ATTRS.put(StreamQuality.WARNING, WARNATTR);
         ATTRS.put(StreamQuality.DEBUG, DEBUGATTR);
+        updateAttributes();
+    }
+
+    private static void updateAttributes() {
+        StyleConstants.setForeground(INFOATTR, Theme.current().textInfo);
+        StyleConstants.setForeground(ERRORATTR, Theme.current().textError);
+        StyleConstants.setForeground(WARNATTR, Theme.current().textWarning);
+        StyleConstants.setForeground(DEBUGATTR, Theme.current().textWarning);
     }
 
     private StreamManager sman;
@@ -95,6 +98,8 @@ public class ActiveTextPane extends HiResTextPane implements StreamListener, The
 
     @Override
     public void themeChanged(boolean dark) {
+        updateAttributes();
         updateTheme(this, dark);
+        getStyledDocument().setCharacterAttributes(0, getDocument().getLength(), INFOATTR, true);
     }
 }

@@ -16,10 +16,7 @@
 package org.crossmobile.gui.parameters;
 
 import com.panayotis.hrgui.*;
-import org.crossmobile.gui.actives.ActiveIcon;
-import org.crossmobile.gui.actives.ActivePasswordField;
-import org.crossmobile.gui.actives.ActiveTextArea;
-import org.crossmobile.gui.actives.ActiveToggleButton;
+import org.crossmobile.gui.actives.*;
 import org.crossmobile.utils.Param;
 import org.crossmobile.utils.ParamList;
 
@@ -111,14 +108,14 @@ public abstract class FreeTextParameter extends ProjectParameter {
                 data.comp().setPreferredSize(new Dimension(100, 100));
                 break;
             case PASSWORDFIELD:
-                data = new HiResPanel(new BorderLayout());
-                HiResToggleButton visible = new ActiveToggleButton("", new ActiveIcon("images/show"));
+                data = new ActivePanel(new BorderLayout());
+                ActiveToggleButton visible = new ActiveToggleButton("", new ActiveIcon("images/show"));
                 int delta = (int) (6 * ScreenUtils.getGraphicsScale());
                 visible.setBorder(new EmptyBorder(delta, delta * 2 / 3, delta, delta * 2 / 3));
-                char c = ((HiResPasswordField) text.comp()).getEchoChar();
+                char c = ((ActivePasswordField) text.comp()).getEchoChar();
                 visible.addActionListener(evt -> ((HiResPasswordField) text.comp()).setEchoChar(visible.isSelected() ? '\0' : c));
-                ((HiResPanel) data).add(text.comp(), BorderLayout.CENTER);
-                ((HiResPanel) data).add(visible.comp(), BorderLayout.EAST);
+                ((ActivePanel) data).add(text.comp(), BorderLayout.CENTER);
+                ((ActivePanel) data).add(visible.comp(), BorderLayout.EAST);
                 break;
             case TEXTFIELD:
             default:

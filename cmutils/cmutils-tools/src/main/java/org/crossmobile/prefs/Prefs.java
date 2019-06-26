@@ -42,6 +42,7 @@ public class Prefs {
     private static final String LAUNCH_TYPE = "launch.type.";
     private static final String LAUNCH_ACTION = "launch.action";
     private static final String INITIAL_WIZARD = "initial.wizard";
+    private static final String GUI_THEME = "gui.theme";
 
     public static final String LAUNCH_TARGET_IOS = "ios";
     public static final String LAUNCH_TARGET_ANDROID = "android";
@@ -233,5 +234,14 @@ public class Prefs {
         } catch (NoSuchAlgorithmException ex) {
             return Integer.toString(filename.hashCode());
         }
+    }
+
+    public static String getTheme() {
+        return prefs.get(GUI_THEME, "bright");
+    }
+
+    public static void setTheme(String theme) {
+        theme = theme == null || theme.trim().isEmpty() ? "bright" : theme.trim();
+        prefs.put(GUI_THEME, theme);
     }
 }

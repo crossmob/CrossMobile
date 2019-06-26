@@ -16,6 +16,7 @@
 package org.crossmobile.gui.elements;
 
 import org.crossmobile.gui.actives.ThemeNotifier;
+import org.crossmobile.prefs.Prefs;
 
 import java.awt.*;
 
@@ -36,10 +37,14 @@ public final class Theme {
     public final Color text;
     public final Color textBack;
     public final Color textBorder;
-    public final Color textinfo;
-    public final Color texterror;
-    public final Color textwarning;
-    public final Color textdebug;
+    public final Color textInfo;
+    public final Color textError;
+    public final Color textWarning;
+    public final Color textDebug;
+    public final Color backgroundRunning;
+    public final Color backgroundWarning;
+    public final Color backgroundError;
+    public final Color backgroundSuccess;
     public final Color subinfo;
     public final Color backCellSelected;
     public final Color textSelCell;
@@ -54,8 +59,7 @@ public final class Theme {
     static {
         bright = new Theme(0.49f, 0.57f, false);
         dark = new Theme(0.49f, 0.57f, true);
-
-        current = bright;
+        current = Prefs.getTheme().equals("dark") ? dark : bright;
     }
 
     public static Theme current() {
@@ -72,11 +76,13 @@ public final class Theme {
 
     public static void setDark() {
         current = dark;
+        Prefs.setTheme("dark");
         updateWindows();
     }
 
     public static void setBright() {
         current = bright;
+        Prefs.setTheme("bright");
         updateWindows();
     }
 
@@ -110,15 +116,19 @@ public final class Theme {
         backCellSelected = c(primary, 0.063f, 1f);
         textSelCell = text;
         infoSelCell = subinfo;
-        textinfo = c(0.65f, 0.93f, 0.55f);
-        texterror = c(0, 0.93f, 0.55f);
-        textwarning = c(0.15f, 0.93f, 0.55f);
-        textdebug = subinfo;
+        textInfo = c(0.65f, dark ? 0.5f : 0.93f, dark ? 0f : 0.55f);
+        textError = c(0, dark ? 0.5f : 0.93f, dark ? 0.1f : 0.55f);
+        textWarning = c(0.15f, 0.93f, dark ? 0.1f : 0.55f);
+        textDebug = subinfo;
         rolloverButton = c(primary, 0.09f, 1f);
         pressedButton = c(primary, 0.079f, 0.596f);
         selectedButton = c(secondary, 0, isDark ? 0.85f : 1);
         icontop = c(secondary, 0.307f, 0.204f);
         iconbottom = c(secondary, 0.313f, 0.513f);
+        backgroundRunning = c(0.65f, 0.5f, dark ? 0.5f : 1f);
+        backgroundWarning = c(0.15f, 0.5f, dark ? 0.5f : 0.9f);
+        backgroundError = c(0f, 0.5f, dark ? 0.5f : 0.9f);
+        backgroundSuccess = c(0.35f, 0.5f, dark ? 0.5f : 0.9f);
     }
 
 }

@@ -52,6 +52,7 @@ public class Config extends HiResDialog {
     private Config() {
         super((Dialog) null, true);
         initComponents();
+        themeGroup.setSelected(Theme.current() == Theme.dark() ? darkB.getModel() : lightB.getModel(), true);
 
         UIUtils.syncWidth(Arrays.asList(jdkL, androidL, netbeansL, intellijL, studioL, keystoreL));
         UIUtils.syncWidth(Arrays.asList(jdkB, androidB, netbeansB, intellijB, studioB, keystoreB));

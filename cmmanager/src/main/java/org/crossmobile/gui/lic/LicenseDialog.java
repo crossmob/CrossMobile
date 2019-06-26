@@ -315,7 +315,7 @@ public class LicenseDialog extends HiResDialog {
         jPanel7.setOpaque(false);
         jPanel7.setLayout(new java.awt.BorderLayout());
 
-        errorL.setForeground(Theme.current().texterror);
+        errorL.setForeground(Theme.current().textError);
         errorL.setText(" ");
         jPanel7.add(errorL, java.awt.BorderLayout.NORTH);
 

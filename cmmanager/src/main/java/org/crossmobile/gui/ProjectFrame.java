@@ -38,6 +38,7 @@ import java.util.Collection;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 
+import static org.crossmobile.gui.actives.ActiveContextLabel.Context.*;
 import static org.crossmobile.gui.elements.DebugInfo.streamsHaveTraces;
 import static org.crossmobile.gui.utils.LaunchType.RELEASE;
 import static org.crossmobile.prefs.Prefs.*;
@@ -252,7 +253,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
             String tn = oldTaskName == null ? "Operation" : oldTaskName;
             tn += " : " + (success ? "success" : (wasKilled ? "interrupted" : (notSaved ? "not saved" : "failed, error code " + result)));
             outResult.setText(tn);
-            outResult.setBackground(success ? Color.GREEN : (wasKilled ? Color.YELLOW : Color.PINK));
+            ((ActiveContextLabel) outResult).setContext(success ? SUCCESS : (wasKilled ? ActiveContextLabel.Context.ERROR : WARNING));
             outputB.setText(success ? "Output" : "Output*");
             if (success || wasKilled || notSaved)
                 displayProject();
@@ -262,7 +263,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
             displayOutput();
             outputB.setText("Output");
             outResult.setText(currentTaskName);
-            outResult.setBackground(Color.CYAN);
+            ((ActiveContextLabel) outResult).setContext(RUNNING);
             running = true;
         }
 
@@ -543,7 +544,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
         scrollErrP = new javax.swing.JScrollPane();
         errorTxt = new ActiveTextPane();
         infoP = new HiResPanel();
-        outResult = new ActiveLabel();
+        outResult = new ActiveContextLabel();
         inoutP = new HiResPanel();
         outputTB = new ActiveToggleButton("", STDOUT_I, 8);
         errorTB = new ActiveToggleButton("", STDERR_I, 8);
