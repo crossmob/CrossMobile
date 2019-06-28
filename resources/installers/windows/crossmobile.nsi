@@ -72,6 +72,9 @@ Section "CrossMobile" SecCrossMobileMain
   SetOutPath $INSTDIR\lib
   File /r ${CMINSTDESTDIR}\lib\*.*
 
+  SetOutPath $INSTDIR\jre
+  File /r ${CMINSTDESTDIR}\jre\*.*
+
   SetOutPath $INSTDIR
 
   SetRegView 64

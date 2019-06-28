@@ -150,6 +150,7 @@
                                         <!-- Common files installation macro -->
                                         <macrodef name="installto">
                                             <attribute name="dest"/>
+                                            <attribute name="jrearch"/>
                                             <sequential>
                                                 <echo message="******************************************************${line.separator}Installing to @{dest}${line.separator}******************************************************"/>
                                                 <copy file="${project.build.directory}/${project.artifactId}-${project.version}-proguard.jar"
@@ -175,13 +176,25 @@
                                                 </copy>
                                                 <chmod file="@{dest}/lib/apache-maven/bin/mvn" perm="a+x"/>
                                                 <copy todir="@{dest}" file="../LICENSE"/>
+                                                <mkdir dir="@{dest}/jre"/>
+                                                <exec executable="docker" failonerror="true">
+                                                    <arg value="run"/>
+                                                    <arg value="--rm"/>
+                                                    <arg value="-v"/>
+                                                    <arg value="@{dest}:/target"/>
+                                                    <arg value="teras/jrecross"/>
+                                                    <arg value="sh"/>
+                                                    <arg value="-c"/>
+                                                    <arg value="echo Copying JRE with flavour @{jrearch}; cp -Ra /bundles/@{jrearch}/jdk8u212-b03-jre/* /target/jre/"/>
+                                                </exec>
                                             </sequential>
                                         </macrodef>
                                         <mkdir dir="${installers.dir}"/>
 
                                         <!-- OS independent -->
                                         <property name="gdir" value="${workinstall.dir}/crossmobile"/>
-                                        <installto dest="${gdir}"/>
+                                        <installto dest="${gdir}" jrearch="none"/>
+                                        <delete dir="${gdir}/jre"/>
                                         <copy file="../resources/installers/linux/crossmobile.sh" todir="${gdir}"/>
                                         <chmod file="${gdir}/crossmobile.sh" perm="a+x"/>
                                         <echo>${installers.dir}</echo>
@@ -191,7 +204,7 @@
 
                                         <!-- Linux -->
                                         <property name="ldir" value="${workinstall.dir}/CrossMobile.AppDir"/>
-                                        <installto dest="${ldir}"/>
+                                        <installto dest="${ldir}" jrearch="linux"/>
                                         <move tofile="${ldir}/lib/AppRun.jar" file="${ldir}/lib/crossmobile.jar"/>
                                         <copy tofile="${ldir}/AppRun"
                                               file="${resources.dir}/installers/linux/crossmobile64"/>
@@ -221,11 +234,12 @@
                                             <arg value="-c"/>
                                             <arg value="gpg-agent --daemon; gpg2 --detach-sign --armor --pinentry-mode loopback --passphrase '${gnupgpass}' `mktemp` ; /opt/appimage/AppRun -v crossmobile/CrossMobile.AppDir --sign -n CrossMobile-${project.version}.appimage"/>
                                         </exec>
-                                        <move todir="target/installers" file="target/CrossMobile-${project.version}.appimage"/>
+                                        <move todir="target/installers"
+                                              file="target/CrossMobile-${project.version}.appimage"/>
 
                                         <!-- OSX -->
                                         <property name="odir" value="${workinstall.dir}/CrossMobile.app/Contents"/>
-                                        <installto dest="${odir}"/>
+                                        <installto dest="${odir}" jrearch="osx"/>
                                         <move file="${odir}/lib" tofile="${odir}/Java"/>
                                         <move file="${odir}/LICENSE" todir="${odir}/Java"/>
                                         <copy todir="${odir}/MacOS"
@@ -269,7 +283,7 @@
                                         <delete file="/tmp/CrossMobile.dmg"/>
 
                                         <!-- Prepare for Windows -->
-                                        <installto dest="${workinstall.dir}/Windows"/>
+                                        <installto dest="${workinstall.dir}/Windows" jrearch="windows64"/>
                                     </target>
                                 </configuration>
                             </execution>
@@ -287,7 +301,7 @@
                     <plugin>
                         <groupId>com.akathist.maven.plugins.launch4j</groupId>
                         <artifactId>launch4j-maven-plugin</artifactId>
-                        <version>1.7.14</version>
+                        <version>1.7.25</version>
                         <executions>
                             <execution>
                                 <id>windows-exe</id>
@@ -311,7 +325,7 @@
                                         <preCp>anything</preCp>
                                     </classPath>
                                     <jre>
-                                        <minVersion>1.6.0</minVersion>
+                                        <path>jre</path>
                                     </jre>
                                     <versionInfo>
                                         <fileVersion>${long.version}</fileVersion>
