@@ -1,17 +1,18 @@
-/* (c) 2019 by Panayotis Katsaloulis
+/*
+ * (c) 2019 by Panayotis Katsaloulis
  *
  * CrossMobile is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, version 2.
+ * it under the terms of the CrossMobile Community License as published
+ * by the CrossMobile team.
  *
  * CrossMobile is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * CrossMobile Community License for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with CrossMobile; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ * You should have received a copy of the CrossMobile Community
+ * License along with CrossMobile; if not, please contact the
+ * CrossMobile team at https://crossmobile.tech/contact/
  */
 @CMLib(name = "cmioslayer", target = CMLibTarget.RUNTIME)
 package com.eclipsesource.json;
