@@ -6,9 +6,9 @@
  of four parts:
 
  a) CrossMobile Runtime Library
- c) CrossMobile Build Tools
+ b) CrossMobile Build Tools
+ c) CrossMobile Manager
  d) CrossMobile Utilities
- b) CrossMobile Manager
 
  a) All software that is part of the application runtime, meaning the code is
     required to be redistributed in the produced target application (i.e. the
