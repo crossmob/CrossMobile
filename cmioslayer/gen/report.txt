@@ -1683,7 +1683,6 @@ org/robovm/objc/block/VoidBooleanBlock.class v8
 
 Creating file cmplugin-desktop-cmioslayer-<VERSION>.jar
 com/panayotis/appenh/Enhancer$FileOpenRunnable.class v1.6
-com/panayotis/appenh/Enhancer$ThemeChangeListener.class v1.6
 com/panayotis/appenh/Enhancer.class v1.6
 com/panayotis/appenh/EnhancerManager.class v1.6
 com/panayotis/appenh/MacEnhancer$1.class v1.6
@@ -1691,8 +1690,6 @@ com/panayotis/appenh/MacEnhancer$2.class v1.6
 com/panayotis/appenh/MacEnhancer$3.class v1.6
 com/panayotis/appenh/MacEnhancer$4.class v1.6
 com/panayotis/appenh/MacEnhancer$5.class v1.6
-com/panayotis/appenh/MacEnhancer$6$1.class v1.6
-com/panayotis/appenh/MacEnhancer$6.class v1.6
 com/panayotis/appenh/MacEnhancer.class v1.6
 com/panayotis/appenh/a.class v1.6
 com/panayotis/appenh/b$1.class v1.6

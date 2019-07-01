@@ -328,8 +328,6 @@ com.panayotis.appenh.DefaultEnhancer -> com.panayotis.appenh.a:
     135:136:void setDefaultLookAndFeel() -> setDefaultLookAndFeel
     140:140:void registerApplication(java.lang.String,java.lang.String,java.lang.String[]) -> registerApplication
     144:144:void unregisterApplication(java.lang.String) -> unregisterApplication
-    148:148:void registerThemeChanged(com.panayotis.appenh.Enhancer$ThemeChangeListener) -> registerThemeChanged
-    152:152:java.lang.String getThemeName() -> getThemeName
 com.panayotis.appenh.Enhancer -> com.panayotis.appenh.Enhancer:
     void setSafeLookAndFeel() -> setSafeLookAndFeel
     void setDefaultLookAndFeel() -> setDefaultLookAndFeel
@@ -344,14 +342,10 @@ com.panayotis.appenh.Enhancer -> com.panayotis.appenh.Enhancer:
     void setApplicationIcons(java.awt.image.BufferedImage[]) -> setApplicationIcons
     void registerApplication(java.lang.String,java.lang.String,java.lang.String[]) -> registerApplication
     void unregisterApplication(java.lang.String) -> unregisterApplication
-    void registerThemeChanged(com.panayotis.appenh.Enhancer$ThemeChangeListener) -> registerThemeChanged
-    java.lang.String getThemeName() -> getThemeName
     void updateFrameIcons(javax.swing.JFrame,java.lang.String[]) -> updateFrameIcons
     void updateFrameIcons(javax.swing.JFrame,java.util.Collection) -> updateFrameIcons
 com.panayotis.appenh.Enhancer$FileOpenRunnable -> com.panayotis.appenh.Enhancer$FileOpenRunnable:
     void openFile(java.io.File) -> openFile
-com.panayotis.appenh.Enhancer$ThemeChangeListener -> com.panayotis.appenh.Enhancer$ThemeChangeListener:
-    void themeChanged(java.lang.String) -> themeChanged
 com.panayotis.appenh.EnhancerManager -> com.panayotis.appenh.EnhancerManager:
     com.panayotis.appenh.Enhancer enhancer -> a
     32:32:void <init>() -> <init>
@@ -395,62 +389,49 @@ com.panayotis.appenh.MacEnhancer -> com.panayotis.appenh.MacEnhancer:
     java.lang.Object appInstance -> b
     java.lang.String packpref -> c
     boolean libFound -> d
-    38:38:void <init>() -> <init>
-    73:86:void registerAbout(java.lang.Runnable) -> registerAbout
-    91:104:void registerPreferences(java.lang.Runnable) -> registerPreferences
-    109:125:void registerQuit(java.lang.Runnable) -> registerQuit
-    130:150:void registerFileOpen(com.panayotis.appenh.Enhancer$FileOpenRunnable) -> registerFileOpen
-    153:154:void registerUpdate(java.lang.Runnable) -> registerUpdate
-    158:166:void registerUpdate(java.lang.String,java.lang.String,java.lang.Runnable) -> registerUpdate
-    java.lang.String getThemeName() -> getThemeName
+    37:37:void <init>() -> <init>
+    72:85:void registerAbout(java.lang.Runnable) -> registerAbout
+    90:103:void registerPreferences(java.lang.Runnable) -> registerPreferences
+    108:124:void registerQuit(java.lang.Runnable) -> registerQuit
+    129:149:void registerFileOpen(com.panayotis.appenh.Enhancer$FileOpenRunnable) -> registerFileOpen
+    152:153:void registerUpdate(java.lang.Runnable) -> registerUpdate
+    157:165:void registerUpdate(java.lang.String,java.lang.String,java.lang.Runnable) -> registerUpdate
     void registerUpdate0(java.lang.String,java.lang.String,java.lang.Runnable) -> registerUpdate0
-    175:187:void registerThemeChanged(com.panayotis.appenh.Enhancer$ThemeChangeListener) -> registerThemeChanged
-    void registerThemeChanged0(com.panayotis.appenh.Enhancer$ThemeChangeListener) -> registerThemeChanged0
-    193:193:void setSafeLookAndFeel() -> setSafeLookAndFeel
-    197:197:void setDefaultLookAndFeel() -> setDefaultLookAndFeel
-    201:201:boolean providesSystemMenus() -> providesSystemMenus
-    206:216:void setApplicationIcons(java.lang.String[]) -> setApplicationIcons
-    220:220:void setApplicationIcons(java.awt.image.BufferedImage[]) -> setApplicationIcons
-    224:224:void updateFrameIcons(javax.swing.JFrame,java.lang.String[]) -> updateFrameIcons
-    228:228:void updateFrameIcons(javax.swing.JFrame,java.util.Collection) -> updateFrameIcons
-    232:232:void registerApplication(java.lang.String,java.lang.String,java.lang.String[]) -> registerApplication
-    236:236:void unregisterApplication(java.lang.String) -> unregisterApplication
-    48:68:void <clinit>() -> <clinit>
+    171:171:void setSafeLookAndFeel() -> setSafeLookAndFeel
+    175:175:void setDefaultLookAndFeel() -> setDefaultLookAndFeel
+    179:179:boolean providesSystemMenus() -> providesSystemMenus
+    184:194:void setApplicationIcons(java.lang.String[]) -> setApplicationIcons
+    198:198:void setApplicationIcons(java.awt.image.BufferedImage[]) -> setApplicationIcons
+    202:202:void updateFrameIcons(javax.swing.JFrame,java.lang.String[]) -> updateFrameIcons
+    206:206:void updateFrameIcons(javax.swing.JFrame,java.util.Collection) -> updateFrameIcons
+    210:210:void registerApplication(java.lang.String,java.lang.String,java.lang.String[]) -> registerApplication
+    214:214:void unregisterApplication(java.lang.String) -> unregisterApplication
+    47:67:void <clinit>() -> <clinit>
 com.panayotis.appenh.MacEnhancer$1 -> com.panayotis.appenh.MacEnhancer$1:
     java.lang.Runnable val$callback -> a
     com.panayotis.appenh.MacEnhancer this$0 -> b
-    75:75:void <init>(com.panayotis.appenh.MacEnhancer,java.lang.Runnable) -> <init>
-    78:80:java.lang.Object invoke(java.lang.Object,java.lang.reflect.Method,java.lang.Object[]) -> invoke
+    74:74:void <init>(com.panayotis.appenh.MacEnhancer,java.lang.Runnable) -> <init>
+    77:79:java.lang.Object invoke(java.lang.Object,java.lang.reflect.Method,java.lang.Object[]) -> invoke
 com.panayotis.appenh.MacEnhancer$2 -> com.panayotis.appenh.MacEnhancer$2:
     java.lang.Runnable val$callback -> a
     com.panayotis.appenh.MacEnhancer this$0 -> b
-    93:93:void <init>(com.panayotis.appenh.MacEnhancer,java.lang.Runnable) -> <init>
-    96:98:java.lang.Object invoke(java.lang.Object,java.lang.reflect.Method,java.lang.Object[]) -> invoke
+    92:92:void <init>(com.panayotis.appenh.MacEnhancer,java.lang.Runnable) -> <init>
+    95:97:java.lang.Object invoke(java.lang.Object,java.lang.reflect.Method,java.lang.Object[]) -> invoke
 com.panayotis.appenh.MacEnhancer$3 -> com.panayotis.appenh.MacEnhancer$3:
     java.lang.Runnable val$callback -> a
     com.panayotis.appenh.MacEnhancer this$0 -> b
-    111:111:void <init>(com.panayotis.appenh.MacEnhancer,java.lang.Runnable) -> <init>
-    114:119:java.lang.Object invoke(java.lang.Object,java.lang.reflect.Method,java.lang.Object[]) -> invoke
+    110:110:void <init>(com.panayotis.appenh.MacEnhancer,java.lang.Runnable) -> <init>
+    113:118:java.lang.Object invoke(java.lang.Object,java.lang.reflect.Method,java.lang.Object[]) -> invoke
 com.panayotis.appenh.MacEnhancer$4 -> com.panayotis.appenh.MacEnhancer$4:
     com.panayotis.appenh.Enhancer$FileOpenRunnable val$callback -> a
     com.panayotis.appenh.MacEnhancer this$0 -> b
-    132:132:void <init>(com.panayotis.appenh.MacEnhancer,com.panayotis.appenh.Enhancer$FileOpenRunnable) -> <init>
-    135:144:java.lang.Object invoke(java.lang.Object,java.lang.reflect.Method,java.lang.Object[]) -> invoke
+    131:131:void <init>(com.panayotis.appenh.MacEnhancer,com.panayotis.appenh.Enhancer$FileOpenRunnable) -> <init>
+    134:143:java.lang.Object invoke(java.lang.Object,java.lang.reflect.Method,java.lang.Object[]) -> invoke
 com.panayotis.appenh.MacEnhancer$5 -> com.panayotis.appenh.MacEnhancer$5:
     java.lang.Runnable val$callback -> a
     com.panayotis.appenh.MacEnhancer this$0 -> b
-    161:161:void <init>(com.panayotis.appenh.MacEnhancer,java.lang.Runnable) -> <init>
-    163:164:void run() -> run
-com.panayotis.appenh.MacEnhancer$6 -> com.panayotis.appenh.MacEnhancer$6:
-    com.panayotis.appenh.Enhancer$ThemeChangeListener val$callback -> a
-    com.panayotis.appenh.MacEnhancer this$0 -> b
-    176:176:void <init>(com.panayotis.appenh.MacEnhancer,com.panayotis.appenh.Enhancer$ThemeChangeListener) -> <init>
-    179:185:void themeChanged(java.lang.String) -> themeChanged
-com.panayotis.appenh.MacEnhancer$6$1 -> com.panayotis.appenh.MacEnhancer$6$1:
-    java.lang.String val$themeName -> a
-    com.panayotis.appenh.MacEnhancer$6 this$1 -> b
-    179:179:void <init>(com.panayotis.appenh.MacEnhancer$6,java.lang.String) -> <init>
-    182:183:void run() -> run
+    160:160:void <init>(com.panayotis.appenh.MacEnhancer,java.lang.Runnable) -> <init>
+    162:163:void run() -> run
 com.panayotis.ce.CEventCommons -> com.panayotis.ce.CEventCommons:
     int DEBUG_GRAPHICS -> DEBUG_GRAPHICS
     int DEBUG_TOUCH -> DEBUG_TOUCH

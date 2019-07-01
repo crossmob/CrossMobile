@@ -67,8 +67,8 @@ org.crossmobile.bridge.system.Pair -> org.crossmobile.f:
     23:26:void <init>(java.lang.Object,java.lang.Object) -> <init>
     29:29:org.crossmobile.bridge.system.Pair pair(java.lang.Object,java.lang.Object) -> a
 org.crossmobile.gui.CustomListRenderer -> org.crossmobile.g:
-    482:482:void <init>() -> <init>
-    486:517:java.awt.Component getListCellRendererComponent(javax.swing.JList,java.lang.Object,int,boolean,boolean) -> getListCellRendererComponent
+    484:484:void <init>() -> <init>
+    488:519:java.awt.Component getListCellRendererComponent(javax.swing.JList,java.lang.Object,int,boolean,boolean) -> getListCellRendererComponent
 org.crossmobile.gui.LongProcFrame -> org.crossmobile.h:
     java.util.Collection success -> a
     java.util.function.Consumer asynchronousFunction -> b
@@ -471,91 +471,91 @@ org.crossmobile.gui.WelcomeFrame -> org.crossmobile.l:
     javax.swing.JMenuItem removeM -> B
     javax.swing.JButton settingsB -> C
     javax.swing.JLabel versionL -> D
-    56:72:void <init>() -> <init>
-    76:85:void setEnabled(boolean) -> setEnabled
-    88:102:void updateProjects(org.crossmobile.gui.project.ProjectInfo) -> a
-    105:107:void showProject(int) -> a
-    111:111:boolean requestRestart() -> requestRestart
-    116:117:void receiveMessage(java.lang.String) -> receiveMessage
-    120:125:int getIndexFromPoint(java.awt.Point) -> a
-    129:130:void updateVersion() -> a
-    134:137:void addProjectSilently(java.io.File) -> a
-    141:145:void addProjectWithMessage(java.io.File) -> b
-    148:149:void addProject(java.io.File) -> c
-    160:371:void initComponents() -> c
-    375:382:void newProjectBActionPerformed(java.awt.event.ActionEvent) -> a
-    385:386:void ProjectsLValueChanged(javax.swing.event.ListSelectionEvent) -> a
-    389:391:void openProjectBActionPerformed(java.awt.event.ActionEvent) -> b
-    394:395:void openBActionPerformed(java.awt.event.ActionEvent) -> c
-    398:408:void ProjectsLMouseClicked(java.awt.event.MouseEvent) -> a
-    411:416:void clearAllBActionPerformed(java.awt.event.ActionEvent) -> d
-    419:420:void aboutBActionPerformed(java.awt.event.ActionEvent) -> e
-    423:424:void settingsBActionPerformed(java.awt.event.ActionEvent) -> f
-    427:428:void openMActionPerformed(java.awt.event.ActionEvent) -> g
-    431:436:void removeMActionPerformed(java.awt.event.ActionEvent) -> h
-    439:443:void versionLMousePressed(java.awt.event.MouseEvent) -> b
-    446:447:void licenseBActionPerformed(java.awt.event.ActionEvent) -> i
-    53:53:void access$000(org.crossmobile.gui.WelcomeFrame,java.awt.event.ActionEvent) -> a
-    53:53:void access$100(org.crossmobile.gui.WelcomeFrame,java.awt.event.ActionEvent) -> b
-    53:53:void access$200(org.crossmobile.gui.WelcomeFrame,java.awt.event.MouseEvent) -> a
-    53:53:void access$300(org.crossmobile.gui.WelcomeFrame,javax.swing.event.ListSelectionEvent) -> a
-    53:53:void access$400(org.crossmobile.gui.WelcomeFrame,java.awt.event.ActionEvent) -> c
-    53:53:void access$500(org.crossmobile.gui.WelcomeFrame,java.awt.event.ActionEvent) -> d
-    53:53:void access$600(org.crossmobile.gui.WelcomeFrame,java.awt.event.MouseEvent) -> b
-    53:53:void access$700(org.crossmobile.gui.WelcomeFrame,java.awt.event.ActionEvent) -> e
-    53:53:void access$800(org.crossmobile.gui.WelcomeFrame,java.awt.event.ActionEvent) -> f
-    53:53:void access$900(org.crossmobile.gui.WelcomeFrame,java.awt.event.ActionEvent) -> g
-    53:53:void access$1000(org.crossmobile.gui.WelcomeFrame,java.awt.event.ActionEvent) -> h
-    53:53:void access$1100(org.crossmobile.gui.WelcomeFrame,java.awt.event.ActionEvent) -> i
-    59:60:void <clinit>() -> <clinit>
+    57:74:void <init>() -> <init>
+    78:87:void setEnabled(boolean) -> setEnabled
+    90:104:void updateProjects(org.crossmobile.gui.project.ProjectInfo) -> a
+    107:109:void showProject(int) -> a
+    113:113:boolean requestRestart() -> requestRestart
+    118:119:void receiveMessage(java.lang.String) -> receiveMessage
+    122:127:int getIndexFromPoint(java.awt.Point) -> a
+    131:132:void updateVersion() -> a
+    136:139:void addProjectSilently(java.io.File) -> a
+    143:147:void addProjectWithMessage(java.io.File) -> b
+    150:151:void addProject(java.io.File) -> c
+    162:373:void initComponents() -> c
+    377:384:void newProjectBActionPerformed(java.awt.event.ActionEvent) -> a
+    387:388:void ProjectsLValueChanged(javax.swing.event.ListSelectionEvent) -> a
+    391:393:void openProjectBActionPerformed(java.awt.event.ActionEvent) -> b
+    396:397:void openBActionPerformed(java.awt.event.ActionEvent) -> c
+    400:410:void ProjectsLMouseClicked(java.awt.event.MouseEvent) -> a
+    413:418:void clearAllBActionPerformed(java.awt.event.ActionEvent) -> d
+    421:422:void aboutBActionPerformed(java.awt.event.ActionEvent) -> e
+    425:426:void settingsBActionPerformed(java.awt.event.ActionEvent) -> f
+    429:430:void openMActionPerformed(java.awt.event.ActionEvent) -> g
+    433:438:void removeMActionPerformed(java.awt.event.ActionEvent) -> h
+    441:445:void versionLMousePressed(java.awt.event.MouseEvent) -> b
+    448:449:void licenseBActionPerformed(java.awt.event.ActionEvent) -> i
+    54:54:void access$000(org.crossmobile.gui.WelcomeFrame,java.awt.event.ActionEvent) -> a
+    54:54:void access$100(org.crossmobile.gui.WelcomeFrame,java.awt.event.ActionEvent) -> b
+    54:54:void access$200(org.crossmobile.gui.WelcomeFrame,java.awt.event.MouseEvent) -> a
+    54:54:void access$300(org.crossmobile.gui.WelcomeFrame,javax.swing.event.ListSelectionEvent) -> a
+    54:54:void access$400(org.crossmobile.gui.WelcomeFrame,java.awt.event.ActionEvent) -> c
+    54:54:void access$500(org.crossmobile.gui.WelcomeFrame,java.awt.event.ActionEvent) -> d
+    54:54:void access$600(org.crossmobile.gui.WelcomeFrame,java.awt.event.MouseEvent) -> b
+    54:54:void access$700(org.crossmobile.gui.WelcomeFrame,java.awt.event.ActionEvent) -> e
+    54:54:void access$800(org.crossmobile.gui.WelcomeFrame,java.awt.event.ActionEvent) -> f
+    54:54:void access$900(org.crossmobile.gui.WelcomeFrame,java.awt.event.ActionEvent) -> g
+    54:54:void access$1000(org.crossmobile.gui.WelcomeFrame,java.awt.event.ActionEvent) -> h
+    54:54:void access$1100(org.crossmobile.gui.WelcomeFrame,java.awt.event.ActionEvent) -> i
+    60:61:void <clinit>() -> <clinit>
 org.crossmobile.gui.WelcomeFrame$1 -> org.crossmobile.l$1:
     org.crossmobile.gui.WelcomeFrame this$0 -> a
-    190:190:void <init>(org.crossmobile.gui.WelcomeFrame) -> <init>
-    192:193:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
+    192:192:void <init>(org.crossmobile.gui.WelcomeFrame) -> <init>
+    194:195:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
 org.crossmobile.gui.WelcomeFrame$10 -> org.crossmobile.l$2:
     org.crossmobile.gui.WelcomeFrame this$0 -> a
-    334:334:void <init>(org.crossmobile.gui.WelcomeFrame) -> <init>
-    336:337:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
+    336:336:void <init>(org.crossmobile.gui.WelcomeFrame) -> <init>
+    338:339:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
 org.crossmobile.gui.WelcomeFrame$11 -> org.crossmobile.l$3:
     org.crossmobile.gui.WelcomeFrame this$0 -> a
-    348:348:void <init>(org.crossmobile.gui.WelcomeFrame) -> <init>
-    350:351:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
+    350:350:void <init>(org.crossmobile.gui.WelcomeFrame) -> <init>
+    352:353:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
 org.crossmobile.gui.WelcomeFrame$12 -> org.crossmobile.l$4:
     org.crossmobile.gui.WelcomeFrame this$0 -> a
-    357:357:void <init>(org.crossmobile.gui.WelcomeFrame) -> <init>
-    359:360:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
+    359:359:void <init>(org.crossmobile.gui.WelcomeFrame) -> <init>
+    361:362:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
 org.crossmobile.gui.WelcomeFrame$2 -> org.crossmobile.l$5:
     org.crossmobile.gui.WelcomeFrame this$0 -> a
-    199:199:void <init>(org.crossmobile.gui.WelcomeFrame) -> <init>
-    201:202:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
+    201:201:void <init>(org.crossmobile.gui.WelcomeFrame) -> <init>
+    203:204:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
 org.crossmobile.gui.WelcomeFrame$3 -> org.crossmobile.l$6:
     org.crossmobile.gui.WelcomeFrame this$0 -> a
-    219:219:void <init>(org.crossmobile.gui.WelcomeFrame) -> <init>
-    221:222:void mouseClicked(java.awt.event.MouseEvent) -> mouseClicked
+    221:221:void <init>(org.crossmobile.gui.WelcomeFrame) -> <init>
+    223:224:void mouseClicked(java.awt.event.MouseEvent) -> mouseClicked
 org.crossmobile.gui.WelcomeFrame$4 -> org.crossmobile.l$7:
     org.crossmobile.gui.WelcomeFrame this$0 -> a
-    224:224:void <init>(org.crossmobile.gui.WelcomeFrame) -> <init>
-    226:227:void valueChanged(javax.swing.event.ListSelectionEvent) -> valueChanged
+    226:226:void <init>(org.crossmobile.gui.WelcomeFrame) -> <init>
+    228:229:void valueChanged(javax.swing.event.ListSelectionEvent) -> valueChanged
 org.crossmobile.gui.WelcomeFrame$5 -> org.crossmobile.l$8:
     org.crossmobile.gui.WelcomeFrame this$0 -> a
-    244:244:void <init>(org.crossmobile.gui.WelcomeFrame) -> <init>
-    246:247:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
+    246:246:void <init>(org.crossmobile.gui.WelcomeFrame) -> <init>
+    248:249:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
 org.crossmobile.gui.WelcomeFrame$6 -> org.crossmobile.l$9:
     org.crossmobile.gui.WelcomeFrame this$0 -> a
-    253:253:void <init>(org.crossmobile.gui.WelcomeFrame) -> <init>
-    255:256:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
+    255:255:void <init>(org.crossmobile.gui.WelcomeFrame) -> <init>
+    257:258:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
 org.crossmobile.gui.WelcomeFrame$7 -> org.crossmobile.l$10:
     org.crossmobile.gui.WelcomeFrame this$0 -> a
-    290:290:void <init>(org.crossmobile.gui.WelcomeFrame) -> <init>
-    292:293:void mousePressed(java.awt.event.MouseEvent) -> mousePressed
+    292:292:void <init>(org.crossmobile.gui.WelcomeFrame) -> <init>
+    294:295:void mousePressed(java.awt.event.MouseEvent) -> mousePressed
 org.crossmobile.gui.WelcomeFrame$8 -> org.crossmobile.l$11:
     org.crossmobile.gui.WelcomeFrame this$0 -> a
-    311:311:void <init>(org.crossmobile.gui.WelcomeFrame) -> <init>
-    313:314:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
+    313:313:void <init>(org.crossmobile.gui.WelcomeFrame) -> <init>
+    315:316:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
 org.crossmobile.gui.WelcomeFrame$9 -> org.crossmobile.l$12:
     org.crossmobile.gui.WelcomeFrame this$0 -> a
-    325:325:void <init>(org.crossmobile.gui.WelcomeFrame) -> <init>
-    327:328:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
+    327:327:void <init>(org.crossmobile.gui.WelcomeFrame) -> <init>
+    329:330:void actionPerformed(java.awt.event.ActionEvent) -> actionPerformed
 org.crossmobile.gui.actives.ActiveButton -> org.crossmobile.m:
     org.crossmobile.gui.actives.TooltipManager ttm -> a
     boolean isRollover -> b
