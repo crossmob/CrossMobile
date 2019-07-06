@@ -1562,19 +1562,6 @@
     "view()": "- (UIView *) view\n{\n    UIView * re$ult = [self view__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
     "window()": "- (UIWindow *) window\n{\n    UIWindow * re$ult = [self window__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
   },
-  "crossmobile.ios.uikit.UIUserNotificationAction": {
-    "activationMode()": "- (UIUserNotificationActivationMode) activationMode\n{\n    return [self activationMode__];\n}\n\n",
-    "behavior()": "- (UIUserNotificationActionBehavior) behavior\n{\n    return [self behavior__];\n}\n\n",
-    "identifier()": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "isAuthenticationRequired()": "- (BOOL) isAuthenticationRequired\n{\n    return [self isAuthenticationRequired__];\n}\n\n",
-    "isDestructive()": "- (BOOL) isDestructive\n{\n    return [self isDestructive__];\n}\n\n",
-    "parameters()": "- (NSDictionary *) parameters\n{\n    NSDictionary * re$ult = [self parameters__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "title()": "- (NSString *) title\n{\n    NSString * re$ult = [self title__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
-  },
-  "crossmobile.ios.uikit.UIUserNotificationCategory": {
-    "actionsForContext(int)": "- (NSArray<UIUserNotificationAction *> *) actionsForContext:(UIUserNotificationActionContext) context\n{\n    NSArray<UIUserNotificationAction *> * re$ult = [self actionsForContext___int:context];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "identifier()": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
-  },
   "crossmobile.ios.uikit.UIUserNotificationSettings": {
     "categories()": "- (NSSet<UIUserNotificationCategory *> *) categories\n{\n    NSSet<UIUserNotificationCategory *> * re$ult = [self categories__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
     "types()": "- (UIUserNotificationType) types\n{\n    return [self types__];\n}\n\n"

@@ -17,12 +17,14 @@
 package crossmobile.ios.uikit;
 
 import org.crossmobile.bridge.ann.CMEnum;
+import org.crossmobile.bridge.ann.CMLib;
 
 /**
  * UIUserNotificationType class defines different types of application alerts
  * after a notification arises.
  */
 @CMEnum
+@CMLib(name = "cmnotifications")
 public final class UIUserNotificationType {
 
     /**

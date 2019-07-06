@@ -17,12 +17,14 @@
 package crossmobile.ios.uikit;
 
 import org.crossmobile.bridge.ann.CMEnum;
+import org.crossmobile.bridge.ann.CMLib;
 
 /**
  * UIUserNotificationActionContext class defines different types of size of the
  * available space for notifications.
  */
 @CMEnum
+@CMLib(name = "cmnotifications")
 public final class UIUserNotificationActionContext {
 
     /**

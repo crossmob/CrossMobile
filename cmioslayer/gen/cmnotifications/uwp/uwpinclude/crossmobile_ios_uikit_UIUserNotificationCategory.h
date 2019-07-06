@@ -3,9 +3,7 @@
 // crossmobile.ios.uikit.UIUserNotificationCategory definition
 
 #import "xmlvm.h"
-#import <CoreGraphics/CoreGraphics.h>
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import <UserNotifications/UserNotifications.h>
 @class java_lang_String;
 @protocol java_util_List;
 

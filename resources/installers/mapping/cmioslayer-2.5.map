@@ -7118,45 +7118,45 @@ crossmobile.ios.uikit.UIUserNotificationAction -> crossmobile.ios.uikit.UIUserNo
     int behavior -> f
     java.util.Map parameters -> g
     java.lang.String ResponseTypedTextKey -> ResponseTypedTextKey
-    33:33:void <init>() -> <init>
-    52:52:java.lang.String identifier() -> identifier
-    62:62:java.lang.String title() -> title
-    73:73:boolean isAuthenticationRequired() -> isAuthenticationRequired
-    83:83:boolean isDestructive() -> isDestructive
-    94:94:int behavior() -> behavior
-    105:105:int activationMode() -> activationMode
-    117:117:java.util.Map parameters() -> parameters
+    35:35:void <init>() -> <init>
+    54:54:java.lang.String identifier() -> identifier
+    64:64:java.lang.String title() -> title
+    75:75:boolean isAuthenticationRequired() -> isAuthenticationRequired
+    85:85:boolean isDestructive() -> isDestructive
+    96:96:int behavior() -> behavior
+    107:107:int activationMode() -> activationMode
+    119:119:java.util.Map parameters() -> parameters
 crossmobile.ios.uikit.UIUserNotificationActionBehavior -> crossmobile.ios.uikit.UIUserNotificationActionBehavior:
     int Default -> Default
     int TextInput -> TextInput
-    38:39:void <init>() -> <init>
+    40:41:void <init>() -> <init>
 crossmobile.ios.uikit.UIUserNotificationActionContext -> crossmobile.ios.uikit.UIUserNotificationActionContext:
     int Default -> Default
     int Minimal -> Minimal
-    38:39:void <init>() -> <init>
+    40:41:void <init>() -> <init>
 crossmobile.ios.uikit.UIUserNotificationActivationMode -> crossmobile.ios.uikit.UIUserNotificationActivationMode:
     int Foreground -> Foreground
     int Background -> Background
-    38:39:void <init>() -> <init>
+    40:41:void <init>() -> <init>
 crossmobile.ios.uikit.UIUserNotificationCategory -> crossmobile.ios.uikit.UIUserNotificationCategory:
     java.lang.String identifier -> a
     java.util.Map actions -> b
-    34:34:void <init>() -> <init>
-    46:46:java.lang.String identifier() -> identifier
-    60:60:java.util.List actionsForContext(int) -> actionsForContext
+    36:36:void <init>() -> <init>
+    48:48:java.lang.String identifier() -> identifier
+    62:62:java.util.List actionsForContext(int) -> actionsForContext
 crossmobile.ios.uikit.UIUserNotificationSettings -> crossmobile.ios.uikit.UIUserNotificationSettings:
     java.util.Set categories -> a
     int types -> b
-    37:40:void <init>(int,java.util.Set) -> <init>
-    54:54:crossmobile.ios.uikit.UIUserNotificationSettings settingsForTypes(int,java.util.Set) -> settingsForTypes
-    65:65:java.util.Set categories() -> categories
-    76:76:int types() -> types
+    38:41:void <init>(int,java.util.Set) -> <init>
+    55:55:crossmobile.ios.uikit.UIUserNotificationSettings settingsForTypes(int,java.util.Set) -> settingsForTypes
+    66:66:java.util.Set categories() -> categories
+    77:77:int types() -> types
 crossmobile.ios.uikit.UIUserNotificationType -> crossmobile.ios.uikit.UIUserNotificationType:
     int None -> None
     int Badge -> Badge
     int Sound -> Sound
     int Alert -> Alert
-    49:50:void <init>() -> <init>
+    51:52:void <init>() -> <init>
 crossmobile.ios.uikit.UIView -> crossmobile.ios.uikit.UIView:
     double NoIntrinsicMetric -> NoIntrinsicMetric
     java.lang.Object[] animationLock -> a

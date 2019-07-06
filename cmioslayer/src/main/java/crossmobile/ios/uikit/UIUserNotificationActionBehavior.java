@@ -17,12 +17,14 @@
 package crossmobile.ios.uikit;
 
 import org.crossmobile.bridge.ann.CMEnum;
+import org.crossmobile.bridge.ann.CMLib;
 
 /**
  * UIUserNotificationActionBehavior class defines different types of additional
  * supported action behaviors.
  */
 @CMEnum
+@CMLib(name = "cmnotifications")
 public final class UIUserNotificationActionBehavior {
 
     /**

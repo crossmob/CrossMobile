@@ -3,12 +3,11 @@
 // crossmobile.ios.uikit.UIUserNotificationAction definition
 
 #import "xmlvm.h"
-#import <CoreGraphics/CoreGraphics.h>
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import <UserNotifications/UserNotifications.h>
 @class java_lang_String;
 @protocol java_util_Map;
 
+CM_EXPORT_CLASS
 @interface crossmobile_ios_uikit_UIUserNotificationAction$Ext : UIUserNotificationAction
 @end
 

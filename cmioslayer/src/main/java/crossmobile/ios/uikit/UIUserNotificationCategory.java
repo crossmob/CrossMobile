@@ -20,6 +20,7 @@ import crossmobile.ios.foundation.NSObject;
 import crossmobile.ios.foundation.NSSecureCoding;
 import org.crossmobile.bridge.ann.CMClass;
 import org.crossmobile.bridge.ann.CMGetter;
+import org.crossmobile.bridge.ann.CMLib;
 import org.crossmobile.bridge.ann.CMSelector;
 
 import java.util.List;
@@ -31,6 +32,7 @@ import java.util.Map;
  * notifications.
  */
 @CMClass
+@CMLib(name = "cmnotifications")
 public class UIUserNotificationCategory extends NSObject implements NSSecureCoding {
 
     String identifier;

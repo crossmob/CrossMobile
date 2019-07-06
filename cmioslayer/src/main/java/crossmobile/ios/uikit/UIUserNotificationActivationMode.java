@@ -17,12 +17,14 @@
 package crossmobile.ios.uikit;
 
 import org.crossmobile.bridge.ann.CMEnum;
+import org.crossmobile.bridge.ann.CMLib;
 
 /**
  * UIUserNotificationActivationMode class defines the position of the
  * application after activation.
  */
 @CMEnum
+@CMLib(name = "cmnotifications")
 public final class UIUserNotificationActivationMode {
 
     /**

@@ -20,6 +20,7 @@ import crossmobile.ios.foundation.NSObject;
 import crossmobile.ios.foundation.NSSecureCoding;
 import org.crossmobile.bridge.ann.CMClass;
 import org.crossmobile.bridge.ann.CMGetter;
+import org.crossmobile.bridge.ann.CMLib;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -30,6 +31,7 @@ import java.util.Map;
  * of the application in response to a notification.
  */
 @CMClass
+@CMLib(name = "cmnotifications")
 public class UIUserNotificationAction extends NSObject implements NSSecureCoding {
 
     String identifier;

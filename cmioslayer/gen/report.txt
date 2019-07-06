@@ -718,13 +718,7 @@ crossmobile/ios/uikit/UITouch.class v8
 crossmobile/ios/uikit/UITouchPhase.class v8
 crossmobile/ios/uikit/UIUserInterfaceIdiom.class v8
 crossmobile/ios/uikit/UIUserInterfaceLayoutDirection.class v8
-crossmobile/ios/uikit/UIUserNotificationAction.class v8
-crossmobile/ios/uikit/UIUserNotificationActionBehavior.class v8
-crossmobile/ios/uikit/UIUserNotificationActionContext.class v8
-crossmobile/ios/uikit/UIUserNotificationActivationMode.class v8
-crossmobile/ios/uikit/UIUserNotificationCategory.class v8
 crossmobile/ios/uikit/UIUserNotificationSettings.class v8
-crossmobile/ios/uikit/UIUserNotificationType.class v8
 crossmobile/ios/uikit/UIView.class v8
 crossmobile/ios/uikit/UIViewAnimationCurve.class v8
 crossmobile/ios/uikit/UIViewAnimationOptions.class v8
@@ -1164,13 +1158,7 @@ crossmobile/ios/uikit/UITouch.class v8
 crossmobile/ios/uikit/UITouchPhase.class v8
 crossmobile/ios/uikit/UIUserInterfaceIdiom.class v8
 crossmobile/ios/uikit/UIUserInterfaceLayoutDirection.class v8
-crossmobile/ios/uikit/UIUserNotificationAction.class v8
-crossmobile/ios/uikit/UIUserNotificationActionBehavior.class v8
-crossmobile/ios/uikit/UIUserNotificationActionContext.class v8
-crossmobile/ios/uikit/UIUserNotificationActivationMode.class v8
-crossmobile/ios/uikit/UIUserNotificationCategory.class v8
 crossmobile/ios/uikit/UIUserNotificationSettings.class v8
-crossmobile/ios/uikit/UIUserNotificationType.class v8
 crossmobile/ios/uikit/UIView$1.class v8
 crossmobile/ios/uikit/UIView$a.class v8
 crossmobile/ios/uikit/UIView.class v8
@@ -1422,8 +1410,6 @@ native/crossmobile_ios_uikit_UITextView.h
 native/crossmobile_ios_uikit_UITextViewDelegate.h
 native/crossmobile_ios_uikit_UIToolbar.h
 native/crossmobile_ios_uikit_UITouch.h
-native/crossmobile_ios_uikit_UIUserNotificationAction.h
-native/crossmobile_ios_uikit_UIUserNotificationCategory.h
 native/crossmobile_ios_uikit_UIUserNotificationSettings.h
 native/crossmobile_ios_uikit_UIView.h
 native/crossmobile_ios_uikit_UIViewController.h
@@ -2036,13 +2022,7 @@ crossmobile/ios/uikit/UITouch.class v8
 crossmobile/ios/uikit/UITouchPhase.class v8
 crossmobile/ios/uikit/UIUserInterfaceIdiom.class v8
 crossmobile/ios/uikit/UIUserInterfaceLayoutDirection.class v8
-crossmobile/ios/uikit/UIUserNotificationAction.class v8
-crossmobile/ios/uikit/UIUserNotificationActionBehavior.class v8
-crossmobile/ios/uikit/UIUserNotificationActionContext.class v8
-crossmobile/ios/uikit/UIUserNotificationActivationMode.class v8
-crossmobile/ios/uikit/UIUserNotificationCategory.class v8
 crossmobile/ios/uikit/UIUserNotificationSettings.class v8
-crossmobile/ios/uikit/UIUserNotificationType.class v8
 crossmobile/ios/uikit/UIView$1.class v8
 crossmobile/ios/uikit/UIView$a.class v8
 crossmobile/ios/uikit/UIView.class v8
@@ -2811,13 +2791,7 @@ crossmobile/ios/uikit/UITouch.class v8
 crossmobile/ios/uikit/UITouchPhase.class v8
 crossmobile/ios/uikit/UIUserInterfaceIdiom.class v8
 crossmobile/ios/uikit/UIUserInterfaceLayoutDirection.class v8
-crossmobile/ios/uikit/UIUserNotificationAction.class v8
-crossmobile/ios/uikit/UIUserNotificationActionBehavior.class v8
-crossmobile/ios/uikit/UIUserNotificationActionContext.class v8
-crossmobile/ios/uikit/UIUserNotificationActivationMode.class v8
-crossmobile/ios/uikit/UIUserNotificationCategory.class v8
 crossmobile/ios/uikit/UIUserNotificationSettings.class v8
-crossmobile/ios/uikit/UIUserNotificationType.class v8
 crossmobile/ios/uikit/UIView$1.class v8
 crossmobile/ios/uikit/UIView$a.class v8
 crossmobile/ios/uikit/UIView.class v8
@@ -3446,6 +3420,12 @@ Creating file cmplugin-rvm-cmmessages-<VERSION>.jar
 Creating file cmplugin-cmnotifications-<VERSION>.jar
 META-INF/PLUGIN.INF
 META-INF/REVERSE.INF
+crossmobile/ios/uikit/UIUserNotificationAction.class v8
+crossmobile/ios/uikit/UIUserNotificationActionBehavior.class v8
+crossmobile/ios/uikit/UIUserNotificationActionContext.class v8
+crossmobile/ios/uikit/UIUserNotificationActivationMode.class v8
+crossmobile/ios/uikit/UIUserNotificationCategory.class v8
+crossmobile/ios/uikit/UIUserNotificationType.class v8
 crossmobile/ios/usernotifications/UNAlertStyle.class v8
 crossmobile/ios/usernotifications/UNAuthorizationOptions.class v8
 crossmobile/ios/usernotifications/UNAuthorizationStatus.class v8
@@ -3479,6 +3459,12 @@ Creating file cmplugin-builddep-cmnotifications-<VERSION>.jar
 
 
 Creating file cmplugin-ios-cmnotifications-<VERSION>.jar
+crossmobile/ios/uikit/UIUserNotificationAction.class v8
+crossmobile/ios/uikit/UIUserNotificationActionBehavior.class v8
+crossmobile/ios/uikit/UIUserNotificationActionContext.class v8
+crossmobile/ios/uikit/UIUserNotificationActivationMode.class v8
+crossmobile/ios/uikit/UIUserNotificationCategory.class v8
+crossmobile/ios/uikit/UIUserNotificationType.class v8
 crossmobile/ios/usernotifications/UNAlertStyle.class v8
 crossmobile/ios/usernotifications/UNAuthorizationOptions.class v8
 crossmobile/ios/usernotifications/UNAuthorizationStatus.class v8
@@ -3507,6 +3493,8 @@ crossmobile/ios/usernotifications/UNTimeIntervalNotificationTrigger.class v8
 crossmobile/ios/usernotifications/UNUserNotificationCenter.class v8
 crossmobile/ios/usernotifications/UNUserNotificationCenterDelegate.class v8
 native/cmnotifications.a
+native/crossmobile_ios_uikit_UIUserNotificationAction.h
+native/crossmobile_ios_uikit_UIUserNotificationCategory.h
 native/crossmobile_ios_usernotifications_UNCalendarNotificationTrigger.h
 native/crossmobile_ios_usernotifications_UNLocationNotificationTrigger.h
 native/crossmobile_ios_usernotifications_UNMutableNotificationContent.h
@@ -3527,6 +3515,12 @@ native/crossmobile_ios_usernotifications_UNUserNotificationCenter.h
 native/crossmobile_ios_usernotifications_UNUserNotificationCenterDelegate.h
 
 Creating file cmplugin-desktop-cmnotifications-<VERSION>.jar
+crossmobile/ios/uikit/UIUserNotificationAction.class v8
+crossmobile/ios/uikit/UIUserNotificationActionBehavior.class v8
+crossmobile/ios/uikit/UIUserNotificationActionContext.class v8
+crossmobile/ios/uikit/UIUserNotificationActivationMode.class v8
+crossmobile/ios/uikit/UIUserNotificationCategory.class v8
+crossmobile/ios/uikit/UIUserNotificationType.class v8
 crossmobile/ios/usernotifications/UNAlertStyle.class v8
 crossmobile/ios/usernotifications/UNAuthorizationOptions.class v8
 crossmobile/ios/usernotifications/UNAuthorizationStatus.class v8
@@ -3556,6 +3550,12 @@ crossmobile/ios/usernotifications/UNUserNotificationCenter.class v8
 crossmobile/ios/usernotifications/UNUserNotificationCenterDelegate.class v8
 
 Creating file cmplugin-android-cmnotifications-<VERSION>.jar
+crossmobile/ios/uikit/UIUserNotificationAction.class v8
+crossmobile/ios/uikit/UIUserNotificationActionBehavior.class v8
+crossmobile/ios/uikit/UIUserNotificationActionContext.class v8
+crossmobile/ios/uikit/UIUserNotificationActivationMode.class v8
+crossmobile/ios/uikit/UIUserNotificationCategory.class v8
+crossmobile/ios/uikit/UIUserNotificationType.class v8
 crossmobile/ios/usernotifications/UNAlertStyle.class v8
 crossmobile/ios/usernotifications/UNAuthorizationOptions.class v8
 crossmobile/ios/usernotifications/UNAuthorizationStatus.class v8

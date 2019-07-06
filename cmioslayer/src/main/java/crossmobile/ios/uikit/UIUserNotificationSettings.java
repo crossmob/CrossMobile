@@ -19,6 +19,7 @@ package crossmobile.ios.uikit;
 import crossmobile.ios.foundation.NSObject;
 import org.crossmobile.bridge.ann.CMClass;
 import org.crossmobile.bridge.ann.CMGetter;
+import org.crossmobile.bridge.ann.CMLib;
 import org.crossmobile.bridge.ann.CMSelector;
 
 import java.util.Set;
