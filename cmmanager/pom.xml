@@ -182,10 +182,10 @@
                                                     <arg value="--rm"/>
                                                     <arg value="-v"/>
                                                     <arg value="@{dest}:/target"/>
-                                                    <arg value="teras/jrecross"/>
+                                                    <arg value="teras/jdkcross"/>
                                                     <arg value="sh"/>
                                                     <arg value="-c"/>
-                                                    <arg value="echo Copying JRE with flavour @{jrearch}; cp -Ra /bundles/@{jrearch}/jdk8u212-b03-jre/* /target/jre/"/>
+                                                    <arg value="echo Copying JRE with flavour @{jrearch}; cp -Ra /jre/@{jrearch}/* /target/jre/"/>
                                                 </exec>
                                             </sequential>
                                         </macrodef>
@@ -283,7 +283,7 @@
                                         <delete file="/tmp/CrossMobile.dmg"/>
 
                                         <!-- Prepare for Windows -->
-                                        <installto dest="${workinstall.dir}/Windows" jrearch="windows64"/>
+                                        <installto dest="${workinstall.dir}/Windows" jrearch="windows"/>
                                     </target>
                                 </configuration>
                             </execution>
