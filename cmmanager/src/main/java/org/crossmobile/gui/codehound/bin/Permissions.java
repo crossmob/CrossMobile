@@ -23,7 +23,7 @@ public enum Permissions {
     INTERNET_CONNECTION("INTERNET", "Require internet connection", "images/internet", new String[]{"crossmobile.ios.foundation.NSURL"}),
     BLUETOOTH("BLUETOOTH", "Require BlueTooth connectivity", "images/bluetooth", new String[]{}),
     VIBRATE("VIBRATE", "Require to vibrate the phone", "images/vibrate", new String[]{"crossmobile.ios.audiotoolbox.AudioServices"}),
-    STORAGE("WRITE_EXTERNAL_STORAGE", "Require to write to external storage, outside current application", "images/external", new String[]{}),
+    STORAGE("WRITE_EXTERNAL_STORAGE", "Require to write to external storage, outside current application", "images/external", new String[]{"crossmobile.ios.foundation.Foundation"}),
     BILLING("BILLING", "Require the in-app store", "images/billing", new String[]{"crossmobile.ios.storekit.SKPaymentQueue"}),
     ACCESS_NETWORK_STATE("ACCESS_NETWORK_STATE", "Require Network State", "images/access", new String[]{"crossmobile.ios.mapkit.MKMapView"}),
     FINGERPRINT("USE_FINGERPRINT", "Require Fingerprint authentication", "images/fingerprint", new String[]{"crossmobiole.ios.touchid.LAContext"});
