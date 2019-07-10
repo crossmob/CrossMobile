@@ -25,7 +25,6 @@
         <version.seaglasslookandfeel>0.2.1</version.seaglasslookandfeel>
         <version.hrgui>0.1.9</version.hrgui>
         <version.jupidator>0.8.9.10</version.jupidator>
-        <version.procyon>0.5.32</version.procyon>
     </properties>
 
     <build>

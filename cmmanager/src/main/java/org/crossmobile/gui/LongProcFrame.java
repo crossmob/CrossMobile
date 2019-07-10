@@ -18,27 +18,38 @@ package org.crossmobile.gui;
 
 import org.crossmobile.gui.actives.ActiveCheckBox;
 import org.crossmobile.gui.actives.ActiveLabel;
+import org.robovm.objc.block.VoidBlock1;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Collection;
 import java.util.function.Consumer;
 
-public class LongProcFrame<S extends Enum, T> extends JDialog implements LongProcListener<S, T> {
+public class LongProcFrame extends JDialog implements VoidBlock1<String> {
 
-    private Collection<T> success;
-    private Consumer<Boolean> asynchronousFunction;
-    private Runnable errorAction;
-    private String errorButtonLabel;
+    private Consumer<Boolean> executeCallback;
+    private final String workingText;
+    private Runnable cancelCallback;
+    private boolean hasStarted = false;
 
     @SuppressWarnings("OverridableMethodCallInConstructor")
-    public LongProcFrame(String title) {
+    public LongProcFrame(String title, String welcomeText, String optionText, String workingText) {
         super((Frame) null, true);
+        this.workingText = workingText;
         initComponents();
         setTitle(title);
         progressBar.setVisible(false);
+        toggleC.setText(optionText);
+        updateText(welcomeText);
         setSize(380, 200);
         setLocationRelativeTo(null);
+    }
+
+    public void setExecuteCallback(Consumer<Boolean> executeCallback) {
+        this.executeCallback = executeCallback;
+    }
+
+    public void setCancelCallback(Runnable cancelCallback) {
+        this.cancelCallback = cancelCallback;
     }
 
     @SuppressWarnings("unchecked")
@@ -46,8 +57,8 @@ public class LongProcFrame<S extends Enum, T> extends JDialog implements LongPro
     private void initComponents() {
 
         buttonP = new javax.swing.JPanel();
-        actionB = new javax.swing.JButton();
         cancelB = new javax.swing.JButton();
+        actionB = new javax.swing.JButton();
         mainP = new javax.swing.JPanel();
         feedbackL = new ActiveLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -61,14 +72,6 @@ public class LongProcFrame<S extends Enum, T> extends JDialog implements LongPro
         buttonP.setMinimumSize(new java.awt.Dimension(500, 300));
         buttonP.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
-        actionB.setText("Continue");
-        actionB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                actionBActionPerformed(evt);
-            }
-        });
-        buttonP.add(actionB);
-
         cancelB.setText("Cancel");
         cancelB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,6 +79,14 @@ public class LongProcFrame<S extends Enum, T> extends JDialog implements LongPro
             }
         });
         buttonP.add(cancelB);
+
+        actionB.setText("Continue");
+        actionB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionBActionPerformed(evt);
+            }
+        });
+        buttonP.add(actionB);
 
         getContentPane().add(buttonP, java.awt.BorderLayout.SOUTH);
 
@@ -86,6 +97,8 @@ public class LongProcFrame<S extends Enum, T> extends JDialog implements LongPro
         mainP.add(feedbackL, java.awt.BorderLayout.CENTER);
 
         jPanel1.setLayout(new java.awt.BorderLayout(0, 8));
+
+        progressBar.setIndeterminate(true);
         jPanel1.add(progressBar, java.awt.BorderLayout.CENTER);
 
         toggleC.setSelected(true);
@@ -99,34 +112,21 @@ public class LongProcFrame<S extends Enum, T> extends JDialog implements LongPro
     }// </editor-fold>//GEN-END:initComponents
 
     private void actionBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionBActionPerformed
-        if (success != null)
+        actionB.setEnabled(false);
+        if (hasStarted)
             setVisible(false);
         else {
-            cancelB.setEnabled(false);
-            actionB.setEnabled(false);
             toggleC.setEnabled(false);
-            actionB.setText("Processing");
-            if (errorAction != null)
-                errorAction.run();
-            else {
-                progressBar.setVisible(true);
-                if (asynchronousFunction != null)
-                    new Thread() {
-                        @Override
-                        public void run() {
-                            try {
-                                asynchronousFunction.accept(toggleC.isSelected());
-                            } catch (Exception ex) {
-                                error(ex.getMessage());
-                            }
-                        }
-                    }.start();
-            }
+            progressBar.setVisible(true);
+            hasStarted = true;
+            updateText(workingText);
+            executeCallback.accept(toggleC.isSelected());
         }
     }//GEN-LAST:event_actionBActionPerformed
 
     private void cancelBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBActionPerformed
-        success = null;
+        if (hasStarted)
+            cancelCallback.run();
         setVisible(false);
     }//GEN-LAST:event_cancelBActionPerformed
 
@@ -137,65 +137,17 @@ public class LongProcFrame<S extends Enum, T> extends JDialog implements LongPro
         super.setVisible(status);
     }
 
-    public LongProcFrame<S, T> setLastStep(Enum e) {
-        progressBar.setMaximum(e.ordinal());
-        return this;
-    }
-
-    public LongProcFrame<S, T> setToogleText(String text) {
-        if (text == null || text.isEmpty())
-            toggleC.setVisible(false);
-        else {
-            toggleC.setVisible(true);
-            toggleC.setText(text);
-        }
-        return this;
-    }
-
-    public LongProcFrame<S, T> setWelcomeText(String text) {
-        feedbackL.setText("<html>" + text + "</html>");
-        return this;
-    }
-
-    public LongProcFrame<S, T> setAsynchronousFunction(Consumer<Boolean> asynchronousFunction) {
-        this.asynchronousFunction = asynchronousFunction;
-        return this;
-    }
-
-    @Override
-    public void update(S level) {
-        progressBar.setValue(level.ordinal());
-        feedbackL.setText("<html>" + level.toString() + "</html>");
-    }
-
-    @Override
-    public void error(String message) {
+    private void updateText(String message) {
         feedbackL.setText("<html>" + message + "</html>");
-        toggleC.setEnabled(true);
-        resetVisuals(errorButtonLabel == null ? "Start again" : errorButtonLabel);
     }
 
     @Override
-    public void success(Collection<T> result) {
-        success = result;
-        resetVisuals("Finish");
-    }
-
-    @Override
-    public void setErrorCallback(String label, Runnable action) {
-        this.errorButtonLabel = label;
-        this.errorAction = action;
-    }
-
-    private void resetVisuals(String actionText) {
-        actionB.setText(actionText);
-        actionB.setEnabled(true);
-        cancelB.setEnabled(true);
+    public void invoke(String message) {
+        updateText(message);
         progressBar.setVisible(false);
-    }
-
-    public Collection<T> getSuccessList() {
-        return success;
+        actionB.setText("Close");
+        actionB.setEnabled(true);
+        cancelB.setEnabled(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -207,6 +159,7 @@ public class LongProcFrame<S extends Enum, T> extends JDialog implements LongPro
     private javax.swing.JPanel mainP;
     private javax.swing.JProgressBar progressBar;
     private javax.swing.JCheckBox toggleC;
+
     // End of variables declaration//GEN-END:variables
 
 }

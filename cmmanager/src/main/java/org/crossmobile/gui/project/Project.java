@@ -195,17 +195,6 @@ public class Project {
         return params.get(MAIN_CLASS.tag());
     }
 
-    public String getClasspath(boolean withPlugins) {
-        StringBuilder out = new StringBuilder();
-        if (withPlugins) {
-            out.append(plugins.getAbsolutePaths());
-            if (out.length() > 0)
-                out.append(File.pathSeparator);
-        }
-        out.append(Paths.getAbsolutePath(new File("target" + File.separator + "classes"), basedir));
-        return out.toString();
-    }
-
     public File getPath() {
         return basedir;
     }

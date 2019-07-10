@@ -36,25 +36,9 @@
             <version>${version.hrgui}</version>
         </dependency>
         <dependency>
-            <groupId>org.bitbucket.mstrobel</groupId>
-            <artifactId>procyon-reflection</artifactId>
-            <version>${version.procyon}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.bitbucket.mstrobel</groupId>
-            <artifactId>procyon-compilertools</artifactId>
-            <version>${version.procyon}</version>
-        </dependency>
-        <dependency>
             <groupId>org.crossmobile</groupId>
             <artifactId>cmutils-tools</artifactId>
             <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.seaglasslookandfeel</groupId>
-            <artifactId>seaglasslookandfeel</artifactId>
-            <version>${version.seaglasslookandfeel}</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>net.sf.proguard</groupId>
@@ -75,9 +59,7 @@
                             <mainClass>org.crossmobile.CrossMobile</mainClass>
                         </manifest>
                         <manifestEntries>
-                            <Class-Path>jupidator.jar appenh.jar loadlib.jar procyon-compilertools.jar
-                                procyon-reflection.jar hrgui.jar minimal-json.jar seaglasslookandfeel.jar
-                            </Class-Path>
+                            <Class-Path>jupidator.jar appenh.jar loadlib.jar hrgui.jar minimal-json.jar</Class-Path>
                             <SplashScreen-Image>images/splash.png</SplashScreen-Image>
                         </manifestEntries>
                     </archive>
@@ -140,11 +122,8 @@
                                             <arg line="-libraryjars ${user.home}/.m2/repository/com/panayotis/appenh/${version.appenh}/appenh-${version.appenh}.jar"/>
                                             <arg line="-libraryjars ${user.home}/.m2/repository/com/panayotis/loadlib/${version.loadlib}/loadlib-${version.loadlib}.jar"/>
                                             <arg line="-libraryjars ${user.home}/.m2/repository/com/panayotis/jupidator/${version.jupidator}/jupidator-${version.jupidator}-full.jar"/>
-                                            <arg line="-libraryjars ${user.home}/.m2/repository/org/bitbucket/mstrobel/procyon-reflection/${version.procyon}/procyon-reflection-${version.procyon}.jar"/>
-                                            <arg line="-libraryjars ${user.home}/.m2/repository/org/bitbucket/mstrobel/procyon-compilertools/${version.procyon}/procyon-compilertools-${version.procyon}.jar"/>
                                             <arg line="-libraryjars ${user.home}/.m2/repository/com/panayotis/hrgui/${version.hrgui}/hrgui-${version.hrgui}.jar"/>
                                             <arg line="-libraryjars ${user.home}/.m2/repository/com/eclipsesource/minimal-json/minimal-json/${version.minimal-json}/minimal-json-${version.minimal-json}.jar"/>
-                                            <arg line="-libraryjars ${user.home}/.m2/repository/com/seaglasslookandfeel/seaglasslookandfeel/${version.seaglasslookandfeel}/seaglasslookandfeel-${version.seaglasslookandfeel}.jar"/>
                                         </java>
 
                                         <!-- Common files installation macro -->
@@ -161,16 +140,10 @@
                                                       tofile="@{dest}/lib/loadlib.jar"/>
                                                 <copy file="${user.home}/.m2/repository/com/panayotis/jupidator/${version.jupidator}/jupidator-${version.jupidator}-full.jar"
                                                       tofile="@{dest}/lib/jupidator.jar"/>
-                                                <copy file="${user.home}/.m2/repository/org/bitbucket/mstrobel/procyon-reflection/${version.procyon}/procyon-reflection-${version.procyon}.jar"
-                                                      tofile="@{dest}/lib/procyon-reflection.jar"/>
-                                                <copy file="${user.home}/.m2/repository/org/bitbucket/mstrobel/procyon-compilertools/${version.procyon}/procyon-compilertools-${version.procyon}.jar"
-                                                      tofile="@{dest}/lib/procyon-compilertools.jar"/>
                                                 <copy file="${user.home}/.m2/repository/com/panayotis/hrgui/${version.hrgui}/hrgui-${version.hrgui}.jar"
                                                       tofile="@{dest}/lib/hrgui.jar"/>
                                                 <copy file="${user.home}/.m2/repository/com/eclipsesource/minimal-json/minimal-json/${version.minimal-json}/minimal-json-${version.minimal-json}.jar"
                                                       tofile="@{dest}/lib/minimal-json.jar"/>
-                                                <copy file="${user.home}/.m2/repository/com/seaglasslookandfeel/seaglasslookandfeel/${version.seaglasslookandfeel}/seaglasslookandfeel-${version.seaglasslookandfeel}.jar"
-                                                      tofile="@{dest}/lib/seaglasslookandfeel.jar"/>
                                                 <copy todir="@{dest}/lib/apache-maven">
                                                     <fileset dir="../resources/lib/apache-maven"/>
                                                 </copy>

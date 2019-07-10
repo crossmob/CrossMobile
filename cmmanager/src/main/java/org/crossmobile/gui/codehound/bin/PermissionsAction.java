@@ -17,88 +17,50 @@
 package org.crossmobile.gui.codehound.bin;
 
 import org.crossmobile.gui.LongProcFrame;
-import org.crossmobile.gui.LongProcListener;
 import org.crossmobile.gui.project.Project;
-import org.crossmobile.gui.project.ProjectLauncher;
 import org.crossmobile.gui.utils.Paths;
 import org.crossmobile.utils.Commander;
 
 import java.util.Collection;
 import java.util.EnumSet;
+import java.util.TreeSet;
+
+import static org.crossmobile.utils.ClasspathUtils.CLASS_USAGE_SIGNATURE;
 
 public class PermissionsAction {
 
     public static Collection<Permissions> findPermissions(final Project proj) {
-        final LongProcFrame<PermissionsFinderLevel, Permissions> frame = new LongProcFrame("Recalculating dependencies").
-                setLastStep(PermissionsFinderLevel.FINISH).
-                setToogleText("Calculate dependencies for plugins also").
-                setWelcomeText("This procedure will need to <b>clean</b> the current project and rebuild it using a java-only target. If you want to go on press the <i>Continue</i> button.");
-        frame.setAsynchronousFunction((final Boolean data) -> {
-            findImpl(frame, proj, data);
+        final LongProcFrame frame = new LongProcFrame("Recalculating dependencies",
+                "This procedure will need to <b>clean</b> the current project and rebuild it using a java-only target. If you want to go on press the <i>Continue</i> button.",
+                "Calculate dependencies for plugins also", "Please wait while compiling project...");
+        Collection<Permissions> permissions = new TreeSet<>();
+
+        Commander launcher = new Commander(Paths.getMavenLocation(), "clean", "compile", "-Pdesktop,findclasses");
+        launcher.setCurrentDir(proj.getPath());
+        launcher.setOutListener(line -> {
+            int idx = line.indexOf(CLASS_USAGE_SIGNATURE);
+            if (idx >= 0)
+                permissions.addAll(convertImportToPermissions(line.substring(idx + CLASS_USAGE_SIGNATURE.length()).trim()));
+            else
+                System.out.println(line);
         });
+        launcher.setErrListener(System.err::println);
+        launcher.setEndListener(result -> frame.invoke(result == 0
+                ? "Process terminated successfully"
+                : "Unable to clean up project"));
+
+        frame.setExecuteCallback((withOptions) -> launcher.exec());
+        frame.setCancelCallback(launcher::kill);
+
         frame.setVisible(true);
         // wait for the window to finish
-        return frame.getSuccessList();
+        return permissions;
     }
 
-    @SuppressWarnings({"UseSpecificCatch"})
-    private static void findImpl(LongProcListener<PermissionsFinderLevel, Permissions> listener, Project proj, boolean plugins) {
-        Commander launcher;
-
-        listener.update(PermissionsFinderLevel.CLEAN);
-        launcher = ProjectLauncher.launch(new String[]{
-                Paths.getMavenLocation(),
-                "clean"
-        }, proj);
-        launcher.waitFor();
-        if (launcher.exitValue() != 0) {
-            listener.error("Unable to clean up project");
-            return;
-        }
-
-        listener.update(PermissionsFinderLevel.COMPILE);
-        launcher = ProjectLauncher.launch(new String[]{
-                Paths.getMavenLocation(),
-                "install",
-                "-Pdesktop"
-        }, proj);
-        launcher.waitFor();
-        if (launcher.exitValue() != 0) {
-            listener.error("Unable to compile project");
-            return;
-        }
-
-        Collection<Permissions> permissions;
-        listener.update(PermissionsFinderLevel.PARSE);
-        try {
-            permissions = convertImportToPermissions(ImportsFinder.findAllImports(proj.getClasspath(plugins)));
-            if (permissions == null)
-                throw new RuntimeException("Unable to parse permissions");
-        } catch (Exception ex) {
-            ex.printStackTrace(System.err);
-            listener.error("Unable to parse project");
-            return;
-        }
-
-        listener.update(PermissionsFinderLevel.CLEAN2);
-        launcher = ProjectLauncher.launch(new String[]{
-                Paths.getMavenLocation(),
-                "clean"
-        }, proj);
-        launcher.waitFor();
-        if (launcher.exitValue() != 0) {
-            listener.error("Unable to clean up project");
-            return;
-        }
-
-        listener.update(PermissionsFinderLevel.FINISH);
-        listener.success(permissions);
-    }
-
-    private static Collection<Permissions> convertImportToPermissions(Collection<String> imports) {
+    private static Collection<Permissions> convertImportToPermissions(String className) {
         EnumSet<Permissions> perms = EnumSet.noneOf(Permissions.class);
         for (Permissions perm : Permissions.values())
-            if (perm.requires(imports))
+            if (perm.requires(className))
                 perms.add(perm);
         return perms;
     }

@@ -16,8 +16,6 @@
  */
 package org.crossmobile.gui.codehound.bin;
 
-import java.util.Collection;
-
 public enum Permissions {
 
     CAMERA("CAMERA", "Require Camera", "images/camera", new String[]{"crossmobile.ios.uikit.UIImagePickerController"}),
@@ -55,7 +53,7 @@ public enum Permissions {
         }
     }
 
-    private Permissions(String perm_name, String tooltip, String icon, String[] classes) {
+    Permissions(String perm_name, String tooltip, String icon, String[] classes) {
         String name = name();
         this.permission = "android.permission." + perm_name;
         this.displayName = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase().replace('_', ' ');
@@ -84,9 +82,9 @@ public enum Permissions {
         return icons;
     }
 
-    boolean requires(Collection<String> imports) {
-        for (String aclass : classes)
-            if (imports.contains(aclass))
+    boolean requires(String classname) {
+        for (String aClass : classes)
+            if (classname.equals(aClass))
                 return true;
         return false;
     }

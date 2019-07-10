@@ -16,13 +16,11 @@
  */
 package org.crossmobile.utils;
 
-import org.crossmobile.bridge.system.ClassWalker;
-
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Set;
-import java.util.StringTokenizer;
 import java.util.TreeSet;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -32,15 +30,11 @@ public class ClasspathUtils {
     private static final String CLASS_SIG = ".class";
     private static final int CLASS_SIG_SIZE = CLASS_SIG.length();
 
-    public static Set<String> getClasspathClasses(String classpath) {
-        Set<String> names = new TreeSet<>();
-        if (classpath == null)
-            classpath = ClassWalker.getClassPath();
+    public static final String CLASS_USAGE_SIGNATURE = "Project uses class: ";
 
-        StringTokenizer tok = new StringTokenizer(classpath, File.pathSeparator);
-        while (tok.hasMoreElements()) {
-            String pathname = tok.nextToken();
-            File cp = new File(pathname);
+    public static Set<String> getClasspathClasses(Collection<File> classpath, boolean canonicalNames) {
+        Set<String> names = new TreeSet<>();
+        for (File cp : classpath) {
             if (cp.isFile()) {
                 ZipFile jar;
                 try {
@@ -50,32 +44,38 @@ public class ClasspathUtils {
                 }
                 Enumeration<? extends ZipEntry> entries = jar.entries();
                 while (entries.hasMoreElements()) {
-                    String entryname = entries.nextElement().getName().toLowerCase();
-                    String entrynameTest = entryname.toLowerCase();
-                    if (entrynameTest.endsWith(CLASS_SIG))
-                        names.add(entryname.substring(0, entryname.length() - CLASS_SIG_SIZE));
+                    String entryName = entries.nextElement().getName();
+                    if (entryName.toLowerCase().endsWith(CLASS_SIG))
+                        names.add(convert(entryName, canonicalNames));
                 }
             } else if (cp.isDirectory()) {
                 File[] list = cp.listFiles();
                 if (list != null && list.length > 0)
                     for (File ccp : list)
-                        walkDir("", ccp, names);
+                        walkDir("", ccp, names, canonicalNames);
             }
         }
         return names;
     }
 
-    private static void walkDir(String pckg, File entry, Set<String> names) {
+    private static void walkDir(String pckg, File entry, Set<String> names, boolean canonicalNames) {
         String cname = entry.getName();
         if (entry.isFile()) {
-            if (cname.endsWith(CLASS_SIG))
-                names.add(pckg + "/" + cname.substring(0, cname.length() - CLASS_SIG_SIZE));
+            if (cname.toLowerCase().endsWith(CLASS_SIG))
+                names.add(convert(pckg + "/" + cname, canonicalNames));
         } else if (entry.isDirectory()) {
             File[] entries = entry.listFiles();
             pckg = (pckg.isEmpty() ? "" : pckg + "/") + entry.getName();
             if (entries != null && entries.length > 0)
                 for (File subentry : entries)
-                    walkDir(pckg, subentry, names);
+                    walkDir(pckg, subentry, names, canonicalNames);
         }
+    }
+
+    private static String convert(String entryName, boolean canonicalNames) {
+        String entryNameClear = entryName.substring(0, entryName.length() - CLASS_SIG_SIZE);
+        return canonicalNames
+                ? entryNameClear.replace('/', '.').replace('\\', '.')
+                : entryNameClear;
     }
 }

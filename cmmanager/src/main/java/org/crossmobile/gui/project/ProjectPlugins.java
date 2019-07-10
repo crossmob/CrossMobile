@@ -23,10 +23,7 @@ import org.crossmobile.utils.FileUtils;
 import org.crossmobile.utils.ParamList;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class ProjectPlugins {
 
@@ -58,22 +55,10 @@ public class ProjectPlugins {
         plugins.remove(plugin);
     }
 
-    public List<PluginEntry> getPlugins() {
-        return new ArrayList<>(plugins);
-    }
-
-    public String getAbsolutePaths() {
-        StringBuilder out = new StringBuilder();
-        for (PluginEntry entry : plugins)
-            out.append(Paths.getPath(entry.pathName, HomeReference.PROP_TO_ABS)).append(File.pathSeparator);
-        return out.length() > 0 ? out.toString().substring(0, out.length() - File.pathSeparator.length()) : "";
-    }
-
     public static final class PluginEntry extends SingleEntry implements Comparable<PluginEntry> {
 
-        private final String pathName;
-        private final File path;
-        int id = 1;
+        public final String pathName;
+        public final File path;
 
         private PluginEntry(String path) {
             int lastSlash = path.lastIndexOf("/");
@@ -89,10 +74,10 @@ public class ProjectPlugins {
 
         @Override
         public boolean equals(Object obj) {
-            if (obj == null || !(obj instanceof PluginEntry))
+            if (!(obj instanceof PluginEntry))
                 return false;
             final PluginEntry other = (PluginEntry) obj;
-            return this.path == other.path || (this.path != null && this.path.equals(other.path));
+            return Objects.equals(this.path, other.path);
         }
 
         @Override

@@ -47,7 +47,7 @@ public final class Foundation {
      */
     @CMFunction("NSArray<NSString *> * NSSearchPathForDirectoriesInDomains ( NSSearchPathDirectory directory, NSSearchPathDomainMask domainMask, BOOL expandTilde );")
     public static List<String> NSSearchPathForDirectoriesInDomains(int NSSearchPathDirectory, int NSSearchPathDomainMask, boolean expandTilde) {
-        List<String> res = new ArrayList<String>();
+        List<String> res = new ArrayList<>();
         if (NSSearchPathDirectory >= 0 && NSSearchPathDirectory < DEFAULTPATHS.length && DEFAULTPATHS[NSSearchPathDirectory] != null)
             res.add(NSHomeDirectory() + DEFAULTPATHS[NSSearchPathDirectory]);
         return res;

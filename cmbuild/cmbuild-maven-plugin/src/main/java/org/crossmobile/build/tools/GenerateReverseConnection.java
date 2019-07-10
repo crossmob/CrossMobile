@@ -19,14 +19,12 @@ package org.crossmobile.build.tools;
 import javassist.CtClass;
 import javassist.CtMethod;
 import org.crossmobile.bridge.system.BaseUtils;
+import org.crossmobile.utils.ClasspathUtils;
 import org.crossmobile.utils.Log;
 import org.crossmobile.utils.NativeCodeCollection;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static org.crossmobile.utils.FileUtils.*;
 import static org.crossmobile.utils.TextUtils.plural;
@@ -40,9 +38,7 @@ public class GenerateReverseConnection {
         classpaths.add(selfClassPath);
         classpaths.addAll(libjarpaths);
         NativeCodeCollection dbn = new NativeCodeCollection(classpaths);
-        forAll(selfClassPath, file -> file.getName().toLowerCase().endsWith(".class"), (path, file) -> {
-            String classname = selfClassPath.toURI().relativize(file.toURI()).toString();
-            classname = classname.substring(0, classname.length() - 6).replace('/', '.').replace('\\', '.');
+        for (String classname : ClasspathUtils.getClasspathClasses(Collections.singleton(selfClassPath), true)) {
             try {
                 CtClass objectC = dbn.getClassPool().get(classname);
                 String injection = findInjectionsForClass(dbn, objectC);
@@ -51,7 +47,7 @@ public class GenerateReverseConnection {
             } catch (Exception ex) {
                 BaseUtils.throwException(ex);
             }
-        });
+        }
 
         int count = 0;
         for (String name : injections.keySet()) {
