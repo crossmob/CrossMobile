@@ -18,6 +18,7 @@ package org.crossmobile.gui;
 
 import org.crossmobile.gui.actives.ActiveCheckBox;
 import org.crossmobile.gui.actives.ActiveLabel;
+import org.crossmobile.gui.elements.GradientPanel;
 import org.robovm.objc.block.VoidBlock1;
 
 import javax.swing.*;
@@ -56,20 +57,44 @@ public class LongProcFrame extends JDialog implements VoidBlock1<String> {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonP = new javax.swing.JPanel();
-        cancelB = new javax.swing.JButton();
-        actionB = new javax.swing.JButton();
+        backgroundP = new GradientPanel();
         mainP = new javax.swing.JPanel();
         feedbackL = new ActiveLabel();
         jPanel1 = new javax.swing.JPanel();
         progressBar = new javax.swing.JProgressBar();
         toggleC = new ActiveCheckBox();
+        buttonP = new javax.swing.JPanel();
+        cancelB = new javax.swing.JButton();
+        actionB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
 
+        backgroundP.setLayout(new java.awt.BorderLayout());
+
+        mainP.setBorder(new com.panayotis.hrgui.HiResEmptyBorder(12,12,8,12));
+        mainP.setOpaque(false);
+        mainP.setLayout(new java.awt.BorderLayout());
+
+        feedbackL.setBorder(new com.panayotis.hrgui.HiResEmptyBorder(0,0,8,0));
+        mainP.add(feedbackL, java.awt.BorderLayout.CENTER);
+
+        jPanel1.setOpaque(false);
+        jPanel1.setLayout(new java.awt.BorderLayout(0, 8));
+
+        progressBar.setIndeterminate(true);
+        jPanel1.add(progressBar, java.awt.BorderLayout.CENTER);
+
+        toggleC.setSelected(true);
+        jPanel1.add(toggleC, java.awt.BorderLayout.SOUTH);
+
+        mainP.add(jPanel1, java.awt.BorderLayout.SOUTH);
+
+        backgroundP.add(mainP, java.awt.BorderLayout.CENTER);
+
         buttonP.setMaximumSize(new java.awt.Dimension(500, 300));
         buttonP.setMinimumSize(new java.awt.Dimension(500, 300));
+        buttonP.setOpaque(false);
         buttonP.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         cancelB.setText("Cancel");
@@ -88,25 +113,9 @@ public class LongProcFrame extends JDialog implements VoidBlock1<String> {
         });
         buttonP.add(actionB);
 
-        getContentPane().add(buttonP, java.awt.BorderLayout.SOUTH);
+        backgroundP.add(buttonP, java.awt.BorderLayout.SOUTH);
 
-        mainP.setBorder(new com.panayotis.hrgui.HiResEmptyBorder(12, 12, 8, 12));
-        mainP.setLayout(new java.awt.BorderLayout());
-
-        feedbackL.setBorder(new com.panayotis.hrgui.HiResEmptyBorder(0, 0, 8, 0));
-        mainP.add(feedbackL, java.awt.BorderLayout.CENTER);
-
-        jPanel1.setLayout(new java.awt.BorderLayout(0, 8));
-
-        progressBar.setIndeterminate(true);
-        jPanel1.add(progressBar, java.awt.BorderLayout.CENTER);
-
-        toggleC.setSelected(true);
-        jPanel1.add(toggleC, java.awt.BorderLayout.SOUTH);
-
-        mainP.add(jPanel1, java.awt.BorderLayout.SOUTH);
-
-        getContentPane().add(mainP, java.awt.BorderLayout.CENTER);
+        getContentPane().add(backgroundP, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -152,6 +161,7 @@ public class LongProcFrame extends JDialog implements VoidBlock1<String> {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton actionB;
+    private javax.swing.JPanel backgroundP;
     private javax.swing.JPanel buttonP;
     private javax.swing.JButton cancelB;
     private javax.swing.JLabel feedbackL;
@@ -159,7 +169,6 @@ public class LongProcFrame extends JDialog implements VoidBlock1<String> {
     private javax.swing.JPanel mainP;
     private javax.swing.JProgressBar progressBar;
     private javax.swing.JCheckBox toggleC;
-
     // End of variables declaration//GEN-END:variables
 
 }

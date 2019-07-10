@@ -52,7 +52,7 @@ public class AndroidPermissionsParameter extends MultiButtonParameter {
     protected HiResComponent initVisuals() {
         HiResPanel bottom = new HiResPanel(new FlowLayout(FlowLayout.LEFT));
         bottom.setOpaque(false);
-        recalculate = new HiResButton("Recalculate");
+        recalculate = new HiResButton("Try to gather automatically");
         bottom.add(recalculate);
         recalculate.addActionListener((ActionEvent e) -> {
             Collection<Permissions> perms = PermissionsAction.findPermissions(proj);

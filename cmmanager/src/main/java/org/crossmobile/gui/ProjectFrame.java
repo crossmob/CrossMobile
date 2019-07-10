@@ -974,13 +974,13 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         try {
             if (proj != null) {
-                if (!proj.isSaved() && JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "Poject " + proj.getName() + " is not saved.\nDo you want to save it before proceeding?",
+                if (!proj.isSaved() && JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "Project " + proj.getName() + " is not saved.\nDo you want to save it before proceeding?",
                         proj.getName() + " Project",
                         JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE))
                     try {
                         proj.save();
                     } catch (ProjectException ex) {
-                        JOptionPane.showMessageDialog(this, ex.getMessage(), "Poject " + proj.getName() + " error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, ex.getMessage(), "Project " + proj.getName() + " error", JOptionPane.ERROR_MESSAGE);
                     }
                 Nullable.safeCall(launch, l -> l.kill());
                 Nullable.safeCall(closeCallback, c -> c.accept(proj));
