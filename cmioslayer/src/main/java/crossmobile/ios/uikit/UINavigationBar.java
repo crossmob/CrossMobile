@@ -283,7 +283,7 @@ public class UINavigationBar extends UIView {
     }
 
     private double initLeftItem(UINavigationItem item, double statusOffset) {   // Create left button item
-        UIBarButtonItem left = item.leftBarButtonItem() != null ? item.leftBarButtonItem() : (items.size() > 1 ? item.backBarButtonItem() : null);
+        UIBarButtonItem left = item.leftBarButtonItem() != null ? item.leftBarButtonItem() : (items.size() > 1 && !item.hidesBackButton() ? item.backBarButtonItem() : null);
         if (left != null) {
             UIView c = left.view();
             addSubview(c);
