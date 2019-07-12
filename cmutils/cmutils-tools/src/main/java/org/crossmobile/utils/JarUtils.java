@@ -226,7 +226,7 @@ public class JarUtils {
         } else if (!in.exists())
             throw new FileUtilsException("Input file does not exist: " + in.getAbsolutePath());
         else
-            throw new FileUtilsException("Unecognizable file: " + in.getAbsolutePath());
+            throw new FileUtilsException("Unrecognizable file: " + in.getAbsolutePath());
     }
 
     public static class JarPathEntry {

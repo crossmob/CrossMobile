@@ -29,15 +29,16 @@ import org.crossmobile.gui.project.ProjectInfo;
 import org.crossmobile.gui.project.ProjectLoader;
 import org.crossmobile.gui.utils.Paths;
 import org.crossmobile.prefs.Prefs;
-import org.crossmobile.utils.*;
+import org.crossmobile.utils.Log;
+import org.crossmobile.utils.ProjectException;
+import org.crossmobile.utils.TreeWalker;
+import org.crossmobile.utils.TreeWalkerEntry;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Collection;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicReference;
 
 import static java.util.Arrays.asList;
 import static org.crossmobile.Version.VERSION;
@@ -51,7 +52,7 @@ public class CrossMobile {
             try {
                 initialize(args, null);
             } catch (IllegalStateException | ProjectException ex) {
-                JOptionPane.showConfirmDialog(null, ex.getMessage(), "Intialization error", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showConfirmDialog(null, ex.getMessage(), "Initialization error", JOptionPane.OK_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
                 System.exit(-1);
             }
         });
@@ -106,24 +107,18 @@ public class CrossMobile {
         enhancer.registerApplication("CrossMobile", "create native iOS, Android, Windows 10 and Desktop Applications from a singe code base", "Development", "Building", "IDE", "Java");
     }
 
-    private static void postInit(final WelcomeFrame frame) {
+    private static void postInit(WelcomeFrame frame) {
         if (!Prefs.isWizardExecuted()) {
             InitializationWizard initW = new InitializationWizard(frame);
-            AtomicBoolean active = new AtomicBoolean(true);
-            AtomicReference<Commander> cmd = new AtomicReference<>();
             initW.setMainTitle("Welcome to CrossMobile");
             initW.setSubtitle("Before we begin, it is required to check your system for installed components");
-            initW.setWelcomeInfo("<html>Please make sure that you are connected to the internet, and click \"Continue\" to start the procedure.</html>");
+            initW.setWelcomeInfo("<html>When you click on \"Continue\" the wizard will try to find installations of required applications to run CrossMobile.<br/>" +
+                    "These applications are Java JDK, Android SDK, IntelliJ, Android Studio, and Netbeans.<br/>&nbsp;<br/>Please press \"Continue\" to start searching for these applications.</html>");
             Runnable skip = () -> {
+                initW.setActive(false);
                 if (initW.isVisible())
                     initW.setVisible(false);
                 frame.setVisible(true);
-                if (!active.get())
-                    return;
-                active.set(false);
-                Commander c = cmd.get();
-                if (c != null)
-                    c.kill();
             };
             initW.addWindowListener(new WindowAdapter() {
                 @Override
@@ -131,8 +126,9 @@ public class CrossMobile {
                     skip.run();
                 }
             });
-            initW.setAction(Card.Welcome, "Continue", () -> {
-                initW.goToCard(Card.Externals);
+            initW.setAction("Continue", () -> {
+                initW.gotoCard(Card.Externals);
+                initW.setAction("Cancel", skip);
                 initW.setSubtitle("Looking for installed components");
                 initW.setRunning(true);
                 Collection<TreeWalkerEntry> entries = asList(
@@ -143,25 +139,17 @@ public class CrossMobile {
                         Android.getEntry(initW::foundAndroid)
                 );
                 new Thread(() -> {
-                    TreeWalker.searchExecutable(entries, null, true, active);
-                    if (initW.isVisible()) {
-                        initW.setRunning(false);
-                        initW.resolveApps(() -> {
-                            initW.setVisible(false);
-                            Prefs.setWizardExecuted(true);
-                        }, "Done");
-                    }
+                    TreeWalker.searchExecutable(entries, null, true, initW);
+                    if (initW.isVisible())
+                        initW.setTreeWalking(false);
                 }).start();
             });
-            initW.setAction(Card.Externals, "Skip", () -> active.set(false));
-            initW.setAction(Card.Info, "Skip", skip);
-            initW.setAction(Card.Details, "Skip", skip);
             initW.setVisible(true);
-        } else if (!isAndroidConfigured() && !isJDKfigured() && JOptionPane.showConfirmDialog(frame, "CrossMobile environment hasn't been properly configured.\nDo you want to configure it now?", "Configure CrossMobile", JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION)
+        } else if (!isAndroidConfigured() && !isJDKconfigured() && JOptionPane.showConfirmDialog(frame, "CrossMobile environment hasn't been properly configured.\nDo you want to configure it now?", "Configure CrossMobile", JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION)
             Config.showConfig();
         else if (!isAndroidConfigured() && JOptionPane.showConfirmDialog(frame, "Android SDK environment hasn't been properly configured.\nDo you want to configure it now?", "Configure CrossMobile", JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION)
             Config.showConfig();
-        else if (!isJDKfigured() && JOptionPane.showConfirmDialog(frame, "JDK environment hasn't been properly configured.\nDo you want to configure it now?", "Configure CrossMobile", JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION)
+        else if (!isJDKconfigured() && JOptionPane.showConfirmDialog(frame, "JDK environment hasn't been properly configured.\nDo you want to configure it now?", "Configure CrossMobile", JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION)
             Config.showConfig();
         frame.updateProjects(null);
         EnhancerManager.getDefault().registerUpdate(() -> showUpdate(frame, true));

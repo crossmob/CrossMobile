@@ -29,10 +29,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 
-import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 
 public class JWizard extends JDialog {
 
@@ -80,10 +79,10 @@ public class JWizard extends JDialog {
                 CancelB.setEnabled(false);
                 ContinueB.setEnabled(false);
                 boolean isManual = ManualB.isSelected();
-                Collection<String> locations = isManual ? asList(FilenameT.getText()) : null;
+                Collection<String> locations = isManual ? singletonList(FilenameT.getText()) : null;
                 new Thread(() -> {
                     Collection<File> set = new HashSet<>();
-                    TreeWalker.searchExecutable(asList(generator.getEntry(set::add, origLocations)), locations, !ManualB.isSelected(), new AtomicBoolean(true));
+                    TreeWalker.searchExecutable(singletonList(generator.getEntry(set::add, origLocations)), locations, !ManualB.isSelected(), () -> true);
                     result = new ArrayList<>(set);
                     clickContinue();
                 }).start();
@@ -175,7 +174,7 @@ public class JWizard extends JDialog {
 
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        WelcomeTitle.setFont(WelcomeTitle.getFont().deriveFont(WelcomeTitle.getFont().getStyle() | java.awt.Font.BOLD, WelcomeTitle.getFont().getSize()+2));
+        WelcomeTitle.setFont(WelcomeTitle.getFont().deriveFont(WelcomeTitle.getFont().getStyle() | java.awt.Font.BOLD, WelcomeTitle.getFont().getSize() + 2));
         WelcomeTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         WelcomeTitle.setText(name + " application");
         WelcomeTitle.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 3, 12, 0));
@@ -247,7 +246,7 @@ public class JWizard extends JDialog {
 
         WelcomeP.add(jPanel2, java.awt.BorderLayout.NORTH);
 
-        pleaseWaitL.setFont(pleaseWaitL.getFont().deriveFont((pleaseWaitL.getFont().getStyle() | java.awt.Font.ITALIC) | java.awt.Font.BOLD, pleaseWaitL.getFont().getSize()+2));
+        pleaseWaitL.setFont(pleaseWaitL.getFont().deriveFont((pleaseWaitL.getFont().getStyle() | java.awt.Font.ITALIC) | java.awt.Font.BOLD, pleaseWaitL.getFont().getSize() + 2));
         pleaseWaitL.setText("Please wait while initializing wizard...");
         WelcomeP.add(pleaseWaitL, java.awt.BorderLayout.CENTER);
 
@@ -257,7 +256,7 @@ public class JWizard extends JDialog {
 
         jPanel3.setLayout(new java.awt.BorderLayout());
 
-        SearchTitle.setFont(SearchTitle.getFont().deriveFont(SearchTitle.getFont().getStyle() | java.awt.Font.BOLD, SearchTitle.getFont().getSize()+2));
+        SearchTitle.setFont(SearchTitle.getFont().deriveFont(SearchTitle.getFont().getStyle() | java.awt.Font.BOLD, SearchTitle.getFont().getSize() + 2));
         SearchTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         SearchTitle.setText("Locating " + name + " executable...");
         SearchTitle.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 3, 12, 0));
@@ -273,7 +272,7 @@ public class JWizard extends JDialog {
 
         FinishP.setLayout(new java.awt.BorderLayout());
 
-        FinishTitle.setFont(FinishTitle.getFont().deriveFont(FinishTitle.getFont().getStyle() | java.awt.Font.BOLD, FinishTitle.getFont().getSize()+2));
+        FinishTitle.setFont(FinishTitle.getFont().deriveFont(FinishTitle.getFont().getStyle() | java.awt.Font.BOLD, FinishTitle.getFont().getSize() + 2));
         FinishTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         FinishTitle.setText(name + " executable");
         FinishTitle.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 3, 12, 0));

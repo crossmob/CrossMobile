@@ -982,7 +982,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
                     } catch (ProjectException ex) {
                         JOptionPane.showMessageDialog(this, ex.getMessage(), "Project " + proj.getName() + " error", JOptionPane.ERROR_MESSAGE);
                     }
-                Nullable.safeCall(launch, l -> l.kill());
+                Nullable.safeCall(launch, Commander::kill);
                 Nullable.safeCall(closeCallback, c -> c.accept(proj));
             }
             closeCallback = null;

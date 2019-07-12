@@ -96,7 +96,7 @@ public class ProjectInfo {
             InitializationWizard initW = new InitializationWizard(newProjectInfo);
             initW.setMainTitle("Creating project '" + newProjectInfo.getDisplayName() + "'");
             initW.setSubtitle("A new project will be created under: " + pathname);
-            initW.goToCard(Card.Info);
+            initW.gotoCard(Card.Info);
             initW.hideActionButton();
             initW.setRunning(true);
             AtomicBoolean fail = new AtomicBoolean(false);
@@ -110,7 +110,7 @@ public class ProjectInfo {
                         initW.setRunning(false);
                         if (!code.equals(0)) {
                             initW.setMainTitle("Error while creating project");
-                            initW.goToCard(Card.Details);
+                            initW.gotoCard(Card.Details);
                             fail.set(true);
                         } else
                             initW.setVisible(false);
@@ -123,10 +123,10 @@ public class ProjectInfo {
                 throw new ProjectException("Unable to create project");
         }
         this.basedir = findProjectDir(pathname, true);
-        refesh(newProjectInfo);
+        refresh(newProjectInfo);
     }
 
-    public void refesh(NewProjectInfo newProjectInfo) {
+    public void refresh(NewProjectInfo newProjectInfo) {
         Properties props = new Properties();
         if (new File(basedir, MAVEN_SIGNATURE).exists())
             new Pom(new File(basedir, MAVEN_SIGNATURE)).updatePropertiesFromPom(props);

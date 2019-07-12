@@ -30,7 +30,7 @@ public class ApplicationRequirements {
         return !getAndroidSDKLocation().isEmpty();
     }
 
-    public static boolean isJDKfigured() {
+    public static boolean isJDKconfigured() {
         return !getJDKLocation().isEmpty();
     }
 
@@ -40,11 +40,11 @@ public class ApplicationRequirements {
                 synchronized (Thread.currentThread()) {
                     Thread.currentThread().wait(1000);
                 }
-            } catch (InterruptedException ex) {
+            } catch (InterruptedException ignored) {
             }
             if (SystemDependent.isJavaOld(System.getProperty("java.version")))
                 JOptionPane.showOptionDialog(relative, "<html><b>Your Java version seems to be too old</b>.\n\nIt is strongly recommended to upgrade to at least\nJDK version 1.8_144 for security reasons.\n\nPlease update your system to a newer Java version,\nor you might experience connectivity issues.\n\n"
-                        + "Currenct Java version: " + System.getProperty("java.version"), "CrossMobile", JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, new String[]{"I will"}, 0);
+                        + "Current Java version: " + System.getProperty("java.version"), "CrossMobile", JOptionPane.ERROR_MESSAGE, JOptionPane.ERROR_MESSAGE, null, new String[]{"I will"}, 0);
             if (andAfter != null)
                 andAfter.run();
         }).start();

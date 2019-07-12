@@ -34,7 +34,7 @@ public class DesktopFileBridge extends AbstractFileBridge {
     private static final String SYSRESOURCE = "/org/crossmobile/" + MATERIALS_TAG + "/sys/";
     private static final String APP_SIG = CROSSMOBILE_PROPERTIES;
     private static final String SYS_SIG = "empty.png";
-    //
+
     private static String homepath;
     private static String apref;
     private static String spref;

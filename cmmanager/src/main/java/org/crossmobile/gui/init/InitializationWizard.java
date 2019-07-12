@@ -27,34 +27,35 @@ import org.crossmobile.gui.elements.JWait;
 import org.crossmobile.gui.utils.StreamManager;
 import org.crossmobile.gui.utils.StreamQuality;
 import org.crossmobile.prefs.Prefs;
+import org.crossmobile.utils.TreeWalker.Active;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
+import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class InitializationWizard extends HiResDialog {
+public class InitializationWizard extends HiResDialog implements Active {
 
     private static final HiResIcon WAITICON = new HiResIcon("images/spin", false);
 
-    private final Map<Card, CardAction> actions = new HashMap<>();
-    private Runnable appsCallback;
+    private Runnable action;
     private Card currentCard = Card.Welcome;
     private final JWait waiting = new JWait(WAITICON);
-    private final Collection<File> foundJDK = new LinkedHashSet<>();
-    private final Collection<File> foundNetbeans = new LinkedHashSet<>();
-    private final Collection<File> foundIntelliJ = new LinkedHashSet<>();
-    private final Collection<File> foundStudio = new LinkedHashSet<>();
-    private final Collection<File> foundAndroid = new LinkedHashSet<>();
-    private final AtomicReference<File> fixedJDK = new AtomicReference<>();
-    private final AtomicReference<File> fixedNetbeans = new AtomicReference<>();
-    private final AtomicReference<File> fixedIntelliJ = new AtomicReference<>();
-    private final AtomicReference<File> fixedStudio = new AtomicReference<>();
-    private final AtomicReference<File> fixedAndroid = new AtomicReference<>();
+    private final Collection<File> listJDK = new TreeSet<>();
+    private final Collection<File> listNetbeans = new TreeSet<>();
+    private final Collection<File> listIntelliJ = new TreeSet<>();
+    private final Collection<File> listStudio = new TreeSet<>();
+    private final Collection<File> listAndroid = new TreeSet<>();
+    private final AtomicReference<File> selectedJDK = new AtomicReference<>();
+    private final AtomicReference<File> selectedNetbeans = new AtomicReference<>();
+    private final AtomicReference<File> selectedIntelliJ = new AtomicReference<>();
+    private final AtomicReference<File> selectedStudio = new AtomicReference<>();
+    private final AtomicReference<File> selectedAndroid = new AtomicReference<>();
+
+    private boolean active = true;
+    private boolean treewalking = true;
 
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public InitializationWizard(Window parent) {
@@ -75,21 +76,11 @@ public class InitializationWizard extends HiResDialog {
         setLocationRelativeTo(null);
     }
 
-    public void goToCard(Card c) {
+    public void gotoCard(Card c) {
         if (currentCard == c)
             return;
         currentCard = c;
-        CardAction ca = actions.get(currentCard);
-        if (ca != null) {
-            if (ca.actionButton != null)
-                actionB.setText(ca.actionButton);
-            actionB.setEnabled(ca.action != null);
-        }
         ((CardLayout) cards.getLayout()).show(cards, c.name());
-    }
-
-    public Card getCurrentCard() {
-        return currentCard;
     }
 
     public void setMainTitle(String title) {
@@ -121,35 +112,31 @@ public class InitializationWizard extends HiResDialog {
         actionB.setVisible(false);
     }
 
-    public void setAction(Card card, String buttonLabel, Runnable action) {
-        if (card == null)
-            return;
+    public void setAction(String buttonLabel, Runnable action) {
         buttonLabel = buttonLabel == null ? "" : buttonLabel;
-        actions.put(card, new CardAction(action, buttonLabel));
-        if (currentCard == card) {
-            actionB.setText(buttonLabel);
-            actionB.setEnabled(action != null);
-        }
+        actionB.setText(buttonLabel);
+        actionB.setEnabled(action != null);
+        this.action = action;
     }
 
     public void foundJDK(File found) {
-        updateVisualsIfFound(jdkL, null, null, foundJDK, found);
+        updateVisualsIfFound(jdkL, null, null, listJDK, found);
     }
 
     public void foundNetbeans(File found) {
-        updateVisualsIfFound(netbeansL, null, null, foundNetbeans, found);
+        updateVisualsIfFound(netbeansL, null, null, listNetbeans, found);
     }
 
     public void foundIntelliJ(File found) {
-        updateVisualsIfFound(intellijL, null, null, foundIntelliJ, found);
+        updateVisualsIfFound(intellijL, null, null, listIntelliJ, found);
     }
 
     public void foundStudio(File found) {
-        updateVisualsIfFound(studioL, null, null, foundStudio, found);
+        updateVisualsIfFound(studioL, null, null, listStudio, found);
     }
 
     public void foundAndroid(File found) {
-        updateVisualsIfFound(androidL, null, null, foundAndroid, found);
+        updateVisualsIfFound(androidL, null, null, listAndroid, found);
     }
 
     private boolean updateVisualsIfFound(JLabel widget, JButton resolve, AtomicReference<File> fixedRef, Collection<File> where, File found) {
@@ -158,45 +145,39 @@ public class InitializationWizard extends HiResDialog {
         if (resolve != null && where.size() > 1)
             resolve.setVisible(true);
         boolean didFound = (fixedRef != null && fixedRef.get() != null) || where.size() == 1;
-        widget.setIcon(new HiResIcon(didFound ? "images/found" : (where.isEmpty() ? "images/notfound" : "images/warning"), false));
+        widget.setIcon(new HiResIcon(didFound ? "images/found" : (where.isEmpty() ? (treewalking ? "images/wait" : "images/notfound") : "images/warning"), false));
         return didFound;
     }
 
-    private boolean couldBeaccepted(AtomicReference<File> ref, Collection<File> col) {
-        return ref.get() != null || col.size() < 2;
+    private boolean isAppSelected(AtomicReference<File> selected, Collection<File> list) {
+        return selected.get() != null || list.size() < 2;
     }
 
     public void resolveApps() {
-        resolveApps(null, "Continue");
-    }
+        boolean allAppsAreSelected = isAppSelected(selectedJDK, listJDK)
+                & isAppSelected(selectedNetbeans, listNetbeans)
+                & isAppSelected(selectedIntelliJ, listIntelliJ)
+                & isAppSelected(selectedStudio, listStudio)
+                & isAppSelected(selectedAndroid, listAndroid);
 
-    public void resolveApps(Runnable appsAreResolvedCallback, String label) {
-        boolean allAppsAreResolved = updateVisualsIfFound(jdkL, jdkB, fixedJDK, foundJDK, null)
-                & updateVisualsIfFound(netbeansL, netbeansB, fixedNetbeans, foundNetbeans, null)
-                & updateVisualsIfFound(intellijL, intellijB, fixedIntelliJ, foundIntelliJ, null)
-                & updateVisualsIfFound(studioL, studioB, fixedStudio, foundStudio, null)
-                & updateVisualsIfFound(androidL, androidB, fixedAndroid, foundAndroid, null);
-        if (allAppsAreResolved)
-            if (appsAreResolvedCallback != null) {
-                appsAreResolvedCallback.run();
-                return;
-            }
-        if (appsAreResolvedCallback != null)
-            appsCallback = appsAreResolvedCallback;
-        boolean couldGoOn = couldBeaccepted(fixedJDK, foundJDK)
-                & couldBeaccepted(fixedNetbeans, foundNetbeans)
-                & couldBeaccepted(fixedIntelliJ, foundIntelliJ)
-                & couldBeaccepted(fixedStudio, foundStudio)
-                & couldBeaccepted(fixedAndroid, foundAndroid);
-        setAction(currentCard, label, !couldGoOn ? null : () -> {
-            Prefs.setJDKLocation(resolveUnique(fixedJDK, foundJDK));
-            Prefs.setAndroidSDKLocation(resolveUnique(fixedAndroid, foundAndroid));
-            Prefs.setNetbeansLocation(resolveUnique(fixedNetbeans, foundNetbeans));
-            Prefs.setIntelliJLocation(resolveUnique(fixedIntelliJ, foundIntelliJ));
-            Prefs.setStudioLocation(resolveUnique(fixedStudio, foundStudio));
-            appsCallback.run();
-        });
-        subtitleL.setText(couldGoOn ? (allAppsAreResolved ? "All applications have been sucessfully resolved" : "Please open Settings after initialization to solve unresolved applications.") : "Please resolve external applications");
+        boolean allAppsAreResolved = updateVisualsIfFound(jdkL, jdkB, selectedJDK, listJDK, null)
+                & updateVisualsIfFound(netbeansL, netbeansB, selectedNetbeans, listNetbeans, null)
+                & updateVisualsIfFound(intellijL, intellijB, selectedIntelliJ, listIntelliJ, null)
+                & updateVisualsIfFound(studioL, studioB, selectedStudio, listStudio, null)
+                & updateVisualsIfFound(androidL, androidB, selectedAndroid, listAndroid, null);
+
+        setRunning(treewalking);
+        if (allAppsAreSelected && !treewalking)
+            setAction("Done", () -> {
+                Prefs.setJDKLocation(resolveUnique(selectedJDK, listJDK));
+                Prefs.setAndroidSDKLocation(resolveUnique(selectedAndroid, listAndroid));
+                Prefs.setNetbeansLocation(resolveUnique(selectedNetbeans, listNetbeans));
+                Prefs.setIntelliJLocation(resolveUnique(selectedIntelliJ, listIntelliJ));
+                Prefs.setStudioLocation(resolveUnique(selectedStudio, listStudio));
+                Prefs.setWizardExecuted(true);
+                setVisible(false);
+            });
+        subtitleL.setText(allAppsAreSelected ? (allAppsAreResolved ? "All applications have been successfully resolved" : "Please open Settings after initialization to solve unresolved applications.") : "Please resolve external applications");
     }
 
     private void popupDisplay(JButton parent, AtomicReference<File> fixedRef, Collection<File> execs) {
@@ -215,6 +196,21 @@ public class InitializationWizard extends HiResDialog {
 
     private String resolveUnique(AtomicReference<File> ref, Collection<File> collection) {
         return ref.get() == null ? (collection.size() > 0 ? collection.iterator().next().getAbsolutePath() : null) : ref.get().getAbsolutePath();
+    }
+
+    public void setActive(boolean status) {
+        active = status;
+        resolveApps();
+    }
+
+    public void setTreeWalking(boolean treewalking) {
+        this.treewalking = treewalking;
+        resolveApps();
+    }
+
+    @Override
+    public boolean isActive() {
+        return active;
     }
 
     /**
@@ -273,7 +269,7 @@ public class InitializationWizard extends HiResDialog {
 
         jPanel4.setLayout(new java.awt.BorderLayout());
 
-        titleL.setFont(titleL.getFont().deriveFont((float) 20));
+        titleL.setFont(titleL.getFont().deriveFont((float)20));
         titleL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleL.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 0, 16, 0));
         jPanel4.add(titleL, java.awt.BorderLayout.NORTH);
@@ -447,7 +443,6 @@ public class InitializationWizard extends HiResDialog {
         scrollLockP.setOpaque(false);
 
         scrollLockB.setText("Pause scrolling");
-        scrollLockB.setOpaque(false);
         scrollLockB.setVisible(false);
         scrollLockB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -480,57 +475,44 @@ public class InitializationWizard extends HiResDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void detailsBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailsBActionPerformed
-        goToCard(Card.Details);
+        gotoCard(Card.Details);
         scrollLockB.setVisible(true);
     }//GEN-LAST:event_detailsBActionPerformed
 
     private void actionBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionBActionPerformed
-        CardAction action = actions.get(currentCard);
-        if (action != null && action.action != null)
-            action.action.run();
+        if (action != null)
+            action.run();
     }//GEN-LAST:event_actionBActionPerformed
 
     private void jdkBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jdkBActionPerformed
-        popupDisplay(jdkB, fixedJDK, foundJDK);
+        popupDisplay(jdkB, selectedJDK, listJDK);
     }//GEN-LAST:event_jdkBActionPerformed
 
     private void androidBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_androidBActionPerformed
-        popupDisplay(androidB, fixedAndroid, foundAndroid);
+        popupDisplay(androidB, selectedAndroid, listAndroid);
     }//GEN-LAST:event_androidBActionPerformed
 
     private void netbeansBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_netbeansBActionPerformed
-        popupDisplay(netbeansB, fixedNetbeans, foundNetbeans);
+        popupDisplay(netbeansB, selectedNetbeans, listNetbeans);
     }//GEN-LAST:event_netbeansBActionPerformed
 
     private void intellijBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_intellijBActionPerformed
-        popupDisplay(intellijB, fixedIntelliJ, foundIntelliJ);
+        popupDisplay(intellijB, selectedIntelliJ, listIntelliJ);
     }//GEN-LAST:event_intellijBActionPerformed
 
     private void studioBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studioBActionPerformed
-        popupDisplay(studioB, fixedStudio, foundStudio);
+        popupDisplay(studioB, selectedStudio, listStudio);
     }//GEN-LAST:event_studioBActionPerformed
 
     private void scrollLockBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scrollLockBActionPerformed
         ((ActiveTextPane) detailT).setShouldMoveToBottom(!scrollLockB.isSelected());
     }//GEN-LAST:event_scrollLockBActionPerformed
 
-    public static enum Card {
+    public enum Card {
         Welcome,
         Externals,
         Info,
         Details
-    }
-
-    private static final class CardAction {
-
-        private final Runnable action;
-        private final String actionButton;
-
-        public CardAction(Runnable action, String actionButton) {
-            this.action = action;
-            this.actionButton = actionButton;
-        }
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

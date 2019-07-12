@@ -38,6 +38,8 @@ public class JWait extends JPanel {
     }
 
     public void setRunning(boolean running) {
+        if (isRunning() == running)
+            return;
         if (running)
             timer.start();
         else

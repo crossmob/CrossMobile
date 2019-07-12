@@ -19,16 +19,20 @@ package org.crossmobile.utils;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.attribute.PosixFilePermissions;
 import java.util.List;
 
 import static org.crossmobile.utils.SystemDependent.Execs.JAVA;
 
 public class SystemDependent {
 
-    protected final static boolean IS_LINUX;
-    protected final static boolean IS_WINDOWS;
-    protected final static boolean IS_MACOSX;
-    protected final static String HOME;
+    private final static boolean IS_LINUX;
+    private final static boolean IS_WINDOWS;
+    private final static boolean IS_MACOSX;
+    private final static String HOME;
+
+    private static final String APP_HOME;
 
     static {
         String OS = System.getProperty("os.name").toLowerCase();
@@ -36,6 +40,12 @@ public class SystemDependent {
         IS_WINDOWS = OS.contains("windows");
         IS_MACOSX = OS.contains("mac");
         HOME = IS_WINDOWS ? System.getProperty("user.home").replace('\\', '/') : System.getProperty("user.home");
+        if (IS_MACOSX)
+            APP_HOME = HOME + "/Library/Application Support/CrossMobile/";
+        else if (IS_WINDOWS)
+            APP_HOME = System.getenv("APPDATA") + "\\CrossMobile\\";
+        else
+            APP_HOME = HOME + "/.local/share/crossmobile/";
     }
 
     public static int getBundleOrFileID() {
@@ -112,6 +122,10 @@ public class SystemDependent {
 
     public static String getHome() {
         return HOME;
+    }
+
+    public static String getAppHome() {
+        return APP_HOME;
     }
 
     public static String getJavaExec() {
@@ -209,7 +223,17 @@ public class SystemDependent {
         return ret;
     }
 
-    public static enum Execs {
+    public static boolean makeExecutable(File file) {
+        try {
+            if (!IS_WINDOWS)
+                Files.setPosixFilePermissions(file.toPath(), PosixFilePermissions.fromString("rwxr-xr-x"));
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
+    public enum Execs {
 
         JAVA("exe"),
         JAVAC("exe"),

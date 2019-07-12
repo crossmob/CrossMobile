@@ -81,7 +81,7 @@ public class ProjectLoader {
                             frame.setVisible(true); // bring to front
                     });
                     proj.setSaveCallback(selected -> {
-                        pinfo.refesh(null);
+                        pinfo.refresh(null);
                         frame.updateProjects(pinfo);
                     });
                 }

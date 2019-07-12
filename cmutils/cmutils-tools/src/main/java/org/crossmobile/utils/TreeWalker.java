@@ -25,7 +25,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class TreeWalker {
 
-    public static void searchExecutable(Collection<TreeWalkerEntry> entries, Collection<String> specific_locations, boolean auto, AtomicBoolean active) {
+    public static void searchExecutable(Collection<TreeWalkerEntry> entries, Collection<String> specific_locations, boolean auto, Active active) {
         try {
             List<ExtPath> paths = new ArrayList<>();
             if (specific_locations != null && !specific_locations.isEmpty())
@@ -39,7 +39,7 @@ public class TreeWalker {
                                 paths.add(new ExtPath(oloc, ExtPath.BUNDLE_ONLY));
             if (auto) {
                 for (TreeWalkerEntry entry : entries) {
-                    if (!active.get())
+                    if (!active.isActive())
                         return;
                     SystemDependent.appendSpotlightApplication(entry.twg.application.iterator().next(), paths);
                 }
@@ -47,7 +47,7 @@ public class TreeWalker {
             }
 
             for (ExtPath path : paths) {
-                if (!active.get())
+                if (!active.isActive())
                     return;
                 Log.debug("Wizard is looking inside " + path.getPath());
                 File f = new File(path.getPath());
@@ -62,11 +62,11 @@ public class TreeWalker {
 
     /* filename is already in lower case */
     @SuppressWarnings("UseSpecificCatch")
-    private static void walkPath(File root, Collection<TreeWalkerEntry> entries, int recursive, AtomicBoolean active) {
+    private static void walkPath(File root, Collection<TreeWalkerEntry> entries, int recursive, Active active) {
         try {
             if (!root.exists()) {
             } else if (root.isFile()) {
-                if (active.get() && root.canRead())
+                if (active.isActive() && root.canRead())
                     for (TreeWalkerEntry entry : entries)
                         for (String progname : entry.twg.application)
                             if (entry.foundFile != null
@@ -75,7 +75,7 @@ public class TreeWalker {
                                 entry.foundFile.accept(getFilteredFile(root, entry.twg.foldersToGoUp));
                 /* No valid executable found */
             } else if (root.isDirectory())
-                if (active.get() && recursive >= ExtPath.FILE_ONLY) {// More recursive could be done
+                if (active.isActive() && recursive >= ExtPath.FILE_ONLY) {// More recursive could be done
                     recursive--;
                     File[] children = root.listFiles();
                     if (children != null)
@@ -105,5 +105,9 @@ public class TreeWalker {
         for (int i = 0; i < foldersToGoUp; i++)
             root = root.getParentFile();
         return root;
+    }
+
+    public interface Active {
+        boolean isActive();
     }
 }
