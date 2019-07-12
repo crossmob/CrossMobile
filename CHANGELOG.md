@@ -7,6 +7,9 @@ This is the CrossMobile change log.
 - Embed JRE 11 instead of 8
 - Request storage permission if Foundation object is referenced
 
+### Removed
+- Obsolete JavaFX build dependency
+
 ## [v2.5] - 2019-7-1
 ### Added
 - First public binary stable release

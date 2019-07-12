@@ -26,7 +26,7 @@ import static org.crossmobile.build.utils.DependencyJarResolver.ERROR;
 
 public class Obfuscator {
 
-    private static final String[] JAVA_SYS = {"lib/rt.jar", "lib/jce.jar", "lib/ext/jfxrt.jar",};
+    private static final String[] JAVA_SYS = {"lib/rt.jar", "lib/jce.jar"};
 
     public static void obfuscate(File proguard, File proguardConf, File proguardMap, File unenc, File encjar, Collection<File> libjars, Collection<File> embedjars) {
         if (!unenc.getName().toLowerCase().endsWith(".jar"))
