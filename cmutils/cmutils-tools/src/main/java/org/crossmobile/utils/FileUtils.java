@@ -26,6 +26,7 @@ import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -73,10 +74,6 @@ public final class FileUtils {
 
     public static String readResourceSafe(String resource) {
         return readSafe(FileUtils.class.getClassLoader().getResourceAsStream(resource), "resource " + resource);
-    }
-
-    public static File openResourceSafe(String resource) {
-        return new File(FileUtils.class.getClassLoader().getResource(resource).getFile());
     }
 
     public static String read(File input) {
@@ -190,13 +187,30 @@ public final class FileUtils {
     }
 
     public static boolean copyStream(InputStream in, OutputStream out) {
+        return copyStream(in, out, null, null);
+    }
+
+    public static boolean copyStream(InputStream in, OutputStream out, Consumer<Long> transferredFeedback, Supplier<Boolean> interrupted) {
         if (in == null || out == null)
             return false;
+        long upToNow = 0;
+        if (interrupted == null)
+            interrupted = () -> false;
         try {
             byte[] buffer = new byte[0x4000];
             int howmany;
-            while ((howmany = in.read(buffer)) >= 0)
-                out.write(buffer, 0, howmany);
+            while ((howmany = in.read(buffer)) >= 0) {
+                if (howmany > 0) {
+                    out.write(buffer, 0, howmany);
+                    upToNow += howmany;
+                    if (transferredFeedback != null)
+                        transferredFeedback.accept(upToNow);
+                }
+                if (interrupted.get()) {
+                    out.flush();
+                    return false;
+                }
+            }
             out.flush();
             return true;
         } catch (IOException ex) {
@@ -204,11 +218,11 @@ public final class FileUtils {
         } finally {
             try {
                 in.close();
-            } catch (IOException ex) {
+            } catch (IOException ignored) {
             }
             try {
                 out.close();
-            } catch (IOException ex) {
+            } catch (IOException ignored) {
             }
         }
     }

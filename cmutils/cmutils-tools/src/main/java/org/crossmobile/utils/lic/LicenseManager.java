@@ -21,18 +21,17 @@ import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
 import crossmobile.rt.StrongReference;
 import org.crossmobile.prefs.Prefs;
-import org.crossmobile.utils.FileUtils;
-import org.crossmobile.utils.PreferencesUtils;
-import org.crossmobile.utils.ProjectException;
-import org.crossmobile.utils.XMLWalker;
+import org.crossmobile.utils.*;
+import org.crossmobile.utils.WebStreamUtils.SyncWebResult;
+import org.crossmobile.utils.WebStreamUtils.WebRequest;
 
-import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.*;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+import java.util.Collection;
+import java.util.TreeSet;
 import java.util.prefs.Preferences;
 
 public class LicenseManager {
@@ -45,20 +44,15 @@ public class LicenseManager {
 
     @SuppressWarnings("UseSpecificCatch")
     private static String performQuery(UserPass userPass, String macaddress, String method, String url, String post) throws Exception {
-        URL urlReq = new URL(url);
-        HttpURLConnection con = (HttpURLConnection) urlReq.openConnection();
-        con.setRequestMethod(method);
-        con.setRequestProperty("Authorization", "Basic " + new String(Base64.getEncoder().encode((userPass.username + ":" + userPass.password).getBytes())));
-        con.setRequestProperty("License-request", macaddress);
-        con.setRequestProperty("Content-Type", "application/json");
-        if (post != null) {
-            con.setDoOutput(true);
-            try (OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream())) {
-                wr.write(post);
-                wr.flush();
-            }
-        }
-        switch (con.getResponseCode()) {
+        SyncWebResult result = WebStreamUtils.download(new WebRequest(url)
+                .setMethod(method)
+                .setRequestProperty("Authorization", "Basic " + new String(Base64.getEncoder().encode((userPass.username + ":" + userPass.password).getBytes())))
+                .setRequestProperty("License-request", macaddress)
+                .setRequestProperty("Content-Type", "application/json")
+                .setPostStream(new ByteArrayInputStream(post.getBytes())));
+        if (result.error != null)
+            throw new IOException(result.error);
+        switch (result.code) {
             case 200:
                 break;
             case 400:
@@ -70,16 +64,9 @@ public class LicenseManager {
             case 503:
                 throw new Exception("Unable to gather license");
             default:
-                throw new Exception("Communication error (" + con.getResponseCode() + ")");
+                throw new Exception("Communication error (" + result.code + ")");
         }
-        StringBuilder response;
-        try (BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
-            String inputLine;
-            response = new StringBuilder();
-            while ((inputLine = in.readLine()) != null)
-                response.append(inputLine);
-        }
-        return response.toString();
+        return new String(result.data, StandardCharsets.UTF_8);
     }
 
     @SuppressWarnings("UseSpecificCatch")
