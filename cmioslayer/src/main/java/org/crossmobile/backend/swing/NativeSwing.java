@@ -50,10 +50,4 @@ public class NativeSwing extends NativeDesktop {
     protected WrapperBridge initWidget() {
         return new SwingWrapperBridge();
     }
-
-    @Override
-    protected NotificationBridge initNotification() {
-        return null;
-    }
-
 }

@@ -172,6 +172,7 @@ public interface UIApplicationDelegate {
      */
     @CMSelector("- (void)application:(UIApplication *)application \n"
             + "didFailToRegisterForRemoteNotificationsWithError:(NSError *)error;")
+    @Deprecated
     default void didFailToRegisterForRemoteNotificationsWithError(UIApplication app, NSError error) {
     }
 
@@ -277,6 +278,7 @@ public interface UIApplicationDelegate {
 
     @CMSelector("- (void)application:(UIApplication *)application \n"
             + "didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings;")
+    @Deprecated
     default void didRegisterUserNotificationSettings(UIApplication application, UIUserNotificationSettings notificationSettings) {
     }
 

@@ -32,6 +32,6 @@
 - (void) removeAllPendingNotificationRequests__;
 - (void) removeDeliveredNotificationsWithIdentifiers___java_util_List:(NSArray*) identifiers ;
 - (void) removePendingNotificationRequestsWithIdentifiers___java_util_List:(NSArray*) identifiers ;
-- (void) requestAuthorizationWithOptions___long_org_robovm_objc_block_VoidBlock2:(JAVA_LONG) options :(id<org_robovm_objc_block_VoidBlock2>) completionHandler ;
+- (void) requestAuthorizationWithOptions___int_org_robovm_objc_block_VoidBlock2:(int) options :(id<org_robovm_objc_block_VoidBlock2>) completionHandler ;
 - (void) setNotificationCategories___java_util_Set:(NSSet*) categories ;
 @end

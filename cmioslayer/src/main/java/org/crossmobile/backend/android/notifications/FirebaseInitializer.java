@@ -14,18 +14,17 @@
  * License along with CrossMobile; if not, please contact the
  * CrossMobile team at https://crossmobile.tech/contact/
  */
-package crossmobile.ios.usernotifications;
+package org.crossmobile.backend.android.notifications;
 
-import org.crossmobile.bridge.ann.CMEnum;
+import android.content.Context;
+import com.google.firebase.FirebaseApp;
+import org.crossmobile.bridge.CrossMobilePlugin;
+import org.crossmobile.bridge.Native;
 
-@CMEnum
-public final class UNAuthorizationOptions {
-
-    UNAuthorizationOptions() {
+public class FirebaseInitializer implements CrossMobilePlugin {
+    @Override
+    public void earlyInitialize(Object context) {
+        if (Native.isAndroid())
+            FirebaseApp.initializeApp((Context) context);
     }
-
-    public static final int Badge = (1 << 0);
-    public static final int Sound = (1 << 1);
-    public static final int Alert = (1 << 2);
-    public static final int CarPlay = (1 << 3);
 }

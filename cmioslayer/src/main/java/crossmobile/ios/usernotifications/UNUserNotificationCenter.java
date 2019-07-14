@@ -61,8 +61,12 @@ public class UNUserNotificationCenter extends NSObject {
 
     @CMSelector("- (void)requestAuthorizationWithOptions:(UNAuthorizationOptions)options "
             + "completionHandler:(void(^)(BOOL granted, NSError *error))completionHandler;")
-    public void requestAuthorizationWithOptions(long options, VoidBlock2<Boolean, NSError> completionHandler) {
-        settings = new UNNotificationSettings(UNAuthorizationStatus.Authorized, UNNotificationSetting.Disabled, UNNotificationSetting.Disabled, UNNotificationSetting.Disabled, options & UNAuthorizationOptions.Alert, UNAlertStyle.None, options & UNAuthorizationOptions.Badge, options & UNAuthorizationOptions.Sound);
+    public void requestAuthorizationWithOptions(int UNAuthorizationOptions, VoidBlock2<Boolean, NSError> completionHandler) {
+        settings = new UNNotificationSettings(UNAuthorizationStatus.Authorized, UNNotificationSetting.Disabled, UNNotificationSetting.Disabled, UNNotificationSetting.Disabled,
+                UNAuthorizationOptions & crossmobile.ios.usernotifications.UNAuthorizationOptions.Alert,
+                UNAlertStyle.None,
+                UNAuthorizationOptions & crossmobile.ios.usernotifications.UNAuthorizationOptions.Badge,
+                UNAuthorizationOptions & crossmobile.ios.usernotifications.UNAuthorizationOptions.Sound);
         Native.notification().requestAuthorizationWithOptions(completionHandler);
     }
 

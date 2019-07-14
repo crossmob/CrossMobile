@@ -14,20 +14,17 @@
  * License along with CrossMobile; if not, please contact the
  * CrossMobile team at https://crossmobile.tech/contact/
  */
+
 @CMLib(name = "cmnotifications", libs = "UserNotifications.framework", includes = "<UserNotifications/UserNotifications.h>",
         displayName = "Notifications Framework", description = "CrossMobile© Compatibility library for UserNotifications Framework",
         url = "https://crossmobile.tech/usernotifications/",
-        androidInjections = @CMAndroidInjections(appSection = ""
-                + "        <service android:name=\"org.crossmobile.backend.android.notifications.CrossMobileFirebaseMessagingService\">\n"
+        androidInjections = @CMAndroidInjections(appSection = "<service android:name=\"org.crossmobile.backend.android.notifications." + NAME + "\">\n"
                 + "            <intent-filter>\n"
                 + "                <action android:name=\"com.google.firebase.MESSAGING_EVENT\" />\n"
                 + "            </intent-filter>\n"
-                + "        </service>\n"
-                + "        <service android:name=\"org.crossmobile.backend.android.notifications.CrossMobileFirebaseInstanceIdService\">\n"
-                + "            <intent-filter>\n"
-                + "                <action android:name=\"com.google.firebase.INSTANCE_ID_EVENT\" />\n"
-                + "            </intent-filter>\n"
-                + "        </service>"),
+                + "        </service>"
+                , gradleExt = {"apply plugin: 'com.google.gms.google-services'", "com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true"}
+                , gradleBuildDep = "classpath 'com.google.gms:google-services:4.2.0'"),
         depends = @CMLibDepends(pluginName = "cmlocation"), target = API_NOUWP,
         params = @CMLibParam(property = "target", description = "Client target", context = XcodeTarget, meta = "com.apple.usernotifications.service")
 )
@@ -38,5 +35,6 @@ import org.crossmobile.bridge.ann.CMLib;
 import org.crossmobile.bridge.ann.CMLibDepends;
 import org.crossmobile.bridge.ann.CMLibParam;
 
+import static org.crossmobile.backend.android.notifications.CrossMobileFirebaseMessagingService.NAME;
 import static org.crossmobile.bridge.ann.CMLibParam.ParamContext.XcodeTarget;
 import static org.crossmobile.bridge.ann.CMLibTarget.API_NOUWP;

@@ -24,13 +24,13 @@ public final class UNErrorCode {
     UNErrorCode() {
     }
 
-    public static final long NotificationsNotAllowed = 1;
-    public static final long AttachmentInvalidURL = 100;
-    public static final long AttachmentUnrecognizedType = 101;
-    public static final long AttachmentInvalidFileSize = 102;
-    public static final long AttachmentNotInDataStore = 103;
-    public static final long AttachmentMoveIntoDataStoreFailed = 104;
-    public static final long AttachmentCorrupt = 105;
-    public static final long NotificationInvalidNoDate = 1400;
-    public static final long NotificationInvalidNoContent = 1401;
+    public static final int NotificationsNotAllowed = 1;
+    public static final int AttachmentInvalidURL = 100;
+    public static final int AttachmentUnrecognizedType = 101;
+    public static final int AttachmentInvalidFileSize = 102;
+    public static final int AttachmentNotInDataStore = 103;
+    public static final int AttachmentMoveIntoDataStoreFailed = 104;
+    public static final int AttachmentCorrupt = 105;
+    public static final int NotificationInvalidNoDate = 1400;
+    public static final int NotificationInvalidNoContent = 1401;
 }

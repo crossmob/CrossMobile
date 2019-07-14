@@ -215,7 +215,7 @@
 }
 
 // direct binding of: - (void)requestAuthorizationWithOptions:(UNAuthorizationOptions)options completionHandler:(void(^)(BOOL granted, NSError *error))completionHandler;
-- (void) requestAuthorizationWithOptions___long_org_robovm_objc_block_VoidBlock2:(JAVA_LONG) options :(id<org_robovm_objc_block_VoidBlock2>) completionHandler 
+- (void) requestAuthorizationWithOptions___int_org_robovm_objc_block_VoidBlock2:(int) options :(id<org_robovm_objc_block_VoidBlock2>) completionHandler 
 {
     [self requestAuthorizationWithOptions:options completionHandler:(completionHandler == JAVA_NULL ? nil : ^(BOOL granted, NSError* error) {
         java_lang_Boolean* granted$conv = [[java_lang_Boolean alloc] initWithBool:granted];

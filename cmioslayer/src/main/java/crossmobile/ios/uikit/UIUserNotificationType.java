@@ -51,4 +51,7 @@ public final class UIUserNotificationType {
     private UIUserNotificationType() {
     }
 
+    static int notificationTypeToAuthorizationOption(int notificationType) {
+        return notificationType & 0x7;
+    }
 }

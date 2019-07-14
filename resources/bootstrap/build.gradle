@@ -21,6 +21,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:15.0.1'
     implementation 'com.google.android.gms:play-services-basement:15.0.1'
     implementation 'com.google.firebase:firebase-iid:16.2.0'
+    implementation 'com.google.firebase:firebase-common:16.0.0'
 }
 
 buildscript {

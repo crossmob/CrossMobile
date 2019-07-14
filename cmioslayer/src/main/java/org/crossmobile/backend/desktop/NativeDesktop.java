@@ -71,4 +71,9 @@ public abstract class NativeDesktop extends Native {
     protected MessageBridge initMessage() {
         return new DesktopMessageBridge();
     }
+
+    @Override
+    protected NotificationBridge initNotification() {
+        return new DesktopNotificationsBridge();
+    }
 }

@@ -16,10 +16,10 @@
  */
 package org.crossmobile.backend.android.notifications;
 
-import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import crossmobile.ios.uikit.UIApplication;
+import org.crossmobile.bridge.Native;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,7 +27,7 @@ import java.util.Map;
 public class CrossMobileFirebaseMessagingService extends FirebaseMessagingService {
 
 
-    private static final String TAG = "CrossMobileFirebaseMessagingService";
+    public static final String NAME = "CrossMobileFirebaseMessagingService";
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -66,10 +66,10 @@ public class CrossMobileFirebaseMessagingService extends FirebaseMessagingServic
         if (remoteMessage.getData() != null)
             userInfo.putAll(remoteMessage.getData());
         // Handle data payload of FCM messages.
-        Log.d(TAG, "FCM Message Id: " + remoteMessage.getMessageId());
-        Log.d(TAG, "FCM Notification Message: " + remoteMessage.getNotification());
-        Log.d(TAG, "FCM Data Message: " + remoteMessage.getData());
-        Log.d(TAG, "userInfo " + userInfo);
+        Native.system().debug("FCM Message Id: " + remoteMessage.getMessageId(), null);
+        Native.system().debug("FCM Notification Message: " + remoteMessage.getNotification(), null);
+        Native.system().debug("FCM Data Message: " + remoteMessage.getData(), null);
+        Native.system().debug("userInfo " + userInfo, null);
         if (UIApplication.sharedApplication() != null && UIApplication.sharedApplication().delegate() != null)
             UIApplication.sharedApplication().delegate().didReceiveRemoteNotification(UIApplication.sharedApplication(), userInfo);
 

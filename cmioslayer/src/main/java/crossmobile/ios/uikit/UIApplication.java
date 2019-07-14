@@ -17,6 +17,7 @@
 package crossmobile.ios.uikit;
 
 import crossmobile.ios.foundation.*;
+import crossmobile.ios.usernotifications.UNUserNotificationCenter;
 import org.crossmobile.bind.graphics.UIStatusBar;
 import org.crossmobile.bind.system.SystemUtilities;
 import org.crossmobile.bridge.Native;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static crossmobile.ios.uikit.UIUserNotificationType.notificationTypeToAuthorizationOption;
 import static org.crossmobile.bridge.ann.CMParamMod.JAVA_PARAM;
 import static org.crossmobile.bridge.ann.CMParamMod.NATIVE_PARAM;
 
@@ -455,6 +457,13 @@ public class UIApplication extends UIResponder {
     @CMSelector("- (void)registerUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings;")
     public void registerUserNotificationSettings(UIUserNotificationSettings notificationSettings) {
         this.notificationSettings = this.currentUserNotificationSettings = notificationSettings;
+        UNUserNotificationCenter.currentNotificationCenter().requestAuthorizationWithOptions(notificationTypeToAuthorizationOption(notificationSettings.types()), (result, error) -> {
+            if (delegate != null)
+                if (result)
+                    delegate.didRegisterUserNotificationSettings(this, notificationSettings);
+                else
+                    delegate.didFailToRegisterForRemoteNotificationsWithError(this, error);
+        });
     }
 
     /**

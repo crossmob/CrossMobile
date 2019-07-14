@@ -47,7 +47,7 @@ fi
 echo >local.properties "sdk.dir=$ANDROID_SDK"
 gradle --no-daemon compileDebugSources  -g ./cache
 
-for art in support-v4 support-compat support-annotations play-services-base firebase-messaging play-services-tasks play-services-location play-services-maps play-services-basement firebase-iid ; do
+for art in support-v4 support-compat support-annotations play-services-base firebase-messaging play-services-tasks play-services-location play-services-maps play-services-basement firebase-iid firebase-common; do
     LOC=`find cache/caches/modules-2 -name $art'*' | grep /$art/ | grep [aj]ar`
     COUNT=`echo $LOC | wc -l`
     if [ $COUNT -ne 1 ] ; then

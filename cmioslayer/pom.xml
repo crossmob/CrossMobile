@@ -99,6 +99,11 @@
             <version>16.2.0</version>
         </dependency>
         <dependency>
+            <groupId>private.cm.com.google.firebase</groupId>
+            <artifactId>firebase-common</artifactId>
+            <version>16.0.0</version>
+        </dependency>
+        <dependency>
             <groupId>com.panayotis</groupId>
             <artifactId>commonevents</artifactId>
             <version>0.1.1</version>
