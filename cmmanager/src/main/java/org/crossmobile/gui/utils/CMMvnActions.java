@@ -96,7 +96,7 @@ public class CMMvnActions {
                                 + "You might need to upgrade your JDK version beyond 1.8.101,\n"
                                 + "or else Maven resolving issues will occur.",
                         "Error while executing Java target", JOptionPane.ERROR_MESSAGE));
-            if (line.toString().contains("platforms;android-26"))
+            if (line.toString().contains("platforms;android-"))
                 foundOldVersion.set(true);
             if (line.toString().contains("accept the SDK license agreements"))
                 solutionCallbackRef.set(() -> {

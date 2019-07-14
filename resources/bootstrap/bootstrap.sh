@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PREFIX=private.cm
+PREFIX=org.crossmobile.ca
 
 error () {
     echo "** ERROR **"
@@ -36,18 +36,18 @@ install_arr () {
 ### Main
 
 cd `dirname $0`
-if [ "$ANDROID_SDK" == "" ]; then
-    error "ANDROID_SDK should be defined first, exiting"
+if [ "$ANDROID_SDK_ROOT" == "" ]; then
+    error "ANDROID_SDK_ROOT should be defined first, exiting"
 fi
 
 # Accept license
-"$ANDROID_SDK/tools/bin/sdkmanager" --licenses
+"$ANDROID_SDK_ROOT/tools/bin/sdkmanager" --licenses
 
 # Run demo Android project, afterwards all artifacts should be here
-echo >local.properties "sdk.dir=$ANDROID_SDK"
-gradle --no-daemon compileDebugSources  -g ./cache
+# echo >local.properties "sdk.dir=$ANDROID_SDK_ROOT"
+gradle --no-daemon compileDebugSources --warning-mode all -g ./cache
 
-for art in support-v4 support-compat support-annotations play-services-base firebase-messaging play-services-tasks play-services-location play-services-maps play-services-basement firebase-iid firebase-common; do
+for art in core firebase-messaging firebase-iid firebase-common play-services-base play-services-tasks play-services-location play-services-maps play-services-basement; do
     LOC=`find cache/caches/modules-2 -name $art'*' | grep /$art/ | grep [aj]ar`
     COUNT=`echo $LOC | wc -l`
     if [ $COUNT -ne 1 ] ; then
@@ -56,6 +56,6 @@ for art in support-v4 support-compat support-annotations play-services-base fire
     install_arr "$LOC"
 done
 
-install "$ANDROID_SDK/platforms/android-26/android.jar" $PREFIX.com.google.android android 26
+install "$ANDROID_SDK_ROOT/platforms/android-28/android.jar" $PREFIX.com.google.android android 28
 
-rm -rf cache build local.properties
+rm -rf cache build local.properties .gradle

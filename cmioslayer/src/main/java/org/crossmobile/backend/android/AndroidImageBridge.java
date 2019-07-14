@@ -27,8 +27,6 @@ import crossmobile.ios.coregraphics.CGImage;
 import org.crossmobile.bind.graphics.AbstractImageBridge;
 import org.crossmobile.bind.graphics.NativeBitmap;
 import org.crossmobile.bridge.Native;
-import org.crossmobile.bridge.ann.CMLib;
-import org.crossmobile.bridge.ann.CMLibDepends;
 import org.robovm.objc.block.VoidBlock1;
 
 import java.io.*;
@@ -36,11 +34,7 @@ import java.io.*;
 import static android.app.Activity.RESULT_OK;
 import static org.crossmobile.bind.graphics.ImageBridgeConstants.*;
 import static org.crossmobile.bind.system.SystemUtilities.closeR;
-import static org.crossmobile.bridge.ann.CMLibTarget.ANDROID;
 
-@CMLib(depends = @CMLibDepends(groupId = "com.android.support",
-        pluginName = "support-core-utils",
-        version = "26.1.0", target = ANDROID, isCMPlugin = false))
 public class AndroidImageBridge extends AbstractImageBridge {
 
     private static final int IMAGE_STREAM_BUFFER_SIZE = 16384;

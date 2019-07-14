@@ -44,64 +44,54 @@
             <version>1.0.1</version>
         </dependency>
         <dependency>
-            <groupId>private.cm.com.google.android</groupId>
+            <groupId>org.crossmobile.ca.com.google.android</groupId>
             <artifactId>android</artifactId>
-            <version>26</version>
+            <version>28</version>
         </dependency>
         <dependency>
-            <groupId>private.cm.com.android.support</groupId>
-            <artifactId>support-v4</artifactId>
-            <version>28.0.0</version>
+            <groupId>org.crossmobile.ca.androidx.core</groupId>
+            <artifactId>core</artifactId>
+            <version>1.0.2</version>
         </dependency>
         <dependency>
-            <groupId>private.cm.com.android.support</groupId>
-            <artifactId>support-compat</artifactId>
-            <version>28.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>private.cm.com.android.support</groupId>
-            <artifactId>support-annotations</artifactId>
-            <version>28.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>private.cm.com.google.android.gms</groupId>
-            <artifactId>play-services-base</artifactId>
-            <version>15.0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>private.cm.com.google.firebase</groupId>
+            <groupId>org.crossmobile.ca.com.google.firebase</groupId>
             <artifactId>firebase-messaging</artifactId>
-            <version>17.1.0</version>
+            <version>19.0.1</version>
         </dependency>
         <dependency>
-            <groupId>private.cm.com.google.android.gms</groupId>
-            <artifactId>play-services-tasks</artifactId>
-            <version>15.0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>private.cm.com.google.android.gms</groupId>
-            <artifactId>play-services-location</artifactId>
-            <version>15.0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>private.cm.com.google.android.gms</groupId>
-            <artifactId>play-services-maps</artifactId>
-            <version>15.0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>private.cm.com.google.android.gms</groupId>
-            <artifactId>play-services-basement</artifactId>
-            <version>15.0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>private.cm.com.google.firebase</groupId>
+            <groupId>org.crossmobile.ca.com.google.firebase</groupId>
             <artifactId>firebase-iid</artifactId>
-            <version>16.2.0</version>
+            <version>19.0.1</version>
         </dependency>
         <dependency>
-            <groupId>private.cm.com.google.firebase</groupId>
+            <groupId>org.crossmobile.ca.com.google.firebase</groupId>
             <artifactId>firebase-common</artifactId>
-            <version>16.0.0</version>
+            <version>18.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.crossmobile.ca.com.google.android.gms</groupId>
+            <artifactId>play-services-base</artifactId>
+            <version>17.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.crossmobile.ca.com.google.android.gms</groupId>
+            <artifactId>play-services-tasks</artifactId>
+            <version>17.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.crossmobile.ca.com.google.android.gms</groupId>
+            <artifactId>play-services-location</artifactId>
+            <version>17.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.crossmobile.ca.com.google.android.gms</groupId>
+            <artifactId>play-services-maps</artifactId>
+            <version>17.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.crossmobile.ca.com.google.android.gms</groupId>
+            <artifactId>play-services-basement</artifactId>
+            <version>17.0.0</version>
         </dependency>
         <dependency>
             <groupId>com.panayotis</groupId>

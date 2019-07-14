@@ -107,7 +107,7 @@
                         <artifactId>gradle-maven-plugin</artifactId>
                         <version>1.0.10</version>
                         <configuration>
-                            <gradleVersion>4.7</gradleVersion>
+                            <gradleVersion>5.4.1</gradleVersion>
                         </configuration>
                         <executions>
                             <execution>
@@ -119,6 +119,9 @@
                                     <tasks>
                                         <task>${cm.gradle.target}</task>
                                     </tasks>
+                                    <args>
+                                        <arg>--stacktrace</arg>
+                                    </args>
                                 </configuration>
                             </execution>
                         </executions>

@@ -19,9 +19,11 @@ package org.crossmobile.backend.android;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
-import android.support.v4.content.FileProvider;
+import androidx.core.content.FileProvider;
 import org.crossmobile.bind.io.AbstractFileBridge;
 import org.crossmobile.bridge.Native;
+import org.crossmobile.bridge.ann.CMLib;
+import org.crossmobile.bridge.ann.CMLibDepends;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,6 +33,7 @@ import java.net.URI;
 import static org.crossmobile.bind.system.SystemUtilities.URIEncode;
 import static org.crossmobile.bind.system.SystemUtilities.closeR;
 
+@CMLib(depends = @CMLibDepends(groupId = "androidx.core", pluginName = "core", version = "1.0.2", isCMPlugin = false))
 public class AndroidFileBridge extends AbstractFileBridge {
 
     private static String homepath;

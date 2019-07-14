@@ -4,4 +4,4 @@ java.initializer=
 objc.pods=
 android.permissions=
 android.injections=
-android.extra.dependencies=com.android.support\:support-core-utils\:26.1.0\:
+android.extra.dependencies=androidx.core\:core\:1.0.2\:

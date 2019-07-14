@@ -167,7 +167,7 @@ public class Templates {
             + "<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\" android:versionCode=\"" + VERSIONCODE_ANCHOR + "\" android:versionName=\"" + VERSION_ANCHOR + "\" package=\"" + BUNDLEID_ANCHOR + "\">\n"
             + "    <application android:hardwareAccelerated=\"true\" android:name=\"" + BUNDLEID_ANCHOR + "." + CURRENT_APPLICATION + "\" android:icon=\"@mipmap/" + ANDROID_ICON + "\"  android:label=\"" + DISPLAYNAME_ANCHOR + "\" android:theme=\"@style/Theme.NoBackground.Fullscreen\">\n"
             + "        <provider\n"
-            + "            android:name=\"android.support.v4.content.FileProvider\"\n"
+            + "            android:name=\"androidx.core.content.FileProvider\"\n"
             + "            android:authorities=\"" + BUNDLEID_ANCHOR + ".provider\"\n"
             + "            android:exported=\"false\"\n"
             + "            android:grantUriPermissions=\"true\">\n"

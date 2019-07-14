@@ -36,9 +36,6 @@ public class AndroidPermission {
     //PHONE
     public final static String READ_PHONE_STATE = Manifest.permission.READ_PHONE_STATE;
     public final static String CALL_PHONE = Manifest.permission.CALL_PHONE;
-    //    Api level 26 (must be Runtime)
-//    public final static String READ_PHONE_NUMBERS = Manifest.permission.READ_PHONE_NUMBERS;
-//    public final static String ANSWER_PHONE_CALLS = Manifest.permission.ANSWER_PHONE_CALLS;
     public final static String READ_CALL_LOG = Manifest.permission.READ_CALL_LOG;
     public final static String WRITE_CALL_LOG = Manifest.permission.WRITE_CALL_LOG;
     public final static String ADD_VOICEMAIL = Manifest.permission.ADD_VOICEMAIL;

@@ -17,21 +17,16 @@
 package org.crossmobile.backend.android;
 
 import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import org.crossmobile.bridge.Native;
-import org.crossmobile.bridge.ann.CMLib;
-import org.crossmobile.bridge.ann.CMLibDepends;
 import org.crossmobile.bridge.system.BaseUtils;
 import org.robovm.objc.block.VoidBlock1;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 
-import static org.crossmobile.bridge.ann.CMLibTarget.ANDROID;
-
-@CMLib(target = ANDROID, name = "cmioslayer", depends = @CMLibDepends(groupId = "com.android.support",
-        pluginName = "support-core-utils",
-        version = "26.1.0", isCMPlugin = false))
 public class AndroidPermissions {
     private final Collection<String> alreadyAskedForPermission = new HashSet<>();
 
