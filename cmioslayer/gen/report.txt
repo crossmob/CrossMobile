@@ -798,6 +798,7 @@ org/crossmobile/bridge/SystemBridge.class v8
 org/crossmobile/bridge/UIGuidelinesBridge.class v8
 org/crossmobile/bridge/WrapperBridge.class v8
 org/crossmobile/bridge/WrapperMapBridge.class v8
+org/crossmobile/bridge/ann/CMAndroidInjections.class v8
 org/crossmobile/bridge/ann/CMBlock.class v8
 org/crossmobile/bridge/ann/CMBundle.class v8
 org/crossmobile/bridge/ann/CMConstructor.class v8
@@ -2144,6 +2145,7 @@ org/crossmobile/backend/desktop/Chassis.class v8
 org/crossmobile/backend/desktop/a.class v8
 org/crossmobile/backend/desktop/aa.class v8
 org/crossmobile/backend/desktop/ab.class v8
+org/crossmobile/backend/desktop/ac.class v8
 org/crossmobile/backend/desktop/b.class v8
 org/crossmobile/backend/desktop/c$a$1.class v8
 org/crossmobile/backend/desktop/c$a.class v8
@@ -2220,14 +2222,14 @@ org/crossmobile/backend/desktop/skin/skin.dtd
 org/crossmobile/backend/desktop/skin/system-l.xml
 org/crossmobile/backend/desktop/skin/system-o.xml
 org/crossmobile/backend/desktop/skin/system-s.xml
-org/crossmobile/backend/desktop/t$1.class v8
 org/crossmobile/backend/desktop/t.class v8
+org/crossmobile/backend/desktop/u$1.class v8
 org/crossmobile/backend/desktop/u.class v8
 org/crossmobile/backend/desktop/v.class v8
-org/crossmobile/backend/desktop/w$a.class v8
 org/crossmobile/backend/desktop/w.class v8
-org/crossmobile/backend/desktop/x$1.class v8
+org/crossmobile/backend/desktop/x$a.class v8
 org/crossmobile/backend/desktop/x.class v8
+org/crossmobile/backend/desktop/y$1.class v8
 org/crossmobile/backend/desktop/y.class v8
 org/crossmobile/backend/desktop/z.class v8
 org/crossmobile/backend/swing/NativeSwing.class v8
@@ -3583,7 +3585,6 @@ crossmobile/ios/usernotifications/UNPushNotificationTrigger.class v8
 crossmobile/ios/usernotifications/UNTimeIntervalNotificationTrigger.class v8
 crossmobile/ios/usernotifications/UNUserNotificationCenter.class v8
 crossmobile/ios/usernotifications/UNUserNotificationCenterDelegate.class v8
-org/crossmobile/backend/android/p$1.class v8
 org/crossmobile/backend/android/p.class v8
 
 Creating file cmplugin-rvm-cmnotifications-<VERSION>.jar

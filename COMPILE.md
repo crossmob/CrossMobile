@@ -3,7 +3,7 @@
 ## Requirements:
 **Please note that in order to use the iOS backend, a macOS machine is required. Likewise for the UWP backend.**
 
-- gradle version 5.*
+- gradle version 5.x
 - maven
 - unzip
 - nuget
