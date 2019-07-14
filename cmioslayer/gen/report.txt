@@ -2868,24 +2868,6 @@ crossmobile/rt/StrongReference.class v8
 crossmobile/rt/UnimplementedOptionalException.class v8
 org/crossmobile/a$a.class v1.5
 org/crossmobile/a.class v1.5
-org/crossmobile/am.class v8
-org/crossmobile/an$1.class v8
-org/crossmobile/an$2$1.class v8
-org/crossmobile/an$2.class v8
-org/crossmobile/an$3$1.class v8
-org/crossmobile/an$3$2.class v8
-org/crossmobile/an$3.class v8
-org/crossmobile/an$a.class v8
-org/crossmobile/an$b.class v8
-org/crossmobile/an$c.class v8
-org/crossmobile/an$d.class v8
-org/crossmobile/an$e.class v8
-org/crossmobile/an.class v8
-org/crossmobile/ao.class v8
-org/crossmobile/ap.class v8
-org/crossmobile/aq.class v8
-org/crossmobile/ar.class v8
-org/crossmobile/as.class v8
 org/crossmobile/at$a.class v8
 org/crossmobile/at.class v8
 org/crossmobile/au$a.class v8
@@ -2901,9 +2883,11 @@ org/crossmobile/b$1.class v1.5
 org/crossmobile/b.class v1.5
 org/crossmobile/ba.class v8
 org/crossmobile/backend/android/ActivityLifecycleListener.class v8
+org/crossmobile/backend/android/ActivityPermissionListener.class v8
 org/crossmobile/backend/android/ActivityResultListener.class v8
 org/crossmobile/backend/android/ActivityStateListener.class v8
 org/crossmobile/backend/android/AndroidGraphicsBridge.class v8
+org/crossmobile/backend/android/ApplicationStateListener.class v8
 org/crossmobile/backend/android/MainActivity$1.class v8
 org/crossmobile/backend/android/MainActivity$2.class v8
 org/crossmobile/backend/android/MainActivity$3.class v8
@@ -2913,44 +2897,42 @@ org/crossmobile/backend/android/MainView.class v8
 org/crossmobile/backend/android/NativeAndroid$1.class v8
 org/crossmobile/backend/android/NativeAndroid.class v8
 org/crossmobile/backend/android/a.class v8
-org/crossmobile/backend/android/aa.class v8
-org/crossmobile/backend/android/ac.class v8
-org/crossmobile/backend/android/ad$1.class v8
-org/crossmobile/backend/android/ad$2.class v8
-org/crossmobile/backend/android/ad.class v8
+org/crossmobile/backend/android/ab$1.class v8
+org/crossmobile/backend/android/ab$2.class v8
+org/crossmobile/backend/android/ab.class v8
 org/crossmobile/backend/android/b.class v8
 org/crossmobile/backend/android/c.class v8
+org/crossmobile/backend/android/d$1.class v8
+org/crossmobile/backend/android/d$a.class v8
 org/crossmobile/backend/android/d.class v8
-org/crossmobile/backend/android/e$1.class v8
 org/crossmobile/backend/android/e$a.class v8
 org/crossmobile/backend/android/e.class v8
-org/crossmobile/backend/android/f$a.class v8
+org/crossmobile/backend/android/f$1.class v8
+org/crossmobile/backend/android/f$2.class v8
+org/crossmobile/backend/android/f$3.class v8
 org/crossmobile/backend/android/f.class v8
-org/crossmobile/backend/android/g$1.class v8
-org/crossmobile/backend/android/g$2.class v8
-org/crossmobile/backend/android/g$3.class v8
-org/crossmobile/backend/android/g.class v8
-org/crossmobile/backend/android/i.class v8
-org/crossmobile/backend/android/m$a.class v8
+org/crossmobile/backend/android/h.class v8
+org/crossmobile/backend/android/l$a.class v8
+org/crossmobile/backend/android/l.class v8
 org/crossmobile/backend/android/m.class v8
+org/crossmobile/backend/android/n$1.class v8
 org/crossmobile/backend/android/n.class v8
-org/crossmobile/backend/android/o$1.class v8
-org/crossmobile/backend/android/o.class v8
-org/crossmobile/backend/android/q$1.class v8
-org/crossmobile/backend/android/q.class v8
+org/crossmobile/backend/android/p$1.class v8
+org/crossmobile/backend/android/p.class v8
+org/crossmobile/backend/android/r.class v8
 org/crossmobile/backend/android/s.class v8
 org/crossmobile/backend/android/t.class v8
+org/crossmobile/backend/android/u$1.class v8
 org/crossmobile/backend/android/u.class v8
-org/crossmobile/backend/android/v$1.class v8
 org/crossmobile/backend/android/v.class v8
+org/crossmobile/backend/android/w$a.class v8
 org/crossmobile/backend/android/w.class v8
-org/crossmobile/backend/android/x$a.class v8
 org/crossmobile/backend/android/x.class v8
+org/crossmobile/backend/android/y$1.class v8
+org/crossmobile/backend/android/y$a$1.class v8
+org/crossmobile/backend/android/y$a$2.class v8
+org/crossmobile/backend/android/y$a.class v8
 org/crossmobile/backend/android/y.class v8
-org/crossmobile/backend/android/z$1.class v8
-org/crossmobile/backend/android/z$a$1.class v8
-org/crossmobile/backend/android/z$a$2.class v8
-org/crossmobile/backend/android/z$a.class v8
 org/crossmobile/backend/android/z.class v8
 org/crossmobile/bb$a.class v8
 org/crossmobile/bb.class v8
@@ -3295,13 +3277,13 @@ crossmobile/ios/mapkit/MKPlacemark.class v8
 crossmobile/ios/mapkit/MKReverseGeocoder.class v8
 crossmobile/ios/mapkit/MKReverseGeocoderDelegate.class v8
 crossmobile/ios/mapkit/MKUserLocation.class v8
-org/crossmobile/backend/android/ab.class v8
-org/crossmobile/backend/android/j$1.class v8
-org/crossmobile/backend/android/j$2.class v8
+org/crossmobile/backend/android/aa.class v8
+org/crossmobile/backend/android/i$1.class v8
+org/crossmobile/backend/android/i$2.class v8
+org/crossmobile/backend/android/i.class v8
+org/crossmobile/backend/android/j$a$1.class v8
+org/crossmobile/backend/android/j$a.class v8
 org/crossmobile/backend/android/j.class v8
-org/crossmobile/backend/android/k$a$1.class v8
-org/crossmobile/backend/android/k$a.class v8
-org/crossmobile/backend/android/k.class v8
 
 Creating file cmplugin-rvm-cmlocation-<VERSION>.jar
 
@@ -3413,8 +3395,8 @@ crossmobile/ios/messageui/MFMailComposeViewControllerDelegate.class v8
 crossmobile/ios/messageui/MFMessageComposeViewController.class v8
 crossmobile/ios/messageui/MFMessageComposeViewControllerDelegate.class v8
 crossmobile/ios/messageui/MessageComposeResult.class v8
-org/crossmobile/backend/android/l$1.class v8
-org/crossmobile/backend/android/l.class v8
+org/crossmobile/backend/android/k$1.class v8
+org/crossmobile/backend/android/k.class v8
 
 Creating file cmplugin-rvm-cmmessages-<VERSION>.jar
 
@@ -3585,7 +3567,9 @@ crossmobile/ios/usernotifications/UNPushNotificationTrigger.class v8
 crossmobile/ios/usernotifications/UNTimeIntervalNotificationTrigger.class v8
 crossmobile/ios/usernotifications/UNUserNotificationCenter.class v8
 crossmobile/ios/usernotifications/UNUserNotificationCenterDelegate.class v8
-org/crossmobile/backend/android/p.class v8
+org/crossmobile/backend/android/notifications/CrossMobileFirebaseMessagingService.class v8
+org/crossmobile/backend/android/notifications/FirebaseInitializer.class v8
+org/crossmobile/backend/android/o.class v8
 
 Creating file cmplugin-rvm-cmnotifications-<VERSION>.jar
 
@@ -3673,7 +3657,25 @@ crossmobile/ios/storekit/SKProductsRequestDelegate.class v8
 crossmobile/ios/storekit/SKProductsResponse.class v8
 crossmobile/ios/storekit/SKRequest.class v8
 crossmobile/ios/storekit/SKRequestDelegate.class v8
-org/crossmobile/backend/android/h.class v8
+org/crossmobile/am.class v8
+org/crossmobile/an$1.class v8
+org/crossmobile/an$2$1.class v8
+org/crossmobile/an$2.class v8
+org/crossmobile/an$3$1.class v8
+org/crossmobile/an$3$2.class v8
+org/crossmobile/an$3.class v8
+org/crossmobile/an$a.class v8
+org/crossmobile/an$b.class v8
+org/crossmobile/an$c.class v8
+org/crossmobile/an$d.class v8
+org/crossmobile/an$e.class v8
+org/crossmobile/an.class v8
+org/crossmobile/ao.class v8
+org/crossmobile/ap.class v8
+org/crossmobile/aq.class v8
+org/crossmobile/ar.class v8
+org/crossmobile/as.class v8
+org/crossmobile/backend/android/g.class v8
 
 Creating file cmplugin-rvm-cmpayment-<VERSION>.jar
 
@@ -3814,10 +3816,10 @@ crossmobile/ios/touchid/LACredentialType.class v8
 crossmobile/ios/touchid/LAError.class v8
 crossmobile/ios/touchid/LAPolicy.class v8
 crossmobile/ios/touchid/LATouchIDAuthentication.class v8
-org/crossmobile/backend/android/r$1.class v8
-org/crossmobile/backend/android/r$a.class v8
-org/crossmobile/backend/android/r$b.class v8
-org/crossmobile/backend/android/r.class v8
+org/crossmobile/backend/android/q$1.class v8
+org/crossmobile/backend/android/q$a.class v8
+org/crossmobile/backend/android/q$b.class v8
+org/crossmobile/backend/android/q.class v8
 
 Creating file cmplugin-rvm-cmtouchid-<VERSION>.jar
 

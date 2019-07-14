@@ -1422,7 +1422,7 @@ org.crossmobile.build.utils.Config -> org.crossmobile.build.et:
     java.lang.String ANDROID_BASEPATH -> n
     java.lang.String CROSSMOBILE_GRADLE -> o
     java.lang.String ANDROID_GENERATED_CMSOURCES -> p
-    36:63:void <clinit>() -> <clinit>
+    32:54:void <clinit>() -> <clinit>
 org.crossmobile.build.utils.DependencyDigger -> org.crossmobile.build.eu:
     org.crossmobile.utils.plugin.DependencyItem root -> a
     44:52:org.crossmobile.utils.plugin.DependencyItem getDependencyTree(org.apache.maven.project.MavenProject,org.apache.maven.execution.MavenSession,org.apache.maven.shared.dependency.graph.DependencyGraphBuilder,java.util.function.Function,boolean) -> a

@@ -9030,8 +9030,8 @@ org.crossmobile.backend.android.ActivityLifecycleListener -> org.crossmobile.bac
     49:49:void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
     52:52:void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
     55:55:void onOrientationChanged(int) -> onOrientationChanged
-org.crossmobile.backend.android.ActivityPermissionListener -> org.crossmobile.backend.android.a:
-    void result(java.lang.String[],int[]) -> a
+org.crossmobile.backend.android.ActivityPermissionListener -> org.crossmobile.backend.android.ActivityPermissionListener:
+    void result(java.lang.String[],int[]) -> result
 org.crossmobile.backend.android.ActivityResultListener -> org.crossmobile.backend.android.ActivityResultListener:
     void result(int,android.content.Intent) -> result
 org.crossmobile.backend.android.ActivityStateListener -> org.crossmobile.backend.android.ActivityStateListener:
@@ -9066,13 +9066,13 @@ org.crossmobile.backend.android.ActivityStateListener -> org.crossmobile.backend
     93:93:void lambda$onRequestPermissionsResult$1(org.crossmobile.backend.android.ActivityPermissionListener,java.lang.String[],int[]) -> a
     86:86:void lambda$onActivityResult$0(org.crossmobile.backend.android.ActivityResultListener,int,android.content.Intent) -> a
     34:34:void <clinit>() -> <clinit>
-org.crossmobile.backend.android.AndroidBitmap -> org.crossmobile.backend.android.b:
+org.crossmobile.backend.android.AndroidBitmap -> org.crossmobile.backend.android.a:
     android.graphics.Bitmap bitmap -> a
     30:32:void <init>(android.graphics.Bitmap) -> <init>
     36:36:int getWidth() -> a
     41:41:int getHeight() -> b
     46:46:int getOrientation() -> c
-org.crossmobile.backend.android.AndroidDrawableMetrics -> org.crossmobile.backend.android.c:
+org.crossmobile.backend.android.AndroidDrawableMetrics -> org.crossmobile.backend.android.b:
     int orientationTranslateX -> a
     int orientationTranslateY -> b
     double orientationRotate -> c
@@ -9099,18 +9099,18 @@ org.crossmobile.backend.android.AndroidDrawableMetrics -> org.crossmobile.backen
     157:157:int getInsetLeft() -> f
     161:166:void updateInsets(int,int,int,int) -> a
     169:171:android.util.DisplayMetrics displayMetrics() -> g
-org.crossmobile.backend.android.AndroidFileBridge -> org.crossmobile.backend.android.d:
+org.crossmobile.backend.android.AndroidFileBridge -> org.crossmobile.backend.android.c:
     java.lang.String homepath -> a
-    34:34:void <init>() -> <init>
-    41:50:java.lang.String getHomePath() -> a
-    56:73:int getResourceID(java.lang.String,java.lang.String) -> a
-    79:79:java.lang.String getApplicationPrefix() -> getApplicationPrefix
-    84:84:java.lang.String getSystemPrefix() -> getSystemPrefix
-    89:89:java.io.InputStream getApplicationFileStream(java.lang.String) -> a
-    95:121:boolean fileExists(java.lang.String) -> fileExists
-    125:125:android.net.Uri getExternalUri(android.net.Uri) -> a
-    129:131:android.net.Uri getExternalUri(java.io.File) -> a
-org.crossmobile.backend.android.AndroidFont -> org.crossmobile.backend.android.e:
+    37:37:void <init>() -> <init>
+    44:53:java.lang.String getHomePath() -> a
+    59:76:int getResourceID(java.lang.String,java.lang.String) -> a
+    82:82:java.lang.String getApplicationPrefix() -> getApplicationPrefix
+    87:87:java.lang.String getSystemPrefix() -> getSystemPrefix
+    92:92:java.io.InputStream getApplicationFileStream(java.lang.String) -> a
+    98:124:boolean fileExists(java.lang.String) -> fileExists
+    128:128:android.net.Uri getExternalUri(android.net.Uri) -> a
+    132:134:android.net.Uri getExternalUri(java.io.File) -> a
+org.crossmobile.backend.android.AndroidFont -> org.crossmobile.backend.android.d:
     android.graphics.Paint fill -> c
     java.util.Map font_map -> d
     java.lang.String family -> e
@@ -9130,8 +9130,8 @@ org.crossmobile.backend.android.AndroidFont -> org.crossmobile.backend.android.e
     170:170:java.util.List families() -> h
     174:175:java.util.List fontsOfFamily(java.lang.String) -> a
     35:35:void <clinit>() -> <clinit>
-org.crossmobile.backend.android.AndroidFont$1 -> org.crossmobile.backend.android.e$1:
-org.crossmobile.backend.android.AndroidFont$FontInfo -> org.crossmobile.backend.android.e$a:
+org.crossmobile.backend.android.AndroidFont$1 -> org.crossmobile.backend.android.d$1:
+org.crossmobile.backend.android.AndroidFont$FontInfo -> org.crossmobile.backend.android.d$a:
     boolean bold -> a
     boolean italic -> b
     android.graphics.Typeface tf -> c
@@ -9170,7 +9170,7 @@ org.crossmobile.backend.android.AndroidGraphicsBridge -> org.crossmobile.backend
     32:32:org.crossmobile.bind.graphics.GraphicsContext newGraphicsContext(java.lang.Object,boolean) -> newGraphicsContext
     82:82:void lambda$requestRepaint$0() -> b
     34:34:void <clinit>() -> <clinit>
-org.crossmobile.backend.android.AndroidGraphicsContext -> org.crossmobile.backend.android.f:
+org.crossmobile.backend.android.AndroidGraphicsContext -> org.crossmobile.backend.android.e:
     android.graphics.Canvas cv -> a
     boolean isLive -> b
     android.graphics.Rect buffer_text_bounds -> c
@@ -9221,7 +9221,7 @@ org.crossmobile.backend.android.AndroidGraphicsContext -> org.crossmobile.backen
     29:29:android.graphics.Paint access$202(org.crossmobile.backend.android.AndroidGraphicsContext,android.graphics.Paint) -> b
     29:29:android.graphics.Typeface access$302(org.crossmobile.backend.android.AndroidGraphicsContext,android.graphics.Typeface) -> a
     29:29:float access$402(org.crossmobile.backend.android.AndroidGraphicsContext,float) -> a
-org.crossmobile.backend.android.AndroidGraphicsContext$GState -> org.crossmobile.backend.android.f$a:
+org.crossmobile.backend.android.AndroidGraphicsContext$GState -> org.crossmobile.backend.android.e$a:
     int savedState -> b
     android.graphics.Paint _draw_paint -> c
     android.graphics.Paint _fill_paint -> d
@@ -9231,7 +9231,7 @@ org.crossmobile.backend.android.AndroidGraphicsContext$GState -> org.crossmobile
     268:274:void <init>(org.crossmobile.backend.android.AndroidGraphicsContext) -> <init>
     277:282:void apply() -> a
     260:260:void access$000(org.crossmobile.backend.android.AndroidGraphicsContext$GState) -> a
-org.crossmobile.backend.android.AndroidImageBridge -> org.crossmobile.backend.android.g:
+org.crossmobile.backend.android.AndroidImageBridge -> org.crossmobile.backend.android.f:
     38:38:void <init>() -> <init>
     45:73:org.crossmobile.bind.graphics.NativeBitmap retrieve(java.lang.String) -> retrieve
     79:95:int findOrientationDegreesAndCloseStream(java.lang.String) -> a
@@ -9245,22 +9245,22 @@ org.crossmobile.backend.android.AndroidImageBridge -> org.crossmobile.backend.an
     216:249:void requestPhotoAlbum(org.robovm.objc.block.VoidBlock1) -> requestPhotoAlbum
     253:262:boolean supportsCamera(org.crossmobile.bridge.ImageBridge$ImageSource) -> supportsCamera
     189:211:void lambda$requestCamera$0(org.robovm.objc.block.VoidBlock1,java.util.Collection) -> a
-org.crossmobile.backend.android.AndroidImageBridge$1 -> org.crossmobile.backend.android.g$1:
+org.crossmobile.backend.android.AndroidImageBridge$1 -> org.crossmobile.backend.android.f$1:
     java.lang.String val$rawPhotoPath -> a
     java.io.File val$photoFile -> b
     org.robovm.objc.block.VoidBlock1 val$filepathResult -> c
     org.crossmobile.backend.android.AndroidImageBridge this$0 -> d
     196:196:void <init>(org.crossmobile.backend.android.AndroidImageBridge,java.lang.String,java.io.File,org.robovm.objc.block.VoidBlock1) -> <init>
     199:206:void result(int,android.content.Intent) -> result
-org.crossmobile.backend.android.AndroidImageBridge$2 -> org.crossmobile.backend.android.g$2:
+org.crossmobile.backend.android.AndroidImageBridge$2 -> org.crossmobile.backend.android.f$2:
     org.robovm.objc.block.VoidBlock1 val$result -> a
     org.crossmobile.backend.android.AndroidImageBridge this$0 -> b
     216:216:void <init>(org.crossmobile.backend.android.AndroidImageBridge,org.robovm.objc.block.VoidBlock1) -> <init>
     219:234:void result(int,android.content.Intent) -> result
-org.crossmobile.backend.android.AndroidImageBridge$3 -> org.crossmobile.backend.android.g$3:
+org.crossmobile.backend.android.AndroidImageBridge$3 -> org.crossmobile.backend.android.f$3:
     int[] $SwitchMap$org$crossmobile$bridge$ImageBridge$ImageSource -> a
     253:253:void <clinit>() -> <clinit>
-org.crossmobile.backend.android.AndroidInAppBridge -> org.crossmobile.backend.android.h:
+org.crossmobile.backend.android.AndroidInAppBridge -> org.crossmobile.backend.android.g:
     org.crossmobile.backend.android.billing.IabHelper billingHelper -> a
     boolean initialized -> b
     int reqCode -> c
@@ -9285,7 +9285,7 @@ org.crossmobile.backend.android.AndroidInAppBridge -> org.crossmobile.backend.an
     91:109:void lambda$requestValidProducts$1(crossmobile.ios.foundation.NSSelector,java.util.Set,org.crossmobile.backend.android.billing.IabResult,org.crossmobile.backend.android.billing.Inventory) -> a
     86:87:void lambda$requestValidProducts$0(crossmobile.ios.foundation.NSSelector,crossmobile.ios.uikit.UIAlertView,int) -> b
     64:64:void <clinit>() -> <clinit>
-org.crossmobile.backend.android.AndroidLifecycleBridge -> org.crossmobile.backend.android.i:
+org.crossmobile.backend.android.AndroidLifecycleBridge -> org.crossmobile.backend.android.h:
     java.util.ArrayList activitylist -> b
     java.util.ArrayList locationlist -> c
     boolean isQuitting -> d
@@ -9296,7 +9296,7 @@ org.crossmobile.backend.android.AndroidLifecycleBridge -> org.crossmobile.backen
     69:72:long currentAgeInMillis() -> currentAgeInMillis
     81:81:void splashTerminated() -> splashTerminated
     54:54:void lambda$quit$0(org.crossmobile.backend.android.MainActivity,java.lang.String) -> a
-org.crossmobile.backend.android.AndroidLocation -> org.crossmobile.backend.android.j:
+org.crossmobile.backend.android.AndroidLocation -> org.crossmobile.backend.android.i:
     android.location.LocationManager locationManager -> a
     com.google.android.gms.location.LocationRequest mLocationRequest -> b
     com.google.android.gms.location.FusedLocationProviderClient mFusedLocationClient -> c
@@ -9314,16 +9314,16 @@ org.crossmobile.backend.android.AndroidLocation -> org.crossmobile.backend.andro
     91:93:void lambda$startSysUpdating$0(java.util.Collection) -> a
     34:34:org.crossmobile.bridge.LocationBridge$LocationChangeDelegate access$000(org.crossmobile.backend.android.AndroidLocation) -> a
     101:101:void <clinit>() -> <clinit>
-org.crossmobile.backend.android.AndroidLocation$1 -> org.crossmobile.backend.android.j$1:
+org.crossmobile.backend.android.AndroidLocation$1 -> org.crossmobile.backend.android.i$1:
     org.crossmobile.backend.android.AndroidLocation this$0 -> a
     39:39:void <init>(org.crossmobile.backend.android.AndroidLocation) -> <init>
     42:47:void onLocationResult(com.google.android.gms.location.LocationResult) -> onLocationResult
-org.crossmobile.backend.android.AndroidLocation$2 -> org.crossmobile.backend.android.j$2:
+org.crossmobile.backend.android.AndroidLocation$2 -> org.crossmobile.backend.android.i$2:
     org.crossmobile.backend.android.AndroidLocation this$0 -> a
     53:53:void <init>(org.crossmobile.backend.android.AndroidLocation) -> <init>
     56:57:void onPause() -> onPause
     61:62:void onResume() -> onResume
-org.crossmobile.backend.android.AndroidMapViewWrapper -> org.crossmobile.backend.android.k:
+org.crossmobile.backend.android.AndroidMapViewWrapper -> org.crossmobile.backend.android.j:
     java.util.Map markers -> a
     com.google.android.gms.maps.GoogleMap currentmap -> b
     java.util.Queue deferAction -> c
@@ -9363,7 +9363,7 @@ org.crossmobile.backend.android.AndroidMapViewWrapper -> org.crossmobile.backend
     44:44:com.google.android.gms.maps.GoogleMap access$102(org.crossmobile.backend.android.AndroidMapViewWrapper,com.google.android.gms.maps.GoogleMap) -> a
     44:44:java.lang.Object access$200(org.crossmobile.backend.android.AndroidMapViewWrapper) -> a
     44:44:java.util.Queue access$300(org.crossmobile.backend.android.AndroidMapViewWrapper) -> b
-org.crossmobile.backend.android.AndroidMapViewWrapper$NativeW -> org.crossmobile.backend.android.k$a:
+org.crossmobile.backend.android.AndroidMapViewWrapper$NativeW -> org.crossmobile.backend.android.j$a:
     org.crossmobile.backend.android.ActivityLifecycleListener lifecycle -> b
     org.crossmobile.backend.android.AndroidMapViewWrapper this$0 -> a
     359:404:void <init>(org.crossmobile.backend.android.AndroidMapViewWrapper) -> <init>
@@ -9377,7 +9377,7 @@ org.crossmobile.backend.android.AndroidMapViewWrapper$NativeW -> org.crossmobile
     356:356:void superDraw(org.crossmobile.bind.graphics.GraphicsContext) -> a
     395:403:void lambda$new$0(com.google.android.gms.maps.GoogleMap) -> a
     357:357:void access$001(org.crossmobile.backend.android.AndroidMapViewWrapper$NativeW) -> a
-org.crossmobile.backend.android.AndroidMapViewWrapper$NativeW$1 -> org.crossmobile.backend.android.k$a$1:
+org.crossmobile.backend.android.AndroidMapViewWrapper$NativeW$1 -> org.crossmobile.backend.android.j$a$1:
     org.crossmobile.backend.android.AndroidMapViewWrapper$NativeW this$1 -> a
     359:359:void <init>(org.crossmobile.backend.android.AndroidMapViewWrapper$NativeW) -> <init>
     362:363:void onPause() -> onPause
@@ -9386,16 +9386,16 @@ org.crossmobile.backend.android.AndroidMapViewWrapper$NativeW$1 -> org.crossmobi
     377:378:void onLowMemory() -> onLowMemory
     382:383:void onCreate(android.os.Bundle) -> onCreate
     387:388:void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
-org.crossmobile.backend.android.AndroidMessageBridge -> org.crossmobile.backend.android.l:
+org.crossmobile.backend.android.AndroidMessageBridge -> org.crossmobile.backend.android.k:
     34:34:void <init>() -> <init>
     38:38:boolean supportsSMS() -> supportsSMS
     43:78:boolean launchSMS(java.util.List,java.lang.String,crossmobile.ios.messageui.MFMessageComposeViewController) -> launchSMS
-org.crossmobile.backend.android.AndroidMessageBridge$1 -> org.crossmobile.backend.android.l$1:
+org.crossmobile.backend.android.AndroidMessageBridge$1 -> org.crossmobile.backend.android.k$1:
     crossmobile.ios.messageui.MFMessageComposeViewController val$controller -> a
     org.crossmobile.backend.android.AndroidMessageBridge this$0 -> b
     68:68:void <init>(org.crossmobile.backend.android.AndroidMessageBridge,crossmobile.ios.messageui.MFMessageComposeViewController) -> <init>
     71:74:void result(int,android.content.Intent) -> result
-org.crossmobile.backend.android.AndroidNativeDispatcher -> org.crossmobile.backend.android.m:
+org.crossmobile.backend.android.AndroidNativeDispatcher -> org.crossmobile.backend.android.l:
     33:34:void <init>(org.crossmobile.bind.wrapper.WidgetWrapper) -> <init>
     38:42:void setMetrics(int,int,int,int) -> a
     66:66:void sendTouchEvents(android.view.MotionEvent,org.crossmobile.bind.wrapper.NativeTouch[]) -> a
@@ -9403,29 +9403,29 @@ org.crossmobile.backend.android.AndroidNativeDispatcher -> org.crossmobile.backe
     30:30:void draw(org.crossmobile.bind.graphics.GraphicsContext) -> a
     30:30:void sendTouchEvents(java.lang.Object,org.crossmobile.bind.wrapper.NativeTouch[]) -> a
     39:41:void lambda$setMetrics$0(int,int,int,int) -> b
-org.crossmobile.backend.android.AndroidNativeDispatcher$AndroidNativeWidget -> org.crossmobile.backend.android.m$a:
+org.crossmobile.backend.android.AndroidNativeDispatcher$AndroidNativeWidget -> org.crossmobile.backend.android.l$a:
     void setLayoutParams(android.view.ViewGroup$LayoutParams) -> setLayoutParams
     int getScrollX() -> getScrollX
     int getScrollY() -> getScrollY
     91:91:org.crossmobile.backend.android.ActivityLifecycleListener getLifecycleListener() -> a
-org.crossmobile.backend.android.AndroidNativePath -> org.crossmobile.backend.android.n:
+org.crossmobile.backend.android.AndroidNativePath -> org.crossmobile.backend.android.m:
     25:25:void <init>() -> <init>
     29:30:void moveTo(double,double) -> moveTo
     34:35:void lineTo(double,double) -> lineTo
     39:40:void quadTo(double,double,double,double) -> quadTo
     44:45:void cubicTo(double,double,double,double,double,double) -> a
     49:50:void arcTo(double,double,double,double,double) -> a
-org.crossmobile.backend.android.AndroidNetworkBridge -> org.crossmobile.backend.android.o:
+org.crossmobile.backend.android.AndroidNetworkBridge -> org.crossmobile.backend.android.n:
     29:30:void <init>() -> <init>
     34:40:boolean openURL(java.lang.String) -> openURL
     46:49:org.crossmobile.bind.io.NativeCookieManager initNativeManager() -> a
-org.crossmobile.backend.android.AndroidNetworkBridge$1 -> org.crossmobile.backend.android.o$1:
+org.crossmobile.backend.android.AndroidNetworkBridge$1 -> org.crossmobile.backend.android.n$1:
     android.webkit.CookieManager val$manager -> a
     org.crossmobile.backend.android.AndroidNetworkBridge this$0 -> b
     49:49:void <init>(org.crossmobile.backend.android.AndroidNetworkBridge,android.webkit.CookieManager) -> <init>
     53:54:void setCookie(java.lang.String,java.lang.String) -> a
     58:58:java.lang.String getCookie(java.lang.String) -> a
-org.crossmobile.backend.android.AndroidNotificationBridge -> org.crossmobile.backend.android.p:
+org.crossmobile.backend.android.AndroidNotificationBridge -> org.crossmobile.backend.android.o:
     java.util.Map pendingRequests -> a
     byte[] token -> b
     43:45:void <init>() -> <init>
@@ -9444,19 +9444,19 @@ org.crossmobile.backend.android.AndroidNotificationBridge -> org.crossmobile.bac
     130:132:void registerForRemoteNotifications() -> registerForRemoteNotifications
     131:131:void lambda$registerForRemoteNotifications$1() -> a
     51:55:void lambda$requestAuthorizationWithOptions$0(org.robovm.objc.block.VoidBlock2,com.google.android.gms.tasks.Task) -> a
-org.crossmobile.backend.android.AndroidPermissions -> org.crossmobile.backend.android.q:
+org.crossmobile.backend.android.AndroidPermissions -> org.crossmobile.backend.android.p:
     java.util.Collection alreadyAskedForPermission -> a
     30:31:void <init>() -> <init>
     34:34:org.crossmobile.backend.android.AndroidPermissions current() -> a
     38:72:void requestPermissions(org.robovm.objc.block.VoidBlock1,java.lang.String[]) -> a
     75:75:java.lang.String getAuthority() -> b
-org.crossmobile.backend.android.AndroidPermissions$1 -> org.crossmobile.backend.android.q$1:
+org.crossmobile.backend.android.AndroidPermissions$1 -> org.crossmobile.backend.android.p$1:
     org.robovm.objc.block.VoidBlock1 val$notGrantedPermissions -> a
     java.util.Collection val$reqPermissions -> b
     org.crossmobile.backend.android.AndroidPermissions this$0 -> c
     58:58:void <init>(org.crossmobile.backend.android.AndroidPermissions,org.robovm.objc.block.VoidBlock1,java.util.Collection) -> <init>
-    61:68:void result(java.lang.String[],int[]) -> a
-org.crossmobile.backend.android.AndroidSecurityBridge -> org.crossmobile.backend.android.r:
+    61:68:void result(java.lang.String[],int[]) -> result
+org.crossmobile.backend.android.AndroidSecurityBridge -> org.crossmobile.backend.android.q:
     javax.crypto.Cipher cipher -> b
     android.hardware.fingerprint.FingerprintManager fingerprintManager -> c
     java.security.KeyStore keyStore -> d
@@ -9469,14 +9469,14 @@ org.crossmobile.backend.android.AndroidSecurityBridge -> org.crossmobile.backend
     129:164:void generateKey() -> b
     169:199:boolean initCipher() -> a
     57:57:java.util.Map access$000(org.crossmobile.backend.android.AndroidSecurityBridge,java.lang.String) -> a
-org.crossmobile.backend.android.AndroidSecurityBridge$1 -> org.crossmobile.backend.android.r$1:
+org.crossmobile.backend.android.AndroidSecurityBridge$1 -> org.crossmobile.backend.android.q$1:
     crossmobile.ios.touchid.LAContext val$context -> a
     org.robovm.objc.block.VoidBlock2 val$callback -> b
     org.crossmobile.backend.android.AndroidSecurityBridge this$0 -> c
     104:104:void <init>(org.crossmobile.backend.android.AndroidSecurityBridge,crossmobile.ios.touchid.LAContext,org.robovm.objc.block.VoidBlock2) -> <init>
     107:121:void run() -> run
     111:113:void lambda$run$0(org.robovm.objc.block.VoidBlock2,android.content.DialogInterface,int) -> a
-org.crossmobile.backend.android.AndroidSecurityBridge$FingerPrintCallback -> org.crossmobile.backend.android.r$a:
+org.crossmobile.backend.android.AndroidSecurityBridge$FingerPrintCallback -> org.crossmobile.backend.android.q$a:
     org.robovm.objc.block.VoidBlock2 callback -> a
     org.crossmobile.backend.android.AndroidSecurityBridge this$0 -> b
     214:216:void <init>(org.crossmobile.backend.android.AndroidSecurityBridge,org.robovm.objc.block.VoidBlock2) -> <init>
@@ -9484,20 +9484,20 @@ org.crossmobile.backend.android.AndroidSecurityBridge$FingerPrintCallback -> org
     242:243:void onAuthenticationHelp(int,java.lang.CharSequence) -> onAuthenticationHelp
     247:249:void onAuthenticationSucceeded(android.hardware.fingerprint.FingerprintManager$AuthenticationResult) -> onAuthenticationSucceeded
     253:256:void onAuthenticationFailed() -> onAuthenticationFailed
-org.crossmobile.backend.android.AndroidSecurityBridge$FingerprintException -> org.crossmobile.backend.android.r$b:
+org.crossmobile.backend.android.AndroidSecurityBridge$FingerprintException -> org.crossmobile.backend.android.q$b:
     org.crossmobile.backend.android.AndroidSecurityBridge this$0 -> a
     205:207:void <init>(org.crossmobile.backend.android.AndroidSecurityBridge,java.lang.Exception) -> <init>
-org.crossmobile.backend.android.AndroidShareBridge -> org.crossmobile.backend.android.s:
+org.crossmobile.backend.android.AndroidShareBridge -> org.crossmobile.backend.android.r:
     java.lang.String type -> a
     java.lang.String subtype -> b
     31:35:void <init>() -> <init>
     39:55:void share(java.util.List,java.util.List,crossmobile.ios.uikit.UIActivityViewControllerCompletionWithItemsHandler) -> share
     58:79:void addItem(java.lang.Object,android.content.Intent) -> a
-org.crossmobile.backend.android.AndroidSoundBridge -> org.crossmobile.backend.android.t:
+org.crossmobile.backend.android.AndroidSoundBridge -> org.crossmobile.backend.android.s:
     25:25:void <init>() -> <init>
     29:29:org.crossmobile.bind.io.SoundPlayer getSoundPlayer(crossmobile.ios.foundation.NSURL,org.crossmobile.bind.io.SoundPlayer$Delegate) -> getSoundPlayer
     34:36:void vibrate() -> vibrate
-org.crossmobile.backend.android.AndroidSoundPlayer -> org.crossmobile.backend.android.u:
+org.crossmobile.backend.android.AndroidSoundPlayer -> org.crossmobile.backend.android.t:
     android.media.AudioManager manager -> b
     android.media.SoundPool soundPool -> c
     java.util.HashMap poolindex -> d
@@ -9520,7 +9520,7 @@ org.crossmobile.backend.android.AndroidSoundPlayer -> org.crossmobile.backend.an
     67:72:boolean lambda$new$1(android.media.MediaPlayer,int,int) -> a
     62:64:void lambda$new$0(android.media.MediaPlayer) -> b
     36:38:void <clinit>() -> <clinit>
-org.crossmobile.backend.android.AndroidSystemBridge -> org.crossmobile.backend.android.v:
+org.crossmobile.backend.android.AndroidSystemBridge -> org.crossmobile.backend.android.u:
     org.crossmobile.backend.android.AndroidPermissions permissions -> a
     48:52:void <init>() -> <init>
     56:59:void error(java.lang.Object,java.lang.Throwable) -> error
@@ -9540,7 +9540,7 @@ org.crossmobile.backend.android.AndroidSystemBridge -> org.crossmobile.backend.a
     160:160:void lambda$null$2(crossmobile.ios.foundation.NSSelector,android.content.DialogInterface,int) -> b
     158:158:void lambda$null$1(crossmobile.ios.foundation.NSSelector,android.content.DialogInterface) -> a
     156:156:void lambda$null$0(crossmobile.ios.foundation.NSSelector,android.content.DialogInterface,int) -> c
-org.crossmobile.backend.android.AndroidSystemBridge$1 -> org.crossmobile.backend.android.v$1:
+org.crossmobile.backend.android.AndroidSystemBridge$1 -> org.crossmobile.backend.android.u$1:
     java.util.Map joints -> a
     java.lang.String val$title -> b
     java.lang.String val$message -> c
@@ -9555,7 +9555,7 @@ org.crossmobile.backend.android.AndroidSystemBridge$1 -> org.crossmobile.backend
     116:117:void lambda$run$2(android.content.DialogInterface,int) -> a
     112:113:void lambda$run$1(android.content.DialogInterface,int) -> b
     108:109:void lambda$run$0(android.content.DialogInterface,int) -> c
-org.crossmobile.backend.android.AndroidTextWidget -> org.crossmobile.backend.android.w:
+org.crossmobile.backend.android.AndroidTextWidget -> org.crossmobile.backend.android.v:
     org.crossmobile.backend.android.AndroidTextWrapper textWrapper -> a
     35:46:void <init>(org.crossmobile.backend.android.AndroidTextWrapper,boolean) -> <init>
     51:54:void onFocusChanged(boolean,int,android.graphics.Rect) -> onFocusChanged
@@ -9568,7 +9568,7 @@ org.crossmobile.backend.android.AndroidTextWidget -> org.crossmobile.backend.and
     103:107:void superDraw(org.crossmobile.backend.android.AndroidGraphicsContext) -> a
     111:112:void setUserInteraction(boolean) -> a
     30:30:void superDraw(org.crossmobile.bind.graphics.GraphicsContext) -> a
-org.crossmobile.backend.android.AndroidTextWrapper -> org.crossmobile.backend.android.x:
+org.crossmobile.backend.android.AndroidTextWrapper -> org.crossmobile.backend.android.w:
     android.text.method.TransformationMethod defaultTransfMode -> a
     android.text.method.TransformationMethod passwordTransfMode -> b
     boolean selfChangingText -> c
@@ -9602,7 +9602,7 @@ org.crossmobile.backend.android.AndroidTextWrapper -> org.crossmobile.backend.an
     33:33:org.crossmobile.bind.wrapper.NativeWrapper newNativeWidget() -> h
     122:136:void lambda$setFont$1(org.crossmobile.bind.graphics.NativeFont) -> b
     57:59:void lambda$setText$0(java.lang.String) -> c
-org.crossmobile.backend.android.AndroidTextWrapper$OldState -> org.crossmobile.backend.android.x$a:
+org.crossmobile.backend.android.AndroidTextWrapper$OldState -> org.crossmobile.backend.android.w$a:
     int from -> a
     int size -> b
     java.lang.String oldText -> c
@@ -9615,7 +9615,7 @@ org.crossmobile.backend.android.AndroidTextWrapper$OldState -> org.crossmobile.b
     234:234:int access$200(org.crossmobile.backend.android.AndroidTextWrapper$OldState) -> b
     234:234:int access$300(org.crossmobile.backend.android.AndroidTextWrapper$OldState) -> c
     234:234:java.lang.String access$400(org.crossmobile.backend.android.AndroidTextWrapper$OldState) -> d
-org.crossmobile.backend.android.AndroidUIGuidelinesBridge -> org.crossmobile.backend.android.y:
+org.crossmobile.backend.android.AndroidUIGuidelinesBridge -> org.crossmobile.backend.android.x:
     28:28:void <init>() -> <init>
     32:32:boolean shouldDisplayStatusBar() -> shouldDisplayStatusBar
     37:37:boolean isTabBarOnTop() -> isTabBarOnTop
@@ -9623,7 +9623,7 @@ org.crossmobile.backend.android.AndroidUIGuidelinesBridge -> org.crossmobile.bac
     57:63:void setStatusBarText(android.view.Window,boolean) -> a
     66:76:void setTranslucentStatusBar() -> a
     44:46:void lambda$setStatusBarDark$0(boolean) -> a
-org.crossmobile.backend.android.AndroidWebWrapper -> org.crossmobile.backend.android.z:
+org.crossmobile.backend.android.AndroidWebWrapper -> org.crossmobile.backend.android.y:
     boolean isLoading -> a
     61:65:void <init>(crossmobile.ios.uikit.UIWebView) -> <init>
     69:69:org.crossmobile.backend.android.AndroidWebWrapper$NativeW newNativeWidget() -> a
@@ -9643,7 +9643,7 @@ org.crossmobile.backend.android.AndroidWebWrapper -> org.crossmobile.backend.and
     52:52:boolean access$102(org.crossmobile.backend.android.AndroidWebWrapper,boolean) -> a
     52:52:boolean access$200(org.crossmobile.backend.android.AndroidWebWrapper,java.lang.String,int) -> a
     55:57:void <clinit>() -> <clinit>
-org.crossmobile.backend.android.AndroidWebWrapper$1 -> org.crossmobile.backend.android.z$1:
+org.crossmobile.backend.android.AndroidWebWrapper$1 -> org.crossmobile.backend.android.y$1:
     int idx -> a
     android.webkit.WebBackForwardList val$urls -> b
     org.crossmobile.backend.android.AndroidWebWrapper this$0 -> c
@@ -9651,7 +9651,7 @@ org.crossmobile.backend.android.AndroidWebWrapper$1 -> org.crossmobile.backend.a
     306:306:boolean hasNext() -> hasNext
     311:311:java.lang.String next() -> a
     301:301:java.lang.Object next() -> next
-org.crossmobile.backend.android.AndroidWebWrapper$NativeW -> org.crossmobile.backend.android.z$a:
+org.crossmobile.backend.android.AndroidWebWrapper$NativeW -> org.crossmobile.backend.android.y$a:
     org.crossmobile.backend.android.AndroidWebWrapper this$0 -> a
     134:183:void <init>(org.crossmobile.backend.android.AndroidWebWrapper) -> <init>
     186:237:void downloadFile(java.lang.String,java.lang.String) -> a
@@ -9666,7 +9666,7 @@ org.crossmobile.backend.android.AndroidWebWrapper$NativeW -> org.crossmobile.bac
     187:236:void lambda$downloadFile$1(java.lang.String,java.lang.String,java.util.Collection) -> a
     139:140:void lambda$new$0(java.lang.String,java.lang.String,java.lang.String,java.lang.String,long) -> a
     132:132:void access$301(org.crossmobile.backend.android.AndroidWebWrapper$NativeW) -> a
-org.crossmobile.backend.android.AndroidWebWrapper$NativeW$1 -> org.crossmobile.backend.android.z$a$1:
+org.crossmobile.backend.android.AndroidWebWrapper$NativeW$1 -> org.crossmobile.backend.android.y$a$1:
     org.crossmobile.backend.android.AndroidWebWrapper val$this$0 -> a
     org.crossmobile.backend.android.AndroidWebWrapper$NativeW this$1 -> b
     141:141:void <init>(org.crossmobile.backend.android.AndroidWebWrapper$NativeW,org.crossmobile.backend.android.AndroidWebWrapper) -> <init>
@@ -9676,13 +9676,13 @@ org.crossmobile.backend.android.AndroidWebWrapper$NativeW$1 -> org.crossmobile.b
     171:171:boolean shouldOverrideUrlLoading(android.webkit.WebView,android.webkit.WebResourceRequest) -> shouldOverrideUrlLoading
     176:176:boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
     180:180:boolean shouldOverrideUrlLoading(java.lang.String) -> a
-org.crossmobile.backend.android.AndroidWebWrapper$NativeW$2 -> org.crossmobile.backend.android.z$a$2:
+org.crossmobile.backend.android.AndroidWebWrapper$NativeW$2 -> org.crossmobile.backend.android.y$a$2:
     android.app.DownloadManager val$dm -> a
     java.lang.String val$mime -> b
     org.crossmobile.backend.android.AndroidWebWrapper$NativeW this$1 -> c
     203:203:void <init>(org.crossmobile.backend.android.AndroidWebWrapper$NativeW,android.app.DownloadManager,java.lang.String) -> <init>
     206:233:void onReceive(android.content.Context,android.content.Intent) -> onReceive
-org.crossmobile.backend.android.AndroidWrapperBridge -> org.crossmobile.backend.android.aa:
+org.crossmobile.backend.android.AndroidWrapperBridge -> org.crossmobile.backend.android.z:
     java.lang.Runnable resignFocus -> a
     40:42:void <init>() -> <init>
     48:48:org.crossmobile.bind.wrapper.WebWrapper webView(crossmobile.ios.uikit.UIWebView) -> webView
@@ -9701,14 +9701,14 @@ org.crossmobile.backend.android.AndroidWrapperBridge -> org.crossmobile.backend.
     83:104:void lambda$setAttached$2(android.view.View,boolean) -> b
     75:77:void lambda$requestFocus$1(android.view.View) -> b
     43:44:void lambda$new$0() -> a
-org.crossmobile.backend.android.AndroidWrapperMapBridge -> org.crossmobile.backend.android.ab:
+org.crossmobile.backend.android.AndroidWrapperMapBridge -> org.crossmobile.backend.android.aa:
     27:27:void <init>() -> <init>
     30:30:org.crossmobile.bind.wrapper.MapViewWrapper mapView(crossmobile.ios.mapkit.MKMapView) -> mapView
-org.crossmobile.backend.android.ApplicationStateListener -> org.crossmobile.backend.android.ac:
-    33:33:void onConfigurationChanged(android.content.res.Configuration) -> a
-    37:37:void onTerminate() -> a
-    40:40:void onLowMemory() -> b
-    43:43:void onTrimMemory(int) -> a
+org.crossmobile.backend.android.ApplicationStateListener -> org.crossmobile.backend.android.ApplicationStateListener:
+    33:33:void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
+    37:37:void onTerminate() -> onTerminate
+    40:40:void onLowMemory() -> onLowMemory
+    43:43:void onTrimMemory(int) -> onTrimMemory
 org.crossmobile.backend.android.MainActivity -> org.crossmobile.backend.android.MainActivity:
     java.lang.String[] args -> b
     org.crossmobile.backend.android.MainActivity current -> a
@@ -9795,16 +9795,16 @@ org.crossmobile.backend.android.NativeAndroid$1 -> org.crossmobile.backend.andro
     103:103:void <init>(org.crossmobile.backend.android.NativeAndroid) -> <init>
     106:106:boolean supportsFingerprint(crossmobile.rt.StrongReference) -> supportsFingerprint
     111:112:void requestFingerprint(org.robovm.objc.block.VoidBlock2,crossmobile.ios.touchid.LAContext) -> requestFingerprint
-org.crossmobile.backend.android.OrientationManager -> org.crossmobile.backend.android.ad:
+org.crossmobile.backend.android.OrientationManager -> org.crossmobile.backend.android.ab:
     android.view.OrientationEventListener current -> a
     35:73:void register(org.crossmobile.backend.android.MainActivity) -> a
     28:28:android.view.OrientationEventListener access$000() -> a
-org.crossmobile.backend.android.OrientationManager$1 -> org.crossmobile.backend.android.ad$1:
+org.crossmobile.backend.android.OrientationManager$1 -> org.crossmobile.backend.android.ab$1:
     int oldOrientation -> a
     org.crossmobile.backend.android.MainActivity val$activity -> b
     35:36:void <init>(android.content.Context,int,org.crossmobile.backend.android.MainActivity) -> <init>
     40:59:void onOrientationChanged(int) -> onOrientationChanged
-org.crossmobile.backend.android.OrientationManager$2 -> org.crossmobile.backend.android.ad$2:
+org.crossmobile.backend.android.OrientationManager$2 -> org.crossmobile.backend.android.ab$2:
     61:61:void <init>() -> <init>
     64:65:void onPause() -> onPause
     69:71:void onResume() -> onResume
@@ -9952,6 +9952,13 @@ org.crossmobile.backend.android.billing.SkuDetails -> org.crossmobile.as:
     55:55:java.lang.String getTitle() -> c
     59:59:java.lang.String getDescription() -> d
     64:64:java.lang.String toString() -> toString
+org.crossmobile.backend.android.notifications.CrossMobileFirebaseMessagingService -> org.crossmobile.backend.android.notifications.CrossMobileFirebaseMessagingService:
+    java.lang.String NAME -> NAME
+    27:27:void <init>() -> <init>
+    34:76:void onMessageReceived(com.google.firebase.messaging.RemoteMessage) -> onMessageReceived
+org.crossmobile.backend.android.notifications.FirebaseInitializer -> org.crossmobile.backend.android.notifications.FirebaseInitializer:
+    24:24:void <init>() -> <init>
+    27:29:void earlyInitialize(java.lang.Object) -> earlyInitialize
 org.crossmobile.backend.android.web.VideoEnabledWebChromeClient -> org.crossmobile.at:
     android.view.View activityNonVideoView -> a
     android.view.ViewGroup activityVideoView -> b

@@ -26,7 +26,7 @@ import static org.crossmobile.utils.CollectionUtils.asList;
 public class DependencyItem implements Comparable<DependencyItem> {
 
     public static final String BlackListGroup = "org.crossmobile";
-    public static final Set<String> BlackListArtifacts = new TreeSet<>(Arrays.asList("cmforeign"));
+    public static final Set<String> BlackListArtifacts = new TreeSet<>(Collections.singletonList("cmforeign"));
 
     private final String groupID;
     private final String artifactID;
