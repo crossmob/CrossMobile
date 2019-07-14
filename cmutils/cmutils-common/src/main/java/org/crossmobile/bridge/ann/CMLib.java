@@ -94,7 +94,7 @@ public @interface CMLib {
      *
      * @return the application section of the manifest
      */
-    String androidapp() default "";
+    CMAndroidInjections[] androidInjections() default {};
 
     /**
      * Extra android permissions needed by this plugin.
@@ -121,6 +121,7 @@ public @interface CMLib {
 
     /**
      * List of optional pods, required for this plugin. Note: this is valid only for plugin creation
+     *
      * @return
      */
     CMPod[] pods() default {};

@@ -3,5 +3,5 @@ objc.libs=Social.framework;Twitter.framework~
 java.initializer=
 objc.pods=
 android.permissions=
-android.extra.app=
+android.injections=
 android.extra.dependencies=

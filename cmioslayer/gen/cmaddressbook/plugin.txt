@@ -3,5 +3,5 @@ objc.libs=Accounts.framework;AddressBook.framework;AddressBookUI.framework;Conta
 java.initializer=
 objc.pods=
 android.permissions=
-android.extra.app=
+android.injections=
 android.extra.dependencies=

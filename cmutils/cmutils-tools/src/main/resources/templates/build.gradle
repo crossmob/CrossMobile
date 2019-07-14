@@ -27,7 +27,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
+__ANDROID_GRADLE_DEPS__        classpath 'com.android.tools.build:gradle:3.2.1'
     }
 }
 
@@ -102,3 +102,4 @@ android {
 dependencies {
     implementation 'com.android.support:multidex:1.0.3'
 }
+__ANDROID_GRADLE_ROOT__

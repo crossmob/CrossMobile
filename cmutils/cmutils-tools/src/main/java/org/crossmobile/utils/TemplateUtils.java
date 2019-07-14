@@ -22,14 +22,15 @@ import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class TemplateUtils {
 
-    public static void copyTemplateIfMissing(String source, File dest, String logInfo) throws ProjectException {
+    public static void copyTemplateIfMissing(String source, File dest, String logInfo, ParamList params) throws ProjectException {
         if (!dest.isFile()) {
             dest.getParentFile().mkdirs();
             Log.info(logInfo);
-            copyTemplate(source, dest, null);
+            copyTemplate(source, dest, params);
         }
     }
 

@@ -18,8 +18,10 @@ package org.crossmobile.plugin.reg;
 
 import org.crossmobile.bridge.CrossMobilePlugin;
 import org.crossmobile.bridge.CrossMobilePlugin.Disabled;
+import org.crossmobile.bridge.ann.CMAndroidInjections;
 import org.crossmobile.bridge.ann.CMLibDepends;
 import org.crossmobile.bridge.ann.CMPod;
+import org.crossmobile.utils.AndroidInjections;
 import org.crossmobile.utils.PluginPod;
 import org.crossmobile.utils.reqgraph.Requirement;
 
@@ -33,10 +35,9 @@ public class Plugin {
     private String description = "";
     private String url = "";
     private String initializer = "";
+    private AndroidInjections injections;
     private final String name;
     private final boolean isExternalDependency;
-    private final StringBuilder androidapp = new StringBuilder();
-    private final Collection<String> alreadyAddedAndroidApp = new HashSet<>();
     private final Collection<String> libs = new TreeSet<>();
     private final Collection<String> perms = new TreeSet<>();
     private final Map<String, PluginParam> params = new LinkedHashMap<>();
@@ -86,17 +87,17 @@ public class Plugin {
         return initializer;
     }
 
-    public void addAndroidApp(String extraManifest) {
-        if (!alreadyAddedAndroidApp.contains(extraManifest)) {
-            alreadyAddedAndroidApp.add(extraManifest);
-            if (androidapp.length() > 0)
-                androidapp.append('\n');
-            androidapp.append(extraManifest);
-        }
+    public void addAndroidInj(CMAndroidInjections[] injection) {
+        if (injection == null)
+            return;
+        if (injections == null)
+            injections = new AndroidInjections();
+        for (CMAndroidInjections inj : injection)
+            injections.add(inj.appSection(), inj.gradleExt(), inj.gradleBuildDep());
     }
 
-    public String getAndroidApp() {
-        return androidapp.toString();
+    public AndroidInjections getInjections() {
+        return injections;
     }
 
     public void addParam(String property, PluginParam paramData) {

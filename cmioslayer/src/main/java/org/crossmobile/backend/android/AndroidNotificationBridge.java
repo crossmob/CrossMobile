@@ -27,6 +27,7 @@ import crossmobile.ios.foundation.NSError;
 import crossmobile.ios.uikit.UIApplication;
 import crossmobile.ios.usernotifications.*;
 import org.crossmobile.bridge.NotificationBridge;
+import org.crossmobile.bridge.ann.CMAndroidInjections;
 import org.crossmobile.bridge.ann.CMLib;
 import org.crossmobile.bridge.ann.CMLibDepends;
 import org.robovm.objc.block.VoidBlock1;
@@ -45,12 +46,12 @@ import static org.crossmobile.bridge.ann.CMLibTarget.ANDROID;
         version = "17.1.0", isCMPlugin = false),
         @CMLibDepends(groupId = "com.google.firebase",
                 pluginName = "firebase-iid",
-                version = "16.2.0", isCMPlugin = false)}, androidapp = "<service\n" +
+                version = "16.2.0", isCMPlugin = false)}, androidInjections = @CMAndroidInjections(appSection = "<service\n" +
         "            android:name=\"org.crossmobile.backend.android.notifications.FirebaseMessagingService\">\n" +
         "            <intent-filter>\n" +
         "                <action android:name=\"com.google.firebase.MESSAGING_EVENT\"/>\n" +
         "            </intent-filter>\n" +
-        "</service>")
+        "</service>", gradleExt = "apply plugin: 'com.google.gms.google-services'", gradleBuildDep = "classpath 'com.google.gms:google-services:4.0.1'"))
 public class AndroidNotificationBridge implements NotificationBridge {
 
     private static final String tag = "Crossmobile Notifications";

@@ -66,7 +66,7 @@ public class PluginRegistry {
             data.setDescription(plugin.description(), annName(CMLib.class) + " property description for object " + getClassNameFull(cls));
             data.setUrl(plugin.url(), annName(CMLib.class) + " property url for object" + getClassNameFull(cls));
             data.setInitializer(plugin.initializer(), annName(CMLib.class) + " property initializer for object " + getClassNameFull(cls));
-            data.addAndroidApp(plugin.androidapp());
+            data.addAndroidInj(plugin.androidInjections());
             data.addImports(plugin.includes());
 
             for (String lib : plugin.libs())

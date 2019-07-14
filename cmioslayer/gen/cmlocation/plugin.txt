@@ -3,5 +3,5 @@ objc.libs=CoreLocation.framework;MapKit.framework
 java.initializer=
 objc.pods=
 android.permissions=ACCESS_FINE_LOCATION;ACCESS_NETWORK_STATE;ACCESS_WIFI_STATE;INTERNET
-android.extra.app=
+android.injections=
 android.extra.dependencies=com.google.android.gms\:play-services-location\:15.0.1\:;com.google.android.gms\:play-services-maps\:15.0.1\:

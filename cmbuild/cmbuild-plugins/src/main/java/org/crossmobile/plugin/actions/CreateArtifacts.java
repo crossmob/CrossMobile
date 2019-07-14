@@ -57,7 +57,7 @@ public class CreateArtifacts {
         File androidTarget = androidBase.apply(target, plugin);
         File rvmTarget = rvmBase.apply(target, plugin);
 
-        PluginMetaData meta = new PluginMetaData(pluginData.getLibs(), pluginData.getPermissions(), pluginData.getPods(), pluginData.getAndroidApp(), pluginData.getInitializer(), pluginData.getAndroidExtraDependenciess());
+        PluginMetaData meta = new PluginMetaData(pluginData.getLibs(), pluginData.getPermissions(), pluginData.getPods(), pluginData.getInjections(), pluginData.getInitializer(), pluginData.getAndroidExtraDependenciess());
         Log.debug("Meta data for " + plugin + ": " + meta.toString());
         copy(write(new File(compileTarget, PLUGIN_LOC), meta.getProperties("Plugin " + plugin)),
                 new File(cache, plugin + File.separator + "plugin.txt"));

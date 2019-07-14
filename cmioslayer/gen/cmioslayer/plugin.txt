@@ -3,5 +3,5 @@ objc.libs=CFNetwork.framework~;CoreGraphics.framework;CoreMotion.framework;Found
 java.initializer=
 objc.pods=
 android.permissions=
-android.extra.app=
+android.injections=
 android.extra.dependencies=com.android.support\:support-core-utils\:26.1.0\:

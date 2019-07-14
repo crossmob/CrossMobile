@@ -3,5 +3,5 @@ objc.libs=AVFoundation.framework~;AudioToolbox.framework~;CoreMedia.framework~;M
 java.initializer=
 objc.pods=
 android.permissions=android.permission.VIBRATE
-android.extra.app=
+android.injections=
 android.extra.dependencies=

@@ -17,7 +17,7 @@
 @CMLib(name = "cmnotifications", libs = "UserNotifications.framework", includes = "<UserNotifications/UserNotifications.h>",
         displayName = "Notifications Framework", description = "CrossMobile© Compatibility library for UserNotifications Framework",
         url = "https://crossmobile.tech/usernotifications/",
-        androidapp = ""
+        androidInjections = @CMAndroidInjections(appSection = ""
                 + "        <service android:name=\"org.crossmobile.backend.android.notifications.CrossMobileFirebaseMessagingService\">\n"
                 + "            <intent-filter>\n"
                 + "                <action android:name=\"com.google.firebase.MESSAGING_EVENT\" />\n"
@@ -27,12 +27,13 @@
                 + "            <intent-filter>\n"
                 + "                <action android:name=\"com.google.firebase.INSTANCE_ID_EVENT\" />\n"
                 + "            </intent-filter>\n"
-                + "        </service>",
+                + "        </service>"),
         depends = @CMLibDepends(pluginName = "cmlocation"), target = API_NOUWP,
         params = @CMLibParam(property = "target", description = "Client target", context = XcodeTarget, meta = "com.apple.usernotifications.service")
 )
 package crossmobile.ios.usernotifications;
 
+import org.crossmobile.bridge.ann.CMAndroidInjections;
 import org.crossmobile.bridge.ann.CMLib;
 import org.crossmobile.bridge.ann.CMLibDepends;
 import org.crossmobile.bridge.ann.CMLibParam;

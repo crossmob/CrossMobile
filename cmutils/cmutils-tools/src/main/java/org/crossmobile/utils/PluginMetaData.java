@@ -34,7 +34,7 @@ public class PluginMetaData {
 
     private static final String LIBS_KEY = "objc.libs";
     private static final String ANDROID_PERMS_KEY = "android.permissions";
-    private static final String ANDROID_EXTRA_APP_KEY = "android.extra.app";
+    private static final String ANDROID_INJECTIONS_KEY = "android.injections";
     private static final String ANDROID_EXTRA_DEPS_KEY = "android.extra.dependencies";
     private static final String INITIALIZER_KEY = "java.initializer";
     private static final String PODS_KEY = "objc.pods";
@@ -45,7 +45,7 @@ public class PluginMetaData {
     private final Collection<String> libsObjC;
     private final Collection<String> androidPermissions;
     private final Collection<PluginPod> pods;
-    private final String androidApp;
+    private final AndroidInjections androidInjections;
     private final String javaInitializer;
     private final File infile;
     private final Collection<String> androidExtraDependencies;
@@ -54,14 +54,14 @@ public class PluginMetaData {
         this(retrieve(JAR), JAR);
     }
 
-    public PluginMetaData(Iterable<String> libsObjC, Iterable<String> androidPermissions, Iterable<PluginPod> pods, String androidApp, String javaInitializer, Collection<String> androidExtraDependencies) {
-        this(asCollection(libsObjC), asCollection(androidPermissions), asCollection(pods), androidApp, javaInitializer, androidExtraDependencies, null);
+    public PluginMetaData(Iterable<String> libsObjC, Iterable<String> androidPermissions, Iterable<PluginPod> pods, AndroidInjections androidInjections, String javaInitializer, Collection<String> androidExtraDependencies) {
+        this(asCollection(libsObjC), asCollection(androidPermissions), asCollection(pods), androidInjections, javaInitializer, androidExtraDependencies, null);
     }
 
-    private PluginMetaData(Collection<String> libsObjC, Collection<String> androidPermissions, Collection<PluginPod> pods, String androidApp, String javaInitializer, Collection<String> androidExtraDependencies, File infile) {
+    private PluginMetaData(Collection<String> libsObjC, Collection<String> androidPermissions, Collection<PluginPod> pods, AndroidInjections androidInjections, String javaInitializer, Collection<String> androidExtraDependencies, File infile) {
         this.libsObjC = libsObjC;
         this.androidPermissions = androidPermissions;
-        this.androidApp = androidApp;
+        this.androidInjections = androidInjections;
         this.javaInitializer = javaInitializer;
         this.androidExtraDependencies = androidExtraDependencies;
         this.infile = infile;
@@ -73,7 +73,7 @@ public class PluginMetaData {
                 listFromString(props.getProperty(LIBS_KEY, ""), TOKEN),
                 listFromString(props.getProperty(ANDROID_PERMS_KEY, ""), TOKEN),
                 asList(listFromString(props.getProperty(PODS_KEY, ""), TOKEN), PluginPod::unfreeze),
-                props.getProperty(ANDROID_EXTRA_APP_KEY, ""),
+                new AndroidInjections(props.getProperty(ANDROID_INJECTIONS_KEY, "")),
                 props.getProperty(INITIALIZER_KEY, ""),
                 listFromString(props.getProperty(ANDROID_EXTRA_DEPS_KEY, ""), TOKEN),
                 infile);
@@ -91,8 +91,8 @@ public class PluginMetaData {
         return androidPermissions;
     }
 
-    public String getExtraManifest() {
-        return androidApp;
+    public AndroidInjections getAndroidInjections() {
+        return androidInjections;
     }
 
     public String getJavaInitializer() {
@@ -113,7 +113,7 @@ public class PluginMetaData {
         props.put(INITIALIZER_KEY, javaInitializer);
         props.put(PODS_KEY, iterableToString(pods, TOKEN, PluginPod::freeze));
         props.put(ANDROID_PERMS_KEY, iterableToString(androidPermissions, TOKEN));
-        props.put(ANDROID_EXTRA_APP_KEY, androidApp);
+        props.put(ANDROID_INJECTIONS_KEY, androidInjections.toString());
         props.put(ANDROID_EXTRA_DEPS_KEY, iterableToString(androidExtraDependencies, TOKEN));
         return PropertiesUtils.mapToString(props, comment);
     }
@@ -128,8 +128,8 @@ public class PluginMetaData {
             out.append(ANDROID_PERMS_KEY).append("=").append(iterableToString(androidPermissions, TOKEN)).append(' ');
         if (!javaInitializer.trim().isEmpty())
             out.append(INITIALIZER_KEY).append("=").append(javaInitializer).append(' ');
-        if (!androidApp.trim().isEmpty())
-            out.append(ANDROID_EXTRA_APP_KEY).append("='").append(androidApp.replace("\n", "\\n")).append("' ");
+        if (!androidInjections.isEmpty())
+            out.append(ANDROID_INJECTIONS_KEY).append("='").append(androidInjections.toString()).append("' ");
         if (!androidExtraDependencies.isEmpty())
             out.append(ANDROID_EXTRA_DEPS_KEY).append("=").append(iterableToString(androidExtraDependencies, TOKEN)).append(' ');
         if (!pods.isEmpty())

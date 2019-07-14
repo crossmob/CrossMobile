@@ -122,7 +122,7 @@ public class ResourcesPipeline implements Runnable {
         ann.mkdirs();
 
         write(new File(env.getBuilddir(), ANDROID_FONTLIST), FontExtractor.getFontDataAsResource(FontExtractor.findFonts(materials)));
-        GradleManager.createAndUpdate(env.getBasedir());
+        GradleManager.createAndUpdate(env);
         LocalPropertiesManager.createIfNotExist(env.getBasedir());
     }
 
@@ -131,7 +131,7 @@ public class ResourcesPipeline implements Runnable {
             delete(new File(environment().getBuilddir(), "classes")); // Needed by retrolambda to work properly
             copyTemplateIfMissing("project.pbxproj",
                     new File(environment().getBasedir(), environment().getProperties().getProperty(ARTIFACT_ID.tag().name) + ".xcodeproj" + File.separator + "project.pbxproj"),
-                    "Creating missing Xcode project file");
+                    "Creating missing Xcode project file", null);
         } catch (Throwable ex) {
             BaseUtils.throwException(ex);
         }

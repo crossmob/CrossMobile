@@ -18,9 +18,8 @@ package org.crossmobile.build.tools;
 
 import org.crossmobile.Version;
 import org.crossmobile.bridge.system.BaseUtils;
-import org.crossmobile.utils.FileUtils;
-import org.crossmobile.utils.Log;
-import org.crossmobile.utils.ProjectException;
+import org.crossmobile.build.ng.CMBuildEnvironment;
+import org.crossmobile.utils.*;
 
 import java.io.File;
 import java.util.regex.Pattern;
@@ -35,23 +34,32 @@ public class GradleManager {
 
     private static final Pattern pluginversion = Pattern.compile("(classpath\\s*'org\\.crossmobile:" + GRADLE_PLUGIN + ":[a-zA-Z0-9.-]*')");
 
-    public static void createAndUpdate(File basedir) {
-        createAndUpdateBuild(basedir);
-        createAndUpdateProperties(basedir);
+    public static void createAndUpdate(CMBuildEnvironment env) {
+        createAndUpdateBuild(env);
+        createAndUpdateProperties(env.getBasedir());
 
     }
 
     @SuppressWarnings("UseSpecificCatch")
-    private static void createAndUpdateBuild(File basedir) {
+    private static void createAndUpdateBuild(CMBuildEnvironment env) {
         try {
-            File gradle = new File(basedir, GRADLE);
+            File gradle = new File(env.getBasedir(), GRADLE);
             if (gradle.isFile()) {
                 String content = FileUtils.read(gradle);
                 if (content != null && (content.contains("crossmobile-gradle-plugin:1") || !content.contains("google()")))
                     FileUtils.move(gradle, new File(gradle.getParentFile(), "build.v1.old.gradle"), null);
-//            updateVersion(gradle);
             }
-            copyTemplateIfMissing(GRADLE, gradle, "Creating missing build.gradle file");
+
+            ParamList list = new ParamList();
+            StringBuilder deps = new StringBuilder();
+            StringBuilder groot = new StringBuilder();
+            for (PluginMetaData info : env.root().getPluginMetaData()) {
+                deps.append(info.getAndroidInjections().getGradleBuildDep());
+                groot.append(info.getAndroidInjections().getGradleExt());
+            }
+            list.put(ParamsCommon.ANDROID_GRADLE_DEPS.tag(), deps.toString());
+            list.put(ParamsCommon.ANDROID_GRADLE_ROOT.tag(), groot.toString());
+            copyTemplateIfMissing(GRADLE, gradle, "Creating missing build.gradle file", list);
         } catch (Exception ex) {
             BaseUtils.throwException(ex);
         }
@@ -71,7 +79,7 @@ public class GradleManager {
 
     private static void createAndUpdateProperties(File basedir) {
         try {
-            copyTemplateIfMissing("gradle.properties", new File(basedir, "gradle.properties"), "Creating missing gradle.properties file");
+            copyTemplateIfMissing("gradle.properties", new File(basedir, "gradle.properties"), "Creating missing gradle.properties file", null);
         } catch (ProjectException ex) {
             BaseUtils.throwException(ex);
         }

@@ -18,6 +18,7 @@ package org.crossmobile.build.tools;
 
 import org.crossmobile.build.ng.CMBuildEnvironment;
 import org.crossmobile.build.utils.SynchronizeHelpers;
+import org.crossmobile.utils.AndroidInjections;
 import org.crossmobile.utils.Log;
 import org.crossmobile.utils.Param;
 import org.crossmobile.utils.PluginMetaData;
@@ -42,13 +43,13 @@ public class AndroidProjectCreator {
         String version = env.getProperties().getProperty(BUNDLE_VERSION.tag().name);
         File generated = new File(env.getBuilddir(), ANDROID_GENERATED_CMSOURCES);//here lies gen.absolute.dir
         File manifestfile = new File(env.getBuilddir(), ANDROID_MANIFEST);
-        Iterable<PluginMetaData> infos = env.root().getPluginMetaData();
+        Iterable<PluginMetaData> metaData = env.root().getPluginMetaData();
         int numversion = calculateNumVersion(version);
 
         Log.info("Updating Android project with bundle ID " + bundleID);
         SynchronizeHelpers.createActivityAndApplication(bundleID, generated);
         SynchronizeHelpers.createAndroidManifest(manifestfile, bundleID, displayname, version, numversion,
-                getApplicationExtras(env, infos), getPermissions(env, infos),
+                getApplicationExtras(env, metaData), getPermissions(env, metaData),
                 debuggable);
         SynchronizeHelpers.createBasePathAndroid(new File(env.getBuilddir(), ANDROID_BASEPATH), bundleID);
     }
@@ -74,7 +75,7 @@ public class AndroidProjectCreator {
         return numversion;
     }
 
-    private static String getApplicationExtras(CMBuildEnvironment env, Iterable<PluginMetaData> infos) {
+    private static String getApplicationExtras(CMBuildEnvironment env, Iterable<PluginMetaData> metaData) {
         StringBuilder extras = new StringBuilder();
         for (Param p : env.getParamset().runtime())
             if (p.context == Android && !p.meta.isEmpty())
@@ -83,14 +84,8 @@ public class AndroidProjectCreator {
                         append("\" android:value=\"").
                         append(env.getProperties().getProperty(p.name, "")).
                         append("\"/>\n");
-        for (PluginMetaData info : infos) {
-            String extraManifest = info.getExtraManifest();
-            if (!extraManifest.isEmpty()) {
-                extras.append(extraManifest);
-                if (!extraManifest.endsWith("\n"))
-                    extras.append("\n");
-            }
-        }
+        for (PluginMetaData info : metaData)
+            extras.append(info.getAndroidInjections().getAppSection());
         return extras.toString();
     }
 
