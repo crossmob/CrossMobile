@@ -5,10 +5,20 @@ This is the CrossMobile change log.
 
 ### Changed
 - Embed JRE 11 instead of 8
+- Update to latest Android libraries
+- New mechanism to inject Android build elements in gradle.build script
 - Request storage permission if Foundation object is referenced
 
 ### Removed
 - Obsolete JavaFX build dependency
+
+### Added
+- Bootstrap mechanism to install required Android libraries for compailation
+- hidesBackButton functionality
+
+### Fixed
+- Notifications under Android updated and fixed
+- Permissions dialog follows theme
 
 ## [v2.5] - 2019-7-1
 ### Added
