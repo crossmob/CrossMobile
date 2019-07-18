@@ -76,12 +76,24 @@ public class PluginAssembler {
 
         ClassCollection cc = new ClassCollection();
         time(() -> {
-            ProjectRegistry.register(root, embedlibs, cc);
-            if (packs != null && packs.length > 0)
-                for (Packages pack : packs)
-                    if (pack != null)
-                        PackageRegistry.register(pack.getName(), pack.getPlugin(), pack.getTarget());
-        }, "Initialize classes");
+            time(() -> {
+                ProjectRegistry.register(root, embedlibs, cc);
+                if (packs != null && packs.length > 0)
+                    for (Packages pack : packs)
+                        if (pack != null)
+                            PackageRegistry.register(pack.getName(), pack.getPlugin(), pack.getTarget());
+            }, "Initialize classes");
+            time(() -> {
+                for (Class cls : buildUwp ? cc.getUWPNativeClasses() : cc.getIOsNativeClasses())
+                    Parser.parse(cls);
+                XMLPluginWriter.updateXML(repository, root);
+            }, "Gather native API");
+            time(() -> {
+                CreateBeanAPI bean = new CreateBeanAPI(cc.getClassPool());
+                for (Class cls : cc.getCompileTimeClasses())
+                    bean.beanClass(cls, runtime);
+            }, "Create bean classes");
+        }, "API processing");
 
         if (buildIos || buildDesktop || buildUwp || buildAndroid)
             time(() -> {
@@ -95,11 +107,7 @@ public class PluginAssembler {
                         unzipJar(f, runtime);
             }, "Encrypt and combine");
 
-        time(() -> {
-            for (Class cls : buildUwp ? cc.getUWPNativeClasses() : cc.getIOsNativeClasses())
-                Parser.parse(cls);
-            XMLPluginWriter.updateXML(repository, root);
-        }, "Parse native API");
+
         CodeReverse codeRev = (buildIos || buildUwp) ? time(() -> new CodeReverse(cc.getClassPool()), "Create reverse code") : null;
         if (buildIos || buildUwp) {
 //            time(() -> new JavaTransformer(cc.getClassPool(), runtime_rvm));
@@ -122,12 +130,7 @@ public class PluginAssembler {
                 if (buildRvm)
                     mkdirs(rvmBase.apply(target, plugin));
             }
-//                Πιθανών να Μην χρειάζεαται
-//
-//                Log.info("Update API");
-//                CreateBeanAPI bean = new CreateBeanAPI(cc.getClassPool());
-//                for (Class cls : cc.getCompileTimeClasses())
-//                    bean.beanClass(cls, runtime);
+
 
             CreateSkeleton skel = new CreateSkeleton(cc.getClassPool());
             int hm = 0;
