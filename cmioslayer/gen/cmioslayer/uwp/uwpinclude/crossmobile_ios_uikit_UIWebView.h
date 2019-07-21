@@ -11,8 +11,10 @@
 @class crossmobile_ios_foundation_NSURL;
 @class crossmobile_ios_foundation_NSURLRequest;
 @class crossmobile_ios_uikit_UIScrollView;
+@class crossmobile_ios_uikit_UIWebViewAppearance;
 @protocol crossmobile_ios_uikit_UIWebViewDelegate;
 @class java_lang_String;
+@protocol java_util_List;
 
 CM_EXPORT_CLASS
 @interface crossmobile_ios_uikit_UIWebView$Ext : UIWebView
@@ -20,6 +22,8 @@ CM_EXPORT_CLASS
 
 #define crossmobile_ios_uikit_UIWebView UIWebView
 @interface UIWebView (cm_crossmobile_ios_uikit_UIWebView)
++ (instancetype) appearance__;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes ;
 - (instancetype) __init_crossmobile_ios_uikit_UIWebView__;
 - (instancetype) __init_crossmobile_ios_uikit_UIWebView___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) frame ;
 - (BOOL) canGoBack__;

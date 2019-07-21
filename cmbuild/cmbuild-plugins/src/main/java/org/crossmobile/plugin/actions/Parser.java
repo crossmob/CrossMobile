@@ -72,7 +72,7 @@ public final class Parser {
             return;
         }
         if (countObjectTypes < 1) {
-            Log.error("Class " + getClassNameFull(c) + " should defined one annotation of type " + ANN_CLASS_NAMES);
+            Log.error("Class " + getClassNameFull(c) + " should define one annotation of type " + ANN_CLASS_NAMES);
             return;
         }
 

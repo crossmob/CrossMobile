@@ -8,6 +8,7 @@
 #import "crossmobile_ios_coregraphics_CGSize.h"
 #import "crossmobile_ios_foundation_NSObject.h"
 #import "crossmobile_ios_mediaplayer_MPVolumeView.h"
+#import "crossmobile_ios_mediaplayer_MPVolumeViewAppearance.h"
 #import "crossmobile_ios_quartzcore_CALayer.h"
 #import "crossmobile_ios_uikit_NSLayoutConstraint.h"
 #import "crossmobile_ios_uikit_NSLayoutDimension.h"
@@ -851,6 +852,18 @@
 @end
 
 @implementation MPVolumeView (cm_crossmobile_ios_mediaplayer_MPVolumeView)
+
+// direct binding of: + (instancetype)appearance;
++ (instancetype) appearance__
+{
+    return [[crossmobile_ios_mediaplayer_MPVolumeViewAppearance alloc] initWithMPVolumeViewAppearance:[MPVolumeView appearance]];
+}
+
+// direct binding of: + (instancetype)appearanceWhenContainedInInstancesOfClasses:(NSArray<Class<UIAppearanceContainer>> *)containerTypes;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes 
+{
+    return [[crossmobile_ios_mediaplayer_MPVolumeViewAppearance alloc] initWithMPVolumeViewAppearance:[MPVolumeView appearanceWhenContainedInInstancesOfClasses:jclass_to_class_list(containerTypes == JAVA_NULL ? nil : containerTypes)]];
+}
 
 // direct binding of: - (instancetype)initWithFrame:(CGRect)frame;
 - (instancetype) __init_crossmobile_ios_mediaplayer_MPVolumeView___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) frame 

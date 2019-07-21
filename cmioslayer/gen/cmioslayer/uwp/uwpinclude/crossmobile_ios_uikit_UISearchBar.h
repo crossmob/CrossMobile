@@ -9,6 +9,7 @@
 @class crossmobile_ios_coregraphics_CGRect;
 @class crossmobile_ios_uikit_UIColor;
 @class crossmobile_ios_uikit_UIImage;
+@class crossmobile_ios_uikit_UISearchBarAppearance;
 @protocol crossmobile_ios_uikit_UISearchBarDelegate;
 @class java_lang_String;
 @protocol java_util_List;
@@ -19,6 +20,8 @@ CM_EXPORT_CLASS
 
 #define crossmobile_ios_uikit_UISearchBar UISearchBar
 @interface UISearchBar (cm_crossmobile_ios_uikit_UISearchBar)
++ (instancetype) appearance__;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes ;
 - (instancetype) __init_crossmobile_ios_uikit_UISearchBar__;
 - (instancetype) __init_crossmobile_ios_uikit_UISearchBar___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) frame ;
 - (void) setAutocapitalizationType___int:(int) autocapitalizationType ;

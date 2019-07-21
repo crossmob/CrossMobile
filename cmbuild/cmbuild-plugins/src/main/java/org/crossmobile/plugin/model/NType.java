@@ -23,15 +23,15 @@ public class NType {
 
     private final Collection<NType> genericTypes = new HashSet<>();
     private final String nativeType;
-    private final Class type;
+    private final Class<?> type;
     private VarargType vararg;
     private boolean constant;
     private int references;
-    private String converter = "";
+    private String convFunction = "";
     private String sizeResolver = "";
     private NSelector block;
 
-    public NType(String nativeType, Class javaType) {
+    public NType(String nativeType, Class<?> javaType) {
         if (nativeType.startsWith("const"))
             nativeType = nativeType.substring(5);
         nativeType = nativeType.trim();
@@ -39,7 +39,7 @@ public class NType {
         this.type = javaType;
     }
 
-    public Class getType() {
+    public Class<?> getType() {
         return type;
     }
 
@@ -96,14 +96,14 @@ public class NType {
         return constant;
     }
 
-    public void setTypeConverter(String converter) {
-        if (converter == null)
-            converter = "";
-        this.converter = converter;
+    public void setConverterFunction(String convFunction) {
+        if (convFunction == null)
+            convFunction = "";
+        this.convFunction = convFunction;
     }
 
-    public String getTypeConverter() {
-        return converter;
+    public String getConverterFunction() {
+        return convFunction;
     }
 
     public void setSizeResolver(String sizeResolver) {

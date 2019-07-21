@@ -16,12 +16,7 @@
  */
 package crossmobile.ios.uikit;
 
-import crossmobile.ios.coregraphics.CGAffineTransform;
-import crossmobile.ios.coregraphics.CGColor;
-import crossmobile.ios.coregraphics.CGContext;
-import crossmobile.ios.coregraphics.CGPoint;
-import crossmobile.ios.coregraphics.CGRect;
-import crossmobile.ios.coregraphics.CGSize;
+import crossmobile.ios.coregraphics.*;
 import crossmobile.ios.foundation.NSDate;
 import crossmobile.ios.quartzcore.CALayer;
 import org.crossmobile.bind.graphics.Geometry;
@@ -32,38 +27,18 @@ import org.crossmobile.bind.system.SystemUtilities;
 import org.crossmobile.bind.wrapper.NativeWrapper;
 import org.crossmobile.bind.wrapper.WidgetWrapper;
 import org.crossmobile.bridge.Native;
-import org.crossmobile.bridge.ann.CMClass;
-import org.crossmobile.bridge.ann.CMConstructor;
-import org.crossmobile.bridge.ann.CMGetter;
-import org.crossmobile.bridge.ann.CMSelector;
-import org.crossmobile.bridge.ann.CMSetter;
+import org.crossmobile.bridge.ann.*;
 import org.crossmobile.support.cassowary.ClSimplexSolver;
 import org.crossmobile.support.cassowary.ClVariable;
+import org.robovm.objc.annotation.UIAppearanceSelector;
 import org.robovm.objc.block.VoidBlock1;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import static crossmobile.ios.coregraphics.$coregraphics.color;
-import static crossmobile.ios.coregraphics.$coregraphics.context;
-import static crossmobile.ios.coregraphics.$coregraphics.translateConcatTranslate;
+import static crossmobile.ios.coregraphics.$coregraphics.*;
 import static crossmobile.ios.foundation.$foundation.isUnderMainRunLoop;
-import static crossmobile.ios.uikit.UIViewContentMode.Bottom;
-import static crossmobile.ios.uikit.UIViewContentMode.BottomLeft;
-import static crossmobile.ios.uikit.UIViewContentMode.BottomRight;
-import static crossmobile.ios.uikit.UIViewContentMode.Center;
-import static crossmobile.ios.uikit.UIViewContentMode.Left;
-import static crossmobile.ios.uikit.UIViewContentMode.Right;
-import static crossmobile.ios.uikit.UIViewContentMode.ScaleAspectFill;
-import static crossmobile.ios.uikit.UIViewContentMode.ScaleAspectFit;
-import static crossmobile.ios.uikit.UIViewContentMode.ScaleToFill;
-import static crossmobile.ios.uikit.UIViewContentMode.Top;
-import static crossmobile.ios.uikit.UIViewContentMode.TopLeft;
-import static crossmobile.ios.uikit.UIViewContentMode.TopRight;
+import static crossmobile.ios.uikit.UIViewContentMode.*;
 import static org.crossmobile.bind.graphics.AbstractGraphicsBridge.DrawingDepth;
 import static org.crossmobile.bind.system.Debug.ENABLE_DEBUG;
 import static org.crossmobile.bind.system.Debug.Live_Graphics_Debug;
@@ -75,7 +50,7 @@ import static org.crossmobile.bind.system.Debug.Live_Graphics_Debug;
  * interaction with that area.
  */
 @CMClass
-public class UIView extends UIResponder {
+public class UIView extends UIResponder implements UIAppearanceContainer {
 
     /* Constants */
     public static final double NoIntrinsicMetric = 0;
@@ -1020,6 +995,7 @@ public class UIView extends UIResponder {
      *
      * @param background The view’s background color.
      */
+    @UIAppearanceSelector
     @CMSetter("@property(nonatomic, copy) UIColor *backgroundColor;")
     public void setBackgroundColor(UIColor background) {
         if (Core.equals(this.background, background))

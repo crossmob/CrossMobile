@@ -18,6 +18,7 @@ package org.crossmobile.plugin.objc.param;
 
 import org.crossmobile.plugin.model.NSelector;
 import org.crossmobile.plugin.model.NType;
+import org.crossmobile.plugin.reg.TypeRegistry;
 import org.crossmobile.plugin.utils.Streamer;
 
 import java.io.IOException;
@@ -57,8 +58,8 @@ public class ResultEmitter {
     }
 
     private Emitter parseReturn(NType type, Class javaType, String origCode, boolean boxed, boolean constructor, boolean fakeConstructor, boolean bridgedVararg, boolean reverse) {
-        if (isCBased(javaType))
-            return new EmitterCType("", RESULT, type, constructor, false, reverse);
+        if (isAnyReference(javaType))
+            return new EmitterCType("", RESULT, type, isObjCReference(javaType) ? javaType : null, constructor, false, reverse);
         else if (javaType.equals(Void.TYPE))
             return EmitterVoid.TYPE;
         else if (type.isPrimitive())

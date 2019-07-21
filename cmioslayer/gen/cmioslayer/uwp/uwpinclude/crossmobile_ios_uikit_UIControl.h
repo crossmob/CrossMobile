@@ -7,8 +7,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 @class crossmobile_ios_coregraphics_CGRect;
+@class crossmobile_ios_uikit_UIControlAppearance;
 @protocol crossmobile_ios_uikit_UIControlDelegate;
 @class java_lang_reflect_Method;
+@protocol java_util_List;
 @protocol java_util_Set;
 
 CM_EXPORT_CLASS
@@ -17,6 +19,8 @@ CM_EXPORT_CLASS
 
 #define crossmobile_ios_uikit_UIControl UIControl
 @interface UIControl (cm_crossmobile_ios_uikit_UIControl)
++ (instancetype) appearance__;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes ;
 - (instancetype) __init_crossmobile_ios_uikit_UIControl__;
 - (instancetype) __init_crossmobile_ios_uikit_UIControl___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) frame ;
 - (NSSet*) allTargets__;

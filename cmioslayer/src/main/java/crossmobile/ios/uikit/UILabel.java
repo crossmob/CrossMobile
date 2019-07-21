@@ -30,6 +30,7 @@ import org.crossmobile.bridge.ann.CMClass;
 import org.crossmobile.bridge.ann.CMConstructor;
 import org.crossmobile.bridge.ann.CMGetter;
 import org.crossmobile.bridge.ann.CMSetter;
+import org.robovm.objc.annotation.UIAppearanceSelector;
 
 import static crossmobile.ios.coregraphics.$coregraphics.color;
 import static crossmobile.ios.coregraphics.$coregraphics.context;
@@ -129,6 +130,7 @@ public class UILabel extends UIView {
      *
      * @param font The font of the label's text.
      */
+    @UIAppearanceSelector
     @CMSetter("@property(nonatomic, strong) UIFont *font;")
     public void setFont(UIFont font) {
         if (SystemUtilities.equals(font, this.fontOrig))
@@ -153,6 +155,7 @@ public class UILabel extends UIView {
      * @param color The color of the label's text.
      */
     @CMSetter("@property(nonatomic, strong) UIColor *textColor;")
+    @UIAppearanceSelector
     public void setTextColor(UIColor color) {
         if (color == null)
             textColor = null;

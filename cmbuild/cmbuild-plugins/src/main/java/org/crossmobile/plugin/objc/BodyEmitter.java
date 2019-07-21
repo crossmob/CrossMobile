@@ -16,9 +16,12 @@
  */
 package org.crossmobile.plugin.objc;
 
+import org.crossmobile.bridge.ann.CMReference;
 import org.crossmobile.plugin.model.NObject;
 import org.crossmobile.plugin.model.NSelector;
 import org.crossmobile.plugin.reg.PluginRegistry;
+import org.crossmobile.plugin.reg.TypeDef;
+import org.crossmobile.plugin.reg.TypeRegistry;
 import org.crossmobile.plugin.utils.Streamer;
 
 import java.io.IOException;
@@ -79,7 +82,7 @@ public class BodyEmitter extends FileEmitter {
     }
 
     private void emitDefinition(Streamer out, boolean extended) throws IOException {
-        if (obj.isCBased())
+        if (obj.isAnyReference())
             out.append("@implementation ").append(fullName()).append("\n\n");
         else if (extended)
             out.append("@implementation ").append(fullName()).append("$Ext\n\n");
@@ -98,23 +101,33 @@ public class BodyEmitter extends FileEmitter {
 
     private void emitHelperSelectors(Streamer out) throws IOException {
         if (obj.isReference()) {
-            out.append("- (instancetype) initWith").append(getClassNameSimple(obj.getType())).append(":(").append(getObjCTypeRef(obj.getType())).append(") reference\n{\n").tab();
             Class parentClass = obj.getType().getSuperclass();
+            boolean parentIsReference = isReference(parentClass);
+            boolean isObjCReference = !parentIsReference && !obj.isCBased();
+            out.append("- (instancetype) initWith").append(getClassNameSimple(obj.getType())).append(":(").append(getObjCTypeRef(obj.getType())).append(") reference\n{\n").tab();
             out.append("self = ");
-            if (parentClass != null && isReference(parentClass))
+            if (parentIsReference)
                 out.append("[super initWith").append(getClassNameSimple(parentClass)).append(":reference];\n");
             else
                 out.append("[super init];\n");
-            if (!isReference(parentClass)) {
+            if (!parentIsReference) {
                 out.append("self->").append(REFERENCE_NAME).append(" = reference;\n");
-                out.append("if (self->").append(REFERENCE_NAME).append(")\n").tab().append("CFRetain(self->").append(REFERENCE_NAME).append(");\n").untab();
+                out.append("if (self->").append(REFERENCE_NAME).append(")\n").tab();
+                if (isObjCReference)
+                    out.append("[self->").append(REFERENCE_NAME).append(" retain];\n").untab();
+                else
+                    out.append("CFRetain(self->").append(REFERENCE_NAME).append(");\n").untab();
             }
             out.append("return self;\n").untab();
             out.append("}\n\n");
 
-            if (!isReference(parentClass)) {
+            if (!parentIsReference) {
                 out.append("- (void) dealloc\n{\n").tab();
-                out.append("if (self->").append(REFERENCE_NAME).append(")\n").tab().append("CFRelease(self->").append(REFERENCE_NAME).append(");\n").untab();
+                out.append("if (self->").append(REFERENCE_NAME).append(")\n").tab();
+                if (isObjCReference)
+                    out.append("[self->").append(REFERENCE_NAME).append(" release];\n").untab();
+                else
+                    out.append("CFRelease(self->").append(REFERENCE_NAME).append(");\n").untab();
                 out.append("[super dealloc];\n").untab();
                 out.append("}\n\n");
             }
@@ -123,16 +136,17 @@ public class BodyEmitter extends FileEmitter {
     }
 
     private void emitSelectors(Streamer out, Streamer swift, String[] filter, boolean overridableSelectors) throws IOException {
+        String selfName = TypeRegistry.isObjCReference(obj.getType()) ? "self->" + REFERENCE_NAME : null;
         for (NSelector sel : overridableSelectors ? obj.getAllSelectors() : obj.getSelectors())
             if (filter == null || startsWith(sel.getName(), Arrays.asList(filter)))
                 if (overridableSelectors) {
                     if (sel.needsOverrideBindings()) {
                         out.append("// (").append(getClassNameSimple(sel.getContainer().getType())).append(") ").append(sel.getOriginalCode()).append("\n");
-                        new SelectorEmitter(sel, true).emitImplementation(out);
+                        new SelectorEmitter(sel, "super").emitImplementation(out);
                     }
                 } else {
                     out.append("// direct binding of: ").append(sel.getOriginalCode()).append("\n");
-                    new SelectorEmitter(sel).emitImplementation(out).emitSwift(swift);
+                    new SelectorEmitter(sel, selfName).emitImplementation(out).emitSwift(swift);
                 }
     }
 

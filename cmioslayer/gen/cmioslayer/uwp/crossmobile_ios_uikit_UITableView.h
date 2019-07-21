@@ -11,6 +11,7 @@
 @class crossmobile_ios_foundation_NSIndexPath;
 @class crossmobile_ios_uikit_UIColor;
 @class crossmobile_ios_uikit_UINib;
+@class crossmobile_ios_uikit_UITableViewAppearance;
 @class crossmobile_ios_uikit_UITableViewCell;
 @protocol crossmobile_ios_uikit_UITableViewDataSource;
 @protocol crossmobile_ios_uikit_UITableViewDelegate;
@@ -23,6 +24,8 @@
 
 #define crossmobile_ios_uikit_UITableView UITableView
 @interface UITableView (cm_crossmobile_ios_uikit_UITableView)
++ (instancetype) appearance__;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes ;
 - (instancetype) __init_crossmobile_ios_uikit_UITableView__;
 - (instancetype) __init_crossmobile_ios_uikit_UITableView___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) frame ;
 - (instancetype) __init_crossmobile_ios_uikit_UITableView___crossmobile_ios_coregraphics_CGRect_int:(crossmobile_ios_coregraphics_CGRect*) frame :(int) style ;

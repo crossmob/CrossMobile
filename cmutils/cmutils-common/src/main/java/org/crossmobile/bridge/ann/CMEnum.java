@@ -30,5 +30,5 @@ public @interface CMEnum {
      *
      * @return the possible aliases
      */
-    String[] alias() default {};
+    String[] typeAlias() default {};
 }

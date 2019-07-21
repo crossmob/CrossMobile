@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 @class crossmobile_ios_coregraphics_CGRect;
 @class crossmobile_ios_uikit_UIColor;
+@class crossmobile_ios_uikit_UINavigationBarAppearance;
 @protocol crossmobile_ios_uikit_UINavigationBarDelegate;
 @class crossmobile_ios_uikit_UINavigationItem;
 @protocol java_util_List;
@@ -19,6 +20,8 @@ CM_EXPORT_CLASS
 
 #define crossmobile_ios_uikit_UINavigationBar UINavigationBar
 @interface UINavigationBar (cm_crossmobile_ios_uikit_UINavigationBar)
++ (instancetype) appearance__;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes ;
 - (instancetype) __init_crossmobile_ios_uikit_UINavigationBar__;
 - (instancetype) __init_crossmobile_ios_uikit_UINavigationBar___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) frame ;
 - (UINavigationItem*) backItem__;

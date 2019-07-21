@@ -13,6 +13,7 @@
 #import "crossmobile_ios_mapkit_MKCoordinateRegion.h"
 #import "crossmobile_ios_mapkit_MKMapRect.h"
 #import "crossmobile_ios_mapkit_MKMapView.h"
+#import "crossmobile_ios_mapkit_MKMapViewAppearance.h"
 #import "crossmobile_ios_mapkit_MKMapViewDelegate.h"
 #import "crossmobile_ios_mapkit_MKOverlay.h"
 #import "crossmobile_ios_mapkit_MKOverlayView.h"
@@ -1158,6 +1159,18 @@
 @end
 
 @implementation MKMapView (cm_crossmobile_ios_mapkit_MKMapView)
+
+// direct binding of: + (instancetype)appearance;
++ (instancetype) appearance__
+{
+    return [[crossmobile_ios_mapkit_MKMapViewAppearance alloc] initWithMKMapViewAppearance:[MKMapView appearance]];
+}
+
+// direct binding of: + (instancetype)appearanceWhenContainedInInstancesOfClasses:(NSArray<Class<UIAppearanceContainer>> *)containerTypes;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes 
+{
+    return [[crossmobile_ios_mapkit_MKMapViewAppearance alloc] initWithMKMapViewAppearance:[MKMapView appearanceWhenContainedInInstancesOfClasses:jclass_to_class_list(containerTypes == JAVA_NULL ? nil : containerTypes)]];
+}
 
 // direct binding of: -(instancetype) init;
 - (instancetype) __init_crossmobile_ios_mapkit_MKMapView__

@@ -21,6 +21,7 @@
 @class crossmobile_ios_uikit_UIEvent;
 @class crossmobile_ios_uikit_UIGestureRecognizer;
 @class crossmobile_ios_uikit_UILayoutGuide;
+@class crossmobile_ios_uikit_UIViewAppearance;
 @class crossmobile_ios_uikit_UIWindow;
 @class java_lang_Boolean;
 @protocol java_lang_Runnable;
@@ -37,6 +38,8 @@ CM_EXPORT_CLASS
 + (void) animateWithDuration___double_double_int_java_lang_Runnable_org_robovm_objc_block_VoidBlock1:(double) duration :(double) delay :(int) options :(id<java_lang_Runnable>) animations :(id<org_robovm_objc_block_VoidBlock1>) completion ;
 + (void) animateWithDuration___double_java_lang_Runnable:(double) duration :(id<java_lang_Runnable>) animations ;
 + (void) animateWithDuration___double_java_lang_Runnable_org_robovm_objc_block_VoidBlock1:(double) duration :(id<java_lang_Runnable>) animations :(id<org_robovm_objc_block_VoidBlock1>) completion ;
++ (instancetype) appearance__;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes ;
 + (BOOL) areAnimationsEnabled__;
 + (BOOL) requiresConstraintBasedLayout__;
 + (void) setAnimationBeginsFromCurrentState___boolean:(BOOL) fromCurrentState ;

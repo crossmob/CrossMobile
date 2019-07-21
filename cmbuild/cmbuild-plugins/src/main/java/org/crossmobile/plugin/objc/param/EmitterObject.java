@@ -25,7 +25,7 @@ import static org.crossmobile.plugin.reg.TypeRegistry.getCastingIfNeeded;
 
 class EmitterObject extends Emitter {
 
-    private final String typeConverter;
+    private final String convFunction;
     private final boolean needsRetain;
     private final String casting;
 
@@ -34,23 +34,15 @@ class EmitterObject extends Emitter {
     }
 
     EmitterObject(String paramName, String varName, NType type, boolean noObjectRetainNeeded, boolean forward) {
-        super(paramName, varName, type, !type.getTypeConverter().isEmpty(), forward);
-        this.typeConverter = type.getTypeConverter();
+        super(paramName, varName, type, !type.getConverterFunction().isEmpty(), forward);
+        this.convFunction = type.getConverterFunction();
         this.needsRetain = !noObjectRetainNeeded;
         casting = getCastingIfNeeded(type.getNativeType());
     }
 
     @Override
-    protected String initForward() {
-        return isEmbeddable()
-                ? ""
-                : givenVar() + " = " + getForward() + ";\n"
-                + typeConverter.replace(CMParamMod.JAVA_PARAM, givenVar()).replace(CMParamMod.NATIVE_PARAM, paramVar()) + "\n";
-    }
-
-    @Override
     protected String embedForward() {
-        return isEmbeddable() ? "(" + getForward() + ")" : paramVar();
+        return convFunction + "(" + getForward() + ")";
     }
 
     private String getForward() {
@@ -60,10 +52,6 @@ class EmitterObject extends Emitter {
     @Override
     protected String embedReverse() {
         return "(" + givenVar() + " ? " + casting + givenVar() + " : JAVA_NULL)";
-    }
-
-    private boolean isEmbeddable() {
-        return !isForward || typeConverter.isEmpty();
     }
 
     @Override

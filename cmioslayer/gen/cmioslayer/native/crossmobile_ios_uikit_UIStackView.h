@@ -6,6 +6,7 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+@class crossmobile_ios_uikit_UIStackViewAppearance;
 @class crossmobile_ios_uikit_UIView;
 @protocol java_util_List;
 
@@ -14,6 +15,8 @@
 
 #define crossmobile_ios_uikit_UIStackView UIStackView
 @interface UIStackView (cm_crossmobile_ios_uikit_UIStackView)
++ (instancetype) appearance__;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes ;
 - (instancetype) __init_crossmobile_ios_uikit_UIStackView___java_util_List:(NSArray*) views ;
 - (void) setAlignment___int:(int) alignment ;
 - (int) alignment__;

@@ -7,12 +7,16 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 @class crossmobile_ios_uikit_UIColor;
+@class crossmobile_ios_uikit_UIProgressViewAppearance;
+@protocol java_util_List;
 
 @interface crossmobile_ios_uikit_UIProgressView$Ext : UIProgressView
 @end
 
 #define crossmobile_ios_uikit_UIProgressView UIProgressView
 @interface UIProgressView (cm_crossmobile_ios_uikit_UIProgressView)
++ (instancetype) appearance__;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes ;
 - (instancetype) __init_crossmobile_ios_uikit_UIProgressView___int:(int) style ;
 - (void) setProgress___float:(float) progress ;
 - (float) progress__;

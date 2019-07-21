@@ -19,6 +19,7 @@
 #import "crossmobile_ios_uikit_UILayoutGuide.h"
 #import "crossmobile_ios_uikit_UIResponder.h"
 #import "crossmobile_ios_uikit_UIStackView.h"
+#import "crossmobile_ios_uikit_UIStackViewAppearance.h"
 #import "crossmobile_ios_uikit_UIView.h"
 #import "crossmobile_ios_uikit_UIWindow.h"
 #import "java_lang_Object.h"
@@ -924,6 +925,18 @@
 @end
 
 @implementation UIStackView (cm_crossmobile_ios_uikit_UIStackView)
+
+// direct binding of: + (instancetype)appearance;
++ (instancetype) appearance__
+{
+    return [[crossmobile_ios_uikit_UIStackViewAppearance alloc] initWithUIStackViewAppearance:[UIStackView appearance]];
+}
+
+// direct binding of: + (instancetype)appearanceWhenContainedInInstancesOfClasses:(NSArray<Class<UIAppearanceContainer>> *)containerTypes;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes 
+{
+    return [[crossmobile_ios_uikit_UIStackViewAppearance alloc] initWithUIStackViewAppearance:[UIStackView appearanceWhenContainedInInstancesOfClasses:jclass_to_class_list(containerTypes == JAVA_NULL ? nil : containerTypes)]];
+}
 
 // direct binding of: - (instancetype)initWithArrangedSubviews:(NSArray<__kindof UIView *> *)views;
 - (instancetype) __init_crossmobile_ios_uikit_UIStackView___java_util_List:(NSArray*) views 

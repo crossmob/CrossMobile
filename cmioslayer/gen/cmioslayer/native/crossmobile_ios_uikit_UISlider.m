@@ -21,6 +21,7 @@
 #import "crossmobile_ios_uikit_UILayoutGuide.h"
 #import "crossmobile_ios_uikit_UIResponder.h"
 #import "crossmobile_ios_uikit_UISlider.h"
+#import "crossmobile_ios_uikit_UISliderAppearance.h"
 #import "crossmobile_ios_uikit_UIView.h"
 #import "crossmobile_ios_uikit_UIWindow.h"
 #import "java_lang_Object.h"
@@ -1110,6 +1111,18 @@
 @end
 
 @implementation UISlider (cm_crossmobile_ios_uikit_UISlider)
+
+// direct binding of: + (instancetype)appearance;
++ (instancetype) appearance__
+{
+    return [[crossmobile_ios_uikit_UISliderAppearance alloc] initWithUISliderAppearance:[UISlider appearance]];
+}
+
+// direct binding of: + (instancetype)appearanceWhenContainedInInstancesOfClasses:(NSArray<Class<UIAppearanceContainer>> *)containerTypes;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes 
+{
+    return [[crossmobile_ios_uikit_UISliderAppearance alloc] initWithUISliderAppearance:[UISlider appearanceWhenContainedInInstancesOfClasses:jclass_to_class_list(containerTypes == JAVA_NULL ? nil : containerTypes)]];
+}
 
 // direct binding of: -(instancetype) init;
 - (instancetype) __init_crossmobile_ios_uikit_UISlider__

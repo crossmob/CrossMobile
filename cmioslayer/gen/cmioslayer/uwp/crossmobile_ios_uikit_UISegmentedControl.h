@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 @class crossmobile_ios_coregraphics_CGRect;
 @class crossmobile_ios_uikit_UIImage;
+@class crossmobile_ios_uikit_UISegmentedControlAppearance;
 @class java_lang_String;
 @protocol java_util_List;
 
@@ -16,6 +17,8 @@
 
 #define crossmobile_ios_uikit_UISegmentedControl UISegmentedControl
 @interface UISegmentedControl (cm_crossmobile_ios_uikit_UISegmentedControl)
++ (instancetype) appearance__;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes ;
 - (instancetype) __init_crossmobile_ios_uikit_UISegmentedControl__;
 - (instancetype) __init_crossmobile_ios_uikit_UISegmentedControl___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) frame ;
 - (instancetype) __init_crossmobile_ios_uikit_UISegmentedControl___java_util_List:(NSArray*) items ;

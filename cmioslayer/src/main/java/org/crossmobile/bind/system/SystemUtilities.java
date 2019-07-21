@@ -22,6 +22,8 @@ import crossmobile.ios.foundation.NSLocale;
 import org.crossmobile.bridge.Native;
 
 import java.io.*;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.regex.Pattern;
 
@@ -179,6 +181,20 @@ public class SystemUtilities {
         if (point >= 0)
             classname = classname.substring(point + 1);
         return classname;
+    }
+
+    public static <T> T construct(Class<T> typeClass) {
+        try {
+            Constructor<T> constructor = typeClass.getDeclaredConstructor();
+            constructor.setAccessible(true);
+            return constructor.newInstance();
+        } catch (InstantiationException | NoSuchMethodException | IllegalAccessException | InvocationTargetException ignored) {
+        }
+        try {
+            return typeClass.getConstructor().newInstance();
+        } catch (InstantiationException | NoSuchMethodException | IllegalAccessException | InvocationTargetException ignored) {
+        }
+        return null;
     }
 
     public static String stackToString() {

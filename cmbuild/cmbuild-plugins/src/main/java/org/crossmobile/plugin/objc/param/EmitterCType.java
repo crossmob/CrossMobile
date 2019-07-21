@@ -41,10 +41,15 @@ class EmitterCType extends Emitter {
     }
 
     EmitterCType(String paramName, String varName, NType type, boolean constructor, boolean asSelf, boolean forward) {
+        this(paramName, varName, type, null, constructor, asSelf, forward);
+    }
+
+    EmitterCType(String paramName, String varName, NType type, Class<?> selfType, boolean constructor, boolean asSelf, boolean forward) {
         super(paramName, varName, type, true, forward);
-        this.nativeName = getClassNameSimple(type.getType());
-        this.javaClassName = toObjC(getClassNameBare(type.getType()));
-        this.struct = TypeRegistry.isStruct(type.getType());
+        selfType = selfType == null ? type.getType() : selfType;
+        this.nativeName = getClassNameSimple(selfType);
+        this.javaClassName = toObjC(getClassNameBare(selfType));
+        this.struct = TypeRegistry.isStruct(selfType);
         this.asSelf = asSelf;
         this.constructor = constructor;
     }

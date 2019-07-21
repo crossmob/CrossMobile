@@ -20,15 +20,13 @@ import crossmobile.ios.coregraphics.CGContext;
 import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.coregraphics.CGSize;
 import org.crossmobile.bind.graphics.Theme;
+import org.crossmobile.bridge.ann.*;
 import org.crossmobile.bridge.system.Pair;
 import org.crossmobile.bind.system.Promise;
 import org.crossmobile.bridge.Native;
-import org.crossmobile.bridge.ann.CMClass;
-import org.crossmobile.bridge.ann.CMGetter;
-import org.crossmobile.bridge.ann.CMSelector;
-import org.crossmobile.bridge.ann.CMSetter;
 
 import java.io.File;
+import java.util.List;
 
 import static crossmobile.ios.uikit.UIButtonType.System;
 import static crossmobile.ios.uikit.UIButtonType.*;

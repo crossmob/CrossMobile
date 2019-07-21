@@ -17,6 +17,7 @@
 package crossmobile.ios.foundation;
 
 import org.crossmobile.bridge.ann.CMBlock;
+import org.crossmobile.bridge.ann.CMParamMod;
 import org.crossmobile.bridge.ann.CMTarget;
 import org.robovm.objc.block.VoidBlock3;
 
@@ -27,5 +28,5 @@ public interface NSItemProviderLoadHandler extends VoidBlock3<NSItemProviderComp
 
     @CMBlock("void (^NSItemProviderLoadHandler)(NSItemProviderCompletionHandler completionHandler, Class expectedValueClass, NSDictionary *options);")
     @Override
-    void invoke(NSItemProviderCompletionHandler completionHandler, Class expectedValueClass, Map<String, Object> options);
+    void invoke(NSItemProviderCompletionHandler completionHandler, @CMParamMod(convertWith = "jclass_to_class") Class expectedValueClass, Map<String, Object> options);
 }

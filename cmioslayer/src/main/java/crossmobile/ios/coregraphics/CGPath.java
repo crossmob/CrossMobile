@@ -29,7 +29,7 @@ import static org.crossmobile.bind.graphics.Geometry.apply;
 /**
  * CGPath class defines an object that represents a graphic path.
  */
-@CMReference(alias = "CGMutablePath")
+@CMReference(typeAlias = "CGMutablePath")
 public class CGPath {
 
     final NativePath path = Native.graphics().newNativePath();

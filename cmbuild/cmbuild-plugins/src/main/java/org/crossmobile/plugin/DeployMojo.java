@@ -41,7 +41,7 @@ public class DeployMojo extends GenericMojo {
     private String url;
 
     @Override
-    public void exec() throws MojoExecutionException, MojoFailureException {
+    public void exec() {
         MojoLogger.register(getLog());
 
         if (repositoryId == null)

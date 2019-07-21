@@ -13,6 +13,7 @@
 #import "crossmobile_ios_uikit_NSLayoutXAxisAnchor.h"
 #import "crossmobile_ios_uikit_NSLayoutYAxisAnchor.h"
 #import "crossmobile_ios_uikit_UIAlertView.h"
+#import "crossmobile_ios_uikit_UIAlertViewAppearance.h"
 #import "crossmobile_ios_uikit_UIAlertViewDelegate.h"
 #import "crossmobile_ios_uikit_UIColor.h"
 #import "crossmobile_ios_uikit_UIEdgeInsets.h"
@@ -900,6 +901,18 @@
 @end
 
 @implementation UIAlertView (cm_crossmobile_ios_uikit_UIAlertView)
+
+// direct binding of: + (instancetype)appearance;
++ (instancetype) appearance__
+{
+    return [[crossmobile_ios_uikit_UIAlertViewAppearance alloc] initWithUIAlertViewAppearance:[UIAlertView appearance]];
+}
+
+// direct binding of: + (instancetype)appearanceWhenContainedInInstancesOfClasses:(NSArray<Class<UIAppearanceContainer>> *)containerTypes;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes 
+{
+    return [[crossmobile_ios_uikit_UIAlertViewAppearance alloc] initWithUIAlertViewAppearance:[UIAlertView appearanceWhenContainedInInstancesOfClasses:jclass_to_class_list(containerTypes == JAVA_NULL ? nil : containerTypes)]];
+}
 
 // direct binding of: - (instancetype)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ...;
 - (instancetype) __init_crossmobile_ios_uikit_UIAlertView___java_lang_String_java_lang_String_crossmobile_ios_uikit_UIAlertViewDelegate_java_lang_String_java_lang_String_ARRAYTYPE:(NSString*) title :(NSString*) message :(id<UIAlertViewDelegate>) delegate :(NSString*) cancelButtonTitle :(XMLVMArray*) otherButtonTitles 

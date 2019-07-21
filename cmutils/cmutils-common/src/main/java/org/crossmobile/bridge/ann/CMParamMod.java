@@ -25,10 +25,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 @Target(PARAMETER)
 public @interface CMParamMod {
-
-    public static final String NATIVE_PARAM = "$native";
-    public static final String JAVA_PARAM = "$java";
-
     /**
      * If a parameter is used by reference
      *
@@ -41,7 +37,7 @@ public @interface CMParamMod {
      *
      * @return the native code of the conversion mechanism
      */
-    String code() default "";
+    String convertWith() default "";
 
     /**
      * Native type

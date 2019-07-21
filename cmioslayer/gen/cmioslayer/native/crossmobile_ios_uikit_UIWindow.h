@@ -10,12 +10,16 @@
 @class crossmobile_ios_coregraphics_CGRect;
 @class crossmobile_ios_uikit_UIEvent;
 @class crossmobile_ios_uikit_UIViewController;
+@class crossmobile_ios_uikit_UIWindowAppearance;
+@protocol java_util_List;
 
 @interface crossmobile_ios_uikit_UIWindow$Ext : UIWindow
 @end
 
 #define crossmobile_ios_uikit_UIWindow UIWindow
 @interface UIWindow (cm_crossmobile_ios_uikit_UIWindow)
++ (instancetype) appearance__;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes ;
 - (instancetype) __init_crossmobile_ios_uikit_UIWindow__;
 - (instancetype) __init_crossmobile_ios_uikit_UIWindow___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) frame ;
 - (void) setRootViewController___crossmobile_ios_uikit_UIViewController:(UIViewController*) rootViewController ;

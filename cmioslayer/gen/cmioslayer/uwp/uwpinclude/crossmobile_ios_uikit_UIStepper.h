@@ -8,6 +8,8 @@
 #import <UIKit/UIKit.h>
 @class crossmobile_ios_coregraphics_CGRect;
 @class crossmobile_ios_uikit_UIImage;
+@class crossmobile_ios_uikit_UIStepperAppearance;
+@protocol java_util_List;
 
 CM_EXPORT_CLASS
 @interface crossmobile_ios_uikit_UIStepper$Ext : UIStepper
@@ -15,6 +17,8 @@ CM_EXPORT_CLASS
 
 #define crossmobile_ios_uikit_UIStepper UIStepper
 @interface UIStepper (cm_crossmobile_ios_uikit_UIStepper)
++ (instancetype) appearance__;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes ;
 - (instancetype) __init_crossmobile_ios_uikit_UIStepper__;
 - (instancetype) __init_crossmobile_ios_uikit_UIStepper___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) frame ;
 - (void) setAutorepeat___boolean:(BOOL) autorepeat ;

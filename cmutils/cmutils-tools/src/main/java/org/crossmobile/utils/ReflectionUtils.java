@@ -23,18 +23,18 @@ import org.crossmobile.utils.CustomTypeClasses.VoidRef;
 import java.io.File;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.*;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.*;
+
+import static java.util.Comparator.comparing;
 
 public class ReflectionUtils {
 
-    private static ClassLoader cl = ReflectionUtils.class.getClassLoader();
-    private static Method getPackage = findMethod(cl.getClass(), "getPackage", String.class);
+    private static ExtClassLoader cl = new ExtClassLoader();
 
-    public static void setClassLoader(ClassLoader cl) {
-        ReflectionUtils.cl = cl;
-        getPackage = findMethod(cl.getClass(), "getPackage", String.class);
+    public static void resetClassLoader() {
+        cl = new ExtClassLoader();
     }
 
     @SuppressWarnings("UseSpecificCatch")
@@ -111,6 +111,31 @@ public class ReflectionUtils {
                 break;
             }
         return ann;
+    }
+
+    public static Class<?> getTypeOfParameter(Parameter param) {
+        Type type = param.getParameterizedType();
+        if (!(type instanceof ParameterizedType))
+            return null;
+        Type[] typeArgs = ((ParameterizedType) type).getActualTypeArguments();
+        return typeArgs == null || typeArgs.length == 0 ? null
+                : getClass(typeArgs[0]);
+    }
+
+    public static Class<?> getClass(Type type) {
+        if (type instanceof Class)
+            return (Class) type;
+        else if (type instanceof ParameterizedType)
+            return getClass(((ParameterizedType) type).getRawType());
+        else if (type instanceof GenericArrayType) {
+            Type componentType = ((GenericArrayType) type).getGenericComponentType();
+            Class<?> componentClass = getClass(componentType);
+            if (componentClass != null)
+                return Array.newInstance(componentClass, 0).getClass();
+            else
+                return null;
+        } else
+            return null;
     }
 
     public static Method getLambdaMethod(Class interf) {
@@ -286,14 +311,7 @@ public class ReflectionUtils {
             if (dot < 0)
                 return null;
             cname = cname.substring(0, dot);
-            if (getPackage == null)
-                found = Package.getPackage(cname);
-            else
-                try {
-                    found = (Package) getPackage.invoke(cl, cname);
-                } catch (Exception ex) {
-                    found = null;
-                }
+            found = cl.getPackage(cname);
             if (found != null)
                 return found;
         }
@@ -316,11 +334,16 @@ public class ReflectionUtils {
                 cls = current;
                 current = current.getEnclosingClass();
             }
-        else if (cls.isMemberClass())
-            while (current != null) {
-                cls = current;
-                current = current.getDeclaringClass();
+        else {
+            try {
+                if (cls.isMemberClass())
+                    while (current != null) {
+                        cls = current;
+                        current = current.getDeclaringClass();
+                    }
+            } catch (Throwable ignored) {
             }
+        }
         return cls;
     }
 
@@ -338,5 +361,25 @@ public class ReflectionUtils {
     public static Class<?> getTopLevelClass(Class<?> cls) {
         Class<?> enclosingClass = cls.getEnclosingClass();
         return enclosingClass == null ? cls : getTopClass(enclosingClass);
+    }
+
+    public static ExtClassLoader getClassLoader() {
+        return cl;
+    }
+
+    public static final class ExtClassLoader extends URLClassLoader {
+        private ExtClassLoader() {
+            super(new URL[0], ExtClassLoader.class.getClassLoader());
+        }
+
+        @Override
+        public void addURL(URL url) {
+            super.addURL(url);
+        }
+
+        @Override
+        public Package getPackage(String name) {
+            return super.getPackage(name);
+        }
     }
 }

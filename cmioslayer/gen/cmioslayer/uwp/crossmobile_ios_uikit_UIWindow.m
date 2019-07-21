@@ -21,6 +21,7 @@
 #import "crossmobile_ios_uikit_UIView.h"
 #import "crossmobile_ios_uikit_UIViewController.h"
 #import "crossmobile_ios_uikit_UIWindow.h"
+#import "crossmobile_ios_uikit_UIWindowAppearance.h"
 #import "java_lang_Object.h"
 #import "java_lang_String.h"
 #import "java_util_List.h"
@@ -876,6 +877,18 @@
 @end
 
 @implementation UIWindow (cm_crossmobile_ios_uikit_UIWindow)
+
+// direct binding of: + (instancetype)appearance;
++ (instancetype) appearance__
+{
+    return [[crossmobile_ios_uikit_UIWindowAppearance alloc] initWithUIWindowAppearance:[UIWindow appearance]];
+}
+
+// direct binding of: + (instancetype)appearanceWhenContainedInInstancesOfClasses:(NSArray<Class<UIAppearanceContainer>> *)containerTypes;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes 
+{
+    return [[crossmobile_ios_uikit_UIWindowAppearance alloc] initWithUIWindowAppearance:[UIWindow appearanceWhenContainedInInstancesOfClasses:jclass_to_class_list(containerTypes == JAVA_NULL ? nil : containerTypes)]];
+}
 
 // direct binding of: -(instancetype) init;
 - (instancetype) __init_crossmobile_ios_uikit_UIWindow__

@@ -286,15 +286,7 @@
                 argv$conv[argv$conv$i] = (char*)[argv$conv$str UTF8String];
         }
     }
-    principalClassName = principalClassName == JAVA_NULL ? nil : principalClassName;
-    NSString* appName = [principalClassName getName__];
-    NSString* principalClassName$conv = [appName stringByReplacingOccurrencesOfString: @"." withString: @"_"];
-    [appName release];
-    delegateClassName = delegateClassName == JAVA_NULL ? nil : delegateClassName;
-    NSString* delName = [delegateClassName getName__];
-    NSString* delegateClassName$conv = [delName stringByReplacingOccurrencesOfString: @"." withString: @"_"];
-    [delName release];
-    int re$ult = UIApplicationMain((argv == JAVA_NULL ? 0 : argv->length), argv$conv, principalClassName$conv, delegateClassName$conv);
+    int re$ult = UIApplicationMain((argv == JAVA_NULL ? 0 : argv->length), argv$conv, jclass_to_string(principalClassName == JAVA_NULL ? nil : principalClassName), jclass_to_string(delegateClassName == JAVA_NULL ? nil : delegateClassName));
     free(argv$conv);
     return re$ult;
 }

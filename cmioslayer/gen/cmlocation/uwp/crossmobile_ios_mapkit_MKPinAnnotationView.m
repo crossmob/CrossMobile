@@ -9,6 +9,7 @@
 #import "crossmobile_ios_foundation_NSObject.h"
 #import "crossmobile_ios_mapkit_MKAnnotation.h"
 #import "crossmobile_ios_mapkit_MKPinAnnotationView.h"
+#import "crossmobile_ios_mapkit_MKPinAnnotationViewAppearance.h"
 #import "crossmobile_ios_quartzcore_CALayer.h"
 #import "crossmobile_ios_uikit_NSLayoutConstraint.h"
 #import "crossmobile_ios_uikit_NSLayoutDimension.h"
@@ -1026,6 +1027,18 @@
 @end
 
 @implementation MKPinAnnotationView (cm_crossmobile_ios_mapkit_MKPinAnnotationView)
+
+// direct binding of: + (instancetype)appearance;
++ (instancetype) appearance__
+{
+    return [[crossmobile_ios_mapkit_MKPinAnnotationViewAppearance alloc] initWithMKPinAnnotationViewAppearance:[MKPinAnnotationView appearance]];
+}
+
+// direct binding of: + (instancetype)appearanceWhenContainedInInstancesOfClasses:(NSArray<Class<UIAppearanceContainer>> *)containerTypes;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes 
+{
+    return [[crossmobile_ios_mapkit_MKPinAnnotationViewAppearance alloc] initWithMKPinAnnotationViewAppearance:[MKPinAnnotationView appearanceWhenContainedInInstancesOfClasses:jclass_to_class_list(containerTypes == JAVA_NULL ? nil : containerTypes)]];
+}
 
 // direct binding of: - (instancetype)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier;
 - (instancetype) __init_crossmobile_ios_mapkit_MKPinAnnotationView___crossmobile_ios_mapkit_MKAnnotation_java_lang_String:(id<MKAnnotation>) annotation :(NSString*) reuseIdentifier 

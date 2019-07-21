@@ -16,6 +16,8 @@
  */
 package org.crossmobile.plugin.actions;
 
+import javassist.ClassPool;
+import javassist.NotFoundException;
 import org.crossmobile.bridge.ann.CMLibTarget.BaseTarget;
 import org.crossmobile.build.ArtifactInfo;
 import org.crossmobile.plugin.Packages;
@@ -24,8 +26,8 @@ import org.crossmobile.plugin.reg.PackageRegistry;
 import org.crossmobile.plugin.reg.PluginRegistry;
 import org.crossmobile.plugin.reg.ProguardRegistry;
 import org.crossmobile.plugin.utils.ClassCollection;
-import org.crossmobile.utils.JarUtils;
 import org.crossmobile.utils.Log;
+import org.crossmobile.utils.ReflectionUtils;
 import org.crossmobile.utils.plugin.DependencyItem;
 
 import java.io.File;
@@ -75,9 +77,11 @@ public class PluginAssembler {
         delete(bundles);
 
         ClassCollection cc = new ClassCollection();
+        ReflectionUtils.resetClassLoader();
+        ProjectRegistry registry = new ProjectRegistry();
         time(() -> {
             time(() -> {
-                ProjectRegistry.register(root, embedlibs, cc);
+                registry.register(root, embedlibs, cc);
                 if (packs != null && packs.length > 0)
                     for (Packages pack : packs)
                         if (pack != null)
@@ -99,11 +103,11 @@ public class PluginAssembler {
             time(() -> {
                 File encjar = new File(target, root.getArtifactID() + "-" + root.getVersion() + ".pro.jar");
                 if (obfuscate) {
-                    Obfuscator.obfuscate(proguard, proguardConf, proguardMap, root.getFile(), encjar, getLibAndBlacklistedJars(), getEmbedjars());
+                    Obfuscator.obfuscate(proguard, proguardConf, proguardMap, root.getFile(), encjar, registry.getLibAndBlacklistedJars(), registry.getEmbedjars());
                     ProguardRegistry.register(proguardMap);
                     unzipJar(encjar, runtime);
                 } else
-                    for (File f : getAppjars().toArray(new File[]{}))
+                    for (File f : registry.getAppjars().toArray(new File[0]))
                         unzipJar(f, runtime);
             }, "Encrypt and combine");
 

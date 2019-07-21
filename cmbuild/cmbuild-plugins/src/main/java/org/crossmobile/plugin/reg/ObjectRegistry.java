@@ -25,8 +25,13 @@ import java.util.TreeMap;
 
 public class ObjectRegistry {
 
+    public static final String NSObjectClassName = "crossmobile.ios.foundation.NSObject";
+    public static final String CFTypeClassName = "crossmobile.ios.foundation.CFType";
+    public static final String UIAppearanceClassName = "crossmobile.ios.uikit.UIAppearance";
+    public static final String UIAppearanceContainerClassName = "crossmobile.ios.uikit.UIAppearanceContainer";
     private static final Map<Class, NObject> objects = new TreeMap<>(Comparator.comparing(Class::getName));
     private static Class<?> NSObjectClass;
+    private static Class<?> UIAppearanceContainerClass;
     private static Class<?> CFTypeClass;
 
     public static void register(NObject nobj) {
@@ -42,21 +47,15 @@ public class ObjectRegistry {
     }
 
     public static Class<?> getNSObject() {
-        if (NSObjectClass == null) {
-            NSObjectClass = ReflectionUtils.getClassForName("crossmobile.ios.foundation.NSObject");
-            if (NSObjectClass == null)
-                throw new RuntimeException("Unable to locate NSObject in classpath");
-        }
-        return NSObjectClass;
+        return NSObjectClass = getClassNamed(NSObjectClass, NSObjectClassName);
     }
 
     public static Class<?> getCFType() {
-        if (CFTypeClass == null) {
-            CFTypeClass = ReflectionUtils.getClassForName("crossmobile.ios.foundation.CFType");
-            if (CFTypeClass == null)
-                throw new RuntimeException("Unable to locate CFType in classpath");
-        }
-        return CFTypeClass;
+        return CFTypeClass = getClassNamed(CFTypeClass, CFTypeClassName);
+    }
+
+    public static boolean isUIAppearanceClass(Class<?> classToCheck) {
+        return (UIAppearanceContainerClass = getClassNamed(UIAppearanceContainerClass, UIAppearanceContainerClassName)).isAssignableFrom(classToCheck);
     }
 
     public static boolean contains(String className) {
@@ -64,5 +63,11 @@ public class ObjectRegistry {
             if (aClass.getName().equals(className))
                 return true;
         return false;
+    }
+
+    private static Class<?> getClassNamed(Class<?> cached, String className) {
+        if (cached == null && (cached = ReflectionUtils.getClassForName(className)) == null)
+            throw new RuntimeException("Unable to locate class " + className + " in classpath");
+        return cached;
     }
 }

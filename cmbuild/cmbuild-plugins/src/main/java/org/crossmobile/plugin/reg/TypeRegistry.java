@@ -46,6 +46,10 @@ public class TypeRegistry {
 
     public static final int VARARG_SIZE_SUPPORT = 20;
 
+    public static final String JCLASS_TO_CLASS_METHOD = "jclass_to_class";
+    public static final String JCLASS_TO_STRING_METHOD = "jclass_to_string";
+    public static final String JCLASS_TO_CLASS_LIST_METHOD = "jclass_to_class_list";
+
     static {
         needsCasting.add("CFString");
         needsCasting.add("CFDictionary");
@@ -99,36 +103,50 @@ public class TypeRegistry {
         return array ? getArrayClassOfClass(classType) : classType;
     }
 
-    public static boolean isCBased(Class s) {
-        return isStruct(s) || isReference(s) || isBundle(s);
+    public static boolean isCBased(Class<?> s) {
+        return isStruct(s) || isCReference(s) || isBundle(s);
+    }
+
+    public static boolean isAnyReference(Class<?> a) {
+        return isStruct(a) || isReference(a) || isBundle(a);
     }
 
     public static boolean isObjCBased(Class<?> s) {
         return s.getAnnotation(CMClass.class) != null;
     }
 
-    public static boolean isBundle(Class s) {
+    public static boolean isBundle(Class<?> s) {
         return s.getAnnotation(CMBundle.class) != null;
     }
 
-    public static boolean isStruct(Class s) {
+    public static boolean isStruct(Class<?> s) {
         return s.getAnnotation(CMStruct.class) != null;
     }
 
-    public static boolean isReference(Class s) {
+    public static boolean isReference(Class<?> s) {
         return s.getAnnotation(CMReference.class) != null;
     }
 
-    public static boolean isTarget(Class s) {
+    public static boolean isCReference(Class<?> s) {
+        CMReference ref = s.getAnnotation(CMReference.class);
+        return ref != null && ref.proxyOf().equals(Object.class);
+    }
+
+    public static boolean isObjCReference(Class<?> s) {
+        CMReference ref = s.getAnnotation(CMReference.class);
+        return ref != null && !ref.proxyOf().equals(Object.class);
+    }
+
+    public static boolean isTarget(Class<?> s) {
         return s.getAnnotation(CMTarget.class) != null;
     }
 
-    public static boolean isBlockTarget(Class s) {
+    public static boolean isBlockTarget(Class<?> s) {
         Method lambdaMethod = getLambdaMethod(s);
         return isTarget(s) && lambdaMethod != null && lambdaMethod.getAnnotation(CMBlock.class) != null;
     }
 
-    public static boolean isSelectorTarget(Class s) {
+    public static boolean isSelectorTarget(Class<?> s) {
         return isTarget(s) && getLambdaMethod(s).getAnnotation(CMSelector.class) != null;
     }
 
@@ -169,6 +187,8 @@ public class TypeRegistry {
         String base = getClassNameSimple(cls);
         if (isStruct(cls))
             return base;
+        else if (isObjCReference(cls))
+            return "id";
         else if (isCBased(cls))
             return base + "Ref";
         else

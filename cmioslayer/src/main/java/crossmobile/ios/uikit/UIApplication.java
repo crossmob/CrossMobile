@@ -28,8 +28,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import static crossmobile.ios.uikit.UIUserNotificationType.notificationTypeToAuthorizationOption;
-import static org.crossmobile.bridge.ann.CMParamMod.JAVA_PARAM;
-import static org.crossmobile.bridge.ann.CMParamMod.NATIVE_PARAM;
 
 /**
  * UIApplication class defines an object that is uniquely associated with an
@@ -73,15 +71,9 @@ public class UIApplication extends UIResponder {
     }
 
     @CMFunction("int UIApplicationMain ( int argc, char * _Nonnull argv[], NSString *principalClassName, NSString *delegateClassName );")
-    public static int main(@CMJoinMEM(memory = "argv", size = "argc") String[] args, @CMParamMod(code = ""
-            + "NSString* appName = [" + JAVA_PARAM + " getName__];\n"
-            + "NSString* " + NATIVE_PARAM + " = [appName stringByReplacingOccurrencesOfString: @\".\" withString: @\"_\"];\n"
-            + "[appName release];\n"
-            + "", type = String.class) Class<? extends UIApplication> UIApplication, @CMParamMod(code = ""
-            + "NSString* delName = [" + JAVA_PARAM + " getName__];\n"
-            + "NSString* " + NATIVE_PARAM + " = [delName stringByReplacingOccurrencesOfString: @\".\" withString: @\"_\"];\n"
-            + "[delName release];\n"
-            + "", type = String.class) Class<? extends UIApplicationDelegate> UIApplicationDelegate) {
+    public static int main(@CMJoinMEM(memory = "argv", size = "argc") String[] args,
+                           @CMParamMod(convertWith = "jclass_to_string", type = String.class) Class<? extends UIApplication> UIApplication,
+                           @CMParamMod(convertWith = "jclass_to_string", type = String.class) Class<? extends UIApplicationDelegate> UIApplicationDelegate) {
         Native.prepare(null);
         Native.lifecycle().init(args);
 

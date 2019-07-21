@@ -12,6 +12,7 @@
 @class crossmobile_ios_mapkit_MKAnnotationView;
 @class crossmobile_ios_mapkit_MKCoordinateRegion;
 @class crossmobile_ios_mapkit_MKMapRect;
+@class crossmobile_ios_mapkit_MKMapViewAppearance;
 @protocol crossmobile_ios_mapkit_MKMapViewDelegate;
 @protocol crossmobile_ios_mapkit_MKOverlay;
 @class crossmobile_ios_mapkit_MKOverlayView;
@@ -27,6 +28,8 @@
 
 #define crossmobile_ios_mapkit_MKMapView MKMapView
 @interface MKMapView (cm_crossmobile_ios_mapkit_MKMapView)
++ (instancetype) appearance__;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes ;
 - (instancetype) __init_crossmobile_ios_mapkit_MKMapView__;
 - (instancetype) __init_crossmobile_ios_mapkit_MKMapView___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) frame ;
 - (crossmobile_ios_coregraphics_CGRect*) annotationVisibleRect__;

@@ -17,14 +17,32 @@
 package org.crossmobile.plugin.actions;
 
 import javassist.*;
+import javassist.bytecode.AnnotationsAttribute;
+import javassist.bytecode.ClassFile;
+import javassist.bytecode.ConstPool;
+import javassist.bytecode.annotation.Annotation;
+import javassist.bytecode.annotation.ClassMemberValue;
+import org.crossmobile.bridge.ann.CMClass;
+import org.crossmobile.bridge.ann.CMEnum;
 import org.crossmobile.bridge.ann.CMGetter;
+import org.crossmobile.bridge.ann.CMReference;
 import org.crossmobile.bridge.system.BaseUtils;
+import org.crossmobile.plugin.reg.ObjectRegistry;
 import org.crossmobile.plugin.reg.TargetRegistry;
+import org.crossmobile.plugin.utils.ClassCollection;
+import org.crossmobile.utils.FileUtils;
 import org.crossmobile.utils.Log;
 import org.crossmobile.utils.TextUtils;
+import org.robovm.objc.annotation.UIAppearanceSelector;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Method;
+import java.net.URL;
+import java.util.*;
+
+import static java.util.Arrays.stream;
+import static java.util.Comparator.comparing;
 
 @SuppressWarnings("StaticNonFinalUsedInInitialization")
 public class CreateBeanAPI {
@@ -34,7 +52,7 @@ public class CreateBeanAPI {
     public static final String GETTER_ATTRIBUTE = "G";
 
     private static final byte[] OBJ_STYLE_ATTR = {OBJ_STYLE};
-    private static final byte[] BREAN_STYLE_ATTR = {BEAN_STYLE};
+    private static final byte[] BEAN_STYLE_ATTR = {BEAN_STYLE};
     private static final byte[] BOTH_STYLES_ATTR = {OBJ_STYLE | BEAN_STYLE};
 
     private final ClassPool cp;
@@ -43,8 +61,7 @@ public class CreateBeanAPI {
         this.cp = cp;
     }
 
-
-    public boolean beanClass(Class cls, File basedir) throws IOException {
+    public boolean beanClass(Class cls, File basedir) {
         try {
             String name = cls.getName();
             CtClass s = cp.get(name);
@@ -106,8 +123,9 @@ public class CreateBeanAPI {
         Log.debug(s.getName() + "." + currentName + "() => " + beanName + "()");
         CtMethod beanMethod = new CtMethod(m.getReturnType(), beanName, new CtClass[0], s);
         beanMethod.setBody("return " + currentName + "();");
-        beanMethod.setAttribute(GETTER_ATTRIBUTE, BREAN_STYLE_ATTR);
+        beanMethod.setAttribute(GETTER_ATTRIBUTE, BEAN_STYLE_ATTR);
         s.addMethod(beanMethod);
     }
+
 
 }

@@ -8,14 +8,18 @@
 #import <UIKit/UIKit.h>
 @class crossmobile_ios_uikit_UIImageView;
 @class crossmobile_ios_uikit_UILabel;
+@class crossmobile_ios_uikit_UITableViewCellAppearance;
 @class crossmobile_ios_uikit_UIView;
 @class java_lang_String;
+@protocol java_util_List;
 
 @interface crossmobile_ios_uikit_UITableViewCell$Ext : UITableViewCell
 @end
 
 #define crossmobile_ios_uikit_UITableViewCell UITableViewCell
 @interface UITableViewCell (cm_crossmobile_ios_uikit_UITableViewCell)
++ (instancetype) appearance__;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes ;
 - (instancetype) __init_crossmobile_ios_uikit_UITableViewCell___int_java_lang_String:(int) style :(NSString*) reuseIdentifier ;
 - (void) setAccessoryType___int:(int) accessoryType ;
 - (int) accessoryType__;

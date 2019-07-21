@@ -9,6 +9,7 @@
 @class crossmobile_ios_coregraphics_CGRect;
 @class crossmobile_ios_uikit_UIColor;
 @class crossmobile_ios_uikit_UIImage;
+@class crossmobile_ios_uikit_UITabBarAppearance;
 @protocol crossmobile_ios_uikit_UITabBarDelegate;
 @class crossmobile_ios_uikit_UITabBarItem;
 @protocol java_util_List;
@@ -18,6 +19,8 @@
 
 #define crossmobile_ios_uikit_UITabBar UITabBar
 @interface UITabBar (cm_crossmobile_ios_uikit_UITabBar)
++ (instancetype) appearance__;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes ;
 - (instancetype) __init_crossmobile_ios_uikit_UITabBar__;
 - (instancetype) __init_crossmobile_ios_uikit_UITabBar___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) frame ;
 - (void) setBackgroundImage___crossmobile_ios_uikit_UIImage:(UIImage*) backgroundImage ;

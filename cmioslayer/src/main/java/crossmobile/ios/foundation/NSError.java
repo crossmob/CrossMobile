@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * NSError class incorporates all the information related to errors.
  */
-@CMClass(alias = "CFError")
+@CMClass(typeAlias = "CFError")
 public class NSError extends NSObject implements NSSecureCoding {
 
     private final String domain;

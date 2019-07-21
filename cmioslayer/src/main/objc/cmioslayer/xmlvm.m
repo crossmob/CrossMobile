@@ -28,6 +28,8 @@
 #import "java_lang_Float.h"
 #import "java_lang_Double.h"
 #import "java_lang_Long.h"
+#import "java_lang_Class.h"
+#import "java_util_List.h"
 
 id JAVA_NULL;
 
@@ -51,6 +53,33 @@ void xmlvm_error(NSString* msg)
     @throw [NSException exceptionWithName: @"XMLVM missing byte code instruction" reason:msg userInfo: nil];
 }
 
+NSString* jclass_to_string(java_lang_Class* classname)
+{
+    if (classname==JAVA_NULL||classname==nil)
+        return nil;
+    NSString* name = [classname getName__];
+    NSString* objcname = [name stringByReplacingOccurrencesOfString:@"." withString:@"_"];
+    [name release];
+    return objcname;
+}
+
+Class jclass_to_class(java_lang_Class* classname)
+{
+    if (classname==JAVA_NULL||classname==nil)
+        return nil;
+    return classname->clazz;
+}
+
+NSArray<Class>* jclass_to_class_list(java_util_List* list){
+    if (list==JAVA_NULL||list==nil)
+        return nil;
+
+    int size = [list size__];
+    NSMutableArray* result = [[[NSMutableArray alloc] initWithCapacity:[list size__]] autorelease];
+    for(int i = 0 ; i <size ; i++)
+        [result addObject:[list get___int:i]];
+    return result;
+}
 
 @implementation XMLVMArray
 

@@ -9,8 +9,10 @@
 @class crossmobile_ios_coregraphics_CGRect;
 @class crossmobile_ios_uikit_UIColor;
 @class crossmobile_ios_uikit_UIFont;
+@class crossmobile_ios_uikit_UITextFieldAppearance;
 @protocol crossmobile_ios_uikit_UITextFieldDelegate;
 @class java_lang_String;
+@protocol java_util_List;
 
 CM_EXPORT_CLASS
 @interface crossmobile_ios_uikit_UITextField$Ext : UITextField
@@ -18,6 +20,8 @@ CM_EXPORT_CLASS
 
 #define crossmobile_ios_uikit_UITextField UITextField
 @interface UITextField (cm_crossmobile_ios_uikit_UITextField)
++ (instancetype) appearance__;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes ;
 - (instancetype) __init_crossmobile_ios_uikit_UITextField__;
 - (instancetype) __init_crossmobile_ios_uikit_UITextField___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) frame ;
 - (void) setAdjustsFontSizeToFitWidth___boolean:(BOOL) adjustsFontSizeToFitWidth ;

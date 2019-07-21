@@ -21,7 +21,7 @@ import org.crossmobile.bridge.ann.CMEnum;
 /**
  * NSOrdered class defines different types of ordering objects of a request.
  */
-@CMEnum(alias = "NSComparisonResult")
+@CMEnum(typeAlias = "NSComparisonResult")
 public final class NSOrdered {
 
     /**

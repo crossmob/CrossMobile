@@ -21,6 +21,7 @@
 #import "crossmobile_ios_uikit_UILayoutGuide.h"
 #import "crossmobile_ios_uikit_UIResponder.h"
 #import "crossmobile_ios_uikit_UITableViewCell.h"
+#import "crossmobile_ios_uikit_UITableViewCellAppearance.h"
 #import "crossmobile_ios_uikit_UIView.h"
 #import "crossmobile_ios_uikit_UIWindow.h"
 #import "java_lang_Object.h"
@@ -957,6 +958,18 @@
 @end
 
 @implementation UITableViewCell (cm_crossmobile_ios_uikit_UITableViewCell)
+
+// direct binding of: + (instancetype)appearance;
++ (instancetype) appearance__
+{
+    return [[crossmobile_ios_uikit_UITableViewCellAppearance alloc] initWithUITableViewCellAppearance:[UITableViewCell appearance]];
+}
+
+// direct binding of: + (instancetype)appearanceWhenContainedInInstancesOfClasses:(NSArray<Class<UIAppearanceContainer>> *)containerTypes;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes 
+{
+    return [[crossmobile_ios_uikit_UITableViewCellAppearance alloc] initWithUITableViewCellAppearance:[UITableViewCell appearanceWhenContainedInInstancesOfClasses:jclass_to_class_list(containerTypes == JAVA_NULL ? nil : containerTypes)]];
+}
 
 // direct binding of: - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 - (instancetype) __init_crossmobile_ios_uikit_UITableViewCell___int_java_lang_String:(int) style :(NSString*) reuseIdentifier 

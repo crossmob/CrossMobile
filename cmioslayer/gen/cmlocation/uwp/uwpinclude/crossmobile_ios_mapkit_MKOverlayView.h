@@ -11,6 +11,8 @@
 @class crossmobile_ios_mapkit_MKMapPoint;
 @class crossmobile_ios_mapkit_MKMapRect;
 @protocol crossmobile_ios_mapkit_MKOverlay;
+@class crossmobile_ios_mapkit_MKOverlayViewAppearance;
+@protocol java_util_List;
 
 CM_EXPORT_CLASS
 @interface crossmobile_ios_mapkit_MKOverlayView$Ext : MKOverlayView
@@ -18,6 +20,8 @@ CM_EXPORT_CLASS
 
 #define crossmobile_ios_mapkit_MKOverlayView MKOverlayView
 @interface MKOverlayView (cm_crossmobile_ios_mapkit_MKOverlayView)
++ (instancetype) appearance__;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes ;
 - (instancetype) __init_crossmobile_ios_mapkit_MKOverlayView___crossmobile_ios_mapkit_MKOverlay:(id<MKOverlay>) overlay ;
 - (id<MKOverlay>) overlay__;
 - (BOOL) canDrawMapRect___crossmobile_ios_mapkit_MKMapRect_double:(crossmobile_ios_mapkit_MKMapRect*) mapRect :(double) zoomScale ;

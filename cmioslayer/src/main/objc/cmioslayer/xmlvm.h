@@ -22,6 +22,8 @@
 #import <objc/runtime.h>
 #import <math.h>
 #import <Foundation/Foundation.h>
+@class java_lang_Class;
+@class java_util_List;
 
 #define CGBitmapContextRef CGContextRef
 
@@ -36,8 +38,10 @@ typedef NSString *UIActivityType;
 void xmlvm_init();
 
 void xmlvm_error(NSString* msg);
-
 int isObjectInstanceOf(id * obj, char* className);
+NSString* jclass_to_string(java_lang_Class* classname);
+Class jclass_to_class(java_lang_Class* classname);
+NSArray<Class>* jclass_to_class_list(java_util_List* list);
 
 typedef long long JAVA_LONG;
 typedef unsigned long long JAVA_ULONG;

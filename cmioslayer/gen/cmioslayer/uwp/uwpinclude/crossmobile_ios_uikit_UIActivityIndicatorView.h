@@ -6,7 +6,9 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+@class crossmobile_ios_uikit_UIActivityIndicatorViewAppearance;
 @class crossmobile_ios_uikit_UIColor;
+@protocol java_util_List;
 
 CM_EXPORT_CLASS
 @interface crossmobile_ios_uikit_UIActivityIndicatorView$Ext : UIActivityIndicatorView
@@ -14,6 +16,8 @@ CM_EXPORT_CLASS
 
 #define crossmobile_ios_uikit_UIActivityIndicatorView UIActivityIndicatorView
 @interface UIActivityIndicatorView (cm_crossmobile_ios_uikit_UIActivityIndicatorView)
++ (instancetype) appearance__;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes ;
 - (instancetype) __init_crossmobile_ios_uikit_UIActivityIndicatorView__;
 - (instancetype) __init_crossmobile_ios_uikit_UIActivityIndicatorView___int:(int) style ;
 - (void) setActivityIndicatorViewStyle___int:(int) activityIndicatorViewStyle ;

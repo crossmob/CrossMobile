@@ -16,7 +16,6 @@
  */
 package crossmobile.ios.uikit;
 
-import crossmobile.ios.coregraphics.CGContext;
 import crossmobile.ios.coregraphics.CGPoint;
 import crossmobile.ios.coregraphics.CGRect;
 import org.crossmobile.bind.graphics.Geometry;
@@ -70,6 +69,10 @@ public class UISwitch extends UIControl {
     public UISwitch(CGRect rect) {
         super(fixRect(rect));
         setOn(false, false);
+    }
+
+    private static CGRect fixRect(CGRect frame) {
+        return new CGRect(frame.getOrigin().getX(), frame.getOrigin().getY(), WIDTH, HEIGHT);
     }
 
     @Override
@@ -252,9 +255,5 @@ public class UISwitch extends UIControl {
             gcx.setDrawColorWithColor(onColor);
             gcx.drawEllipse(buttonLocation, INSET + 0.5, THUMB_SIZE, THUMB_SIZE);
         }
-    }
-
-    private static CGRect fixRect(CGRect frame) {
-        return new CGRect(frame.getOrigin().getX(), frame.getOrigin().getY(), WIDTH, HEIGHT);
     }
 }

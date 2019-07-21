@@ -28,21 +28,16 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.TreeSet;
 
-import static org.crossmobile.plugin.utils.ClassCollection.resolveClasses;
 import static org.crossmobile.utils.CollectionUtils.asList;
-import static org.crossmobile.utils.ReflectionUtils.setClassLoader;
 
-/**
- * @author teras
- */
 public class ProjectRegistry {
 
-    private static Collection<File> libjars;
-    private static Collection<File> embedjars;
-    private static Collection<File> appjars;
-    private static Collection<File> allbljars;
+    private Collection<File> libjars;
+    private Collection<File> embedjars;
+    private Collection<File> appjars;
+    private Collection<File> allbljars;
 
-    public static void register(DependencyItem root, String[] embedlibs, ClassCollection cc) {
+    public void register(DependencyItem root, String[] embedlibs, ClassCollection cc) {
         if (libjars != null)
             return;
 
@@ -56,8 +51,7 @@ public class ProjectRegistry {
         appjars.addAll(embedjars);
         allbljars.addAll(libjars);
 
-        cc.resolve(asList(getAppjars(), File::getAbsolutePath));
-        setClassLoader(cc.getClass().getClassLoader());
+        cc.resolve(asList(getAppjars(), File::getAbsolutePath), false);
         for (Class cls : cc.getAllClasses())
             PluginRegistry.register(cls);
         for (Class cls : cc.getAllNativeClasses())
@@ -66,25 +60,25 @@ public class ProjectRegistry {
         // Resolve all classes: required for type checking in plugins. Otherwise plugins will not be able to find base types
         Collection<Package> packages = new HashSet<>();
         Collection<Class<?>> classes = new HashSet<>();
-        resolveClasses(asList(libjars, File::getAbsolutePath), packages::add, classes::add, true);
+        cc.resolveClasses(asList(libjars, File::getAbsolutePath), packages::add, classes::add, true);
         packages.forEach(PackageRegistry::registerDependencies);
         classes.forEach(PluginRegistry::registerDependencies);
         classes.forEach(TypeRegistry::registerDependencies);
     }
 
-    public static Collection<File> getAppjars() {
+    public Collection<File> getAppjars() {
         return appjars;
     }
 
-    public static Collection<File> getEmbedjars() {
+    public Collection<File> getEmbedjars() {
         return embedjars;
     }
 
-    public static Collection<File> getLibjars() {
+    public Collection<File> getLibjars() {
         return libjars;
     }
 
-    public static Collection<File> getLibAndBlacklistedJars() {
+    public Collection<File> getLibAndBlacklistedJars() {
         return allbljars;
     }
 }

@@ -10,14 +10,18 @@
 @class crossmobile_ios_uikit_UIColor;
 @class crossmobile_ios_uikit_UIEdgeInsets;
 @class crossmobile_ios_uikit_UIFont;
+@class crossmobile_ios_uikit_UITextViewAppearance;
 @protocol crossmobile_ios_uikit_UITextViewDelegate;
 @class java_lang_String;
+@protocol java_util_List;
 
 @interface crossmobile_ios_uikit_UITextView$Ext : UITextView
 @end
 
 #define crossmobile_ios_uikit_UITextView UITextView
 @interface UITextView (cm_crossmobile_ios_uikit_UITextView)
++ (instancetype) appearance__;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes ;
 - (instancetype) __init_crossmobile_ios_uikit_UITextView__;
 - (instancetype) __init_crossmobile_ios_uikit_UITextView___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) frame ;
 - (void) setAutocapitalizationType___int:(int) autocapitalizationType ;

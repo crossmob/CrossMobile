@@ -11,6 +11,8 @@
 @class crossmobile_ios_foundation_NSDate;
 @class crossmobile_ios_foundation_NSLocale;
 @class crossmobile_ios_foundation_NSTimeZone;
+@class crossmobile_ios_uikit_UIDatePickerAppearance;
+@protocol java_util_List;
 
 CM_EXPORT_CLASS
 @interface crossmobile_ios_uikit_UIDatePicker$Ext : UIDatePicker
@@ -18,6 +20,8 @@ CM_EXPORT_CLASS
 
 #define crossmobile_ios_uikit_UIDatePicker UIDatePicker
 @interface UIDatePicker (cm_crossmobile_ios_uikit_UIDatePicker)
++ (instancetype) appearance__;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes ;
 - (instancetype) __init_crossmobile_ios_uikit_UIDatePicker__;
 - (instancetype) __init_crossmobile_ios_uikit_UIDatePicker___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) frame ;
 - (void) setCalendar___crossmobile_ios_foundation_NSCalendar:(NSCalendar*) calendar ;

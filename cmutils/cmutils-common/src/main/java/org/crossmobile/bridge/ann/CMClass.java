@@ -30,6 +30,13 @@ public @interface CMClass {
      *
      * @return the possible aliases
      */
-    String[] alias() default {};
+    String[] typeAlias() default {};
 
+    /**
+     * This class is an alias of an already existing class. By default the name of the class should be verbatim the
+     * name of the Objective C object. With this annotation it is possible to define a virtual class which corresponds
+     * to an existing class. Thus, this class could not exist at all
+     * @return
+     */
+    Class<?> proxyOf() default Object.class;
 }

@@ -25,19 +25,15 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE})
 public @interface CMReference {
 
-    public static final String REFERENCE_NAME = "$reference";
+    String REFERENCE_NAME = "$reference";
 
-    String type() default "";
-
-    String retain() default "CFTypeRef CFRetain(CFTypeRef cf);";
-
-    String release() default "void CFRelease(CFTypeRef cf);";
+    Class<?> proxyOf() default Object.class;
 
     /**
      * Maybe this class is an alias of another type - it is only used by TypeDef
      *
      * @return the possible aliases
      */
-    String[] alias() default {};
+    String[] typeAlias() default {};
 
 }

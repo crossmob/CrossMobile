@@ -20,9 +20,12 @@ import crossmobile.rt.StrongReference;
 import org.crossmobile.bridge.ann.*;
 import org.crossmobile.plugin.model.*;
 import org.crossmobile.plugin.parser.AnnotationParser;
+import org.crossmobile.plugin.reg.TypeRegistry;
 import org.crossmobile.plugin.utils.Collectors;
 import org.crossmobile.plugin.utils.Factories;
 import org.crossmobile.utils.Log;
+import org.crossmobile.utils.Param;
+import org.crossmobile.utils.ReflectionUtils;
 
 import java.lang.reflect.*;
 import java.util.ArrayList;
@@ -169,7 +172,7 @@ public class ElementParser {
         for (Parameter p : exec.getParameters()) {
             CMParamMod pmod = p.getAnnotation(CMParamMod.class);
             if (pmod != null && pmod.byRef() && !isStruct(p.getType())) {
-                Log.error("Parameter at position #" + pidx + " in " + selector.getFamily() + " `" + execSignature(exec) + "` is marked as reference with " + annName(CMParamMod.class) + ", but it is not a struct.");
+                Log.error("Parameter at position " + getParamName(pidx, selector, exec) + " is marked as reference with " + annName(CMParamMod.class) + ", but it is not a struct.");
                 return false;
             }
             ParamMod mod = new ParamMod(pmod, p);
@@ -187,7 +190,7 @@ public class ElementParser {
             if (!wparam.isEmpty()) {
                 Class baseType = wparam.remove(0);
                 Class javaType = getReferencedJavaClass(exec.getDeclaringClass());
-                if (!isAssignableFrom(baseType, javaType, "Static mapped parameter at position #1 in " + selector.getFamily() + " `" + execSignature(exec) + "` does not match native code `" + selector.getOriginalCode() + "`, " + typesafeClassName(baseType) + " should be a superclass of " + typesafeClassName(javaType)))
+                if (!isAssignableFrom(baseType, javaType, "Static mapped parameter at position " + getParamName(0, selector, exec) + " does not match native code `" + selector.getOriginalCode() + "`, " + typesafeClassName(baseType) + " should be a superclass of " + typesafeClassName(javaType)))
                     return false;
                 if (staticMapping == StaticMappingType.JAVA) {
                     ParamMod mod = mMods.get(0);
@@ -266,12 +269,29 @@ public class ElementParser {
             Class sClass = sType.getType();
             Class mClass = mParams.get(i);
             ParamMod mMod = mMods.get(i);
+            String paramName = getParamName(i, selector, exec);
 
-            if (sType.countReferences() > 1 && !mMod.reference) {
-                Log.error("Parameter at position #" + i + " in " + selector.getFamily() + " `" + execSignature(exec) + "` should be a reference, as declared in `" + sType.getNativeType() + "`");
-            } else if (mMod.reference && sType.countReferences() < (1 + (isStruct(mClass) ? 0 : 1))) {
-                Log.error("Parameter at position #" + i + " in " + selector.getFamily() + " `" + execSignature(exec) + "` is declared a reference, but natively is declared as `" + sType.getNativeType() + "'");
-            }
+            if (sType.countReferences() > 1 && !mMod.reference)
+                Log.error("Parameter at position " + paramName + " should be a reference, as declared in `" + sType.getNativeType() + "`");
+            else if (mMod.reference && sType.countReferences() < (1 + (isStruct(mClass) ? 0 : 1)))
+                Log.error("Parameter at position " + paramName + " is declared a reference, but natively is declared as `" + sType.getNativeType() + "'");
+
+            if (mMod.type == Class.class) {
+                if (!mMod.convFunction.equals(JCLASS_TO_CLASS_METHOD))
+                    Log.error("Converter " + JCLASS_TO_CLASS_METHOD + " is required for " + paramName);
+            } else if (!mMod.convFunction.isEmpty())
+                switch (mMod.convFunction) {
+                    case JCLASS_TO_STRING_METHOD:
+                        if (mMod.type != String.class)
+                            Log.error("Converter " + JCLASS_TO_STRING_METHOD + " was applied to a non String at " + paramName);
+                        break;
+                    case JCLASS_TO_CLASS_LIST_METHOD:
+                        if (!(List.class.isAssignableFrom(mMod.type) && getTypeOfParameter(mMod.param) == Class.class))
+                            Log.error("Converter " + JCLASS_TO_CLASS_LIST_METHOD + " was applied to a non List<Class<?>> parameter at " + paramName);
+                        break;
+                    default:
+                        Log.warning("Converter " + mMod.convFunction + " was requested for parameter " + paramName);
+                }
 
             if (mMod.reference)
                 if (sClass.isArray())
@@ -279,19 +299,19 @@ public class ElementParser {
                 else {
                     mClass = getTypeArgument(mMod.param);
                     if (mClass == null) {
-                        Log.error("Needs generic annotation for parameter " + getClassNameFull(StrongReference.class) + " at position #" + (i + 1) + " in " + selector.getFamily() + " `" + execSignature(exec) + "`");
+                        Log.error("Needs generic annotation for parameter " + getClassNameFull(StrongReference.class) + " at position " + paramName);
                         return false;
                     }
                 }
 
             if (mMod.transferName && i == 0)
-                Log.error("Parameter at position #0 in " + selector.getFamily() + " `" + execSignature(exec) + "` is marked to transfer name through annotation " + annName(CMParamMod.class) + ", but it is the first parameter of the selector.");
+                Log.error("Parameter at position " + paramName + " is marked to transfer name through annotation " + annName(CMParamMod.class) + ", but it is the first parameter of the selector.");
 
-            if (!isAssignableFrom(sClass, mClass, "Parameter at position #" + (i + 1) + " in " + selector.getFamily() + " `" + execSignature(exec) + "` does not match native `" + selector.getOriginalCode() + "`, " + typesafeClassName(sClass) + " should be a superclass of " + typesafeClassName(mClass)))
+            if (!isAssignableFrom(sClass, mClass, "Parameter at position " + paramName + " does not match native `" + selector.getOriginalCode() + "`, " + typesafeClassName(sClass) + " should be a superclass of " + typesafeClassName(mClass)))
                 return false;
 
             if (mMod.association.needsAccosiation() && sClass.isPrimitive()) {
-                Log.error("Parameter at position #" + (i + 1) + " in " + selector.getFamily() + " `" + execSignature(exec) + "` should be an object reference in order to be associatable, " + getClassNameFull(selector.getReturnType().getType()) + " found instead.");
+                Log.error("Parameter at position " + paramName + " should be an object reference in order to be associatable, " + getClassNameFull(selector.getReturnType().getType()) + " found instead.");
                 return false;
             }
             if (mMod.association == AssociationType.DEFAULT && selector.isSetter() && selector.getProperty().isWeak() && !sClass.isPrimitive() && !isStruct(sClass))
@@ -299,13 +319,13 @@ public class ElementParser {
             sParam.setAssociation(mMod.association);
 
             if (mMod.shouldNotBeNull && !selector.getReturnType().getType().equals(void.class)) {
-                Log.error("Parameter at position #" + (i + 1) + " in " + selector.getFamily() + " `" + execSignature(exec) + "` should be void, " + getClassNameFull(selector.getReturnType().getType()) + " found instead.");
+                Log.error("Parameter at position " + paramName + " should be void, " + getClassNameFull(selector.getReturnType().getType()) + " found instead.");
                 return false;
             }
             sParam.setShouldNotBeNull(mMod.shouldNotBeNull);
             sParam.setTransferName(mMod.transferName);
             sParam.setJavaParameter(mMod.param);
-            sType.setTypeConverter(mMod.code);
+            sType.setConverterFunction(mMod.convFunction);
         }
         if (returnType.isArray() && selector.getReturnType().getSizeResolver().isEmpty()) {
             Log.error("For methods that return arrays, it is required to define a size resolve hint with the appropriate annotation (" + annName(CMSelector.class) + ", " + annName(CMGetter.class) + ", " + annName(CMFunction.class) + "); affecting method is " + execSignature(exec));
@@ -336,7 +356,7 @@ public class ElementParser {
     private static final class ParamMod {
 
         private final Class type;
-        private final String code;
+        private final String convFunction;
         private final Parameter param;
         private final boolean reference;
         private AssociationType association;
@@ -348,18 +368,22 @@ public class ElementParser {
             if (converter == null) {
                 reference = p.getType().equals(StrongReference.class);
                 type = p.getType();
-                code = "";
+                convFunction = "";
                 association = AssociationType.DEFAULT;
                 shouldNotBeNull = false;
                 transferName = false;
             } else {
                 reference = converter.byRef() || p.getType().equals(StrongReference.class);
                 type = converter.type().equals(Object.class) ? p.getType() : converter.type();
-                code = converter.code().trim();
+                convFunction = converter.convertWith().trim();
                 association = converter.association();
                 shouldNotBeNull = converter.shouldNotBeNull();
                 transferName = converter.concatName();
             }
         }
+    }
+
+    private static String getParamName(int index, NSelector selector, Executable exec) {
+        return "#" + (index + 1) + " in " + selector.getFamily() + " `" + execSignature(exec) + "`";
     }
 }

@@ -40,15 +40,15 @@ public class SelectorEmitter {
     protected final NSelector selector;
 
     private static final String FUNC_REF = "func$ref";
-    private final boolean redirectToSuper;
+    private final String selfName;
 
     public SelectorEmitter(NSelector selector) {
-        this(selector, false);
+        this(selector, null);
     }
 
-    public SelectorEmitter(NSelector selector, boolean redirectToSuper) {
+    public SelectorEmitter(NSelector selector, String selfName) {
         this.selector = selector;
-        this.redirectToSuper = redirectToSuper;
+        this.selfName = selfName == null ? "self" : selfName;
     }
 
     public final void emitSignature(Streamer out) throws IOException {
@@ -242,7 +242,7 @@ public class SelectorEmitter {
     }
 
     protected ParamEmitter getParams() {
-        return ParamEmitter.forward(selector, redirectToSuper);
+        return ParamEmitter.forward(selector, selfName);
     }
 
     protected String getOriginalCode() {

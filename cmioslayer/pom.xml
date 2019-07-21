@@ -111,6 +111,7 @@
                         <goals>
                             <goal>install</goal>
                             <goal>deploy</goal>
+                            <goal>modify</goal>
                         </goals>
                     </execution>
                 </executions>

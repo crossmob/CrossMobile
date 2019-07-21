@@ -118,6 +118,10 @@ public final class NObject {
         return TypeRegistry.isObjCBased(type);
     }
 
+    public boolean isAnyReference() {
+        return TypeRegistry.isAnyReference(type);
+    }
+
     public boolean isBundle() {
         return TypeRegistry.isBundle(type);
     }

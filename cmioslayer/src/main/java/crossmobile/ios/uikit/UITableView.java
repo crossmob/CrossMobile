@@ -828,7 +828,7 @@ public class UITableView extends UIScrollView {
     }
 
     @CMSelector("- (void)registerClass:(Class)cellClass forCellReuseIdentifier:(NSString *)identifier;")
-    public void registerClass(Class<? extends UITableViewCell> cellClass, String identifier) {
+    public void registerClass(@CMParamMod(convertWith = "jclass_to_class") Class<? extends UITableViewCell> cellClass, String identifier) {
         if (identifier == null)
             return;
         if (cellClass == null)

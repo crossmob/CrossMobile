@@ -25,7 +25,7 @@ import org.crossmobile.bridge.ann.CMSelector;
  * NSLayoutAnchor class defines an object that is used as constraint when
  * applying Auto Layout.
  */
-@CMClass(alias = "AnchorType")
+@CMClass(typeAlias = "AnchorType")
 public class NSLayoutAnchor extends NSObject {
 
     final Object item;

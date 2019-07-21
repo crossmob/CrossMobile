@@ -13,6 +13,7 @@
 #import "crossmobile_ios_uikit_NSLayoutXAxisAnchor.h"
 #import "crossmobile_ios_uikit_NSLayoutYAxisAnchor.h"
 #import "crossmobile_ios_uikit_UIActivityIndicatorView.h"
+#import "crossmobile_ios_uikit_UIActivityIndicatorViewAppearance.h"
 #import "crossmobile_ios_uikit_UIColor.h"
 #import "crossmobile_ios_uikit_UIEdgeInsets.h"
 #import "crossmobile_ios_uikit_UIEvent.h"
@@ -882,6 +883,18 @@
 @end
 
 @implementation UIActivityIndicatorView (cm_crossmobile_ios_uikit_UIActivityIndicatorView)
+
+// direct binding of: + (instancetype)appearance;
++ (instancetype) appearance__
+{
+    return [[crossmobile_ios_uikit_UIActivityIndicatorViewAppearance alloc] initWithUIActivityIndicatorViewAppearance:[UIActivityIndicatorView appearance]];
+}
+
+// direct binding of: + (instancetype)appearanceWhenContainedInInstancesOfClasses:(NSArray<Class<UIAppearanceContainer>> *)containerTypes;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes 
+{
+    return [[crossmobile_ios_uikit_UIActivityIndicatorViewAppearance alloc] initWithUIActivityIndicatorViewAppearance:[UIActivityIndicatorView appearanceWhenContainedInInstancesOfClasses:jclass_to_class_list(containerTypes == JAVA_NULL ? nil : containerTypes)]];
+}
 
 // direct binding of: -(instancetype) init;
 - (instancetype) __init_crossmobile_ios_uikit_UIActivityIndicatorView__

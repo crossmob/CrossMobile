@@ -20,6 +20,7 @@
 #import "crossmobile_ios_uikit_UILayoutGuide.h"
 #import "crossmobile_ios_uikit_UIResponder.h"
 #import "crossmobile_ios_uikit_UISwitch.h"
+#import "crossmobile_ios_uikit_UISwitchAppearance.h"
 #import "crossmobile_ios_uikit_UIView.h"
 #import "crossmobile_ios_uikit_UIWindow.h"
 #import "java_lang_Object.h"
@@ -974,6 +975,18 @@
 @end
 
 @implementation UISwitch (cm_crossmobile_ios_uikit_UISwitch)
+
+// direct binding of: + (instancetype)appearance;
++ (instancetype) appearance__
+{
+    return [[crossmobile_ios_uikit_UISwitchAppearance alloc] initWithUISwitchAppearance:[UISwitch appearance]];
+}
+
+// direct binding of: + (instancetype)appearanceWhenContainedInInstancesOfClasses:(NSArray<Class<UIAppearanceContainer>> *)containerTypes;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes 
+{
+    return [[crossmobile_ios_uikit_UISwitchAppearance alloc] initWithUISwitchAppearance:[UISwitch appearanceWhenContainedInInstancesOfClasses:jclass_to_class_list(containerTypes == JAVA_NULL ? nil : containerTypes)]];
+}
 
 // direct binding of: -(instancetype) init;
 - (instancetype) __init_crossmobile_ios_uikit_UISwitch__

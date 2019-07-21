@@ -22,6 +22,7 @@
 #import "crossmobile_ios_uikit_UIResponder.h"
 #import "crossmobile_ios_uikit_UIScrollViewDelegate.h"
 #import "crossmobile_ios_uikit_UITableView.h"
+#import "crossmobile_ios_uikit_UITableViewAppearance.h"
 #import "crossmobile_ios_uikit_UITableViewCell.h"
 #import "crossmobile_ios_uikit_UITableViewDataSource.h"
 #import "crossmobile_ios_uikit_UIView.h"
@@ -1069,7 +1070,7 @@
 // (UITableView) - (void)registerClass:(Class)cellClass forCellReuseIdentifier:(NSString *)identifier;
 - (void) registerClass___java_lang_Class_java_lang_String:(java_lang_Class*) cellClass :(NSString*) identifier 
 {
-    [super registerClass:(cellClass == JAVA_NULL ? nil : cellClass) forCellReuseIdentifier:(identifier == JAVA_NULL ? nil : identifier)];
+    [super registerClass:jclass_to_class(cellClass == JAVA_NULL ? nil : cellClass) forCellReuseIdentifier:(identifier == JAVA_NULL ? nil : identifier)];
 }
 
 // (UITableView) - (void)registerNib:(UINib *)nib forCellReuseIdentifier:(NSString *)identifier;
@@ -1324,6 +1325,18 @@
 
 @implementation UITableView (cm_crossmobile_ios_uikit_UITableView)
 
+// direct binding of: + (instancetype)appearance;
++ (instancetype) appearance__
+{
+    return [[crossmobile_ios_uikit_UITableViewAppearance alloc] initWithUITableViewAppearance:[UITableView appearance]];
+}
+
+// direct binding of: + (instancetype)appearanceWhenContainedInInstancesOfClasses:(NSArray<Class<UIAppearanceContainer>> *)containerTypes;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes 
+{
+    return [[crossmobile_ios_uikit_UITableViewAppearance alloc] initWithUITableViewAppearance:[UITableView appearanceWhenContainedInInstancesOfClasses:jclass_to_class_list(containerTypes == JAVA_NULL ? nil : containerTypes)]];
+}
+
 // direct binding of: -(instancetype) init;
 - (instancetype) __init_crossmobile_ios_uikit_UITableView__
 {
@@ -1535,7 +1548,7 @@
 // direct binding of: - (void)registerClass:(Class)cellClass forCellReuseIdentifier:(NSString *)identifier;
 - (void) registerClass___java_lang_Class_java_lang_String:(java_lang_Class*) cellClass :(NSString*) identifier 
 {
-    [self registerClass:(cellClass == JAVA_NULL ? nil : cellClass) forCellReuseIdentifier:(identifier == JAVA_NULL ? nil : identifier)];
+    [self registerClass:jclass_to_class(cellClass == JAVA_NULL ? nil : cellClass) forCellReuseIdentifier:(identifier == JAVA_NULL ? nil : identifier)];
 }
 
 // direct binding of: - (void)registerNib:(UINib *)nib forCellReuseIdentifier:(NSString *)identifier;

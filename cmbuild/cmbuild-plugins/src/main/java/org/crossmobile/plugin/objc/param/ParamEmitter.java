@@ -35,8 +35,8 @@ public class ParamEmitter {
     private final String name;
     private String instanceName;
 
-    public static ParamEmitter forward(NSelector sel, boolean redirectsToSuper) {
-        return new ParamEmitter(sel, true, redirectsToSuper ? "super" : "self");
+    public static ParamEmitter forward(NSelector sel, String instancename) {
+        return new ParamEmitter(sel, true, instancename);
     }
 
     public static ParamEmitter reverse(NSelector sel, String instancename) {

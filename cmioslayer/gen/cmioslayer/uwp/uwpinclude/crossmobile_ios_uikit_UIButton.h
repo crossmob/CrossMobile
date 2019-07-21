@@ -6,12 +6,14 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+@class crossmobile_ios_uikit_UIButtonAppearance;
 @class crossmobile_ios_uikit_UIColor;
 @class crossmobile_ios_uikit_UIEdgeInsets;
 @class crossmobile_ios_uikit_UIImage;
 @class crossmobile_ios_uikit_UIImageView;
 @class crossmobile_ios_uikit_UILabel;
 @class java_lang_String;
+@protocol java_util_List;
 
 CM_EXPORT_CLASS
 @interface crossmobile_ios_uikit_UIButton$Ext : UIButton
@@ -19,6 +21,8 @@ CM_EXPORT_CLASS
 
 #define crossmobile_ios_uikit_UIButton UIButton
 @interface UIButton (cm_crossmobile_ios_uikit_UIButton)
++ (instancetype) appearance__;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes ;
 + (instancetype) buttonWithType___int:(int) buttonType ;
 - (void) setAdjustsImageWhenDisabled___boolean:(BOOL) adjustsImageWhenDisabled ;
 - (BOOL) adjustsImageWhenDisabled__;

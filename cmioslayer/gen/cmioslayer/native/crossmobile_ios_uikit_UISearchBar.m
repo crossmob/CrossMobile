@@ -20,6 +20,7 @@
 #import "crossmobile_ios_uikit_UILayoutGuide.h"
 #import "crossmobile_ios_uikit_UIResponder.h"
 #import "crossmobile_ios_uikit_UISearchBar.h"
+#import "crossmobile_ios_uikit_UISearchBarAppearance.h"
 #import "crossmobile_ios_uikit_UISearchBarDelegate.h"
 #import "crossmobile_ios_uikit_UIView.h"
 #import "crossmobile_ios_uikit_UIWindow.h"
@@ -1034,6 +1035,18 @@
 @end
 
 @implementation UISearchBar (cm_crossmobile_ios_uikit_UISearchBar)
+
+// direct binding of: + (instancetype)appearance;
++ (instancetype) appearance__
+{
+    return [[crossmobile_ios_uikit_UISearchBarAppearance alloc] initWithUISearchBarAppearance:[UISearchBar appearance]];
+}
+
+// direct binding of: + (instancetype)appearanceWhenContainedInInstancesOfClasses:(NSArray<Class<UIAppearanceContainer>> *)containerTypes;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes 
+{
+    return [[crossmobile_ios_uikit_UISearchBarAppearance alloc] initWithUISearchBarAppearance:[UISearchBar appearanceWhenContainedInInstancesOfClasses:jclass_to_class_list(containerTypes == JAVA_NULL ? nil : containerTypes)]];
+}
 
 // direct binding of: -(instancetype) init;
 - (instancetype) __init_crossmobile_ios_uikit_UISearchBar__

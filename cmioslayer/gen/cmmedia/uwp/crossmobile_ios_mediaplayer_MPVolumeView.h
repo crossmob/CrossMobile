@@ -7,12 +7,16 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <MediaPlayer/MediaPlayer.h>
 @class crossmobile_ios_coregraphics_CGRect;
+@class crossmobile_ios_mediaplayer_MPVolumeViewAppearance;
+@protocol java_util_List;
 
 @interface crossmobile_ios_mediaplayer_MPVolumeView$Ext : MPVolumeView
 @end
 
 #define crossmobile_ios_mediaplayer_MPVolumeView MPVolumeView
 @interface MPVolumeView (cm_crossmobile_ios_mediaplayer_MPVolumeView)
++ (instancetype) appearance__;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes ;
 - (instancetype) __init_crossmobile_ios_mediaplayer_MPVolumeView___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) frame ;
 - (void) setShowsRouteButton___boolean:(BOOL) showsRouteButton ;
 - (BOOL) showsRouteButton__;

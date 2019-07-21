@@ -20,9 +20,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * @author teras
- */
 public class SystemDependentTest {
 
     @Test

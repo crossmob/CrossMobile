@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 @class crossmobile_ios_coregraphics_CGRect;
 @class crossmobile_ios_uikit_UIColor;
+@class crossmobile_ios_uikit_UIToolbarAppearance;
 @protocol java_util_List;
 
 @interface crossmobile_ios_uikit_UIToolbar$Ext : UIToolbar
@@ -15,6 +16,8 @@
 
 #define crossmobile_ios_uikit_UIToolbar UIToolbar
 @interface UIToolbar (cm_crossmobile_ios_uikit_UIToolbar)
++ (instancetype) appearance__;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes ;
 - (instancetype) __init_crossmobile_ios_uikit_UIToolbar__;
 - (instancetype) __init_crossmobile_ios_uikit_UIToolbar___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) frame ;
 - (void) setBarStyle___int:(int) barStyle ;

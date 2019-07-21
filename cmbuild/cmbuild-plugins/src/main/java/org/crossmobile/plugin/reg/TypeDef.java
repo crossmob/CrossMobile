@@ -55,6 +55,11 @@ public class TypeDef {
                 // If enumeration, type is the type of it's content
                 type = testEnumType(type);
 
+            if (type == null) {
+                Log.error("Unable to infer enumeration type from " + typeName);
+                return;
+            }
+
             // lazy addition of items, so that original aliases will have advantage
             Class old = map.get(typeName);
             if (old != null)
@@ -67,12 +72,12 @@ public class TypeDef {
             }
 
             if (!asAlias)
-                if (cls != null && cls.alias().length > 0)
-                    alias(type, cls.alias());
-                else if (ref != null && ref.alias().length > 0)
-                    alias(type, ref.alias());
-                else if (en != null && en.alias().length > 0)
-                    alias(type, en.alias());
+                if (cls != null && cls.typeAlias().length > 0)
+                    alias(type, cls.typeAlias());
+                else if (ref != null && ref.typeAlias().length > 0)
+                    alias(type, ref.typeAlias());
+                else if (en != null && en.typeAlias().length > 0)
+                    alias(type, en.typeAlias());
         }
     }
 

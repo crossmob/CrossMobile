@@ -74,7 +74,7 @@ public class HeaderEmitter extends FileEmitter {
             out.append("@protocol ").append(fullName());
 //            Texters.outProtocols(out, obj.getParentProtocols());
             out.append("\n");
-        } else if (obj.isCBased()) {
+        } else if (obj.isAnyReference()) {
             boolean withVariable = obj.isStruct() || (obj.isReference() && !isReference(obj.getType().getSuperclass()));
             out.append("@interface ").append(fullName()).append(" : ").append(fullName(obj.getType().getSuperclass()));
             if (withVariable)
@@ -85,9 +85,8 @@ public class HeaderEmitter extends FileEmitter {
                     String objType = toObjCType(field.type);
                     out.append("@public ").append(objType).append(" ").append(field.name).append("_").append(simpleType).append(";\n");
                 }
-            else if (obj.isReference() && withVariable) {
-                out.append("@public void* " + REFERENCE_NAME + ";\n");
-            }
+            else if (obj.isReference() && withVariable)
+                out.append("@public ").append(obj.isCBased() ? "void*" : "id").append(" ").append(REFERENCE_NAME).append(";\n");
             if (withVariable)
                 out.append("}\n");
             out.append("\n");
@@ -102,7 +101,7 @@ public class HeaderEmitter extends FileEmitter {
     }
 
     private void emitHelperSelectors(Streamer out) throws IOException {
-        if (obj.isCBased() && !obj.isBundle()) {
+        if (obj.isAnyReference() && !obj.isBundle()) {
             String cname = getClassNameSimple(obj.getType());
             out.append("- (instancetype) initWith").append(cname).append(":(").append(getObjCTypeRef(obj.getType())).append(") reference;\n");
             if (obj.isStruct()) {

@@ -9,12 +9,16 @@
 @class crossmobile_ios_coregraphics_CGRect;
 @class crossmobile_ios_uikit_UIColor;
 @class crossmobile_ios_uikit_UIImage;
+@class crossmobile_ios_uikit_UISliderAppearance;
+@protocol java_util_List;
 
 @interface crossmobile_ios_uikit_UISlider$Ext : UISlider
 @end
 
 #define crossmobile_ios_uikit_UISlider UISlider
 @interface UISlider (cm_crossmobile_ios_uikit_UISlider)
++ (instancetype) appearance__;
++ (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes ;
 - (instancetype) __init_crossmobile_ios_uikit_UISlider__;
 - (instancetype) __init_crossmobile_ios_uikit_UISlider___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) frame ;
 - (void) setContinuous___boolean:(BOOL) continuous ;
