@@ -119,6 +119,12 @@ public class CMMvnActions {
                             new InstallerFrame().launch();
                     }
                 });
+            if (line.toString().contains("SDK location not found"))
+                solutionCallbackRef.set(()->{
+                    JOptionPane.showMessageDialog(null, "Android SDK location is required\n\n"
+                                    + "Please rerun the initialization wizard first\nand define the Android SDK location.",
+                            "Error while locating Android SDK", JOptionPane.ERROR_MESSAGE);
+                });
         });
     }
 
