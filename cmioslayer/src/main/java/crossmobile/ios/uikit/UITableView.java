@@ -772,7 +772,7 @@ public class UITableView extends UIScrollView {
     }
 
     private void recycle(UITableViewCell cell) {
-        cell.removeFromView(cell.superview());
+        cell.removeFromSuperview();
         if (cell.reuseIdentifier != null) {
             List<UITableViewCell> list = recycle.get(cell.reuseIdentifier);
             if (list == null) {

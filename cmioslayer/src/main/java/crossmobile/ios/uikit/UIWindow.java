@@ -179,37 +179,27 @@ public class UIWindow extends UIView {
 
     @Override
     public void willRemoveSubview(UIView subview) {
-        if (subview == null)
-            return;
-        subview.willMoveToWindow(null);
-        if (subview.controller != null && UIApplication.sharedApplication().keyWindow() == this)
+        if (subview != null && subview.controller != null && UIApplication.sharedApplication().keyWindow() == this)
             subview.controller.viewWillDisappear(true);
     }
 
     @Override
     void willAddSubview(UIView subview) {
-        if (subview == null)
-            return;
-        subview.willMoveToWindow(this);
-        if (subview.controller != null && UIApplication.sharedApplication().keyWindow() == this) {
+        if (subview != null && subview.controller != null && UIApplication.sharedApplication().keyWindow() == this) {
             subview.controller.viewSafeAreaInsetsDidChange();
-            subview.controller.viewWillAppear(true);
+            subview.controller.viewDidAppear(true);
         }
     }
 
     @Override
-    public void didAddSubview(UIView subview) {
-        if (subview == null)
-            return;
-        subview.didMoveToWindow();
+    void didRemoveSubview(UIView subview) {
+        if (subview != null && subview.controller != null && UIApplication.sharedApplication().keyWindow() == this)
+            subview.controller.viewDidDisappear(true);
     }
 
     @Override
-    void didRemoveSubview(UIView subview) {
-        if (subview == null)
-            return;
-        subview.didMoveToWindow();
-        if (subview.controller != null && UIApplication.sharedApplication().keyWindow() == this)
+    public void didAddSubview(UIView subview) {
+        if (subview != null && subview.controller != null && UIApplication.sharedApplication().keyWindow() == this)
             subview.controller.viewDidDisappear(true);
     }
 

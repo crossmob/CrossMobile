@@ -19,6 +19,7 @@ package crossmobile.ios.uikit;
 import crossmobile.ios.coregraphics.CGAffineTransform;
 import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.foundation.NSTimer;
+import crossmobile.ios.uikit.UIView.DelegateViews;
 import org.crossmobile.bind.graphics.GraphicsBridgeConstants;
 import org.crossmobile.bind.graphics.curve.InterpolationCurve;
 import org.crossmobile.bind.system.Ticker;
@@ -45,8 +46,8 @@ class cmAnimation implements TickerConsumer {
     private InterpolationCurve animationCurve = InterpolationCurve.Linear;
     private double duration = GraphicsBridgeConstants.DefaultAnimationDuration;
     private UIView parent;
-    private Collection<UIView> viewEnter;
-    private Collection<UIView> viewLeave;
+    private Collection<DelegateViews> viewEnter;
+    private Collection<DelegateViews> viewLeave;
     private Collection<UIView> viewFrames;  // Might not needed -- might be supported by setFrame itself
     private AnimationTransition animationTransition = AnimationTransition.None;
 
@@ -106,24 +107,35 @@ class cmAnimation implements TickerConsumer {
         }
     }
 
-    boolean viewToEnter(UIView child, UIView parent) {
-        if (this.parent == parent) {
+    boolean viewToEnter(DelegateViews dv) {
+        if (areParentsCompatible(dv)) {
             if (viewEnter == null)
                 viewEnter = new HashSet<>();
-            viewEnter.add(child);
+            viewEnter.add(dv);
             return true;
         }
         return false;
     }
 
-    boolean viewToLeave(UIView child, UIView parent) {
-        if (this.parent == parent) {
+    boolean viewToLeave(DelegateViews dv) {
+        if (areParentsCompatible(dv)) {
             if (viewLeave == null)
                 viewLeave = new HashSet<>();
-            viewLeave.add(child);
+            viewLeave.add(dv);
             return true;
         }
         return false;
+    }
+
+    private boolean areParentsCompatible(DelegateViews dv) {
+        UIView commonParent = dv.anyParent();
+        if (commonParent == null)
+            return false;
+        if (this.parent == null) {
+            this.parent = commonParent;
+            return true;
+        } else
+            return this.parent == commonParent;
     }
 
     void setDuration(double d) {
@@ -211,11 +223,16 @@ class cmAnimation implements TickerConsumer {
         // Add pending entering/leaving view animations
         if (parent != null) {
             if (viewEnter != null)
-                for (UIView view : viewEnter)
-                    setFrameImpl(view, animationTransition.enterView(view, parent));
+                for (DelegateViews dv : viewEnter) {
+                    dv.delegateBefore();
+                    setFrameImpl(dv.view(), animationTransition.enterView(dv.view(), parent));
+                    dv.doAdd();
+                }
             if (viewLeave != null)
-                for (UIView view : viewLeave)
-                    setFrameImpl(view, animationTransition.exitView(view, parent));
+                for (DelegateViews dv : viewLeave) {
+                    dv.delegateBefore();
+                    setFrameImpl(dv.view(), animationTransition.exitView(dv.view(), parent));
+                }
         }
     }
 
@@ -233,9 +250,16 @@ class cmAnimation implements TickerConsumer {
     @Override
     public void end() {
         Native.system().postOnEventThread(() -> {
-            if (parent != null && viewLeave != null)
-                for (UIView child : viewLeave)
-                    child.removeFromView(this.parent);
+            if (parent != null) {
+                if (viewLeave != null)
+                    for (DelegateViews dv : viewLeave) {
+                        dv.doRemove();
+                        dv.delegateAfter();
+                    }
+                if (viewEnter != null)
+                    for (DelegateViews dv : viewEnter)
+                        dv.delegateAfter();
+            }
             if (viewFrames != null)
                 for (UIView view : viewFrames)
                     view.updateConstraints();

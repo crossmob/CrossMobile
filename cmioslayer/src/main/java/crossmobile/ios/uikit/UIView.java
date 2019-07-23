@@ -656,12 +656,7 @@ public class UIView extends UIResponder implements UIAppearanceContainer {
      */
     @CMSelector("- (void)sendSubviewToBack:(UIView *)view;")
     public void sendSubviewToBack(UIView subView) {
-        UIView oldParent = subView.superview();
-        if (oldParent == this) {
-            children.remove(subView);
-            children.add(0, subView);
-            Native.graphics().refreshDisplay();
-        }
+        insertSubviewAt(subView, 0);
     }
 
     /**
@@ -672,12 +667,7 @@ public class UIView extends UIResponder implements UIAppearanceContainer {
      */
     @CMSelector("- (void)bringSubviewToFront:(UIView *)view;")
     public void bringSubviewToFront(final UIView subView) {
-        UIView oldParent = subView.superview();
-        if (oldParent == this) {
-            children.remove(subView);
-            children.add(subView);
-            Native.graphics().refreshDisplay();
-        }
+        insertSubviewAt(subView, -1);
     }
 
     /**
@@ -688,25 +678,7 @@ public class UIView extends UIResponder implements UIAppearanceContainer {
      */
     @CMSelector("- (void)addSubview:(UIView *)view;")
     public void addSubview(UIView subView) {
-        if (subView == null || subView == this)
-            return;
-        UIView oldParent = subView.superview();
-        if (oldParent != this) {
-            delegateBefore(oldParent, this);
-
-            if (oldParent != null)
-                oldParent.children.remove(subView);
-            children.add(subView);
-
-            subView.parentRef = new WeakReference<>(this);
-            subView.setTintAdjustmentMode(tintAdjustmentMode);
-
-            subView.delegateAfter(oldParent, this);
-            Native.graphics().refreshDisplay();
-            if (pendingAnim != null)
-                pendingAnim.viewToEnter(subView, this);
-        }
-
+        insertSubviewAt(subView, -1);
     }
 
     /**
@@ -719,24 +691,20 @@ public class UIView extends UIResponder implements UIAppearanceContainer {
      */
     @CMSelector("- (void)insertSubview:(UIView *)view \n"
             + "              atIndex:(NSInteger)index;")
-    public void insertSubview(UIView subView, final int idx) {
-        if (subView == null)
+    public void insertSubview(UIView subView, int idx) {
+        if (idx < 0)
+            throw new IndexOutOfBoundsException("Unable to add view with a negative index");
+        insertSubviewAt(subView, idx);
+    }
+
+    private void insertSubviewAt(UIView subView, int idx) {
+        if (subView == null || subView == this)
             return;
-        UIView oldParent = subView.superview();
-        if (oldParent != this) {
-            delegateBefore(oldParent, this);
-
-            if (oldParent != null)
-                oldParent.children.remove(subView);
-            children.add(idx, subView);
-            subView.parentRef = new WeakReference<>(this);
-
-            subView.delegateAfter(oldParent, this);
-            if (pendingAnim != null)
-                pendingAnim.viewToEnter(subView, this);
-        } else {
-            children.remove(subView);
-            children.add(idx, subView);
+        DelegateViews dv = new DelegateViews(subView, subView.superview(), this, idx);
+        if (pendingAnim == null || !pendingAnim.viewToEnter(dv)) {
+            dv.delegateBefore();
+            dv.doAdd();
+            dv.delegateAfter();
         }
         Native.graphics().refreshDisplay();
     }
@@ -746,58 +714,15 @@ public class UIView extends UIResponder implements UIAppearanceContainer {
      */
     @CMSelector("- (void)removeFromSuperview;")
     public void removeFromSuperview() {
-        UIView parent = superview();
-        if (parent != null) {
-            delegateBefore(parent, null);
-            if (pendingAnim == null || !pendingAnim.viewToLeave(this, parent))
-                removeFromView(parent);
+        UIView oldParent = superview();
+        if (oldParent == null)
+            return;
+        DelegateViews dv = new DelegateViews(this, oldParent, null, -1);
+        if (pendingAnim == null || !pendingAnim.viewToLeave(dv)) {
+            dv.delegateBefore();
+            dv.doRemove();
+            dv.delegateAfter();
         }
-    }
-
-    /**
-     * This method exists here, in order to delay the removal of a View, if an
-     * animation is underway
-     */
-    void removeFromView(UIView parent) {
-        if (parent != null) {
-//            if (!translatesAutoresizingMaskIntoConstraints) {
-//                componentVars.get(this).removeFromSolver(solver);
-//                componentVars.remove(this);
-//            }
-            parent.children.remove(this);
-            parentRef = null;
-            delegateAfter(parent, null);
-            Native.graphics().refreshDisplay();
-        }
-    }
-
-    /*
-     * Inform delegates before any change
-     */
-    private void delegateBefore(UIView oldParent, UIView newParent) {
-        if (oldParent != null)
-            oldParent.willRemoveSubview(this);
-        if (newParent != null)
-            newParent.willAddSubview(this);
-        willMoveToSuperview(newParent);
-    }
-
-    /*
-     * Inform delegates after all change
-     */
-    private void delegateAfter(UIView oldParent, UIView newParent) {
-        didMoveToSuperview();
-        if (oldParent != null)
-            oldParent.didRemoveSubview(this);
-        if (newParent != null)
-            newParent.didAddSubview(this);
-        attachWidget(newParent != null && isAttachedToWindow());
-        updateNativeUserInteraction();
-        /* Constraints only change when attaching/detaching - not when
-         * hidden/unhidden.
-         * So, they can not be called inside attachWidget
-         */
-        updateConstraints();
     }
 
     boolean isAttachedToWindow() {
@@ -2648,5 +2573,85 @@ public class UIView extends UIResponder implements UIAppearanceContainer {
     @CMGetter("@property(nonatomic, readonly) UIUserInterfaceLayoutDirection userInterfaceLayoutDirection;")
     public int userInterfaceLayoutDirection() {
         return userInterfaceLayoutDirection;
+    }
+
+    static final class DelegateViews {
+        private final UIView view;
+        private final UIView oldParent;
+        private final UIView newParent;
+        private final UIWindow oldWindow;
+        private final UIWindow newWindow;
+        private final int idx;
+
+
+        private DelegateViews(UIView view, UIView oldParent, UIView newParent, int idx) {
+            this.view = view;
+            this.oldParent = oldParent;
+            this.newParent = newParent;
+            this.oldWindow = oldParent == null ? null : oldParent.window();
+            this.newWindow = newParent == null ? null : newParent.window();
+            this.idx = idx;
+        }
+
+        UIView anyParent() {
+            if (oldParent == null)
+                return newParent;
+            if (newParent == null)
+                return oldParent;
+            return oldParent == newParent ? newParent : null;
+        }
+
+        void doAdd() {
+            if (oldParent != null)
+                oldParent.children.remove(view);
+            if (idx >= 0)
+                newParent.children.add(idx, view);
+            else
+                newParent.children.add(view);
+            view.parentRef = new WeakReference<>(newParent);
+        }
+
+        void doRemove() {
+            if (oldParent != null)
+                oldParent.children.remove(view);
+            view.parentRef = null;
+        }
+
+        void delegateBefore() {
+            if (oldParent == newParent)
+                return;
+            if (oldWindow != newWindow)
+                view.willMoveToWindow(newWindow);
+            view.willMoveToSuperview(newParent);
+            if (oldParent != null)
+                oldParent.willRemoveSubview(view);
+            if (newParent != null)
+                newParent.willAddSubview(view);
+        }
+
+        void delegateAfter() {
+            if (oldParent == newParent)
+                return;
+            if (oldWindow != newWindow && newWindow != null)
+                view.didMoveToWindow();
+            if (newParent != null)
+                view.didMoveToSuperview();
+            if (newParent != null)
+                newParent.didAddSubview(view);
+            if (oldParent != null)
+                oldParent.didRemoveSubview(view);
+
+            view.attachWidget(newParent != null && view.isAttachedToWindow());
+            view.updateNativeUserInteraction();
+            /* Constraints only change when attaching/detaching - not when
+             * hidden/unhidden.
+             * So, they can not be called inside attachWidget
+             */
+            view.updateConstraints();
+        }
+
+        UIView view() {
+            return view;
+        }
     }
 }
