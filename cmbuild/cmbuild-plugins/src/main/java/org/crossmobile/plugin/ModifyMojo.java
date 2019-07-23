@@ -47,12 +47,12 @@ public class ModifyMojo extends GenericMojo {
             ReflectionUtils.resetClassLoader();
 
             cc.resolve(Collections.singleton(classes.getAbsolutePath()), true);
-            AppearanceInjections injections = new AppearanceInjections(cc.getClassPool());
+            AppearanceInjections injections = new AppearanceInjections(cc.getClassPool(), classes.getAbsolutePath());
 
             injections.cleanup(classes);
             for (Class<?> cls : cc.getIOsNativeClasses())
                 if (ObjectRegistry.isUIAppearanceClass(cls) && !cls.isInterface())
-                    injections.makeAppearance(cls, classes.getAbsolutePath());
+                    injections.makeAppearance(cls);
 
         }, "Post-process classes");
     }

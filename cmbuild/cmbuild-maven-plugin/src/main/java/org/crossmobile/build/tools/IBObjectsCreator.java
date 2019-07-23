@@ -29,7 +29,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 import static org.crossmobile.build.AnnotationConfig.GENERATED_EXT;
-import static org.crossmobile.utils.FileUtils.forEach;
+import static org.crossmobile.utils.FileUtils.forAllRecursively;
 import static org.crossmobile.utils.FileUtils.sync;
 import static org.crossmobile.utils.TextUtils.plural;
 
@@ -37,7 +37,7 @@ public class IBObjectsCreator {
 
     public static XIBList parse(File materials, File ann) {
         ann.mkdirs();
-        forEach(ann, f -> f.getName().equals(GENERATED_EXT), (name, file) -> file.delete());
+        forAllRecursively(ann, f -> f.getName().equals(GENERATED_EXT), (name, file) -> file.delete());
         XIBList root = new XIBList(new IBParserMeta(ann));
         parse(root, materials, materials);
         return root;

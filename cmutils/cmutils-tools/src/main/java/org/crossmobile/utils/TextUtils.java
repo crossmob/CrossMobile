@@ -396,4 +396,8 @@ public class TextUtils {
                 escaped.put(e.a, e.b);
         return escaped;
     }
+
+    public static String trim(String base, String prefix) {
+        return base.startsWith(prefix) ? base.substring(prefix.length()) : base;
+    }
 }

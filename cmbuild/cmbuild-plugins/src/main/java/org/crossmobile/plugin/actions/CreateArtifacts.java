@@ -76,9 +76,9 @@ public class CreateArtifacts {
                 if (copy(dll, new File(uwpTarget, NATIVE_PATH + separator + plugin + ".dll")) == 0)
                     Log.error("Unable to copy native library " + dll.getAbsolutePath());
             }
-            forEach(new File(cache, plugin + separator + (buildIos ? "native" : "uwp" + separator + "uwpinclude")), f -> isInclude(f.getName()),
+            forAllRecursively(new File(cache, plugin + separator + (buildIos ? "native" : "uwp" + separator + "uwpinclude")), f -> isInclude(f.getName()),
                     (p, f) -> copy(f, new File(buildIos ? iosTarget : uwpTarget, NATIVE_PATH + separator + f.getName())));
-            forEach(new File(vendor, plugin + (buildIos ? "" : (separator + "uwpinclude"))), f -> isInclude(f.getName()), (p, f) -> copy(f, new File(buildIos ? iosTarget : uwpTarget, NATIVE_PATH + separator + f.getName())));
+            forAllRecursively(new File(vendor, plugin + (buildIos ? "" : (separator + "uwpinclude"))), f -> isInclude(f.getName()), (p, f) -> copy(f, new File(buildIos ? iosTarget : uwpTarget, NATIVE_PATH + separator + f.getName())));
         }
 
         Log.info("Installing plugin " + plugin + " artifacts in local repository");

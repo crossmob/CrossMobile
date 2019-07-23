@@ -42,7 +42,7 @@ public class SyncObjCFiles {
         existing.addAll(Arrays.asList(EXCEPTIONS));
 
         StringBuilder willRemove = new StringBuilder();
-        forEach(xcodeSource, null, (p, f) -> {
+        forAllRecursively(xcodeSource, null, (p, f) -> {
             if (!existing.contains(getBasename(f.getName())) && !WHITELIST.contains(f.getName())) {
                 Log.warning("Removing missing file " + f.getName());
                 f.delete();

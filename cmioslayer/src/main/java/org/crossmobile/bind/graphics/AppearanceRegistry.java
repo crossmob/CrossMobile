@@ -20,21 +20,20 @@ import crossmobile.ios.uikit.UIAppearance;
 import crossmobile.ios.uikit.UIAppearanceContainer;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 import static org.crossmobile.bind.system.SystemUtilities.construct;
 
 @SuppressWarnings({"unchecked", "Java8MapApi"})
 public class AppearanceRegistry {
-    private static final Map<Class<? extends UIAppearanceContainer>, Map<List<Class<? extends UIAppearanceContainer>>, UIAppearance>> appReg = new HashMap<>();
-    private static final Map<Class<? extends UIAppearanceContainer>, UIAppearance> appRegCond = new HashMap<>();
-
-    private static final Map<UIAppearance, Map<String, Object>> properties = new HashMap<>();
-
+    private static final Map<Class<? extends UIAppearanceContainer>, Map<List<Class<? extends UIAppearanceContainer>>, UIAppearance>> containerConstrained = new HashMap<>();
+    private static final Map<Class<? extends UIAppearanceContainer>, UIAppearance> containerSimple = new HashMap<>();
+    private static final Map<String, Map<UIAppearance, Consumer<? extends UIAppearanceContainer>>> properties = new HashMap<>();
 
     public static <T extends UIAppearance> T requestAppearance(Class<? extends UIAppearanceContainer> baseClass, Class<T> appearanceClass) {
-        T app = (T) appRegCond.get(baseClass);
+        T app = (T) containerSimple.get(baseClass);
         if (app == null)
-            appRegCond.put(baseClass, app = construct(appearanceClass));
+            containerSimple.put(baseClass, app = construct(appearanceClass));
         return app;
     }
 
@@ -42,20 +41,48 @@ public class AppearanceRegistry {
         if (list == null || list.isEmpty())
             return requestAppearance(baseClass, appearanceClass);
         list = new ArrayList<>(list);
-
-        Map<List<Class<? extends UIAppearanceContainer>>, UIAppearance> subRegistry = appReg.get(baseClass);
+        Map<List<Class<? extends UIAppearanceContainer>>, UIAppearance> subRegistry = containerConstrained.get(baseClass);
         if (subRegistry == null)
-            appReg.put(baseClass, subRegistry = new LinkedHashMap<>());
+            containerConstrained.put(baseClass, subRegistry = new LinkedHashMap<>());
         T app = (T) subRegistry.get(list);
         if (app == null)
             subRegistry.put(list, app = construct(appearanceClass));
         return app;
     }
 
-    public static void registerValue(UIAppearance appearance, String propertyName, Object... data) {
-        Map<String, Object> appProp = properties.get(appearance);
-        if (appProp == null)
-            properties.put(appearance, appProp = new HashMap<>());
-        appProp.put(propertyName, data);
+    public static void registerValue(UIAppearance appearance, String propertyName, Consumer<? extends UIAppearanceContainer> apply) {
+        Map<UIAppearance, Consumer<? extends UIAppearanceContainer>> propertyMap = properties.get(appearance);
+        if (propertyMap == null)
+            properties.put(propertyName, propertyMap = new HashMap<>());
+        propertyMap.put(appearance, apply);
+    }
+
+    public static void applyValue(UIAppearanceContainer container) {
+        Map<String, Consumer<UIAppearanceContainer>> currentProperties = new HashMap<>();
+        Collection<? extends UIAppearance> affected = getAffected(container);
+
+        for (String propertyName : properties.keySet()) {
+            Map<UIAppearance, Consumer<? extends UIAppearanceContainer>> currentActions = properties.get(propertyName);
+            for (UIAppearance appearance : affected) {
+                Consumer<? extends UIAppearanceContainer> action = currentActions.get(appearance);
+                if (action != null)
+                    currentProperties.put(propertyName, (Consumer<UIAppearanceContainer>) action);
+            }
+        }
+        for (Consumer<UIAppearanceContainer> action : currentProperties.values())
+            action.accept(container);
+    }
+
+    private static Collection<? extends UIAppearance> getAffected(UIAppearanceContainer container) {
+        List<UIAppearance> result = new ArrayList<>();
+        Class<?> containerClass = container.getClass();
+        while (UIAppearanceContainer.class.isAssignableFrom(containerClass)) {
+            UIAppearance appearance = containerSimple.get(containerClass);
+            if (appearance != null)
+                result.add(appearance);
+            containerClass = containerClass.getSuperclass();
+        }
+        Collections.reverse(result);
+        return result;
     }
 }

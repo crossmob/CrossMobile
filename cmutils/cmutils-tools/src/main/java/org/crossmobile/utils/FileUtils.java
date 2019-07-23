@@ -621,7 +621,7 @@ public final class FileUtils {
         }
     }
 
-    public static void forEach(File file, Predicate<File> predicate, BiConsumer<String, File> consumer) {
+    public static void forAllRecursively(File file, Predicate<File> predicate, BiConsumer<String, File> consumer) {
         if (file == null || consumer == null)
             return;
         forAny(file, predicate, consumer, "", false);

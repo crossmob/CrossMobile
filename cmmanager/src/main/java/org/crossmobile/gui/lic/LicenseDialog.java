@@ -178,7 +178,7 @@ public class LicenseDialog extends HiResDialog {
                         }
 
                         Collection<File> jars = new ArrayList<>();
-                        FileUtils.forEach(outAar, a -> a.getName().endsWith("jar"), (name, file) -> jars.add(file));
+                        FileUtils.forAllRecursively(outAar, a -> a.getName().endsWith("jar"), (name, file) -> jars.add(file));
                         if (jars.isEmpty())
                             termTxt("No JARs found, aborting", tempDir);
                         else if (jars.size() > 1)

@@ -1987,7 +1987,7 @@ org.crossmobile.utils.FileUtils -> org.crossmobile.build.gf:
     595:595:java.util.Collection list(java.io.File) -> e
     599:603:java.util.Collection list(java.io.File,java.io.FilenameFilter) -> a
     607:622:void forAny(java.io.File,java.util.function.Predicate,java.util.function.BiConsumer,java.lang.String,boolean) -> a
-    625:628:void forEach(java.io.File,java.util.function.Predicate,java.util.function.BiConsumer) -> a
+    625:628:void forAllRecursively(java.io.File,java.util.function.Predicate,java.util.function.BiConsumer) -> a
     631:634:void forAll(java.io.File,java.util.function.Predicate,java.util.function.BiConsumer) -> b
     645:645:boolean endsWithPathSeparator(java.lang.String) -> e
     198:198:java.lang.Boolean lambda$copyStream$1() -> a

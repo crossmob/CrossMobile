@@ -28,7 +28,7 @@ public abstract class JavassistAnnParam {
 
     public abstract MemberValue getValue(ConstPool cp);
 
-    public JavassistAnnParam(String name) {
+    private JavassistAnnParam(String name) {
         this.name = name;
     }
 
