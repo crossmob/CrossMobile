@@ -19,6 +19,7 @@ package crossmobile.ios.uikit;
 import crossmobile.ios.coregraphics.*;
 import crossmobile.ios.foundation.NSDate;
 import crossmobile.ios.quartzcore.CALayer;
+import org.crossmobile.bind.graphics.AppearanceRegistry;
 import org.crossmobile.bind.graphics.Geometry;
 import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.graphics.Theme;
@@ -35,6 +36,7 @@ import org.robovm.objc.block.VoidBlock1;
 
 import java.lang.ref.WeakReference;
 import java.util.*;
+import java.util.function.Consumer;
 
 import static crossmobile.ios.coregraphics.$coregraphics.*;
 import static crossmobile.ios.foundation.$foundation.isUnderMainRunLoop;
@@ -2575,6 +2577,15 @@ public class UIView extends UIResponder implements UIAppearanceContainer {
         return userInterfaceLayoutDirection;
     }
 
+    private void meAndChildren(Consumer<UIView> action, boolean depthFirst) {
+        if (!depthFirst)
+            action.accept(this);
+        for (UIView child : children)
+            child.meAndChildren(action, depthFirst);
+        if (depthFirst)
+            action.accept(this);
+    }
+
     static final class DelegateViews {
         private final UIView view;
         private final UIView oldParent;
@@ -2618,29 +2629,27 @@ public class UIView extends UIResponder implements UIAppearanceContainer {
         }
 
         void delegateBefore() {
-            if (oldParent == newParent)
-                return;
             if (oldWindow != newWindow)
-                view.willMoveToWindow(newWindow);
-            view.willMoveToSuperview(newParent);
-            if (oldParent != null)
-                oldParent.willRemoveSubview(view);
-            if (newParent != null)
-                newParent.willAddSubview(view);
+                view.meAndChildren(it -> it.willMoveToWindow(newWindow), false);
+            if (oldParent != newParent) {
+                view.willMoveToSuperview(newParent);
+                if (oldParent != null)
+                    oldParent.willRemoveSubview(view);
+                if (newParent != null)
+                    newParent.willAddSubview(view);
+            }
         }
 
         void delegateAfter() {
-            if (oldParent == newParent)
-                return;
-            if (oldWindow != newWindow && newWindow != null)
-                view.didMoveToWindow();
-            if (newParent != null)
+            if (oldWindow != newWindow)
+                view.meAndChildren(AppearanceRegistry::didMoveToWindow, true);
+            if (oldParent != newParent) {
                 view.didMoveToSuperview();
-            if (newParent != null)
-                newParent.didAddSubview(view);
-            if (oldParent != null)
-                oldParent.didRemoveSubview(view);
-
+                if (newParent != null)
+                    newParent.didAddSubview(view);
+                if (oldParent != null)
+                    oldParent.didRemoveSubview(view);
+            }
             view.attachWidget(newParent != null && view.isAttachedToWindow());
             view.updateNativeUserInteraction();
             /* Constraints only change when attaching/detaching - not when

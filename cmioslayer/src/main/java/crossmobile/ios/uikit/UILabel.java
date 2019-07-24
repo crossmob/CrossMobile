@@ -92,6 +92,7 @@ public class UILabel extends UIView {
         setUserInteractionEnabled(false);
         setContentMode(UIViewContentMode.Left);
         setClipsToBounds(true);
+        setBackgroundColor(UIColor.clearColor);
     }
 
     @Override

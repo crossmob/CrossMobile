@@ -18,6 +18,7 @@ package org.crossmobile.bind.graphics;
 
 import crossmobile.ios.uikit.UIAppearance;
 import crossmobile.ios.uikit.UIAppearanceContainer;
+import crossmobile.ios.uikit.UIView;
 
 import java.util.*;
 import java.util.function.Consumer;
@@ -51,29 +52,33 @@ public class AppearanceRegistry {
     }
 
     public static void registerValue(UIAppearance appearance, String propertyName, Consumer<? extends UIAppearanceContainer> apply) {
-        Map<UIAppearance, Consumer<? extends UIAppearanceContainer>> propertyMap = properties.get(appearance);
+        Map<UIAppearance, Consumer<? extends UIAppearanceContainer>> propertyMap = properties.get(propertyName);
         if (propertyMap == null)
             properties.put(propertyName, propertyMap = new HashMap<>());
         propertyMap.put(appearance, apply);
     }
 
-    public static void applyValue(UIAppearanceContainer container) {
-        Map<String, Consumer<UIAppearanceContainer>> currentProperties = new HashMap<>();
+    public static void didMoveToWindow(UIView container) {
+        container.didMoveToWindow();
         Collection<? extends UIAppearance> affected = getAffected(container);
-
-        for (String propertyName : properties.keySet()) {
-            Map<UIAppearance, Consumer<? extends UIAppearanceContainer>> currentActions = properties.get(propertyName);
-            for (UIAppearance appearance : affected) {
-                Consumer<? extends UIAppearanceContainer> action = currentActions.get(appearance);
-                if (action != null)
-                    currentProperties.put(propertyName, (Consumer<UIAppearanceContainer>) action);
+        if (!affected.isEmpty()) {
+            Map<String, Consumer<UIAppearanceContainer>> currentProperties = new HashMap<>();
+            for (String propertyName : properties.keySet()) {
+                Map<UIAppearance, Consumer<? extends UIAppearanceContainer>> currentActions = properties.get(propertyName);
+                for (UIAppearance appearance : affected) {
+                    Consumer<? extends UIAppearanceContainer> action = currentActions.get(appearance);
+                    if (action != null)
+                        currentProperties.put(propertyName, (Consumer<UIAppearanceContainer>) action);
+                }
             }
+            for (Consumer<UIAppearanceContainer> action : currentProperties.values())
+                action.accept(container);
         }
-        for (Consumer<UIAppearanceContainer> action : currentProperties.values())
-            action.accept(container);
     }
 
     private static Collection<? extends UIAppearance> getAffected(UIAppearanceContainer container) {
+        if (containerSimple.isEmpty())
+            return Collections.emptyList();
         List<UIAppearance> result = new ArrayList<>();
         Class<?> containerClass = container.getClass();
         while (UIAppearanceContainer.class.isAssignableFrom(containerClass)) {

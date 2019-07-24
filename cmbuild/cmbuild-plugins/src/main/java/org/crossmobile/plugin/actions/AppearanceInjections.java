@@ -56,7 +56,7 @@ public class AppearanceInjections {
     private static final String APPEARANCE_CONTAINED_SIGNATURE = "(Ljava/util/List<Ljava/lang/Class<+Lcrossmobile/ios/uikit/UIAppearanceContainer;>;>;)L" + RESULT_ANCHOR + ";";
     private static final String APPEARANCE_CODE = "return (" + RESULT_ANCHOR + ")org.crossmobile.bind.graphics.AppearanceRegistry.requestAppearance(" + SOURCE_ANCHOR + ".class, " + RESULT_ANCHOR + ".class);";
     private static final String APPEARANCE_CONTAINED_CODE = "return (" + RESULT_ANCHOR + ")org.crossmobile.bind.graphics.AppearanceRegistry.requestAppearance(" + SOURCE_ANCHOR + ".class, $1, " + RESULT_ANCHOR + ".class);";
-    private static final String ACCEPT_PARAM_CODE = "public void accept(" + SOURCE_ANCHOR + " val) {  val." + PARAM_METHOD + "(param); }";
+    private static final String ACCEPT_PARAM_CODE = "public void accept( Object obj) { " + SOURCE_ANCHOR + " val = (" + SOURCE_ANCHOR + ")obj; val." + PARAM_METHOD + "(param); }";
 
 
     private CtClass NSObjectCt;
