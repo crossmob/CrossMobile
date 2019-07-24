@@ -1243,6 +1243,7 @@ crossmobile/ios/uikit/UIUserInterfaceLayoutDirection.class v8
 crossmobile/ios/uikit/UIUserNotificationSettings.class v8
 crossmobile/ios/uikit/UIView$1.class v8
 crossmobile/ios/uikit/UIView$a.class v8
+crossmobile/ios/uikit/UIView$b.class v8
 crossmobile/ios/uikit/UIView.class v8
 crossmobile/ios/uikit/UIViewAnimationCurve.class v8
 crossmobile/ios/uikit/UIViewAnimationOptions.class v8
@@ -2194,6 +2195,7 @@ crossmobile/ios/uikit/UIUserInterfaceLayoutDirection.class v8
 crossmobile/ios/uikit/UIUserNotificationSettings.class v8
 crossmobile/ios/uikit/UIView$1.class v8
 crossmobile/ios/uikit/UIView$a.class v8
+crossmobile/ios/uikit/UIView$b.class v8
 crossmobile/ios/uikit/UIView.class v8
 crossmobile/ios/uikit/UIViewAnimationCurve.class v8
 crossmobile/ios/uikit/UIViewAnimationOptions.class v8
@@ -3022,6 +3024,7 @@ crossmobile/ios/uikit/UIUserInterfaceLayoutDirection.class v8
 crossmobile/ios/uikit/UIUserNotificationSettings.class v8
 crossmobile/ios/uikit/UIView$1.class v8
 crossmobile/ios/uikit/UIView$a.class v8
+crossmobile/ios/uikit/UIView$b.class v8
 crossmobile/ios/uikit/UIView.class v8
 crossmobile/ios/uikit/UIViewAnimationCurve.class v8
 crossmobile/ios/uikit/UIViewAnimationOptions.class v8
