@@ -92,8 +92,13 @@ public class InstallMojo extends GenericMojo {
     @Override
     public void exec() throws MojoExecutionException {
         MojoLogger.register(getLog());
-        if (obfuscate && !proguardConf.isFile())
-            throw new MojoExecutionException("Proguard was requested but no proguard file was found at location " + proguardConf.getAbsolutePath());
+        if (obfuscate) {
+            if (!proguardConf.isFile())
+                throw new MojoExecutionException("Proguard was requested but no proguard file was found at location " + proguardConf.getAbsolutePath());
+        } else {
+            proguardConf = null;
+            report = null;
+        }
 
         skipIos |= !SystemDependent.canMakeIos();
         skipUwp |= !SystemDependent.canMakeUwp();
