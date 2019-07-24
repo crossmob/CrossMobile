@@ -98,7 +98,7 @@ public interface GraphicsBridge<CANVAS, NTVP, TRANSF> {
 
     default String colorToString(int color) {
         double[] cols = colorUnpack(color, null);
-        return ((int) (cols[0] * 100.5) / 100) + ", " + ((int) (cols[1] * 100.5) / 100) + ", " + ((int) (cols[2] * 100.5) / 100) + ", " + ((int) (cols[3] * 100.5) / 100);
+        return (Math.round(cols[0] * 100) / 100d) + " " + (Math.round(cols[1] * 100) / 100d) + " " + (Math.round(cols[2] * 100) / 100d) + " " + (Math.round(cols[3] * 100) / 100d);
     }
 
     default NativeFont getFont(String name, double fontsize) {

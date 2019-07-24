@@ -66,7 +66,12 @@ public class CGColor extends CFType {
 
     @Override
     public String toString() {
-        return "CGColor rgba=" + Native.graphics().colorToString(color);
+        return "CGColor " + Native.graphics().colorToString(color);
+    }
+
+    @Override
+    public int hashCode() {
+        return color;
     }
 
     @Override

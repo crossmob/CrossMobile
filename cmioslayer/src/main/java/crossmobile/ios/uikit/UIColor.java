@@ -349,13 +349,12 @@ public class UIColor extends NSObject implements NSSecureCoding {
 
     @Override
     public String toString() {
-        return "UIColor rgba=" + Native.graphics().colorToString(color(cgcolor));
+        return "UIColor " + Native.graphics().colorToString(color(cgcolor));
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        return hash;
+        return cgcolor.hashCode();
     }
 
     @Override
