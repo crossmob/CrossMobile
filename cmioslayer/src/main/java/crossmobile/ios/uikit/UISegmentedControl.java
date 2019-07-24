@@ -234,8 +234,6 @@ public class UISegmentedControl extends UIControl {
             else {
                 if (selectedImage != null)
                     drawIn(cx, selectedImage.get());
-                else
-                    setBackgroundColor(null);
                 for (UIButton item : items)
                     item.setTitleColor(lastTint, UIControlState.Normal);
             }

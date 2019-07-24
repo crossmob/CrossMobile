@@ -147,9 +147,8 @@ public class UITableView extends UIScrollView {
     @CMConstructor("- (instancetype)initWithFrame:(CGRect)frame \n"
             + "                        style:(UITableViewStyle)style;")
     public UITableView(CGRect rect, int UITableViewStyle) {
-        super(rect);
+        super(rect, UIColor.whiteColor);
         setAutoresizesSubviews(false);
-        setBackgroundColor(UIColor.whiteColor);
         setDelegate(new UIScrollViewDelegate() {
             @Override
             public void didScroll(UIScrollView scrollView) {

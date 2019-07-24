@@ -68,8 +68,7 @@ public class UITabBar extends UIView {
     @CMConstructor("- (instancetype)initWithFrame:(CGRect)frame;")
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public UITabBar(CGRect rect) {
-        super(rect);
-        setBackgroundColor(UIColor.cyanColor);
+        super(rect, UIColor.cyanColor);
         setAutoresizesSubviews(false);
     }
 

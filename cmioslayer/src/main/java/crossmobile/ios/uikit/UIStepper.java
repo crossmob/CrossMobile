@@ -64,7 +64,6 @@ public class UIStepper extends UIControl {
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public UIStepper(CGRect frame) {
         super(frame);
-        setBackgroundColor(UIColor.clearColor());
         addbuttons();
     }
 
@@ -420,7 +419,6 @@ public class UIStepper extends UIControl {
                 return true;
             }
         };
-        incrementButton.setBackgroundColor(UIColor.clearColor());
         incrementButton.setTitle("+", UIControlState.Normal);
         incrementButton.addTarget((UIControl sender, UIEvent event) -> {
             if (timer.isValid())
@@ -467,7 +465,6 @@ public class UIStepper extends UIControl {
             }
 
         };
-        decrementButton.setBackgroundColor(UIColor.clearColor());
         decrementButton.setTitle("-", UIControlState.Normal);
         decrementButton.addTarget((UIControl sender, UIEvent event) -> {
             if (timer.isValid())

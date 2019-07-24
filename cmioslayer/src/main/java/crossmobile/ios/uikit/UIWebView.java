@@ -56,8 +56,7 @@ public class UIWebView extends UIView {
     @SuppressWarnings({"LeakingThisInConstructor", "OverridableMethodCallInConstructor"})
     @CMConstructor("- (instancetype)initWithFrame:(CGRect)frame;")
     public UIWebView(CGRect rect) {
-        super(rect);
-        setBackgroundColor(UIColor.whiteColor);
+        super(rect, UIColor.whiteColor);
         setClipsToBounds(true);
         setMultipleTouchEnabled(true);
         registerWidget(Native.widget().webView(this));

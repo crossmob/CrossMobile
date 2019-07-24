@@ -162,7 +162,6 @@ class cmPickerView extends UIView {
                 if (item instanceof String) {
                     label = new UILabel(subviewrect);
                     label.setTextAlignment(UITextAlignment.Center);
-                    label.setBackgroundColor(UIColor.clearColor());
                     addSubview(label);
                 }
                 if (item instanceof String)

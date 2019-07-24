@@ -67,13 +67,11 @@ public class MKAnnotationView extends UIView {
         this.reuseIdentifier = reuseIdentifier;
 
         title = new UILabel(new CGRect(0, 0, 200, 26));
-        setBackgroundColor(UIColor.clearColor());
         title.setFont(UIFont.boldSystemFontOfSize(18));
         title.setTextColor(UIColor.whiteColor());
         addSubview(title);
 
         subtitle = new UILabel(new CGRect(0, 30, 200, 20));
-        subtitle.setBackgroundColor(UIColor.clearColor());
         subtitle.setTextColor(UIColor.whiteColor());
         addSubview(subtitle);
 

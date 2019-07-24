@@ -362,7 +362,6 @@ class cmDatePickers {
             NSIndexPath index = type.getIndex(calendar);
             scrollToRowAtIndexPath(index, UITableViewScrollPosition.Top, false);
             setShowsVerticalScrollIndicator(false);
-            setBackgroundColor(UIColor.clearColor());
             setSeparatorStyle(UITableViewCellSeparatorStyle.None);
         }
 

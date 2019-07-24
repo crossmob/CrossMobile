@@ -41,7 +41,6 @@ public class UIAlertController extends UIViewController {
     @SuppressWarnings("OverridableMethodCallInConstructor")
     private UIAlertController(String title, String message, int UIAlertControllerStyle) {
         UIView view = new UIView();
-        view.setBackgroundColor(UIColor.clearColor());
         setView(view);
         setTitle(title);
         this.message = message;

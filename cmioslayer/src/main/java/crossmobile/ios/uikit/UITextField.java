@@ -36,7 +36,7 @@ import static crossmobile.ios.coregraphics.$coregraphics.*;
  * is editable.
  */
 @CMClass
-public class UITextField extends UIControl implements UITextInputTraits{
+public class UITextField extends UIControl implements UITextInputTraits {
 
     private int autocapitalizationType = UITextAutocapitalizationType.Sentences;
     private int autocorrectionType = UITextAutocorrectionType.Default;

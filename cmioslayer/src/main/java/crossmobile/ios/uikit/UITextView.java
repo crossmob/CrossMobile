@@ -68,9 +68,9 @@ public class UITextView extends UIView {
     @SuppressWarnings("LeakingThisInConstructor")
     @CMConstructor("- (instancetype)initWithFrame:(CGRect)frame;")
     public UITextView(CGRect rect) {
-        super(rect);
+        super(rect, UIColor.whiteColor);
+        synchronizeNativeBackgroundColor();
         registerWidget(Native.widget().textView(this));
-        setBackgroundColor(UIColor.whiteColor);
         widget().setFont($coregraphics.font(Theme.TextView.FONT.cgfont));
     }
 
@@ -380,7 +380,13 @@ public class UITextView extends UIView {
     @Override
     public void setBackgroundColor(UIColor background) {
         super.setBackgroundColor(background);
-        widget().setBackgroundColor($coregraphics.color(background.cgcolor));
+        synchronizeNativeBackgroundColor();
+    }
+
+    private void synchronizeNativeBackgroundColor() {
+        UIColor backCol = backgroundColor();
+        if (backCol != null)
+            widget().setBackgroundColor($coregraphics.color(backCol.cgcolor));
     }
 
     /**

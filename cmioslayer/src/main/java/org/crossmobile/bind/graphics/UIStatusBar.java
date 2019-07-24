@@ -52,14 +52,12 @@ public final class UIStatusBar extends UIView {
 
     public UIStatusBar() {
         super(new CGRect(0, 0, 200, HEIGHT));
-        setBackgroundColor(UIColor.clearColor());
         setUserInteractionEnabled(true);
         if (!required)
             return;
 
         appname = new UILabel(new CGRect(0, 0, 200, HEIGHT - 2)); // It is visually more attractive to push labels a pixel up
         appname.setTextColor(UIColor.colorWithWhiteAlpha(0.7, 1));
-        appname.setBackgroundColor(UIColor.clearColor());
         appname.setText(System.getProperty("cm.display.name"));
         appname.setTextAlignment(UITextAlignment.Center);
         appname.setFont(UIFont.boldSystemFontOfSize(14));
@@ -68,7 +66,6 @@ public final class UIStatusBar extends UIView {
 
         time = new UILabel(new CGRect(132, 0, 40, HEIGHT - 2));// It is visually more attractive to push labels a pixel up
         time.setTextColor(UIColor.colorWithWhiteAlpha(0.7, 1));
-        time.setBackgroundColor(UIColor.clearColor());
         time.setTextAlignment(UITextAlignment.Right);
         time.setFont(UIFont.boldSystemFontOfSize(14));
         time.setAutoresizingMask(UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleHeight);
@@ -241,7 +238,6 @@ public final class UIStatusBar extends UIView {
 
         public UIBattery(CGRect frame) {
             super(frame);
-            setBackgroundColor(UIColor.clearColor());
             setLevel(0.5f);
         }
 

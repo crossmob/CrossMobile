@@ -76,14 +76,13 @@ public class UITableViewCell extends UIView {
             + "              reuseIdentifier:(NSString *)reuseIdentifier;")
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public UITableViewCell(int UITableViewCellStyle, String reuseIdentifier) {
-        super(new CGRect(0, 0, 320, 44));
+        super(new CGRect(0, 0, 320, 44), UIColor.whiteColor);
         supportsDetailedTextLabel = UITableViewCellStyle == crossmobile.ios.uikit.UITableViewCellStyle.Subtitle;
         if (UITableViewCellStyle == crossmobile.ios.uikit.UITableViewCellStyle.Value1)
             Native.lifecycle().notImplemented("Cell type UITableViewCellStyle.Value1");
         else if (UITableViewCellStyle == crossmobile.ios.uikit.UITableViewCellStyle.Value2)
             Native.lifecycle().notImplemented("Cell type UITableViewCellStyle.Value2");
         this.reuseIdentifier = reuseIdentifier;
-        setBackgroundColor(UIColor.whiteColor);
         addSubview(contentV = new ContentView());
     }
 
@@ -494,7 +493,6 @@ public class UITableViewCell extends UIView {
                     arrow.setImage(UIImage.imageWithContentsOfFile(Native.file().getSystemPrefix() + "arrow"));
 
                     currentAccessoryView = new UIView(new CGRect(0, 0, Theme.Cell.ACCESSORY_SIZE * 2 + Theme.Cell.INSET_RIGHT_ACCESSORY_ACCESSORY, Theme.Cell.ACCESSORY_SIZE));
-                    currentAccessoryView.setBackgroundColor(UIColor.clearColor);
                     currentAccessoryView.addSubview(info);
                     currentAccessoryView.addSubview(arrow);
                     break;

@@ -228,7 +228,11 @@ public class UIScrollView extends UIView {
     @SuppressWarnings("LeakingThisInConstructor")
     @CMConstructor("- (instancetype)initWithFrame:(CGRect)frame;")
     public UIScrollView(CGRect frame) {
-        super(frame);
+        this(frame, null);
+    }
+
+    UIScrollView(CGRect frame, UIColor backgroundColor) {
+        super(frame, backgroundColor);
         setClipsToBounds(true);
         pan.setCancelsTouchesInView(true);
         addGestureRecognizer(pan);

@@ -74,7 +74,7 @@ public class UIView extends UIResponder implements UIAppearanceContainer {
     private CGRect oldFrame = CGRect.zero();
     double alpha = 1;
     private double parentAlpha = 1;
-    private UIColor background = null;
+    private UIColor background;
     CGAffineTransform transform = null;
     /*
      * This property is used in UIWindow to optimize gestures
@@ -139,7 +139,7 @@ public class UIView extends UIResponder implements UIAppearanceContainer {
      * height.
      */
     public UIView() {
-        this(CGRect.zero());
+        this(CGRect.zero(), null);
     }
 
     /**
@@ -151,7 +151,12 @@ public class UIView extends UIResponder implements UIAppearanceContainer {
     @CMConstructor("- (instancetype)initWithFrame:(CGRect)frame;")
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public UIView(CGRect frame) {
+        this(frame, null);
+    }
+
+    UIView(CGRect frame, UIColor backgroundColor) {
         setFrameImpl(frame);
+        this.background = backgroundColor;
     }
 
     private static CGPoint convertPoint(CGPoint point, UIView from, UIView to) {

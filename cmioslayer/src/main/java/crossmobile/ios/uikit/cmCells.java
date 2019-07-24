@@ -37,11 +37,9 @@ class cmCells {
             this.width = width;
             this.height = height;
             setSelectionStyle(UITableViewCellSelectionStyle.None);
-            setBackgroundColor(UIColor.clearColor());
             if (list.get(0) instanceof String) {
                 label = new UILabel(new CGRect(0, 0, width, height));
                 label.setTextAlignment(UITextAlignment.Center);
-                label.setBackgroundColor(UIColor.clearColor());
                 addSubview(label);
             }
         }
@@ -71,8 +69,6 @@ class cmCells {
             setSelectionStyle(UITableViewCellSelectionStyle.None);
             label = new UILabel(new CGRect(0, 0, rect.getSize().getWidth(), 30));
             label.setTextAlignment(UITextAlignment.Center);
-            label.setBackgroundColor(UIColor.clearColor());
-            setBackgroundColor(UIColor.clearColor());
             addSubview(label);
         }
 

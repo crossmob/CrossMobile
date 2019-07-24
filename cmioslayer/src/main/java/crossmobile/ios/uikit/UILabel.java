@@ -88,11 +88,10 @@ public class UILabel extends UIView {
     @SuppressWarnings("OverridableMethodCallInConstructor")
     @CMConstructor("- (instancetype)initWithFrame:(CGRect)frame;")
     public UILabel(CGRect frame) {
-        super(frame);
+        super(frame, UIColor.clearColor);
         setUserInteractionEnabled(false);
         setContentMode(UIViewContentMode.Left);
         setClipsToBounds(true);
-        setBackgroundColor(UIColor.clearColor);
     }
 
     @Override
