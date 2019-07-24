@@ -1024,21 +1024,21 @@ crossmobile.ios.contacts.CNValueType -> crossmobile.ios.contacts.CNValueType:
     java.lang.String CNLabelOther -> CNLabelOther
     28:29:void <init>() -> <init>
 crossmobile.ios.coregraphics.$coregraphics -> crossmobile.ios.coregraphics.$coregraphics:
-    25:25:void <init>() -> <init>
-    28:28:int color(crossmobile.ios.coregraphics.CGColor) -> color
-    32:32:org.crossmobile.bind.graphics.GraphicsContext context(crossmobile.ios.coregraphics.CGContext) -> context
-    36:36:org.crossmobile.bind.graphics.NativeFont font(crossmobile.ios.coregraphics.CGFont) -> font
-    40:40:org.crossmobile.bind.graphics.NativeBitmap bitmap(crossmobile.ios.coregraphics.CGImage) -> bitmap
-    44:44:crossmobile.ios.coregraphics.CGImage cgimage(java.lang.String,org.crossmobile.bind.graphics.NativeBitmap) -> cgimage
-    48:48:java.lang.String filename(crossmobile.ios.coregraphics.CGImage) -> filename
-    52:52:crossmobile.ios.uikit.UIImage image(crossmobile.ios.coregraphics.CGBitmapContext) -> image
-    56:56:crossmobile.ios.coregraphics.CGColor cgcolor(int) -> cgcolor
-    60:60:crossmobile.ios.coregraphics.CGFont cgfont(org.crossmobile.bind.graphics.NativeFont) -> cgfont
-    64:67:crossmobile.ios.coregraphics.CGAffineTransform selfRotateScaleTranslate(crossmobile.ios.coregraphics.CGAffineTransform,double,double,double,double,double) -> selfRotateScaleTranslate
-    71:71:crossmobile.ios.coregraphics.CGAffineTransform translateConcatTranslate(crossmobile.ios.coregraphics.CGAffineTransform,double,double,crossmobile.ios.coregraphics.CGAffineTransform,double,double) -> translateConcatTranslate
-    75:77:void destroy(crossmobile.ios.coregraphics.CGContext) -> destroy
-    80:81:crossmobile.ios.coregraphics.CGContext convertBaseContextToCGContext(org.crossmobile.bind.graphics.GraphicsContext) -> convertBaseContextToCGContext
-    85:86:void trashCGImageMemory(crossmobile.ios.coregraphics.CGImage) -> trashCGImageMemory
+    24:24:void <init>() -> <init>
+    27:27:int color(crossmobile.ios.coregraphics.CGColor) -> color
+    31:31:org.crossmobile.bind.graphics.GraphicsContext context(crossmobile.ios.coregraphics.CGContext) -> context
+    35:35:org.crossmobile.bind.graphics.NativeFont font(crossmobile.ios.coregraphics.CGFont) -> font
+    39:39:org.crossmobile.bind.graphics.NativeBitmap bitmap(crossmobile.ios.coregraphics.CGImage) -> bitmap
+    43:43:crossmobile.ios.coregraphics.CGImage cgimage(java.lang.String,org.crossmobile.bind.graphics.NativeBitmap) -> cgimage
+    47:47:java.lang.String filename(crossmobile.ios.coregraphics.CGImage) -> filename
+    51:51:crossmobile.ios.uikit.UIImage image(crossmobile.ios.coregraphics.CGBitmapContext) -> image
+    55:55:crossmobile.ios.coregraphics.CGColor cgcolor(int) -> cgcolor
+    59:59:crossmobile.ios.coregraphics.CGFont cgfont(org.crossmobile.bind.graphics.NativeFont) -> cgfont
+    63:66:crossmobile.ios.coregraphics.CGAffineTransform selfRotateScaleTranslate(crossmobile.ios.coregraphics.CGAffineTransform,double,double,double,double,double) -> selfRotateScaleTranslate
+    70:70:crossmobile.ios.coregraphics.CGAffineTransform translateConcatTranslate(crossmobile.ios.coregraphics.CGAffineTransform,double,double,crossmobile.ios.coregraphics.CGAffineTransform,double,double) -> translateConcatTranslate
+    74:76:void destroy(crossmobile.ios.coregraphics.CGContext) -> destroy
+    79:80:crossmobile.ios.coregraphics.CGContext convertBaseContextToCGContext(org.crossmobile.bind.graphics.GraphicsContext) -> convertBaseContextToCGContext
+    84:85:void trashCGImageMemory(crossmobile.ios.coregraphics.CGImage) -> trashCGImageMemory
 crossmobile.ios.coregraphics.CGAffineTransform -> crossmobile.ios.coregraphics.CGAffineTransform:
     crossmobile.ios.coregraphics.CGAffineTransform IDENTITY -> a
     double a -> b
@@ -1138,7 +1138,8 @@ crossmobile.ios.coregraphics.CGColor -> crossmobile.ios.coregraphics.CGColor:
     54:54:int getNumberOfComponents() -> getNumberOfComponents
     64:64:double[] getComponents() -> getComponents
     69:69:java.lang.String toString() -> toString
-    74:81:boolean equals(java.lang.Object) -> equals
+    74:74:int hashCode() -> hashCode
+    79:86:boolean equals(java.lang.Object) -> equals
 crossmobile.ios.coregraphics.CGColorRenderingIntent -> crossmobile.ios.coregraphics.CGColorRenderingIntent:
     int Default -> Default
     int AbsoluteColorimetric -> AbsoluteColorimetric
@@ -3161,37 +3162,37 @@ crossmobile.ios.mapkit.MKAnnotationView -> crossmobile.ios.mapkit.MKAnnotationVi
     crossmobile.ios.uikit.UILabel subtitle -> w
     crossmobile.ios.uikit.UIButton close -> x
     crossmobile.ios.mapkit.MKAnnotation annotation -> a
-    65:96:void <init>(crossmobile.ios.mapkit.MKAnnotation,java.lang.String) -> <init>
-    104:104:void prepareForReuse() -> prepareForReuse
-    113:113:boolean isEnabled() -> isEnabled
-    123:124:void setEnabled(boolean) -> setEnabled
-    133:133:crossmobile.ios.mapkit.MKAnnotation annotation() -> annotation
-    143:144:void setAnnotation(crossmobile.ios.mapkit.MKAnnotation) -> setAnnotation
-    153:153:crossmobile.ios.coregraphics.CGPoint calloutOffset() -> calloutOffset
-    164:165:void setCalloutOffset(crossmobile.ios.coregraphics.CGPoint) -> setCalloutOffset
-    174:174:crossmobile.ios.coregraphics.CGPoint centerOffset() -> centerOffset
-    185:186:void setCenterOffset(crossmobile.ios.coregraphics.CGPoint) -> setCenterOffset
-    198:198:boolean isHighlighted() -> isHighlighted
-    210:211:void setHighlighted(boolean) -> setHighlighted
-    220:220:crossmobile.ios.uikit.UIImage image() -> image
-    230:231:void setImage(crossmobile.ios.uikit.UIImage) -> setImage
-    240:240:java.lang.String reuseIdentifier() -> reuseIdentifier
-    250:250:boolean isSelected() -> isSelected
-    260:261:void setSelected(boolean) -> setSelected
-    272:273:void setSelected(boolean,boolean) -> setSelected
-    284:284:boolean canShowCallout() -> canShowCallout
-    296:297:void setCanShowCallout(boolean) -> setCanShowCallout
-    309:309:crossmobile.ios.uikit.UIView leftCalloutAccessoryView() -> leftCalloutAccessoryView
-    322:323:void setLeftCalloutAccessoryView(crossmobile.ios.uikit.UIView) -> setLeftCalloutAccessoryView
-    334:334:crossmobile.ios.uikit.UIView rightCalloutAccessoryView() -> rightCalloutAccessoryView
-    346:350:void setRightCalloutAccessoryView(crossmobile.ios.uikit.UIView) -> setRightCalloutAccessoryView
-    360:360:int dragState() -> dragState
-    371:372:void setDragState(int) -> setDragState
-    385:386:void setDragState(int,boolean) -> setDragState
-    395:395:boolean isDraggable() -> isDraggable
-    405:406:void setDraggable(boolean) -> setDraggable
-    410:411:void drawRect(crossmobile.ios.coregraphics.CGRect) -> drawRect
-    92:92:void lambda$new$0(crossmobile.ios.uikit.UIControl,crossmobile.ios.uikit.UIEvent) -> a
+    65:94:void <init>(crossmobile.ios.mapkit.MKAnnotation,java.lang.String) -> <init>
+    102:102:void prepareForReuse() -> prepareForReuse
+    111:111:boolean isEnabled() -> isEnabled
+    121:122:void setEnabled(boolean) -> setEnabled
+    131:131:crossmobile.ios.mapkit.MKAnnotation annotation() -> annotation
+    141:142:void setAnnotation(crossmobile.ios.mapkit.MKAnnotation) -> setAnnotation
+    151:151:crossmobile.ios.coregraphics.CGPoint calloutOffset() -> calloutOffset
+    162:163:void setCalloutOffset(crossmobile.ios.coregraphics.CGPoint) -> setCalloutOffset
+    172:172:crossmobile.ios.coregraphics.CGPoint centerOffset() -> centerOffset
+    183:184:void setCenterOffset(crossmobile.ios.coregraphics.CGPoint) -> setCenterOffset
+    196:196:boolean isHighlighted() -> isHighlighted
+    208:209:void setHighlighted(boolean) -> setHighlighted
+    218:218:crossmobile.ios.uikit.UIImage image() -> image
+    228:229:void setImage(crossmobile.ios.uikit.UIImage) -> setImage
+    238:238:java.lang.String reuseIdentifier() -> reuseIdentifier
+    248:248:boolean isSelected() -> isSelected
+    258:259:void setSelected(boolean) -> setSelected
+    270:271:void setSelected(boolean,boolean) -> setSelected
+    282:282:boolean canShowCallout() -> canShowCallout
+    294:295:void setCanShowCallout(boolean) -> setCanShowCallout
+    307:307:crossmobile.ios.uikit.UIView leftCalloutAccessoryView() -> leftCalloutAccessoryView
+    320:321:void setLeftCalloutAccessoryView(crossmobile.ios.uikit.UIView) -> setLeftCalloutAccessoryView
+    332:332:crossmobile.ios.uikit.UIView rightCalloutAccessoryView() -> rightCalloutAccessoryView
+    344:348:void setRightCalloutAccessoryView(crossmobile.ios.uikit.UIView) -> setRightCalloutAccessoryView
+    358:358:int dragState() -> dragState
+    369:370:void setDragState(int) -> setDragState
+    383:384:void setDragState(int,boolean) -> setDragState
+    393:393:boolean isDraggable() -> isDraggable
+    403:404:void setDraggable(boolean) -> setDraggable
+    408:409:void drawRect(crossmobile.ios.coregraphics.CGRect) -> drawRect
+    90:90:void lambda$new$0(crossmobile.ios.uikit.UIControl,crossmobile.ios.uikit.UIEvent) -> a
     crossmobile.ios.mapkit.MKAnnotationViewAppearance appearance() -> appearance
     crossmobile.ios.mapkit.MKAnnotationViewAppearance appearanceWhenContainedInInstancesOfClasses(java.util.List) -> appearanceWhenContainedInInstancesOfClasses
 crossmobile.ios.mapkit.MKAnnotationViewAppearance -> crossmobile.ios.mapkit.MKAnnotationViewAppearance:
@@ -3200,6 +3201,7 @@ crossmobile.ios.mapkit.MKAnnotationViewAppearance -> crossmobile.ios.mapkit.MKAn
 crossmobile.ios.mapkit.MKAnnotationViewAppearance$BackgroundColor -> crossmobile.ios.mapkit.MKAnnotationViewAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.mapkit.MKAnnotationViewDragState -> crossmobile.ios.mapkit.MKAnnotationViewDragState:
     int None -> None
     int Starting -> Starting
@@ -3332,6 +3334,7 @@ crossmobile.ios.mapkit.MKMapViewAppearance -> crossmobile.ios.mapkit.MKMapViewAp
 crossmobile.ios.mapkit.MKMapViewAppearance$BackgroundColor -> crossmobile.ios.mapkit.MKMapViewAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.mapkit.MKMapViewDelegate -> crossmobile.ios.mapkit.MKMapViewDelegate:
     43:43:void regionWillChangeAnimated(crossmobile.ios.mapkit.MKMapView,boolean) -> regionWillChangeAnimated
     55:55:void regionDidChangeAnimated(crossmobile.ios.mapkit.MKMapView,boolean) -> regionDidChangeAnimated
@@ -3375,6 +3378,7 @@ crossmobile.ios.mapkit.MKOverlayViewAppearance -> crossmobile.ios.mapkit.MKOverl
 crossmobile.ios.mapkit.MKOverlayViewAppearance$BackgroundColor -> crossmobile.ios.mapkit.MKOverlayViewAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.mapkit.MKPinAnnotationColor -> crossmobile.ios.mapkit.MKPinAnnotationColor:
     int Red -> Red
     int Green -> Green
@@ -3396,6 +3400,7 @@ crossmobile.ios.mapkit.MKPinAnnotationViewAppearance -> crossmobile.ios.mapkit.M
 crossmobile.ios.mapkit.MKPinAnnotationViewAppearance$BackgroundColor -> crossmobile.ios.mapkit.MKPinAnnotationViewAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.mapkit.MKPlacemark -> crossmobile.ios.mapkit.MKPlacemark:
     java.lang.String countryCode -> a
     crossmobile.ios.corelocation.CLLocationCoordinate2D coordinate -> b
@@ -3483,6 +3488,7 @@ crossmobile.ios.mediaplayer.MPVolumeViewAppearance -> crossmobile.ios.mediaplaye
 crossmobile.ios.mediaplayer.MPVolumeViewAppearance$BackgroundColor -> crossmobile.ios.mediaplayer.MPVolumeViewAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.messageui.MFMailComposeResult -> crossmobile.ios.messageui.MFMailComposeResult:
     int Cancelled -> Cancelled
     int Saved -> Saved
@@ -4121,6 +4127,7 @@ crossmobile.ios.uikit.UIActionSheetAppearance -> crossmobile.ios.uikit.UIActionS
 crossmobile.ios.uikit.UIActionSheetAppearance$BackgroundColor -> crossmobile.ios.uikit.UIActionSheetAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UIActionSheetDelegate -> crossmobile.ios.uikit.UIActionSheetDelegate:
     38:38:void willPresentActionSheet(crossmobile.ios.uikit.UIActionSheet) -> willPresentActionSheet
     49:49:void didPresentActionSheet(crossmobile.ios.uikit.UIActionSheet) -> didPresentActionSheet
@@ -4174,6 +4181,7 @@ crossmobile.ios.uikit.UIActivityIndicatorViewAppearance -> crossmobile.ios.uikit
 crossmobile.ios.uikit.UIActivityIndicatorViewAppearance$BackgroundColor -> crossmobile.ios.uikit.UIActivityIndicatorViewAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UIActivityIndicatorViewStyle -> crossmobile.ios.uikit.UIActivityIndicatorViewStyle:
     int WhiteLarge -> WhiteLarge
     int White -> White
@@ -4234,25 +4242,25 @@ crossmobile.ios.uikit.UIAlertController -> crossmobile.ios.uikit.UIAlertControll
     java.util.List textFields -> e
     java.lang.String message -> f
     int style -> g
-    36:49:void <init>(java.lang.String,java.lang.String,int) -> <init>
-    64:64:crossmobile.ios.uikit.UIAlertController alertControllerWithTitle(java.lang.String,java.lang.String,int) -> alertControllerWithTitle
-    74:74:java.lang.String message() -> message
-    84:85:void setMessage(java.lang.String) -> setMessage
-    94:94:int preferredStyle() -> preferredStyle
-    104:105:void addAction(crossmobile.ios.uikit.UIAlertAction) -> addAction
-    114:114:java.util.List actions() -> actions
-    126:132:void addTextFieldWithConfigurationHandler(org.robovm.objc.block.VoidBlock1) -> addTextFieldWithConfigurationHandler
-    141:141:java.util.List textFields() -> textFields
-    146:173:void viewWillAppear(boolean) -> viewWillAppear
+    36:48:void <init>(java.lang.String,java.lang.String,int) -> <init>
+    63:63:crossmobile.ios.uikit.UIAlertController alertControllerWithTitle(java.lang.String,java.lang.String,int) -> alertControllerWithTitle
+    73:73:java.lang.String message() -> message
+    83:84:void setMessage(java.lang.String) -> setMessage
+    93:93:int preferredStyle() -> preferredStyle
+    103:104:void addAction(crossmobile.ios.uikit.UIAlertAction) -> addAction
+    113:113:java.util.List actions() -> actions
+    125:131:void addTextFieldWithConfigurationHandler(org.robovm.objc.block.VoidBlock1) -> addTextFieldWithConfigurationHandler
+    140:140:java.util.List textFields() -> textFields
+    145:172:void viewWillAppear(boolean) -> viewWillAppear
     34:34:java.util.List access$000(crossmobile.ios.uikit.UIAlertController) -> a
 crossmobile.ios.uikit.UIAlertController$1 -> crossmobile.ios.uikit.UIAlertController$1:
     crossmobile.ios.uikit.UIAlertController this$0 -> a
-    148:148:void <init>(crossmobile.ios.uikit.UIAlertController) -> <init>
-    151:154:void clickedButtonAtIndex(crossmobile.ios.uikit.UIAlertView,int) -> clickedButtonAtIndex
+    147:147:void <init>(crossmobile.ios.uikit.UIAlertController) -> <init>
+    150:153:void clickedButtonAtIndex(crossmobile.ios.uikit.UIAlertView,int) -> clickedButtonAtIndex
 crossmobile.ios.uikit.UIAlertController$2 -> crossmobile.ios.uikit.UIAlertController$2:
     crossmobile.ios.uikit.UIAlertController this$0 -> a
-    163:163:void <init>(crossmobile.ios.uikit.UIAlertController) -> <init>
-    166:169:void clickedButtonAtIndex(crossmobile.ios.uikit.UIActionSheet,int) -> clickedButtonAtIndex
+    162:162:void <init>(crossmobile.ios.uikit.UIAlertController) -> <init>
+    165:168:void clickedButtonAtIndex(crossmobile.ios.uikit.UIActionSheet,int) -> clickedButtonAtIndex
 crossmobile.ios.uikit.UIAlertControllerStyle -> crossmobile.ios.uikit.UIAlertControllerStyle:
     int Sheet -> Sheet
     int Alert -> Alert
@@ -4287,6 +4295,7 @@ crossmobile.ios.uikit.UIAlertViewAppearance -> crossmobile.ios.uikit.UIAlertView
 crossmobile.ios.uikit.UIAlertViewAppearance$BackgroundColor -> crossmobile.ios.uikit.UIAlertViewAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UIAlertViewDelegate -> crossmobile.ios.uikit.UIAlertViewDelegate:
     void clickedButtonAtIndex(crossmobile.ios.uikit.UIAlertView,int) -> clickedButtonAtIndex
 crossmobile.ios.uikit.UIAlertViewStyle -> crossmobile.ios.uikit.UIAlertViewStyle:
@@ -4539,6 +4548,7 @@ crossmobile.ios.uikit.UIButtonAppearance -> crossmobile.ios.uikit.UIButtonAppear
 crossmobile.ios.uikit.UIButtonAppearance$BackgroundColor -> crossmobile.ios.uikit.UIButtonAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UIButtonType -> crossmobile.ios.uikit.UIButtonType:
     int Custom -> Custom
     int System -> System
@@ -4599,8 +4609,8 @@ crossmobile.ios.uikit.UIColor -> crossmobile.ios.uikit.UIColor:
     337:337:crossmobile.ios.uikit.UIColor colorWithCGColor(crossmobile.ios.coregraphics.CGColor) -> colorWithCGColor
     347:347:crossmobile.ios.coregraphics.CGColor CGColor() -> CGColor
     352:352:java.lang.String toString() -> toString
-    357:358:int hashCode() -> hashCode
-    363:370:boolean equals(java.lang.Object) -> equals
+    357:357:int hashCode() -> hashCode
+    362:369:boolean equals(java.lang.Object) -> equals
     37:55:void <clinit>() -> <clinit>
 crossmobile.ios.uikit.UIControl -> crossmobile.ios.uikit.UIControl:
     java.util.List controldelegates -> a
@@ -4649,6 +4659,7 @@ crossmobile.ios.uikit.UIControlAppearance -> crossmobile.ios.uikit.UIControlAppe
 crossmobile.ios.uikit.UIControlAppearance$BackgroundColor -> crossmobile.ios.uikit.UIControlAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UIControlContentHorizontalAlignment -> crossmobile.ios.uikit.UIControlContentHorizontalAlignment:
     int Center -> Center
     int Left -> Left
@@ -4746,6 +4757,7 @@ crossmobile.ios.uikit.UIDatePickerAppearance -> crossmobile.ios.uikit.UIDatePick
 crossmobile.ios.uikit.UIDatePickerAppearance$BackgroundColor -> crossmobile.ios.uikit.UIDatePickerAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UIDatePickerMode -> crossmobile.ios.uikit.UIDatePickerMode:
     int Time -> Time
     int Date -> Date
@@ -5152,6 +5164,7 @@ crossmobile.ios.uikit.UIImageViewAppearance -> crossmobile.ios.uikit.UIImageView
 crossmobile.ios.uikit.UIImageViewAppearance$BackgroundColor -> crossmobile.ios.uikit.UIImageViewAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UIImageWriteToPhotoAlbumHandler -> crossmobile.ios.uikit.UIImageWriteToPhotoAlbumHandler:
     void didFinishSavingWithError(crossmobile.ios.uikit.UIImage,crossmobile.ios.foundation.NSError,java.lang.Object) -> didFinishSavingWithError
 crossmobile.ios.uikit.UIInterfaceOrientation -> crossmobile.ios.uikit.UIInterfaceOrientation:
@@ -5248,12 +5261,15 @@ crossmobile.ios.uikit.UILabelAppearance -> crossmobile.ios.uikit.UILabelAppearan
 crossmobile.ios.uikit.UILabelAppearance$BackgroundColor -> crossmobile.ios.uikit.UILabelAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UILabelAppearance$Font -> crossmobile.ios.uikit.UILabelAppearance$b:
     crossmobile.ios.uikit.UIFont param -> a
     void <init>(crossmobile.ios.uikit.UIFont) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UILabelAppearance$TextColor -> crossmobile.ios.uikit.UILabelAppearance$c:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UILayoutConstraintAxis -> crossmobile.ios.uikit.UILayoutConstraintAxis:
     int Horizontal -> Horizontal
     int Vertical -> Vertical
@@ -5448,6 +5464,7 @@ crossmobile.ios.uikit.UINavigationBarAppearance -> crossmobile.ios.uikit.UINavig
 crossmobile.ios.uikit.UINavigationBarAppearance$BackgroundColor -> crossmobile.ios.uikit.UINavigationBarAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UINavigationBarDelegate -> crossmobile.ios.uikit.UINavigationBarDelegate:
     39:39:boolean shouldPushItem(crossmobile.ios.uikit.UINavigationBar,crossmobile.ios.uikit.UINavigationItem) -> shouldPushItem
     51:51:void didPushItem(crossmobile.ios.uikit.UINavigationBar,crossmobile.ios.uikit.UINavigationItem) -> didPushItem
@@ -5616,6 +5633,7 @@ crossmobile.ios.uikit.UIPageControlAppearance -> crossmobile.ios.uikit.UIPageCon
 crossmobile.ios.uikit.UIPageControlAppearance$BackgroundColor -> crossmobile.ios.uikit.UIPageControlAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UIPanGestureRecognizer -> crossmobile.ios.uikit.UIPanGestureRecognizer:
     int maximumNumberOfTouches -> h
     int minimumNumberOfTouches -> i
@@ -5679,6 +5697,7 @@ crossmobile.ios.uikit.UIPickerViewAppearance -> crossmobile.ios.uikit.UIPickerVi
 crossmobile.ios.uikit.UIPickerViewAppearance$BackgroundColor -> crossmobile.ios.uikit.UIPickerViewAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UIPickerViewDataSource -> crossmobile.ios.uikit.UIPickerViewDataSource:
     int numberOfComponentsInPickerView(crossmobile.ios.uikit.UIPickerView) -> numberOfComponentsInPickerView
     int numberOfRowsInComponent(crossmobile.ios.uikit.UIPickerView,int) -> numberOfRowsInComponent
@@ -5786,6 +5805,7 @@ crossmobile.ios.uikit.UIProgressViewAppearance -> crossmobile.ios.uikit.UIProgre
 crossmobile.ios.uikit.UIProgressViewAppearance$BackgroundColor -> crossmobile.ios.uikit.UIProgressViewAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UIProgressViewStyle -> crossmobile.ios.uikit.UIProgressViewStyle:
     int Default -> Default
     int Bar -> Bar
@@ -5901,77 +5921,78 @@ crossmobile.ios.uikit.UIScrollView -> crossmobile.ios.uikit.UIScrollView:
     org.crossmobile.support.cassowary.ClSimplexSolver contentSolver -> S
     boolean addingContentConstraint -> T
     218:219:void <init>() -> <init>
-    52:1164:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
-    238:253:void invalidateTimers() -> c
-    257:262:void touchesBegan(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesBegan
-    266:269:void touchesEnded(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesEnded
-    273:276:void touchesCancelled(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesCancelled
-    280:282:void touchesMoved(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesMoved
-    286:288:crossmobile.ios.uikit.UIView hitTest(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent) -> hitTest
-    293:297:crossmobile.ios.uikit.UIView firstAncestorScrollView(crossmobile.ios.uikit.UIView) -> f
-    314:314:boolean touchesShouldBegin(java.util.Set,crossmobile.ios.uikit.UIEvent,crossmobile.ios.uikit.UIView) -> touchesShouldBegin
-    327:327:boolean touchesShouldCancelInContentView(crossmobile.ios.uikit.UIView) -> touchesShouldCancelInContentView
-    332:339:void parentPointTransformations(crossmobile.ios.coregraphics.CGPoint,boolean) -> a
-    348:348:crossmobile.ios.coregraphics.CGSize contentSize() -> contentSize
-    358:359:void setContentSize(crossmobile.ios.coregraphics.CGSize) -> setContentSize
-    363:367:void setContentSize(crossmobile.ios.coregraphics.CGSize,boolean) -> a
-    376:377:void setContentOffset(crossmobile.ios.coregraphics.CGPoint) -> setContentOffset
-    389:395:void setContentOffset(crossmobile.ios.coregraphics.CGPoint,boolean) -> setContentOffset
-    398:408:void setContentOffset(double,double) -> a
-    419:419:crossmobile.ios.coregraphics.CGPoint contentOffset() -> contentOffset
-    431:431:crossmobile.ios.uikit.UIEdgeInsets contentInset() -> contentInset
-    443:447:void setContentInset(crossmobile.ios.uikit.UIEdgeInsets) -> setContentInset
-    457:457:boolean isScrollEnabled() -> isScrollEnabled
-    467:474:void setScrollEnabled(boolean) -> setScrollEnabled
-    483:483:boolean isPagingEnabled() -> isPagingEnabled
-    493:494:void setPagingEnabled(boolean) -> setPagingEnabled
-    503:503:crossmobile.ios.uikit.UIScrollViewDelegate delegate() -> delegate
-    513:514:void setDelegate(crossmobile.ios.uikit.UIScrollViewDelegate) -> setDelegate
-    525:525:boolean scrollsToTop() -> scrollsToTop
-    537:538:void setScrollsToTop(boolean) -> setScrollsToTop
-    547:547:boolean showsHorizontalScrollIndicator() -> showsHorizontalScrollIndicator
-    558:559:void setShowsHorizontalScrollIndicator(boolean) -> setShowsHorizontalScrollIndicator
-    568:568:boolean showsVerticalScrollIndicator() -> showsVerticalScrollIndicator
-    579:580:void setShowsVerticalScrollIndicator(boolean) -> setShowsVerticalScrollIndicator
-    590:590:boolean isDecelerating() -> isDecelerating
-    601:601:boolean isDragging() -> isDragging
-    613:613:boolean isTracking() -> isTracking
-    625:625:boolean alwaysBounceHorizontal() -> alwaysBounceHorizontal
-    638:639:void setAlwaysBounceHorizontal(boolean) -> setAlwaysBounceHorizontal
-    650:650:boolean alwaysBounceVertical() -> alwaysBounceVertical
-    663:664:void setAlwaysBounceVertical(boolean) -> setAlwaysBounceVertical
-    676:676:boolean canCancelContentTouches() -> canCancelContentTouches
-    690:691:void setCanCancelContentTouches(boolean) -> setCanCancelContentTouches
-    702:702:boolean delaysContentTouches() -> delaysContentTouches
-    714:715:void setDelaysContentTouches(boolean) -> setDelaysContentTouches
-    726:726:boolean isDirectionalLockEnabled() -> isDirectionalLockEnabled
-    738:739:void setDirectionalLockEnabled(boolean) -> setDirectionalLockEnabled
-    748:748:crossmobile.ios.uikit.UIEdgeInsets scrollIndicatorInsets() -> scrollIndicatorInsets
-    759:761:void setScrollIndicatorInsets(crossmobile.ios.uikit.UIEdgeInsets) -> setScrollIndicatorInsets
-    770:770:double decelerationRate() -> decelerationRate
-    780:781:void setDecelerationRate(double) -> setDecelerationRate
-    790:790:int indicatorStyle() -> indicatorStyle
-    800:802:void setIndicatorStyle(int) -> setIndicatorStyle
-    813:813:boolean bounces() -> bounces
-    825:826:void setBounces(boolean) -> setBounces
-    838:858:void scrollRectToVisible(crossmobile.ios.coregraphics.CGRect,boolean) -> scrollRectToVisible
-    865:868:void flashScrollIndicators() -> flashScrollIndicators
-    872:874:crossmobile.ios.coregraphics.CGPoint locationRelativeToRoot(crossmobile.ios.coregraphics.CGPoint) -> a
-    879:884:void drawingChildren(crossmobile.ios.coregraphics.CGContext) -> a
-    888:888:boolean shouldDrawOnTop() -> d_
-    893:943:void drawOnTop(crossmobile.ios.coregraphics.CGContext,crossmobile.ios.coregraphics.CGRect) -> a
-    947:948:void drawRect(crossmobile.ios.coregraphics.CGRect) -> drawRect
-    1095:1111:void applyLayout() -> b
-    1114:1115:void addContentConstraints(java.util.List) -> a
-    1121:1121:org.crossmobile.support.cassowary.ClVariable getContentVariable(int) -> b
-    1125:1135:void initContentVars() -> d
-    1138:1142:void initContentSolver() -> p
-    1146:1151:void addConstraint(crossmobile.ios.uikit.NSLayoutConstraint) -> addConstraint
-    1154:1162:void addContentConstraint(crossmobile.ios.uikit.NSLayoutConstraint) -> b
-    1168:1170:org.crossmobile.support.cassowary.ClVariable getVariable(int) -> a
-    1174:1178:boolean isChild(crossmobile.ios.uikit.UIView) -> g
-    1182:1186:void applyContentSize() -> q
-    1190:1192:java.util.List constraints() -> constraints
+    231:232:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
+    52:1168:void <init>(crossmobile.ios.coregraphics.CGRect,crossmobile.ios.uikit.UIColor) -> <init>
+    242:257:void invalidateTimers() -> c
+    261:266:void touchesBegan(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesBegan
+    270:273:void touchesEnded(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesEnded
+    277:280:void touchesCancelled(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesCancelled
+    284:286:void touchesMoved(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesMoved
+    290:292:crossmobile.ios.uikit.UIView hitTest(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent) -> hitTest
+    297:301:crossmobile.ios.uikit.UIView firstAncestorScrollView(crossmobile.ios.uikit.UIView) -> f
+    318:318:boolean touchesShouldBegin(java.util.Set,crossmobile.ios.uikit.UIEvent,crossmobile.ios.uikit.UIView) -> touchesShouldBegin
+    331:331:boolean touchesShouldCancelInContentView(crossmobile.ios.uikit.UIView) -> touchesShouldCancelInContentView
+    336:343:void parentPointTransformations(crossmobile.ios.coregraphics.CGPoint,boolean) -> a
+    352:352:crossmobile.ios.coregraphics.CGSize contentSize() -> contentSize
+    362:363:void setContentSize(crossmobile.ios.coregraphics.CGSize) -> setContentSize
+    367:371:void setContentSize(crossmobile.ios.coregraphics.CGSize,boolean) -> a
+    380:381:void setContentOffset(crossmobile.ios.coregraphics.CGPoint) -> setContentOffset
+    393:399:void setContentOffset(crossmobile.ios.coregraphics.CGPoint,boolean) -> setContentOffset
+    402:412:void setContentOffset(double,double) -> a
+    423:423:crossmobile.ios.coregraphics.CGPoint contentOffset() -> contentOffset
+    435:435:crossmobile.ios.uikit.UIEdgeInsets contentInset() -> contentInset
+    447:451:void setContentInset(crossmobile.ios.uikit.UIEdgeInsets) -> setContentInset
+    461:461:boolean isScrollEnabled() -> isScrollEnabled
+    471:478:void setScrollEnabled(boolean) -> setScrollEnabled
+    487:487:boolean isPagingEnabled() -> isPagingEnabled
+    497:498:void setPagingEnabled(boolean) -> setPagingEnabled
+    507:507:crossmobile.ios.uikit.UIScrollViewDelegate delegate() -> delegate
+    517:518:void setDelegate(crossmobile.ios.uikit.UIScrollViewDelegate) -> setDelegate
+    529:529:boolean scrollsToTop() -> scrollsToTop
+    541:542:void setScrollsToTop(boolean) -> setScrollsToTop
+    551:551:boolean showsHorizontalScrollIndicator() -> showsHorizontalScrollIndicator
+    562:563:void setShowsHorizontalScrollIndicator(boolean) -> setShowsHorizontalScrollIndicator
+    572:572:boolean showsVerticalScrollIndicator() -> showsVerticalScrollIndicator
+    583:584:void setShowsVerticalScrollIndicator(boolean) -> setShowsVerticalScrollIndicator
+    594:594:boolean isDecelerating() -> isDecelerating
+    605:605:boolean isDragging() -> isDragging
+    617:617:boolean isTracking() -> isTracking
+    629:629:boolean alwaysBounceHorizontal() -> alwaysBounceHorizontal
+    642:643:void setAlwaysBounceHorizontal(boolean) -> setAlwaysBounceHorizontal
+    654:654:boolean alwaysBounceVertical() -> alwaysBounceVertical
+    667:668:void setAlwaysBounceVertical(boolean) -> setAlwaysBounceVertical
+    680:680:boolean canCancelContentTouches() -> canCancelContentTouches
+    694:695:void setCanCancelContentTouches(boolean) -> setCanCancelContentTouches
+    706:706:boolean delaysContentTouches() -> delaysContentTouches
+    718:719:void setDelaysContentTouches(boolean) -> setDelaysContentTouches
+    730:730:boolean isDirectionalLockEnabled() -> isDirectionalLockEnabled
+    742:743:void setDirectionalLockEnabled(boolean) -> setDirectionalLockEnabled
+    752:752:crossmobile.ios.uikit.UIEdgeInsets scrollIndicatorInsets() -> scrollIndicatorInsets
+    763:765:void setScrollIndicatorInsets(crossmobile.ios.uikit.UIEdgeInsets) -> setScrollIndicatorInsets
+    774:774:double decelerationRate() -> decelerationRate
+    784:785:void setDecelerationRate(double) -> setDecelerationRate
+    794:794:int indicatorStyle() -> indicatorStyle
+    804:806:void setIndicatorStyle(int) -> setIndicatorStyle
+    817:817:boolean bounces() -> bounces
+    829:830:void setBounces(boolean) -> setBounces
+    842:862:void scrollRectToVisible(crossmobile.ios.coregraphics.CGRect,boolean) -> scrollRectToVisible
+    869:872:void flashScrollIndicators() -> flashScrollIndicators
+    876:878:crossmobile.ios.coregraphics.CGPoint locationRelativeToRoot(crossmobile.ios.coregraphics.CGPoint) -> a
+    883:888:void drawingChildren(crossmobile.ios.coregraphics.CGContext) -> a
+    892:892:boolean shouldDrawOnTop() -> d_
+    897:947:void drawOnTop(crossmobile.ios.coregraphics.CGContext,crossmobile.ios.coregraphics.CGRect) -> a
+    951:952:void drawRect(crossmobile.ios.coregraphics.CGRect) -> drawRect
+    1099:1115:void applyLayout() -> b
+    1118:1119:void addContentConstraints(java.util.List) -> a
+    1125:1125:org.crossmobile.support.cassowary.ClVariable getContentVariable(int) -> b
+    1129:1139:void initContentVars() -> d
+    1142:1146:void initContentSolver() -> p
+    1150:1155:void addConstraint(crossmobile.ios.uikit.NSLayoutConstraint) -> addConstraint
+    1158:1166:void addContentConstraint(crossmobile.ios.uikit.NSLayoutConstraint) -> b
+    1172:1174:org.crossmobile.support.cassowary.ClVariable getVariable(int) -> a
+    1178:1182:boolean isChild(crossmobile.ios.uikit.UIView) -> g
+    1186:1190:void applyContentSize() -> q
+    1194:1196:java.util.List constraints() -> constraints
     49:49:crossmobile.ios.uikit.UIPanGestureRecognizer access$000(crossmobile.ios.uikit.UIScrollView) -> a
     49:49:boolean access$102(crossmobile.ios.uikit.UIScrollView,boolean) -> a
     49:49:boolean access$202(crossmobile.ios.uikit.UIScrollView,boolean) -> b
@@ -6004,21 +6025,21 @@ crossmobile.ios.uikit.UIScrollView$1 -> crossmobile.ios.uikit.UIScrollView$1:
     116:119:void lambda$exec$0(crossmobile.ios.uikit.UIGestureRecognizer,crossmobile.ios.foundation.NSTimer) -> a
 crossmobile.ios.uikit.UIScrollView$FlashIndicator -> crossmobile.ios.uikit.UIScrollView$a:
     crossmobile.ios.uikit.UIScrollView this$0 -> a
-    1073:1073:void <init>(crossmobile.ios.uikit.UIScrollView) -> <init>
-    1077:1078:void start() -> a
-    1082:1084:void apply(double) -> a
-    1088:1090:void end() -> b
-    1073:1073:void <init>(crossmobile.ios.uikit.UIScrollView,crossmobile.ios.uikit.UIScrollView$1) -> <init>
+    1077:1077:void <init>(crossmobile.ios.uikit.UIScrollView) -> <init>
+    1081:1082:void start() -> a
+    1086:1088:void apply(double) -> a
+    1092:1094:void end() -> b
+    1077:1077:void <init>(crossmobile.ios.uikit.UIScrollView,crossmobile.ios.uikit.UIScrollView$1) -> <init>
 crossmobile.ios.uikit.UIScrollView$ScrollContent -> crossmobile.ios.uikit.UIScrollView$b:
     double xFrom -> a
     double yFrom -> b
     double xTo -> c
     double yTo -> d
     crossmobile.ios.uikit.UIScrollView this$0 -> e
-    954:978:void <init>(crossmobile.ios.uikit.UIScrollView,double,double) -> <init>
-    982:983:void start() -> a
-    987:988:void apply(double) -> a
-    992:998:void end() -> b
+    958:982:void <init>(crossmobile.ios.uikit.UIScrollView,double,double) -> <init>
+    986:987:void start() -> a
+    991:992:void apply(double) -> a
+    996:1002:void end() -> b
 crossmobile.ios.uikit.UIScrollView$SwipeContent -> crossmobile.ios.uikit.UIScrollView$c:
     double duration -> b
     double x -> c
@@ -6026,17 +6047,18 @@ crossmobile.ios.uikit.UIScrollView$SwipeContent -> crossmobile.ios.uikit.UIScrol
     double dx -> e
     double dy -> f
     crossmobile.ios.uikit.UIScrollView this$0 -> a
-    1007:1034:void <init>(crossmobile.ios.uikit.UIScrollView,crossmobile.ios.coregraphics.CGPoint) -> <init>
-    1038:1041:void start() -> a
-    1045:1060:void apply(double) -> a
-    1064:1070:void end() -> b
-    1001:1001:void <init>(crossmobile.ios.uikit.UIScrollView,crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIScrollView$1) -> <init>
+    1011:1038:void <init>(crossmobile.ios.uikit.UIScrollView,crossmobile.ios.coregraphics.CGPoint) -> <init>
+    1042:1045:void start() -> a
+    1049:1064:void apply(double) -> a
+    1068:1074:void end() -> b
+    1005:1005:void <init>(crossmobile.ios.uikit.UIScrollView,crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIScrollView$1) -> <init>
 crossmobile.ios.uikit.UIScrollViewAppearance -> crossmobile.ios.uikit.UIScrollViewAppearance:
     void <init>() -> <init>
     void setBackgroundColor(crossmobile.ios.uikit.UIColor) -> setBackgroundColor
 crossmobile.ios.uikit.UIScrollViewAppearance$BackgroundColor -> crossmobile.ios.uikit.UIScrollViewAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UIScrollViewDecelerationRate -> crossmobile.ios.uikit.UIScrollViewDecelerationRate:
     float Normal -> Normal
     float Fast -> Fast
@@ -6133,6 +6155,7 @@ crossmobile.ios.uikit.UISearchBarAppearance -> crossmobile.ios.uikit.UISearchBar
 crossmobile.ios.uikit.UISearchBarAppearance$BackgroundColor -> crossmobile.ios.uikit.UISearchBarAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UISearchBarDelegate -> crossmobile.ios.uikit.UISearchBarDelegate:
     38:38:void textDidChange(crossmobile.ios.uikit.UISearchBar,java.lang.String) -> textDidChange
     48:48:boolean shouldBeginEditing(crossmobile.ios.uikit.UISearchBar) -> shouldBeginEditing
@@ -6174,20 +6197,20 @@ crossmobile.ios.uikit.UISegmentedControl -> crossmobile.ios.uikit.UISegmentedCon
     156:157:void insertSegmentWithTitle(java.lang.String,int,boolean) -> insertSegmentWithTitle
     171:172:void insertSegmentWithImage(crossmobile.ios.uikit.UIImage,int,boolean) -> insertSegmentWithImage
     175:175:crossmobile.ios.uikit.UIButton addSegment(int) -> b
-    271:286:crossmobile.ios.uikit.UIButton addSegment(int,crossmobile.ios.uikit.UIImage) -> a
-    291:294:void tintColorDidChange() -> tintColorDidChange
-    301:304:void removeAllSegments() -> removeAllSegments
-    315:321:void removeSegmentAtIndex(int,boolean) -> removeSegmentAtIndex
-    330:330:int numberOfSegments() -> numberOfSegments
-    340:340:int selectedSegmentIndex() -> selectedSegmentIndex
-    350:361:void setSelectedSegmentIndex(int) -> setSelectedSegmentIndex
-    371:371:int segmentedControlStyle() -> segmentedControlStyle
-    383:388:void setSegmentedControlStyle(int) -> setSegmentedControlStyle
-    397:397:boolean isMomentary() -> isMomentary
-    408:411:void setMomentary(boolean) -> setMomentary
-    415:442:void layoutSubviews() -> layoutSubviews
-    446:451:void drawRect(crossmobile.ios.coregraphics.CGRect) -> drawRect
-    423:441:void lambda$layoutSubviews$2() -> c
+    269:284:crossmobile.ios.uikit.UIButton addSegment(int,crossmobile.ios.uikit.UIImage) -> a
+    289:292:void tintColorDidChange() -> tintColorDidChange
+    299:302:void removeAllSegments() -> removeAllSegments
+    313:319:void removeSegmentAtIndex(int,boolean) -> removeSegmentAtIndex
+    328:328:int numberOfSegments() -> numberOfSegments
+    338:338:int selectedSegmentIndex() -> selectedSegmentIndex
+    348:359:void setSelectedSegmentIndex(int) -> setSelectedSegmentIndex
+    369:369:int segmentedControlStyle() -> segmentedControlStyle
+    381:386:void setSegmentedControlStyle(int) -> setSegmentedControlStyle
+    395:395:boolean isMomentary() -> isMomentary
+    406:409:void setMomentary(boolean) -> setMomentary
+    413:440:void layoutSubviews() -> layoutSubviews
+    444:449:void drawRect(crossmobile.ios.coregraphics.CGRect) -> drawRect
+    421:439:void lambda$layoutSubviews$2() -> c
     50:52:void lambda$new$1(crossmobile.ios.uikit.UIControl,crossmobile.ios.uikit.UIEvent) -> a
     47:47:void lambda$new$0(crossmobile.ios.uikit.UIControl,crossmobile.ios.uikit.UIEvent) -> b
     37:37:crossmobile.ios.uikit.UIColor access$100(crossmobile.ios.uikit.UISegmentedControl) -> a
@@ -6201,10 +6224,10 @@ crossmobile.ios.uikit.UISegmentedControl$Segment -> crossmobile.ios.uikit.UISegm
     org.crossmobile.bind.system.Promise deselectedImage -> f
     crossmobile.ios.uikit.UISegmentedControl this$0 -> a
     183:186:void <init>(crossmobile.ios.uikit.UISegmentedControl,crossmobile.ios.uikit.UIImage) -> <init>
-    195:248:void drawRect(crossmobile.ios.coregraphics.CGRect) -> drawRect
-    251:254:boolean drawIn(crossmobile.ios.coregraphics.CGContext,crossmobile.ios.uikit.UIImage) -> a
-    258:260:void setSegmentedImage(crossmobile.ios.uikit.UIImage) -> a
-    263:267:void invalidate() -> c
+    195:246:void drawRect(crossmobile.ios.coregraphics.CGRect) -> drawRect
+    249:252:boolean drawIn(crossmobile.ios.coregraphics.CGContext,crossmobile.ios.uikit.UIImage) -> a
+    256:258:void setSegmentedImage(crossmobile.ios.uikit.UIImage) -> a
+    261:265:void invalidate() -> c
     178:178:void access$000(crossmobile.ios.uikit.UISegmentedControl$Segment,crossmobile.ios.uikit.UIImage) -> a
     178:178:void <init>(crossmobile.ios.uikit.UISegmentedControl,crossmobile.ios.uikit.UIImage,crossmobile.ios.uikit.UISegmentedControl$1) -> <init>
     178:178:void access$500(crossmobile.ios.uikit.UISegmentedControl$Segment) -> a
@@ -6214,6 +6237,7 @@ crossmobile.ios.uikit.UISegmentedControlAppearance -> crossmobile.ios.uikit.UISe
 crossmobile.ios.uikit.UISegmentedControlAppearance$BackgroundColor -> crossmobile.ios.uikit.UISegmentedControlAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UISegmentedControlStyle -> crossmobile.ios.uikit.UISegmentedControlStyle:
     int Plain -> Plain
     int Bordered -> Bordered
@@ -6279,6 +6303,7 @@ crossmobile.ios.uikit.UISliderAppearance -> crossmobile.ios.uikit.UISliderAppear
 crossmobile.ios.uikit.UISliderAppearance$BackgroundColor -> crossmobile.ios.uikit.UISliderAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UISplitViewController -> crossmobile.ios.uikit.UISplitViewController:
     crossmobile.ios.uikit.UISplitViewControllerDelegate delegate -> e
     crossmobile.ios.uikit.UISplitViewController$SplitView splitView -> f
@@ -6451,40 +6476,40 @@ crossmobile.ios.uikit.UIStepper -> crossmobile.ios.uikit.UIStepper:
     crossmobile.ios.foundation.NSTimer timer -> r
     double changeRange -> s
     54:55:void <init>() -> <init>
-    36:69:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
-    80:80:boolean isContinuous() -> isContinuous
-    92:93:void setContinuous(boolean) -> setContinuous
-    104:104:boolean autorepeat() -> autorepeat
-    116:117:void setAutorepeat(boolean) -> setAutorepeat
-    128:128:boolean wraps() -> wraps
-    141:144:void setWraps(boolean) -> setWraps
-    153:153:double minimumValue() -> minimumValue
-    164:169:void setMinimumValue(double) -> setMinimumValue
-    178:178:double maximumValue() -> maximumValue
-    189:194:void setMaximumValue(double) -> setMaximumValue
-    203:203:double stepValue() -> stepValue
-    214:219:void setStepValue(double) -> setStepValue
-    228:228:double value() -> value
-    238:239:void setValue(double) -> setValue
-    242:255:void setValue(double,crossmobile.ios.uikit.UIEvent) -> a
-    259:259:crossmobile.ios.uikit.UIColor tintColor() -> tintColor
-    264:267:void setTintColor(crossmobile.ios.uikit.UIColor) -> setTintColor
-    271:273:void drawRect(crossmobile.ios.coregraphics.CGRect) -> drawRect
-    283:283:crossmobile.ios.uikit.UIImage backgroundImageForState(int) -> backgroundImageForState
-    295:295:void setBackgroundImage(crossmobile.ios.uikit.UIImage,int) -> setBackgroundImage
-    305:305:crossmobile.ios.uikit.UIImage decrementImageForState(int) -> decrementImageForState
-    317:318:void setDecrementImage(crossmobile.ios.uikit.UIImage,int) -> setDecrementImage
-    332:332:crossmobile.ios.uikit.UIImage dividerImageForLeftSegmentState(int,int) -> dividerImageForLeftSegmentState
-    349:349:void setDividerImage(crossmobile.ios.uikit.UIImage,int,int) -> setDividerImage
-    359:359:crossmobile.ios.uikit.UIImage incrementImageForState(int) -> incrementImageForState
-    371:372:void setIncrementImage(crossmobile.ios.uikit.UIImage,int) -> setIncrementImage
-    376:398:void layoutSubviews() -> layoutSubviews
-    401:494:void addbuttons() -> c
-    479:490:void lambda$addbuttons$4(crossmobile.ios.uikit.UIControl,crossmobile.ios.uikit.UIEvent) -> a
-    482:488:void lambda$null$3(crossmobile.ios.uikit.UIEvent,crossmobile.ios.foundation.NSTimer) -> a
-    473:476:void lambda$addbuttons$2(crossmobile.ios.uikit.UIControl,crossmobile.ios.uikit.UIEvent) -> b
-    426:429:void lambda$addbuttons$1(crossmobile.ios.uikit.UIControl,crossmobile.ios.uikit.UIEvent) -> c
-    379:397:void lambda$layoutSubviews$0() -> d
+    36:68:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
+    79:79:boolean isContinuous() -> isContinuous
+    91:92:void setContinuous(boolean) -> setContinuous
+    103:103:boolean autorepeat() -> autorepeat
+    115:116:void setAutorepeat(boolean) -> setAutorepeat
+    127:127:boolean wraps() -> wraps
+    140:143:void setWraps(boolean) -> setWraps
+    152:152:double minimumValue() -> minimumValue
+    163:168:void setMinimumValue(double) -> setMinimumValue
+    177:177:double maximumValue() -> maximumValue
+    188:193:void setMaximumValue(double) -> setMaximumValue
+    202:202:double stepValue() -> stepValue
+    213:218:void setStepValue(double) -> setStepValue
+    227:227:double value() -> value
+    237:238:void setValue(double) -> setValue
+    241:254:void setValue(double,crossmobile.ios.uikit.UIEvent) -> a
+    258:258:crossmobile.ios.uikit.UIColor tintColor() -> tintColor
+    263:266:void setTintColor(crossmobile.ios.uikit.UIColor) -> setTintColor
+    270:272:void drawRect(crossmobile.ios.coregraphics.CGRect) -> drawRect
+    282:282:crossmobile.ios.uikit.UIImage backgroundImageForState(int) -> backgroundImageForState
+    294:294:void setBackgroundImage(crossmobile.ios.uikit.UIImage,int) -> setBackgroundImage
+    304:304:crossmobile.ios.uikit.UIImage decrementImageForState(int) -> decrementImageForState
+    316:317:void setDecrementImage(crossmobile.ios.uikit.UIImage,int) -> setDecrementImage
+    331:331:crossmobile.ios.uikit.UIImage dividerImageForLeftSegmentState(int,int) -> dividerImageForLeftSegmentState
+    348:348:void setDividerImage(crossmobile.ios.uikit.UIImage,int,int) -> setDividerImage
+    358:358:crossmobile.ios.uikit.UIImage incrementImageForState(int) -> incrementImageForState
+    370:371:void setIncrementImage(crossmobile.ios.uikit.UIImage,int) -> setIncrementImage
+    375:397:void layoutSubviews() -> layoutSubviews
+    400:491:void addbuttons() -> c
+    476:487:void lambda$addbuttons$4(crossmobile.ios.uikit.UIControl,crossmobile.ios.uikit.UIEvent) -> a
+    479:485:void lambda$null$3(crossmobile.ios.uikit.UIEvent,crossmobile.ios.foundation.NSTimer) -> a
+    470:473:void lambda$addbuttons$2(crossmobile.ios.uikit.UIControl,crossmobile.ios.uikit.UIEvent) -> b
+    424:427:void lambda$addbuttons$1(crossmobile.ios.uikit.UIControl,crossmobile.ios.uikit.UIEvent) -> c
+    378:396:void lambda$layoutSubviews$0() -> d
     32:32:boolean access$000(crossmobile.ios.uikit.UIStepper) -> a
     32:32:crossmobile.ios.foundation.NSTimer access$102(crossmobile.ios.uikit.UIStepper,crossmobile.ios.foundation.NSTimer) -> a
     32:32:boolean access$200(crossmobile.ios.uikit.UIStepper) -> b
@@ -6497,25 +6522,26 @@ crossmobile.ios.uikit.UIStepper -> crossmobile.ios.uikit.UIStepper:
     crossmobile.ios.uikit.UIStepperAppearance appearanceWhenContainedInInstancesOfClasses(java.util.List) -> appearanceWhenContainedInInstancesOfClasses
 crossmobile.ios.uikit.UIStepper$1 -> crossmobile.ios.uikit.UIStepper$1:
     crossmobile.ios.uikit.UIStepper this$0 -> a
-    401:401:void <init>(crossmobile.ios.uikit.UIStepper,int) -> <init>
-    404:416:void drawOnTop(crossmobile.ios.coregraphics.CGContext,crossmobile.ios.coregraphics.CGRect) -> a
-    420:420:boolean shouldDrawOnTop() -> d_
+    400:400:void <init>(crossmobile.ios.uikit.UIStepper,int) -> <init>
+    403:415:void drawOnTop(crossmobile.ios.coregraphics.CGContext,crossmobile.ios.coregraphics.CGRect) -> a
+    419:419:boolean shouldDrawOnTop() -> d_
 crossmobile.ios.uikit.UIStepper$2 -> crossmobile.ios.uikit.UIStepper$2:
     crossmobile.ios.uikit.UIStepper this$0 -> a
-    431:431:void <init>(crossmobile.ios.uikit.UIStepper) -> <init>
-    434:443:void exec(crossmobile.ios.uikit.UIControl,crossmobile.ios.uikit.UIEvent) -> exec
-    436:442:void lambda$exec$0(crossmobile.ios.uikit.UIEvent,crossmobile.ios.foundation.NSTimer) -> a
+    429:429:void <init>(crossmobile.ios.uikit.UIStepper) -> <init>
+    432:441:void exec(crossmobile.ios.uikit.UIControl,crossmobile.ios.uikit.UIEvent) -> exec
+    434:440:void lambda$exec$0(crossmobile.ios.uikit.UIEvent,crossmobile.ios.foundation.NSTimer) -> a
 crossmobile.ios.uikit.UIStepper$3 -> crossmobile.ios.uikit.UIStepper$3:
     crossmobile.ios.uikit.UIStepper this$0 -> a
-    445:445:void <init>(crossmobile.ios.uikit.UIStepper,int) -> <init>
-    448:462:void drawOnTop(crossmobile.ios.coregraphics.CGContext,crossmobile.ios.coregraphics.CGRect) -> a
-    466:466:boolean shouldDrawOnTop() -> d_
+    443:443:void <init>(crossmobile.ios.uikit.UIStepper,int) -> <init>
+    446:460:void drawOnTop(crossmobile.ios.coregraphics.CGContext,crossmobile.ios.coregraphics.CGRect) -> a
+    464:464:boolean shouldDrawOnTop() -> d_
 crossmobile.ios.uikit.UIStepperAppearance -> crossmobile.ios.uikit.UIStepperAppearance:
     void <init>() -> <init>
     void setBackgroundColor(crossmobile.ios.uikit.UIColor) -> setBackgroundColor
 crossmobile.ios.uikit.UIStepperAppearance$BackgroundColor -> crossmobile.ios.uikit.UIStepperAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UIStoryboard -> crossmobile.ios.uikit.UIStoryboard:
     30:30:void <init>() -> <init>
     35:51:crossmobile.ios.uikit.UIStoryboard storyboardWithName(java.lang.String,crossmobile.ios.foundation.NSBundle) -> storyboardWithName
@@ -6603,6 +6629,7 @@ crossmobile.ios.uikit.UISwitchAppearance -> crossmobile.ios.uikit.UISwitchAppear
 crossmobile.ios.uikit.UISwitchAppearance$BackgroundColor -> crossmobile.ios.uikit.UISwitchAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UITabBar -> crossmobile.ios.uikit.UITabBar:
     crossmobile.ios.uikit.UITabBarDelegate delegate -> b
     java.util.List items -> e
@@ -6618,43 +6645,43 @@ crossmobile.ios.uikit.UITabBar -> crossmobile.ios.uikit.UITabBar:
     boolean translucent -> u
     crossmobile.ios.uikit.UITabBarController tbcontrol -> a
     59:60:void <init>() -> <init>
-    39:74:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
-    83:83:crossmobile.ios.uikit.UIImage backgroundImage() -> backgroundImage
-    93:95:void setBackgroundImage(crossmobile.ios.uikit.UIImage) -> setBackgroundImage
-    99:101:void setTintColor(crossmobile.ios.uikit.UIColor) -> setTintColor
-    104:109:void updateItemsColor() -> c
-    118:119:crossmobile.ios.uikit.UIColor barTintColor() -> barTintColor
-    129:135:void setBarTintColor(crossmobile.ios.uikit.UIColor) -> setBarTintColor
-    145:145:crossmobile.ios.uikit.UIColor selectedImageTintColor() -> selectedImageTintColor
-    156:158:void setSelectedImageTintColor(crossmobile.ios.uikit.UIColor) -> setSelectedImageTintColor
-    167:167:crossmobile.ios.uikit.UIImage selectionIndicatorImage() -> selectionIndicatorImage
-    177:179:void setSelectionIndicatorImage(crossmobile.ios.uikit.UIImage) -> setSelectionIndicatorImage
-    188:188:crossmobile.ios.uikit.UIImage shadowImage() -> shadowImage
-    198:200:void setShadowImage(crossmobile.ios.uikit.UIImage) -> setShadowImage
-    209:209:boolean isTranslucent() -> isTranslucent
-    219:225:void setTranslucent(boolean) -> setTranslucent
-    235:235:int barStyle() -> barStyle
-    246:248:void setBarStyle(int) -> setBarStyle
-    258:258:int itemPositioning() -> itemPositioning
-    270:272:void setItemPositioning(int) -> setItemPositioning
-    281:281:double itemSpacing() -> itemSpacing
-    292:296:void setItemSpacing(double) -> setItemSpacing
-    307:307:double itemWidth() -> itemWidth
-    319:321:void setItemWidth(double) -> setItemWidth
-    330:330:crossmobile.ios.uikit.UITabBarDelegate delegate() -> delegate
-    340:341:void setDelegate(crossmobile.ios.uikit.UITabBarDelegate) -> setDelegate
-    351:355:void beginCustomizingItems(java.util.List) -> beginCustomizingItems
-    366:371:boolean endCustomizingAnimated(boolean) -> endCustomizingAnimated
-    382:382:boolean isCustomizing() -> isCustomizing
-    392:392:java.util.List items() -> items
-    402:403:void setItems(java.util.List) -> setItems
-    415:422:void setItems(java.util.List,boolean) -> setItems
-    431:431:crossmobile.ios.uikit.UITabBarItem selectedItem() -> selectedItem
-    442:445:void setSelectedItem(crossmobile.ios.uikit.UITabBarItem) -> setSelectedItem
-    449:465:void layoutSubviews() -> layoutSubviews
-    469:479:void setSelectedIndex(int) -> b
-    483:484:void drawRect(crossmobile.ios.coregraphics.CGRect) -> drawRect
-    418:418:void lambda$setItems$0(crossmobile.ios.uikit.UITabBarItem) -> a
+    39:73:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
+    82:82:crossmobile.ios.uikit.UIImage backgroundImage() -> backgroundImage
+    92:94:void setBackgroundImage(crossmobile.ios.uikit.UIImage) -> setBackgroundImage
+    98:100:void setTintColor(crossmobile.ios.uikit.UIColor) -> setTintColor
+    103:108:void updateItemsColor() -> c
+    117:118:crossmobile.ios.uikit.UIColor barTintColor() -> barTintColor
+    128:134:void setBarTintColor(crossmobile.ios.uikit.UIColor) -> setBarTintColor
+    144:144:crossmobile.ios.uikit.UIColor selectedImageTintColor() -> selectedImageTintColor
+    155:157:void setSelectedImageTintColor(crossmobile.ios.uikit.UIColor) -> setSelectedImageTintColor
+    166:166:crossmobile.ios.uikit.UIImage selectionIndicatorImage() -> selectionIndicatorImage
+    176:178:void setSelectionIndicatorImage(crossmobile.ios.uikit.UIImage) -> setSelectionIndicatorImage
+    187:187:crossmobile.ios.uikit.UIImage shadowImage() -> shadowImage
+    197:199:void setShadowImage(crossmobile.ios.uikit.UIImage) -> setShadowImage
+    208:208:boolean isTranslucent() -> isTranslucent
+    218:224:void setTranslucent(boolean) -> setTranslucent
+    234:234:int barStyle() -> barStyle
+    245:247:void setBarStyle(int) -> setBarStyle
+    257:257:int itemPositioning() -> itemPositioning
+    269:271:void setItemPositioning(int) -> setItemPositioning
+    280:280:double itemSpacing() -> itemSpacing
+    291:295:void setItemSpacing(double) -> setItemSpacing
+    306:306:double itemWidth() -> itemWidth
+    318:320:void setItemWidth(double) -> setItemWidth
+    329:329:crossmobile.ios.uikit.UITabBarDelegate delegate() -> delegate
+    339:340:void setDelegate(crossmobile.ios.uikit.UITabBarDelegate) -> setDelegate
+    350:354:void beginCustomizingItems(java.util.List) -> beginCustomizingItems
+    365:370:boolean endCustomizingAnimated(boolean) -> endCustomizingAnimated
+    381:381:boolean isCustomizing() -> isCustomizing
+    391:391:java.util.List items() -> items
+    401:402:void setItems(java.util.List) -> setItems
+    414:421:void setItems(java.util.List,boolean) -> setItems
+    430:430:crossmobile.ios.uikit.UITabBarItem selectedItem() -> selectedItem
+    441:444:void setSelectedItem(crossmobile.ios.uikit.UITabBarItem) -> setSelectedItem
+    448:464:void layoutSubviews() -> layoutSubviews
+    468:478:void setSelectedIndex(int) -> b
+    482:483:void drawRect(crossmobile.ios.coregraphics.CGRect) -> drawRect
+    417:417:void lambda$setItems$0(crossmobile.ios.uikit.UITabBarItem) -> a
     crossmobile.ios.uikit.UITabBarAppearance appearance() -> appearance
     crossmobile.ios.uikit.UITabBarAppearance appearanceWhenContainedInInstancesOfClasses(java.util.List) -> appearanceWhenContainedInInstancesOfClasses
 crossmobile.ios.uikit.UITabBarAppearance -> crossmobile.ios.uikit.UITabBarAppearance:
@@ -6663,6 +6690,7 @@ crossmobile.ios.uikit.UITabBarAppearance -> crossmobile.ios.uikit.UITabBarAppear
 crossmobile.ios.uikit.UITabBarAppearance$BackgroundColor -> crossmobile.ios.uikit.UITabBarAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UITabBarController -> crossmobile.ios.uikit.UITabBarController:
     crossmobile.ios.uikit.UITabBarControllerDelegate delegate -> a
     crossmobile.ios.uikit.UITabBar tabBar -> e
@@ -6745,58 +6773,58 @@ crossmobile.ios.uikit.UITableView -> crossmobile.ios.uikit.UITableView:
     crossmobile.ios.uikit.UIViewController closestController -> F
     123:124:void <init>() -> <init>
     133:134:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
-    41:159:void <init>(crossmobile.ios.coregraphics.CGRect,int) -> <init>
-    168:170:void setDataSource(crossmobile.ios.uikit.UITableViewDataSource) -> setDataSource
-    179:182:void setDelegate(crossmobile.ios.uikit.UITableViewDelegate) -> setDelegate
-    191:191:crossmobile.ios.uikit.UITableViewDelegate tableViewDelegate() -> tableViewDelegate
-    201:201:crossmobile.ios.uikit.UITableViewDataSource dataSource() -> dataSource
-    214:224:crossmobile.ios.uikit.UITableViewCell dequeueReusableCellWithIdentifier(java.lang.String) -> dequeueReusableCellWithIdentifier
-    230:240:crossmobile.ios.uikit.UITableViewCell getReusableCell(java.lang.String) -> a
-    244:249:crossmobile.ios.uikit.UIViewController getClosestController() -> d
-    262:264:void deleteRowsAtIndexPaths(java.util.List,int) -> deleteRowsAtIndexPaths
-    271:278:void reloadData() -> reloadData
-    291:314:void reloadRowsAtIndexPaths(java.util.List,int) -> reloadRowsAtIndexPaths
-    327:329:void insertRowsAtIndexPaths(java.util.List,int) -> insertRowsAtIndexPaths
-    345:348:void selectRowAtIndexPath(crossmobile.ios.foundation.NSIndexPath,boolean,int) -> selectRowAtIndexPath
-    351:365:void selectRow(crossmobile.ios.foundation.NSIndexPath,boolean) -> a
-    376:377:void deselectRowAtIndexPath(crossmobile.ios.foundation.NSIndexPath,boolean) -> deselectRowAtIndexPath
-    380:386:void deselectRow(crossmobile.ios.foundation.NSIndexPath,boolean) -> b
-    395:397:crossmobile.ios.foundation.NSIndexPath indexPathForSelectedRow() -> indexPathForSelectedRow
-    408:414:java.util.List indexPathsForSelectedRows() -> indexPathsForSelectedRows
-    424:424:crossmobile.ios.uikit.UIColor separatorColor() -> separatorColor
-    434:435:void setSeparatorColor(crossmobile.ios.uikit.UIColor) -> setSeparatorColor
-    444:444:int separatorStyle() -> separatorStyle
-    455:456:void setSeparatorStyle(int) -> setSeparatorStyle
-    465:465:boolean allowsSelection() -> allowsSelection
-    476:477:void setAllowsSelection(boolean) -> setAllowsSelection
-    488:488:boolean allowsMultipleSelection() -> allowsMultipleSelection
-    500:501:void setAllowsMultipleSelection(boolean) -> setAllowsMultipleSelection
-    511:511:boolean isEditing() -> isEditing
-    521:522:void setEditing(boolean) -> setEditing
-    534:538:void setEditing(boolean,boolean) -> setEditing
-    541:543:int getEditingStyle(crossmobile.ios.foundation.NSIndexPath) -> a
-    553:553:double rowHeight() -> rowHeight
-    563:566:void setRowHeight(double) -> setRowHeight
-    576:577:void setSectionHeaderHeight(double) -> setSectionHeaderHeight
-    586:586:double sectionHeaderHeight() -> sectionHeaderHeight
-    597:598:void setSectionFooterHeight(double) -> setSectionFooterHeight
-    607:607:double sectionFooterHeight() -> sectionFooterHeight
-    625:637:void scrollToRowAtIndexPath(crossmobile.ios.foundation.NSIndexPath,int,boolean) -> scrollToRowAtIndexPath
-    640:649:float heightToRowAtIndexPath(crossmobile.ios.foundation.NSIndexPath) -> b
-    666:680:void scrollToNearestSelectedRowAtScrollPosition(int,boolean) -> scrollToNearestSelectedRowAtScrollPosition
-    683:727:java.util.List indexPathsForRowsBetween(double,double) -> e
-    740:743:crossmobile.ios.foundation.NSIndexPath indexPathForRowAtPoint(crossmobile.ios.coregraphics.CGPoint) -> indexPathForRowAtPoint
-    755:755:java.util.List indexPathsForVisibleRows() -> indexPathsForVisibleRows
-    759:768:void relayoutCell(crossmobile.ios.uikit.UITableViewCell,crossmobile.ios.foundation.NSIndexPath) -> a
-    771:771:double getYPathLocation(crossmobile.ios.foundation.NSIndexPath) -> c
-    775:784:void recycle(crossmobile.ios.uikit.UITableViewCell) -> a
-    787:812:crossmobile.ios.uikit.UIView[] updateSectionLabels(crossmobile.ios.uikit.UIView[],boolean,boolean,boolean) -> a
-    817:819:void layoutSubviews() -> layoutSubviews
-    822:823:void layoutSubviewsWithoutMetrics() -> c
-    828:828:void registerNib(crossmobile.ios.uikit.UINib,java.lang.String) -> registerNib
-    832:838:void registerClass(java.lang.Class,java.lang.String) -> registerClass
-    954:955:void setEstimatedRowHeight(double) -> setEstimatedRowHeight
-    959:959:double estimatedRowHeight() -> estimatedRowHeight
+    41:158:void <init>(crossmobile.ios.coregraphics.CGRect,int) -> <init>
+    167:169:void setDataSource(crossmobile.ios.uikit.UITableViewDataSource) -> setDataSource
+    178:181:void setDelegate(crossmobile.ios.uikit.UITableViewDelegate) -> setDelegate
+    190:190:crossmobile.ios.uikit.UITableViewDelegate tableViewDelegate() -> tableViewDelegate
+    200:200:crossmobile.ios.uikit.UITableViewDataSource dataSource() -> dataSource
+    213:223:crossmobile.ios.uikit.UITableViewCell dequeueReusableCellWithIdentifier(java.lang.String) -> dequeueReusableCellWithIdentifier
+    229:239:crossmobile.ios.uikit.UITableViewCell getReusableCell(java.lang.String) -> a
+    243:248:crossmobile.ios.uikit.UIViewController getClosestController() -> d
+    261:263:void deleteRowsAtIndexPaths(java.util.List,int) -> deleteRowsAtIndexPaths
+    270:277:void reloadData() -> reloadData
+    290:313:void reloadRowsAtIndexPaths(java.util.List,int) -> reloadRowsAtIndexPaths
+    326:328:void insertRowsAtIndexPaths(java.util.List,int) -> insertRowsAtIndexPaths
+    344:347:void selectRowAtIndexPath(crossmobile.ios.foundation.NSIndexPath,boolean,int) -> selectRowAtIndexPath
+    350:364:void selectRow(crossmobile.ios.foundation.NSIndexPath,boolean) -> a
+    375:376:void deselectRowAtIndexPath(crossmobile.ios.foundation.NSIndexPath,boolean) -> deselectRowAtIndexPath
+    379:385:void deselectRow(crossmobile.ios.foundation.NSIndexPath,boolean) -> b
+    394:396:crossmobile.ios.foundation.NSIndexPath indexPathForSelectedRow() -> indexPathForSelectedRow
+    407:413:java.util.List indexPathsForSelectedRows() -> indexPathsForSelectedRows
+    423:423:crossmobile.ios.uikit.UIColor separatorColor() -> separatorColor
+    433:434:void setSeparatorColor(crossmobile.ios.uikit.UIColor) -> setSeparatorColor
+    443:443:int separatorStyle() -> separatorStyle
+    454:455:void setSeparatorStyle(int) -> setSeparatorStyle
+    464:464:boolean allowsSelection() -> allowsSelection
+    475:476:void setAllowsSelection(boolean) -> setAllowsSelection
+    487:487:boolean allowsMultipleSelection() -> allowsMultipleSelection
+    499:500:void setAllowsMultipleSelection(boolean) -> setAllowsMultipleSelection
+    510:510:boolean isEditing() -> isEditing
+    520:521:void setEditing(boolean) -> setEditing
+    533:537:void setEditing(boolean,boolean) -> setEditing
+    540:542:int getEditingStyle(crossmobile.ios.foundation.NSIndexPath) -> a
+    552:552:double rowHeight() -> rowHeight
+    562:565:void setRowHeight(double) -> setRowHeight
+    575:576:void setSectionHeaderHeight(double) -> setSectionHeaderHeight
+    585:585:double sectionHeaderHeight() -> sectionHeaderHeight
+    596:597:void setSectionFooterHeight(double) -> setSectionFooterHeight
+    606:606:double sectionFooterHeight() -> sectionFooterHeight
+    624:636:void scrollToRowAtIndexPath(crossmobile.ios.foundation.NSIndexPath,int,boolean) -> scrollToRowAtIndexPath
+    639:648:float heightToRowAtIndexPath(crossmobile.ios.foundation.NSIndexPath) -> b
+    665:679:void scrollToNearestSelectedRowAtScrollPosition(int,boolean) -> scrollToNearestSelectedRowAtScrollPosition
+    682:726:java.util.List indexPathsForRowsBetween(double,double) -> e
+    739:742:crossmobile.ios.foundation.NSIndexPath indexPathForRowAtPoint(crossmobile.ios.coregraphics.CGPoint) -> indexPathForRowAtPoint
+    754:754:java.util.List indexPathsForVisibleRows() -> indexPathsForVisibleRows
+    758:767:void relayoutCell(crossmobile.ios.uikit.UITableViewCell,crossmobile.ios.foundation.NSIndexPath) -> a
+    770:770:double getYPathLocation(crossmobile.ios.foundation.NSIndexPath) -> c
+    774:783:void recycle(crossmobile.ios.uikit.UITableViewCell) -> a
+    786:811:crossmobile.ios.uikit.UIView[] updateSectionLabels(crossmobile.ios.uikit.UIView[],boolean,boolean,boolean) -> a
+    816:818:void layoutSubviews() -> layoutSubviews
+    821:822:void layoutSubviewsWithoutMetrics() -> c
+    827:827:void registerNib(crossmobile.ios.uikit.UINib,java.lang.String) -> registerNib
+    831:837:void registerClass(java.lang.Class,java.lang.String) -> registerClass
+    953:954:void setEstimatedRowHeight(double) -> setEstimatedRowHeight
+    958:958:double estimatedRowHeight() -> estimatedRowHeight
     70:113:void lambda$new$1() -> p
     58:66:int lambda$new$0(crossmobile.ios.foundation.NSIndexPath,crossmobile.ios.foundation.NSIndexPath) -> a
     39:39:double access$900(crossmobile.ios.uikit.UITableView) -> a
@@ -6810,8 +6838,8 @@ crossmobile.ios.uikit.UITableView -> crossmobile.ios.uikit.UITableView:
     crossmobile.ios.uikit.UITableViewAppearance appearanceWhenContainedInInstancesOfClasses(java.util.List) -> appearanceWhenContainedInInstancesOfClasses
 crossmobile.ios.uikit.UITableView$1 -> crossmobile.ios.uikit.UITableView$1:
     crossmobile.ios.uikit.UITableView this$0 -> a
-    153:153:void <init>(crossmobile.ios.uikit.UITableView) -> <init>
-    156:157:void didScroll(crossmobile.ios.uikit.UIScrollView) -> didScroll
+    152:152:void <init>(crossmobile.ios.uikit.UITableView) -> <init>
+    155:156:void didScroll(crossmobile.ios.uikit.UIScrollView) -> didScroll
 crossmobile.ios.uikit.UITableView$SectionMetrics -> crossmobile.ios.uikit.UITableView$a:
     float[][] rowStart -> b
     float[] headerStart -> c
@@ -6822,25 +6850,26 @@ crossmobile.ios.uikit.UITableView$SectionMetrics -> crossmobile.ios.uikit.UITabl
     int[] rowsPerSection -> h
     boolean staticHeight -> i
     crossmobile.ios.uikit.UITableView this$0 -> a
-    840:848:void <init>(crossmobile.ios.uikit.UITableView) -> <init>
-    853:854:double rowHeight(int,int) -> a
-    860:937:void update() -> a
-    940:948:double updateMetricsForLabel(crossmobile.ios.uikit.UIView[],double,int,boolean,boolean) -> a
-    840:840:void <init>(crossmobile.ios.uikit.UITableView,crossmobile.ios.uikit.UITableView$1) -> <init>
-    840:840:void access$100(crossmobile.ios.uikit.UITableView$SectionMetrics) -> a
-    840:840:boolean access$200(crossmobile.ios.uikit.UITableView$SectionMetrics) -> b
-    840:840:int access$300(crossmobile.ios.uikit.UITableView$SectionMetrics) -> c
-    840:840:int[] access$400(crossmobile.ios.uikit.UITableView$SectionMetrics) -> d
-    840:840:double access$500(crossmobile.ios.uikit.UITableView$SectionMetrics,int,int) -> a
-    840:840:float[] access$600(crossmobile.ios.uikit.UITableView$SectionMetrics) -> e
-    840:840:float[] access$700(crossmobile.ios.uikit.UITableView$SectionMetrics) -> f
-    840:840:float[][] access$800(crossmobile.ios.uikit.UITableView$SectionMetrics) -> g
+    839:847:void <init>(crossmobile.ios.uikit.UITableView) -> <init>
+    852:853:double rowHeight(int,int) -> a
+    859:936:void update() -> a
+    939:947:double updateMetricsForLabel(crossmobile.ios.uikit.UIView[],double,int,boolean,boolean) -> a
+    839:839:void <init>(crossmobile.ios.uikit.UITableView,crossmobile.ios.uikit.UITableView$1) -> <init>
+    839:839:void access$100(crossmobile.ios.uikit.UITableView$SectionMetrics) -> a
+    839:839:boolean access$200(crossmobile.ios.uikit.UITableView$SectionMetrics) -> b
+    839:839:int access$300(crossmobile.ios.uikit.UITableView$SectionMetrics) -> c
+    839:839:int[] access$400(crossmobile.ios.uikit.UITableView$SectionMetrics) -> d
+    839:839:double access$500(crossmobile.ios.uikit.UITableView$SectionMetrics,int,int) -> a
+    839:839:float[] access$600(crossmobile.ios.uikit.UITableView$SectionMetrics) -> e
+    839:839:float[] access$700(crossmobile.ios.uikit.UITableView$SectionMetrics) -> f
+    839:839:float[][] access$800(crossmobile.ios.uikit.UITableView$SectionMetrics) -> g
 crossmobile.ios.uikit.UITableViewAppearance -> crossmobile.ios.uikit.UITableViewAppearance:
     void <init>() -> <init>
     void setBackgroundColor(crossmobile.ios.uikit.UIColor) -> setBackgroundColor
 crossmobile.ios.uikit.UITableViewAppearance$BackgroundColor -> crossmobile.ios.uikit.UITableViewAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UITableViewCell -> crossmobile.ios.uikit.UITableViewCell:
     java.lang.String reuseIdentifier -> a
     crossmobile.ios.uikit.UITableViewCell$ContentView contentV -> e
@@ -6864,64 +6893,64 @@ crossmobile.ios.uikit.UITableViewCell -> crossmobile.ios.uikit.UITableViewCell:
     crossmobile.ios.uikit.UIStoryboardSegue _selectionSegue -> B
     crossmobile.ios.uikit.UIStoryboardSegue _accessoryActionSegue -> C
     boolean supportsDetailedTextLabel -> D
-    43:88:void <init>(int,java.lang.String) -> <init>
-    92:93:void didAddSubview(crossmobile.ios.uikit.UIView) -> didAddSubview
-    97:98:void didRemoveSubview(crossmobile.ios.uikit.UIView) -> a
-    102:137:void layoutSubviews() -> layoutSubviews
-    147:147:int editingStyle() -> editingStyle
-    157:157:boolean isSelected() -> isSelected
-    167:169:void setSelected(boolean) -> setSelected
-    172:196:void updateSelectionColors() -> c
-    205:205:boolean isHighlighted() -> isHighlighted
-    216:224:void setHighlighted(boolean) -> setHighlighted
-    227:242:void updateBackgroundViews() -> d
-    251:270:void setBackgroundView(crossmobile.ios.uikit.UIView) -> setBackgroundView
-    279:279:crossmobile.ios.uikit.UIView backgroundView() -> backgroundView
-    289:307:void setSelectedBackgroundView(crossmobile.ios.uikit.UIView) -> setSelectedBackgroundView
-    316:316:crossmobile.ios.uikit.UIView selectedBackgroundView() -> selectedBackgroundView
-    326:326:crossmobile.ios.uikit.UIView contentView() -> contentView
-    336:341:crossmobile.ios.uikit.UILabel textLabel() -> textLabel
-    351:363:crossmobile.ios.uikit.UILabel detailTextLabel() -> detailTextLabel
-    373:377:crossmobile.ios.uikit.UIImageView imageView() -> imageView
-    387:387:java.lang.String reuseIdentifier() -> reuseIdentifier
-    397:397:int selectionStyle() -> selectionStyle
-    408:409:void setSelectionStyle(int) -> setSelectionStyle
-    420:424:void setAccessoryType(int) -> setAccessoryType
-    435:435:int accessoryType() -> accessoryType
-    447:447:crossmobile.ios.uikit.UIView accessoryView() -> accessoryView
-    459:463:void setAccessoryView(crossmobile.ios.uikit.UIView) -> setAccessoryView
-    466:512:void updateAccessoryView() -> p
-    516:516:boolean shouldDrawOnTop() -> d_
-    521:526:void drawOnTop(crossmobile.ios.coregraphics.CGContext,crossmobile.ios.coregraphics.CGRect) -> a
-    529:554:void setEditing(boolean,int) -> a
-    558:574:void updateEditingStyleButton(int) -> b
-    577:581:crossmobile.ios.coregraphics.CGSize editButtonSize() -> q
-    586:587:void drawRect(crossmobile.ios.coregraphics.CGRect) -> drawRect
-    590:594:void addSegue(java.lang.String,crossmobile.ios.uikit.UIStoryboardSegue) -> a
-    597:597:double getRowHeight(crossmobile.ios.uikit.UITableView) -> a
-    601:602:void setRowHeight(float) -> a
-    642:643:crossmobile.ios.uikit.UITableView parent() -> r
-    648:651:void setBackgroundColorImpl(crossmobile.ios.uikit.UIColor,boolean) -> a
-    655:656:void setBackgroundColor(crossmobile.ios.uikit.UIColor) -> setBackgroundColor
-    540:544:void lambda$setEditing$1(crossmobile.ios.uikit.UIControl,crossmobile.ios.uikit.UIEvent) -> a
-    486:490:void lambda$updateAccessoryView$0(crossmobile.ios.uikit.UIControl,crossmobile.ios.uikit.UIEvent) -> b
+    43:87:void <init>(int,java.lang.String) -> <init>
+    91:92:void didAddSubview(crossmobile.ios.uikit.UIView) -> didAddSubview
+    96:97:void didRemoveSubview(crossmobile.ios.uikit.UIView) -> a
+    101:136:void layoutSubviews() -> layoutSubviews
+    146:146:int editingStyle() -> editingStyle
+    156:156:boolean isSelected() -> isSelected
+    166:168:void setSelected(boolean) -> setSelected
+    171:195:void updateSelectionColors() -> c
+    204:204:boolean isHighlighted() -> isHighlighted
+    215:223:void setHighlighted(boolean) -> setHighlighted
+    226:241:void updateBackgroundViews() -> d
+    250:269:void setBackgroundView(crossmobile.ios.uikit.UIView) -> setBackgroundView
+    278:278:crossmobile.ios.uikit.UIView backgroundView() -> backgroundView
+    288:306:void setSelectedBackgroundView(crossmobile.ios.uikit.UIView) -> setSelectedBackgroundView
+    315:315:crossmobile.ios.uikit.UIView selectedBackgroundView() -> selectedBackgroundView
+    325:325:crossmobile.ios.uikit.UIView contentView() -> contentView
+    335:340:crossmobile.ios.uikit.UILabel textLabel() -> textLabel
+    350:362:crossmobile.ios.uikit.UILabel detailTextLabel() -> detailTextLabel
+    372:376:crossmobile.ios.uikit.UIImageView imageView() -> imageView
+    386:386:java.lang.String reuseIdentifier() -> reuseIdentifier
+    396:396:int selectionStyle() -> selectionStyle
+    407:408:void setSelectionStyle(int) -> setSelectionStyle
+    419:423:void setAccessoryType(int) -> setAccessoryType
+    434:434:int accessoryType() -> accessoryType
+    446:446:crossmobile.ios.uikit.UIView accessoryView() -> accessoryView
+    458:462:void setAccessoryView(crossmobile.ios.uikit.UIView) -> setAccessoryView
+    465:510:void updateAccessoryView() -> p
+    514:514:boolean shouldDrawOnTop() -> d_
+    519:524:void drawOnTop(crossmobile.ios.coregraphics.CGContext,crossmobile.ios.coregraphics.CGRect) -> a
+    527:552:void setEditing(boolean,int) -> a
+    556:572:void updateEditingStyleButton(int) -> b
+    575:579:crossmobile.ios.coregraphics.CGSize editButtonSize() -> q
+    584:585:void drawRect(crossmobile.ios.coregraphics.CGRect) -> drawRect
+    588:592:void addSegue(java.lang.String,crossmobile.ios.uikit.UIStoryboardSegue) -> a
+    595:595:double getRowHeight(crossmobile.ios.uikit.UITableView) -> a
+    599:600:void setRowHeight(float) -> a
+    640:641:crossmobile.ios.uikit.UITableView parent() -> r
+    646:649:void setBackgroundColorImpl(crossmobile.ios.uikit.UIColor,boolean) -> a
+    653:654:void setBackgroundColor(crossmobile.ios.uikit.UIColor) -> setBackgroundColor
+    538:542:void lambda$setEditing$1(crossmobile.ios.uikit.UIControl,crossmobile.ios.uikit.UIEvent) -> a
+    485:489:void lambda$updateAccessoryView$0(crossmobile.ios.uikit.UIControl,crossmobile.ios.uikit.UIEvent) -> b
     39:39:crossmobile.ios.uikit.UITableView access$100(crossmobile.ios.uikit.UITableViewCell) -> a
     39:39:crossmobile.ios.uikit.UIStoryboardSegue access$200(crossmobile.ios.uikit.UITableViewCell) -> b
     crossmobile.ios.uikit.UITableViewCellAppearance appearance() -> appearance
     crossmobile.ios.uikit.UITableViewCellAppearance appearanceWhenContainedInInstancesOfClasses(java.util.List) -> appearanceWhenContainedInInstancesOfClasses
 crossmobile.ios.uikit.UITableViewCell$1 -> crossmobile.ios.uikit.UITableViewCell$1:
     crossmobile.ios.uikit.UITableViewCell this$0 -> a
-    352:352:void <init>(crossmobile.ios.uikit.UITableViewCell) -> <init>
-    355:357:void setText(java.lang.String) -> setText
+    351:351:void <init>(crossmobile.ios.uikit.UITableViewCell) -> <init>
+    354:356:void setText(java.lang.String) -> setText
 crossmobile.ios.uikit.UITableViewCell$ContentView -> crossmobile.ios.uikit.UITableViewCell$a:
     crossmobile.ios.uikit.UITableViewCell this$0 -> a
-    604:604:void <init>(crossmobile.ios.uikit.UITableViewCell) -> <init>
-    607:610:void touchesBegan(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesBegan
-    614:622:void touchesEnded(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesEnded
-    626:627:void touchesCancelled(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesCancelled
-    631:632:void didAddSubview(crossmobile.ios.uikit.UIView) -> didAddSubview
-    636:637:void didRemoveSubview(crossmobile.ios.uikit.UIView) -> a
-    604:604:void <init>(crossmobile.ios.uikit.UITableViewCell,crossmobile.ios.uikit.UITableViewCell$1) -> <init>
+    602:602:void <init>(crossmobile.ios.uikit.UITableViewCell) -> <init>
+    605:608:void touchesBegan(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesBegan
+    612:620:void touchesEnded(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesEnded
+    624:625:void touchesCancelled(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesCancelled
+    629:630:void didAddSubview(crossmobile.ios.uikit.UIView) -> didAddSubview
+    634:635:void didRemoveSubview(crossmobile.ios.uikit.UIView) -> a
+    602:602:void <init>(crossmobile.ios.uikit.UITableViewCell,crossmobile.ios.uikit.UITableViewCell$1) -> <init>
 crossmobile.ios.uikit.UITableViewCellAccessoryType -> crossmobile.ios.uikit.UITableViewCellAccessoryType:
     int None -> None
     int DisclosureIndicator -> DisclosureIndicator
@@ -7247,17 +7276,18 @@ crossmobile.ios.uikit.UITextView -> crossmobile.ios.uikit.UITextView:
     364:364:boolean isEditable() -> isEditable
     376:378:void setEditable(boolean) -> setEditable
     382:384:void setBackgroundColor(crossmobile.ios.uikit.UIColor) -> setBackgroundColor
-    393:394:void setDelegate(crossmobile.ios.uikit.UITextViewDelegate) -> setDelegate
-    403:403:crossmobile.ios.uikit.UITextViewDelegate delegate() -> delegate
-    414:414:long dataDetectorTypes() -> dataDetectorTypes
-    426:427:void setDataDetectorTypes(long) -> setDataDetectorTypes
-    431:440:boolean resignFirstResponder() -> resignFirstResponder
-    445:454:boolean becomeFirstResponder() -> becomeFirstResponder
-    459:461:void touchesBegan(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesBegan
-    465:467:void touchesMoved(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesMoved
-    471:473:void touchesEnded(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesEnded
-    477:478:void touchesCancelled(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesCancelled
-    483:491:void drawRect(crossmobile.ios.coregraphics.CGRect) -> drawRect
+    387:390:void synchronizeNativeBackgroundColor() -> d
+    399:400:void setDelegate(crossmobile.ios.uikit.UITextViewDelegate) -> setDelegate
+    409:409:crossmobile.ios.uikit.UITextViewDelegate delegate() -> delegate
+    420:420:long dataDetectorTypes() -> dataDetectorTypes
+    432:433:void setDataDetectorTypes(long) -> setDataDetectorTypes
+    437:446:boolean resignFirstResponder() -> resignFirstResponder
+    451:460:boolean becomeFirstResponder() -> becomeFirstResponder
+    465:467:void touchesBegan(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesBegan
+    471:473:void touchesMoved(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesMoved
+    477:479:void touchesEnded(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesEnded
+    483:484:void touchesCancelled(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesCancelled
+    489:497:void drawRect(crossmobile.ios.coregraphics.CGRect) -> drawRect
     crossmobile.ios.uikit.UITextViewAppearance appearance() -> appearance
     crossmobile.ios.uikit.UITextViewAppearance appearanceWhenContainedInInstancesOfClasses(java.util.List) -> appearanceWhenContainedInInstancesOfClasses
 crossmobile.ios.uikit.UITextViewAppearance -> crossmobile.ios.uikit.UITextViewAppearance:
@@ -7306,6 +7336,7 @@ crossmobile.ios.uikit.UIToolbarAppearance -> crossmobile.ios.uikit.UIToolbarAppe
 crossmobile.ios.uikit.UIToolbarAppearance$BackgroundColor -> crossmobile.ios.uikit.UIToolbarAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UITouch -> crossmobile.ios.uikit.UITouch:
     crossmobile.ios.uikit.UIView[] olderView -> i
     double[] olderTime -> j
@@ -7449,200 +7480,203 @@ crossmobile.ios.uikit.UIView -> crossmobile.ios.uikit.UIView:
     boolean insetsLayoutMarginsFromSafeArea -> ab
     int userInterfaceLayoutDirection -> ac
     crossmobile.ios.uikit.UIView$Anchor anchors -> ad
-    140:141:void <init>() -> <init>
-    61:153:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
-    156:177:crossmobile.ios.coregraphics.CGPoint convertPoint(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIView,crossmobile.ios.uikit.UIView) -> a
-    188:189:void animateWithDuration(double,java.lang.Runnable) -> animateWithDuration
-    195:196:void animateWithDuration(double,java.lang.Runnable,org.robovm.objc.block.VoidBlock1) -> animateWithDuration
-    214:228:void animateWithDuration(double,double,int,java.lang.Runnable,org.robovm.objc.block.VoidBlock1) -> animateWithDuration
-    247:251:void transitionWithView(crossmobile.ios.uikit.UIView,double,int,java.lang.Runnable,org.robovm.objc.block.VoidBlock1) -> transitionWithView
-    260:261:void setAnimationStartDate(crossmobile.ios.foundation.NSDate) -> setAnimationStartDate
-    271:274:void setAnimationsEnabled(boolean) -> setAnimationsEnabled
-    284:285:void setAnimationDuration(double) -> setAnimationDuration
-    296:297:void setAnimationDelay(double) -> setAnimationDelay
-    306:307:void setAnimationCurve(int) -> setAnimationCurve
-    319:320:void setAnimationRepeatCount(float) -> setAnimationRepeatCount
-    331:332:void setAnimationRepeatAutoreverses(boolean) -> setAnimationRepeatAutoreverses
-    335:337:crossmobile.ios.uikit.cmAnimation pendingAnim() -> c
-    349:350:void setAnimationBeginsFromCurrentState(boolean) -> setAnimationBeginsFromCurrentState
-    359:361:boolean areAnimationsEnabled() -> areAnimationsEnabled
-    373:373:boolean requiresConstraintBasedLayout() -> requiresConstraintBasedLayout
-    378:378:crossmobile.ios.uikit.UIResponder nextResponder() -> nextResponder
-    390:390:crossmobile.ios.coregraphics.CGRect frame() -> frame
-    402:409:void setFrame(crossmobile.ios.coregraphics.CGRect) -> setFrame
-    420:420:int autoresizingMask() -> autoresizingMask
-    433:437:void setAutoresizingMask(int) -> setAutoresizingMask
-    448:448:boolean autoresizesSubviews() -> autoresizesSubviews
-    460:466:void setAutoresizesSubviews(boolean) -> setAutoresizesSubviews
-    475:476:void setNeedsLayout() -> setNeedsLayout
-    484:495:void layoutIfNeeded() -> layoutIfNeeded
-    499:501:void forceLayout() -> e
-    508:513:void layoutSubviews() -> layoutSubviews
-    519:521:void layoutNativeFromRoot() -> f
-    524:528:void layoutNative(double,double) -> b
-    535:542:void updateConstraints() -> updateConstraints
-    546:550:void updateConstraintsIfNeeded() -> updateConstraintsIfNeeded
-    561:561:boolean needsUpdateConstraints() -> needsUpdateConstraints
-    570:572:void setNeedsUpdateConstraints() -> setNeedsUpdateConstraints
-    583:586:crossmobile.ios.coregraphics.CGRect bounds() -> bounds
-    598:599:void setBounds(crossmobile.ios.coregraphics.CGRect) -> setBounds
-    608:608:crossmobile.ios.coregraphics.CGPoint center() -> center
-    618:619:void setCenter(crossmobile.ios.coregraphics.CGPoint) -> setCenter
-    628:629:void setLocation(double,double) -> c
-    638:639:void setSize(double,double) -> a_
-    645:648:crossmobile.ios.coregraphics.CGPoint locationRelativeToRoot(crossmobile.ios.coregraphics.CGPoint) -> a
-    659:660:void sendSubviewToBack(crossmobile.ios.uikit.UIView) -> sendSubviewToBack
-    670:671:void bringSubviewToFront(crossmobile.ios.uikit.UIView) -> bringSubviewToFront
-    681:682:void addSubview(crossmobile.ios.uikit.UIView) -> addSubview
-    695:698:void insertSubview(crossmobile.ios.uikit.UIView,int) -> insertSubview
-    701:710:void insertSubviewAt(crossmobile.ios.uikit.UIView,int) -> a
-    717:726:void removeFromSuperview() -> removeFromSuperview
-    729:733:boolean isAttachedToWindow() -> g
-    737:748:void attachWidget(boolean) -> b
-    751:751:void willAddSubview(crossmobile.ios.uikit.UIView) -> b
-    754:754:void didRemoveSubview(crossmobile.ios.uikit.UIView) -> a
-    763:763:void didAddSubview(crossmobile.ios.uikit.UIView) -> didAddSubview
-    772:772:void willRemoveSubview(crossmobile.ios.uikit.UIView) -> willRemoveSubview
-    782:782:void willMoveToSuperview(crossmobile.ios.uikit.UIView) -> willMoveToSuperview
-    789:789:void didMoveToSuperview() -> didMoveToSuperview
-    799:799:void willMoveToWindow(crossmobile.ios.uikit.UIWindow) -> willMoveToWindow
-    806:806:void didMoveToWindow() -> didMoveToWindow
-    816:816:java.util.List subviews() -> subviews
-    820:836:crossmobile.ios.uikit.UIView subview(java.lang.Class[]) -> a
-    846:846:crossmobile.ios.uikit.UIView superview() -> superview
-    858:858:boolean isMultipleTouchEnabled() -> isMultipleTouchEnabled
-    869:870:void setMultipleTouchEnabled(boolean) -> setMultipleTouchEnabled
-    879:883:crossmobile.ios.uikit.UIWindow window() -> window
-    893:894:void setTag(int) -> setTag
-    903:903:int tag() -> tag
-    911:916:void setNeedsDisplay() -> setNeedsDisplay
-    926:935:void setBackgroundColor(crossmobile.ios.uikit.UIColor) -> setBackgroundColor
-    938:939:void setBackgroundColorImpl(crossmobile.ios.uikit.UIColor) -> b
-    948:948:crossmobile.ios.uikit.UIColor backgroundColor() -> backgroundColor
-    959:962:void setTintColor(crossmobile.ios.uikit.UIColor) -> setTintColor
-    973:976:crossmobile.ios.uikit.UIColor tintColor() -> tintColor
-    981:983:void tintColorDidChange() -> tintColorDidChange
-    995:998:void setTintAdjustmentMode(int) -> setTintAdjustmentMode
-    1009:1009:int tintAdjustmentMode() -> tintAdjustmentMode
-    1021:1021:crossmobile.ios.coregraphics.CGAffineTransform transform() -> transform
-    1033:1041:void setTransform(crossmobile.ios.coregraphics.CGAffineTransform) -> setTransform
-    1044:1047:void setTransformImpl(crossmobile.ios.coregraphics.CGAffineTransform) -> a
-    1050:1054:java.lang.Object nativeTransformation() -> d
-    1058:1073:crossmobile.ios.coregraphics.CGAffineTransform fullTransformation() -> p
-    1077:1081:crossmobile.ios.coregraphics.CGAffineTransform inverseTransform() -> h
-    1091:1091:double alpha() -> alpha
-    1101:1114:void setAlpha(double) -> setAlpha
-    1123:1123:boolean isOpaque() -> isOpaque
-    1135:1139:void setOpaque(boolean) -> setOpaque
-    1150:1154:void setClearsContextBeforeDrawing(boolean) -> setClearsContextBeforeDrawing
-    1163:1163:boolean isHidden() -> isHidden
-    1174:1181:void setHidden(boolean) -> setHidden
-    1192:1194:void setContentMode(int) -> setContentMode
-    1205:1205:int contentMode() -> contentMode
-    1209:1210:void updateNativeUserInteraction() -> q
-    1213:1218:void updateNativeUserInteractionImpl(boolean) -> a
-    1233:1233:boolean isUserInteractionEnabled() -> isUserInteractionEnabled
-    1245:1247:void setUserInteractionEnabled(boolean) -> setUserInteractionEnabled
-    1258:1260:void setClipsToBounds(boolean) -> setClipsToBounds
-    1275:1275:boolean clipsToBounds() -> clipsToBounds
-    1290:1305:crossmobile.ios.uikit.UIView hitTest(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent) -> hitTest
-    1309:1315:crossmobile.ios.uikit.UIView firstAnsestorThatUsesTouches(crossmobile.ios.uikit.UIView) -> c
-    1331:1331:boolean pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent) -> pointInside
-    1346:1346:crossmobile.ios.coregraphics.CGPoint convertPointToView(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIView) -> convertPointToView
-    1362:1362:crossmobile.ios.coregraphics.CGPoint convertPointFromView(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIView) -> convertPointFromView
-    1366:1393:crossmobile.ios.coregraphics.CGPoint selfPointTransformations(crossmobile.ios.coregraphics.CGPoint,boolean) -> b
-    1397:1397:void parentPointTransformations(crossmobile.ios.coregraphics.CGPoint,boolean) -> a
-    1412:1413:crossmobile.ios.coregraphics.CGRect convertRectToView(crossmobile.ios.coregraphics.CGRect,crossmobile.ios.uikit.UIView) -> convertRectToView
-    1429:1430:crossmobile.ios.coregraphics.CGRect convertRectFromView(crossmobile.ios.coregraphics.CGRect,crossmobile.ios.uikit.UIView) -> convertRectFromView
-    1441:1442:void setGestureRecognizers(java.util.List) -> setGestureRecognizers
-    1453:1453:java.util.List gestureRecognizers() -> gestureRecognizers
-    1464:1476:void addGestureRecognizer(crossmobile.ios.uikit.UIGestureRecognizer) -> addGestureRecognizer
-    1486:1493:void removeGestureRecognizer(crossmobile.ios.uikit.UIGestureRecognizer) -> removeGestureRecognizer
-    1497:1505:java.lang.String toString() -> toString
-    1509:1510:java.lang.String parentList() -> i
-    1514:1516:java.lang.String selfAndParentList() -> j
-    1529:1529:crossmobile.ios.coregraphics.CGSize sizeThatFits(crossmobile.ios.coregraphics.CGSize) -> sizeThatFits
-    1538:1538:void sizeToFit() -> sizeToFit
-    1541:1578:void drawingSelf(crossmobile.ios.coregraphics.CGContext) -> b
-    1581:1593:void debugGraphicsFrame(crossmobile.ios.coregraphics.CGContext,crossmobile.ios.coregraphics.CGRect) -> b
-    1597:1603:void drawingChildren(crossmobile.ios.coregraphics.CGContext) -> a
-    1606:1624:void drawingChild(crossmobile.ios.coregraphics.CGContext,crossmobile.ios.uikit.UIView,boolean) -> a
-    1635:1635:void drawRect(crossmobile.ios.coregraphics.CGRect) -> drawRect
-    1638:1638:boolean shouldBeDrawn() -> r
-    1642:1642:boolean shouldDrawOnTop() -> d_
-    1651:1719:crossmobile.ios.coregraphics.CGRect getDrawFrame() -> s
-    1726:1726:void drawOnTop(crossmobile.ios.coregraphics.CGContext,crossmobile.ios.coregraphics.CGRect) -> a
-    1736:1740:crossmobile.ios.quartzcore.CALayer layer() -> layer
-    1751:1751:java.util.List constraints() -> constraints
-    1761:1773:void addConstraint(crossmobile.ios.uikit.NSLayoutConstraint) -> addConstraint
-    1776:1782:boolean checkConstraintItem(java.lang.Object) -> b
-    1786:1790:boolean isAncestor(crossmobile.ios.uikit.UIView) -> f
-    1794:1798:void initItemsIfNeeded(crossmobile.ios.uikit.NSLayoutConstraint) -> a
-    1807:1809:void addConstraints(java.util.List) -> addConstraints
-    1818:1827:void removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint) -> removeConstraint
-    1836:1838:void removeConstraints(java.util.List) -> removeConstraints
-    1849:1849:boolean translatesAutoresizingMaskIntoConstraints() -> translatesAutoresizingMaskIntoConstraints
-    1862:1863:void setTranslatesAutoresizingMaskIntoConstraints(boolean) -> setTranslatesAutoresizingMaskIntoConstraints
-    1872:1872:crossmobile.ios.coregraphics.CGSize intrinsicContentSize() -> intrinsicContentSize
-    1876:1879:void setIntrinsicContentSize(double,double) -> d
-    1887:1887:void invalidateIntrinsicContentSize() -> invalidateIntrinsicContentSize
-    1900:1904:float contentCompressionResistancePriorityForAxis(int) -> contentCompressionResistancePriorityForAxis
-    1920:1924:void setContentCompressionResistancePriority(float,int) -> setContentCompressionResistancePriority
-    1938:1942:float contentHuggingPriorityForAxis(int) -> contentHuggingPriorityForAxis
-    1958:1962:void setContentHuggingPriority(float,int) -> setContentHuggingPriority
-    1965:1965:org.crossmobile.support.cassowary.ClVariable getVariable(int) -> a
-    1969:1977:void initVars() -> t
-    1980:1988:void addDefaultConstraints() -> u
-    1991:2008:void updateIntrinsicConstraints(boolean) -> c
-    2011:2022:void setViewAttributes() -> v
-    2025:2046:void bequeathIrrelevantConstraints() -> w
-    2049:2056:org.crossmobile.support.cassowary.ClSimplexSolver solver() -> k
-    2061:2090:void applyLayout() -> b
-    2093:2099:void applyResult() -> x
-    2102:2112:double lookup(int,double,double) -> a
-    2125:2129:crossmobile.ios.uikit.NSLayoutYAxisAnchor bottomAnchor() -> bottomAnchor
-    2142:2146:crossmobile.ios.uikit.NSLayoutXAxisAnchor centerXAnchor() -> centerXAnchor
-    2159:2163:crossmobile.ios.uikit.NSLayoutYAxisAnchor centerYAnchor() -> centerYAnchor
-    2173:2177:crossmobile.ios.uikit.NSLayoutDimension heightAnchor() -> heightAnchor
-    2189:2193:crossmobile.ios.uikit.NSLayoutXAxisAnchor leadingAnchor() -> leadingAnchor
-    2205:2209:crossmobile.ios.uikit.NSLayoutXAxisAnchor leftAnchor() -> leftAnchor
-    2221:2225:crossmobile.ios.uikit.NSLayoutXAxisAnchor rightAnchor() -> rightAnchor
-    2237:2241:crossmobile.ios.uikit.NSLayoutYAxisAnchor topAnchor() -> topAnchor
-    2253:2257:crossmobile.ios.uikit.NSLayoutXAxisAnchor trailingAnchor() -> trailingAnchor
-    2269:2273:crossmobile.ios.uikit.NSLayoutDimension widthAnchor() -> widthAnchor
-    2284:2288:void addLayoutGuide(crossmobile.ios.uikit.UILayoutGuide) -> addLayoutGuide
-    2298:2299:crossmobile.ios.uikit.UIEdgeInsets layoutMargins() -> layoutMargins
-    2310:2312:void setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets) -> setLayoutMargins
-    2319:2319:void layoutMarginsDidChange() -> layoutMarginsDidChange
-    2328:2338:crossmobile.ios.uikit.UILayoutGuide layoutMarginsGuide() -> layoutMarginsGuide
-    2343:2351:void suggestGuide(crossmobile.ios.uikit.UILayoutGuide,crossmobile.ios.uikit.UIEdgeInsets) -> a
-    2355:2381:void refreshMarginsIfNeeded() -> y
-    2392:2392:boolean preservesSuperviewLayoutMargins() -> preservesSuperviewLayoutMargins
-    2404:2405:void setPreservesSuperviewLayoutMargins(boolean) -> setPreservesSuperviewLayoutMargins
-    2414:2419:void removeLayoutGuide(crossmobile.ios.uikit.UILayoutGuide) -> removeLayoutGuide
-    2428:2428:crossmobile.ios.uikit.UIView viewForFirstBaselineLayout() -> viewForFirstBaselineLayout
-    2438:2438:crossmobile.ios.uikit.UIView viewForLastBaselineLayout() -> viewForLastBaselineLayout
-    2442:2450:java.util.List relevantConstraints(java.lang.Object) -> a
-    2455:2457:void registerWidget(org.crossmobile.bind.wrapper.WidgetWrapper) -> registerWidget
-    2460:2460:org.crossmobile.bind.wrapper.WidgetWrapper getWidget() -> getWidget
-    2465:2491:crossmobile.ios.uikit.UIEdgeInsets safeAreaInsets() -> safeAreaInsets
-    2496:2496:boolean insetsLayoutMarginsFromSafeArea() -> insetsLayoutMarginsFromSafeArea
-    2501:2502:void setInsetsLayoutMarginsFromSafeArea(boolean) -> setInsetsLayoutMarginsFromSafeArea
-    2507:2516:crossmobile.ios.uikit.UILayoutGuide safeAreaLayoutGuide() -> safeAreaLayoutGuide
-    2520:2520:double getX() -> l
-    2524:2524:double getY() -> m
-    2528:2528:double getWidth() -> n
-    2532:2532:double getHeight() -> o
-    2536:2540:void setFrameImpl(double,double,double,double) -> a
-    2543:2544:void setFrameImpl(crossmobile.ios.coregraphics.CGRect) -> a
-    2564:2564:java.lang.String restorationIdentifier() -> restorationIdentifier
-    2570:2571:void setRestorationIdentifier(java.lang.String) -> setRestorationIdentifier
-    2575:2575:int userInterfaceLayoutDirection() -> userInterfaceLayoutDirection
-    2062:2086:void lambda$applyLayout$0() -> z
-    53:53:java.util.List access$1200(crossmobile.ios.uikit.UIView) -> d
-    53:53:java.lang.ref.WeakReference access$1302(crossmobile.ios.uikit.UIView,java.lang.ref.WeakReference) -> a
-    53:53:void access$1400(crossmobile.ios.uikit.UIView) -> e
-    58:60:void <clinit>() -> <clinit>
+    142:143:void <init>() -> <init>
+    154:155:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
+    63:160:void <init>(crossmobile.ios.coregraphics.CGRect,crossmobile.ios.uikit.UIColor) -> <init>
+    163:184:crossmobile.ios.coregraphics.CGPoint convertPoint(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIView,crossmobile.ios.uikit.UIView) -> a
+    195:196:void animateWithDuration(double,java.lang.Runnable) -> animateWithDuration
+    202:203:void animateWithDuration(double,java.lang.Runnable,org.robovm.objc.block.VoidBlock1) -> animateWithDuration
+    221:235:void animateWithDuration(double,double,int,java.lang.Runnable,org.robovm.objc.block.VoidBlock1) -> animateWithDuration
+    254:258:void transitionWithView(crossmobile.ios.uikit.UIView,double,int,java.lang.Runnable,org.robovm.objc.block.VoidBlock1) -> transitionWithView
+    267:268:void setAnimationStartDate(crossmobile.ios.foundation.NSDate) -> setAnimationStartDate
+    278:281:void setAnimationsEnabled(boolean) -> setAnimationsEnabled
+    291:292:void setAnimationDuration(double) -> setAnimationDuration
+    303:304:void setAnimationDelay(double) -> setAnimationDelay
+    313:314:void setAnimationCurve(int) -> setAnimationCurve
+    326:327:void setAnimationRepeatCount(float) -> setAnimationRepeatCount
+    338:339:void setAnimationRepeatAutoreverses(boolean) -> setAnimationRepeatAutoreverses
+    342:344:crossmobile.ios.uikit.cmAnimation pendingAnim() -> c
+    356:357:void setAnimationBeginsFromCurrentState(boolean) -> setAnimationBeginsFromCurrentState
+    366:368:boolean areAnimationsEnabled() -> areAnimationsEnabled
+    380:380:boolean requiresConstraintBasedLayout() -> requiresConstraintBasedLayout
+    385:385:crossmobile.ios.uikit.UIResponder nextResponder() -> nextResponder
+    397:397:crossmobile.ios.coregraphics.CGRect frame() -> frame
+    409:416:void setFrame(crossmobile.ios.coregraphics.CGRect) -> setFrame
+    427:427:int autoresizingMask() -> autoresizingMask
+    440:444:void setAutoresizingMask(int) -> setAutoresizingMask
+    455:455:boolean autoresizesSubviews() -> autoresizesSubviews
+    467:473:void setAutoresizesSubviews(boolean) -> setAutoresizesSubviews
+    482:483:void setNeedsLayout() -> setNeedsLayout
+    491:502:void layoutIfNeeded() -> layoutIfNeeded
+    506:508:void forceLayout() -> e
+    515:520:void layoutSubviews() -> layoutSubviews
+    526:528:void layoutNativeFromRoot() -> f
+    531:535:void layoutNative(double,double) -> b
+    542:549:void updateConstraints() -> updateConstraints
+    553:557:void updateConstraintsIfNeeded() -> updateConstraintsIfNeeded
+    568:568:boolean needsUpdateConstraints() -> needsUpdateConstraints
+    577:579:void setNeedsUpdateConstraints() -> setNeedsUpdateConstraints
+    590:593:crossmobile.ios.coregraphics.CGRect bounds() -> bounds
+    605:606:void setBounds(crossmobile.ios.coregraphics.CGRect) -> setBounds
+    615:615:crossmobile.ios.coregraphics.CGPoint center() -> center
+    625:626:void setCenter(crossmobile.ios.coregraphics.CGPoint) -> setCenter
+    635:636:void setLocation(double,double) -> c
+    645:646:void setSize(double,double) -> a_
+    652:655:crossmobile.ios.coregraphics.CGPoint locationRelativeToRoot(crossmobile.ios.coregraphics.CGPoint) -> a
+    666:667:void sendSubviewToBack(crossmobile.ios.uikit.UIView) -> sendSubviewToBack
+    677:678:void bringSubviewToFront(crossmobile.ios.uikit.UIView) -> bringSubviewToFront
+    688:689:void addSubview(crossmobile.ios.uikit.UIView) -> addSubview
+    702:705:void insertSubview(crossmobile.ios.uikit.UIView,int) -> insertSubview
+    708:717:void insertSubviewAt(crossmobile.ios.uikit.UIView,int) -> a
+    724:733:void removeFromSuperview() -> removeFromSuperview
+    736:740:boolean isAttachedToWindow() -> g
+    744:755:void attachWidget(boolean) -> b
+    758:758:void willAddSubview(crossmobile.ios.uikit.UIView) -> b
+    761:761:void didRemoveSubview(crossmobile.ios.uikit.UIView) -> a
+    770:770:void didAddSubview(crossmobile.ios.uikit.UIView) -> didAddSubview
+    779:779:void willRemoveSubview(crossmobile.ios.uikit.UIView) -> willRemoveSubview
+    789:789:void willMoveToSuperview(crossmobile.ios.uikit.UIView) -> willMoveToSuperview
+    796:796:void didMoveToSuperview() -> didMoveToSuperview
+    806:806:void willMoveToWindow(crossmobile.ios.uikit.UIWindow) -> willMoveToWindow
+    813:813:void didMoveToWindow() -> didMoveToWindow
+    823:823:java.util.List subviews() -> subviews
+    827:843:crossmobile.ios.uikit.UIView subview(java.lang.Class[]) -> a
+    853:853:crossmobile.ios.uikit.UIView superview() -> superview
+    865:865:boolean isMultipleTouchEnabled() -> isMultipleTouchEnabled
+    876:877:void setMultipleTouchEnabled(boolean) -> setMultipleTouchEnabled
+    886:890:crossmobile.ios.uikit.UIWindow window() -> window
+    900:901:void setTag(int) -> setTag
+    910:910:int tag() -> tag
+    918:923:void setNeedsDisplay() -> setNeedsDisplay
+    933:942:void setBackgroundColor(crossmobile.ios.uikit.UIColor) -> setBackgroundColor
+    945:946:void setBackgroundColorImpl(crossmobile.ios.uikit.UIColor) -> b
+    955:955:crossmobile.ios.uikit.UIColor backgroundColor() -> backgroundColor
+    966:969:void setTintColor(crossmobile.ios.uikit.UIColor) -> setTintColor
+    980:983:crossmobile.ios.uikit.UIColor tintColor() -> tintColor
+    988:990:void tintColorDidChange() -> tintColorDidChange
+    1002:1005:void setTintAdjustmentMode(int) -> setTintAdjustmentMode
+    1016:1016:int tintAdjustmentMode() -> tintAdjustmentMode
+    1028:1028:crossmobile.ios.coregraphics.CGAffineTransform transform() -> transform
+    1040:1048:void setTransform(crossmobile.ios.coregraphics.CGAffineTransform) -> setTransform
+    1051:1054:void setTransformImpl(crossmobile.ios.coregraphics.CGAffineTransform) -> a
+    1057:1061:java.lang.Object nativeTransformation() -> d
+    1065:1080:crossmobile.ios.coregraphics.CGAffineTransform fullTransformation() -> p
+    1084:1088:crossmobile.ios.coregraphics.CGAffineTransform inverseTransform() -> h
+    1098:1098:double alpha() -> alpha
+    1108:1121:void setAlpha(double) -> setAlpha
+    1130:1130:boolean isOpaque() -> isOpaque
+    1142:1146:void setOpaque(boolean) -> setOpaque
+    1157:1161:void setClearsContextBeforeDrawing(boolean) -> setClearsContextBeforeDrawing
+    1170:1170:boolean isHidden() -> isHidden
+    1181:1188:void setHidden(boolean) -> setHidden
+    1199:1201:void setContentMode(int) -> setContentMode
+    1212:1212:int contentMode() -> contentMode
+    1216:1217:void updateNativeUserInteraction() -> q
+    1220:1225:void updateNativeUserInteractionImpl(boolean) -> a
+    1240:1240:boolean isUserInteractionEnabled() -> isUserInteractionEnabled
+    1252:1254:void setUserInteractionEnabled(boolean) -> setUserInteractionEnabled
+    1265:1267:void setClipsToBounds(boolean) -> setClipsToBounds
+    1282:1282:boolean clipsToBounds() -> clipsToBounds
+    1297:1312:crossmobile.ios.uikit.UIView hitTest(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent) -> hitTest
+    1316:1322:crossmobile.ios.uikit.UIView firstAnsestorThatUsesTouches(crossmobile.ios.uikit.UIView) -> c
+    1338:1338:boolean pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent) -> pointInside
+    1353:1353:crossmobile.ios.coregraphics.CGPoint convertPointToView(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIView) -> convertPointToView
+    1369:1369:crossmobile.ios.coregraphics.CGPoint convertPointFromView(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIView) -> convertPointFromView
+    1373:1400:crossmobile.ios.coregraphics.CGPoint selfPointTransformations(crossmobile.ios.coregraphics.CGPoint,boolean) -> b
+    1404:1404:void parentPointTransformations(crossmobile.ios.coregraphics.CGPoint,boolean) -> a
+    1419:1420:crossmobile.ios.coregraphics.CGRect convertRectToView(crossmobile.ios.coregraphics.CGRect,crossmobile.ios.uikit.UIView) -> convertRectToView
+    1436:1437:crossmobile.ios.coregraphics.CGRect convertRectFromView(crossmobile.ios.coregraphics.CGRect,crossmobile.ios.uikit.UIView) -> convertRectFromView
+    1448:1449:void setGestureRecognizers(java.util.List) -> setGestureRecognizers
+    1460:1460:java.util.List gestureRecognizers() -> gestureRecognizers
+    1471:1483:void addGestureRecognizer(crossmobile.ios.uikit.UIGestureRecognizer) -> addGestureRecognizer
+    1493:1500:void removeGestureRecognizer(crossmobile.ios.uikit.UIGestureRecognizer) -> removeGestureRecognizer
+    1504:1512:java.lang.String toString() -> toString
+    1516:1517:java.lang.String parentList() -> i
+    1521:1523:java.lang.String selfAndParentList() -> j
+    1536:1536:crossmobile.ios.coregraphics.CGSize sizeThatFits(crossmobile.ios.coregraphics.CGSize) -> sizeThatFits
+    1545:1545:void sizeToFit() -> sizeToFit
+    1548:1585:void drawingSelf(crossmobile.ios.coregraphics.CGContext) -> b
+    1588:1600:void debugGraphicsFrame(crossmobile.ios.coregraphics.CGContext,crossmobile.ios.coregraphics.CGRect) -> b
+    1604:1610:void drawingChildren(crossmobile.ios.coregraphics.CGContext) -> a
+    1613:1631:void drawingChild(crossmobile.ios.coregraphics.CGContext,crossmobile.ios.uikit.UIView,boolean) -> a
+    1642:1642:void drawRect(crossmobile.ios.coregraphics.CGRect) -> drawRect
+    1645:1645:boolean shouldBeDrawn() -> r
+    1649:1649:boolean shouldDrawOnTop() -> d_
+    1658:1726:crossmobile.ios.coregraphics.CGRect getDrawFrame() -> s
+    1733:1733:void drawOnTop(crossmobile.ios.coregraphics.CGContext,crossmobile.ios.coregraphics.CGRect) -> a
+    1743:1747:crossmobile.ios.quartzcore.CALayer layer() -> layer
+    1758:1758:java.util.List constraints() -> constraints
+    1768:1780:void addConstraint(crossmobile.ios.uikit.NSLayoutConstraint) -> addConstraint
+    1783:1789:boolean checkConstraintItem(java.lang.Object) -> b
+    1793:1797:boolean isAncestor(crossmobile.ios.uikit.UIView) -> f
+    1801:1805:void initItemsIfNeeded(crossmobile.ios.uikit.NSLayoutConstraint) -> a
+    1814:1816:void addConstraints(java.util.List) -> addConstraints
+    1825:1834:void removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint) -> removeConstraint
+    1843:1845:void removeConstraints(java.util.List) -> removeConstraints
+    1856:1856:boolean translatesAutoresizingMaskIntoConstraints() -> translatesAutoresizingMaskIntoConstraints
+    1869:1870:void setTranslatesAutoresizingMaskIntoConstraints(boolean) -> setTranslatesAutoresizingMaskIntoConstraints
+    1879:1879:crossmobile.ios.coregraphics.CGSize intrinsicContentSize() -> intrinsicContentSize
+    1883:1886:void setIntrinsicContentSize(double,double) -> d
+    1894:1894:void invalidateIntrinsicContentSize() -> invalidateIntrinsicContentSize
+    1907:1911:float contentCompressionResistancePriorityForAxis(int) -> contentCompressionResistancePriorityForAxis
+    1927:1931:void setContentCompressionResistancePriority(float,int) -> setContentCompressionResistancePriority
+    1945:1949:float contentHuggingPriorityForAxis(int) -> contentHuggingPriorityForAxis
+    1965:1969:void setContentHuggingPriority(float,int) -> setContentHuggingPriority
+    1972:1972:org.crossmobile.support.cassowary.ClVariable getVariable(int) -> a
+    1976:1984:void initVars() -> t
+    1987:1995:void addDefaultConstraints() -> u
+    1998:2015:void updateIntrinsicConstraints(boolean) -> c
+    2018:2029:void setViewAttributes() -> v
+    2032:2053:void bequeathIrrelevantConstraints() -> w
+    2056:2063:org.crossmobile.support.cassowary.ClSimplexSolver solver() -> k
+    2068:2097:void applyLayout() -> b
+    2100:2106:void applyResult() -> x
+    2109:2119:double lookup(int,double,double) -> a
+    2132:2136:crossmobile.ios.uikit.NSLayoutYAxisAnchor bottomAnchor() -> bottomAnchor
+    2149:2153:crossmobile.ios.uikit.NSLayoutXAxisAnchor centerXAnchor() -> centerXAnchor
+    2166:2170:crossmobile.ios.uikit.NSLayoutYAxisAnchor centerYAnchor() -> centerYAnchor
+    2180:2184:crossmobile.ios.uikit.NSLayoutDimension heightAnchor() -> heightAnchor
+    2196:2200:crossmobile.ios.uikit.NSLayoutXAxisAnchor leadingAnchor() -> leadingAnchor
+    2212:2216:crossmobile.ios.uikit.NSLayoutXAxisAnchor leftAnchor() -> leftAnchor
+    2228:2232:crossmobile.ios.uikit.NSLayoutXAxisAnchor rightAnchor() -> rightAnchor
+    2244:2248:crossmobile.ios.uikit.NSLayoutYAxisAnchor topAnchor() -> topAnchor
+    2260:2264:crossmobile.ios.uikit.NSLayoutXAxisAnchor trailingAnchor() -> trailingAnchor
+    2276:2280:crossmobile.ios.uikit.NSLayoutDimension widthAnchor() -> widthAnchor
+    2291:2295:void addLayoutGuide(crossmobile.ios.uikit.UILayoutGuide) -> addLayoutGuide
+    2305:2306:crossmobile.ios.uikit.UIEdgeInsets layoutMargins() -> layoutMargins
+    2317:2319:void setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets) -> setLayoutMargins
+    2326:2326:void layoutMarginsDidChange() -> layoutMarginsDidChange
+    2335:2345:crossmobile.ios.uikit.UILayoutGuide layoutMarginsGuide() -> layoutMarginsGuide
+    2350:2358:void suggestGuide(crossmobile.ios.uikit.UILayoutGuide,crossmobile.ios.uikit.UIEdgeInsets) -> a
+    2362:2388:void refreshMarginsIfNeeded() -> y
+    2399:2399:boolean preservesSuperviewLayoutMargins() -> preservesSuperviewLayoutMargins
+    2411:2412:void setPreservesSuperviewLayoutMargins(boolean) -> setPreservesSuperviewLayoutMargins
+    2421:2426:void removeLayoutGuide(crossmobile.ios.uikit.UILayoutGuide) -> removeLayoutGuide
+    2435:2435:crossmobile.ios.uikit.UIView viewForFirstBaselineLayout() -> viewForFirstBaselineLayout
+    2445:2445:crossmobile.ios.uikit.UIView viewForLastBaselineLayout() -> viewForLastBaselineLayout
+    2449:2457:java.util.List relevantConstraints(java.lang.Object) -> a
+    2462:2464:void registerWidget(org.crossmobile.bind.wrapper.WidgetWrapper) -> registerWidget
+    2467:2467:org.crossmobile.bind.wrapper.WidgetWrapper getWidget() -> getWidget
+    2472:2498:crossmobile.ios.uikit.UIEdgeInsets safeAreaInsets() -> safeAreaInsets
+    2503:2503:boolean insetsLayoutMarginsFromSafeArea() -> insetsLayoutMarginsFromSafeArea
+    2508:2509:void setInsetsLayoutMarginsFromSafeArea(boolean) -> setInsetsLayoutMarginsFromSafeArea
+    2514:2523:crossmobile.ios.uikit.UILayoutGuide safeAreaLayoutGuide() -> safeAreaLayoutGuide
+    2527:2527:double getX() -> l
+    2531:2531:double getY() -> m
+    2535:2535:double getWidth() -> n
+    2539:2539:double getHeight() -> o
+    2543:2547:void setFrameImpl(double,double,double,double) -> a
+    2550:2551:void setFrameImpl(crossmobile.ios.coregraphics.CGRect) -> a
+    2571:2571:java.lang.String restorationIdentifier() -> restorationIdentifier
+    2577:2578:void setRestorationIdentifier(java.lang.String) -> setRestorationIdentifier
+    2582:2582:int userInterfaceLayoutDirection() -> userInterfaceLayoutDirection
+    2586:2592:void meAndChildren(java.util.function.Consumer,boolean) -> a
+    2069:2093:void lambda$applyLayout$0() -> z
+    55:55:java.util.List access$1200(crossmobile.ios.uikit.UIView) -> d
+    55:55:java.lang.ref.WeakReference access$1302(crossmobile.ios.uikit.UIView,java.lang.ref.WeakReference) -> a
+    55:55:void access$1400(crossmobile.ios.uikit.UIView,java.util.function.Consumer,boolean) -> a
+    55:55:void access$1500(crossmobile.ios.uikit.UIView) -> e
+    60:62:void <clinit>() -> <clinit>
     crossmobile.ios.uikit.UIViewAppearance appearance() -> appearance
     crossmobile.ios.uikit.UIViewAppearance appearanceWhenContainedInInstancesOfClasses(java.util.List) -> appearanceWhenContainedInInstancesOfClasses
 crossmobile.ios.uikit.UIView$1 -> crossmobile.ios.uikit.UIView$1:
@@ -7658,28 +7692,28 @@ crossmobile.ios.uikit.UIView$Anchor -> crossmobile.ios.uikit.UIView$a:
     crossmobile.ios.uikit.NSLayoutXAxisAnchor trailingAnchor -> j
     crossmobile.ios.uikit.NSLayoutDimension widthAnchor -> k
     crossmobile.ios.uikit.UIView this$0 -> a
-    2546:2546:void <init>(crossmobile.ios.uikit.UIView) -> <init>
-    2546:2546:void <init>(crossmobile.ios.uikit.UIView,crossmobile.ios.uikit.UIView$1) -> <init>
-    2546:2546:crossmobile.ios.uikit.NSLayoutYAxisAnchor access$200(crossmobile.ios.uikit.UIView$Anchor) -> a
-    2546:2546:crossmobile.ios.uikit.NSLayoutYAxisAnchor access$202(crossmobile.ios.uikit.UIView$Anchor,crossmobile.ios.uikit.NSLayoutYAxisAnchor) -> a
-    2546:2546:crossmobile.ios.uikit.NSLayoutXAxisAnchor access$300(crossmobile.ios.uikit.UIView$Anchor) -> b
-    2546:2546:crossmobile.ios.uikit.NSLayoutXAxisAnchor access$302(crossmobile.ios.uikit.UIView$Anchor,crossmobile.ios.uikit.NSLayoutXAxisAnchor) -> a
-    2546:2546:crossmobile.ios.uikit.NSLayoutYAxisAnchor access$400(crossmobile.ios.uikit.UIView$Anchor) -> c
-    2546:2546:crossmobile.ios.uikit.NSLayoutYAxisAnchor access$402(crossmobile.ios.uikit.UIView$Anchor,crossmobile.ios.uikit.NSLayoutYAxisAnchor) -> b
-    2546:2546:crossmobile.ios.uikit.NSLayoutDimension access$500(crossmobile.ios.uikit.UIView$Anchor) -> d
-    2546:2546:crossmobile.ios.uikit.NSLayoutDimension access$502(crossmobile.ios.uikit.UIView$Anchor,crossmobile.ios.uikit.NSLayoutDimension) -> a
-    2546:2546:crossmobile.ios.uikit.NSLayoutXAxisAnchor access$600(crossmobile.ios.uikit.UIView$Anchor) -> e
-    2546:2546:crossmobile.ios.uikit.NSLayoutXAxisAnchor access$602(crossmobile.ios.uikit.UIView$Anchor,crossmobile.ios.uikit.NSLayoutXAxisAnchor) -> b
-    2546:2546:crossmobile.ios.uikit.NSLayoutXAxisAnchor access$700(crossmobile.ios.uikit.UIView$Anchor) -> f
-    2546:2546:crossmobile.ios.uikit.NSLayoutXAxisAnchor access$702(crossmobile.ios.uikit.UIView$Anchor,crossmobile.ios.uikit.NSLayoutXAxisAnchor) -> c
-    2546:2546:crossmobile.ios.uikit.NSLayoutXAxisAnchor access$800(crossmobile.ios.uikit.UIView$Anchor) -> g
-    2546:2546:crossmobile.ios.uikit.NSLayoutXAxisAnchor access$802(crossmobile.ios.uikit.UIView$Anchor,crossmobile.ios.uikit.NSLayoutXAxisAnchor) -> d
-    2546:2546:crossmobile.ios.uikit.NSLayoutYAxisAnchor access$900(crossmobile.ios.uikit.UIView$Anchor) -> h
-    2546:2546:crossmobile.ios.uikit.NSLayoutYAxisAnchor access$902(crossmobile.ios.uikit.UIView$Anchor,crossmobile.ios.uikit.NSLayoutYAxisAnchor) -> c
-    2546:2546:crossmobile.ios.uikit.NSLayoutXAxisAnchor access$1000(crossmobile.ios.uikit.UIView$Anchor) -> i
-    2546:2546:crossmobile.ios.uikit.NSLayoutXAxisAnchor access$1002(crossmobile.ios.uikit.UIView$Anchor,crossmobile.ios.uikit.NSLayoutXAxisAnchor) -> e
-    2546:2546:crossmobile.ios.uikit.NSLayoutDimension access$1100(crossmobile.ios.uikit.UIView$Anchor) -> j
-    2546:2546:crossmobile.ios.uikit.NSLayoutDimension access$1102(crossmobile.ios.uikit.UIView$Anchor,crossmobile.ios.uikit.NSLayoutDimension) -> b
+    2553:2553:void <init>(crossmobile.ios.uikit.UIView) -> <init>
+    2553:2553:void <init>(crossmobile.ios.uikit.UIView,crossmobile.ios.uikit.UIView$1) -> <init>
+    2553:2553:crossmobile.ios.uikit.NSLayoutYAxisAnchor access$200(crossmobile.ios.uikit.UIView$Anchor) -> a
+    2553:2553:crossmobile.ios.uikit.NSLayoutYAxisAnchor access$202(crossmobile.ios.uikit.UIView$Anchor,crossmobile.ios.uikit.NSLayoutYAxisAnchor) -> a
+    2553:2553:crossmobile.ios.uikit.NSLayoutXAxisAnchor access$300(crossmobile.ios.uikit.UIView$Anchor) -> b
+    2553:2553:crossmobile.ios.uikit.NSLayoutXAxisAnchor access$302(crossmobile.ios.uikit.UIView$Anchor,crossmobile.ios.uikit.NSLayoutXAxisAnchor) -> a
+    2553:2553:crossmobile.ios.uikit.NSLayoutYAxisAnchor access$400(crossmobile.ios.uikit.UIView$Anchor) -> c
+    2553:2553:crossmobile.ios.uikit.NSLayoutYAxisAnchor access$402(crossmobile.ios.uikit.UIView$Anchor,crossmobile.ios.uikit.NSLayoutYAxisAnchor) -> b
+    2553:2553:crossmobile.ios.uikit.NSLayoutDimension access$500(crossmobile.ios.uikit.UIView$Anchor) -> d
+    2553:2553:crossmobile.ios.uikit.NSLayoutDimension access$502(crossmobile.ios.uikit.UIView$Anchor,crossmobile.ios.uikit.NSLayoutDimension) -> a
+    2553:2553:crossmobile.ios.uikit.NSLayoutXAxisAnchor access$600(crossmobile.ios.uikit.UIView$Anchor) -> e
+    2553:2553:crossmobile.ios.uikit.NSLayoutXAxisAnchor access$602(crossmobile.ios.uikit.UIView$Anchor,crossmobile.ios.uikit.NSLayoutXAxisAnchor) -> b
+    2553:2553:crossmobile.ios.uikit.NSLayoutXAxisAnchor access$700(crossmobile.ios.uikit.UIView$Anchor) -> f
+    2553:2553:crossmobile.ios.uikit.NSLayoutXAxisAnchor access$702(crossmobile.ios.uikit.UIView$Anchor,crossmobile.ios.uikit.NSLayoutXAxisAnchor) -> c
+    2553:2553:crossmobile.ios.uikit.NSLayoutXAxisAnchor access$800(crossmobile.ios.uikit.UIView$Anchor) -> g
+    2553:2553:crossmobile.ios.uikit.NSLayoutXAxisAnchor access$802(crossmobile.ios.uikit.UIView$Anchor,crossmobile.ios.uikit.NSLayoutXAxisAnchor) -> d
+    2553:2553:crossmobile.ios.uikit.NSLayoutYAxisAnchor access$900(crossmobile.ios.uikit.UIView$Anchor) -> h
+    2553:2553:crossmobile.ios.uikit.NSLayoutYAxisAnchor access$902(crossmobile.ios.uikit.UIView$Anchor,crossmobile.ios.uikit.NSLayoutYAxisAnchor) -> c
+    2553:2553:crossmobile.ios.uikit.NSLayoutXAxisAnchor access$1000(crossmobile.ios.uikit.UIView$Anchor) -> i
+    2553:2553:crossmobile.ios.uikit.NSLayoutXAxisAnchor access$1002(crossmobile.ios.uikit.UIView$Anchor,crossmobile.ios.uikit.NSLayoutXAxisAnchor) -> e
+    2553:2553:crossmobile.ios.uikit.NSLayoutDimension access$1100(crossmobile.ios.uikit.UIView$Anchor) -> j
+    2553:2553:crossmobile.ios.uikit.NSLayoutDimension access$1102(crossmobile.ios.uikit.UIView$Anchor,crossmobile.ios.uikit.NSLayoutDimension) -> b
 crossmobile.ios.uikit.UIView$DelegateViews -> crossmobile.ios.uikit.UIView$b:
     crossmobile.ios.uikit.UIView view -> a
     crossmobile.ios.uikit.UIView oldParent -> b
@@ -7687,14 +7721,15 @@ crossmobile.ios.uikit.UIView$DelegateViews -> crossmobile.ios.uikit.UIView$b:
     crossmobile.ios.uikit.UIWindow oldWindow -> d
     crossmobile.ios.uikit.UIWindow newWindow -> e
     int idx -> f
-    2587:2594:void <init>(crossmobile.ios.uikit.UIView,crossmobile.ios.uikit.UIView,crossmobile.ios.uikit.UIView,int) -> <init>
-    2597:2601:crossmobile.ios.uikit.UIView anyParent() -> a
-    2605:2612:void doAdd() -> b
-    2615:2618:void doRemove() -> c
-    2621:2630:void delegateBefore() -> d
-    2633:2651:void delegateAfter() -> e
-    2654:2654:crossmobile.ios.uikit.UIView view() -> f
-    2578:2578:void <init>(crossmobile.ios.uikit.UIView,crossmobile.ios.uikit.UIView,crossmobile.ios.uikit.UIView,int,crossmobile.ios.uikit.UIView$1) -> <init>
+    2603:2610:void <init>(crossmobile.ios.uikit.UIView,crossmobile.ios.uikit.UIView,crossmobile.ios.uikit.UIView,int) -> <init>
+    2613:2617:crossmobile.ios.uikit.UIView anyParent() -> a
+    2621:2628:void doAdd() -> b
+    2631:2634:void doRemove() -> c
+    2637:2646:void delegateBefore() -> d
+    2649:2665:void delegateAfter() -> e
+    2668:2668:crossmobile.ios.uikit.UIView view() -> f
+    2638:2638:void lambda$delegateBefore$0(crossmobile.ios.uikit.UIView) -> a
+    2594:2594:void <init>(crossmobile.ios.uikit.UIView,crossmobile.ios.uikit.UIView,crossmobile.ios.uikit.UIView,int,crossmobile.ios.uikit.UIView$1) -> <init>
 crossmobile.ios.uikit.UIViewAnimationCurve -> crossmobile.ios.uikit.UIViewAnimationCurve:
     int EaseInOut -> EaseInOut
     int EaseIn -> EaseIn
@@ -7741,6 +7776,7 @@ crossmobile.ios.uikit.UIViewAppearance -> crossmobile.ios.uikit.UIViewAppearance
 crossmobile.ios.uikit.UIViewAppearance$BackgroundColor -> crossmobile.ios.uikit.UIViewAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UIViewAutoresizing -> crossmobile.ios.uikit.UIViewAutoresizing:
     int None -> None
     int FlexibleLeftMargin -> FlexibleLeftMargin
@@ -7942,33 +7978,33 @@ crossmobile.ios.uikit.UIWebView -> crossmobile.ios.uikit.UIWebView:
     long dataDetectorTypes -> b
     boolean scalesPageToFit -> e
     47:48:void <init>() -> <init>
-    38:64:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
-    67:67:org.crossmobile.bind.wrapper.WebWrapper widget() -> c
-    77:82:void loadRequest(crossmobile.ios.foundation.NSURLRequest) -> loadRequest
-    94:95:void loadHTMLString(java.lang.String,crossmobile.ios.foundation.NSURL) -> loadHTMLString
-    110:111:void loadData(crossmobile.ios.foundation.NSData,java.lang.String,java.lang.String,crossmobile.ios.foundation.NSURL) -> loadData
-    121:121:java.lang.String stringByEvaluatingJavaScriptFromString(java.lang.String) -> stringByEvaluatingJavaScriptFromString
-    132:132:crossmobile.ios.uikit.UIWebViewDelegate delegate() -> delegate
-    143:144:void setDelegate(crossmobile.ios.uikit.UIWebViewDelegate) -> setDelegate
-    151:152:void reload() -> reload
-    161:161:boolean canGoBack() -> canGoBack
-    170:171:void goBack() -> goBack
-    180:180:boolean canGoForward() -> canGoForward
-    189:190:void goForward() -> goForward
-    200:200:long dataDetectorTypes() -> dataDetectorTypes
-    212:213:void setDataDetectorTypes(long) -> setDataDetectorTypes
-    225:225:boolean scalesPageToFit() -> scalesPageToFit
-    238:239:void setScalesPageToFit(boolean) -> setScalesPageToFit
-    243:243:boolean isLoading() -> isLoading
-    248:249:void touchesBegan(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesBegan
-    253:254:void touchesMoved(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesMoved
-    258:259:void touchesEnded(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesEnded
-    263:264:void touchesCancelled(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesCancelled
-    268:270:void drawRect(crossmobile.ios.coregraphics.CGRect) -> drawRect
-    275:275:void setMediaPlaybackRequiresUserAction(boolean) -> setMediaPlaybackRequiresUserAction
-    279:279:boolean mediaPlaybackRequiresUserAction() -> mediaPlaybackRequiresUserAction
-    289:290:crossmobile.ios.uikit.UIScrollView scrollView() -> scrollView
-    79:81:void lambda$loadRequest$0(crossmobile.ios.foundation.NSURLRequest) -> a
+    38:63:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
+    66:66:org.crossmobile.bind.wrapper.WebWrapper widget() -> c
+    76:81:void loadRequest(crossmobile.ios.foundation.NSURLRequest) -> loadRequest
+    93:94:void loadHTMLString(java.lang.String,crossmobile.ios.foundation.NSURL) -> loadHTMLString
+    109:110:void loadData(crossmobile.ios.foundation.NSData,java.lang.String,java.lang.String,crossmobile.ios.foundation.NSURL) -> loadData
+    120:120:java.lang.String stringByEvaluatingJavaScriptFromString(java.lang.String) -> stringByEvaluatingJavaScriptFromString
+    131:131:crossmobile.ios.uikit.UIWebViewDelegate delegate() -> delegate
+    142:143:void setDelegate(crossmobile.ios.uikit.UIWebViewDelegate) -> setDelegate
+    150:151:void reload() -> reload
+    160:160:boolean canGoBack() -> canGoBack
+    169:170:void goBack() -> goBack
+    179:179:boolean canGoForward() -> canGoForward
+    188:189:void goForward() -> goForward
+    199:199:long dataDetectorTypes() -> dataDetectorTypes
+    211:212:void setDataDetectorTypes(long) -> setDataDetectorTypes
+    224:224:boolean scalesPageToFit() -> scalesPageToFit
+    237:238:void setScalesPageToFit(boolean) -> setScalesPageToFit
+    242:242:boolean isLoading() -> isLoading
+    247:248:void touchesBegan(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesBegan
+    252:253:void touchesMoved(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesMoved
+    257:258:void touchesEnded(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesEnded
+    262:263:void touchesCancelled(java.util.Set,crossmobile.ios.uikit.UIEvent) -> touchesCancelled
+    267:269:void drawRect(crossmobile.ios.coregraphics.CGRect) -> drawRect
+    274:274:void setMediaPlaybackRequiresUserAction(boolean) -> setMediaPlaybackRequiresUserAction
+    278:278:boolean mediaPlaybackRequiresUserAction() -> mediaPlaybackRequiresUserAction
+    288:289:crossmobile.ios.uikit.UIScrollView scrollView() -> scrollView
+    78:80:void lambda$loadRequest$0(crossmobile.ios.foundation.NSURLRequest) -> a
     crossmobile.ios.uikit.UIWebViewAppearance appearance() -> appearance
     crossmobile.ios.uikit.UIWebViewAppearance appearanceWhenContainedInInstancesOfClasses(java.util.List) -> appearanceWhenContainedInInstancesOfClasses
 crossmobile.ios.uikit.UIWebViewAppearance -> crossmobile.ios.uikit.UIWebViewAppearance:
@@ -7977,6 +8013,7 @@ crossmobile.ios.uikit.UIWebViewAppearance -> crossmobile.ios.uikit.UIWebViewAppe
 crossmobile.ios.uikit.UIWebViewAppearance$BackgroundColor -> crossmobile.ios.uikit.UIWebViewAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.UIWebViewDelegate -> crossmobile.ios.uikit.UIWebViewDelegate:
     40:40:void didFailLoadWithError(crossmobile.ios.uikit.UIWebView,crossmobile.ios.foundation.NSError) -> didFailLoadWithError
     56:56:boolean shouldStartLoadWithRequest(crossmobile.ios.uikit.UIWebView,crossmobile.ios.foundation.NSURLRequest,int) -> shouldStartLoadWithRequest
@@ -8020,6 +8057,7 @@ crossmobile.ios.uikit.UIWindowAppearance -> crossmobile.ios.uikit.UIWindowAppear
 crossmobile.ios.uikit.UIWindowAppearance$BackgroundColor -> crossmobile.ios.uikit.UIWindowAppearance$a:
     crossmobile.ios.uikit.UIColor param -> a
     void <init>(crossmobile.ios.uikit.UIColor) -> <init>
+    void accept(java.lang.Object) -> accept
 crossmobile.ios.uikit.cmAnimation -> crossmobile.ios.uikit.a:
     java.util.Set tuples -> a
     org.robovm.objc.block.VoidBlock1 delegate -> b
@@ -8200,41 +8238,41 @@ crossmobile.ios.uikit.cmButtonStates$State -> crossmobile.ios.uikit.b$a:
     159:159:java.lang.Object[] access$500(crossmobile.ios.uikit.cmButtonStates$State) -> a
 crossmobile.ios.uikit.cmCells -> crossmobile.ios.uikit.c:
 crossmobile.ios.uikit.cmCells$AMPMCell -> crossmobile.ios.uikit.c$a:
-    229:231:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
-    235:242:void update(int) -> b
+    225:227:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
+    231:238:void update(int) -> b
 crossmobile.ios.uikit.cmCells$AbstractCalendarCell -> crossmobile.ios.uikit.c$b:
     crossmobile.ios.uikit.UILabel label -> e
     java.util.Calendar calendar -> f
     crossmobile.ios.coregraphics.CGRect rect -> g
-    68:77:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
-    80:80:java.util.Calendar getCalendar() -> c
+    66:73:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
+    76:76:java.util.Calendar getCalendar() -> c
     void update(int) -> b
 crossmobile.ios.uikit.cmCells$CountDownHourCell -> crossmobile.ios.uikit.c$c:
-    137:139:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
-    143:150:void update(int) -> b
+    133:135:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
+    139:146:void update(int) -> b
 crossmobile.ios.uikit.cmCells$CountDownMinuteCell -> crossmobile.ios.uikit.c$d:
-    107:108:void <init>(crossmobile.ios.coregraphics.CGRect,int) -> <init>
-    112:113:void update(int) -> b
+    103:104:void <init>(crossmobile.ios.coregraphics.CGRect,int) -> <init>
+    108:109:void update(int) -> b
 crossmobile.ios.uikit.cmCells$DateCell -> crossmobile.ios.uikit.c$e:
     long first -> n
-    155:160:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
-    164:176:void update(int) -> b
+    151:156:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
+    160:172:void update(int) -> b
 crossmobile.ios.uikit.cmCells$DayCell -> crossmobile.ios.uikit.c$f:
-    182:183:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
-    187:190:void update(int) -> b
+    178:179:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
+    183:186:void update(int) -> b
 crossmobile.ios.uikit.cmCells$HourCell -> crossmobile.ios.uikit.c$g:
-    119:120:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
-    124:131:void update(int) -> b
+    115:116:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
+    120:127:void update(int) -> b
 crossmobile.ios.uikit.cmCells$MinuteCell -> crossmobile.ios.uikit.c$h:
     int interval -> n
-    91:93:void <init>(crossmobile.ios.coregraphics.CGRect,int) -> <init>
-    97:101:void update(int) -> b
+    87:89:void <init>(crossmobile.ios.coregraphics.CGRect,int) -> <init>
+    93:97:void update(int) -> b
 crossmobile.ios.uikit.cmCells$MonthCell -> crossmobile.ios.uikit.c$i:
-    197:199:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
-    203:206:void update(int) -> b
+    193:195:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
+    199:202:void update(int) -> b
 crossmobile.ios.uikit.cmCells$YearCell -> crossmobile.ios.uikit.c$j:
-    213:215:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
-    219:222:void update(int) -> b
+    209:211:void <init>(crossmobile.ios.coregraphics.CGRect) -> <init>
+    215:218:void update(int) -> b
 crossmobile.ios.uikit.cmConstraintWithVisualFormat -> crossmobile.ios.uikit.d:
     26:26:void <init>() -> <init>
     31:46:boolean parsePredicates(java.lang.String,java.util.List) -> a
@@ -8327,10 +8365,10 @@ crossmobile.ios.uikit.cmDatePickers$DatePicker -> crossmobile.ios.uikit.f$d:
 crossmobile.ios.uikit.cmDatePickers$Table -> crossmobile.ios.uikit.f$e:
     int interval -> n
     java.util.Calendar calendar -> o
-    321:367:void <init>(crossmobile.ios.coregraphics.CGRect,java.util.Calendar,crossmobile.ios.uikit.cmPickers$CellType,int) -> <init>
-    370:371:void setCalendar(java.util.Calendar) -> a
-    374:374:java.util.Calendar getCalendar() -> d
-    378:398:crossmobile.ios.uikit.cmCells$AbstractCalendarCell getCell(crossmobile.ios.uikit.UITableView,crossmobile.ios.uikit.cmPickers$CellType) -> a
+    321:366:void <init>(crossmobile.ios.coregraphics.CGRect,java.util.Calendar,crossmobile.ios.uikit.cmPickers$CellType,int) -> <init>
+    369:370:void setCalendar(java.util.Calendar) -> a
+    373:373:java.util.Calendar getCalendar() -> d
+    377:397:crossmobile.ios.uikit.cmCells$AbstractCalendarCell getCell(crossmobile.ios.uikit.UITableView,crossmobile.ios.uikit.cmPickers$CellType) -> a
     315:315:void access$000(crossmobile.ios.uikit.cmDatePickers$Table,java.util.Calendar) -> a
 crossmobile.ios.uikit.cmDatePickers$Table$1 -> crossmobile.ios.uikit.f$e$1:
     crossmobile.ios.uikit.cmPickers$CellType val$type -> a
@@ -8400,7 +8438,7 @@ crossmobile.ios.uikit.cmPickerView$Wheel$Cell -> crossmobile.ios.uikit.h$a$a:
     crossmobile.ios.coregraphics.CGRect subviewrect -> o
     crossmobile.ios.uikit.cmPickerView$Wheel this$1 -> p
     151:157:void <init>(crossmobile.ios.uikit.cmPickerView$Wheel,double,double) -> <init>
-    160:172:void update(java.lang.Object,int) -> a
+    160:171:void update(java.lang.Object,int) -> a
 crossmobile.ios.uikit.cmPickers -> crossmobile.ios.uikit.i:
 crossmobile.ios.uikit.cmPickers$1 -> crossmobile.ios.uikit.i$1:
     int[] $SwitchMap$crossmobile$ios$uikit$cmPickers$CellType -> a
@@ -10230,10 +10268,10 @@ org.crossmobile.backend.android.billing.SkuDetails -> org.crossmobile.as:
 org.crossmobile.backend.android.notifications.CrossMobileFirebaseMessagingService -> org.crossmobile.backend.android.notifications.CrossMobileFirebaseMessagingService:
     java.lang.String NAME -> NAME
     27:27:void <init>() -> <init>
-    34:76:void onMessageReceived(com.google.firebase.messaging.RemoteMessage) -> onMessageReceived
+    32:74:void onMessageReceived(com.google.firebase.messaging.RemoteMessage) -> onMessageReceived
 org.crossmobile.backend.android.notifications.FirebaseInitializer -> org.crossmobile.backend.android.notifications.FirebaseInitializer:
-    24:24:void <init>() -> <init>
-    27:29:void earlyInitialize(java.lang.Object) -> earlyInitialize
+    22:22:void <init>() -> <init>
+    25:27:void earlyInitialize(java.lang.Object) -> earlyInitialize
 org.crossmobile.backend.android.web.VideoEnabledWebChromeClient -> org.crossmobile.at:
     android.view.View activityNonVideoView -> a
     android.view.ViewGroup activityVideoView -> b
@@ -11221,10 +11259,12 @@ org.crossmobile.bind.graphics.AppearanceRegistry -> org.crossmobile.ax:
     java.util.Map containerConstrained -> a
     java.util.Map containerSimple -> b
     java.util.Map properties -> c
-    34:37:crossmobile.ios.uikit.UIAppearance requestAppearance(java.lang.Class,java.lang.Class) -> a
-    41:50:crossmobile.ios.uikit.UIAppearance requestAppearance(java.lang.Class,java.util.List,java.lang.Class) -> a
-    54:58:void registerValue(crossmobile.ios.uikit.UIAppearance,java.lang.String,java.util.function.Consumer) -> a
-    29:31:void <clinit>() -> <clinit>
+    35:38:crossmobile.ios.uikit.UIAppearance requestAppearance(java.lang.Class,java.lang.Class) -> a
+    42:51:crossmobile.ios.uikit.UIAppearance requestAppearance(java.lang.Class,java.util.List,java.lang.Class) -> a
+    55:59:void registerValue(crossmobile.ios.uikit.UIAppearance,java.lang.String,java.util.function.Consumer) -> a
+    62:77:void didMoveToWindow(crossmobile.ios.uikit.UIView) -> a
+    80:91:java.util.Collection getAffected(crossmobile.ios.uikit.UIAppearanceContainer) -> a
+    30:32:void <clinit>() -> <clinit>
 org.crossmobile.bind.graphics.DrawableMetrics -> org.crossmobile.ay:
     int virtualWidth -> k
     int virtualHeight -> l
@@ -11527,30 +11567,30 @@ org.crossmobile.bind.graphics.UIStatusBar -> org.crossmobile.bj:
     int recept -> r
     int wifi -> s
     48:50:org.crossmobile.bind.graphics.UIStatusBar getStatusBar() -> c
-    39:99:void <init>() -> <init>
-    102:109:void updateTime(java.util.Date) -> a
-    112:136:void updateStyle() -> r
-    139:139:boolean statusBarStyleDark() -> d
-    143:146:void setStatusBarStyleDark(boolean) -> a
-    149:157:void setWifi(float) -> a
-    160:170:void setReception(float) -> b
-    173:179:void setBatteryLevel(float) -> c
-    182:182:boolean isStatusBarHidden() -> p
-    186:198:void setStatusBarHidden(boolean,boolean) -> a
-    201:201:int statusBarOrientation() -> q
-    205:235:void setStatusBarOrientation(int,boolean) -> a
-    94:96:void lambda$new$1(crossmobile.ios.foundation.NSTimer) -> a
-    95:95:void lambda$null$0(crossmobile.ios.foundation.NSTimer) -> b
+    39:96:void <init>() -> <init>
+    99:106:void updateTime(java.util.Date) -> a
+    109:133:void updateStyle() -> r
+    136:136:boolean statusBarStyleDark() -> d
+    140:143:void setStatusBarStyleDark(boolean) -> a
+    146:154:void setWifi(float) -> a
+    157:167:void setReception(float) -> b
+    170:176:void setBatteryLevel(float) -> c
+    179:179:boolean isStatusBarHidden() -> p
+    183:195:void setStatusBarHidden(boolean,boolean) -> a
+    198:198:int statusBarOrientation() -> q
+    202:232:void setStatusBarOrientation(int,boolean) -> a
+    91:93:void lambda$new$1(crossmobile.ios.foundation.NSTimer) -> a
+    92:92:void lambda$null$0(crossmobile.ios.foundation.NSTimer) -> b
     33:33:boolean access$100(org.crossmobile.bind.graphics.UIStatusBar) -> a
     36:37:void <clinit>() -> <clinit>
 org.crossmobile.bind.graphics.UIStatusBar$UIBattery -> org.crossmobile.bj$a:
     float level -> b
     crossmobile.ios.coregraphics.CGColor color -> e
     org.crossmobile.bind.graphics.UIStatusBar this$0 -> a
-    242:246:void <init>(org.crossmobile.bind.graphics.UIStatusBar,crossmobile.ios.coregraphics.CGRect) -> <init>
-    249:251:void setLevel(float) -> a
-    255:265:void drawRect(crossmobile.ios.coregraphics.CGRect) -> drawRect
-    237:237:float access$002(org.crossmobile.bind.graphics.UIStatusBar$UIBattery,float) -> a
+    239:242:void <init>(org.crossmobile.bind.graphics.UIStatusBar,crossmobile.ios.coregraphics.CGRect) -> <init>
+    245:247:void setLevel(float) -> a
+    251:261:void drawRect(crossmobile.ios.coregraphics.CGRect) -> drawRect
+    234:234:float access$002(org.crossmobile.bind.graphics.UIStatusBar$UIBattery,float) -> a
 org.crossmobile.bind.graphics.curve.EaseInCurve -> org.crossmobile.bk:
     19:19:void <init>() -> <init>
     23:23:double interpolate(double) -> a

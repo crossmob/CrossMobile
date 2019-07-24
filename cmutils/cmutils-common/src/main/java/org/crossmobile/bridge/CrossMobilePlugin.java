@@ -27,15 +27,4 @@ public interface CrossMobilePlugin {
 
     default void earlyInitialize(Object context) {
     }
-
-    final class Disabled implements CrossMobilePlugin {
-
-        private Disabled() {
-        }
-
-        @Override
-        public void initialize() {
-        }
-
-    }
 }

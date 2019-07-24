@@ -806,7 +806,6 @@ org/crossmobile/backend/android/ActivityStateListener.class v8
 org/crossmobile/backend/android/ApplicationStateListener.class v8
 org/crossmobile/backend/android/MainActivity.class v8
 org/crossmobile/backend/android/MainApplication.class v8
-org/crossmobile/bridge/CrossMobilePlugin$Disabled.class v8
 org/crossmobile/bridge/CrossMobilePlugin.class v8
 org/crossmobile/bridge/FileBridge.class v8
 org/crossmobile/bridge/GraphicsBridge.class v8

@@ -17,7 +17,6 @@
 package org.crossmobile.bridge.ann;
 
 import org.crossmobile.bridge.CrossMobilePlugin;
-import org.crossmobile.bridge.CrossMobilePlugin.Disabled;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
@@ -86,7 +85,7 @@ public @interface CMLib {
      *
      * @return the class of the plugin initializer
      */
-    Class<? extends CrossMobilePlugin> initializer() default Disabled.class;
+    Class<? extends CrossMobilePlugin> initializer() default CrossMobilePlugin.class;
 
     /**
      * Extra information needed to be appended to the application section of the

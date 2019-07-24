@@ -25,8 +25,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CrossMobileFirebaseMessagingService extends FirebaseMessagingService {
-
-
     public static final String NAME = "CrossMobileFirebaseMessagingService";
 
     @Override

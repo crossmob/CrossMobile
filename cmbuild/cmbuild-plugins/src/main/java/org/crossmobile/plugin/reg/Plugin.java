@@ -17,11 +17,11 @@
 package org.crossmobile.plugin.reg;
 
 import org.crossmobile.bridge.CrossMobilePlugin;
-import org.crossmobile.bridge.CrossMobilePlugin.Disabled;
 import org.crossmobile.bridge.ann.CMAndroidInjections;
 import org.crossmobile.bridge.ann.CMLibDepends;
 import org.crossmobile.bridge.ann.CMPod;
 import org.crossmobile.utils.AndroidInjections;
+import org.crossmobile.utils.Log;
 import org.crossmobile.utils.PluginPod;
 import org.crossmobile.utils.reqgraph.Requirement;
 
@@ -79,7 +79,7 @@ public class Plugin {
     }
 
     public void setInitializer(Class<? extends CrossMobilePlugin> initializer, String info) {
-        String initName = initializer == null || initializer == Disabled.class ? "" : initializer.getName();
+        String initName = initializer == CrossMobilePlugin.class ? "" : initializer.getName();
         this.initializer = replaceOldString(this.initializer, initName, info);
     }
 

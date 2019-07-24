@@ -16,8 +16,6 @@
  */
 package org.crossmobile.backend.android.notifications;
 
-import android.content.Context;
-import com.google.firebase.FirebaseApp;
 import org.crossmobile.bridge.CrossMobilePlugin;
 import org.crossmobile.bridge.Native;
 
@@ -25,6 +23,6 @@ public class FirebaseInitializer implements CrossMobilePlugin {
     @Override
     public void earlyInitialize(Object context) {
         if (Native.isAndroid())
-            FirebaseApp.initializeApp((Context) context);
+            com.google.firebase.FirebaseApp.initializeApp((android.content.Context) context);
     }
 }

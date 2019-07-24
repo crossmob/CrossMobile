@@ -74,7 +74,7 @@ public class PluginsLauncher {
                         + (argType == null ? "" : ", " + argType + ".class") + ").invoke(pluginClass.newInstance()"
                         + (argType == null ? "" : ", context") + ");\n"
                         + "        } catch (Exception e) {\n"
-                        + "            e.printStackTrace();\n"
+                        + "            System.err.println(\"Plugin not initialized: " + classname + "\\n    \" + e.toString());\n"
                         + "        }\n");
                 found++;
             }
