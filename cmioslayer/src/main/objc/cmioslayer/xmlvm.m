@@ -77,7 +77,7 @@ NSArray<Class>* jclass_to_class_list(java_util_List* list){
     int size = [list size__];
     NSMutableArray* result = [[[NSMutableArray alloc] initWithCapacity:[list size__]] autorelease];
     for(int i = 0 ; i <size ; i++)
-        [result addObject:[list get___int:i]];
+        [result addObject:((java_lang_Class*)[list get___int:i])->clazz];
     return result;
 }
 
