@@ -16,9 +16,7 @@
  */
 package org.crossmobile.plugin.parser;
 
-import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.misc.Interval;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
@@ -60,7 +58,7 @@ public class AnnotationParser {
         signature = pattern.matcher(signature).replaceAll(" ");
         listener.setOriginalCode(signature);
         try {
-            ANTLRInputStream input = new ANTLRInputStream(new StringReader(signature));
+            CodePointCharStream input = CharStreams.fromString(signature);
             CMAnnotLexer lexer = new CMAnnotLexer(input);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             CMAnnotParser parser = new CMAnnotParser(tokens);
