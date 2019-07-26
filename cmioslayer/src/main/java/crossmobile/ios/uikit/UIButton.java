@@ -79,6 +79,7 @@ public class UIButton extends UIControl {
         label = new UILabel();
         label.setHidden(true);
         label.setFont(Theme.Button.FONT);
+        label.setBackgroundColor(null); // Need to do this to bypass UIAppearance settings
         addSubview(label);
 
         switch (UIButtonType) {
