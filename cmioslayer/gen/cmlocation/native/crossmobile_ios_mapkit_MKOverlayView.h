@@ -11,7 +11,7 @@
 @class crossmobile_ios_mapkit_MKMapPoint;
 @class crossmobile_ios_mapkit_MKMapRect;
 @protocol crossmobile_ios_mapkit_MKOverlay;
-@class crossmobile_ios_mapkit_MKOverlayViewAppearance;
+@class crossmobile_ios_uikit_UIViewAppearance;
 @protocol java_util_List;
 
 @interface crossmobile_ios_mapkit_MKOverlayView$Ext : MKOverlayView

@@ -47,6 +47,7 @@ public class AppearanceInjections {
     private static final String RESULT_ANCHOR = "RESULT_ANCHOR";
     private static final String SOURCE_ANCHOR = "SOURCE_ANCHOR";
     private static final String PARAM_METHOD = "PARAM_METHOD";
+    private static final String ISSET_CALLBACK_METHOD = "ISSET_CALLBACK_METHOD";
 
     private static final String CLASS_SUFFIX = "Appearance";
     private static final String CLASS_FILE_SUFFIX = CLASS_SUFFIX + ".class";
@@ -56,8 +57,7 @@ public class AppearanceInjections {
     private static final String APPEARANCE_CONTAINED_SIGNATURE = "(Ljava/util/List<Ljava/lang/Class<+Lcrossmobile/ios/uikit/UIAppearanceContainer;>;>;)L" + RESULT_ANCHOR + ";";
     private static final String APPEARANCE_CODE = "return (" + RESULT_ANCHOR + ")org.crossmobile.bind.graphics.AppearanceRegistry.requestAppearance(" + SOURCE_ANCHOR + ".class, " + RESULT_ANCHOR + ".class);";
     private static final String APPEARANCE_CONTAINED_CODE = "return (" + RESULT_ANCHOR + ")org.crossmobile.bind.graphics.AppearanceRegistry.requestAppearance(" + SOURCE_ANCHOR + ".class, $1, " + RESULT_ANCHOR + ".class);";
-    private static final String ACCEPT_PARAM_CODE = "public void accept( Object obj) { " + SOURCE_ANCHOR + " val = (" + SOURCE_ANCHOR + ")obj; val." + PARAM_METHOD + "(param); }";
-
+    private static final String ACCEPT_PARAM_CODE = "public void accept( Object obj) { " + SOURCE_ANCHOR + " val = (" + SOURCE_ANCHOR + ")obj; if (!val." + ISSET_CALLBACK_METHOD + "()) val." + PARAM_METHOD + "(param); }";
 
     private CtClass NSObjectCt;
     private CtClass UIAppearanceCt;
@@ -66,6 +66,16 @@ public class AppearanceInjections {
 
     private final ClassPool cp;
     private final String rootClassPath;
+
+    private final Map<CtClass, CtClass> appearanceContainers = new TreeMap<>((c1, c2) -> {
+        if (c1.equals(c2))
+            return 0;
+        if (c1.subclassOf(c2))
+            return -1;
+        if (c2.subclassOf(c1))
+            return 1;
+        return c1.getName().compareTo(c2.getName());
+    });
 
     public AppearanceInjections(ClassPool cp, String rootClassPath) {
         this.cp = cp;
@@ -102,29 +112,56 @@ public class AppearanceInjections {
             } catch (NotFoundException ignored) { // Needs creation
             }
             CtClass baseC = cp.get(cls.getName());
-            CtClass appearanceC = cp.makeClass(cls.getName() + CLASS_SUFFIX, NSObjectCt);
-            appearanceC.setInterfaces(new CtClass[]{UIAppearanceCt});
+            CtClass baseAppearanceC = NSObjectCt;
+            for (CtClass c : appearanceContainers.keySet())
+                if (baseC.subclassOf(c)) {
+                    baseAppearanceC = appearanceContainers.get(c);
+                    break;
+                }
 
-            CtConstructor constructor = CtNewConstructor.defaultConstructor(appearanceC);
-            constructor.setModifiers(Modifier.setPrivate(constructor.getModifiers()));
-            appearanceC.addConstructor(constructor);
+            CtClass appearanceC = baseAppearanceC;
+            for (CtMethod fromM : baseC.getDeclaredMethods())
+                if (Modifier.isPublic(fromM.getModifiers()) && fromM.hasAnnotation(UIAppearanceSelector.class)) {
+                    if (appearanceC == baseAppearanceC)
+                        appearanceC = createAppearanceClass(baseC, baseAppearanceC);
+                    String paramName = decapitalize(trim(fromM.getName(), "set"));
+                    createContainerHelperMethods(baseC, fromM, paramName);
+                    addAppearancePropertyMethod(appearanceC, baseC, fromM, paramName);
+                }
+            if (appearanceC != baseAppearanceC) {
+                appearanceC.writeFile(rootClassPath);
+                appearanceC.defrost();
+                appearanceContainers.put(baseC, appearanceC);
+            }
 
-            appearanceC.getClassFile().addAttribute(getAttribute(CMReference.class, appearanceC, asClass("proxyOf", baseC)));
-            for (CtMethod fromM : baseC.getMethods())
-                if (fromM.hasAnnotation(UIAppearanceSelector.class))
-                    createAppearanceClass(appearanceC, baseC, fromM);
-            appearanceC.writeFile(rootClassPath);
-            appearanceC.defrost();
-
-            createBaseMethods(appearanceC, baseC);
+            createContainerBaseMethods(appearanceC, baseC);
             baseC.writeFile(rootClassPath);
             baseC.defrost();
-        } catch (Exception err) {
+        } catch (Throwable err) {
             Log.error(err);
+            BaseUtils.throwException(err);
         }
     }
 
-    private void createBaseMethods(CtClass appearanceC, CtClass baseC) throws Exception {
+    private void createContainerHelperMethods(CtClass baseC, CtMethod fromM, String param) throws Exception {
+        String fieldName = getCheckParamField(param);
+        CtField paramField = CtField.make("private boolean " + fieldName + " = false;", baseC);
+        baseC.addField(paramField);
+
+        String shadowSetterName = getParamSetterMethod(param);
+        CtMethod shadow = CtNewMethod.make(fromM.getReturnType(), shadowSetterName, fromM.getParameterTypes(), null, null, baseC);
+        shadow.getMethodInfo().setCodeAttribute(fromM.getMethodInfo().getCodeAttribute());
+        shadow.setModifiers(Modifier.setPackage(shadow.getModifiers()));
+        baseC.addMethod(shadow);
+        fromM.setBody("{" + getCheckParamField(param) + " = true; " + shadowSetterName + "($1);}");
+
+        CtMethod issetMethod = CtNewMethod.make(CtClass.booleanType, getCheckParamMethod(param), new CtClass[0], null, null, baseC);
+        issetMethod.setModifiers(Modifier.setPackage(issetMethod.getModifiers()));
+        issetMethod.setBody("return " + fieldName + ";");
+        baseC.addMethod(issetMethod);
+    }
+
+    private void createContainerBaseMethods(CtClass appearanceC, CtClass baseC) throws Exception {
         CtMethod appMethodPlain = CtNewMethod.make(appearanceC, "appearance", new CtClass[0], null, null, baseC);
         appMethodPlain.setModifiers(appMethodPlain.getModifiers() | Modifier.STATIC);
         appMethodPlain.getMethodInfo().addAttribute(getAttribute(CMSelector.class, baseC, asString("value", APPEARANCE_NATIVE)));
@@ -140,21 +177,30 @@ public class AppearanceInjections {
         baseC.addMethod(appMethodHierarchy);
     }
 
-    private CtClass createAppearanceClass(CtClass appearanceC, CtClass baseC, CtMethod fromM) throws Exception {
-        CtClass paramClass = createParamClass(appearanceC, baseC, fromM);
+    private CtClass createAppearanceClass(CtClass baseC, CtClass parentC) throws CannotCompileException {
+        CtClass appearanceC = cp.makeClass(baseC.getName() + CLASS_SUFFIX, parentC);
+        appearanceC.setInterfaces(new CtClass[]{UIAppearanceCt});
+        CtConstructor constructor = CtNewConstructor.defaultConstructor(appearanceC);
+        constructor.setModifiers(Modifier.setPackage(constructor.getModifiers()));
+        appearanceC.addConstructor(constructor);
+        appearanceC.getClassFile().addAttribute(getAttribute(CMReference.class, appearanceC, asClass("proxyOf", baseC)));
+        return appearanceC;
+    }
+
+    private CtClass addAppearancePropertyMethod(CtClass appearanceC, CtClass baseC, CtMethod fromM, String paramName) throws Exception {
+        CtClass paramClass = createParamClass(appearanceC, baseC, fromM, paramName);
         paramClass.writeFile(rootClassPath);
 
         CtMethod toM = CtNewMethod.make(fromM.getReturnType(), fromM.getName(), fromM.getParameterTypes(), null, null, appearanceC);
-        toM.setBody("org.crossmobile.bind.graphics.AppearanceRegistry.registerValue(this, \"" + fromM.getName() + "\", new " + paramClass.getName() + "($1));");
+        toM.setBody("org.crossmobile.bind.graphics.AppearanceRegistry.registerValue(this, \"" + paramName + "\", new " + paramClass.getName() + "($1));");
         copyAnnotation(CMSelector.class, fromM, toM);
         copyAnnotation(CMSetter.class, fromM, toM);
         appearanceC.addMethod(toM);
         return appearanceC;
     }
 
-    private CtClass createParamClass(CtClass appearanceC, CtClass baseC, CtMethod fromM) throws Exception {
+    private CtClass createParamClass(CtClass appearanceC, CtClass baseC, CtMethod fromM, String paramName) throws Exception {
         String paramType = fromM.getParameterTypes()[0].getName();
-        String paramName = decapitalize(trim(fromM.getName(), "set"));
 
         CtClass paramClass = appearanceC.makeNestedClass(capitalize(paramName), true);
         paramClass.setInterfaces(new CtClass[]{ConsumerCt});
@@ -165,7 +211,7 @@ public class AppearanceInjections {
         paramConstructor.setBody("this.param = $1;");
         paramClass.addConstructor(paramConstructor);
 
-        CtMethod paramMethod = CtNewMethod.make(ACCEPT_PARAM_CODE.replaceAll(SOURCE_ANCHOR, baseC.getName()).replaceAll(PARAM_METHOD, fromM.getName()), paramClass);
+        CtMethod paramMethod = CtNewMethod.make(ACCEPT_PARAM_CODE.replaceAll(SOURCE_ANCHOR, baseC.getName()).replaceAll(PARAM_METHOD, getParamSetterMethod(paramName)).replaceAll(ISSET_CALLBACK_METHOD, getCheckParamMethod(paramName)), paramClass);
         paramClass.addMethod(paramMethod);
 
         return paramClass;
@@ -228,6 +274,18 @@ public class AppearanceInjections {
         for (AnnMetaData meta : metaData)
             annotation.addMemberValue(meta.name, meta.valueConstructor.apply(constpool));
         return annotation;
+    }
+
+    private String getCheckParamMethod(String param) {
+        return "_isSet" + capitalize(param);
+    }
+
+    private String getCheckParamField(String param) {
+        return "_appearance" + capitalize(param);
+    }
+
+    private String getParamSetterMethod(String param) {
+        return "_appearanceSet" + capitalize(param);
     }
 
     static class AnnMetaData {

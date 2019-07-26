@@ -9,9 +9,9 @@
 @class crossmobile_ios_coregraphics_CGRect;
 @class crossmobile_ios_uikit_UIColor;
 @class crossmobile_ios_uikit_UIImage;
-@class crossmobile_ios_uikit_UITabBarAppearance;
 @protocol crossmobile_ios_uikit_UITabBarDelegate;
 @class crossmobile_ios_uikit_UITabBarItem;
+@class crossmobile_ios_uikit_UIViewAppearance;
 @protocol java_util_List;
 
 @interface crossmobile_ios_uikit_UITabBar$Ext : UITabBar

@@ -6,12 +6,12 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-@class crossmobile_ios_uikit_UIButtonAppearance;
 @class crossmobile_ios_uikit_UIColor;
 @class crossmobile_ios_uikit_UIEdgeInsets;
 @class crossmobile_ios_uikit_UIImage;
 @class crossmobile_ios_uikit_UIImageView;
 @class crossmobile_ios_uikit_UILabel;
+@class crossmobile_ios_uikit_UIViewAppearance;
 @class java_lang_String;
 @protocol java_util_List;
 

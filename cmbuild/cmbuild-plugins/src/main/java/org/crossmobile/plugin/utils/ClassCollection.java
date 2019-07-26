@@ -16,23 +16,19 @@
  */
 package org.crossmobile.plugin.utils;
 
-import javassist.CannotCompileException;
 import javassist.ClassPool;
-import javassist.CtClass;
 import javassist.NotFoundException;
 import org.crossmobile.bridge.ann.CMLibTarget;
 import org.crossmobile.bridge.system.ClassWalker;
+import org.crossmobile.plugin.reg.ObjectRegistry;
 import org.crossmobile.plugin.reg.PackageRegistry;
 import org.crossmobile.plugin.reg.TargetRegistry;
 import org.crossmobile.utils.Log;
-import org.crossmobile.utils.ReflectionUtils;
 
 import java.io.File;
 import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
+import java.util.*;
 import java.util.function.Consumer;
 
 import static java.io.File.pathSeparator;
@@ -41,6 +37,15 @@ import static org.crossmobile.utils.TextUtils.iterableToString;
 import static org.crossmobile.utils.TextUtils.plural;
 
 public class ClassCollection {
+    private final static Comparator<Class<?>> classComparator = (o1, o2) -> {
+        if (o1 == o2)
+            return 0;
+        if (o1.isAssignableFrom(o2))
+            return -1;
+        if (o2.isAssignableFrom(o1))
+            return 1;
+        return o1.getName().compareTo(o2.getName());
+    };
 
     private final Collection<String> paths = new HashSet<>();
     private final Collection<Class<?>> allClasses = new HashSet<>();
@@ -49,6 +54,7 @@ public class ClassCollection {
     private final Collection<Class<?>> allnativeClasses = new HashSet<>();
     private final Collection<Class<?>> compileClasses = new HashSet<>();
     private final Collection<Class<?>> builddepClasses = new HashSet<>();
+    private final Collection<Class<?>> appearanceClasses = new TreeSet<>(classComparator);
     private final ClassPool cp = ClassPool.getDefault();
 
     public void resolveClasses(Collection<String> paths, Consumer<Package> packages, Consumer<Class> classes, boolean silently) {
@@ -100,8 +106,11 @@ public class ClassCollection {
                     compileClasses.add(cls);
                 if (target.builddep)
                     builddepClasses.add(cls);
-                if (target.iosnative)
+                if (target.iosnative) {
                     iosnativeClasses.add(cls);
+                    if (ObjectRegistry.isUIAppearanceClass(cls) && !cls.isInterface())
+                        appearanceClasses.add(cls);
+                }
                 if (target.uwpnative)
                     uwpnativeClasses.add(cls);
                 if (target.iosjava || target.uwpnative)
@@ -131,6 +140,10 @@ public class ClassCollection {
 
     public Iterable<Class<?>> getBuildDependencyClasses() {
         return builddepClasses;
+    }
+
+    public Iterable<Class<?>> getAppearanceClasses() {
+        return appearanceClasses;
     }
 
     @Override

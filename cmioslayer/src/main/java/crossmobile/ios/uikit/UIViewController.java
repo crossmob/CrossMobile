@@ -40,7 +40,7 @@ import java.util.Map;
  * hierarchy.
  */
 @CMClass
-public class UIViewController extends UIResponder {
+public class UIViewController extends UIResponder implements UIAppearanceContainer {
 
     private final String nibName;
     private final NSExtensionContext extensionContext = null;

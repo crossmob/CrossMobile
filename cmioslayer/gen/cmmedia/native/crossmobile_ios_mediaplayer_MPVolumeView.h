@@ -7,7 +7,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <MediaPlayer/MediaPlayer.h>
 @class crossmobile_ios_coregraphics_CGRect;
-@class crossmobile_ios_mediaplayer_MPVolumeViewAppearance;
+@class crossmobile_ios_uikit_UIViewAppearance;
 @protocol java_util_List;
 
 @interface crossmobile_ios_mediaplayer_MPVolumeView$Ext : MPVolumeView

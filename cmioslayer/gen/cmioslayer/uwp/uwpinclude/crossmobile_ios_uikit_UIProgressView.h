@@ -7,7 +7,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 @class crossmobile_ios_uikit_UIColor;
-@class crossmobile_ios_uikit_UIProgressViewAppearance;
+@class crossmobile_ios_uikit_UIViewAppearance;
 @protocol java_util_List;
 
 CM_EXPORT_CLASS

@@ -6,7 +6,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 @protocol crossmobile_ios_mapkit_MKAnnotation;
-@class crossmobile_ios_mapkit_MKPinAnnotationViewAppearance;
+@class crossmobile_ios_uikit_UIViewAppearance;
 @class java_lang_String;
 @protocol java_util_List;
 

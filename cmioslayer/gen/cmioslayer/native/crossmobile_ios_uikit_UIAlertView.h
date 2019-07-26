@@ -6,9 +6,9 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-@class crossmobile_ios_uikit_UIAlertViewAppearance;
 @protocol crossmobile_ios_uikit_UIAlertViewDelegate;
 @class crossmobile_ios_uikit_UITextField;
+@class crossmobile_ios_uikit_UIViewAppearance;
 @class java_lang_String;
 @protocol java_util_List;
 

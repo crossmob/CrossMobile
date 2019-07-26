@@ -13,7 +13,6 @@
 #import "crossmobile_ios_uikit_NSLayoutXAxisAnchor.h"
 #import "crossmobile_ios_uikit_NSLayoutYAxisAnchor.h"
 #import "crossmobile_ios_uikit_UIActionSheet.h"
-#import "crossmobile_ios_uikit_UIActionSheetAppearance.h"
 #import "crossmobile_ios_uikit_UIActionSheetDelegate.h"
 #import "crossmobile_ios_uikit_UIColor.h"
 #import "crossmobile_ios_uikit_UIEdgeInsets.h"
@@ -24,6 +23,7 @@
 #import "crossmobile_ios_uikit_UITabBar.h"
 #import "crossmobile_ios_uikit_UIToolbar.h"
 #import "crossmobile_ios_uikit_UIView.h"
+#import "crossmobile_ios_uikit_UIViewAppearance.h"
 #import "crossmobile_ios_uikit_UIWindow.h"
 #import "java_lang_Object.h"
 #import "java_lang_String.h"
@@ -916,13 +916,13 @@
 // direct binding of: + (instancetype)appearance;
 + (instancetype) appearance__
 {
-    return [[crossmobile_ios_uikit_UIActionSheetAppearance alloc] initWithUIActionSheetAppearance:[UIActionSheet appearance]];
+    return [[crossmobile_ios_uikit_UIViewAppearance alloc] initWithUIViewAppearance:[UIActionSheet appearance]];
 }
 
 // direct binding of: + (instancetype)appearanceWhenContainedInInstancesOfClasses:(NSArray<Class<UIAppearanceContainer>> *)containerTypes;
 + (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes 
 {
-    return [[crossmobile_ios_uikit_UIActionSheetAppearance alloc] initWithUIActionSheetAppearance:[UIActionSheet appearanceWhenContainedInInstancesOfClasses:jclass_to_class_list(containerTypes == JAVA_NULL ? nil : containerTypes)]];
+    return [[crossmobile_ios_uikit_UIViewAppearance alloc] initWithUIViewAppearance:[UIActionSheet appearanceWhenContainedInInstancesOfClasses:jclass_to_class_list(containerTypes == JAVA_NULL ? nil : containerTypes)]];
 }
 
 // direct binding of: - (instancetype)initWithTitle:(NSString *)title delegate:(id<UIActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle destructiveButtonTitle:(NSString *)destructiveButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ...;

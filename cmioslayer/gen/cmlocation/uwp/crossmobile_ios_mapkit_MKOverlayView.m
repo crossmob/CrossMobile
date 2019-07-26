@@ -12,7 +12,6 @@
 #import "crossmobile_ios_mapkit_MKMapRect.h"
 #import "crossmobile_ios_mapkit_MKOverlay.h"
 #import "crossmobile_ios_mapkit_MKOverlayView.h"
-#import "crossmobile_ios_mapkit_MKOverlayViewAppearance.h"
 #import "crossmobile_ios_quartzcore_CALayer.h"
 #import "crossmobile_ios_uikit_NSLayoutConstraint.h"
 #import "crossmobile_ios_uikit_NSLayoutDimension.h"
@@ -25,6 +24,7 @@
 #import "crossmobile_ios_uikit_UILayoutGuide.h"
 #import "crossmobile_ios_uikit_UIResponder.h"
 #import "crossmobile_ios_uikit_UIView.h"
+#import "crossmobile_ios_uikit_UIViewAppearance.h"
 #import "crossmobile_ios_uikit_UIWindow.h"
 #import "java_lang_Object.h"
 #import "java_lang_String.h"
@@ -891,13 +891,13 @@
 // direct binding of: + (instancetype)appearance;
 + (instancetype) appearance__
 {
-    return [[crossmobile_ios_mapkit_MKOverlayViewAppearance alloc] initWithMKOverlayViewAppearance:[MKOverlayView appearance]];
+    return [[crossmobile_ios_uikit_UIViewAppearance alloc] initWithUIViewAppearance:[MKOverlayView appearance]];
 }
 
 // direct binding of: + (instancetype)appearanceWhenContainedInInstancesOfClasses:(NSArray<Class<UIAppearanceContainer>> *)containerTypes;
 + (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes 
 {
-    return [[crossmobile_ios_mapkit_MKOverlayViewAppearance alloc] initWithMKOverlayViewAppearance:[MKOverlayView appearanceWhenContainedInInstancesOfClasses:jclass_to_class_list(containerTypes == JAVA_NULL ? nil : containerTypes)]];
+    return [[crossmobile_ios_uikit_UIViewAppearance alloc] initWithUIViewAppearance:[MKOverlayView appearanceWhenContainedInInstancesOfClasses:jclass_to_class_list(containerTypes == JAVA_NULL ? nil : containerTypes)]];
 }
 
 // direct binding of: - (instancetype)initWithOverlay:(id<MKOverlay>)overlay;

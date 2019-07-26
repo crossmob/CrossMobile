@@ -12,13 +12,13 @@
 @class crossmobile_ios_mapkit_MKAnnotationView;
 @class crossmobile_ios_mapkit_MKCoordinateRegion;
 @class crossmobile_ios_mapkit_MKMapRect;
-@class crossmobile_ios_mapkit_MKMapViewAppearance;
 @protocol crossmobile_ios_mapkit_MKMapViewDelegate;
 @protocol crossmobile_ios_mapkit_MKOverlay;
 @class crossmobile_ios_mapkit_MKOverlayView;
 @class crossmobile_ios_mapkit_MKUserLocation;
 @class crossmobile_ios_uikit_UIEdgeInsets;
 @class crossmobile_ios_uikit_UIView;
+@class crossmobile_ios_uikit_UIViewAppearance;
 @class java_lang_String;
 @protocol java_util_List;
 @protocol java_util_Set;

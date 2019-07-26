@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 @class crossmobile_ios_coregraphics_CGRect;
 @class crossmobile_ios_uikit_UIColor;
-@class crossmobile_ios_uikit_UISwitchAppearance;
+@class crossmobile_ios_uikit_UIViewAppearance;
 @protocol java_util_List;
 
 @interface crossmobile_ios_uikit_UISwitch$Ext : UISwitch

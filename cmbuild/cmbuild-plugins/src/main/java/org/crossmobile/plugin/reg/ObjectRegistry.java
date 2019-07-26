@@ -28,10 +28,9 @@ public class ObjectRegistry {
     public static final String NSObjectClassName = "crossmobile.ios.foundation.NSObject";
     public static final String CFTypeClassName = "crossmobile.ios.foundation.CFType";
     public static final String UIAppearanceClassName = "crossmobile.ios.uikit.UIAppearance";
-    public static final String UIAppearanceContainerClassName = "crossmobile.ios.uikit.UIAppearanceContainer";
     private static final Map<Class, NObject> objects = new TreeMap<>(Comparator.comparing(Class::getName));
     private static Class<?> NSObjectClass;
-    private static Class<?> UIAppearanceContainerClass;
+    private static Class<?> UIAppearanceClass;
     private static Class<?> CFTypeClass;
 
     public static void register(NObject nobj) {
@@ -55,7 +54,7 @@ public class ObjectRegistry {
     }
 
     public static boolean isUIAppearanceClass(Class<?> classToCheck) {
-        return (UIAppearanceContainerClass = getClassNamed(UIAppearanceContainerClass, UIAppearanceContainerClassName)).isAssignableFrom(classToCheck);
+        return (UIAppearanceClass = getClassNamed(UIAppearanceClass, UIAppearanceClassName)).isAssignableFrom(classToCheck);
     }
 
     public static boolean contains(String className) {

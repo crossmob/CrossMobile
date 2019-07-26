@@ -23,8 +23,8 @@
 #import "crossmobile_ios_uikit_UIResponder.h"
 #import "crossmobile_ios_uikit_UIScrollView.h"
 #import "crossmobile_ios_uikit_UIView.h"
+#import "crossmobile_ios_uikit_UIViewAppearance.h"
 #import "crossmobile_ios_uikit_UIWebView.h"
-#import "crossmobile_ios_uikit_UIWebViewAppearance.h"
 #import "crossmobile_ios_uikit_UIWebViewDelegate.h"
 #import "crossmobile_ios_uikit_UIWindow.h"
 #import "java_lang_Object.h"
@@ -955,13 +955,13 @@
 // direct binding of: + (instancetype)appearance;
 + (instancetype) appearance__
 {
-    return [[crossmobile_ios_uikit_UIWebViewAppearance alloc] initWithUIWebViewAppearance:[UIWebView appearance]];
+    return [[crossmobile_ios_uikit_UIViewAppearance alloc] initWithUIViewAppearance:[UIWebView appearance]];
 }
 
 // direct binding of: + (instancetype)appearanceWhenContainedInInstancesOfClasses:(NSArray<Class<UIAppearanceContainer>> *)containerTypes;
 + (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes 
 {
-    return [[crossmobile_ios_uikit_UIWebViewAppearance alloc] initWithUIWebViewAppearance:[UIWebView appearanceWhenContainedInInstancesOfClasses:jclass_to_class_list(containerTypes == JAVA_NULL ? nil : containerTypes)]];
+    return [[crossmobile_ios_uikit_UIViewAppearance alloc] initWithUIViewAppearance:[UIWebView appearanceWhenContainedInInstancesOfClasses:jclass_to_class_list(containerTypes == JAVA_NULL ? nil : containerTypes)]];
 }
 
 // direct binding of: -(instancetype) init;

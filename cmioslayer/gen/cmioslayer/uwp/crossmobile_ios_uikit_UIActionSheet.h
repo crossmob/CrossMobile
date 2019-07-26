@@ -6,11 +6,11 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-@class crossmobile_ios_uikit_UIActionSheetAppearance;
 @protocol crossmobile_ios_uikit_UIActionSheetDelegate;
 @class crossmobile_ios_uikit_UITabBar;
 @class crossmobile_ios_uikit_UIToolbar;
 @class crossmobile_ios_uikit_UIView;
+@class crossmobile_ios_uikit_UIViewAppearance;
 @class java_lang_String;
 @protocol java_util_List;
 

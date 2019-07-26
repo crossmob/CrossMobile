@@ -7,8 +7,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 @class crossmobile_ios_coregraphics_CGRect;
-@class crossmobile_ios_uikit_UIControlAppearance;
 @protocol crossmobile_ios_uikit_UIControlDelegate;
+@class crossmobile_ios_uikit_UIViewAppearance;
 @class java_lang_reflect_Method;
 @protocol java_util_List;
 @protocol java_util_Set;

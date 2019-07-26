@@ -7,9 +7,9 @@
 #import <MapKit/MapKit.h>
 @class crossmobile_ios_coregraphics_CGPoint;
 @protocol crossmobile_ios_mapkit_MKAnnotation;
-@class crossmobile_ios_mapkit_MKAnnotationViewAppearance;
 @class crossmobile_ios_uikit_UIImage;
 @class crossmobile_ios_uikit_UIView;
+@class crossmobile_ios_uikit_UIViewAppearance;
 @class java_lang_String;
 @protocol java_util_List;
 

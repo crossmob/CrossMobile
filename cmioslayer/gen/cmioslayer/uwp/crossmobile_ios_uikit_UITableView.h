@@ -11,10 +11,10 @@
 @class crossmobile_ios_foundation_NSIndexPath;
 @class crossmobile_ios_uikit_UIColor;
 @class crossmobile_ios_uikit_UINib;
-@class crossmobile_ios_uikit_UITableViewAppearance;
 @class crossmobile_ios_uikit_UITableViewCell;
 @protocol crossmobile_ios_uikit_UITableViewDataSource;
 @protocol crossmobile_ios_uikit_UITableViewDelegate;
+@class crossmobile_ios_uikit_UIViewAppearance;
 @class java_lang_Class;
 @class java_lang_String;
 @protocol java_util_List;

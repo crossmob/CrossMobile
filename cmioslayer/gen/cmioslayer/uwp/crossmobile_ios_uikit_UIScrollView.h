@@ -11,9 +11,9 @@
 @class crossmobile_ios_coregraphics_CGSize;
 @class crossmobile_ios_uikit_UIEdgeInsets;
 @class crossmobile_ios_uikit_UIEvent;
-@class crossmobile_ios_uikit_UIScrollViewAppearance;
 @protocol crossmobile_ios_uikit_UIScrollViewDelegate;
 @class crossmobile_ios_uikit_UIView;
+@class crossmobile_ios_uikit_UIViewAppearance;
 @protocol java_util_List;
 @protocol java_util_Set;
 

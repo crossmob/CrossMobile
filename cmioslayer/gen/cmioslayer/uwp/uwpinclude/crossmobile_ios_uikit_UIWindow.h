@@ -9,8 +9,8 @@
 @class crossmobile_ios_coregraphics_CGPoint;
 @class crossmobile_ios_coregraphics_CGRect;
 @class crossmobile_ios_uikit_UIEvent;
+@class crossmobile_ios_uikit_UIViewAppearance;
 @class crossmobile_ios_uikit_UIViewController;
-@class crossmobile_ios_uikit_UIWindowAppearance;
 @protocol java_util_List;
 
 CM_EXPORT_CLASS

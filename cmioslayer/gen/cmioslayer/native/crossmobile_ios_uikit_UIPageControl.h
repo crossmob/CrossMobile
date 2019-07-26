@@ -9,7 +9,7 @@
 @class crossmobile_ios_coregraphics_CGRect;
 @class crossmobile_ios_coregraphics_CGSize;
 @class crossmobile_ios_uikit_UIColor;
-@class crossmobile_ios_uikit_UIPageControlAppearance;
+@class crossmobile_ios_uikit_UIViewAppearance;
 @protocol java_util_List;
 
 @interface crossmobile_ios_uikit_UIPageControl$Ext : UIPageControl

@@ -11,7 +11,7 @@
 @class crossmobile_ios_foundation_NSDate;
 @class crossmobile_ios_foundation_NSLocale;
 @class crossmobile_ios_foundation_NSTimeZone;
-@class crossmobile_ios_uikit_UIDatePickerAppearance;
+@class crossmobile_ios_uikit_UIViewAppearance;
 @protocol java_util_List;
 
 CM_EXPORT_CLASS

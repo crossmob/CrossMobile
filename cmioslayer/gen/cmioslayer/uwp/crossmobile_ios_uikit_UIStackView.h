@@ -6,8 +6,8 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-@class crossmobile_ios_uikit_UIStackViewAppearance;
 @class crossmobile_ios_uikit_UIView;
+@class crossmobile_ios_uikit_UIViewAppearance;
 @protocol java_util_List;
 
 @interface crossmobile_ios_uikit_UIStackView$Ext : UIStackView

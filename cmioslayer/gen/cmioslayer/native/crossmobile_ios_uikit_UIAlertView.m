@@ -13,7 +13,6 @@
 #import "crossmobile_ios_uikit_NSLayoutXAxisAnchor.h"
 #import "crossmobile_ios_uikit_NSLayoutYAxisAnchor.h"
 #import "crossmobile_ios_uikit_UIAlertView.h"
-#import "crossmobile_ios_uikit_UIAlertViewAppearance.h"
 #import "crossmobile_ios_uikit_UIAlertViewDelegate.h"
 #import "crossmobile_ios_uikit_UIColor.h"
 #import "crossmobile_ios_uikit_UIEdgeInsets.h"
@@ -23,6 +22,7 @@
 #import "crossmobile_ios_uikit_UIResponder.h"
 #import "crossmobile_ios_uikit_UITextField.h"
 #import "crossmobile_ios_uikit_UIView.h"
+#import "crossmobile_ios_uikit_UIViewAppearance.h"
 #import "crossmobile_ios_uikit_UIWindow.h"
 #import "java_lang_Object.h"
 #import "java_lang_String.h"
@@ -905,13 +905,13 @@
 // direct binding of: + (instancetype)appearance;
 + (instancetype) appearance__
 {
-    return [[crossmobile_ios_uikit_UIAlertViewAppearance alloc] initWithUIAlertViewAppearance:[UIAlertView appearance]];
+    return [[crossmobile_ios_uikit_UIViewAppearance alloc] initWithUIViewAppearance:[UIAlertView appearance]];
 }
 
 // direct binding of: + (instancetype)appearanceWhenContainedInInstancesOfClasses:(NSArray<Class<UIAppearanceContainer>> *)containerTypes;
 + (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes 
 {
-    return [[crossmobile_ios_uikit_UIAlertViewAppearance alloc] initWithUIAlertViewAppearance:[UIAlertView appearanceWhenContainedInInstancesOfClasses:jclass_to_class_list(containerTypes == JAVA_NULL ? nil : containerTypes)]];
+    return [[crossmobile_ios_uikit_UIViewAppearance alloc] initWithUIViewAppearance:[UIAlertView appearanceWhenContainedInInstancesOfClasses:jclass_to_class_list(containerTypes == JAVA_NULL ? nil : containerTypes)]];
 }
 
 // direct binding of: - (instancetype)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ...;

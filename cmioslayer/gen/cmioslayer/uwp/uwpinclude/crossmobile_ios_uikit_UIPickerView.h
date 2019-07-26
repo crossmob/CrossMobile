@@ -8,10 +8,10 @@
 #import <UIKit/UIKit.h>
 @class crossmobile_ios_coregraphics_CGRect;
 @class crossmobile_ios_coregraphics_CGSize;
-@class crossmobile_ios_uikit_UIPickerViewAppearance;
 @protocol crossmobile_ios_uikit_UIPickerViewDataSource;
 @protocol crossmobile_ios_uikit_UIPickerViewDelegate;
 @class crossmobile_ios_uikit_UIView;
+@class crossmobile_ios_uikit_UIViewAppearance;
 @protocol java_util_List;
 
 CM_EXPORT_CLASS

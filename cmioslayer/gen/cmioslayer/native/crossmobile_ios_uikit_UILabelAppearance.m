@@ -8,12 +8,6 @@
 
 @implementation crossmobile_ios_uikit_UILabelAppearance
 
-// direct binding of: @property(nonatomic, copy) UIColor *backgroundColor;
-- (void) setBackgroundColor___crossmobile_ios_uikit_UIColor:(UIColor*) backgroundColor 
-{
-    [self->$reference setBackgroundColor:(backgroundColor == JAVA_NULL ? nil : backgroundColor)];
-}
-
 // direct binding of: @property(nonatomic, strong) UIFont *font;
 - (void) setFont___crossmobile_ios_uikit_UIFont:(UIFont*) font 
 {
@@ -28,18 +22,8 @@
 
 - (instancetype) initWithUILabelAppearance:(id) reference
 {
-    self = [super init];
-    self->$reference = reference;
-    if (self->$reference)
-        [self->$reference retain];
+    self = [super initWithUIViewAppearance:reference];
     return self;
-}
-
-- (void) dealloc
-{
-    if (self->$reference)
-        [self->$reference release];
-    [super dealloc];
 }
 
 @end

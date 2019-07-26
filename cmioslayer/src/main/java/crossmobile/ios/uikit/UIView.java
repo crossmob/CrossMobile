@@ -52,7 +52,7 @@ import static org.crossmobile.bind.system.Debug.Live_Graphics_Debug;
  * interaction with that area.
  */
 @CMClass
-public class UIView extends UIResponder implements UIAppearanceContainer {
+public class UIView extends UIResponder implements UIAppearance, UIAppearanceContainer {
 
     /* Constants */
     public static final double NoIntrinsicMetric = 0;

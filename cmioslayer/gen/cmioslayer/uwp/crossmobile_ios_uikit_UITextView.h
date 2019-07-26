@@ -10,8 +10,8 @@
 @class crossmobile_ios_uikit_UIColor;
 @class crossmobile_ios_uikit_UIEdgeInsets;
 @class crossmobile_ios_uikit_UIFont;
-@class crossmobile_ios_uikit_UITextViewAppearance;
 @protocol crossmobile_ios_uikit_UITextViewDelegate;
+@class crossmobile_ios_uikit_UIViewAppearance;
 @class java_lang_String;
 @protocol java_util_List;
 

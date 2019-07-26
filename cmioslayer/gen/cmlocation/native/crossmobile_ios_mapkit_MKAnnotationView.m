@@ -9,7 +9,6 @@
 #import "crossmobile_ios_foundation_NSObject.h"
 #import "crossmobile_ios_mapkit_MKAnnotation.h"
 #import "crossmobile_ios_mapkit_MKAnnotationView.h"
-#import "crossmobile_ios_mapkit_MKAnnotationViewAppearance.h"
 #import "crossmobile_ios_quartzcore_CALayer.h"
 #import "crossmobile_ios_uikit_NSLayoutConstraint.h"
 #import "crossmobile_ios_uikit_NSLayoutDimension.h"
@@ -23,6 +22,7 @@
 #import "crossmobile_ios_uikit_UILayoutGuide.h"
 #import "crossmobile_ios_uikit_UIResponder.h"
 #import "crossmobile_ios_uikit_UIView.h"
+#import "crossmobile_ios_uikit_UIViewAppearance.h"
 #import "crossmobile_ios_uikit_UIWindow.h"
 #import "java_lang_Object.h"
 #import "java_lang_String.h"
@@ -1007,13 +1007,13 @@
 // direct binding of: + (instancetype)appearance;
 + (instancetype) appearance__
 {
-    return [[crossmobile_ios_mapkit_MKAnnotationViewAppearance alloc] initWithMKAnnotationViewAppearance:[MKAnnotationView appearance]];
+    return [[crossmobile_ios_uikit_UIViewAppearance alloc] initWithUIViewAppearance:[MKAnnotationView appearance]];
 }
 
 // direct binding of: + (instancetype)appearanceWhenContainedInInstancesOfClasses:(NSArray<Class<UIAppearanceContainer>> *)containerTypes;
 + (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes 
 {
-    return [[crossmobile_ios_mapkit_MKAnnotationViewAppearance alloc] initWithMKAnnotationViewAppearance:[MKAnnotationView appearanceWhenContainedInInstancesOfClasses:jclass_to_class_list(containerTypes == JAVA_NULL ? nil : containerTypes)]];
+    return [[crossmobile_ios_uikit_UIViewAppearance alloc] initWithUIViewAppearance:[MKAnnotationView appearanceWhenContainedInInstancesOfClasses:jclass_to_class_list(containerTypes == JAVA_NULL ? nil : containerTypes)]];
 }
 
 // direct binding of: - (instancetype)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier;

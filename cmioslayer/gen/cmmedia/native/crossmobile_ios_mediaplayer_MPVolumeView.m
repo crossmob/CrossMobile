@@ -8,7 +8,6 @@
 #import "crossmobile_ios_coregraphics_CGSize.h"
 #import "crossmobile_ios_foundation_NSObject.h"
 #import "crossmobile_ios_mediaplayer_MPVolumeView.h"
-#import "crossmobile_ios_mediaplayer_MPVolumeViewAppearance.h"
 #import "crossmobile_ios_quartzcore_CALayer.h"
 #import "crossmobile_ios_uikit_NSLayoutConstraint.h"
 #import "crossmobile_ios_uikit_NSLayoutDimension.h"
@@ -21,6 +20,7 @@
 #import "crossmobile_ios_uikit_UILayoutGuide.h"
 #import "crossmobile_ios_uikit_UIResponder.h"
 #import "crossmobile_ios_uikit_UIView.h"
+#import "crossmobile_ios_uikit_UIViewAppearance.h"
 #import "crossmobile_ios_uikit_UIWindow.h"
 #import "java_lang_Object.h"
 #import "java_lang_String.h"
@@ -856,13 +856,13 @@
 // direct binding of: + (instancetype)appearance;
 + (instancetype) appearance__
 {
-    return [[crossmobile_ios_mediaplayer_MPVolumeViewAppearance alloc] initWithMPVolumeViewAppearance:[MPVolumeView appearance]];
+    return [[crossmobile_ios_uikit_UIViewAppearance alloc] initWithUIViewAppearance:[MPVolumeView appearance]];
 }
 
 // direct binding of: + (instancetype)appearanceWhenContainedInInstancesOfClasses:(NSArray<Class<UIAppearanceContainer>> *)containerTypes;
 + (instancetype) appearanceWhenContainedInInstancesOfClasses___java_util_List:(NSArray*) containerTypes 
 {
-    return [[crossmobile_ios_mediaplayer_MPVolumeViewAppearance alloc] initWithMPVolumeViewAppearance:[MPVolumeView appearanceWhenContainedInInstancesOfClasses:jclass_to_class_list(containerTypes == JAVA_NULL ? nil : containerTypes)]];
+    return [[crossmobile_ios_uikit_UIViewAppearance alloc] initWithUIViewAppearance:[MPVolumeView appearanceWhenContainedInInstancesOfClasses:jclass_to_class_list(containerTypes == JAVA_NULL ? nil : containerTypes)]];
 }
 
 // direct binding of: - (instancetype)initWithFrame:(CGRect)frame;

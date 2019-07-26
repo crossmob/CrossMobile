@@ -8,8 +8,8 @@
 #import <UIKit/UIKit.h>
 @class crossmobile_ios_uikit_UIImageView;
 @class crossmobile_ios_uikit_UILabel;
-@class crossmobile_ios_uikit_UITableViewCellAppearance;
 @class crossmobile_ios_uikit_UIView;
+@class crossmobile_ios_uikit_UIViewAppearance;
 @class java_lang_String;
 @protocol java_util_List;
 

@@ -8,9 +8,9 @@
 #import <UIKit/UIKit.h>
 @class crossmobile_ios_coregraphics_CGRect;
 @class crossmobile_ios_uikit_UIColor;
-@class crossmobile_ios_uikit_UINavigationBarAppearance;
 @protocol crossmobile_ios_uikit_UINavigationBarDelegate;
 @class crossmobile_ios_uikit_UINavigationItem;
+@class crossmobile_ios_uikit_UIViewAppearance;
 @protocol java_util_List;
 @protocol java_util_Map;
 

@@ -11,7 +11,7 @@
 @class crossmobile_ios_foundation_NSURL;
 @class crossmobile_ios_foundation_NSURLRequest;
 @class crossmobile_ios_uikit_UIScrollView;
-@class crossmobile_ios_uikit_UIWebViewAppearance;
+@class crossmobile_ios_uikit_UIViewAppearance;
 @protocol crossmobile_ios_uikit_UIWebViewDelegate;
 @class java_lang_String;
 @protocol java_util_List;
