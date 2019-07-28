@@ -31,6 +31,10 @@ import static org.crossmobile.bridge.SystemBridge.DESTROY_ID;
  * sheets. Actions sheets are set of buttons that prompt the user to select a
  * option for the completion of a task. The display of the action sheets is
  * triggered by user action.
+ *
+ * This object is deprecated, please use UIAlertController with UIAlertControllerStyle.Alert instead.
+ * @see UIAlertController
+ * @see UIAlertControllerStyle#Sheet
  */
 @Deprecated
 @CMClass

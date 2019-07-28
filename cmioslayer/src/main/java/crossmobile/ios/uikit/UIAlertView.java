@@ -27,6 +27,10 @@ import java.util.List;
 /**
  * UIAlertView class defines view objects that are used in order to display an
  * alert to the user.
+ *
+ * This object is deprecated, please use UIAlertController with UIAlertControllerStyle.Alert instead.
+ * @see UIAlertController
+ * @see UIAlertControllerStyle#Alert
  */
 @Deprecated
 @CMClass
