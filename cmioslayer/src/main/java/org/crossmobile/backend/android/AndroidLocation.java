@@ -30,7 +30,7 @@ import static org.crossmobile.bridge.ann.CMLibTarget.ANDROID;
 
 @CMLib(target = ANDROID, name = "cmlocation", depends = @CMLibDepends(groupId = "com.google.android.gms",
         pluginName = "play-services-location",
-        version = "15.0.1", isCMPlugin = false))
+        version = "17.0.0", isCMPlugin = false))
 public class AndroidLocation extends AbstractLocationBridge {
 
     private final LocationManager locationManager = (LocationManager) MainActivity.current.getSystemService(Context.LOCATION_SERVICE);

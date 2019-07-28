@@ -40,13 +40,13 @@ import static org.crossmobile.bridge.ann.CMLibTarget.ANDROID;
 
 @CMLib(target = ANDROID, name = "cmlocation", depends = @CMLibDepends(groupId = "com.google.android.gms",
         pluginName = "play-services-maps",
-        version = "15.0.1", isCMPlugin = false))
+        version = "17.0.0", isCMPlugin = false))
 public class AndroidMapViewWrapper extends MapViewWrapper<AndroidMapViewWrapper.NativeW, AndroidGraphicsContext> {
 
     private Map<MKAnnotation, Marker> markers = new HashMap<>();
     private GoogleMap currentmap;
     private Queue<Runnable> deferAction = new ArrayDeque<>();
-    private Object lock = new Object[0];
+    private final Object lock = new Object[0];
     private boolean firstTime = true;
 
     public AndroidMapViewWrapper(MKMapView widg) {
