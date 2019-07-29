@@ -557,12 +557,10 @@ crossmobile/ios/uikit/UIAcceleration.class v8
 crossmobile/ios/uikit/UIAccelerometer.class v8
 crossmobile/ios/uikit/UIAccelerometerDelegate.class v8
 crossmobile/ios/uikit/UIActionSheet.class v8
-crossmobile/ios/uikit/UIActionSheetAppearance.class v8
 crossmobile/ios/uikit/UIActionSheetDelegate.class v8
 crossmobile/ios/uikit/UIActivity.class v8
 crossmobile/ios/uikit/UIActivityCategory.class v8
 crossmobile/ios/uikit/UIActivityIndicatorView.class v8
-crossmobile/ios/uikit/UIActivityIndicatorViewAppearance.class v8
 crossmobile/ios/uikit/UIActivityIndicatorViewStyle.class v8
 crossmobile/ios/uikit/UIActivityType.class v8
 crossmobile/ios/uikit/UIActivityViewController.class v8
@@ -573,7 +571,6 @@ crossmobile/ios/uikit/UIAlertActionStyle.class v8
 crossmobile/ios/uikit/UIAlertController.class v8
 crossmobile/ios/uikit/UIAlertControllerStyle.class v8
 crossmobile/ios/uikit/UIAlertView.class v8
-crossmobile/ios/uikit/UIAlertViewAppearance.class v8
 crossmobile/ios/uikit/UIAlertViewDelegate.class v8
 crossmobile/ios/uikit/UIAlertViewStyle.class v8
 crossmobile/ios/uikit/UIAppearance.class v8
@@ -588,11 +585,9 @@ crossmobile/ios/uikit/UIBarItem.class v8
 crossmobile/ios/uikit/UIBarStyle.class v8
 crossmobile/ios/uikit/UIBaselineAdjustment.class v8
 crossmobile/ios/uikit/UIButton.class v8
-crossmobile/ios/uikit/UIButtonAppearance.class v8
 crossmobile/ios/uikit/UIButtonType.class v8
 crossmobile/ios/uikit/UIColor.class v8
 crossmobile/ios/uikit/UIControl.class v8
-crossmobile/ios/uikit/UIControlAppearance.class v8
 crossmobile/ios/uikit/UIControlContentHorizontalAlignment.class v8
 crossmobile/ios/uikit/UIControlContentVerticalAlignment.class v8
 crossmobile/ios/uikit/UIControlDelegate.class v8
@@ -600,7 +595,6 @@ crossmobile/ios/uikit/UIControlEvents.class v8
 crossmobile/ios/uikit/UIControlState.class v8
 crossmobile/ios/uikit/UIDataDetectorTypes.class v8
 crossmobile/ios/uikit/UIDatePicker.class v8
-crossmobile/ios/uikit/UIDatePickerAppearance.class v8
 crossmobile/ios/uikit/UIDatePickerMode.class v8
 crossmobile/ios/uikit/UIDevice.class v8
 crossmobile/ios/uikit/UIDeviceBatteryState.class v8
@@ -619,7 +613,6 @@ crossmobile/ios/uikit/UIImageOrientation.class v8
 crossmobile/ios/uikit/UIImageRenderingMode.class v8
 crossmobile/ios/uikit/UIImageResizingMode.class v8
 crossmobile/ios/uikit/UIImageView.class v8
-crossmobile/ios/uikit/UIImageViewAppearance.class v8
 crossmobile/ios/uikit/UIImageWriteToPhotoAlbumHandler.class v8
 crossmobile/ios/uikit/UIInterfaceOrientation.class v8
 crossmobile/ios/uikit/UIInterfaceOrientationMask.class v8
@@ -638,7 +631,6 @@ crossmobile/ios/uikit/UIModalTransitionStyle.class v8
 crossmobile/ios/uikit/UIMutableUserNotificationAction.class v8
 crossmobile/ios/uikit/UIMutableUserNotificationCategory.class v8
 crossmobile/ios/uikit/UINavigationBar.class v8
-crossmobile/ios/uikit/UINavigationBarAppearance.class v8
 crossmobile/ios/uikit/UINavigationBarDelegate.class v8
 crossmobile/ios/uikit/UINavigationController.class v8
 crossmobile/ios/uikit/UINavigationControllerDelegate.class v8
@@ -646,10 +638,8 @@ crossmobile/ios/uikit/UINavigationItem.class v8
 crossmobile/ios/uikit/UINib.class v8
 crossmobile/ios/uikit/UIOffset.class v8
 crossmobile/ios/uikit/UIPageControl.class v8
-crossmobile/ios/uikit/UIPageControlAppearance.class v8
 crossmobile/ios/uikit/UIPanGestureRecognizer.class v8
 crossmobile/ios/uikit/UIPickerView.class v8
-crossmobile/ios/uikit/UIPickerViewAppearance.class v8
 crossmobile/ios/uikit/UIPickerViewDataSource.class v8
 crossmobile/ios/uikit/UIPickerViewDelegate.class v8
 crossmobile/ios/uikit/UIPinchGestureRecognizer.class v8
@@ -659,7 +649,6 @@ crossmobile/ios/uikit/UIPopoverControllerDelegate.class v8
 crossmobile/ios/uikit/UIPrintInteractionCompletionHandler.class v8
 crossmobile/ios/uikit/UIPrintInteractionController.class v8
 crossmobile/ios/uikit/UIProgressView.class v8
-crossmobile/ios/uikit/UIProgressViewAppearance.class v8
 crossmobile/ios/uikit/UIProgressViewStyle.class v8
 crossmobile/ios/uikit/UIRectEdge.class v8
 crossmobile/ios/uikit/UIRemoteNotificationType.class v8
@@ -668,49 +657,39 @@ crossmobile/ios/uikit/UIReturnKeyType.class v8
 crossmobile/ios/uikit/UIRotationGestureRecognizer.class v8
 crossmobile/ios/uikit/UIScreen.class v8
 crossmobile/ios/uikit/UIScrollView.class v8
-crossmobile/ios/uikit/UIScrollViewAppearance.class v8
 crossmobile/ios/uikit/UIScrollViewDecelerationRate.class v8
 crossmobile/ios/uikit/UIScrollViewDelegate.class v8
 crossmobile/ios/uikit/UIScrollViewIndicatorStyle.class v8
 crossmobile/ios/uikit/UISearchBar.class v8
-crossmobile/ios/uikit/UISearchBarAppearance.class v8
 crossmobile/ios/uikit/UISearchBarDelegate.class v8
 crossmobile/ios/uikit/UISearchBarIcon.class v8
 crossmobile/ios/uikit/UISearchBarStyle.class v8
 crossmobile/ios/uikit/UISegmentedControl.class v8
-crossmobile/ios/uikit/UISegmentedControlAppearance.class v8
 crossmobile/ios/uikit/UISegmentedControlStyle.class v8
 crossmobile/ios/uikit/UISlider.class v8
-crossmobile/ios/uikit/UISliderAppearance.class v8
 crossmobile/ios/uikit/UISplitViewController.class v8
 crossmobile/ios/uikit/UISplitViewControllerDelegate.class v8
 crossmobile/ios/uikit/UISplitViewControllerDisplayMode.class v8
 crossmobile/ios/uikit/UIStackView.class v8
 crossmobile/ios/uikit/UIStackViewAlignment.class v8
-crossmobile/ios/uikit/UIStackViewAppearance.class v8
 crossmobile/ios/uikit/UIStackViewDistribution.class v8
 crossmobile/ios/uikit/UIStatusBarStyle.class v8
 crossmobile/ios/uikit/UIStepper.class v8
-crossmobile/ios/uikit/UIStepperAppearance.class v8
 crossmobile/ios/uikit/UIStoryboard.class v8
 crossmobile/ios/uikit/UIStoryboardSegue.class v8
 crossmobile/ios/uikit/UIStoryboardUnwindSegueSource.class v8
 crossmobile/ios/uikit/UISwipeGestureRecognizer.class v8
 crossmobile/ios/uikit/UISwipeGestureRecognizerDirection.class v8
 crossmobile/ios/uikit/UISwitch.class v8
-crossmobile/ios/uikit/UISwitchAppearance.class v8
 crossmobile/ios/uikit/UITabBar.class v8
-crossmobile/ios/uikit/UITabBarAppearance.class v8
 crossmobile/ios/uikit/UITabBarController.class v8
 crossmobile/ios/uikit/UITabBarControllerDelegate.class v8
 crossmobile/ios/uikit/UITabBarDelegate.class v8
 crossmobile/ios/uikit/UITabBarItem.class v8
 crossmobile/ios/uikit/UITabBarItemPositioning.class v8
 crossmobile/ios/uikit/UITableView.class v8
-crossmobile/ios/uikit/UITableViewAppearance.class v8
 crossmobile/ios/uikit/UITableViewCell.class v8
 crossmobile/ios/uikit/UITableViewCellAccessoryType.class v8
-crossmobile/ios/uikit/UITableViewCellAppearance.class v8
 crossmobile/ios/uikit/UITableViewCellEditingStyle.class v8
 crossmobile/ios/uikit/UITableViewCellSelectionStyle.class v8
 crossmobile/ios/uikit/UITableViewCellSeparatorStyle.class v8
@@ -729,7 +708,6 @@ crossmobile/ios/uikit/UITextAutocorrectionType.class v8
 crossmobile/ios/uikit/UITextBorderStyle.class v8
 crossmobile/ios/uikit/UITextContentType.class v8
 crossmobile/ios/uikit/UITextField.class v8
-crossmobile/ios/uikit/UITextFieldAppearance.class v8
 crossmobile/ios/uikit/UITextFieldDelegate.class v8
 crossmobile/ios/uikit/UITextInputTraits.class v8
 crossmobile/ios/uikit/UITextSmartDashesType.class v8
@@ -737,10 +715,8 @@ crossmobile/ios/uikit/UITextSmartInsertDeleteType.class v8
 crossmobile/ios/uikit/UITextSmartQuotesType.class v8
 crossmobile/ios/uikit/UITextSpellCheckingType.class v8
 crossmobile/ios/uikit/UITextView.class v8
-crossmobile/ios/uikit/UITextViewAppearance.class v8
 crossmobile/ios/uikit/UITextViewDelegate.class v8
 crossmobile/ios/uikit/UIToolbar.class v8
-crossmobile/ios/uikit/UIToolbarAppearance.class v8
 crossmobile/ios/uikit/UITouch.class v8
 crossmobile/ios/uikit/UITouchPhase.class v8
 crossmobile/ios/uikit/UIUserInterfaceIdiom.class v8
@@ -756,11 +732,9 @@ crossmobile/ios/uikit/UIViewContentMode.class v8
 crossmobile/ios/uikit/UIViewController.class v8
 crossmobile/ios/uikit/UIViewTintAdjustmentMode.class v8
 crossmobile/ios/uikit/UIWebView.class v8
-crossmobile/ios/uikit/UIWebViewAppearance.class v8
 crossmobile/ios/uikit/UIWebViewDelegate.class v8
 crossmobile/ios/uikit/UIWebViewNavigationType.class v8
 crossmobile/ios/uikit/UIWindow.class v8
-crossmobile/ios/uikit/UIWindowAppearance.class v8
 crossmobile/ios/uikit/package-info.class v8
 crossmobile/package-info.class v8
 crossmobile/rt/StrongReference.class v8
@@ -1000,14 +974,10 @@ crossmobile/ios/uikit/UIAcceleration.class v8
 crossmobile/ios/uikit/UIAccelerometer.class v8
 crossmobile/ios/uikit/UIAccelerometerDelegate.class v8
 crossmobile/ios/uikit/UIActionSheet.class v8
-crossmobile/ios/uikit/UIActionSheetAppearance$a.class v8
-crossmobile/ios/uikit/UIActionSheetAppearance.class v8
 crossmobile/ios/uikit/UIActionSheetDelegate.class v8
 crossmobile/ios/uikit/UIActivity.class v8
 crossmobile/ios/uikit/UIActivityCategory.class v8
 crossmobile/ios/uikit/UIActivityIndicatorView.class v8
-crossmobile/ios/uikit/UIActivityIndicatorViewAppearance$a.class v8
-crossmobile/ios/uikit/UIActivityIndicatorViewAppearance.class v8
 crossmobile/ios/uikit/UIActivityIndicatorViewStyle.class v8
 crossmobile/ios/uikit/UIActivityType.class v8
 crossmobile/ios/uikit/UIActivityViewController.class v8
@@ -1020,8 +990,6 @@ crossmobile/ios/uikit/UIAlertController$2.class v8
 crossmobile/ios/uikit/UIAlertController.class v8
 crossmobile/ios/uikit/UIAlertControllerStyle.class v8
 crossmobile/ios/uikit/UIAlertView.class v8
-crossmobile/ios/uikit/UIAlertViewAppearance$a.class v8
-crossmobile/ios/uikit/UIAlertViewAppearance.class v8
 crossmobile/ios/uikit/UIAlertViewDelegate.class v8
 crossmobile/ios/uikit/UIAlertViewStyle.class v8
 crossmobile/ios/uikit/UIAppearance.class v8
@@ -1037,15 +1005,11 @@ crossmobile/ios/uikit/UIBarItem.class v8
 crossmobile/ios/uikit/UIBarStyle.class v8
 crossmobile/ios/uikit/UIBaselineAdjustment.class v8
 crossmobile/ios/uikit/UIButton.class v8
-crossmobile/ios/uikit/UIButtonAppearance$a.class v8
-crossmobile/ios/uikit/UIButtonAppearance.class v8
 crossmobile/ios/uikit/UIButtonType.class v8
 crossmobile/ios/uikit/UIColor.class v8
 crossmobile/ios/uikit/UIControl$1.class v8
 crossmobile/ios/uikit/UIControl$a.class v8
 crossmobile/ios/uikit/UIControl.class v8
-crossmobile/ios/uikit/UIControlAppearance$a.class v8
-crossmobile/ios/uikit/UIControlAppearance.class v8
 crossmobile/ios/uikit/UIControlContentHorizontalAlignment.class v8
 crossmobile/ios/uikit/UIControlContentVerticalAlignment.class v8
 crossmobile/ios/uikit/UIControlDelegate.class v8
@@ -1053,8 +1017,6 @@ crossmobile/ios/uikit/UIControlEvents.class v8
 crossmobile/ios/uikit/UIControlState.class v8
 crossmobile/ios/uikit/UIDataDetectorTypes.class v8
 crossmobile/ios/uikit/UIDatePicker.class v8
-crossmobile/ios/uikit/UIDatePickerAppearance$a.class v8
-crossmobile/ios/uikit/UIDatePickerAppearance.class v8
 crossmobile/ios/uikit/UIDatePickerMode.class v8
 crossmobile/ios/uikit/UIDevice.class v8
 crossmobile/ios/uikit/UIDeviceBatteryState.class v8
@@ -1074,8 +1036,6 @@ crossmobile/ios/uikit/UIImageRenderingMode.class v8
 crossmobile/ios/uikit/UIImageResizingMode.class v8
 crossmobile/ios/uikit/UIImageView$a.class v8
 crossmobile/ios/uikit/UIImageView.class v8
-crossmobile/ios/uikit/UIImageViewAppearance$a.class v8
-crossmobile/ios/uikit/UIImageViewAppearance.class v8
 crossmobile/ios/uikit/UIImageWriteToPhotoAlbumHandler.class v8
 crossmobile/ios/uikit/UIInterfaceOrientation.class v8
 crossmobile/ios/uikit/UIInterfaceOrientationMask.class v8
@@ -1084,7 +1044,6 @@ crossmobile/ios/uikit/UIKeyboardType.class v8
 crossmobile/ios/uikit/UILabel.class v8
 crossmobile/ios/uikit/UILabelAppearance$a.class v8
 crossmobile/ios/uikit/UILabelAppearance$b.class v8
-crossmobile/ios/uikit/UILabelAppearance$c.class v8
 crossmobile/ios/uikit/UILabelAppearance.class v8
 crossmobile/ios/uikit/UILayoutConstraintAxis.class v8
 crossmobile/ios/uikit/UILayoutGuide.class v8
@@ -1097,8 +1056,6 @@ crossmobile/ios/uikit/UIModalTransitionStyle.class v8
 crossmobile/ios/uikit/UIMutableUserNotificationAction.class v8
 crossmobile/ios/uikit/UIMutableUserNotificationCategory.class v8
 crossmobile/ios/uikit/UINavigationBar.class v8
-crossmobile/ios/uikit/UINavigationBarAppearance$a.class v8
-crossmobile/ios/uikit/UINavigationBarAppearance.class v8
 crossmobile/ios/uikit/UINavigationBarDelegate.class v8
 crossmobile/ios/uikit/UINavigationController$a.class v8
 crossmobile/ios/uikit/UINavigationController$b.class v8
@@ -1108,14 +1065,10 @@ crossmobile/ios/uikit/UINavigationItem.class v8
 crossmobile/ios/uikit/UINib.class v8
 crossmobile/ios/uikit/UIOffset.class v8
 crossmobile/ios/uikit/UIPageControl.class v8
-crossmobile/ios/uikit/UIPageControlAppearance$a.class v8
-crossmobile/ios/uikit/UIPageControlAppearance.class v8
 crossmobile/ios/uikit/UIPanGestureRecognizer.class v8
 crossmobile/ios/uikit/UIPickerView$1.class v8
 crossmobile/ios/uikit/UIPickerView$2.class v8
 crossmobile/ios/uikit/UIPickerView.class v8
-crossmobile/ios/uikit/UIPickerViewAppearance$a.class v8
-crossmobile/ios/uikit/UIPickerViewAppearance.class v8
 crossmobile/ios/uikit/UIPickerViewDataSource.class v8
 crossmobile/ios/uikit/UIPickerViewDelegate.class v8
 crossmobile/ios/uikit/UIPinchGestureRecognizer.class v8
@@ -1125,8 +1078,6 @@ crossmobile/ios/uikit/UIPopoverControllerDelegate.class v8
 crossmobile/ios/uikit/UIPrintInteractionCompletionHandler.class v8
 crossmobile/ios/uikit/UIPrintInteractionController.class v8
 crossmobile/ios/uikit/UIProgressView.class v8
-crossmobile/ios/uikit/UIProgressViewAppearance$a.class v8
-crossmobile/ios/uikit/UIProgressViewAppearance.class v8
 crossmobile/ios/uikit/UIProgressViewStyle.class v8
 crossmobile/ios/uikit/UIRectEdge.class v8
 crossmobile/ios/uikit/UIRemoteNotificationType.class v8
@@ -1139,27 +1090,19 @@ crossmobile/ios/uikit/UIScrollView$a.class v8
 crossmobile/ios/uikit/UIScrollView$b.class v8
 crossmobile/ios/uikit/UIScrollView$c.class v8
 crossmobile/ios/uikit/UIScrollView.class v8
-crossmobile/ios/uikit/UIScrollViewAppearance$a.class v8
-crossmobile/ios/uikit/UIScrollViewAppearance.class v8
 crossmobile/ios/uikit/UIScrollViewDecelerationRate.class v8
 crossmobile/ios/uikit/UIScrollViewDelegate.class v8
 crossmobile/ios/uikit/UIScrollViewIndicatorStyle.class v8
 crossmobile/ios/uikit/UISearchBar$1.class v8
 crossmobile/ios/uikit/UISearchBar.class v8
-crossmobile/ios/uikit/UISearchBarAppearance$a.class v8
-crossmobile/ios/uikit/UISearchBarAppearance.class v8
 crossmobile/ios/uikit/UISearchBarDelegate.class v8
 crossmobile/ios/uikit/UISearchBarIcon.class v8
 crossmobile/ios/uikit/UISearchBarStyle.class v8
 crossmobile/ios/uikit/UISegmentedControl$1.class v8
 crossmobile/ios/uikit/UISegmentedControl$a.class v8
 crossmobile/ios/uikit/UISegmentedControl.class v8
-crossmobile/ios/uikit/UISegmentedControlAppearance$a.class v8
-crossmobile/ios/uikit/UISegmentedControlAppearance.class v8
 crossmobile/ios/uikit/UISegmentedControlStyle.class v8
 crossmobile/ios/uikit/UISlider.class v8
-crossmobile/ios/uikit/UISliderAppearance$a.class v8
-crossmobile/ios/uikit/UISliderAppearance.class v8
 crossmobile/ios/uikit/UISplitViewController$1.class v8
 crossmobile/ios/uikit/UISplitViewController$a.class v8
 crossmobile/ios/uikit/UISplitViewController.class v8
@@ -1167,26 +1110,19 @@ crossmobile/ios/uikit/UISplitViewControllerDelegate.class v8
 crossmobile/ios/uikit/UISplitViewControllerDisplayMode.class v8
 crossmobile/ios/uikit/UIStackView.class v8
 crossmobile/ios/uikit/UIStackViewAlignment.class v8
-crossmobile/ios/uikit/UIStackViewAppearance.class v8
 crossmobile/ios/uikit/UIStackViewDistribution.class v8
 crossmobile/ios/uikit/UIStatusBarStyle.class v8
 crossmobile/ios/uikit/UIStepper$1.class v8
 crossmobile/ios/uikit/UIStepper$2.class v8
 crossmobile/ios/uikit/UIStepper$3.class v8
 crossmobile/ios/uikit/UIStepper.class v8
-crossmobile/ios/uikit/UIStepperAppearance$a.class v8
-crossmobile/ios/uikit/UIStepperAppearance.class v8
 crossmobile/ios/uikit/UIStoryboard.class v8
 crossmobile/ios/uikit/UIStoryboardSegue.class v8
 crossmobile/ios/uikit/UIStoryboardUnwindSegueSource.class v8
 crossmobile/ios/uikit/UISwipeGestureRecognizer.class v8
 crossmobile/ios/uikit/UISwipeGestureRecognizerDirection.class v8
 crossmobile/ios/uikit/UISwitch.class v8
-crossmobile/ios/uikit/UISwitchAppearance$a.class v8
-crossmobile/ios/uikit/UISwitchAppearance.class v8
 crossmobile/ios/uikit/UITabBar.class v8
-crossmobile/ios/uikit/UITabBarAppearance$a.class v8
-crossmobile/ios/uikit/UITabBarAppearance.class v8
 crossmobile/ios/uikit/UITabBarController$a.class v8
 crossmobile/ios/uikit/UITabBarController.class v8
 crossmobile/ios/uikit/UITabBarControllerDelegate.class v8
@@ -1196,13 +1132,10 @@ crossmobile/ios/uikit/UITabBarItemPositioning.class v8
 crossmobile/ios/uikit/UITableView$1.class v8
 crossmobile/ios/uikit/UITableView$a.class v8
 crossmobile/ios/uikit/UITableView.class v8
-crossmobile/ios/uikit/UITableViewAppearance$a.class v8
-crossmobile/ios/uikit/UITableViewAppearance.class v8
 crossmobile/ios/uikit/UITableViewCell$1.class v8
 crossmobile/ios/uikit/UITableViewCell$a.class v8
 crossmobile/ios/uikit/UITableViewCell.class v8
 crossmobile/ios/uikit/UITableViewCellAccessoryType.class v8
-crossmobile/ios/uikit/UITableViewCellAppearance.class v8
 crossmobile/ios/uikit/UITableViewCellEditingStyle.class v8
 crossmobile/ios/uikit/UITableViewCellSelectionStyle.class v8
 crossmobile/ios/uikit/UITableViewCellSeparatorStyle.class v8
@@ -1222,7 +1155,6 @@ crossmobile/ios/uikit/UITextAutocorrectionType.class v8
 crossmobile/ios/uikit/UITextBorderStyle.class v8
 crossmobile/ios/uikit/UITextContentType.class v8
 crossmobile/ios/uikit/UITextField.class v8
-crossmobile/ios/uikit/UITextFieldAppearance.class v8
 crossmobile/ios/uikit/UITextFieldDelegate.class v8
 crossmobile/ios/uikit/UITextInputTraits.class v8
 crossmobile/ios/uikit/UITextSmartDashesType.class v8
@@ -1230,11 +1162,8 @@ crossmobile/ios/uikit/UITextSmartInsertDeleteType.class v8
 crossmobile/ios/uikit/UITextSmartQuotesType.class v8
 crossmobile/ios/uikit/UITextSpellCheckingType.class v8
 crossmobile/ios/uikit/UITextView.class v8
-crossmobile/ios/uikit/UITextViewAppearance.class v8
 crossmobile/ios/uikit/UITextViewDelegate.class v8
 crossmobile/ios/uikit/UIToolbar.class v8
-crossmobile/ios/uikit/UIToolbarAppearance$a.class v8
-crossmobile/ios/uikit/UIToolbarAppearance.class v8
 crossmobile/ios/uikit/UITouch.class v8
 crossmobile/ios/uikit/UITouchPhase.class v8
 crossmobile/ios/uikit/UIUserInterfaceIdiom.class v8
@@ -1255,13 +1184,9 @@ crossmobile/ios/uikit/UIViewController$a.class v8
 crossmobile/ios/uikit/UIViewController.class v8
 crossmobile/ios/uikit/UIViewTintAdjustmentMode.class v8
 crossmobile/ios/uikit/UIWebView.class v8
-crossmobile/ios/uikit/UIWebViewAppearance$a.class v8
-crossmobile/ios/uikit/UIWebViewAppearance.class v8
 crossmobile/ios/uikit/UIWebViewDelegate.class v8
 crossmobile/ios/uikit/UIWebViewNavigationType.class v8
 crossmobile/ios/uikit/UIWindow.class v8
-crossmobile/ios/uikit/UIWindowAppearance$a.class v8
-crossmobile/ios/uikit/UIWindowAppearance.class v8
 crossmobile/ios/uikit/a$1.class v8
 crossmobile/ios/uikit/a$a.class v8
 crossmobile/ios/uikit/a$b.class v8
@@ -1408,18 +1333,15 @@ native/crossmobile_ios_uikit_UIAcceleration.h
 native/crossmobile_ios_uikit_UIAccelerometer.h
 native/crossmobile_ios_uikit_UIAccelerometerDelegate.h
 native/crossmobile_ios_uikit_UIActionSheet.h
-native/crossmobile_ios_uikit_UIActionSheetAppearance.h
 native/crossmobile_ios_uikit_UIActionSheetDelegate.h
 native/crossmobile_ios_uikit_UIActivity.h
 native/crossmobile_ios_uikit_UIActivityIndicatorView.h
-native/crossmobile_ios_uikit_UIActivityIndicatorViewAppearance.h
 native/crossmobile_ios_uikit_UIActivityViewController.h
 native/crossmobile_ios_uikit_UIActivityViewControllerCompletionHandler.h
 native/crossmobile_ios_uikit_UIActivityViewControllerCompletionWithItemsHandler.h
 native/crossmobile_ios_uikit_UIAlertAction.h
 native/crossmobile_ios_uikit_UIAlertController.h
 native/crossmobile_ios_uikit_UIAlertView.h
-native/crossmobile_ios_uikit_UIAlertViewAppearance.h
 native/crossmobile_ios_uikit_UIAlertViewDelegate.h
 native/crossmobile_ios_uikit_UIAppearance.h
 native/crossmobile_ios_uikit_UIAppearanceContainer.h
@@ -1428,13 +1350,10 @@ native/crossmobile_ios_uikit_UIApplicationDelegate.h
 native/crossmobile_ios_uikit_UIBarButtonItem.h
 native/crossmobile_ios_uikit_UIBarItem.h
 native/crossmobile_ios_uikit_UIButton.h
-native/crossmobile_ios_uikit_UIButtonAppearance.h
 native/crossmobile_ios_uikit_UIColor.h
 native/crossmobile_ios_uikit_UIControl.h
-native/crossmobile_ios_uikit_UIControlAppearance.h
 native/crossmobile_ios_uikit_UIControlDelegate.h
 native/crossmobile_ios_uikit_UIDatePicker.h
-native/crossmobile_ios_uikit_UIDatePickerAppearance.h
 native/crossmobile_ios_uikit_UIDevice.h
 native/crossmobile_ios_uikit_UIEdgeInsets.h
 native/crossmobile_ios_uikit_UIEvent.h
@@ -1444,7 +1363,6 @@ native/crossmobile_ios_uikit_UIGestureRecognizerDelegate.h
 native/crossmobile_ios_uikit_UIGraphics.h
 native/crossmobile_ios_uikit_UIImage.h
 native/crossmobile_ios_uikit_UIImageView.h
-native/crossmobile_ios_uikit_UIImageViewAppearance.h
 native/crossmobile_ios_uikit_UIImageWriteToPhotoAlbumHandler.h
 native/crossmobile_ios_uikit_UILabel.h
 native/crossmobile_ios_uikit_UILabelAppearance.h
@@ -1455,7 +1373,6 @@ native/crossmobile_ios_uikit_UILongPressGestureRecognizer.h
 native/crossmobile_ios_uikit_UIMutableUserNotificationAction.h
 native/crossmobile_ios_uikit_UIMutableUserNotificationCategory.h
 native/crossmobile_ios_uikit_UINavigationBar.h
-native/crossmobile_ios_uikit_UINavigationBarAppearance.h
 native/crossmobile_ios_uikit_UINavigationBarDelegate.h
 native/crossmobile_ios_uikit_UINavigationController.h
 native/crossmobile_ios_uikit_UINavigationControllerDelegate.h
@@ -1463,10 +1380,8 @@ native/crossmobile_ios_uikit_UINavigationItem.h
 native/crossmobile_ios_uikit_UINib.h
 native/crossmobile_ios_uikit_UIOffset.h
 native/crossmobile_ios_uikit_UIPageControl.h
-native/crossmobile_ios_uikit_UIPageControlAppearance.h
 native/crossmobile_ios_uikit_UIPanGestureRecognizer.h
 native/crossmobile_ios_uikit_UIPickerView.h
-native/crossmobile_ios_uikit_UIPickerViewAppearance.h
 native/crossmobile_ios_uikit_UIPickerViewDataSource.h
 native/crossmobile_ios_uikit_UIPickerViewDelegate.h
 native/crossmobile_ios_uikit_UIPinchGestureRecognizer.h
@@ -1475,65 +1390,49 @@ native/crossmobile_ios_uikit_UIPopoverControllerDelegate.h
 native/crossmobile_ios_uikit_UIPrintInteractionCompletionHandler.h
 native/crossmobile_ios_uikit_UIPrintInteractionController.h
 native/crossmobile_ios_uikit_UIProgressView.h
-native/crossmobile_ios_uikit_UIProgressViewAppearance.h
 native/crossmobile_ios_uikit_UIResponder.h
 native/crossmobile_ios_uikit_UIRotationGestureRecognizer.h
 native/crossmobile_ios_uikit_UIScreen.h
 native/crossmobile_ios_uikit_UIScrollView.h
-native/crossmobile_ios_uikit_UIScrollViewAppearance.h
 native/crossmobile_ios_uikit_UIScrollViewDelegate.h
 native/crossmobile_ios_uikit_UISearchBar.h
-native/crossmobile_ios_uikit_UISearchBarAppearance.h
 native/crossmobile_ios_uikit_UISearchBarDelegate.h
 native/crossmobile_ios_uikit_UISegmentedControl.h
-native/crossmobile_ios_uikit_UISegmentedControlAppearance.h
 native/crossmobile_ios_uikit_UISlider.h
-native/crossmobile_ios_uikit_UISliderAppearance.h
 native/crossmobile_ios_uikit_UISplitViewController.h
 native/crossmobile_ios_uikit_UISplitViewControllerDelegate.h
 native/crossmobile_ios_uikit_UIStackView.h
-native/crossmobile_ios_uikit_UIStackViewAppearance.h
 native/crossmobile_ios_uikit_UIStepper.h
-native/crossmobile_ios_uikit_UIStepperAppearance.h
 native/crossmobile_ios_uikit_UIStoryboard.h
 native/crossmobile_ios_uikit_UIStoryboardSegue.h
 native/crossmobile_ios_uikit_UIStoryboardUnwindSegueSource.h
 native/crossmobile_ios_uikit_UISwipeGestureRecognizer.h
 native/crossmobile_ios_uikit_UISwitch.h
-native/crossmobile_ios_uikit_UISwitchAppearance.h
 native/crossmobile_ios_uikit_UITabBar.h
-native/crossmobile_ios_uikit_UITabBarAppearance.h
 native/crossmobile_ios_uikit_UITabBarController.h
 native/crossmobile_ios_uikit_UITabBarControllerDelegate.h
 native/crossmobile_ios_uikit_UITabBarDelegate.h
 native/crossmobile_ios_uikit_UITabBarItem.h
 native/crossmobile_ios_uikit_UITableView.h
-native/crossmobile_ios_uikit_UITableViewAppearance.h
 native/crossmobile_ios_uikit_UITableViewCell.h
-native/crossmobile_ios_uikit_UITableViewCellAppearance.h
 native/crossmobile_ios_uikit_UITableViewController.h
 native/crossmobile_ios_uikit_UITableViewDataSource.h
 native/crossmobile_ios_uikit_UITableViewDelegate.h
 native/crossmobile_ios_uikit_UITapGestureRecognizer.h
 native/crossmobile_ios_uikit_UITextField.h
-native/crossmobile_ios_uikit_UITextFieldAppearance.h
 native/crossmobile_ios_uikit_UITextFieldDelegate.h
 native/crossmobile_ios_uikit_UITextInputTraits.h
 native/crossmobile_ios_uikit_UITextView.h
-native/crossmobile_ios_uikit_UITextViewAppearance.h
 native/crossmobile_ios_uikit_UITextViewDelegate.h
 native/crossmobile_ios_uikit_UIToolbar.h
-native/crossmobile_ios_uikit_UIToolbarAppearance.h
 native/crossmobile_ios_uikit_UITouch.h
 native/crossmobile_ios_uikit_UIUserNotificationSettings.h
 native/crossmobile_ios_uikit_UIView.h
 native/crossmobile_ios_uikit_UIViewAppearance.h
 native/crossmobile_ios_uikit_UIViewController.h
 native/crossmobile_ios_uikit_UIWebView.h
-native/crossmobile_ios_uikit_UIWebViewAppearance.h
 native/crossmobile_ios_uikit_UIWebViewDelegate.h
 native/crossmobile_ios_uikit_UIWindow.h
-native/crossmobile_ios_uikit_UIWindowAppearance.h
 native/crossmobile_rt_StrongReference.h
 native/java_io_BufferedInputStream.h
 native/java_io_BufferedOutputStream.h
@@ -1952,14 +1851,10 @@ crossmobile/ios/uikit/UIAcceleration.class v8
 crossmobile/ios/uikit/UIAccelerometer.class v8
 crossmobile/ios/uikit/UIAccelerometerDelegate.class v8
 crossmobile/ios/uikit/UIActionSheet.class v8
-crossmobile/ios/uikit/UIActionSheetAppearance$a.class v8
-crossmobile/ios/uikit/UIActionSheetAppearance.class v8
 crossmobile/ios/uikit/UIActionSheetDelegate.class v8
 crossmobile/ios/uikit/UIActivity.class v8
 crossmobile/ios/uikit/UIActivityCategory.class v8
 crossmobile/ios/uikit/UIActivityIndicatorView.class v8
-crossmobile/ios/uikit/UIActivityIndicatorViewAppearance$a.class v8
-crossmobile/ios/uikit/UIActivityIndicatorViewAppearance.class v8
 crossmobile/ios/uikit/UIActivityIndicatorViewStyle.class v8
 crossmobile/ios/uikit/UIActivityType.class v8
 crossmobile/ios/uikit/UIActivityViewController.class v8
@@ -1972,8 +1867,6 @@ crossmobile/ios/uikit/UIAlertController$2.class v8
 crossmobile/ios/uikit/UIAlertController.class v8
 crossmobile/ios/uikit/UIAlertControllerStyle.class v8
 crossmobile/ios/uikit/UIAlertView.class v8
-crossmobile/ios/uikit/UIAlertViewAppearance$a.class v8
-crossmobile/ios/uikit/UIAlertViewAppearance.class v8
 crossmobile/ios/uikit/UIAlertViewDelegate.class v8
 crossmobile/ios/uikit/UIAlertViewStyle.class v8
 crossmobile/ios/uikit/UIAppearance.class v8
@@ -1989,15 +1882,11 @@ crossmobile/ios/uikit/UIBarItem.class v8
 crossmobile/ios/uikit/UIBarStyle.class v8
 crossmobile/ios/uikit/UIBaselineAdjustment.class v8
 crossmobile/ios/uikit/UIButton.class v8
-crossmobile/ios/uikit/UIButtonAppearance$a.class v8
-crossmobile/ios/uikit/UIButtonAppearance.class v8
 crossmobile/ios/uikit/UIButtonType.class v8
 crossmobile/ios/uikit/UIColor.class v8
 crossmobile/ios/uikit/UIControl$1.class v8
 crossmobile/ios/uikit/UIControl$a.class v8
 crossmobile/ios/uikit/UIControl.class v8
-crossmobile/ios/uikit/UIControlAppearance$a.class v8
-crossmobile/ios/uikit/UIControlAppearance.class v8
 crossmobile/ios/uikit/UIControlContentHorizontalAlignment.class v8
 crossmobile/ios/uikit/UIControlContentVerticalAlignment.class v8
 crossmobile/ios/uikit/UIControlDelegate.class v8
@@ -2005,8 +1894,6 @@ crossmobile/ios/uikit/UIControlEvents.class v8
 crossmobile/ios/uikit/UIControlState.class v8
 crossmobile/ios/uikit/UIDataDetectorTypes.class v8
 crossmobile/ios/uikit/UIDatePicker.class v8
-crossmobile/ios/uikit/UIDatePickerAppearance$a.class v8
-crossmobile/ios/uikit/UIDatePickerAppearance.class v8
 crossmobile/ios/uikit/UIDatePickerMode.class v8
 crossmobile/ios/uikit/UIDevice.class v8
 crossmobile/ios/uikit/UIDeviceBatteryState.class v8
@@ -2026,8 +1913,6 @@ crossmobile/ios/uikit/UIImageRenderingMode.class v8
 crossmobile/ios/uikit/UIImageResizingMode.class v8
 crossmobile/ios/uikit/UIImageView$a.class v8
 crossmobile/ios/uikit/UIImageView.class v8
-crossmobile/ios/uikit/UIImageViewAppearance$a.class v8
-crossmobile/ios/uikit/UIImageViewAppearance.class v8
 crossmobile/ios/uikit/UIImageWriteToPhotoAlbumHandler.class v8
 crossmobile/ios/uikit/UIInterfaceOrientation.class v8
 crossmobile/ios/uikit/UIInterfaceOrientationMask.class v8
@@ -2036,7 +1921,6 @@ crossmobile/ios/uikit/UIKeyboardType.class v8
 crossmobile/ios/uikit/UILabel.class v8
 crossmobile/ios/uikit/UILabelAppearance$a.class v8
 crossmobile/ios/uikit/UILabelAppearance$b.class v8
-crossmobile/ios/uikit/UILabelAppearance$c.class v8
 crossmobile/ios/uikit/UILabelAppearance.class v8
 crossmobile/ios/uikit/UILayoutConstraintAxis.class v8
 crossmobile/ios/uikit/UILayoutGuide.class v8
@@ -2049,8 +1933,6 @@ crossmobile/ios/uikit/UIModalTransitionStyle.class v8
 crossmobile/ios/uikit/UIMutableUserNotificationAction.class v8
 crossmobile/ios/uikit/UIMutableUserNotificationCategory.class v8
 crossmobile/ios/uikit/UINavigationBar.class v8
-crossmobile/ios/uikit/UINavigationBarAppearance$a.class v8
-crossmobile/ios/uikit/UINavigationBarAppearance.class v8
 crossmobile/ios/uikit/UINavigationBarDelegate.class v8
 crossmobile/ios/uikit/UINavigationController$a.class v8
 crossmobile/ios/uikit/UINavigationController$b.class v8
@@ -2060,14 +1942,10 @@ crossmobile/ios/uikit/UINavigationItem.class v8
 crossmobile/ios/uikit/UINib.class v8
 crossmobile/ios/uikit/UIOffset.class v8
 crossmobile/ios/uikit/UIPageControl.class v8
-crossmobile/ios/uikit/UIPageControlAppearance$a.class v8
-crossmobile/ios/uikit/UIPageControlAppearance.class v8
 crossmobile/ios/uikit/UIPanGestureRecognizer.class v8
 crossmobile/ios/uikit/UIPickerView$1.class v8
 crossmobile/ios/uikit/UIPickerView$2.class v8
 crossmobile/ios/uikit/UIPickerView.class v8
-crossmobile/ios/uikit/UIPickerViewAppearance$a.class v8
-crossmobile/ios/uikit/UIPickerViewAppearance.class v8
 crossmobile/ios/uikit/UIPickerViewDataSource.class v8
 crossmobile/ios/uikit/UIPickerViewDelegate.class v8
 crossmobile/ios/uikit/UIPinchGestureRecognizer.class v8
@@ -2077,8 +1955,6 @@ crossmobile/ios/uikit/UIPopoverControllerDelegate.class v8
 crossmobile/ios/uikit/UIPrintInteractionCompletionHandler.class v8
 crossmobile/ios/uikit/UIPrintInteractionController.class v8
 crossmobile/ios/uikit/UIProgressView.class v8
-crossmobile/ios/uikit/UIProgressViewAppearance$a.class v8
-crossmobile/ios/uikit/UIProgressViewAppearance.class v8
 crossmobile/ios/uikit/UIProgressViewStyle.class v8
 crossmobile/ios/uikit/UIRectEdge.class v8
 crossmobile/ios/uikit/UIRemoteNotificationType.class v8
@@ -2091,27 +1967,19 @@ crossmobile/ios/uikit/UIScrollView$a.class v8
 crossmobile/ios/uikit/UIScrollView$b.class v8
 crossmobile/ios/uikit/UIScrollView$c.class v8
 crossmobile/ios/uikit/UIScrollView.class v8
-crossmobile/ios/uikit/UIScrollViewAppearance$a.class v8
-crossmobile/ios/uikit/UIScrollViewAppearance.class v8
 crossmobile/ios/uikit/UIScrollViewDecelerationRate.class v8
 crossmobile/ios/uikit/UIScrollViewDelegate.class v8
 crossmobile/ios/uikit/UIScrollViewIndicatorStyle.class v8
 crossmobile/ios/uikit/UISearchBar$1.class v8
 crossmobile/ios/uikit/UISearchBar.class v8
-crossmobile/ios/uikit/UISearchBarAppearance$a.class v8
-crossmobile/ios/uikit/UISearchBarAppearance.class v8
 crossmobile/ios/uikit/UISearchBarDelegate.class v8
 crossmobile/ios/uikit/UISearchBarIcon.class v8
 crossmobile/ios/uikit/UISearchBarStyle.class v8
 crossmobile/ios/uikit/UISegmentedControl$1.class v8
 crossmobile/ios/uikit/UISegmentedControl$a.class v8
 crossmobile/ios/uikit/UISegmentedControl.class v8
-crossmobile/ios/uikit/UISegmentedControlAppearance$a.class v8
-crossmobile/ios/uikit/UISegmentedControlAppearance.class v8
 crossmobile/ios/uikit/UISegmentedControlStyle.class v8
 crossmobile/ios/uikit/UISlider.class v8
-crossmobile/ios/uikit/UISliderAppearance$a.class v8
-crossmobile/ios/uikit/UISliderAppearance.class v8
 crossmobile/ios/uikit/UISplitViewController$1.class v8
 crossmobile/ios/uikit/UISplitViewController$a.class v8
 crossmobile/ios/uikit/UISplitViewController.class v8
@@ -2119,26 +1987,19 @@ crossmobile/ios/uikit/UISplitViewControllerDelegate.class v8
 crossmobile/ios/uikit/UISplitViewControllerDisplayMode.class v8
 crossmobile/ios/uikit/UIStackView.class v8
 crossmobile/ios/uikit/UIStackViewAlignment.class v8
-crossmobile/ios/uikit/UIStackViewAppearance.class v8
 crossmobile/ios/uikit/UIStackViewDistribution.class v8
 crossmobile/ios/uikit/UIStatusBarStyle.class v8
 crossmobile/ios/uikit/UIStepper$1.class v8
 crossmobile/ios/uikit/UIStepper$2.class v8
 crossmobile/ios/uikit/UIStepper$3.class v8
 crossmobile/ios/uikit/UIStepper.class v8
-crossmobile/ios/uikit/UIStepperAppearance$a.class v8
-crossmobile/ios/uikit/UIStepperAppearance.class v8
 crossmobile/ios/uikit/UIStoryboard.class v8
 crossmobile/ios/uikit/UIStoryboardSegue.class v8
 crossmobile/ios/uikit/UIStoryboardUnwindSegueSource.class v8
 crossmobile/ios/uikit/UISwipeGestureRecognizer.class v8
 crossmobile/ios/uikit/UISwipeGestureRecognizerDirection.class v8
 crossmobile/ios/uikit/UISwitch.class v8
-crossmobile/ios/uikit/UISwitchAppearance$a.class v8
-crossmobile/ios/uikit/UISwitchAppearance.class v8
 crossmobile/ios/uikit/UITabBar.class v8
-crossmobile/ios/uikit/UITabBarAppearance$a.class v8
-crossmobile/ios/uikit/UITabBarAppearance.class v8
 crossmobile/ios/uikit/UITabBarController$a.class v8
 crossmobile/ios/uikit/UITabBarController.class v8
 crossmobile/ios/uikit/UITabBarControllerDelegate.class v8
@@ -2148,13 +2009,10 @@ crossmobile/ios/uikit/UITabBarItemPositioning.class v8
 crossmobile/ios/uikit/UITableView$1.class v8
 crossmobile/ios/uikit/UITableView$a.class v8
 crossmobile/ios/uikit/UITableView.class v8
-crossmobile/ios/uikit/UITableViewAppearance$a.class v8
-crossmobile/ios/uikit/UITableViewAppearance.class v8
 crossmobile/ios/uikit/UITableViewCell$1.class v8
 crossmobile/ios/uikit/UITableViewCell$a.class v8
 crossmobile/ios/uikit/UITableViewCell.class v8
 crossmobile/ios/uikit/UITableViewCellAccessoryType.class v8
-crossmobile/ios/uikit/UITableViewCellAppearance.class v8
 crossmobile/ios/uikit/UITableViewCellEditingStyle.class v8
 crossmobile/ios/uikit/UITableViewCellSelectionStyle.class v8
 crossmobile/ios/uikit/UITableViewCellSeparatorStyle.class v8
@@ -2174,7 +2032,6 @@ crossmobile/ios/uikit/UITextAutocorrectionType.class v8
 crossmobile/ios/uikit/UITextBorderStyle.class v8
 crossmobile/ios/uikit/UITextContentType.class v8
 crossmobile/ios/uikit/UITextField.class v8
-crossmobile/ios/uikit/UITextFieldAppearance.class v8
 crossmobile/ios/uikit/UITextFieldDelegate.class v8
 crossmobile/ios/uikit/UITextInputTraits.class v8
 crossmobile/ios/uikit/UITextSmartDashesType.class v8
@@ -2182,11 +2039,8 @@ crossmobile/ios/uikit/UITextSmartInsertDeleteType.class v8
 crossmobile/ios/uikit/UITextSmartQuotesType.class v8
 crossmobile/ios/uikit/UITextSpellCheckingType.class v8
 crossmobile/ios/uikit/UITextView.class v8
-crossmobile/ios/uikit/UITextViewAppearance.class v8
 crossmobile/ios/uikit/UITextViewDelegate.class v8
 crossmobile/ios/uikit/UIToolbar.class v8
-crossmobile/ios/uikit/UIToolbarAppearance$a.class v8
-crossmobile/ios/uikit/UIToolbarAppearance.class v8
 crossmobile/ios/uikit/UITouch.class v8
 crossmobile/ios/uikit/UITouchPhase.class v8
 crossmobile/ios/uikit/UIUserInterfaceIdiom.class v8
@@ -2207,13 +2061,9 @@ crossmobile/ios/uikit/UIViewController$a.class v8
 crossmobile/ios/uikit/UIViewController.class v8
 crossmobile/ios/uikit/UIViewTintAdjustmentMode.class v8
 crossmobile/ios/uikit/UIWebView.class v8
-crossmobile/ios/uikit/UIWebViewAppearance$a.class v8
-crossmobile/ios/uikit/UIWebViewAppearance.class v8
 crossmobile/ios/uikit/UIWebViewDelegate.class v8
 crossmobile/ios/uikit/UIWebViewNavigationType.class v8
 crossmobile/ios/uikit/UIWindow.class v8
-crossmobile/ios/uikit/UIWindowAppearance$a.class v8
-crossmobile/ios/uikit/UIWindowAppearance.class v8
 crossmobile/ios/uikit/a$1.class v8
 crossmobile/ios/uikit/a$a.class v8
 crossmobile/ios/uikit/a$b.class v8
@@ -2781,14 +2631,10 @@ crossmobile/ios/uikit/UIAcceleration.class v8
 crossmobile/ios/uikit/UIAccelerometer.class v8
 crossmobile/ios/uikit/UIAccelerometerDelegate.class v8
 crossmobile/ios/uikit/UIActionSheet.class v8
-crossmobile/ios/uikit/UIActionSheetAppearance$a.class v8
-crossmobile/ios/uikit/UIActionSheetAppearance.class v8
 crossmobile/ios/uikit/UIActionSheetDelegate.class v8
 crossmobile/ios/uikit/UIActivity.class v8
 crossmobile/ios/uikit/UIActivityCategory.class v8
 crossmobile/ios/uikit/UIActivityIndicatorView.class v8
-crossmobile/ios/uikit/UIActivityIndicatorViewAppearance$a.class v8
-crossmobile/ios/uikit/UIActivityIndicatorViewAppearance.class v8
 crossmobile/ios/uikit/UIActivityIndicatorViewStyle.class v8
 crossmobile/ios/uikit/UIActivityType.class v8
 crossmobile/ios/uikit/UIActivityViewController.class v8
@@ -2801,8 +2647,6 @@ crossmobile/ios/uikit/UIAlertController$2.class v8
 crossmobile/ios/uikit/UIAlertController.class v8
 crossmobile/ios/uikit/UIAlertControllerStyle.class v8
 crossmobile/ios/uikit/UIAlertView.class v8
-crossmobile/ios/uikit/UIAlertViewAppearance$a.class v8
-crossmobile/ios/uikit/UIAlertViewAppearance.class v8
 crossmobile/ios/uikit/UIAlertViewDelegate.class v8
 crossmobile/ios/uikit/UIAlertViewStyle.class v8
 crossmobile/ios/uikit/UIAppearance.class v8
@@ -2818,15 +2662,11 @@ crossmobile/ios/uikit/UIBarItem.class v8
 crossmobile/ios/uikit/UIBarStyle.class v8
 crossmobile/ios/uikit/UIBaselineAdjustment.class v8
 crossmobile/ios/uikit/UIButton.class v8
-crossmobile/ios/uikit/UIButtonAppearance$a.class v8
-crossmobile/ios/uikit/UIButtonAppearance.class v8
 crossmobile/ios/uikit/UIButtonType.class v8
 crossmobile/ios/uikit/UIColor.class v8
 crossmobile/ios/uikit/UIControl$1.class v8
 crossmobile/ios/uikit/UIControl$a.class v8
 crossmobile/ios/uikit/UIControl.class v8
-crossmobile/ios/uikit/UIControlAppearance$a.class v8
-crossmobile/ios/uikit/UIControlAppearance.class v8
 crossmobile/ios/uikit/UIControlContentHorizontalAlignment.class v8
 crossmobile/ios/uikit/UIControlContentVerticalAlignment.class v8
 crossmobile/ios/uikit/UIControlDelegate.class v8
@@ -2834,8 +2674,6 @@ crossmobile/ios/uikit/UIControlEvents.class v8
 crossmobile/ios/uikit/UIControlState.class v8
 crossmobile/ios/uikit/UIDataDetectorTypes.class v8
 crossmobile/ios/uikit/UIDatePicker.class v8
-crossmobile/ios/uikit/UIDatePickerAppearance$a.class v8
-crossmobile/ios/uikit/UIDatePickerAppearance.class v8
 crossmobile/ios/uikit/UIDatePickerMode.class v8
 crossmobile/ios/uikit/UIDevice.class v8
 crossmobile/ios/uikit/UIDeviceBatteryState.class v8
@@ -2855,8 +2693,6 @@ crossmobile/ios/uikit/UIImageRenderingMode.class v8
 crossmobile/ios/uikit/UIImageResizingMode.class v8
 crossmobile/ios/uikit/UIImageView$a.class v8
 crossmobile/ios/uikit/UIImageView.class v8
-crossmobile/ios/uikit/UIImageViewAppearance$a.class v8
-crossmobile/ios/uikit/UIImageViewAppearance.class v8
 crossmobile/ios/uikit/UIImageWriteToPhotoAlbumHandler.class v8
 crossmobile/ios/uikit/UIInterfaceOrientation.class v8
 crossmobile/ios/uikit/UIInterfaceOrientationMask.class v8
@@ -2865,7 +2701,6 @@ crossmobile/ios/uikit/UIKeyboardType.class v8
 crossmobile/ios/uikit/UILabel.class v8
 crossmobile/ios/uikit/UILabelAppearance$a.class v8
 crossmobile/ios/uikit/UILabelAppearance$b.class v8
-crossmobile/ios/uikit/UILabelAppearance$c.class v8
 crossmobile/ios/uikit/UILabelAppearance.class v8
 crossmobile/ios/uikit/UILayoutConstraintAxis.class v8
 crossmobile/ios/uikit/UILayoutGuide.class v8
@@ -2878,8 +2713,6 @@ crossmobile/ios/uikit/UIModalTransitionStyle.class v8
 crossmobile/ios/uikit/UIMutableUserNotificationAction.class v8
 crossmobile/ios/uikit/UIMutableUserNotificationCategory.class v8
 crossmobile/ios/uikit/UINavigationBar.class v8
-crossmobile/ios/uikit/UINavigationBarAppearance$a.class v8
-crossmobile/ios/uikit/UINavigationBarAppearance.class v8
 crossmobile/ios/uikit/UINavigationBarDelegate.class v8
 crossmobile/ios/uikit/UINavigationController$a.class v8
 crossmobile/ios/uikit/UINavigationController$b.class v8
@@ -2889,14 +2722,10 @@ crossmobile/ios/uikit/UINavigationItem.class v8
 crossmobile/ios/uikit/UINib.class v8
 crossmobile/ios/uikit/UIOffset.class v8
 crossmobile/ios/uikit/UIPageControl.class v8
-crossmobile/ios/uikit/UIPageControlAppearance$a.class v8
-crossmobile/ios/uikit/UIPageControlAppearance.class v8
 crossmobile/ios/uikit/UIPanGestureRecognizer.class v8
 crossmobile/ios/uikit/UIPickerView$1.class v8
 crossmobile/ios/uikit/UIPickerView$2.class v8
 crossmobile/ios/uikit/UIPickerView.class v8
-crossmobile/ios/uikit/UIPickerViewAppearance$a.class v8
-crossmobile/ios/uikit/UIPickerViewAppearance.class v8
 crossmobile/ios/uikit/UIPickerViewDataSource.class v8
 crossmobile/ios/uikit/UIPickerViewDelegate.class v8
 crossmobile/ios/uikit/UIPinchGestureRecognizer.class v8
@@ -2906,8 +2735,6 @@ crossmobile/ios/uikit/UIPopoverControllerDelegate.class v8
 crossmobile/ios/uikit/UIPrintInteractionCompletionHandler.class v8
 crossmobile/ios/uikit/UIPrintInteractionController.class v8
 crossmobile/ios/uikit/UIProgressView.class v8
-crossmobile/ios/uikit/UIProgressViewAppearance$a.class v8
-crossmobile/ios/uikit/UIProgressViewAppearance.class v8
 crossmobile/ios/uikit/UIProgressViewStyle.class v8
 crossmobile/ios/uikit/UIRectEdge.class v8
 crossmobile/ios/uikit/UIRemoteNotificationType.class v8
@@ -2920,27 +2747,19 @@ crossmobile/ios/uikit/UIScrollView$a.class v8
 crossmobile/ios/uikit/UIScrollView$b.class v8
 crossmobile/ios/uikit/UIScrollView$c.class v8
 crossmobile/ios/uikit/UIScrollView.class v8
-crossmobile/ios/uikit/UIScrollViewAppearance$a.class v8
-crossmobile/ios/uikit/UIScrollViewAppearance.class v8
 crossmobile/ios/uikit/UIScrollViewDecelerationRate.class v8
 crossmobile/ios/uikit/UIScrollViewDelegate.class v8
 crossmobile/ios/uikit/UIScrollViewIndicatorStyle.class v8
 crossmobile/ios/uikit/UISearchBar$1.class v8
 crossmobile/ios/uikit/UISearchBar.class v8
-crossmobile/ios/uikit/UISearchBarAppearance$a.class v8
-crossmobile/ios/uikit/UISearchBarAppearance.class v8
 crossmobile/ios/uikit/UISearchBarDelegate.class v8
 crossmobile/ios/uikit/UISearchBarIcon.class v8
 crossmobile/ios/uikit/UISearchBarStyle.class v8
 crossmobile/ios/uikit/UISegmentedControl$1.class v8
 crossmobile/ios/uikit/UISegmentedControl$a.class v8
 crossmobile/ios/uikit/UISegmentedControl.class v8
-crossmobile/ios/uikit/UISegmentedControlAppearance$a.class v8
-crossmobile/ios/uikit/UISegmentedControlAppearance.class v8
 crossmobile/ios/uikit/UISegmentedControlStyle.class v8
 crossmobile/ios/uikit/UISlider.class v8
-crossmobile/ios/uikit/UISliderAppearance$a.class v8
-crossmobile/ios/uikit/UISliderAppearance.class v8
 crossmobile/ios/uikit/UISplitViewController$1.class v8
 crossmobile/ios/uikit/UISplitViewController$a.class v8
 crossmobile/ios/uikit/UISplitViewController.class v8
@@ -2948,26 +2767,19 @@ crossmobile/ios/uikit/UISplitViewControllerDelegate.class v8
 crossmobile/ios/uikit/UISplitViewControllerDisplayMode.class v8
 crossmobile/ios/uikit/UIStackView.class v8
 crossmobile/ios/uikit/UIStackViewAlignment.class v8
-crossmobile/ios/uikit/UIStackViewAppearance.class v8
 crossmobile/ios/uikit/UIStackViewDistribution.class v8
 crossmobile/ios/uikit/UIStatusBarStyle.class v8
 crossmobile/ios/uikit/UIStepper$1.class v8
 crossmobile/ios/uikit/UIStepper$2.class v8
 crossmobile/ios/uikit/UIStepper$3.class v8
 crossmobile/ios/uikit/UIStepper.class v8
-crossmobile/ios/uikit/UIStepperAppearance$a.class v8
-crossmobile/ios/uikit/UIStepperAppearance.class v8
 crossmobile/ios/uikit/UIStoryboard.class v8
 crossmobile/ios/uikit/UIStoryboardSegue.class v8
 crossmobile/ios/uikit/UIStoryboardUnwindSegueSource.class v8
 crossmobile/ios/uikit/UISwipeGestureRecognizer.class v8
 crossmobile/ios/uikit/UISwipeGestureRecognizerDirection.class v8
 crossmobile/ios/uikit/UISwitch.class v8
-crossmobile/ios/uikit/UISwitchAppearance$a.class v8
-crossmobile/ios/uikit/UISwitchAppearance.class v8
 crossmobile/ios/uikit/UITabBar.class v8
-crossmobile/ios/uikit/UITabBarAppearance$a.class v8
-crossmobile/ios/uikit/UITabBarAppearance.class v8
 crossmobile/ios/uikit/UITabBarController$a.class v8
 crossmobile/ios/uikit/UITabBarController.class v8
 crossmobile/ios/uikit/UITabBarControllerDelegate.class v8
@@ -2977,13 +2789,10 @@ crossmobile/ios/uikit/UITabBarItemPositioning.class v8
 crossmobile/ios/uikit/UITableView$1.class v8
 crossmobile/ios/uikit/UITableView$a.class v8
 crossmobile/ios/uikit/UITableView.class v8
-crossmobile/ios/uikit/UITableViewAppearance$a.class v8
-crossmobile/ios/uikit/UITableViewAppearance.class v8
 crossmobile/ios/uikit/UITableViewCell$1.class v8
 crossmobile/ios/uikit/UITableViewCell$a.class v8
 crossmobile/ios/uikit/UITableViewCell.class v8
 crossmobile/ios/uikit/UITableViewCellAccessoryType.class v8
-crossmobile/ios/uikit/UITableViewCellAppearance.class v8
 crossmobile/ios/uikit/UITableViewCellEditingStyle.class v8
 crossmobile/ios/uikit/UITableViewCellSelectionStyle.class v8
 crossmobile/ios/uikit/UITableViewCellSeparatorStyle.class v8
@@ -3003,7 +2812,6 @@ crossmobile/ios/uikit/UITextAutocorrectionType.class v8
 crossmobile/ios/uikit/UITextBorderStyle.class v8
 crossmobile/ios/uikit/UITextContentType.class v8
 crossmobile/ios/uikit/UITextField.class v8
-crossmobile/ios/uikit/UITextFieldAppearance.class v8
 crossmobile/ios/uikit/UITextFieldDelegate.class v8
 crossmobile/ios/uikit/UITextInputTraits.class v8
 crossmobile/ios/uikit/UITextSmartDashesType.class v8
@@ -3011,11 +2819,8 @@ crossmobile/ios/uikit/UITextSmartInsertDeleteType.class v8
 crossmobile/ios/uikit/UITextSmartQuotesType.class v8
 crossmobile/ios/uikit/UITextSpellCheckingType.class v8
 crossmobile/ios/uikit/UITextView.class v8
-crossmobile/ios/uikit/UITextViewAppearance.class v8
 crossmobile/ios/uikit/UITextViewDelegate.class v8
 crossmobile/ios/uikit/UIToolbar.class v8
-crossmobile/ios/uikit/UIToolbarAppearance$a.class v8
-crossmobile/ios/uikit/UIToolbarAppearance.class v8
 crossmobile/ios/uikit/UITouch.class v8
 crossmobile/ios/uikit/UITouchPhase.class v8
 crossmobile/ios/uikit/UIUserInterfaceIdiom.class v8
@@ -3036,13 +2841,9 @@ crossmobile/ios/uikit/UIViewController$a.class v8
 crossmobile/ios/uikit/UIViewController.class v8
 crossmobile/ios/uikit/UIViewTintAdjustmentMode.class v8
 crossmobile/ios/uikit/UIWebView.class v8
-crossmobile/ios/uikit/UIWebViewAppearance$a.class v8
-crossmobile/ios/uikit/UIWebViewAppearance.class v8
 crossmobile/ios/uikit/UIWebViewDelegate.class v8
 crossmobile/ios/uikit/UIWebViewNavigationType.class v8
 crossmobile/ios/uikit/UIWindow.class v8
-crossmobile/ios/uikit/UIWindowAppearance$a.class v8
-crossmobile/ios/uikit/UIWindowAppearance.class v8
 crossmobile/ios/uikit/a$1.class v8
 crossmobile/ios/uikit/a$a.class v8
 crossmobile/ios/uikit/a$b.class v8
@@ -3363,7 +3164,6 @@ crossmobile/ios/corelocation/CLRegion.class v8
 crossmobile/ios/corelocation/package-info.class v8
 crossmobile/ios/mapkit/MKAnnotation.class v8
 crossmobile/ios/mapkit/MKAnnotationView.class v8
-crossmobile/ios/mapkit/MKAnnotationViewAppearance.class v8
 crossmobile/ios/mapkit/MKAnnotationViewDragState.class v8
 crossmobile/ios/mapkit/MKCoordinateRegion.class v8
 crossmobile/ios/mapkit/MKCoordinateSpan.class v8
@@ -3372,14 +3172,11 @@ crossmobile/ios/mapkit/MKMapRect.class v8
 crossmobile/ios/mapkit/MKMapSize.class v8
 crossmobile/ios/mapkit/MKMapType.class v8
 crossmobile/ios/mapkit/MKMapView.class v8
-crossmobile/ios/mapkit/MKMapViewAppearance.class v8
 crossmobile/ios/mapkit/MKMapViewDelegate.class v8
 crossmobile/ios/mapkit/MKOverlay.class v8
 crossmobile/ios/mapkit/MKOverlayView.class v8
-crossmobile/ios/mapkit/MKOverlayViewAppearance.class v8
 crossmobile/ios/mapkit/MKPinAnnotationColor.class v8
 crossmobile/ios/mapkit/MKPinAnnotationView.class v8
-crossmobile/ios/mapkit/MKPinAnnotationViewAppearance.class v8
 crossmobile/ios/mapkit/MKPlacemark.class v8
 crossmobile/ios/mapkit/MKReverseGeocoder.class v8
 crossmobile/ios/mapkit/MKReverseGeocoderDelegate.class v8
@@ -3405,8 +3202,6 @@ crossmobile/ios/corelocation/CLPlacemark.class v8
 crossmobile/ios/corelocation/CLRegion.class v8
 crossmobile/ios/mapkit/MKAnnotation.class v8
 crossmobile/ios/mapkit/MKAnnotationView.class v8
-crossmobile/ios/mapkit/MKAnnotationViewAppearance$a.class v8
-crossmobile/ios/mapkit/MKAnnotationViewAppearance.class v8
 crossmobile/ios/mapkit/MKAnnotationViewDragState.class v8
 crossmobile/ios/mapkit/MKCoordinateRegion.class v8
 crossmobile/ios/mapkit/MKCoordinateSpan.class v8
@@ -3415,17 +3210,11 @@ crossmobile/ios/mapkit/MKMapRect.class v8
 crossmobile/ios/mapkit/MKMapSize.class v8
 crossmobile/ios/mapkit/MKMapType.class v8
 crossmobile/ios/mapkit/MKMapView.class v8
-crossmobile/ios/mapkit/MKMapViewAppearance$a.class v8
-crossmobile/ios/mapkit/MKMapViewAppearance.class v8
 crossmobile/ios/mapkit/MKMapViewDelegate.class v8
 crossmobile/ios/mapkit/MKOverlay.class v8
 crossmobile/ios/mapkit/MKOverlayView.class v8
-crossmobile/ios/mapkit/MKOverlayViewAppearance$a.class v8
-crossmobile/ios/mapkit/MKOverlayViewAppearance.class v8
 crossmobile/ios/mapkit/MKPinAnnotationColor.class v8
 crossmobile/ios/mapkit/MKPinAnnotationView.class v8
-crossmobile/ios/mapkit/MKPinAnnotationViewAppearance$a.class v8
-crossmobile/ios/mapkit/MKPinAnnotationViewAppearance.class v8
 crossmobile/ios/mapkit/MKPlacemark.class v8
 crossmobile/ios/mapkit/MKReverseGeocoder.class v8
 crossmobile/ios/mapkit/MKReverseGeocoderDelegate.class v8
@@ -3440,20 +3229,16 @@ native/crossmobile_ios_corelocation_CLPlacemark.h
 native/crossmobile_ios_corelocation_CLRegion.h
 native/crossmobile_ios_mapkit_MKAnnotation.h
 native/crossmobile_ios_mapkit_MKAnnotationView.h
-native/crossmobile_ios_mapkit_MKAnnotationViewAppearance.h
 native/crossmobile_ios_mapkit_MKCoordinateRegion.h
 native/crossmobile_ios_mapkit_MKCoordinateSpan.h
 native/crossmobile_ios_mapkit_MKMapPoint.h
 native/crossmobile_ios_mapkit_MKMapRect.h
 native/crossmobile_ios_mapkit_MKMapSize.h
 native/crossmobile_ios_mapkit_MKMapView.h
-native/crossmobile_ios_mapkit_MKMapViewAppearance.h
 native/crossmobile_ios_mapkit_MKMapViewDelegate.h
 native/crossmobile_ios_mapkit_MKOverlay.h
 native/crossmobile_ios_mapkit_MKOverlayView.h
-native/crossmobile_ios_mapkit_MKOverlayViewAppearance.h
 native/crossmobile_ios_mapkit_MKPinAnnotationView.h
-native/crossmobile_ios_mapkit_MKPinAnnotationViewAppearance.h
 native/crossmobile_ios_mapkit_MKPlacemark.h
 native/crossmobile_ios_mapkit_MKReverseGeocoder.h
 native/crossmobile_ios_mapkit_MKReverseGeocoderDelegate.h
@@ -3475,8 +3260,6 @@ crossmobile/ios/corelocation/CLPlacemark.class v8
 crossmobile/ios/corelocation/CLRegion.class v8
 crossmobile/ios/mapkit/MKAnnotation.class v8
 crossmobile/ios/mapkit/MKAnnotationView.class v8
-crossmobile/ios/mapkit/MKAnnotationViewAppearance$a.class v8
-crossmobile/ios/mapkit/MKAnnotationViewAppearance.class v8
 crossmobile/ios/mapkit/MKAnnotationViewDragState.class v8
 crossmobile/ios/mapkit/MKCoordinateRegion.class v8
 crossmobile/ios/mapkit/MKCoordinateSpan.class v8
@@ -3485,17 +3268,11 @@ crossmobile/ios/mapkit/MKMapRect.class v8
 crossmobile/ios/mapkit/MKMapSize.class v8
 crossmobile/ios/mapkit/MKMapType.class v8
 crossmobile/ios/mapkit/MKMapView.class v8
-crossmobile/ios/mapkit/MKMapViewAppearance$a.class v8
-crossmobile/ios/mapkit/MKMapViewAppearance.class v8
 crossmobile/ios/mapkit/MKMapViewDelegate.class v8
 crossmobile/ios/mapkit/MKOverlay.class v8
 crossmobile/ios/mapkit/MKOverlayView.class v8
-crossmobile/ios/mapkit/MKOverlayViewAppearance$a.class v8
-crossmobile/ios/mapkit/MKOverlayViewAppearance.class v8
 crossmobile/ios/mapkit/MKPinAnnotationColor.class v8
 crossmobile/ios/mapkit/MKPinAnnotationView.class v8
-crossmobile/ios/mapkit/MKPinAnnotationViewAppearance$a.class v8
-crossmobile/ios/mapkit/MKPinAnnotationViewAppearance.class v8
 crossmobile/ios/mapkit/MKPlacemark.class v8
 crossmobile/ios/mapkit/MKReverseGeocoder.class v8
 crossmobile/ios/mapkit/MKReverseGeocoderDelegate.class v8
@@ -3520,8 +3297,6 @@ crossmobile/ios/corelocation/CLPlacemark.class v8
 crossmobile/ios/corelocation/CLRegion.class v8
 crossmobile/ios/mapkit/MKAnnotation.class v8
 crossmobile/ios/mapkit/MKAnnotationView.class v8
-crossmobile/ios/mapkit/MKAnnotationViewAppearance$a.class v8
-crossmobile/ios/mapkit/MKAnnotationViewAppearance.class v8
 crossmobile/ios/mapkit/MKAnnotationViewDragState.class v8
 crossmobile/ios/mapkit/MKCoordinateRegion.class v8
 crossmobile/ios/mapkit/MKCoordinateSpan.class v8
@@ -3530,17 +3305,11 @@ crossmobile/ios/mapkit/MKMapRect.class v8
 crossmobile/ios/mapkit/MKMapSize.class v8
 crossmobile/ios/mapkit/MKMapType.class v8
 crossmobile/ios/mapkit/MKMapView.class v8
-crossmobile/ios/mapkit/MKMapViewAppearance$a.class v8
-crossmobile/ios/mapkit/MKMapViewAppearance.class v8
 crossmobile/ios/mapkit/MKMapViewDelegate.class v8
 crossmobile/ios/mapkit/MKOverlay.class v8
 crossmobile/ios/mapkit/MKOverlayView.class v8
-crossmobile/ios/mapkit/MKOverlayViewAppearance$a.class v8
-crossmobile/ios/mapkit/MKOverlayViewAppearance.class v8
 crossmobile/ios/mapkit/MKPinAnnotationColor.class v8
 crossmobile/ios/mapkit/MKPinAnnotationView.class v8
-crossmobile/ios/mapkit/MKPinAnnotationViewAppearance$a.class v8
-crossmobile/ios/mapkit/MKPinAnnotationViewAppearance.class v8
 crossmobile/ios/mapkit/MKPlacemark.class v8
 crossmobile/ios/mapkit/MKReverseGeocoder.class v8
 crossmobile/ios/mapkit/MKReverseGeocoderDelegate.class v8
@@ -3570,7 +3339,6 @@ crossmobile/ios/mediaplayer/MPMoviePlayerController.class v8
 crossmobile/ios/mediaplayer/MPMoviePlayerViewController.class v8
 crossmobile/ios/mediaplayer/MPMovieScalingMode.class v8
 crossmobile/ios/mediaplayer/MPVolumeView.class v8
-crossmobile/ios/mediaplayer/MPVolumeViewAppearance.class v8
 crossmobile/ios/mediaplayer/package-info.class v8
 
 Creating file cmplugin-builddep-cmmedia-<VERSION>.jar
@@ -3587,8 +3355,6 @@ crossmobile/ios/mediaplayer/MPMoviePlayerController.class v8
 crossmobile/ios/mediaplayer/MPMoviePlayerViewController.class v8
 crossmobile/ios/mediaplayer/MPMovieScalingMode.class v8
 crossmobile/ios/mediaplayer/MPVolumeView.class v8
-crossmobile/ios/mediaplayer/MPVolumeViewAppearance$a.class v8
-crossmobile/ios/mediaplayer/MPVolumeViewAppearance.class v8
 native/cmmedia.a
 native/crossmobile_ios_audiotoolbox_AudioServices.h
 native/crossmobile_ios_avfoundation_AVAudioPlayer.h
@@ -3596,7 +3362,6 @@ native/crossmobile_ios_avfoundation_AVAudioPlayerDelegate.h
 native/crossmobile_ios_mediaplayer_MPMoviePlayerController.h
 native/crossmobile_ios_mediaplayer_MPMoviePlayerViewController.h
 native/crossmobile_ios_mediaplayer_MPVolumeView.h
-native/crossmobile_ios_mediaplayer_MPVolumeViewAppearance.h
 
 Creating file cmplugin-desktop-cmmedia-<VERSION>.jar
 crossmobile/ios/audiotoolbox/AudioServices.class v8
@@ -3609,8 +3374,6 @@ crossmobile/ios/mediaplayer/MPMoviePlayerController.class v8
 crossmobile/ios/mediaplayer/MPMoviePlayerViewController.class v8
 crossmobile/ios/mediaplayer/MPMovieScalingMode.class v8
 crossmobile/ios/mediaplayer/MPVolumeView.class v8
-crossmobile/ios/mediaplayer/MPVolumeViewAppearance$a.class v8
-crossmobile/ios/mediaplayer/MPVolumeViewAppearance.class v8
 
 Creating file cmplugin-android-cmmedia-<VERSION>.jar
 crossmobile/ios/audiotoolbox/AudioServices.class v8
@@ -3623,8 +3386,6 @@ crossmobile/ios/mediaplayer/MPMoviePlayerController.class v8
 crossmobile/ios/mediaplayer/MPMoviePlayerViewController.class v8
 crossmobile/ios/mediaplayer/MPMovieScalingMode.class v8
 crossmobile/ios/mediaplayer/MPVolumeView.class v8
-crossmobile/ios/mediaplayer/MPVolumeViewAppearance$a.class v8
-crossmobile/ios/mediaplayer/MPVolumeViewAppearance.class v8
 
 Creating file cmplugin-rvm-cmmedia-<VERSION>.jar
 
