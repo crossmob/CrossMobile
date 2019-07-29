@@ -242,7 +242,7 @@ public class Chassis implements Comparable<Chassis> {
     }
 
     boolean isActive() {
-        return led.isActive();
+        return led != null && led.isActive();
     }
 
     @Override

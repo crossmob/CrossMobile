@@ -69,8 +69,8 @@ public class UITextView extends UIView {
     @CMConstructor("- (instancetype)initWithFrame:(CGRect)frame;")
     public UITextView(CGRect rect) {
         super(rect, UIColor.whiteColor);
-        synchronizeNativeBackgroundColor();
         registerWidget(Native.widget().textView(this));
+        synchronizeNativeBackgroundColor();
         widget().setFont($coregraphics.font(Theme.TextView.FONT.cgfont));
     }
 
