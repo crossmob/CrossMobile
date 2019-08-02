@@ -64,7 +64,7 @@ public interface UIApplicationDelegate {
      *                      launched by the user
      * @return FALSE if the app cannot handle the URL resource or continue a
      * user activity.
-     * @see crossmobile.ios.uikit.UIApplicationLaunchOptions
+     * @see UIApplicationLaunchOptionsKey
      */
     @CMSelector("- (BOOL)application:(UIApplication *)application \n"
             + "didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;")
