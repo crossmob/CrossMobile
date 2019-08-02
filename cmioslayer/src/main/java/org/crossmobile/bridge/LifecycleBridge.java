@@ -16,6 +16,8 @@
  */
 package org.crossmobile.bridge;
 
+import java.util.Map;
+
 public interface LifecycleBridge extends Thread.UncaughtExceptionHandler {
 
     String UNKNOWN_NAME = "Unknown";
@@ -40,4 +42,9 @@ public interface LifecycleBridge extends Thread.UncaughtExceptionHandler {
     default void notImplemented() {
         notImplemented(null);
     }
+
+    /**
+     * Retrieve launch options from the environment
+     */
+    Map<String, Object> launchOptions();
 }

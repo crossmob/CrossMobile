@@ -158,7 +158,7 @@ public class SystemUtilities {
         // Initialize main class through reflection
         Method main;
         try {
-            Class clazz = SystemUtilities.class.getClassLoader().loadClass(classname);
+            Class<?> clazz = SystemUtilities.class.getClassLoader().loadClass(classname);
             main = clazz.getMethod("main", args.getClass());
             if (main == null)
                 throw new IllegalArgumentException("Class " + classname + " does not support method with signature 'public static void main(String[])'");

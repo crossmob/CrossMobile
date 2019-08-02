@@ -42,6 +42,9 @@ import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.CMLib;
 import org.crossmobile.bridge.ann.CMLibTarget;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.crossmobile.bind.graphics.GraphicsBridgeConstants.DefaultInitialOrientation;
 import static org.crossmobile.bind.system.AbstractLifecycleBridge.memoryWarning;
 
@@ -53,6 +56,7 @@ public class MainActivity extends Activity {
     private ActivityStateListener stateListener;
     private Bundle instancestate;
     private boolean launchDebug = true;
+    private Map<String, Object> launchOptions = null;
 
     public static MainActivity current() {
         return current;
@@ -79,6 +83,7 @@ public class MainActivity extends Activity {
             Native.system().debug("Activity created", null);
         if (stateListener != null)
             stateListener.onCreate(savedInstanceState);
+        launchOptions = null;   // No longer needed
     }
 
     @Override
@@ -298,4 +303,13 @@ public class MainActivity extends Activity {
         return (MainApplication) getApplication();
     }
 
+    Map<String, Object> getLaunchOptions() {
+        return launchOptions;
+    }
+
+    public void addLaunchOption(String key, Object value) {
+        if (launchOptions == null)
+            launchOptions = new HashMap<>();
+        launchOptions.put(key, value);
+    }
 }

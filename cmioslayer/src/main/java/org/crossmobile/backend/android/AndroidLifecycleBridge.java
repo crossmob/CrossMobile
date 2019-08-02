@@ -21,9 +21,11 @@ import android.location.LocationListener;
 import android.widget.Toast;
 import org.crossmobile.bind.system.AbstractLifecycleBridge;
 import org.crossmobile.bridge.Native;
+import sun.applet.Main;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class AndroidLifecycleBridge extends AbstractLifecycleBridge {
 
@@ -67,9 +69,14 @@ public class AndroidLifecycleBridge extends AbstractLifecycleBridge {
     public long currentAgeInMillis() {
         try {
             return MainActivity.current.getPackageManager().getPackageInfo(MainActivity.current.getApplicationContext().getPackageName(), 0).lastUpdateTime;
-        } catch (Exception ex) {
+        } catch (Exception ignored) {
         }
         return 0;
+    }
+
+    @Override
+    public Map<String, Object> launchOptions() {
+        return MainActivity.current().getLaunchOptions();
     }
 
     void register(Activity mapactivity) {

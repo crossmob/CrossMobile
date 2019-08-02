@@ -46,9 +46,10 @@ public class IconsCopier {
             new IconRequest(48, "mipmap-mdpi/" + ANDROID_ICON + ".png", true),
     };
 
+    @SuppressWarnings("unchecked")
     public static IconRequest[] IosIcons(String idiom) {
         List<IconRequest> requests = new ArrayList<>();
-        for (Map<String, String> imageType : (List<Map>) ((Map) JsonHelper.decode(readResourceSafe("template/Contents.json"))).get("images"))
+        for (Map<String, String> imageType : (List<Map<String, String>>) ((Map) JsonHelper.decode(readResourceSafe("template/Contents.json"))).get("images"))
             if (idiom.equals("ios") || idiom.equals(imageType.get("idiom")) || imageType.get("idiom").equals("ios-marketing"))
                 requests.add(new IconRequest((int) (Integer.parseInt(imageType.get("scale").substring(0, 1)) * Float.parseFloat(imageType.get("size").split("x")[0])),
                         "icon@" + imageType.get("idiom").toUpperCase() + "_" + imageType.get("size").toUpperCase() + "_" + imageType.get("scale").toUpperCase() + ".png"));

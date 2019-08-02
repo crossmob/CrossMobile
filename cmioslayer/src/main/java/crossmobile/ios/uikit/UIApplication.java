@@ -83,8 +83,7 @@ public class UIApplication extends UIResponder {
         double splashWait = initSplash();
         double launchTime = System.currentTimeMillis();
         Native.graphics().refreshDisplay();
-        final Object sleepForever = new Object();
-        NSTimerDelegate disableSpash = timer -> {
+        NSTimerDelegate disableSplash = timer -> {
             instance.windows.remove(splashWindow);
             splashWindow = null;
             if (instance.windows.isEmpty())
@@ -100,13 +99,13 @@ public class UIApplication extends UIResponder {
         };
         Native.system().postOnEventThread(() -> {
             if (instance == null) {
-                disableSplash(launchTime, splashWait, disableSpash);
+                disableSplash(launchTime, splashWait, disableSplash);
                 return;
             }
             if (instance.delegate == null && UIApplicationDelegate != null)
                 instance.delegate = SystemUtilities.safeInstantiation(UIApplicationDelegate, crossmobile.ios.uikit.UIApplicationDelegate.class);
             if (instance.delegate == null) {
-                disableSplash(launchTime, splashWait, disableSpash);
+                disableSplash(launchTime, splashWait, disableSplash);
                 return;
             }
             UIViewController initial = initXibApp();
@@ -121,7 +120,7 @@ public class UIApplication extends UIResponder {
                 }
             }
             instance.setStatusBarHidden(Boolean.getBoolean("cm.statusbar.hidden"), false); // also sets orientation
-            instance.delegate.didFinishLaunchingWithOptions(instance, new HashMap<>());
+            instance.delegate.didFinishLaunchingWithOptions(instance, Native.lifecycle().launchOptions());
             NSNotificationCenter.defaultCenter().postNotificationName(NSNotificationName.UIApplicationDidFinishLaunching, instance);
 
             instance.delegate.didBecomeActive(instance);
@@ -134,24 +133,26 @@ public class UIApplication extends UIResponder {
             instance.keyWindow.addSubview(instance.keyWindow.rootViewController().view());
             Native.graphics().relayoutMainView();
             Native.system().postOnEventThread(instance.keyWindow::layoutSubviews);
-            disableSplash(launchTime, splashWait, disableSpash);
+            disableSplash(launchTime, splashWait, disableSplash);
         });
+        final Object sleepForever = new Object();
         if (!Native.system().isEventThread())
             try {
+                //noinspection SynchronizationOnLocalVariableOrMethodParameter
                 synchronized (sleepForever) {
                     sleepForever.wait();
                 }
-            } catch (InterruptedException ex) {
+            } catch (InterruptedException ignored) {
             }
         return 0;
     }
 
-    private static void disableSplash(double launchTime, double splashWait, NSTimerDelegate disableSpash) {
+    private static void disableSplash(double launchTime, double splashWait, NSTimerDelegate disableSplash) {
         double deltaTime = (System.currentTimeMillis() - launchTime) / 1000;
         if (deltaTime >= splashWait)
-            disableSpash.fireMethod(null);
+            disableSplash.fireMethod(null);
         else
-            NSTimer.scheduledTimerWithTimeInterval(splashWait - deltaTime, disableSpash, null, false);
+            NSTimer.scheduledTimerWithTimeInterval(splashWait - deltaTime, disableSplash, null, false);
     }
 
     private static double initSplash() {
