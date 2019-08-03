@@ -29,18 +29,20 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 
 import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 import static org.crossmobile.utils.SystemDependent.Execs.*;
 
 public class Config extends HiResDialog {
 
-    public static final TreeWalkerGenerator Netbeans = new TreeWalkerGenerator(asList(NETBEANS.filename()), null, 0);
+    public static final TreeWalkerGenerator Netbeans = new TreeWalkerGenerator(singletonList(NETBEANS.filename()), null, 0);
     public static final TreeWalkerGenerator Studio = new TreeWalkerGenerator(asList(STUDIO.filename(), STUDIO64.filename()), null, 0);
-    public static final TreeWalkerGenerator IntelliJ = new TreeWalkerGenerator(asList(IDEA.filename()), null, 0);
-    public static final TreeWalkerGenerator Android = new TreeWalkerGenerator(asList(ANDROID.filename()), asList("../tools/ddms", "../tools/ddms.bat", "../tools/bin/sdkmanager.bat", "../tools/bin/sdkmanager"), 2);
+    public static final TreeWalkerGenerator IntelliJ = new TreeWalkerGenerator(singletonList(IDEA.filename()), null, 0);
+    public static final TreeWalkerGenerator Android = new TreeWalkerGenerator(singletonList(ANDROID.filename()), asList("../tools/ddms", "../tools/ddms.bat", "../tools/bin/sdkmanager.bat", "../tools/bin/sdkmanager"), 2);
     // Maybe check for "../include/jni.h" ?
-    public static final TreeWalkerGenerator JDK = new TreeWalkerGenerator(asList(JAVAC.filename()), asList("../lib/dt.jar", "../lib/tools.jar", "../jmods/jdk.compiler.jmod"), 2);
+    public static final TreeWalkerGenerator JDK = new TreeWalkerGenerator(singletonList(JAVAC.filename()), asList("../lib/dt.jar", "../lib/tools.jar", "../jmods/jdk.compiler.jmod"), 2);
 
     private final static Config INSTANCE = new Config();
 
@@ -133,10 +135,10 @@ public class Config extends HiResDialog {
         setTitle("CrossMobile Configuration");
         setResizable(false);
 
-        jPanel4.setBorder(new HiResEmptyBorder(12,12,0,12));
+        jPanel4.setBorder(new HiResEmptyBorder(12, 12, 0, 12));
         jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.Y_AXIS));
 
-        jPanel10.setBorder(new HiResEmptyBorder(8,0,8,0));
+        jPanel10.setBorder(new HiResEmptyBorder(8, 0, 8, 0));
         jPanel10.setOpaque(false);
         jPanel10.setLayout(new java.awt.BorderLayout());
 
@@ -198,7 +200,7 @@ public class Config extends HiResDialog {
 
         jPanel4.add(jPanel10);
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createCompoundBorder(new HiResMatteBorder(1,0,0,0,Theme.current().line), new HiResEmptyBorder(8,0,8,0)));
+        jPanel5.setBorder(javax.swing.BorderFactory.createCompoundBorder(new HiResMatteBorder(1, 0, 0, 0, Theme.current().line), new HiResEmptyBorder(8, 0, 8, 0)));
         jPanel5.setOpaque(false);
         jPanel5.setLayout(new java.awt.BorderLayout());
 
@@ -258,7 +260,7 @@ public class Config extends HiResDialog {
 
         jPanel4.add(jPanel5);
 
-        jPanel11.setBorder(javax.swing.BorderFactory.createCompoundBorder(new HiResMatteBorder(1,0,1,0,Theme.current().line), javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1)));
+        jPanel11.setBorder(javax.swing.BorderFactory.createCompoundBorder(new HiResMatteBorder(1, 0, 1, 0, Theme.current().line), javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1)));
         jPanel11.setOpaque(false);
         jPanel11.setLayout(new java.awt.BorderLayout());
 
@@ -320,7 +322,7 @@ public class Config extends HiResDialog {
 
         jPanel4.add(jPanel11);
 
-        jPanel20.setBorder(new HiResEmptyBorder(8,0,8,0));
+        jPanel20.setBorder(new HiResEmptyBorder(8, 0, 8, 0));
         jPanel20.setOpaque(false);
         jPanel20.setLayout(new java.awt.BorderLayout());
 

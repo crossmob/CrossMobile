@@ -22,4 +22,7 @@ public interface StreamListener {
 
     default void removeChars(int size) {
     }
+
+    StreamListener NONE = (line, quality) -> {
+    };
 }

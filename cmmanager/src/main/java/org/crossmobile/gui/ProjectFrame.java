@@ -19,9 +19,11 @@ package org.crossmobile.gui;
 import com.panayotis.appenh.EnhancerManager;
 import com.panayotis.hrgui.*;
 import org.crossmobile.gui.actives.*;
+import org.crossmobile.gui.android.InstallerFrame;
 import org.crossmobile.gui.elements.*;
 import org.crossmobile.gui.parameters.ProjectParameter;
 import org.crossmobile.gui.project.Project;
+import org.crossmobile.gui.project.ProjectLauncher;
 import org.crossmobile.gui.project.ProjectLoader;
 import org.crossmobile.gui.project.PropertySheet;
 import org.crossmobile.gui.utils.*;
@@ -41,8 +43,10 @@ import java.util.function.Consumer;
 
 import static org.crossmobile.gui.actives.ActiveContextLabel.Context.*;
 import static org.crossmobile.gui.elements.DebugInfo.streamsHaveTraces;
+import static org.crossmobile.gui.project.ProjectLauncher.getJavaEnv;
 import static org.crossmobile.gui.utils.LaunchType.RELEASE;
 import static org.crossmobile.prefs.Prefs.*;
+import static org.crossmobile.utils.SystemDependent.Execs.ADB;
 
 public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Consumer {
 
@@ -372,7 +376,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
             ActiveTextPane outP = initLaunchVisualsOut("Launch " + target + " target", "Building product");
             EventUtils.postAction(() -> {
                 if (saveProjectWithErrorMessage())
-                    launch = execInConsole("install",
+                    launch = execMavenInConsole("install",
                             target
                                     + (LAUNCH_ACTION_BUILD.equals(actionB.getActionCommand()) ? "" : ",run")
                                     + (proj.getLaunchType() == RELEASE ? ",release" : ""),
@@ -388,7 +392,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
         ActiveTextPane outP = initLaunchVisualsOut(info, "Open project in " + target);
         String preproc = OPEN_STUDIO.equals(target) ? LAUNCH_TARGET_ANDROID : (OPEN_XCODE.equals(target) ? LAUNCH_TARGET_IOS : (OPEN_VSTUDIO.equals(target) ? LAUNCH_TARGET_UWP : null));
         if (preproc != null)
-            launch = execInConsole("process-classes", preproc, proj, outP, initLaunchVisualsErr(), result -> {
+            launch = execMavenInConsole("process-classes", preproc, proj, outP, initLaunchVisualsErr(), result -> {
                 if (result == 0)
                     postProcessCode(outP, "", target, outP);
                 else
@@ -400,7 +404,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
 
     public void installPrivateArtifact(String signature) {
         ActiveTextPane outP = initLaunchVisualsOut("Retrieving artifact " + signature, "Retrieve and convert AAR artifact");
-        launch = execInConsole("org.apache.maven.plugins:maven-dependency-plugin:3.1.1:get", null, proj,
+        launch = execMavenInConsole("org.apache.maven.plugins:maven-dependency-plugin:3.1.1:get", null, proj,
                 outP, initLaunchVisualsErr(), result -> {
                     if (result == 0)
                         ExternalCommands.convertAARtoJAR(signature);
@@ -415,7 +419,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
         ExternalCommands.openCode(ide, proj, out, launchCallback);
     }
 
-    private Commander execInConsole(String goal, String profiles, Project proj, ActiveTextPane outP, ActiveTextPane errP, Consumer<Integer> launchCallback, String... params) {
+    private Commander execMavenInConsole(String goal, String profiles, Project proj, ActiveTextPane outP, ActiveTextPane errP, Consumer<Integer> launchCallback, String... params) {
         if (profiles != null && profiles.contains("uwp"))
             outP.addLine(" *** WARNING *** Universal Windows Platform support  is still in alpha stage\n", StreamQuality.ERROR);
         return CMMvnActions.callMaven(goal, profiles, proj.getPath(), outP, errP, launchCallback, solutionCallbackRef, proj.getLaunchType(),
@@ -510,6 +514,10 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
         vstudioM = new ActiveMenuItem();
         cleanM = new ActivePopupMenu();
         cleanAllPM = new ActiveMenuItem();
+        actionsAndroidM = new ActivePopupMenu();
+        runAM = new ActiveMenuItem();
+        buildAM = new ActiveMenuItem();
+        logAM = new ActiveMenuItem();
         Background = new GradientPanel();
         controlP = new javax.swing.JPanel();
         controlP_R = new javax.swing.JPanel();
@@ -689,6 +697,33 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
             }
         });
         cleanM.add(cleanAllPM);
+
+        runAM.setIcon(RUN_I);
+        runAM.setText("Run");
+        runAM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                runMActionPerformed(evt);
+            }
+        });
+        actionsAndroidM.add(runAM);
+
+        buildAM.setIcon(BUILD_I);
+        buildAM.setText("Build");
+        buildAM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buildMActionPerformed(evt);
+            }
+        });
+        actionsAndroidM.add(buildAM);
+
+        logAM.setIcon(OUTPUT_I);
+        logAM.setText("Device Log");
+        logAM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logMActionPerformed(evt);
+            }
+        });
+        actionsAndroidM.add(logAM);
 
         setMinimumSize(new java.awt.Dimension(800, 620));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -1010,7 +1045,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
 
     private void expandRBMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_expandRBMousePressed
         if (expandRB.isEnabled())
-            actionsM.show(expandRB, 0, expandRB.getHeight());
+            ("android".equals(getCurrentTarget()) ? actionsAndroidM : actionsM).show(expandRB, 0, expandRB.getHeight());
     }//GEN-LAST:event_expandRBMousePressed
 
     private void openBMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openBMousePressed
@@ -1085,7 +1120,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
     }//GEN-LAST:event_desktopMActionPerformed
 
     private void cleanBactOnProject(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanBactOnProject
-        launch = execInConsole("clean", null, proj, initLaunchVisualsOut("Clean up project", "Cleaning project"), initLaunchVisualsErr(), launchCallback);
+        launch = execMavenInConsole("clean", null, proj, initLaunchVisualsOut("Clean up project", "Cleaning project"), initLaunchVisualsErr(), launchCallback);
     }//GEN-LAST:event_cleanBactOnProject
 
     private void expandCBMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_expandCBMousePressed
@@ -1094,7 +1129,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
     }//GEN-LAST:event_expandCBMousePressed
 
     private void cleanAllPMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanAllPMActionPerformed
-        launch = execInConsole("clean", "distclean", proj, initLaunchVisualsOut("Clean project and build files", "Clean project"), initLaunchVisualsErr(), res -> {
+        launch = execMavenInConsole("clean", "distclean", proj, initLaunchVisualsOut("Clean project and build files", "Clean project"), initLaunchVisualsErr(), res -> {
             if (res == 0)
                 saveProjectWithErrorMessage();
             launchCallback.accept(res);
@@ -1109,12 +1144,21 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
         showOutputView(false);
     }//GEN-LAST:event_errorTBActionPerformed
 
+    private void logMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logMActionPerformed
+        String[] cmds = {Prefs.getAndroidSDKLocation() + File.separator + "platform-tools" + File.separator + ADB.filename()
+                , "logcat", "-s", "AndroidRuntime:E", "System.out:I", "System.err:W", "CrossMob:*"};
+        launch = ProjectLauncher.launch(cmds, null, initLaunchVisualsOut("Display Android Logs", "Android logs"), initLaunchVisualsErr(),
+                res -> launchCallback.accept(res), null, (l, q) -> outputTB.setText("Out*"), (l, q) -> errorTB.setText("Error*"), StreamListener.NONE);
+    }//GEN-LAST:event_logMActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
     private javax.swing.JButton actionB;
+    private javax.swing.JPopupMenu actionsAndroidM;
     private javax.swing.JPopupMenu actionsM;
     private javax.swing.JToggleButton androidT;
     private javax.swing.JMenuItem apkM;
+    private javax.swing.JMenuItem buildAM;
     private javax.swing.JMenuItem buildM;
     private javax.swing.JMenuItem cleanAllPM;
     private javax.swing.JButton cleanB;
@@ -1145,6 +1189,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JMenuItem jarM;
     private javax.swing.JPanel leftButtonPanel;
+    private javax.swing.JMenuItem logAM;
     private javax.swing.JMenuItem netbeansM;
     private javax.swing.JButton openB;
     private javax.swing.JPopupMenu openM;
@@ -1161,6 +1206,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
     private javax.swing.JPopupMenu projectM;
     private javax.swing.JPanel projectP;
     private javax.swing.JPanel rightPanel;
+    private javax.swing.JMenuItem runAM;
     private javax.swing.JMenuItem runM;
     private javax.swing.JMenuItem saveOM;
     private javax.swing.JMenuItem savePM;
