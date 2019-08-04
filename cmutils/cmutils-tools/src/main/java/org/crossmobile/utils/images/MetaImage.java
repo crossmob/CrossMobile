@@ -33,6 +33,9 @@ public class MetaImage {
     public final int size;
     public final boolean resizable;
 
+    // to mask:
+    //        g.setComposite(AlphaComposite.DstIn);
+
     MetaImage(int size) {
         image = null;
         file = null;
@@ -40,17 +43,17 @@ public class MetaImage {
         this.size = size;
     }
 
-    public MetaImage(File imageFile) throws IOException {
+    MetaImage(File imageFile) throws IOException {
         this(ImageIO.read(imageFile), imageFile, true);
     }
 
-    public MetaImage(InputStream is) throws IOException {
+    MetaImage(InputStream is) throws IOException {
         this(ImageIO.read(is), null, true);
     }
 
     private MetaImage(BufferedImage image, File file, boolean resizable) {
         this.image = normalizeImage(image);
-        size = image != null ? image.getWidth() : 0;
+        this.size = image != null ? image.getWidth() : 0;
         this.file = file;
         this.resizable = resizable;
     }
@@ -64,18 +67,11 @@ public class MetaImage {
         return new MetaImage(result, null, false);
     }
 
-    MetaImage crop(MetaImage crop) {
-        if (image == null)
-            return this;
-        if (crop.isInvalid())
-            BaseUtils.throwException(new InvalidObjectException("Selected crop image is not valid"));
-        return new MetaImage(cropImage(image, crop.image), null, true);
-    }
-
     public boolean save(File output) {
         if (image == null)
             return false;
         try {
+            //noinspection ResultOfMethodCallIgnored
             output.getParentFile().mkdirs();
             ImageIO.write(image, "PNG", output);
             return true;
@@ -86,7 +82,7 @@ public class MetaImage {
     }
 
     private static BufferedImage normalizeImage(BufferedImage input) {
-        if(input == null)
+        if (input == null)
             return null;
         int width = input.getWidth();
         int height = input.getHeight();
@@ -100,31 +96,49 @@ public class MetaImage {
 
     private static BufferedImage makeImage(BufferedImage input, int newSize, int dx, int dy, boolean fit) {
         BufferedImage destination = new BufferedImage(newSize, newSize, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2 = destination.createGraphics();
-        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        Graphics2D g = make(destination);
         if (fit)
-            g2.drawImage(input, dx, dy, newSize, newSize, null);
+            g.drawImage(input, dx, dy, newSize, newSize, null);
         else
-            g2.drawImage(input, dx, dy, null);
-        g2.dispose();
+            g.drawImage(input, dx, dy, null);
+        g.dispose();
         return destination;
     }
 
-    private static BufferedImage cropImage(BufferedImage base, BufferedImage shape) {
-        int width = base.getWidth();
-        int height = base.getHeight();
-        BufferedImage out;
-        out = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g = out.createGraphics();
-        g.drawImage(base, 0, 0, null);
-        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
-        g.setComposite(AlphaComposite.DstIn);
-        g.drawImage(shape, 0, 0, width, height, null);
-        g.dispose();
-        return out;
+    public boolean isValid() {
+        return image != null;
     }
 
-    public boolean isInvalid() {
-        return image == null;
+    public MetaImage withBackground(MetaImage background) {
+        if (!isValid() || !background.isValid())
+            BaseUtils.throwException(new InvalidObjectException("Image is not valid"));
+        BufferedImage destination = new BufferedImage(size, size, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = make(destination);
+        g.drawImage(background.image, (size - background.size) / 2, (size - background.size) / 2, null);
+        g.drawImage(image, 0, 0, null);
+        g.dispose();
+        return new MetaImage(destination, null, false);
+    }
+
+    public MetaImage withCanvas(int canvasSize) {
+        if (!isValid())
+            return size == canvasSize ? this : new MetaImage(canvasSize);
+        BufferedImage destination = new BufferedImage(canvasSize, canvasSize, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = make(destination);
+        g.drawImage(image, (canvasSize - size) / 2, (canvasSize - size) / 2, null);
+        g.dispose();
+        return new MetaImage(destination, null, false);
+    }
+
+    private static Graphics2D make(BufferedImage image) {
+        Graphics2D g2 = image.createGraphics();
+        g2.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setRenderingHint(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY);
+        g2.setRenderingHint(RenderingHints.KEY_DITHERING, RenderingHints.VALUE_DITHER_ENABLE);
+        g2.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_ON);
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+        g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        return g2;
     }
 }

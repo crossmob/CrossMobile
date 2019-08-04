@@ -130,7 +130,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
         proj = p;
         setTitle(proj.getName());
         getRootPane().putClientProperty("Window.documentFile", p.getPath());
-        EnhancerManager.getDefault().updateFrameIcons(this, p.getIconFiles());
+        EnhancerManager.getDefault().updateFrameIconsWithImages(this, p.getIcons());
         if (!SystemDependent.canMakeUwp())
             vstudioM.setVisible(false);
         if (!SystemDependent.canMakeIos())

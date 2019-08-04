@@ -25,8 +25,7 @@ import java.util.Properties;
 
 import static org.crossmobile.gui.project.ProjectInfo.OLD_ANT;
 import static org.crossmobile.gui.project.ProjectInfo.OLD_XMLVM;
-import static org.crossmobile.prefs.Config.ICONS;
-import static org.crossmobile.prefs.Config.MATERIALS_PATH;
+import static org.crossmobile.prefs.Config.*;
 import static org.crossmobile.utils.ParamsCommon.*;
 import static org.crossmobile.utils.TemplateUtils.copyTemplate;
 
@@ -102,18 +101,21 @@ public class ProjectUpdator {
             FileUtils.delete(old);
         }
         // Move icons (after artwork relocation)
-        File iconDir = new File(basedir, ICONS);
-        for (File icon : FileUtils.list(new File(basedir, "src/main/artwork"), (dir, name) -> {
-            name = name.toLowerCase();
-            return name.startsWith("icon") && name.endsWith(".png");
-        })) {
-            FileUtils.move(icon, new File(iconDir, icon.getName()), null);
-        }
+        File iconDir = new File(basedir, ICON_DIR);
+        FileUtils.list(new File(basedir, "src/main/artwork"), (dir, name) -> name.toLowerCase().startsWith("icon") && name.toLowerCase().endsWith(".png"))
+                .forEach(icon -> FileUtils.move(icon, new File(iconDir, icon.getName()), null));
+
         // Move old src/main/artwork
         if ((old = new File(basedir, "src/main/artwork")).exists()) {
             FileUtils.copy(old, new File(basedir, MATERIALS_PATH));
             FileUtils.delete(old);
         }
+
+        // Update to adaptive icons
+        File iconFore = new File(basedir, FORE_ICONS);
+        FileUtils.list(iconDir, ((dir, name) -> new File(dir, name).isFile() && name.toLowerCase().endsWith(".png")))
+                .forEach(icon -> FileUtils.move(icon, new File(iconFore, icon.getName()), null));
+
         // Maybe obsolete
         if ((old = new File(basedir, "src/main/cmresources")).exists()) {
             FileUtils.copy(old, new File(basedir, MATERIALS_PATH));

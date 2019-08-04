@@ -23,9 +23,10 @@ import org.crossmobile.gui.init.InitializationWizard;
 import org.crossmobile.gui.init.InitializationWizard.Card;
 import org.crossmobile.gui.utils.CMMvnActions;
 import org.crossmobile.utils.*;
-import org.crossmobile.utils.images.ImageSet;
+import org.crossmobile.utils.images.ImageHound;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -33,11 +34,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
+import java.util.Collection;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static org.crossmobile.prefs.Config.ICONS;
+import static org.crossmobile.prefs.Config.BACK_ICONS;
+import static org.crossmobile.prefs.Config.FORE_ICONS;
 import static org.crossmobile.utils.ParamsCommon.ARTIFACT_ID;
 import static org.crossmobile.utils.ParamsCommon.DISPLAY_NAME;
 
@@ -49,7 +52,7 @@ public class ProjectInfo {
     private final static String INITIAL_VERSION = "1.0.0.0";
 
     private Icon iconThumb;
-    private List<File> iconFiles;
+    private Collection<Image> icons;
     private String name;
     private final File basedir;
 
@@ -133,24 +136,24 @@ public class ProjectInfo {
         else
             try {
                 props.load(new InputStreamReader(new FileInputStream(new File(basedir, "nbproject" + File.separator + "project.properties")), StandardCharsets.UTF_8));
-            } catch (IOException ex) {
+            } catch (IOException ignored) {
             }
         props.computeIfAbsent(ARTIFACT_ID.tag().name, k -> newProjectInfo != null ? newProjectInfo.getApplicationName() : NameConvertor.unicodeToAsciiID(basedir.getAbsolutePath()));
         props.computeIfAbsent(DISPLAY_NAME.tag().name, k -> newProjectInfo != null ? newProjectInfo.getDisplayName() : basedir.getName());
         name = props.get(DISPLAY_NAME.tag().name).toString();
 
         int multiplier = ScreenUtils.isHiDPI() ? 2 : 1;
-        ImageSet imageSet = new ImageSet("/images/logo-icon@2x.png", new File(basedir, ICONS), new File(basedir, "src/main/artwork"));
-        iconFiles = imageSet.getImageFiles();
-        iconThumb = new HiResIcon(imageSet.find(32 * multiplier, true).image);
+        ImageHound imageSet = new ImageHound().addForegroundImages(new File(basedir, FORE_ICONS), "/images/logo-icon@2x.png").addBackgroundImages(new File(basedir, BACK_ICONS), "/images/empty.png");
+        icons = imageSet.getImages();
+        iconThumb = new HiResIcon(imageSet.findFore(32 * multiplier, true).withBackground(imageSet.findBack(32 * multiplier, true)).image);
     }
 
     public Icon getIcon() {
         return iconThumb;
     }
 
-    public List<File> getIconFiles() {
-        return iconFiles;
+    public Collection<Image> getIcons() {
+        return icons;
     }
 
     public String getName() {
@@ -177,7 +180,7 @@ public class ProjectInfo {
         if (getClass() != obj.getClass())
             return false;
         final ProjectInfo other = (ProjectInfo) obj;
-        return !(this.basedir != other.basedir && (this.basedir == null || !this.basedir.equals(other.basedir)));
+        return Objects.equals(this.basedir, other.basedir);
     }
 
 }

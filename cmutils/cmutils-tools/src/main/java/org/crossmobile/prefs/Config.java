@@ -21,11 +21,13 @@ import static org.crossmobile.bridge.system.MaterialsCommon.MATERIALS_TAG;
 public class Config {
 
     /**
-     * Should finish with path, to denote the contents of this location. Use
+     * NOTE: Should finish with path, to denote the contents of this location. Use
      * instead of File.separator, since this could be a (multi-platform)
      * property.
      */
-    public final static String MATERIALS_PATH = "src/main/" + MATERIALS_TAG + "/"; // Should finish with path, to denote the contents of this location.
-    public final static String ICONS = "src/main/icons/"; // Should finish with path, to denote the contents of this location.
+    public final static String MATERIALS_PATH = "src/main/" + MATERIALS_TAG + "/";
+    public final static String ICON_DIR = "src/main/icons/";
+    public final static String FORE_ICONS = ICON_DIR + "foreground/";
+    public final static String BACK_ICONS = ICON_DIR + "background/";
     public static String[] EXCEPTIONS = new String[]{"cross_screensize"};
 }

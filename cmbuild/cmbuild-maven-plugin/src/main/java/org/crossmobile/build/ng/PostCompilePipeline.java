@@ -20,7 +20,9 @@ import org.crossmobile.build.AnnotationConfig;
 import org.crossmobile.build.ib.AnnotationHelpers;
 import org.crossmobile.build.ib.helper.XIBList;
 import org.crossmobile.build.tools.*;
-import org.crossmobile.build.tools.images.ContentsJson;
+import org.crossmobile.build.tools.images.IosIconRegistry;
+import org.crossmobile.build.tools.images.IconBuilder;
+import org.crossmobile.build.tools.images.IconBuilder.IconType;
 import org.crossmobile.build.xcode.XcodeTargetRegistry;
 import org.crossmobile.build.xcode.resources.ObjCLibrary;
 import org.crossmobile.build.xcode.resources.ResourceItem;
@@ -39,7 +41,6 @@ import static org.crossmobile.build.tools.InfoPListCreator.getPlist;
 import static org.crossmobile.build.utils.Config.*;
 import static org.crossmobile.build.utils.DependencyJarResolver.gatherLibs;
 import static org.crossmobile.build.utils.JavaVersionDowngrader.convertToJava7;
-import static org.crossmobile.prefs.Config.ICONS;
 import static org.crossmobile.prefs.Config.MATERIALS_PATH;
 import static org.crossmobile.utils.CollectionUtils.asList;
 import static org.crossmobile.utils.ParamsCommon.*;
@@ -153,7 +154,6 @@ public class PostCompilePipeline implements Runnable {
         CMBuildEnvironment env = environment();
         File baseMaterials = new File(env.getBasedir(), MATERIALS_PATH);
         Collection<File> materials = MaterialsUtils.getMaterials(env.getBasedir(), MATERIALS_PATH);
-        File icons = new File(env.getBasedir(), ICONS);
         File ann = new File(env.getBuilddir(), AnnotationConfig.ANN_LOCATION);
         String projectName = env.getProperties().getProperty(ARTIFACT_ID.tag().name);
 
@@ -222,8 +222,8 @@ public class PostCompilePipeline implements Runnable {
             InfoPListCreator.createExtensionPlist(plistDir, env.getAppId(), target);
 
         File appIconSet = new File(xcodeResources, "CrossImages.xcassets" + separator + "CrossIcon.appIconSet");
-        IconsCopier.copyIcons(icons, appIconSet, IconsCopier.IosIcons(env.getProperties().getProperty("cm.project")));
-        ContentsJson.exec(appIconSet);
+        IconBuilder.copyIcons(env.getBasedir(), appIconSet, IconType.valueOf(env.getProperties().getProperty("cm.project").toUpperCase()));
+        IosIconRegistry.exec(appIconSet);
         XCodeProject xCodeProject = new XCodeProject(projectName, plistDir, env.getProperties().getProperty(CM_PROJECT.tag().name, ""), env.getBasedir());
         xCodeProject.addConfiguredResource(new ResourceItem("Application", env.getRelativeBuildToBase() + XCODE_BASE + separator + XCODE_EXT_APP + separator));
         xCodeProject.addConfiguredResource(new ResourceItem("Materials", MATERIALS_PATH, xcodeResources.getPath() + separator));

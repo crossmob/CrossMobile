@@ -32,13 +32,14 @@ import org.crossmobile.gui.utils.LaunchType;
 import org.crossmobile.gui.utils.Paths;
 import org.crossmobile.prefs.Prefs;
 import org.crossmobile.utils.*;
+import org.crossmobile.utils.images.MetaImage;
 
+import java.awt.*;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.*;
 import java.util.List;
-import java.util.Set;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import static org.crossmobile.gui.project.ProjectInfo.OLD_ANT;
 import static org.crossmobile.gui.project.ProjectInfo.OLD_XMLVM;
@@ -51,7 +52,7 @@ public class Project {
     private final File basedir;
     private final ParamList params;
     private final List<PropertySheet> sheets;
-    private final List<File> appicons;
+    private final Collection<Image> appicons;
     private final boolean asOldCrossmobile;
     ProjectPlugins plugins;
     //private Consumer<String> appNameListener;
@@ -79,7 +80,7 @@ public class Project {
 
         launchType = LaunchType.safeValueOf(Prefs.getLaunchType(basedir.getAbsolutePath()));
         plugins = new ProjectPlugins(params);
-        appicons = projinf.getIconFiles();
+        appicons = projinf.getIcons();
 
         // Update main class
         SourceParser parser = new SourceParser(basedir.getAbsolutePath() + "/src/main/java");
@@ -203,7 +204,7 @@ public class Project {
         return new File(basedir, "pom.xml");
     }
 
-    public List<File> getIconFiles() {
+    public Collection<Image> getIcons() {
         return appicons;
     }
 

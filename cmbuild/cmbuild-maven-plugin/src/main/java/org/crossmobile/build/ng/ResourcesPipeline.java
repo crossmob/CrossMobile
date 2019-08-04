@@ -20,15 +20,17 @@ import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.build.AnnotationConfig;
 import org.crossmobile.build.ib.helper.XIBList;
 import org.crossmobile.build.tools.*;
+import org.crossmobile.build.tools.images.IconBuilder;
+import org.crossmobile.build.tools.images.IconBuilder.IconType;
 import org.crossmobile.utils.MaterialsUtils;
+import org.crossmobile.utils.plugin.DependencyItem;
 
 import java.io.File;
 import java.util.Collection;
 
 import static org.crossmobile.build.ng.CMBuildEnvironment.environment;
 import static org.crossmobile.build.utils.Config.*;
-import static org.crossmobile.prefs.Config.ICONS;
-import static org.crossmobile.prefs.Config.MATERIALS_PATH;
+import static org.crossmobile.prefs.Config.*;
 import static org.crossmobile.utils.CollectionUtils.asList;
 import static org.crossmobile.utils.FileUtils.delete;
 import static org.crossmobile.utils.FileUtils.write;
@@ -82,7 +84,7 @@ public class ResourcesPipeline implements Runnable {
         MaterialsCopier.copyMaterials(materials, baseMaterials, new File(env.getBuilddir(), APP), xibList.getMeta());
         IBObjectsCreator.createJavaSource(xibList, new File(generated, IBOBJECTS), new File(cacheBase, IBOBJECTS));
 
-        IconsCopier.copyIcons(new File(env.getBuilddir(), ICONS), new File(env.getBuilddir(), SYS), IconsCopier.DesktopIcons);
+        IconBuilder.copyIcons(env.getBasedir(), new File(env.getBuilddir(), SYS), IconType.DESKTOP);
         new PropertiesCreator(env.getProperties(),
                 env.getProperties().getProperty(MAIN_CLASS.tag().name), propertiesOut, env.getBasedir()).execute(env);
         new InfoPListCreator(env.getProperties(), info, null, env.getProperties().getProperty(INJECTED_INFOPLIST.tag().name),
@@ -111,14 +113,16 @@ public class ResourcesPipeline implements Runnable {
         MaterialsCopier.copyMaterials(materials, baseMaterials, andrAsset, xibList.getMeta());
         IBObjectsCreator.createJavaSource(xibList, new File(generated, IBOBJECTS), new File(cacheBase, IBOBJECTS));
 
-        MaterialsCopier.copyAndroidSys(asList(env.root().getRuntimeDependencies(true), d -> d.getFile()), andrAsset, andrRes);
-        IconsCopier.copyIcons(new File(env.getBasedir(), ICONS), andrRes, IconsCopier.AndroidIcons);
+        MaterialsCopier.copyAndroidSys(asList(env.root().getRuntimeDependencies(true), DependencyItem::getFile), andrAsset, andrRes);
+        IconBuilder.copyIcons(env.getBasedir(), andrRes, IconType.BASE_ANDROID);
+        IconBuilder.copyIcons(env.getBasedir(), andrRes, IconType.ADAPTIVE_ANDROID);
         new PropertiesCreator(env.getProperties(), env.getProperties().getProperty(MAIN_CLASS.tag().name),
                 new File(env.getBuilddir(), ANDROID_PROP), env.getBasedir()).execute(env);
         new InfoPListCreator(env.getProperties(),
                 new File(env.getBuilddir(), ANDROID_PLIST), null, env.getProperties().getProperty(INJECTED_INFOPLIST.tag().name),
                 env.getBasedir()).execute(env);
         new PluginsLauncher(env.root().getPluginMetaData(), generated, cacheBase).execute();
+        //noinspection ResultOfMethodCallIgnored
         ann.mkdirs();
 
         write(new File(env.getBuilddir(), ANDROID_FONTLIST), FontExtractor.getFontDataAsResource(FontExtractor.findFonts(materials)));
