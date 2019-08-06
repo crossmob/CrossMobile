@@ -183,7 +183,7 @@ public class Templates {
             + "            </intent-filter>\n"
             + "        </activity>\n"
             //            + "        <meta-data android:name=\"com.google.android.gms.version\" android:value=\"@integer/google_play_services_version\" />\n"
-            + "         <meta-data android:name=\"android.max_aspect\" android:value=\"2.1\" />\n"
+            + "        <meta-data android:name=\"android.max_aspect\" android:value=\"2.1\" />\n"
             + APPLICATIONEXTRAS_ANCHOR
             + "    </application>\n"
             + "    <supports-screens android:anyDensity=\"true\" android:smallScreens=\"true\" android:normalScreens=\"true\" android:largeScreens=\"true\" android:xlargeScreens=\"true\"/>\n"

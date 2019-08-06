@@ -21,6 +21,7 @@ import org.crossmobile.utils.FileUtils;
 import org.crossmobile.utils.Log;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,23 +30,31 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
+import static org.crossmobile.prefs.Config.BACK_ICONS;
+import static org.crossmobile.prefs.Config.FORE_ICONS;
+
 public class ImageHound {
     private final Map<Integer, MetaImage> foreImages = new HashMap<>();
     private final Map<Integer, MetaImage> backImages = new HashMap<>();
 
     private final static double BACK_SIZE_MULTIPLIER = 1.5;
 
+    public ImageHound addForegroundImages(File srcDir, MetaImage defaultImage) {
+        gatherImages(srcDir, true, null, defaultImage == null ? null : defaultImage.image);
+        return this;
+    }
+
     public ImageHound addForegroundImages(File srcDir, String defaultResource) {
-        gatherImages(srcDir, true, defaultResource);
+        gatherImages(srcDir, true, defaultResource, null);
         return this;
     }
 
     public ImageHound addBackgroundImages(File srcDir, String defaultResource) {
-        gatherImages(srcDir, false, defaultResource);
+        gatherImages(srcDir, false, defaultResource, null);
         return this;
     }
 
-    private void gatherImages(File srcImages, boolean asFore, String defaultResource) {
+    private void gatherImages(File srcImages, boolean asFore, String defaultResource, BufferedImage defaultImage) {
         if (!container(asFore).isEmpty())
             throw new IllegalArgumentException("Images already set for " + (asFore ? "fore" : "back") + "ground set");
         for (File child : FileUtils.list(srcImages))
@@ -58,7 +67,10 @@ public class ImageHound {
             }
         if (container(asFore).isEmpty()) {
             try {
-                addImage(new MetaImage(ImageHound.class.getResourceAsStream(defaultResource)), asFore);
+                MetaImage meta = defaultImage == null
+                        ? new MetaImage(ImageHound.class.getResourceAsStream(defaultResource))
+                        : new MetaImage(defaultImage);
+                addImage(meta, asFore);
             } catch (IOException e) {
                 BaseUtils.throwException(new IOException("Unable to load default image at resource location " + defaultResource));
             }

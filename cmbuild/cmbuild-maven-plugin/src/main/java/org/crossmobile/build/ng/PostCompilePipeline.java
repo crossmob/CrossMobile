@@ -222,7 +222,7 @@ public class PostCompilePipeline implements Runnable {
             InfoPListCreator.createExtensionPlist(plistDir, env.getAppId(), target);
 
         File appIconSet = new File(xcodeResources, "CrossImages.xcassets" + separator + "CrossIcon.appIconSet");
-        IconBuilder.copyIcons(env.getBasedir(), appIconSet, IconType.valueOf(env.getProperties().getProperty("cm.project").toUpperCase()));
+        IconBuilder.copyIcons(IconBuilder.getDefaultHound(env.getBasedir()), appIconSet, IconType.valueOf(env.getProperties().getProperty("cm.project").toUpperCase()));
         IosIconRegistry.exec(appIconSet);
         XCodeProject xCodeProject = new XCodeProject(projectName, plistDir, env.getProperties().getProperty(CM_PROJECT.tag().name, ""), env.getBasedir());
         xCodeProject.addConfiguredResource(new ResourceItem("Application", env.getRelativeBuildToBase() + XCODE_BASE + separator + XCODE_EXT_APP + separator));

@@ -34,7 +34,7 @@ public class MetaImage {
     public final boolean resizable;
 
     // to mask:
-    //        g.setComposite(AlphaComposite.DstIn);
+    //        g.setComposite(AlphaComposite.DstIn); // otherwise SRC_IN
 
     MetaImage(int size) {
         image = null;
@@ -49,6 +49,10 @@ public class MetaImage {
 
     MetaImage(InputStream is) throws IOException {
         this(ImageIO.read(is), null, true);
+    }
+
+    MetaImage(BufferedImage image) {
+        this(image, null, true);
     }
 
     private MetaImage(BufferedImage image, File file, boolean resizable) {
@@ -140,5 +144,18 @@ public class MetaImage {
         g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
         g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         return g2;
+    }
+
+    public MetaImage asAlpha() {
+        if (!isValid())
+            return this;
+        BufferedImage destination = new BufferedImage(size, size, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = make(destination);
+        g.drawImage(image, 0, 0, null);
+        g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_IN, 1));
+        g.setColor(Color.BLACK);
+        g.fillRect(0, 0, size, size);
+        g.dispose();
+        return new MetaImage(destination, null, false);
     }
 }

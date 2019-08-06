@@ -29,5 +29,6 @@ public class Config {
     public final static String ICON_DIR = "src/main/icons/";
     public final static String FORE_ICONS = ICON_DIR + "foreground/";
     public final static String BACK_ICONS = ICON_DIR + "background/";
+    public final static String MASK_ICONS = ICON_DIR + "mask/";
     public static String[] EXCEPTIONS = new String[]{"cross_screensize"};
 }

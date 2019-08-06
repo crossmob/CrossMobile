@@ -28,8 +28,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import static org.crossmobile.prefs.Config.BACK_ICONS;
-import static org.crossmobile.prefs.Config.FORE_ICONS;
+import static org.crossmobile.prefs.Config.*;
 import static org.crossmobile.utils.FileUtils.readResourceSafe;
 
 public class IconBuilder {
@@ -64,8 +63,11 @@ public class IconBuilder {
         return result.toArray(new IconSize[0]);
     }
 
-    public static void copyIcons(File baseDir, File destRoot, IconType iconType) {
-        ImageHound images = new ImageHound().addForegroundImages(new File(baseDir, FORE_ICONS), DEFAULT_FORE).addBackgroundImages(new File(baseDir, BACK_ICONS), DEFAULT_BACK);
+    public static ImageHound getDefaultHound(File baseDir) {
+        return new ImageHound().addForegroundImages(new File(baseDir, FORE_ICONS), DEFAULT_FORE).addBackgroundImages(new File(baseDir, BACK_ICONS), DEFAULT_BACK);
+    }
+
+    public static ImageHound copyIcons(ImageHound images, File destRoot, IconType iconType) {
         for (IconSize is : iconType.sizes) {
             MetaImage foreImage = images.findFore(is.pixels, is.required);
             if (foreImage.isValid()) {
@@ -77,6 +79,12 @@ public class IconBuilder {
                     foreImage.withBackground(backImage).save(new File(destRoot, iconType.toPath(is, "")));
             }
         }
+        return images;
+    }
+
+    public static void copyMask(ImageHound images, File baseDir, File destRoot) {
+        new ImageHound().addForegroundImages(new File(baseDir, MASK_ICONS), images.findFore(72, true))
+                .findFore(72, true).asAlpha().save(new File(destRoot, "drawable/masked_icon.png"));
     }
 
     public enum IconType {
