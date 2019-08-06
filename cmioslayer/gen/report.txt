@@ -577,7 +577,7 @@ crossmobile/ios/uikit/UIAppearance.class v8
 crossmobile/ios/uikit/UIAppearanceContainer.class v8
 crossmobile/ios/uikit/UIApplication.class v8
 crossmobile/ios/uikit/UIApplicationDelegate.class v8
-crossmobile/ios/uikit/UIApplicationLaunchOptions.class v8
+crossmobile/ios/uikit/UIApplicationLaunchOptionsKey.class v8
 crossmobile/ios/uikit/UIBarButtonItem.class v8
 crossmobile/ios/uikit/UIBarButtonItemStyle.class v8
 crossmobile/ios/uikit/UIBarButtonSystemItem.class v8
@@ -996,7 +996,7 @@ crossmobile/ios/uikit/UIAppearance.class v8
 crossmobile/ios/uikit/UIAppearanceContainer.class v8
 crossmobile/ios/uikit/UIApplication.class v8
 crossmobile/ios/uikit/UIApplicationDelegate.class v8
-crossmobile/ios/uikit/UIApplicationLaunchOptions.class v8
+crossmobile/ios/uikit/UIApplicationLaunchOptionsKey.class v8
 crossmobile/ios/uikit/UIBarButtonItem.class v8
 crossmobile/ios/uikit/UIBarButtonItemStyle.class v8
 crossmobile/ios/uikit/UIBarButtonSystemItem.class v8
@@ -1873,7 +1873,7 @@ crossmobile/ios/uikit/UIAppearance.class v8
 crossmobile/ios/uikit/UIAppearanceContainer.class v8
 crossmobile/ios/uikit/UIApplication.class v8
 crossmobile/ios/uikit/UIApplicationDelegate.class v8
-crossmobile/ios/uikit/UIApplicationLaunchOptions.class v8
+crossmobile/ios/uikit/UIApplicationLaunchOptionsKey.class v8
 crossmobile/ios/uikit/UIBarButtonItem.class v8
 crossmobile/ios/uikit/UIBarButtonItemStyle.class v8
 crossmobile/ios/uikit/UIBarButtonSystemItem.class v8
@@ -2653,7 +2653,7 @@ crossmobile/ios/uikit/UIAppearance.class v8
 crossmobile/ios/uikit/UIAppearanceContainer.class v8
 crossmobile/ios/uikit/UIApplication.class v8
 crossmobile/ios/uikit/UIApplicationDelegate.class v8
-crossmobile/ios/uikit/UIApplicationLaunchOptions.class v8
+crossmobile/ios/uikit/UIApplicationLaunchOptionsKey.class v8
 crossmobile/ios/uikit/UIBarButtonItem.class v8
 crossmobile/ios/uikit/UIBarButtonItemStyle.class v8
 crossmobile/ios/uikit/UIBarButtonSystemItem.class v8
@@ -3605,6 +3605,7 @@ crossmobile/ios/usernotifications/UNTimeIntervalNotificationTrigger.class v8
 crossmobile/ios/usernotifications/UNUserNotificationCenter.class v8
 crossmobile/ios/usernotifications/UNUserNotificationCenterDelegate.class v8
 org/crossmobile/backend/android/notifications/CrossMobileFirebaseMessagingService.class v8
+org/crossmobile/backend/android/notifications/FirebaseInitializer$1.class v8
 org/crossmobile/backend/android/notifications/FirebaseInitializer.class v8
 org/crossmobile/backend/android/o.class v8
 

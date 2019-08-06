@@ -4,14 +4,14 @@
     <parent>
         <artifactId>env</artifactId>
         <groupId>org.crossmobile</groupId>
-        <version>2.6.0-rc6</version>
+        <version>2.6.0-rc7</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
     <artifactId>cmproject</artifactId>
     <packaging>pom</packaging>
 
     <properties>
-        <crossmobile.version>2.6.0-rc6</crossmobile.version>
+        <crossmobile.version>2.6.0-rc7</crossmobile.version>
         <cm.gradle.target>assembleDebug</cm.gradle.target>
     </properties>
     <profiles>
