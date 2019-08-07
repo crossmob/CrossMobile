@@ -44,7 +44,8 @@ public interface LifecycleBridge extends Thread.UncaughtExceptionHandler {
     }
 
     /**
-     * Retrieve launch options from the environment
+     * Retrieve launch options from the environment and destroy them
      */
-    Map<String, Object> launchOptions();
+    Map<String, Object> consumeLaunchOptions();
+
 }

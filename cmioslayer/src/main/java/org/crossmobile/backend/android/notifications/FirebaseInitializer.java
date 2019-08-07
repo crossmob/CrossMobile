@@ -16,6 +16,7 @@
  */
 package org.crossmobile.backend.android.notifications;
 
+import android.content.Intent;
 import crossmobile.ios.uikit.UIApplication;
 import crossmobile.ios.uikit.UIApplicationLaunchOptionsKey;
 import org.crossmobile.bridge.CrossMobilePlugin;
@@ -39,38 +40,25 @@ public class FirebaseInitializer implements CrossMobilePlugin {
             org.crossmobile.backend.android.MainActivity activity = org.crossmobile.backend.android.MainActivity.current();
             activity.getStateListener().register(new org.crossmobile.backend.android.ActivityLifecycleListener() {
                 @Override
-                public void onStart() {
-                    initLaunchOptions(activity, "start", o -> UIApplication.sharedApplication().delegate().didReceiveRemoteNotification(UIApplication.sharedApplication(), o));
-                }
-
-                @Override
-                public void onResume() {
-                    initLaunchOptions(activity, "resume", o -> UIApplication.sharedApplication().delegate().didReceiveRemoteNotification(UIApplication.sharedApplication(), o));
-                }
-
-                @Override
                 public void onCreate(android.os.Bundle savedInstanceState) {
-                    initLaunchOptions(activity, "create", lo -> activity.addLaunchOption(UIApplicationLaunchOptionsKey.RemoteNotification, lo));
+                    initLaunchOptions(activity.getIntent(), o -> activity.addLaunchOption(UIApplicationLaunchOptionsKey.RemoteNotification, o));
                 }
 
                 @Override
-                public void onConfigurationChanged(android.content.res.Configuration newConfig) {
-                    initLaunchOptions(activity, "config change", o -> UIApplication.sharedApplication().delegate().didReceiveRemoteNotification(UIApplication.sharedApplication(), o));
+                public void onNewIntent(Intent intent) {
+                    initLaunchOptions(intent, o -> UIApplication.sharedApplication().delegate().didReceiveRemoteNotification(UIApplication.sharedApplication(), o));
                 }
             });
         }
     }
 
-    private void initLaunchOptions(org.crossmobile.backend.android.MainActivity activity, String source, VoidBlock1<Map<String, Object>> callback) {
-        android.os.Bundle extras = activity.getIntent().getExtras();
-        if (extras != null && extras.containsKey("google.message_id")) {
+    private void initLaunchOptions(android.content.Intent activity, VoidBlock1<Map<String, Object>> callback) {
+        android.os.Bundle extras = activity.getExtras();
+        if (extras != null && extras.getString("google.message_id") != null) {
             HashMap<String, Object> remoteNotifications = new HashMap<>();
             for (String key : extras.keySet())
                 remoteNotifications.put(key, extras.get(key));
-            if (!remoteNotifications.isEmpty()) {
-                Native.system().debug("Launch options from " + source + " with size " + remoteNotifications.size(), null);
-                callback.invoke(remoteNotifications);
-            }
+            callback.invoke(remoteNotifications);
         }
     }
 }

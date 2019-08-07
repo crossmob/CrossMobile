@@ -24,7 +24,6 @@ import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import static crossmobile.ios.uikit.UIUserNotificationType.notificationTypeToAuthorizationOption;
@@ -120,7 +119,7 @@ public class UIApplication extends UIResponder {
                 }
             }
             instance.setStatusBarHidden(Boolean.getBoolean("cm.statusbar.hidden"), false); // also sets orientation
-            instance.delegate.didFinishLaunchingWithOptions(instance, Native.lifecycle().launchOptions());
+            instance.delegate.didFinishLaunchingWithOptions(instance, Native.lifecycle().consumeLaunchOptions());
             NSNotificationCenter.defaultCenter().postNotificationName(NSNotificationName.UIApplicationDidFinishLaunching, instance);
 
             instance.delegate.didBecomeActive(instance);

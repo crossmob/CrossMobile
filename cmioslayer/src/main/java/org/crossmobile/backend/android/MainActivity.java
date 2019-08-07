@@ -21,6 +21,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ApplicationInfo;
 import android.content.res.Configuration;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
@@ -33,6 +34,7 @@ import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
 import android.view.Surface;
 import android.view.WindowManager;
+import com.google.firebase.BuildConfig;
 import crossmobile.ios.foundation.NSLog;
 import crossmobile.ios.uikit.UIDeviceOrientation;
 import org.crossmobile.bind.graphics.UIStatusBar;
@@ -55,7 +57,7 @@ public class MainActivity extends Activity {
     static MainActivity current;
     private ActivityStateListener stateListener;
     private Bundle instancestate;
-    private boolean launchDebug = true;
+    private boolean launchDebug;
     private Map<String, Object> launchOptions = null;
 
     public static MainActivity current() {
@@ -66,6 +68,7 @@ public class MainActivity extends Activity {
     @SuppressWarnings({"UseSpecificCatch"})
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        launchDebug = (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
         instancestate = savedInstanceState;
         MainActivity.current = this;
         setContentView(AndroidFileBridge.getResourceID("layout", "crossmobile_core"));
@@ -83,7 +86,6 @@ public class MainActivity extends Activity {
             Native.system().debug("Activity created", null);
         if (stateListener != null)
             stateListener.onCreate(savedInstanceState);
-        launchOptions = null;   // No longer needed
     }
 
     @Override
@@ -228,6 +230,15 @@ public class MainActivity extends Activity {
             stateListener.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (stateListener != null)
+            stateListener.onNewIntent(intent);
+        if (launchDebug)
+            Native.system().debug("New Intent", null);
+    }
+
     public ActivityStateListener getStateListener() {
         if (stateListener == null)
             stateListener = new ActivityStateListener();
@@ -303,8 +314,14 @@ public class MainActivity extends Activity {
         return (MainApplication) getApplication();
     }
 
-    Map<String, Object> getLaunchOptions() {
-        return launchOptions;
+    Map<String, Object> consumeLaunchOptions() {
+        Map<String, Object> result = this.launchOptions;
+        launchOptions = null;
+        return result;
+    }
+
+    void dismissLaunchOptions() {
+        launchOptions = null;
     }
 
     public void addLaunchOption(String key, Object value) {

@@ -142,4 +142,9 @@ public class ActivityStateListener {
         for (ActivityLifecycleListener listener : lifecycle)
             Native.system().safeRun(() -> listener.onOrientationChanged(newOrientation));
     }
+
+    void onNewIntent(Intent intent) {
+        for (ActivityLifecycleListener listener : lifecycle)
+            Native.system().safeRun(() -> listener.onNewIntent(intent));
+    }
 }

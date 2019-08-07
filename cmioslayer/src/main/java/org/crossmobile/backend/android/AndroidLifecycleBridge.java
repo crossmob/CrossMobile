@@ -21,7 +21,6 @@ import android.location.LocationListener;
 import android.widget.Toast;
 import org.crossmobile.bind.system.AbstractLifecycleBridge;
 import org.crossmobile.bridge.Native;
-import sun.applet.Main;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -75,8 +74,8 @@ public class AndroidLifecycleBridge extends AbstractLifecycleBridge {
     }
 
     @Override
-    public Map<String, Object> launchOptions() {
-        return MainActivity.current().getLaunchOptions();
+    public Map<String, Object> consumeLaunchOptions() {
+        return MainActivity.current().consumeLaunchOptions();
     }
 
     void register(Activity mapactivity) {

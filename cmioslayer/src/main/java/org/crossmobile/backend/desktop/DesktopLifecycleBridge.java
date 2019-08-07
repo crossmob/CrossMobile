@@ -118,14 +118,14 @@ public abstract class DesktopLifecycleBridge extends AbstractLifecycleBridge {
                     UIDevice.currentDevice().userInterfaceIdiom() == UIUserInterfaceIdiom.Pad ? "--skin=phone" : "--skin=pad"
             };
             Runtime.getRuntime().exec(args);
-        } catch (IOException ex) {
+        } catch (IOException ignored) {
         } finally {
             System.exit(0);
         }
     }
 
     @Override
-    public Map<String, Object> launchOptions() {
+    public Map<String, Object> consumeLaunchOptions() {
         return null;
     }
 }

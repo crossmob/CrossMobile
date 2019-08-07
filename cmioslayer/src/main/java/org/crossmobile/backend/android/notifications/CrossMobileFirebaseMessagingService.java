@@ -18,6 +18,7 @@ package org.crossmobile.backend.android.notifications;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import crossmobile.ios.foundation.NSLog;
 import crossmobile.ios.uikit.UIApplication;
 import org.crossmobile.bridge.Native;
 
@@ -29,7 +30,7 @@ public class CrossMobileFirebaseMessagingService extends FirebaseMessagingServic
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        System.out.println(remoteMessage.getData());
+        NSLog.log("MESSAGE RECEIVED!!! " + remoteMessage.getData());
         Map<String, Object> userInfo = new HashMap<>();
         if (remoteMessage.getNotification() != null) {
             String remoteMessageBody;

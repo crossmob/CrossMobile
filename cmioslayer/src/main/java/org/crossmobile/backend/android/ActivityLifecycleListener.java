@@ -16,6 +16,7 @@
  */
 package org.crossmobile.backend.android;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import org.crossmobile.bridge.ann.CMLib;
@@ -52,6 +53,9 @@ public interface ActivityLifecycleListener {
     }
 
     default void onOrientationChanged(int newOrientation) {
+    }
+
+    default void onNewIntent(Intent intent) {
     }
 
 }
