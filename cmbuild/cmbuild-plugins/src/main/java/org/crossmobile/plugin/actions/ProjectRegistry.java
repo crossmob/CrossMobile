@@ -51,7 +51,8 @@ public class ProjectRegistry {
         appjars.addAll(embedjars);
         allbljars.addAll(libjars);
 
-        cc.resolve(asList(getAppjars(), File::getAbsolutePath), false);
+        cc.addClassPaths(asList(getAppjars(), File::getAbsolutePath));
+        cc.register(false);
         for (Class cls : cc.getAllClasses())
             PluginRegistry.register(cls);
         for (Class cls : cc.getAllNativeClasses())
@@ -60,7 +61,7 @@ public class ProjectRegistry {
         // Resolve all classes: required for type checking in plugins. Otherwise plugins will not be able to find base types
         Collection<Package> packages = new HashSet<>();
         Collection<Class<?>> classes = new HashSet<>();
-        cc.resolveClasses(asList(libjars, File::getAbsolutePath), packages::add, classes::add, true);
+        ClassCollection.gatherClasses(asList(libjars, File::getAbsolutePath), packages::add, classes::add, true);
         packages.forEach(PackageRegistry::registerDependencies);
         classes.forEach(PluginRegistry::registerDependencies);
         classes.forEach(TypeRegistry::registerDependencies);

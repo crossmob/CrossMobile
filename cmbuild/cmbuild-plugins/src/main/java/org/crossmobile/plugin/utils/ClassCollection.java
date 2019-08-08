@@ -20,7 +20,6 @@ import javassist.ClassPool;
 import javassist.NotFoundException;
 import org.crossmobile.bridge.ann.CMLibTarget;
 import org.crossmobile.bridge.system.ClassWalker;
-import org.crossmobile.plugin.reg.ObjectRegistry;
 import org.crossmobile.plugin.reg.PackageRegistry;
 import org.crossmobile.plugin.reg.TargetRegistry;
 import org.crossmobile.utils.Log;
@@ -37,16 +36,6 @@ import static org.crossmobile.utils.TextUtils.iterableToString;
 import static org.crossmobile.utils.TextUtils.plural;
 
 public class ClassCollection {
-    private final static Comparator<Class<?>> classComparator = (o1, o2) -> {
-        if (o1 == o2)
-            return 0;
-        if (o1.isAssignableFrom(o2))
-            return -1;
-        if (o2.isAssignableFrom(o1))
-            return 1;
-        return o1.getName().compareTo(o2.getName());
-    };
-
     private final Collection<String> paths = new HashSet<>();
     private final Collection<Class<?>> allClasses = new HashSet<>();
     private final Collection<Class<?>> iosnativeClasses = new HashSet<>();
@@ -54,18 +43,18 @@ public class ClassCollection {
     private final Collection<Class<?>> allnativeClasses = new HashSet<>();
     private final Collection<Class<?>> compileClasses = new HashSet<>();
     private final Collection<Class<?>> builddepClasses = new HashSet<>();
-    private final Collection<Class<?>> appearanceClasses = new TreeSet<>(classComparator);
     private final ClassPool cp = ClassPool.getDefault();
 
-    public void resolveClasses(Collection<String> paths, Consumer<Package> packages, Consumer<Class> classes, boolean silently) {
+    public static void gatherClasses(Collection<String> paths, Consumer<Package> packages, Consumer<Class<?>> classes, boolean silently) {
         ClassWalker.getClasspathEntries(iterableToString(paths, pathSeparator), item -> {
             if (!item.contains("/$")) {
                 item = item.replace('/', '.');
                 Class cls;
                 try {
                     if ((cls = Class.forName(item, false, getClassLoader())) != null) {
-                        packages.accept(cls.getPackage());
-                        if (Modifier.isPublic(cls.getModifiers()) || item.endsWith("package-info"))
+                        if (packages != null)
+                            packages.accept(cls.getPackage());
+                        if (Modifier.isPublic(cls.getModifiers()) || item.endsWith("package-info") && classes != null)
                             classes.accept(cls);
                     }
                 } catch (Throwable ex) {
@@ -76,19 +65,29 @@ public class ClassCollection {
         }, "class");
     }
 
-    public void resolve(Iterable<String> appPaths, boolean silently) {
+    private static void addClassPaths(ClassPool cp, Collection<String> paths, Iterable<String> appPaths) {
         for (String path : appPaths)
-            if (this.paths.add(path))
+            if (paths == null || paths.add(path))
                 try {
                     cp.appendClassPath(path);
                     getClassLoader().addURL(new File(path).toURI().toURL());
                 } catch (NotFoundException | MalformedURLException ex) {
                     Log.error("Unable to append class path " + path + " to ClassPool", ex);
                 }
+    }
 
+    public static void addClassPaths(ClassPool cp, Iterable<String> appPaths) {
+        addClassPaths(cp, null, appPaths);
+    }
+
+    public void addClassPaths(Iterable<String> appPaths) {
+        addClassPaths(cp, paths, appPaths);
+    }
+
+    public void register(boolean silently) {
         Collection<Package> packages = new LinkedHashSet<>();
         Collection<Class<?>> classes = new LinkedHashSet<>();
-        resolveClasses(paths, packages::add, classes::add, silently);
+        gatherClasses(paths, packages::add, classes::add, silently);
         register(packages, classes);
         Log.debug("Registered " + packages.size() + " package" + plural(packages.size()) + " and " + classes.size() + " application class" + plural(classes.size()));
 
@@ -106,11 +105,8 @@ public class ClassCollection {
                     compileClasses.add(cls);
                 if (target.builddep)
                     builddepClasses.add(cls);
-                if (target.iosnative) {
+                if (target.iosnative)
                     iosnativeClasses.add(cls);
-                    if (ObjectRegistry.isUIAppearanceClass(cls) && !cls.isInterface())
-                        appearanceClasses.add(cls);
-                }
                 if (target.uwpnative)
                     uwpnativeClasses.add(cls);
                 if (target.iosjava || target.uwpnative)
@@ -140,10 +136,6 @@ public class ClassCollection {
 
     public Iterable<Class<?>> getBuildDependencyClasses() {
         return builddepClasses;
-    }
-
-    public Iterable<Class<?>> getAppearanceClasses() {
-        return appearanceClasses;
     }
 
     @Override

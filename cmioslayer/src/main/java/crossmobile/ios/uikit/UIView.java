@@ -36,7 +36,6 @@ import org.robovm.objc.block.VoidBlock1;
 
 import java.lang.ref.WeakReference;
 import java.util.*;
-import java.util.function.Consumer;
 
 import static crossmobile.ios.coregraphics.$coregraphics.*;
 import static crossmobile.ios.foundation.$foundation.isUnderMainRunLoop;
@@ -2582,13 +2581,13 @@ public class UIView extends UIResponder implements UIAppearance, UIAppearanceCon
         return userInterfaceLayoutDirection;
     }
 
-    private void meAndChildren(Consumer<UIView> action, boolean depthFirst) {
+    private void meAndChildren(VoidBlock1<UIView> action, boolean depthFirst) {
         if (!depthFirst)
-            action.accept(this);
+            action.invoke(this);
         for (UIView child : children)
             child.meAndChildren(action, depthFirst);
         if (depthFirst)
-            action.accept(this);
+            action.invoke(this);
     }
 
     static final class DelegateViews {

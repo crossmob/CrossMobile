@@ -31,12 +31,12 @@ import org.crossmobile.plugin.reg.ObjectRegistry;
 import org.crossmobile.utils.FileUtils;
 import org.crossmobile.utils.Log;
 import org.robovm.objc.annotation.UIAppearanceSelector;
+import org.robovm.objc.block.VoidBlock1;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.Consumer;
 import java.util.function.Function;
 
 import static org.crossmobile.plugin.actions.AppearanceInjections.AnnMetaData.asClass;
@@ -57,12 +57,12 @@ public class AppearanceInjections {
     private static final String APPEARANCE_CONTAINED_SIGNATURE = "(Ljava/util/List<Ljava/lang/Class<+Lcrossmobile/ios/uikit/UIAppearanceContainer;>;>;)L" + RESULT_ANCHOR + ";";
     private static final String APPEARANCE_CODE = "return (" + RESULT_ANCHOR + ")org.crossmobile.bind.graphics.AppearanceRegistry.requestAppearance(" + SOURCE_ANCHOR + ".class, " + RESULT_ANCHOR + ".class);";
     private static final String APPEARANCE_CONTAINED_CODE = "return (" + RESULT_ANCHOR + ")org.crossmobile.bind.graphics.AppearanceRegistry.requestAppearance(" + SOURCE_ANCHOR + ".class, $1, " + RESULT_ANCHOR + ".class);";
-    private static final String ACCEPT_PARAM_CODE = "public void accept( Object obj) { " + SOURCE_ANCHOR + " val = (" + SOURCE_ANCHOR + ")obj; if (!val." + ISSET_CALLBACK_METHOD + "()) val." + PARAM_METHOD + "(param); }";
+    private static final String INVOKE_PARAM_CODE = "public void invoke( Object obj) { " + SOURCE_ANCHOR + " val = (" + SOURCE_ANCHOR + ")obj; if (!val." + ISSET_CALLBACK_METHOD + "()) val." + PARAM_METHOD + "(param); }";
 
     private CtClass NSObjectCt;
     private CtClass UIAppearanceCt;
     private CtClass ListCt;
-    private CtClass ConsumerCt;
+    private CtClass VoidBlock1Ct;
 
     private final ClassPool cp;
     private final String rootClassPath;
@@ -84,8 +84,9 @@ public class AppearanceInjections {
             this.NSObjectCt = cp.get(ObjectRegistry.NSObjectClassName);
             this.UIAppearanceCt = cp.get(ObjectRegistry.UIAppearanceClassName);
             this.ListCt = cp.get(List.class.getName());
-            this.ConsumerCt = cp.get(Consumer.class.getName());
-        } catch (NotFoundException ignored) {
+            this.VoidBlock1Ct = cp.get(VoidBlock1.class.getName());
+        } catch (NotFoundException ex) {
+            BaseUtils.throwException(ex);
         }
     }
 
@@ -203,7 +204,7 @@ public class AppearanceInjections {
         String paramType = fromM.getParameterTypes()[0].getName();
 
         CtClass paramClass = appearanceC.makeNestedClass(capitalize(paramName), true);
-        paramClass.setInterfaces(new CtClass[]{ConsumerCt});
+        paramClass.setInterfaces(new CtClass[]{VoidBlock1Ct});
         paramClass.setModifiers(Modifier.setPrivate(paramClass.getModifiers()));
         paramClass.addField(CtField.make("private " + paramType + " param;", paramClass));
 
@@ -211,7 +212,7 @@ public class AppearanceInjections {
         paramConstructor.setBody("this.param = $1;");
         paramClass.addConstructor(paramConstructor);
 
-        CtMethod paramMethod = CtNewMethod.make(ACCEPT_PARAM_CODE.replaceAll(SOURCE_ANCHOR, baseC.getName()).replaceAll(PARAM_METHOD, getParamSetterMethod(paramName)).replaceAll(ISSET_CALLBACK_METHOD, getCheckParamMethod(paramName)), paramClass);
+        CtMethod paramMethod = CtNewMethod.make(INVOKE_PARAM_CODE.replaceAll(SOURCE_ANCHOR, baseC.getName()).replaceAll(PARAM_METHOD, getParamSetterMethod(paramName)).replaceAll(ISSET_CALLBACK_METHOD, getCheckParamMethod(paramName)), paramClass);
         paramClass.addMethod(paramMethod);
 
         return paramClass;

@@ -19,9 +19,9 @@ package org.crossmobile.bind.graphics;
 import crossmobile.ios.uikit.UIAppearance;
 import crossmobile.ios.uikit.UIAppearanceContainer;
 import crossmobile.ios.uikit.UIView;
+import org.robovm.objc.block.VoidBlock1;
 
 import java.util.*;
-import java.util.function.Consumer;
 
 import static org.crossmobile.bind.system.SystemUtilities.construct;
 
@@ -29,7 +29,7 @@ import static org.crossmobile.bind.system.SystemUtilities.construct;
 public class AppearanceRegistry {
     private static final Map<Class<? extends UIAppearance>, Map<List<Class<? extends UIAppearanceContainer>>, UIAppearance>> containerConstrained = new HashMap<>();
     private static final Map<Class<? extends UIAppearance>, UIAppearance> containerSimple = new HashMap<>();
-    private static final Map<String, Map<UIAppearance, Consumer<? extends UIAppearance>>> properties = new HashMap<>();
+    private static final Map<String, Map<UIAppearance, VoidBlock1<? extends UIAppearance>>> properties = new HashMap<>();
 
     public static <T extends UIAppearance> T requestAppearance(Class<? extends UIAppearance> baseClass, Class<T> appearanceClass) {
         T app = (T) containerSimple.get(baseClass);
@@ -51,8 +51,8 @@ public class AppearanceRegistry {
         return app;
     }
 
-    public static void registerValue(UIAppearance appearance, String propertyName, Consumer<? extends UIAppearance> apply) {
-        Map<UIAppearance, Consumer<? extends UIAppearance>> propertyMap = properties.get(propertyName);
+    public static void registerValue(UIAppearance appearance, String propertyName, VoidBlock1<? extends UIAppearance> apply) {
+        Map<UIAppearance, VoidBlock1<? extends UIAppearance>> propertyMap = properties.get(propertyName);
         if (propertyMap == null)
             properties.put(propertyName, propertyMap = new HashMap<>());
         propertyMap.put(appearance, apply);
@@ -62,17 +62,17 @@ public class AppearanceRegistry {
         container.didMoveToWindow();
         Collection<? extends UIAppearance> affected = getAffected(container);
         if (!affected.isEmpty()) {
-            Map<String, Consumer<UIAppearance>> currentProperties = new HashMap<>();
+            Map<String, VoidBlock1<UIAppearance>> currentProperties = new HashMap<>();
             for (String propertyName : properties.keySet()) {
-                Map<UIAppearance, Consumer<? extends UIAppearance>> currentActions = properties.get(propertyName);
+                Map<UIAppearance, VoidBlock1<? extends UIAppearance>> currentActions = properties.get(propertyName);
                 for (UIAppearance appearance : affected) {
-                    Consumer<? extends UIAppearance> action = currentActions.get(appearance);
+                    VoidBlock1<? extends UIAppearance> action = currentActions.get(appearance);
                     if (action != null)
-                        currentProperties.put(propertyName, (Consumer<UIAppearance>) action);
+                        currentProperties.put(propertyName, (VoidBlock1<UIAppearance>) action);
                 }
             }
-            for (Consumer<UIAppearance> action : currentProperties.values())
-                action.accept(container);
+            for (VoidBlock1<UIAppearance> action : currentProperties.values())
+                action.invoke(container);
         }
     }
 
