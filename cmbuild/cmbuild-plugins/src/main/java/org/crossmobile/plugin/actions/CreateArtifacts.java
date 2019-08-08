@@ -69,13 +69,18 @@ public class CreateArtifacts {
             Log.debug("Installing native files of plugin " + plugin);
 
             File lib = new File(cache, "lib" + separator + "lib" + plugin + (buildIos ? ".a" : ".lib"));
-            if (copy(lib, new File(buildIos ? iosTarget : uwpTarget, NATIVE_PATH + separator + plugin + (buildIos ? ".a" : ".lib"))) == 0)
-                Log.error("Unable to copy native library " + lib.getAbsolutePath());
-            if (buildUwp) {
-                File dll = new File(cache, "lib" + separator + "lib" + plugin + ".dll");
-                if (copy(dll, new File(uwpTarget, NATIVE_PATH + separator + plugin + ".dll")) == 0)
-                    Log.error("Unable to copy native library " + dll.getAbsolutePath());
-            }
+            if (buildIos && copy(lib, new File(buildIos ? iosTarget : uwpTarget, NATIVE_PATH + separator + plugin + (buildIos ? ".a" : ".lib"))) == 0)
+                if (pluginData.hasOptionalLibraryBinary())
+                    Log.info("Native library not found but ignored as noted: " + lib.getAbsolutePath());
+                else
+                    Log.error("Unable to copy native library " + lib.getAbsolutePath());
+            File dll = new File(cache, "lib" + separator + "lib" + plugin + ".dll");
+            if (buildUwp && copy(dll, new File(uwpTarget, NATIVE_PATH + separator + plugin + ".dll")) == 0)
+                if (pluginData.hasOptionalLibraryBinary())
+                    Log.info("Native library not found but ignored as noted: " + lib.getAbsolutePath());
+                else
+                    Log.error("Unable to copy native library " + lib.getAbsolutePath());
+
             forAllRecursively(new File(cache, plugin + separator + (buildIos ? "native" : "uwp" + separator + "uwpinclude")), f -> isInclude(f.getName()),
                     (p, f) -> copy(f, new File(buildIos ? iosTarget : uwpTarget, NATIVE_PATH + separator + f.getName())));
             forAllRecursively(new File(vendor, plugin + (buildIos ? "" : (separator + "uwpinclude"))), f -> isInclude(f.getName()), (p, f) -> copy(f, new File(buildIos ? iosTarget : uwpTarget, NATIVE_PATH + separator + f.getName())));

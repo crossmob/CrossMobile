@@ -36,6 +36,7 @@ public class Plugin {
     private String url = "";
     private String initializer = "";
     private AndroidInjections injections;
+    private boolean optionalLibraryBinary = false;
     private final String name;
     private final boolean isExternalDependency;
     private final Collection<String> libs = new TreeSet<>();
@@ -169,6 +170,14 @@ public class Plugin {
 
     public Iterable<String> getPermissions() {
         return perms;
+    }
+
+    public void setOptionalLibraryBinary(boolean optionalLibraryBinary) {
+        this.optionalLibraryBinary |= optionalLibraryBinary;
+    }
+
+    public boolean hasOptionalLibraryBinary() {
+        return optionalLibraryBinary;
     }
 
     @Override

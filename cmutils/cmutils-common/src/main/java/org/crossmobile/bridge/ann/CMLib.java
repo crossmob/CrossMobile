@@ -125,4 +125,5 @@ public @interface CMLib {
      */
     CMPod[] pods() default {};
 
+    boolean optionalLibraryBinary() default false;
 }

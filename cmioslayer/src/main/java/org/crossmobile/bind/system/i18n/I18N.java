@@ -34,7 +34,8 @@ import static org.crossmobile.bridge.ann.CMLibTarget.JAVA;
 import static org.crossmobile.bridge.system.I18Nparser.*;
 
 @SuppressWarnings("Java8MapApi")
-@CMLib(name = "cmi18n", target = JAVA, displayName = "I18N support for Java", description = "CrossMobile© iOS compatible i18n support",
+@CMLib(name = "cmi18n", target = JAVA, displayName = "I18N support for Java",
+        description = "CrossMobile© iOS compatible i18n support", optionalLibraryBinary = true,
         params = @CMLibParam(property = "lang", description = "Forced localized language"))
 public class I18N {
 
