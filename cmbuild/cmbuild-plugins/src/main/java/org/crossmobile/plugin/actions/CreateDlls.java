@@ -21,11 +21,15 @@ import difflib.Patch;
 import difflib.PatchFailedException;
 import org.crossmobile.build.ArtifactInfo;
 import org.crossmobile.plugin.model.NObject;
+import org.crossmobile.plugin.objc.ReverseBlockRegistry;
 import org.crossmobile.plugin.reg.ObjectRegistry;
 import org.crossmobile.plugin.reg.Plugin;
 import org.crossmobile.utils.*;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -49,8 +53,8 @@ import static org.crossmobile.utils.TimeUtils.time;
 
 public class CreateDlls extends CreateLibsAbstract {
 
-    public CreateDlls(Function<ArtifactInfo, File> resolver, File target, File cache, File vendor, File IDELocation, boolean build) throws IOException {
-        super(resolver, target, cache, vendor, IDELocation, false, build);
+    public CreateDlls(Function<ArtifactInfo, File> resolver, File target, File cache, File vendor, File IDELocation, ReverseBlockRegistry handleRegistry, boolean build) throws IOException {
+        super(resolver, target, cache, vendor, IDELocation, handleRegistry, false, build);
     }
 
     @Override

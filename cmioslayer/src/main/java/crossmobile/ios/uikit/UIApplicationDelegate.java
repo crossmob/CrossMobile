@@ -24,6 +24,7 @@ import org.crossmobile.bridge.ann.CMClass;
 import org.crossmobile.bridge.ann.CMGetter;
 import org.crossmobile.bridge.ann.CMSelector;
 import org.crossmobile.bridge.ann.CMSetter;
+import org.robovm.objc.block.VoidBlock1;
 
 import java.util.Map;
 
@@ -149,6 +150,12 @@ public interface UIApplicationDelegate {
     @CMSelector("- (void)application:(UIApplication *)application \n"
             + "didReceiveRemoteNotification:(NSDictionary *)userInfo;")
     default void didReceiveRemoteNotification(UIApplication app, Map<String, Object> userinfo) {
+    }
+
+    @CMSelector("- (void)application:(UIApplication *)application \n" +
+            "didReceiveRemoteNotification:(NSDictionary *)userInfo \n" +
+            "fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler;")
+    default void didReceiveRemoteNotificationFetchCompletionHandler(UIApplication app, Map<String, Object> userinfo, VoidBlock1<Integer> completionHandler) {
     }
 
     /**

@@ -1,63 +1,141 @@
 {
   "crossmobile.ios.storekit.SKMutablePayment": {
-    "setProductIdentifier(java.lang.String)": "- (void) setProductIdentifier:(NSString *) productIdentifier\n{\n    [self setProductIdentifier___java_lang_String:(productIdentifier ? productIdentifier : JAVA_NULL)];\n}\n\n",
-    "setQuantity(int)": "- (void) setQuantity:(NSInteger) quantity\n{\n    [self setQuantity___int:quantity];\n}\n\n",
-    "setRequestData(crossmobile.ios.foundation.NSData)": "- (void) setRequestData:(NSData *) requestData\n{\n    [self setRequestData___crossmobile_ios_foundation_NSData:(requestData ? requestData : JAVA_NULL)];\n}\n\n"
+    "setProductIdentifier(java.lang.String)": {
+      "code": "- (void) setProductIdentifier:(NSString *) productIdentifier\n{\n    [self setProductIdentifier___java_lang_String:(productIdentifier ? productIdentifier : JAVA_NULL)];\n}\n\n"
+    },
+    "setQuantity(int)": {
+      "code": "- (void) setQuantity:(NSInteger) quantity\n{\n    [self setQuantity___int:quantity];\n}\n\n"
+    },
+    "setRequestData(crossmobile.ios.foundation.NSData)": {
+      "code": "- (void) setRequestData:(NSData *) requestData\n{\n    [self setRequestData___crossmobile_ios_foundation_NSData:(requestData ? requestData : JAVA_NULL)];\n}\n\n"
+    }
   },
   "crossmobile.ios.storekit.SKPayment": {
-    "productIdentifier()": "- (NSString *) productIdentifier\n{\n    NSString * re$ult = [self productIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "quantity()": "- (NSInteger) quantity\n{\n    return [self quantity__];\n}\n\n",
-    "requestData()": "- (NSData *) requestData\n{\n    NSData * re$ult = [self requestData__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    "productIdentifier()": {
+      "code": "- (NSString *) productIdentifier\n{\n    NSString * re$ult = [self productIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "quantity()": {
+      "code": "- (NSInteger) quantity\n{\n    return [self quantity__];\n}\n\n"
+    },
+    "requestData()": {
+      "code": "- (NSData *) requestData\n{\n    NSData * re$ult = [self requestData__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    }
   },
   "crossmobile.ios.storekit.SKPaymentQueue": {
-    "addPayment(crossmobile.ios.storekit.SKPayment)": "- (void) addPayment:(SKPayment *) payment\n{\n    [self addPayment___crossmobile_ios_storekit_SKPayment:(payment ? payment : JAVA_NULL)];\n}\n\n",
-    "addTransactionObserver(crossmobile.ios.storekit.SKPaymentTransactionObserver)": "- (void) addTransactionObserver:(id<SKPaymentTransactionObserver>) observer\n{\n    [self addTransactionObserver___crossmobile_ios_storekit_SKPaymentTransactionObserver:(observer ? observer : JAVA_NULL)];\n}\n\n",
-    "finishTransaction(crossmobile.ios.storekit.SKPaymentTransaction)": "- (void) finishTransaction:(SKPaymentTransaction *) transaction\n{\n    [self finishTransaction___crossmobile_ios_storekit_SKPaymentTransaction:(transaction ? transaction : JAVA_NULL)];\n}\n\n",
-    "removeTransactionObserver(crossmobile.ios.storekit.SKPaymentTransactionObserver)": "- (void) removeTransactionObserver:(id<SKPaymentTransactionObserver>) observer\n{\n    [self removeTransactionObserver___crossmobile_ios_storekit_SKPaymentTransactionObserver:(observer ? observer : JAVA_NULL)];\n}\n\n",
-    "restoreCompletedTransactions()": "- (void) restoreCompletedTransactions\n{\n    [self restoreCompletedTransactions__];\n}\n\n",
-    "transactions()": "- (NSArray<SKPaymentTransaction *> *) transactions\n{\n    NSArray<SKPaymentTransaction *> * re$ult = [self transactions__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    "addPayment(crossmobile.ios.storekit.SKPayment)": {
+      "code": "- (void) addPayment:(SKPayment *) payment\n{\n    [self addPayment___crossmobile_ios_storekit_SKPayment:(payment ? payment : JAVA_NULL)];\n}\n\n"
+    },
+    "addTransactionObserver(crossmobile.ios.storekit.SKPaymentTransactionObserver)": {
+      "code": "- (void) addTransactionObserver:(id<SKPaymentTransactionObserver>) observer\n{\n    [self addTransactionObserver___crossmobile_ios_storekit_SKPaymentTransactionObserver:(observer ? observer : JAVA_NULL)];\n}\n\n"
+    },
+    "finishTransaction(crossmobile.ios.storekit.SKPaymentTransaction)": {
+      "code": "- (void) finishTransaction:(SKPaymentTransaction *) transaction\n{\n    [self finishTransaction___crossmobile_ios_storekit_SKPaymentTransaction:(transaction ? transaction : JAVA_NULL)];\n}\n\n"
+    },
+    "removeTransactionObserver(crossmobile.ios.storekit.SKPaymentTransactionObserver)": {
+      "code": "- (void) removeTransactionObserver:(id<SKPaymentTransactionObserver>) observer\n{\n    [self removeTransactionObserver___crossmobile_ios_storekit_SKPaymentTransactionObserver:(observer ? observer : JAVA_NULL)];\n}\n\n"
+    },
+    "restoreCompletedTransactions()": {
+      "code": "- (void) restoreCompletedTransactions\n{\n    [self restoreCompletedTransactions__];\n}\n\n"
+    },
+    "transactions()": {
+      "code": "- (NSArray<SKPaymentTransaction *> *) transactions\n{\n    NSArray<SKPaymentTransaction *> * re$ult = [self transactions__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    }
   },
   "crossmobile.ios.storekit.SKPaymentTransaction": {
-    "error()": "- (NSError *) error\n{\n    NSError * re$ult = [self error__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "originalTransaction()": "- (SKPaymentTransaction *) originalTransaction\n{\n    SKPaymentTransaction * re$ult = [self originalTransaction__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "payment()": "- (SKPayment *) payment\n{\n    SKPayment * re$ult = [self payment__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "transactionDate()": "- (NSDate *) transactionDate\n{\n    NSDate * re$ult = [self transactionDate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "transactionIdentifier()": "- (NSString *) transactionIdentifier\n{\n    NSString * re$ult = [self transactionIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "transactionReceipt()": "- (NSData *) transactionReceipt\n{\n    NSData * re$ult = [self transactionReceipt__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "transactionState()": "- (SKPaymentTransactionState) transactionState\n{\n    return [self transactionState__];\n}\n\n"
+    "error()": {
+      "code": "- (NSError *) error\n{\n    NSError * re$ult = [self error__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "originalTransaction()": {
+      "code": "- (SKPaymentTransaction *) originalTransaction\n{\n    SKPaymentTransaction * re$ult = [self originalTransaction__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "payment()": {
+      "code": "- (SKPayment *) payment\n{\n    SKPayment * re$ult = [self payment__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "transactionDate()": {
+      "code": "- (NSDate *) transactionDate\n{\n    NSDate * re$ult = [self transactionDate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "transactionIdentifier()": {
+      "code": "- (NSString *) transactionIdentifier\n{\n    NSString * re$ult = [self transactionIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "transactionReceipt()": {
+      "code": "- (NSData *) transactionReceipt\n{\n    NSData * re$ult = [self transactionReceipt__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "transactionState()": {
+      "code": "- (SKPaymentTransactionState) transactionState\n{\n    return [self transactionState__];\n}\n\n"
+    }
   },
   "crossmobile.ios.storekit.SKPaymentTransactionObserver": {
-    "removedTransactions(crossmobile.ios.storekit.SKPaymentQueue,java.util.List)": "- (void) paymentQueue:(SKPaymentQueue *) queue removedTransactions:(NSArray<SKPaymentTransaction *> *) transactions\n{\n    [self removedTransactions___crossmobile_ios_storekit_SKPaymentQueue_java_util_List:(queue ? queue : JAVA_NULL) :(transactions ? transactions : JAVA_NULL)];\n}\n\n",
-    "restoreCompletedTransactionsFailedWithError(crossmobile.ios.storekit.SKPaymentQueue,crossmobile.ios.foundation.NSError)": "- (void) paymentQueue:(SKPaymentQueue *) queue restoreCompletedTransactionsFailedWithError:(NSError *) error\n{\n    [self restoreCompletedTransactionsFailedWithError___crossmobile_ios_storekit_SKPaymentQueue_crossmobile_ios_foundation_NSError:(queue ? queue : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n",
-    "restoreCompletedTransactionsFinished(crossmobile.ios.storekit.SKPaymentQueue)": "- (void) paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *) queue\n{\n    [self restoreCompletedTransactionsFinished___crossmobile_ios_storekit_SKPaymentQueue:(queue ? queue : JAVA_NULL)];\n}\n\n",
-    "updatedTransactions(crossmobile.ios.storekit.SKPaymentQueue,java.util.List)": "- (void) paymentQueue:(SKPaymentQueue *) queue updatedTransactions:(NSArray<SKPaymentTransaction *> *) transactions\n{\n    [self updatedTransactions___crossmobile_ios_storekit_SKPaymentQueue_java_util_List:(queue ? queue : JAVA_NULL) :(transactions ? transactions : JAVA_NULL)];\n}\n\n"
+    "removedTransactions(crossmobile.ios.storekit.SKPaymentQueue,java.util.List)": {
+      "code": "- (void) paymentQueue:(SKPaymentQueue *) queue removedTransactions:(NSArray<SKPaymentTransaction *> *) transactions\n{\n    [self removedTransactions___crossmobile_ios_storekit_SKPaymentQueue_java_util_List:(queue ? queue : JAVA_NULL) :(transactions ? transactions : JAVA_NULL)];\n}\n\n"
+    },
+    "restoreCompletedTransactionsFailedWithError(crossmobile.ios.storekit.SKPaymentQueue,crossmobile.ios.foundation.NSError)": {
+      "code": "- (void) paymentQueue:(SKPaymentQueue *) queue restoreCompletedTransactionsFailedWithError:(NSError *) error\n{\n    [self restoreCompletedTransactionsFailedWithError___crossmobile_ios_storekit_SKPaymentQueue_crossmobile_ios_foundation_NSError:(queue ? queue : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n"
+    },
+    "restoreCompletedTransactionsFinished(crossmobile.ios.storekit.SKPaymentQueue)": {
+      "code": "- (void) paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *) queue\n{\n    [self restoreCompletedTransactionsFinished___crossmobile_ios_storekit_SKPaymentQueue:(queue ? queue : JAVA_NULL)];\n}\n\n"
+    },
+    "updatedTransactions(crossmobile.ios.storekit.SKPaymentQueue,java.util.List)": {
+      "code": "- (void) paymentQueue:(SKPaymentQueue *) queue updatedTransactions:(NSArray<SKPaymentTransaction *> *) transactions\n{\n    [self updatedTransactions___crossmobile_ios_storekit_SKPaymentQueue_java_util_List:(queue ? queue : JAVA_NULL) :(transactions ? transactions : JAVA_NULL)];\n}\n\n"
+    }
   },
   "crossmobile.ios.storekit.SKProduct": {
-    "localizedDescription()": "- (NSString *) localizedDescription\n{\n    NSString * re$ult = [self localizedDescription__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "localizedTitle()": "- (NSString *) localizedTitle\n{\n    NSString * re$ult = [self localizedTitle__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "price()": "- (NSDecimalNumber *) price\n{\n    NSDecimalNumber * re$ult = [self price__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "priceLocale()": "- (NSLocale *) priceLocale\n{\n    NSLocale * re$ult = [self priceLocale__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "productIdentifier()": "- (NSString *) productIdentifier\n{\n    NSString * re$ult = [self productIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    "localizedDescription()": {
+      "code": "- (NSString *) localizedDescription\n{\n    NSString * re$ult = [self localizedDescription__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "localizedTitle()": {
+      "code": "- (NSString *) localizedTitle\n{\n    NSString * re$ult = [self localizedTitle__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "price()": {
+      "code": "- (NSDecimalNumber *) price\n{\n    NSDecimalNumber * re$ult = [self price__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "priceLocale()": {
+      "code": "- (NSLocale *) priceLocale\n{\n    NSLocale * re$ult = [self priceLocale__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "productIdentifier()": {
+      "code": "- (NSString *) productIdentifier\n{\n    NSString * re$ult = [self productIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    }
   },
   "crossmobile.ios.storekit.SKProductsRequest": {
-    "productsDelegate()": "- (id<SKProductsRequestDelegate>) delegate\n{\n    id<SKProductsRequestDelegate> re$ult = [self productsDelegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "setDelegate(crossmobile.ios.storekit.SKProductsRequestDelegate)": "- (void) setDelegate:(id<SKProductsRequestDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_storekit_SKProductsRequestDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n"
+    "productsDelegate()": {
+      "code": "- (id<SKProductsRequestDelegate>) delegate\n{\n    id<SKProductsRequestDelegate> re$ult = [self productsDelegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "setDelegate(crossmobile.ios.storekit.SKProductsRequestDelegate)": {
+      "code": "- (void) setDelegate:(id<SKProductsRequestDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_storekit_SKProductsRequestDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n"
+    }
   },
   "crossmobile.ios.storekit.SKProductsRequestDelegate": {
-    "didReceiveResponse(crossmobile.ios.storekit.SKProductsRequest,crossmobile.ios.storekit.SKProductsResponse)": "- (void) productsRequest:(SKProductsRequest *) request didReceiveResponse:(SKProductsResponse *) response\n{\n    [self didReceiveResponse___crossmobile_ios_storekit_SKProductsRequest_crossmobile_ios_storekit_SKProductsResponse:(request ? request : JAVA_NULL) :(response ? response : JAVA_NULL)];\n}\n\n"
+    "didReceiveResponse(crossmobile.ios.storekit.SKProductsRequest,crossmobile.ios.storekit.SKProductsResponse)": {
+      "code": "- (void) productsRequest:(SKProductsRequest *) request didReceiveResponse:(SKProductsResponse *) response\n{\n    [self didReceiveResponse___crossmobile_ios_storekit_SKProductsRequest_crossmobile_ios_storekit_SKProductsResponse:(request ? request : JAVA_NULL) :(response ? response : JAVA_NULL)];\n}\n\n"
+    }
   },
   "crossmobile.ios.storekit.SKProductsResponse": {
-    "invalidProductIdentifiers()": "- (NSArray<NSString *> *) invalidProductIdentifiers\n{\n    NSArray<NSString *> * re$ult = [self invalidProductIdentifiers__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "products()": "- (NSArray<SKProduct *> *) products\n{\n    NSArray<SKProduct *> * re$ult = [self products__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    "invalidProductIdentifiers()": {
+      "code": "- (NSArray<NSString *> *) invalidProductIdentifiers\n{\n    NSArray<NSString *> * re$ult = [self invalidProductIdentifiers__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "products()": {
+      "code": "- (NSArray<SKProduct *> *) products\n{\n    NSArray<SKProduct *> * re$ult = [self products__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    }
   },
   "crossmobile.ios.storekit.SKRequest": {
-    "cancel()": "- (void) cancel\n{\n    [self cancel__];\n}\n\n",
-    "delegate()": "- (id<SKRequestDelegate>) delegate\n{\n    id<SKRequestDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "setDelegate(crossmobile.ios.storekit.SKRequestDelegate)": "- (void) setDelegate:(id<SKRequestDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_storekit_SKRequestDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n",
-    "start()": "- (void) start\n{\n    [self start__];\n}\n\n"
+    "cancel()": {
+      "code": "- (void) cancel\n{\n    [self cancel__];\n}\n\n"
+    },
+    "delegate()": {
+      "code": "- (id<SKRequestDelegate>) delegate\n{\n    id<SKRequestDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "setDelegate(crossmobile.ios.storekit.SKRequestDelegate)": {
+      "code": "- (void) setDelegate:(id<SKRequestDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_storekit_SKRequestDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n"
+    },
+    "start()": {
+      "code": "- (void) start\n{\n    [self start__];\n}\n\n"
+    }
   },
   "crossmobile.ios.storekit.SKRequestDelegate": {
-    "didFailWithError(crossmobile.ios.storekit.SKRequest,crossmobile.ios.foundation.NSError)": "- (void) request:(SKRequest *) request didFailWithError:(NSError *) error\n{\n    [self didFailWithError___crossmobile_ios_storekit_SKRequest_crossmobile_ios_foundation_NSError:(request ? request : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n",
-    "didFinish(crossmobile.ios.storekit.SKRequest)": "- (void) requestDidFinish:(SKRequest *) request\n{\n    [self didFinish___crossmobile_ios_storekit_SKRequest:(request ? request : JAVA_NULL)];\n}\n\n"
+    "didFailWithError(crossmobile.ios.storekit.SKRequest,crossmobile.ios.foundation.NSError)": {
+      "code": "- (void) request:(SKRequest *) request didFailWithError:(NSError *) error\n{\n    [self didFailWithError___crossmobile_ios_storekit_SKRequest_crossmobile_ios_foundation_NSError:(request ? request : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n"
+    },
+    "didFinish(crossmobile.ios.storekit.SKRequest)": {
+      "code": "- (void) requestDidFinish:(SKRequest *) request\n{\n    [self didFinish___crossmobile_ios_storekit_SKRequest:(request ? request : JAVA_NULL)];\n}\n\n"
+    }
   }
 }

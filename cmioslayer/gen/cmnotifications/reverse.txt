@@ -1,105 +1,257 @@
 {
   "crossmobile.ios.uikit.UIUserNotificationAction": {
-    "activationMode()": "- (UIUserNotificationActivationMode) activationMode\n{\n    return [self activationMode__];\n}\n\n",
-    "behavior()": "- (UIUserNotificationActionBehavior) behavior\n{\n    return [self behavior__];\n}\n\n",
-    "identifier()": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "isAuthenticationRequired()": "- (BOOL) isAuthenticationRequired\n{\n    return [self isAuthenticationRequired__];\n}\n\n",
-    "isDestructive()": "- (BOOL) isDestructive\n{\n    return [self isDestructive__];\n}\n\n",
-    "parameters()": "- (NSDictionary *) parameters\n{\n    NSDictionary * re$ult = [self parameters__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "title()": "- (NSString *) title\n{\n    NSString * re$ult = [self title__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    "activationMode()": {
+      "code": "- (UIUserNotificationActivationMode) activationMode\n{\n    return [self activationMode__];\n}\n\n"
+    },
+    "behavior()": {
+      "code": "- (UIUserNotificationActionBehavior) behavior\n{\n    return [self behavior__];\n}\n\n"
+    },
+    "identifier()": {
+      "code": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "isAuthenticationRequired()": {
+      "code": "- (BOOL) isAuthenticationRequired\n{\n    return [self isAuthenticationRequired__];\n}\n\n"
+    },
+    "isDestructive()": {
+      "code": "- (BOOL) isDestructive\n{\n    return [self isDestructive__];\n}\n\n"
+    },
+    "parameters()": {
+      "code": "- (NSDictionary *) parameters\n{\n    NSDictionary * re$ult = [self parameters__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "title()": {
+      "code": "- (NSString *) title\n{\n    NSString * re$ult = [self title__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    }
   },
   "crossmobile.ios.uikit.UIUserNotificationCategory": {
-    "actionsForContext(int)": "- (NSArray<UIUserNotificationAction *> *) actionsForContext:(UIUserNotificationActionContext) context\n{\n    NSArray<UIUserNotificationAction *> * re$ult = [self actionsForContext___int:context];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "identifier()": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    "actionsForContext(int)": {
+      "code": "- (NSArray<UIUserNotificationAction *> *) actionsForContext:(UIUserNotificationActionContext) context\n{\n    NSArray<UIUserNotificationAction *> * re$ult = [self actionsForContext___int:context];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "identifier()": {
+      "code": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    }
   },
   "crossmobile.ios.usernotifications.UNCalendarNotificationTrigger": {
-    "dateComponents()": "- (NSDateComponents *) dateComponents\n{\n    NSDateComponents * re$ult = [self dateComponents__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "nextTriggerDate()": "- (NSDate *) nextTriggerDate\n{\n    NSDate * re$ult = [self nextTriggerDate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    "dateComponents()": {
+      "code": "- (NSDateComponents *) dateComponents\n{\n    NSDateComponents * re$ult = [self dateComponents__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "nextTriggerDate()": {
+      "code": "- (NSDate *) nextTriggerDate\n{\n    NSDate * re$ult = [self nextTriggerDate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    }
   },
   "crossmobile.ios.usernotifications.UNLocationNotificationTrigger": {
-    "region()": "- (CLRegion *) region\n{\n    CLRegion * re$ult = [self region__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    "region()": {
+      "code": "- (CLRegion *) region\n{\n    CLRegion * re$ult = [self region__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    }
   },
   "crossmobile.ios.usernotifications.UNMutableNotificationContent": {
-    "setAttachments(java.util.List)": "- (void) setAttachments:(NSArray<UNNotificationAttachment *> *) attachments\n{\n    [self setAttachments___java_util_List:(attachments ? attachments : JAVA_NULL)];\n}\n\n",
-    "setBadge(java.lang.Number)": "- (void) setBadge:(NSNumber *) badge\n{\n    [self setBadge___java_lang_Number:(badge ? badge : JAVA_NULL)];\n}\n\n",
-    "setBody(java.lang.String)": "- (void) setBody:(NSString *) body\n{\n    [self setBody___java_lang_String:(body ? body : JAVA_NULL)];\n}\n\n",
-    "setCategoryIdentifier(java.lang.String)": "- (void) setCategoryIdentifier:(NSString *) categoryIdentifier\n{\n    [self setCategoryIdentifier___java_lang_String:(categoryIdentifier ? categoryIdentifier : JAVA_NULL)];\n}\n\n",
-    "setLaunchImageName(java.lang.String)": "- (void) setLaunchImageName:(NSString *) launchImageName\n{\n    [self setLaunchImageName___java_lang_String:(launchImageName ? launchImageName : JAVA_NULL)];\n}\n\n",
-    "setSound(crossmobile.ios.usernotifications.UNNotificationSound)": "- (void) setSound:(UNNotificationSound *) sound\n{\n    [self setSound___crossmobile_ios_usernotifications_UNNotificationSound:(sound ? sound : JAVA_NULL)];\n}\n\n",
-    "setSubtitle(java.lang.String)": "- (void) setSubtitle:(NSString *) subtitle\n{\n    [self setSubtitle___java_lang_String:(subtitle ? subtitle : JAVA_NULL)];\n}\n\n",
-    "setThreadIdentifier(java.lang.String)": "- (void) setThreadIdentifier:(NSString *) threadIdentifier\n{\n    [self setThreadIdentifier___java_lang_String:(threadIdentifier ? threadIdentifier : JAVA_NULL)];\n}\n\n",
-    "setTitle(java.lang.String)": "- (void) setTitle:(NSString *) title\n{\n    [self setTitle___java_lang_String:(title ? title : JAVA_NULL)];\n}\n\n",
-    "setUserInfo(java.util.Map)": "- (void) setUserInfo:(NSDictionary *) userInfo\n{\n    [self setUserInfo___java_util_Map:(userInfo ? userInfo : JAVA_NULL)];\n}\n\n"
+    "setAttachments(java.util.List)": {
+      "code": "- (void) setAttachments:(NSArray<UNNotificationAttachment *> *) attachments\n{\n    [self setAttachments___java_util_List:(attachments ? attachments : JAVA_NULL)];\n}\n\n"
+    },
+    "setBadge(java.lang.Number)": {
+      "code": "- (void) setBadge:(NSNumber *) badge\n{\n    [self setBadge___java_lang_Number:(badge ? badge : JAVA_NULL)];\n}\n\n"
+    },
+    "setBody(java.lang.String)": {
+      "code": "- (void) setBody:(NSString *) body\n{\n    [self setBody___java_lang_String:(body ? body : JAVA_NULL)];\n}\n\n"
+    },
+    "setCategoryIdentifier(java.lang.String)": {
+      "code": "- (void) setCategoryIdentifier:(NSString *) categoryIdentifier\n{\n    [self setCategoryIdentifier___java_lang_String:(categoryIdentifier ? categoryIdentifier : JAVA_NULL)];\n}\n\n"
+    },
+    "setLaunchImageName(java.lang.String)": {
+      "code": "- (void) setLaunchImageName:(NSString *) launchImageName\n{\n    [self setLaunchImageName___java_lang_String:(launchImageName ? launchImageName : JAVA_NULL)];\n}\n\n"
+    },
+    "setSound(crossmobile.ios.usernotifications.UNNotificationSound)": {
+      "code": "- (void) setSound:(UNNotificationSound *) sound\n{\n    [self setSound___crossmobile_ios_usernotifications_UNNotificationSound:(sound ? sound : JAVA_NULL)];\n}\n\n"
+    },
+    "setSubtitle(java.lang.String)": {
+      "code": "- (void) setSubtitle:(NSString *) subtitle\n{\n    [self setSubtitle___java_lang_String:(subtitle ? subtitle : JAVA_NULL)];\n}\n\n"
+    },
+    "setThreadIdentifier(java.lang.String)": {
+      "code": "- (void) setThreadIdentifier:(NSString *) threadIdentifier\n{\n    [self setThreadIdentifier___java_lang_String:(threadIdentifier ? threadIdentifier : JAVA_NULL)];\n}\n\n"
+    },
+    "setTitle(java.lang.String)": {
+      "code": "- (void) setTitle:(NSString *) title\n{\n    [self setTitle___java_lang_String:(title ? title : JAVA_NULL)];\n}\n\n"
+    },
+    "setUserInfo(java.util.Map)": {
+      "code": "- (void) setUserInfo:(NSDictionary *) userInfo\n{\n    [self setUserInfo___java_util_Map:(userInfo ? userInfo : JAVA_NULL)];\n}\n\n"
+    }
   },
   "crossmobile.ios.usernotifications.UNNotification": {
-    "date()": "- (NSDate *) date\n{\n    NSDate * re$ult = [self date__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "request()": "- (UNNotificationRequest *) request\n{\n    UNNotificationRequest * re$ult = [self request__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    "date()": {
+      "code": "- (NSDate *) date\n{\n    NSDate * re$ult = [self date__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "request()": {
+      "code": "- (UNNotificationRequest *) request\n{\n    UNNotificationRequest * re$ult = [self request__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    }
   },
   "crossmobile.ios.usernotifications.UNNotificationAction": {
-    "identifier()": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "options()": "- (UNNotificationActionOptions) options\n{\n    return [self options__];\n}\n\n",
-    "title()": "- (NSString *) title\n{\n    NSString * re$ult = [self title__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    "identifier()": {
+      "code": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "options()": {
+      "code": "- (UNNotificationActionOptions) options\n{\n    return [self options__];\n}\n\n"
+    },
+    "title()": {
+      "code": "- (NSString *) title\n{\n    NSString * re$ult = [self title__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    }
   },
   "crossmobile.ios.usernotifications.UNNotificationAttachment": {
-    "URL()": "- (NSURL *) URL\n{\n    NSURL * re$ult = [self URL__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "identifier()": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "type()": "- (NSString *) type\n{\n    NSString * re$ult = [self type__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    "URL()": {
+      "code": "- (NSURL *) URL\n{\n    NSURL * re$ult = [self URL__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "identifier()": {
+      "code": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "type()": {
+      "code": "- (NSString *) type\n{\n    NSString * re$ult = [self type__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    }
   },
   "crossmobile.ios.usernotifications.UNNotificationCategory": {
-    "actions()": "- (NSArray<UNNotificationAction *> *) actions\n{\n    NSArray<UNNotificationAction *> * re$ult = [self actions__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "identifier()": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "intentIdentifiers()": "- (NSArray<NSString *> *) intentIdentifiers\n{\n    NSArray<NSString *> * re$ult = [self intentIdentifiers__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "options()": "- (UNNotificationCategoryOptions) options\n{\n    return [self options__];\n}\n\n"
+    "actions()": {
+      "code": "- (NSArray<UNNotificationAction *> *) actions\n{\n    NSArray<UNNotificationAction *> * re$ult = [self actions__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "identifier()": {
+      "code": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "intentIdentifiers()": {
+      "code": "- (NSArray<NSString *> *) intentIdentifiers\n{\n    NSArray<NSString *> * re$ult = [self intentIdentifiers__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "options()": {
+      "code": "- (UNNotificationCategoryOptions) options\n{\n    return [self options__];\n}\n\n"
+    }
   },
   "crossmobile.ios.usernotifications.UNNotificationContent": {
-    "attachments()": "- (NSArray<UNNotificationAttachment *> *) attachments\n{\n    NSArray<UNNotificationAttachment *> * re$ult = [self attachments__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "badge()": "- (NSNumber *) badge\n{\n    NSNumber * re$ult = [self badge__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "body()": "- (NSString *) body\n{\n    NSString * re$ult = [self body__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "categoryIdentifier()": "- (NSString *) categoryIdentifier\n{\n    NSString * re$ult = [self categoryIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "launchImageName()": "- (NSString *) launchImageName\n{\n    NSString * re$ult = [self launchImageName__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "sound()": "- (UNNotificationSound *) sound\n{\n    UNNotificationSound * re$ult = [self sound__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "subtitle()": "- (NSString *) subtitle\n{\n    NSString * re$ult = [self subtitle__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "threadIdentifier()": "- (NSString *) threadIdentifier\n{\n    NSString * re$ult = [self threadIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "title()": "- (NSString *) title\n{\n    NSString * re$ult = [self title__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "userInfo()": "- (NSDictionary *) userInfo\n{\n    NSDictionary * re$ult = [self userInfo__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    "attachments()": {
+      "code": "- (NSArray<UNNotificationAttachment *> *) attachments\n{\n    NSArray<UNNotificationAttachment *> * re$ult = [self attachments__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "badge()": {
+      "code": "- (NSNumber *) badge\n{\n    NSNumber * re$ult = [self badge__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "body()": {
+      "code": "- (NSString *) body\n{\n    NSString * re$ult = [self body__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "categoryIdentifier()": {
+      "code": "- (NSString *) categoryIdentifier\n{\n    NSString * re$ult = [self categoryIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "launchImageName()": {
+      "code": "- (NSString *) launchImageName\n{\n    NSString * re$ult = [self launchImageName__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "sound()": {
+      "code": "- (UNNotificationSound *) sound\n{\n    UNNotificationSound * re$ult = [self sound__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "subtitle()": {
+      "code": "- (NSString *) subtitle\n{\n    NSString * re$ult = [self subtitle__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "threadIdentifier()": {
+      "code": "- (NSString *) threadIdentifier\n{\n    NSString * re$ult = [self threadIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "title()": {
+      "code": "- (NSString *) title\n{\n    NSString * re$ult = [self title__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "userInfo()": {
+      "code": "- (NSDictionary *) userInfo\n{\n    NSDictionary * re$ult = [self userInfo__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    }
   },
   "crossmobile.ios.usernotifications.UNNotificationRequest": {
-    "content()": "- (UNNotificationContent *) content\n{\n    UNNotificationContent * re$ult = [self content__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "identifier()": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "trigger()": "- (UNNotificationTrigger *) trigger\n{\n    UNNotificationTrigger * re$ult = [self trigger__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    "content()": {
+      "code": "- (UNNotificationContent *) content\n{\n    UNNotificationContent * re$ult = [self content__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "identifier()": {
+      "code": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "trigger()": {
+      "code": "- (UNNotificationTrigger *) trigger\n{\n    UNNotificationTrigger * re$ult = [self trigger__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    }
   },
   "crossmobile.ios.usernotifications.UNNotificationResponse": {
-    "actionIdentifier()": "- (NSString *) actionIdentifier\n{\n    NSString * re$ult = [self actionIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "notification()": "- (UNNotification *) notification\n{\n    UNNotification * re$ult = [self notification__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    "actionIdentifier()": {
+      "code": "- (NSString *) actionIdentifier\n{\n    NSString * re$ult = [self actionIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "notification()": {
+      "code": "- (UNNotification *) notification\n{\n    UNNotification * re$ult = [self notification__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    }
   },
   "crossmobile.ios.usernotifications.UNNotificationServiceExtension": {
-    "serviceExtensionTimeWillExpire()": "- (void) serviceExtensionTimeWillExpire\n{\n    [self serviceExtensionTimeWillExpire__];\n}\n\n"
+    "serviceExtensionTimeWillExpire()": {
+      "code": "- (void) serviceExtensionTimeWillExpire\n{\n    [self serviceExtensionTimeWillExpire__];\n}\n\n"
+    }
   },
   "crossmobile.ios.usernotifications.UNNotificationSettings": {
-    "alertSetting()": "- (UNNotificationSetting) alertSetting\n{\n    return [self alertSetting__];\n}\n\n",
-    "alertStyle()": "- (UNAlertStyle) alertStyle\n{\n    return [self alertStyle__];\n}\n\n",
-    "authorizationStatus()": "- (UNAuthorizationStatus) authorizationStatus\n{\n    return [self authorizationStatus__];\n}\n\n",
-    "badgeSetting()": "- (UNNotificationSetting) badgeSetting\n{\n    return [self badgeSetting__];\n}\n\n",
-    "carPlaySetting()": "- (UNNotificationSetting) carPlaySetting\n{\n    return [self carPlaySetting__];\n}\n\n",
-    "lockScreenSetting()": "- (UNNotificationSetting) lockScreenSetting\n{\n    return [self lockScreenSetting__];\n}\n\n",
-    "notificationCenterSetting()": "- (UNNotificationSetting) notificationCenterSetting\n{\n    return [self notificationCenterSetting__];\n}\n\n",
-    "soundSetting()": "- (UNNotificationSetting) soundSetting\n{\n    return [self soundSetting__];\n}\n\n"
+    "alertSetting()": {
+      "code": "- (UNNotificationSetting) alertSetting\n{\n    return [self alertSetting__];\n}\n\n"
+    },
+    "alertStyle()": {
+      "code": "- (UNAlertStyle) alertStyle\n{\n    return [self alertStyle__];\n}\n\n"
+    },
+    "authorizationStatus()": {
+      "code": "- (UNAuthorizationStatus) authorizationStatus\n{\n    return [self authorizationStatus__];\n}\n\n"
+    },
+    "badgeSetting()": {
+      "code": "- (UNNotificationSetting) badgeSetting\n{\n    return [self badgeSetting__];\n}\n\n"
+    },
+    "carPlaySetting()": {
+      "code": "- (UNNotificationSetting) carPlaySetting\n{\n    return [self carPlaySetting__];\n}\n\n"
+    },
+    "lockScreenSetting()": {
+      "code": "- (UNNotificationSetting) lockScreenSetting\n{\n    return [self lockScreenSetting__];\n}\n\n"
+    },
+    "notificationCenterSetting()": {
+      "code": "- (UNNotificationSetting) notificationCenterSetting\n{\n    return [self notificationCenterSetting__];\n}\n\n"
+    },
+    "soundSetting()": {
+      "code": "- (UNNotificationSetting) soundSetting\n{\n    return [self soundSetting__];\n}\n\n"
+    }
   },
   "crossmobile.ios.usernotifications.UNNotificationTrigger": {
-    "repeats()": "- (BOOL) repeats\n{\n    return [self repeats__];\n}\n\n"
+    "repeats()": {
+      "code": "- (BOOL) repeats\n{\n    return [self repeats__];\n}\n\n"
+    }
   },
   "crossmobile.ios.usernotifications.UNTimeIntervalNotificationTrigger": {
-    "nextTriggerDate()": "- (NSDate *) nextTriggerDate\n{\n    NSDate * re$ult = [self nextTriggerDate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "timeInterval()": "- (NSTimeInterval) timeInterval\n{\n    return [self timeInterval__];\n}\n\n"
+    "nextTriggerDate()": {
+      "code": "- (NSDate *) nextTriggerDate\n{\n    NSDate * re$ult = [self nextTriggerDate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "timeInterval()": {
+      "code": "- (NSTimeInterval) timeInterval\n{\n    return [self timeInterval__];\n}\n\n"
+    }
   },
   "crossmobile.ios.usernotifications.UNUserNotificationCenter": {
-    "delegate()": "- (id<UNUserNotificationCenterDelegate>) delegate\n{\n    id<UNUserNotificationCenterDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "removeAllDeliveredNotifications()": "- (void) removeAllDeliveredNotifications\n{\n    [self removeAllDeliveredNotifications__];\n}\n\n",
-    "removeAllPendingNotificationRequests()": "- (void) removeAllPendingNotificationRequests\n{\n    [self removeAllPendingNotificationRequests__];\n}\n\n",
-    "removeDeliveredNotificationsWithIdentifiers(java.util.List)": "- (void) removeDeliveredNotificationsWithIdentifiers:(NSArray<NSString *> *) identifiers\n{\n    [self removeDeliveredNotificationsWithIdentifiers___java_util_List:(identifiers ? identifiers : JAVA_NULL)];\n}\n\n",
-    "removePendingNotificationRequestsWithIdentifiers(java.util.List)": "- (void) removePendingNotificationRequestsWithIdentifiers:(NSArray<NSString *> *) identifiers\n{\n    [self removePendingNotificationRequestsWithIdentifiers___java_util_List:(identifiers ? identifiers : JAVA_NULL)];\n}\n\n",
-    "setDelegate(crossmobile.ios.usernotifications.UNUserNotificationCenterDelegate)": "- (void) setDelegate:(id<UNUserNotificationCenterDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_usernotifications_UNUserNotificationCenterDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n",
-    "setNotificationCategories(java.util.Set)": "- (void) setNotificationCategories:(NSSet<UNNotificationCategory *> *) categories\n{\n    [self setNotificationCategories___java_util_Set:(categories ? categories : JAVA_NULL)];\n}\n\n",
-    "supportsContentExtensions()": "- (BOOL) supportsContentExtensions\n{\n    return [self supportsContentExtensions__];\n}\n\n"
+    "delegate()": {
+      "code": "- (id<UNUserNotificationCenterDelegate>) delegate\n{\n    id<UNUserNotificationCenterDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "removeAllDeliveredNotifications()": {
+      "code": "- (void) removeAllDeliveredNotifications\n{\n    [self removeAllDeliveredNotifications__];\n}\n\n"
+    },
+    "removeAllPendingNotificationRequests()": {
+      "code": "- (void) removeAllPendingNotificationRequests\n{\n    [self removeAllPendingNotificationRequests__];\n}\n\n"
+    },
+    "removeDeliveredNotificationsWithIdentifiers(java.util.List)": {
+      "code": "- (void) removeDeliveredNotificationsWithIdentifiers:(NSArray<NSString *> *) identifiers\n{\n    [self removeDeliveredNotificationsWithIdentifiers___java_util_List:(identifiers ? identifiers : JAVA_NULL)];\n}\n\n"
+    },
+    "removePendingNotificationRequestsWithIdentifiers(java.util.List)": {
+      "code": "- (void) removePendingNotificationRequestsWithIdentifiers:(NSArray<NSString *> *) identifiers\n{\n    [self removePendingNotificationRequestsWithIdentifiers___java_util_List:(identifiers ? identifiers : JAVA_NULL)];\n}\n\n"
+    },
+    "setDelegate(crossmobile.ios.usernotifications.UNUserNotificationCenterDelegate)": {
+      "code": "- (void) setDelegate:(id<UNUserNotificationCenterDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_usernotifications_UNUserNotificationCenterDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n"
+    },
+    "setNotificationCategories(java.util.Set)": {
+      "code": "- (void) setNotificationCategories:(NSSet<UNNotificationCategory *> *) categories\n{\n    [self setNotificationCategories___java_util_Set:(categories ? categories : JAVA_NULL)];\n}\n\n"
+    },
+    "supportsContentExtensions()": {
+      "code": "- (BOOL) supportsContentExtensions\n{\n    return [self supportsContentExtensions__];\n}\n\n"
+    }
+  },
+  "crossmobile.ios.usernotifications.UNUserNotificationCenterDelegate": {
+    "didReceiveNotificationResponse(crossmobile.ios.usernotifications.UNUserNotificationCenter,crossmobile.ios.usernotifications.UNNotificationResponse,java.lang.Runnable)": {
+      "code": "- (void) userNotificationCenter:(UNUserNotificationCenter *) center didReceiveNotificationResponse:(UNNotificationResponse *) response withCompletionHandler:(void (^)(void)) completionHandler\n{\n    CM_Block_Reverse_cmnotifications_0* completionHandler$conv = [[CM_Block_Reverse_cmnotifications_0 alloc] initWithCMBlock:completionHandler];\n    [self didReceiveNotificationResponse___crossmobile_ios_usernotifications_UNUserNotificationCenter_crossmobile_ios_usernotifications_UNNotificationResponse_java_lang_Runnable:(center ? center : JAVA_NULL) :(response ? response : JAVA_NULL) :completionHandler$conv];\n    [completionHandler$conv release];\n}\n\n",
+      "classes": [
+        "CM_Block_Reverse_cmnotifications_0"
+      ]
+    },
+    "willPresentNotification(crossmobile.ios.usernotifications.UNUserNotificationCenter,crossmobile.ios.usernotifications.UNNotification,org.robovm.objc.block.VoidBlock1)": {
+      "code": "- (void) userNotificationCenter:(UNUserNotificationCenter *) center willPresentNotification:(UNNotification *) notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options)) completionHandler\n{\n    CM_Block_Reverse_cmnotifications_1* completionHandler$conv = [[CM_Block_Reverse_cmnotifications_1 alloc] initWithCMBlock:completionHandler];\n    [self willPresentNotification___crossmobile_ios_usernotifications_UNUserNotificationCenter_crossmobile_ios_usernotifications_UNNotification_org_robovm_objc_block_VoidBlock1:(center ? center : JAVA_NULL) :(notification ? notification : JAVA_NULL) :completionHandler$conv];\n    [completionHandler$conv release];\n}\n\n",
+      "classes": [
+        "CM_Block_Reverse_cmnotifications_1"
+      ]
+    }
   }
 }

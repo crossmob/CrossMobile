@@ -282,11 +282,13 @@ public class TypeRegistry {
         return TypeUnknown.class;
     }
 
-    public static boolean hasBlockParameter(NSelector sel) {
+    public static boolean isBlockParameterSupported(NSelector sel) {
+        if (sel.getContainer().isProtocol())
+            return true;
         for (NParam param : sel.getParams())
             if (isBlockTarget(param.getNType().getType()) || isBlock(param.getNType().getType()))
-                return true;
-        return false;
+                return false;
+        return true;
     }
 
     public static String getObjCUnboxed(Class<?> primitiveClass) {

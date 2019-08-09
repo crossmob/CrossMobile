@@ -16,11 +16,9 @@
  */
 package org.crossmobile.plugin.objc;
 
-import org.crossmobile.bridge.ann.CMReference;
 import org.crossmobile.plugin.model.NObject;
 import org.crossmobile.plugin.model.NSelector;
 import org.crossmobile.plugin.reg.PluginRegistry;
-import org.crossmobile.plugin.reg.TypeDef;
 import org.crossmobile.plugin.reg.TypeRegistry;
 import org.crossmobile.plugin.utils.Streamer;
 

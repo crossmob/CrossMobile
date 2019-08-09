@@ -33,9 +33,9 @@ import static org.crossmobile.build.utils.Locations.NATIVE_PATH;
 import static org.crossmobile.build.utils.PlistUtils.isInclude;
 import static org.crossmobile.plugin.actions.PluginAssembler.*;
 import static org.crossmobile.plugin.utils.Statics.*;
+import static org.crossmobile.prefs.Config.REVERSE_INF;
 import static org.crossmobile.utils.FileUtils.*;
 import static org.crossmobile.utils.JarUtils.createJar;
-import static org.crossmobile.utils.NativeCodeCollection.REVERSE_INF;
 import static org.crossmobile.utils.PluginMetaData.PLUGIN_LOC;
 import static org.crossmobile.utils.TextUtils.iterableToString;
 
@@ -115,6 +115,8 @@ public class CreateArtifacts {
     }
 
     private static void install(Consumer<ArtifactInfo> installer, File fileToInstall, String plugin, String type, String groupid, String version) {
+        if (fileToInstall == null)
+            throw new NullPointerException("Unable to install null file");
         String packaging = getExtension(fileToInstall.getName());
         String artifactid = "cmplugin-" + type + plugin;
 

@@ -16,10 +16,12 @@
  */
 package org.crossmobile.plugin.objc.param;
 
+import org.crossmobile.plugin.actions.CodeReverse;
 import org.crossmobile.plugin.model.NObject;
 import org.crossmobile.plugin.model.NParam;
 import org.crossmobile.plugin.model.NSelector;
 import org.crossmobile.plugin.model.NType;
+import org.crossmobile.plugin.objc.ReverseBlockRegistry;
 import org.crossmobile.plugin.objc.SelectorEmitterBlock;
 import org.crossmobile.plugin.reg.ObjectRegistry;
 import org.crossmobile.plugin.utils.Streamer;
@@ -29,13 +31,26 @@ import java.io.IOException;
 class EmitterBlock extends Emitter {
 
     private final NSelector block;
+    private final ReverseBlockRegistry handleRegistry;
+    private final Class<?> containerObject;
+    private final String containerSelector;
 
-    EmitterBlock(NParam param, boolean forward) {
-        this(param.getName(), param.getVarname(), param.getNType(), forward);
+    EmitterBlock(NParam param, ReverseBlockRegistry handleRegistry, boolean forward) {
+        this(param.getName(), param.getVarname(), param.getNType(), handleRegistry,
+                param.getContainer().getContainer().getType(),
+                CodeReverse.getSelectorSignature(param.getContainer()),
+                forward);
     }
 
-    EmitterBlock(String paramName, String varName, NType type, boolean forward) {
+    EmitterBlock(String varName, NType type, boolean forward) {
+        this("", varName, type, null, null, null, forward);
+    }
+
+    private EmitterBlock(String paramName, String varName, NType type, ReverseBlockRegistry handleRegistry, Class<?> containerObject, String containerSelector, boolean forward) {
         super(paramName, varName, type, true, forward);
+        this.handleRegistry = handleRegistry;
+        this.containerObject = containerObject;
+        this.containerSelector = containerSelector;
         if (type.getBlock() == null) {
             NObject nobj = ObjectRegistry.retrieve(type.getType());
             this.block = nobj == null || nobj.getAllSelectors().isEmpty() ? null : nobj.getSelectors().iterator().next();
@@ -56,4 +71,14 @@ class EmitterBlock extends Emitter {
         }
     }
 
+    @Override
+    protected String initReverse() {
+        String randomClass = handleRegistry.requestRandomClass(containerObject, containerSelector, block);
+        return randomClass + "* " + paramVar() + " = [[" + randomClass + " alloc] initWithCMBlock:" + givenVar() + "];\n";
+    }
+
+    @Override
+    protected String destroyReverse() {
+        return "[" + paramVar() + " release];\n";
+    }
 }

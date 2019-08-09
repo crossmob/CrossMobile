@@ -154,9 +154,9 @@ public class CollectionUtils {
         return false;
     }
 
-    public static <T> T getWithCondition(Collection<T> a, Predicate<T> p){
+    public static <T> T getWithCondition(Collection<T> a, Predicate<T> p) {
         for (T t : a) {
-            if(p.test(t))
+            if (p.test(t))
                 return t;
         }
         return null;
@@ -292,6 +292,19 @@ public class CollectionUtils {
         };
     }
 
+    public static <T> void addAll(Collection<T> injectedClasses, Iterable<T> generatedBlocks) {
+        for (T item : generatedBlocks)
+            injectedClasses.add(item);
+    }
+
+    @SafeVarargs
+    public static <K, V> Map<K, V> mapOf(KeyValue<K, V>... items) {
+        HashMap<K, V> map = new HashMap<>();
+        for (KeyValue<K, V> item : items)
+            map.put(item.key, item.value);
+        return map;
+    }
+
     public static final class IteratorHandler<T> {
 
         static final IteratorHandler EMPTY = new IteratorHandler(Arrays.asList());
@@ -378,6 +391,20 @@ public class CollectionUtils {
             } catch (Throwable ex) {
                 throw (E) ex;
             }
+        }
+    }
+
+    public static class KeyValue<K, V> {
+        private final K key;
+        private final V value;
+
+        private KeyValue(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        public static <K, V> KeyValue<K, V> map(K key, V value) {
+            return new KeyValue<>(key, value);
         }
     }
 }

@@ -18,6 +18,7 @@ package org.crossmobile.plugin.actions;
 
 import org.crossmobile.build.ArtifactInfo;
 import org.crossmobile.plugin.model.NObject;
+import org.crossmobile.plugin.objc.ReverseBlockRegistry;
 import org.crossmobile.plugin.objc.ObjectEmitter;
 import org.crossmobile.plugin.objc.Templates;
 import org.crossmobile.plugin.reg.*;
@@ -52,7 +53,7 @@ public abstract class CreateLibsAbstract {
     private static final Function<String, String> IOSLibName = l -> "lib" + l + ".a";
     private static final Function<String, String> UWPLibName = l -> l + ".dll";
 
-    public CreateLibsAbstract(Function<ArtifactInfo, File> resolver, File target, File cache, File vendor, File IDELocation, boolean asIOS, boolean build) throws IOException {
+    public CreateLibsAbstract(Function<ArtifactInfo, File> resolver, File target, File cache, File vendor, File IDELocation, ReverseBlockRegistry handleRegistry, boolean asIOS, boolean build) throws IOException {
         // Create native files in the scratch folder
         Function<String, File> prodResolv = plugin -> new File(target, PLATFORM.apply(asIOS) + separator + plugin);
         final Function<String, String> LIBNAME = asIOS ? IOSLibName : UWPLibName;
@@ -62,6 +63,8 @@ public abstract class CreateLibsAbstract {
                 delete(prodResolv.apply(plugin));
             runEmitters(prodResolv);
         }, "Creating " + PLATFORM.apply(asIOS) + " files");
+
+        time(() -> handleRegistry.saveTo(prodResolv), "Creating inverse block handlers");
 
         time(() -> {
             Requirement<Plugin> root = new Requirement<>(new Plugin("root", false));
@@ -138,9 +141,7 @@ public abstract class CreateLibsAbstract {
             String name = toObjC(getClassNameBare(obj.getType()));
             String plugin = getPlugin(obj.getType().getName());
             if (plugin != null) {
-                Streamer swiftStreamer = swift.get(plugin);
-                if (swiftStreamer == null)
-                    swift.put(plugin, swiftStreamer = Streamer.asString());
+                Streamer swiftStreamer = swift.computeIfAbsent(plugin, o -> Streamer.asString());
                 File pluginRoot = prodResolv.apply(plugin + (headersOnly ? separator + "uwpinclude" : ""));
                 out.emit(asHeader(pluginRoot, name), headersOnly ? null : asBody(pluginRoot, name), swiftStreamer, headersOnly, PluginRegistry.getPluginData(plugin).getImports());
             }
@@ -150,14 +151,13 @@ public abstract class CreateLibsAbstract {
             String data = streamer.toString();
             if (data.isEmpty())
                 continue;
-            StringBuilder swiftContent = new StringBuilder();
-            swiftContent.append("import Foundation\n@objc\nclass ");
-            swiftContent.append(plugin).append("_va :NSObject {\n");
-            swiftContent.append(Templates.SWIFT_BASE_TEMPLATE).append("\n\n");
-            swiftContent.append(data);
-            swiftContent.append("}\n");
             File swiftFile = new File(prodResolv.apply(plugin), "va_bindings.swift");
-            FileUtils.write(swiftFile, swiftContent.toString());
+            String swiftContent = "import Foundation\n@objc\nclass " +
+                    plugin + "_va :NSObject {\n" +
+                    Templates.SWIFT_BASE_TEMPLATE + "\n\n" +
+                    data +
+                    "}\n";
+            FileUtils.write(swiftFile, swiftContent);
         }
     }
 

@@ -28,14 +28,16 @@ import static org.crossmobile.utils.NamingUtils.execSignature;
 public class SelectorEmitterReverse extends SelectorEmitter {
 
     private final String blockvar;
+    private final ReverseBlockRegistry handleRegistry;
 
-    public SelectorEmitterReverse(NSelector selector) {
-        this(selector, null);
+    public SelectorEmitterReverse(NSelector selector, ReverseBlockRegistry handleRegistry) {
+        this(selector, null, handleRegistry);
     }
 
-    public SelectorEmitterReverse(NSelector selector, String blockvar) {
+    SelectorEmitterReverse(NSelector selector, String blockvar, ReverseBlockRegistry handleRegistry) {
         super(selector);
         this.blockvar = blockvar;
+        this.handleRegistry = handleRegistry;
     }
 
     @Override
@@ -50,7 +52,7 @@ public class SelectorEmitterReverse extends SelectorEmitter {
 
     @Override
     protected ParamEmitter getParams() {
-        return ParamEmitter.reverse(selector, blockvar);
+        return ParamEmitter.reverse(selector, handleRegistry, blockvar);
     }
 
     @Override

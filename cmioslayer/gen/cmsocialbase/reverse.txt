@@ -1,40 +1,104 @@
 {
   "crossmobile.ios.social.SLComposeServiceViewController": {
-    "autoCompletionViewController()": "- (UIViewController *) autoCompletionViewController\n{\n    UIViewController * re$ult = [self autoCompletionViewController__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "cancel()": "- (void) cancel\n{\n    [self cancel__];\n}\n\n",
-    "charactersRemaining()": "- (NSNumber *) charactersRemaining\n{\n    NSNumber * re$ult = [self charactersRemaining__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "configurationItems()": "- (NSArray *) configurationItems\n{\n    NSArray * re$ult = [self configurationItems__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "contentText()": "- (NSString *) contentText\n{\n    NSString * re$ult = [self contentText__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "didSelectCancel()": "- (void) didSelectCancel\n{\n    [self didSelectCancel__];\n}\n\n",
-    "didSelectPost()": "- (void) didSelectPost\n{\n    [self didSelectPost__];\n}\n\n",
-    "isContentValid()": "- (BOOL) isContentValid\n{\n    return [self isContentValid__];\n}\n\n",
-    "loadPreviewView()": "- (UIView *) loadPreviewView\n{\n    UIView * re$ult = [self loadPreviewView__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "placeholder()": "- (NSString *) placeholder\n{\n    NSString * re$ult = [self placeholder__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "popConfigurationViewController()": "- (void) popConfigurationViewController\n{\n    [self popConfigurationViewController__];\n}\n\n",
-    "presentationAnimationDidFinish()": "- (void) presentationAnimationDidFinish\n{\n    [self presentationAnimationDidFinish__];\n}\n\n",
-    "pushConfigurationViewController(crossmobile.ios.uikit.UIViewController)": "- (void) pushConfigurationViewController:(UIViewController *) viewController\n{\n    [self pushConfigurationViewController___crossmobile_ios_uikit_UIViewController:(viewController ? viewController : JAVA_NULL)];\n}\n\n",
-    "reloadConfigurationItems()": "- (void) reloadConfigurationItems\n{\n    [self reloadConfigurationItems__];\n}\n\n",
-    "setAutoCompletionViewController(crossmobile.ios.uikit.UIViewController)": "- (void) setAutoCompletionViewController:(UIViewController *) autoCompletionViewController\n{\n    [self setAutoCompletionViewController___crossmobile_ios_uikit_UIViewController:(autoCompletionViewController ? autoCompletionViewController : JAVA_NULL)];\n}\n\n",
-    "setCharactersRemaining(java.lang.Number)": "- (void) setCharactersRemaining:(NSNumber *) charactersRemaining\n{\n    [self setCharactersRemaining___java_lang_Number:(charactersRemaining ? charactersRemaining : JAVA_NULL)];\n}\n\n",
-    "setPlaceholder(java.lang.String)": "- (void) setPlaceholder:(NSString *) placeholder\n{\n    [self setPlaceholder___java_lang_String:(placeholder ? placeholder : JAVA_NULL)];\n}\n\n",
-    "textView()": "- (UITextView *) textView\n{\n    UITextView * re$ult = [self textView__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "validateContent()": "- (void) validateContent\n{\n    [self validateContent__];\n}\n\n"
+    "autoCompletionViewController()": {
+      "code": "- (UIViewController *) autoCompletionViewController\n{\n    UIViewController * re$ult = [self autoCompletionViewController__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "cancel()": {
+      "code": "- (void) cancel\n{\n    [self cancel__];\n}\n\n"
+    },
+    "charactersRemaining()": {
+      "code": "- (NSNumber *) charactersRemaining\n{\n    NSNumber * re$ult = [self charactersRemaining__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "configurationItems()": {
+      "code": "- (NSArray *) configurationItems\n{\n    NSArray * re$ult = [self configurationItems__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "contentText()": {
+      "code": "- (NSString *) contentText\n{\n    NSString * re$ult = [self contentText__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "didSelectCancel()": {
+      "code": "- (void) didSelectCancel\n{\n    [self didSelectCancel__];\n}\n\n"
+    },
+    "didSelectPost()": {
+      "code": "- (void) didSelectPost\n{\n    [self didSelectPost__];\n}\n\n"
+    },
+    "isContentValid()": {
+      "code": "- (BOOL) isContentValid\n{\n    return [self isContentValid__];\n}\n\n"
+    },
+    "loadPreviewView()": {
+      "code": "- (UIView *) loadPreviewView\n{\n    UIView * re$ult = [self loadPreviewView__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "placeholder()": {
+      "code": "- (NSString *) placeholder\n{\n    NSString * re$ult = [self placeholder__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "popConfigurationViewController()": {
+      "code": "- (void) popConfigurationViewController\n{\n    [self popConfigurationViewController__];\n}\n\n"
+    },
+    "presentationAnimationDidFinish()": {
+      "code": "- (void) presentationAnimationDidFinish\n{\n    [self presentationAnimationDidFinish__];\n}\n\n"
+    },
+    "pushConfigurationViewController(crossmobile.ios.uikit.UIViewController)": {
+      "code": "- (void) pushConfigurationViewController:(UIViewController *) viewController\n{\n    [self pushConfigurationViewController___crossmobile_ios_uikit_UIViewController:(viewController ? viewController : JAVA_NULL)];\n}\n\n"
+    },
+    "reloadConfigurationItems()": {
+      "code": "- (void) reloadConfigurationItems\n{\n    [self reloadConfigurationItems__];\n}\n\n"
+    },
+    "setAutoCompletionViewController(crossmobile.ios.uikit.UIViewController)": {
+      "code": "- (void) setAutoCompletionViewController:(UIViewController *) autoCompletionViewController\n{\n    [self setAutoCompletionViewController___crossmobile_ios_uikit_UIViewController:(autoCompletionViewController ? autoCompletionViewController : JAVA_NULL)];\n}\n\n"
+    },
+    "setCharactersRemaining(java.lang.Number)": {
+      "code": "- (void) setCharactersRemaining:(NSNumber *) charactersRemaining\n{\n    [self setCharactersRemaining___java_lang_Number:(charactersRemaining ? charactersRemaining : JAVA_NULL)];\n}\n\n"
+    },
+    "setPlaceholder(java.lang.String)": {
+      "code": "- (void) setPlaceholder:(NSString *) placeholder\n{\n    [self setPlaceholder___java_lang_String:(placeholder ? placeholder : JAVA_NULL)];\n}\n\n"
+    },
+    "textView()": {
+      "code": "- (UITextView *) textView\n{\n    UITextView * re$ult = [self textView__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "validateContent()": {
+      "code": "- (void) validateContent\n{\n    [self validateContent__];\n}\n\n"
+    }
   },
   "crossmobile.ios.social.SLComposeViewController": {
-    "addImage(crossmobile.ios.uikit.UIImage)": "- (BOOL) addImage:(UIImage *) image\n{\n    return [self addImage___crossmobile_ios_uikit_UIImage:(image ? image : JAVA_NULL)];\n}\n\n",
-    "addURL(crossmobile.ios.foundation.NSURL)": "- (BOOL) addURL:(NSURL *) url\n{\n    return [self addURL___crossmobile_ios_foundation_NSURL:(url ? url : JAVA_NULL)];\n}\n\n",
-    "removeAllImages()": "- (BOOL) removeAllImages\n{\n    return [self removeAllImages__];\n}\n\n",
-    "removeAllURLs()": "- (BOOL) removeAllURLs\n{\n    return [self removeAllURLs__];\n}\n\n",
-    "serviceType()": "- (NSString *) serviceType\n{\n    NSString * re$ult = [self serviceType__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "setInitialText(java.lang.String)": "- (BOOL) setInitialText:(NSString *) text\n{\n    return [self setInitialText___java_lang_String:(text ? text : JAVA_NULL)];\n}\n\n"
+    "addImage(crossmobile.ios.uikit.UIImage)": {
+      "code": "- (BOOL) addImage:(UIImage *) image\n{\n    return [self addImage___crossmobile_ios_uikit_UIImage:(image ? image : JAVA_NULL)];\n}\n\n"
+    },
+    "addURL(crossmobile.ios.foundation.NSURL)": {
+      "code": "- (BOOL) addURL:(NSURL *) url\n{\n    return [self addURL___crossmobile_ios_foundation_NSURL:(url ? url : JAVA_NULL)];\n}\n\n"
+    },
+    "removeAllImages()": {
+      "code": "- (BOOL) removeAllImages\n{\n    return [self removeAllImages__];\n}\n\n"
+    },
+    "removeAllURLs()": {
+      "code": "- (BOOL) removeAllURLs\n{\n    return [self removeAllURLs__];\n}\n\n"
+    },
+    "serviceType()": {
+      "code": "- (NSString *) serviceType\n{\n    NSString * re$ult = [self serviceType__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "setInitialText(java.lang.String)": {
+      "code": "- (BOOL) setInitialText:(NSString *) text\n{\n    return [self setInitialText___java_lang_String:(text ? text : JAVA_NULL)];\n}\n\n"
+    }
   },
   "crossmobile.ios.social.SLRequest": {
-    "URL()": "- (NSURL *) URL\n{\n    NSURL * re$ult = [self URL__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "account()": "- (ACAccount *) account\n{\n    ACAccount * re$ult = [self account__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "addMultipartData(crossmobile.ios.foundation.NSData,java.lang.String,java.lang.String,java.lang.String)": "- (void) addMultipartData:(NSData *) data withName:(NSString *) name type:(NSString *) type filename:(NSString *) filename\n{\n    [self addMultipartData___crossmobile_ios_foundation_NSData_java_lang_String_java_lang_String_java_lang_String:(data ? data : JAVA_NULL) :(name ? name : JAVA_NULL) :(type ? type : JAVA_NULL) :(filename ? filename : JAVA_NULL)];\n}\n\n",
-    "parameters()": "- (NSDictionary *) parameters\n{\n    NSDictionary * re$ult = [self parameters__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "preparedURLRequest()": "- (NSURLRequest *) preparedURLRequest\n{\n    NSURLRequest * re$ult = [self preparedURLRequest__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "requestMethod()": "- (SLRequestMethod) requestMethod\n{\n    return [self requestMethod__];\n}\n\n",
-    "setAccount(crossmobile.ios.accounts.ACAccount)": "- (void) setAccount:(ACAccount *) account\n{\n    [self setAccount___crossmobile_ios_accounts_ACAccount:(account ? account : JAVA_NULL)];\n}\n\n"
+    "URL()": {
+      "code": "- (NSURL *) URL\n{\n    NSURL * re$ult = [self URL__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "account()": {
+      "code": "- (ACAccount *) account\n{\n    ACAccount * re$ult = [self account__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "addMultipartData(crossmobile.ios.foundation.NSData,java.lang.String,java.lang.String,java.lang.String)": {
+      "code": "- (void) addMultipartData:(NSData *) data withName:(NSString *) name type:(NSString *) type filename:(NSString *) filename\n{\n    [self addMultipartData___crossmobile_ios_foundation_NSData_java_lang_String_java_lang_String_java_lang_String:(data ? data : JAVA_NULL) :(name ? name : JAVA_NULL) :(type ? type : JAVA_NULL) :(filename ? filename : JAVA_NULL)];\n}\n\n"
+    },
+    "parameters()": {
+      "code": "- (NSDictionary *) parameters\n{\n    NSDictionary * re$ult = [self parameters__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "preparedURLRequest()": {
+      "code": "- (NSURLRequest *) preparedURLRequest\n{\n    NSURLRequest * re$ult = [self preparedURLRequest__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "requestMethod()": {
+      "code": "- (SLRequestMethod) requestMethod\n{\n    return [self requestMethod__];\n}\n\n"
+    },
+    "setAccount(crossmobile.ios.accounts.ACAccount)": {
+      "code": "- (void) setAccount:(ACAccount *) account\n{\n    [self setAccount___crossmobile_ios_accounts_ACAccount:(account ? account : JAVA_NULL)];\n}\n\n"
+    }
   }
 }

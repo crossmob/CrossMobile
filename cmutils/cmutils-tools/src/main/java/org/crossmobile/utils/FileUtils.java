@@ -155,9 +155,16 @@ public final class FileUtils {
             if (out != null)
                 try {
                     out.close();
-                } catch (IOException ex) {
+                } catch (IOException ignored) {
                 }
         }
+    }
+
+    public static File writeIfDiffers(File out, String data) {
+        String oldData = read(out);
+        if (data.equals(oldData))
+            return null;
+        return write(out, data);
     }
 
     public static void copyResource(String resource, String dest) throws ProjectException {
@@ -409,6 +416,8 @@ public final class FileUtils {
     }
 
     public static int copy(File source, File target) {
+        if (source == null || target == null)
+            return 0;
         int files = 0;
         if (!source.exists())
             return 0;

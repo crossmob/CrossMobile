@@ -195,7 +195,13 @@ public class JsonHelper {
             return json;
         } else if (value instanceof CharSequence)
             return Json.value(value.toString());
+        else if (value instanceof JsonSerializable)
+            return fromCollection(((JsonSerializable) value).asJsonSerializable());
         else
             throw new Exception();
+    }
+
+    public interface JsonSerializable {
+        Object asJsonSerializable();
     }
 }

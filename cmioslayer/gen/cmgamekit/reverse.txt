@@ -1,46 +1,118 @@
 {
   "crossmobile.ios.gamekit.GKPeerPickerController": {
-    "connectionTypesMask()": "- (GKPeerPickerConnectionType) connectionTypesMask\n{\n    return [self connectionTypesMask__];\n}\n\n",
-    "delegate()": "- (id<GKPeerPickerControllerDelegate>) delegate\n{\n    id<GKPeerPickerControllerDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "dismiss()": "- (void) dismiss\n{\n    [self dismiss__];\n}\n\n",
-    "isVisible()": "- (BOOL) isVisible\n{\n    return [self isVisible__];\n}\n\n",
-    "setConnectionTypesMask(int)": "- (void) setConnectionTypesMask:(GKPeerPickerConnectionType) connectionTypesMask\n{\n    [self setConnectionTypesMask___int:connectionTypesMask];\n}\n\n",
-    "setDelegate(crossmobile.ios.gamekit.GKPeerPickerControllerDelegate)": "- (void) setDelegate:(id<GKPeerPickerControllerDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_gamekit_GKPeerPickerControllerDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n",
-    "show()": "- (void) show\n{\n    [self show__];\n}\n\n"
+    "connectionTypesMask()": {
+      "code": "- (GKPeerPickerConnectionType) connectionTypesMask\n{\n    return [self connectionTypesMask__];\n}\n\n"
+    },
+    "delegate()": {
+      "code": "- (id<GKPeerPickerControllerDelegate>) delegate\n{\n    id<GKPeerPickerControllerDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "dismiss()": {
+      "code": "- (void) dismiss\n{\n    [self dismiss__];\n}\n\n"
+    },
+    "isVisible()": {
+      "code": "- (BOOL) isVisible\n{\n    return [self isVisible__];\n}\n\n"
+    },
+    "setConnectionTypesMask(int)": {
+      "code": "- (void) setConnectionTypesMask:(GKPeerPickerConnectionType) connectionTypesMask\n{\n    [self setConnectionTypesMask___int:connectionTypesMask];\n}\n\n"
+    },
+    "setDelegate(crossmobile.ios.gamekit.GKPeerPickerControllerDelegate)": {
+      "code": "- (void) setDelegate:(id<GKPeerPickerControllerDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_gamekit_GKPeerPickerControllerDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n"
+    },
+    "show()": {
+      "code": "- (void) show\n{\n    [self show__];\n}\n\n"
+    }
   },
   "crossmobile.ios.gamekit.GKPeerPickerControllerDelegate": {
-    "didCancel(crossmobile.ios.gamekit.GKPeerPickerController)": "- (void) peerPickerControllerDidCancel:(GKPeerPickerController *) picker\n{\n    [self didCancel___crossmobile_ios_gamekit_GKPeerPickerController:(picker ? picker : JAVA_NULL)];\n}\n\n",
-    "didConnectPeer(crossmobile.ios.gamekit.GKPeerPickerController,java.lang.String,crossmobile.ios.gamekit.GKSession)": "- (void) peerPickerController:(GKPeerPickerController *) picker didConnectPeer:(NSString *) peerID toSession:(GKSession *) session\n{\n    [self didConnectPeer___crossmobile_ios_gamekit_GKPeerPickerController_java_lang_String_crossmobile_ios_gamekit_GKSession:(picker ? picker : JAVA_NULL) :(peerID ? peerID : JAVA_NULL) :(session ? session : JAVA_NULL)];\n}\n\n",
-    "didSelectConnectionType(crossmobile.ios.gamekit.GKPeerPickerController,int)": "- (void) peerPickerController:(GKPeerPickerController *) picker didSelectConnectionType:(GKPeerPickerConnectionType) type\n{\n    [self didSelectConnectionType___crossmobile_ios_gamekit_GKPeerPickerController_int:(picker ? picker : JAVA_NULL) :type];\n}\n\n",
-    "sessionForConnectionType(crossmobile.ios.gamekit.GKPeerPickerController,int)": "- (GKSession *) peerPickerController:(GKPeerPickerController *) picker sessionForConnectionType:(GKPeerPickerConnectionType) type\n{\n    GKSession * re$ult = [self sessionForConnectionType___crossmobile_ios_gamekit_GKPeerPickerController_int:(picker ? picker : JAVA_NULL) :type];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    "didCancel(crossmobile.ios.gamekit.GKPeerPickerController)": {
+      "code": "- (void) peerPickerControllerDidCancel:(GKPeerPickerController *) picker\n{\n    [self didCancel___crossmobile_ios_gamekit_GKPeerPickerController:(picker ? picker : JAVA_NULL)];\n}\n\n"
+    },
+    "didConnectPeer(crossmobile.ios.gamekit.GKPeerPickerController,java.lang.String,crossmobile.ios.gamekit.GKSession)": {
+      "code": "- (void) peerPickerController:(GKPeerPickerController *) picker didConnectPeer:(NSString *) peerID toSession:(GKSession *) session\n{\n    [self didConnectPeer___crossmobile_ios_gamekit_GKPeerPickerController_java_lang_String_crossmobile_ios_gamekit_GKSession:(picker ? picker : JAVA_NULL) :(peerID ? peerID : JAVA_NULL) :(session ? session : JAVA_NULL)];\n}\n\n"
+    },
+    "didSelectConnectionType(crossmobile.ios.gamekit.GKPeerPickerController,int)": {
+      "code": "- (void) peerPickerController:(GKPeerPickerController *) picker didSelectConnectionType:(GKPeerPickerConnectionType) type\n{\n    [self didSelectConnectionType___crossmobile_ios_gamekit_GKPeerPickerController_int:(picker ? picker : JAVA_NULL) :type];\n}\n\n"
+    },
+    "sessionForConnectionType(crossmobile.ios.gamekit.GKPeerPickerController,int)": {
+      "code": "- (GKSession *) peerPickerController:(GKPeerPickerController *) picker sessionForConnectionType:(GKPeerPickerConnectionType) type\n{\n    GKSession * re$ult = [self sessionForConnectionType___crossmobile_ios_gamekit_GKPeerPickerController_int:(picker ? picker : JAVA_NULL) :type];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    }
   },
   "crossmobile.ios.gamekit.GKSession": {
-    "acceptConnectionFromPeer(java.lang.String,crossmobile.rt.StrongReference)": "- (BOOL) acceptConnectionFromPeer:(NSString *) peerID error:(NSError **) error\n{\n    crossmobile_rt_StrongReference* error$conv = error ? [[crossmobile_rt_StrongReference alloc] __init_crossmobile_ios_StrongReference___java_lang_Object:*error] : JAVA_NULL;\n    BOOL re$ult = [self acceptConnectionFromPeer___java_lang_String_crossmobile_rt_StrongReference:(peerID ? peerID : JAVA_NULL) :error$conv];\n    [error$conv release];\n    return re$ult;\n}\n\n",
-    "cancelConnectToPeer(java.lang.String)": "- (void) cancelConnectToPeer:(NSString *) peerID\n{\n    [self cancelConnectToPeer___java_lang_String:(peerID ? peerID : JAVA_NULL)];\n}\n\n",
-    "connectToPeer(java.lang.String,double)": "- (void) connectToPeer:(NSString *) peerID withTimeout:(NSTimeInterval) timeout\n{\n    [self connectToPeer___java_lang_String_double:(peerID ? peerID : JAVA_NULL) :timeout];\n}\n\n",
-    "delegate()": "- (id<GKSessionDelegate>) delegate\n{\n    id<GKSessionDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "denyConnectionFromPeer(java.lang.String)": "- (void) denyConnectionFromPeer:(NSString *) peerID\n{\n    [self denyConnectionFromPeer___java_lang_String:(peerID ? peerID : JAVA_NULL)];\n}\n\n",
-    "disconnectFromAllPeers()": "- (void) disconnectFromAllPeers\n{\n    [self disconnectFromAllPeers__];\n}\n\n",
-    "disconnectPeerFromAllPeers(java.lang.String)": "- (void) disconnectPeerFromAllPeers:(NSString *) peerID\n{\n    [self disconnectPeerFromAllPeers___java_lang_String:(peerID ? peerID : JAVA_NULL)];\n}\n\n",
-    "disconnectTimeout()": "- (NSTimeInterval) disconnectTimeout\n{\n    return [self disconnectTimeout__];\n}\n\n",
-    "displayName()": "- (NSString *) displayName\n{\n    NSString * re$ult = [self displayName__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "displayNameForPeer(java.lang.String)": "- (NSString *) displayNameForPeer:(NSString *) peerID\n{\n    NSString * re$ult = [self displayNameForPeer___java_lang_String:(peerID ? peerID : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "isAvailable()": "- (BOOL) isAvailable\n{\n    return [self isAvailable__];\n}\n\n",
-    "peerID()": "- (NSString *) peerID\n{\n    NSString * re$ult = [self peerID__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "peersWithConnectionState(int)": "- (NSArray *) peersWithConnectionState:(GKPeerConnectionState) state\n{\n    NSArray * re$ult = [self peersWithConnectionState___int:state];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "sendData(crossmobile.ios.foundation.NSData,java.util.List,int,crossmobile.rt.StrongReference)": "- (BOOL) sendData:(NSData *) data toPeers:(NSArray *) peers withDataMode:(GKSendDataMode) mode error:(NSError **) error\n{\n    crossmobile_rt_StrongReference* error$conv = error ? [[crossmobile_rt_StrongReference alloc] __init_crossmobile_ios_StrongReference___java_lang_Object:*error] : JAVA_NULL;\n    BOOL re$ult = [self sendData___crossmobile_ios_foundation_NSData_java_util_List_int_crossmobile_rt_StrongReference:(data ? data : JAVA_NULL) :(peers ? peers : JAVA_NULL) :mode :error$conv];\n    [error$conv release];\n    return re$ult;\n}\n\n",
-    "sendDataToAllPeers(crossmobile.ios.foundation.NSData,int,crossmobile.rt.StrongReference)": "- (BOOL) sendDataToAllPeers:(NSData *) data withDataMode:(GKSendDataMode) mode error:(NSError **) error\n{\n    crossmobile_rt_StrongReference* error$conv = error ? [[crossmobile_rt_StrongReference alloc] __init_crossmobile_ios_StrongReference___java_lang_Object:*error] : JAVA_NULL;\n    BOOL re$ult = [self sendDataToAllPeers___crossmobile_ios_foundation_NSData_int_crossmobile_rt_StrongReference:(data ? data : JAVA_NULL) :mode :error$conv];\n    [error$conv release];\n    return re$ult;\n}\n\n",
-    "sessionID()": "- (NSString *) sessionID\n{\n    NSString * re$ult = [self sessionID__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "sessionMode()": "- (GKSessionMode) sessionMode\n{\n    return [self sessionMode__];\n}\n\n",
-    "setAvailable(boolean)": "- (void) setAvailable:(BOOL) available\n{\n    [self setAvailable___boolean:available];\n}\n\n",
-    "setDataReceiveHandler(crossmobile.ios.gamekit.GKDataReceiveHandler,java.lang.Object)": "- (void) setDataReceiveHandler:(id) handler withContext:(void *) context\n{\n    [self setDataReceiveHandler___crossmobile_ios_gamekit_GKDataReceiveHandler_java_lang_Object:(handler ? handler : JAVA_NULL) :(context ? context : JAVA_NULL)];\n}\n\n",
-    "setDelegate(crossmobile.ios.gamekit.GKSessionDelegate)": "- (void) setDelegate:(id<GKSessionDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_gamekit_GKSessionDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n",
-    "setDisconnectTimeout(double)": "- (void) setDisconnectTimeout:(NSTimeInterval) disconnectTimeout\n{\n    [self setDisconnectTimeout___double:disconnectTimeout];\n}\n\n"
+    "acceptConnectionFromPeer(java.lang.String,crossmobile.rt.StrongReference)": {
+      "code": "- (BOOL) acceptConnectionFromPeer:(NSString *) peerID error:(NSError **) error\n{\n    crossmobile_rt_StrongReference* error$conv = error ? [[crossmobile_rt_StrongReference alloc] __init_crossmobile_ios_StrongReference___java_lang_Object:*error] : JAVA_NULL;\n    BOOL re$ult = [self acceptConnectionFromPeer___java_lang_String_crossmobile_rt_StrongReference:(peerID ? peerID : JAVA_NULL) :error$conv];\n    [error$conv release];\n    return re$ult;\n}\n\n"
+    },
+    "cancelConnectToPeer(java.lang.String)": {
+      "code": "- (void) cancelConnectToPeer:(NSString *) peerID\n{\n    [self cancelConnectToPeer___java_lang_String:(peerID ? peerID : JAVA_NULL)];\n}\n\n"
+    },
+    "connectToPeer(java.lang.String,double)": {
+      "code": "- (void) connectToPeer:(NSString *) peerID withTimeout:(NSTimeInterval) timeout\n{\n    [self connectToPeer___java_lang_String_double:(peerID ? peerID : JAVA_NULL) :timeout];\n}\n\n"
+    },
+    "delegate()": {
+      "code": "- (id<GKSessionDelegate>) delegate\n{\n    id<GKSessionDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "denyConnectionFromPeer(java.lang.String)": {
+      "code": "- (void) denyConnectionFromPeer:(NSString *) peerID\n{\n    [self denyConnectionFromPeer___java_lang_String:(peerID ? peerID : JAVA_NULL)];\n}\n\n"
+    },
+    "disconnectFromAllPeers()": {
+      "code": "- (void) disconnectFromAllPeers\n{\n    [self disconnectFromAllPeers__];\n}\n\n"
+    },
+    "disconnectPeerFromAllPeers(java.lang.String)": {
+      "code": "- (void) disconnectPeerFromAllPeers:(NSString *) peerID\n{\n    [self disconnectPeerFromAllPeers___java_lang_String:(peerID ? peerID : JAVA_NULL)];\n}\n\n"
+    },
+    "disconnectTimeout()": {
+      "code": "- (NSTimeInterval) disconnectTimeout\n{\n    return [self disconnectTimeout__];\n}\n\n"
+    },
+    "displayName()": {
+      "code": "- (NSString *) displayName\n{\n    NSString * re$ult = [self displayName__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "displayNameForPeer(java.lang.String)": {
+      "code": "- (NSString *) displayNameForPeer:(NSString *) peerID\n{\n    NSString * re$ult = [self displayNameForPeer___java_lang_String:(peerID ? peerID : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "isAvailable()": {
+      "code": "- (BOOL) isAvailable\n{\n    return [self isAvailable__];\n}\n\n"
+    },
+    "peerID()": {
+      "code": "- (NSString *) peerID\n{\n    NSString * re$ult = [self peerID__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "peersWithConnectionState(int)": {
+      "code": "- (NSArray *) peersWithConnectionState:(GKPeerConnectionState) state\n{\n    NSArray * re$ult = [self peersWithConnectionState___int:state];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "sendData(crossmobile.ios.foundation.NSData,java.util.List,int,crossmobile.rt.StrongReference)": {
+      "code": "- (BOOL) sendData:(NSData *) data toPeers:(NSArray *) peers withDataMode:(GKSendDataMode) mode error:(NSError **) error\n{\n    crossmobile_rt_StrongReference* error$conv = error ? [[crossmobile_rt_StrongReference alloc] __init_crossmobile_ios_StrongReference___java_lang_Object:*error] : JAVA_NULL;\n    BOOL re$ult = [self sendData___crossmobile_ios_foundation_NSData_java_util_List_int_crossmobile_rt_StrongReference:(data ? data : JAVA_NULL) :(peers ? peers : JAVA_NULL) :mode :error$conv];\n    [error$conv release];\n    return re$ult;\n}\n\n"
+    },
+    "sendDataToAllPeers(crossmobile.ios.foundation.NSData,int,crossmobile.rt.StrongReference)": {
+      "code": "- (BOOL) sendDataToAllPeers:(NSData *) data withDataMode:(GKSendDataMode) mode error:(NSError **) error\n{\n    crossmobile_rt_StrongReference* error$conv = error ? [[crossmobile_rt_StrongReference alloc] __init_crossmobile_ios_StrongReference___java_lang_Object:*error] : JAVA_NULL;\n    BOOL re$ult = [self sendDataToAllPeers___crossmobile_ios_foundation_NSData_int_crossmobile_rt_StrongReference:(data ? data : JAVA_NULL) :mode :error$conv];\n    [error$conv release];\n    return re$ult;\n}\n\n"
+    },
+    "sessionID()": {
+      "code": "- (NSString *) sessionID\n{\n    NSString * re$ult = [self sessionID__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "sessionMode()": {
+      "code": "- (GKSessionMode) sessionMode\n{\n    return [self sessionMode__];\n}\n\n"
+    },
+    "setAvailable(boolean)": {
+      "code": "- (void) setAvailable:(BOOL) available\n{\n    [self setAvailable___boolean:available];\n}\n\n"
+    },
+    "setDataReceiveHandler(crossmobile.ios.gamekit.GKDataReceiveHandler,java.lang.Object)": {
+      "code": "- (void) setDataReceiveHandler:(id) handler withContext:(void *) context\n{\n    [self setDataReceiveHandler___crossmobile_ios_gamekit_GKDataReceiveHandler_java_lang_Object:(handler ? handler : JAVA_NULL) :(context ? context : JAVA_NULL)];\n}\n\n"
+    },
+    "setDelegate(crossmobile.ios.gamekit.GKSessionDelegate)": {
+      "code": "- (void) setDelegate:(id<GKSessionDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_gamekit_GKSessionDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n"
+    },
+    "setDisconnectTimeout(double)": {
+      "code": "- (void) setDisconnectTimeout:(NSTimeInterval) disconnectTimeout\n{\n    [self setDisconnectTimeout___double:disconnectTimeout];\n}\n\n"
+    }
   },
   "crossmobile.ios.gamekit.GKSessionDelegate": {
-    "connectionWithPeerFailed(crossmobile.ios.gamekit.GKSession,java.lang.String,crossmobile.ios.foundation.NSError)": "- (void) session:(GKSession *) session connectionWithPeerFailed:(NSString *) peerID withError:(NSError *) error\n{\n    [self connectionWithPeerFailed___crossmobile_ios_gamekit_GKSession_java_lang_String_crossmobile_ios_foundation_NSError:(session ? session : JAVA_NULL) :(peerID ? peerID : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n",
-    "didFailWithError(crossmobile.ios.gamekit.GKSession,crossmobile.ios.foundation.NSError)": "- (void) session:(GKSession *) session didFailWithError:(NSError *) error\n{\n    [self didFailWithError___crossmobile_ios_gamekit_GKSession_crossmobile_ios_foundation_NSError:(session ? session : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n",
-    "didReceiveConnectionRequestFromPeer(crossmobile.ios.gamekit.GKSession,java.lang.String)": "- (void) session:(GKSession *) session didReceiveConnectionRequestFromPeer:(NSString *) peerID\n{\n    [self didReceiveConnectionRequestFromPeer___crossmobile_ios_gamekit_GKSession_java_lang_String:(session ? session : JAVA_NULL) :(peerID ? peerID : JAVA_NULL)];\n}\n\n",
-    "peerDidChangeState(crossmobile.ios.gamekit.GKSession,java.lang.String,int)": "- (void) session:(GKSession *) session peer:(NSString *) peerID didChangeState:(GKPeerConnectionState) state\n{\n    [self peerDidChangeState___crossmobile_ios_gamekit_GKSession_java_lang_String_int:(session ? session : JAVA_NULL) :(peerID ? peerID : JAVA_NULL) :state];\n}\n\n"
+    "connectionWithPeerFailed(crossmobile.ios.gamekit.GKSession,java.lang.String,crossmobile.ios.foundation.NSError)": {
+      "code": "- (void) session:(GKSession *) session connectionWithPeerFailed:(NSString *) peerID withError:(NSError *) error\n{\n    [self connectionWithPeerFailed___crossmobile_ios_gamekit_GKSession_java_lang_String_crossmobile_ios_foundation_NSError:(session ? session : JAVA_NULL) :(peerID ? peerID : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n"
+    },
+    "didFailWithError(crossmobile.ios.gamekit.GKSession,crossmobile.ios.foundation.NSError)": {
+      "code": "- (void) session:(GKSession *) session didFailWithError:(NSError *) error\n{\n    [self didFailWithError___crossmobile_ios_gamekit_GKSession_crossmobile_ios_foundation_NSError:(session ? session : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n"
+    },
+    "didReceiveConnectionRequestFromPeer(crossmobile.ios.gamekit.GKSession,java.lang.String)": {
+      "code": "- (void) session:(GKSession *) session didReceiveConnectionRequestFromPeer:(NSString *) peerID\n{\n    [self didReceiveConnectionRequestFromPeer___crossmobile_ios_gamekit_GKSession_java_lang_String:(session ? session : JAVA_NULL) :(peerID ? peerID : JAVA_NULL)];\n}\n\n"
+    },
+    "peerDidChangeState(crossmobile.ios.gamekit.GKSession,java.lang.String,int)": {
+      "code": "- (void) session:(GKSession *) session peer:(NSString *) peerID didChangeState:(GKPeerConnectionState) state\n{\n    [self peerDidChangeState___crossmobile_ios_gamekit_GKSession_java_lang_String_int:(session ? session : JAVA_NULL) :(peerID ? peerID : JAVA_NULL) :state];\n}\n\n"
+    }
   }
 }

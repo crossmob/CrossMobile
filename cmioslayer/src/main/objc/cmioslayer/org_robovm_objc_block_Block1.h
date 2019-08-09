@@ -6,3 +6,6 @@ __declspec(dllexport)
 @protocol org_robovm_objc_block_Block1
 - (java_lang_Object*) exec___java_lang_Object :(java_lang_Object*)n1;
 @end
+
+@interface org_robovm_objc_block_Block1 : java_lang_Object <org_robovm_objc_block_Block1>
+@end

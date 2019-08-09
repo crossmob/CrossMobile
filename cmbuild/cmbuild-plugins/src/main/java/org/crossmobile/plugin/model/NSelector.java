@@ -20,8 +20,7 @@ import java.lang.reflect.Executable;
 import java.lang.reflect.Modifier;
 import java.util.*;
 
-import static org.crossmobile.plugin.reg.TypeRegistry.getJavaBoxed;
-import static org.crossmobile.plugin.reg.TypeRegistry.hasBlockParameter;
+import static org.crossmobile.plugin.reg.TypeRegistry.*;
 import static org.crossmobile.plugin.utils.Texters.toObjC;
 import static org.crossmobile.utils.NamingUtils.execSignature;
 import static org.crossmobile.utils.NamingUtils.getClassNameBare;
@@ -155,7 +154,7 @@ public class NSelector extends NParsable implements Comparable<NSelector> {
 
     public boolean needsOverrideBindings() {
         return !asStatic && !isConstructor() && !Modifier.isFinal(java.getModifiers()) && !Modifier.isStatic(java.getModifiers())
-                && !hasBlockParameter(this);
+                && isBlockParameterSupported(this);
     }
 
     public void setProperty(NProperty property) {

@@ -22,12 +22,19 @@ import com.dd.plist.PropertyListParser;
 import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.build.ArtifactInfo;
 import org.crossmobile.build.utils.PlistUtils.*;
+import org.crossmobile.plugin.objc.ReverseBlockRegistry;
 import org.crossmobile.plugin.reg.Plugin;
-import org.crossmobile.utils.*;
+import org.crossmobile.utils.Commander;
+import org.crossmobile.utils.Log;
+import org.crossmobile.utils.PluginPod;
+import org.crossmobile.utils.XcodeTarget;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -41,8 +48,8 @@ import static org.crossmobile.utils.TextUtils.plural;
 
 public class CreateLibs extends CreateLibsAbstract {
 
-    public CreateLibs(Function<ArtifactInfo, File> resolver, File target, File cache, File vendor, File IDELocation, boolean build) throws IOException {
-        super(resolver, target, cache, vendor, IDELocation, true, build);
+    public CreateLibs(Function<ArtifactInfo, File> resolver, File target, File cache, File vendor, File IDELocation, ReverseBlockRegistry handleRegistry, boolean build) throws IOException {
+        super(resolver, target, cache, vendor, IDELocation, handleRegistry, true, build);
     }
 
     @Override

@@ -1,26 +1,58 @@
 {
   "crossmobile.ios.quicklook.QLPreviewController": {
-    "currentPreviewItem()": "- (id<QLPreviewItem>) currentPreviewItem\n{\n    id<QLPreviewItem> re$ult = [self currentPreviewItem__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "currentPreviewItemIndex()": "- (NSInteger) currentPreviewItemIndex\n{\n    return [self currentPreviewItemIndex__];\n}\n\n",
-    "dataSource()": "- (id<QLPreviewControllerDataSource>) dataSource\n{\n    id<QLPreviewControllerDataSource> re$ult = [self dataSource__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "delegate()": "- (id<QLPreviewControllerDelegate>) delegate\n{\n    id<QLPreviewControllerDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "refreshCurrentPreviewItem()": "- (void) refreshCurrentPreviewItem\n{\n    [self refreshCurrentPreviewItem__];\n}\n\n",
-    "reloadData()": "- (void) reloadData\n{\n    [self reloadData__];\n}\n\n",
-    "setCurrentPreviewItemIndex(int)": "- (void) setCurrentPreviewItemIndex:(NSInteger) currentPreviewItemIndex\n{\n    [self setCurrentPreviewItemIndex___int:currentPreviewItemIndex];\n}\n\n",
-    "setDataSource(crossmobile.ios.quicklook.QLPreviewControllerDataSource)": "- (void) setDataSource:(id<QLPreviewControllerDataSource>) dataSource\n{\n    [self setDataSource___crossmobile_ios_quicklook_QLPreviewControllerDataSource:(dataSource ? dataSource : JAVA_NULL)];\n}\n\n",
-    "setDelegate(crossmobile.ios.quicklook.QLPreviewControllerDelegate)": "- (void) setDelegate:(id<QLPreviewControllerDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_quicklook_QLPreviewControllerDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n"
+    "currentPreviewItem()": {
+      "code": "- (id<QLPreviewItem>) currentPreviewItem\n{\n    id<QLPreviewItem> re$ult = [self currentPreviewItem__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "currentPreviewItemIndex()": {
+      "code": "- (NSInteger) currentPreviewItemIndex\n{\n    return [self currentPreviewItemIndex__];\n}\n\n"
+    },
+    "dataSource()": {
+      "code": "- (id<QLPreviewControllerDataSource>) dataSource\n{\n    id<QLPreviewControllerDataSource> re$ult = [self dataSource__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "delegate()": {
+      "code": "- (id<QLPreviewControllerDelegate>) delegate\n{\n    id<QLPreviewControllerDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "refreshCurrentPreviewItem()": {
+      "code": "- (void) refreshCurrentPreviewItem\n{\n    [self refreshCurrentPreviewItem__];\n}\n\n"
+    },
+    "reloadData()": {
+      "code": "- (void) reloadData\n{\n    [self reloadData__];\n}\n\n"
+    },
+    "setCurrentPreviewItemIndex(int)": {
+      "code": "- (void) setCurrentPreviewItemIndex:(NSInteger) currentPreviewItemIndex\n{\n    [self setCurrentPreviewItemIndex___int:currentPreviewItemIndex];\n}\n\n"
+    },
+    "setDataSource(crossmobile.ios.quicklook.QLPreviewControllerDataSource)": {
+      "code": "- (void) setDataSource:(id<QLPreviewControllerDataSource>) dataSource\n{\n    [self setDataSource___crossmobile_ios_quicklook_QLPreviewControllerDataSource:(dataSource ? dataSource : JAVA_NULL)];\n}\n\n"
+    },
+    "setDelegate(crossmobile.ios.quicklook.QLPreviewControllerDelegate)": {
+      "code": "- (void) setDelegate:(id<QLPreviewControllerDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_quicklook_QLPreviewControllerDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n"
+    }
   },
   "crossmobile.ios.quicklook.QLPreviewControllerDataSource": {
-    "numberOfPreviewItemsInPreviewController(crossmobile.ios.quicklook.QLPreviewController)": "- (NSInteger) numberOfPreviewItemsInPreviewController:(QLPreviewController *) controller\n{\n    return [self numberOfPreviewItemsInPreviewController___crossmobile_ios_quicklook_QLPreviewController:(controller ? controller : JAVA_NULL)];\n}\n\n",
-    "previewItemAtIndex(crossmobile.ios.quicklook.QLPreviewController,int)": "- (id<QLPreviewItem>) previewController:(QLPreviewController *) controller previewItemAtIndex:(NSInteger) index\n{\n    id<QLPreviewItem> re$ult = [self previewItemAtIndex___crossmobile_ios_quicklook_QLPreviewController_int:(controller ? controller : JAVA_NULL) :index];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    "numberOfPreviewItemsInPreviewController(crossmobile.ios.quicklook.QLPreviewController)": {
+      "code": "- (NSInteger) numberOfPreviewItemsInPreviewController:(QLPreviewController *) controller\n{\n    return [self numberOfPreviewItemsInPreviewController___crossmobile_ios_quicklook_QLPreviewController:(controller ? controller : JAVA_NULL)];\n}\n\n"
+    },
+    "previewItemAtIndex(crossmobile.ios.quicklook.QLPreviewController,int)": {
+      "code": "- (id<QLPreviewItem>) previewController:(QLPreviewController *) controller previewItemAtIndex:(NSInteger) index\n{\n    id<QLPreviewItem> re$ult = [self previewItemAtIndex___crossmobile_ios_quicklook_QLPreviewController_int:(controller ? controller : JAVA_NULL) :index];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    }
   },
   "crossmobile.ios.quicklook.QLPreviewControllerDelegate": {
-    "didDismiss(crossmobile.ios.quicklook.QLPreviewController)": "- (void) previewControllerDidDismiss:(QLPreviewController *) controller\n{\n    [self didDismiss___crossmobile_ios_quicklook_QLPreviewController:(controller ? controller : JAVA_NULL)];\n}\n\n",
-    "shouldOpenURL(crossmobile.ios.quicklook.QLPreviewController,crossmobile.ios.foundation.NSURL,crossmobile.ios.quicklook.QLPreviewItem)": "- (BOOL) previewController:(QLPreviewController *) controller shouldOpenURL:(NSURL *) url forPreviewItem:(id<QLPreviewItem>) item\n{\n    return [self shouldOpenURL___crossmobile_ios_quicklook_QLPreviewController_crossmobile_ios_foundation_NSURL_crossmobile_ios_quicklook_QLPreviewItem:(controller ? controller : JAVA_NULL) :(url ? url : JAVA_NULL) :(item ? item : JAVA_NULL)];\n}\n\n",
-    "willDismiss(crossmobile.ios.quicklook.QLPreviewController)": "- (void) previewControllerWillDismiss:(QLPreviewController *) controller\n{\n    [self willDismiss___crossmobile_ios_quicklook_QLPreviewController:(controller ? controller : JAVA_NULL)];\n}\n\n"
+    "didDismiss(crossmobile.ios.quicklook.QLPreviewController)": {
+      "code": "- (void) previewControllerDidDismiss:(QLPreviewController *) controller\n{\n    [self didDismiss___crossmobile_ios_quicklook_QLPreviewController:(controller ? controller : JAVA_NULL)];\n}\n\n"
+    },
+    "shouldOpenURL(crossmobile.ios.quicklook.QLPreviewController,crossmobile.ios.foundation.NSURL,crossmobile.ios.quicklook.QLPreviewItem)": {
+      "code": "- (BOOL) previewController:(QLPreviewController *) controller shouldOpenURL:(NSURL *) url forPreviewItem:(id<QLPreviewItem>) item\n{\n    return [self shouldOpenURL___crossmobile_ios_quicklook_QLPreviewController_crossmobile_ios_foundation_NSURL_crossmobile_ios_quicklook_QLPreviewItem:(controller ? controller : JAVA_NULL) :(url ? url : JAVA_NULL) :(item ? item : JAVA_NULL)];\n}\n\n"
+    },
+    "willDismiss(crossmobile.ios.quicklook.QLPreviewController)": {
+      "code": "- (void) previewControllerWillDismiss:(QLPreviewController *) controller\n{\n    [self willDismiss___crossmobile_ios_quicklook_QLPreviewController:(controller ? controller : JAVA_NULL)];\n}\n\n"
+    }
   },
   "crossmobile.ios.quicklook.QLPreviewItem": {
-    "previewItemTitle()": "- (NSString *) previewItemTitle\n{\n    NSString * re$ult = [self previewItemTitle__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "previewItemURL()": "- (NSURL *) previewItemURL\n{\n    NSURL * re$ult = [self previewItemURL__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    "previewItemTitle()": {
+      "code": "- (NSString *) previewItemTitle\n{\n    NSString * re$ult = [self previewItemTitle__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "previewItemURL()": {
+      "code": "- (NSURL *) previewItemURL\n{\n    NSURL * re$ult = [self previewItemURL__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    }
   }
 }

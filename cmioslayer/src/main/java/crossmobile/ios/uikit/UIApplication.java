@@ -447,6 +447,7 @@ public class UIApplication extends UIResponder {
      * @param notificationSettings User's notification settings.
      */
     @CMSelector("- (void)registerUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings;")
+    @Deprecated
     public void registerUserNotificationSettings(UIUserNotificationSettings notificationSettings) {
         this.notificationSettings = this.currentUserNotificationSettings = notificationSettings;
         UNUserNotificationCenter.currentNotificationCenter().requestAuthorizationWithOptions(notificationTypeToAuthorizationOption(notificationSettings.types()), (result, error) -> {

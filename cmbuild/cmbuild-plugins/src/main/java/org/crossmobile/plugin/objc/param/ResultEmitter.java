@@ -70,7 +70,7 @@ public class ResultEmitter {
             boolean noRetain = (constructor || fakeConstructor) && !bridgedVararg;    // if it is bridged vararg, retain is (probably) required, since Swift seems to put things into the autorelease pool anyway.
             return new EmitterObject("", RESULT, type, noRetain, reverse);
         } else if (type.getBlock() != null || isBlockTarget(javaType))
-            return new EmitterBlock("", RESULT, type, reverse);
+            return new EmitterBlock(RESULT, type, reverse);
         else {
             System.out.println("Unknown return emitter for " + getClassNameFull(type.getType()) + " in selector `" + origCode + "`");
             return new Emitter(RESULT, type, false, forward) {

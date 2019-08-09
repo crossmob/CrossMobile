@@ -1,48 +1,120 @@
 {
   "crossmobile.ios.avfoundation.AVAudioPlayer": {
-    "currentTime()": "- (NSTimeInterval) currentTime\n{\n    return [self currentTime__];\n}\n\n",
-    "data()": "- (NSData *) data\n{\n    NSData * re$ult = [self data__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "delegate()": "- (id<AVAudioPlayerDelegate>) delegate\n{\n    id<AVAudioPlayerDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "duration()": "- (NSTimeInterval) duration\n{\n    return [self duration__];\n}\n\n",
-    "isPlaying()": "- (BOOL) isPlaying\n{\n    return [self isPlaying__];\n}\n\n",
-    "numberOfChannels()": "- (NSUInteger) numberOfChannels\n{\n    return [self numberOfChannels__];\n}\n\n",
-    "numberOfLoops()": "- (NSInteger) numberOfLoops\n{\n    return [self numberOfLoops__];\n}\n\n",
-    "pause()": "- (void) pause\n{\n    [self pause__];\n}\n\n",
-    "play()": "- (BOOL) play\n{\n    return [self play__];\n}\n\n",
-    "playAtTime(double)": "- (BOOL) playAtTime:(NSTimeInterval) time\n{\n    return [self playAtTime___double:time];\n}\n\n",
-    "prepareToPlay()": "- (BOOL) prepareToPlay\n{\n    return [self prepareToPlay__];\n}\n\n",
-    "setCurrentTime(double)": "- (void) setCurrentTime:(NSTimeInterval) currentTime\n{\n    [self setCurrentTime___double:currentTime];\n}\n\n",
-    "setDelegate(crossmobile.ios.avfoundation.AVAudioPlayerDelegate)": "- (void) setDelegate:(id<AVAudioPlayerDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_avfoundation_AVAudioPlayerDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n",
-    "setNumberOfLoops(int)": "- (void) setNumberOfLoops:(NSInteger) numberOfLoops\n{\n    [self setNumberOfLoops___int:numberOfLoops];\n}\n\n",
-    "setVolume(float)": "- (void) setVolume:(float) volume\n{\n    [self setVolume___float:volume];\n}\n\n",
-    "stop()": "- (void) stop\n{\n    [self stop__];\n}\n\n",
-    "url()": "- (NSURL *) url\n{\n    NSURL * re$ult = [self url__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "volume()": "- (float) volume\n{\n    return [self volume__];\n}\n\n"
+    "currentTime()": {
+      "code": "- (NSTimeInterval) currentTime\n{\n    return [self currentTime__];\n}\n\n"
+    },
+    "data()": {
+      "code": "- (NSData *) data\n{\n    NSData * re$ult = [self data__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "delegate()": {
+      "code": "- (id<AVAudioPlayerDelegate>) delegate\n{\n    id<AVAudioPlayerDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "duration()": {
+      "code": "- (NSTimeInterval) duration\n{\n    return [self duration__];\n}\n\n"
+    },
+    "isPlaying()": {
+      "code": "- (BOOL) isPlaying\n{\n    return [self isPlaying__];\n}\n\n"
+    },
+    "numberOfChannels()": {
+      "code": "- (NSUInteger) numberOfChannels\n{\n    return [self numberOfChannels__];\n}\n\n"
+    },
+    "numberOfLoops()": {
+      "code": "- (NSInteger) numberOfLoops\n{\n    return [self numberOfLoops__];\n}\n\n"
+    },
+    "pause()": {
+      "code": "- (void) pause\n{\n    [self pause__];\n}\n\n"
+    },
+    "play()": {
+      "code": "- (BOOL) play\n{\n    return [self play__];\n}\n\n"
+    },
+    "playAtTime(double)": {
+      "code": "- (BOOL) playAtTime:(NSTimeInterval) time\n{\n    return [self playAtTime___double:time];\n}\n\n"
+    },
+    "prepareToPlay()": {
+      "code": "- (BOOL) prepareToPlay\n{\n    return [self prepareToPlay__];\n}\n\n"
+    },
+    "setCurrentTime(double)": {
+      "code": "- (void) setCurrentTime:(NSTimeInterval) currentTime\n{\n    [self setCurrentTime___double:currentTime];\n}\n\n"
+    },
+    "setDelegate(crossmobile.ios.avfoundation.AVAudioPlayerDelegate)": {
+      "code": "- (void) setDelegate:(id<AVAudioPlayerDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_avfoundation_AVAudioPlayerDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n"
+    },
+    "setNumberOfLoops(int)": {
+      "code": "- (void) setNumberOfLoops:(NSInteger) numberOfLoops\n{\n    [self setNumberOfLoops___int:numberOfLoops];\n}\n\n"
+    },
+    "setVolume(float)": {
+      "code": "- (void) setVolume:(float) volume\n{\n    [self setVolume___float:volume];\n}\n\n"
+    },
+    "stop()": {
+      "code": "- (void) stop\n{\n    [self stop__];\n}\n\n"
+    },
+    "url()": {
+      "code": "- (NSURL *) url\n{\n    NSURL * re$ult = [self url__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "volume()": {
+      "code": "- (float) volume\n{\n    return [self volume__];\n}\n\n"
+    }
   },
   "crossmobile.ios.avfoundation.AVAudioPlayerDelegate": {
-    "beginInterruption(crossmobile.ios.avfoundation.AVAudioPlayer)": "- (void) audioPlayerBeginInterruption:(AVAudioPlayer *) player\n{\n    [self beginInterruption___crossmobile_ios_avfoundation_AVAudioPlayer:(player ? player : JAVA_NULL)];\n}\n\n",
-    "decodeErrorDidOccur(crossmobile.ios.avfoundation.AVAudioPlayer,crossmobile.ios.foundation.NSError)": "- (void) audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *) player error:(NSError *) error\n{\n    [self decodeErrorDidOccur___crossmobile_ios_avfoundation_AVAudioPlayer_crossmobile_ios_foundation_NSError:(player ? player : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n",
-    "didFinishPlaying(crossmobile.ios.avfoundation.AVAudioPlayer,boolean)": "- (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *) player successfully:(BOOL) flag\n{\n    [self didFinishPlaying___crossmobile_ios_avfoundation_AVAudioPlayer_boolean:(player ? player : JAVA_NULL) :flag];\n}\n\n",
-    "endInterruption(crossmobile.ios.avfoundation.AVAudioPlayer)": "- (void) audioPlayerEndInterruption:(AVAudioPlayer *) player\n{\n    [self endInterruption___crossmobile_ios_avfoundation_AVAudioPlayer:(player ? player : JAVA_NULL)];\n}\n\n"
+    "beginInterruption(crossmobile.ios.avfoundation.AVAudioPlayer)": {
+      "code": "- (void) audioPlayerBeginInterruption:(AVAudioPlayer *) player\n{\n    [self beginInterruption___crossmobile_ios_avfoundation_AVAudioPlayer:(player ? player : JAVA_NULL)];\n}\n\n"
+    },
+    "decodeErrorDidOccur(crossmobile.ios.avfoundation.AVAudioPlayer,crossmobile.ios.foundation.NSError)": {
+      "code": "- (void) audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *) player error:(NSError *) error\n{\n    [self decodeErrorDidOccur___crossmobile_ios_avfoundation_AVAudioPlayer_crossmobile_ios_foundation_NSError:(player ? player : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n"
+    },
+    "didFinishPlaying(crossmobile.ios.avfoundation.AVAudioPlayer,boolean)": {
+      "code": "- (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *) player successfully:(BOOL) flag\n{\n    [self didFinishPlaying___crossmobile_ios_avfoundation_AVAudioPlayer_boolean:(player ? player : JAVA_NULL) :flag];\n}\n\n"
+    },
+    "endInterruption(crossmobile.ios.avfoundation.AVAudioPlayer)": {
+      "code": "- (void) audioPlayerEndInterruption:(AVAudioPlayer *) player\n{\n    [self endInterruption___crossmobile_ios_avfoundation_AVAudioPlayer:(player ? player : JAVA_NULL)];\n}\n\n"
+    }
   },
   "crossmobile.ios.mediaplayer.MPMoviePlayerController": {
-    "backgroundColor()": "- (UIColor *) backgroundColor\n{\n    UIColor * re$ult = [self backgroundColor__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "contentURL()": "- (NSURL *) contentURL\n{\n    NSURL * re$ult = [self contentURL__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "initialPlaybackTime()": "- (NSTimeInterval) initialPlaybackTime\n{\n    return [self initialPlaybackTime__];\n}\n\n",
-    "pause()": "- (void) pause\n{\n    [self pause__];\n}\n\n",
-    "play()": "- (void) play\n{\n    [self play__];\n}\n\n",
-    "scalingMode()": "- (MPMovieScalingMode) scalingMode\n{\n    return [self scalingMode__];\n}\n\n",
-    "setInitialPlaybackTime(double)": "- (void) setInitialPlaybackTime:(NSTimeInterval) initialPlaybackTime\n{\n    [self setInitialPlaybackTime___double:initialPlaybackTime];\n}\n\n",
-    "setScalingMode(int)": "- (void) setScalingMode:(MPMovieScalingMode) scalingMode\n{\n    [self setScalingMode___int:scalingMode];\n}\n\n",
-    "stop()": "- (void) stop\n{\n    [self stop__];\n}\n\n"
+    "backgroundColor()": {
+      "code": "- (UIColor *) backgroundColor\n{\n    UIColor * re$ult = [self backgroundColor__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "contentURL()": {
+      "code": "- (NSURL *) contentURL\n{\n    NSURL * re$ult = [self contentURL__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "initialPlaybackTime()": {
+      "code": "- (NSTimeInterval) initialPlaybackTime\n{\n    return [self initialPlaybackTime__];\n}\n\n"
+    },
+    "pause()": {
+      "code": "- (void) pause\n{\n    [self pause__];\n}\n\n"
+    },
+    "play()": {
+      "code": "- (void) play\n{\n    [self play__];\n}\n\n"
+    },
+    "scalingMode()": {
+      "code": "- (MPMovieScalingMode) scalingMode\n{\n    return [self scalingMode__];\n}\n\n"
+    },
+    "setInitialPlaybackTime(double)": {
+      "code": "- (void) setInitialPlaybackTime:(NSTimeInterval) initialPlaybackTime\n{\n    [self setInitialPlaybackTime___double:initialPlaybackTime];\n}\n\n"
+    },
+    "setScalingMode(int)": {
+      "code": "- (void) setScalingMode:(MPMovieScalingMode) scalingMode\n{\n    [self setScalingMode___int:scalingMode];\n}\n\n"
+    },
+    "stop()": {
+      "code": "- (void) stop\n{\n    [self stop__];\n}\n\n"
+    }
   },
   "crossmobile.ios.mediaplayer.MPMoviePlayerViewController": {
-    "moviePlayer()": "- (MPMoviePlayerController *) moviePlayer\n{\n    MPMoviePlayerController * re$ult = [self moviePlayer__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    "moviePlayer()": {
+      "code": "- (MPMoviePlayerController *) moviePlayer\n{\n    MPMoviePlayerController * re$ult = [self moviePlayer__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    }
   },
   "crossmobile.ios.mediaplayer.MPVolumeView": {
-    "setShowsRouteButton(boolean)": "- (void) setShowsRouteButton:(BOOL) showsRouteButton\n{\n    [self setShowsRouteButton___boolean:showsRouteButton];\n}\n\n",
-    "setShowsVolumeSlider(boolean)": "- (void) setShowsVolumeSlider:(BOOL) showsVolumeSlider\n{\n    [self setShowsVolumeSlider___boolean:showsVolumeSlider];\n}\n\n",
-    "showsRouteButton()": "- (BOOL) showsRouteButton\n{\n    return [self showsRouteButton__];\n}\n\n",
-    "showsVolumeSlider()": "- (BOOL) showsVolumeSlider\n{\n    return [self showsVolumeSlider__];\n}\n\n"
+    "setShowsRouteButton(boolean)": {
+      "code": "- (void) setShowsRouteButton:(BOOL) showsRouteButton\n{\n    [self setShowsRouteButton___boolean:showsRouteButton];\n}\n\n"
+    },
+    "setShowsVolumeSlider(boolean)": {
+      "code": "- (void) setShowsVolumeSlider:(BOOL) showsVolumeSlider\n{\n    [self setShowsVolumeSlider___boolean:showsVolumeSlider];\n}\n\n"
+    },
+    "showsRouteButton()": {
+      "code": "- (BOOL) showsRouteButton\n{\n    return [self showsRouteButton__];\n}\n\n"
+    },
+    "showsVolumeSlider()": {
+      "code": "- (BOOL) showsVolumeSlider\n{\n    return [self showsVolumeSlider__];\n}\n\n"
+    }
   }
 }

@@ -14,10 +14,13 @@
 @class crossmobile_ios_uikit_UILocalNotification;
 @class crossmobile_ios_uikit_UIUserNotificationSettings;
 @class crossmobile_ios_uikit_UIWindow;
+@class java_lang_Integer;
+@class java_lang_Number;
 @class java_lang_Object;
 @protocol java_lang_Runnable;
 @class java_lang_String;
 @protocol java_util_Map;
+@protocol org_robovm_objc_block_VoidBlock1;
 
 CM_EXPORT_CLASS
 @protocol crossmobile_ios_uikit_UIApplicationDelegate
@@ -32,6 +35,7 @@ CM_EXPORT_CLASS
 - (void) didReceiveLocalNotification___crossmobile_ios_uikit_UIApplication_crossmobile_ios_uikit_UILocalNotification:(UIApplication*) application :(UILocalNotification*) notification ;
 - (void) didReceiveMemoryWarning___crossmobile_ios_uikit_UIApplication:(UIApplication*) application ;
 - (void) didReceiveRemoteNotification___crossmobile_ios_uikit_UIApplication_java_util_Map:(UIApplication*) application :(NSDictionary*) userInfo ;
+- (void) didReceiveRemoteNotificationFetchCompletionHandler___crossmobile_ios_uikit_UIApplication_java_util_Map_org_robovm_objc_block_VoidBlock1:(UIApplication*) application :(NSDictionary*) userInfo :(id<org_robovm_objc_block_VoidBlock1>) completionHandler ;
 - (void) didRegisterForRemoteNotificationsWithDeviceToken___crossmobile_ios_uikit_UIApplication_crossmobile_ios_foundation_NSData:(UIApplication*) application :(NSData*) deviceToken ;
 - (void) didRegisterUserNotificationSettings___crossmobile_ios_uikit_UIApplication_crossmobile_ios_uikit_UIUserNotificationSettings:(UIApplication*) application :(UIUserNotificationSettings*) notificationSettings ;
 - (void) handleActionWithIdentifierForLocalNotification___crossmobile_ios_uikit_UIApplication_java_lang_String_crossmobile_ios_uikit_UILocalNotification_java_lang_Runnable:(UIApplication*) application :(NSString*) identifier :(UILocalNotification*) notification :(id<java_lang_Runnable>) completionHandler ;

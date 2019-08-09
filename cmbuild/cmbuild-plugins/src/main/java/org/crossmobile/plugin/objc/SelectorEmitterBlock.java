@@ -26,7 +26,7 @@ import static org.crossmobile.utils.CollectionUtils.forEach;
 public class SelectorEmitterBlock extends SelectorEmitterReverse {
 
     public SelectorEmitterBlock(NSelector selector, String blockvar) {
-        super(selector, blockvar);
+        super(selector, blockvar, null);
     }
 
     @Override

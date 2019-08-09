@@ -23,26 +23,23 @@ import javassist.CtClass;
 import javassist.CtMethod;
 import javassist.NotFoundException;
 import org.crossmobile.bridge.system.BaseUtils;
+import org.crossmobile.bridge.system.JsonHelper;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.jar.JarFile;
 import java.util.zip.ZipEntry;
 
+import static org.crossmobile.prefs.Config.REVERSE_INF;
 import static org.crossmobile.utils.NamingUtils.execSignature;
 
 public class NativeCodeCollection {
 
-    public final static String REVERSE_INF = "META-INF/REVERSE.INF";
-
-    private final Map<String, Map<CtClass, String>> methodClassCode = new HashMap<>();
-    private Map<String, Map<String, String>> classMethodCode;
+    private final Map<String, Map<CtClass, NativeMethodData>> methodClassCode = new HashMap<>();
+    private Map<String, Map<String, NativeMethodData>> classMethodCode;
     private final ClassPool cp;
 
     public NativeCodeCollection(ClassPool cp) {
@@ -59,22 +56,22 @@ public class NativeCodeCollection {
         return cp;
     }
 
-    public void add(String method, Class typeClass, String code) {
-        add(method, typeClass.getName(), code);
+    public void add(String method, Class typeClass, String code, Collection<String> generatedBlocks) {
+        add(method, typeClass.getName(), code, generatedBlocks);
     }
 
-    public void add(String method, String typeClass, String code) {
+    public void add(String method, String typeClass, String code, Collection<String> generatedBlocks) {
         try {
-            add(method, cp.get(typeClass), code);
+            add(method, cp.get(typeClass), code, generatedBlocks);
         } catch (NotFoundException ex) {
             Log.error("Unable to locate class " + typeClass);
         }
     }
 
-    public void add(String method, CtClass given, String code) {
+    public void add(String method, CtClass given, String code, Collection<String> generatedBlocks) {
         if (code.isEmpty())
             return;
-        Map<CtClass, String> classCode = methodClassCode.get(method);
+        Map<CtClass, NativeMethodData> classCode = methodClassCode.get(method);
         CtClass toRemove = null;
         if (classCode == null) {
             classCode = new HashMap<>();
@@ -84,59 +81,59 @@ public class NativeCodeCollection {
                 try {
                     if (given.subtypeOf(older))
                         return; // class type is subclass of already attached class; aborting
-                } catch (NotFoundException ex) {
+                } catch (NotFoundException ignored) {
                 }
                 try {
                     if (older.subtypeOf(given)) {
                         toRemove = older;   // already attached class is subtype of type; should remove old attached class
                         break;
                     }
-                } catch (NotFoundException ex) {
+                } catch (NotFoundException ignored) {
                 }
             }
         if (toRemove != null)
             classCode.remove(toRemove);
-        classCode.put(given, code);
+        classCode.put(given, new NativeMethodData(code, generatedBlocks));
     }
 
-    public Map<String, Map<String, String>> getClassMethodCode() {
+    public Map<String, Map<String, NativeMethodData>> getClassMethodCode() {
         if (classMethodCode == null) {
             classMethodCode = new TreeMap<>();
             for (String method : methodClassCode.keySet()) {
-                Map<CtClass, String> objectCode = methodClassCode.get(method);
+                Map<CtClass, NativeMethodData> objectCode = methodClassCode.get(method);
                 for (CtClass object : objectCode.keySet()) {
-                    String classname = object.getName();
-                    addClassMethodCode(classname, method, objectCode.get(object));
+                    String className = object.getName();
+                    addClassMethodCode(className, method, objectCode.get(object));
                 }
             }
         }
         return classMethodCode;
     }
 
-    private void addClassMethodCode(String classname, String method, String code) {
-        Map<String, String> methodCode = classMethodCode.get(classname);
+    private void addClassMethodCode(String className, String method, NativeMethodData code) {
+        Map<String, NativeMethodData> methodCode = classMethodCode.get(className);
         if (methodCode == null) {
             methodCode = new TreeMap<>();
-            classMethodCode.put(classname, methodCode);
+            classMethodCode.put(className, methodCode);
         }
         methodCode.put(method, code);
     }
 
-    public String getCode(CtClass baseClass, CtMethod exec) {
+    public NativeMethodData getCode(CtClass baseClass, CtMethod exec) {
         String sig = execSignature(exec);
         if (sig == null)
             Log.error("Unable to retrieve signature of " + baseClass.toString());
         else {
-            Map<CtClass, String> classCode = methodClassCode.get(sig);
+            Map<CtClass, NativeMethodData> classCode = methodClassCode.get(sig);
             if (classCode != null)
                 for (CtClass cls : classCode.keySet())
                     try {
                         if (baseClass.subtypeOf(cls))
                             return classCode.get(cls);
-                    } catch (NotFoundException ex) {
+                    } catch (NotFoundException ignored) {
                     }
         }
-        return "";
+        return null;
     }
 
     // JSON related methods
@@ -158,15 +155,20 @@ public class NativeCodeCollection {
                 }
     }
 
+    @SuppressWarnings("unchecked")
     public void loadSources(InputStream stream, File location) {
         String content = FileUtils.readSafe(stream, "plugin file");
         if (content == null || content.isEmpty())
             throw new RuntimeException("Unable to load reverse bindings from " + location.getAbsolutePath());
-        JsonObject obj = Json.parse(content).asObject();
-        for (String cls : obj.names()) {
-            JsonObject methodCode = obj.get(cls).asObject();
-            for (String method : methodCode.names())
-                add(method, cls, methodCode.getString(method, null));
+        Map<String, Object> classes = (Map<String, Object>) JsonHelper.decode(content);
+        for (String className : classes.keySet()) {
+            Map<String, Object> classData = (Map<String, Object>) classes.get(className);
+            for (String method : classData.keySet()) {
+                Map<String, Object> methodData = (Map<String, Object>) classData.get(method);
+                String code = (String) methodData.get("code");
+                Collection<String> imports = (Collection<String>) methodData.getOrDefault("classes", Collections.emptyList());
+                add(method, className, code, imports);
+            }
         }
     }
 
@@ -174,4 +176,27 @@ public class NativeCodeCollection {
         return classMethodCode.keySet();
     }
 
+    public static class NativeMethodData implements JsonHelper.JsonSerializable {
+        private HashMap<String, Object> data = new HashMap<>();
+
+        private NativeMethodData(String code, Collection<String> injectedClasses) {
+            data.put("code", code);
+            if (!injectedClasses.isEmpty())
+                data.put("classes", injectedClasses);
+        }
+
+        public String getCode() {
+            return (String) data.get("code");
+        }
+
+        @SuppressWarnings("unchecked")
+        public Collection<String> getGeneratedBlocks() {
+            return (Collection<String>) data.getOrDefault("classes", Collections.emptyList());
+        }
+
+        @Override
+        public Object asJsonSerializable() {
+            return data;
+        }
+    }
 }

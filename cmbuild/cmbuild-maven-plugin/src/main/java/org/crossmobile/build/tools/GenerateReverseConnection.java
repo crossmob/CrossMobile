@@ -19,44 +19,56 @@ package org.crossmobile.build.tools;
 import javassist.CtClass;
 import javassist.CtMethod;
 import org.crossmobile.bridge.system.BaseUtils;
-import org.crossmobile.utils.ClasspathUtils;
-import org.crossmobile.utils.Log;
-import org.crossmobile.utils.NativeCodeCollection;
+import org.crossmobile.bridge.system.Pair;
+import org.crossmobile.utils.*;
+import org.crossmobile.utils.NativeCodeCollection.NativeMethodData;
 
 import java.io.File;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.stream.Collectors;
 
+import static java.util.regex.Matcher.quoteReplacement;
 import static org.crossmobile.utils.FileUtils.*;
 import static org.crossmobile.utils.TextUtils.plural;
 
 public class GenerateReverseConnection {
 
-    public static void exec(File selfClassPath, Collection<File> libjarpaths, File destdir) {
-        Collection<File> classpaths = new ArrayList<>();
-        Map<String, String> injections = new HashMap<>();
+    public static void exec(File selfClassPath, Collection<File> libJarPaths, File destinationDir) {
+        Collection<File> classPaths = new ArrayList<>();
+        Map<String, String> codeInjections = new HashMap<>();
+        Map<String, String> importsInjections = new HashMap<>();
 
-        classpaths.add(selfClassPath);
-        classpaths.addAll(libjarpaths);
-        NativeCodeCollection dbn = new NativeCodeCollection(classpaths);
-        for (String classname : ClasspathUtils.getClasspathClasses(Collections.singleton(selfClassPath), true)) {
+        classPaths.add(selfClassPath);
+        classPaths.addAll(libJarPaths);
+        NativeCodeCollection dbn = new NativeCodeCollection(classPaths);
+        for (String className : ClasspathUtils.getClasspathClasses(Collections.singleton(selfClassPath), true)) {
             try {
-                CtClass objectC = dbn.getClassPool().get(classname);
-                String injection = findInjectionsForClass(dbn, objectC);
-                if (!injection.isEmpty())
-                    injections.put(classname.replace('.', '_').replace('$', '_'), injection);
+                CtClass objectC = dbn.getClassPool().get(className);
+                Pair<String, String> injectionData = findInjectionsForClass(dbn, objectC);
+                String code = injectionData.a;
+                String imports = injectionData.b;
+                if (!code.isEmpty()) {
+                    String canonicalClassName = className.replace('.', '_').replace('$', '_');
+                    codeInjections.put(canonicalClassName, code);
+                    importsInjections.put(canonicalClassName, imports);
+                }
             } catch (Exception ex) {
                 BaseUtils.throwException(ex);
             }
         }
 
         int count = 0;
-        for (String name : injections.keySet()) {
-            File mfileRef = new File(destdir, name + ".m");
-            if (!mfileRef.isFile())
-                Log.debug("Reverse connections for " + mfileRef.getName() + " not applied, file missing (maybe due to incremental compiling)");
+        for (String name : codeInjections.keySet()) {
+            File mfileRef = new File(destinationDir, name + ".m");
+            String mfile = read(mfileRef);
+            if (mfile == null)
+                Log.error("Reverse connections for " + mfileRef.getName() + " not applied, file missing (maybe due to incremental compiling)");
             else {
-                String mfile = read(mfileRef);
-                mfile = mfile.replace("@end", injections.get(name) + "\n\n@end");
+                mfile = mfile.replaceFirst("@end", quoteReplacement(codeInjections.get(name) + "\n\n@end"));
+                String imports = importsInjections.get(name);
+                if (!imports.isEmpty())
+                    mfile = mfile.replaceFirst("#import", quoteReplacement(imports + "#import"));
                 write(mfileRef, mfile);
                 count++;
                 Log.debug("Applied reverse connections for file " + mfileRef.getName());
@@ -65,15 +77,19 @@ public class GenerateReverseConnection {
         Log.info("Injected " + count + " class" + plural(count, "es"));
     }
 
-    private static String findInjectionsForClass(NativeCodeCollection dbn, CtClass objectC) {
+    private static Pair<String, String> findInjectionsForClass(NativeCodeCollection dbn, CtClass objectC) {
         StringBuilder out = new StringBuilder();
+        Collection<String> injectedClasses = new TreeSet<>();
         for (CtMethod m : objectC.getDeclaredMethods()) {
-            String code = dbn.getCode(objectC, m);
+            NativeMethodData data = dbn.getCode(objectC, m);
+            String code = data == null ? "" : data.getCode();
             if (!code.isEmpty()) {
                 out.append(code);
+                injectedClasses.addAll(data.getGeneratedBlocks());
                 Log.debug("Found reverse connection for " + objectC.getName() + "." + m.getName());
             }
         }
-        return out.toString();
+        return new Pair<>(out.toString(),
+                injectedClasses.isEmpty() ? "" : injectedClasses.stream().collect(Collectors.joining(".h\"\n#import \"", "#import \"", ".h\"\n")));
     }
 }

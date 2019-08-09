@@ -18,6 +18,7 @@ package org.crossmobile.plugin.objc.param;
 
 import crossmobile.rt.StrongReference;
 import org.crossmobile.plugin.model.*;
+import org.crossmobile.plugin.objc.ReverseBlockRegistry;
 import org.crossmobile.plugin.utils.Texters;
 
 import java.lang.reflect.Modifier;
@@ -36,23 +37,23 @@ public class ParamEmitter {
     private String instanceName;
 
     public static ParamEmitter forward(NSelector sel, String instancename) {
-        return new ParamEmitter(sel, true, instancename);
+        return new ParamEmitter(sel, null, true, instancename);
     }
 
-    public static ParamEmitter reverse(NSelector sel, String instancename) {
-        return new ParamEmitter(sel, false, instancename == null ? "self" : instancename);
+    public static ParamEmitter reverse(NSelector sel, ReverseBlockRegistry handleRegistry, String instancename) {
+        return new ParamEmitter(sel, handleRegistry, false, instancename == null ? "self" : instancename);
     }
 
-    private ParamEmitter(NSelector sel, boolean forward, String instanceName) {
+    private ParamEmitter(NSelector sel, ReverseBlockRegistry handleRegistry, boolean forward, String instanceName) {
         this.instanceName = instanceName;
         this.staticObject = forward ? sel.isStatic() : Modifier.isStatic(sel.getJavaExecutable().getModifiers());
         this.name = forward ? sel.getName() : Texters.methodObjCName(sel.getJavaExecutable());
         for (NParam param : sel.getParams())
-            addEmitter(parseParam(param, sel, forward));
+            addEmitter(parseParam(param, sel, handleRegistry, forward));
         this.result = new ResultEmitter(sel, forward);
     }
 
-    private Emitter parseParam(NParam param, NSelector sel, boolean forward) {
+    private Emitter parseParam(NParam param, NSelector sel, ReverseBlockRegistry handleRegistry, boolean forward) {
         NType type = param.getNType();
         if (param.getAffiliation() != null)
             if (param.getAffiliation().getType().equals(NParamAffiliation.Type.MEMBLOCK))
@@ -70,7 +71,7 @@ public class ParamEmitter {
         else if (param.getJavaParameter().getType().isArray())
             return new EmitterArray(param, forward);
         else if (type.getBlock() != null || isBlockTarget(type.getType()))
-            return new EmitterBlock(param, forward);
+            return new EmitterBlock(param, handleRegistry, forward);
         else if (param.getJavaParameter().getType().equals(StrongReference.class))
             return new EmitterStrongReference(param, forward);
         else if (isSelector(type.getType())) {

@@ -1,20 +1,52 @@
 {
   "crossmobile.ios.touchid.LAContext": {
-    "biometryType()": "- (LABiometryType) biometryType\n{\n    return [self biometryType__];\n}\n\n",
-    "canEvaluatePolicy(int,crossmobile.rt.StrongReference)": "- (BOOL) canEvaluatePolicy:(LAPolicy) policy error:(NSError * _Nullable *) error\n{\n    crossmobile_rt_StrongReference* error$conv = error ? [[crossmobile_rt_StrongReference alloc] __init_crossmobile_ios_StrongReference___java_lang_Object:*error] : JAVA_NULL;\n    BOOL re$ult = [self canEvaluatePolicy___int_crossmobile_rt_StrongReference:policy :error$conv];\n    [error$conv release];\n    return re$ult;\n}\n\n",
-    "evaluatedPolicyDomainState()": "- (NSData *) evaluatedPolicyDomainState\n{\n    NSData * re$ult = [self evaluatedPolicyDomainState__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "interactionNotAllowed()": "- (BOOL) interactionNotAllowed\n{\n    return [self interactionNotAllowed__];\n}\n\n",
-    "invalidate()": "- (void) invalidate\n{\n    [self invalidate__];\n}\n\n",
-    "isCredentialSet(int)": "- (BOOL) isCredentialSet:(LACredentialType) type\n{\n    return [self isCredentialSet___int:type];\n}\n\n",
-    "localizedCancelTitle()": "- (NSString *) localizedCancelTitle\n{\n    NSString * re$ult = [self localizedCancelTitle__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "localizedFallbackTitle()": "- (NSString *) localizedFallbackTitle\n{\n    NSString * re$ult = [self localizedFallbackTitle__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "localizedReason()": "- (NSString *) localizedReason\n{\n    NSString * re$ult = [self localizedReason__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
-    "setCredential(crossmobile.ios.foundation.NSData,int)": "- (BOOL) setCredential:(NSData *) credential type:(LACredentialType) type\n{\n    return [self setCredential___crossmobile_ios_foundation_NSData_int:(credential ? credential : JAVA_NULL) :type];\n}\n\n",
-    "setInteractionNotAllowed(boolean)": "- (void) setInteractionNotAllowed:(BOOL) interactionNotAllowed\n{\n    [self setInteractionNotAllowed___boolean:interactionNotAllowed];\n}\n\n",
-    "setLocalizedCancelTitle(java.lang.String)": "- (void) setLocalizedCancelTitle:(NSString *) localizedCancelTitle\n{\n    [self setLocalizedCancelTitle___java_lang_String:(localizedCancelTitle ? localizedCancelTitle : JAVA_NULL)];\n}\n\n",
-    "setLocalizedFallbackTitle(java.lang.String)": "- (void) setLocalizedFallbackTitle:(NSString *) localizedFallbackTitle\n{\n    [self setLocalizedFallbackTitle___java_lang_String:(localizedFallbackTitle ? localizedFallbackTitle : JAVA_NULL)];\n}\n\n",
-    "setLocalizedReason(java.lang.String)": "- (void) setLocalizedReason:(NSString *) localizedReason\n{\n    [self setLocalizedReason___java_lang_String:(localizedReason ? localizedReason : JAVA_NULL)];\n}\n\n",
-    "setTouchIDAuthenticationAllowableReuseDuration(double)": "- (void) setTouchIDAuthenticationAllowableReuseDuration:(NSTimeInterval) touchIDAuthenticationAllowableReuseDuration\n{\n    [self setTouchIDAuthenticationAllowableReuseDuration___double:touchIDAuthenticationAllowableReuseDuration];\n}\n\n",
-    "touchIDAuthenticationAllowableReuseDuration()": "- (NSTimeInterval) touchIDAuthenticationAllowableReuseDuration\n{\n    return [self touchIDAuthenticationAllowableReuseDuration__];\n}\n\n"
+    "biometryType()": {
+      "code": "- (LABiometryType) biometryType\n{\n    return [self biometryType__];\n}\n\n"
+    },
+    "canEvaluatePolicy(int,crossmobile.rt.StrongReference)": {
+      "code": "- (BOOL) canEvaluatePolicy:(LAPolicy) policy error:(NSError * _Nullable *) error\n{\n    crossmobile_rt_StrongReference* error$conv = error ? [[crossmobile_rt_StrongReference alloc] __init_crossmobile_ios_StrongReference___java_lang_Object:*error] : JAVA_NULL;\n    BOOL re$ult = [self canEvaluatePolicy___int_crossmobile_rt_StrongReference:policy :error$conv];\n    [error$conv release];\n    return re$ult;\n}\n\n"
+    },
+    "evaluatedPolicyDomainState()": {
+      "code": "- (NSData *) evaluatedPolicyDomainState\n{\n    NSData * re$ult = [self evaluatedPolicyDomainState__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "interactionNotAllowed()": {
+      "code": "- (BOOL) interactionNotAllowed\n{\n    return [self interactionNotAllowed__];\n}\n\n"
+    },
+    "invalidate()": {
+      "code": "- (void) invalidate\n{\n    [self invalidate__];\n}\n\n"
+    },
+    "isCredentialSet(int)": {
+      "code": "- (BOOL) isCredentialSet:(LACredentialType) type\n{\n    return [self isCredentialSet___int:type];\n}\n\n"
+    },
+    "localizedCancelTitle()": {
+      "code": "- (NSString *) localizedCancelTitle\n{\n    NSString * re$ult = [self localizedCancelTitle__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "localizedFallbackTitle()": {
+      "code": "- (NSString *) localizedFallbackTitle\n{\n    NSString * re$ult = [self localizedFallbackTitle__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "localizedReason()": {
+      "code": "- (NSString *) localizedReason\n{\n    NSString * re$ult = [self localizedReason__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "setCredential(crossmobile.ios.foundation.NSData,int)": {
+      "code": "- (BOOL) setCredential:(NSData *) credential type:(LACredentialType) type\n{\n    return [self setCredential___crossmobile_ios_foundation_NSData_int:(credential ? credential : JAVA_NULL) :type];\n}\n\n"
+    },
+    "setInteractionNotAllowed(boolean)": {
+      "code": "- (void) setInteractionNotAllowed:(BOOL) interactionNotAllowed\n{\n    [self setInteractionNotAllowed___boolean:interactionNotAllowed];\n}\n\n"
+    },
+    "setLocalizedCancelTitle(java.lang.String)": {
+      "code": "- (void) setLocalizedCancelTitle:(NSString *) localizedCancelTitle\n{\n    [self setLocalizedCancelTitle___java_lang_String:(localizedCancelTitle ? localizedCancelTitle : JAVA_NULL)];\n}\n\n"
+    },
+    "setLocalizedFallbackTitle(java.lang.String)": {
+      "code": "- (void) setLocalizedFallbackTitle:(NSString *) localizedFallbackTitle\n{\n    [self setLocalizedFallbackTitle___java_lang_String:(localizedFallbackTitle ? localizedFallbackTitle : JAVA_NULL)];\n}\n\n"
+    },
+    "setLocalizedReason(java.lang.String)": {
+      "code": "- (void) setLocalizedReason:(NSString *) localizedReason\n{\n    [self setLocalizedReason___java_lang_String:(localizedReason ? localizedReason : JAVA_NULL)];\n}\n\n"
+    },
+    "setTouchIDAuthenticationAllowableReuseDuration(double)": {
+      "code": "- (void) setTouchIDAuthenticationAllowableReuseDuration:(NSTimeInterval) touchIDAuthenticationAllowableReuseDuration\n{\n    [self setTouchIDAuthenticationAllowableReuseDuration___double:touchIDAuthenticationAllowableReuseDuration];\n}\n\n"
+    },
+    "touchIDAuthenticationAllowableReuseDuration()": {
+      "code": "- (NSTimeInterval) touchIDAuthenticationAllowableReuseDuration\n{\n    return [self touchIDAuthenticationAllowableReuseDuration__];\n}\n\n"
+    }
   }
 }

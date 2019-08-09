@@ -17,13 +17,14 @@
 package org.crossmobile.plugin.actions;
 
 import javassist.ClassPool;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.bridge.system.JsonHelper;
 import org.crossmobile.plugin.model.NObject;
 import org.crossmobile.plugin.model.NSelector;
+import org.crossmobile.plugin.objc.ReverseBlockRegistry;
 import org.crossmobile.plugin.objc.SelectorEmitterReverse;
 import org.crossmobile.plugin.reg.ObjectRegistry;
 import org.crossmobile.plugin.utils.Streamer;
-import org.crossmobile.utils.Log;
 import org.crossmobile.utils.NativeCodeCollection;
 
 import java.io.IOException;
@@ -37,6 +38,7 @@ import static org.crossmobile.utils.NamingUtils.execSignature;
 public final class CodeReverse {
 
     private final Map<String, ReverseCodeEntries> entries = new HashMap<>();
+    private final ReverseBlockRegistry handleRegistry = new ReverseBlockRegistry();
     private final ClassPool cp;
 
     public CodeReverse(ClassPool cp) {
@@ -44,12 +46,7 @@ public final class CodeReverse {
         for (NObject obj : ObjectRegistry.retrieveAll())
             if (obj.needsOverrideBindings()) {
                 String plugin = getPlugin(obj.getType().getName());
-                ReverseCodeEntries reverse = entries.get(plugin);
-                if (reverse == null) {
-                    reverse = new ReverseCodeEntries();
-                    entries.put(plugin, reverse);
-                }
-                reverse.add(obj);
+                entries.computeIfAbsent(plugin, p -> new ReverseCodeEntries()).addObject(obj);
             }
     }
 
@@ -58,23 +55,24 @@ public final class CodeReverse {
         return reverse == null ? "{}" : reverse.toString();
     }
 
-    public Iterable<String> getClasses(String plugin) {
+    Iterable<String> getClasses(String plugin) {
         ReverseCodeEntries reverse = entries.get(plugin);
-        return reverse == null ? Collections.EMPTY_SET : reverse.map.getClassMethodCode().keySet();
+        return reverse == null ? Collections.emptyList() : reverse.map.getClassMethodCode().keySet();
     }
 
     private class ReverseCodeEntries {
 
         private final NativeCodeCollection map = new NativeCodeCollection(cp);
 
-        private void add(NObject obj) {
+        private void addObject(NObject obj) {
             for (NSelector sel : obj.getSelectors())
                 if (sel.needsOverrideBindings()) {
                     Streamer out = Streamer.asString();
                     try {
-                        new SelectorEmitterReverse(sel).emitImplementation(out);
-                        map.add(execSignature(sel.getJavaExecutable(), false), obj.getType(), out.toString());
-                    } catch (IOException ex) {
+                        String signature = getSelectorSignature(sel);
+                        new SelectorEmitterReverse(sel, handleRegistry).emitImplementation(out);
+                        map.add(signature, obj.getType(), out.toString(), handleRegistry.getIncludesFrom(obj.getType(), signature));
+                    } catch (IOException ignored) {
                     }
                 }
         }
@@ -84,10 +82,17 @@ public final class CodeReverse {
             try {
                 return JsonHelper.encode(map.getClassMethodCode(), true);
             } catch (Exception ex) {
-                Log.error(ex);
+                BaseUtils.throwException(ex);
                 return "";
             }
         }
     }
 
+    public ReverseBlockRegistry getHandleRegistry() {
+        return handleRegistry;
+    }
+
+    public static String getSelectorSignature(NSelector selector) {
+        return execSignature(selector.getJavaExecutable(), false);
+    }
 }

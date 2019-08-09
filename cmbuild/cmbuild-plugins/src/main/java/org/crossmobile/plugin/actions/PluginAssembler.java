@@ -16,8 +16,6 @@
  */
 package org.crossmobile.plugin.actions;
 
-import javassist.ClassPool;
-import javassist.NotFoundException;
 import org.crossmobile.bridge.ann.CMLibTarget.BaseTarget;
 import org.crossmobile.build.ArtifactInfo;
 import org.crossmobile.plugin.Packages;
@@ -41,7 +39,6 @@ import java.util.function.Function;
 
 import static java.io.File.separator;
 import static org.crossmobile.plugin.actions.CreateBeanAPI.OBJ_STYLE;
-import static org.crossmobile.plugin.actions.ProjectRegistry.*;
 import static org.crossmobile.utils.FileUtils.delete;
 import static org.crossmobile.utils.FileUtils.mkdirs;
 import static org.crossmobile.utils.JarUtils.unzipJar;
@@ -115,8 +112,8 @@ public class PluginAssembler {
         CodeReverse codeRev = (buildIos || buildUwp) ? time(() -> new CodeReverse(cc.getClassPool()), "Create reverse code") : null;
         if (buildIos || buildUwp) {
 //            time(() -> new JavaTransformer(cc.getClassPool(), runtime_rvm));
-            time(() -> new CreateLibs(resolver, target, cachedir, vendorFiles, null, buildIos), "Create iOS libraries");
-            time(() -> new CreateDlls(resolver, target, cachedir, vendorFiles, VStudioLocation, buildUwp), "Create UWP libraries");
+            time(() -> new CreateLibs(resolver, target, cachedir, vendorFiles, null, codeRev.getHandleRegistry(), buildIos), "Create iOS libraries");
+            time(() -> new CreateDlls(resolver, target, cachedir, vendorFiles, VStudioLocation, codeRev.getHandleRegistry(), buildUwp), "Create UWP libraries");
         }
 
         time(() -> {
