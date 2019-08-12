@@ -43,16 +43,18 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
     private final Set<String> NOT_IMPLEMENTED_ELEMENTS = new HashSet<>();
 
     private boolean applicationIsInitialized = false;
-    private Thread.UncaughtExceptionHandler systemhandler;
+    private Thread.UncaughtExceptionHandler systemHandler;
     private boolean isQuitting = false;
+    private boolean isActive;
 
+    @SuppressWarnings("CharsetObjectCanBeUsed")
     @Override
     public void init(String[] args) {
         if (applicationIsInitialized)
             return;
         applicationIsInitialized = true;    // Enter only once
 
-        systemhandler = Thread.getDefaultUncaughtExceptionHandler();
+        systemHandler = Thread.getDefaultUncaughtExceptionHandler();
         Thread.setDefaultUncaughtExceptionHandler(this);
 
         try {
@@ -63,11 +65,12 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
         }
         try {
             System.getProperties().load(new InputStreamReader(Native.file().getFileStream(Native.file().getApplicationPrefix() + "/" + THEME_PROPERTIES), "UTF-8"));
-        } catch (Exception ex) {
+        } catch (Exception ignored) {
         }
 
         cleanTemporaryLocation();
         Native.graphics().metrics().initIdiom();
+        //noinspection unchecked
         UIGraphics.pushContext(convertBaseContextToCGContext(Native.graphics().newGraphicsContext(null, true)));
 
         String cache = Native.file().getSystemCacheLocation();
@@ -90,6 +93,7 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
 
     @Override
     public void activate() {
+        isActive = true;
         UIApplication app = UIApplication.sharedApplication();
         if (app != null && app.delegate() != null)
             app.delegate().willEnterForeground(app);
@@ -97,6 +101,7 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
 
     @Override
     public void deactivate() {
+        isActive = false;
         UIApplication app = UIApplication.sharedApplication();
         if (app != null && app.delegate() != null)
             app.delegate().didEnterBackground(app);
@@ -119,10 +124,10 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
     }
 
     @Override
-    public void uncaughtException(Thread thread, Throwable thrwbl) {
-        quit(thrwbl.getMessage() == null || thrwbl.getMessage().trim().isEmpty() ? thrwbl.toString() : thrwbl.getMessage(), thrwbl);
-        if (systemhandler != null)
-            systemhandler.uncaughtException(thread, thrwbl);
+    public void uncaughtException(Thread thread, Throwable throwable) {
+        quit(throwable.getMessage() == null || throwable.getMessage().trim().isEmpty() ? throwable.toString() : throwable.getMessage(), throwable);
+        if (systemHandler != null)
+            systemHandler.uncaughtException(thread, throwable);
     }
 
     @Override
@@ -193,5 +198,10 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
         info.put(NSError.Key.NSUnderlyingError, error);
         info.put(NSError.Key.NSLocalizedDescription, error);
         return info;
+    }
+
+    @Override
+    public int getApplicationState() {
+        return isActive ? UIApplicationState.Active : UIApplicationState.Background;
     }
 }

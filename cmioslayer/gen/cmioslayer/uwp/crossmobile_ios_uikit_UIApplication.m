@@ -31,6 +31,12 @@
     return [super applicationIconBadgeNumber];
 }
 
+// (UIApplication) @property(nonatomic, readonly) UIApplicationState applicationState;
+- (int) applicationState__
+{
+    return [super applicationState];
+}
+
 // (UIApplication) @property(nonatomic, readonly) UIUserNotificationSettings *currentUserNotificationSettings;
 - (UIUserNotificationSettings*) currentUserNotificationSettings__
 {
@@ -314,6 +320,12 @@
 - (int) applicationIconBadgeNumber__
 {
     return [self applicationIconBadgeNumber];
+}
+
+// direct binding of: @property(nonatomic, readonly) UIApplicationState applicationState;
+- (int) applicationState__
+{
+    return [self applicationState];
 }
 
 // direct binding of: @property(nonatomic, readonly) UIUserNotificationSettings *currentUserNotificationSettings;

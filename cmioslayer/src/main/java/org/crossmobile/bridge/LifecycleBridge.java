@@ -48,4 +48,5 @@ public interface LifecycleBridge extends Thread.UncaughtExceptionHandler {
      */
     Map<String, Object> consumeLaunchOptions();
 
+    int getApplicationState();
 }

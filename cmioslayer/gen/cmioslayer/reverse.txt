@@ -1249,6 +1249,9 @@
     "applicationIconBadgeNumber()": {
       "code": "- (NSInteger) applicationIconBadgeNumber\n{\n    return [self applicationIconBadgeNumber__];\n}\n\n"
     },
+    "applicationState()": {
+      "code": "- (UIApplicationState) applicationState\n{\n    return [self applicationState__];\n}\n\n"
+    },
     "currentUserNotificationSettings()": {
       "code": "- (UIUserNotificationSettings *) currentUserNotificationSettings\n{\n    UIUserNotificationSettings * re$ult = [self currentUserNotificationSettings__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
     },

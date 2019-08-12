@@ -23,6 +23,7 @@
 - (instancetype) __init_crossmobile_ios_uikit_UIApplication__;
 - (void) setApplicationIconBadgeNumber___int:(int) applicationIconBadgeNumber ;
 - (int) applicationIconBadgeNumber__;
+- (int) applicationState__;
 - (UIUserNotificationSettings*) currentUserNotificationSettings__;
 - (void) setDelegate___crossmobile_ios_uikit_UIApplicationDelegate:(id<UIApplicationDelegate>) delegate ;
 - (id<UIApplicationDelegate>) delegate__;

@@ -58,9 +58,9 @@ public class AndroidLifecycleBridge extends AbstractLifecycleBridge {
     }
 
     @Override
-    public void uncaughtException(Thread thread, Throwable thrwbl) {
+    public void uncaughtException(Thread thread, Throwable throwable) {
         errorFound = true;
-        super.uncaughtException(thread, thrwbl);
+        super.uncaughtException(thread, throwable);
     }
 
     @Override

@@ -479,4 +479,15 @@ public class UIApplication extends UIResponder {
     public int userInterfaceLayoutDirection() {
         return userInterfaceLayoutDirection;
     }
+
+    /**
+     * The state of the application
+     *
+     * @return application state
+     * @see UIApplicationState
+     */
+    @CMGetter("@property(nonatomic, readonly) UIApplicationState applicationState;")
+    public int applicationState() {
+        return Native.lifecycle().getApplicationState();
+    }
 }
