@@ -5,10 +5,12 @@ This is the CrossMobile change log.
 
 ### Added
 - Support Adaptive icons under Android
-- Bootstrap mechanism to install required Android libraries for compailation
+- Bootstrap mechanism to install required Android libraries for compilation
 - hidesBackButton functionality
 - Launch options under Android gather Intent data
 - Display Android log even when application is not running in Manager
+- Support onNewIntent callbacks on Android
+- Support callback methods in ObjectiveC, even with block parameter types (i.e. for notification callbacks)
 
 ### Fixed
 - Notifications under Android updated and fixed
