@@ -77,6 +77,7 @@ public class UITableViewCell extends UIView {
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public UITableViewCell(int UITableViewCellStyle, String reuseIdentifier) {
         super(new CGRect(0, 0, 320, 44), UIColor.whiteColor);
+        originalContentBackground = UIColor.whiteColor;
         supportsDetailedTextLabel = UITableViewCellStyle == crossmobile.ios.uikit.UITableViewCellStyle.Subtitle;
         if (UITableViewCellStyle == crossmobile.ios.uikit.UITableViewCellStyle.Value1)
             Native.lifecycle().notImplemented("Cell type UITableViewCellStyle.Value1");

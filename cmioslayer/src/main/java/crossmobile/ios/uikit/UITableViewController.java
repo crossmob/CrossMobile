@@ -64,6 +64,8 @@ public class UITableViewController extends UIViewController implements UITableVi
     @CMSetter("@property(nonatomic, strong) UITableView *tableView;")
     public void setTableView(UITableView tableview) {
         this.tableview = tableview;
+        tableview.setDataSource(this);
+        tableview.setDelegate(this);
     }
 
     /**
@@ -73,17 +75,15 @@ public class UITableViewController extends UIViewController implements UITableVi
      */
     @CMGetter("@property(nonatomic, strong) UITableView *tableView;")
     public UITableView tableView() {
-        if (tableview == null) {
-            tableview = new UITableView();
-            tableview.setDataSource(this);
-            tableview.setDelegate(this);
-        }
+        if (tableview == null)
+            setTableView(new UITableView());
         return tableview;
     }
 
     @Override
     public void loadView() {
         setView(tableView());
+        tableView().reloadData();
     }
 
     @Override
@@ -122,7 +122,7 @@ public class UITableViewController extends UIViewController implements UITableVi
 
     @Override
     public double heightForRowAtIndexPath(UITableView tableView, NSIndexPath indexPath) {
-        return sections == null || sections.isEmpty() ? 0 : sections.get(indexPath.section()).cells[indexPath.row()].getRowHeight(tableView);
+        return sections == null || sections.isEmpty() ? tableView.rowHeight() : sections.get(indexPath.section()).cells[indexPath.row()].getRowHeight(tableView);
     }
 
     @Override
@@ -130,12 +130,12 @@ public class UITableViewController extends UIViewController implements UITableVi
         return sections == null || sections.isEmpty() ? 1 : sections.size();
     }
 
-    private class UITableViewSection {
+    private static class UITableViewSection {
         String headerTitle;
         String footerTitle;
         UITableViewCell[] cells;
 
-        public UITableViewSection(String headerTitle, String footerTitle, UITableViewCell[] cells) {
+        UITableViewSection(String headerTitle, String footerTitle, UITableViewCell[] cells) {
             this.headerTitle = headerTitle;
             this.footerTitle = footerTitle;
             this.cells = cells == null ? new UITableViewCell[0] : cells;
