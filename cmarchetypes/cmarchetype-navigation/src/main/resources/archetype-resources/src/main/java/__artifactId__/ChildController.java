@@ -1,5 +1,5 @@
 /*
- * This project was created with CrossMobile library.
+ * This project was created with CrossMobile Framework.
  * More info at https://crossmobile.tech
  */
 

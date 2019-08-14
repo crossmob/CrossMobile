@@ -1,5 +1,5 @@
 /*
- * This project was created with CrossMobile library.
+ * This project was created with CrossMobile Framework.
  * More info at https://crossmobile.tech
  */
 
@@ -14,6 +14,8 @@ import crossmobile.ios.uikit.UIWindow;
 import java.util.Map;
 
 public class ApplicationDelegate implements UIApplicationDelegate {
+
+    @SuppressWarnings("FieldCanBeLocal")
     private UIWindow window;
 
     @Override
