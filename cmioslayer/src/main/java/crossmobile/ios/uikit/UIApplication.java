@@ -388,7 +388,7 @@ public class UIApplication extends UIResponder {
         }
         if (lurl.startsWith("tel:")) {
             url = url.substring(4);
-            return Native.system().launchPhonecall(url);
+            return Native.system().launchPhoneCall(url);
         } else if (lurl.startsWith("sms:")) {
             url = url.substring(4);
             List<String> recipients = new ArrayList<>();

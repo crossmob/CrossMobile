@@ -48,7 +48,7 @@ public class NSObject {
      */
     @CMSelector(value = "- (void)performSelector:(SEL)aSelector withObject:(id)anArgument afterDelay:(NSTimeInterval)delay;")
     public final <A> void performSelector(NSSelector<A> selector, A arg, double delay) {
-        NSTimer.scheduledTimerWithTimeInterval((float) delay, timer -> selector.exec((A) timer.userInfo()), arg, false);
+        NSTimer.scheduledTimerWithTimeInterval(delay, timer -> selector.exec(arg), null, false);
     }
 
     /**

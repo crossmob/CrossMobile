@@ -69,9 +69,9 @@ public abstract class DesktopSystemBridge implements SystemBridgeExt {
     public void setKeyboardVisibility(boolean status) {
     }
 
-
+    @SuppressWarnings("deprecation")
     @Override
-    public boolean launchPhonecall(String phone) {
+    public boolean launchPhoneCall(String phone) {
         new UIAlertView(ℑ("Unsupported protocol"), ℑ("Unable to use phone service") + "\n" + ℑ("Number:") + phone, null, ℑ("Acknowledge")).show();
         return false;
     }

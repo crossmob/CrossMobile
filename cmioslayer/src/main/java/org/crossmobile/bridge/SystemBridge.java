@@ -104,7 +104,7 @@ public interface SystemBridge {
      */
     void showActionSheet(String title, String cancelTitle, String destructiveTitle, List<String> otherTitles, NSSelector<Integer> callback);
 
-    boolean launchPhonecall(String phone);
+    boolean launchPhoneCall(String phone);
 
     boolean isRTL();
 }

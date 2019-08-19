@@ -181,7 +181,7 @@ public class AndroidSystemBridge implements SystemBridgeExt {
     }
 
     @Override
-    public boolean launchPhonecall(String phone) {
+    public boolean launchPhoneCall(String phone) {
         return Native.network().openURL("tel:" + phone);
     }
 

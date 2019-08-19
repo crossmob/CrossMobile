@@ -36,7 +36,7 @@ public interface GKSessionDelegate {
      */
     @CMSelector("- (void)session:(GKSession *)session \n"
             + "didFailWithError:(NSError *)error;")
-    public void didFailWithError(GKSession p1, NSError p2);
+    void didFailWithError(GKSession p1, NSError p2);
 
     /**
      * It is used when a peer changes state.
@@ -48,7 +48,7 @@ public interface GKSessionDelegate {
     @CMSelector("- (void)session:(GKSession *)session\n"
             + "           peer:(NSString *)peerID\n"
             + " didChangeState:(GKPeerConnectionState)state")
-    public void peerDidChangeState(GKSession p1, String p2, @CMParamMod(concatName = true) int p3);
+    void peerDidChangeState(GKSession p1, String p2, @CMParamMod(concatName = true) int p3);
 
     /**
      * It is used when a remote peer request connection to the GKSession.
@@ -58,7 +58,7 @@ public interface GKSessionDelegate {
      */
     @CMSelector("- (void)session:(GKSession *)session \n"
             + "didReceiveConnectionRequestFromPeer:(NSString *)peerID;")
-    public void didReceiveConnectionRequestFromPeer(GKSession p1, String p2);
+    void didReceiveConnectionRequestFromPeer(GKSession p1, String p2);
 
     /**
      * It is after a failure to connect to another peer. failed.
@@ -70,5 +70,5 @@ public interface GKSessionDelegate {
     @CMSelector("- (void)session:(GKSession *)session \n"
             + "connectionWithPeerFailed:(NSString *)peerID \n"
             + "      withError:(NSError *)error;")
-    public void connectionWithPeerFailed(GKSession p1, String p2, NSError p3);
+    void connectionWithPeerFailed(GKSession p1, String p2, NSError p3);
 }

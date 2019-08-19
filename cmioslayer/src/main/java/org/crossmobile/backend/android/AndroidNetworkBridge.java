@@ -18,6 +18,7 @@ package org.crossmobile.backend.android;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import org.crossmobile.bind.io.AbstractNetworkBridge;
@@ -43,7 +44,8 @@ public class AndroidNetworkBridge extends AbstractNetworkBridge {
 
     @Override
     public NativeCookieManager initNativeManager() {
-        CookieSyncManager.createInstance(MainActivity.current);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
+            CookieSyncManager.createInstance(MainActivity.current).sync();
         final CookieManager manager = CookieManager.getInstance();
         manager.setAcceptCookie(true);
         return new NativeCookieManager() {
