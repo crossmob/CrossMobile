@@ -592,8 +592,8 @@ public class UITableViewCell extends UIView {
             _accessoryActionSegue = segue;
     }
 
-    double getRowHeight(UITableView tableView) {
-        return rowHeight >= 0 ? rowHeight : tableView.rowHeight();
+    double getRowHeight() {
+        return rowHeight;
     }
 
     void setRowHeight(float rowHeight) {
@@ -652,5 +652,12 @@ public class UITableViewCell extends UIView {
     @Override
     public void setBackgroundColor(UIColor background) {
         setBackgroundColorImpl(background, true);
+    }
+
+    @Override
+    public CGSize sizeThatFits(CGSize size) {
+        double height = (detailedtextlabel != null && detailedtextlabel.text() != null && !detailedtextlabel.text().isEmpty()
+                ? 14 : 0) + 44;
+        return new CGSize(size.getWidth(), height);
     }
 }

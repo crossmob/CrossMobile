@@ -17,7 +17,6 @@
 package crossmobile.ios.uikit;
 
 import crossmobile.ios.foundation.NSIndexPath;
-import crossmobile.rt.UnimplementedOptionalException;
 import org.crossmobile.bridge.ann.CMClass;
 import org.crossmobile.bridge.ann.CMSelector;
 
@@ -131,7 +130,7 @@ public interface UITableViewDelegate {
     @CMSelector("- (CGFloat)tableView:(UITableView *)tableView \n"
             + "heightForRowAtIndexPath:(NSIndexPath *)indexPath;")
     default double heightForRowAtIndexPath(UITableView tableView, NSIndexPath indexPath) {
-        throw new UnimplementedOptionalException();
+        return Double.NaN;
     }
 
     /**
@@ -144,7 +143,7 @@ public interface UITableViewDelegate {
     @CMSelector("- (UIView *)tableView:(UITableView *)tableView \n"
             + "viewForHeaderInSection:(NSInteger)section;")
     default UIView viewForHeaderInSection(UITableView tableview, int section) {
-        throw new UnimplementedOptionalException();
+        return null;
     }
 
     /**
@@ -157,7 +156,7 @@ public interface UITableViewDelegate {
     @CMSelector("- (UIView *)tableView:(UITableView *)tableView\n"
             + "viewForFooterInSection:(NSInteger)section;")
     default UIView viewForFooterInSection(UITableView tableview, int section) {
-        throw new UnimplementedOptionalException();
+        return null;
     }
 
     /**
@@ -170,7 +169,7 @@ public interface UITableViewDelegate {
     @CMSelector("- (CGFloat)tableView:(UITableView *)tableView \n"
             + "heightForHeaderInSection:(NSInteger)section;")
     default double heightForHeaderInSection(UITableView tableview, int section) {
-        throw new UnimplementedOptionalException();
+        return Double.NaN;
     }
 
     /**
@@ -183,7 +182,7 @@ public interface UITableViewDelegate {
     @CMSelector("- (CGFloat)tableView:(UITableView *)tableView \n"
             + "heightForFooterInSection:(NSInteger)section;")
     default double heightForFooterInSection(UITableView tableview, int section) {
-        throw new UnimplementedOptionalException();
+        return Double.NaN;
     }
 
     /**
@@ -196,6 +195,6 @@ public interface UITableViewDelegate {
     @CMSelector("- (NSString *)tableView:(UITableView *)tableView \n"
             + "titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath;")
     default String titleForDeleteConfirmationButtonForRowAtIndexPath(UITableView tableview, NSIndexPath indexPath) {
-        throw new UnimplementedOptionalException();
+        return null;
     }
 }

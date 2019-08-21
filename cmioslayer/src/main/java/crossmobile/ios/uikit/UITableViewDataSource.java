@@ -17,7 +17,6 @@
 package crossmobile.ios.uikit;
 
 import crossmobile.ios.foundation.NSIndexPath;
-import crossmobile.rt.UnimplementedOptionalException;
 import org.crossmobile.bridge.ann.CMClass;
 import org.crossmobile.bridge.ann.CMSelector;
 
@@ -101,7 +100,7 @@ public interface UITableViewDataSource {
     @CMSelector("- (BOOL)tableView:(UITableView *)tableView \n"
             + "canMoveRowAtIndexPath:(NSIndexPath *)indexPath;")
     default boolean canMoveRowAtIndexPath(UITableView table, NSIndexPath indexPath) {
-        throw new UnimplementedOptionalException();
+        return false;
     }
 
     /**
@@ -116,7 +115,6 @@ public interface UITableViewDataSource {
             + "moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath \n"
             + "      toIndexPath:(NSIndexPath *)destinationIndexPath;")
     default void moveRowAtIndexPath(UITableView table, NSIndexPath fromIndexPath, NSIndexPath toIndexPath) {
-        throw new UnimplementedOptionalException();
     }
 
     /**
@@ -130,7 +128,7 @@ public interface UITableViewDataSource {
             + "titleForHeaderInSection:(NSInteger)section;\n"
             + "")
     default String titleForHeaderInSection(UITableView table, int section) {
-        throw new UnimplementedOptionalException();
+        return null;
     }
 
     /**
@@ -143,6 +141,6 @@ public interface UITableViewDataSource {
     @CMSelector("- (NSString *)tableView:(UITableView *)tableView \n"
             + "titleForFooterInSection:(NSInteger)section;")
     default String titleForFooterInSection(UITableView table, int section) {
-        throw new UnimplementedOptionalException();
+        return null;
     }
 }

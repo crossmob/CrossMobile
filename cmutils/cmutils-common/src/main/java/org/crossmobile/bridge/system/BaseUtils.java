@@ -16,6 +16,8 @@
  */
 package org.crossmobile.bridge.system;
 
+import org.robovm.objc.block.Block0;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -35,5 +37,13 @@ public class BaseUtils {
             if (base.remove(toCheck))
                 removed.add(toCheck);
         return removed;
+    }
+
+    public static boolean isOverriddenDouble(Block0<Double> source) {
+        try {
+            return Double.doubleToRawLongBits(source.invoke()) != Double.doubleToRawLongBits(Double.NaN);
+        } catch (Throwable e) {
+            return false;
+        }
     }
 }

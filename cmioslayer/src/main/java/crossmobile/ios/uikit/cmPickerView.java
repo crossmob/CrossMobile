@@ -24,8 +24,7 @@ import org.crossmobile.bridge.Native;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.crossmobile.bind.system.Optionals.UIPicker_useDelegateForWidth;
-import static org.crossmobile.bind.system.Optionals.supports;
+import static org.crossmobile.bridge.system.BaseUtils.isOverriddenDouble;
 
 @SuppressWarnings("OverridableMethodCallInConstructor")
 class cmPickerView extends UIView {
@@ -67,8 +66,9 @@ class cmPickerView extends UIView {
         widthperwheel = (getWidth() / numberofWheels);
         double originx = 0;
         double width;
+        boolean widthInDelegate = delegate != null && isOverriddenDouble(() -> delegate.widthForComponent(pickerview, 0));
         for (int i = 0; i < numberofWheels; i++) {
-            width = supports(delegate, UIPicker_useDelegateForWidth) ? delegate.widthForComponent(pickerview, i) : widthperwheel;
+            width = widthInDelegate ? delegate.widthForComponent(pickerview, i) : widthperwheel;
             wheels.add(new Wheel(new CGRect(originx, 0, width, getHeight()), i));
             originx += width;
         }
@@ -109,18 +109,16 @@ class cmPickerView extends UIView {
             setContentInset(new UIEdgeInsets(rect.getSize().getHeight() / 2 - cellheight / 2, 0, rect.getSize().getHeight() / 2 - cellheight / 2, 0));
             setShowsVerticalScrollIndicator(false);
             setSeparatorStyle(UITableViewCellSeparatorStyle.None);
+            boolean widthInDelegate = delegate != null && isOverriddenDouble(() -> delegate.widthForComponent(pickerview, component));
             setDataSource(new UITableViewDataSource() {
                 @Override
                 public UITableViewCell cellForRowAtIndexPath(UITableView table, NSIndexPath idx) {
-                    Cell cell;
-                    cell = new Cell(
-                            supports(delegate, UIPicker_useDelegateForWidth) ? delegate.widthForComponent(pickerview, component) : widthperwheel,
-                            cellheight);
-                    Object itemforrow = (delegate.viewForRow(pickerview, idx.row(), component, null) != null)
+                    Cell cell = new Cell(widthInDelegate ? delegate.widthForComponent(pickerview, component) : widthperwheel, cellheight);
+                    Object itemForRow = (delegate.viewForRow(pickerview, idx.row(), component, null) != null)
                             ? delegate.viewForRow(pickerview, idx.row(), component, null)
                             : delegate.titleForRow(pickerview, idx.row(), component);
 
-                    cell.update(itemforrow, idx.row());
+                    cell.update(itemForRow, idx.row());
                     return cell;
                 }
 
@@ -134,7 +132,7 @@ class cmPickerView extends UIView {
                 @Override
                 public void didSelectRowAtIndexPath(UITableView tableview, NSIndexPath indexPath) {
                     scrollToRowAtIndexPath(indexPath, UITableViewScrollPosition.Top, true);
-                    if (indexPath != null && delegate != null)
+                    if (delegate != null)
                         delegate.didSelectRow(pickerview, indexPath.row(), component);
                 }
             });

@@ -480,7 +480,7 @@ public class UILabel extends UIView {
                 size = blocks.size;
             }
         }
-        setIntrinsicContentSize(size.getWidth(), size.getHeight());
+        setIntrinsicContentSize(Math.ceil(size.getWidth()), Math.ceil(size.getHeight()));
         fontDraw = font;
         Native.graphics().refreshDisplay();
     }

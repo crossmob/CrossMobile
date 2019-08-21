@@ -22,6 +22,7 @@ import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.coregraphics.CGSize;
 import crossmobile.ios.foundation.NSSelector;
 import crossmobile.ios.foundation.NSTimer;
+import org.crossmobile.bind.graphics.Geometry;
 import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.graphics.curve.InterpolationCurve;
 import org.crossmobile.bind.system.Ticker;
@@ -364,8 +365,7 @@ public class UIScrollView extends UIView {
 
     void setContentSize(CGSize contentSize, boolean shouldUpdateLayout) {
         // UITableView manipulates ContentSize, thus no optimization should be performed here
-        this.contentSize.setWidth(contentSize.getWidth());
-        this.contentSize.setHeight(contentSize.getHeight());
+        Geometry.set(this.contentSize, contentSize);
         if (shouldUpdateLayout)
             layoutSubviews(); // LayoutSubviews might use setContentSize, thus do this trick to prevent cycles
     }
@@ -947,7 +947,7 @@ public class UIScrollView extends UIView {
     }
 
     @Override
-    public final void drawRect(CGRect rect) {
+    public void drawRect(CGRect rect) {
         super.drawRect(rect);
     }
 

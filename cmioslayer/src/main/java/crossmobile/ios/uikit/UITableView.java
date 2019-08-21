@@ -21,7 +21,8 @@ import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.coregraphics.CGSize;
 import crossmobile.ios.foundation.NSIndexPath;
 import org.crossmobile.bind.graphics.Theme;
-import org.crossmobile.bind.system.Optionals;
+import org.crossmobile.bind.system.BitField;
+import org.crossmobile.bind.system.Recycler;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.*;
 import org.crossmobile.bridge.system.BaseUtils;
@@ -29,7 +30,7 @@ import org.crossmobile.bridge.system.BaseUtils;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
-import static org.crossmobile.bind.system.Optionals.*;
+import static org.crossmobile.bridge.system.BaseUtils.isOverriddenDouble;
 
 /**
  * UITableView class defines an object that represents a visible table used to
@@ -38,43 +39,69 @@ import static org.crossmobile.bind.system.Optionals.*;
 @CMClass
 public class UITableView extends UIScrollView {
 
-    private final Map<String, List<UITableViewCell>> recycle = new HashMap<>();
-    private final Map<String, Class<? extends UITableViewCell>> reusableCells = new HashMap<>();
-    private final SectionMetrics metrics = new SectionMetrics();
-    //
-    UIColor separatorColor = Theme.Color.SEPARATOR;
-    int separatorStyle = UITableViewCellSeparatorStyle.SingleLine;
-    private UITableViewDataSource dataSource;
-    private UITableViewDelegate delegate;
-    //THIS SHOULD BE UITableViewAutomaticDimension = -1
-    private double rowHeight = 45;
-    private double sectionHeaderHeight = 24;
-    private double sectionFooterHeight = 24;
-    private boolean allowsSelection = true;
-    private boolean allowsMultipleSelection = false;
-    private boolean isEditing = false;
-    private Map<NSIndexPath, UITableViewCell> active = new HashMap<>();
-    private SortedSet<NSIndexPath> selected = new TreeSet<>((p1, p2) -> {
+    private final static Comparator<NSIndexPath> PATH_COMPARATOR = (p1, p2) -> {
         if (p1.section() < p2.section())
             return -1;
         if (p1.section() > p2.section())
             return 1;
+        //noinspection UseCompareMethod
         if (p1.row() < p2.row())
             return -1;
         if (p1.row() > p2.row())
             return 1;
         return 0;
-    });
+    };
+
+    private cmTableViewMetrics metrics;
+    private Map<String, Class<? extends UITableViewCell>> reusableCells;
+    UIColor separatorColor = Theme.Color.SEPARATOR;
+    int separatorStyle = UITableViewCellSeparatorStyle.SingleLine;
+    private UITableViewDataSource dataSource;
+    private UITableViewDelegate delegate;
+    //THIS SHOULD BE UITableViewAutomaticDimension = -1
+    private double rowHeight = -1;
+    private double sectionHeaderHeight = -1;
+    private double sectionFooterHeight = -1;
+    private double estimatedRowHeight = -1;
+    private boolean allowsSelection = true;
+    private boolean allowsMultipleSelection = false;
+    private boolean isEditing = false;
+    private Map<NSIndexPath, UITableViewCell> active = new HashMap<>();
+    private SortedSet<NSIndexPath> selected = new TreeSet<>(PATH_COMPARATOR);
+
+    private UIViewController closestController;
+    private final Recycler<String, UITableViewCell> recycle = new Recycler<>(identifier -> {
+        if (identifier == null || reusableCells == null)
+            return null;
+        Class<? extends UITableViewCell> cellClass = reusableCells.get(identifier);
+        if (cellClass == null)
+            return null;
+        if (closestController == null) {
+            UIView pivot = this;
+            while (pivot != null && pivot.controller == null)
+                pivot = pivot.superview();
+            if (pivot == null)
+                return null;
+            closestController = pivot.controller;
+        }
+        try {
+            return cellClass.getDeclaredConstructor(closestController.getClass()).newInstance(closestController);
+        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException ignore) {
+        } catch (InvocationTargetException e) {
+            BaseUtils.throwException(e.getCause());
+        }
+        return null;
+    }, UIView::removeFromSuperview, item -> item.setSelected(false));
+
     private List<NSIndexPath> newpaths = new ArrayList<>();
     private final Runnable layoutSubviews = () -> {
-        setContentSize(new CGSize(getWidth() - contentInset.getLeft() - contentInset.getRight(), contentSize.getHeight()), false);
-
         Map<NSIndexPath, UITableViewCell> pending = new HashMap<>();
         List<NSIndexPath> paths = indexPathsForVisibleRows();
         Map<NSIndexPath, UITableViewCell> swap = active;
         active = pending;   // Active is empty
         pending = swap;
         newpaths.clear();
+        boolean needsRelayout = false;
 
         // Keep already placed cells
         if (paths != null)
@@ -83,7 +110,7 @@ public class UITableView extends UIScrollView {
                 if (cell == null)
                     newpaths.add(path);
                 else {
-                    relayoutCell(cell, path);
+                    needsRelayout |= relayoutCell(cell, path);
                     active.put(path, cell);
                     cell.setEditing(isEditing, getEditingStyle(path));
                 }
@@ -91,7 +118,7 @@ public class UITableView extends UIScrollView {
 
         // Recycle vanished cells
         for (UITableViewCell rec : pending.values())
-            recycle(rec);
+            recycle.put(rec.reuseIdentifier, rec);
         pending.clear();
 
         // Add new cells
@@ -100,20 +127,35 @@ public class UITableView extends UIScrollView {
             if (cell != null) {
                 if (cell.superview() != UITableView.this)
                     addSubview(cell);
-                relayoutCell(cell, path);
-
                 active.put(path, cell);
                 cell.setEditing(isEditing, getEditingStyle(path));
                 cell.setSelected(selected.contains(path));
                 if (delegate != null)
                     delegate.willDisplayCell(UITableView.this, cell, path);
+                needsRelayout |= relayoutCell(cell, path);
             }
         }
-        Native.graphics().refreshDisplay();
+        metrics().relayoutLabels(true);
+        metrics().relayoutLabels(false);
+
+        setContentSize(new CGSize(getWidth() - contentInset.getLeft() - contentInset.getRight(),
+                Math.max(metrics().totalHeight(), getHeight()) - contentInset.getTop() - contentInset.getBottom()), false);
+        if (needsRelayout)
+            Native.system().postOnEventThread(this::layoutSubviews);
+        else
+            Native.graphics().refreshDisplay();
     };
-    private UIView[] headers;
-    private UIView[] footers;
-    private double estimatedRowHeight;
+
+    private boolean relayoutCell(UITableViewCell cell, NSIndexPath path) {
+        cell.path = path;
+        cmTableViewMetrics tvm = metrics();
+        double y = tvm.rowStart(path.section(), path.row());
+        boolean needsRelayout = tvm.fixHeightIfNeeded(cell);
+        double height = tvm.rowHeight(path.section(), path.row());
+        cell.setFrameImpl(0, y, contentSize.getWidth(), height);
+        cell.layoutIfNeeded();
+        return needsRelayout;
+    }
 
     /**
      * Constructs a default table view object located at (0,0) with 0 weight and
@@ -148,11 +190,10 @@ public class UITableView extends UIScrollView {
             + "                        style:(UITableViewStyle)style;")
     public UITableView(CGRect rect, int UITableViewStyle) {
         super(rect, UIColor.whiteColor);
-        setAutoresizesSubviews(false);
         setDelegate(new UIScrollViewDelegate() {
             @Override
             public void didScroll(UIScrollView scrollView) {
-                layoutSubviewsWithoutMetrics();
+                layoutSubviews();
             }
         });
     }
@@ -164,8 +205,10 @@ public class UITableView extends UIScrollView {
      */
     @CMSetter("@property(nonatomic, weak) id<UITableViewDataSource> dataSource;")
     public void setDataSource(UITableViewDataSource dataSource) {
-        this.dataSource = dataSource;
-        reloadData();
+        if (dataSource != this.dataSource) {
+            this.dataSource = dataSource;
+            invalidate();
+        }
     }
 
     /**
@@ -175,9 +218,10 @@ public class UITableView extends UIScrollView {
      */
     @CMSetter("@property(nonatomic, weak) id<UITableViewDelegate> delegate;")
     public void setDelegate(UITableViewDelegate delegate) {
-        this.delegate = delegate;
-        metrics.update();
-        layoutSubviews();
+        if (delegate != this.delegate) {
+            this.delegate = delegate;
+            invalidate();
+        }
     }
 
     /**
@@ -210,42 +254,7 @@ public class UITableView extends UIScrollView {
      */
     @CMSelector("- (__kindof UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier;")
     public UITableViewCell dequeueReusableCellWithIdentifier(String identifier) {
-        if (identifier == null)
-            return null;
-        List<UITableViewCell> found = recycle.get(identifier);
-        if (found == null)
-            return getReusableCell(identifier);
-        int size = found.size();
-        if (size == 0)
-            return getReusableCell(identifier);
-        UITableViewCell cell = found.remove(size - 1);
-        cell.setSelected(false);
-        return cell;
-    }
-
-    private UIViewController closestController;
-
-    private UITableViewCell getReusableCell(String id) {
-        if ((closestController = getClosestController()) != null) {
-            try {
-                if (reusableCells.get(id) == null)
-                    return null;
-                return reusableCells.get(id).getDeclaredConstructor(closestController.getClass()).newInstance(closestController);
-            } catch (InstantiationException | IllegalAccessException | NoSuchMethodException ignore) {
-            } catch (InvocationTargetException e) {
-                BaseUtils.throwException(e.getCause());
-            }
-        }
-        return null;
-    }
-
-    private UIViewController getClosestController() {
-        if (closestController != null)
-            return closestController;
-        UIView pivot = this;
-        while (pivot != null && pivot.controller == null)
-            pivot = pivot.superview();
-        return pivot != null ? pivot.controller : null;
+        return recycle.get(identifier);
     }
 
     /**
@@ -267,13 +276,25 @@ public class UITableView extends UIScrollView {
      */
     @CMSelector("- (void)reloadData;")
     public void reloadData() {
-        headers = updateSectionLabels(headers, supports(delegate, UITable_viewForHeaderInSection), supports(dataSource, UITable_titleForHeaderInSection), true);
-        footers = updateSectionLabels(footers, supports(delegate, UITable_viewForFooterInSection), supports(dataSource, UITable_titleForFooterInSection), false);
-        // reload all rows
-        for (UITableViewCell cell : active.values())
-            recycle(cell);
-        active.clear();
-        layoutSubviews();
+        invalidate();
+    }
+
+    private void invalidate() {
+        if (metrics != null) {
+            metrics = metrics.recycle();
+            for (UITableViewCell cell : active.values())
+                recycle.put(cell.reuseIdentifier, cell);
+            active.clear();
+        }
+        setNeedsDisplay();
+    }
+
+    private boolean isInvalid() {
+        return metrics == null;
+    }
+
+    private cmTableViewMetrics metrics() {
+        return metrics == null ? metrics = new cmTableViewMetrics(this) : metrics;
     }
 
     /**
@@ -292,24 +313,24 @@ public class UITableView extends UIScrollView {
 
         int section, row;
         boolean shouldUpdatelayout = false;
+        cmTableViewMetrics tvm = metrics();
         for (NSIndexPath path : indexPaths) {
             section = path.section();
             row = path.row();
-            if (!metrics.staticHeight
-                    && section >= 0
-                    && section < metrics.sections
+            if (section >= 0
+                    && section < tvm.sections()
                     && row >= 0
-                    && row < metrics.rowsPerSection[path.section()]
-                    && metrics.rowHeight(section, row) != delegate.heightForRowAtIndexPath(UITableView.this, path))
+                    && row < tvm.rows(section)
+                    && tvm.rowHeight(section, row) != delegate.heightForRowAtIndexPath(UITableView.this, path))
                 shouldUpdatelayout = true; // Just in case the change is before the visible part, and might affect the following visible cells
             UITableViewCell vis = active.remove(path);
             if (vis != null) {
-                recycle(vis);
+                recycle.put(vis.reuseIdentifier, vis);
                 shouldUpdatelayout = true;
             }
         }
         if (shouldUpdatelayout)
-            layoutSubviewsWithoutMetrics();
+            layoutSubviews();
     }
 
     /**
@@ -404,13 +425,7 @@ public class UITableView extends UIScrollView {
      */
     @CMGetter("@property(nonatomic, readonly) NSArray<NSIndexPath *> *indexPathsForSelectedRows;")
     public List<NSIndexPath> indexPathsForSelectedRows() {
-        if (selected.isEmpty())
-            return null;
-
-        List<NSIndexPath> paths = new ArrayList<>();
-        for (NSIndexPath path : selected)
-            paths.add(path);
-        return paths;
+        return selected.isEmpty() ? null : new ArrayList<>(selected);
     }
 
     /**
@@ -559,9 +574,10 @@ public class UITableView extends UIScrollView {
      */
     @CMSetter("@property(nonatomic) CGFloat rowHeight;")
     public void setRowHeight(double rowHeight) {
-        if (rowHeight >= 0)
+        if (Math.abs(rowHeight - this.rowHeight) > 0.001) {
             this.rowHeight = rowHeight;
-        layoutSubviews();
+            invalidate();
+        }
     }
 
     /**
@@ -572,7 +588,10 @@ public class UITableView extends UIScrollView {
      */
     @CMSetter("@property(nonatomic) CGFloat sectionHeaderHeight;")
     public void setSectionHeaderHeight(double sectionHeaderHeight) {
-        this.sectionHeaderHeight = sectionHeaderHeight;
+        if (Math.abs(sectionHeaderHeight - this.sectionHeaderHeight) > 0.001) {
+            this.sectionHeaderHeight = sectionHeaderHeight;
+            invalidate();
+        }
     }
 
     /**
@@ -593,7 +612,10 @@ public class UITableView extends UIScrollView {
      */
     @CMSetter("@property(nonatomic) CGFloat sectionFooterHeight;")
     public void setSectionFooterHeight(double sectionFooterHeight) {
-        this.sectionFooterHeight = sectionFooterHeight;
+        if (Math.abs(sectionFooterHeight - this.sectionFooterHeight) > 0.001) {
+            this.sectionFooterHeight = sectionFooterHeight;
+            invalidate();
+        }
     }
 
     /**
@@ -604,6 +626,33 @@ public class UITableView extends UIScrollView {
     @CMGetter("@property(nonatomic) CGFloat sectionFooterHeight;")
     public double sectionFooterHeight() {
         return sectionFooterHeight;
+    }
+
+    /**
+     * Scrolls the table view, with animation or not, so that at the end of the
+     * scrolling, the selected row is placed in the specified relative position
+     * of the table view.
+     *
+     * @param UITableViewScrollPosition The relative position of the table view
+     *                                  at the end of the scrolling.(top, middle, bottom)
+     * @param animated                  TRUE for animated scrolling.
+     */
+    @CMSelector("- (void)scrollToNearestSelectedRowAtScrollPosition:(UITableViewScrollPosition)scrollPosition \n"
+            + "                                          animated:(BOOL)animated;")
+    public void scrollToNearestSelectedRowAtScrollPosition(int UITableViewScrollPosition, boolean animated) {
+        NSIndexPath found = null;
+        double gDelta = Double.MAX_VALUE;
+        double currentY = contentOffset.getY();
+        cmTableViewMetrics tvm = metrics();
+        for (NSIndexPath sel : selected) {
+            double cDelta = Math.abs(currentY - tvm.rowMiddle(sel.section(), sel.row()));
+            if (cDelta < gDelta) {
+                gDelta = cDelta;
+                found = sel;
+            }
+        }
+        if (found != null)
+            scrollToRowAtIndexPath(found, UITableViewScrollPosition, animated);
     }
 
     /**
@@ -621,110 +670,9 @@ public class UITableView extends UIScrollView {
             + "              atScrollPosition:(UITableViewScrollPosition)scrollPosition \n"
             + "                      animated:(BOOL)animated;")
     public void scrollToRowAtIndexPath(NSIndexPath path, int UITableViewScrollPosition, boolean animated) {
-        float heightToRow = heightToRowAtIndexPath(path);
-        switch (UITableViewScrollPosition) {
-            case 1:
-                setContentOffset(new CGPoint(0, heightToRow), animated);
-                break;
-            case 2:
-                setContentOffset(new CGPoint(0, heightToRow + rowHeight / 2 - getHeight() / 2), animated);
-                break;
-            case 3:
-                setContentOffset(new CGPoint(0, heightToRow - getHeight()), animated);
-                break;
-        }
+        setContentOffset(new CGPoint(0, metrics().rowStart(path.section(), path.row())), animated);
     }
 
-    private float heightToRowAtIndexPath(NSIndexPath path) {
-        float heightToRow = 0;
-        for (int section = 0; section < (path.section() == 0 ? 1 : path.section()); section++) {
-            if (supports(delegate, Optionals.UITable_heightForHeaderInSection))
-                heightToRow += delegate.heightForHeaderInSection(UITableView.this, section);
-            if (supports(delegate, Optionals.UITable_heightForFooterInSection))
-                heightToRow += delegate.heightForFooterInSection(UITableView.this, section);
-            for (int row = 0; row < (section == path.section() || path.section() == 0 ? path.row() + 1 : dataSource.numberOfRowsInSection(UITableView.this, path.section())); row++)
-                heightToRow += supports(delegate, Optionals.UITable_heightForRowAtIndexPath) ? delegate.heightForRowAtIndexPath(UITableView.this, NSIndexPath.indexPathForRow(row, section)) : rowHeight();
-        }
-        return heightToRow;
-    }
-
-    /**
-     * Scrolls the table view,with animation or not, so that at the end of the
-     * scrolling, the selected row is placed in the specified relative position
-     * of the table view.
-     *
-     * @param UITableViewScrollPosition The relative position of the table view
-     *                                  at the end of the scrolling.(top, middle, bottom)
-     * @param animated                  TRUE for animated scrolling.
-     */
-    @CMSelector("- (void)scrollToNearestSelectedRowAtScrollPosition:(UITableViewScrollPosition)scrollPosition \n"
-            + "                                          animated:(BOOL)animated;")
-    public void scrollToNearestSelectedRowAtScrollPosition(int UITableViewScrollPosition, boolean animated) {
-
-        double remains;
-        switch (UITableViewScrollPosition) {
-            case 1:
-                remains = contentOffset.getY() % rowHeight;
-                setContentOffset(new CGPoint(0, contentOffset.getY() + ((remains <= rowHeight / 2) ? -remains : rowHeight - remains)), animated);
-                break;
-            case 2:
-                remains = (contentOffset.getY() + getHeight() / 2 - rowHeight / 2) % rowHeight;
-                setContentOffset(new CGPoint(0, contentOffset.getY() + ((remains <= rowHeight / 2) ? -remains : rowHeight - remains)), animated);
-                break;
-            case 3:
-                remains = (contentOffset.getY() + getHeight()) % rowHeight;
-                setContentOffset(new CGPoint(0, contentOffset.getY() + ((remains <= rowHeight / 2) ? -remains : rowHeight - remains)), animated);
-                break;
-        }
-    }
-
-    private List<NSIndexPath> indexPathsForRowsBetween(double yfrom, double yto) {
-        List<NSIndexPath> res = new ArrayList<>();
-        yfrom -= contentInset.getTop();
-        yto -= contentInset.getTop();
-
-        if (yfrom < 0)
-            yfrom = 0;
-        if (yto > contentSize.getHeight())
-            yto = contentSize.getHeight();
-        /*
-         * Fixed rows
-         */
-        float sfrom, sto;
-        float cfrom, cto;   // for variable height cells
-        for (int section = 0; section < metrics.sections; section++) {
-            sfrom = metrics.headerEnd[section];
-            sto = metrics.footerStart[section];
-
-            if (sfrom >= yto) // End of search
-
-                break;
-            else if (sto > yfrom) // We have intersection
-
-                if (metrics.staticHeight) {
-                    int first = yfrom <= sfrom ? 0 : (int) ((yfrom - sfrom) / rowHeight);
-                    int last = yto >= sto ? metrics.rowsPerSection[section] - 1 : (int) ((yto - sfrom) / rowHeight);
-                    if (last >= metrics.rowsPerSection[section])
-                        last = metrics.rowsPerSection[section] - 1;
-                    for (int i = first; i <= last; i++)
-                        res.add(NSIndexPath.indexPathForRow(i, section));
-                } else
-                    for (int i = 0; i < metrics.rowStart[section].length; i++) {
-                        cfrom = metrics.rowStart[section][i];
-                        cto = i >= (metrics.rowStart[section].length - 1) ? metrics.footerStart[section] : metrics.rowStart[section][i + 1];  // Use footer metrics if last row, else use next rows's start
-                        if (yfrom < cto) { // in the (missin) "else" clause, ignore cells that are earlier than the selection
-                            if (yto < cfrom) // ignore cells that are later than this section and break the loop
-
-                                break;
-                            res.add(NSIndexPath.indexPathForRow(i, section));
-                            if (cto > yto) // ignore cells that are later than this cell, which goes beyond the line
-
-                                break;
-                        }
-                    }
-        }
-        return res;
-    }
 
     /**
      * Returns the index path that identifies the row and section of the
@@ -736,7 +684,7 @@ public class UITableView extends UIScrollView {
      */
     @CMSelector("- (NSIndexPath *)indexPathForRowAtPoint:(CGPoint)point;")
     public NSIndexPath indexPathForRowAtPoint(CGPoint p) {
-        List<NSIndexPath> res = indexPathsForRowsBetween(p.getY(), p.getY() + 1);
+        List<NSIndexPath> res = metrics().indexPathsForRowsBetween(p.getY(), p.getY() + 1);
         if (res == null || res.isEmpty())
             return null;
         return res.get(0);
@@ -751,73 +699,11 @@ public class UITableView extends UIScrollView {
      */
     @CMGetter("@property(nonatomic, readonly) NSArray<NSIndexPath *> *indexPathsForVisibleRows;")
     public List<NSIndexPath> indexPathsForVisibleRows() {
-        return indexPathsForRowsBetween(contentOffset.getY(), contentOffset.getY() + getHeight());
-    }
-
-    private void relayoutCell(UITableViewCell cell, NSIndexPath path) {
-        cell.path = path;
-        double y = getYPathLocation(path);
-        double height = metrics.staticHeight ? rowHeight
-                : (path.row() == (metrics.rowStart[path.section()].length - 1)
-                ? metrics.footerStart[path.section()]
-                : metrics.rowStart[path.section()][path.row() + 1])
-                - y;
-        cell.setFrameImpl(0, y, contentSize.getWidth(), height);
-        cell.layoutIfNeeded();
-    }
-
-    private double getYPathLocation(NSIndexPath path) {
-        return metrics.staticHeight ? metrics.headerEnd[path.section()] + path.row() * rowHeight : metrics.rowStart[path.section()][path.row()];
-    }
-
-    private void recycle(UITableViewCell cell) {
-        cell.removeFromSuperview();
-        if (cell.reuseIdentifier != null) {
-            List<UITableViewCell> list = recycle.get(cell.reuseIdentifier);
-            if (list == null) {
-                list = new ArrayList<>();
-                recycle.put(cell.reuseIdentifier, list);
-            }
-            list.add(cell);
-        }
-    }
-
-    private UIView[] updateSectionLabels(UIView[] labels, boolean useDelegateForView, boolean useDelegateForText, boolean isHeader) {
-        if (labels != null)
-            for (int i = 0; i < labels.length; i++) {
-                if (labels[i] != null)
-                    labels[i].removeFromSuperview();
-                labels[i] = null;
-            }
-        labels = null;
-        if (useDelegateForView || useDelegateForText) {
-            labels = new UIView[dataSource.numberOfSectionsInTableView(UITableView.this)];
-            for (int i = 0; i < labels.length; i++) {
-                UIView hview = useDelegateForView ? (isHeader ? delegate.viewForHeaderInSection(this, i) : delegate.viewForFooterInSection(this, i)) : null;
-                if (hview == null) {
-                    String labeltext = useDelegateForText ? (isHeader ? dataSource.titleForHeaderInSection(this, i) : dataSource.titleForFooterInSection(this, i)) : null;
-                    if (labeltext != null) {
-                        UILabel label = new UILabel();
-                        label.setText(labeltext);
-                        label.setTextColor(Theme.Cell.HEADERTEXT);
-                        label.setBackgroundColor(Theme.Cell.HEADERBACK);
-                        hview = label;
-                    }
-                }
-                addSubview(hview);
-                labels[i] = hview;
-            }
-        }
-        return labels;
+        return metrics().indexPathsForRowsBetween(contentOffset.getY(), contentOffset.getY() + getHeight());
     }
 
     @Override
     public void layoutSubviews() {
-        metrics.update();
-        layoutSubviewsWithoutMetrics();
-    }
-
-    void layoutSubviewsWithoutMetrics() {
         Native.system().runAndWaitOnEventThread(layoutSubviews);
     }
 
@@ -830,122 +716,12 @@ public class UITableView extends UIScrollView {
     public void registerClass(@CMParamMod(convertWith = "jclass_to_class") Class<? extends UITableViewCell> cellClass, String identifier) {
         if (identifier == null)
             return;
+        if (reusableCells == null)
+            reusableCells = new HashMap<>();
         if (cellClass == null)
             reusableCells.remove(identifier);
         else
             reusableCells.put(identifier, cellClass);
-    }
-
-    private class SectionMetrics {
-
-        private float[][] rowStart; // Height of every row in sections, used only when delegate dictates different heights per cell. If table cells have fixed sizes, then heder|footer start|end is used instead
-        private float[] headerStart; // Size of each section header
-        private float[] headerEnd; // Size of each section header
-        private float[] footerStart; // Size of each section header
-        private float[] footerEnd; // Size of each section header
-        //
-        private int sections = -1;
-        private int[] rowsPerSection;
-        private boolean staticHeight;
-
-        private double rowHeight(int section, int row) {
-            return (staticHeight
-                    ? rowHeight
-                    : ((row + 1) >= rowsPerSection[section] ? footerStart[section] : rowStart[section][row + 1])) // end
-                    - rowStart[section][row];
-        }
-
-        private void update() {
-            float currentHeight = 0;
-            int xsections = sections = -1;  // Use this trick, so that "sections" will be valid ONLY if everything is setup correctly
-
-            if (dataSource != null) {       // Only meaninful if we have data source
-                boolean useHeaderDelegate = supports(delegate, UITable_heightForHeaderInSection);
-                boolean useFooterDelegate = supports(delegate, UITable_heightForFooterInSection);
-                xsections = dataSource.numberOfSectionsInTableView(UITableView.this);
-                staticHeight = delegate == null || !supports(delegate, UITable_heightForRowAtIndexPath);
-
-                /*
-                 * Calculate section headers
-                 */
-                if (headerStart == null || headerStart.length != xsections) {
-                    headerStart = new float[xsections];
-                    headerEnd = new float[xsections];
-                    footerStart = new float[xsections];
-                    footerEnd = new float[xsections];
-                    rowsPerSection = new int[xsections];
-                }
-                for (int i = 0; i < xsections; i++)
-                    rowsPerSection[i] = dataSource.numberOfRowsInSection(UITableView.this, i);
-
-                /*
-                 * Calculate section rows
-                 */
-                if (delegate != null && !staticHeight) {
-                    if (rowStart == null || rowStart.length != xsections)
-                        rowStart = new float[xsections][];
-                    for (int pathSection = 0; pathSection < xsections; pathSection++) {
-                        // Calculate header
-                        headerStart[pathSection] = currentHeight;
-                        currentHeight += updateMetricsForLabel(headers, currentHeight, pathSection, useHeaderDelegate, true);
-                        headerEnd[pathSection] = currentHeight;
-
-                        // Calculate rows
-                        int rowSize = rowsPerSection[pathSection];
-                        if (rowStart[pathSection] == null || rowStart[pathSection].length != rowSize)
-                            rowStart[pathSection] = new float[rowSize];
-                        for (int pathRow = 0; pathRow < rowSize; pathRow++) {
-                            rowStart[pathSection][pathRow] = currentHeight;
-                            currentHeight += delegate.heightForRowAtIndexPath(UITableView.this, NSIndexPath.indexPathForRow(pathRow, pathSection));
-                        }
-
-                        // Calculate footer
-                        footerStart[pathSection] = currentHeight;
-                        currentHeight += updateMetricsForLabel(footers, currentHeight, pathSection, useFooterDelegate, false);
-                        footerEnd[pathSection] = currentHeight;
-                    }
-                } else {
-                    rowStart = null;
-                    for (int section = 0; section < xsections; section++) {
-                        // Calculate header
-                        headerStart[section] = currentHeight;
-                        currentHeight += updateMetricsForLabel(headers, currentHeight, section, useHeaderDelegate, true);
-                        headerEnd[section] = currentHeight;
-
-                        // Calculate rows
-                        currentHeight += rowsPerSection[section] * UITableView.this.rowHeight;
-
-                        // Calculate footer
-                        footerStart[section] = currentHeight;
-                        currentHeight += updateMetricsForLabel(footers, currentHeight, section, useFooterDelegate, false);
-                        footerEnd[section] = currentHeight;
-                    }
-                }
-                // Table is always able to scroll vertically
-                double minimumSize = getHeight() - contentInset.getTop() - contentInset.getBottom();
-                CGSize newSize = new CGSize(contentSize.getWidth(), getHeight() > 0 && currentHeight < minimumSize ? minimumSize + 0.001f : currentHeight);
-                setContentSize(newSize, false);
-            } else {
-                rowStart = null;
-                headerStart = null;
-                headerEnd = null;
-                footerStart = null;
-                footerEnd = null;
-            }
-            sections = xsections;// everything is OK now
-        }
-
-        private double updateMetricsForLabel(UIView[] labels, double currentHeight, int section, boolean useDelegate, boolean isHeader) {
-            double height = 0;
-            if (labels != null && labels[section] != null) {
-                height = useDelegate
-                        ? (isHeader ? delegate.heightForHeaderInSection(UITableView.this, section) : delegate.heightForFooterInSection(UITableView.this, section))
-                        : (isHeader ? sectionHeaderHeight : sectionFooterHeight);
-                labels[section].setFrame(new CGRect(0, currentHeight, getWidth(), height));
-                currentHeight += height;
-            }
-            return height;
-        }
     }
 
     @CMSetter("@property(nonatomic) CGFloat estimatedRowHeight;")
@@ -958,4 +734,297 @@ public class UITableView extends UIScrollView {
         return estimatedRowHeight;
     }
 
+    @Override
+    public void drawRect(CGRect rect) {
+        if (isInvalid())
+            layoutSubviews();
+        super.drawRect(rect);
+    }
+}
+
+
+class cmTableViewMetrics {
+    /**
+     * Data representation of the start position of all table elements.
+     * <p>
+     * Its size is the number of sections, plus one, to be able to define the end of the table.
+     * For each section, the values are the start of the header (could be zero), plus the number of rows,
+     * plus the footer. Thus, for each section, its values are the number of rows per section plus two.
+     * The header and footer are always present, even if the number of rows for this section is zero.
+     */
+    private final int[] sections;
+    private final BitField[] approximateSize;
+    private UIView[] headerViews;
+    private UIView[] footerViews;
+    private final double[] pos;
+    private int lastSection = 0;
+    private int lastDelta = 0;
+    private int calculatedRows;
+
+    private final UITableView tv;
+    private final boolean headerHeightInDelegate;
+    private final boolean rowHeightInDelegate;
+    private final boolean footerHeightInDelegate;
+
+    private static final int MAGIC_ROW_HEIGHT = 44;
+
+    cmTableViewMetrics(UITableView tv) {
+        int sectionSize = Math.max(tv.dataSource() == null ? 0 : tv.dataSource().numberOfSectionsInTableView(tv), 0);
+        this.tv = tv;
+
+        sections = new int[sectionSize + 1];
+        approximateSize = new BitField[sectionSize];
+        UITableViewDelegate delegate = tv.tableViewDelegate();
+        sections[0] = 0;
+        for (int i = 0; i < sectionSize; i++) {
+            int size = Math.max(tv.dataSource().numberOfRowsInSection(tv, i), 0);
+            sections[i + 1] = sections[i] + size + 2; // header+rows+footer
+            approximateSize[i] = new BitField(size, false);
+        }
+        Arrays.fill(pos = new double[sections[sectionSize] + 1], -1);
+        pos[0] = 0;
+
+        headerHeightInDelegate = delegate != null && isOverriddenDouble(() -> delegate.heightForHeaderInSection(tv, 0));
+        rowHeightInDelegate = delegate != null && isOverriddenDouble(() -> delegate.heightForRowAtIndexPath(tv, NSIndexPath.indexPathForRow(0, 0)));
+        footerHeightInDelegate = delegate != null && isOverriddenDouble(() -> delegate.heightForFooterInSection(tv, 0));
+    }
+
+    cmTableViewMetrics recycle() {
+        if (headerViews != null)
+            for (UIView view : headerViews)
+                if (view != null)
+                    view.removeFromSuperview();
+        if (footerViews != null)
+            for (UIView view : footerViews)
+                if (view != null)
+                    view.removeFromSuperview();
+        return null;
+    }
+
+    int sections() {
+        return sections.length - 1;
+    }
+
+    int rows(int section) {
+        return sections[section + 1] - sections[section] - 2;   // do not include header and footer
+    }
+
+    int rows() {
+        return pos.length - 1 - 2 * sections();
+    }
+
+    private double get(int section, int delta) {
+        return pos[sections[section] + delta];
+    }
+
+    private void set(int section, int delta, double value) {
+        pos[sections[section] + delta] = value;
+    }
+
+    double headerStart(int section) {
+        if (get(section, 1) < 0)
+            ensure(section, 1);
+        return get(section, 0);
+    }
+
+    double headerHeight(int section) {
+        if (get(section, 1) < 0)
+            ensure(section, 1);
+        return get(section, 1) - get(section, 0);
+    }
+
+    double headerEnd(int section) {
+        if (get(section, 1) < 0)
+            ensure(section, 1);
+        return get(section, 1);
+    }
+
+    double rowStart(int section, int row) {
+        if (get(section, row + 2) < 0)
+            ensure(section, row + 2);
+        return get(section, row + 1);
+    }
+
+    double rowHeight(int section, int row) {
+        if (get(section, row + 2) < 0)
+            ensure(section, row + 2);
+        return get(section, row + 2) - get(section, row + 1);
+    }
+
+    double rowMiddle(int section, int row) {
+        if (get(section, row + 2) < 0)
+            ensure(section, row + 2);
+        return (get(section, row + 1) + get(section, row + 2)) * 0.5;
+    }
+
+    double rowEnd(int section, int row) {
+        if (get(section, row + 2) < 0)
+            ensure(section, row + 2);
+        return get(section, row + 2);
+    }
+
+    double footerStart(int section) {
+        if (get(section + 1, 0) < 0)
+            ensure(section + 1, 0);
+        return get(section, rows(section) + 1);
+    }
+
+    double footerHeight(int section) {
+        if (get(section + 1, 0) < 0)
+            ensure(section + 1, 0);
+        return get(section + 1, 0) - get(section, rows(section) + 1);
+    }
+
+    double footerEnd(int section) {
+        if (get(section + 1, 0) < 0)
+            ensure(section + 1, 0);
+        return get(section + 1, 0);
+    }
+
+
+    double totalHeight() {
+        int sections = sections();
+        int remainingRows = rows() - calculatedRows;
+        if (remainingRows == 0) {   // all rows have been calculated
+            if (get(sections, 0) < 0)    // only the footer is missing
+                ensure(sections, 0);    // calculate footer too
+            return get(sections, 0);
+        } else {
+            double estHeight = tv.rowHeight();
+            estHeight = estHeight > 0 ? estHeight : tv.estimatedRowHeight();
+            estHeight = estHeight > 0 ? estHeight : MAGIC_ROW_HEIGHT;
+            return get(lastSection, lastDelta) + remainingRows * estHeight;
+        }
+    }
+
+    private void ensure(int section, int delta) {
+        if (section >= sections()) {
+            if (section > sections() || delta != 0)
+                throw new IndexOutOfBoundsException();
+        } else if (delta > rows(section) + 1)
+            throw new IndexOutOfBoundsException();
+
+        if (lastSection >= sections())
+            throw new IndexOutOfBoundsException();
+        int startSection = lastSection;
+        int startDelta = lastDelta + 1;
+        if (startDelta >= rows(startSection) + 2) {
+            startDelta = 0;
+            startSection++;
+        }
+        for (int cSection = startSection; cSection <= section; cSection++)
+            for (int cDelta = (cSection == startSection ? startDelta : 0); cDelta <= (cSection == section ? delta : rows(cSection) + 1); cDelta++) {
+                if (get(cSection, cDelta) >= 0)
+                    throw new IndexOutOfBoundsException("Already calculated");
+                boolean isRow = lastDelta > 0 && lastDelta <= rows(lastSection);
+                double height = isRow
+                        ? getRowHeight(lastSection, lastDelta)
+                        : initLabel(lastSection, lastDelta == 0);
+                set(cSection, cDelta, get(lastSection, lastDelta) + height);
+                if (isRow)
+                    calculatedRows++;
+                else if (height > 0)
+                    tv.addSubview(lastDelta == 0 ? headerViews[lastSection] : footerViews[lastSection]);
+                lastSection = cSection; // needs to be here, in case we have a section jump
+                lastDelta = cDelta;
+            }
+    }
+
+    private double initLabel(int section, boolean isHeader) {
+        UITableViewDelegate delegate = tv.tableViewDelegate();
+        if (delegate == null)
+            return 0;
+        UIView view = isHeader ? delegate.viewForHeaderInSection(tv, section) : delegate.viewForFooterInSection(tv, section);
+        if (view == null) {
+            String text = isHeader ? tv.dataSource().titleForHeaderInSection(tv, section) : tv.dataSource().titleForFooterInSection(tv, section);
+            if (text != null) {
+                UILabel label = new UILabel();
+                label.setText(text);
+                label.setTextColor(Theme.Cell.HEADERTEXT);
+                label.setBackgroundColor(Theme.Cell.HEADERBACK);
+                view = label;
+            }
+        }
+        if (view == null)
+            return 0;
+        if (isHeader) {
+            if (headerViews == null)
+                headerViews = new UIView[sections()];
+        } else {
+            if (footerViews == null)
+                footerViews = new UIView[sections()];
+        }
+        (isHeader ? headerViews : footerViews)[section] = view;
+        double height = isHeader
+                ? (headerHeightInDelegate ? delegate.heightForHeaderInSection(tv, section) : tv.sectionHeaderHeight())
+                : (footerHeightInDelegate ? delegate.heightForFooterInSection(tv, section) : tv.sectionFooterHeight());
+        return height >= 0 ? height : view.sizeThatFits(new CGSize(0, 0)).getHeight();
+    }
+
+    void relayoutLabels(boolean asHeaders) {
+        UIView[] views = asHeaders ? headerViews : footerViews;
+        double width = tv.getWidth();
+        if (views != null)
+            for (int section = 0; section < views.length; section++)
+                if (views[section] != null)
+                    views[section].setFrame(new CGRect(0,
+                            get(section, asHeaders ? 0 : rows(section) + 1),
+                            width,
+                            asHeaders ? headerHeight(section) : footerHeight(section)));
+    }
+
+    private double getRowHeight(int section, int row) {
+        double height = rowHeightInDelegate
+                ? tv.tableViewDelegate().heightForRowAtIndexPath(tv, NSIndexPath.indexPathForRow(row, section))
+                : tv.rowHeight();
+        if (height < 0)
+            approximateSize[section].set(row, true);
+        return height > 0 ? height : MAGIC_ROW_HEIGHT;
+    }
+
+    boolean fixHeightIfNeeded(UITableViewCell cell) {
+        int section = cell.path.section();
+        int row = cell.path.row();
+        double currentHeight = rowHeight(section, row);
+        double delta = 0;
+        if (cell.getRowHeight() > 0)
+            delta = cell.getRowHeight() - currentHeight;
+        else if (approximateSize[section].getAndSet(row, false))
+            delta = cell.sizeThatFits(new CGSize(0, 0)).getHeight() - currentHeight;
+        if (Math.abs(delta) > 0.5) {
+            for (int i = sections[section] + row + 1 + 1; i < pos.length; i++)  // +1 for the header, +1 for the start of next element (i.e. height)
+                if (pos[i] >= 0)
+                    pos[i] += delta;
+                else
+                    break;
+            return true;
+        } else
+            return false;
+    }
+
+    List<NSIndexPath> indexPathsForRowsBetween(double yFrom, double yTo) {
+        List<NSIndexPath> res = new ArrayList<>();
+        yFrom -= tv.contentInset.getTop();
+        yTo -= tv.contentInset.getTop();
+        if (yFrom < 0)
+            yFrom = 0;
+        int idx = 0;
+        end:
+        for (int section = 0; section < sections(); section++) {
+            idx++;  // ignore header
+            int sectionSize = rows(section);
+            for (int row = 0; row < sectionSize; row++) {
+                if (pos[idx + 1] < 0)
+                    ensure(section, row + 1 + 1);   // first 1: header, second 2: right-edge of cell
+                if (pos[idx + 1] > yFrom) { // part of the cell is on the right of the lower end
+                    if (pos[idx] > yTo) // the cell starts above higher end
+                        break end;
+                    res.add(NSIndexPath.indexPathForRow(row, section));
+                }
+                idx++;
+            }
+            idx++;  // ignore footer
+        }
+        return res;
+    }
 }

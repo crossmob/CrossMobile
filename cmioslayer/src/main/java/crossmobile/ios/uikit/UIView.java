@@ -1532,7 +1532,7 @@ public class UIView extends UIResponder implements UIAppearance, UIAppearanceCon
      */
     @CMSelector("- (CGSize)sizeThatFits:(CGSize)size;")
     public CGSize sizeThatFits(CGSize size) {
-        return size;
+        return Geometry.copy(intrinsicContentSize);
     }
 
     /**

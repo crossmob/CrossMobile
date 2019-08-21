@@ -16,7 +16,6 @@
  */
 package crossmobile.ios.uikit;
 
-import crossmobile.rt.UnimplementedOptionalException;
 import org.crossmobile.bridge.ann.CMClass;
 import org.crossmobile.bridge.ann.CMSelector;
 
@@ -52,7 +51,7 @@ public interface UIPickerViewDelegate {
     @CMSelector("- (CGFloat)pickerView:(UIPickerView *)pickerView \n"
             + "    widthForComponent:(NSInteger)component;")
     default double widthForComponent(UIPickerView view, int component) {
-        throw new UnimplementedOptionalException();
+        return Double.NaN;
     }
 
     /**

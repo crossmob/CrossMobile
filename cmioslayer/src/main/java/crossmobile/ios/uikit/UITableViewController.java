@@ -122,7 +122,7 @@ public class UITableViewController extends UIViewController implements UITableVi
 
     @Override
     public double heightForRowAtIndexPath(UITableView tableView, NSIndexPath indexPath) {
-        return sections == null || sections.isEmpty() ? tableView.rowHeight() : sections.get(indexPath.section()).cells[indexPath.row()].getRowHeight(tableView);
+        return -1;
     }
 
     @Override

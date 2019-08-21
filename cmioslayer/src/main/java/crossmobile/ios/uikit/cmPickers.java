@@ -159,14 +159,13 @@ class cmPickers {
             setDelegate(new UIScrollViewDelegate() {
                 @Override
                 public void didScroll(UIScrollView scrollView) {
-                    layoutSubviewsWithoutMetrics();
+                    layoutSubviews();
                 }
 
                 @Override
                 public void didEndScrollingAnimation(UIScrollView scrollView) {
                     tableViewDelegate().didSelectRowAtIndexPath(PickerTable.this, indexPathForRowAtPoint(new CGPoint(rect.getSize().getWidth() / 2, contentOffset.getY() + rect.getSize().getHeight() / 2)));
                 }
-
             });
         }
     }
