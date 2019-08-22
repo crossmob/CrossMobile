@@ -37,7 +37,7 @@ public class TableViewCellContentView extends View {
         variable = variable + ".contentView()";
         StringBuilder out = new StringBuilder(super.toCodeTo(variable));
         out.append(super.addSubviews(variable));
-        out.append(late(variable()).replaceAll(variable(), variable));
+        out.append(late(variable(), true).replaceAll(variable(), variable));
         return out.toString();
     }
 }

@@ -111,17 +111,23 @@ public class View extends RealElement {
     }
 
     public String late() {
-        return late(variable());
+        return late(variable(), false);
     }
 
-    public String late(String variable) {
+    public String late(String variable, boolean shouldUpdateSelfConstraints) {
         StringBuilder late = new StringBuilder();
         LayoutGuide safeArea;
         if ((safeArea = (LayoutGuide) item("safeArea")) != null)
             late.append(safeArea.toCode(variable));
+        boolean hasConstraints = false;
         for (Constraints c : parts(Elements.Constraints))
-            for (Constraint o : c.parts(Elements.Constraint))
+            for (Constraint o : c.parts(Elements.Constraint)) {
                 late.append(I4).append(o.toCode(variable)).append(NEWLINE);
+                hasConstraints = true;
+            }
+        // TODO: the following method should be obsolete, if a proper layout/constraint manager is preset
+        if (shouldUpdateSelfConstraints && hasConstraints)
+            late.append(I4).append("this.layoutSubviews();").append(NEWLINE);
 
         if (attrName("verticalHuggingPriority") != null)
             late.append(I4).append(variable).append(".setContentHuggingPriority(").append(attrName("verticalHuggingPriority")).append("f, ").append("UILayoutConstraintAxis.Vertical);").append(NEWLINE);

@@ -24,7 +24,6 @@ public class Constraints extends Element {
     @Override
     protected void addSupported() {
         addSupportedChild(Elements.Constraint);
-
     }
 
     @Override
