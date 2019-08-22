@@ -29,7 +29,7 @@ public class $storekit {
         return new SKProduct(locDescription, locTitle, price, locale == null ? NSLocale.currentLocale() : locale, prodId);
     }
 
-    public static SKPaymentTransaction newSKPaymentTransaction(int state, String productIdentifier, String transactionIdentifier, NSDate transactionDate, byte[] requestData, byte[] transactionReceipt, String error) {
+    public static SKPaymentTransaction newSKPaymentTransaction(int state, String productIdentifier, String transactionIdentifier, NSDate transactionDate, byte[] requestData, byte[] transactionReceipt, String errorTxt) {
         if (requestData == null)
             requestData = new byte[]{};
         if (transactionReceipt == null)
@@ -39,8 +39,8 @@ public class $storekit {
         if (transactionIdentifier == null)
             transactionIdentifier = "transaction:product=" + productIdentifier;
         SKPayment payment = new SKPayment(productIdentifier, 1, NSData.dataWithBytesNoCopy(requestData));
-        NSError nserror = state == SKPaymentTransactionState.Failed ? NSError.errorWithDomain(NSError.Domain.SKError, SKError.Unknown, errorFromInfo(error + " (" + state + ")")) : null;
-        return new SKPaymentTransaction(payment, state, transactionIdentifier, NSData.dataWithBytesNoCopy(transactionReceipt), transactionDate, null, nserror);
+        NSError error = state == SKPaymentTransactionState.Failed ? NSError.errorWithDomain(NSError.Domain.SKError, SKError.Unknown, errorFromInfo(errorTxt + " (" + state + ")")) : null;
+        return new SKPaymentTransaction(payment, state, transactionIdentifier, NSData.dataWithBytesNoCopy(transactionReceipt), transactionDate, null, error);
     }
 
 }

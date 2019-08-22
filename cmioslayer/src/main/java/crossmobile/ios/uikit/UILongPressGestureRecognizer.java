@@ -39,7 +39,7 @@ public class UILongPressGestureRecognizer extends UIGestureRecognizer {
     private int numberOfTouchesRequired = 1;
     private double minimumPressDuration = 0.5;
     private double allowableMovement = 10;
-    private NSTimer nsTimer;
+    private NSTimer timer;
     private int numberOfTouches = 0;
 
     /**
@@ -60,7 +60,7 @@ public class UILongPressGestureRecognizer extends UIGestureRecognizer {
         } else if (tapcount() > numberOfTapsRequired + 1 || touches.size() > numberOfTouchesRequired)
             setState(Failed);
         else if (state() == Possible && touches.size() == numberOfTouchesRequired && tapcount() == (numberOfTapsRequired + 1)) {
-            nsTimer = NSTimer.scheduledTimerWithTimeInterval(minimumPressDuration, timer -> {
+            timer = NSTimer.scheduledTimerWithTimeInterval(minimumPressDuration, timer -> {
                 if (state() == Possible) {
                     setState(Began);
                     Native.system().runOnEventThread(this::performCallbacks);
@@ -71,9 +71,9 @@ public class UILongPressGestureRecognizer extends UIGestureRecognizer {
 
     @Override
     void resetEverything() {
-        if (nsTimer != null)
-            nsTimer.invalidate();
-        nsTimer = null;
+        if (timer != null)
+            timer.invalidate();
+        timer = null;
         super.resetEverything();
     }
 
@@ -123,9 +123,9 @@ public class UILongPressGestureRecognizer extends UIGestureRecognizer {
 
     @Override
     protected void setState(int newstate) {
-        if (newstate == Failed && nsTimer != null) {
-            nsTimer.invalidate();
-            nsTimer = null;
+        if (newstate == Failed && timer != null) {
+            timer.invalidate();
+            timer = null;
             resetEverything();
         }
         super.setState(newstate);

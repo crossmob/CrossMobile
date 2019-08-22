@@ -254,9 +254,9 @@ public class UISplitViewController extends UIViewController {
     }
 
     /**
-     * Returns specified delegate of this uisplitviewcontroller.
+     * Returns specified delegate of this UISplitViewController.
      *
-     * @return The specified delegate of this uisplitviewcontroller.
+     * @return The specified delegate of this UISplitViewController.
      */
     @CMGetter("@property(nonatomic, weak) id<UISplitViewControllerDelegate> delegate;")
     public UISplitViewControllerDelegate delegate() {
@@ -264,9 +264,9 @@ public class UISplitViewController extends UIViewController {
     }
 
     /**
-     * Set the specified delegate of this uisplitviewcontroller.
+     * Set the specified delegate of this UISplitViewController.
      *
-     * @param delegate The specified delegate of this uisplitviewcontroller.
+     * @param delegate The specified delegate of this UISplitViewController.
      */
     @CMSetter("@property(nonatomic, weak) id<UISplitViewControllerDelegate> delegate;")
     public void setDelegate(UISplitViewControllerDelegate delegate) {

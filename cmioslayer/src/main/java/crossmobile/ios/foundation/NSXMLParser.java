@@ -139,7 +139,7 @@ public class NSXMLParser extends NSObject {
         return error;
     }
 
-    private WeakReference<NSXMLParser> nsparser;
+    private WeakReference<NSXMLParser> parser;
     DefaultHandler handler = new DefaultHandler() {
         @Override
         public InputSource resolveEntity(String publicID, String systemID) throws IOException, SAXException {
@@ -149,13 +149,13 @@ public class NSXMLParser extends NSObject {
         @Override
         public void startPrefixMapping(String prefix, String uri) {
             if (delegate != null)
-                delegate.didStartMappingPrefix(nsparser.get(), prefix, uri);
+                delegate.didStartMappingPrefix(parser.get(), prefix, uri);
         }
 
         @Override
         public void endPrefixMapping(String prefix) {
             if (delegate != null)
-                delegate.didEndMappingPrefix(nsparser.get(), prefix);
+                delegate.didEndMappingPrefix(parser.get(), prefix);
         }
 
         @Override
@@ -164,40 +164,40 @@ public class NSXMLParser extends NSObject {
             for (int i = 0; i < attributes.getLength(); i++)
                 attribs.put(attributes.getQName(i), attributes.getValue(i));
             if (delegate != null)
-                delegate.didStartElement(nsparser.get(), qName, uri, qName, attribs);
+                delegate.didStartElement(parser.get(), qName, uri, qName, attribs);
         }
 
         @Override
         public void endElement(String uri, String localName, String qName) {
             if (delegate != null)
-                delegate.didEndElement(nsparser.get(), qName, uri, qName);
+                delegate.didEndElement(parser.get(), qName, uri, qName);
         }
 
         @Override
         public void characters(char[] ch, int start, int length) {
             String characters = String.copyValueOf(ch, start, length);
             if (delegate != null)
-                delegate.foundCharacters(nsparser.get(), characters);
+                delegate.foundCharacters(parser.get(), characters);
         }
     };
 
-    void parse(NSXMLParser nsparser, String data) throws Exception {
+    void parse(NSXMLParser parser, String data) throws Exception {
         if (FACTORY == null) {
             FACTORY = SAXParserFactory.newInstance();
             FACTORY.setValidating(false);
         }
 
-        this.nsparser = new WeakReference<>(nsparser);
-        SAXParser parser = FACTORY.newSAXParser();
+        this.parser = new WeakReference<>(parser);
+        SAXParser saxParser = FACTORY.newSAXParser();
         try {
-            parser.setProperty("namespaces", nsparser.shouldProcessNamespaces());
+            saxParser.setProperty("namespaces", parser.shouldProcessNamespaces());
         } catch (SAXNotRecognizedException | SAXNotSupportedException e) {
         }
         try {
-            parser.setProperty("namespace-prefixes", nsparser.shouldReportNamespacePrefixes());
+            saxParser.setProperty("namespace-prefixes", parser.shouldReportNamespacePrefixes());
         } catch (SAXNotRecognizedException | SAXNotSupportedException e) {
         }
-        parser.parse(new InputSource(new StringReader(data)), handler);
+        saxParser.parse(new InputSource(new StringReader(data)), handler);
     }
 
 }

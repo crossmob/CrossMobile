@@ -317,12 +317,12 @@ public class UITableView extends UIScrollView {
      * paths using animation or not.
      *
      * @param indexPaths              A list with index paths of the new rows.
-     * @param uiTableViewRowAnimation TRUE if the insertion is animated.
+     * @param UITableViewRowAnimation TRUE if the insertion is animated.
      * @see crossmobile.ios.uikit.UITableViewRowAnimation
      */
     @CMSelector("- (void)insertRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths \n"
             + "              withRowAnimation:(UITableViewRowAnimation)animation;")
-    public void insertRowsAtIndexPaths(List<NSIndexPath> indexPaths, int uiTableViewRowAnimation) {
+    public void insertRowsAtIndexPaths(List<NSIndexPath> indexPaths, int UITableViewRowAnimation) {
         Native.lifecycle().notImplemented();
         reloadData();
     }

@@ -127,14 +127,14 @@ public class UISearchBar extends UIView {
 
     /**
      * Sets the type of autocapitalization that will be applied to the text
-     * field specified by the value of uiTextAutocapitalizationType.
+     * field specified by the value of UITextAutocapitalizationType.
      *
-     * @param uiTextAutocapitalizationType Defines type of autocapitalization.
+     * @param UITextAutocapitalizationType Defines type of autocapitalization.
      * @see crossmobile.ios.uikit.UITextAutocapitalizationType
      */
     @CMSetter(" @property(nonatomic) UITextAutocapitalizationType autocapitalizationType ")
-    public void setAutocapitalizationType(int uiTextAutocapitalizationType) {
-        field.setAutocorrectionType(uiTextAutocapitalizationType);
+    public void setAutocapitalizationType(int UITextAutocapitalizationType) {
+        field.setAutocorrectionType(UITextAutocapitalizationType);
     }
 
     /**
@@ -150,14 +150,14 @@ public class UISearchBar extends UIView {
 
     /**
      * Sets the type of autocorrection that will be applied to the text field
-     * specified by the value of uiTextAutocorrectionType.
+     * specified by the value of UITextAutocorrectionType.
      *
-     * @param uiTextAutocorrectionType Defines the type of autocorrection.
+     * @param UITextAutocorrectionType Defines the type of autocorrection.
      * @see crossmobile.ios.uikit.UITextAutocorrectionType
      */
     @CMSetter(" @property(nonatomic) UITextAutocorrectionType autocorrectionType ")
-    public void setAutocorrectionType(int uiTextAutocorrectionType) {
-        field.setAutocorrectionType(uiTextAutocorrectionType);
+    public void setAutocorrectionType(int UITextAutocorrectionType) {
+        field.setAutocorrectionType(UITextAutocorrectionType);
     }
 
     /**
@@ -174,12 +174,12 @@ public class UISearchBar extends UIView {
     /**
      * Sets style of this search bar.
      *
-     * @param uiBarStyle Defines the type of style.
+     * @param UIBarStyle Defines the type of style.
      * @see crossmobile.ios.uikit.UIBarStyle
      */
     @CMSetter("@property(nonatomic) UIBarStyle barStyle;")
-    public void setBarStyle(int uiBarStyle) {
-        this.barStyle = uiBarStyle;
+    public void setBarStyle(int UIBarStyle) {
+        this.barStyle = UIBarStyle;
     }
 
     /**

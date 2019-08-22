@@ -139,11 +139,11 @@ public class SKPaymentQueue extends NSObject {
             if (observers != null && !observers.isEmpty())
                 for (SKPaymentTransactionObserver obs : observers)
                     obs.restoreCompletedTransactionsFinished(SKPaymentQueue.this);
-        }, (String error) -> {
-            NSError nserror = NSError.errorWithDomain(NSError.Domain.SKError, SKError.Unknown, errorFromInfo(error));
+        }, (String errorTxt) -> {
+            NSError error = NSError.errorWithDomain(NSError.Domain.SKError, SKError.Unknown, errorFromInfo(errorTxt));
             if (observers != null && !observers.isEmpty())
                 for (SKPaymentTransactionObserver obs : observers)
-                    obs.restoreCompletedTransactionsFailedWithError(SKPaymentQueue.this, nserror);
+                    obs.restoreCompletedTransactionsFailedWithError(SKPaymentQueue.this, error);
         });
     }
 

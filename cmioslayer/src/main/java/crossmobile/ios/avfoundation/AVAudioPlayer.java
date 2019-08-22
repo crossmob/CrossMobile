@@ -85,13 +85,13 @@ public class AVAudioPlayer extends NSObject {
      * Constructs and returns an AVAudioPlayer with the specified NSData and
      * error handing values.
      *
-     * @param nsData The data of the sound to play.
+     * @param data The data of the sound to play.
      * @param error  The error that occurs in case of failure.
      */
     @CMConstructor("- (instancetype)initWithData:(NSData *)data\n"
             + "                       error:(NSError * _Nullable *)outError")
-    public AVAudioPlayer(NSData nsData, StrongReference<NSError> error) {
-        this(NSURL.fileURLWithPath(SystemUtilities.writeToRandomFile(nsData.bytes())), error);
+    public AVAudioPlayer(NSData data, StrongReference<NSError> error) {
+        this(NSURL.fileURLWithPath(SystemUtilities.writeToRandomFile(data.bytes())), error);
     }
 
     /**

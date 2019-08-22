@@ -1175,8 +1175,8 @@ public class UIScrollView extends UIView {
     }
 
     private boolean isChild(UIView item) {
-        for (UIView uiView : subviews())
-            if (uiView.equals(item)) {
+        for (UIView child : subviews())
+            if (child.equals(item)) {
                 return true;
             }
         return false;

@@ -2358,17 +2358,17 @@ public class UIView extends UIResponder implements UIAppearance, UIAppearanceCon
 
 
     private void refreshMarginsIfNeeded() {
-        UIEdgeInsets uiEdgeInsets = safeAreaInsets;
+        UIEdgeInsets edgeInsets = safeAreaInsets;
         UIEdgeInsets newLayoutMargins = layoutMargins;
         if (insetsLayoutMarginsFromSafeArea) {
-            if (newLayoutMargins.getTop() < uiEdgeInsets.getTop())
-                newLayoutMargins.setTop(uiEdgeInsets.getTop());
-            if (newLayoutMargins.getLeft() < uiEdgeInsets.getLeft())
-                newLayoutMargins.setLeft(uiEdgeInsets.getLeft());
-            if (newLayoutMargins.getBottom() < uiEdgeInsets.getBottom())
-                newLayoutMargins.setBottom(uiEdgeInsets.getBottom());
-            if (newLayoutMargins.getRight() < uiEdgeInsets.getRight())
-                newLayoutMargins.setRight(uiEdgeInsets.getRight());
+            if (newLayoutMargins.getTop() < edgeInsets.getTop())
+                newLayoutMargins.setTop(edgeInsets.getTop());
+            if (newLayoutMargins.getLeft() < edgeInsets.getLeft())
+                newLayoutMargins.setLeft(edgeInsets.getLeft());
+            if (newLayoutMargins.getBottom() < edgeInsets.getBottom())
+                newLayoutMargins.setBottom(edgeInsets.getBottom());
+            if (newLayoutMargins.getRight() < edgeInsets.getRight())
+                newLayoutMargins.setRight(edgeInsets.getRight());
         }
         UIView parent;
         if (preservesSuperviewLayoutMargins && (parent = superview()) != null) {

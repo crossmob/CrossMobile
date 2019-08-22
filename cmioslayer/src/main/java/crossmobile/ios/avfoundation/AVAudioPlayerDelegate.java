@@ -35,17 +35,17 @@ public interface AVAudioPlayerDelegate {
      */
     @CMSelector("- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player \n"
             + "                       successfully:(BOOL)flag;")
-    public void didFinishPlaying(AVAudioPlayer avap, boolean bln);
+    void didFinishPlaying(AVAudioPlayer avap, boolean bln);
 
     /**
      * It is called when the AVAudioPlayer encounters an error.
      *
-     * @param avap The AVAudioPlayer that corresponds to this delegate.
-     * @param nse  The error that occurred.
+     * @param avap  The AVAudioPlayer that corresponds to this delegate.
+     * @param error The error that occurred.
      */
     @CMSelector("- (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player \n"
             + "                                 error:(NSError *)error;")
-    public void decodeErrorDidOccur(AVAudioPlayer avap, NSError nse);
+    void decodeErrorDidOccur(AVAudioPlayer avap, NSError error);
 
     /**
      * It is called when the AVAudioPlayer is interrupted.
@@ -53,7 +53,7 @@ public interface AVAudioPlayerDelegate {
      * @param avap The AVAudioPlayer that corresponds to this delegate.
      */
     @CMSelector("- (void)audioPlayerBeginInterruption:(AVAudioPlayer *)player;")
-    public void beginInterruption(AVAudioPlayer avap);
+    void beginInterruption(AVAudioPlayer avap);
 
     /**
      * It is called after the audio session interruption ends.
@@ -61,5 +61,5 @@ public interface AVAudioPlayerDelegate {
      * @param avap The AVAudioPlayer that corresponds to this delegate.
      */
     @CMSelector("- (void)audioPlayerEndInterruption:(AVAudioPlayer *)player;")
-    public void endInterruption(AVAudioPlayer avap);
+    void endInterruption(AVAudioPlayer avap);
 }

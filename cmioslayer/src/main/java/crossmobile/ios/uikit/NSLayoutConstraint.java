@@ -85,7 +85,7 @@ public class NSLayoutConstraint extends NSObject {
             + "                                                                  views:(NSDictionary<NSString *,id> *)views;")
     public static List<NSLayoutConstraint> constraintsWithVisualFormat(String format, int NSLayoutFormatOptions, Map<String, Float> metrics, Map<String, UIView> views) {
         cmConstraintWithVisualFormat con = new cmConstraintWithVisualFormat();
-        return con.constraintwithVisualFormat(format, NSLayoutFormatOptions, metrics, views);
+        return con.constraintWithVisualFormat(format, NSLayoutFormatOptions, metrics, views);
     }
 
     /**

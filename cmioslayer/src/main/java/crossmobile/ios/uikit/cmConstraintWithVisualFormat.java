@@ -27,7 +27,6 @@ class cmConstraintWithVisualFormat {
 
     private boolean parsePredicates(String line, List<Predicate> predicates) {
         List<String> predStr;
-//        System.out.println ("Parse preds"+line);
         if (line.length() > 2 && line.startsWith("(")) {
             if (!line.endsWith(")")) {
                 System.out.println("Syntax Error! " + line);
@@ -55,7 +54,7 @@ class cmConstraintWithVisualFormat {
             boolean vertical,
             int direction) {
 
-        List<NSLayoutConstraint> ret = new ArrayList<NSLayoutConstraint>();
+        List<NSLayoutConstraint> ret = new ArrayList<>();
         int NSLayoutAttribute1;
         int NSLayoutAttribute2;
 
@@ -130,9 +129,9 @@ class cmConstraintWithVisualFormat {
             if (item2 != null) {
                 int a1 = vertical ? NSLayoutAttribute.Bottom : NSLayoutAttribute1;
                 int a2 = vertical ? NSLayoutAttribute.Top : NSLayoutAttribute2;
-                if (item1 == ((UIView) item2).superview())
+                if (item1 == item2.superview())
                     a1 = vertical ? NSLayoutAttribute.Top : NSLayoutAttribute2;
-                else if (item2 == ((UIView) item1).superview())
+                else if (item2 == item1.superview())
                     a2 = vertical ? NSLayoutAttribute.Bottom : NSLayoutAttribute1;
 
                 NSLayoutConstraint c = NSLayoutConstraint.constraintWithItem(item1, a1, relation, item2, a2, 1, -constant);
@@ -177,21 +176,20 @@ class cmConstraintWithVisualFormat {
         return item;
     }
 
-    List<NSLayoutConstraint> constraintwithVisualFormat(String format, int LayoutFormatOptions, Map<String, Float> metrics, Map<String, UIView> views) {
-
+    List<NSLayoutConstraint> constraintWithVisualFormat(String format, int LayoutFormatOptions, Map<String, Float> metrics, Map<String, UIView> views) {
         UIView superview = null;
         List<Predicate> predList;
         for (UIView item : views.values()) {
-            UIView lsuper = ((UIView) item).superview();
+            UIView lsuper = item.superview();
             if (superview == null)
                 superview = lsuper;
             else if (lsuper != null && !lsuper.equals(superview))
                 System.out.println("All views must share the same superview.");
         }
-        List<NSLayoutConstraint> nsConstraints = new ArrayList<NSLayoutConstraint>();
+        List<NSLayoutConstraint> result = new ArrayList<>();
         String line = format;
         boolean vertical = false;
-        List<List<Predicate>> predicates = new ArrayList<List<Predicate>>();
+        List<List<Predicate>> predicates = new ArrayList<>();
         List<Constraint> constrains = new ArrayList<Constraint>();
 
         Pattern verizontalpattern = Pattern.compile("^([VH]:).*$");
@@ -203,40 +201,40 @@ class cmConstraintWithVisualFormat {
             line = line.substring(2);
         }
 // Match all "]-(1,2,3)-["
-        Pattern connectorpattern = Pattern.compile("(\\]|\\|)([^\\[]*)?(\\[|\\|)");
-        Matcher connectormatcher = connectorpattern.matcher(line);
+        Pattern connectorPattern = Pattern.compile("(]|\\|)([^\\[]*)?(\\[|\\|)");
+        Matcher connectorMatcher = connectorPattern.matcher(line);
 
-        while (connectormatcher.find()) {
-            String connector = connectormatcher.group(2);
+        while (connectorMatcher.find()) {
+            String connector = connectorMatcher.group(2);
             if (connector.equals("")) {
-                predList = new ArrayList<Predicate>();
+                predList = new ArrayList<>();
                 predList.add(new Predicate());
                 predicates.add(predList);
             } else if (connector.equals("-")) {
-                predList = new ArrayList<Predicate>();
+                predList = new ArrayList<>();
                 predList.add(new Predicate("default"));
                 predicates.add(predList);
             } else if (!connector.startsWith("-") || !connector.endsWith("-") || connector.length() < 3)
                 System.out.println("Syntax Error" + connector);
 
             else {
-                predList = new ArrayList<Predicate>();
+                predList = new ArrayList<>();
                 if (!parsePredicates(connector.substring(1, connector.length() - 1), predList))
                     return null;
                 predicates.add(predList);
             }
         }
 
-        Pattern constraintpattern = Pattern.compile("(\\[([^\\]]*)\\]|\\|)");
-        Matcher constraintmatcher = constraintpattern.matcher(line);
+        Pattern constraintPattern = Pattern.compile("(\\[([^]]*)]|\\|)");
+        Matcher constraintMatcher = constraintPattern.matcher(line);
 
-        while (constraintmatcher.find()) {
-            String constraint = constraintmatcher.group();
-            Pattern rex = Pattern.compile("^\\[([\\w]+)(\\(.*\\))?\\]$");
+        while (constraintMatcher.find()) {
+            String constraint = constraintMatcher.group();
+            Pattern rex = Pattern.compile("^\\[([\\w]+)(\\(.*\\))?]$");
             Matcher recm = rex.matcher(constraint);
             if (!recm.find())
                 if (constraint.equals("|"))
-                    constrains.add(new Constraint(new ArrayList<Predicate>(), constraint));
+                    constrains.add(new Constraint(new ArrayList<>(), constraint));
                 else
                     return null;
             else {
@@ -270,8 +268,7 @@ class cmConstraintWithVisualFormat {
             predAry = constraintsFromPredicates(constrains.get(i).predicates, item1, null, views, metrics, vertical, LayoutFormatOptions & NSLayoutFormatOptions.DirectionMask);
             if (predAry == null)
                 return null;
-            nsConstraints.addAll(predAry);
-
+            result.addAll(predAry);
         }
 
         for (int i = 0; i < constrains.size() - 1; i++) {
@@ -282,7 +279,7 @@ class cmConstraintWithVisualFormat {
             predAry = constraintsFromPredicates(predicates.get(i), item1, item2, views, metrics, vertical, LayoutFormatOptions & NSLayoutFormatOptions.DirectionMask);
             if (predAry == null)
                 return null;
-            nsConstraints.addAll(predAry);
+            result.addAll(predAry);
         }
 
         if (LayoutFormatOptions != 0 && !constrains.isEmpty()) {
@@ -316,10 +313,10 @@ class cmConstraintWithVisualFormat {
                         LayoutFormatOptions & NSLayoutFormatOptions.AlignmentMask,
                         1,
                         0);
-                nsConstraints.add(aligncost);
+                result.add(aligncost);
             }
         }
-        return nsConstraints;
+        return result;
     }
 
     private class Predicate {
@@ -334,7 +331,7 @@ class cmConstraintWithVisualFormat {
             this.target = "0";
         }
 
-        public Predicate(String taget) {
+        public Predicate(String target) {
             this();
             this.target = "default";
         }

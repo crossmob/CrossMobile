@@ -410,13 +410,13 @@ public class UIApplication extends UIResponder {
      * Registers the application to receive remote notification of the specified
      * type.
      *
-     * @param uiRemoteNotificationType The type of remote notification that the
+     * @param UIRemoteNotificationType The type of remote notification that the
      *                                 application is registered to receive.
      * @see crossmobile.ios.uikit.UIRemoteNotificationType
      */
     @Deprecated
     @CMSelector("- (void)registerForRemoteNotificationTypes:(UIRemoteNotificationType)types;")
-    public void registerForRemoteNotificationTypes(int uiRemoteNotificationType) {
+    public void registerForRemoteNotificationTypes(int UIRemoteNotificationType) {
         // TODO : Java implementation
     }
 

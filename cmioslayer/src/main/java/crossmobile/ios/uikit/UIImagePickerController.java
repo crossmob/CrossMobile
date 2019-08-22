@@ -473,8 +473,8 @@ public class UIImagePickerController extends UINavigationController {
             nav.popViewControllerAnimated(flag);
             return;
         }
-        UIViewController uiViewController = UIImagePickerController.this.presentingViewController();
-        if (uiViewController != null) uiViewController.dismissViewControllerAnimated(flag, null);
+        UIViewController viewController = UIImagePickerController.this.presentingViewController();
+        if (viewController != null) viewController.dismissViewControllerAnimated(flag, null);
     }
 
 
@@ -492,9 +492,9 @@ public class UIImagePickerController extends UINavigationController {
             delegate.didCancel(UIImagePickerController.this);
         else {
             Map<String, Object> info = new HashMap<>();
-            UIImage uiimg = UIImage.imageWithCGImage(cgimage);
-            info.put(OriginalImage, uiimg);
-            info.put(EditedImage, uiimg);
+            UIImage image = UIImage.imageWithCGImage(cgimage);
+            info.put(OriginalImage, image);
+            info.put(EditedImage, image);
             info.put(MediaURL, NSURL.fileURLWithPath($coregraphics.filename(cgimage)));
             delegate.didFinishPickingMediaWithInfo(UIImagePickerController.this, info);
         }
