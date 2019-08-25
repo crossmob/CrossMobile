@@ -16,6 +16,7 @@
  */
 package org.crossmobile.utils;
 
+import org.crossmobile.Version;
 import org.crossmobile.utils.launcher.Flavour;
 
 import java.io.File;
@@ -219,7 +220,7 @@ public class Pom {
                         .add("dependency")
                         .add("groupId").setText(d.groupId).parent()
                         .add("artifactId").setText(d.artifactId(profile)).parent()
-                        .execIf(c -> d.version != null, c -> c.add("version").setText(d.version).parent())
+                        .execIf(c -> d.version != null, c -> c.add("version").setText(d.version.equals(Version.VERSION) ? "${crossmobile.version}" : d.version).parent())
                         .add("scope").setText(profile == null ? "provided" : "runtime")
                 );
     }
