@@ -1300,9 +1300,9 @@ public class UIView extends UIResponder implements UIAppearance, UIAppearanceCon
                 view = children.get(i);
                 view = view.hitTest(view.selfPointTransformations(Geometry.copy(point), true), event);
                 if (view != null)
-                    return firstAnsestorThatUsesTouches(view);
+                    return firstAncestorThatUsesTouches(view);
             }
-            if (event != null && event instanceof cmPrivateEvent) {
+            if (event instanceof cmPrivateEvent) {
                 if (((cmPrivateEvent) event).isHitAllowed(this))
                     return this;
             } else
@@ -1311,12 +1311,12 @@ public class UIView extends UIResponder implements UIAppearance, UIAppearanceCon
         return null;
     }
 
-    UIView firstAnsestorThatUsesTouches(UIView view) {
+    UIView firstAncestorThatUsesTouches(UIView view) {
         if (view != null) {
             for (boolean usesTouch : view.usesTouches)
                 if (usesTouch)
                     return view;
-            return firstAnsestorThatUsesTouches(view.superview());
+            return firstAncestorThatUsesTouches(view.superview());
         }
         return null;
     }

@@ -120,13 +120,13 @@ public class UIScrollView extends UIView {
                     break;
                 default:
                     tracking = false;
-                    CGPoint trasl = pan.translationInView(UIScrollView.this);
+                    CGPoint transl = pan.translationInView(UIScrollView.this);
                     CGPoint scrollVelocity = pan.velocityInView(UIScrollView.this);
                     boolean shouldSpring = false;
-                    double x = -trasl.getX();
-                    double y = -trasl.getY();
-                    double unproccessedX = x;
-                    double unproccessedY = y;
+                    double x = -transl.getX();
+                    double y = -transl.getY();
+                    double unprocessedX = x;
+                    double unprocessedY = y;
                     if ((contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) <= getWidth())
                         x = contentOffset.getX();
                     if ((contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) <= getHeight())
@@ -164,7 +164,7 @@ public class UIScrollView extends UIView {
                             began = false;
                             setContentOffset(x, y); // no special animation
                             //TODO SHOULD GO TO GESTURES IMPLEMENTATION!!!!!!
-                        } else if (!yieldTouches && began && firstAncestorScrollView(UIScrollView.this) != null && ((x > -0.1 && x < 0.1 && Math.abs(x) < Math.abs(unproccessedX)) || (y > -0.1 && y < 0.1 && Math.abs(unproccessedY) > Math.abs(y)))) {
+                        } else if (!yieldTouches && began && firstAncestorScrollView(UIScrollView.this) != null && ((x > -0.1 && x < 0.1 && Math.abs(x) < Math.abs(unprocessedX)) || (y > -0.1 && y < 0.1 && Math.abs(unprocessedY) > Math.abs(y)))) {
                             began = false;
                             invalidateTimers();
                             touchesCancelled(arg.touchList, arg.touchEvent);
@@ -191,11 +191,11 @@ public class UIScrollView extends UIView {
                             if (delegate != null)
                                 delegate.didEndDragging(UIScrollView.this, false);
                             if (shouldSpring && (x < 0 || x > (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - getWidth() || y < 0 || y > (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) - getHeight())) {
-                                float newx = (float) (x < 0 ? 0
-                                        : x > (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - getWidth() ? (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - getWidth() : x);
-                                float newy = (float) (y < 0 ? 0
-                                        : y > (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) - getHeight() ? (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) - getHeight() : y);
-                                setContentOffset(new CGPoint(newx, newy), true);
+                                float newX = (float) (x < 0 ? 0
+                                        : Math.min(x, (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - getWidth()));
+                                float newY = (float) (y < 0 ? 0
+                                        : Math.min(y, (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) - getHeight()));
+                                setContentOffset(new CGPoint(newX, newY), true);
                             } else if (meter(scrollVelocity) > 1) {
                                 if (scroller != null)
                                     scroller.invalidate();
