@@ -20,7 +20,6 @@ import crossmobile.ios.coregraphics.CGContext;
 import crossmobile.ios.coregraphics.CGPathDrawingMode;
 import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.foundation.NSTimer;
-import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.*;
 
 /**
@@ -31,7 +30,8 @@ import org.crossmobile.bridge.ann.*;
 @CMClass
 public class UIStepper extends UIControl {
 
-    private static final int MAX_HEIGHT = 29;
+    private static final int HEIGHT = 28;
+    private static final int WIDTH = 48;
 
     private boolean continuous = true;
     private boolean autorepeat = true;
@@ -43,15 +43,14 @@ public class UIStepper extends UIControl {
     private UIButton incrementButton;
     private UIButton decrementButton;
     private UIImageView backgroundImg;
-    private NSTimer timer;
-    private double changeRange;
+    private final StepperTimer timer = new StepperTimer();
 
     /**
      * Constructs a default UIStepper object located at (0,0) with 0 weight and
      * 0 height.
      */
     public UIStepper() {
-        this(CGRect.zero());
+        this(null);
     }
 
     /**
@@ -63,13 +62,78 @@ public class UIStepper extends UIControl {
     @CMConstructor("- (instancetype)initWithFrame:(CGRect)frame;")
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public UIStepper(CGRect frame) {
-        super(frame);
-        addbuttons();
+        super(CGRect.zero());
+        incrementButton = new UIButton(UIButtonType.Custom) {
+            @Override
+            void drawOnTop(CGContext cx, CGRect rect) {
+                if (imageForState(state()) == null) {
+                    cx.setStrokeColorWithColor(tintColor().cgcolor);
+                    cx.beginPath();
+                    cx.moveToPoint(rect.getOrigin().getX(), rect.getOrigin().getY());
+                    cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth() - 2, rect.getOrigin().getY());
+                    cx.addCurveToPoint(rect.getOrigin().getX() + rect.getSize().getWidth() - 1, rect.getOrigin().getY() + 1, rect.getOrigin().getX() + rect.getSize().getWidth() - 1, rect.getOrigin().getY() + 1, rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY() + 2);
+                    cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY() + rect.getSize().getHeight() - 2);
+                    cx.addCurveToPoint(rect.getOrigin().getX() + rect.getSize().getWidth() - 1, rect.getOrigin().getY() + rect.getSize().getHeight() - 1, rect.getOrigin().getX() + rect.getSize().getWidth() - 1, rect.getOrigin().getY() + rect.getSize().getHeight() - 1, rect.getOrigin().getX() + rect.getSize().getWidth() - 2, rect.getOrigin().getY() + rect.getSize().getHeight());
+                    cx.addLineToPoint(rect.getOrigin().getX(), rect.getOrigin().getY() + rect.getSize().getHeight());
+                    cx.setLineWidth(1);
+                    cx.drawPath(CGPathDrawingMode.Stroke);
+                }
+            }
+
+            @Override
+            boolean shouldDrawOnTop() {
+                return true;
+            }
+        };
+        decrementButton = new UIButton(UIButtonType.Custom) {
+            @Override
+            void drawOnTop(CGContext cx, CGRect rect) {
+                if (imageForState(state()) == null) {
+                    cx.setStrokeColorWithColor(tintColor().cgcolor);
+                    cx.beginPath();
+                    cx.moveToPoint(rect.getOrigin().getX() + 2, rect.getOrigin().getY());
+                    cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY());
+                    cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY() + rect.getSize().getHeight());
+                    cx.addLineToPoint(rect.getOrigin().getX() + 2, rect.getOrigin().getY() + rect.getSize().getHeight());
+                    cx.addCurveToPoint(rect.getOrigin().getX() + 1, rect.getOrigin().getY() + rect.getSize().getHeight() - 1, rect.getOrigin().getX() + 1, rect.getOrigin().getY() + rect.getSize().getHeight() - 1, rect.getOrigin().getX(), rect.getOrigin().getY() + rect.getSize().getHeight() - 2);
+                    cx.addLineToPoint(rect.getOrigin().getX(), rect.getOrigin().getY() + 2);
+                    cx.addCurveToPoint(rect.getOrigin().getX() + 1, rect.getOrigin().getY() + 1, rect.getOrigin().getX() + 1, rect.getOrigin().getY() + 1, rect.getOrigin().getX() + 2, rect.getOrigin().getY());
+                    cx.setLineWidth(1);
+                    cx.drawPath(CGPathDrawingMode.Stroke);
+                }
+            }
+
+            @Override
+            boolean shouldDrawOnTop() {
+                return true;
+            }
+        };
+
+        incrementButton.setTitle("+", UIControlState.Normal);
+        incrementButton.addTarget((sender, event) -> timer.start(1), UIControlEvents.TouchDown);
+        incrementButton.addTarget((sender, event) -> timer.stop(), UIControlEvents.TouchUpInside | UIControlEvents.TouchUpOutside);
+        incrementButton.titleLabel().setAdjustsFontSizeToFitWidth(true);
+        incrementButton.setFrame(new CGRect(WIDTH, 0, WIDTH, HEIGHT));
+
+        decrementButton.setTitle("-", UIControlState.Normal);
+        decrementButton.addTarget((sender, event) -> timer.start(-1), UIControlEvents.TouchDown);
+        decrementButton.addTarget((sender, event) -> timer.stop(), UIControlEvents.TouchUpInside | UIControlEvents.TouchUpOutside);
+        decrementButton.titleLabel().setAdjustsFontSizeToFitWidth(true);
+        decrementButton.setFrame(new CGRect(0, 0, WIDTH, HEIGHT));
+        decrementButton.setEnabled(wraps);
+
+        addSubview(decrementButton);
+        addSubview(incrementButton);
+        setFrame(frame);
+    }
+
+    @Override
+    public void setFrame(CGRect frame) {
+        super.setFrame(new CGRect(frame.getOrigin().getX(), frame.getOrigin().getY(), WIDTH * 2, HEIGHT));
     }
 
     /**
-     * Returns a Boolean that shows whether the value is sent immediately after
-     * change.
+     * Determine whether the value is sent immediately after change.
      *
      * @return A Boolean that shows whether the value is sent immediately after
      * change.
@@ -80,8 +144,7 @@ public class UIStepper extends UIControl {
     }
 
     /**
-     * Sets a Boolean that defines whether the value is sent immediately after
-     * change.
+     * Sets whether the value is sent immediately after change.
      *
      * @param continuous A Boolean that defines whether the value is sent
      *                   immediately after change.
@@ -234,10 +297,10 @@ public class UIStepper extends UIControl {
      */
     @CMSetter("@property(nonatomic) double value;")
     public void setValue(double value) {
-        setValue(value, null);
+        setValue(value, false);
     }
 
-    void setValue(double value, UIEvent event) {
+    private void setValue(double value, boolean fireEvent) {
         this.value = (wraps)
                 ? (value > maximumValue) ? minimumValue : (value < minimumValue) ? maximumValue : value
                 : (value > maximumValue) ? maximumValue : (value < minimumValue) ? minimumValue : value;
@@ -250,7 +313,8 @@ public class UIStepper extends UIControl {
                 incrementButton.setEnabled(true);
                 decrementButton.setEnabled(true);
             }
-        sendActionsForControlEvents(UIControlEvents.ValueChanged);
+        if (fireEvent)
+            sendActionsForControlEvents(UIControlEvents.ValueChanged);
     }
 
     @Override
@@ -370,124 +434,52 @@ public class UIStepper extends UIControl {
         incrementButton.setImage(image, UIControlState);
     }
 
-    @Override
-    public void layoutSubviews() {
-        for (UIView v : subviews())
-            v.removeFromSuperview();
-        Native.system().runAndWaitOnEventThread(() -> {
-            CGRect frame1 = frame();
-            int actualX = 0;
-            int actualWidth;
-            double xRunner = 0;
-            double desiredWidth = frame1.getSize().getWidth() / 2;
-            double height = MAX_HEIGHT;
-            /* Update metrics */
-            xRunner += desiredWidth;
-            actualWidth = (int) (xRunner - actualX + 0.5);
-            decrementButton.setFrame(new CGRect(actualX, 0, actualWidth, height));
-            addSubview(decrementButton);
-            actualX += actualWidth;
-            xRunner += desiredWidth;
-            actualWidth = (int) (xRunner - actualX + 0.5);
-            incrementButton.setFrame(new CGRect(actualX, 0, actualWidth, height));
-            addSubview(incrementButton);
-            actualX += actualWidth;
-            Native.graphics().refreshDisplay();
-        });
-    }
+    private class StepperTimer {
+        private NSTimer timer;
+        private double cValue;
+        private double sign;
+        private int updateCycle;
+        private int updateSteps;
 
-    private void addbuttons() {
-        incrementButton = new UIButton(UIButtonType.Custom) {
-            @Override
-            void drawOnTop(CGContext cx, CGRect rect) {
-                if (imageForState(state()) == null) {
-                    cx.setStrokeColorWithColor(tintColor().cgcolor);
-                    cx.beginPath();
-                    cx.moveToPoint(rect.getOrigin().getX(), rect.getOrigin().getY());
-                    cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth() - 2, rect.getOrigin().getY());
-                    cx.addCurveToPoint(rect.getOrigin().getX() + rect.getSize().getWidth() - 1, rect.getOrigin().getY() + 1, rect.getOrigin().getX() + rect.getSize().getWidth() - 1, rect.getOrigin().getY() + 1, rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY() + 2);
-                    cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY() + rect.getSize().getHeight() - 2);
-                    cx.addCurveToPoint(rect.getOrigin().getX() + rect.getSize().getWidth() - 1, rect.getOrigin().getY() + rect.getSize().getHeight() - 1, rect.getOrigin().getX() + rect.getSize().getWidth() - 1, rect.getOrigin().getY() + rect.getSize().getHeight() - 1, rect.getOrigin().getX() + rect.getSize().getWidth() - 2, rect.getOrigin().getY() + rect.getSize().getHeight());
-                    cx.addLineToPoint(rect.getOrigin().getX(), rect.getOrigin().getY() + rect.getSize().getHeight());
-                    cx.setLineWidth(1);
-                    cx.drawPath(CGPathDrawingMode.Stroke);
+        void start(double sign) {
+            this.sign = sign;
+            this.cValue = value + sign * stepValue;
+            this.updateCycle = 10;
+            this.updateSteps = 0;
+            if (autorepeat) {
+                synchronized (this) {
+                    if (timer == null)
+                        timer = NSTimer.scheduledTimerWithTimeInterval(0.05, t -> {
+                            updateSteps++;
+                            if (updateCycle <= 1 || (updateSteps % updateCycle) == 0) {
+                                updateCycle--;
+                                updateSteps = 0;
+                                cValue += this.sign * stepValue;
+                                if (continuous)
+                                    updateValue();
+                                if (!wraps)
+                                    if (cValue < minimumValue || cValue > maximumValue)
+                                        stop();
+                            }
+                        }, this, true);
                 }
             }
+            updateValue();
+        }
 
-            @Override
-            boolean shouldDrawOnTop() {
-                return true;
-            }
-        };
-        incrementButton.setTitle("+", UIControlState.Normal);
-        incrementButton.addTarget((UIControl sender, UIEvent event) -> {
-            if (timer.isValid())
-                timer.invalidate();
-            setValue(value + stepValue * ((changeRange > 0) ? changeRange : 1), event);
-        }, UIControlEvents.TouchUpInside);
-        incrementButton.titleLabel().setAdjustsFontSizeToFitWidth(true);
-        incrementButton.addTarget(new UIControlDelegate() {
-            @Override
-            public void exec(UIControl sender, UIEvent event) {
-                if (autorepeat)
-                    timer = NSTimer.scheduledTimerWithTimeInterval(0.5, (NSTimer timer1) -> {
-                        if (continuous)
-                            setValue(value + stepValue, event);
-                        else
-                            changeRange++;
-                        if (value == maximumValue && !wraps)
-                            timer1.invalidate();
-                    }, this, true);
-            }
-        }, UIControlEvents.TouchDown);
-        decrementButton = new UIButton(UIButtonType.Custom) {
-            @Override
-            void drawOnTop(CGContext cx, CGRect rect) {
-                if (imageForState(state()) == null) {
-
-                    cx.setStrokeColorWithColor(tintColor().cgcolor);
-                    cx.beginPath();
-                    cx.moveToPoint(rect.getOrigin().getX() + 2, rect.getOrigin().getY());
-                    cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY());
-                    cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY() + rect.getSize().getHeight());
-                    cx.addLineToPoint(rect.getOrigin().getX() + 2, rect.getOrigin().getY() + rect.getSize().getHeight());
-                    cx.addCurveToPoint(rect.getOrigin().getX() + 1, rect.getOrigin().getY() + rect.getSize().getHeight() - 1, rect.getOrigin().getX() + 1, rect.getOrigin().getY() + rect.getSize().getHeight() - 1, rect.getOrigin().getX(), rect.getOrigin().getY() + rect.getSize().getHeight() - 2);
-                    cx.addLineToPoint(rect.getOrigin().getX(), rect.getOrigin().getY() + 2);
-                    cx.addCurveToPoint(rect.getOrigin().getX() + 1, rect.getOrigin().getY() + 1, rect.getOrigin().getX() + 1, rect.getOrigin().getY() + 1, rect.getOrigin().getX() + 2, rect.getOrigin().getY());
-                    cx.setLineWidth(1);
-                    cx.drawPath(CGPathDrawingMode.Stroke);
+        void stop() {
+            synchronized (this) {
+                if (timer != null) {
+                    timer.invalidate();
+                    timer = null;
                 }
             }
+            updateValue();
+        }
 
-            @Override
-            boolean shouldDrawOnTop() {
-                return true;
-            }
-
-        };
-        decrementButton.setTitle("-", UIControlState.Normal);
-        decrementButton.addTarget((UIControl sender, UIEvent event) -> {
-            if (timer.isValid())
-                timer.invalidate();
-            setValue(value - stepValue * ((changeRange > 0) ? changeRange : 1), event);
-        }, UIControlEvents.TouchUpInside);
-
-        decrementButton.addTarget((UIControl sender, UIEvent event) -> {
-            changeRange = 0;
-            if (autorepeat)
-                timer = NSTimer.scheduledTimerWithTimeInterval(0.5, (NSTimer timer1) -> {
-                    if (continuous)
-                        setValue(value - stepValue, event);
-                    else
-                        changeRange++;
-                    if (value == minimumValue && !wraps)
-                        timer1.invalidate();
-                }, this, true);
-
-        }, UIControlEvents.TouchDown);
-        decrementButton.titleLabel().setAdjustsFontSizeToFitWidth(true);
-        if (!wraps)
-            decrementButton.setEnabled(false);
+        private void updateValue() {
+            if (value != cValue)
+                setValue(cValue, true);
+        }
     }
-
 }
