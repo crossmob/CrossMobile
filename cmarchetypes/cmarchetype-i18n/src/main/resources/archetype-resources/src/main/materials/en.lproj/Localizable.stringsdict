@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>I have some apples</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>I have %#@APPLE@.</string>
+		<key>APPLE</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>u</string>
+			<key>zero</key>
+			<string>no apples</string>
+			<key>one</key>
+			<string>one apple</string>
+			<key>two</key>
+			<string>two apples</string>
+			<key>other</key>
+			<string>%u apples</string>
+		</dict>
+	</dict>
+	<key>I have some oranges in basket</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$#@basket@.</string>
+		<key>basket</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>u</string>
+			<key>zero</key>
+			<string>I don't have any baskets</string>
+			<key>one</key>
+			<string>I have one basket with %2$#@orange@</string>
+			<key>other</key>
+			<string>I have %2$#@orange@ inside %u baskets</string>
+		</dict>
+		<key>orange</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>u</string>
+			<key>zero</key>
+			<string>no oranges</string>
+			<key>one</key>
+			<string>one orange</string>
+			<key>other</key>
+			<string>%u oranges</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

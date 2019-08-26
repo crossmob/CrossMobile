@@ -16,13 +16,6 @@
                 <include>__artifactId__/*.java</include>
             </includes>
         </fileSet>
-        <fileSet>
-            <directory></directory>
-            <includes>
-                <include>build.gradle</include>
-                <include>*.properties</include>
-            </includes>
-        </fileSet>
     </fileSets>
     <requiredProperties>
         <requiredProperty key="name">

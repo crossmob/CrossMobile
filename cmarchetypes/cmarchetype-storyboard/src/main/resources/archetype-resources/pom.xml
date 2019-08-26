@@ -21,7 +21,7 @@
         <dependency>
             <groupId>org.crossmobile</groupId>
             <artifactId>cmtheme-bright</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${crossmobile.version}</version>
         </dependency>
     </dependencies>
     <repositories>

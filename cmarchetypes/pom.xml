@@ -15,11 +15,15 @@
     <name>Archetypes</name>
 
     <modules>
-        <module>cmarchetype-sample</module>
+        <module>cmarchetype-button</module>
+        <module>cmarchetype-camera</module>
+        <module>cmarchetype-empty</module>
+        <module>cmarchetype-i18n</module>
+        <module>cmarchetype-map</module>
         <module>cmarchetype-navigation</module>
         <module>cmarchetype-single</module>
-        <module>cmarchetype-empty</module>
         <module>cmarchetype-storyboard</module>
+        <module>cmarchetype-table</module>
     </modules>
 
 </project>

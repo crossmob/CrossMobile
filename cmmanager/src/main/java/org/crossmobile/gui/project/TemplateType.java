@@ -16,11 +16,19 @@
  */
 package org.crossmobile.gui.project;
 
+import org.crossmobile.gui.actives.ActiveIcon;
+
+import javax.swing.*;
+
 public enum TemplateType {
-    STORYBOARD_PROJECT,
-    SINGLE_PROJECT,
+    BUTTON_PROJECT,
     NAVIGATION_PROJECT,
-    SAMPLE_PROJECT,
+    TABLE_PROJECT,
+    STORYBOARD_PROJECT,
+    I18N_PROJECT,
+    CAMERA_PROJECT,
+    MAP_PROJECT,
+    SINGLE_PROJECT,
     EMPTY_PROJECT;
 
     public final String actual;
@@ -28,5 +36,9 @@ public enum TemplateType {
     TemplateType() {
         String name = name();
         actual = name.substring(0, name.indexOf('_')).toLowerCase();
+    }
+
+    public Icon icon() {
+        return new ActiveIcon("images/" + actual + "_project");
     }
 }

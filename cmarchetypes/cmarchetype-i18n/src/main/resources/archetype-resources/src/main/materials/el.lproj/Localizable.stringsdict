@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>I have some apples</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@APPLE@.</string>
+		<key>APPLE</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>u</string>
+			<key>zero</key>
+			<string>Δεν έχω μήλα</string>
+			<key>one</key>
+			<string>Έχω ένα μήλο</string>
+			<key>two</key>
+			<string>Έχω δύο μήλα</string>
+			<key>other</key>
+			<string>Έχω %u μήλα</string>
+		</dict>
+	</dict>
+	<key>I have some oranges in basket</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$#@basket@.</string>
+		<key>basket</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>u</string>
+			<key>zero</key>
+			<string>Δεν έχω καλάθι</string>
+			<key>one</key>
+			<string>Έχω ένα καλάθι %2$#@orange@</string>
+			<key>other</key>
+			<string>Έχω %1$u καλάθια %2$#@orange@</string>
+		</dict>
+		<key>orange</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>u</string>
+			<key>zero</key>
+			<string>χωρίς πορτοκάλια</string>
+			<key>one</key>
+			<string>με ένα πορτοκάλι</string>
+			<key>other</key>
+			<string>με %2$u πορτοκάλια</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

@@ -23,6 +23,7 @@ import org.crossmobile.gui.actives.ActivePanel;
 import org.crossmobile.gui.actives.ActiveRadioButton;
 import org.crossmobile.gui.actives.ActiveTextField;
 import org.crossmobile.gui.parameters.impl.ArtifactIdParameter;
+import org.crossmobile.gui.project.TemplateType;
 import org.crossmobile.prefs.Prefs;
 import org.crossmobile.utils.NameConvertor;
 
@@ -142,12 +143,26 @@ public final class NewProjectInfo extends HiResDialog {
         jPanel2 = new ActivePanel();
         idL = new ActiveLabel();
         idT = new ActiveTextField();
-        jPanel3 = new ActivePanel();
+        jPanel12 = new javax.swing.JPanel();
         jLabel3 = new ActiveLabel();
-        sampleR = new ActiveRadioButton();
+        jPanel3 = new ActivePanel();
+        buttonR = new ActiveRadioButton();
+        buttonL = new javax.swing.JLabel();
         singleR = new ActiveRadioButton();
+        singleL = new javax.swing.JLabel();
         navigationR = new ActiveRadioButton();
+        nagivationL = new javax.swing.JLabel();
+        tableR = new ActiveRadioButton();
+        tableL = new javax.swing.JLabel();
+        cameraR = new ActiveRadioButton();
+        cameraL = new javax.swing.JLabel();
+        mapR = new ActiveRadioButton();
+        mapL = new javax.swing.JLabel();
+        i18nR = new ActiveRadioButton();
+        i18nL = new javax.swing.JLabel();
         storyboardR = new ActiveRadioButton();
+        storyboardL = new javax.swing.JLabel();
+        jPanel13 = new javax.swing.JPanel();
         emptyR = new ActiveRadioButton();
         jPanel6 = new ActivePanel();
         createB = new HiResButton();
@@ -156,6 +171,7 @@ public final class NewProjectInfo extends HiResDialog {
         setTitle("Create new CrossMobile project");
         setResizable(false);
         setSize(new java.awt.Dimension(500, 400));
+        getContentPane().setLayout(new java.awt.BorderLayout());
 
         BasePanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 4, 8));
         BasePanel.setLayout(new java.awt.BorderLayout());
@@ -228,47 +244,107 @@ public final class NewProjectInfo extends HiResDialog {
 
         jPanel10.add(jPanel2);
 
-        jPanel3.setLayout(new java.awt.GridLayout(0, 1, 0, 6));
+        jPanel12.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 0, 12, 0));
+        jPanel12.setOpaque(false);
+        jPanel12.setLayout(new java.awt.BorderLayout());
 
         jLabel3.setText("Please select code template");
-        jPanel3.add(jLabel3);
+        jPanel12.add(jLabel3, java.awt.BorderLayout.PAGE_START);
 
-        templateG.add(sampleR);
-        sampleR.setSelected(true);
-        sampleR.setText("Sample project");
-        sampleR.setActionCommand(SAMPLE_PROJECT.actual);
-        sampleR.setOpaque(false);
-        jPanel3.add(sampleR);
+        jPanel10.add(jPanel12);
+
+        jPanel3.setLayout(new java.awt.GridLayout(0, 4, 8, 12));
+
+        templateG.add(buttonR);
+        buttonR.setSelected(true);
+        buttonR.setText("Button example");
+        buttonR.setActionCommand(BUTTON_PROJECT.actual);
+        buttonR.setOpaque(false);
+        jPanel3.add(buttonR);
+
+        buttonL.setIcon(BUTTON_PROJECT.icon());
+        jPanel3.add(buttonL);
 
         templateG.add(singleR);
-        singleR.setText("Single view project");
+        singleR.setText("Empty view");
         singleR.setActionCommand(SINGLE_PROJECT.actual);
         singleR.setOpaque(false);
         jPanel3.add(singleR);
 
+        singleL.setIcon(SINGLE_PROJECT.icon());
+        jPanel3.add(singleL);
+
         templateG.add(navigationR);
-        navigationR.setText("Navigation based project");
+        navigationR.setText("Navigation example");
         navigationR.setActionCommand(NAVIGATION_PROJECT.actual);
         navigationR.setOpaque(false);
         jPanel3.add(navigationR);
 
+        nagivationL.setIcon(NAVIGATION_PROJECT.icon());
+        jPanel3.add(nagivationL);
+
+        templateG.add(tableR);
+        tableR.setText("Table example");
+        tableR.setActionCommand(TABLE_PROJECT.actual);
+        tableR.setOpaque(false);
+        jPanel3.add(tableR);
+
+        tableL.setIcon(TABLE_PROJECT.icon());
+        jPanel3.add(tableL);
+
+        templateG.add(cameraR);
+        cameraR.setText("Camera example");
+        cameraR.setActionCommand(CAMERA_PROJECT.actual);
+        cameraR.setOpaque(false);
+        jPanel3.add(cameraR);
+
+        cameraL.setIcon(CAMERA_PROJECT.icon());
+        jPanel3.add(cameraL);
+
+        templateG.add(mapR);
+        mapR.setText("Map example");
+        mapR.setActionCommand(MAP_PROJECT.actual);
+        mapR.setOpaque(false);
+        jPanel3.add(mapR);
+
+        mapL.setIcon(MAP_PROJECT.icon());
+        jPanel3.add(mapL);
+
+        templateG.add(i18nR);
+        i18nR.setText("Internationalization");
+        i18nR.setActionCommand(I18N_PROJECT.actual);
+        i18nR.setOpaque(false);
+        jPanel3.add(i18nR);
+
+        i18nL.setIcon(I18N_PROJECT.icon());
+        jPanel3.add(i18nL);
+
         templateG.add(storyboardR);
-        storyboardR.setText("Storyboard project");
+        storyboardR.setText("Storyboard example");
         storyboardR.setActionCommand(STORYBOARD_PROJECT.actual);
         storyboardR.setOpaque(false);
         jPanel3.add(storyboardR);
+
+        storyboardL.setIcon(STORYBOARD_PROJECT.icon());
+        jPanel3.add(storyboardL);
+
+        jPanel10.add(jPanel3);
+
+        jPanel13.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 0, 0, 0));
+        jPanel13.setOpaque(false);
+        jPanel13.setLayout(new java.awt.BorderLayout());
 
         templateG.add(emptyR);
         emptyR.setText("Project with no source files");
         emptyR.setActionCommand(EMPTY_PROJECT.actual);
         emptyR.setOpaque(false);
-        jPanel3.add(emptyR);
+        jPanel13.add(emptyR, java.awt.BorderLayout.WEST);
 
-        jPanel10.add(jPanel3);
+        jPanel10.add(jPanel13);
 
         BasePanel.add(jPanel10, java.awt.BorderLayout.NORTH);
 
-        jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+        jPanel6.setLayout(new java.awt.FlowLayout(2));
 
         createB.setText("Create");
         createB.addActionListener(new java.awt.event.ActionListener() {
@@ -323,23 +399,37 @@ public final class NewProjectInfo extends HiResDialog {
     private javax.swing.JLabel appnameL;
     private javax.swing.JTextField appnameT;
     private javax.swing.JButton browseB;
+    private javax.swing.JLabel buttonL;
+    private javax.swing.JRadioButton buttonR;
+    private javax.swing.JLabel cameraL;
+    private javax.swing.JRadioButton cameraR;
     private javax.swing.JButton createB;
     private javax.swing.JRadioButton emptyR;
+    private javax.swing.JLabel i18nL;
+    private javax.swing.JRadioButton i18nR;
     private javax.swing.JLabel idL;
     private javax.swing.JTextField idT;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JTextField locationT;
+    private javax.swing.JLabel mapL;
+    private javax.swing.JRadioButton mapR;
+    private javax.swing.JLabel nagivationL;
     private javax.swing.JRadioButton navigationR;
-    private javax.swing.JRadioButton sampleR;
+    private javax.swing.JLabel singleL;
     private javax.swing.JRadioButton singleR;
+    private javax.swing.JLabel storyboardL;
     private javax.swing.JRadioButton storyboardR;
+    private javax.swing.JLabel tableL;
+    private javax.swing.JRadioButton tableR;
     private javax.swing.ButtonGroup templateG;
     private javax.swing.ButtonGroup themeBG;
     private javax.swing.ButtonGroup themeRG;
