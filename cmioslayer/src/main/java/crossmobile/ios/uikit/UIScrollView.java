@@ -87,8 +87,6 @@ public class UIScrollView extends UIView {
 
     private final Map<Integer, ClVariable> contentVariableMap = new HashMap<>();
     private final List<NSLayoutConstraint> contentConstraints = new ArrayList<>();
-    private final List<NSLayoutConstraint> generalConstraints = new ArrayList<>();
-    //
 
     private boolean began = true;
     private UIPanGestureRecognizer pan = new UIPanGestureRecognizer(new NSSelector<UIGestureRecognizer>() { // Should be friendly, so that the tableview can prevent it
@@ -299,7 +297,7 @@ public class UIScrollView extends UIView {
         while ((firstAncestorScrollView = firstAncestorScrollView.superview()) != null)
             if (firstAncestorScrollView instanceof UIScrollView)
                 return firstAncestorScrollView;
-        return firstAncestorScrollView;
+        return null;
     }
 
     /**
@@ -398,7 +396,7 @@ public class UIScrollView extends UIView {
                 setContentOffset(offset.getX(), offset.getY());
     }
 
-    void setContentOffset(double x, double y) {
+    private void setContentOffset(double x, double y) {
         if ((contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) <= getWidth())
             x = contentOffset.getX();
         if ((contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) <= getHeight())
@@ -760,7 +758,7 @@ public class UIScrollView extends UIView {
      */
     @CMSetter("@property(nonatomic) UIEdgeInsets scrollIndicatorInsets;")
     public void setScrollIndicatorInsets(UIEdgeInsets scrollIndicatorInsets) {
-        this.scrollIndicatorInsets.set(contentInset);
+        this.scrollIndicatorInsets.set(scrollIndicatorInsets);
         Native.graphics().refreshDisplay();
     }
 
@@ -955,7 +953,7 @@ public class UIScrollView extends UIView {
 
         final double xFrom, yFrom, xTo, yTo;
 
-        public ScrollContent(double xTo, double yTo) {
+        ScrollContent(double xTo, double yTo) {
             this.xFrom = contentOffset.getX();
             this.yFrom = contentOffset.getY();
 
@@ -964,18 +962,14 @@ public class UIScrollView extends UIView {
                     : (xTo > (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - getWidth()
                     ? (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - getWidth()
                     : pagingEnabled
-                    ? ((int) ((xTo > xFrom + getWidth()
-                    ? xFrom + getWidth()
-                    : xTo) / getWidth() + 0.5)) * getWidth() + contentInset.getLeft() + contentInset.getRight()
+                    ? ((int) (Math.min(xTo, xFrom + getWidth()) / getWidth() + 0.5)) * getWidth() + contentInset.getLeft() + contentInset.getRight()
                     : xTo);
             yTo = yTo < 0
                     ? 0
                     : (yTo > (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) - getHeight()
                     ? (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) - getHeight()
                     : pagingEnabled
-                    ? ((int) ((yTo > yFrom + getHeight()
-                    ? yFrom + getHeight()
-                    : yTo) / getHeight() + 0.5)) * getHeight() + contentInset.getTop() + contentInset.getBottom()
+                    ? ((int) (Math.min(yTo, yFrom + getHeight()) / getHeight() + 0.5)) * getHeight() + contentInset.getTop() + contentInset.getBottom()
                     : yTo);
             this.xTo = xTo;
             this.yTo = yTo;
@@ -1004,14 +998,12 @@ public class UIScrollView extends UIView {
 
     private class SwipeContent implements TickerConsumer {
 
-        private final double duration;
         private final double x, y;
         private double dx, dy;
 
         private SwipeContent(CGPoint scrollVelocity) {
             x = contentOffset.getX();
             y = contentOffset.getY();
-            duration = 0.1f;
             dx = (float) (scrollVelocity.getX() > 0 ? -Math.pow(scrollVelocity.getX(), 1f / 1.2f) : Math.pow(-scrollVelocity.getX(), 1 / 1.2f));
             dx = pagingEnabled
                     ? -dx / 2 > getWidth() / 2
@@ -1050,14 +1042,12 @@ public class UIScrollView extends UIView {
                 if (bounces)
                     setContentOffset((float) (x + dx * progress), (float) (y + dy * progress));
                 else {
-                    float newx = (float) (x + dx * progress < 0 ? 0
-                            : x + dx * progress > contentSize.getWidth() - getWidth() ? contentSize.getWidth() - getWidth()
-                            : x + dx * progress);
-                    float newy = (float) (y + dy * progress < 0 ? 0
-                            : y + dy * progress > contentSize.getHeight() - getHeight() ? contentSize.getHeight() - getHeight()
-                            : (y + dy * progress));
-                    setContentOffset(newx, newy);
-                    if ((newx == 0 || newx == contentSize.getWidth() - getWidth()) && (newy == 0 || newy == contentSize.getHeight() - getHeight()))
+                    float newX = (float) (x + dx * progress < 0 ? 0
+                            : Math.min(x + dx * progress, contentSize.getWidth() - getWidth()));
+                    float newY = (float) (y + dy * progress < 0 ? 0
+                            : Math.min(y + dy * progress, contentSize.getHeight() - getHeight()));
+                    setContentOffset(newX, newY);
+                    if ((newX == 0 || newX == contentSize.getWidth() - getWidth()) && (newY == 0 || newY == contentSize.getHeight() - getHeight()))
                         if (scroller != null)
                             scroller.invalidate();
                 }
