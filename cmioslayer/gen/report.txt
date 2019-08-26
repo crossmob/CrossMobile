@@ -341,20 +341,20 @@ Creating file cmplugin-ios-cmi18n-<VERSION>.jar
 
 
 Creating file cmplugin-desktop-cmi18n-<VERSION>.jar
-org/crossmobile/cj$1.class v8
-org/crossmobile/cj$a.class v8
-org/crossmobile/cj$b$1.class v8
-org/crossmobile/cj$b.class v8
-org/crossmobile/cj$c.class v8
-org/crossmobile/cj.class v8
+org/crossmobile/ck$1.class v8
+org/crossmobile/ck$a.class v8
+org/crossmobile/ck$b$1.class v8
+org/crossmobile/ck$b.class v8
+org/crossmobile/ck$c.class v8
+org/crossmobile/ck.class v8
 
 Creating file cmplugin-android-cmi18n-<VERSION>.jar
-org/crossmobile/cj$1.class v8
-org/crossmobile/cj$a.class v8
-org/crossmobile/cj$b$1.class v8
-org/crossmobile/cj$b.class v8
-org/crossmobile/cj$c.class v8
-org/crossmobile/cj.class v8
+org/crossmobile/ck$1.class v8
+org/crossmobile/ck$a.class v8
+org/crossmobile/ck$b$1.class v8
+org/crossmobile/ck$b.class v8
+org/crossmobile/ck$c.class v8
+org/crossmobile/ck.class v8
 
 Creating file cmplugin-rvm-cmi18n-<VERSION>.jar
 
@@ -578,6 +578,8 @@ crossmobile/ios/uikit/UIAppearanceContainer.class v8
 crossmobile/ios/uikit/UIApplication.class v8
 crossmobile/ios/uikit/UIApplicationDelegate.class v8
 crossmobile/ios/uikit/UIApplicationLaunchOptionsKey.class v8
+crossmobile/ios/uikit/UIApplicationState.class v8
+crossmobile/ios/uikit/UIBackgroundFetchResult.class v8
 crossmobile/ios/uikit/UIBarButtonItem.class v8
 crossmobile/ios/uikit/UIBarButtonItemStyle.class v8
 crossmobile/ios/uikit/UIBarButtonSystemItem.class v8
@@ -738,7 +740,6 @@ crossmobile/ios/uikit/UIWindow.class v8
 crossmobile/ios/uikit/package-info.class v8
 crossmobile/package-info.class v8
 crossmobile/rt/StrongReference.class v8
-crossmobile/rt/UnimplementedOptionalException.class v8
 crossmobile/rt/package-info.class v8
 org/crossmobile/bridge/CustomNotifications.class v8
 org/crossmobile/bridge/ann/AssociationType.class v8
@@ -749,6 +750,7 @@ org/crossmobile/bridge/ann/CMLibTarget$BaseTarget.class v8
 org/crossmobile/bridge/ann/CMLibTarget.class v8
 org/crossmobile/bridge/ann/CMSetter.class v8
 org/crossmobile/bridge/ann/NativeCode.class v8
+org/crossmobile/bridge/system/JsonHelper$JsonSerializable.class v8
 org/crossmobile/bridge/system/JsonHelper.class v8
 org/crossmobile/build/StoryBoardBinder.class v8
 org/crossmobile/build/package-info.class v8
@@ -997,6 +999,8 @@ crossmobile/ios/uikit/UIAppearanceContainer.class v8
 crossmobile/ios/uikit/UIApplication.class v8
 crossmobile/ios/uikit/UIApplicationDelegate.class v8
 crossmobile/ios/uikit/UIApplicationLaunchOptionsKey.class v8
+crossmobile/ios/uikit/UIApplicationState.class v8
+crossmobile/ios/uikit/UIBackgroundFetchResult.class v8
 crossmobile/ios/uikit/UIBarButtonItem.class v8
 crossmobile/ios/uikit/UIBarButtonItemStyle.class v8
 crossmobile/ios/uikit/UIBarButtonSystemItem.class v8
@@ -1130,7 +1134,6 @@ crossmobile/ios/uikit/UITabBarDelegate.class v8
 crossmobile/ios/uikit/UITabBarItem.class v8
 crossmobile/ios/uikit/UITabBarItemPositioning.class v8
 crossmobile/ios/uikit/UITableView$1.class v8
-crossmobile/ios/uikit/UITableView$a.class v8
 crossmobile/ios/uikit/UITableView.class v8
 crossmobile/ios/uikit/UITableViewCell$1.class v8
 crossmobile/ios/uikit/UITableViewCell$a.class v8
@@ -1242,8 +1245,11 @@ crossmobile/ios/uikit/i$c$1.class v8
 crossmobile/ios/uikit/i$c.class v8
 crossmobile/ios/uikit/i.class v8
 crossmobile/ios/uikit/j.class v8
+crossmobile/ios/uikit/k.class v8
 crossmobile/rt/StrongReference.class v8
-crossmobile/rt/UnimplementedOptionalException.class v8
+native/CM_Block_Reverse_cmioslayer_0.h
+native/CM_Block_Reverse_cmioslayer_1.h
+native/CM_Block_Reverse_cmioslayer_2.h
 native/cmioslayer-Bridging-Header.h
 native/cmioslayer.a
 native/crossmobile_ios_coregraphics_CGAffineTransform.h
@@ -1638,6 +1644,7 @@ org/crossmobile/bridge/ann/CMSetter.class v8
 org/crossmobile/bridge/system/BaseUtils.class v8
 org/crossmobile/bridge/system/ClassWalker.class v8
 org/crossmobile/bridge/system/JsonHelper$1.class v8
+org/crossmobile/bridge/system/JsonHelper$JsonSerializable.class v8
 org/crossmobile/bridge/system/JsonHelper$a.class v8
 org/crossmobile/bridge/system/JsonHelper$b$a$a.class v8
 org/crossmobile/bridge/system/JsonHelper$b$a.class v8
@@ -1646,9 +1653,9 @@ org/crossmobile/bridge/system/JsonHelper.class v8
 org/crossmobile/bridge/system/Pair.class v8
 org/crossmobile/build/StoryBoardBinder.class v8
 org/crossmobile/c.class v1.5
-org/crossmobile/ct.class v8
 org/crossmobile/cu.class v8
 org/crossmobile/cv.class v8
+org/crossmobile/cw.class v8
 org/crossmobile/d.class v1.5
 org/crossmobile/e.class v1.5
 org/crossmobile/f$1.class v1.5
@@ -1874,6 +1881,8 @@ crossmobile/ios/uikit/UIAppearanceContainer.class v8
 crossmobile/ios/uikit/UIApplication.class v8
 crossmobile/ios/uikit/UIApplicationDelegate.class v8
 crossmobile/ios/uikit/UIApplicationLaunchOptionsKey.class v8
+crossmobile/ios/uikit/UIApplicationState.class v8
+crossmobile/ios/uikit/UIBackgroundFetchResult.class v8
 crossmobile/ios/uikit/UIBarButtonItem.class v8
 crossmobile/ios/uikit/UIBarButtonItemStyle.class v8
 crossmobile/ios/uikit/UIBarButtonSystemItem.class v8
@@ -2007,7 +2016,6 @@ crossmobile/ios/uikit/UITabBarDelegate.class v8
 crossmobile/ios/uikit/UITabBarItem.class v8
 crossmobile/ios/uikit/UITabBarItemPositioning.class v8
 crossmobile/ios/uikit/UITableView$1.class v8
-crossmobile/ios/uikit/UITableView$a.class v8
 crossmobile/ios/uikit/UITableView.class v8
 crossmobile/ios/uikit/UITableViewCell$1.class v8
 crossmobile/ios/uikit/UITableViewCell$a.class v8
@@ -2119,8 +2127,8 @@ crossmobile/ios/uikit/i$c$1.class v8
 crossmobile/ios/uikit/i$c.class v8
 crossmobile/ios/uikit/i.class v8
 crossmobile/ios/uikit/j.class v8
+crossmobile/ios/uikit/k.class v8
 crossmobile/rt/StrongReference.class v8
-crossmobile/rt/UnimplementedOptionalException.class v8
 javazoom/jl/decoder/au2lin.ser
 javazoom/jl/decoder/l3reorder.ser
 javazoom/jl/decoder/lin2au.ser
@@ -2360,6 +2368,7 @@ org/crossmobile/bridge/ann/CMSetter.class v8
 org/crossmobile/bridge/system/BaseUtils.class v8
 org/crossmobile/bridge/system/ClassWalker.class v8
 org/crossmobile/bridge/system/JsonHelper$1.class v8
+org/crossmobile/bridge/system/JsonHelper$JsonSerializable.class v8
 org/crossmobile/bridge/system/JsonHelper$a.class v8
 org/crossmobile/bridge/system/JsonHelper$b$a$a.class v8
 org/crossmobile/bridge/system/JsonHelper$b$a.class v8
@@ -2382,24 +2391,24 @@ org/crossmobile/ca.class v8
 org/crossmobile/cb.class v8
 org/crossmobile/cc.class v8
 org/crossmobile/cd.class v8
-org/crossmobile/ce$a.class v8
 org/crossmobile/ce.class v8
+org/crossmobile/cf$a.class v8
 org/crossmobile/cf.class v8
-org/crossmobile/cg$1.class v8
-org/crossmobile/cg$2.class v8
 org/crossmobile/cg.class v8
+org/crossmobile/ch$1.class v8
+org/crossmobile/ch$2.class v8
 org/crossmobile/ch.class v8
 org/crossmobile/ci.class v8
-org/crossmobile/ck.class v8
-org/crossmobile/cl$a.class v8
+org/crossmobile/cj.class v8
 org/crossmobile/cl.class v8
+org/crossmobile/cm$a.class v8
 org/crossmobile/cm.class v8
 org/crossmobile/cn.class v8
 org/crossmobile/co.class v8
 org/crossmobile/cp.class v8
 org/crossmobile/cq.class v8
-org/crossmobile/cr$a.class v8
 org/crossmobile/cr.class v8
+org/crossmobile/cs$a.class v8
 org/crossmobile/cs.class v8
 org/crossmobile/ct.class v8
 org/crossmobile/cu.class v8
@@ -2432,6 +2441,7 @@ org/crossmobile/dt.class v8
 org/crossmobile/du.class v8
 org/crossmobile/dv.class v8
 org/crossmobile/dw.class v8
+org/crossmobile/dx.class v8
 org/crossmobile/e.class v1.5
 org/crossmobile/f$1.class v1.5
 org/crossmobile/f$a.class v1.5
@@ -2654,6 +2664,8 @@ crossmobile/ios/uikit/UIAppearanceContainer.class v8
 crossmobile/ios/uikit/UIApplication.class v8
 crossmobile/ios/uikit/UIApplicationDelegate.class v8
 crossmobile/ios/uikit/UIApplicationLaunchOptionsKey.class v8
+crossmobile/ios/uikit/UIApplicationState.class v8
+crossmobile/ios/uikit/UIBackgroundFetchResult.class v8
 crossmobile/ios/uikit/UIBarButtonItem.class v8
 crossmobile/ios/uikit/UIBarButtonItemStyle.class v8
 crossmobile/ios/uikit/UIBarButtonSystemItem.class v8
@@ -2787,7 +2799,6 @@ crossmobile/ios/uikit/UITabBarDelegate.class v8
 crossmobile/ios/uikit/UITabBarItem.class v8
 crossmobile/ios/uikit/UITabBarItemPositioning.class v8
 crossmobile/ios/uikit/UITableView$1.class v8
-crossmobile/ios/uikit/UITableView$a.class v8
 crossmobile/ios/uikit/UITableView.class v8
 crossmobile/ios/uikit/UITableViewCell$1.class v8
 crossmobile/ios/uikit/UITableViewCell$a.class v8
@@ -2899,8 +2910,8 @@ crossmobile/ios/uikit/i$c$1.class v8
 crossmobile/ios/uikit/i$c.class v8
 crossmobile/ios/uikit/i.class v8
 crossmobile/ios/uikit/j.class v8
+crossmobile/ios/uikit/k.class v8
 crossmobile/rt/StrongReference.class v8
-crossmobile/rt/UnimplementedOptionalException.class v8
 org/crossmobile/a$a.class v1.5
 org/crossmobile/a.class v1.5
 org/crossmobile/at$a.class v8
@@ -3037,6 +3048,7 @@ org/crossmobile/bridge/ann/CMSetter.class v8
 org/crossmobile/bridge/system/BaseUtils.class v8
 org/crossmobile/bridge/system/ClassWalker.class v8
 org/crossmobile/bridge/system/JsonHelper$1.class v8
+org/crossmobile/bridge/system/JsonHelper$JsonSerializable.class v8
 org/crossmobile/bridge/system/JsonHelper$a.class v8
 org/crossmobile/bridge/system/JsonHelper$b$a$a.class v8
 org/crossmobile/bridge/system/JsonHelper$b$a.class v8
@@ -3059,24 +3071,24 @@ org/crossmobile/ca.class v8
 org/crossmobile/cb.class v8
 org/crossmobile/cc.class v8
 org/crossmobile/cd.class v8
-org/crossmobile/ce$a.class v8
 org/crossmobile/ce.class v8
+org/crossmobile/cf$a.class v8
 org/crossmobile/cf.class v8
-org/crossmobile/cg$1.class v8
-org/crossmobile/cg$2.class v8
 org/crossmobile/cg.class v8
+org/crossmobile/ch$1.class v8
+org/crossmobile/ch$2.class v8
 org/crossmobile/ch.class v8
 org/crossmobile/ci.class v8
-org/crossmobile/ck.class v8
-org/crossmobile/cl$a.class v8
+org/crossmobile/cj.class v8
 org/crossmobile/cl.class v8
+org/crossmobile/cm$a.class v8
 org/crossmobile/cm.class v8
 org/crossmobile/cn.class v8
 org/crossmobile/co.class v8
 org/crossmobile/cp.class v8
 org/crossmobile/cq.class v8
-org/crossmobile/cr$a.class v8
 org/crossmobile/cr.class v8
+org/crossmobile/cs$a.class v8
 org/crossmobile/cs.class v8
 org/crossmobile/ct.class v8
 org/crossmobile/cu.class v8
@@ -3109,6 +3121,7 @@ org/crossmobile/dt.class v8
 org/crossmobile/du.class v8
 org/crossmobile/dv.class v8
 org/crossmobile/dw.class v8
+org/crossmobile/dx.class v8
 org/crossmobile/e.class v1.5
 org/crossmobile/f$1.class v1.5
 org/crossmobile/f$a.class v1.5
@@ -3513,6 +3526,8 @@ crossmobile/ios/usernotifications/UNPushNotificationTrigger.class v8
 crossmobile/ios/usernotifications/UNTimeIntervalNotificationTrigger.class v8
 crossmobile/ios/usernotifications/UNUserNotificationCenter.class v8
 crossmobile/ios/usernotifications/UNUserNotificationCenterDelegate.class v8
+native/CM_Block_Reverse_cmnotifications_0.h
+native/CM_Block_Reverse_cmnotifications_1.h
 native/cmnotifications.a
 native/crossmobile_ios_uikit_UIUserNotificationAction.h
 native/crossmobile_ios_uikit_UIUserNotificationCategory.h
