@@ -33,7 +33,7 @@ public class ViewController extends UIViewController {
         UILabel hello = new UILabel(new CGRect(0, 80, 320, 20));
         hello.setAutoresizingMask(UIViewAutoresizing.FlexibleWidth);
         hello.setTextAlignment(NSTextAlignment.Center);
-        hello.setText(_l("Hello world"));
+        hello.setText(_l("Hello world"));   // take a note at the _l method!
 
 
         // Advances localization with support for plurals
@@ -83,7 +83,7 @@ public class ViewController extends UIViewController {
         stepper.setMaximumValue(99);
         stepper.setValue(0);
 
-        UILabel label = new UILabel(new CGRect(110, 0, 100, 20));
+        UILabel label = new UILabel(new CGRect(110, 0, 150, 20));
         label.setText(name + ": 0");
         stepper.addTarget((c, e) -> {
             int value = (int) Math.round(stepper.value());
@@ -91,7 +91,7 @@ public class ViewController extends UIViewController {
             callback.invoke(value);
         }, UIControlEvents.ValueChanged);
 
-        UIView bundle = new UIView(new CGRect(20, y, 160, 30));
+        UIView bundle = new UIView(new CGRect(20, y, 260, 30));
         bundle.addSubview(stepper);
         bundle.addSubview(label);
         return bundle;
