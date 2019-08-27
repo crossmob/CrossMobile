@@ -39,32 +39,33 @@ public class ImageHound {
 
     private final static double BACK_SIZE_MULTIPLIER = 1.5;
 
-    public ImageHound addForegroundImages(File srcDir, MetaImage defaultImage) {
-        gatherImages(srcDir, true, null, defaultImage == null ? null : defaultImage.image);
+    public ImageHound addForegroundImages(MetaImage defaultImage, File... srcDirs) {
+        gatherImages(true, null, defaultImage == null ? null : defaultImage.image, srcDirs);
         return this;
     }
 
-    public ImageHound addForegroundImages(File srcDir, String defaultResource) {
-        gatherImages(srcDir, true, defaultResource, null);
+    public ImageHound addForegroundImages(String defaultResource, File... srcDirs) {
+        gatherImages(true, defaultResource, null, srcDirs);
         return this;
     }
 
-    public ImageHound addBackgroundImages(File srcDir, String defaultResource) {
-        gatherImages(srcDir, false, defaultResource, null);
+    public ImageHound addBackgroundImages(String defaultResource, File... srcDirs) {
+        gatherImages(false, defaultResource, null, srcDirs);
         return this;
     }
 
-    private void gatherImages(File srcImages, boolean asFore, String defaultResource, BufferedImage defaultImage) {
+    private void gatherImages(boolean asFore, String defaultResource, BufferedImage defaultImage, File... srcDirs) {
         if (!container(asFore).isEmpty())
             throw new IllegalArgumentException("Images already set for " + (asFore ? "fore" : "back") + "ground set");
-        for (File child : FileUtils.list(srcImages))
-            try {
-                MetaImage old = child.isFile() ? addImage(new MetaImage(child), asFore) : null;
-                if (old != null)
-                    Log.error("Ignoring image " + child.getAbsolutePath() + " with size " + old.size + "; already found at " + old.file.getAbsolutePath());
-            } catch (IOException e) {
-                Log.error("Unable to load image " + child.getAbsolutePath());
-            }
+        for (File srcDir : srcDirs)
+            for (File child : FileUtils.list(srcDir))
+                try {
+                    MetaImage old = child.isFile() ? addImage(new MetaImage(child), asFore) : null;
+                    if (old != null)
+                        Log.error("Ignoring image " + child.getAbsolutePath() + " with size " + old.size + "; already found at " + old.file.getAbsolutePath());
+                } catch (IOException e) {
+                    Log.error("Unable to load image " + child.getAbsolutePath());
+                }
         if (container(asFore).isEmpty()) {
             try {
                 MetaImage meta = defaultImage == null

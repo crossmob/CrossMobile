@@ -39,8 +39,7 @@ import java.util.Objects;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static org.crossmobile.prefs.Config.BACK_ICONS;
-import static org.crossmobile.prefs.Config.FORE_ICONS;
+import static org.crossmobile.prefs.Config.*;
 import static org.crossmobile.utils.ParamsCommon.ARTIFACT_ID;
 import static org.crossmobile.utils.ParamsCommon.DISPLAY_NAME;
 
@@ -143,7 +142,9 @@ public class ProjectInfo {
         name = props.get(DISPLAY_NAME.tag().name).toString();
 
         int multiplier = ScreenUtils.isHiDPI() ? 2 : 1;
-        ImageHound imageSet = new ImageHound().addForegroundImages(new File(basedir, FORE_ICONS), "/images/logo-icon@2x.png").addBackgroundImages(new File(basedir, BACK_ICONS), "/images/empty.png");
+        ImageHound imageSet = new ImageHound()
+                .addForegroundImages("/images/logo-icon@2x.png", new File(basedir, FORE_ICONS), new File(basedir, ICON_DIR))
+                .addBackgroundImages("/images/empty.png", new File(basedir, BACK_ICONS));
         icons = imageSet.getImages();
         iconThumb = new HiResIcon(imageSet.findFore(32 * multiplier, true).withBackground(imageSet.findBack(32 * multiplier, true)).image);
     }

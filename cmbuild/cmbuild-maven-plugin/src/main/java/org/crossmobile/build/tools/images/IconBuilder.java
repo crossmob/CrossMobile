@@ -64,7 +64,7 @@ public class IconBuilder {
     }
 
     public static ImageHound getDefaultHound(File baseDir) {
-        return new ImageHound().addForegroundImages(new File(baseDir, FORE_ICONS), DEFAULT_FORE).addBackgroundImages(new File(baseDir, BACK_ICONS), DEFAULT_BACK);
+        return new ImageHound().addForegroundImages(DEFAULT_FORE, new File(baseDir, FORE_ICONS)).addBackgroundImages(DEFAULT_BACK, new File(baseDir, BACK_ICONS));
     }
 
     public static ImageHound copyIcons(ImageHound images, File destRoot, IconType iconType) {
@@ -83,7 +83,7 @@ public class IconBuilder {
     }
 
     public static void copyMask(ImageHound images, File baseDir, File destRoot) {
-        new ImageHound().addForegroundImages(new File(baseDir, MASK_ICONS), images.findFore(72, true))
+        new ImageHound().addForegroundImages(images.findFore(72, true), new File(baseDir, MASK_ICONS))
                 .findFore(72, true).asAlpha().save(new File(destRoot, "drawable/masked_icon.png"));
     }
 
