@@ -1118,7 +1118,7 @@ crossmobile/ios/uikit/UIStackViewDistribution.class v8
 crossmobile/ios/uikit/UIStatusBarStyle.class v8
 crossmobile/ios/uikit/UIStepper$1.class v8
 crossmobile/ios/uikit/UIStepper$2.class v8
-crossmobile/ios/uikit/UIStepper$3.class v8
+crossmobile/ios/uikit/UIStepper$a.class v8
 crossmobile/ios/uikit/UIStepper.class v8
 crossmobile/ios/uikit/UIStoryboard.class v8
 crossmobile/ios/uikit/UIStoryboardSegue.class v8
@@ -2000,7 +2000,7 @@ crossmobile/ios/uikit/UIStackViewDistribution.class v8
 crossmobile/ios/uikit/UIStatusBarStyle.class v8
 crossmobile/ios/uikit/UIStepper$1.class v8
 crossmobile/ios/uikit/UIStepper$2.class v8
-crossmobile/ios/uikit/UIStepper$3.class v8
+crossmobile/ios/uikit/UIStepper$a.class v8
 crossmobile/ios/uikit/UIStepper.class v8
 crossmobile/ios/uikit/UIStoryboard.class v8
 crossmobile/ios/uikit/UIStoryboardSegue.class v8
@@ -2783,7 +2783,7 @@ crossmobile/ios/uikit/UIStackViewDistribution.class v8
 crossmobile/ios/uikit/UIStatusBarStyle.class v8
 crossmobile/ios/uikit/UIStepper$1.class v8
 crossmobile/ios/uikit/UIStepper$2.class v8
-crossmobile/ios/uikit/UIStepper$3.class v8
+crossmobile/ios/uikit/UIStepper$a.class v8
 crossmobile/ios/uikit/UIStepper.class v8
 crossmobile/ios/uikit/UIStoryboard.class v8
 crossmobile/ios/uikit/UIStoryboardSegue.class v8

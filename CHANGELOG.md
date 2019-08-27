@@ -9,6 +9,7 @@ This is the CrossMobile change log.
 - hidesBackButton functionality
 - Launch options under Android gather Intent data
 - Display Android log even when application is not running in Manager
+- Support UIApplicationState
 - Support onNewIntent callbacks on Android
 - Support callback methods in ObjectiveC, even with block parameter types (i.e. for notification callbacks)
 
@@ -16,10 +17,14 @@ This is the CrossMobile change log.
 - Notifications under Android updated and fixed
 - Permissions dialog follows theme
 - UIView event callbacks properly invoked
+- UITableView correctly handles cell height lazily
+- I18n fixes on plural handling
 - Safer handling of plugins
 - Null pointer exception in UITextView
+- UIStepper auto-repeat always ends
 
 ### Changed
+- More archetypes added
 - Embed JRE 11 instead of 8
 - UIApplicationLaunchOptions renamed to UIApplicationLaunchOptionsKey
 - Update to latest Android libraries
