@@ -41,6 +41,8 @@ public class I18N {
 
     private static final Map<String, Collection<StringsDict>> dictBook = new HashMap<>();   // Index of StringsDict based on NSLocalizedString (with equality)
     private static final Pattern PARAMETER = Pattern.compile("%([0-9]+\\$)?#@(.+?)@");
+    private static final Pattern PLAIN_ARG = Pattern.compile("%[a-zA-Z]++[^#]");
+    private static final Pattern UNNAMED_ARG = Pattern.compile("%([0-9]+\\$)?[a-zA-Z]++[^#]");
     private static final Object[] EMPTY = new Object[]{};
 
 
@@ -52,12 +54,8 @@ public class I18N {
             allData.put(bundle.bundlePath(), bundleMap = new HashMap<>());
         Map<String, StringsDict> tableMap = bundleMap.get(table);
         // Load map in memory if not existed
-        if (tableMap == null) {
-            String path = findLocalizedPath(bundle, table, "stringsdict", null);
-            if (path == null)
-                path = findLocalizedPath(bundle, table, "strings", null);
-            bundleMap.put(table, tableMap = populateFromJson(path));
-        }
+        if (tableMap == null)
+            bundleMap.put(table, tableMap = populateFromJson(bundle, table));
         StringsDict found = tableMap.get(key);
         return found == null ? null : found.format;  // use absolute equality to check for key, thus returning actual format
     }
@@ -65,46 +63,48 @@ public class I18N {
     /**
      * Load a JSON-ised strings(dict) file
      *
-     * @param path the location of the JSON file
+     * @param bundle the bundle to search for localization strings
+     * @param table  the table of the localization strings
      * @return the result StringsDict map, never null
      */
-    public static Map<String, StringsDict> populateFromJson(String path) {
+    private static Map<String, StringsDict> populateFromJson(NSBundle bundle, String table) {
         Map<String, StringsDict> dictMap = new HashMap<>();
+        for (String path : new String[]{findLocalizedPath(bundle, table, "strings", null), findLocalizedPath(bundle, table, "stringsdict", null)}) {
+            if (path == null)
+                continue;
+            String data = NSString.stringWithContentsOfFile(path, NSStringEncoding.UTF8, null);
+            if (data == null)
+                continue;
+            JsonValue root = Json.parse(data);
+            if (!root.isObject())
+                continue;
 
-        if (path == null)
-            return dictMap;
-        String data = NSString.stringWithContentsOfFile(path, NSStringEncoding.UTF8, null);
-        if (data == null)
-            return dictMap;
-        JsonValue root = Json.parse(data);
-        if (!root.isObject())
-            return dictMap;
-
-        for (String translationKey : root.asObject().names()) {
-            JsonValue translation = root.asObject().get(translationKey);
-            if (translation.isString()) {
-                // from plain strings file
-                String format = translation.asString();
-                StringsDict sd = StringsDict.generateInDictBook(format, false);
-                dictMap.put(translationKey, sd);
-            } else if (translation.isObject()) {
-                // from stringsdict file
-                String format = translation.asObject().getString(FORMAT, null);
-                if (format == null)
-                    continue;
-                StringsDict sd = StringsDict.generateInDictBook(format, true);
-                dictMap.put(translationKey, sd);
-                for (String field : translation.asObject().names()) {
-                    if (field.equals(FORMAT))
+            for (String translationKey : root.asObject().names()) {
+                JsonValue translation = root.asObject().get(translationKey);
+                if (translation.isString()) {
+                    // from plain strings file
+                    String format = translation.asString();
+                    StringsDict sd = StringsDict.generateInDictBook(format, false);
+                    dictMap.put(translationKey, sd);
+                } else if (translation.isObject()) {
+                    // from stringsdict file
+                    String format = translation.asObject().getString(FORMAT, null);
+                    if (format == null)
                         continue;
-                    JsonValue forms = translation.asObject().get(field);
-                    if (!forms.isObject())
-                        continue;
-                    Map<String, String> entry = sd.createEntry(field);
-                    for (String form : forms.asObject().names()) {
-                        JsonValue val = forms.asObject().get(form);
-                        if (val.isString())
-                            entry.put(form, val.asString());
+                    StringsDict sd = StringsDict.generateInDictBook(format, true);
+                    dictMap.put(translationKey, sd);
+                    for (String field : translation.asObject().names()) {
+                        if (field.equals(FORMAT))
+                            continue;
+                        JsonValue forms = translation.asObject().get(field);
+                        if (!forms.isObject())
+                            continue;
+                        Map<String, String> entry = sd.createEntry(field);
+                        for (String form : forms.asObject().names()) {
+                            JsonValue val = forms.asObject().get(form);
+                            if (val.isString())
+                                entry.put(form, val.asString());
+                        }
                     }
                 }
             }
@@ -175,19 +175,24 @@ public class I18N {
          * @param args the list of arguments
          * @return the formatted String
          */
-        public String getFormat(NumberTest few, NumberTest many, Object... args) {
-            return entries == null ? format : getFormat(format, few, many, args == null ? EMPTY : args);
+        String getFormat(NumberTest few, NumberTest many, Object... args) {
+            return entries == null ? format : getFormat(format, -1, few, many, args == null ? EMPTY : args);
         }
 
         /**
          * One level format this StringsDict entry, based on the provided arguments and the format-up-to-now.
          * This is a recursive method, through getFormatParam method.
          *
-         * @param current the up-to-now formatted String.
-         * @param args    the list of arguments
+         * @param current      the up-to-now formatted String.
+         * @param currentIndex If it is >0, then try to find "clean" arguments (i.e. not named ones) and make them numbered
+         * @param args         the list of arguments
          * @return the partially formatted String
          */
-        private String getFormat(String current, NumberTest few, NumberTest many, Object... args) {
+        private String getFormat(String current, int currentIndex, NumberTest few, NumberTest many, Object... args) {
+            // First try to fix references, if their index number is known
+            if (currentIndex >= 0 && PLAIN_ARG.matcher(current).find()) {
+                current = fixNumbering(current, currentIndex + 1);
+            }
             Matcher match = PARAMETER.matcher(current);
             MatchGroup found = null;
             while (match.find()) {
@@ -204,6 +209,32 @@ public class I18N {
                 }
             }
             return current;
+        }
+
+        /**
+         * Use this method to fix arguments, that are not numbered but appear in pattern
+         *
+         * @param format       the current format
+         * @param currentIndex the current index
+         * @return the new format
+         */
+        private static String fixNumbering(String format, int currentIndex) {
+            String sFormat = format + " ";
+            if (PLAIN_ARG.matcher(sFormat).find()) {
+                int idx = currentIndex;
+                Matcher matcher = UNNAMED_ARG.matcher(sFormat);
+                while (matcher.find()) {
+                    String found = matcher.group();
+                    String number = matcher.group(1);
+                    if (number == null || number.isEmpty()) {
+                        matcher = UNNAMED_ARG.matcher(sFormat = sFormat.substring(0, matcher.start()) + "%" + idx + "$" + found.substring(1) + sFormat.substring(matcher.end()));
+                        idx = currentIndex;
+                    } else
+                        idx++;
+                }
+                format = sFormat.substring(0, sFormat.length() - 1);
+            }
+            return format;
         }
 
         /**
@@ -226,13 +257,13 @@ public class I18N {
                 if (numeric >= 0) {
                     String newFormat = entry.get(getTagFromNumber(numeric, few, many));
                     if (newFormat != null)
-                        return getFormat(newFormat, few, many, args);
+                        return getFormat(newFormat, index, few, many, args);
                     newFormat = entry.get(OTHER);
                     if (newFormat != null)
-                        return getFormat(newFormat, few, many, args);
+                        return getFormat(newFormat, index, few, many, args);
                     newFormat = entry.get(String.valueOf(numeric));
                     if (newFormat != null)
-                        return getFormat(newFormat, few, many, args);
+                        return getFormat(newFormat, index, few, many, args);
                 }
             }
             return "%" + (index + 1) + "$#@" + param + "@";

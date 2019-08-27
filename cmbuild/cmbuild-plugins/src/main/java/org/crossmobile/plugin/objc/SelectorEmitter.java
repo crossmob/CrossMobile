@@ -274,7 +274,10 @@ public class SelectorEmitter {
         out.append(") -> ").append(getSwiftType(selector.getReturnType())).append(" {\n\t\t");
         if (!selector.getReturnType().getType().equals(void.class))
             out.append("return ");
-        out.append(selector.getSwiftVarArgMethod().replace("va_array", "convArgs(va_array"));
+        if (selector.getSwiftVarArgMethod().contains("raw_va_array"))
+            out.append(selector.getSwiftVarArgMethod().replace("raw_va_array", "(va_array"));
+        else
+            out.append(selector.getSwiftVarArgMethod().replace("va_array", "convArgs(va_array"));
         out.append(")\n\t}\n\n");
     }
 

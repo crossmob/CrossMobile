@@ -30,6 +30,7 @@ CM_EXPORT_CLASS
 + (instancetype) initWithData___crossmobile_ios_foundation_NSData_int:(NSData*) data :(int) encoding ;
 + (instancetype) initWithFormat___java_lang_String_crossmobile_ios_foundation_NSLocale_java_lang_Object_ARRAYTYPE:(NSString*) format :(NSLocale*) locale :(XMLVMArray*) va_array ;
 + (instancetype) initWithFormat___java_lang_String_java_lang_Object_ARRAYTYPE:(NSString*) format :(XMLVMArray*) va_array ;
++ (instancetype) localizedStringWithFormat___java_lang_String_java_lang_Object_ARRAYTYPE:(NSString*) format :(XMLVMArray*) va_array ;
 + (crossmobile_ios_coregraphics_CGSize*) sizeWithFont___java_lang_String_crossmobile_ios_uikit_UIFont:(NSString*) this :(UIFont*) font ;
 + (crossmobile_ios_coregraphics_CGSize*) sizeWithFont___java_lang_String_crossmobile_ios_uikit_UIFont_crossmobile_ios_coregraphics_CGSize_int:(NSString*) this :(UIFont*) font :(crossmobile_ios_coregraphics_CGSize*) size :(int) lineBreakMode ;
 + (NSString*) stringByAddingPercentEscapesUsingEncoding___java_lang_String_int:(NSString*) this :(int) encoding ;

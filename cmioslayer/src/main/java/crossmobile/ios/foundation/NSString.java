@@ -38,10 +38,8 @@ import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static crossmobile.ios.coregraphics.$coregraphics.context;
@@ -62,10 +60,13 @@ public class NSString extends NSObject implements NSSecureCoding {
 
     static {
         FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)?C"), "%$1c");
+        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)?u"), "%$1d");
+        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)?U"), "%$1d");
         FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)?lld"), "%$1d");
         FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)?llo"), "%$1o");
         FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)?llx"), "%$1x");
         FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)?llX"), "%$1X");
+        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)?@"), "%$1s");
         FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)?@"), "%$1s");
     }
 
@@ -378,6 +379,12 @@ public class NSString extends NSObject implements NSSecureCoding {
         return initWithFormat(format, null, args);
     }
 
+    @CMSelector(value = "+ (instancetype)localizedStringWithFormat:(NSString *)format, ...;",
+            swiftVarArgMethod = "NSString_initWithFormat(format, NSLocale.current, raw_va_array)")
+    public static String localizedStringWithFormat(String format, Object... args) {
+        return initWithFormat(format, NSLocale.currentLocale(), args);
+    }
+
     /**
      * Get a localized version of a formatted String
      *
@@ -390,13 +397,14 @@ public class NSString extends NSObject implements NSSecureCoding {
             "                        locale:(id)locale, ...;", staticMapping = true,
             swiftVarArgMethod = "NSString.init(format: format as String, locale:locale, arguments:va_array)")
     public static String initWithFormat(String format, NSLocale loc, Object... args) {
+        loc = loc == null ? NSLocale.systemLocale() : loc;
         if (I18N_SUPPORT)
-            format = I18NBridge.retrieveFormat(format, loc != null ? loc.few : null, loc != null ? loc.many : null, args);
+            format = I18NBridge.retrieveFormat(format, loc.few, loc.many, args);
         format = objcToJavaFormat(format);
         try {
-            return loc == null
+            return loc == NSLocale.systemLocale()
                     ? String.format(format, args)
-                    : String.format(format, loc.loc, args);
+                    : String.format(loc.loc, format, args);
         } catch (Exception e) {
             return format;
         }

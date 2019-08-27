@@ -212,10 +212,12 @@ public class ElementParser {
         }
 
         // Fix silent varargs, where last option is Object[]
-        if (mParams.size() == (sParams.size() + 1) && !sParams.isEmpty() &&
-                sParams.get(sParams.size() - 1).getNType().getVarargType() != null &&
-                !mParams.get(mParams.size() - 2).isArray() && mParams.get(mParams.size() - 1).isArray() &&
-                (selector.getMethodType() == FUNCTION || selector.getMethodType() == SELECTOR)) {
+        if (mParams.size() == (sParams.size() + 1)
+                && !sParams.isEmpty()
+                && sParams.get(sParams.size() - 1).getNType().getVarargType() != null
+                && !mParams.get(mParams.size() - 2).isArray()
+                && mParams.get(mParams.size() - 1).isArray()
+                && (selector.getMethodType() == FUNCTION || selector.getMethodType() == SELECTOR)) {
 
             if (selector.getSwiftVarArgMethod().trim().isEmpty()) {
                 Log.error("A vararg argument has been suspected for " + selector.getFamily() + " `" + execSignature(exec) + "` but no swiftVarArgMethod parameter has been defined on the " + annName(CMFunction.class) + "/" + annName(CMSelector.class) + " annotation.");

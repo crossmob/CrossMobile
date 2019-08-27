@@ -78,4 +78,9 @@ class cmioslayer_va :NSObject {
 		return NSString.init(format: format as String, arguments:convArgs(va_array))
 	}
 
+	@objc
+	static func NSString_localizedStringWithFormat(_ format:NSString, _ va_array:[Any]) -> NSString {
+		return NSString_initWithFormat(format, NSLocale.current, (va_array))
+	}
+
 }
