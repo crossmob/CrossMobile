@@ -205,7 +205,7 @@ public class AppearanceInjections {
 
         CtClass paramClass = appearanceC.makeNestedClass(capitalize(paramName), true);
         paramClass.setInterfaces(new CtClass[]{VoidBlock1Ct});
-        paramClass.setModifiers(Modifier.setPrivate(paramClass.getModifiers()));
+        paramClass.setModifiers(Modifier.setPackage(paramClass.getModifiers()));
         paramClass.addField(CtField.make("private " + paramType + " param;", paramClass));
 
         CtConstructor paramConstructor = CtNewConstructor.make(fromM.getParameterTypes(), null, null, paramClass);

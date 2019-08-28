@@ -10,7 +10,6 @@ android {
 }
 
 dependencies {
-    // private.android:android:26'
     implementation 'androidx.core:core:1.0.2'
     implementation 'com.google.firebase:firebase-messaging:19.0.1'
     implementation 'com.google.firebase:firebase-iid:19.0.1'
@@ -20,6 +19,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.android.gms:play-services-basement:17.0.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
 }
 
 buildscript {

@@ -18,7 +18,10 @@
 package org.crossmobile.backend.android;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.res.Configuration;
+import android.os.Build;
+import androidx.multidex.MultiDex;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.CMLib;
 import org.crossmobile.bridge.ann.CMLibTarget;
@@ -30,6 +33,13 @@ import java.util.HashSet;
 public class MainApplication extends Application {
 
     private Collection<ApplicationStateListener> appstates;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
+            MultiDex.install(this);
+    }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {

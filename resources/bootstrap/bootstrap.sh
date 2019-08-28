@@ -2,6 +2,8 @@
 
 PREFIX=org.crossmobile.ca
 
+PACKAGES="core firebase-messaging firebase-iid firebase-common play-services-base play-services-tasks play-services-location play-services-maps play-services-basement multidex"
+
 error () {
     echo "** ERROR **"
     echo $@
@@ -47,7 +49,7 @@ fi
 # echo >local.properties "sdk.dir=$ANDROID_SDK_ROOT"
 gradle --no-daemon compileDebugSources --warning-mode all -g ./cache
 
-for art in core firebase-messaging firebase-iid firebase-common play-services-base play-services-tasks play-services-location play-services-maps play-services-basement; do
+for art in $PACKAGES; do
     LOC=`find cache/caches/modules-2 -name $art'*' | grep /$art/ | grep [aj]ar`
     COUNT=`echo $LOC | wc -l`
     if [ $COUNT -ne 1 ] ; then

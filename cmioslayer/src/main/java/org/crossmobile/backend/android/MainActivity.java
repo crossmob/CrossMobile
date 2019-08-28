@@ -34,7 +34,6 @@ import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
 import android.view.Surface;
 import android.view.WindowManager;
-import com.google.firebase.BuildConfig;
 import crossmobile.ios.foundation.NSLog;
 import crossmobile.ios.uikit.UIDeviceOrientation;
 import org.crossmobile.bind.graphics.UIStatusBar;
