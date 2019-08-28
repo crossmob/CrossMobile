@@ -74,5 +74,4 @@ public final class OrientationManager {
 
     private OrientationManager() {
     }
-
 }

@@ -52,7 +52,7 @@ public class MainView extends AbsoluteLayout {
     }
 
     @Override
-    @SuppressWarnings({"null", "ConstantConditions"})
+    @SuppressWarnings("null")
     public boolean dispatchTouchEvent(MotionEvent ev) {
         super.dispatchTouchEvent(ev);
         int phase;

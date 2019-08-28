@@ -60,8 +60,7 @@ public class AndroidSecurityBridge implements SecurityBridge {
     private Cipher cipher;
     private FingerprintManager fingerprintManager;
     private KeyStore keyStore;
-    private KeyGenerator keyGenerator;
-    AlertDialog dialog;
+    private AlertDialog dialog;
 
     private Map<String, Object> getUserInfo(String description) {
         Map<String, Object> userInfo = new HashMap<>();
@@ -129,7 +128,7 @@ public class AndroidSecurityBridge implements SecurityBridge {
             keyStore = KeyStore.getInstance("AndroidKeyStore");
 
             //Generate the key//
-            keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore");
+            KeyGenerator keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore");
 
             try {
                 //Initialize an empty KeyStore//

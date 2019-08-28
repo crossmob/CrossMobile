@@ -32,7 +32,6 @@ public interface ApplicationStateListener {
     default void onConfigurationChanged(Configuration newConfig) {
     }
 
-
     default void onTerminate() {
     }
 

@@ -75,9 +75,7 @@ public class AndroidSoundPlayer implements SoundPlayer {
         player.prepareAsync();
     }
 
-    MediaPlayer.OnPreparedListener opl = (MediaPlayer mp) -> {
-        mp.start();
-    };
+    MediaPlayer.OnPreparedListener opl = MediaPlayer::start;
 
     @Override
     public boolean isPlaying() {

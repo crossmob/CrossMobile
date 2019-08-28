@@ -172,12 +172,12 @@ public class AndroidSystemBridge implements SystemBridgeExt {
     @Override
     public void setKeyboardVisibility(boolean status) {
         InputMethodManager imm = (InputMethodManager) MainActivity.current.getSystemService(Context.INPUT_METHOD_SERVICE);
-        View mainview = MainView.current;
+        View mainView = MainView.current;
         if (status) {
-            mainview.requestFocusFromTouch();
-            imm.showSoftInput(mainview, InputMethodManager.SHOW_FORCED);
+            mainView.requestFocusFromTouch();
+            imm.showSoftInput(mainView, InputMethodManager.SHOW_FORCED);
         } else
-            imm.hideSoftInputFromWindow(mainview.getWindowToken(), 0);
+            imm.hideSoftInputFromWindow(mainView.getWindowToken(), 0);
     }
 
     @Override

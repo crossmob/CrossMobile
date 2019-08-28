@@ -30,9 +30,8 @@ import java.util.List;
 
 public class AndroidShareBridge implements ShareBridge {
 
-
-    String type = "text";
-    String subtype = "plain";
+    private String type = "text";
+    private String subtype = "plain";
 
     @Override
     public void share(List items, List<String> excluded, UIActivityViewControllerCompletionWithItemsHandler completion) {
@@ -75,6 +74,5 @@ public class AndroidShareBridge implements ShareBridge {
                 e.printStackTrace();
             }
         }
-
     }
 }

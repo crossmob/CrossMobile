@@ -43,9 +43,10 @@ public class AndroidLifecycleBridge extends AbstractLifecycleBridge {
 
         for (WeakReference<Activity> item : activitylist)
             try {
-                if (item.get() != null)
-                    item.get().finish();
-            } catch (Exception e) {
+                Activity activity = item.get();
+                if (activity != null)
+                    activity.finish();
+            } catch (Exception ignored) {
             }
         activitylist.clear();
 
@@ -78,8 +79,8 @@ public class AndroidLifecycleBridge extends AbstractLifecycleBridge {
         return MainActivity.current().consumeLaunchOptions();
     }
 
-    void register(Activity mapactivity) {
-        activitylist.add(new WeakReference<>(mapactivity));
+    void register(Activity mapActivity) {
+        activitylist.add(new WeakReference<>(mapActivity));
     }
 
     @Override
