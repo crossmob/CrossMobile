@@ -48,10 +48,14 @@ public class AndroidNotificationBridge implements NotificationBridge {
     @Override
     public void requestAuthorizationWithOptions(VoidBlock2<Boolean, NSError> completionHandler) {
         FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(task -> {
-            String tokenString = task.getResult() == null ? null : task.getResult().getToken();
-            token = tokenString == null ? null : tokenString.getBytes(Charset.forName("UTF-8"));
-            completionHandler.invoke(task.isSuccessful() && token != null, task.isSuccessful() ? null
-                    : NSError.errorWithDomain("UNNOTIFICATION ERROR", UNErrorCode.NotificationsNotAllowed, null));
+            boolean success = task.isSuccessful();
+            if (success) {
+                String tokenString = task.getResult() == null ? null : task.getResult().getToken();
+                //noinspection CharsetObjectCanBeUsed
+                token = tokenString == null ? null : tokenString.getBytes(Charset.forName("UTF-8"));
+                success = token != null;
+            }
+            completionHandler.invoke(success, success ? null : NSError.errorWithDomain("UNNOTIFICATION ERROR", UNErrorCode.NotificationsNotAllowed, null));
         });
     }
 
