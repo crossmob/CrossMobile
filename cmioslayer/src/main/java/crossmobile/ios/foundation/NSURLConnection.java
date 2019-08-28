@@ -88,7 +88,7 @@ public class NSURLConnection extends NSObject {
         Thread thread = connection.startInNewThread();
         try {
             thread.join();
-        } catch (InterruptedException ex) {
+        } catch (InterruptedException ignored) {
         }
         return isOk.get() ? data : null;
     }
@@ -180,92 +180,89 @@ public class NSURLConnection extends NSObject {
     }
 
     private Thread startInNewThread() {
-        Thread proc = new Thread() {
-            @Override
-            public void run() {
-                if (hasStarted)
-                    return;
-                hasStarted = true;
-                if (request == null || request.URL() == null || request.URL().absoluteString().isEmpty()) {
-                    if (delegate != null)
-                        delegate.didFailWithError(NSURLConnection.this, error(-1, "Empty URL"));
-                    return;
-                }
-
-                HttpURLConnection connection = null;
-                InputStream in = null;
-                OutputStream out = null;
-                NSURLConnectionDataDelegate ccdelegate = (delegate != null && (delegate instanceof NSURLConnectionDataDelegate)) ? (NSURLConnectionDataDelegate) delegate : null;
-                try {
-                    // Create connection
-                    connection = (HttpURLConnection) new URL(request.URL().absoluteString()).openConnection();
-                    int timeout = (int) (request.timeoutInterval() * 1000);
-                    connection.setReadTimeout(timeout);
-                    connection.setConnectTimeout(timeout);
-
-                    if (request instanceof NSMutableURLRequest) {
-                        NSMutableURLRequest req_m = ((NSMutableURLRequest) request);
-                        if (req_m.httpMethod != null)
-                            connection.setRequestMethod(req_m.httpMethod);
-
-                        // Set request properties
-                        if (req_m.header != null)
-                            for (String key : req_m.header.keySet())
-                                connection.setRequestProperty(key, req_m.header.get(key));
-
-                        //Set Post, if available
-                        if (req_m.body != null && req_m.body.data.length > 0) {
-                            connection.setDoOutput(true);
-                            out = new BufferedOutputStream(connection.getOutputStream());
-                            if (req_m.HTTPBody() != null && req_m.HTTPBody().length() > 0)
-                                out.write(req_m.HTTPBody().data);
-                            closeR(out);
-                            out = null;
-                        }
-                    }
-
-                    // Send headers to delegate
-                    if (ccdelegate != null)
-                        ccdelegate.didReceiveResponse(NSURLConnection.this, new NSHTTPURLResponse(request.URL(), connection.getContentType(), connection.getContentLength(), connection.getResponseCode(), connection.getHeaderFields()));
-
-                    // Start downloading data
-                    in = connection.getInputStream();
-                    byte[] buffer = new byte[BUFFER_SIZE];
-                    int gotsize;
-                    while ((gotsize = readDataChunk(in, buffer)) > 0) {
-                        if (ccdelegate != null)
-                            ccdelegate.didReceiveData(NSURLConnection.this, NSData.dataWithBytes(buffer, gotsize));
-                        if (hasAborted)
-                            break;
-                    }
-
-                    //Finish download
-                    if (ccdelegate != null)
-                        ccdelegate.didFinishLoading(NSURLConnection.this);
-                } catch (Exception e) {
-                    if (delegate != null) {
-                        int result = -1;
-                        if (connection != null)
-                            try {
-                                result = connection.getResponseCode();
-                            } catch (Exception ex) {
-                            }
-                        delegate.didFailWithError(NSURLConnection.this, error(result, e.toString()));
-                    }
-                } finally {
-                    closeR(in);
-                    closeR(out);
-                    if (connection != null)
-                        connection.disconnect();
-                }
+        Thread proc = new Thread(() -> {
+            if (hasStarted)
+                return;
+            hasStarted = true;
+            if (request == null || request.URL() == null || request.URL().absoluteString().isEmpty()) {
+                if (delegate != null)
+                    delegate.didFailWithError(NSURLConnection.this, error(-1, "Empty URL"));
+                return;
             }
-        };
+
+            HttpURLConnection connection = null;
+            InputStream in = null;
+            OutputStream out = null;
+            NSURLConnectionDataDelegate ccdelegate = (delegate != null && (delegate instanceof NSURLConnectionDataDelegate)) ? (NSURLConnectionDataDelegate) delegate : null;
+            try {
+                // Create connection
+                connection = (HttpURLConnection) new URL(request.URL().absoluteString()).openConnection();
+                int timeout = (int) (request.timeoutInterval() * 1000);
+                connection.setReadTimeout(timeout);
+                connection.setConnectTimeout(timeout);
+
+                if (request instanceof NSMutableURLRequest) {
+                    NSMutableURLRequest req_m = ((NSMutableURLRequest) request);
+                    if (req_m.httpMethod != null)
+                        connection.setRequestMethod(req_m.httpMethod);
+
+                    // Set request properties
+                    if (req_m.header != null)
+                        for (String key : req_m.header.keySet())
+                            connection.setRequestProperty(key, req_m.header.get(key));
+
+                    //Set Post, if available
+                    if (req_m.body != null && req_m.body.data.length > 0) {
+                        connection.setDoOutput(true);
+                        out = new BufferedOutputStream(connection.getOutputStream());
+                        if (req_m.HTTPBody() != null && req_m.HTTPBody().length() > 0)
+                            out.write(req_m.HTTPBody().data);
+                        closeR(out);
+                        out = null;
+                    }
+                }
+
+                // Send headers to delegate
+                if (ccdelegate != null)
+                    ccdelegate.didReceiveResponse(NSURLConnection.this, new NSHTTPURLResponse(request.URL(), connection.getContentType(), connection.getContentLength(), connection.getResponseCode(), connection.getHeaderFields()));
+
+                // Start downloading data
+                in = connection.getInputStream();
+                byte[] buffer = new byte[BUFFER_SIZE];
+                int gotsize;
+                while ((gotsize = readDataChunk(in, buffer)) > 0) {
+                    if (ccdelegate != null)
+                        ccdelegate.didReceiveData(NSURLConnection.this, NSData.dataWithBytes(buffer, gotsize));
+                    if (hasAborted)
+                        break;
+                }
+
+                //Finish download
+                if (ccdelegate != null)
+                    ccdelegate.didFinishLoading(NSURLConnection.this);
+            } catch (Exception e) {
+                if (delegate != null) {
+                    int result = -1;
+                    if (connection != null)
+                        try {
+                            result = connection.getResponseCode();
+                        } catch (Exception ignored) {
+                        }
+                    delegate.didFailWithError(NSURLConnection.this, error(result, e.toString()));
+                }
+            } finally {
+                closeR(in);
+                closeR(out);
+                if (connection != null)
+                    connection.disconnect();
+            }
+        });
         proc.start();
         return proc;
     }
 
     private int readDataChunk(InputStream in, byte[] buffer) throws IOException {
-        int gotBytes = 0;
+        int gotBytes;
         int location = 0;
         int fullGauge = buffer.length * 9 / 10;
         while (location < fullGauge && (gotBytes = in.read(buffer, location, buffer.length - location)) >= 0)
