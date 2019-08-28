@@ -17,26 +17,15 @@
 package org.crossmobile.backend.android;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
 import android.content.res.Configuration;
-import android.net.wifi.ScanResult;
-import android.net.wifi.WifiManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.provider.Settings.Global;
-import android.telephony.PhoneStateListener;
-import android.telephony.SignalStrength;
-import android.telephony.TelephonyManager;
 import android.view.Surface;
 import android.view.WindowManager;
 import crossmobile.ios.foundation.NSLog;
 import crossmobile.ios.uikit.UIDeviceOrientation;
-import org.crossmobile.bind.graphics.UIStatusBar;
 import org.crossmobile.bind.system.AbstractLifecycleBridge;
 import org.crossmobile.bind.system.SystemUtilities;
 import org.crossmobile.bridge.Native;
@@ -55,9 +44,10 @@ public class MainActivity extends Activity {
     private final static String[] args = {};
     static MainActivity current;
     private ActivityStateListener stateListener;
-    private Bundle instancestate;
+    private Bundle instanceState;
     private boolean launchDebug;
     private Map<String, Object> launchOptions = null;
+    private StatusBarListener statusBarListener;
 
     public static MainActivity current() {
         return current;
@@ -68,7 +58,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         launchDebug = (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
-        instancestate = savedInstanceState;
+        instanceState = savedInstanceState;
         MainActivity.current = this;
         setContentView(AndroidFileBridge.getResourceID("layout", "crossmobile_core"));
         MainView.current = findViewById(AndroidFileBridge.getResourceID("id", "mainview"));
@@ -80,7 +70,7 @@ public class MainActivity extends Activity {
         OrientationManager.register(this);
         Native.graphics().setOrientation(DefaultInitialOrientation);
         updateOrientation();
-        initializeStatusBarListeners();
+        statusBarListener = StatusBarListener.init(this);
         if (launchDebug)
             Native.system().debug("Activity created", null);
         if (stateListener != null)
@@ -135,7 +125,7 @@ public class MainActivity extends Activity {
     }
 
     public Bundle getInstanceState() {
-        return instancestate;
+        return instanceState;
     }
 
     @Override
@@ -200,6 +190,8 @@ public class MainActivity extends Activity {
     @Override
     protected void onDestroy() {
         Native.lifecycle().quit(null, null);
+        if (statusBarListener != null)
+            statusBarListener.unregister();
         if (stateListener != null)
             stateListener.onDestroy();
         MainActivity.current = null;
@@ -242,71 +234,6 @@ public class MainActivity extends Activity {
         if (stateListener == null)
             stateListener = new ActivityStateListener();
         return stateListener;
-    }
-
-    private void initializeStatusBarListeners() {
-        if (!UIStatusBar.required)
-            return;
-
-        final UIStatusBar statusBar = UIStatusBar.getStatusBar();
-        // WiFi listener
-        statusBar.setWifi(-1);
-        try {
-            ((WifiManager) getSystemService(Context.WIFI_SERVICE)).getWifiState();
-            // No exception, permission granted
-            registerReceiver(new BroadcastReceiver() {
-                @Override
-                public void onReceive(Context cntxt, Intent intent) {
-                    final WifiManager wifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-                    try {
-                        if (wifi.getWifiState() == WifiManager.WIFI_STATE_ENABLED)
-                            for (ScanResult result : wifi.getScanResults())
-                                if (result.BSSID.equals(wifi.getConnectionInfo().getBSSID()))
-                                    statusBar.setWifi(WifiManager.calculateSignalLevel(wifi.getConnectionInfo().getRssi(), result.level) / (float) result.level);
-                    } catch (Exception ignored) {
-                    }
-                }
-            }, new IntentFilter(WifiManager.RSSI_CHANGED_ACTION));
-        } catch (Exception ignored) {
-        }
-
-        // GSM Listener
-        TelephonyManager gsm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        statusBar.setReception(-2);
-        gsm.listen(new PhoneStateListener() {
-
-            @Override
-            @SuppressWarnings({"UseSpecificCatch"})
-            public void onSignalStrengthsChanged(SignalStrength signalStrength) {
-                boolean isAirport = false;
-                if (Build.VERSION.SDK_INT < 17)
-                    isAirport = Settings.System.getInt(getContentResolver(), Settings.System.AIRPLANE_MODE_ON, 0) != 0;
-                else
-                    try {
-                        isAirport = Global.getInt(getContentResolver(), "airplane_mode_on", 0) != 0;
-                    } catch (Exception ex) {
-                        Native.system().debug("Unable to read airport mode", ex);
-                    }
-                if (isAirport)
-                    statusBar.setReception(-1);
-                else {
-                    int strength = signalStrength.getGsmSignalStrength();
-                    if (strength > 31)
-                        statusBar.setReception(-2);
-                    else
-                        statusBar.setReception(strength / 31f);
-                }
-            }
-        }, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
-
-        // Battery listener
-        registerReceiver(new BroadcastReceiver() {
-
-            @Override
-            public void onReceive(Context cntxt, Intent intent) {
-                statusBar.setBatteryLevel((float) intent.getIntExtra("level", -1) / intent.getIntExtra("scale", -1));
-            }
-        }, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
     }
 
     public MainApplication getMainApplication() {
