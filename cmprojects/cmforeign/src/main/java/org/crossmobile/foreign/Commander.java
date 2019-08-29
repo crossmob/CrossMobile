@@ -34,6 +34,7 @@ public class Commander {
     private Consumer<String> outS, errS;
     private Consumer<Character> outC, errC;
     private Writer outW, errW;
+    private Runnable start;
     private Consumer<Integer> finish;
     private File currentDir;
     private Process proc;
@@ -92,6 +93,10 @@ public class Commander {
         this.errC = null;
     }
 
+    public void setStartListener(Runnable start) {
+        this.start = start;
+    }
+
     public void setEndListener(Consumer<Integer> finish) {
         this.finish = finish;
     }
@@ -134,6 +139,8 @@ public class Commander {
             ProcessBuilder pb = new ProcessBuilder(command);
             pb.directory(currentDir);
             pb.environment().putAll(envp);
+            if (start != null)
+                start.run();
             proc = pb.start();
             bufferin = new BufferedWriter(new OutputStreamWriter(proc.getOutputStream(), ENCODING));
             procout = new OutputProxy(true);
@@ -324,7 +331,7 @@ public class Commander {
         private final Consumer<Character> listenC;
         private final Writer listenW;
 
-        private OutputProxy(boolean asInput) throws UnsupportedEncodingException {
+        private OutputProxy(boolean asInput) {
             if (asInput) {
                 in = new BufferedReader(new InputStreamReader(proc.getInputStream(), ENCODING));
                 listenS = outS;
@@ -343,20 +350,20 @@ public class Commander {
                     int c;
                     try {
                         if (listenC != null)
-                            while (in != null && (c = in.read()) >= 0 && (!isInterrupted()))
+                            while ((c = in.read()) >= 0 && !isInterrupted())
                                 listenC.accept((char) c);
                         else if (listenW != null)
-                            while (in != null && (c = in.read()) >= 0 && (!isInterrupted()))
+                            while ((c = in.read()) >= 0 && !isInterrupted())
                                 listenW.write(c);
                         else // without `else if', to make sure that the output is consumed
-                            while (in != null && (line = in.readLine()) != null && (!isInterrupted()))
+                            while ((line = in.readLine()) != null && !isInterrupted())
                                 if (listenS != null)
                                     listenS.accept(line);
-                    } catch (IOException ex) {
+                    } catch (IOException ignored) {
                     } finally {
                         try {
                             in.close();
-                        } catch (IOException ex) {
+                        } catch (IOException ignored) {
                         }
                     }
                     outputTerminated(OutputProxy.this);
