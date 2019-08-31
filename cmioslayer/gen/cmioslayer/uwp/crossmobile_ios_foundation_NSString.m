@@ -15,8 +15,6 @@
 #import "java_lang_String.h"
 #import "java_util_List.h"
 #import "java_util_Map.h"
-#import "java_util_Arrays.h"
-#import "cmioslayer-Swift.h"
 
 @implementation crossmobile_ios_foundation_NSString$Ext
 
@@ -115,21 +113,21 @@
 // direct binding of: - (instancetype)initWithFormat:(NSString *)format locale:(id)locale, ...;
 + (instancetype) initWithFormat___java_lang_String_crossmobile_ios_foundation_NSLocale_java_lang_Object_ARRAYTYPE:(NSString*) format :(NSLocale*) locale :(XMLVMArray*) va_array 
 {
-    id re$ult = [cmioslayer_va NSString_initWithFormat:(format == JAVA_NULL ? nil : format) :(locale == JAVA_NULL ? nil : locale) :[java_util_Arrays asList___java_lang_Object_ARRAYTYPE:va_array]];
+    id re$ult = [XMLVMArray formatWith:NSLog :@[(format == JAVA_NULL ? nil : format),(locale == JAVA_NULL ? nil : locale)] :va_array :YES];
     return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 
 // direct binding of: - (instancetype)initWithFormat:(NSString *)format, ...;
 + (instancetype) initWithFormat___java_lang_String_java_lang_Object_ARRAYTYPE:(NSString*) format :(XMLVMArray*) va_array 
 {
-    id re$ult = [cmioslayer_va NSString_initWithFormat:(format == JAVA_NULL ? nil : format) :[java_util_Arrays asList___java_lang_Object_ARRAYTYPE:va_array]];
+    id re$ult = [XMLVMArray formatWith:NSLog :@[(format == JAVA_NULL ? nil : format)] :va_array :YES];
     return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 
 // direct binding of: + (instancetype)localizedStringWithFormat:(NSString *)format, ...;
 + (instancetype) localizedStringWithFormat___java_lang_String_java_lang_Object_ARRAYTYPE:(NSString*) format :(XMLVMArray*) va_array 
 {
-    id re$ult = [cmioslayer_va NSString_localizedStringWithFormat:(format == JAVA_NULL ? nil : format) :[java_util_Arrays asList___java_lang_Object_ARRAYTYPE:va_array]];
+    id re$ult = [XMLVMArray formatWith:NSLog :@[(format == JAVA_NULL ? nil : format)] :va_array :YES];
     return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 

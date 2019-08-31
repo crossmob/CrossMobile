@@ -184,11 +184,7 @@ static BOOL instanceof(id obj, const char *className) {
     format = [[format stringByReplacingOccurrencesOfString:@"%t" withString:@"%@"] stringByReplacingOccurrencesOfString:@"%T" withString:@"%@"];
     
     format =  [format stringByReplacingOccurrencesOfString:@"%n" withString:@"\n"];
-
-    void * vararg = [array toMallocedVarArg];
-    NSString * res = [[NSString alloc] initWithFormat:format arguments:vararg];
-    free(vararg);
-    return res;
+    return [XMLVMArray formatWith:NSLog :@[format] :array : true];
 }
 
 - (void) getChars___int_int_char_ARRAYTYPE_int:(int)srcBegin:(int)srcEnd:(XMLVMArray*)dst:(int)dstBegin {
@@ -394,10 +390,6 @@ static BOOL instanceof(id obj, const char *className) {
 
 - (int) matches___java_lang_String:(java_lang_String*)regex
 {
-//#if __IPHONE_OS_VERSION_MIN_REQUIRED <= __IPHONE_3_1
-//#define NSRegularExpressionSearch NSLiteralSearch
-//	NSLog(@"String.replaceFirst() not supported");
-//#endif
 	NSRange found = [self rangeOfString:regex options:NSRegularExpressionSearch];
 	return found.location != NSNotFound;
 }

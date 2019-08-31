@@ -144,30 +144,27 @@ public class SelectorEmitter {
     }
 
     private String emitSelectorAsObjC(ParamEmitter emitter) {
-        return emitSelectorGeneric(emitter,
-                targetName(emitter) + " " + emitter.getName(),
-                true);
-    }
-
-    private String emitSelectorAsVarArg(ParamEmitter emitter) {
-        Class parentType = selector.getContainer().getType();
-        String containerName = parentType.getName();
-        return emitSelectorGeneric(emitter,
-                PluginRegistry.getPlugin(containerName) + "_va " +
-                        getClassNameSimple(parentType) + "_" + selector.getName(), false);
-    }
-
-    private String emitSelectorGeneric(ParamEmitter emitter, String targetDef, boolean spitParamName) {
         StringBuilder out = new StringBuilder();
-        out.append("[").append(targetDef);
-
+        out.append("[").append(targetName(emitter)).append(" ").append(emitter.getName());
         forEach(emitter.getNativeParameters()).
                 setFilter(e -> !e.isParameterHidden()).onTail(e -> out.append(" ")).onAny(e -> {
-            if (spitParamName)
-                out.append(e.paramName());
+            out.append(e.paramName());
             out.append(":");
             out.append(e.embed());
         }).go();
+        out.append("]");
+        return out.toString();
+    }
+
+    private String emitSelectorAsVarArg(ParamEmitter emitter) {
+        StringBuilder out = new StringBuilder();
+        out.append("[XMLVMArray formatWith:NSLog :@[");
+        forEach(emitter.getNativeParameters())
+                .setFilter(e -> !e.isParameterHidden())
+                .onInner(e -> out.append(","))
+                .onFront(e -> out.append(e.embed()))
+                .onLast(e -> out.append("] :").append(e.embed()).append(" :").append(selector.getReturnType().getType().equals(void.class) ? "NO" : "YES"))
+                .go();
         out.append("]");
         return out.toString();
     }

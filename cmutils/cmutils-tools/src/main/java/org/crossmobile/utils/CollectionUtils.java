@@ -321,6 +321,7 @@ public class CollectionUtils {
             static final int TAIL = 2;
             static final int FRONT = 3;
             static final int LAST = 4;
+            static final int INNER = 5;
 
             private final int where;
             private final ConsumerEx<T> code;
@@ -369,6 +370,12 @@ public class CollectionUtils {
             return this;
         }
 
+        public IteratorHandler<T> onInner(ConsumerEx<T> exec) {
+            if (exec != null)
+                code.add(new IterationCode<>(INNER, exec));
+            return this;
+        }
+
         public IteratorHandler<T> onLast(ConsumerEx<T> exec) {
             if (exec != null)
                 code.add(new IterationCode<>(LAST, exec));
@@ -384,7 +391,7 @@ public class CollectionUtils {
                         count++;
                         boolean last = count == collection.size();
                         for (IterationCode<T> it : code)
-                            if (it.where == ANY || (first && it.where == HEAD) || (!first && it.where == TAIL) || (last && it.where == LAST) || (!last && it.where == FRONT))
+                            if (it.where == ANY || (first && it.where == HEAD) || (!first && it.where == TAIL) || (last && it.where == LAST) || (!last && it.where == FRONT) || (!first && !last && it.where == INNER))
                                 it.code.accept(item);
                         first = false;
                     }

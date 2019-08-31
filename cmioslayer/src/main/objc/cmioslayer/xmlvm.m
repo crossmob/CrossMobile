@@ -342,6 +342,29 @@ XMLVMElemPtr copyData(int type, int length, XMLVMElemPtr olddata)
     return vararg;
 }
 
++ (NSString*) formatWith:(void (*)(void)) func :(NSArray*) preparam :(XMLVMArray*) varargs, BOOL returns
+{
+    //    format = [format stringByReplacingOccurrencesOfString:@"%c" withString:@"%C"];
+    //
+    //    format = [[format stringByReplacingOccurrencesOfString:@"%b" withString:@"%@"] stringByReplacingOccurrencesOfString:@"%B" withString:@"%@"];
+    //
+    //    format = [format stringByReplacingOccurrencesOfString:@"%d" withString:@"%lld"];
+    //    format = [format stringByReplacingOccurrencesOfString:@"%ο" withString:@"%llο"];
+    //    format = [[format stringByReplacingOccurrencesOfString:@"%x" withString:@"%llx"] stringByReplacingOccurrencesOfString:@"%X" withString:@"%llX"];
+    //
+    //    format = [[format stringByReplacingOccurrencesOfString:@"%s" withString:@"%@"] stringByReplacingOccurrencesOfString:@"%S" withString:@"%@"];
+    //    format = [[format stringByReplacingOccurrencesOfString:@"%t" withString:@"%@"] stringByReplacingOccurrencesOfString:@"%T" withString:@"%@"];
+    //
+    //    format =  [format stringByReplacingOccurrencesOfString:@"%n" withString:@"\n"];
+    //
+    //    xmlvm_format(NSLOG, format, array);
+    //    void * vararg = [array toMallocedVarArg];
+    //    NSString * res = [[NSString alloc] initWithFormat:format arguments:vararg];
+    //    free(vararg);
+    //    return res;
+    return nil;
+}
+
 
 @end
 

@@ -97,6 +97,7 @@ extern id JAVA_NULL;
 - (XMLVMArray*) clone__;
 - (int) sizeOfBoxedTypeInBytes:(int) index typeFound:(int *) type asMaxSize:(BOOL) maxsize;  // call by reference for type found
 - (void*) toMallocedVarArg;
++ (NSString*) formatWith:(void (*)(void)) func :(NSArray*) preparam :(XMLVMArray*) varargs, BOOL returns;
 
 @end
 

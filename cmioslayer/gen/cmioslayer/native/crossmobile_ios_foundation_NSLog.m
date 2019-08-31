@@ -10,7 +10,7 @@
 // direct binding of: void NSLog(NSString *format, ...);
 + (void) log___java_lang_String_java_lang_Object_ARRAYTYPE:(NSString*) format :(XMLVMArray*) va_array 
 {
-    [cmioslayer_va NSLog_NSLog:(format == JAVA_NULL ? nil : format) :[java_util_Arrays asList___java_lang_Object_ARRAYTYPE:va_array]];
+    [XMLVMArray formatWith:NSLog :@[(format == JAVA_NULL ? nil : format)] :va_array :NO];
 }
 
 @end

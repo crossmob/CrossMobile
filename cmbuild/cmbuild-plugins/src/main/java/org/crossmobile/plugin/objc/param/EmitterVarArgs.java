@@ -33,9 +33,8 @@ class EmitterVarArgs extends Emitter {
 
     @Override
     protected String embedForward() {
-        if (type.virtual) {
-            return "[java_util_Arrays asList___java_lang_Object_ARRAYTYPE:" + super.embedForward() + "]";
-        }
+        if (type.virtual)
+            return super.embedForward();
         StringBuilder out = new StringBuilder();
         out.append('\n');
         for (int i = 0; i < VARARG_SIZE_SUPPORT; i++)
