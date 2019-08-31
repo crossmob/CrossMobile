@@ -49,10 +49,10 @@ public @interface CMSelector {
     String sizeResolver() default "";
 
     /**
-     * Use this native Swift method, if this Objective C function ends with a vararg statement.
-     * The Swift method should be a va_list method, and this va_list argument
-     * <b>should</b> be named `va_array`.
+     * Use this native Swift method, if there is a need for a Swift bridge.
+     * Historically this method was used to define variadic calls which were handled by Swift.
+     * Now there is no direct need.
      */
-    String swiftVarArgMethod() default "";
+    String swiftMethod() default "";
 
 }

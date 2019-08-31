@@ -25,6 +25,7 @@ import org.crossmobile.plugin.utils.Streamer;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import static org.crossmobile.bridge.ann.CMReference.REFERENCE_NAME;
 import static org.crossmobile.plugin.reg.TypeRegistry.getObjCTypeRef;
@@ -64,8 +65,7 @@ public class BodyEmitter extends FileEmitter {
         for (String dependency : dependencies)
             out.append("#import \"").append(dependency).append(".h\"\n");
         for (NSelector sel : obj.getSelectors())
-            if (sel.getMethodType().isVarArgs()) {
-                out.append("#import \"java_util_Arrays.h\"\n");
+            if (!sel.getSwiftMethod().isEmpty()) {
                 out.append("#import \"").append(PluginRegistry.getPlugin(obj.getType().getName())).append("-Swift.h\"\n");
                 break;
             }

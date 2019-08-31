@@ -86,10 +86,6 @@ public class MethodBuilder {
         int paramIndex = 0;
         int nparamIndex = 0;
 
-        //varargs later
-        if (!selector.getSwiftVarArgMethod().isEmpty())
-            return;
-
         try {
             List<Runnable> postProccessing = new ArrayList<>();
             while (paramIndex < params.length || nparamIndex < selParams.size()) {

@@ -20,6 +20,7 @@ import org.crossmobile.plugin.model.NObject;
 import org.crossmobile.plugin.utils.Streamer;
 
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ObjectEmitter {
 

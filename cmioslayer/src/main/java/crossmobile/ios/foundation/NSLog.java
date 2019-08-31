@@ -38,8 +38,7 @@ public final class NSLog {
      * @param format The format to use
      * @param args   The list of arguments
      */
-    @CMFunction(value = "void NSLog(NSString *format, ...);",
-            swiftVarArgMethod = "NSLogv(format as String, va_array)")
+    @CMFunction("void NSLog(NSString *format, ...);")
     public static void log(String format, Object... args) {
         Native.system().error(NSString.initWithFormat(format, args), null);
     }

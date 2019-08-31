@@ -180,22 +180,10 @@ public class PostCompilePipeline implements Runnable {
         if (DiffSync.exec(classesDir, cacheClasses, cacheDiffClasses)) {
             File cacheSource = new File(cacheBase, XCODE_EXT_APP);
             XMLVMLauncher.exec(cacheDiffClasses, cacheSource, env.getXMLVM(), Boolean.parseBoolean(env.getProperties().getProperty("cm.objc.safemembers", "true")));
-            File dummy = new File(cacheSource, "Dummy.swift");
-            if (!dummy.exists()) {
-                try {
-                    //noinspection ResultOfMethodCallIgnored
-                    dummy.createNewFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-
             // Post-process ObjC files
             AnnConnXcode.exec(annotations, cacheSource);
             ObjCPostProcess.exec(cacheSource, env.getProperties().getProperty(OBJC_IGNORE_INCLUDES.tag().name));
             GenerateReverseConnection.exec(classesDir, asList(env.root().getCompileOnlyDependencies(true), DependencyItem::getFile), cacheSource);
-
             SyncObjCFiles.exec(classesDir, cacheSource, xcodeSource);
         }
 

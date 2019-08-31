@@ -35,6 +35,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -58,9 +59,9 @@ public class CreateDlls extends CreateLibsAbstract {
     }
 
     @Override
-    protected void runEmitters(Function<String, File> prodResolv) throws IOException {
-        emitPlatformFiles(prodResolv, false);
-        emitIncludeHeaders(prodResolv);
+    protected void runEmitters(Function<String, File> prodResolv, AtomicBoolean hasSwift) throws IOException {
+        emitPlatformFiles(prodResolv, false, hasSwift);
+        emitIncludeHeaders(prodResolv, hasSwift);
         libDef(prodResolv);
     }
 
@@ -103,8 +104,8 @@ public class CreateDlls extends CreateLibsAbstract {
         return compiled;
     }
 
-    private static void emitIncludeHeaders(Function<String, File> prodResolv) throws IOException {
-        objectEmitter(prodResolv, true);
+    private static void emitIncludeHeaders(Function<String, File> prodResolv, AtomicBoolean hasSwift) throws IOException {
+        objectEmitter(prodResolv, true, hasSwift);
     }
 
     private static void libDef(Function<String, File> prodResolv) {
@@ -142,7 +143,6 @@ public class CreateDlls extends CreateLibsAbstract {
                 }
             }
         }
-
     }
 
     @Override
@@ -188,7 +188,7 @@ public class CreateDlls extends CreateLibsAbstract {
     }
 
     @Override
-    protected void updateProj(File project, Plugin plugin, Collection<File> includes, Collection<File> headerSearchPaths, Collection<File> sources, Collection<String> deps) {
+    protected void updateProj(File project, Plugin plugin, Collection<File> includes, Collection<File> headerSearchPaths, Collection<File> sources, Collection<String> deps, boolean hasSwift) {
         Collection<String> headerPaths = getHeaderPaths(headerSearchPaths, plugin.getName());
         Collection<String> headers = getHeaderPaths(includes, plugin.getName());
         XMLWalker walker = XMLWalker.load(project);

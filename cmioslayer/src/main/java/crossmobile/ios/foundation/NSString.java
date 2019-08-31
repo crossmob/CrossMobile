@@ -373,14 +373,12 @@ public class NSString extends NSObject implements NSSecureCoding {
      * @param args   The possible arguments
      * @return The formatted String
      */
-    @CMSelector(value = "- (instancetype)initWithFormat:(NSString *)format, ...;", staticMapping = true,
-            swiftVarArgMethod = "NSString.init(format: format as String, arguments:va_array)")
+    @CMSelector(value = "- (instancetype)initWithFormat:(NSString *)format, ...;", staticMapping = true)
     public static String initWithFormat(String format, Object... args) {
         return initWithFormat(format, null, args);
     }
 
-    @CMSelector(value = "+ (instancetype)localizedStringWithFormat:(NSString *)format, ...;",
-            swiftVarArgMethod = "NSString_initWithFormat(format, NSLocale.current, raw_va_array)")
+    @CMSelector("+ (instancetype)localizedStringWithFormat:(NSString *)format, ...;")
     public static String localizedStringWithFormat(String format, Object... args) {
         return initWithFormat(format, NSLocale.currentLocale(), args);
     }
@@ -394,8 +392,7 @@ public class NSString extends NSObject implements NSSecureCoding {
      * @return A localized version of the formatted String
      */
     @CMSelector(value = "- (instancetype)initWithFormat:(NSString *)format \n" +
-            "                        locale:(id)locale, ...;", staticMapping = true,
-            swiftVarArgMethod = "NSString.init(format: format as String, locale:locale, arguments:va_array)")
+            "                        locale:(id)locale, ...;", staticMapping = true)
     public static String initWithFormat(String format, NSLocale loc, Object... args) {
         loc = loc == null ? NSLocale.systemLocale() : loc;
         if (I18N_SUPPORT)

@@ -15,8 +15,6 @@
 #import "java_lang_String.h"
 #import "java_util_List.h"
 #import "java_util_Map.h"
-#import "java_util_Arrays.h"
-#import "cmioslayer-Swift.h"
 
 @implementation crossmobile_ios_foundation_NSString$Ext
 

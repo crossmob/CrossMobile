@@ -42,7 +42,7 @@ public class NSelector extends NParsable implements Comparable<NSelector> {
     private NObject container;
     private NProperty property;
     private boolean asStatic;
-    private String swiftVarArgMethod = "";
+    private String swiftMethod = "";
     private NStructField structRef;
 
     /* Function info */
@@ -236,16 +236,16 @@ public class NSelector extends NParsable implements Comparable<NSelector> {
         return fakeConstructor;
     }
 
-    public void setSwiftMethod(String swiftVarArgMethod) {
-        this.swiftVarArgMethod = swiftVarArgMethod;
+    public void setSwiftMethod2(String swiftMethod) {
+        this.swiftMethod = swiftMethod;
     }
 
     /**
      * The Swift method used as a bridge between a varargs argument and a va_list argument. The va_list
      * argument name of this method <b>should</b> be va_array.
      */
-    public String getSwiftVarArgMethod() {
-        return swiftVarArgMethod;
+    public String getSwiftMethod() {
+        return swiftMethod;
     }
 
     /**

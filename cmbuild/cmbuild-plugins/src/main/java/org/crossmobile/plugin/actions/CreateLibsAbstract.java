@@ -20,7 +20,6 @@ import org.crossmobile.build.ArtifactInfo;
 import org.crossmobile.plugin.model.NObject;
 import org.crossmobile.plugin.objc.ReverseBlockRegistry;
 import org.crossmobile.plugin.objc.ObjectEmitter;
-import org.crossmobile.plugin.objc.Templates;
 import org.crossmobile.plugin.reg.*;
 import org.crossmobile.plugin.utils.Streamer;
 import org.crossmobile.utils.FileUtils;
@@ -31,6 +30,7 @@ import org.crossmobile.utils.reqgraph.Requirement;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Function;
 import java.util.jar.JarFile;
 
@@ -58,10 +58,11 @@ public abstract class CreateLibsAbstract {
         Function<String, File> prodResolv = plugin -> new File(target, PLATFORM.apply(asIOS) + separator + plugin);
         final Function<String, String> LIBNAME = asIOS ? IOSLibName : UWPLibName;
 
+        AtomicBoolean hasSwift = new AtomicBoolean(false);
         time(() -> {
             for (String plugin : plugins())
                 delete(prodResolv.apply(plugin));
-            runEmitters(prodResolv);
+            runEmitters(prodResolv, hasSwift);
         }, "Creating " + PLATFORM.apply(asIOS) + " files");
 
         time(() -> handleRegistry.saveTo(prodResolv), "Creating inverse block handlers");
@@ -121,7 +122,7 @@ public abstract class CreateLibsAbstract {
                             headerSearchPaths.addAll(depfiles);
                     });
                     File proj = createProj(target, plugin);
-                    updateProj(proj, pData, includeDir, headerSearchPaths, compiled, requirements);    // Update project with project files and includes
+                    updateProj(proj, pData, includeDir, headerSearchPaths, compiled, requirements, hasSwift.get());    // Update project with project files and includes
                     if (build)
                         compile(proj, asIOS ? lib : IDELocation, pData, LIBNAME.apply(plugin));
                 } else
@@ -130,11 +131,11 @@ public abstract class CreateLibsAbstract {
         }, "Synchronizing plugins");
     }
 
-    protected static void emitPlatformFiles(Function<String, File> prodResolv, boolean asIOS) throws IOException {
-        objectEmitter(prodResolv, false);
+    protected static void emitPlatformFiles(Function<String, File> prodResolv, boolean asIOS, AtomicBoolean hasSwift) throws IOException {
+        objectEmitter(prodResolv, false, hasSwift);
     }
 
-    protected static void objectEmitter(Function<String, File> prodResolv, boolean headersOnly) throws IOException {
+    protected static void objectEmitter(Function<String, File> prodResolv, boolean headersOnly, AtomicBoolean hasSwift) throws IOException {
         Map<String, Streamer> swift = new HashMap<>();
         for (NObject obj : ObjectRegistry.retrieveAll()) {
             ObjectEmitter out = new ObjectEmitter(obj);
@@ -144,6 +145,8 @@ public abstract class CreateLibsAbstract {
                 Streamer swiftStreamer = swift.computeIfAbsent(plugin, o -> Streamer.asString());
                 File pluginRoot = prodResolv.apply(plugin + (headersOnly ? separator + "uwpinclude" : ""));
                 out.emit(asHeader(pluginRoot, name), headersOnly ? null : asBody(pluginRoot, name), swiftStreamer, headersOnly, PluginRegistry.getPluginData(plugin).getImports());
+                if (!swiftStreamer.isEmpty())
+                    hasSwift.set(true);
             }
         }
         for (String plugin : swift.keySet()) {
@@ -151,10 +154,9 @@ public abstract class CreateLibsAbstract {
             String data = streamer.toString();
             if (data.isEmpty())
                 continue;
-            File swiftFile = new File(prodResolv.apply(plugin), "va_bindings.swift");
+            File swiftFile = new File(prodResolv.apply(plugin), "swift_bindings.swift");
             String swiftContent = "import Foundation\n@objc\nclass " +
-                    plugin + "_va :NSObject {\n" +
-                    Templates.SWIFT_BASE_TEMPLATE + "\n\n" +
+                    plugin + "_swift :NSObject {\n" +
                     data +
                     "}\n";
             FileUtils.write(swiftFile, swiftContent);
@@ -194,11 +196,11 @@ public abstract class CreateLibsAbstract {
         return compiled;
     }
 
-    protected abstract void runEmitters(Function<String, File> prodResolv) throws IOException;
+    protected abstract void runEmitters(Function<String, File> prodResolv, AtomicBoolean hasSwift) throws IOException;
 
     protected abstract void compile(File projRoot, File lib, Plugin plugin, String libname);
 
-    protected abstract void updateProj(File proj, Plugin plugin, Collection<File> includeDir, Collection<File> headerSearchPaths, Collection<File> compiled, Collection<String> deps);
+    protected abstract void updateProj(File proj, Plugin plugin, Collection<File> includeDir, Collection<File> headerSearchPaths, Collection<File> compiled, Collection<String> deps, boolean createSwift);
 
     protected abstract File createProj(File target, String plugin);
 

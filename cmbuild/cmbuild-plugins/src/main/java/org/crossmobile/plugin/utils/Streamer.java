@@ -46,6 +46,7 @@ public interface Streamer {
         return new StringStreamer(new StringBuilder());
     }
 
+    boolean isEmpty();
 }
 
 abstract class BaseStreamer implements Streamer {
@@ -98,6 +99,7 @@ class FileStreamer extends BaseStreamer {
 
     private final File out;
     private Writer writer;
+    private boolean empty = true;
 
     FileStreamer(File out) {
         this.out = out;
@@ -110,7 +112,14 @@ class FileStreamer extends BaseStreamer {
             writer = new OutputStreamWriter(new FileOutputStream(out), StandardCharsets.UTF_8);
         }
         writer.append(conv(text)).flush();
+        if (empty && text.length() > 0)
+            empty = false;
         return this;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
     }
 }
 
@@ -133,4 +142,8 @@ class StringStreamer extends BaseStreamer {
         return builder.toString();
     }
 
+    @Override
+    public boolean isEmpty() {
+        return builder.length() == 0;
+    }
 }

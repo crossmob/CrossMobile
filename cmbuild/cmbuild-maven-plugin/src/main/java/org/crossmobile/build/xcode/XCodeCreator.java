@@ -284,7 +284,6 @@ public class XCodeCreator {
                     bc.putToBuildSettings("HEADER_SEARCH_PATHS", headerSearchPath.toArray());
                     bc.putToBuildSettings("INFOPLIST_FILE", "$(SRCROOT)/" + buildConfLists.get(configurationList));
                     bc.putToBuildSettings("TARGETED_DEVICE_FAMILY", projectType);
-                    bc.putToBuildSettings("SWIFT_VERSION", "4.0");
                 }
         }
     }

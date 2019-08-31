@@ -61,14 +61,14 @@ public class ElementParser {
         return parseSelector(nobj, sel, cs, nobj.getType());
     }
 
-    public static boolean parseMethod(NObject nobj, Method m, boolean forceStatic, String nativeCode, String sizeResolver, String swiftVarArgMethod) {
+    public static boolean parseMethod(NObject nobj, Method m, boolean forceStatic, String nativeCode, String sizeResolver, String swiftMethod) {
         NSelector sel = AnnotationParser.parseSelector(nativeCode);
         if (sel == null) {
             Log.error("Unable to parse selector for method " + execSignature(m) + " using native code: " + nativeCode);
             return false;
         } else {
             sel.getReturnType().setSizeResolver(sizeResolver);
-            sel.setSwiftMethod(swiftVarArgMethod);
+            sel.setSwiftMethod2(swiftMethod);
             return parseSelector(nobj, sel, m, m.getReturnType(), forceStatic ? StaticMappingType.JAVA : StaticMappingType.NONE);
         }
     }
@@ -97,7 +97,7 @@ public class ElementParser {
         return parseSelector(nobj, Factories.getSetterSelector(set), m, m.getReturnType());
     }
 
-    public static boolean parseFunc(NObject nobj, Method m, String nativeCode, String sizeResolver, String swiftVarArgMethod) {
+    public static boolean parseFunc(NObject nobj, Method m, String nativeCode, String sizeResolver, String swiftMethod) {
         NSelector func = AnnotationParser.parseFunction(nativeCode);
         StaticMappingType staticMapping = StaticMappingType.NONE;
         if (func == null) {
@@ -105,7 +105,7 @@ public class ElementParser {
             return false;
         } else if (!func.getParams().isEmpty()) {
             func.getReturnType().setSizeResolver(sizeResolver);
-            func.setSwiftMethod(swiftVarArgMethod);
+            func.setSwiftMethod2(swiftMethod);
             Class firstParam = getReferencedJavaClass(func.getParams().get(0).getNType().getType());
             if (isAssignableFrom(firstParam, nobj.getType(), null))
                 staticMapping = StaticMappingType.NATIVE;
@@ -218,16 +218,6 @@ public class ElementParser {
                 && !mParams.get(mParams.size() - 2).isArray()
                 && mParams.get(mParams.size() - 1).isArray()
                 && (selector.getMethodType() == FUNCTION || selector.getMethodType() == SELECTOR)) {
-
-            if (selector.getSwiftVarArgMethod().trim().isEmpty()) {
-                Log.error("A vararg argument has been suspected for " + selector.getFamily() + " `" + execSignature(exec) + "` but no swiftVarArgMethod parameter has been defined on the " + annName(CMFunction.class) + "/" + annName(CMSelector.class) + " annotation.");
-                return false;
-            }
-            if (!trimAll(selector.getSwiftVarArgMethod().toLowerCase()).endsWith("va_array)")) {
-                Log.error("A vararg argument has been defined for " + selector.getFamily() + " `" + execSignature(exec) + "`, but no va_list Swift method provided, with the va_list argument named `va_array`");
-                return false;
-            }
-
             NParam old = sParams.get(sParams.size() - 1);
             NType base = new NType(old.getNType().getNativeType(), old.getNType().getType().getComponentType());
             NType prod = new NType("void *", Object[].class);   // Change it into Object.class if you want to support any kind of arrays
@@ -248,9 +238,6 @@ public class ElementParser {
             selector.addParam(baseParam);
             selector.addParam(prodParam);
             selector.setMethodType(selector.getMethodType() == SELECTOR ? VA_SELECTOR : VA_FUNCTION);
-        } else if (!selector.getSwiftVarArgMethod().isEmpty()) {
-            Log.error("A vararg Swift method has been defined for method that does not require it: " + execSignature(exec));
-            return false;
         }
 
         if (mParams.size() != sParams.size())   // after parameter fix

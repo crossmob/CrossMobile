@@ -164,13 +164,13 @@ public final class Parser {
                 else if (!isCBased && count == 0)
                     Log.error("Unable to locate " + ANN_METH_NAMES + " for method " + execSignature(m));
                 else if (selector != null)
-                    parseMethod(nobj, m, selector.staticMapping(), selector.value(), selector.sizeResolver(), selector.swiftVarArgMethod());
+                    parseMethod(nobj, m, selector.staticMapping(), selector.value(), selector.sizeResolver(), selector.swiftMethod());
                 else if (getter != null)
                     parseGetter(nobj, m, getter.value(), getter.sizeResolver());
                 else if (setter != null)
                     parseSetter(nobj, m, setter.value());
                 else if (func != null)
-                    parseFunc(nobj, m, func.value(), func.sizeResolver(), func.swiftVarArgMethod());
+                    parseFunc(nobj, m, func.value(), func.sizeResolver(), func.swiftMethod());
                 else if (block != null)
                     parseBlock(nobj, m, block.value());
                 else
