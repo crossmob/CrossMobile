@@ -31,9 +31,7 @@
 
 + (java_lang_Character*) valueOf___char: (unichar) c
 {
-	java_lang_Character* result = [[java_lang_Character alloc] init];
-	[result __init_java_lang_Character___char:c];
-	return result;	
+    return [[java_lang_Character alloc] __init_java_lang_Character___char:c];
 }
 
 + (BOOL) isUpperCase___char:(unichar) c

@@ -207,6 +207,11 @@ public class CollectionUtils {
     public static <T> T last(Iterable<T> collection) {
         if (collection == null)
             return null;
+        if (collection instanceof List) {
+            List<T> list = (List<T>) collection;
+            return list.size() > 0 ? list.get(list.size() - 1) : null;
+        }
+        // generic method
         T last = null;
         Iterator<T> it = collection.iterator();
         while (it.hasNext())

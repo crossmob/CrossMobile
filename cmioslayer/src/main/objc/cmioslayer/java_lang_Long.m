@@ -77,9 +77,7 @@
 }
 
 + (java_lang_Long*) valueOf___long: (JAVA_LONG) l {
-	java_lang_Long* result = [[java_lang_Long alloc] init];
-	[result __init_java_lang_Long___long:l];
-	return result;	
+    return [[java_lang_Long alloc] __init_java_lang_Long___long:l];
 }
 
 static BOOL instanceof(id obj, const char *className) {

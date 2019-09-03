@@ -53,8 +53,8 @@
 }
 
 
-+ (java_lang_Float*) valueOf___float:(float) value {
-    return [[NSNumber numberWithFloat:value] retain];
++ (java_lang_Float*) valueOf___float:(float) f {
+    return [[java_lang_Float alloc] __init_java_lang_Float___float:f];
 }
 
 - (float) unbox

@@ -31,4 +31,8 @@ public enum MethodType {
     public boolean isExternal() {
         return this == EXTERNAL;
     }
+
+    public boolean isFunction() {
+        return this == FUNCTION || this == VA_FUNCTION;
+    }
 }

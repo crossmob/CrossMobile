@@ -23,15 +23,19 @@ import org.crossmobile.plugin.objc.param.ParamEmitter;
 import org.crossmobile.plugin.objc.param.ResultEmitter;
 import org.crossmobile.plugin.reg.PluginRegistry;
 import org.crossmobile.plugin.utils.Streamer;
+import org.crossmobile.utils.CollectionUtils;
 
 import java.io.IOException;
 import java.lang.reflect.Executable;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import static org.crossmobile.plugin.utils.Collectors.getParameter;
 import static org.crossmobile.plugin.utils.Texters.*;
-import static org.crossmobile.utils.CollectionUtils.forEach;
+import static org.crossmobile.utils.CollectionUtils.*;
 import static org.crossmobile.utils.NamingUtils.getClassNameBare;
 import static org.crossmobile.utils.NamingUtils.getClassNameSimple;
 
@@ -156,16 +160,25 @@ public class SelectorEmitter {
         return out.toString();
     }
 
+    /* only for NSString.format and friends. Needs more implementation for other systems */
     private String emitSelectorAsVarArg(ParamEmitter emitter) {
         StringBuilder out = new StringBuilder();
-        out.append("[XMLVMArray formatWith:NSLog :@[");
-        forEach(emitter.getNativeParameters())
-                .setFilter(e -> !e.isParameterHidden())
-                .onInner(e -> out.append(","))
-                .onFront(e -> out.append(e.embed()))
-                .onLast(e -> out.append("] :").append(e.embed()).append(" :").append(selector.getReturnType().getType().equals(void.class) ? "NO" : "YES"))
-                .go();
-        out.append("]");
+        String methodName = selector.getMethodType().isFunction() ? selector.getName() : "nil"; // nil will be later converted to objc_msgSend
+        out.append("xmlvm_formatWith(FFI_FN(").append(methodName).append("), ");
+        out.append(selector.getReturnType().getType().equals(void.class) ? "NO" : "YES").append(", ");
+        boolean asInstance = !selector.getMethodType().isFunction();
+        out.append(selector.getParams().size() - 1 + (asInstance ? 2 : 0)).append(", ");
+        out.append(last(emitter.getNativeParameters()).embed());
+        if (asInstance) {
+            String containerClass = toObjCType(selector.getContainer().getType());
+            if (containerClass.endsWith("*"))
+                containerClass = containerClass.substring(0, containerClass.length() - 1);
+            out.append(", ").append(selector.isStatic() ? "[" + containerClass + " class]" : "[" + containerClass + " alloc]");
+            out.append(", ").append("(id)NSSelectorFromString(@\"").append(selector.getSignature()).append("\")");
+        }
+        for (Emitter e : front(emitter.getNativeParameters()))
+            out.append(", ").append(e.embed());
+        out.append(")");
         return out.toString();
     }
 

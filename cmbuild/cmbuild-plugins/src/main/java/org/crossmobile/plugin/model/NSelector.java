@@ -16,12 +16,15 @@
  */
 package org.crossmobile.plugin.model;
 
+import org.crossmobile.utils.CollectionUtils;
+
 import java.lang.reflect.Executable;
 import java.lang.reflect.Modifier;
 import java.util.*;
 
 import static org.crossmobile.plugin.reg.TypeRegistry.*;
 import static org.crossmobile.plugin.utils.Texters.toObjC;
+import static org.crossmobile.utils.CollectionUtils.forEach;
 import static org.crossmobile.utils.NamingUtils.execSignature;
 import static org.crossmobile.utils.NamingUtils.getClassNameBare;
 import static org.crossmobile.utils.ReflectionUtils.appearsInParent;
@@ -73,8 +76,9 @@ public class NSelector extends NParsable implements Comparable<NSelector> {
     public String getSignature() {
         StringBuilder out = new StringBuilder();
         out.append(name);
-        for (NParam param : params)
-            out.append(param.getName()).append(":");
+        forEach(params)
+                .onFront(n -> out.append(n.getName()).append(":"))
+                .go();
         return out.toString();
     }
 

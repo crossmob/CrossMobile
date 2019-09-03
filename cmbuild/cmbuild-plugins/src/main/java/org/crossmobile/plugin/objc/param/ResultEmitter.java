@@ -40,14 +40,14 @@ public class ResultEmitter {
                 sel.getJavaReturn(),
                 sel.getOriginalCode(),
                 sel.getReturnType().getType().isPrimitive() && !sel.getJavaReturn().isPrimitive(),
-                sel.isConstructor(), sel.isFakeConstructor(), sel.getMethodType().isVarArgs(), forward);
+                sel.isConstructor(), sel.isFakeConstructor(), forward);
     }
 
-    private ResultEmitter(NType returnType, Class javaType, String origCode, boolean boxed, boolean constructor, boolean fakeConstructor, boolean bridgedVararg, boolean forward) {
+    private ResultEmitter(NType returnType, Class javaType, String origCode, boolean boxed, boolean constructor, boolean fakeConstructor, boolean forward) {
         this.returnType = returnType;
         this.javaType = javaType;
         this.forward = forward;
-        this.result = parseReturn(returnType, javaType, origCode, boxed, constructor, fakeConstructor, bridgedVararg, !forward);
+        this.result = parseReturn(returnType, javaType, origCode, boxed, constructor, fakeConstructor, !forward);
     }
 
     private ResultEmitter(NType returnType, Class javaType, boolean forward, Emitter result) {
@@ -57,7 +57,7 @@ public class ResultEmitter {
         this.result = result;
     }
 
-    private Emitter parseReturn(NType type, Class javaType, String origCode, boolean boxed, boolean constructor, boolean fakeConstructor, boolean bridgedVararg, boolean reverse) {
+    private Emitter parseReturn(NType type, Class javaType, String origCode, boolean boxed, boolean constructor, boolean fakeConstructor, boolean reverse) {
         if (isAnyReference(javaType))
             return new EmitterCType("", RESULT, type, isObjCReference(javaType) ? javaType : null, constructor, false, reverse);
         else if (javaType.equals(Void.TYPE))
@@ -66,10 +66,9 @@ public class ResultEmitter {
             return new EmitterPrimitive("", RESULT, type, boxed, reverse);
         if (javaType.isArray())
             return new EmitterArray("", RESULT, type, javaType, reverse);
-        else if (isObjCBased(javaType) || isJavaWrapped(javaType) || isTarget(javaType)) {
-            boolean noRetain = (constructor || fakeConstructor) && !bridgedVararg;    // if it is bridged vararg, retain is (probably) required, since Swift seems to put things into the autorelease pool anyway.
-            return new EmitterObject("", RESULT, type, noRetain, reverse);
-        } else if (type.getBlock() != null || isBlockTarget(javaType))
+        else if (isObjCBased(javaType) || isJavaWrapped(javaType) || isTarget(javaType))
+            return new EmitterObject("", RESULT, type, constructor || fakeConstructor, reverse);
+        else if (type.getBlock() != null || isBlockTarget(javaType))
             return new EmitterBlock(RESULT, type, reverse);
         else {
             System.out.println("Unknown return emitter for " + getClassNameFull(type.getType()) + " in selector `" + origCode + "`");

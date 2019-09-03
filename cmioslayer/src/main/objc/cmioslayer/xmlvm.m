@@ -20,7 +20,6 @@
 
 
 #import "xmlvm.h"
-#import "ffi.h"
 #import "java_lang_Boolean.h"
 #import "java_lang_Character.h"
 #import "java_lang_Byte.h"
@@ -31,6 +30,7 @@
 #import "java_lang_Long.h"
 #import "java_lang_Class.h"
 #import "java_util_List.h"
+#import <objc/message.h>
 
 id JAVA_NULL;
 
@@ -319,60 +319,58 @@ XMLVMElemPtr copyData(int type, int length, XMLVMElemPtr olddata)
     return vararg;
 }
 
-+ (NSString*) formatWith:(void (*)(void)) func :(NSArray*) preparam :(XMLVMArray*) varargs, BOOL returns
-{
-    int preparam_count = [preparam count];
-    int count = preparam_count + [varargs count];
-    
-    XMLVMElem data[count];
-    ffi_type *args[count];
-    void *values[count];
-    ffi_cif cif;
-    NSString* rc;
+@end
 
-    for(int i = 0 ; i < preparam_count ; i++) {
-        args[i] = &ffi_type_pointer;
-        data[i].o = [preparam objectAtIndex:i];
-        values[i] = &data[i].o;
+NSString* xmlvm_formatWith( void (*func)(void), BOOL returns, int extraSize, XMLVMArray* varargs, ...)
+{
+    int count = extraSize + [varargs count];
+    ffi_type *argType[count];
+    XMLVMElem argValue[count];
+    void *argPointer[count];
+    ffi_cif cif;
+    ffi_arg rc;
+    if (func==nil)
+        func = FFI_FN(objc_msgSend);
+    
+    va_list vaargs;
+    va_start(vaargs, varargs);
+    for(int i = 0 ; i < extraSize ; i++) {
+        argType[i] = &ffi_type_pointer;
+        argValue[i].o = va_arg(vaargs, id);
+        argPointer[i] = &argValue[i].o;
     }
     for(int i = 0 ; i < [varargs count] ; i++) {
+        int idx = i + extraSize;
         id item = varargs->array.o[i];
         const char* className = class_getName([item class]);
         if (strcmp(className, "java_lang_Boolean")==0) {
-            args[i+preparam_count] = &ffi_type_sint32;
-            data[i].i = [item booleanValue__];
+            argType[idx] = &ffi_type_sint32;
+            argValue[idx].i = [item booleanValue__];
         } else if (strcmp(className, "java_lang_Byte")==0 || strcmp(className, "java_lang_Short")==0 || strcmp(className, "java_lang_Integer")==0) {
-            args[i+preparam_count] = &ffi_type_sint32;
-            data[i].i = [item intValue__];
+            argType[idx] = &ffi_type_sint32;
+            argValue[idx].i = [item intValue__];
         } else if (strcmp(className, "java_lang_Long")==0) {
-            args[i+preparam_count] = &ffi_type_sint64;
-            data[i].l = [item longValue__];
-        } else if (strcmp(className, "java_lang_Float")==0) {
-            args[i+preparam_count] = &ffi_type_float;
-            data[i].f = [item floatValue__];
-        } else if (strcmp(className, "java_lang_Double")==0) {
-            args[i+preparam_count] = &ffi_type_double;
-            data[i].d = [item doubleValue__];
+            argType[idx] = &ffi_type_sint64;
+            argValue[idx].l = [item longValue__];
+        } else if (strcmp(className, "java_lang_Float")==0 || strcmp(className, "java_lang_Double")==0) {
+            argType[idx] = &ffi_type_double;
+            argValue[idx].d = [item doubleValue__];
+        } else if (strcmp(className, "java_lang_Character")==0) {
+            argType[idx] = &ffi_type_uint16;
+            argValue[idx].c = [item charValue__];
         } else {
-            args[i+preparam_count] = &ffi_type_pointer;
-            data[i].o = item;
+            argType[idx] = &ffi_type_pointer;
+            argValue[idx].o = item;
         }
-        values[i+preparam_count] = &data[i];
+        argPointer[idx] = & argValue[idx];
     }
-
-    /* Initialize the cif */
-    if (ffi_prep_cif(&cif, FFI_DEFAULT_ABI, count+1,
-                    returns ? &ffi_type_pointer :  &ffi_type_void, args) == FFI_OK)
-    {
-        ffi_call(&cif, FFI_FN(NSLog), &rc, values);
-        /* rc now holds the result of the call to puts */
+    
+    if (ffi_prep_cif(&cif, FFI_DEFAULT_ABI, count,
+                     returns ? &ffi_type_pointer :  &ffi_type_void, argType) == FFI_OK) {
+        ffi_call(&cif, func, &rc, argPointer);
     }
     return returns ? rc : nil;
 }
-
-
-@end
-
 
 @implementation NSNull (cat_crossmobile_null)
 

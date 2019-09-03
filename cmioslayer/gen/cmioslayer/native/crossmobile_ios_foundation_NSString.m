@@ -113,21 +113,19 @@
 // direct binding of: - (instancetype)initWithFormat:(NSString *)format locale:(id)locale, ...;
 + (instancetype) initWithFormat___java_lang_String_crossmobile_ios_foundation_NSLocale_java_lang_Object_ARRAYTYPE:(NSString*) format :(NSLocale*) locale :(XMLVMArray*) va_array 
 {
-    id re$ult = [XMLVMArray formatWith:NSLog :@[(format == JAVA_NULL ? nil : format),(locale == JAVA_NULL ? nil : locale)] :va_array :YES];
-    return [(re$ult ? re$ult : JAVA_NULL) retain];
+    return xmlvm_formatWith(FFI_FN(nil), YES, 4, va_array, [NSString alloc], (id)NSSelectorFromString(@"initWithFormat:locale:"), (format == JAVA_NULL ? nil : format), (locale == JAVA_NULL ? nil : locale));
 }
 
 // direct binding of: - (instancetype)initWithFormat:(NSString *)format, ...;
 + (instancetype) initWithFormat___java_lang_String_java_lang_Object_ARRAYTYPE:(NSString*) format :(XMLVMArray*) va_array 
 {
-    id re$ult = [XMLVMArray formatWith:NSLog :@[(format == JAVA_NULL ? nil : format)] :va_array :YES];
-    return [(re$ult ? re$ult : JAVA_NULL) retain];
+    return xmlvm_formatWith(FFI_FN(nil), YES, 3, va_array, [NSString alloc], (id)NSSelectorFromString(@"initWithFormat:"), (format == JAVA_NULL ? nil : format));
 }
 
 // direct binding of: + (instancetype)localizedStringWithFormat:(NSString *)format, ...;
 + (instancetype) localizedStringWithFormat___java_lang_String_java_lang_Object_ARRAYTYPE:(NSString*) format :(XMLVMArray*) va_array 
 {
-    id re$ult = [XMLVMArray formatWith:NSLog :@[(format == JAVA_NULL ? nil : format)] :va_array :YES];
+    id re$ult = xmlvm_formatWith(FFI_FN(nil), YES, 3, va_array, [NSString class], (id)NSSelectorFromString(@"localizedStringWithFormat:"), (format == JAVA_NULL ? nil : format));
     return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 

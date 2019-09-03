@@ -16,7 +16,6 @@
  */
 package org.crossmobile.plugin.objc.param;
 
-import org.crossmobile.bridge.ann.CMParamMod;
 import org.crossmobile.plugin.model.NParam;
 import org.crossmobile.plugin.model.NSelector;
 import org.crossmobile.plugin.model.NType;

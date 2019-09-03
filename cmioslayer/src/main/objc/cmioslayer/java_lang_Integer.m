@@ -76,9 +76,7 @@
 
 + (java_lang_Integer*) valueOf___int: (int) i
 {
-	java_lang_Integer* o = [[java_lang_Integer alloc] init];
-	[o __init_java_lang_Integer___int:i];
-	return o;
+    return [[java_lang_Integer alloc] __init_java_lang_Integer___int:i];
 }
 
 static BOOL instanceof(id obj, const char *className) {

@@ -68,9 +68,7 @@ static java_lang_Class* primitiveShortClass;
 
 + (java_lang_Short*) valueOf___short: (short) s
 {
-    java_lang_Short* val = [[java_lang_Short alloc]init];
-    [val __init_java_lang_Short___short:s];
-    return val;
+    return [[java_lang_Short alloc] __init_java_lang_Short___short:s];
 }
 
 - (short) unbox

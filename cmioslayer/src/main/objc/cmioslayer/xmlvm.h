@@ -22,6 +22,7 @@
 #import <objc/runtime.h>
 #import <math.h>
 #import <Foundation/Foundation.h>
+#import "ffi.h"
 @class java_lang_Class;
 @class java_util_List;
 
@@ -54,6 +55,7 @@ typedef union {
     int       i;
     float     f;
     double    d;
+    unichar   c;
     JAVA_LONG l;
 } XMLVMElem;
 
@@ -91,9 +93,10 @@ extern id JAVA_NULL;
 - (XMLVMArray*) clone__;
 - (int) sizeOfBoxedTypeInBytes:(int) index typeFound:(int *) type asMaxSize:(BOOL) maxsize;  // call by reference for type found
 - (void*) toMallocedVarArg;
-+ (NSString*) formatWith:(void (*)(void)) func :(NSArray*) preparam :(XMLVMArray*) varargs, BOOL returns;
 
 @end
+
+NSString* xmlvm_formatWith( void (*func)(void), BOOL returns, int extraParamSize, XMLVMArray* varargs, ...);
 
 #define Infinity 0x7f800000
 #define NaN 0x7fc00000
