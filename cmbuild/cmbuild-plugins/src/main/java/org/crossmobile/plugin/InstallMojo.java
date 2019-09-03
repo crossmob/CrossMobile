@@ -115,6 +115,7 @@ public class InstallMojo extends GenericMojo {
         PluginAssembler.assemble(new File(getProject().getBuild().getDirectory()), dependencies,
                 embedlibs, obfuscate, proguardConf,
                 new File(new File(getProject().getBuild().getSourceDirectory()).getParent(), "objc"),
+                new File(getProject().getBasedir(), "lib/main/vendor"),
                 this::installAndKeepJar, this::resolveArtifact,
                 resolveArtifact(new ArtifactInfo(ProGuard.GROUP, ProGuard.ARTIFACT, versionProguard, "jar")),
                 proguardMap, new File(getProject().getBasedir(), "gen"), packages,

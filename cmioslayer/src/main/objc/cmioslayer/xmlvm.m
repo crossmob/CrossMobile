@@ -20,6 +20,7 @@
 
 
 #import "xmlvm.h"
+#import "ffi.h"
 #import "java_lang_Boolean.h"
 #import "java_lang_Character.h"
 #import "java_lang_Byte.h"
@@ -82,30 +83,6 @@ NSArray<Class>* jclass_to_class_list(java_util_List* list){
 }
 
 @implementation XMLVMArray
-
-- (XMLVMElemPtr) get_array{
-    return self->array;
-}
-
-- (void) set_array:(XMLVMElemPtr) array{
-    self->array = array;
-}
-
-- (int) get_type{
-    return self->type;
-}
-
-- (void) set_type:(int) type{
-    self->type = type;
-}
-
-- (int) get_length{
-    return self->length;
-}
-
-- (void) set_length:(int) length{
-    self->length = length;
-}
 
 /* This private method creates a shallow copy of this array */
 XMLVMElemPtr copyData(int type, int length, XMLVMElemPtr olddata)
@@ -344,25 +321,53 @@ XMLVMElemPtr copyData(int type, int length, XMLVMElemPtr olddata)
 
 + (NSString*) formatWith:(void (*)(void)) func :(NSArray*) preparam :(XMLVMArray*) varargs, BOOL returns
 {
-    //    format = [format stringByReplacingOccurrencesOfString:@"%c" withString:@"%C"];
-    //
-    //    format = [[format stringByReplacingOccurrencesOfString:@"%b" withString:@"%@"] stringByReplacingOccurrencesOfString:@"%B" withString:@"%@"];
-    //
-    //    format = [format stringByReplacingOccurrencesOfString:@"%d" withString:@"%lld"];
-    //    format = [format stringByReplacingOccurrencesOfString:@"%ο" withString:@"%llο"];
-    //    format = [[format stringByReplacingOccurrencesOfString:@"%x" withString:@"%llx"] stringByReplacingOccurrencesOfString:@"%X" withString:@"%llX"];
-    //
-    //    format = [[format stringByReplacingOccurrencesOfString:@"%s" withString:@"%@"] stringByReplacingOccurrencesOfString:@"%S" withString:@"%@"];
-    //    format = [[format stringByReplacingOccurrencesOfString:@"%t" withString:@"%@"] stringByReplacingOccurrencesOfString:@"%T" withString:@"%@"];
-    //
-    //    format =  [format stringByReplacingOccurrencesOfString:@"%n" withString:@"\n"];
-    //
-    //    xmlvm_format(NSLOG, format, array);
-    //    void * vararg = [array toMallocedVarArg];
-    //    NSString * res = [[NSString alloc] initWithFormat:format arguments:vararg];
-    //    free(vararg);
-    //    return res;
-    return nil;
+    int preparam_count = [preparam count];
+    int count = preparam_count + [varargs count];
+    
+    XMLVMElem data[count];
+    ffi_type *args[count];
+    void *values[count];
+    ffi_cif cif;
+    NSString* rc;
+
+    for(int i = 0 ; i < preparam_count ; i++) {
+        args[i] = &ffi_type_pointer;
+        data[i].o = [preparam objectAtIndex:i];
+        values[i] = &data[i].o;
+    }
+    for(int i = 0 ; i < [varargs count] ; i++) {
+        id item = varargs->array.o[i];
+        const char* className = class_getName([item class]);
+        if (strcmp(className, "java_lang_Boolean")==0) {
+            args[i+preparam_count] = &ffi_type_sint32;
+            data[i].i = [item booleanValue__];
+        } else if (strcmp(className, "java_lang_Byte")==0 || strcmp(className, "java_lang_Short")==0 || strcmp(className, "java_lang_Integer")==0) {
+            args[i+preparam_count] = &ffi_type_sint32;
+            data[i].i = [item intValue__];
+        } else if (strcmp(className, "java_lang_Long")==0) {
+            args[i+preparam_count] = &ffi_type_sint64;
+            data[i].l = [item longValue__];
+        } else if (strcmp(className, "java_lang_Float")==0) {
+            args[i+preparam_count] = &ffi_type_float;
+            data[i].f = [item floatValue__];
+        } else if (strcmp(className, "java_lang_Double")==0) {
+            args[i+preparam_count] = &ffi_type_double;
+            data[i].d = [item doubleValue__];
+        } else {
+            args[i+preparam_count] = &ffi_type_pointer;
+            data[i].o = item;
+        }
+        values[i+preparam_count] = &data[i];
+    }
+
+    /* Initialize the cif */
+    if (ffi_prep_cif(&cif, FFI_DEFAULT_ABI, count+1,
+                    returns ? &ffi_type_pointer :  &ffi_type_void, args) == FFI_OK)
+    {
+        ffi_call(&cif, FFI_FN(NSLog), &rc, values);
+        /* rc now holds the result of the call to puts */
+    }
+    return returns ? rc : nil;
 }
 
 

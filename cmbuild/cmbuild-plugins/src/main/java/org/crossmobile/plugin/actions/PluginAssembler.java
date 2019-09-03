@@ -60,7 +60,7 @@ public class PluginAssembler {
 
     public static void assemble(File target, DependencyItem root,
                                 String[] embedlibs, boolean obfuscate,
-                                File proguardConf, File vendorFiles,
+                                File proguardConf, File vendorSrc, File vendorBin,
                                 Consumer<ArtifactInfo> installer,
                                 Function<ArtifactInfo, File> resolver,
                                 File proguard, File proguardMap,
@@ -112,8 +112,8 @@ public class PluginAssembler {
         CodeReverse codeRev = (buildIos || buildUwp) ? time(() -> new CodeReverse(cc.getClassPool()), "Create reverse code") : null;
         if (buildIos || buildUwp) {
 //            time(() -> new JavaTransformer(cc.getClassPool(), runtime_rvm));
-            time(() -> new CreateLibs(resolver, target, cachedir, vendorFiles, null, codeRev.getHandleRegistry(), buildIos), "Create iOS libraries");
-            time(() -> new CreateDlls(resolver, target, cachedir, vendorFiles, VStudioLocation, codeRev.getHandleRegistry(), buildUwp), "Create UWP libraries");
+            time(() -> new CreateDylib(resolver, target, cachedir, vendorSrc, null, codeRev.getHandleRegistry(), buildIos), "Create iOS libraries");
+            time(() -> new CreateDll(resolver, target, cachedir, vendorSrc, VStudioLocation, codeRev.getHandleRegistry(), buildUwp), "Create UWP libraries");
         }
 
         time(() -> {
@@ -159,7 +159,7 @@ public class PluginAssembler {
 
             StringWriter writer = report == null ? null : new StringWriter();
             for (String plugin : PluginRegistry.plugins())
-                CreateArtifacts.installPlugin(installer, plugin, target, root, cachedir, vendorFiles, codeRev,
+                CreateArtifacts.installPlugin(installer, plugin, target, root, cachedir, vendorSrc, vendorBin, codeRev,
                         buildDesktop, buildIos, buildUwp, buildAndroid, buildRvm, buildCore, writer);
             if (writer != null)
                 try (OutputStreamWriter filewriter = new OutputStreamWriter(new FileOutputStream(report), StandardCharsets.UTF_8)) {

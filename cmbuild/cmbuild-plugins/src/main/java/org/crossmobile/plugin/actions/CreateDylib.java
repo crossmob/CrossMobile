@@ -47,9 +47,9 @@ import static org.crossmobile.utils.FileUtils.readResourceSafe;
 import static org.crossmobile.utils.FileUtils.write;
 import static org.crossmobile.utils.TextUtils.plural;
 
-public class CreateLibs extends CreateLibsAbstract {
+public class CreateDylib extends CreateLib {
 
-    public CreateLibs(Function<ArtifactInfo, File> resolver, File target, File cache, File vendor, File IDELocation, ReverseBlockRegistry handleRegistry, boolean build) throws IOException {
+    public CreateDylib(Function<ArtifactInfo, File> resolver, File target, File cache, File vendor, File IDELocation, ReverseBlockRegistry handleRegistry, boolean build) throws IOException {
         super(resolver, target, cache, vendor, IDELocation, handleRegistry, true, build);
     }
 

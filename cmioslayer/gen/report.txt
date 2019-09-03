@@ -932,7 +932,6 @@ crossmobile/ios/foundation/NSTimerDelegate.class v8
 crossmobile/ios/foundation/NSURL.class v8
 crossmobile/ios/foundation/NSURLCache.class v8
 crossmobile/ios/foundation/NSURLConnection$1.class v8
-crossmobile/ios/foundation/NSURLConnection$2.class v8
 crossmobile/ios/foundation/NSURLConnection.class v8
 crossmobile/ios/foundation/NSURLConnectionDataDelegate.class v8
 crossmobile/ios/foundation/NSURLConnectionDelegate.class v8
@@ -1250,7 +1249,10 @@ crossmobile/rt/StrongReference.class v8
 native/CM_Block_Reverse_cmioslayer_0.h
 native/CM_Block_Reverse_cmioslayer_1.h
 native/CM_Block_Reverse_cmioslayer_2.h
-native/cmioslayer-Bridging-Header.h
+native/arm64_ffi.h
+native/arm64_ffitarget.h
+native/armv7_ffi.h
+native/armv7_ffitarget.h
 native/cmioslayer.a
 native/crossmobile_ios_coregraphics_CGAffineTransform.h
 native/crossmobile_ios_coregraphics_CGBitmapContext.h
@@ -1440,6 +1442,10 @@ native/crossmobile_ios_uikit_UIWebView.h
 native/crossmobile_ios_uikit_UIWebViewDelegate.h
 native/crossmobile_ios_uikit_UIWindow.h
 native/crossmobile_rt_StrongReference.h
+native/ffi.a
+native/ffi.h
+native/i386_ffi.h
+native/i386_ffitarget.h
 native/java_io_BufferedInputStream.h
 native/java_io_BufferedOutputStream.h
 native/java_io_BufferedReader.h
@@ -1612,6 +1618,8 @@ native/org_robovm_objc_block_VoidBlock4.h
 native/org_robovm_objc_block_VoidBlock5.h
 native/org_robovm_objc_block_VoidBlock6.h
 native/org_xml_sax_SAXException.h
+native/x86_64_ffi.h
+native/x86_64_ffitarget.h
 native/xmlvm.h
 org/crossmobile/a$a.class v1.5
 org/crossmobile/a.class v1.5
@@ -1814,7 +1822,6 @@ crossmobile/ios/foundation/NSTimerDelegate.class v8
 crossmobile/ios/foundation/NSURL.class v8
 crossmobile/ios/foundation/NSURLCache.class v8
 crossmobile/ios/foundation/NSURLConnection$1.class v8
-crossmobile/ios/foundation/NSURLConnection$2.class v8
 crossmobile/ios/foundation/NSURLConnection.class v8
 crossmobile/ios/foundation/NSURLConnectionDataDelegate.class v8
 crossmobile/ios/foundation/NSURLConnectionDelegate.class v8
@@ -2597,7 +2604,6 @@ crossmobile/ios/foundation/NSTimerDelegate.class v8
 crossmobile/ios/foundation/NSURL.class v8
 crossmobile/ios/foundation/NSURLCache.class v8
 crossmobile/ios/foundation/NSURLConnection$1.class v8
-crossmobile/ios/foundation/NSURLConnection$2.class v8
 crossmobile/ios/foundation/NSURLConnection.class v8
 crossmobile/ios/foundation/NSURLConnectionDataDelegate.class v8
 crossmobile/ios/foundation/NSURLConnectionDelegate.class v8
@@ -2934,9 +2940,6 @@ org/crossmobile/backend/android/ActivityResultListener.class v8
 org/crossmobile/backend/android/ActivityStateListener.class v8
 org/crossmobile/backend/android/AndroidGraphicsBridge.class v8
 org/crossmobile/backend/android/ApplicationStateListener.class v8
-org/crossmobile/backend/android/MainActivity$1.class v8
-org/crossmobile/backend/android/MainActivity$2.class v8
-org/crossmobile/backend/android/MainActivity$3.class v8
 org/crossmobile/backend/android/MainActivity.class v8
 org/crossmobile/backend/android/MainApplication.class v8
 org/crossmobile/backend/android/MainView.class v8
@@ -2946,6 +2949,10 @@ org/crossmobile/backend/android/a.class v8
 org/crossmobile/backend/android/ab$1.class v8
 org/crossmobile/backend/android/ab$2.class v8
 org/crossmobile/backend/android/ab.class v8
+org/crossmobile/backend/android/ac$1.class v8
+org/crossmobile/backend/android/ac$2.class v8
+org/crossmobile/backend/android/ac$3.class v8
+org/crossmobile/backend/android/ac.class v8
 org/crossmobile/backend/android/b.class v8
 org/crossmobile/backend/android/c.class v8
 org/crossmobile/backend/android/d$1.class v8

@@ -42,7 +42,7 @@ import static org.crossmobile.utils.TextUtils.iterableToString;
 public class CreateArtifacts {
 
     public static void installPlugin(Consumer<ArtifactInfo> installer,
-                                     String plugin, File target, DependencyItem item, File cache, File vendor, CodeReverse rc,
+                                     String plugin, File target, DependencyItem item, File cache, File vendorSrc, File vendorBin, CodeReverse rc,
                                      boolean buildDesktop, boolean buildIos, boolean buildUwp, boolean buildAndroid, boolean buildRvm, boolean buildCore,
                                      Writer report) {
         // Get plugin data
@@ -68,22 +68,28 @@ public class CreateArtifacts {
                     new File(cache, plugin + File.separator + "reverse.txt"));
             Log.debug("Installing native files of plugin " + plugin);
 
-            File lib = new File(cache, "lib" + separator + "lib" + plugin + (buildIos ? ".a" : ".lib"));
-            if (buildIos && copy(lib, new File(buildIos ? iosTarget : uwpTarget, NATIVE_PATH + separator + plugin + (buildIos ? ".a" : ".lib"))) == 0)
-                if (pluginData.hasOptionalLibraryBinary())
-                    Log.info("Native library not found but ignored as noted: " + lib.getAbsolutePath());
-                else
-                    Log.error("Unable to copy native library " + lib.getAbsolutePath());
-            File dll = new File(cache, "lib" + separator + "lib" + plugin + ".dll");
-            if (buildUwp && copy(dll, new File(uwpTarget, NATIVE_PATH + separator + plugin + ".dll")) == 0)
-                if (pluginData.hasOptionalLibraryBinary())
-                    Log.info("Native library not found but ignored as noted: " + lib.getAbsolutePath());
-                else
-                    Log.error("Unable to copy native library " + lib.getAbsolutePath());
+            if (buildIos) {
+                File lib = new File(cache, "lib" + separator + "lib" + plugin + ".a");
+                if (copy(lib, new File(iosTarget, NATIVE_PATH + separator + plugin + ".a")) == 0)
+                    if (pluginData.hasOptionalLibraryBinary())
+                        Log.info("Native library not found but ignored as noted: " + lib.getAbsolutePath());
+                    else
+                        Log.error("Unable to copy native library " + lib.getAbsolutePath());
+                forAllRecursively(new File(vendorBin, plugin), f -> f.getName().endsWith(".a"), (p, f) -> copy(f, new File(iosTarget, NATIVE_PATH + separator + f.getName())));
+            }
+            if (buildUwp) {
+                File dll = new File(cache, "lib" + separator + "lib" + plugin + ".dll");
+                if (copy(dll, new File(uwpTarget, NATIVE_PATH + separator + plugin + ".dll")) == 0)
+                    if (pluginData.hasOptionalLibraryBinary())
+                        Log.info("Native library not found but ignored as noted: " + dll.getAbsolutePath());
+                    else
+                        Log.error("Unable to copy native library " + dll.getAbsolutePath());
+                forAllRecursively(new File(vendorBin, plugin), f -> f.getName().endsWith(".dll"), (p, f) -> copy(f, new File(iosTarget, NATIVE_PATH + separator + f.getName())));
+            }
 
             forAllRecursively(new File(cache, plugin + separator + (buildIos ? "native" : "uwp" + separator + "uwpinclude")), f -> isInclude(f.getName()),
                     (p, f) -> copy(f, new File(buildIos ? iosTarget : uwpTarget, NATIVE_PATH + separator + f.getName())));
-            forAllRecursively(new File(vendor, plugin + (buildIos ? "" : (separator + "uwpinclude"))), f -> isInclude(f.getName()), (p, f) -> copy(f, new File(buildIos ? iosTarget : uwpTarget, NATIVE_PATH + separator + f.getName())));
+            forAllRecursively(new File(vendorSrc, plugin + (buildIos ? "" : (separator + "uwpinclude"))), f -> isInclude(f.getName()), (p, f) -> copy(f, new File(buildIos ? iosTarget : uwpTarget, NATIVE_PATH + separator + f.getName())));
         }
 
         Log.info("Installing plugin " + plugin + " artifacts in local repository");

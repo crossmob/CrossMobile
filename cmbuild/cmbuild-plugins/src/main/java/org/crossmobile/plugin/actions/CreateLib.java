@@ -46,14 +46,14 @@ import static org.crossmobile.utils.NamingUtils.getClassNameBare;
 import static org.crossmobile.utils.TextUtils.plural;
 import static org.crossmobile.utils.TimeUtils.time;
 
-public abstract class CreateLibsAbstract {
+public abstract class CreateLib {
 
     protected static final String LIB_ANCHOR = "CMPLUGIN";
     protected static final Function<Boolean, String> PLATFORM = asIOS -> asIOS ? "native" : "uwp";
     private static final Function<String, String> IOSLibName = l -> "lib" + l + ".a";
     private static final Function<String, String> UWPLibName = l -> l + ".dll";
 
-    public CreateLibsAbstract(Function<ArtifactInfo, File> resolver, File target, File cache, File vendor, File IDELocation, ReverseBlockRegistry handleRegistry, boolean asIOS, boolean build) throws IOException {
+    public CreateLib(Function<ArtifactInfo, File> resolver, File target, File cache, File vendor, File IDELocation, ReverseBlockRegistry handleRegistry, boolean asIOS, boolean build) throws IOException {
         // Create native files in the scratch folder
         Function<String, File> prodResolv = plugin -> new File(target, PLATFORM.apply(asIOS) + separator + plugin);
         final Function<String, String> LIBNAME = asIOS ? IOSLibName : UWPLibName;

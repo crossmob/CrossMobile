@@ -80,12 +80,6 @@ extern id JAVA_NULL;
     @public int          length;
 }
 
-- (XMLVMElemPtr) get_array;
-- (void) set_array:(XMLVMElemPtr) array;
-- (int) get_type;
-- (void) set_type:(int) type;
-- (int) get_length;
-- (void) set_length:(int) length;
 + (XMLVMArray*) createSingleDimensionWithType:(int) type andSize:(int) size;
 + (XMLVMArray*) createSingleDimensionWithType:(int) type size:(int) size andData:(void*) data;
 + (XMLVMArray*) createMultiDimensionsWithType:(int) type dimensions:(XMLVMElem*) dim count:(int)count;

@@ -52,9 +52,9 @@ import static org.crossmobile.utils.FileUtils.*;
 import static org.crossmobile.utils.NamingUtils.getClassNameBare;
 import static org.crossmobile.utils.TimeUtils.time;
 
-public class CreateDlls extends CreateLibsAbstract {
+public class CreateDll extends CreateLib {
 
-    public CreateDlls(Function<ArtifactInfo, File> resolver, File target, File cache, File vendor, File IDELocation, ReverseBlockRegistry handleRegistry, boolean build) throws IOException {
+    public CreateDll(Function<ArtifactInfo, File> resolver, File target, File cache, File vendor, File IDELocation, ReverseBlockRegistry handleRegistry, boolean build) throws IOException {
         super(resolver, target, cache, vendor, IDELocation, handleRegistry, false, build);
     }
 
