@@ -32,7 +32,7 @@ import org.crossmobile.prefs.Prefs;
 import org.crossmobile.utils.Log;
 import org.crossmobile.utils.ProjectException;
 import org.crossmobile.utils.TreeWalker;
-import org.crossmobile.utils.TreeWalkerEntry;
+import org.crossmobile.utils.LocationRequest;
 
 import javax.swing.*;
 import java.awt.*;
@@ -131,12 +131,12 @@ public class CrossMobile {
                 initW.setAction("Cancel", skip);
                 initW.setSubtitle("Looking for installed components");
                 initW.setRunning(true);
-                Collection<TreeWalkerEntry> entries = asList(
-                        Netbeans.getEntry(initW::foundNetbeans),
-                        JDK.getEntry(initW::foundJDK),
-                        IntelliJ.getEntry(initW::foundIntelliJ),
-                        Studio.getEntry(initW::foundStudio),
-                        Android.getEntry(initW::foundAndroid)
+                Collection<LocationRequest> entries = asList(
+                        Netbeans.makeRequest(initW::foundNetbeans),
+                        JDK.makeRequest(initW::foundJDK),
+                        IntelliJ.makeRequest(initW::foundIntelliJ),
+                        Studio.makeRequest(initW::foundStudio),
+                        Android.makeRequest(initW::foundAndroid)
                 );
                 new Thread(() -> {
                     TreeWalker.searchExecutable(entries, null, true, initW);

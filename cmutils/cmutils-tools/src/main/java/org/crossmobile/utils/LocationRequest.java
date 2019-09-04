@@ -17,19 +17,29 @@
 package org.crossmobile.utils;
 
 import java.io.File;
-import java.util.Collection;
 import java.util.function.Consumer;
 
-public class TreeWalkerEntry {
+public class LocationRequest {
 
-    final TreeWalkerGenerator twg;
-    final Consumer<File> foundFile;
-    final Collection<String> origLocations;
+    private final LocationTarget target;
+    private final String currentLocation;
+    private final Consumer<File> foundFile;
 
-    TreeWalkerEntry(TreeWalkerGenerator twg, Consumer<File> foundFile, Collection<String> origLocations) {
-        this.twg = twg;
+    LocationRequest(LocationTarget target, String currentLocation, Consumer<File> foundFile) {
+        this.target = target;
+        this.currentLocation = currentLocation;
         this.foundFile = foundFile;
-        this.origLocations = origLocations;
     }
 
+    String getCurrentLocation() {
+        return currentLocation;
+    }
+
+    String getApplicationName() {
+        return target.getApplicationName();
+    }
+
+    void checkFile(File file) {
+        target.checkFile(file, foundFile);
+    }
 }

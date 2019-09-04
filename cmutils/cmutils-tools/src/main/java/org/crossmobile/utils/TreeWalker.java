@@ -21,27 +21,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class TreeWalker {
 
-    public static void searchExecutable(Collection<TreeWalkerEntry> entries, Collection<String> specific_locations, boolean auto, Active active) {
+    public static void searchExecutable(Collection<LocationRequest> requests, Collection<String> specific_locations, boolean auto, Active active) {
         try {
             List<ExtPath> paths = new ArrayList<>();
             if (specific_locations != null && !specific_locations.isEmpty())
                 for (String location : specific_locations)
                     paths.add(new ExtPath(location, ExtPath.BUNDLE_ONLY));
             else
-                for (TreeWalkerEntry entry : entries)
-                    if (entry.origLocations != null && !entry.origLocations.isEmpty())
-                        for (String oloc : entry.origLocations)
-                            if (oloc != null)
-                                paths.add(new ExtPath(oloc, ExtPath.BUNDLE_ONLY));
+                for (LocationRequest request : requests)
+                    if (request.getCurrentLocation() != null)
+                        paths.add(new ExtPath(request.getCurrentLocation(), ExtPath.BUNDLE_ONLY));
             if (auto) {
-                for (TreeWalkerEntry entry : entries) {
+                for (LocationRequest request : requests) {
                     if (!active.isActive())
                         return;
-                    SystemDependent.appendSpotlightApplication(entry.twg.application.iterator().next(), paths);
+                    if (request.getApplicationName() != null)
+                        SystemDependent.appendSpotlightApplication(request.getApplicationName(), paths);
                 }
                 SystemDependent.appendPathApplication(paths);
             }
@@ -53,7 +51,7 @@ public class TreeWalker {
                 File f = new File(path.getPath());
                 if (path.searchForFile() && (!f.isFile()))
                     continue;   // If we want a file and this is not, ignore this entry
-                walkPath(f, entries, path.getRecursive(), active);
+                walkPath(f, requests, path.getRecursive(), active);
             }
         } catch (Exception ex) {
             Log.debug("Error while searching executables: " + ex.toString());
@@ -62,25 +60,21 @@ public class TreeWalker {
 
     /* filename is already in lower case */
     @SuppressWarnings("UseSpecificCatch")
-    private static void walkPath(File root, Collection<TreeWalkerEntry> entries, int recursive, Active active) {
+    private static void walkPath(File root, Collection<LocationRequest> requests, int recursive, Active active) {
+        String rootNameL = root.getName().toLowerCase();
+        if (!root.exists() || !root.canRead() || !active.isActive())
+            return;
         try {
-            if (!root.exists()) {
-            } else if (root.isFile()) {
-                if (active.isActive() && root.canRead())
-                    for (TreeWalkerEntry entry : entries)
-                        for (String progname : entry.twg.application)
-                            if (entry.foundFile != null
-                                    && root.getName().toLowerCase().equals(progname)
-                                    && execIsValid(root, entry.twg.otherfiles))
-                                entry.foundFile.accept(getFilteredFile(root, entry.twg.foldersToGoUp));
-                /* No valid executable found */
-            } else if (root.isDirectory())
+            if (root.isFile())
+                for (LocationRequest request : requests)
+                    request.checkFile(root);
+            else if (root.isDirectory())
                 if (active.isActive() && recursive >= ExtPath.FILE_ONLY) {// More recursive could be done
                     recursive--;
                     File[] children = root.listFiles();
                     if (children != null)
                         for (File child : children)
-                            walkPath(child, entries, recursive, active);
+                            walkPath(child, requests, recursive, active);
                 }
         } catch (Exception ex) {
             Log.debug("Error while searching executables: " + ex.toString());

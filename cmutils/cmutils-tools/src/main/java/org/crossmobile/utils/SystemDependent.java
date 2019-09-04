@@ -239,8 +239,6 @@ public class SystemDependent {
         JAVAC("exe"),
         ANDROID("bat"),
         SDKMANAGER("bat"),
-        ANT("bat"),
-        AAPT("exe"),
         ADB("exe"),
         NETBEANS("exe"),
         IDEA("exe", "sh"),

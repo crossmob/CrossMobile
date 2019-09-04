@@ -20,7 +20,7 @@ import com.panayotis.hrgui.HiResButton;
 import com.panayotis.hrgui.HiResEmptyBorder;
 import org.crossmobile.gui.actives.*;
 import org.crossmobile.utils.TreeWalker;
-import org.crossmobile.utils.TreeWalkerGenerator;
+import org.crossmobile.utils.LocationTarget;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,10 +37,10 @@ public class JWizard extends JDialog {
 
     private int cardid = 1;
     private final String name;
-    private TreeWalkerGenerator generator;
+    private LocationTarget target;
     private Consumer<String> callback;
     private List<File> result;
-    private String[] origLocations;
+    private String oldLocation;
 
     /**
      * Creates new form JWizard
@@ -58,9 +58,9 @@ public class JWizard extends JDialog {
         setLocationRelativeTo(null);
     }
 
-    public void fire(TreeWalkerGenerator generator, String... origLocations) {
-        this.generator = generator;
-        this.origLocations = origLocations;
+    public void fire(LocationTarget target, String oldLocation) {
+        this.target = target;
+        this.oldLocation = oldLocation;
         fdialog.setSelectedFile(new File(""));
         pleaseWaitL.setVisible(false);
         resolveTypeP.setVisible(true);
@@ -82,7 +82,7 @@ public class JWizard extends JDialog {
                 Collection<String> locations = isManual ? singletonList(FilenameT.getText()) : null;
                 new Thread(() -> {
                     Collection<File> set = new HashSet<>();
-                    TreeWalker.searchExecutable(singletonList(generator.getEntry(set::add, origLocations)), locations, !ManualB.isSelected(), () -> true);
+                    TreeWalker.searchExecutable(singletonList(target.makeRequest(oldLocation, set::add)), locations, !ManualB.isSelected(), () -> true);
                     result = new ArrayList<>(set);
                     clickContinue();
                 }).start();

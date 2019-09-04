@@ -21,7 +21,7 @@ import org.crossmobile.gui.actives.ActiveLabel;
 import org.crossmobile.gui.actives.ActiveRadioButton;
 import org.crossmobile.gui.actives.ActiveTextField;
 import org.crossmobile.prefs.Prefs;
-import org.crossmobile.utils.TreeWalkerGenerator;
+import org.crossmobile.utils.LocationTarget;
 import org.crossmobile.utils.UIUtils;
 
 import javax.imageio.ImageIO;
@@ -29,20 +29,16 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Collections;
 
-import static java.util.Arrays.asList;
-import static java.util.Collections.singletonList;
 import static org.crossmobile.utils.SystemDependent.Execs.*;
 
 public class Config extends HiResDialog {
 
-    public static final TreeWalkerGenerator Netbeans = new TreeWalkerGenerator(singletonList(NETBEANS.filename()), null, 0);
-    public static final TreeWalkerGenerator Studio = new TreeWalkerGenerator(asList(STUDIO.filename(), STUDIO64.filename()), null, 0);
-    public static final TreeWalkerGenerator IntelliJ = new TreeWalkerGenerator(singletonList(IDEA.filename()), null, 0);
-    public static final TreeWalkerGenerator Android = new TreeWalkerGenerator(singletonList(ANDROID.filename()), asList("../tools/ddms", "../tools/ddms.bat", "../tools/bin/sdkmanager.bat", "../tools/bin/sdkmanager"), 2);
-    // Maybe check for "../include/jni.h" ?
-    public static final TreeWalkerGenerator JDK = new TreeWalkerGenerator(singletonList(JAVAC.filename()), asList("../lib/dt.jar", "../lib/tools.jar", "../jmods/jdk.compiler.jmod"), 2);
+    public static final LocationTarget Netbeans = new LocationTarget(NETBEANS);
+    public static final LocationTarget Studio = new LocationTarget(STUDIO, STUDIO64.filename());
+    public static final LocationTarget IntelliJ = new LocationTarget(IDEA);
+    public static final LocationTarget Android = new LocationTarget("tools/bin/sdkmanager.bat", "tools/bin/sdkmanager", "platform-tools/adb", "platform-tools/adb.exe");
+    public static final LocationTarget JDK = new LocationTarget("lib/dt.jar", "lib/tools.jar", "jmods/jdk.compiler.jmod");
 
     private final static Config INSTANCE = new Config();
 
