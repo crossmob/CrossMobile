@@ -35,6 +35,7 @@ import static org.crossmobile.plugin.actions.PluginAssembler.*;
 import static org.crossmobile.plugin.utils.Statics.*;
 import static org.crossmobile.prefs.Config.REVERSE_INF;
 import static org.crossmobile.utils.FileUtils.*;
+import static org.crossmobile.utils.FileUtils.Predicates.extensions;
 import static org.crossmobile.utils.JarUtils.createJar;
 import static org.crossmobile.utils.PluginMetaData.PLUGIN_LOC;
 import static org.crossmobile.utils.TextUtils.iterableToString;
@@ -75,7 +76,7 @@ public class CreateArtifacts {
                         Log.info("Native library not found but ignored as noted: " + lib.getAbsolutePath());
                     else
                         Log.error("Unable to copy native library " + lib.getAbsolutePath());
-                forAllRecursively(new File(vendorBin, plugin), f -> f.getName().endsWith(".a"), (p, f) -> copy(f, new File(iosTarget, NATIVE_PATH + separator + f.getName())));
+                forAll(new File(vendorBin, plugin), extensions(".a"), (p, f) -> copy(f, new File(iosTarget, NATIVE_PATH + separator + f.getName())));
             }
             if (buildUwp) {
                 File dll = new File(cache, "lib" + separator + "lib" + plugin + ".dll");
@@ -84,12 +85,12 @@ public class CreateArtifacts {
                         Log.info("Native library not found but ignored as noted: " + dll.getAbsolutePath());
                     else
                         Log.error("Unable to copy native library " + dll.getAbsolutePath());
-                forAllRecursively(new File(vendorBin, plugin), f -> f.getName().endsWith(".dll"), (p, f) -> copy(f, new File(iosTarget, NATIVE_PATH + separator + f.getName())));
+                forAll(new File(vendorBin, plugin), extensions(".dll"), (p, f) -> copy(f, new File(iosTarget, NATIVE_PATH + separator + f.getName())));
             }
 
-            forAllRecursively(new File(cache, plugin + separator + (buildIos ? "native" : "uwp" + separator + "uwpinclude")), f -> isInclude(f.getName()),
+            forAll(new File(cache, plugin + separator + (buildIos ? "native" : "uwp" + separator + "uwpinclude")), f -> isInclude(f.getName()),
                     (p, f) -> copy(f, new File(buildIos ? iosTarget : uwpTarget, NATIVE_PATH + separator + f.getName())));
-            forAllRecursively(new File(vendorSrc, plugin + (buildIos ? "" : (separator + "uwpinclude"))), f -> isInclude(f.getName()), (p, f) -> copy(f, new File(buildIos ? iosTarget : uwpTarget, NATIVE_PATH + separator + f.getName())));
+            forAll(new File(vendorSrc, plugin + (buildIos ? "" : (separator + "uwpinclude"))), f -> isInclude(f.getName()), (p, f) -> copy(f, new File(buildIos ? iosTarget : uwpTarget, NATIVE_PATH + separator + f.getName())));
         }
 
         Log.info("Installing plugin " + plugin + " artifacts in local repository");

@@ -22,16 +22,13 @@ import org.crossmobile.build.ib.helper.XIBList;
 import org.crossmobile.build.tools.*;
 import org.crossmobile.build.tools.images.IconBuilder;
 import org.crossmobile.build.tools.images.IconBuilder.IconType;
-import org.crossmobile.utils.MaterialsUtils;
 import org.crossmobile.utils.images.ImageHound;
 import org.crossmobile.utils.plugin.DependencyItem;
 
 import java.io.File;
-import java.util.Collection;
 
 import static org.crossmobile.build.ng.CMBuildEnvironment.environment;
 import static org.crossmobile.build.utils.Config.*;
-import static org.crossmobile.prefs.Config.MATERIALS_PATH;
 import static org.crossmobile.utils.CollectionUtils.asList;
 import static org.crossmobile.utils.FileUtils.delete;
 import static org.crossmobile.utils.FileUtils.write;
@@ -72,8 +69,6 @@ public class ResourcesPipeline implements Runnable {
 
     private void resourcesDesktop() {
         CMBuildEnvironment env = environment();
-        File baseMaterials = new File(env.getBasedir(), MATERIALS_PATH);
-        Collection<File> materials = MaterialsUtils.getMaterials(env.getBasedir(), MATERIALS_PATH);
         File generated = new File(env.getBuilddir(), GENERATED_CMSOURCES);
         File app = new File(env.getBuilddir(), APP);
         File ann = new File(env.getBuilddir(), AnnotationConfig.ANN_LOCATION);
@@ -81,8 +76,8 @@ public class ResourcesPipeline implements Runnable {
         File info = new File(app, "Info.plist");
         File cacheBase = new File(env.getBuilddir(), PROJECT_CACHES);
 
-        XIBList xibList = IBObjectsCreator.parse(new File(env.getBasedir(), MATERIALS_PATH), ann);
-        MaterialsCopier.copyMaterials(materials, baseMaterials, new File(env.getBuilddir(), APP), xibList.getMeta());
+        XIBList xibList = IBObjectsCreator.parse(env.getMaterialsDir(), ann);
+        MaterialsManager.parseMaterials(xibList.getMeta(), env.getMaterialsDir(), new File(env.getBuilddir(), APP));
         IBObjectsCreator.createJavaSource(xibList, new File(generated, IBOBJECTS), new File(cacheBase, IBOBJECTS));
 
         IconBuilder.copyIcons(IconBuilder.getDefaultHound(env.getBasedir()), new File(env.getBuilddir(), SYS), IconType.DESKTOP);
@@ -98,8 +93,6 @@ public class ResourcesPipeline implements Runnable {
 
         new AdbLauncher(env.getProperties().getProperty("sdk.dir")).exec("devices", "-l"); // Early launching of ADB devices
 
-        File baseMaterials = new File(env.getBasedir(), MATERIALS_PATH);
-        Collection<File> materials = MaterialsUtils.getMaterials(env.getBasedir(), MATERIALS_PATH);
         File andrRes = new File(env.getBuilddir(), ANDROID_RES);
         File andrAsset = new File(env.getBuilddir(), ANDROID_ASSET);
         File generated = new File(env.getBuilddir(), GENERATED_CMSOURCES);
@@ -110,11 +103,11 @@ public class ResourcesPipeline implements Runnable {
                 env.root());
         AndroidProjectCreator.execute(env);
 
-        XIBList xibList = IBObjectsCreator.parse(baseMaterials, ann);
-        MaterialsCopier.copyMaterials(materials, baseMaterials, andrAsset, xibList.getMeta());
+        XIBList xibList = IBObjectsCreator.parse(env.getMaterialsDir(), ann);
+        MaterialsManager.parseMaterials(xibList.getMeta(), env.getMaterialsDir(), andrAsset);
         IBObjectsCreator.createJavaSource(xibList, new File(generated, IBOBJECTS), new File(cacheBase, IBOBJECTS));
 
-        MaterialsCopier.copyAndroidSys(asList(env.root().getRuntimeDependencies(true), DependencyItem::getFile), andrAsset, andrRes);
+        MaterialsManager.copyAndroidSys(asList(env.root().getRuntimeDependencies(true), DependencyItem::getFile), andrAsset, andrRes);
 
         ImageHound images = IconBuilder.getDefaultHound(env.getBasedir());
         IconBuilder.copyIcons(images, andrRes, IconType.BASE_ANDROID);
@@ -130,7 +123,7 @@ public class ResourcesPipeline implements Runnable {
         //noinspection ResultOfMethodCallIgnored
         ann.mkdirs();
 
-        write(new File(env.getBuilddir(), ANDROID_FONTLIST), FontExtractor.getFontDataAsResource(FontExtractor.findFonts(materials)));
+        write(new File(env.getBuilddir(), ANDROID_FONTLIST), FontExtractor.getFontDataAsResource(FontExtractor.findFonts(env.getMaterialsDir())));
         GradleManager.createAndUpdate(env);
         LocalPropertiesManager.createIfNotExist(env.getBasedir());
     }

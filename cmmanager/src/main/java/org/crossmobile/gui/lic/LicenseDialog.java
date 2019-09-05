@@ -45,6 +45,7 @@ import java.util.Collection;
 import static org.crossmobile.gui.lic.LicenseTreeRenderer.EMPTY;
 import static org.crossmobile.gui.lic.LicenseTreeRenderer.ID;
 import static org.crossmobile.gui.project.ProjectLauncher.getJavaEnv;
+import static org.crossmobile.utils.FileUtils.Predicates.extensions;
 
 public class LicenseDialog extends HiResDialog {
 
@@ -178,7 +179,7 @@ public class LicenseDialog extends HiResDialog {
                         }
 
                         Collection<File> jars = new ArrayList<>();
-                        FileUtils.forAllRecursively(outAar, a -> a.getName().endsWith("jar"), (name, file) -> jars.add(file));
+                        FileUtils.forAllRecursively(outAar, extensions("jar"), (path, file) -> jars.add(file));
                         if (jars.isEmpty())
                             termTxt("No JARs found, aborting", tempDir);
                         else if (jars.size() > 1)

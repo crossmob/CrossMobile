@@ -21,60 +21,48 @@ import org.crossmobile.build.ib.i18n.LocalizedType;
 import org.crossmobile.utils.FileUtils;
 import org.crossmobile.utils.JarUtils;
 import org.crossmobile.utils.Log;
-import org.crossmobile.utils.MaterialsUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
+import java.util.*;
 import java.util.jar.JarFile;
 
 import static org.crossmobile.bridge.system.MaterialsCommon.MATERIALS_TAG;
 import static org.crossmobile.build.tools.StringsToPropertiesConverter.parseStrings;
 import static org.crossmobile.build.tools.StringsToPropertiesConverter.parseStringsDict;
+import static org.crossmobile.utils.FileUtils.*;
+import static org.crossmobile.utils.FileUtils.Predicates.extensions;
+import static org.crossmobile.utils.FileUtils.Predicates.noHidden;
 
-public class MaterialsCopier {
+public class MaterialsManager {
 
     //   private static final BufferedImage shape = ImageUtils.getImage("/buildres/layers/shape.png");
 
-    private static final Collection<String> BLACKLIST = new HashSet<>(Collections.singletonList(".DS_Store"));
-
-    public static void updateTranslationsOnly(Collection<File> materials, File baseDir, IBParserMeta meta) {
-        for (File file : materials)
-            if (file.isDirectory())
-                updateTranslationsOnly(FileUtils.list(file), baseDir, meta);
-            else if (file.getName().endsWith(".strings")) {
-                LocalizedType localized = LocalizedType.getLocalized(file, baseDir);
-                if (localized != null && !localized.isBase)
+    public static void parseMaterials(IBParserMeta meta, File materialsDir, File outputDir) {
+        forAllRecursively(materialsDir, null, (path, file) -> {
+            String name = file.getName();
+            File output = outputDir == null ? null : new File(new File(outputDir, path), name); // could be null, no copy required
+            if (name.startsWith("."))  // handle hidden files
+                Log.warning("Ignoring hidden file: " + file.getAbsolutePath());
+            else if (name.endsWith(".strings")) {
+                LocalizedType localized = LocalizedType.getLocalized(file, materialsDir);
+                if (output != null)     // need to copy localized files
+                    FileUtils.write(output, parseStrings(file, localized, meta.get(localized == null || localized.isBase ? null : localized.tableName)));
+                else if (localized != null && !localized.isBase)    // only display info about localized files, no copy needed
                     parseStrings(file, localized, meta.get(localized.tableName));
-            }
-    }
-
-    public static void copyMaterials(Collection<File> materials, File baseDir, File otherFiles, IBParserMeta meta) {
-        MaterialsUtils.copyFiles(materials, otherFiles, file -> {
-            String name = file.input.getName();
-            if (BLACKLIST.contains(name))
-                return false;
-            if (name.startsWith("."))
-                Log.warning("Hidden file found: " + file.path);
-            if (name.endsWith(".strings")) {
-                LocalizedType localized = LocalizedType.getLocalized(file.input, baseDir);
-                FileUtils.write(file.output, parseStrings(file.input, localized, meta.get(localized == null || localized.isBase ? null : localized.tableName)));
-                return false;
-            } else if (name.endsWith(".stringsdict")) {
-                FileUtils.write(file.output, parseStringsDict(file.input));
-                return false;
-            } else
-                return true;
+            } else if (output != null)  // parse the rest of files only if copy needed
+                if (name.endsWith(".stringsdict"))
+                    FileUtils.write(output, parseStringsDict(file));
+                else
+                    FileUtils.copy(file, output);
         });
     }
 
     @SuppressWarnings("UseSpecificCatch")
     public static void copyAndroidSys(Collection<File> plugins, File andrAsset, File andrRes) {
-        String path = MaterialsCopier.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        String path = MaterialsManager.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         String decodedPath;
         try {
             decodedPath = URLDecoder.decode(path, "UTF-8");
@@ -97,5 +85,4 @@ public class MaterialsCopier {
             }
         }
     }
-
 }

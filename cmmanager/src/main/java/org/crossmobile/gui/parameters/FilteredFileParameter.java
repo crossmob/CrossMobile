@@ -76,7 +76,7 @@ public abstract class FilteredFileParameter extends ProjectParameter {
                 AtomicReference<String> foundNoCase = new AtomicReference<>();
                 AtomicBoolean found = new AtomicBoolean(false);
                 String fileLC = file.toLowerCase();
-                FileUtils.forAll(basedir, f -> filter.test(f.getName()), (s, f) -> {
+                FileUtils.forAllRecursively(basedir, f -> filter.test(f.getName()), (s, f) -> {
                     String element = removeExtension(s + (s.isEmpty() ? "" : "/") + f.getName());
                     model.addElement(element);
                     if (element.equals(file)) {

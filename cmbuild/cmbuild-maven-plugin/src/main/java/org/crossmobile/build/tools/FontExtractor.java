@@ -20,37 +20,21 @@ import org.crossmobile.utils.Log;
 
 import java.awt.*;
 import java.io.File;
-import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static org.crossmobile.utils.TextUtils.countCharacter;
-import static org.crossmobile.utils.TextUtils.safeXML;
+import static org.crossmobile.utils.FileUtils.Predicates.extensions;
+import static org.crossmobile.utils.FileUtils.forAll;
+import static org.crossmobile.utils.TextUtils.*;
 
 public class FontExtractor {
 
-    public static Map<String, File> findFonts(Collection<File> materials) {
+    public static Map<String, File> findFonts(File materialPath) {
         Map<String, File> fonts = new LinkedHashMap<>();
-        for (File entry : materials)
-            findFonts(entry, "", fonts);
+        forAll(materialPath, extensions(".ttf", ".otf"), (path, file) -> fonts.put(path + (path.isEmpty() ? "" : "/") + file.getName(), file));
         if (!fonts.isEmpty())
-            Log.info("Project contains " + fonts.size() + (fonts.size() == 1 ? " font" : " fonts"));
+            Log.info("Project contains " + fonts.size() + " font" + plural(fonts.size()));
         return fonts;
-    }
-
-    private static void findFonts(File file, String prefix, Map<String, File> fonts) {
-        String filename = prefix + (prefix.isEmpty() ? "" : "/") + file.getName();
-        if (file.isDirectory()) {
-            File[] children = file.listFiles();
-            if (children != null)
-                for (File child : children)
-                    findFonts(child, filename, fonts);
-        } else {
-            String fname = file.getName();
-            String lname = fname.toLowerCase();
-            if (lname.endsWith(".ttf") || lname.endsWith(".otf"))
-                fonts.put(filename, file);
-        }
     }
 
     @SuppressWarnings("UseSpecificCatch")
@@ -63,11 +47,7 @@ public class FontExtractor {
                 String fontname = font.getFontName();
                 boolean bold = font.isBold();
                 boolean italic = font.isItalic();
-                Map<String, FontInfo> familygroup = fontlist.get(family);
-                if (familygroup == null) {
-                    familygroup = new LinkedHashMap<>();
-                    fontlist.put(family, familygroup);
-                }
+                Map<String, FontInfo> familygroup = fontlist.computeIfAbsent(family, k -> new LinkedHashMap<>());
                 FontInfo obsolete = familygroup.get(fontname);
                 FontInfo current = new FontInfo(fontfile, bold, italic);
                 if (obsolete != null) {
@@ -110,7 +90,7 @@ public class FontExtractor {
         private final boolean bold;
         private final boolean italic;
 
-        public FontInfo(String location, boolean bold, boolean italic) {
+        private FontInfo(String location, boolean bold, boolean italic) {
             this.location = location;
             this.bold = bold;
             this.italic = italic;

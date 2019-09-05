@@ -23,6 +23,8 @@ import java.util.*;
 
 import static org.crossmobile.prefs.Config.EXCEPTIONS;
 import static org.crossmobile.utils.FileUtils.*;
+import static org.crossmobile.utils.FileUtils.Predicates.extensions;
+import static org.crossmobile.utils.FileUtils.Predicates.noHidden;
 
 public class SyncObjCFiles {
 
@@ -33,8 +35,8 @@ public class SyncObjCFiles {
         sync(cacheSource, xcodeSource, false);
 
         Collection<String> existing = new LinkedHashSet<>();
-        forAll(classesDir, f -> f.getName().toLowerCase().endsWith(".class"), (String p, File f) -> {
-            String cname = p + '_' + f.getName().substring(0, f.getName().length() - 6);
+        forAllRecursively(classesDir, extensions(".class"), (path, file) -> {
+            String cname = path + '_' + file.getName().substring(0, file.getName().length() - 6);
             cname = cname.replace('/', '_').replace('\\', '_').replace('.', '_').replace('$', '_');
             existing.add(cname);
         });
@@ -42,7 +44,7 @@ public class SyncObjCFiles {
         existing.addAll(Arrays.asList(EXCEPTIONS));
 
         StringBuilder willRemove = new StringBuilder();
-        forAllRecursively(xcodeSource, null, (p, f) -> {
+        forAllRecursively(xcodeSource, noHidden(), (path, f) -> {
             if (!existing.contains(getBasename(f.getName())) && !WHITELIST.contains(f.getName())) {
                 Log.warning("Removing missing file " + f.getName());
                 f.delete();

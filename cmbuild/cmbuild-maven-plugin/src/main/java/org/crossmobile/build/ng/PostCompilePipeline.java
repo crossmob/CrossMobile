@@ -30,8 +30,6 @@ import org.crossmobile.utils.*;
 import org.crossmobile.utils.plugin.DependencyItem;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.Collection;
 import java.util.Map;
 
 import static java.io.File.separator;
@@ -61,8 +59,6 @@ public class PostCompilePipeline implements Runnable {
 
     private void postcompileUwp() {
         CMBuildEnvironment env = environment();
-        File materialsBase = new File(env.getBasedir(), MATERIALS_PATH);
-        Collection<File> materials = MaterialsUtils.getMaterials(env.getBasedir(), MATERIALS_PATH);
         File ann = new File(env.getBuilddir(), AnnotationConfig.ANN_LOCATION);
         String projectName = env.getProperties().getProperty(ARTIFACT_ID.tag().name);
 
@@ -107,11 +103,11 @@ public class PostCompilePipeline implements Runnable {
         new JavaCleanFiles(classesDir, xcodeSource).execute();
 
         //        <!-- create Xcode project -->
-        Map<String, File> xmfontsValue = FontExtractor.findFonts(materials);
+        Map<String, File> xmfontsValue = FontExtractor.findFonts(env.getMaterialsDir());
 
         // Parse IB to check for errors & update localizations
-        XIBList xibList = IBObjectsCreator.parse(materialsBase, ann);
-        MaterialsCopier.updateTranslationsOnly(materials, materialsBase, xibList.getMeta());
+        XIBList xibList = IBObjectsCreator.parse(env.getMaterialsDir(), ann);
+        MaterialsManager.parseMaterials(xibList.getMeta(), env.getMaterialsDir(), null);
 
         // Create Info.plist files
         new InfoPListCreator(env.getProperties(),
@@ -152,8 +148,6 @@ public class PostCompilePipeline implements Runnable {
 
     private void postcompileIOS() {
         CMBuildEnvironment env = environment();
-        File baseMaterials = new File(env.getBasedir(), MATERIALS_PATH);
-        Collection<File> materials = MaterialsUtils.getMaterials(env.getBasedir(), MATERIALS_PATH);
         File ann = new File(env.getBuilddir(), AnnotationConfig.ANN_LOCATION);
         String projectName = env.getProperties().getProperty(ARTIFACT_ID.tag().name);
 
@@ -194,11 +188,11 @@ public class PostCompilePipeline implements Runnable {
         new JavaCleanFiles(classesDir, xcodeSource).execute();
 
         //        <!-- create Xcode project -->
-        Map<String, File> xmfontsValue = FontExtractor.findFonts(materials);
+        Map<String, File> xmfontsValue = FontExtractor.findFonts(env.getMaterialsDir());
 
         // Parse IB to check for errors & update localizations
-        XIBList xibList = IBObjectsCreator.parse(baseMaterials, ann);
-        MaterialsCopier.updateTranslationsOnly(materials, baseMaterials, xibList.getMeta());
+        XIBList xibList = IBObjectsCreator.parse(env.getMaterialsDir(), ann);
+        MaterialsManager.parseMaterials(xibList.getMeta(), env.getMaterialsDir(), null);
 
         // Create Info.plist files
         new InfoPListCreator(env.getProperties(),

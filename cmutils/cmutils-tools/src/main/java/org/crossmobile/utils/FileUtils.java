@@ -612,34 +612,33 @@ public final class FileUtils {
         return files == null || files.length == 0 ? Collections.emptyList() : Arrays.asList(files);
     }
 
-    private static void forAny(File file, Predicate<File> predicate, BiConsumer<String, File> consumer, String pathUpToNow, boolean recursively) {
-        if (file == null)
-            return;
-        if (file.isFile())
-            consumer.accept(pathUpToNow, file);
-        else if (file.isDirectory()) {
-            File[] children = file.listFiles();
-            if (children != null && children.length > 0)
-                for (File child : children)
-                    if (child.isDirectory()) {
-                        if (recursively)
-                            forAny(child, predicate, consumer, pathUpToNow + (pathUpToNow.isEmpty() ? "" : File.separator) + child.getName(), recursively);
-                    } else if (child.isFile())
-                        if (predicate == null || predicate.test(child))
-                            consumer.accept(pathUpToNow, child);
-        }
-    }
-
     public static void forAllRecursively(File file, Predicate<File> predicate, BiConsumer<String, File> consumer) {
         if (file == null || consumer == null)
             return;
-        forAny(file, predicate, consumer, "", false);
+        forAllImpl(file, predicate, consumer, "", true);
     }
 
     public static void forAll(File file, Predicate<File> predicate, BiConsumer<String, File> consumer) {
         if (file == null || consumer == null)
             return;
-        forAny(file, predicate, consumer, "", true);
+        forAllImpl(file, predicate, consumer, "", false);
+    }
+
+    private static void forAllImpl(File file, Predicate<File> predicate, BiConsumer<String, File> consumer, String pathUpToNow, boolean recursively) {
+        if (file.isFile()) {
+            if (predicate == null || predicate.test(file))
+                consumer.accept(pathUpToNow, file);
+        } else if (file.isDirectory()) {
+            File[] children = file.listFiles();
+            if (children != null && children.length > 0)
+                for (File child : children)
+                    if (child.isDirectory()) {
+                        if (recursively)
+                            forAllImpl(child, predicate, consumer, pathUpToNow + (pathUpToNow.isEmpty() ? "" : File.separator) + child.getName(), recursively);
+                    } else if (child.isFile())
+                        if (predicate == null || predicate.test(child))
+                            consumer.accept(pathUpToNow, child);
+        }
     }
 
     public static URL toURL(File f) {
@@ -731,4 +730,30 @@ public final class FileUtils {
         }
     }
 
+    public static class Predicates {
+        public static Predicate<File> noHidden() {
+            return f -> {
+                if (f.getName().startsWith(".")) {
+                    Log.debug("Hidden file ignored: " + f.getAbsolutePath());
+                    return false;
+                } else
+                    return true;
+            };
+        }
+
+        public static Predicate<File> extensions(String... extensions) {
+            Collection<String> extensionLookup = new ArrayList<>();
+            if (extensions != null && extensions.length > 0)
+                for (String ext : extensions)
+                    if (ext != null)
+                        extensionLookup.add(ext.toLowerCase());
+            return extensionLookup.isEmpty() ? a -> false : file -> {
+                String name = file.getName();
+                for (String ext : extensionLookup)
+                    if (name.endsWith(ext))
+                        return true;
+                return false;
+            };
+        }
+    }
 }

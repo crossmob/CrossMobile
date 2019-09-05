@@ -29,32 +29,26 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 import static org.crossmobile.build.AnnotationConfig.GENERATED_EXT;
-import static org.crossmobile.utils.FileUtils.forAllRecursively;
-import static org.crossmobile.utils.FileUtils.sync;
+import static org.crossmobile.utils.FileUtils.*;
+import static org.crossmobile.utils.FileUtils.Predicates.extensions;
+import static org.crossmobile.utils.FileUtils.Predicates.noHidden;
 import static org.crossmobile.utils.TextUtils.plural;
+import static org.crossmobile.utils.TextUtils.trim;
 
 public class IBObjectsCreator {
 
     public static XIBList parse(File materials, File ann) {
         ann.mkdirs();
-        forAllRecursively(ann, f -> f.getName().equals(GENERATED_EXT), (name, file) -> file.delete());
+        forAllRecursively(ann, f -> f.getName().equals(GENERATED_EXT), (path, file) -> file.delete());
         XIBList root = new XIBList(new IBParserMeta(ann));
-        parse(root, materials, materials);
-        return root;
-    }
-
-    private static void parse(XIBList root, File input, File baseDir) {
-        if (input.isDirectory())
-            for (File child : FileUtils.list(input))
-                parse(root, child, baseDir);
-        else if (input.getName().endsWith(".xib") || input.getName().endsWith(".storyboard")) {
-            root.getMeta().beginFile(input, baseDir);
-            XMLWalker walker = XMLWalker.load(input).node("document");
+        forAllRecursively(materials, noHidden().and(extensions(".xib", ".storyboard")), (path, file) -> {
+            root.getMeta().beginFile(file, materials);
+            XMLWalker walker = XMLWalker.load(file).node("document");
             String type = walker.attribute("type").toLowerCase();
             if (type.endsWith(".storyboard.xib")) {
                 XibClassStart classStart = ((XibClassStart) root.addChild("xibclassstart", null, root.getMeta()));
 
-                classStart.setFilename(toFilename(baseDir, input));
+                classStart.setFilename(toFilename(materials, file));
                 classStart.setInitialViewController(walker.attribute("initialViewController"));
                 walker.node("scenes").nodes(node -> construct(root, node));
 
@@ -62,7 +56,8 @@ public class IBObjectsCreator {
             } else if (type.endsWith(".cocoatouch.xib"))
                 walker.nodes(node -> construct(root, node));
             root.getMeta().endFile();
-        }
+        });
+        return root;
     }
 
     private static void construct(Element parent, XMLWalker walker) {

@@ -41,6 +41,7 @@ import java.util.function.Function;
 
 import static org.crossmobile.plugin.actions.AppearanceInjections.AnnMetaData.asClass;
 import static org.crossmobile.plugin.actions.AppearanceInjections.AnnMetaData.asString;
+import static org.crossmobile.utils.FileUtils.Predicates.extensions;
 import static org.crossmobile.utils.TextUtils.*;
 
 public class AppearanceInjections {
@@ -92,7 +93,8 @@ public class AppearanceInjections {
 
     public void cleanup(File targetClass) {
         AtomicInteger howMany = new AtomicInteger();
-        FileUtils.forAllRecursively(targetClass, f -> f.isFile() && f.getName().endsWith(CLASS_FILE_SUFFIX), (fileName, file) -> {
+        FileUtils.forAllRecursively(targetClass, extensions(CLASS_FILE_SUFFIX), (path, file) -> {
+            String fileName = file.getName();
             File other = new File(file.getParentFile(), fileName.substring(0, fileName.length() - CLASS_FILE_SUFFIX.length()) + ".class");
             if (other.exists() && FileUtils.getLastModified(file) < FileUtils.getLastModified(other)) {
                 howMany.incrementAndGet();

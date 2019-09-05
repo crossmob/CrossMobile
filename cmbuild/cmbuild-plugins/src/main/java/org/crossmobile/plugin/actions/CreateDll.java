@@ -67,10 +67,7 @@ public class CreateDll extends CreateLib {
 
     private static Collection<File> getHeaders(Collection<File> includes) {
         Collection<File> headers = new LinkedHashSet<>();
-        includes.forEach(include -> forAll(include, f -> (isInclude(f.getName()) && !f.getParent().contains("uwpinclude")), (p, f) -> {
-            headers.add(f);
-
-        }));
+        includes.forEach(include -> forAll(include, f -> (isInclude(f.getName()) && !f.getParent().contains("uwpinclude")), (p, f) -> headers.add(f)));
         return headers;
     }
 
