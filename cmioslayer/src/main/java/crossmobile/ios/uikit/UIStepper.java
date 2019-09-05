@@ -124,12 +124,16 @@ public class UIStepper extends UIControl {
 
         addSubview(decrementButton);
         addSubview(incrementButton);
-        setFrame(frame);
+        setFrame(frame == null ? 0 : frame.getOrigin().getX(), frame == null ? 0 : frame.getOrigin().getY());
     }
 
     @Override
     public void setFrame(CGRect frame) {
-        super.setFrame(new CGRect(frame.getOrigin().getX(), frame.getOrigin().getY(), WIDTH * 2, HEIGHT));
+        setFrame(frame.getOrigin().getX(), frame.getOrigin().getY());
+    }
+
+    private void setFrame(double x, double y) {
+        super.setFrame(new CGRect(x, y, WIDTH * 2, HEIGHT));
     }
 
     /**

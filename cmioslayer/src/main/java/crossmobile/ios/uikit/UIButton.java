@@ -575,25 +575,26 @@ public class UIButton extends UIControl {
     void updateVisuals() {
         if (!dirtyVisuals)
             return;
-        Promise<UIImage> cimage = states.getFore();
-        String clabel = states.getTitle();
-        if (cimage == null)
+        Promise<UIImage> imagePromise = states.getFore();
+        CGSize imageSize = imagePromise == null || imagePromise.source() == null ? null : imagePromise.source().size();
+        String labelText = states.getTitle();
+        CGSize labelSize = labelText == null ? null : label.intrinsicContentSize;
+
+        if (imageSize == null)
             imageView.setHidden(true);
         else {
             imageView.setHidden(false);
-            imageView.setImage(cimage);
+            imageView.setImage(imagePromise);
         }
-        if (clabel == null)
+        if (labelText == null)
             label.setHidden(true);
         else {
             label.setHidden(false);
-            label.setText(clabel);
+            label.setText(labelText);
             label.setShadowColor(states.getShadowColor());
             label.setTextColor(isEnabled() ? states.getTitleColor(tintColor()) : UIColor.grayColor());
         }
 
-        CGSize imageSize = cimage == null ? null : cimage.source().size();
-        CGSize labelSize = clabel == null ? null : label.intrinsicContentSize;
         double hasWidth = getWidth();
         double hasHeight = getHeight();
         if (labelSize != null && imageSize != null && hasWidth <= imageSize.getWidth()) {
