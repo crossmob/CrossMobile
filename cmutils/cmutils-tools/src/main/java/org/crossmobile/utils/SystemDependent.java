@@ -128,6 +128,10 @@ public class SystemDependent {
         return APP_HOME;
     }
 
+    public static String getPluginsDir() {
+        return HOME + "/.local/share/crossmobile/plugins";
+    }
+
     public static String getJavaExec() {
         String JAVAHOME = System.getProperty("java.home");
         String EXEC = JAVA.filename();

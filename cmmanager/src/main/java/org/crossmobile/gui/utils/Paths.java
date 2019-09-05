@@ -17,6 +17,7 @@
 package org.crossmobile.gui.utils;
 
 import org.crossmobile.Version;
+import org.crossmobile.utils.SystemDependent;
 
 import java.io.File;
 import java.io.IOException;
@@ -97,12 +98,8 @@ public final class Paths {
     }
 
     public static String getXRayPath() {
-        if (APPFILE.isDirectory())
-            return new File(System.getProperty("user.home"), ".m2/repository/org/crossmobile/cmxray/" + Version.VERSION + "/cmxray-" + Version.VERSION + "-all.jar").getAbsolutePath();
-        else {
-            File cmxray = new File(APPFILE.getParent(), "cmxray.jar");
-            return cmxray.exists() ? cmxray.getAbsolutePath() : null;
-        }
+        File cmxray = new File(SystemDependent.getPluginsDir(), "cmxray.jar");
+        return cmxray.exists() ? cmxray.getAbsolutePath() : null;
     }
 
     private Paths() {

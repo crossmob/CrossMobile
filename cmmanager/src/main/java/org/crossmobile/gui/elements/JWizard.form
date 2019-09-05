@@ -98,7 +98,7 @@
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="2"/>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="name + &quot; application&quot;" type="code"/>
+                          <Connection code="name" type="code"/>
                         </Property>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -271,7 +271,7 @@
                         </Property>
                         <Property name="rows" type="int" value="3"/>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="&quot;CrossMobile needs &quot; + name + &quot; executable\nto continue with the requested action.&quot;" type="code"/>
+                          <Connection code="&quot;CrossMobile needs &quot; + name + &quot;\nto continue with the requested action.&quot;" type="code"/>
                         </Property>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>

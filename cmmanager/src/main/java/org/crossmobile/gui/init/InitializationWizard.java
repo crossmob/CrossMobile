@@ -301,7 +301,7 @@ public class InitializationWizard extends HiResDialog implements Active {
         jPanel2.setOpaque(false);
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jdkL.setText("Java Development Environment");
+        jdkL.setText("Java Development Environment 1.8");
         jdkL.setIconTextGap(8);
         jPanel2.add(jdkL, java.awt.BorderLayout.WEST);
 

@@ -131,10 +131,10 @@ public class Config extends HiResDialog {
         setTitle("CrossMobile Configuration");
         setResizable(false);
 
-        jPanel4.setBorder(new HiResEmptyBorder(12, 12, 0, 12));
+        jPanel4.setBorder(new HiResEmptyBorder(12,12,0,12));
         jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.Y_AXIS));
 
-        jPanel10.setBorder(new HiResEmptyBorder(8, 0, 8, 0));
+        jPanel10.setBorder(new HiResEmptyBorder(8,0,8,0));
         jPanel10.setOpaque(false);
         jPanel10.setLayout(new java.awt.BorderLayout());
 
@@ -149,7 +149,7 @@ public class Config extends HiResDialog {
         jPanel14.setLayout(new java.awt.GridLayout(0, 1));
 
         jdkL.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jdkL.setText("Java JDK");
+        jdkL.setText("Java JDK 1.8");
         jPanel14.add(jdkL);
 
         androidL.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -196,7 +196,7 @@ public class Config extends HiResDialog {
 
         jPanel4.add(jPanel10);
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createCompoundBorder(new HiResMatteBorder(1, 0, 0, 0, Theme.current().line), new HiResEmptyBorder(8, 0, 8, 0)));
+        jPanel5.setBorder(javax.swing.BorderFactory.createCompoundBorder(new HiResMatteBorder(1,0,0,0,Theme.current().line), new HiResEmptyBorder(8,0,8,0)));
         jPanel5.setOpaque(false);
         jPanel5.setLayout(new java.awt.BorderLayout());
 
@@ -256,7 +256,7 @@ public class Config extends HiResDialog {
 
         jPanel4.add(jPanel5);
 
-        jPanel11.setBorder(javax.swing.BorderFactory.createCompoundBorder(new HiResMatteBorder(1, 0, 1, 0, Theme.current().line), javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1)));
+        jPanel11.setBorder(javax.swing.BorderFactory.createCompoundBorder(new HiResMatteBorder(1,0,1,0,Theme.current().line), javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1)));
         jPanel11.setOpaque(false);
         jPanel11.setLayout(new java.awt.BorderLayout());
 
@@ -318,7 +318,7 @@ public class Config extends HiResDialog {
 
         jPanel4.add(jPanel11);
 
-        jPanel20.setBorder(new HiResEmptyBorder(8, 0, 8, 0));
+        jPanel20.setBorder(new HiResEmptyBorder(8,0,8,0));
         jPanel20.setOpaque(false);
         jPanel20.setLayout(new java.awt.BorderLayout());
 
@@ -392,7 +392,7 @@ public class Config extends HiResDialog {
 
     private void jdkBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jdkBActionPerformed
         jdkB.setEnabled(false);
-        JWizard wiz = new JWizard("Java Development Kit Home");
+        JWizard wiz = new JWizard("Java Development Kit 1.8");
         wiz.setCallback((String fname) -> {
             if (fname != null) {
                 Prefs.setJDKLocation(fname);
@@ -405,7 +405,7 @@ public class Config extends HiResDialog {
 
     private void androidBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_androidBActionPerformed
         androidB.setEnabled(false);
-        JWizard wiz = new JWizard("Android SDK Home");
+        JWizard wiz = new JWizard("Android SDK");
         wiz.setCallback((String fname) -> {
             if (fname != null) {
                 Prefs.setAndroidSDKLocation(fname);

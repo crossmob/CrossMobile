@@ -113,7 +113,7 @@ public class CrossMobile {
             initW.setMainTitle("Welcome to CrossMobile");
             initW.setSubtitle("Before we begin, it is required to check your system for installed components");
             initW.setWelcomeInfo("<html>When you click on \"Continue\" the wizard will try to find installations of required applications to run CrossMobile.<br/>" +
-                    "These applications are Java JDK, Android SDK, IntelliJ, Android Studio, and Netbeans.<br/>&nbsp;<br/>Please press \"Continue\" to start searching for these applications.</html>");
+                    "These applications are Java JDK 1.8, Android SDK, IntelliJ, Android Studio, and Netbeans.<br/>&nbsp;<br/>Please press \"Continue\" to start searching for these applications.</html>");
             Runnable skip = () -> {
                 initW.setActive(false);
                 if (initW.isVisible())

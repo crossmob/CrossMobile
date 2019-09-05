@@ -174,9 +174,9 @@ public class JWizard extends JDialog {
 
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        WelcomeTitle.setFont(WelcomeTitle.getFont().deriveFont(WelcomeTitle.getFont().getStyle() | java.awt.Font.BOLD, WelcomeTitle.getFont().getSize() + 2));
+        WelcomeTitle.setFont(WelcomeTitle.getFont().deriveFont(WelcomeTitle.getFont().getStyle() | java.awt.Font.BOLD, WelcomeTitle.getFont().getSize()+2));
         WelcomeTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        WelcomeTitle.setText(name + " application");
+        WelcomeTitle.setText(name);
         WelcomeTitle.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 3, 12, 0));
         WelcomeTitle.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         jPanel2.add(WelcomeTitle, java.awt.BorderLayout.NORTH);
@@ -237,7 +237,7 @@ public class JWizard extends JDialog {
         WelcomeText.setColumns(20);
         WelcomeText.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         WelcomeText.setRows(3);
-        WelcomeText.setText("CrossMobile needs " + name + " executable\nto continue with the requested action.");
+        WelcomeText.setText("CrossMobile needs " + name + "\nto continue with the requested action.");
         WelcomeText.setBorder(null);
         WelcomeText.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         WelcomeText.setEnabled(false);
@@ -246,7 +246,7 @@ public class JWizard extends JDialog {
 
         WelcomeP.add(jPanel2, java.awt.BorderLayout.NORTH);
 
-        pleaseWaitL.setFont(pleaseWaitL.getFont().deriveFont((pleaseWaitL.getFont().getStyle() | java.awt.Font.ITALIC) | java.awt.Font.BOLD, pleaseWaitL.getFont().getSize() + 2));
+        pleaseWaitL.setFont(pleaseWaitL.getFont().deriveFont((pleaseWaitL.getFont().getStyle() | java.awt.Font.ITALIC) | java.awt.Font.BOLD, pleaseWaitL.getFont().getSize()+2));
         pleaseWaitL.setText("Please wait while initializing wizard...");
         WelcomeP.add(pleaseWaitL, java.awt.BorderLayout.CENTER);
 
@@ -256,7 +256,7 @@ public class JWizard extends JDialog {
 
         jPanel3.setLayout(new java.awt.BorderLayout());
 
-        SearchTitle.setFont(SearchTitle.getFont().deriveFont(SearchTitle.getFont().getStyle() | java.awt.Font.BOLD, SearchTitle.getFont().getSize() + 2));
+        SearchTitle.setFont(SearchTitle.getFont().deriveFont(SearchTitle.getFont().getStyle() | java.awt.Font.BOLD, SearchTitle.getFont().getSize()+2));
         SearchTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         SearchTitle.setText("Locating " + name + " executable...");
         SearchTitle.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 3, 12, 0));
@@ -272,7 +272,7 @@ public class JWizard extends JDialog {
 
         FinishP.setLayout(new java.awt.BorderLayout());
 
-        FinishTitle.setFont(FinishTitle.getFont().deriveFont(FinishTitle.getFont().getStyle() | java.awt.Font.BOLD, FinishTitle.getFont().getSize() + 2));
+        FinishTitle.setFont(FinishTitle.getFont().deriveFont(FinishTitle.getFont().getStyle() | java.awt.Font.BOLD, FinishTitle.getFont().getSize()+2));
         FinishTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         FinishTitle.setText(name + " executable");
         FinishTitle.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 3, 12, 0));
