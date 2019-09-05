@@ -336,17 +336,17 @@ public class UINavigationItem extends NSObject {
 
     void updateTextAttributes(Map<String, Object> attributes) {
         initDefaultTitleView();
-        Object textfont = attributes.get(UITextAttribute.Font);
+        Object textFont = attributes.get(UITextAttribute.Font);
         Object textColor = attributes.get(UITextAttribute.TextColor);
-        Object textShadowColor = (UIColor) attributes.get(UITextAttribute.TextShadowColor);
+        Object textShadowColor = attributes.get(UITextAttribute.TextShadowColor);
         Object textShadowOffset = attributes.get(UITextAttribute.TextShadowOffset);
-        if (textfont != null && textfont instanceof UIFont)
-            defaultTitleView.setFont((UIFont) textfont);
-        if (textColor != null && textColor instanceof UIColor)
+        if (textFont instanceof UIFont)
+            defaultTitleView.setFont((UIFont) textFont);
+        if (textColor instanceof UIColor)
             defaultTitleView.setTextColor((UIColor) textColor);
-        if (textShadowColor != null && textShadowColor instanceof UIColor)
+        if (textShadowColor instanceof UIColor)
             defaultTitleView.setShadowColor((UIColor) textShadowColor);
-        if (textShadowOffset != null && textShadowOffset instanceof UIOffset)
+        if (textShadowOffset instanceof UIOffset)
             defaultTitleView.setShadowOffset(((UIOffset) textShadowOffset).toCGSize());
     }
 }

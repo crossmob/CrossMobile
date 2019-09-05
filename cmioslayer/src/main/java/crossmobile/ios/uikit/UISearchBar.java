@@ -415,6 +415,7 @@ public class UISearchBar extends UIView {
     @CMSetter("@property(nonatomic, strong) UIColor *barTintColor;")
     public void setBarTintColor(UIColor tintColor) {
         this.barTintColor = tintColor;
+        setNeedsDisplay();
     }
 
     /**
@@ -435,6 +436,7 @@ public class UISearchBar extends UIView {
     @CMSetter("@property(nonatomic, assign, getter=isTranslucent) BOOL translucent;")
     public void setTranslucent(boolean translucent) {
         this.translucent = translucent;
+        setNeedsDisplay();
     }
 
     /**

@@ -93,20 +93,6 @@ public class UITabBar extends UIView {
         Native.graphics().refreshDisplay();
     }
 
-    @Override
-    public void setTintColor(UIColor tintColor) {
-        super.setTintColor(tintColor);
-        updateItemsColor();
-    }
-
-    private void updateItemsColor() {
-        if (items == null || items.isEmpty())
-            return;
-        UIColor tintColor = Theme.Bar.ISTINTED ? tintColor() : UIColor.blackColor();
-        for (UIBarItem item : items)
-            item.setTintColor(tintColor);
-    }
-
     /**
      * Returns the tint color of the tab bar's background.
      *
@@ -127,10 +113,9 @@ public class UITabBar extends UIView {
     public void setBarTintColor(UIColor tintColor) {
         if (tintColor == null)
             setBackgroundColor(null);
-        else {
+        else
             setBackgroundColor(new UIColor(Native.graphics().colorWithAlpha(color(tintColor.cgcolor), translucent ? Theme.Bar.TRANSLUCENCY : 1)));
-            Native.graphics().refreshDisplay();
-        }
+        setNeedsDisplay();
     }
 
     /**
@@ -415,7 +400,6 @@ public class UITabBar extends UIView {
         if (items != null)
             for (UITabBarItem item : items)
                 item.setButtonDelegate(() -> setSelectedItem(item));
-        updateItemsColor();
         setSelectedIndex(items == null || items.isEmpty() ? -1 : 0);
         layoutSubviews();
     }

@@ -87,12 +87,6 @@ public class UIToolbar extends UIView {
         setItems(items, false);
     }
 
-    @Override
-    public void setTintColor(UIColor tintColor) {
-        super.setTintColor(tintColor);
-        updateItemsColor();
-    }
-
     /**
      * Sets the items on the toolbar by animating the changes.
      *
@@ -108,16 +102,7 @@ public class UIToolbar extends UIView {
         this.items = items;
         for (UIBarButtonItem item : items)
             item.setParentCallback(this::layoutSubviews);
-        updateItemsColor();
         layoutSubviews();
-    }
-
-    private void updateItemsColor() {
-        if (items == null || items.isEmpty())
-            return;
-        UIColor tintColor = Theme.Bar.ISTINTED ? tintColor() : UIColor.blackColor();
-        for (UIBarButtonItem item : items)
-            item.setTintColor(tintColor);
     }
 
     @Override
@@ -214,6 +199,7 @@ public class UIToolbar extends UIView {
     private void setBarTintColor(int tintColor) {
         barTintColor = new UIColor(Native.graphics().colorWithAlpha(tintColor, translucent ? Theme.Bar.TRANSLUCENCY : 1));
         barGradient = Theme.Color.getBarGradientColors(barTintColor);
+        setNeedsDisplay();
     }
 
     /**

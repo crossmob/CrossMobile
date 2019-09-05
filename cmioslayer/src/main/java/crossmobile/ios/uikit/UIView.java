@@ -2623,6 +2623,7 @@ public class UIView extends UIResponder implements UIAppearance, UIAppearanceCon
                 newParent.children.add(idx, view);
             else
                 newParent.children.add(view);
+            view.tintColorDidChange();
             view.parentRef = new WeakReference<>(newParent);
         }
 

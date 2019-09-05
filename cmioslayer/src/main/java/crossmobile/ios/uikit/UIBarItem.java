@@ -171,14 +171,7 @@ public abstract class UIBarItem extends NSObject {
         }
     }
 
-    void setTintColor(UIColor tint) {
-        if (view != null)
-            view.setTintColor(tint);
-        if (view instanceof UINavigationButton)
-            ((UINavigationButton) view).setImage(image);
-    }
-
-    private class UINavigationButton extends UIButton {
+    private static class UINavigationButton extends UIButton {
 
         UINavigationButton() {
             super(UIButtonType.Custom);
@@ -199,6 +192,5 @@ public abstract class UIBarItem extends NSObject {
             updateVisuals();
             setFrame(new CGRect(0, 0, intrinsicContentSize.getWidth(), intrinsicContentSize.getHeight()));
         }
-
     }
 }

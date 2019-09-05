@@ -515,15 +515,15 @@ public class UIButton extends UIControl {
     public void drawRect(CGRect rect) {
         if (dirtyVisuals)
             updateVisuals();
-        UIImage img = maybeCurrent(states.getBack());
+        Promise<UIImage> img = states.getBack();
         if (img != null)
             if (buttonType == UIButtonType.Custom && !isEnabled()) {
                 CGContext cx = UIGraphics.getCurrentContext();
                 cx.setAlpha(0.5);
-                img.drawInRect(rect);
+                img.get().drawInRect(rect);
                 cx.setAlpha(alpha());
             } else
-                img.drawInRect(rect);
+                img.get().drawInRect(rect);
     }
 
     @Override
@@ -572,15 +572,10 @@ public class UIButton extends UIControl {
         return source == null ? null : source.source();
     }
 
-    private UIImage maybeCurrent(Promise<UIImage> source) {
-        return source == null ? null : source.get();
-    }
-
-
     void updateVisuals() {
         if (!dirtyVisuals)
             return;
-        UIImage cimage = maybeCurrent(states.getFore());
+        Promise<UIImage> cimage = states.getFore();
         String clabel = states.getTitle();
         if (cimage == null)
             imageView.setHidden(true);
@@ -597,7 +592,7 @@ public class UIButton extends UIControl {
             label.setTextColor(isEnabled() ? states.getTitleColor(tintColor()) : UIColor.grayColor());
         }
 
-        CGSize imageSize = cimage == null ? null : cimage.size();
+        CGSize imageSize = cimage == null ? null : cimage.source().size();
         CGSize labelSize = clabel == null ? null : label.intrinsicContentSize;
         double hasWidth = getWidth();
         double hasHeight = getHeight();

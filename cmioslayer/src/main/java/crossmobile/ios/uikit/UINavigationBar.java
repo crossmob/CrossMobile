@@ -354,6 +354,7 @@ public class UINavigationBar extends UIView {
     private void setBarTintColor(int tintColor) {
         barTintColor = new UIColor(Native.graphics().colorWithAlpha(tintColor, translucent ? Theme.Bar.TRANSLUCENCY : 1));
         barGradient = Theme.Color.getBarGradientColors(barTintColor);
+        setNeedsDisplay();
     }
 
     /**
@@ -398,10 +399,11 @@ public class UINavigationBar extends UIView {
      */
     @CMSetter("@property(nonatomic, assign, getter=isTranslucent) BOOL translucent;")
     public void setTranslucent(boolean translucent) {
-        if (translucent != this.translucent) {
-            nbcontroller.get().renewInsets(true);
+        UINavigationController nc = nbcontroller.get();
+        if (nc != null && translucent != this.translucent) {
+            nc.renewInsets(true);
             this.translucent = translucent;
-            nbcontroller.get().renewInsets(false);
+            nc.renewInsets(false);
             setBarTintColor(barTintColor);
             updateBar();
         }
@@ -417,10 +419,10 @@ public class UINavigationBar extends UIView {
         nbcontroller = nc == null ? null : new WeakReference<>(nc);
     }
 
-    void updateBar() {
+    private void updateBar() {
         UINavigationController nbc = nbcontroller == null ? null : nbcontroller.get();
         if (nbc != null && nbc.isViewLoaded())
-            nbcontroller.get().view().layoutSubviews();
+            nbc.view().layoutSubviews();
     }
 
     @Override
