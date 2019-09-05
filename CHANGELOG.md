@@ -1,7 +1,7 @@
 # Changelog
 This is the CrossMobile change log.
 
-## [HEAD] - now
+## [v2.6] - 2019-9-9
 
 ### Added
 - Support Adaptive icons under Android
@@ -12,6 +12,8 @@ This is the CrossMobile change log.
 - Support UIApplicationState
 - Support onNewIntent callbacks on Android
 - Support callback methods in ObjectiveC, even with block parameter types (i.e. for notification callbacks)
+- libffi for varargs under iOS
+- Support of prepareForReuse for UITableViewCell
 
 ### Fixed
 - Notifications under Android updated and fixed
@@ -21,7 +23,10 @@ This is the CrossMobile change log.
 - I18n fixes on plural handling
 - Safer handling of plugins
 - Null pointer exception in UITextView
+- Android KitKat issues with launcher and application
 - UIStepper auto-repeat always ends
+- Unregistering Android application
+- Backwards compatible up to macOS 10.12
 
 ### Changed
 - More archetypes added
@@ -33,6 +38,7 @@ This is the CrossMobile change log.
 
 ### Removed
 - Obsolete JavaFX build dependency
+- Swift as dependency for varargs
 
 ## [v2.5] - 2019-7-1
 
@@ -64,6 +70,6 @@ This is the CrossMobile change log.
 ### Added
 - First public source release
 
-[HEAD]: https://github.com/crossmob/CrossMobile/compare/v2.5...HEAD
+[v2.6]: https://github.com/crossmob/CrossMobile/compare/v2.5...v2.6
 [v2.5]: https://github.com/crossmob/CrossMobile/compare/v2.5.pre1.cm...v2.5
 [v2.5.pre1.cm]: https://github.com/crossmob/CrossMobile/tree/v2.5.pre1.cm
