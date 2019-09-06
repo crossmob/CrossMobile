@@ -102,6 +102,7 @@ public class UITableView extends UIScrollView {
         pending = swap;
         newpaths.clear();
         boolean needsRelayout = false;
+        double width = getWidth() - contentInset.getLeft() - contentInset.getRight();
 
         // Keep already placed cells
         if (paths != null)
@@ -110,7 +111,7 @@ public class UITableView extends UIScrollView {
                 if (cell == null)
                     newpaths.add(path);
                 else {
-                    needsRelayout |= relayoutCell(cell, path);
+                    needsRelayout |= relayoutCell(cell, width, path);
                     active.put(path, cell);
                     cell.setEditing(isEditing, getEditingStyle(path));
                 }
@@ -132,27 +133,26 @@ public class UITableView extends UIScrollView {
                 cell.setSelected(selected.contains(path));
                 if (delegate != null)
                     delegate.willDisplayCell(UITableView.this, cell, path);
-                needsRelayout |= relayoutCell(cell, path);
+                needsRelayout |= relayoutCell(cell, width, path);
             }
         }
         metrics().relayoutLabels(true);
         metrics().relayoutLabels(false);
 
-        setContentSize(new CGSize(getWidth() - contentInset.getLeft() - contentInset.getRight(),
-                Math.max(metrics().totalHeight(), getHeight()) - contentInset.getTop() - contentInset.getBottom()), false);
+        setContentSize(new CGSize(width, Math.max(metrics().totalHeight(), getHeight()) - contentInset.getTop() - contentInset.getBottom()), false);
         if (needsRelayout)
             Native.system().postOnEventThread(this::layoutSubviews);
         else
             Native.graphics().refreshDisplay();
     };
 
-    private boolean relayoutCell(UITableViewCell cell, NSIndexPath path) {
+    private boolean relayoutCell(UITableViewCell cell, double width, NSIndexPath path) {
         cell.path = path;
         cmTableViewMetrics tvm = metrics();
         double y = tvm.rowStart(path.section(), path.row());
         boolean needsRelayout = tvm.fixHeightIfNeeded(cell);
         double height = tvm.rowHeight(path.section(), path.row());
-        cell.setFrameImpl(0, y, contentSize.getWidth(), height);
+        cell.setFrameImpl(0, y, width, height);
         cell.layoutIfNeeded();
         return needsRelayout;
     }
@@ -446,6 +446,7 @@ public class UITableView extends UIScrollView {
     @CMSetter("@property(nonatomic, strong) UIColor *separatorColor;")
     public void setSeparatorColor(UIColor separatorColor) {
         this.separatorColor = separatorColor;
+        setNeedsDisplay();
     }
 
     /**
@@ -467,6 +468,7 @@ public class UITableView extends UIScrollView {
     @CMSetter("@property(nonatomic) UITableViewCellSeparatorStyle separatorStyle;")
     public void setSeparatorStyle(int UITableViewCellSeparatorStyle) {
         this.separatorStyle = UITableViewCellSeparatorStyle;
+        setNeedsDisplay();
     }
 
     /**
