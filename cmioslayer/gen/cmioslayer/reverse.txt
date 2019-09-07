@@ -3725,6 +3725,9 @@
     "isSelected()": {
       "code": "- (BOOL) isSelected\n{\n    return [self isSelected__];\n}\n\n"
     },
+    "prepareForReuse()": {
+      "code": "- (void) prepareForReuse\n{\n    [self prepareForReuse__];\n}\n\n"
+    },
     "reuseIdentifier()": {
       "code": "- (NSString *) reuseIdentifier\n{\n    NSString * re$ult = [self reuseIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
     },
