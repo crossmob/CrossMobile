@@ -16,7 +16,6 @@
  */
 package org.crossmobile.bind.system;
 
-import crossmobile.ios.uikit.UIView;
 import org.robovm.objc.block.Block1;
 import org.robovm.objc.block.VoidBlock1;
 

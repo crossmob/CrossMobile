@@ -22,6 +22,7 @@ import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.coregraphics.CGSize;
 import crossmobile.ios.foundation.NSSelector;
 import crossmobile.ios.foundation.NSTimer;
+import crossmobile.rt.StrongReference;
 import org.crossmobile.bind.graphics.Geometry;
 import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.graphics.curve.InterpolationCurve;
@@ -88,12 +89,32 @@ public class UIScrollView extends UIView {
     private final Map<Integer, ClVariable> contentVariableMap = new HashMap<>();
     private final List<NSLayoutConstraint> contentConstraints = new ArrayList<>();
 
+    private double calculateNewPosition(double initial, double delta, double safeValue, StrongReference<Boolean> shouldSpring) {
+        double pos = initial;
+        if (delta <= 0)
+            pos = safeValue;
+        if (pos < 0)
+            if (bounces) {
+                shouldSpring.set(true);
+                pos = pos * SPRING_FACTOR;
+            } else
+                pos = 0;
+        else if (pos > delta)
+            if (bounces) {
+                shouldSpring.set(true);
+                pos = pos + delta * SPRING_FACTOR;
+            } else
+                pos = delta;
+        return pos;
+    }
+
     private boolean began = true;
     private UIPanGestureRecognizer pan = new UIPanGestureRecognizer(new NSSelector<UIGestureRecognizer>() { // Should be friendly, so that the tableview can prevent it
         @Override
         public void exec(UIGestureRecognizer arg) {
             switch (pan.state()) {
                 case UIGestureRecognizerState.Cancelled:
+                    // Cancelled
                     yieldTouches = false;
                     tracking = false;
                     dragging = false;
@@ -104,6 +125,7 @@ public class UIScrollView extends UIView {
                     touchesCancelled(arg.touchList, arg.touchEvent);
                     break;
                 case UIGestureRecognizerState.Began:
+                    // Begun
                     yieldTouches = false;
                     began = true;
                     invalidateTimers();
@@ -121,63 +143,20 @@ public class UIScrollView extends UIView {
                     tracking = false;
                     CGPoint transl = pan.translationInView(UIScrollView.this);
                     CGPoint scrollVelocity = pan.velocityInView(UIScrollView.this);
-                    boolean shouldSpring = false;
-                    double x = -transl.getX();
-                    double y = -transl.getY();
-                    double unprocessedX = x;
-                    double unprocessedY = y;
-                    if ((contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) <= getWidth())
-                        x = contentOffset.getX();
-                    if ((contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) <= getHeight())
-                        y = contentOffset.getY();
-                    if (x < 0)
-                        if (bounces) {
-                            shouldSpring = true;
-                            x = x * SPRING_FACTOR;
-                        } else
-                            x = 0;
-                    else if (x > (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - getWidth())
-                        if (bounces) {
-                            shouldSpring = true;
-                            x = (x + (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - getWidth()) * SPRING_FACTOR;
-                        } else
-                            x = (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - getWidth();
-                    if (y < 0)
-                        if (bounces) {
-                            shouldSpring = true;
-                            y = y * SPRING_FACTOR;
-                        } else
-                            y = 0;
-                    else if (y > (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) - getHeight())
-                        if (bounces) {
-                            shouldSpring = true;
-                            y = (y + (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) - getHeight()) * SPRING_FACTOR;
-                        } else
-                            y = (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) - getHeight();
+                    StrongReference<Boolean> shouldSpring = new StrongReference<>(false);
+                    double x = calculateNewPosition(-transl.getX(), contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight() - getWidth(), contentOffset.getX(), shouldSpring);
+                    double y = calculateNewPosition(-transl.getY(), contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom() - getHeight(), contentOffset.getY(), shouldSpring);
                     if (pan.state() != UIGestureRecognizerState.Ended) { // UIGestureRecognizerState.Changed
                         if (Math.sqrt(Math.pow(contentOffset.getX() - x, 2) + Math.pow(contentOffset.getY() - y, 2)) > SELECTION_THRESHOLD && !yieldTouches) {
+                            // Dragging
                             invalidateTimers();
-                            touchesCancelled(arg.touchList, arg.touchEvent);
                             dragging = true;
                             tracking = true;
                             began = false;
                             setContentOffset(x, y); // no special animation
-                            //TODO SHOULD GO TO GESTURES IMPLEMENTATION!!!!!!
-                        } else if (!yieldTouches && began && firstAncestorScrollView(UIScrollView.this) != null && ((x > -0.1 && x < 0.1 && Math.abs(x) < Math.abs(unprocessedX)) || (y > -0.1 && y < 0.1 && Math.abs(unprocessedY) > Math.abs(y)))) {
-                            began = false;
-                            invalidateTimers();
-                            touchesCancelled(arg.touchList, arg.touchEvent);
-                            disabled = true;
-                            Set<UITouch> touches = new HashSet<>();
-                            for (UITouch t : arg.touchList)
-                                touches.add(new UITouch(t.locationInWindow, t.pointerID, t.window, UITouchPhase.Began));
-                            window().sendEvent(new UIEvent(touches.toArray(new UITouch[0]), arg.touchEvent, UITouchPhase.Began));
-                            pan.setState(UIGestureRecognizerState.Cancelled);
-                            window().sendEvent(new UIEvent(arg.touchList.toArray(new UITouch[0]), arg.touchEvent, UITouchPhase.Cancelled));
-                            disabled = false;
-                        } else touchesMoved(arg.touchList, arg.touchEvent);
-                    }
-                    if (pan.state() == UIGestureRecognizerState.Ended) {
+                        }
+                    } else {
+                        // Ended
                         yieldTouches = false;
                         if (taptimer != null && taptimer.isValid())
                             taptimer.fire();
@@ -189,7 +168,7 @@ public class UIScrollView extends UIView {
                                 scroller.invalidate();
                             if (delegate != null)
                                 delegate.didEndDragging(UIScrollView.this, false);
-                            if (shouldSpring && (x < 0 || x > (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - getWidth() || y < 0 || y > (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) - getHeight())) {
+                            if (shouldSpring.get() && (x < 0 || x > (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - getWidth() || y < 0 || y > (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) - getHeight())) {
                                 float newX = (float) (x < 0 ? 0
                                         : Math.min(x, (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - getWidth()));
                                 float newY = (float) (y < 0 ? 0

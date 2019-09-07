@@ -171,7 +171,7 @@ public class SwingWebWrapper extends WebWrapper<SwingWebWrapper.NativeW, SwingGr
                 try {
                     super.paint(g);
                 } catch (Throwable th) {
-                    Native.system().error("Unable to paint component", th);
+                    Native.system().error("Unable to paint component: " + th.toString(), null);
                 }
         }
 
@@ -181,7 +181,7 @@ public class SwingWebWrapper extends WebWrapper<SwingWebWrapper.NativeW, SwingGr
                 try {
                     super.paint(cxt.g2);
                 } catch (Throwable th) {
-                    Native.system().error("Unable to paint native component", th);
+                    Native.system().error("Unable to paint native component: " + th.toString(), null);
                 }
         }
 
