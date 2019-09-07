@@ -117,7 +117,7 @@ public class MobileApp implements Comparable<MobileApp> {
             pb.start();
             System.exit(0);
         } catch (Exception ex) {
-            JOptionPane.showConfirmDialog(null, "Unable to start application " + name + "\n\n" + ex.getClass().getName() + ": " + ex.getMessage(), "Launch error for " + name, JOptionPane.CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showConfirmDialog(null, "Unable to start application " + name + "\n\n" + ex.toString(), "Launch error for " + name, JOptionPane.CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
         }
     }
 

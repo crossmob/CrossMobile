@@ -125,7 +125,7 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
 
     @Override
     public void uncaughtException(Thread thread, Throwable throwable) {
-        quit(throwable.getMessage() == null || throwable.getMessage().trim().isEmpty() ? throwable.toString() : throwable.getMessage(), throwable);
+        quit(throwable.getMessage().trim(), throwable);
         if (systemHandler != null)
             systemHandler.uncaughtException(thread, throwable);
     }
