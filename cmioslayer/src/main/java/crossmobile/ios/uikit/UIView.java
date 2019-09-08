@@ -18,6 +18,7 @@ package crossmobile.ios.uikit;
 
 import crossmobile.ios.coregraphics.*;
 import crossmobile.ios.foundation.NSDate;
+import crossmobile.ios.foundation.NSTimer;
 import crossmobile.ios.quartzcore.CALayer;
 import org.crossmobile.bind.graphics.AppearanceRegistry;
 import org.crossmobile.bind.graphics.Geometry;
@@ -130,6 +131,7 @@ public class UIView extends UIResponder implements UIAppearance, UIAppearanceCon
     private UILayoutGuide safeAreaLayoutGuide;
     private boolean insetsLayoutMarginsFromSafeArea = true;
     private int userInterfaceLayoutDirection = UIApplication.sharedApplication().userInterfaceLayoutDirection();
+    private boolean debugSelf;
 
     private Anchor anchors;
 
@@ -1566,7 +1568,7 @@ public class UIView extends UIResponder implements UIAppearance, UIAppearanceCon
 
         drawRect(getDrawFrame());
         if (ENABLE_DEBUG)
-            if (Live_Graphics_Debug && !shouldDrawOnTop())
+            if ((Live_Graphics_Debug || debugSelf) && !shouldDrawOnTop())
                 debugGraphicsFrame(cx, vframe);
 
         DrawingDepth++;
@@ -1578,9 +1580,18 @@ public class UIView extends UIResponder implements UIAppearance, UIAppearanceCon
             cx.setAlpha(parentAlpha * alpha);
             drawOnTop(cx, vframe);
             if (ENABLE_DEBUG)
-                if (Live_Graphics_Debug)
+                if (Live_Graphics_Debug || debugSelf)
                     debugGraphicsFrame(cx, vframe);
         }
+    }
+
+    private void setDebugSelf(boolean status) {
+        this.debugSelf = status;
+        NSTimer.scheduledTimerWithTimeInterval(1, timer -> {
+            debugSelf = false;
+            setNeedsDisplay();
+        }, null, false);
+        setNeedsDisplay();
     }
 
     private void debugGraphicsFrame(CGContext cx, CGRect givenViewport) {
