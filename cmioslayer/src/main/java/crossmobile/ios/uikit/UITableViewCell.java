@@ -106,7 +106,7 @@ public class UITableViewCell extends UIView {
             double width = getWidth();
             double height = getHeight();
 
-            if (imageView != null) {
+            if (imageView != null && imageView.image() != null) {
                 leftInset = Theme.Cell.INSET_LEFT + Theme.Cell.IMAGE_SIZE;
                 int topOffset = (int) (Math.max(0, height - Theme.Cell.IMAGE_SIZE) / 2);
                 imageView.setFrame(new CGRect(Theme.Cell.INSET_LEFT, topOffset, Theme.Cell.IMAGE_SIZE, height - 2 * topOffset));
