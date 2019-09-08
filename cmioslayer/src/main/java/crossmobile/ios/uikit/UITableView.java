@@ -91,7 +91,10 @@ public class UITableView extends UIScrollView {
             BaseUtils.throwException(e.getCause());
         }
         return null;
-    }, UIView::removeFromSuperview, item -> item.setSelected(false));
+    }, UIView::removeFromSuperview, item -> {
+        item.setSelected(false);
+        item.prepareForReuse();
+    });
 
     private List<NSIndexPath> newpaths = new ArrayList<>();
     private final Runnable layoutSubviews = () -> {

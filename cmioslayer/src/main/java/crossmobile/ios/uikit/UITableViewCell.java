@@ -22,10 +22,7 @@ import crossmobile.ios.coregraphics.CGSize;
 import crossmobile.ios.foundation.NSIndexPath;
 import org.crossmobile.bind.graphics.Theme;
 import org.crossmobile.bridge.Native;
-import org.crossmobile.bridge.ann.CMClass;
-import org.crossmobile.bridge.ann.CMConstructor;
-import org.crossmobile.bridge.ann.CMGetter;
-import org.crossmobile.bridge.ann.CMSetter;
+import org.crossmobile.bridge.ann.*;
 
 import java.util.Set;
 
@@ -460,6 +457,14 @@ public class UITableViewCell extends UIView {
             return;
         this.accessoryView = accessoryView;
         updateAccessoryView();
+    }
+
+    /**
+     * Prepare this cell to be reused. This method is called on recycled cells, just before being returned from the
+     * UITableView.dequeueReusableCellWithIdentifier(id) method.
+     */
+    @CMSelector("- (void)prepareForReuse;")
+    public void prepareForReuse() {
     }
 
     private void updateAccessoryView() {

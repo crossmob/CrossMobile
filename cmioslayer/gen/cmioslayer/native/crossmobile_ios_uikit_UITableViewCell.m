@@ -773,6 +773,12 @@
     return [super pointInside:[point getCGPoint] withEvent:(event == JAVA_NULL ? nil : event)];
 }
 
+// (UITableViewCell) - (void)prepareForReuse;
+- (void) prepareForReuse__
+{
+    [super prepareForReuse];
+}
+
 // (UIView) - (void)removeConstraint:(NSLayoutConstraint *)constraint;
 - (void) removeConstraint___crossmobile_ios_uikit_NSLayoutConstraint:(NSLayoutConstraint*) constraint 
 {
@@ -1103,6 +1109,12 @@
 {
     UILabel* re$ult = [self textLabel];
     return [(re$ult ? re$ult : JAVA_NULL) retain];
+}
+
+// direct binding of: - (void)prepareForReuse;
+- (void) prepareForReuse__
+{
+    [self prepareForReuse];
 }
 
 @end

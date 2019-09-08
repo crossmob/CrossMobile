@@ -41,4 +41,5 @@
 - (void) setSelectionStyle___int:(int) selectionStyle ;
 - (int) selectionStyle__;
 - (UILabel*) textLabel__;
+- (void) prepareForReuse__;
 @end
