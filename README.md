@@ -29,6 +29,6 @@ Requirements:
 |   | macOS | Windows | Linux |
 |---|-------|---------|--------|
 | Required | macOS Sierra 10.12.6 <br/> Xcode 9.2 <br/> Android command line tools 3.5 | Windows 7 <br/> Android command line tools 3.5 | x64 distribution <br/> Android command line tools 3.5
-| Recommended | macOS Mojave 10.14.6 <br/> Xcode 10.3 <br/> Android Studio 3.5 | Windows 10 <br/> Android Studio 3.5 | x64 distribution <br/> Android Studio 3.5
+| Recommended | macOS Mojave 10.14.6 <br/> Xcode 10.3 <br/> Android Studio 3.5 | Windows 10 64 bit<br/> Android Studio 3.5 | x64 distribution <br/> Android Studio 3.5
 
 For more information about CrossMobile, please visit its dedicated site [crossmobile.tech](https://crossmobile.tech).
