@@ -18,9 +18,10 @@ package org.crossmobile.bridge.system;
 
 import org.crossmobile.bridge.ann.CMLib;
 
+import static org.crossmobile.bridge.ann.CMLibTarget.RUNTIME;
 import static org.crossmobile.bridge.ann.CMLibTarget.SOURCEONLY;
 
-@CMLib(target = SOURCEONLY)
+@CMLib(target = RUNTIME)
 public final class LauncherCommons {
 
     public static final String OUTPUT_PACKAGE = "META-INF";

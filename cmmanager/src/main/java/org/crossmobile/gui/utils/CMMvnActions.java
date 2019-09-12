@@ -19,12 +19,10 @@ package org.crossmobile.gui.utils;
 import org.crossmobile.Version;
 import org.crossmobile.gui.actives.ActiveTextPane;
 import org.crossmobile.gui.android.InstallerFrame;
-import org.crossmobile.gui.project.Project;
 import org.crossmobile.gui.project.ProjectLauncher;
 import org.crossmobile.prefs.Prefs;
 import org.crossmobile.utils.Commander;
 import org.crossmobile.utils.FileUtils;
-import org.crossmobile.utils.Log;
 import org.crossmobile.utils.ProjectException;
 
 import javax.swing.*;
@@ -38,10 +36,6 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
-
-import static org.crossmobile.gui.utils.LaunchType.RELEASE;
-import static org.crossmobile.gui.utils.LaunchType.XRAY;
-import static org.crossmobile.prefs.Prefs.*;
 
 public class CMMvnActions {
 
@@ -77,9 +71,9 @@ public class CMMvnActions {
         cmd.add(goal);
         cmd.add("-B");
         Map<String, String> env = ProjectLauncher.getJavaEnv();
-        if (runtype != RELEASE) {
+        if (runtype.isDebug()) {
             cmd.add("-e");
-            String agent = runtype == XRAY ? Paths.getXRayPath() : null;
+            String agent = Paths.getXRayPath();
             agent = agent == null ? "" : "-javaagent:" + agent + " ";
             if (profiles != null && profiles.contains("desktop"))
                 env.put("MAVEN_OPTS", agent + "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=0");
@@ -120,7 +114,7 @@ public class CMMvnActions {
                     }
                 });
             if (line.toString().contains("SDK location not found"))
-                solutionCallbackRef.set(()->{
+                solutionCallbackRef.set(() -> {
                     JOptionPane.showMessageDialog(null, "Android SDK location is required\n\n"
                                     + "Please rerun the initialization wizard first\nand define the Android SDK location.",
                             "Error while locating Android SDK", JOptionPane.ERROR_MESSAGE);

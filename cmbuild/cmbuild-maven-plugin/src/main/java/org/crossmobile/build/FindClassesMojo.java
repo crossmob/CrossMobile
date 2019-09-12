@@ -16,22 +16,46 @@
  */
 package org.crossmobile.build;
 
+import javassist.CtClass;
+import javassist.NotFoundException;
+import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.ResolutionScope;
-import org.crossmobile.build.ng.FindClassesPipeline;
-import org.crossmobile.build.ng.PostCompilePipeline;
+import org.crossmobile.bridge.system.BaseUtils;
+import org.crossmobile.utils.ClasspathUtils;
+import org.crossmobile.utils.NativeCodeCollection;
+
+import java.io.File;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.TreeSet;
+
+import static org.crossmobile.build.utils.Config.CLASSES;
+import static org.crossmobile.utils.ClasspathUtils.CLASS_USAGE_SIGNATURE;
 
 @Mojo(name = "findclasses", defaultPhase = LifecyclePhase.COMPILE, requiresDependencyResolution = ResolutionScope.COMPILE)
-public class FindClassesMojo extends CrossMobileMojo {
+public class FindClassesMojo extends GenericMojo {
 
     @Override
-    protected Runnable initCoreWorker() {
-        return new FindClassesPipeline();
+    public void exec() throws MojoExecutionException, MojoFailureException {
+        File classesDir = new File(getBuildDir(), CLASSES);
+        for (String className : findAllImports(Collections.singleton(classesDir)))
+            System.out.println(CLASS_USAGE_SIGNATURE + className);
     }
 
-    @Override
-    protected boolean shouldAutomaticallyUpdateLicense() {
-        return false;
+    public static Collection<String> findAllImports(Collection<File> classpath) {
+        Collection<String> classes = new TreeSet<>();
+        NativeCodeCollection dbn = new NativeCodeCollection(classpath);
+        for (String classname : ClasspathUtils.getClasspathClasses(classpath, true)) {
+            try {
+                CtClass cls = dbn.getClassPool().get(classname);
+                classes.addAll(cls.getRefClasses());
+            } catch (NotFoundException e) {
+                BaseUtils.throwException(e);
+            }
+        }
+        return classes;
     }
 }

@@ -96,7 +96,8 @@ public abstract class Native {
                 try {
                     props.load(new InputStreamReader(Native.class.getResourceAsStream("/" + OUTPUT_PACKAGE + "/" + OUTPUT_FILE), "UTF-8"));
                     flavour = props.getProperty("flavour", "").toLowerCase().trim();
-                } catch (Exception ignored) {
+                } catch (Exception ex) {
+                    System.err.println("Unable to read CrossMobile launch properties: " + ex.toString());
                 }
                 switch (flavour) {
                     case "desktop":

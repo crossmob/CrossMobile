@@ -107,17 +107,17 @@
 
     <build>
         <plugins>
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-compiler-plugin</artifactId>-->
-<!--                <version>3.8.1</version>-->
-<!--                <configuration>-->
-<!--                    <compilerArgs>-->
-<!--                        <arg>-Xlint:deprecation</arg>-->
-<!--                        <arg>-Xlint:unchecked</arg>-->
-<!--                    </compilerArgs>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
+            <!--            <plugin>-->
+            <!--                <groupId>org.apache.maven.plugins</groupId>-->
+            <!--                <artifactId>maven-compiler-plugin</artifactId>-->
+            <!--                <version>3.8.1</version>-->
+            <!--                <configuration>-->
+            <!--                    <compilerArgs>-->
+            <!--                        <arg>-Xlint:deprecation</arg>-->
+            <!--                        <arg>-Xlint:unchecked</arg>-->
+            <!--                    </compilerArgs>-->
+            <!--                </configuration>-->
+            <!--            </plugin>-->
             <plugin>
                 <groupId>org.crossmobile</groupId>
                 <artifactId>cmbuild-plugins</artifactId>
@@ -139,9 +139,6 @@
                     <skipAndroid>${skip.android}</skipAndroid>
                     <skipCore>${skip.core}</skipCore>
                     <skipRvm>${skip.robovm}</skipRvm>
-                    <obfuscate>${obfuscate.project}</obfuscate>
-                    <proguardMap>../resources/installers/mapping/${project.artifactId}-${project.version}.map
-                    </proguardMap>
                     <embedlibs>
                         <embedlib>com\.panayotis:appenh.*</embedlib>
                         <embedlib>org\.crossmobile:cmutils-common.*</embedlib>
@@ -197,12 +194,6 @@
             </build>
         </profile>
         <profile>
-            <id>debug</id>
-            <properties>
-                <obfuscate.project>false</obfuscate.project>
-            </properties>
-        </profile>
-        <profile>
             <id>build-under-windows</id>
             <activation>
                 <os>
@@ -230,7 +221,6 @@
                 <skip.ios>true</skip.ios>
                 <skip.robovm>true</skip.robovm>
                 <skip.android>true</skip.android>
-                <obfuscate.project>false</obfuscate.project>
             </properties>
         </profile>
         <profile>
@@ -239,13 +229,11 @@
                 <skip.ios>true</skip.ios>
                 <skip.robovm>true</skip.robovm>
                 <skip.desktop>true</skip.desktop>
-                <obfuscate.project>false</obfuscate.project>
             </properties>
         </profile>
     </profiles>
 
     <properties>
-        <obfuscate.project>true</obfuscate.project>
         <skip.java.targets>false</skip.java.targets>
         <skip.all>false</skip.all>
         <skip.ios>false</skip.ios>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>env</artifactId>
@@ -13,6 +14,7 @@
     <properties>
         <crossmobile.version>2.7.0</crossmobile.version>
         <cm.gradle.target>assembleDebug</cm.gradle.target>
+        <cm.launch.desktop>${project.build.directory}/${project.artifactId}-${project.version}-desktop.jar</cm.launch.desktop>
     </properties>
     <profiles>
         <profile>
@@ -24,13 +26,20 @@
             </properties>
         </profile>
         <profile>
+            <id>obfuscate</id>
+            <properties>
+                <cm.obfuscate>true</cm.obfuscate>
+                <cm.launch.desktop>${project.build.directory}/${project.artifactId}-${project.version}-trimmed.jar</cm.launch.desktop>
+            </properties>
+        </profile>
+        <profile>
             <id>run</id>
             <build>
                 <plugins>
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
-                        <version>1.5.0</version>
+                        <version>1.6.0</version>
                         <executions>
                             <execution>
                                 <phase>install</phase>
@@ -41,6 +50,12 @@
                         </executions>
                         <configuration>
                             <mainClass>${main.class}</mainClass>
+                            <addOutputToClasspath>false</addOutputToClasspath>
+                            <includePluginDependencies>false</includePluginDependencies>
+                            <includeProjectDependencies>false</includeProjectDependencies>
+                            <additionalClasspathElements>
+                                <element>${cm.launch.desktop}</element>
+                            </additionalClasspathElements>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -73,10 +88,26 @@
                                     <shadedArtifactAttached>true</shadedArtifactAttached>
                                     <shadedClassifierName>desktop</shadedClassifierName>
                                     <transformers>
-                                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                        <transformer
+                                                implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                             <mainClass>${main.class}</mainClass>
                                         </transformer>
                                     </transformers>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.crossmobile</groupId>
+                        <artifactId>cmbuild-maven-plugin</artifactId>
+                        <version>${crossmobile.version}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>obfuscate</goal>
+                                </goals>
+                                <configuration>
+                                    <obfuscate>${cm.obfuscate}</obfuscate>
                                 </configuration>
                             </execution>
                         </executions>
@@ -122,6 +153,22 @@
                                     <args>
                                         <arg>--stacktrace</arg>
                                     </args>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.crossmobile</groupId>
+                        <artifactId>cmbuild-maven-plugin</artifactId>
+                        <version>${crossmobile.version}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>obfuscate</goal>
+                                </goals>
+                                <configuration>
+                                    <obfuscate>${cm.obfuscate}</obfuscate>
+                                    <copyProguardFilesOnly>true</copyProguardFilesOnly>
                                 </configuration>
                             </execution>
                         </executions>
@@ -196,6 +243,8 @@
                                         <include>local.properties</include>
                                         <include>build.gradle</include>
                                         <include>gradle.properties</include>
+                                        <include>crossmobile.pro</include>
+                                        <include>proguard-rules.pro</include>
                                         <include>gradle/**</include>
                                         <include>gradlew*</include>
                                         <include>.gradle/**</include>

@@ -28,9 +28,4 @@ public class ResourcesMojo extends CrossMobileMojo {
     protected Runnable initCoreWorker() {
         return new ResourcesPipeline();
     }
-
-    @Override
-    protected boolean shouldAutomaticallyUpdateLicense() {
-        return true;
-    }
 }

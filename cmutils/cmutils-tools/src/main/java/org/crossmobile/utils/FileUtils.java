@@ -167,6 +167,15 @@ public final class FileUtils {
         return write(out, data);
     }
 
+    public static boolean copyResource(String resource, File dest) {
+        try {
+            copyResource(resource, dest.getAbsolutePath());
+            return true;
+        } catch (ProjectException e) {
+            return false;
+        }
+    }
+
     public static void copyResource(String resource, String dest) throws ProjectException {
         File fout = new File(dest);
         fout.getParentFile().mkdirs();

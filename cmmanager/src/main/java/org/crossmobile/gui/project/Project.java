@@ -41,6 +41,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
+import static java.lang.Boolean.parseBoolean;
 import static org.crossmobile.gui.project.ProjectInfo.OLD_ANT;
 import static org.crossmobile.gui.project.ProjectInfo.OLD_XMLVM;
 import static org.crossmobile.prefs.Config.MATERIALS_PATH;
@@ -58,6 +59,7 @@ public class Project {
     //private Consumer<String> appNameListener;
     private boolean asOldXMLVMProject;
     private LaunchType launchType;
+    private boolean obfuscate;
     private final GlobalParamListener listener = new GlobalParamListener();
     private Consumer<Project> saveCallback;
 
@@ -79,6 +81,7 @@ public class Project {
             throw new ProjectException("Unable to parse POM file");
 
         launchType = LaunchType.safeValueOf(Prefs.getLaunchType(basedir.getAbsolutePath()));
+        obfuscate = Prefs.getObfuscate(basedir.getAbsolutePath());
         plugins = new ProjectPlugins(params);
         appicons = projinf.getIcons();
 
@@ -112,17 +115,17 @@ public class Project {
         PropertySheet csheet;
 
         csheet = new PropertySheet("General", listener);
-        DisplayNameParameter projname = new DisplayNameParameter(params);
-        projname.addParameterListener(property -> listener.updateTitle(property.getValue()));
+        ProjectParameter projname = new DisplayNameParameter(params).addParameterListener(property -> listener.updateTitle(property.getValue()));
         listener.updateTitle(projname.getValue());
         csheet.add(projname);
         csheet.add(new ArtifactIdParameter(params));
         csheet.add(new GroupIdParameter(params));
         csheet.add(new VersionParameter(params));
         csheet.add(new MainClassParameter(params));
-        ReleaseParameter releaseP = new ReleaseParameter(params, launchType);
-        csheet.add(releaseP);
-        releaseP.addParameterListener(prop -> Prefs.setLaunchType(basedir.getAbsolutePath(), (launchType = LaunchType.safeValueOf(prop.getValue())).name().toLowerCase()));
+        csheet.add(new ObfuscateParameter(params, obfuscate)
+                .addParameterListener(prop -> Prefs.setObfuscate(basedir.getAbsolutePath(), obfuscate = parseBoolean(prop.getValue()))));
+        csheet.add(new ReleaseParameter(params, launchType)
+                .addParameterListener(prop -> Prefs.setLaunchType(basedir.getAbsolutePath(), (launchType = LaunchType.safeValueOf(prop.getValue())).name().toLowerCase())));
         csheet.add(new JavacSourceParameter(params));
         csheet.add(new JavacTargetParameter(params));
         sheets.add(csheet);
@@ -157,11 +160,9 @@ public class Project {
         sheets.add(csheet);
 
         csheet = new PropertySheet("Android", listener);
-        AndroidKeyStoreParameter ks = new AndroidKeyStoreParameter(params);
-        csheet.add(ks);
         AndroidKeyAliasParameter ka = new AndroidKeyAliasParameter(params);
         csheet.add(ka);
-        ks.addParameterListener(ka);
+        csheet.add(new AndroidKeyStoreParameter(params).addParameterListener(ka));
         csheet.add(new AndroidKeystorePasswordParameter(params));
         csheet.add(new AndroidAliasPasswordParameter(params));
         csheet.add(new AndroidPermissionsParameter(params, this));
@@ -268,4 +269,7 @@ public class Project {
         return launchType;
     }
 
+    public boolean isObfuscated() {
+        return obfuscate;
+    }
 }

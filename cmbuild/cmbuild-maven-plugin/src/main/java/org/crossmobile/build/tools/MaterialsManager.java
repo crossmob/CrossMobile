@@ -26,15 +26,13 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.*;
+import java.util.Collection;
 import java.util.jar.JarFile;
 
 import static org.crossmobile.bridge.system.MaterialsCommon.MATERIALS_TAG;
 import static org.crossmobile.build.tools.StringsToPropertiesConverter.parseStrings;
 import static org.crossmobile.build.tools.StringsToPropertiesConverter.parseStringsDict;
-import static org.crossmobile.utils.FileUtils.*;
-import static org.crossmobile.utils.FileUtils.Predicates.extensions;
-import static org.crossmobile.utils.FileUtils.Predicates.noHidden;
+import static org.crossmobile.utils.FileUtils.forAllRecursively;
 
 public class MaterialsManager {
 

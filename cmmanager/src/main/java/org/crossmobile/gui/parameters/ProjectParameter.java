@@ -100,12 +100,13 @@ public abstract class ProjectParameter {
         }
     }
 
-    public final void addParameterListener(ParameterListener<?> listener) {
+    public final ProjectParameter addParameterListener(ParameterListener<?> listener) {
         if (listener != null) {
             if (listeners == null)
                 listeners = new HashSet<>();
             listeners.add(listener);
         }
+        return this;
     }
 
     public final void removeParameterListener(ParameterListener listener) {

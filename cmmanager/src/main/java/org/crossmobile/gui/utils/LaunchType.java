@@ -17,7 +17,7 @@
 package org.crossmobile.gui.utils;
 
 public enum LaunchType {
-    RELEASE, DEBUG, XRAY;
+    DEBUG, RELEASEÎ;
 
     public static LaunchType safeValueOf(String launchType) {
         if (launchType == null)
@@ -28,5 +28,13 @@ public enum LaunchType {
         } catch (IllegalArgumentException e) {
             return DEBUG;
         }
+    }
+
+    public boolean isRelease() {
+        return this != DEBUG;
+    }
+
+    public boolean isDebug() {
+        return !isRelease();
     }
 }

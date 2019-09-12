@@ -1,4 +1,35 @@
 {
+  "crossmobile.ios.uikit.UIMutableUserNotificationAction": {
+    "setActivationMode(int)": {
+      "code": "- (void) setActivationMode:(UIUserNotificationActivationMode) activationMode\n{\n    [self setActivationMode___int:activationMode];\n}\n\n"
+    },
+    "setAuthenticationRequired(boolean)": {
+      "code": "- (void) setAuthenticationRequired:(BOOL) authenticationRequired\n{\n    [self setAuthenticationRequired___boolean:authenticationRequired];\n}\n\n"
+    },
+    "setBehavior(int)": {
+      "code": "- (void) setBehavior:(UIUserNotificationActionBehavior) behavior\n{\n    [self setBehavior___int:behavior];\n}\n\n"
+    },
+    "setDestructive(boolean)": {
+      "code": "- (void) setDestructive:(BOOL) destructive\n{\n    [self setDestructive___boolean:destructive];\n}\n\n"
+    },
+    "setIdentifier(java.lang.String)": {
+      "code": "- (void) setIdentifier:(NSString *) identifier\n{\n    [self setIdentifier___java_lang_String:(identifier ? identifier : JAVA_NULL)];\n}\n\n"
+    },
+    "setParameters(java.util.Map)": {
+      "code": "- (void) setParameters:(NSDictionary *) parameters\n{\n    [self setParameters___java_util_Map:(parameters ? parameters : JAVA_NULL)];\n}\n\n"
+    },
+    "setTitle(java.lang.String)": {
+      "code": "- (void) setTitle:(NSString *) title\n{\n    [self setTitle___java_lang_String:(title ? title : JAVA_NULL)];\n}\n\n"
+    }
+  },
+  "crossmobile.ios.uikit.UIMutableUserNotificationCategory": {
+    "setActions(java.util.List,int)": {
+      "code": "- (void) setActions:(NSArray<UIUserNotificationAction *> *) actions forContext:(UIUserNotificationActionContext) context\n{\n    [self setActions___java_util_List_int:(actions ? actions : JAVA_NULL) :context];\n}\n\n"
+    },
+    "setIdentifier(java.lang.String)": {
+      "code": "- (void) setIdentifier:(NSString *) identifier\n{\n    [self setIdentifier___java_lang_String:(identifier ? identifier : JAVA_NULL)];\n}\n\n"
+    }
+  },
   "crossmobile.ios.uikit.UIUserNotificationAction": {
     "activationMode()": {
       "code": "- (UIUserNotificationActivationMode) activationMode\n{\n    return [self activationMode__];\n}\n\n"

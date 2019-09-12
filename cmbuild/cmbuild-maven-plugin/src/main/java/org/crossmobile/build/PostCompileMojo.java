@@ -28,9 +28,4 @@ public class PostCompileMojo extends CrossMobileMojo {
     protected Runnable initCoreWorker() {
         return new PostCompilePipeline();
     }
-
-    @Override
-    protected boolean shouldAutomaticallyUpdateLicense() {
-        return false;
-    }
 }

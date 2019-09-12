@@ -14,5 +14,5 @@
  * License along with CrossMobile; if not, please contact the
  * CrossMobile team at https://crossmobile.tech/contact/
  */
-@CMLib(target = CMLibTarget.PLUGIN)
+@CMLib(target = CMLibTarget.APIJAVA)
 package org.crossmobile.bridge.ann;

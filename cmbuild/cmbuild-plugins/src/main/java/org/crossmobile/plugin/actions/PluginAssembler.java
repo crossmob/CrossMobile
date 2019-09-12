@@ -22,7 +22,6 @@ import org.crossmobile.plugin.Packages;
 import org.crossmobile.plugin.Repository;
 import org.crossmobile.plugin.reg.PackageRegistry;
 import org.crossmobile.plugin.reg.PluginRegistry;
-import org.crossmobile.plugin.reg.ProguardRegistry;
 import org.crossmobile.plugin.utils.ClassCollection;
 import org.crossmobile.utils.Log;
 import org.crossmobile.utils.ReflectionUtils;
@@ -59,11 +58,9 @@ public class PluginAssembler {
     private static final byte SOURCE_TYPE = OBJ_STYLE;
 
     public static void assemble(File target, DependencyItem root,
-                                String[] embedlibs, boolean obfuscate,
-                                File proguardConf, File vendorSrc, File vendorBin,
+                                String[] embedlibs, File vendorSrc, File vendorBin,
                                 Consumer<ArtifactInfo> installer,
                                 Function<ArtifactInfo, File> resolver,
-                                File proguard, File proguardMap,
                                 File cachedir, Packages[] packs,
                                 boolean buildDesktop, boolean buildIos, boolean buildAndroid, boolean buildUwp, boolean buildRvm, boolean buildCore,
                                 File VStudioLocation, File report, Repository repository) {
@@ -98,16 +95,9 @@ public class PluginAssembler {
 
         if (buildIos || buildDesktop || buildUwp || buildAndroid)
             time(() -> {
-                File encjar = new File(target, root.getArtifactID() + "-" + root.getVersion() + ".pro.jar");
-                if (obfuscate) {
-                    Obfuscator.obfuscate(proguard, proguardConf, proguardMap, root.getFile(), encjar, registry.getLibAndBlacklistedJars(), registry.getEmbedjars());
-                    ProguardRegistry.register(proguardMap);
-                    unzipJar(encjar, runtime);
-                } else
-                    for (File f : registry.getAppjars().toArray(new File[0]))
-                        unzipJar(f, runtime);
-            }, "Encrypt and combine");
-
+                for (File f : registry.getAppjars().toArray(new File[0]))
+                    unzipJar(f, runtime);
+            }, "Extract embedded jars");
 
         CodeReverse codeRev = (buildIos || buildUwp) ? time(() -> new CodeReverse(cc.getClassPool()), "Create reverse code") : null;
         if (buildIos || buildUwp) {

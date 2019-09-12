@@ -156,6 +156,10 @@ public abstract class GenericMojo extends AbstractMojo {
         return mavenProject;
     }
 
+    public File getBuildDir() {
+        return new File(getProject().getBuild().getDirectory());
+    }
+
     public DependencyGraphBuilder getDependencyGraph() {
         return dependencyGraphBuilder;
     }

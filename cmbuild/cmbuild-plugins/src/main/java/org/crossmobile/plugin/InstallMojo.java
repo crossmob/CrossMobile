@@ -25,7 +25,6 @@ import org.crossmobile.build.ArtifactInfo;
 import org.crossmobile.build.GenericMojo;
 import org.crossmobile.build.utils.DependencyDigger;
 import org.crossmobile.build.utils.MojoLogger;
-import org.crossmobile.build.utils.Versions.ProGuard;
 import org.crossmobile.plugin.actions.PluginAssembler;
 import org.crossmobile.utils.FileUtils;
 import org.crossmobile.utils.Log;
@@ -68,18 +67,6 @@ public class InstallMojo extends GenericMojo {
     @Parameter(defaultValue = "false", readonly = true)
     private boolean skipCore;
 
-    @Parameter(defaultValue = "false", readonly = true)
-    private boolean obfuscate;
-
-    @Parameter(defaultValue = "${version.proguard}", readonly = true)
-    private String versionProguard = ProGuard.VERSION;
-
-    @Parameter(defaultValue = "target/${project.artifactId}-${project.version}.map", readonly = true)
-    private File proguardMap;
-
-    @Parameter(defaultValue = "proguard.conf", readonly = true)
-    private File proguardConf;
-
     @Parameter(defaultValue = "gen/report.txt", readonly = true)
     File report;
 
@@ -92,13 +79,6 @@ public class InstallMojo extends GenericMojo {
     @Override
     public void exec() throws MojoExecutionException {
         MojoLogger.register(getLog());
-        if (obfuscate) {
-            if (!proguardConf.isFile())
-                throw new MojoExecutionException("Proguard was requested but no proguard file was found at location " + proguardConf.getAbsolutePath());
-        } else {
-            proguardConf = null;
-            report = null;
-        }
 
         skipIos |= !SystemDependent.canMakeIos();
         skipUwp |= !SystemDependent.canMakeUwp();
@@ -113,12 +93,9 @@ public class InstallMojo extends GenericMojo {
             getPluginDescriptor().getClassRealm().addURL(toURL(dep.getFile()));
 
         PluginAssembler.assemble(new File(getProject().getBuild().getDirectory()), dependencies,
-                embedlibs, obfuscate, proguardConf,
-                new File(new File(getProject().getBuild().getSourceDirectory()).getParent(), "objc"),
+                embedlibs, new File(new File(getProject().getBuild().getSourceDirectory()).getParent(), "objc"),
                 new File(getProject().getBasedir(), "lib/main/vendor"),
-                this::installAndKeepJar, this::resolveArtifact,
-                resolveArtifact(new ArtifactInfo(ProGuard.GROUP, ProGuard.ARTIFACT, versionProguard, "jar")),
-                proguardMap, new File(getProject().getBasedir(), "gen"), packages,
+                this::installAndKeepJar, this::resolveArtifact, new File(getProject().getBasedir(), "gen"), packages,
                 !skipDesktop, !skipIos, !skipAndroid, !skipUwp, !skipRvm, !skipCore,
                 VStudioLocation, report, repository
         );

@@ -75,7 +75,7 @@ android {
 
     buildTypes {
         release {
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), "crossmobile.pro", 'proguard-rules.pro'
             sourceSets {
                 main {
                     manifest.srcFile 'target/app/AndroidManifest.xml'

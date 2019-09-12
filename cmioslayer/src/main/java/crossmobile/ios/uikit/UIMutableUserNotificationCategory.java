@@ -17,6 +17,7 @@
 package crossmobile.ios.uikit;
 
 import org.crossmobile.bridge.ann.CMClass;
+import org.crossmobile.bridge.ann.CMLib;
 import org.crossmobile.bridge.ann.CMSelector;
 import org.crossmobile.bridge.ann.CMSetter;
 
@@ -29,6 +30,7 @@ import java.util.List;
  * notifications.
  */
 @CMClass
+@CMLib(name = "cmnotifications")
 public class UIMutableUserNotificationCategory extends UIUserNotificationCategory {
 
     /**

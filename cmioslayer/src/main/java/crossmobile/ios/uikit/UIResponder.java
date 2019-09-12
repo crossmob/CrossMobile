@@ -58,7 +58,7 @@ public abstract class UIResponder extends NSObject {
     private static boolean overridesMethod(Class<?> pclass, String methodName) {
         try {
             return !UIResponder.class.equals(pclass.getMethod(methodName, UR_PARAM).getDeclaringClass());
-        } catch (NoSuchMethodException | SecurityException ex) {
+        } catch (Throwable ex) {
             return false;
         }
     }

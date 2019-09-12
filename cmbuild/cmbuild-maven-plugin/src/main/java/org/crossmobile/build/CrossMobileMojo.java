@@ -17,7 +17,6 @@
 package org.crossmobile.build;
 
 import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.settings.Settings;
 import org.crossmobile.build.ng.CMBuildEnvironment;
@@ -45,26 +44,22 @@ public abstract class CrossMobileMojo extends GenericMojo {
 
     @Override
     @SuppressWarnings("UseSpecificCatch")
-    public void exec() throws MojoExecutionException, MojoFailureException {
+    public void exec() throws MojoExecutionException {
         if (getProject().getArtifactId().equals("cmproject") || getProject().getArtifactId().equals("cmproject-debug"))
             return;
         MojoLogger.register(getLog());
-//        if (shouldAutomaticallyUpdateLicense())
-//            getLicense(getUsernamePassword(), false);
-
         DependencyItem dependencies = DependencyDigger.getDependencyTree(getProject(), getSession(), getDependencyGraph(), this::resolveArtifact, false);
         File basedir = getProject().getBasedir();
 
         //Add generated sources directory for compile
-        getProject().addCompileSourceRoot(getProject().getBuild().getDirectory() + File.separator + GENERATED_CMSOURCES);
+        getProject().addCompileSourceRoot(new File(getBuildDir(), GENERATED_CMSOURCES).getAbsolutePath());
         Flavour flavour = Flavour.getFlavour(settings.getActiveProfiles());
         String appId = getProject().getGroupId() + "." + getProject().getArtifactId();
         LicencedItems.checkLicense(dependencies, appId, flavour);
 
         ParamSet set = getParamSet(dependencies);   // also removed invalid artifacts - needs dependencies to be populated
         Properties props = loadProperties(set);
-        CMBuildEnvironment.create(basedir,
-                new File(getProject().getBuild().getDirectory()),
+        CMBuildEnvironment.create(basedir, getBuildDir(),
                 flavour,
                 props,
                 set,
@@ -110,6 +105,4 @@ public abstract class CrossMobileMojo extends GenericMojo {
                 p.register(param.param);
         return p;
     }
-
-    protected abstract boolean shouldAutomaticallyUpdateLicense();
 }

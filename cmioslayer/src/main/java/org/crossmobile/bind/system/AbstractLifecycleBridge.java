@@ -60,7 +60,7 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
         try {
             System.getProperties().load(new InputStreamReader(Native.file().getFileStream(Native.file().getApplicationPrefix() + "/" + CROSSMOBILE_PROPERTIES), "UTF-8"));
         } catch (IOException ex) {
-            Native.lifecycle().quit("Corrupted CrossMobile application", ex);
+            Native.lifecycle().quit("Corrupted CrossMobile application: " + ex.toString(), ex);
             return;
         }
         try {
@@ -125,7 +125,7 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
 
     @Override
     public void uncaughtException(Thread thread, Throwable throwable) {
-        quit(throwable.getMessage().trim(), throwable);
+        quit(throwable.toString(), throwable);
         if (systemHandler != null)
             systemHandler.uncaughtException(thread, throwable);
     }

@@ -22,7 +22,7 @@ public class Versions {
 
         public static final String GROUP = "net.sf.proguard";
         public static final String ARTIFACT = "proguard-base";
-        public static final String VERSION = "6.0.2";
+        public static final String VERSION = "6.1.1";
 
         private ProGuard() {
         }

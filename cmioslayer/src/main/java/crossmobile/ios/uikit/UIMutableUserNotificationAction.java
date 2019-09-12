@@ -17,6 +17,7 @@
 package crossmobile.ios.uikit;
 
 import org.crossmobile.bridge.ann.CMClass;
+import org.crossmobile.bridge.ann.CMLib;
 import org.crossmobile.bridge.ann.CMSetter;
 
 import java.util.Map;
@@ -26,6 +27,7 @@ import java.util.Map;
  * UIUserNotificationAction and is editable.
  */
 @CMClass
+@CMLib(name = "cmnotifications")
 public class UIMutableUserNotificationAction extends UIUserNotificationAction {
 
     /**

@@ -16,27 +16,19 @@
  */
 package org.crossmobile.gui.parameters.impl;
 
-import org.crossmobile.gui.parameters.RadioParameter;
-import org.crossmobile.gui.utils.LaunchType;
-import org.crossmobile.gui.utils.Paths;
-import org.crossmobile.utils.FileUtils;
+import org.crossmobile.gui.parameters.BooleanParameter;
 import org.crossmobile.utils.ParamList;
-import org.crossmobile.utils.SystemDependent;
 
-public class ReleaseParameter extends RadioParameter {
+import static org.crossmobile.utils.ParamsCommon.STATUSBARHIDDEN;
 
-    public ReleaseParameter(ParamList list, LaunchType defaultType) {
-        super(list, null, new String[]{"images/debug", "images/release"}, new String[]{"Debug profile", "Release profile"},
-                new String[]{"debug", "release"}, defaultType.name().toLowerCase(), false);
+public class ObfuscateParameter extends BooleanParameter {
+
+    public ObfuscateParameter(ParamList list, boolean defautValue) {
+        super(list, null, defautValue);
     }
 
     @Override
-    protected String getVisualTag() {
-        return "Profile selection";
-    }
-
-    @Override
-    public boolean shouldTrackChanges() {
-        return false;
+    public String getVisualBooleanTag() {
+        return "Obfuscate code";
     }
 }

@@ -19,7 +19,6 @@ package org.crossmobile.gui;
 import com.panayotis.appenh.EnhancerManager;
 import com.panayotis.hrgui.*;
 import org.crossmobile.gui.actives.*;
-import org.crossmobile.gui.android.InstallerFrame;
 import org.crossmobile.gui.elements.*;
 import org.crossmobile.gui.parameters.ProjectParameter;
 import org.crossmobile.gui.project.Project;
@@ -43,8 +42,6 @@ import java.util.function.Consumer;
 
 import static org.crossmobile.gui.actives.ActiveContextLabel.Context.*;
 import static org.crossmobile.gui.elements.DebugInfo.streamsHaveTraces;
-import static org.crossmobile.gui.project.ProjectLauncher.getJavaEnv;
-import static org.crossmobile.gui.utils.LaunchType.RELEASE;
 import static org.crossmobile.prefs.Prefs.*;
 import static org.crossmobile.utils.SystemDependent.Execs.ADB;
 
@@ -379,7 +376,8 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
                     launch = execMavenInConsole("install",
                             target
                                     + (LAUNCH_ACTION_BUILD.equals(actionB.getActionCommand()) ? "" : ",run")
-                                    + (proj.getLaunchType() == RELEASE ? ",release" : ""),
+                                    + (proj.getLaunchType().isRelease() ? ",release" : "")
+                                    + (proj.isObfuscated() ? ",obfuscate" : ""),
                             proj, outP, initLaunchVisualsErr(), launchCallback);
                 else
                     setLaunchButtonStatus(NOT_SAVED, "Unable to save project");
@@ -1057,7 +1055,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
             studioM.setEnabled(isProjectEnabled && !Prefs.getAndroidStudioLocation().isEmpty());
             vstudioM.setEnabled(isProjectEnabled && !Prefs.getVisualStudioLocation().isEmpty());
             xcodeM.setEnabled(isProjectEnabled && SystemDependent.canMakeIos());
-            apkM.setEnabled(getApkPath(proj.getLaunchType() == RELEASE) != null);
+            apkM.setEnabled(getApkPath(proj.getLaunchType().isRelease()) != null);
             jarM.setEnabled(getJarPath() != null);
             openM.show(openB, 0, openB.getHeight());
         }
@@ -1102,7 +1100,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
 
     private void apkMshowIDE(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apkMshowIDE
         try {
-            Desktop.getDesktop().open(getApkPath(proj.getLaunchType() == RELEASE).getParentFile());
+            Desktop.getDesktop().open(getApkPath(proj.getLaunchType().isRelease()).getParentFile());
         } catch (IOException ex) {
         }
     }//GEN-LAST:event_apkMshowIDE

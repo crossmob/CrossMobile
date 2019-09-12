@@ -20,7 +20,6 @@ import org.crossmobile.bridge.ann.CMLibTarget;
 import org.crossmobile.bridge.ann.CMLibTarget.BaseTarget;
 import org.crossmobile.plugin.reg.PackageRegistry;
 import org.crossmobile.plugin.reg.PluginRegistry;
-import org.crossmobile.plugin.reg.ProguardRegistry;
 import org.crossmobile.plugin.reg.TargetRegistry;
 import org.crossmobile.utils.Log;
 
@@ -40,7 +39,7 @@ public class CreateBundles {
             if (clsname.isEmpty())
                 return new PluginAndTarget(PackageRegistry.getPlugin(packg), PackageRegistry.getTarget(packg));
             else {
-                clsname = ProguardRegistry.getOriginalName(packageToJavaPackage(packg) + clsname);
+                clsname = packageToJavaPackage(packg) + clsname;
                 return new PluginAndTarget(PluginRegistry.getPlugin(clsname), TargetRegistry.getTarget(clsname));
             }
         } else
@@ -81,7 +80,7 @@ public class CreateBundles {
         return new File(root, pkg.replace('.', File.separatorChar) + File.separator + filename);
     }
 
-    public static interface BundleResolver {
+    public interface BundleResolver {
 
         PluginAndTarget resolve(String filename, String packg);
     }

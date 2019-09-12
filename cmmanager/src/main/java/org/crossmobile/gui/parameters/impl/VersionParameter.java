@@ -54,10 +54,8 @@ public class VersionParameter extends FreeTextParameter {
                     if (index == 0)
                         if (v > 127)
                             v = 127;
-                        else if (v > 255)
-                            v = 255;
                     out.append(".").append(v);
-                } catch (NumberFormatException ex) {
+                } catch (NumberFormatException ignored) {
                 }
         }
         return out.length() < 1 ? "1" : out.substring(1);

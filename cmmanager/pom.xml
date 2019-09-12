@@ -59,7 +59,7 @@
                             <mainClass>org.crossmobile.CrossMobile</mainClass>
                         </manifest>
                         <manifestEntries>
-                            <Class-Path>jupidator.jar appenh.jar loadlib.jar hrgui.jar minimal-json.jar</Class-Path>
+                            <Class-Path>jupidator.jar appenh.jar loadlib.jar hrgui.jar minimal-json.jar cmutils-common.jar cmutils-tools.jar proguard-retrace.jar proguard-base.jar</Class-Path>
                             <SplashScreen-Image>images/splash.png</SplashScreen-Image>
                         </manifestEntries>
                     </archive>
@@ -104,35 +104,13 @@
                                 </goals>
                                 <configuration>
                                     <target>
-
-                                        <!-- Obfuscate code -->
-                                        <property environment="env"/>
-                                        <mkdir dir="${basedir}/../resources/installers/mapping"/>
-                                        <java fork="true" failonerror="true"
-                                              jar="${user.home}/.m2/repository/net/sf/proguard/proguard-base/${version.proguard}/proguard-base-${version.proguard}.jar">
-                                            <arg line="@proguard.conf"/>
-                                            <arg line="-printmapping ../resources/installers/mapping/${project.artifactId}-${project.version}.map"/>
-                                            <arg line="-injars target/${project.artifactId}-${project.version}.jar"/>
-                                            <arg line="-injars ${user.home}/.m2/repository/org/crossmobile/cmutils-common/${project.version}/cmutils-common-${project.version}.jar(!META-INF/MANIFEST.MF)"/>
-                                            <arg line="-injars ${user.home}/.m2/repository/org/crossmobile/cmutils-tools/${project.version}/cmutils-tools-${project.version}.jar(!META-INF/MANIFEST.MF)"/>
-                                            <arg line="-injars ${user.home}/.m2/repository/net/sf/proguard/proguard-retrace/${version.proguard}/proguard-retrace-${version.proguard}.jar(!META-INF/MANIFEST.MF)"/>
-                                            <arg line="-injars ${user.home}/.m2/repository/net/sf/proguard/proguard-base/${version.proguard}/proguard-base-${version.proguard}.jar(!META-INF/MANIFEST.MF)"/>
-                                            <arg line="-outjars ${project.build.directory}/${project.artifactId}-${project.version}-proguard.jar"/>
-                                            <arg line="-libraryjars ${java.home}/lib/rt.jar"/>
-                                            <arg line="-libraryjars ${user.home}/.m2/repository/com/panayotis/appenh/${version.appenh}/appenh-${version.appenh}.jar"/>
-                                            <arg line="-libraryjars ${user.home}/.m2/repository/com/panayotis/loadlib/${version.loadlib}/loadlib-${version.loadlib}.jar"/>
-                                            <arg line="-libraryjars ${user.home}/.m2/repository/com/panayotis/jupidator/${version.jupidator}/jupidator-${version.jupidator}-full.jar"/>
-                                            <arg line="-libraryjars ${user.home}/.m2/repository/com/panayotis/hrgui/${version.hrgui}/hrgui-${version.hrgui}.jar"/>
-                                            <arg line="-libraryjars ${user.home}/.m2/repository/com/eclipsesource/minimal-json/minimal-json/${version.minimal-json}/minimal-json-${version.minimal-json}.jar"/>
-                                        </java>
-
                                         <!-- Common files installation macro -->
                                         <macrodef name="installto">
                                             <attribute name="dest"/>
                                             <attribute name="jrearch"/>
                                             <sequential>
                                                 <echo message="******************************************************${line.separator}Installing to @{dest}${line.separator}******************************************************"/>
-                                                <copy file="${project.build.directory}/${project.artifactId}-${project.version}-proguard.jar"
+                                                <copy file="${project.build.directory}/${project.artifactId}-${project.version}.jar"
                                                       tofile="@{dest}/lib/crossmobile.jar"/>
                                                 <copy file="${user.home}/.m2/repository/com/panayotis/appenh/${version.appenh}/appenh-${version.appenh}.jar"
                                                       tofile="@{dest}/lib/appenh.jar"/>
@@ -144,6 +122,14 @@
                                                       tofile="@{dest}/lib/hrgui.jar"/>
                                                 <copy file="${user.home}/.m2/repository/com/eclipsesource/minimal-json/minimal-json/${version.minimal-json}/minimal-json-${version.minimal-json}.jar"
                                                       tofile="@{dest}/lib/minimal-json.jar"/>
+                                                <copy file="${user.home}/.m2/repository/org/crossmobile/cmutils-common/${project.version}/cmutils-common-${project.version}.jar"
+                                                      tofile="@{dest}/lib/cmutils-common.jar"/>
+                                                <copy file="${user.home}/.m2/repository/org/crossmobile/cmutils-tools/${project.version}/cmutils-tools-${project.version}.jar"
+                                                      tofile="@{dest}/lib/cmutils-tools.jar"/>
+                                                <copy file="${user.home}/.m2/repository/net/sf/proguard/proguard-retrace/${version.proguard}/proguard-retrace-${version.proguard}.jar"
+                                                      tofile="@{dest}/lib/proguard-retrace.jar"/>
+                                                <copy file="${user.home}/.m2/repository/net/sf/proguard/proguard-base/${version.proguard}/proguard-base-${version.proguard}.jar"
+                                                      tofile="@{dest}/lib/proguard-base.jar"/>
                                                 <copy todir="@{dest}/lib/apache-maven">
                                                     <fileset dir="../resources/lib/apache-maven"/>
                                                 </copy>

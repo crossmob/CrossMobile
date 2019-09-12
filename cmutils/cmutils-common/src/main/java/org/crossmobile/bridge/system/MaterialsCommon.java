@@ -16,11 +16,6 @@
  */
 package org.crossmobile.bridge.system;
 
-import org.crossmobile.bridge.ann.CMLib;
-
-import static org.crossmobile.bridge.ann.CMLibTarget.SOURCEONLY;
-
-@CMLib(target = SOURCEONLY)
 public class MaterialsCommon {
     public static final String MATERIALS_TAG = "materials";
 }
