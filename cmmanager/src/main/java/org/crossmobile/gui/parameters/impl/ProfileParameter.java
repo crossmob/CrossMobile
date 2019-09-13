@@ -17,17 +17,31 @@
 package org.crossmobile.gui.parameters.impl;
 
 import org.crossmobile.gui.parameters.RadioParameter;
-import org.crossmobile.gui.utils.LaunchType;
-import org.crossmobile.gui.utils.Paths;
-import org.crossmobile.utils.FileUtils;
+import org.crossmobile.gui.utils.Profile;
+import org.crossmobile.utils.CollectionUtils;
 import org.crossmobile.utils.ParamList;
-import org.crossmobile.utils.SystemDependent;
+import org.crossmobile.utils.TextUtils;
 
-public class ReleaseParameter extends RadioParameter {
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
-    public ReleaseParameter(ParamList list, LaunchType defaultType) {
-        super(list, null, new String[]{"images/debug", "images/release"}, new String[]{"Debug profile", "Release profile"},
-                new String[]{"debug", "release"}, defaultType.name().toLowerCase(), false);
+import static org.crossmobile.utils.CollectionUtils.asList;
+
+public class ProfileParameter extends RadioParameter {
+    private static final List<String> PROFILES;
+
+    static {
+        PROFILES = new ArrayList<>();
+        for (Profile p : Profile.values())
+            if (p.isValid())
+                PROFILES.add(p.name().toLowerCase());
+    }
+
+    public ProfileParameter(ParamList list, Profile defaultType) {
+        super(list, null, asList(PROFILES, a -> "images/" + a),
+                asList(PROFILES, TextUtils::capitalize),
+                PROFILES, defaultType.name().toLowerCase(), false);
     }
 
     @Override

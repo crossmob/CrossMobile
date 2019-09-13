@@ -24,6 +24,10 @@ import org.crossmobile.utils.Param;
 import org.crossmobile.utils.ParamList;
 
 import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 public abstract class RadioParameter<T> extends ProjectParameter {
@@ -32,6 +36,10 @@ public abstract class RadioParameter<T> extends ProjectParameter {
     private final String[] icons;
     private final String[] texts;
     private String value;
+
+    public RadioParameter(ParamList list, Param key, List<String> icons, List<String> texts, List<String> values, String deflt, boolean strict) {
+        this(list, key, icons.toArray(new String[0]), texts.toArray(new String[0]), values.toArray(new String[0]), deflt, strict);
+    }
 
     public RadioParameter(ParamList list, Param key, String[] icons, String[] texts, String[] values, String deflt, boolean strict) {
         super(list, key);
@@ -69,8 +77,13 @@ public abstract class RadioParameter<T> extends ProjectParameter {
         comp.setLayout(new BoxLayout(comp, BoxLayout.X_AXIS));
         comp.setOpaque(false);
         ButtonGroup bg = new ButtonGroup();
+        Collection<ActiveToggleButton> buttons = new ArrayList<>();
+        Dimension max = new Dimension(0, 0);
         for (int i = 0; i < values.length; i++) {
+            if (i > 0)  // not the first item
+                comp.add(Box.createHorizontalStrut(4));
             ActiveToggleButton button = new ActiveToggleButton(texts[i], new ActiveIcon(icons[i]));
+            buttons.add(button);
             button.setActionCommand(values[i]);
             bg.add(button);
             comp.add(button);
@@ -82,6 +95,14 @@ public abstract class RadioParameter<T> extends ProjectParameter {
                     fireValueUpdated();
                 }
             });
+            Dimension size = button.getPreferredSize();
+            max.width = Math.max(max.width, size.width);
+            max.height = Math.max(max.height, size.height);
+        }
+        for (ActiveToggleButton button : buttons) {
+            button.setPreferredSize(max);
+            button.setMinimumSize(max);
+            button.setMaximumSize(max);
         }
         return comp;
     }

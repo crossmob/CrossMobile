@@ -61,7 +61,7 @@ public class CMMvnActions {
 
     public static Commander callMaven(String goal, String profiles, File projPath, ActiveTextPane outP, ActiveTextPane errP,
                                       Consumer<Integer> launchCallback, AtomicReference<Runnable> solutionCallbackRef,
-                                      LaunchType runtype, StreamListener outButtonListener, StreamListener errButtonListener, String... params) {
+                                      Profile profile, StreamListener outButtonListener, StreamListener errButtonListener, String... params) {
         List<String> cmd = new ArrayList<>();
         cmd.add(Paths.getMavenLocation());
         if (profiles != null) {
@@ -71,9 +71,9 @@ public class CMMvnActions {
         cmd.add(goal);
         cmd.add("-B");
         Map<String, String> env = ProjectLauncher.getJavaEnv();
-        if (runtype.isDebug()) {
+        if (profile.isDebug()) {
             cmd.add("-e");
-            String agent = Paths.getXRayPath();
+            String agent = profile == Profile.XRAY ? Paths.getXRayPath() : null;
             agent = agent == null ? "" : "-javaagent:" + agent + " ";
             if (profiles != null && profiles.contains("desktop"))
                 env.put("MAVEN_OPTS", agent + "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=0");

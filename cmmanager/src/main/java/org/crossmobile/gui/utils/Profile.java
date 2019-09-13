@@ -16,25 +16,38 @@
  */
 package org.crossmobile.gui.utils;
 
-public enum LaunchType {
-    DEBUG, RELEASEÎ;
+public enum Profile {
+    DEBUG, XRAY(Paths.getXRayPath() != null), RELEASE, OBFUSCATE;
+    private boolean valid;
 
-    public static LaunchType safeValueOf(String launchType) {
+    Profile() {
+        this(true);
+    }
+
+    Profile(boolean valid) {
+        this.valid = valid;
+    }
+
+    public static Profile safeValueOf(String launchType) {
         if (launchType == null)
             return null;
         launchType = launchType.toUpperCase();
         try {
-            return LaunchType.valueOf(launchType);
+            return Profile.valueOf(launchType);
         } catch (IllegalArgumentException e) {
             return DEBUG;
         }
     }
 
     public boolean isRelease() {
-        return this != DEBUG;
+        return this == RELEASE || this == OBFUSCATE;
     }
 
     public boolean isDebug() {
-        return !isRelease();
+        return this == DEBUG || this == XRAY;
+    }
+
+    public boolean isValid() {
+        return valid;
     }
 }

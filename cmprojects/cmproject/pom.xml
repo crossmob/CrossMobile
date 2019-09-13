@@ -50,12 +50,6 @@
                         </executions>
                         <configuration>
                             <mainClass>${main.class}</mainClass>
-                            <addOutputToClasspath>false</addOutputToClasspath>
-                            <includePluginDependencies>false</includePluginDependencies>
-                            <includeProjectDependencies>false</includeProjectDependencies>
-                            <additionalClasspathElements>
-                                <element>${cm.launch.desktop}</element>
-                            </additionalClasspathElements>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -112,6 +106,18 @@
                             </execution>
                         </executions>
                     </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <configuration>
+                            <addOutputToClasspath>false</addOutputToClasspath>
+                            <includePluginDependencies>false</includePluginDependencies>
+                            <includeProjectDependencies>false</includeProjectDependencies>
+                            <additionalClasspathElements>
+                                <element>${cm.launch.desktop}</element>
+                            </additionalClasspathElements>
+                        </configuration>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -163,6 +169,7 @@
                         <version>${crossmobile.version}</version>
                         <executions>
                             <execution>
+                                <phase>process-resources</phase>
                                 <goals>
                                     <goal>obfuscate</goal>
                                 </goals>

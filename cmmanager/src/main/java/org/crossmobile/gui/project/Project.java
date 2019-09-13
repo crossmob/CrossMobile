@@ -28,20 +28,17 @@ import org.crossmobile.gui.parameters.DependenciesParameter;
 import org.crossmobile.gui.parameters.ProjectParameter;
 import org.crossmobile.gui.parameters.ScreenScaleParameter;
 import org.crossmobile.gui.parameters.impl.*;
-import org.crossmobile.gui.utils.LaunchType;
+import org.crossmobile.gui.utils.Profile;
 import org.crossmobile.gui.utils.Paths;
 import org.crossmobile.prefs.Prefs;
 import org.crossmobile.utils.*;
-import org.crossmobile.utils.images.MetaImage;
 
 import java.awt.*;
 import java.io.File;
 import java.util.*;
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
-import static java.lang.Boolean.parseBoolean;
 import static org.crossmobile.gui.project.ProjectInfo.OLD_ANT;
 import static org.crossmobile.gui.project.ProjectInfo.OLD_XMLVM;
 import static org.crossmobile.prefs.Config.MATERIALS_PATH;
@@ -58,8 +55,7 @@ public class Project {
     ProjectPlugins plugins;
     //private Consumer<String> appNameListener;
     private boolean asOldXMLVMProject;
-    private LaunchType launchType;
-    private boolean obfuscate;
+    private Profile profile;
     private final GlobalParamListener listener = new GlobalParamListener();
     private Consumer<Project> saveCallback;
 
@@ -80,8 +76,7 @@ public class Project {
         if (!correctPom && !asOldCrossmobile)
             throw new ProjectException("Unable to parse POM file");
 
-        launchType = LaunchType.safeValueOf(Prefs.getLaunchType(basedir.getAbsolutePath()));
-        obfuscate = Prefs.getObfuscate(basedir.getAbsolutePath());
+        profile = Profile.safeValueOf(Prefs.getLaunchType(basedir.getAbsolutePath()));
         plugins = new ProjectPlugins(params);
         appicons = projinf.getIcons();
 
@@ -122,10 +117,8 @@ public class Project {
         csheet.add(new GroupIdParameter(params));
         csheet.add(new VersionParameter(params));
         csheet.add(new MainClassParameter(params));
-        csheet.add(new ObfuscateParameter(params, obfuscate)
-                .addParameterListener(prop -> Prefs.setObfuscate(basedir.getAbsolutePath(), obfuscate = parseBoolean(prop.getValue()))));
-        csheet.add(new ReleaseParameter(params, launchType)
-                .addParameterListener(prop -> Prefs.setLaunchType(basedir.getAbsolutePath(), (launchType = LaunchType.safeValueOf(prop.getValue())).name().toLowerCase())));
+        csheet.add(new ProfileParameter(params, profile)
+                .addParameterListener(prop -> Prefs.setLaunchType(basedir.getAbsolutePath(), (profile = Profile.safeValueOf(prop.getValue())).name().toLowerCase())));
         csheet.add(new JavacSourceParameter(params));
         csheet.add(new JavacTargetParameter(params));
         sheets.add(csheet);
@@ -191,6 +184,10 @@ public class Project {
 
     public String getArtifactID() {
         return params.get(ARTIFACT_ID.tag());
+    }
+
+    public String getVersion() {
+        return params.get(BUNDLE_VERSION.tag());
     }
 
     public String getMainClass() {
@@ -265,11 +262,7 @@ public class Project {
         return sheets;
     }
 
-    public LaunchType getLaunchType() {
-        return launchType;
-    }
-
-    public boolean isObfuscated() {
-        return obfuscate;
+    public Profile getProfile() {
+        return profile;
     }
 }

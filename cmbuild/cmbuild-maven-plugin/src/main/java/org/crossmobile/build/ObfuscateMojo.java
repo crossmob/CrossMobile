@@ -24,6 +24,7 @@ import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.crossmobile.build.tools.Obfuscator;
 import org.crossmobile.build.utils.Versions;
 import org.crossmobile.utils.FileUtils;
+import org.crossmobile.utils.Log;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -62,19 +63,23 @@ public class ObfuscateMojo extends GenericMojo {
     public void exec() throws MojoExecutionException {
         if (!obfuscate)
             return;
-
-        File crossMobConf = new File(getProject().getBasedir(), "crossmobile.pro");
-        if (!copyResource("template/" + crossMobConf.getName(), crossMobConf))
-            throw new MojoExecutionException("Unable to extract default proguard configuration file");
-
-        if (!proguardConfig.exists()
-                && proguardConfig.equals(new File(getProject().getBasedir(), "proguard-rules.pro"))
-                && !proguardConfig.exists() && !copyResource("template/" + proguardConfig.getName(), proguardConfig))
-            throw new MojoExecutionException("Unable to extract user proguard configuration");
+        File crossMobConf = createOrError("crossmobile.pro");
+        if (!proguardConfig.exists() && proguardConfig.equals(new File(getProject().getBasedir(), "proguard-rules.pro")))
+            createOrError(proguardConfig.getName());
 
         if (!copyProguardFilesOnly)
             Obfuscator.obfuscate(
                     resolveArtifact(new ArtifactInfo(Versions.ProGuard.GROUP, Versions.ProGuard.ARTIFACT, versionProguard, "jar"))
                     , proguardMap, inputJar, outputJar, asList(crossMobConf, proguardConfig));
+    }
+
+    private File createOrError(String template) throws MojoExecutionException {
+        File config = new File(getProject().getBasedir(), template);
+        if (!copyResource("template/" + config.getName(), config))
+            throw new MojoExecutionException("Unable to extract proguard configuration file " + template + " at " + config.getAbsolutePath());
+        else {
+            Log.info("Creating file " + config.getAbsolutePath());
+            return config;
+        }
     }
 }

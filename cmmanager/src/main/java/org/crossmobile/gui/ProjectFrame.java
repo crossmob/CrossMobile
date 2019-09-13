@@ -42,6 +42,7 @@ import java.util.function.Consumer;
 
 import static org.crossmobile.gui.actives.ActiveContextLabel.Context.*;
 import static org.crossmobile.gui.elements.DebugInfo.streamsHaveTraces;
+import static org.crossmobile.gui.utils.Profile.OBFUSCATE;
 import static org.crossmobile.prefs.Prefs.*;
 import static org.crossmobile.utils.SystemDependent.Execs.ADB;
 
@@ -376,8 +377,8 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
                     launch = execMavenInConsole("install",
                             target
                                     + (LAUNCH_ACTION_BUILD.equals(actionB.getActionCommand()) ? "" : ",run")
-                                    + (proj.getLaunchType().isRelease() ? ",release" : "")
-                                    + (proj.isObfuscated() ? ",obfuscate" : ""),
+                                    + (proj.getProfile().isRelease() ? ",release" : "")
+                                    + (proj.getProfile() == OBFUSCATE ? ",obfuscate" : ""),
                             proj, outP, initLaunchVisualsErr(), launchCallback);
                 else
                     setLaunchButtonStatus(NOT_SAVED, "Unable to save project");
@@ -420,7 +421,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
     private Commander execMavenInConsole(String goal, String profiles, Project proj, ActiveTextPane outP, ActiveTextPane errP, Consumer<Integer> launchCallback, String... params) {
         if (profiles != null && profiles.contains("uwp"))
             outP.addLine(" *** WARNING *** Universal Windows Platform support  is still in alpha stage\n", StreamQuality.ERROR);
-        return CMMvnActions.callMaven(goal, profiles, proj.getPath(), outP, errP, launchCallback, solutionCallbackRef, proj.getLaunchType(),
+        return CMMvnActions.callMaven(goal, profiles, proj.getPath(), outP, errP, launchCallback, solutionCallbackRef, proj.getProfile(),
                 (l, q) -> outputTB.setText("Out*"), (l, q) -> errorTB.setText("Error*"), params);
     }
 
@@ -454,7 +455,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
     }
 
     private File getJarPath() {
-        File path = new File(proj.getPath(), "target" + File.separator + proj.getArtifactID() + "-desktop.jar");
+        File path = new File(proj.getPath(), "target" + File.separator + proj.getArtifactID() + "-" + proj.getVersion() + "-desktop.jar");
         return path.exists() ? path : null;
     }
 
@@ -1055,7 +1056,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
             studioM.setEnabled(isProjectEnabled && !Prefs.getAndroidStudioLocation().isEmpty());
             vstudioM.setEnabled(isProjectEnabled && !Prefs.getVisualStudioLocation().isEmpty());
             xcodeM.setEnabled(isProjectEnabled && SystemDependent.canMakeIos());
-            apkM.setEnabled(getApkPath(proj.getLaunchType().isRelease()) != null);
+            apkM.setEnabled(getApkPath(proj.getProfile().isRelease()) != null);
             jarM.setEnabled(getJarPath() != null);
             openM.show(openB, 0, openB.getHeight());
         }
@@ -1100,7 +1101,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
 
     private void apkMshowIDE(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apkMshowIDE
         try {
-            Desktop.getDesktop().open(getApkPath(proj.getLaunchType().isRelease()).getParentFile());
+            Desktop.getDesktop().open(getApkPath(proj.getProfile().isRelease()).getParentFile());
         } catch (IOException ex) {
         }
     }//GEN-LAST:event_apkMshowIDE

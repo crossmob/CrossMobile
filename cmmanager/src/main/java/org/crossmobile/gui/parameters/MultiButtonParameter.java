@@ -67,7 +67,10 @@ public abstract class MultiButtonParameter extends MultiBooleanParameter {
             visuals.add(bpanel, BorderLayout.WEST);
         } else
             bpanel = visuals;
-        bpanel.setLayout(new GridLayout(columns < 2 ? 1 : 0, columns < 2 ? 1 : columns));
+        GridLayout grid = new GridLayout(columns < 2 ? 1 : 0, columns < 2 ? 1 : columns);
+        grid.setHgap(4);
+        grid.setVgap(2);
+        bpanel.setLayout(grid);
 
         items = new ActiveToggleButton[value.length];
         ActionListener listener = (ActionEvent ae) -> {

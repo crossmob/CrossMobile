@@ -43,7 +43,6 @@ public class Prefs {
     private static final String ANDROID_KEY = "android.key";
     private static final String LAUNCH_TARGET = "launch.target.";
     private static final String LAUNCH_TYPE = "launch.type.";
-    private static final String OBFUSCATE = "project.obfuscate.";
     private static final String LAUNCH_ACTION = "launch.action";
     private static final String INITIAL_WIZARD = "initial.wizard";
     private static final String GUI_THEME = "gui.theme";
@@ -230,14 +229,6 @@ public class Prefs {
 
     public static String getLaunchType(String path) {
         return prefs.get(LAUNCH_TYPE + hash(path), "debug");
-    }
-
-    public static void setObfuscate(String path, boolean obfuscate) {
-        prefs.putBoolean(OBFUSCATE + hash(path), obfuscate);
-    }
-
-    public static boolean getObfuscate(String path) {
-        return prefs.getBoolean(OBFUSCATE + hash(path), false);
     }
 
     private static String hash(String filename) {
