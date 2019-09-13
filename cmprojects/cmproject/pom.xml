@@ -107,7 +107,7 @@
                         <artifactId>gradle-maven-plugin</artifactId>
                         <version>1.0.10</version>
                         <configuration>
-                            <gradleVersion>5.4.1</gradleVersion>
+                            <gradleVersion>5.6.2</gradleVersion>
                         </configuration>
                         <executions>
                             <execution>
