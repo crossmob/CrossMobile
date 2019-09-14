@@ -120,6 +120,27 @@
         <Property name="useNullLayout" type="boolean" value="true"/>
       </Layout>
       <SubComponents>
+        <MenuItem class="javax.swing.JMenuItem" name="desktopM">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="DESKTOP_I" type="code"/>
+            </Property>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="&quot; in &quot; + SystemDependent.getFileManagerName()" type="code"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="desktopMActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ActiveMenuItem()"/>
+          </AuxValues>
+        </MenuItem>
+        <Component class="javax.swing.JPopupMenu$Separator" name="jSeparator4">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ActiveMenuSeparator()"/>
+          </AuxValues>
+        </Component>
         <MenuItem class="javax.swing.JMenuItem" name="intellijM">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
@@ -165,20 +186,6 @@
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ActiveMenuSeparator()"/>
           </AuxValues>
         </Component>
-        <MenuItem class="javax.swing.JMenuItem" name="desktopM">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="DESKTOP_I" type="code"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value=" in Desktop"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="desktopMActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ActiveMenuItem()"/>
-          </AuxValues>
-        </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="jarM">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">

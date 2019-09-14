@@ -237,6 +237,10 @@ public class SystemDependent {
         }
     }
 
+    public static String getFileManagerName() {
+        return IS_MACOSX ? "Finder" : IS_WINDOWS ? "Explorer" : "File Manager";
+    }
+
     public enum Execs {
 
         JAVA("exe"),

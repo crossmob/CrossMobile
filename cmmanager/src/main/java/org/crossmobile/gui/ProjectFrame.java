@@ -502,10 +502,11 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
         cleanOM = new ActiveMenuItem();
         saveOM = new ActiveMenuItem();
         openM = new ActivePopupMenu();
+        desktopM = new ActiveMenuItem();
+        jSeparator4 = new ActiveMenuSeparator();
         intellijM = new ActiveMenuItem();
         netbeansM = new ActiveMenuItem();
         jSeparator3 = new ActiveMenuSeparator();
-        desktopM = new ActiveMenuItem();
         jarM = new ActiveMenuItem();
         apkM = new ActiveMenuItem();
         jSeparator1 = new ActiveMenuSeparator();
@@ -603,6 +604,16 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
         });
         outputM.add(saveOM);
 
+        desktopM.setIcon(DESKTOP_I);
+        desktopM.setText(" in " + SystemDependent.getFileManagerName());
+        desktopM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desktopMActionPerformed(evt);
+            }
+        });
+        openM.add(desktopM);
+        openM.add(jSeparator4);
+
         intellijM.setIcon(INTELLIJ_I);
         intellijM.setText(" in IntelliJ IDEA");
         intellijM.setActionCommand(OPEN_INTELLIJ);
@@ -625,15 +636,6 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
         });
         openM.add(netbeansM);
         openM.add(jSeparator3);
-
-        desktopM.setIcon(DESKTOP_I);
-        desktopM.setText(" in Desktop");
-        desktopM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                desktopMActionPerformed(evt);
-            }
-        });
-        openM.add(desktopM);
 
         jarM.setIcon(JAR_I);
         jarM.setText(" as Desktop JAR");
@@ -963,7 +965,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
         infoP.setOpaque(false);
         infoP.setLayout(new java.awt.BorderLayout());
 
-        outResult.setBorder(new com.panayotis.hrgui.HiResEmptyBorder(4, 8, 4, 0));
+        outResult.setBorder(new com.panayotis.hrgui.HiResEmptyBorder(4,8,4,0));
         outResult.setOpaque(true);
         infoP.add(outResult, java.awt.BorderLayout.CENTER);
 
@@ -1187,6 +1189,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JMenuItem jarM;
     private javax.swing.JPanel leftButtonPanel;
     private javax.swing.JMenuItem logAM;
