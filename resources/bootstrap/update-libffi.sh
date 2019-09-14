@@ -12,6 +12,9 @@ cmioslayer=`pwd`/../../cmioslayer
 incdest=$cmioslayer/src/main/objc/cmioslayer
 libdest=$cmioslayer/lib/main/vendor/cmioslayer
 
+mkdir -p $incdest
+mkdir -p $libdest
+
 if [ ! -f libffi/generate-darwin-source-and-headers.py ] ; then git clone https://github.com/crossmob/libffi.git ; fi
 pushd >/dev/null libffi
 if [ ! -f configure ] ; then ./autogen.sh ; fi
@@ -33,15 +36,15 @@ popd >/dev/null
 cat >$incdest/ffi.h <<EOF
 #if TARGET_OS_SIMULATOR
 #   if TARGET_CPU_X86_64
-#       include "x86_64_ffi.h"
+#       import "x86_64_ffi.h"
 #   else
-#       include "i386_ffi.h"
+#       import "i386_ffi.h"
 #   endif
 #else
 #   if TARGET_CPU_ARM64
-#       include "arm64_ffi.h"
+#       import "arm64_ffi.h"
 #   else
-#       include "armv7_ffi.h"
+#       import "armv7_ffi.h"
 #   endif
 #endif
 EOF
