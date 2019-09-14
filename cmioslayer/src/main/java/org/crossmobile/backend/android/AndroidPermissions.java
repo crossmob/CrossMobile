@@ -31,7 +31,7 @@ public class AndroidPermissions {
     private final Collection<String> alreadyAskedForPermission = new HashSet<>();
 
     public static AndroidPermissions current() {
-        return ((AndroidSystemBridge) Native.system()).permissions;
+        return ((AndroidSystemBridge) Native.system()).getPermissions();
     }
 
     public void requestPermissions(VoidBlock1<Collection<String>> notGrantedPermissions, String... permissions) {

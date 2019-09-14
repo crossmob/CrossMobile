@@ -26,6 +26,7 @@ import org.crossmobile.gui.project.ProjectLauncher;
 import org.crossmobile.gui.project.ProjectLoader;
 import org.crossmobile.gui.project.PropertySheet;
 import org.crossmobile.gui.utils.*;
+import org.crossmobile.gui.utils.Deguard.MagicWand;
 import org.crossmobile.prefs.Prefs;
 import org.crossmobile.utils.*;
 
@@ -92,7 +93,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
     private String taskName = null;
     private final AtomicReference<Runnable> solutionCallbackRef = new AtomicReference<>();
     private boolean currentlyShowsOutput = true;
-    private ActiveButton magicWandB;
+    private MagicWand magicWandB;
     private final Consumer<Integer> launchCallback = new Consumer<Integer>() {
         @Override
         public void accept(Integer result) {
@@ -271,7 +272,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
         }
 
         setProjectEnabled(!running);
-        updateToolButtons(shouldShowSendTrace, !running);
+        updateToolButtons(shouldShowSendTrace);
         actionB.setText(running ? "Stop" : "Start");
         actionB.setIcon(running ? STOP_I : RUN_I);
         outputB.setEnabled(true);
@@ -282,10 +283,20 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
         taskName = currentTaskName;
     }
 
-    private void updateToolButtons(boolean shouldShowSendTrace, boolean couldShowMagicWand) {
+    private void updateToolButtons(boolean shouldShowSendTrace) {
         inoutP.removeAll();
-        if (couldShowMagicWand && magicWandB != null)
-            inoutP.add(magicWandB);
+        if (proj.getProfile() == OBFUSCATE) {
+            String target = getCurrentTarget();
+            File mapFile = "android".equals(target)
+                    ? new File(proj.getPath(), "target/app/build/outputs/mapping/release/mapping.txt")
+                    : "desktop".equals(target)
+                    ? new File(proj.getPath(), "target/" + proj.getArtifactID() + "-" + proj.getVersion() + ".map")
+                    : null;
+            if (mapFile != null) {
+                magicWandB.setMapFile(mapFile);
+                inoutP.add(magicWandB);
+            }
+        }
         if (shouldShowSendTrace && false)
             inoutP.add(SendStackTrace.getButton(this));
         inoutP.add(outputTB);
@@ -964,7 +975,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
         infoP.setOpaque(false);
         infoP.setLayout(new java.awt.BorderLayout());
 
-        outResult.setBorder(new com.panayotis.hrgui.HiResEmptyBorder(4,8,4,0));
+        outResult.setBorder(new com.panayotis.hrgui.HiResEmptyBorder(4, 8, 4, 0));
         outResult.setOpaque(true);
         infoP.add(outResult, java.awt.BorderLayout.CENTER);
 

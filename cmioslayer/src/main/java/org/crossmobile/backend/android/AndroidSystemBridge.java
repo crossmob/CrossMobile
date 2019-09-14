@@ -49,13 +49,17 @@ public class AndroidSystemBridge implements SystemBridgeExt {
 
     private static final String LOGTAG = "CrossMob";
 
-    AndroidPermissions permissions = new AndroidPermissions();
+    private AndroidPermissions permissions;
 
-    @Override
-    public void error(Object message, Throwable th) {
+    public static void printError(Object message, Throwable th) {
         Log.e(LOGTAG, message == null ? "null" : message.toString(), th);
         if (th != null)
             th.printStackTrace(new PrintWriter(System.err));
+    }
+
+    @Override
+    public void error(Object message, Throwable th) {
+        printError(message, th);
     }
 
     @Override
@@ -190,5 +194,11 @@ public class AndroidSystemBridge implements SystemBridgeExt {
         if (Build.VERSION.SDK_INT >= 17)
             return MainActivity.current().getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
         return false;
+    }
+
+    public AndroidPermissions getPermissions() {
+        if (permissions == null)
+            permissions = new AndroidPermissions();
+        return permissions;
     }
 }

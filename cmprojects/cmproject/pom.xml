@@ -15,6 +15,7 @@
         <crossmobile.version>2.7.0</crossmobile.version>
         <cm.gradle.target>assembleDebug</cm.gradle.target>
         <cm.launch.desktop>${project.build.directory}/${project.artifactId}-${project.version}-desktop.jar</cm.launch.desktop>
+        <cm.proguard.android>-Pdontuseproguard</cm.proguard.android>
     </properties>
     <profiles>
         <profile>
@@ -30,6 +31,7 @@
             <properties>
                 <cm.obfuscate>true</cm.obfuscate>
                 <cm.launch.desktop>${project.build.directory}/${project.artifactId}-${project.version}-trimmed.jar</cm.launch.desktop>
+                <cm.proguard.android>-Puseproguard</cm.proguard.android>
             </properties>
         </profile>
         <profile>
@@ -158,6 +160,7 @@
                                     </tasks>
                                     <args>
                                         <arg>--stacktrace</arg>
+                                        <arg>${cm.proguard.android}</arg>
                                     </args>
                                 </configuration>
                             </execution>
@@ -251,7 +254,6 @@
                                         <include>build.gradle</include>
                                         <include>gradle.properties</include>
                                         <include>crossmobile.pro</include>
-                                        <include>proguard-rules.pro</include>
                                         <include>gradle/**</include>
                                         <include>gradlew*</include>
                                         <include>.gradle/**</include>

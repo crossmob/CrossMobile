@@ -206,6 +206,10 @@ public class Project {
         return appicons;
     }
 
+    public Profile getProfile() {
+        return profile;
+    }
+
     public boolean isSaved() {
         return !listener.isDirty();
     }
@@ -260,9 +264,5 @@ public class Project {
 
     public Iterable<PropertySheet> getSheets() {
         return sheets;
-    }
-
-    public Profile getProfile() {
-        return profile;
     }
 }

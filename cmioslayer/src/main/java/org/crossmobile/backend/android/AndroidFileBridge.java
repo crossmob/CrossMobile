@@ -57,24 +57,26 @@ public class AndroidFileBridge extends AbstractFileBridge {
     public static int getResourceID(String type, String item) {
         Class clazz;
         Context cxt = MainActivity.current;
-        if (cxt == null) {
-            System.err.println("Resource can not be loaded, because context is not yet initialized");
-            return 0;
-        }
+        if (cxt == null)
+            return errorIfFatal("Resource can not be loaded, because context is not yet initialized");
 
+        String resourceDir = cxt.getPackageName() + ".R$" + type;
         try {
-            clazz = Class.forName(cxt.getPackageName() + ".R$" + type);
+            clazz = Class.forName(resourceDir);
         } catch (ClassNotFoundException ex) {
-            System.err.println("Resource directory not found: " + type);
-            return 0;
+            return errorIfFatal("Resource directory not found " + type + " for class " + resourceDir);
         }
 
         try {
             return ((Integer) clazz.getField(item).get(null));
         } catch (Exception ex) {
-            System.err.println("Resource item not found: " + type + "/" + item);
-            return 0;
+            return errorIfFatal("Resource item not found " + type + "/" + item + " for class " + resourceDir);
         }
+    }
+
+    private static int errorIfFatal(String error) {
+        AndroidSystemBridge.printError("*** FATAL ERROR *** " + error, null);
+        return 0;
     }
 
     @Override

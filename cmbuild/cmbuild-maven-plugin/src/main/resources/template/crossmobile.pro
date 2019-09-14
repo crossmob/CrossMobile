@@ -16,6 +16,9 @@
 -keep public class org.crossmobile.backend.android.notifications.** { public *; }
 -keep public class org.crossmobile.build.StoryBoardBinder { public *; }
 
+-keep class **.R
+-keep class **.R$* { <fields>; }
+
 
 ###################
 # Desktop section #
