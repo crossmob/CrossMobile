@@ -1,6 +1,11 @@
 # Changelog
 This is the CrossMobile change log.
 
+
+## [v2.6.1] - 2019-9-15
+### Fixed
+- Support of bitcode project
+
 ## [v2.6] - 2019-9-9
 
 ### Added
@@ -70,6 +75,7 @@ This is the CrossMobile change log.
 ### Added
 - First public source release
 
+[v2.6.1]: https://github.com/crossmob/CrossMobile/compare/v2.6...v2.6.1
 [v2.6]: https://github.com/crossmob/CrossMobile/compare/v2.5...v2.6
 [v2.5]: https://github.com/crossmob/CrossMobile/compare/v2.5.pre1.cm...v2.5
 [v2.5.pre1.cm]: https://github.com/crossmob/CrossMobile/tree/v2.5.pre1.cm
