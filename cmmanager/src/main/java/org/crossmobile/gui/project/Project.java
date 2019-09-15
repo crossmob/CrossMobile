@@ -37,6 +37,7 @@ import java.awt.*;
 import java.io.File;
 import java.util.*;
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import static org.crossmobile.gui.project.ProjectInfo.OLD_ANT;
@@ -174,7 +175,7 @@ public class Project {
         sheets.add(csheet);
     }
 
-    public void setApplicationNameListener(Consumer<String> listener) {
+    public void setApplicationNameListener(BiConsumer<Boolean, String> listener) {
         this.listener.setApplicationNameListener(listener);
     }
 

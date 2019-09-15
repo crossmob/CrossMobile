@@ -16,6 +16,7 @@
  */
 package org.crossmobile.gui.project;
 
+import com.panayotis.appenh.EnhancerManager;
 import org.crossmobile.gui.ProjectFrame;
 import org.crossmobile.gui.RegisteredFrame;
 import org.crossmobile.gui.WelcomeFrame;
@@ -73,7 +74,10 @@ public class ProjectLoader {
                 RecentsProjectManager.addProject(pinfo, true);
                 if (frame != null)
                     frame.updateProjects(pinfo);
-                proj.setApplicationNameListener(name -> projframe.setTitle(name));
+                proj.setApplicationNameListener((dirty, name) -> {
+                    EnhancerManager.getDefault().setFrameSaveState(projframe, dirty);
+                    projframe.setTitle(name);
+                });
                 if (frame != null) {
                     projframe.setCloseCallback(selected -> {
                         frame.updateProjects(pinfo);

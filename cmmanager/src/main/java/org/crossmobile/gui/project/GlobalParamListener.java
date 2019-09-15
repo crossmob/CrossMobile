@@ -22,11 +22,12 @@ import org.crossmobile.gui.parameters.ProjectParameter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public class GlobalParamListener {
 
-    private Consumer<String> titleListener;
+    private BiConsumer<Boolean, String> titleListener;
     private String ctitle = "";
     private String lastTitle = "";
     private final Collection<PListener> listeners = new ArrayList<>();
@@ -40,11 +41,11 @@ public class GlobalParamListener {
         if (titleListener != null) {
             String newTitle = ctitle + (isDirty() ? " *" : "");
             if (!newTitle.equals(lastTitle))
-                titleListener.accept(lastTitle = newTitle);
+                titleListener.accept(isDirty(), lastTitle = newTitle);
         }
     }
 
-    public void setApplicationNameListener(Consumer<String> listener) {
+    public void setApplicationNameListener(BiConsumer<Boolean, String> listener) {
         this.titleListener = listener;
     }
 
