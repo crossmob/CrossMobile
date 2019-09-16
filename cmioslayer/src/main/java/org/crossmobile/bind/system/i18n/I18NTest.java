@@ -16,19 +16,18 @@
  */
 package org.crossmobile.bind.system.i18n;
 
-import crossmobile.ios.foundation.NSBundle;
-import org.crossmobile.bind.system.i18n.I18NSelf.NumberTest;
+public class I18NTest {
 
-public class I18NBridge {
+    // It needs to be on it's own class, for obfuscating rasons
+    public static final boolean I18N_SUPPORT;
 
-    public static String localizedString(NSBundle bundle, String key, String table) {
-        return I18N.localizedString(bundle, key, table);
-    }
-
-    public static String retrieveFormat(String format, NumberTest few, NumberTest many, Object[] args) {
-        I18N.StringsDict retrieved = I18N.StringsDict.retrieve(format);
-        if (retrieved != null)
-            format = retrieved.getFormat(few, many, args);
-        return format;
+    static {
+        boolean check = false;
+        try {
+            I18N.ping();
+            check = true;
+        } catch (NoClassDefFoundError ignore) {
+        }
+        I18N_SUPPORT = check;
     }
 }

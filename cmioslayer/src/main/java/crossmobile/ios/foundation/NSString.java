@@ -47,7 +47,7 @@ import static crossmobile.ios.coregraphics.$coregraphics.font;
 import static crossmobile.ios.foundation.NSStringEncoding.convertIntToString;
 import static crossmobile.ios.uikit.$uikit.cgfont;
 import static org.crossmobile.bind.system.SystemUtilities.closeR;
-import static org.crossmobile.bind.system.i18n.I18NBridge.I18N_SUPPORT;
+import static org.crossmobile.bind.system.i18n.I18NTest.I18N_SUPPORT;
 
 /**
  * NSString class defines an object that is the foundation of the textual

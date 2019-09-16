@@ -25,7 +25,7 @@ import org.crossmobile.bridge.ann.CMSelector;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import static org.crossmobile.bind.system.i18n.I18NBridge.I18N_SUPPORT;
+import static org.crossmobile.bind.system.i18n.I18NTest.I18N_SUPPORT;
 
 /**
  * NSBundle class defines an object that represents the code and the resources
