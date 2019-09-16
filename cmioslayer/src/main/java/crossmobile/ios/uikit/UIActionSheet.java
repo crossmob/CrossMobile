@@ -31,8 +31,9 @@ import static org.crossmobile.bridge.SystemBridge.DESTROY_ID;
  * sheets. Actions sheets are set of buttons that prompt the user to select a
  * option for the completion of a task. The display of the action sheets is
  * triggered by user action.
- *
+ * <p>
  * This object is deprecated, please use UIAlertController with UIAlertControllerStyle.Alert instead.
+ *
  * @see UIAlertController
  * @see UIAlertControllerStyle#Sheet
  */
@@ -253,7 +254,8 @@ public class UIActionSheet extends UIView {
             if (buttonIndex == CANCEL_ID)
                 delegate.cancel(this);
             delegate.willDismissWithButtonIndex(this, buttonIndex);
-            delegate.clickedButtonAtIndex(this, buttonIndex);
+            if (buttonIndex >= 0)
+                delegate.clickedButtonAtIndex(this, buttonIndex);
             delegate.didDismissWithButtonIndex(this, buttonIndex);
         });
     }
