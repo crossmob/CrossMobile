@@ -40,10 +40,12 @@ public class BaseUtils {
     }
 
     public static boolean isOverriddenDouble(Block0<Double> source) {
+        Double result;
         try {
-            return Double.doubleToRawLongBits(source.invoke()) != Double.doubleToRawLongBits(Double.NaN);
+            result = source.invoke();
         } catch (Throwable e) {
-            return false;
+            return true;
         }
+        return result == null || Double.doubleToRawLongBits(source.invoke()) != Double.doubleToRawLongBits(Double.NaN);
     }
 }

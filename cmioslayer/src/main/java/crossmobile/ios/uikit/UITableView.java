@@ -923,7 +923,7 @@ class cmTableViewMetrics {
                     throw new IndexOutOfBoundsException("Already calculated");
                 boolean isRow = lastDelta > 0 && lastDelta <= rows(lastSection);
                 double height = isRow
-                        ? getRowHeight(lastSection, lastDelta)
+                        ? getRowHeight(lastSection, lastDelta - 1)  // has to substruct 1 since rows start at 1 (header start at 0)
                         : initLabel(lastSection, lastDelta == 0);
                 set(cSection, cDelta, get(lastSection, lastDelta) + height);
                 if (isRow)
@@ -984,7 +984,7 @@ class cmTableViewMetrics {
                 : tv.rowHeight();
         if (height < 0)
             approximateSize[section].set(row, true);
-        return height > 0 ? height : MAGIC_ROW_HEIGHT;
+        return height >= 0 ? height : MAGIC_ROW_HEIGHT;
     }
 
     boolean fixHeightIfNeeded(UITableViewCell cell) {
@@ -992,7 +992,7 @@ class cmTableViewMetrics {
         int row = cell.path.row();
         double currentHeight = rowHeight(section, row);
         double delta = 0;
-        if (cell.getRowHeight() > 0)
+        if (!rowHeightInDelegate && cell.getRowHeight() > 0)
             delta = cell.getRowHeight() - currentHeight;
         else if (approximateSize[section].getAndSet(row, false))
             delta = cell.sizeThatFits(new CGSize(0, 0)).getHeight() - currentHeight;
