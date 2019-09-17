@@ -171,7 +171,7 @@ public class Pom {
         ).toTag().add("dependency")
                 .add("groupId").setText(theme.groupId).parent()
                 .add("artifactId").setText(theme.artifactId).parent()
-                .add("version").setText(theme.version);
+                .add("version").setText(theme.version.equals(Version.VERSION) ? "${crossmobile.version}" : theme.version);
     }
 
     public Pom updatePomFromProperties(ParamSet paramset, Properties properties) {
