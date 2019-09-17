@@ -81,18 +81,17 @@ class XMLUtils {
             DOMSource source = new DOMSource(doc);
             StreamResult result = new StreamResult(writer = new OutputStreamWriter(new FileOutputStream(outfile), StandardCharsets.UTF_8));
             if (indent) {
-                XPathFactory xpathFactory = XPathFactory.newInstance();
-                // XPath to find empty text nodes.
-                XPathExpression xpathExp = xpathFactory.newXPath().compile(
-                        "//text()[normalize-space(.) = '']");
-                NodeList emptyTextNodes = (NodeList) xpathExp.evaluate(doc, XPathConstants.NODESET);
-
                 // Remove each empty text node from document.
+                doc.normalize();
+                NodeList emptyTextNodes = (NodeList) XPathFactory.newInstance().newXPath()
+                        .evaluate("//text()[normalize-space(.) = '']", doc, XPathConstants.NODESET);
                 for (int i = 0; i < emptyTextNodes.getLength(); i++) {
                     Node emptyTextNode = emptyTextNodes.item(i);
                     emptyTextNode.getParentNode().removeChild(emptyTextNode);
                 }
+
                 transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+                transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
                 transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
             }
             transformer.transform(source, result);
