@@ -32,7 +32,7 @@ public enum ParamsCommon {
 
     INJECTED_INFOPLIST("", BUILD),
     OBJC_IGNORE_INCLUDES("", BUILD),
-    DEBUG_PROFILE("full", BUILD),
+    DEBUG_PROFILE("outerr", BUILD),
     USES_PERMISSIONS("", BUILD),
     TARGET(AndroidTarget.DEFAULT, BUILD),
     TARGET_NUMERIC(AndroidTarget.NUMERIC_DEFAULT, BUILD),

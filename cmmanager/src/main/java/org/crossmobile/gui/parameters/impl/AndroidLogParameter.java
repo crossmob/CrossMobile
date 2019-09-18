@@ -26,7 +26,7 @@ public class AndroidLogParameter extends RadioParameter {
         super(list, null
                 , new String[]{"images/4of4", "images/3of4", "images/2of4", "images/1of4"}
                 , new String[]{"Full debug", "Out & Error", "Error", "NSLog only"}
-                , new String[]{"full", "outerr", "err", "nslog"}, "full", false);
+                , new String[]{"full", "outerr", "err", "nslog"}, "outerr", false);
     }
 
     @Override
