@@ -1,6 +1,17 @@
 # Changelog
 This is the CrossMobile change log.
 
+## [HEAD] - now
+
+### Added
+- First-class support of obfuscation in Android & Desktop by ProGuard
+- Launch Android simulators in CrossMobile management application
+
+### Fixed
+- UITableView behaviour better matches the iOS devices
+
+### Changed
+- There's a **code breaking** change with NSLog. Now this function lives in Foundation class, instead of it's own arbitrary class.
 
 ## [v2.6.1] - 2019-9-15
 ### Fixed
@@ -75,6 +86,7 @@ This is the CrossMobile change log.
 ### Added
 - First public source release
 
+[HEAD]: https://github.com/crossmob/CrossMobile/compare/v2.6.1...HEAD
 [v2.6.1]: https://github.com/crossmob/CrossMobile/compare/v2.6...v2.6.1
 [v2.6]: https://github.com/crossmob/CrossMobile/compare/v2.5...v2.6
 [v2.5]: https://github.com/crossmob/CrossMobile/compare/v2.5.pre1.cm...v2.5

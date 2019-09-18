@@ -28,21 +28,21 @@ brew cask install adoptopenjdk8
 - Make sure JDK 8 is the default environment.
 
 ## Install Android SDK
-- Make sure Android SDK should be installed and available.
+- Make sure Android SDK is installed and available.
 - Either Android Studio or Android SDK command line tools is required.
-- Note the location of Android SDK tools. For example if yuo have installed Android Studio
-    - In Linux is under `~/Android/Sdk`
-    - In macOS is under `~/Library/Android/sdk`
-    - In Windows is under
+- Note down the location of Android SDK tools. For example, Android Studio usually installs SDK:
+    - in Linux is under `~/Android/Sdk`
+    - in macOS is under `~/Library/Android/sdk`
+    - in Windows is under `%HOME%\AppData\Local\Android\Sdk`
     - ... or use the location of the command line tools root folder
-- Use the following command: `export ANDROID_SDK=~/Android/Sdk/`
+- Use a command similar to the following to define the location of the Android SDK: `export ANDROID_SDK=~/Android/Sdk/`
 
 ## Run the bootstap script
 On the root folder of CrossMobile issue the following command:
 ```sh
 ./resources/bootstrap/bootstrap.sh
 ```
-The Android SDK tools will ask you to accept the License. You have to accept it for the procedure to continue.
+The Android SDK tools will ask you to accept the Licenses. You have to accept it for the procedure to continue.
 
 ## Compile CrossMobile
 Go to the root folder of CrossMobile and issue the following command:
