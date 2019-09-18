@@ -195,8 +195,7 @@ public class MainActivity extends Activity {
             stateListener.onDestroy();
         MainActivity.current = null;
         MainView.current = null;
-        if (launchDebug)
-            Native.system().debug("Activity destroyed" + (((AndroidLifecycleBridge) Native.lifecycle()).errorFound ? " with error" : ""), null);
+        Native.system().debug("Activity destroyed" + (((AndroidLifecycleBridge) Native.lifecycle()).errorFound ? " with error" : ""), null);
         Native.destroy();
         super.onDestroy();
     }
