@@ -34,7 +34,7 @@ public abstract class SelectionListParameter extends ProjectParameter {
     private String[] display;
     private String[] definition;
     private int value;
-    private HiResComboBox<?> item;
+    private HiResComboBox<String> item;
 
     public SelectionListParameter(ParamList plist, Param key, String[] parameter, String[] display, String[] definition, int deflt) {
         this(plist, key, convert(parameter, display, definition, deflt));
@@ -67,8 +67,8 @@ public abstract class SelectionListParameter extends ProjectParameter {
 
     @Override
     protected HiResComponent initVisuals() {
-        item = new HiResComboBox<>(display);
-        item.setSelectedIndex(value);
+        item = new HiResComboBox<>();
+        updateVisuals();
         item.setOpaque(false);
         item.addActionListener((ActionEvent ae) -> {
             int newValue = item.getSelectedIndex();
@@ -78,6 +78,15 @@ public abstract class SelectionListParameter extends ProjectParameter {
             }
         });
         return item;
+    }
+
+    private void updateVisuals() {
+        if (item != null) {
+            item.removeAllItems();
+            for (String cItem : display)
+                item.addItem(cItem);
+            item.setSelectedIndex(value);
+        }
     }
 
     protected void setValue(String value) {
@@ -103,6 +112,7 @@ public abstract class SelectionListParameter extends ProjectParameter {
                 this.value = index;
             index++;
         }
+        updateVisuals();
         if (fireUpdate)
             fireValueUpdated();
     }

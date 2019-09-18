@@ -68,7 +68,7 @@ public class AndroidKeyAliasParameter extends SelectionListParameter implements 
             keystore = Prefs.getAndroidKeyLocation();
         keystore = list.dereferenceValue(keystore, true);
         List<String> aliases = KeystoreManager.getKeystoreAliases(new File(keystore));
-        if (aliases != null && !aliases.isEmpty()) {
+        if (!aliases.isEmpty()) {
             int index = 0;
             if (deflt != null)
                 index = aliases.indexOf(deflt);
