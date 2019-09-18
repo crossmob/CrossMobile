@@ -132,6 +132,7 @@ public class AdbUtils {
                 commands.add("System.out:I");
             case "err":
                 commands.add("System.err:W");
+                commands.add("AndroidRuntime:E");
             case "nslog":
                 commands.add("CrossMob:*");
         }
