@@ -769,13 +769,17 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
      */
     @CMSelector("- (void)loadView;")
     public void loadView() {
-        if (nibName == null)
-            view = new UIView();
-        else {
+        if (storyboard != null) {
+            loadViewFromStoryboard();
+        } else if (nibName != null) {
             UINib.nibWithNibName(nibName, bundlename).instantiateWithOwner(this, null);
             if (view == null)
                 view = new UIView();
-        }
+        } else
+            view = new UIView();
+    }
+
+    protected void loadViewFromStoryboard() {
     }
 
     /**

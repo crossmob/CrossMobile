@@ -77,8 +77,8 @@ public class ViewController extends RealElement {
     protected void constructorOverrides(StringBuilder out) {
         String view = (item("view") != null) ? ((View) item("view")).variable() : "";
         if (!view.equals("")) {
-            out.append("@Override").append(NEWLINE);
-            out.append(I3).append("public void loadView() {").append(NEWLINE);
+            out.append(NEWLINE);
+            out.append(I3).append("protected void loadViewFromStoryboard() {").append(NEWLINE);
             out.append(I4).append("setView(").append(Objects.GETTER).append(view).append("());").append(NEWLINE);
             out.append(I4).append(Objects.LATE_INITTER).append(view).append("();").append(NEWLINE);
             out.append(I4).append("view().layoutSubviews();").append(NEWLINE);
