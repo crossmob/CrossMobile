@@ -35,11 +35,11 @@ import static org.crossmobile.utils.ParamsCommon.USES_PERMISSIONS;
 public class AndroidPermissionsParameter extends MultiButtonParameter {
 
     private final Project proj;
-    private static final char SEPERATOR = ':';
+    private static final char SEPARATOR = ':';
     private HiResButton recalculate;
 
     public AndroidPermissionsParameter(ParamList plist, Project proj) {
-        super(plist, USES_PERMISSIONS.tag(), getPermissions(), getNames(), getTooltips(), getIcons(), null, 3, SEPERATOR);
+        super(plist, USES_PERMISSIONS.tag(), getPermissions(), getNames(), getTooltips(), getIcons(), null, 3, SEPARATOR);
         this.proj = proj;
     }
 

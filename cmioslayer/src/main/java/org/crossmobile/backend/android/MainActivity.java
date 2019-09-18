@@ -24,7 +24,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Surface;
 import android.view.WindowManager;
-import crossmobile.ios.foundation.NSLog;
 import crossmobile.ios.uikit.UIDeviceOrientation;
 import org.crossmobile.bind.system.AbstractLifecycleBridge;
 import org.crossmobile.bind.system.SystemUtilities;
@@ -175,7 +174,7 @@ public class MainActivity extends Activity {
     @Override
     public void finish() {
         if (launchDebug)
-            NSLog.log("Activity terminated");
+            Native.system().debug("Activity terminated", null);
         super.finish();
     }
 

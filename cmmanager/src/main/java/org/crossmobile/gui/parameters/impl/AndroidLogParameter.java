@@ -16,20 +16,26 @@
  */
 package org.crossmobile.gui.parameters.impl;
 
-import org.crossmobile.gui.parameters.FreeTextParameter;
+import org.crossmobile.gui.parameters.RadioParameter;
 import org.crossmobile.utils.ParamList;
 
-import static org.crossmobile.utils.ParamsCommon.MAIN_NIB_NAME_PAD;
+import static org.crossmobile.utils.ParamsCommon.DEBUG_PROFILE;
 
-public class NibPadParameter extends FreeTextParameter {
-
-    public NibPadParameter(ParamList prop) {
-        super(prop, MAIN_NIB_NAME_PAD.tag());
+public class AndroidLogParameter extends RadioParameter {
+    public AndroidLogParameter(ParamList list) {
+        super(list, null
+                , new String[]{"images/4of4", "images/3of4", "images/2of4", "images/1of4"}
+                , new String[]{"Full debug", "Out & Error", "Error", "NSLog only"}
+                , new String[]{"full", "outerr", "err", "nslog"}, "full", false);
     }
 
     @Override
-    public String getVisualTag() {
-        return "Main XIB file for Pad-sized devices";
+    protected String getVisualTag() {
+        return "Debug output";
     }
 
+    @Override
+    public boolean shouldTrackChanges() {
+        return false;
+    }
 }

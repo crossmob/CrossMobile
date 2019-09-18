@@ -40,9 +40,10 @@ public class ExtProjectLauncher {
     private static final String RELEASE_KEY = "release";
     private static final String ID_KEY = "appId";
     private static final String BUNDLE_KEY = "bundleId";
+    private static final String DEBUG_KEY = "debug.profile";
     private static final String MAIN_CLASS = "mainclass";
 
-    public static void store(File builddir, Flavour flavour, String target, String bridge, String applicationid, String bundleid, String mainclass, boolean release) {
+    public static void store(File builddir, Flavour flavour, String target, String bridge, String applicationid, String bundleid, String mainclass, boolean release, String debugprofile) {
         Properties props = new Properties();
         props.put(FLAVOUR_KEY, flavour.name());
         props.put(BRIDGE_KEY, bridge == null || bridge.isEmpty() ? flavour.launcher : bridge);
@@ -51,6 +52,7 @@ public class ExtProjectLauncher {
         props.put(ID_KEY, applicationid);
         props.put(BUNDLE_KEY, bundleid);
         props.put(RELEASE_KEY, Boolean.toString(release));
+        props.put(DEBUG_KEY, debugprofile);
         File output = new File(builddir, OUTPUT_DIR + separator + OUTPUT_PACKAGE + separator + OUTPUT_FILE);
         try {
             output.getParentFile().mkdirs();

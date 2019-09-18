@@ -32,7 +32,7 @@ public enum ParamsCommon {
 
     INJECTED_INFOPLIST("", BUILD),
     OBJC_IGNORE_INCLUDES("", BUILD),
-    PROGUARD_CONFIG("", BUILD),
+    DEBUG_PROFILE("full", BUILD),
     USES_PERMISSIONS("", BUILD),
     TARGET(AndroidTarget.DEFAULT, BUILD),
     TARGET_NUMERIC(AndroidTarget.NUMERIC_DEFAULT, BUILD),
@@ -53,8 +53,6 @@ public enum ParamsCommon {
     CM_OBJC_SAFEMEMBERS("true"),
     ORIENTATIONS_INITIAL("UIInterfaceOrientationPortrait"),
     ORIENTATIONS_SUPPORTED("UIInterfaceOrientationPortrait:UIInterfaceOrientationLandscapeLeft:UIInterfaceOrientationLandscapeRight"),
-    MAIN_NIB_NAME_PHONE(""),
-    MAIN_NIB_NAME_PAD(""),
     MAIN_STORYBOARD(""),
     LAUNCH_STORYBOARD(""),
     CM_SCREEN_SCALE("DPI"),

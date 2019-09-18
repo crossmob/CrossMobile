@@ -17,6 +17,7 @@
 package org.crossmobile.foreign;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -29,6 +30,7 @@ public class AdbUtils {
     private final String adb;
     private String device;
     private File baseDir;
+    private String debugProfile;
 
     public AdbUtils(String adb) {
         this.adb = adb;
@@ -115,6 +117,27 @@ public class AdbUtils {
         return supportsNew.get();
     }
 
+    private String[] createLogcatArgs(String pid) {
+        List<String> commands = new ArrayList<>();
+        commands.add(adb);
+        commands.add("-s");
+        commands.add(device);
+        commands.add("logcat");
+        if (pid != null)
+            commands.add("--pid=" + pid);
+        if (!debugProfile.equals("full"))
+            commands.add("-s");
+        switch (debugProfile) {
+            case "outerr":
+                commands.add("System.out:I");
+            case "err":
+                commands.add("System.err:W");
+            case "nslog":
+                commands.add("CrossMob:*");
+        }
+        return commands.toArray(new String[0]);
+    }
+
     private void logOld(String pid) {
         exec(true, false, line -> {
             if (line.contains(pid)) {
@@ -122,8 +145,7 @@ public class AdbUtils {
                 if (line.contains("CrossMob") && line.contains("Activity destroyed"))
                     System.exit(line.contains("error") ? -1 : 0);
             }
-        }, System.out::println, adb, "-s", device, "logcat");
-//                    "-s", "AndroidRuntime:E", "System.out:I", "System.err:W", "CrossMob:*");
+        }, System.out::println, createLogcatArgs(null));
     }
 
     private void logNew(String pid) {
@@ -131,8 +153,7 @@ public class AdbUtils {
             System.out.println(line);
             if (line.contains("CrossMob") && line.contains("Activity destroyed"))
                 System.exit(line.contains("error") ? -1 : 0);
-        }, System.out::println, adb, "-s", device, "logcat", "--pid=" + pid);
-//                    "-s", "AndroidRuntime:E", "System.out:I", "System.err:W", "CrossMob:*");
+        }, System.out::println, createLogcatArgs(pid));
     }
 
     private void exec(boolean debug, String... cmds) {
@@ -162,5 +183,9 @@ public class AdbUtils {
 
     public void setBaseDir(File baseDir) {
         this.baseDir = baseDir;
+    }
+
+    public void setDebugProfile(String debugProfile) {
+        this.debugProfile = debugProfile;
     }
 }

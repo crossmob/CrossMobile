@@ -72,4 +72,15 @@ public final class Foundation {
     public static String NSHomeDirectory() {
         return Native.file().getHomeLocation();
     }
+
+    /**
+     * Logs the specified arguments by using the provided format.
+     *
+     * @param format The format to use
+     * @param args   The list of arguments
+     */
+    @CMFunction("void NSLog(NSString *format, ...);")
+    public static void NSLog(String format, Object... args) {
+        Native.system().error(NSString.initWithFormat(format, args), null);
+    }
 }

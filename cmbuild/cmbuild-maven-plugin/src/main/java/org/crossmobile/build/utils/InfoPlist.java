@@ -80,14 +80,6 @@ public class InfoPlist {
         text = text.replace("APP_NAME", application);
     }
 
-    public void setMainNibPhone(String nibphone) {
-        text = text.replace("PROPERTY_MAIN_NIB_PHONE", nibphone.trim().isEmpty() ? "" : PROPERTY_MAIN_NIB_PHONE.replace("PROPERTY_MAIN_NIB_PHONE", nibphone));
-    }
-
-    public void setMainNibPad(String nibpad) {
-        text = text.replace("PROPERTY_MAIN_NIB_PAD", nibpad.trim().isEmpty() ? "" : PROPERTY_MAIN_NIB_PAD.replace("PROPERTY_MAIN_NIB_PAD", nibpad));
-    }
-
     public void setLaunchStoryboard(String launch) {
         text = text.replace("PROPERTY_LAUNCH_STORYBOARD", launch.trim().isEmpty() ? "" : PROPERTY_LAUNCH_STORYBOARD.replace("PROPERTY_LAUNCH_STORYBOARD", launch));
     }

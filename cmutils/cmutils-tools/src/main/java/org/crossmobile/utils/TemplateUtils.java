@@ -22,7 +22,6 @@ import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 public class TemplateUtils {
 
@@ -110,7 +109,7 @@ public class TemplateUtils {
                     return null;
                 missingTags.remove(tag);
                 String res = list.get(tag, true);
-                if ((res == null || res.trim().isEmpty()) && tag.ommitIfMissing)
+                if ((res == null || res.trim().isEmpty()) && tag.omitIfMissing)
                     return "";
                 return res == null ? null : tag.name + "=" + res + '\n';
             }
@@ -118,7 +117,7 @@ public class TemplateUtils {
         if (missingTags != null)
             for (Param tag : missingTags) {
                 String res = list.get(tag, true);
-                if (!((res == null || (res.trim().isEmpty()) && tag.ommitIfMissing)))
+                if (!((res == null || (res.trim().isEmpty()) && tag.omitIfMissing)))
                     buffer.append(tag.name).append("=").append(res).append("\n");
             }
         FileUtils.write(dest, buffer.toString());

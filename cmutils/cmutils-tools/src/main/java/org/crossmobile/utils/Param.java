@@ -25,7 +25,7 @@ import static org.crossmobile.utils.TextUtils.getPairedParams;
 
 public class Param {
 
-    public final boolean ommitIfMissing;
+    public final boolean omitIfMissing;
     public final String name;
     public final String anchor;
     public final String meta;
@@ -33,8 +33,8 @@ public class Param {
     public final String deflt;
     final TagType type;
 
-    Param(boolean ommitIfMissing, String param, String anchor, String deflt, String paramMeta, ParamContext paramContext, TagType type) {
-        this.ommitIfMissing = ommitIfMissing;
+    Param(boolean omitIfMissing, String param, String anchor, String deflt, String paramMeta, ParamContext paramContext, TagType type) {
+        this.omitIfMissing = omitIfMissing;
         this.name = param;
         this.anchor = anchor;
         this.meta = paramMeta == null ? "" : paramMeta.trim();

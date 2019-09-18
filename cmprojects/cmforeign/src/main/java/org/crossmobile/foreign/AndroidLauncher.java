@@ -75,6 +75,7 @@ public class AndroidLauncher {
 
         adb = new AdbUtils(adbFile.getAbsolutePath());
         adb.setBaseDir(basedir);
+        adb.setDebugProfile(props.getProperty("debug.profile"));
         bundleID = props.getProperty("bundleId");
         boolean release = props.getProperty("release", "false").equals("true");
 

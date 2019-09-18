@@ -146,14 +146,6 @@ public class Templates {
             "</dict>\n" +
             "</plist>";
 
-    public static String PROPERTY_MAIN_NIB_PHONE =
-            "\t<key>NSMainNibFile~iphone</key>\n"
-                    + "\t<string>PROPERTY_MAIN_NIB_PHONE</string>\n";
-
-    public static String PROPERTY_MAIN_NIB_PAD =
-            "\t<key>NSMainNibFile~ipad</key>\n"
-                    + "\t<string>PROPERTY_MAIN_NIB_PAD</string>\n";
-
     public static String PROPERTY_MAIN_STORYBOARD =
             "\t<key>UIMainStoryboardFile</key>\n"
                     + "\t<string>PROPERTY_MAIN_STORYBOARD</string>\n";

@@ -503,7 +503,6 @@ crossmobile/ios/foundation/NSKeyValueChangeKey.class v8
 crossmobile/ios/foundation/NSKeyValueObservingOptions.class v8
 crossmobile/ios/foundation/NSLineBreakMode.class v8
 crossmobile/ios/foundation/NSLocale.class v8
-crossmobile/ios/foundation/NSLog.class v8
 crossmobile/ios/foundation/NSMutableData.class v8
 crossmobile/ios/foundation/NSMutableURLRequest.class v8
 crossmobile/ios/foundation/NSNotification.class v8
@@ -940,7 +939,6 @@ crossmobile/ios/foundation/NSKeyValueChangeKey.class v8
 crossmobile/ios/foundation/NSKeyValueObservingOptions.class v8
 crossmobile/ios/foundation/NSLineBreakMode.class v8
 crossmobile/ios/foundation/NSLocale.class v8
-crossmobile/ios/foundation/NSLog.class v8
 crossmobile/ios/foundation/NSMutableData.class v8
 crossmobile/ios/foundation/NSMutableURLRequest.class v8
 crossmobile/ios/foundation/NSNotification.class v8
@@ -1336,7 +1334,6 @@ native/crossmobile_ios_foundation_NSItemProviderCompletionHandler.h
 native/crossmobile_ios_foundation_NSItemProviderLoadHandler.h
 native/crossmobile_ios_foundation_NSJSONSerialization.h
 native/crossmobile_ios_foundation_NSLocale.h
-native/crossmobile_ios_foundation_NSLog.h
 native/crossmobile_ios_foundation_NSMutableData.h
 native/crossmobile_ios_foundation_NSMutableURLRequest.h
 native/crossmobile_ios_foundation_NSNotification.h
@@ -1876,7 +1873,6 @@ crossmobile/ios/foundation/NSKeyValueChangeKey.class v8
 crossmobile/ios/foundation/NSKeyValueObservingOptions.class v8
 crossmobile/ios/foundation/NSLineBreakMode.class v8
 crossmobile/ios/foundation/NSLocale.class v8
-crossmobile/ios/foundation/NSLog.class v8
 crossmobile/ios/foundation/NSMutableData.class v8
 crossmobile/ios/foundation/NSMutableURLRequest.class v8
 crossmobile/ios/foundation/NSNotification.class v8
@@ -2773,7 +2769,6 @@ crossmobile/ios/foundation/NSKeyValueChangeKey.class v8
 crossmobile/ios/foundation/NSKeyValueObservingOptions.class v8
 crossmobile/ios/foundation/NSLineBreakMode.class v8
 crossmobile/ios/foundation/NSLocale.class v8
-crossmobile/ios/foundation/NSLog.class v8
 crossmobile/ios/foundation/NSMutableData.class v8
 crossmobile/ios/foundation/NSMutableURLRequest.class v8
 crossmobile/ios/foundation/NSNotification.class v8

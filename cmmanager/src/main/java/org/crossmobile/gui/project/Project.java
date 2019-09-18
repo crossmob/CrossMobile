@@ -57,6 +57,7 @@ public class Project {
     //private Consumer<String> appNameListener;
     private boolean asOldXMLVMProject;
     private Profile profile;
+    private String debugProfile = DEBUG_PROFILE.tag().deflt;
     private final GlobalParamListener listener = new GlobalParamListener();
     private Consumer<Project> saveCallback;
 
@@ -139,8 +140,6 @@ public class Project {
         csheet.add(supp_orientation = new SupportedOrientationsParameter(params));
         supp_orientation.addParameterListener(p -> init_orientation.check(supp_orientation.getValue()));
         init_orientation.addParameterListener(p -> supp_orientation.setOrientation(p.getValue()));
-//        csheet.add(new NibPhoneParameter(params));
-//        csheet.add(new NibPadParameter(params));
         csheet.add(new StatusBarHiddenParameter(params));
         csheet.add(new ViewControlledStatusBarParameter(params));
         csheet.add(new SplashDelayParameter(params));
@@ -155,16 +154,17 @@ public class Project {
 
         csheet = new PropertySheet("Android", listener);
         AndroidKeyAliasParameter ka = new AndroidKeyAliasParameter(params);
-        csheet.add(ka);
         csheet.add(new AndroidKeyStoreParameter(params).addParameterListener(ka));
+        csheet.add(ka);
         csheet.add(new AndroidKeystorePasswordParameter(params));
         csheet.add(new AndroidAliasPasswordParameter(params));
+        csheet.add(new AndroidLogParameter(params)
+                .addParameterListener(pl -> debugProfile = pl.getValue()));
         csheet.add(new AndroidPermissionsParameter(params, this));
-        //csheet.add(new AndroidProGuard(params));
         csheet.add(new AndroidSDKParameter(params));
         csheet.add(new AndroidTargetParameter(params));
         csheet.add(new AndroidTargetNumericParameter(params));
-        csheet.setBottomPanel(PrivateArtifactForm.getPanel());
+//        csheet.setBottomPanel(PrivateArtifactForm.getPanel());
         sheets.add(csheet);
 
         csheet = new PropertySheet("Desktop", listener);
@@ -209,6 +209,10 @@ public class Project {
 
     public Profile getProfile() {
         return profile;
+    }
+
+    public String getDebugProfile() {
+        return debugProfile;
     }
 
     public boolean isSaved() {

@@ -16,7 +16,6 @@
  */
 package org.crossmobile.build.tools;
 
-import org.crossmobile.Version;
 import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.build.ng.CMBuildEnvironment;
 import org.crossmobile.utils.*;
@@ -29,15 +28,11 @@ import static org.crossmobile.utils.TemplateUtils.copyTemplateIfMissing;
 
 public class GradleManager {
 
-    public static final String OLD_GRADLE_PLUGIN = "crossmobile-gradle-plugin";
     public static final String GRADLE_PLUGIN = "cmbuild-gradle-plugin";
-
-    private static final Pattern pluginversion = Pattern.compile("(classpath\\s*'org\\.crossmobile:" + GRADLE_PLUGIN + ":[a-zA-Z0-9.-]*')");
 
     public static void createAndUpdate(CMBuildEnvironment env) {
         createAndUpdateBuild(env);
         createAndUpdateProperties(env.getBasedir());
-
     }
 
     @SuppressWarnings("UseSpecificCatch")
@@ -65,18 +60,6 @@ public class GradleManager {
         }
     }
 
-    private static void updateVersion(File gradle) {
-        String orig = FileUtils.read(gradle);
-        String updated = pluginversion.matcher(orig.replaceAll(OLD_GRADLE_PLUGIN, GRADLE_PLUGIN)).
-                replaceAll("classpath 'org.crossmobile:" + GRADLE_PLUGIN + ":" + Version.VERSION + "'").
-                replaceAll("com\\.android\\.tools\\.build:gradle:2\\.2\\.3", "com.android.tools.build:gradle:3.1.0").
-                replaceAll("com\\.android\\.tools\\.build:gradle:2\\.3\\.3", "com.android.tools.build:gradle:3.1.0");
-        if (!orig.equals(updated)) {
-            Log.debug("Will update " + GRADLE_PLUGIN + " to version " + Version.VERSION);
-            FileUtils.write(gradle, updated);
-        }
-    }
-
     private static void createAndUpdateProperties(File basedir) {
         try {
             copyTemplateIfMissing("gradle.properties", new File(basedir, "gradle.properties"), "Creating missing gradle.properties file", null);
@@ -84,5 +67,4 @@ public class GradleManager {
             BaseUtils.throwException(ex);
         }
     }
-
 }

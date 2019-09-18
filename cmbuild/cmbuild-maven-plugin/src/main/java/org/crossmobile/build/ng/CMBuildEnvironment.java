@@ -25,6 +25,7 @@ import java.util.Properties;
 import java.util.function.Supplier;
 
 import static org.crossmobile.prefs.Config.MATERIALS_PATH;
+import static org.crossmobile.utils.ParamsCommon.DEBUG_PROFILE;
 
 public class CMBuildEnvironment {
 
@@ -42,6 +43,7 @@ public class CMBuildEnvironment {
     private final Supplier<File> xmlvm;
     private final Supplier<File> retrolambda;
     private final DependencyItem root;
+    private final String debugprofile;
     private File xmlvm_file;
     private File retrolambda_file;
 
@@ -51,11 +53,11 @@ public class CMBuildEnvironment {
         return current;
     }
 
-    public static void create(File basedir, File builddir, Flavour flavour, Properties properties, ParamSet paramset, Supplier<File> xmlvm, Supplier<File> retrolambda, String groupId, String artifactId, String version, DependencyItem root, boolean release) {
-        current = new CMBuildEnvironment(basedir, builddir, flavour, properties, paramset, xmlvm, retrolambda, groupId, artifactId, version, root, release);
+    public static void create(File basedir, File builddir, Flavour flavour, Properties properties, ParamSet paramset, Supplier<File> xmlvm, Supplier<File> retrolambda, String groupId, String artifactId, String version, DependencyItem root, boolean release, String debugprofile) {
+        current = new CMBuildEnvironment(basedir, builddir, flavour, properties, paramset, xmlvm, retrolambda, groupId, artifactId, version, root, release, debugprofile);
     }
 
-    private CMBuildEnvironment(File basedir, File builddir, Flavour flavour, Properties properties, ParamSet paramset, Supplier<File> xmlvm, Supplier<File> retrolambda, String groupId, String artifactId, String version, DependencyItem root, boolean release) {
+    private CMBuildEnvironment(File basedir, File builddir, Flavour flavour, Properties properties, ParamSet paramset, Supplier<File> xmlvm, Supplier<File> retrolambda, String groupId, String artifactId, String version, DependencyItem root, boolean release, String debugprofile) {
         this.basedir = basedir;
         this.builddir = builddir;
         this.materials = new File(basedir, MATERIALS_PATH);
@@ -70,6 +72,7 @@ public class CMBuildEnvironment {
         this.paramset = paramset;
         this.root = root;
         this.release = release;
+        this.debugprofile = debugprofile == null ? DEBUG_PROFILE.tag().deflt : debugprofile;
     }
 
     public File getBasedir() {
@@ -130,5 +133,9 @@ public class CMBuildEnvironment {
 
     public DependencyItem root() {
         return root;
+    }
+
+    public String getDebugProfile() {
+        return debugprofile;
     }
 }

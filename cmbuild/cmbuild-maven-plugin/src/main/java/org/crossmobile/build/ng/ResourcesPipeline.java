@@ -60,7 +60,7 @@ public class ResourcesPipeline implements Runnable {
                 environment().getArtifactId(),
                 environment().getProperties().getProperty(GROUP_ID.tag().name) + "." + environment().getProperties().getProperty(ARTIFACT_ID.tag().name),
                 environment().getProperties().getProperty(MAIN_CLASS.tag().name),
-                environment().isRelease());
+                environment().isRelease(), environment().getDebugProfile());
     }
 
     private void resourcesUWP() {

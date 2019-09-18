@@ -55,8 +55,6 @@ public class InfoPListCreator extends GenericPropertiesCreator {
         info.setFileSharing(prop(FILESHARINGENABLED.tag().name));
         info.setDefaultOrientation(prop(ORIENTATIONS_INITIAL.tag().name));
         info.setSupportedOrientations(prop(ORIENTATIONS_SUPPORTED.tag().name));
-        info.setMainNibPhone(prop(MAIN_NIB_NAME_PHONE.tag().name));
-        info.setMainNibPad(prop(MAIN_NIB_NAME_PAD.tag().name));
         info.setLaunchStoryboard(prop(LAUNCH_STORYBOARD.tag().name));
         info.setMainStoryboard(prop(MAIN_STORYBOARD.tag().name));
         info.setFonts(fontlist);

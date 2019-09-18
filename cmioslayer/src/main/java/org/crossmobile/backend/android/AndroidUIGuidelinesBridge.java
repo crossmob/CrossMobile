@@ -21,7 +21,6 @@ import android.os.Build;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import crossmobile.ios.foundation.NSLog;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.UIGuidelinesBridge;
 

@@ -15,6 +15,12 @@
     return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 
+// direct binding of: void NSLog(NSString *format, ...);
++ (void) NSLog___java_lang_String_java_lang_Object_ARRAYTYPE:(NSString*) format :(XMLVMArray*) va_array 
+{
+    xmlvm_formatWith(FFI_FN(NSLog), NO, 1, va_array, (format == JAVA_NULL ? nil : format));
+}
+
 // direct binding of: NSArray<NSString *> * NSSearchPathForDirectoriesInDomains ( NSSearchPathDirectory directory, NSSearchPathDomainMask domainMask, BOOL expandTilde );
 + (NSArray*) NSSearchPathForDirectoriesInDomains___int_int_boolean:(int) directory :(int) domainMask :(BOOL) expandTilde 
 {

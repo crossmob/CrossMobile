@@ -45,6 +45,7 @@ import static org.crossmobile.gui.actives.ActiveContextLabel.Context.*;
 import static org.crossmobile.gui.elements.DebugInfo.streamsHaveTraces;
 import static org.crossmobile.gui.utils.Profile.OBFUSCATE;
 import static org.crossmobile.prefs.Prefs.*;
+import static org.crossmobile.utils.ParamsCommon.DEBUG_PROFILE;
 import static org.crossmobile.utils.SystemDependent.Execs.ADB;
 
 public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Consumer {
@@ -389,8 +390,9 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
                             target
                                     + (LAUNCH_ACTION_BUILD.equals(actionB.getActionCommand()) ? "" : ",run")
                                     + (proj.getProfile().isRelease() ? ",release" : "")
-                                    + (proj.getProfile() == OBFUSCATE ? ",obfuscate" : ""),
-                            proj, outP, initLaunchVisualsErr(), launchCallback);
+                                    + (proj.getProfile() == OBFUSCATE ? ",obfuscate" : "")
+                            , proj, outP, initLaunchVisualsErr(), launchCallback
+                            , "-D" + DEBUG_PROFILE.tag().name + "=" + proj.getDebugProfile());
                 else
                     setLaunchButtonStatus(NOT_SAVED, "Unable to save project");
             });

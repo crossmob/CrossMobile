@@ -69,7 +69,8 @@ public abstract class CrossMobileMojo extends GenericMojo {
                 getProject().getArtifactId(),
                 getProject().getVersion(),
                 dependencies,
-                isRelease(settings.getActiveProfiles()));
+                isRelease(settings.getActiveProfiles()),
+                getSession().getUserProperties().getProperty(DEBUG_PROFILE.tag().name));
         if (settings == null)
             throw new MojoExecutionException("Unable to read maven settings");
         initCoreWorker().run();

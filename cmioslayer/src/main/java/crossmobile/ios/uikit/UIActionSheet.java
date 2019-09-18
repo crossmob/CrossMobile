@@ -16,7 +16,6 @@
  */
 package crossmobile.ios.uikit;
 
-import crossmobile.ios.foundation.NSLog;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.*;
 
@@ -84,7 +83,7 @@ public class UIActionSheet extends UIView {
                     this.otherButtonIndex.add(nextButton++);
                     this.otherButtonTitles.add(other);
                 } else {
-                    NSLog.log("Null found in null terminated list - no more entries will be processed");
+                    Native.system().error("Null found in null terminated list - no more entries will be processed", null);
                     break;
                 }
         }
