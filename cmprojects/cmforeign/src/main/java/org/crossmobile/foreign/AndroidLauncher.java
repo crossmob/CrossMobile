@@ -30,6 +30,7 @@ public class AndroidLauncher {
 
     private static AdbUtils adb;
     private static String bundleID;
+    private static File sdkDir;
 
     @SuppressWarnings("UseSpecificCatch")
     public static void launch(Properties props) {
@@ -63,8 +64,16 @@ public class AndroidLauncher {
             props.load(new InputStreamReader(new FileInputStream(new File(basedir, "local.properties")), StandardCharsets.UTF_8));
         } catch (Exception ex) {
             System.err.println("Unable to load local properties");
+            System.exit(-1);
         }
-        adb = new AdbUtils(getFile(props.getProperty("sdk.dir") + File.separator + "platform-tools" + File.separator + (isWindows ? "adb.exe" : "adb"), "Android SDK"));
+        sdkDir = new File(props.getProperty("sdk.dir"));
+        File adbFile = new File(sdkDir, "platform-tools" + File.separator + (isWindows ? "adb.exe" : "adb"));
+        if (!adbFile.isFile()) {
+            System.out.println("[ERROR] Android SDK must be set to run Android");
+            System.exit(1);
+        }
+
+        adb = new AdbUtils(adbFile.getAbsolutePath());
         adb.setBaseDir(basedir);
         bundleID = props.getProperty("bundleId");
         boolean release = props.getProperty("release", "false").equals("true");
@@ -84,6 +93,9 @@ public class AndroidLauncher {
         }
 
         System.out.println("Listing connected Android devices");
+        File emulator = new File(sdkDir, "emulator/emulator" + (isWindows ? ".exe" : ""));
+        if (!emulator.isFile())
+            emulator = new File(sdkDir, "tools/emulator" + (isWindows ? ".exe" : ""));
         AndroidTargetSelector selector = new AndroidTargetSelector(dvc -> {
             adb.setDevice(dvc);
             if (!adb.foundDevice()) {
@@ -110,18 +122,9 @@ public class AndroidLauncher {
             }
 
             adb.log(newPid);
-        });
+        }, emulator);
         while (true)
             waitSomeTime();
-    }
-
-    private static String getFile(String relativePath, String filetype) {
-        File file = new File(relativePath);
-        if (!file.isFile()) {
-            System.out.println("[ERROR] " + filetype + " must be set to run Android");
-            System.exit(1);
-        }
-        return file.getAbsolutePath();
     }
 
     private static void waitSomeTime() {

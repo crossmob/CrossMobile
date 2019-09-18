@@ -77,7 +77,7 @@
             </plugin>
         </plugins>
     </repository>
-<repository id="crossmobile" name="CrossMobile" url="https://mvn.crossmobile.org/content/repositories/crossmobile/">
+    <repository id="crossmobile" name="CrossMobile" url="https://mvn.crossmobile.org/content/repositories/crossmobile/">
         <plugins>
             <plugin>
                 <groupId>org.crossmobile</groupId>

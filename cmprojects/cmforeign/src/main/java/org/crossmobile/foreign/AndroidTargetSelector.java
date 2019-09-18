@@ -21,6 +21,8 @@ import org.crossmobile.foreign.ConnectedAndroidDispatcher.AListener;
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.prefs.Preferences;
@@ -28,6 +30,7 @@ import java.util.prefs.Preferences;
 public class AndroidTargetSelector extends JDialog implements AListener {
 
     private static final String LAST_DEVICE = "last.selected.device";
+    private final File emulator;
 
     private List<AndroidDevice> devicelist;
     private String last_selected = Preferences.userNodeForPackage(AndroidTargetSelector.class).get(LAST_DEVICE, null);
@@ -36,9 +39,13 @@ public class AndroidTargetSelector extends JDialog implements AListener {
     private boolean onlyTheFirstTime = true;
 
     @SuppressWarnings("OverridableMethodCallInConstructor")
-    public AndroidTargetSelector(Consumer<String> callback) {
+    public AndroidTargetSelector(Consumer<String> callback, File emulator) {
         super((JDialog) null, true);
+        this.emulator = emulator;
         initComponents();
+        if (!emulator.isFile() || getEmulators().isEmpty())
+            emuLaunchB.setVisible(false);
+
         this.callback = callback;
         ConnectedAndroidDispatcher.addListener(AndroidTargetSelector.this);
 
@@ -111,6 +118,20 @@ public class AndroidTargetSelector extends JDialog implements AListener {
         return -1;
     }
 
+    private List<String> getEmulators() {
+        List<String> devices = new ArrayList<>();
+        Commander c = new Commander(emulator.getAbsolutePath(), "-list-avds");
+        c.setCurrentDir(emulator.getParentFile());
+        c.setOutListener(s -> {
+            if (!s.trim().isEmpty())
+                devices.add(s);
+        });
+        c.setErrListener(System.out::println);
+        c.exec();
+        c.waitFor();
+        return devices;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -124,6 +145,9 @@ public class AndroidTargetSelector extends JDialog implements AListener {
         jScrollPane2 = new javax.swing.JScrollPane();
         deviceL = new javax.swing.JList<>();
         jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        emuLaunchB = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
         okB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -136,7 +160,7 @@ public class AndroidTargetSelector extends JDialog implements AListener {
         jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 4, 4, 1));
         getContentPane().add(jLabel1, java.awt.BorderLayout.PAGE_START);
 
-        deviceL.setFont(deviceL.getFont().deriveFont(deviceL.getFont().getSize()+1f));
+        deviceL.setFont(deviceL.getFont().deriveFont(deviceL.getFont().getSize() + 1f));
         deviceL.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         deviceL.setFixedCellHeight(32);
         deviceL.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -153,7 +177,17 @@ public class AndroidTargetSelector extends JDialog implements AListener {
 
         getContentPane().add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
-        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        emuLaunchB.setText("Launch emulator");
+        emuLaunchB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emuLaunchBActionPerformed(evt);
+            }
+        });
+        jPanel2.add(emuLaunchB);
+
+        jPanel1.add(jPanel2, java.awt.BorderLayout.WEST);
 
         okB.setText("Accept");
         okB.setEnabled(false);
@@ -162,7 +196,9 @@ public class AndroidTargetSelector extends JDialog implements AListener {
                 okBActionPerformed(evt);
             }
         });
-        jPanel1.add(okB);
+        jPanel3.add(okB);
+
+        jPanel1.add(jPanel3, java.awt.BorderLayout.EAST);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_END);
 
@@ -188,10 +224,41 @@ public class AndroidTargetSelector extends JDialog implements AListener {
             okBActionPerformed(null);
     }//GEN-LAST:event_deviceLMouseClicked
 
+    private void emuLaunchBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emuLaunchBActionPerformed
+        List<String> devices = getEmulators();
+        if (devices.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No installed emulators found", "Launch emulator", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JPanel options = new JPanel();
+            options.setLayout(new BoxLayout(options, BoxLayout.Y_AXIS));
+            ButtonGroup group = new ButtonGroup();
+            for (String device : devices) {
+                JRadioButton radioButton = new JRadioButton(device.replace('_', ' '));
+                group.add(radioButton);
+                options.add(radioButton);
+                radioButton.setActionCommand(device);
+            }
+            int result = JOptionPane.showConfirmDialog(this, options, "Launch emulator", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+            if (result == JOptionPane.OK_OPTION && group.getSelection() != null) {
+                Commander launch = new Commander(emulator.getAbsolutePath(), "-avd", group.getSelection().getActionCommand());
+                launch.setCurrentDir(emulator.getParentFile());
+                launch.setDebug(true);
+                launch.setOutListener(s -> {
+                });
+                launch.setErrListener(s -> {
+                });
+                launch.exec();
+            }
+        }
+    }//GEN-LAST:event_emuLaunchBActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> deviceL;
+    private javax.swing.JButton emuLaunchB;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton okB;
     // End of variables declaration//GEN-END:variables
