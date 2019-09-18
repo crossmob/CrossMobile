@@ -51,7 +51,7 @@ gradle --no-daemon compileDebugSources --warning-mode all -g ./cache
 
 for art in $PACKAGES; do
     LOC=`find cache/caches/modules-2 -name $art'*' | grep /$art/ | grep [aj]ar`
-    COUNT=`echo $LOC | wc -l`
+    COUNT=`echo $LOC | wc -w`
     if [ $COUNT -ne 1 ] ; then
         error "Unable to locate artifact $art"
     fi
