@@ -108,8 +108,6 @@ public class Templates {
             + "\t<true/>\n"
             + "\t<key>UIInterfaceOrientation</key>\n"
             + "\t<string>PROPERTY_INTERFACE_ORIENTATION</string>\n"
-            + "PROPERTY_MAIN_NIB_PHONE"
-            + "PROPERTY_MAIN_NIB_PAD"
             + "PROPERTY_MAIN_STORYBOARD"
             + "PROPERTY_LAUNCH_STORYBOARD"
             + "PROPERTY_SUPPORTED_INTERFACE_ORIENTATIONS\n"
