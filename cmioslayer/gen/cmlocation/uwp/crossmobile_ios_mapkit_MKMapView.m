@@ -39,6 +39,19 @@
 
 @implementation crossmobile_ios_mapkit_MKMapView$Ext
 
+// (UIView) @property(nonatomic, copy) NSString *accessibilityIdentifier;
+- (void) setAccessibilityIdentifier___java_lang_String:(NSString*) accessibilityIdentifier 
+{
+    [super setAccessibilityIdentifier:(accessibilityIdentifier == JAVA_NULL ? nil : accessibilityIdentifier)];
+}
+
+// (UIView) @property(nonatomic, copy) NSString *accessibilityIdentifier;
+- (NSString*) accessibilityIdentifier__
+{
+    NSString* re$ult = [super accessibilityIdentifier];
+    return [(re$ult ? re$ult : JAVA_NULL) retain];
+}
+
 // (UIView) @property(nonatomic) CGFloat alpha;
 - (void) setAlpha___double:(double) alpha 
 {

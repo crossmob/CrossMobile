@@ -30,6 +30,19 @@
 
 @implementation crossmobile_ios_uikit_UIActivityIndicatorView$Ext
 
+// (UIView) @property(nonatomic, copy) NSString *accessibilityIdentifier;
+- (void) setAccessibilityIdentifier___java_lang_String:(NSString*) accessibilityIdentifier 
+{
+    [super setAccessibilityIdentifier:(accessibilityIdentifier == JAVA_NULL ? nil : accessibilityIdentifier)];
+}
+
+// (UIView) @property(nonatomic, copy) NSString *accessibilityIdentifier;
+- (NSString*) accessibilityIdentifier__
+{
+    NSString* re$ult = [super accessibilityIdentifier];
+    return [(re$ult ? re$ult : JAVA_NULL) retain];
+}
+
 // (UIActivityIndicatorView) @property(nonatomic) UIActivityIndicatorViewStyle activityIndicatorViewStyle ;
 - (void) setActivityIndicatorViewStyle___int:(int) activityIndicatorViewStyle 
 {

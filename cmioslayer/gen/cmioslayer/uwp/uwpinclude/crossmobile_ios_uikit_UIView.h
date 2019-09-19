@@ -53,6 +53,8 @@ CM_EXPORT_CLASS
 + (void) transitionWithView___crossmobile_ios_uikit_UIView_double_int_java_lang_Runnable_org_robovm_objc_block_VoidBlock1:(UIView*) view :(double) duration :(int) options :(id<java_lang_Runnable>) animations :(id<org_robovm_objc_block_VoidBlock1>) completion ;
 - (instancetype) __init_crossmobile_ios_uikit_UIView__;
 - (instancetype) __init_crossmobile_ios_uikit_UIView___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) frame ;
+- (void) setAccessibilityIdentifier___java_lang_String:(NSString*) accessibilityIdentifier ;
+- (NSString*) accessibilityIdentifier__;
 - (void) setAlpha___double:(double) alpha ;
 - (double) alpha__;
 - (void) setAutoresizesSubviews___boolean:(BOOL) autoresizesSubviews ;

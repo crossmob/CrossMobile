@@ -570,6 +570,7 @@ crossmobile/ios/uikit/NSTextAlignment.class v8
 crossmobile/ios/uikit/UIAcceleration.class v8
 crossmobile/ios/uikit/UIAccelerometer.class v8
 crossmobile/ios/uikit/UIAccelerometerDelegate.class v8
+crossmobile/ios/uikit/UIAccessibilityIdentification.class v8
 crossmobile/ios/uikit/UIActionSheet.class v8
 crossmobile/ios/uikit/UIActionSheetDelegate.class v8
 crossmobile/ios/uikit/UIActivity.class v8
@@ -1012,6 +1013,7 @@ crossmobile/ios/uikit/NSTextAlignment.class v8
 crossmobile/ios/uikit/UIAcceleration.class v8
 crossmobile/ios/uikit/UIAccelerometer.class v8
 crossmobile/ios/uikit/UIAccelerometerDelegate.class v8
+crossmobile/ios/uikit/UIAccessibilityIdentification.class v8
 crossmobile/ios/uikit/UIActionSheet.class v8
 crossmobile/ios/uikit/UIActionSheetDelegate.class v8
 crossmobile/ios/uikit/UIActivity.class v8
@@ -1382,6 +1384,7 @@ native/crossmobile_ios_uikit_NSLayoutYAxisAnchor.h
 native/crossmobile_ios_uikit_UIAcceleration.h
 native/crossmobile_ios_uikit_UIAccelerometer.h
 native/crossmobile_ios_uikit_UIAccelerometerDelegate.h
+native/crossmobile_ios_uikit_UIAccessibilityIdentification.h
 native/crossmobile_ios_uikit_UIActionSheet.h
 native/crossmobile_ios_uikit_UIActionSheetDelegate.h
 native/crossmobile_ios_uikit_UIActivity.h
@@ -1946,6 +1949,7 @@ crossmobile/ios/uikit/NSTextAlignment.class v8
 crossmobile/ios/uikit/UIAcceleration.class v8
 crossmobile/ios/uikit/UIAccelerometer.class v8
 crossmobile/ios/uikit/UIAccelerometerDelegate.class v8
+crossmobile/ios/uikit/UIAccessibilityIdentification.class v8
 crossmobile/ios/uikit/UIActionSheet.class v8
 crossmobile/ios/uikit/UIActionSheetDelegate.class v8
 crossmobile/ios/uikit/UIActivity.class v8
@@ -2842,6 +2846,7 @@ crossmobile/ios/uikit/NSTextAlignment.class v8
 crossmobile/ios/uikit/UIAcceleration.class v8
 crossmobile/ios/uikit/UIAccelerometer.class v8
 crossmobile/ios/uikit/UIAccelerometerDelegate.class v8
+crossmobile/ios/uikit/UIAccessibilityIdentification.class v8
 crossmobile/ios/uikit/UIActionSheet.class v8
 crossmobile/ios/uikit/UIActionSheetDelegate.class v8
 crossmobile/ios/uikit/UIActivity.class v8

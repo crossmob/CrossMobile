@@ -1047,6 +1047,14 @@
       "code": "- (void) accelerometer:(UIAccelerometer *) accelerometer didAccelerate:(UIAcceleration *) acceleration\n{\n    [self didAccelerate___crossmobile_ios_uikit_UIAccelerometer_crossmobile_ios_uikit_UIAcceleration:(accelerometer ? accelerometer : JAVA_NULL) :(acceleration ? acceleration : JAVA_NULL)];\n}\n\n"
     }
   },
+  "crossmobile.ios.uikit.UIAccessibilityIdentification": {
+    "accessibilityIdentifier()": {
+      "code": "- (NSString *) accessibilityIdentifier\n{\n    NSString * re$ult = [self accessibilityIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+    },
+    "setAccessibilityIdentifier(java.lang.String)": {
+      "code": "- (void) setAccessibilityIdentifier:(NSString *) accessibilityIdentifier\n{\n    [self setAccessibilityIdentifier___java_lang_String:(accessibilityIdentifier ? accessibilityIdentifier : JAVA_NULL)];\n}\n\n"
+    }
+  },
   "crossmobile.ios.uikit.UIActionSheet": {
     "addButtonWithTitle(java.lang.String)": {
       "code": "- (NSInteger) addButtonWithTitle:(NSString *) title\n{\n    return [self addButtonWithTitle___java_lang_String:(title ? title : JAVA_NULL)];\n}\n\n"

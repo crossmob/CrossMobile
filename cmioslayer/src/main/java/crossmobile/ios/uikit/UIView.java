@@ -52,7 +52,7 @@ import static org.crossmobile.bind.system.Debug.Live_Graphics_Debug;
  * interaction with that area.
  */
 @CMClass
-public class UIView extends UIResponder implements UIAppearance, UIAppearanceContainer {
+public class UIView extends UIResponder implements UIAccessibilityIdentification, UIAppearance, UIAppearanceContainer {
 
     /* Constants */
     public static final double NoIntrinsicMetric = 0;
@@ -131,6 +131,7 @@ public class UIView extends UIResponder implements UIAppearance, UIAppearanceCon
     private UILayoutGuide safeAreaLayoutGuide;
     private boolean insetsLayoutMarginsFromSafeArea = true;
     private int userInterfaceLayoutDirection = UIApplication.sharedApplication().userInterfaceLayoutDirection();
+    private String accessibilityIdentifier;
     private boolean debugSelf;
 
     private Anchor anchors;
@@ -2558,6 +2559,16 @@ public class UIView extends UIResponder implements UIAppearance, UIAppearanceCon
 
     private void setFrameImpl(CGRect otherFrame) {
         setFrameImpl(otherFrame.getOrigin().getX(), otherFrame.getOrigin().getY(), otherFrame.getSize().getWidth(), otherFrame.getSize().getHeight());
+    }
+
+    @Override
+    public void setAccessibilityIdentifier(String accessibilityIdentifier) {
+        this.accessibilityIdentifier = accessibilityIdentifier;
+    }
+
+    @Override
+    public String accessibilityIdentifier() {
+        return accessibilityIdentifier;
     }
 
     private class Anchor {

@@ -33,6 +33,19 @@
 
 @implementation crossmobile_ios_uikit_UIView$Ext
 
+// (UIView) @property(nonatomic, copy) NSString *accessibilityIdentifier;
+- (void) setAccessibilityIdentifier___java_lang_String:(NSString*) accessibilityIdentifier 
+{
+    [super setAccessibilityIdentifier:(accessibilityIdentifier == JAVA_NULL ? nil : accessibilityIdentifier)];
+}
+
+// (UIView) @property(nonatomic, copy) NSString *accessibilityIdentifier;
+- (NSString*) accessibilityIdentifier__
+{
+    NSString* re$ult = [super accessibilityIdentifier];
+    return [(re$ult ? re$ult : JAVA_NULL) retain];
+}
+
 // (UIView) @property(nonatomic) CGFloat alpha;
 - (void) setAlpha___double:(double) alpha 
 {
@@ -958,6 +971,19 @@
 - (instancetype) __init_crossmobile_ios_uikit_UIView___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) frame 
 {
     return [self initWithFrame:[frame getCGRect]];
+}
+
+// direct binding of: @property(nonatomic, copy) NSString *accessibilityIdentifier;
+- (void) setAccessibilityIdentifier___java_lang_String:(NSString*) accessibilityIdentifier 
+{
+    [self setAccessibilityIdentifier:(accessibilityIdentifier == JAVA_NULL ? nil : accessibilityIdentifier)];
+}
+
+// direct binding of: @property(nonatomic, copy) NSString *accessibilityIdentifier;
+- (NSString*) accessibilityIdentifier__
+{
+    NSString* re$ult = [self accessibilityIdentifier];
+    return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 
 // direct binding of: @property(nonatomic) CGFloat alpha;
