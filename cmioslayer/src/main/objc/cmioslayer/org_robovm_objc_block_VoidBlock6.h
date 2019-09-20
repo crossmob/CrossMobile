@@ -5,7 +5,7 @@
 __declspec(dllexport)
 #endif
 @protocol org_robovm_objc_block_VoidBlock6
-- (void) exec___java_lang_Object :(java_lang_Object*)n1 :(java_lang_Object*)n2 :(java_lang_Object*)n3 :(java_lang_Object*)n4 :(java_lang_Object*)n5 :(java_lang_Object*)n6;
+- (void) invoke___java_lang_Object_java_lang_Object_java_lang_Object_java_lang_Object_java_lang_Object_java_lang_Object :(java_lang_Object*)n1 :(java_lang_Object*)n2 :(java_lang_Object*)n3 :(java_lang_Object*)n4 :(java_lang_Object*)n5 :(java_lang_Object*)n6;
 @end
 
 @interface org_robovm_objc_block_VoidBlock6 : java_lang_Object <org_robovm_objc_block_VoidBlock6>

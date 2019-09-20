@@ -36,7 +36,7 @@ typedef NSString *UIActivityType;
 #define MEMBER_GET(OBJ,TYPE,CLASS,SELECTOR)     ((TYPE (*)(id, SEL))[[CLASS class] instanceMethodForSelector: @selector(SELECTOR)])(OBJ, @selector(SELECTOR))
 #define MEMBER_SET(OBJ,TYPE,CLASS,SELECTOR,VALUE)     ((void(*)(id, SEL, TYPE))[[CLASS class] instanceMethodForSelector: @selector(SELECTOR)])(OBJ, @selector(SELECTOR), (VALUE))
 
-void xmlvm_init();
+void xmlvm_init(void);
 
 void xmlvm_error(NSString* msg);
 int isObjectInstanceOf(id * obj, char* className);
