@@ -26,10 +26,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class ReverseBlockRegistry {
+public class ReverseImportRegistry {
     private final Map<String, Map<Class<?>, HandlerData>> registry = new HashMap<>();   // plugin, object, ...
 
-    public Collection<String> getIncludesFrom(Class<?> containerObject, String execSignature) {
+    public Collection<String> getReverseImports(Class<?> containerObject, String execSignature) {
         String plugin = PluginRegistry.getPlugin(containerObject.getName());
         HandlerData handlerData = registry.getOrDefault(plugin, Collections.emptyMap()).getOrDefault(containerObject, null);
         return handlerData == null ? Collections.emptyList() : handlerData.getImports(execSignature);

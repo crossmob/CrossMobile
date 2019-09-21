@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.foundation.NSURLSessionDownloadTask definition
+// crossmobile_ios_foundation_NSURLSessionDownloadTask definition
 
 #import "xmlvm.h"
 #import <CoreGraphics/CoreGraphics.h>

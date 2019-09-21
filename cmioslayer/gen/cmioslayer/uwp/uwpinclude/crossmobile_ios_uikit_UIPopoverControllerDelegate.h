@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.uikit.UIPopoverControllerDelegate definition
+// crossmobile_ios_uikit_UIPopoverControllerDelegate definition
 
 #import "xmlvm.h"
 #import <CoreGraphics/CoreGraphics.h>

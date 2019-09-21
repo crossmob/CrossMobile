@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.corelocation.CLRegion definition
+// crossmobile_ios_corelocation_CLRegion definition
 
 #import "xmlvm.h"
 #import <CoreLocation/CoreLocation.h>

@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.gamekit.GKPeerPickerControllerDelegate definition
+// crossmobile_ios_gamekit_GKPeerPickerControllerDelegate definition
 
 #import "xmlvm.h"
 #import <GameKit/GameKit.h>

@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.messageui.MFMessageComposeViewController definition
+// crossmobile_ios_messageui_MFMessageComposeViewController definition
 
 #import "xmlvm.h"
 #import <MessageUI/MessageUI.h>

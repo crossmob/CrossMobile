@@ -21,8 +21,8 @@ import org.crossmobile.plugin.model.NType;
 
 import static org.crossmobile.plugin.reg.TypeRegistry.getJavaBoxed;
 import static org.crossmobile.plugin.reg.TypeRegistry.getObjCUnboxed;
-import static org.crossmobile.plugin.utils.Texters.toObjC;
-import static org.crossmobile.utils.NamingUtils.getClassNameBare;
+import static org.crossmobile.utils.NamingUtils.toObjC;
+import static org.crossmobile.utils.ReflectionUtils.getBareClass;
 
 class EmitterPrimitive extends Emitter {
 
@@ -37,7 +37,7 @@ class EmitterPrimitive extends Emitter {
     EmitterPrimitive(String paramName, String varName, NType type, boolean boxed, boolean forward) {
         super(paramName, varName, type, boxed, forward);
         this.boxed = boxed;
-        this.boxedType = toObjC(getClassNameBare(getJavaBoxed(type.getType())));
+        this.boxedType = toObjC(getJavaBoxed(type.getType()));
         this.boxedName = getObjCUnboxed(type.getType());
     }
 

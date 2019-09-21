@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.mapkit.MKOverlay definition
+// crossmobile_ios_mapkit_MKOverlay definition
 
 #import "xmlvm.h"
 #import <CoreLocation/CoreLocation.h>

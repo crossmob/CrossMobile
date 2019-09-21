@@ -1,633 +1,1969 @@
 {
   "crossmobile.ios.corelocation.CLHeading": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "description()": {
-      "code": "- (NSString *) description\n{\n    NSString * re$ult = [self description__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) description\n{\n    NSString * re$ult = [self description__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) description__\n{\n    NSString* re$ult = [super description];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "headingAccuracy()": {
-      "code": "- (CLLocationDirection) headingAccuracy\n{\n    return [self headingAccuracy__];\n}\n\n"
+      "reverse": "- (CLLocationDirection) headingAccuracy\n{\n    return [self headingAccuracy__];\n}\n\n",
+      "super": "- (double) headingAccuracy__\n{\n    return [super headingAccuracy];\n}\n\n"
     },
     "magneticHeading()": {
-      "code": "- (CLLocationDirection) magneticHeading\n{\n    return [self magneticHeading__];\n}\n\n"
+      "reverse": "- (CLLocationDirection) magneticHeading\n{\n    return [self magneticHeading__];\n}\n\n",
+      "super": "- (double) magneticHeading__\n{\n    return [super magneticHeading];\n}\n\n"
     },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
     "timestamp()": {
-      "code": "- (NSDate *) timestamp\n{\n    NSDate * re$ult = [self timestamp__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSDate *) timestamp\n{\n    NSDate * re$ult = [self timestamp__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSDate*) timestamp__\n{\n    NSDate* re$ult = [super timestamp];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSDate"
+      ]
     },
     "trueHeading()": {
-      "code": "- (CLLocationDirection) trueHeading\n{\n    return [self trueHeading__];\n}\n\n"
+      "reverse": "- (CLLocationDirection) trueHeading\n{\n    return [self trueHeading__];\n}\n\n",
+      "super": "- (double) trueHeading__\n{\n    return [super trueHeading];\n}\n\n"
     },
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null,
     "x()": {
-      "code": "- (CLHeadingComponentValue) x\n{\n    return [self x__];\n}\n\n"
+      "reverse": "- (CLHeadingComponentValue) x\n{\n    return [self x__];\n}\n\n",
+      "super": "- (double) x__\n{\n    return [super x];\n}\n\n"
     },
     "y()": {
-      "code": "- (CLHeadingComponentValue) y\n{\n    return [self y__];\n}\n\n"
+      "reverse": "- (CLHeadingComponentValue) y\n{\n    return [self y__];\n}\n\n",
+      "super": "- (double) y__\n{\n    return [super y];\n}\n\n"
     },
     "z()": {
-      "code": "- (CLHeadingComponentValue) z\n{\n    return [self z__];\n}\n\n"
+      "reverse": "- (CLHeadingComponentValue) z\n{\n    return [self z__];\n}\n\n",
+      "super": "- (double) z__\n{\n    return [super z];\n}\n\n"
     }
   },
   "crossmobile.ios.corelocation.CLLocation": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "altitude()": {
-      "code": "- (CLLocationDistance) altitude\n{\n    return [self altitude__];\n}\n\n"
+      "reverse": "- (CLLocationDistance) altitude\n{\n    return [self altitude__];\n}\n\n",
+      "super": "- (double) altitude__\n{\n    return [super altitude];\n}\n\n"
     },
     "coordinate()": {
-      "code": "- (CLLocationCoordinate2D) coordinate\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* re$ult = [self coordinate__];\n    CLLocationCoordinate2D re$ult$conv = [re$ult getCLLocationCoordinate2D];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n"
+      "reverse": "- (CLLocationCoordinate2D) coordinate\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* re$ult = [self coordinate__];\n    CLLocationCoordinate2D re$ult$conv = [re$ult getCLLocationCoordinate2D];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_corelocation_CLLocationCoordinate2D*) coordinate__\n{\n    return [[crossmobile_ios_corelocation_CLLocationCoordinate2D alloc] initWithCLLocationCoordinate2D:[super coordinate]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocationCoordinate2D"
+      ]
     },
     "course()": {
-      "code": "- (CLLocationDirection) course\n{\n    return [self course__];\n}\n\n"
+      "reverse": "- (CLLocationDirection) course\n{\n    return [self course__];\n}\n\n",
+      "super": "- (double) course__\n{\n    return [super course];\n}\n\n"
     },
     "distanceFromLocation(crossmobile.ios.corelocation.CLLocation)": {
-      "code": "- (CLLocationDistance) distanceFromLocation:(CLLocation *) location\n{\n    return [self distanceFromLocation___crossmobile_ios_corelocation_CLLocation:(location ? location : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (CLLocationDistance) distanceFromLocation:(CLLocation *) location\n{\n    return [self distanceFromLocation___crossmobile_ios_corelocation_CLLocation:(location ? location : JAVA_NULL)];\n}\n\n",
+      "super": "- (double) distanceFromLocation___crossmobile_ios_corelocation_CLLocation:(CLLocation*) location \n{\n    return [super distanceFromLocation:(location == JAVA_NULL ? nil : location)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocation"
+      ]
     },
     "horizontalAccuracy()": {
-      "code": "- (CLLocationAccuracy) horizontalAccuracy\n{\n    return [self horizontalAccuracy__];\n}\n\n"
+      "reverse": "- (CLLocationAccuracy) horizontalAccuracy\n{\n    return [self horizontalAccuracy__];\n}\n\n",
+      "super": "- (double) horizontalAccuracy__\n{\n    return [super horizontalAccuracy];\n}\n\n"
     },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
     "speed()": {
-      "code": "- (CLLocationSpeed) speed\n{\n    return [self speed__];\n}\n\n"
+      "reverse": "- (CLLocationSpeed) speed\n{\n    return [self speed__];\n}\n\n",
+      "super": "- (double) speed__\n{\n    return [super speed];\n}\n\n"
     },
     "timestamp()": {
-      "code": "- (NSDate *) timestamp\n{\n    NSDate * re$ult = [self timestamp__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSDate *) timestamp\n{\n    NSDate * re$ult = [self timestamp__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSDate*) timestamp__\n{\n    NSDate* re$ult = [super timestamp];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSDate"
+      ]
     },
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null,
     "verticalAccuracy()": {
-      "code": "- (CLLocationAccuracy) verticalAccuracy\n{\n    return [self verticalAccuracy__];\n}\n\n"
+      "reverse": "- (CLLocationAccuracy) verticalAccuracy\n{\n    return [self verticalAccuracy__];\n}\n\n",
+      "super": "- (double) verticalAccuracy__\n{\n    return [super verticalAccuracy];\n}\n\n"
     }
   },
   "crossmobile.ios.corelocation.CLLocationManager": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "delegate()": {
-      "code": "- (id<CLLocationManagerDelegate>) delegate\n{\n    id<CLLocationManagerDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (id<CLLocationManagerDelegate>) delegate\n{\n    id<CLLocationManagerDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (id<CLLocationManagerDelegate>) delegate__\n{\n    id<CLLocationManagerDelegate> re$ult = [super delegate];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocationManagerDelegate"
+      ]
     },
     "desiredAccuracy()": {
-      "code": "- (CLLocationAccuracy) desiredAccuracy\n{\n    return [self desiredAccuracy__];\n}\n\n"
+      "reverse": "- (CLLocationAccuracy) desiredAccuracy\n{\n    return [self desiredAccuracy__];\n}\n\n",
+      "super": "- (double) desiredAccuracy__\n{\n    return [super desiredAccuracy];\n}\n\n"
     },
     "dismissHeadingCalibrationDisplay()": {
-      "code": "- (void) dismissHeadingCalibrationDisplay\n{\n    [self dismissHeadingCalibrationDisplay__];\n}\n\n"
+      "reverse": "- (void) dismissHeadingCalibrationDisplay\n{\n    [self dismissHeadingCalibrationDisplay__];\n}\n\n",
+      "super": "- (void) dismissHeadingCalibrationDisplay__\n{\n    [super dismissHeadingCalibrationDisplay];\n}\n\n"
     },
     "distanceFilter()": {
-      "code": "- (CLLocationDistance) distanceFilter\n{\n    return [self distanceFilter__];\n}\n\n"
+      "reverse": "- (CLLocationDistance) distanceFilter\n{\n    return [self distanceFilter__];\n}\n\n",
+      "super": "- (double) distanceFilter__\n{\n    return [super distanceFilter];\n}\n\n"
     },
     "heading()": {
-      "code": "- (CLHeading *) heading\n{\n    CLHeading * re$ult = [self heading__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (CLHeading *) heading\n{\n    CLHeading * re$ult = [self heading__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (CLHeading*) heading__\n{\n    CLHeading* re$ult = [super heading];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLHeading"
+      ]
     },
     "headingFilter()": {
-      "code": "- (CLLocationDegrees) headingFilter\n{\n    return [self headingFilter__];\n}\n\n"
+      "reverse": "- (CLLocationDegrees) headingFilter\n{\n    return [self headingFilter__];\n}\n\n",
+      "super": "- (double) headingFilter__\n{\n    return [super headingFilter];\n}\n\n"
     },
     "headingOrientation()": {
-      "code": "- (CLDeviceOrientation) headingOrientation\n{\n    return [self headingOrientation__];\n}\n\n"
+      "reverse": "- (CLDeviceOrientation) headingOrientation\n{\n    return [self headingOrientation__];\n}\n\n",
+      "super": "- (int) headingOrientation__\n{\n    return [super headingOrientation];\n}\n\n"
     },
     "location()": {
-      "code": "- (CLLocation *) location\n{\n    CLLocation * re$ult = [self location__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (CLLocation *) location\n{\n    CLLocation * re$ult = [self location__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (CLLocation*) location__\n{\n    CLLocation* re$ult = [super location];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocation"
+      ]
     },
     "maximumRegionMonitoringDistance()": {
-      "code": "- (CLLocationDistance) maximumRegionMonitoringDistance\n{\n    return [self maximumRegionMonitoringDistance__];\n}\n\n"
+      "reverse": "- (CLLocationDistance) maximumRegionMonitoringDistance\n{\n    return [self maximumRegionMonitoringDistance__];\n}\n\n",
+      "super": "- (double) maximumRegionMonitoringDistance__\n{\n    return [super maximumRegionMonitoringDistance];\n}\n\n"
     },
     "monitoredRegions()": {
-      "code": "- (NSSet<__kindof CLRegion *> *) monitoredRegions\n{\n    NSSet<__kindof CLRegion *> * re$ult = [self monitoredRegions__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSSet<__kindof CLRegion *> *) monitoredRegions\n{\n    NSSet<__kindof CLRegion *> * re$ult = [self monitoredRegions__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSSet*) monitoredRegions__\n{\n    NSSet* re$ult = [super monitoredRegions];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_util_Set"
+      ]
     },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
     "purpose()": {
-      "code": "- (NSString *) purpose\n{\n    NSString * re$ult = [self purpose__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) purpose\n{\n    NSString * re$ult = [self purpose__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) purpose__\n{\n    NSString* re$ult = [super purpose];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setDelegate(crossmobile.ios.corelocation.CLLocationManagerDelegate)": {
-      "code": "- (void) setDelegate:(id<CLLocationManagerDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_corelocation_CLLocationManagerDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setDelegate:(id<CLLocationManagerDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_corelocation_CLLocationManagerDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setDelegate___crossmobile_ios_corelocation_CLLocationManagerDelegate:(id<CLLocationManagerDelegate>) delegate \n{\n    objc_setAssociatedObject(self, @selector(setDelegate:), delegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);\n    [super setDelegate:(delegate == JAVA_NULL ? nil : delegate)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocationManagerDelegate"
+      ]
     },
     "setDesiredAccuracy(double)": {
-      "code": "- (void) setDesiredAccuracy:(CLLocationAccuracy) desiredAccuracy\n{\n    [self setDesiredAccuracy___double:desiredAccuracy];\n}\n\n"
+      "reverse": "- (void) setDesiredAccuracy:(CLLocationAccuracy) desiredAccuracy\n{\n    [self setDesiredAccuracy___double:desiredAccuracy];\n}\n\n",
+      "super": "- (void) setDesiredAccuracy___double:(double) desiredAccuracy \n{\n    [super setDesiredAccuracy:desiredAccuracy];\n}\n\n"
     },
     "setDistanceFilter(double)": {
-      "code": "- (void) setDistanceFilter:(CLLocationDistance) distanceFilter\n{\n    [self setDistanceFilter___double:distanceFilter];\n}\n\n"
+      "reverse": "- (void) setDistanceFilter:(CLLocationDistance) distanceFilter\n{\n    [self setDistanceFilter___double:distanceFilter];\n}\n\n",
+      "super": "- (void) setDistanceFilter___double:(double) distanceFilter \n{\n    [super setDistanceFilter:distanceFilter];\n}\n\n"
     },
     "setHeadingFilter(double)": {
-      "code": "- (void) setHeadingFilter:(CLLocationDegrees) headingFilter\n{\n    [self setHeadingFilter___double:headingFilter];\n}\n\n"
+      "reverse": "- (void) setHeadingFilter:(CLLocationDegrees) headingFilter\n{\n    [self setHeadingFilter___double:headingFilter];\n}\n\n",
+      "super": "- (void) setHeadingFilter___double:(double) headingFilter \n{\n    [super setHeadingFilter:headingFilter];\n}\n\n"
     },
     "setHeadingOrientation(int)": {
-      "code": "- (void) setHeadingOrientation:(CLDeviceOrientation) headingOrientation\n{\n    [self setHeadingOrientation___int:headingOrientation];\n}\n\n"
+      "reverse": "- (void) setHeadingOrientation:(CLDeviceOrientation) headingOrientation\n{\n    [self setHeadingOrientation___int:headingOrientation];\n}\n\n",
+      "super": "- (void) setHeadingOrientation___int:(int) headingOrientation \n{\n    [super setHeadingOrientation:headingOrientation];\n}\n\n"
     },
     "setPurpose(java.lang.String)": {
-      "code": "- (void) setPurpose:(NSString *) purpose\n{\n    [self setPurpose___java_lang_String:(purpose ? purpose : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setPurpose:(NSString *) purpose\n{\n    [self setPurpose___java_lang_String:(purpose ? purpose : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setPurpose___java_lang_String:(NSString*) purpose \n{\n    [super setPurpose:(purpose == JAVA_NULL ? nil : purpose)];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
     "startMonitoringForRegion(crossmobile.ios.corelocation.CLRegion,double)": {
-      "code": "- (void) startMonitoringForRegion:(CLRegion *) region desiredAccuracy:(CLLocationAccuracy) accuracy\n{\n    [self startMonitoringForRegion___crossmobile_ios_corelocation_CLRegion_double:(region ? region : JAVA_NULL) :accuracy];\n}\n\n"
+      "reverse": "- (void) startMonitoringForRegion:(CLRegion *) region desiredAccuracy:(CLLocationAccuracy) accuracy\n{\n    [self startMonitoringForRegion___crossmobile_ios_corelocation_CLRegion_double:(region ? region : JAVA_NULL) :accuracy];\n}\n\n",
+      "super": "- (void) startMonitoringForRegion___crossmobile_ios_corelocation_CLRegion_double:(CLRegion*) region :(double) accuracy \n{\n    [super startMonitoringForRegion:(region == JAVA_NULL ? nil : region) desiredAccuracy:accuracy];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLRegion"
+      ]
     },
     "startMonitoringSignificantLocationChanges()": {
-      "code": "- (void) startMonitoringSignificantLocationChanges\n{\n    [self startMonitoringSignificantLocationChanges__];\n}\n\n"
+      "reverse": "- (void) startMonitoringSignificantLocationChanges\n{\n    [self startMonitoringSignificantLocationChanges__];\n}\n\n",
+      "super": "- (void) startMonitoringSignificantLocationChanges__\n{\n    [super startMonitoringSignificantLocationChanges];\n}\n\n"
     },
     "startUpdatingHeading()": {
-      "code": "- (void) startUpdatingHeading\n{\n    [self startUpdatingHeading__];\n}\n\n"
+      "reverse": "- (void) startUpdatingHeading\n{\n    [self startUpdatingHeading__];\n}\n\n",
+      "super": "- (void) startUpdatingHeading__\n{\n    [super startUpdatingHeading];\n}\n\n"
     },
     "startUpdatingLocation()": {
-      "code": "- (void) startUpdatingLocation\n{\n    [self startUpdatingLocation__];\n}\n\n"
+      "reverse": "- (void) startUpdatingLocation\n{\n    [self startUpdatingLocation__];\n}\n\n",
+      "super": "- (void) startUpdatingLocation__\n{\n    [super startUpdatingLocation];\n}\n\n"
     },
     "stopMonitoringForRegion(crossmobile.ios.corelocation.CLRegion)": {
-      "code": "- (void) stopMonitoringForRegion:(CLRegion *) region\n{\n    [self stopMonitoringForRegion___crossmobile_ios_corelocation_CLRegion:(region ? region : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) stopMonitoringForRegion:(CLRegion *) region\n{\n    [self stopMonitoringForRegion___crossmobile_ios_corelocation_CLRegion:(region ? region : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) stopMonitoringForRegion___crossmobile_ios_corelocation_CLRegion:(CLRegion*) region \n{\n    [super stopMonitoringForRegion:(region == JAVA_NULL ? nil : region)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLRegion"
+      ]
     },
     "stopMonitoringSignificantLocationChanges()": {
-      "code": "- (void) stopMonitoringSignificantLocationChanges\n{\n    [self stopMonitoringSignificantLocationChanges__];\n}\n\n"
+      "reverse": "- (void) stopMonitoringSignificantLocationChanges\n{\n    [self stopMonitoringSignificantLocationChanges__];\n}\n\n",
+      "super": "- (void) stopMonitoringSignificantLocationChanges__\n{\n    [super stopMonitoringSignificantLocationChanges];\n}\n\n"
     },
     "stopUpdatingHeading()": {
-      "code": "- (void) stopUpdatingHeading\n{\n    [self stopUpdatingHeading__];\n}\n\n"
+      "reverse": "- (void) stopUpdatingHeading\n{\n    [self stopUpdatingHeading__];\n}\n\n",
+      "super": "- (void) stopUpdatingHeading__\n{\n    [super stopUpdatingHeading];\n}\n\n"
     },
     "stopUpdatingLocation()": {
-      "code": "- (void) stopUpdatingLocation\n{\n    [self stopUpdatingLocation__];\n}\n\n"
-    }
+      "reverse": "- (void) stopUpdatingLocation\n{\n    [self stopUpdatingLocation__];\n}\n\n",
+      "super": "- (void) stopUpdatingLocation__\n{\n    [super stopUpdatingLocation];\n}\n\n"
+    },
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.corelocation.CLLocationManagerDelegate": {
     "didEnterRegion(crossmobile.ios.corelocation.CLLocationManager,crossmobile.ios.corelocation.CLRegion)": {
-      "code": "- (void) locationManager:(CLLocationManager *) manager didEnterRegion:(CLRegion *) region\n{\n    [self didEnterRegion___crossmobile_ios_corelocation_CLLocationManager_crossmobile_ios_corelocation_CLRegion:(manager ? manager : JAVA_NULL) :(region ? region : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) locationManager:(CLLocationManager *) manager didEnterRegion:(CLRegion *) region\n{\n    [self didEnterRegion___crossmobile_ios_corelocation_CLLocationManager_crossmobile_ios_corelocation_CLRegion:(manager ? manager : JAVA_NULL) :(region ? region : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didEnterRegion___crossmobile_ios_corelocation_CLLocationManager_crossmobile_ios_corelocation_CLRegion:(CLLocationManager*) manager :(CLRegion*) region \n{\n    [super locationManager:(manager == JAVA_NULL ? nil : manager) didEnterRegion:(region == JAVA_NULL ? nil : region)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocationManager",
+        "crossmobile_ios_corelocation_CLRegion"
+      ]
     },
     "didExitRegion(crossmobile.ios.corelocation.CLLocationManager,crossmobile.ios.corelocation.CLRegion)": {
-      "code": "- (void) locationManager:(CLLocationManager *) manager didExitRegion:(CLRegion *) region\n{\n    [self didExitRegion___crossmobile_ios_corelocation_CLLocationManager_crossmobile_ios_corelocation_CLRegion:(manager ? manager : JAVA_NULL) :(region ? region : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) locationManager:(CLLocationManager *) manager didExitRegion:(CLRegion *) region\n{\n    [self didExitRegion___crossmobile_ios_corelocation_CLLocationManager_crossmobile_ios_corelocation_CLRegion:(manager ? manager : JAVA_NULL) :(region ? region : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didExitRegion___crossmobile_ios_corelocation_CLLocationManager_crossmobile_ios_corelocation_CLRegion:(CLLocationManager*) manager :(CLRegion*) region \n{\n    [super locationManager:(manager == JAVA_NULL ? nil : manager) didExitRegion:(region == JAVA_NULL ? nil : region)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocationManager",
+        "crossmobile_ios_corelocation_CLRegion"
+      ]
     },
     "didFailWithError(crossmobile.ios.corelocation.CLLocationManager,crossmobile.ios.foundation.NSError)": {
-      "code": "- (void) locationManager:(CLLocationManager *) manager didFailWithError:(NSError *) error\n{\n    [self didFailWithError___crossmobile_ios_corelocation_CLLocationManager_crossmobile_ios_foundation_NSError:(manager ? manager : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) locationManager:(CLLocationManager *) manager didFailWithError:(NSError *) error\n{\n    [self didFailWithError___crossmobile_ios_corelocation_CLLocationManager_crossmobile_ios_foundation_NSError:(manager ? manager : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didFailWithError___crossmobile_ios_corelocation_CLLocationManager_crossmobile_ios_foundation_NSError:(CLLocationManager*) manager :(NSError*) error \n{\n    [super locationManager:(manager == JAVA_NULL ? nil : manager) didFailWithError:(error == JAVA_NULL ? nil : error)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocationManager",
+        "crossmobile_ios_foundation_NSError"
+      ]
     },
     "didUpdateHeading(crossmobile.ios.corelocation.CLLocationManager,crossmobile.ios.corelocation.CLHeading)": {
-      "code": "- (void) locationManager:(CLLocationManager *) manager didUpdateHeading:(CLHeading *) newHeading\n{\n    [self didUpdateHeading___crossmobile_ios_corelocation_CLLocationManager_crossmobile_ios_corelocation_CLHeading:(manager ? manager : JAVA_NULL) :(newHeading ? newHeading : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) locationManager:(CLLocationManager *) manager didUpdateHeading:(CLHeading *) newHeading\n{\n    [self didUpdateHeading___crossmobile_ios_corelocation_CLLocationManager_crossmobile_ios_corelocation_CLHeading:(manager ? manager : JAVA_NULL) :(newHeading ? newHeading : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didUpdateHeading___crossmobile_ios_corelocation_CLLocationManager_crossmobile_ios_corelocation_CLHeading:(CLLocationManager*) manager :(CLHeading*) newHeading \n{\n    [super locationManager:(manager == JAVA_NULL ? nil : manager) didUpdateHeading:(newHeading == JAVA_NULL ? nil : newHeading)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLHeading",
+        "crossmobile_ios_corelocation_CLLocationManager"
+      ]
     },
     "didUpdateToLocation(crossmobile.ios.corelocation.CLLocationManager,crossmobile.ios.corelocation.CLLocation,crossmobile.ios.corelocation.CLLocation)": {
-      "code": "- (void) locationManager:(CLLocationManager *) manager didUpdateToLocation:(CLLocation *) newLocation fromLocation:(CLLocation *) oldLocation\n{\n    [self didUpdateToLocation___crossmobile_ios_corelocation_CLLocationManager_crossmobile_ios_corelocation_CLLocation_crossmobile_ios_corelocation_CLLocation:(manager ? manager : JAVA_NULL) :(newLocation ? newLocation : JAVA_NULL) :(oldLocation ? oldLocation : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) locationManager:(CLLocationManager *) manager didUpdateToLocation:(CLLocation *) newLocation fromLocation:(CLLocation *) oldLocation\n{\n    [self didUpdateToLocation___crossmobile_ios_corelocation_CLLocationManager_crossmobile_ios_corelocation_CLLocation_crossmobile_ios_corelocation_CLLocation:(manager ? manager : JAVA_NULL) :(newLocation ? newLocation : JAVA_NULL) :(oldLocation ? oldLocation : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didUpdateToLocation___crossmobile_ios_corelocation_CLLocationManager_crossmobile_ios_corelocation_CLLocation_crossmobile_ios_corelocation_CLLocation:(CLLocationManager*) manager :(CLLocation*) newLocation :(CLLocation*) oldLocation \n{\n    [super locationManager:(manager == JAVA_NULL ? nil : manager) didUpdateToLocation:(newLocation == JAVA_NULL ? nil : newLocation) fromLocation:(oldLocation == JAVA_NULL ? nil : oldLocation)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocation",
+        "crossmobile_ios_corelocation_CLLocationManager"
+      ]
     },
     "monitoringDidFailForRegion(crossmobile.ios.corelocation.CLLocationManager,crossmobile.ios.corelocation.CLRegion,crossmobile.ios.foundation.NSError)": {
-      "code": "- (void) locationManager:(CLLocationManager *) manager monitoringDidFailForRegion:(CLRegion *) region withError:(NSError *) error\n{\n    [self monitoringDidFailForRegion___crossmobile_ios_corelocation_CLLocationManager_crossmobile_ios_corelocation_CLRegion_crossmobile_ios_foundation_NSError:(manager ? manager : JAVA_NULL) :(region ? region : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) locationManager:(CLLocationManager *) manager monitoringDidFailForRegion:(CLRegion *) region withError:(NSError *) error\n{\n    [self monitoringDidFailForRegion___crossmobile_ios_corelocation_CLLocationManager_crossmobile_ios_corelocation_CLRegion_crossmobile_ios_foundation_NSError:(manager ? manager : JAVA_NULL) :(region ? region : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) monitoringDidFailForRegion___crossmobile_ios_corelocation_CLLocationManager_crossmobile_ios_corelocation_CLRegion_crossmobile_ios_foundation_NSError:(CLLocationManager*) manager :(CLRegion*) region :(NSError*) error \n{\n    [super locationManager:(manager == JAVA_NULL ? nil : manager) monitoringDidFailForRegion:(region == JAVA_NULL ? nil : region) withError:(error == JAVA_NULL ? nil : error)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocationManager",
+        "crossmobile_ios_corelocation_CLRegion",
+        "crossmobile_ios_foundation_NSError"
+      ]
     },
     "shouldDisplayHeadingCalibration(crossmobile.ios.corelocation.CLLocationManager)": {
-      "code": "- (BOOL) locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *) manager\n{\n    return [self shouldDisplayHeadingCalibration___crossmobile_ios_corelocation_CLLocationManager:(manager ? manager : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (BOOL) locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *) manager\n{\n    return [self shouldDisplayHeadingCalibration___crossmobile_ios_corelocation_CLLocationManager:(manager ? manager : JAVA_NULL)];\n}\n\n",
+      "super": "- (BOOL) shouldDisplayHeadingCalibration___crossmobile_ios_corelocation_CLLocationManager:(CLLocationManager*) manager \n{\n    return [super locationManagerShouldDisplayHeadingCalibration:(manager == JAVA_NULL ? nil : manager)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocationManager"
+      ]
     }
   },
   "crossmobile.ios.corelocation.CLPlacemark": {
     "ISOcountryCode()": {
-      "code": "- (NSString *) ISOcountryCode\n{\n    NSString * re$ult = [self ISOcountryCode__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) ISOcountryCode\n{\n    NSString * re$ult = [self ISOcountryCode__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) ISOcountryCode__\n{\n    NSString* re$ult = [super ISOcountryCode];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "addressDictionary()": {
-      "code": "- (NSDictionary *) addressDictionary\n{\n    NSDictionary * re$ult = [self addressDictionary__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSDictionary *) addressDictionary\n{\n    NSDictionary * re$ult = [self addressDictionary__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSDictionary*) addressDictionary__\n{\n    NSDictionary* re$ult = [super addressDictionary];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_util_Map"
+      ]
     },
     "administrativeArea()": {
-      "code": "- (NSString *) administrativeArea\n{\n    NSString * re$ult = [self administrativeArea__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) administrativeArea\n{\n    NSString * re$ult = [self administrativeArea__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) administrativeArea__\n{\n    NSString* re$ult = [super administrativeArea];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "areasOfInterest()": {
-      "code": "- (NSArray <NSString *> *) areasOfInterest\n{\n    NSArray <NSString *> * re$ult = [self areasOfInterest__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSArray <NSString *> *) areasOfInterest\n{\n    NSArray <NSString *> * re$ult = [self areasOfInterest__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSArray*) areasOfInterest__\n{\n    NSArray* re$ult = [super areasOfInterest];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
     },
     "country()": {
-      "code": "- (NSString *) country\n{\n    NSString * re$ult = [self country__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) country\n{\n    NSString * re$ult = [self country__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) country__\n{\n    NSString* re$ult = [super country];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "inlandWater()": {
-      "code": "- (NSString *) inlandWater\n{\n    NSString * re$ult = [self inlandWater__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) inlandWater\n{\n    NSString * re$ult = [self inlandWater__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) inlandWater__\n{\n    NSString* re$ult = [super inlandWater];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "locality()": {
-      "code": "- (NSString *) locality\n{\n    NSString * re$ult = [self locality__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) locality\n{\n    NSString * re$ult = [self locality__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) locality__\n{\n    NSString* re$ult = [super locality];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "location()": {
-      "code": "- (CLLocation *) location\n{\n    CLLocation * re$ult = [self location__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (CLLocation *) location\n{\n    CLLocation * re$ult = [self location__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (CLLocation*) location__\n{\n    CLLocation* re$ult = [super location];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocation"
+      ]
     },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
     "ocean()": {
-      "code": "- (NSString *) ocean\n{\n    NSString * re$ult = [self ocean__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) ocean\n{\n    NSString * re$ult = [self ocean__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) ocean__\n{\n    NSString* re$ult = [super ocean];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "postalCode()": {
-      "code": "- (NSString *) postalCode\n{\n    NSString * re$ult = [self postalCode__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) postalCode\n{\n    NSString * re$ult = [self postalCode__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) postalCode__\n{\n    NSString* re$ult = [super postalCode];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "region()": {
-      "code": "- (CLRegion *) region\n{\n    CLRegion * re$ult = [self region__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (CLRegion *) region\n{\n    CLRegion * re$ult = [self region__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (CLRegion*) region__\n{\n    CLRegion* re$ult = [super region];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLRegion"
+      ]
     },
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
     "subAdministrativeArea()": {
-      "code": "- (NSString *) subAdministrativeArea\n{\n    NSString * re$ult = [self subAdministrativeArea__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) subAdministrativeArea\n{\n    NSString * re$ult = [self subAdministrativeArea__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) subAdministrativeArea__\n{\n    NSString* re$ult = [super subAdministrativeArea];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "subLocality()": {
-      "code": "- (NSString *) subLocality\n{\n    NSString * re$ult = [self subLocality__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) subLocality\n{\n    NSString * re$ult = [self subLocality__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) subLocality__\n{\n    NSString* re$ult = [super subLocality];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "subThoroughfare()": {
-      "code": "- (NSString *) subThoroughfare\n{\n    NSString * re$ult = [self subThoroughfare__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) subThoroughfare\n{\n    NSString * re$ult = [self subThoroughfare__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) subThoroughfare__\n{\n    NSString* re$ult = [super subThoroughfare];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "thoroughfare()": {
-      "code": "- (NSString *) thoroughfare\n{\n    NSString * re$ult = [self thoroughfare__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) thoroughfare\n{\n    NSString * re$ult = [self thoroughfare__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) thoroughfare__\n{\n    NSString* re$ult = [super thoroughfare];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "timeZone()": {
-      "code": "- (NSTimeZone *) timeZone\n{\n    NSTimeZone * re$ult = [self timeZone__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
-    }
+      "reverse": "- (NSTimeZone *) timeZone\n{\n    NSTimeZone * re$ult = [self timeZone__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSTimeZone*) timeZone__\n{\n    NSTimeZone* re$ult = [super timeZone];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSTimeZone"
+      ]
+    },
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.corelocation.CLRegion": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "center()": {
-      "code": "- (CLLocationCoordinate2D) center\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* re$ult = [self center__];\n    CLLocationCoordinate2D re$ult$conv = [re$ult getCLLocationCoordinate2D];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n"
+      "reverse": "- (CLLocationCoordinate2D) center\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* re$ult = [self center__];\n    CLLocationCoordinate2D re$ult$conv = [re$ult getCLLocationCoordinate2D];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_corelocation_CLLocationCoordinate2D*) center__\n{\n    return [[crossmobile_ios_corelocation_CLLocationCoordinate2D alloc] initWithCLLocationCoordinate2D:[super center]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocationCoordinate2D"
+      ]
     },
     "containsCoordinate(crossmobile.ios.corelocation.CLLocationCoordinate2D)": {
-      "code": "- (BOOL) containsCoordinate:(CLLocationCoordinate2D) coordinate\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* coordinate$conv = [[crossmobile_ios_corelocation_CLLocationCoordinate2D alloc] initWithCLLocationCoordinate2D:coordinate];\n    BOOL re$ult = [self containsCoordinate___crossmobile_ios_corelocation_CLLocationCoordinate2D:coordinate$conv];\n    [coordinate$conv release];\n    return re$ult;\n}\n\n"
+      "reverse": "- (BOOL) containsCoordinate:(CLLocationCoordinate2D) coordinate\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* coordinate$conv = [[crossmobile_ios_corelocation_CLLocationCoordinate2D alloc] initWithCLLocationCoordinate2D:coordinate];\n    BOOL re$ult = [self containsCoordinate___crossmobile_ios_corelocation_CLLocationCoordinate2D:coordinate$conv];\n    [coordinate$conv release];\n    return re$ult;\n}\n\n",
+      "super": "- (BOOL) containsCoordinate___crossmobile_ios_corelocation_CLLocationCoordinate2D:(crossmobile_ios_corelocation_CLLocationCoordinate2D*) coordinate \n{\n    return [super containsCoordinate:[coordinate getCLLocationCoordinate2D]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocationCoordinate2D"
+      ]
     },
     "identifier()": {
-      "code": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) identifier__\n{\n    NSString* re$ult = [super identifier];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
     "radius()": {
-      "code": "- (CLLocationDistance) radius\n{\n    return [self radius__];\n}\n\n"
-    }
+      "reverse": "- (CLLocationDistance) radius\n{\n    return [self radius__];\n}\n\n",
+      "super": "- (double) radius__\n{\n    return [super radius];\n}\n\n"
+    },
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.mapkit.MKAnnotation": {
     "coordinate()": {
-      "code": "- (CLLocationCoordinate2D) coordinate\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* re$ult = [self coordinate__];\n    CLLocationCoordinate2D re$ult$conv = [re$ult getCLLocationCoordinate2D];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n"
+      "reverse": "- (CLLocationCoordinate2D) coordinate\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* re$ult = [self coordinate__];\n    CLLocationCoordinate2D re$ult$conv = [re$ult getCLLocationCoordinate2D];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_corelocation_CLLocationCoordinate2D*) coordinate__\n{\n    return [[crossmobile_ios_corelocation_CLLocationCoordinate2D alloc] initWithCLLocationCoordinate2D:[super coordinate]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocationCoordinate2D"
+      ]
     },
     "setCoordinate(crossmobile.ios.corelocation.CLLocationCoordinate2D)": {
-      "code": "- (void) setCoordinate:(CLLocationCoordinate2D) newCoordinate\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* newCoordinate$conv = [[crossmobile_ios_corelocation_CLLocationCoordinate2D alloc] initWithCLLocationCoordinate2D:newCoordinate];\n    [self setCoordinate___crossmobile_ios_corelocation_CLLocationCoordinate2D:newCoordinate$conv];\n    [newCoordinate$conv release];\n}\n\n"
+      "reverse": "- (void) setCoordinate:(CLLocationCoordinate2D) newCoordinate\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* newCoordinate$conv = [[crossmobile_ios_corelocation_CLLocationCoordinate2D alloc] initWithCLLocationCoordinate2D:newCoordinate];\n    [self setCoordinate___crossmobile_ios_corelocation_CLLocationCoordinate2D:newCoordinate$conv];\n    [newCoordinate$conv release];\n}\n\n",
+      "super": "- (void) setCoordinate___crossmobile_ios_corelocation_CLLocationCoordinate2D:(crossmobile_ios_corelocation_CLLocationCoordinate2D*) newCoordinate \n{\n    [super setCoordinate:[newCoordinate getCLLocationCoordinate2D]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocationCoordinate2D"
+      ]
     },
     "subtitle()": {
-      "code": "- (NSString *) subtitle\n{\n    NSString * re$ult = [self subtitle__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) subtitle\n{\n    NSString * re$ult = [self subtitle__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) subtitle__\n{\n    NSString* re$ult = [super subtitle];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "title()": {
-      "code": "- (NSString *) title\n{\n    NSString * re$ult = [self title__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) title\n{\n    NSString * re$ult = [self title__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) title__\n{\n    NSString* re$ult = [super title];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     }
   },
   "crossmobile.ios.mapkit.MKAnnotationView": {
+    "accessibilityIdentifier()": null,
+    "addConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
+    "addConstraints(java.util.List)": null,
+    "addGestureRecognizer(crossmobile.ios.uikit.UIGestureRecognizer)": null,
+    "addLayoutGuide(crossmobile.ios.uikit.UILayoutGuide)": null,
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "addSubview(crossmobile.ios.uikit.UIView)": null,
+    "alpha()": null,
     "annotation()": {
-      "code": "- (id<MKAnnotation>) annotation\n{\n    id<MKAnnotation> re$ult = [self annotation__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (id<MKAnnotation>) annotation\n{\n    id<MKAnnotation> re$ult = [self annotation__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (id<MKAnnotation>) annotation__\n{\n    id<MKAnnotation> re$ult = [super annotation];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKAnnotation"
+      ]
     },
+    "autoresizesSubviews()": null,
+    "autoresizingMask()": null,
+    "backgroundColor()": null,
+    "becomeFirstResponder()": null,
+    "bottomAnchor()": null,
+    "bounds()": null,
+    "bringSubviewToFront(crossmobile.ios.uikit.UIView)": null,
     "calloutOffset()": {
-      "code": "- (CGPoint) calloutOffset\n{\n    crossmobile_ios_coregraphics_CGPoint* re$ult = [self calloutOffset__];\n    CGPoint re$ult$conv = [re$ult getCGPoint];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n"
+      "reverse": "- (CGPoint) calloutOffset\n{\n    crossmobile_ios_coregraphics_CGPoint* re$ult = [self calloutOffset__];\n    CGPoint re$ult$conv = [re$ult getCGPoint];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_coregraphics_CGPoint*) calloutOffset__\n{\n    return [[crossmobile_ios_coregraphics_CGPoint alloc] initWithCGPoint:[super calloutOffset]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_coregraphics_CGPoint"
+      ]
     },
     "canShowCallout()": {
-      "code": "- (BOOL) canShowCallout\n{\n    return [self canShowCallout__];\n}\n\n"
+      "reverse": "- (BOOL) canShowCallout\n{\n    return [self canShowCallout__];\n}\n\n",
+      "super": "- (BOOL) canShowCallout__\n{\n    return [super canShowCallout];\n}\n\n"
     },
+    "center()": null,
     "centerOffset()": {
-      "code": "- (CGPoint) centerOffset\n{\n    crossmobile_ios_coregraphics_CGPoint* re$ult = [self centerOffset__];\n    CGPoint re$ult$conv = [re$ult getCGPoint];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n"
+      "reverse": "- (CGPoint) centerOffset\n{\n    crossmobile_ios_coregraphics_CGPoint* re$ult = [self centerOffset__];\n    CGPoint re$ult$conv = [re$ult getCGPoint];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_coregraphics_CGPoint*) centerOffset__\n{\n    return [[crossmobile_ios_coregraphics_CGPoint alloc] initWithCGPoint:[super centerOffset]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_coregraphics_CGPoint"
+      ]
     },
+    "centerXAnchor()": null,
+    "centerYAnchor()": null,
+    "clipsToBounds()": null,
+    "constraints()": null,
+    "contentCompressionResistancePriorityForAxis(int)": null,
+    "contentHuggingPriorityForAxis(int)": null,
+    "contentMode()": null,
+    "convertPointFromView(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIView)": null,
+    "convertPointToView(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIView)": null,
+    "convertRectFromView(crossmobile.ios.coregraphics.CGRect,crossmobile.ios.uikit.UIView)": null,
+    "convertRectToView(crossmobile.ios.coregraphics.CGRect,crossmobile.ios.uikit.UIView)": null,
+    "didAddSubview(crossmobile.ios.uikit.UIView)": null,
+    "didMoveToSuperview()": null,
+    "didMoveToWindow()": null,
     "dragState()": {
-      "code": "- (MKAnnotationViewDragState) dragState\n{\n    return [self dragState__];\n}\n\n"
+      "reverse": "- (MKAnnotationViewDragState) dragState\n{\n    return [self dragState__];\n}\n\n",
+      "super": "- (int) dragState__\n{\n    return [super dragState];\n}\n\n"
     },
+    "drawRect(crossmobile.ios.coregraphics.CGRect)": null,
+    "frame()": null,
+    "gestureRecognizers()": null,
+    "heightAnchor()": null,
+    "hitTest(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "image()": {
-      "code": "- (UIImage *) image\n{\n    UIImage * re$ult = [self image__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (UIImage *) image\n{\n    UIImage * re$ult = [self image__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (UIImage*) image__\n{\n    UIImage* re$ult = [super image];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIImage"
+      ]
     },
+    "insertSubview(crossmobile.ios.uikit.UIView,int)": null,
+    "insetsLayoutMarginsFromSafeArea()": null,
+    "intrinsicContentSize()": null,
+    "invalidateIntrinsicContentSize()": null,
     "isDraggable()": {
-      "code": "- (BOOL) isDraggable\n{\n    return [self isDraggable__];\n}\n\n"
+      "reverse": "- (BOOL) isDraggable\n{\n    return [self isDraggable__];\n}\n\n",
+      "super": "- (BOOL) isDraggable__\n{\n    return [super isDraggable];\n}\n\n"
     },
     "isEnabled()": {
-      "code": "- (BOOL) isEnabled\n{\n    return [self isEnabled__];\n}\n\n"
+      "reverse": "- (BOOL) isEnabled\n{\n    return [self isEnabled__];\n}\n\n",
+      "super": "- (BOOL) isEnabled__\n{\n    return [super isEnabled];\n}\n\n"
     },
+    "isFirstResponder()": null,
+    "isHidden()": null,
     "isHighlighted()": {
-      "code": "- (BOOL) isHighlighted\n{\n    return [self isHighlighted__];\n}\n\n"
+      "reverse": "- (BOOL) isHighlighted\n{\n    return [self isHighlighted__];\n}\n\n",
+      "super": "- (BOOL) isHighlighted__\n{\n    return [super isHighlighted];\n}\n\n"
     },
+    "isMultipleTouchEnabled()": null,
+    "isOpaque()": null,
     "isSelected()": {
-      "code": "- (BOOL) isSelected\n{\n    return [self isSelected__];\n}\n\n"
+      "reverse": "- (BOOL) isSelected\n{\n    return [self isSelected__];\n}\n\n",
+      "super": "- (BOOL) isSelected__\n{\n    return [super isSelected];\n}\n\n"
     },
+    "isUserInteractionEnabled()": null,
+    "layer()": null,
+    "layoutIfNeeded()": null,
+    "layoutMargins()": null,
+    "layoutMarginsDidChange()": null,
+    "layoutMarginsGuide()": null,
+    "layoutSubviews()": null,
+    "leadingAnchor()": null,
+    "leftAnchor()": null,
     "leftCalloutAccessoryView()": {
-      "code": "- (UIView *) leftCalloutAccessoryView\n{\n    UIView * re$ult = [self leftCalloutAccessoryView__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (UIView *) leftCalloutAccessoryView\n{\n    UIView * re$ult = [self leftCalloutAccessoryView__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (UIView*) leftCalloutAccessoryView__\n{\n    UIView* re$ult = [super leftCalloutAccessoryView];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIView"
+      ]
     },
+    "needsUpdateConstraints()": null,
+    "nextResponder()": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "prepareForReuse()": {
-      "code": "- (void) prepareForReuse\n{\n    [self prepareForReuse__];\n}\n\n"
+      "reverse": "- (void) prepareForReuse\n{\n    [self prepareForReuse__];\n}\n\n",
+      "super": "- (void) prepareForReuse__\n{\n    [super prepareForReuse];\n}\n\n"
     },
+    "preservesSuperviewLayoutMargins()": null,
+    "removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
+    "removeConstraints(java.util.List)": null,
+    "removeFromSuperview()": null,
+    "removeGestureRecognizer(crossmobile.ios.uikit.UIGestureRecognizer)": null,
+    "removeLayoutGuide(crossmobile.ios.uikit.UILayoutGuide)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "resignFirstResponder()": null,
+    "restorationIdentifier()": null,
     "reuseIdentifier()": {
-      "code": "- (NSString *) reuseIdentifier\n{\n    NSString * re$ult = [self reuseIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) reuseIdentifier\n{\n    NSString * re$ult = [self reuseIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) reuseIdentifier__\n{\n    NSString* re$ult = [super reuseIdentifier];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
+    "rightAnchor()": null,
     "rightCalloutAccessoryView()": {
-      "code": "- (UIView *) rightCalloutAccessoryView\n{\n    UIView * re$ult = [self rightCalloutAccessoryView__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (UIView *) rightCalloutAccessoryView\n{\n    UIView * re$ult = [self rightCalloutAccessoryView__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (UIView*) rightCalloutAccessoryView__\n{\n    UIView* re$ult = [super rightCalloutAccessoryView];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIView"
+      ]
     },
+    "safeAreaInsets()": null,
+    "safeAreaLayoutGuide()": null,
+    "sendSubviewToBack(crossmobile.ios.uikit.UIView)": null,
+    "setAccessibilityIdentifier(java.lang.String)": null,
+    "setAlpha(double)": null,
     "setAnnotation(crossmobile.ios.mapkit.MKAnnotation)": {
-      "code": "- (void) setAnnotation:(id<MKAnnotation>) annotation\n{\n    [self setAnnotation___crossmobile_ios_mapkit_MKAnnotation:(annotation ? annotation : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setAnnotation:(id<MKAnnotation>) annotation\n{\n    [self setAnnotation___crossmobile_ios_mapkit_MKAnnotation:(annotation ? annotation : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setAnnotation___crossmobile_ios_mapkit_MKAnnotation:(id<MKAnnotation>) annotation \n{\n    [super setAnnotation:(annotation == JAVA_NULL ? nil : annotation)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKAnnotation"
+      ]
     },
+    "setAutoresizesSubviews(boolean)": null,
+    "setAutoresizingMask(int)": null,
+    "setBackgroundColor(crossmobile.ios.uikit.UIColor)": null,
+    "setBounds(crossmobile.ios.coregraphics.CGRect)": null,
     "setCalloutOffset(crossmobile.ios.coregraphics.CGPoint)": {
-      "code": "- (void) setCalloutOffset:(CGPoint) calloutOffset\n{\n    crossmobile_ios_coregraphics_CGPoint* calloutOffset$conv = [[crossmobile_ios_coregraphics_CGPoint alloc] initWithCGPoint:calloutOffset];\n    [self setCalloutOffset___crossmobile_ios_coregraphics_CGPoint:calloutOffset$conv];\n    [calloutOffset$conv release];\n}\n\n"
+      "reverse": "- (void) setCalloutOffset:(CGPoint) calloutOffset\n{\n    crossmobile_ios_coregraphics_CGPoint* calloutOffset$conv = [[crossmobile_ios_coregraphics_CGPoint alloc] initWithCGPoint:calloutOffset];\n    [self setCalloutOffset___crossmobile_ios_coregraphics_CGPoint:calloutOffset$conv];\n    [calloutOffset$conv release];\n}\n\n",
+      "super": "- (void) setCalloutOffset___crossmobile_ios_coregraphics_CGPoint:(crossmobile_ios_coregraphics_CGPoint*) calloutOffset \n{\n    [super setCalloutOffset:[calloutOffset getCGPoint]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_coregraphics_CGPoint"
+      ]
     },
     "setCanShowCallout(boolean)": {
-      "code": "- (void) setCanShowCallout:(BOOL) canShowCallout\n{\n    [self setCanShowCallout___boolean:canShowCallout];\n}\n\n"
+      "reverse": "- (void) setCanShowCallout:(BOOL) canShowCallout\n{\n    [self setCanShowCallout___boolean:canShowCallout];\n}\n\n",
+      "super": "- (void) setCanShowCallout___boolean:(BOOL) canShowCallout \n{\n    [super setCanShowCallout:canShowCallout];\n}\n\n"
     },
+    "setCenter(crossmobile.ios.coregraphics.CGPoint)": null,
     "setCenterOffset(crossmobile.ios.coregraphics.CGPoint)": {
-      "code": "- (void) setCenterOffset:(CGPoint) centerOffset\n{\n    crossmobile_ios_coregraphics_CGPoint* centerOffset$conv = [[crossmobile_ios_coregraphics_CGPoint alloc] initWithCGPoint:centerOffset];\n    [self setCenterOffset___crossmobile_ios_coregraphics_CGPoint:centerOffset$conv];\n    [centerOffset$conv release];\n}\n\n"
+      "reverse": "- (void) setCenterOffset:(CGPoint) centerOffset\n{\n    crossmobile_ios_coregraphics_CGPoint* centerOffset$conv = [[crossmobile_ios_coregraphics_CGPoint alloc] initWithCGPoint:centerOffset];\n    [self setCenterOffset___crossmobile_ios_coregraphics_CGPoint:centerOffset$conv];\n    [centerOffset$conv release];\n}\n\n",
+      "super": "- (void) setCenterOffset___crossmobile_ios_coregraphics_CGPoint:(crossmobile_ios_coregraphics_CGPoint*) centerOffset \n{\n    [super setCenterOffset:[centerOffset getCGPoint]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_coregraphics_CGPoint"
+      ]
     },
+    "setClearsContextBeforeDrawing(boolean)": null,
+    "setClipsToBounds(boolean)": null,
+    "setContentCompressionResistancePriority(float,int)": null,
+    "setContentHuggingPriority(float,int)": null,
+    "setContentMode(int)": null,
     "setDragState(int)": {
-      "code": "- (void) setDragState:(MKAnnotationViewDragState) dragState\n{\n    [self setDragState___int:dragState];\n}\n\n"
+      "reverse": "- (void) setDragState:(MKAnnotationViewDragState) dragState\n{\n    [self setDragState___int:dragState];\n}\n\n",
+      "super": "- (void) setDragState___int:(int) dragState \n{\n    [super setDragState:dragState];\n}\n\n"
     },
     "setDragState(int,boolean)": {
-      "code": "- (void) setDragState:(MKAnnotationViewDragState) newDragState animated:(BOOL) animated\n{\n    [self setDragState___int_boolean:newDragState :animated];\n}\n\n"
+      "reverse": "- (void) setDragState:(MKAnnotationViewDragState) newDragState animated:(BOOL) animated\n{\n    [self setDragState___int_boolean:newDragState :animated];\n}\n\n",
+      "super": "- (void) setDragState___int_boolean:(int) newDragState :(BOOL) animated \n{\n    [super setDragState:newDragState animated:animated];\n}\n\n"
     },
     "setDraggable(boolean)": {
-      "code": "- (void) setDraggable:(BOOL) draggable\n{\n    [self setDraggable___boolean:draggable];\n}\n\n"
+      "reverse": "- (void) setDraggable:(BOOL) draggable\n{\n    [self setDraggable___boolean:draggable];\n}\n\n",
+      "super": "- (void) setDraggable___boolean:(BOOL) draggable \n{\n    [super setDraggable:draggable];\n}\n\n"
     },
     "setEnabled(boolean)": {
-      "code": "- (void) setEnabled:(BOOL) enabled\n{\n    [self setEnabled___boolean:enabled];\n}\n\n"
+      "reverse": "- (void) setEnabled:(BOOL) enabled\n{\n    [self setEnabled___boolean:enabled];\n}\n\n",
+      "super": "- (void) setEnabled___boolean:(BOOL) enabled \n{\n    [super setEnabled:enabled];\n}\n\n"
     },
+    "setFrame(crossmobile.ios.coregraphics.CGRect)": null,
+    "setGestureRecognizers(java.util.List)": null,
+    "setHidden(boolean)": null,
     "setHighlighted(boolean)": {
-      "code": "- (void) setHighlighted:(BOOL) highlighted\n{\n    [self setHighlighted___boolean:highlighted];\n}\n\n"
+      "reverse": "- (void) setHighlighted:(BOOL) highlighted\n{\n    [self setHighlighted___boolean:highlighted];\n}\n\n",
+      "super": "- (void) setHighlighted___boolean:(BOOL) highlighted \n{\n    [super setHighlighted:highlighted];\n}\n\n"
     },
     "setImage(crossmobile.ios.uikit.UIImage)": {
-      "code": "- (void) setImage:(UIImage *) image\n{\n    [self setImage___crossmobile_ios_uikit_UIImage:(image ? image : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setImage:(UIImage *) image\n{\n    [self setImage___crossmobile_ios_uikit_UIImage:(image ? image : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setImage___crossmobile_ios_uikit_UIImage:(UIImage*) image \n{\n    [super setImage:(image == JAVA_NULL ? nil : image)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIImage"
+      ]
     },
+    "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
+    "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
     "setLeftCalloutAccessoryView(crossmobile.ios.uikit.UIView)": {
-      "code": "- (void) setLeftCalloutAccessoryView:(UIView *) leftCalloutAccessoryView\n{\n    [self setLeftCalloutAccessoryView___crossmobile_ios_uikit_UIView:(leftCalloutAccessoryView ? leftCalloutAccessoryView : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setLeftCalloutAccessoryView:(UIView *) leftCalloutAccessoryView\n{\n    [self setLeftCalloutAccessoryView___crossmobile_ios_uikit_UIView:(leftCalloutAccessoryView ? leftCalloutAccessoryView : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setLeftCalloutAccessoryView___crossmobile_ios_uikit_UIView:(UIView*) leftCalloutAccessoryView \n{\n    [super setLeftCalloutAccessoryView:(leftCalloutAccessoryView == JAVA_NULL ? nil : leftCalloutAccessoryView)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIView"
+      ]
     },
+    "setMultipleTouchEnabled(boolean)": null,
+    "setNeedsDisplay()": null,
+    "setNeedsLayout()": null,
+    "setNeedsUpdateConstraints()": null,
+    "setOpaque(boolean)": null,
+    "setPreservesSuperviewLayoutMargins(boolean)": null,
+    "setRestorationIdentifier(java.lang.String)": null,
     "setRightCalloutAccessoryView(crossmobile.ios.uikit.UIView)": {
-      "code": "- (void) setRightCalloutAccessoryView:(UIView *) rightCalloutAccessoryView\n{\n    [self setRightCalloutAccessoryView___crossmobile_ios_uikit_UIView:(rightCalloutAccessoryView ? rightCalloutAccessoryView : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setRightCalloutAccessoryView:(UIView *) rightCalloutAccessoryView\n{\n    [self setRightCalloutAccessoryView___crossmobile_ios_uikit_UIView:(rightCalloutAccessoryView ? rightCalloutAccessoryView : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setRightCalloutAccessoryView___crossmobile_ios_uikit_UIView:(UIView*) rightCalloutAccessoryView \n{\n    [super setRightCalloutAccessoryView:(rightCalloutAccessoryView == JAVA_NULL ? nil : rightCalloutAccessoryView)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIView"
+      ]
     },
     "setSelected(boolean)": {
-      "code": "- (void) setSelected:(BOOL) selected\n{\n    [self setSelected___boolean:selected];\n}\n\n"
+      "reverse": "- (void) setSelected:(BOOL) selected\n{\n    [self setSelected___boolean:selected];\n}\n\n",
+      "super": "- (void) setSelected___boolean:(BOOL) selected \n{\n    [super setSelected:selected];\n}\n\n"
     },
     "setSelected(boolean,boolean)": {
-      "code": "- (void) setSelected:(BOOL) selected animated:(BOOL) animated\n{\n    [self setSelected___boolean_boolean:selected :animated];\n}\n\n"
-    }
+      "reverse": "- (void) setSelected:(BOOL) selected animated:(BOOL) animated\n{\n    [self setSelected___boolean_boolean:selected :animated];\n}\n\n",
+      "super": "- (void) setSelected___boolean_boolean:(BOOL) selected :(BOOL) animated \n{\n    [super setSelected:selected animated:animated];\n}\n\n"
+    },
+    "setTag(int)": null,
+    "setTintAdjustmentMode(int)": null,
+    "setTintColor(crossmobile.ios.uikit.UIColor)": null,
+    "setTransform(crossmobile.ios.coregraphics.CGAffineTransform)": null,
+    "setTranslatesAutoresizingMaskIntoConstraints(boolean)": null,
+    "setUserInteractionEnabled(boolean)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "sizeThatFits(crossmobile.ios.coregraphics.CGSize)": null,
+    "sizeToFit()": null,
+    "subviews()": null,
+    "superview()": null,
+    "tag()": null,
+    "tintAdjustmentMode()": null,
+    "tintColor()": null,
+    "tintColorDidChange()": null,
+    "topAnchor()": null,
+    "touchesBegan(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesCancelled(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesEnded(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesMoved(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "trailingAnchor()": null,
+    "transform()": null,
+    "translatesAutoresizingMaskIntoConstraints()": null,
+    "updateConstraints()": null,
+    "updateConstraintsIfNeeded()": null,
+    "userInterfaceLayoutDirection()": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null,
+    "viewForFirstBaselineLayout()": null,
+    "viewForLastBaselineLayout()": null,
+    "widthAnchor()": null,
+    "willMoveToSuperview(crossmobile.ios.uikit.UIView)": null,
+    "willMoveToWindow(crossmobile.ios.uikit.UIWindow)": null,
+    "willRemoveSubview(crossmobile.ios.uikit.UIView)": null,
+    "window()": null
   },
   "crossmobile.ios.mapkit.MKMapView": {
+    "accessibilityIdentifier()": null,
     "addAnnotation(crossmobile.ios.mapkit.MKAnnotation)": {
-      "code": "- (void) addAnnotation:(id<MKAnnotation>) annotation\n{\n    [self addAnnotation___crossmobile_ios_mapkit_MKAnnotation:(annotation ? annotation : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) addAnnotation:(id<MKAnnotation>) annotation\n{\n    [self addAnnotation___crossmobile_ios_mapkit_MKAnnotation:(annotation ? annotation : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) addAnnotation___crossmobile_ios_mapkit_MKAnnotation:(id<MKAnnotation>) annotation \n{\n    [super addAnnotation:(annotation == JAVA_NULL ? nil : annotation)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKAnnotation"
+      ]
     },
     "addAnnotations(java.util.List)": {
-      "code": "- (void) addAnnotations:(NSArray<id<MKAnnotation>> *) annotations\n{\n    [self addAnnotations___java_util_List:(annotations ? annotations : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) addAnnotations:(NSArray<id<MKAnnotation>> *) annotations\n{\n    [self addAnnotations___java_util_List:(annotations ? annotations : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) addAnnotations___java_util_List:(NSArray*) annotations \n{\n    [super addAnnotations:(annotations == JAVA_NULL ? nil : annotations)];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
     },
+    "addConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
+    "addConstraints(java.util.List)": null,
+    "addGestureRecognizer(crossmobile.ios.uikit.UIGestureRecognizer)": null,
+    "addLayoutGuide(crossmobile.ios.uikit.UILayoutGuide)": null,
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "addOverlay(crossmobile.ios.mapkit.MKOverlay)": {
-      "code": "- (void) addOverlay:(id<MKOverlay>) overlay\n{\n    [self addOverlay___crossmobile_ios_mapkit_MKOverlay:(overlay ? overlay : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) addOverlay:(id<MKOverlay>) overlay\n{\n    [self addOverlay___crossmobile_ios_mapkit_MKOverlay:(overlay ? overlay : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) addOverlay___crossmobile_ios_mapkit_MKOverlay:(id<MKOverlay>) overlay \n{\n    [super addOverlay:(overlay == JAVA_NULL ? nil : overlay)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKOverlay"
+      ]
     },
     "addOverlays(java.util.List)": {
-      "code": "- (void) addOverlays:(NSArray<id<MKOverlay>> *) overlays\n{\n    [self addOverlays___java_util_List:(overlays ? overlays : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) addOverlays:(NSArray<id<MKOverlay>> *) overlays\n{\n    [self addOverlays___java_util_List:(overlays ? overlays : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) addOverlays___java_util_List:(NSArray*) overlays \n{\n    [super addOverlays:(overlays == JAVA_NULL ? nil : overlays)];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
     },
+    "addSubview(crossmobile.ios.uikit.UIView)": null,
+    "alpha()": null,
     "annotationVisibleRect()": {
-      "code": "- (CGRect) annotationVisibleRect\n{\n    crossmobile_ios_coregraphics_CGRect* re$ult = [self annotationVisibleRect__];\n    CGRect re$ult$conv = [re$ult getCGRect];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n"
+      "reverse": "- (CGRect) annotationVisibleRect\n{\n    crossmobile_ios_coregraphics_CGRect* re$ult = [self annotationVisibleRect__];\n    CGRect re$ult$conv = [re$ult getCGRect];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_coregraphics_CGRect*) annotationVisibleRect__\n{\n    return [[crossmobile_ios_coregraphics_CGRect alloc] initWithCGRect:[super annotationVisibleRect]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_coregraphics_CGRect"
+      ]
     },
     "annotations()": {
-      "code": "- (NSArray<id<MKAnnotation>> *) annotations\n{\n    NSArray<id<MKAnnotation>> * re$ult = [self annotations__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSArray<id<MKAnnotation>> *) annotations\n{\n    NSArray<id<MKAnnotation>> * re$ult = [self annotations__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSArray*) annotations__\n{\n    NSArray* re$ult = [super annotations];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
     },
     "annotationsInMapRect(crossmobile.ios.mapkit.MKMapRect)": {
-      "code": "- (NSSet<id<MKAnnotation>> *) annotationsInMapRect:(MKMapRect) mapRect\n{\n    crossmobile_ios_mapkit_MKMapRect* mapRect$conv = [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:mapRect];\n    NSSet<id<MKAnnotation>> * re$ult = [self annotationsInMapRect___crossmobile_ios_mapkit_MKMapRect:mapRect$conv];\n    [mapRect$conv release];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSSet<id<MKAnnotation>> *) annotationsInMapRect:(MKMapRect) mapRect\n{\n    crossmobile_ios_mapkit_MKMapRect* mapRect$conv = [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:mapRect];\n    NSSet<id<MKAnnotation>> * re$ult = [self annotationsInMapRect___crossmobile_ios_mapkit_MKMapRect:mapRect$conv];\n    [mapRect$conv release];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSSet*) annotationsInMapRect___crossmobile_ios_mapkit_MKMapRect:(crossmobile_ios_mapkit_MKMapRect*) mapRect \n{\n    NSSet* re$ult = [super annotationsInMapRect:[mapRect getMKMapRect]];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKMapRect",
+        "java_util_Set"
+      ]
     },
+    "autoresizesSubviews()": null,
+    "autoresizingMask()": null,
+    "backgroundColor()": null,
+    "becomeFirstResponder()": null,
+    "bottomAnchor()": null,
+    "bounds()": null,
+    "bringSubviewToFront(crossmobile.ios.uikit.UIView)": null,
+    "center()": null,
     "centerCoordinate()": {
-      "code": "- (CLLocationCoordinate2D) centerCoordinate\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* re$ult = [self centerCoordinate__];\n    CLLocationCoordinate2D re$ult$conv = [re$ult getCLLocationCoordinate2D];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n"
+      "reverse": "- (CLLocationCoordinate2D) centerCoordinate\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* re$ult = [self centerCoordinate__];\n    CLLocationCoordinate2D re$ult$conv = [re$ult getCLLocationCoordinate2D];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_corelocation_CLLocationCoordinate2D*) centerCoordinate__\n{\n    return [[crossmobile_ios_corelocation_CLLocationCoordinate2D alloc] initWithCLLocationCoordinate2D:[super centerCoordinate]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocationCoordinate2D"
+      ]
     },
+    "centerXAnchor()": null,
+    "centerYAnchor()": null,
+    "clipsToBounds()": null,
+    "constraints()": null,
+    "contentCompressionResistancePriorityForAxis(int)": null,
+    "contentHuggingPriorityForAxis(int)": null,
+    "contentMode()": null,
     "convertCoordinate(crossmobile.ios.corelocation.CLLocationCoordinate2D,crossmobile.ios.uikit.UIView)": {
-      "code": "- (CGPoint) convertCoordinate:(CLLocationCoordinate2D) coordinate toPointToView:(UIView *) view\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* coordinate$conv = [[crossmobile_ios_corelocation_CLLocationCoordinate2D alloc] initWithCLLocationCoordinate2D:coordinate];\n    crossmobile_ios_coregraphics_CGPoint* re$ult = [self convertCoordinate___crossmobile_ios_corelocation_CLLocationCoordinate2D_crossmobile_ios_uikit_UIView:coordinate$conv :(view ? view : JAVA_NULL)];\n    CGPoint re$ult$conv = [re$ult getCGPoint];\n    [re$ult release];\n    [coordinate$conv release];\n    return re$ult$conv;\n}\n\n"
+      "reverse": "- (CGPoint) convertCoordinate:(CLLocationCoordinate2D) coordinate toPointToView:(UIView *) view\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* coordinate$conv = [[crossmobile_ios_corelocation_CLLocationCoordinate2D alloc] initWithCLLocationCoordinate2D:coordinate];\n    crossmobile_ios_coregraphics_CGPoint* re$ult = [self convertCoordinate___crossmobile_ios_corelocation_CLLocationCoordinate2D_crossmobile_ios_uikit_UIView:coordinate$conv :(view ? view : JAVA_NULL)];\n    CGPoint re$ult$conv = [re$ult getCGPoint];\n    [re$ult release];\n    [coordinate$conv release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_coregraphics_CGPoint*) convertCoordinate___crossmobile_ios_corelocation_CLLocationCoordinate2D_crossmobile_ios_uikit_UIView:(crossmobile_ios_corelocation_CLLocationCoordinate2D*) coordinate :(UIView*) view \n{\n    return [[crossmobile_ios_coregraphics_CGPoint alloc] initWithCGPoint:[super convertCoordinate:[coordinate getCLLocationCoordinate2D] toPointToView:(view == JAVA_NULL ? nil : view)]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_coregraphics_CGPoint",
+        "crossmobile_ios_corelocation_CLLocationCoordinate2D",
+        "crossmobile_ios_uikit_UIView"
+      ]
     },
     "convertPoint(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIView)": {
-      "code": "- (CLLocationCoordinate2D) convertPoint:(CGPoint) point toCoordinateFromView:(UIView *) view\n{\n    crossmobile_ios_coregraphics_CGPoint* point$conv = [[crossmobile_ios_coregraphics_CGPoint alloc] initWithCGPoint:point];\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* re$ult = [self convertPoint___crossmobile_ios_coregraphics_CGPoint_crossmobile_ios_uikit_UIView:point$conv :(view ? view : JAVA_NULL)];\n    CLLocationCoordinate2D re$ult$conv = [re$ult getCLLocationCoordinate2D];\n    [re$ult release];\n    [point$conv release];\n    return re$ult$conv;\n}\n\n"
+      "reverse": "- (CLLocationCoordinate2D) convertPoint:(CGPoint) point toCoordinateFromView:(UIView *) view\n{\n    crossmobile_ios_coregraphics_CGPoint* point$conv = [[crossmobile_ios_coregraphics_CGPoint alloc] initWithCGPoint:point];\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* re$ult = [self convertPoint___crossmobile_ios_coregraphics_CGPoint_crossmobile_ios_uikit_UIView:point$conv :(view ? view : JAVA_NULL)];\n    CLLocationCoordinate2D re$ult$conv = [re$ult getCLLocationCoordinate2D];\n    [re$ult release];\n    [point$conv release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_corelocation_CLLocationCoordinate2D*) convertPoint___crossmobile_ios_coregraphics_CGPoint_crossmobile_ios_uikit_UIView:(crossmobile_ios_coregraphics_CGPoint*) point :(UIView*) view \n{\n    return [[crossmobile_ios_corelocation_CLLocationCoordinate2D alloc] initWithCLLocationCoordinate2D:[super convertPoint:[point getCGPoint] toCoordinateFromView:(view == JAVA_NULL ? nil : view)]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_coregraphics_CGPoint",
+        "crossmobile_ios_corelocation_CLLocationCoordinate2D",
+        "crossmobile_ios_uikit_UIView"
+      ]
     },
+    "convertPointFromView(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIView)": null,
+    "convertPointToView(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIView)": null,
     "convertRect(crossmobile.ios.coregraphics.CGRect,crossmobile.ios.uikit.UIView)": {
-      "code": "- (MKCoordinateRegion) convertRect:(CGRect) rect toRegionFromView:(UIView *) view\n{\n    crossmobile_ios_coregraphics_CGRect* rect$conv = [[crossmobile_ios_coregraphics_CGRect alloc] initWithCGRect:rect];\n    crossmobile_ios_mapkit_MKCoordinateRegion* re$ult = [self convertRect___crossmobile_ios_coregraphics_CGRect_crossmobile_ios_uikit_UIView:rect$conv :(view ? view : JAVA_NULL)];\n    MKCoordinateRegion re$ult$conv = [re$ult getMKCoordinateRegion];\n    [re$ult release];\n    [rect$conv release];\n    return re$ult$conv;\n}\n\n"
+      "reverse": "- (MKCoordinateRegion) convertRect:(CGRect) rect toRegionFromView:(UIView *) view\n{\n    crossmobile_ios_coregraphics_CGRect* rect$conv = [[crossmobile_ios_coregraphics_CGRect alloc] initWithCGRect:rect];\n    crossmobile_ios_mapkit_MKCoordinateRegion* re$ult = [self convertRect___crossmobile_ios_coregraphics_CGRect_crossmobile_ios_uikit_UIView:rect$conv :(view ? view : JAVA_NULL)];\n    MKCoordinateRegion re$ult$conv = [re$ult getMKCoordinateRegion];\n    [re$ult release];\n    [rect$conv release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_mapkit_MKCoordinateRegion*) convertRect___crossmobile_ios_coregraphics_CGRect_crossmobile_ios_uikit_UIView:(crossmobile_ios_coregraphics_CGRect*) rect :(UIView*) view \n{\n    return [[crossmobile_ios_mapkit_MKCoordinateRegion alloc] initWithMKCoordinateRegion:[super convertRect:[rect getCGRect] toRegionFromView:(view == JAVA_NULL ? nil : view)]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_coregraphics_CGRect",
+        "crossmobile_ios_mapkit_MKCoordinateRegion",
+        "crossmobile_ios_uikit_UIView"
+      ]
     },
+    "convertRectFromView(crossmobile.ios.coregraphics.CGRect,crossmobile.ios.uikit.UIView)": null,
+    "convertRectToView(crossmobile.ios.coregraphics.CGRect,crossmobile.ios.uikit.UIView)": null,
     "convertRegion(crossmobile.ios.mapkit.MKCoordinateRegion,crossmobile.ios.uikit.UIView)": {
-      "code": "- (CGRect) convertRegion:(MKCoordinateRegion) region toRectToView:(UIView *) view\n{\n    crossmobile_ios_mapkit_MKCoordinateRegion* region$conv = [[crossmobile_ios_mapkit_MKCoordinateRegion alloc] initWithMKCoordinateRegion:region];\n    crossmobile_ios_coregraphics_CGRect* re$ult = [self convertRegion___crossmobile_ios_mapkit_MKCoordinateRegion_crossmobile_ios_uikit_UIView:region$conv :(view ? view : JAVA_NULL)];\n    CGRect re$ult$conv = [re$ult getCGRect];\n    [re$ult release];\n    [region$conv release];\n    return re$ult$conv;\n}\n\n"
+      "reverse": "- (CGRect) convertRegion:(MKCoordinateRegion) region toRectToView:(UIView *) view\n{\n    crossmobile_ios_mapkit_MKCoordinateRegion* region$conv = [[crossmobile_ios_mapkit_MKCoordinateRegion alloc] initWithMKCoordinateRegion:region];\n    crossmobile_ios_coregraphics_CGRect* re$ult = [self convertRegion___crossmobile_ios_mapkit_MKCoordinateRegion_crossmobile_ios_uikit_UIView:region$conv :(view ? view : JAVA_NULL)];\n    CGRect re$ult$conv = [re$ult getCGRect];\n    [re$ult release];\n    [region$conv release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_coregraphics_CGRect*) convertRegion___crossmobile_ios_mapkit_MKCoordinateRegion_crossmobile_ios_uikit_UIView:(crossmobile_ios_mapkit_MKCoordinateRegion*) region :(UIView*) view \n{\n    return [[crossmobile_ios_coregraphics_CGRect alloc] initWithCGRect:[super convertRegion:[region getMKCoordinateRegion] toRectToView:(view == JAVA_NULL ? nil : view)]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_coregraphics_CGRect",
+        "crossmobile_ios_mapkit_MKCoordinateRegion",
+        "crossmobile_ios_uikit_UIView"
+      ]
     },
     "delegate()": {
-      "code": "- (id<MKMapViewDelegate>) delegate\n{\n    id<MKMapViewDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (id<MKMapViewDelegate>) delegate\n{\n    id<MKMapViewDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (id<MKMapViewDelegate>) delegate__\n{\n    id<MKMapViewDelegate> re$ult = [super delegate];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKMapViewDelegate"
+      ]
     },
     "dequeueReusableAnnotationViewWithIdentifier(java.lang.String)": {
-      "code": "- (MKAnnotationView *) dequeueReusableAnnotationViewWithIdentifier:(NSString *) identifier\n{\n    MKAnnotationView * re$ult = [self dequeueReusableAnnotationViewWithIdentifier___java_lang_String:(identifier ? identifier : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (MKAnnotationView *) dequeueReusableAnnotationViewWithIdentifier:(NSString *) identifier\n{\n    MKAnnotationView * re$ult = [self dequeueReusableAnnotationViewWithIdentifier___java_lang_String:(identifier ? identifier : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (MKAnnotationView*) dequeueReusableAnnotationViewWithIdentifier___java_lang_String:(NSString*) identifier \n{\n    MKAnnotationView* re$ult = [super dequeueReusableAnnotationViewWithIdentifier:(identifier == JAVA_NULL ? nil : identifier)];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKAnnotationView",
+        "java_lang_String"
+      ]
     },
     "deselectAnnotation(crossmobile.ios.mapkit.MKAnnotation,boolean)": {
-      "code": "- (void) deselectAnnotation:(id<MKAnnotation>) annotation animated:(BOOL) animated\n{\n    [self deselectAnnotation___crossmobile_ios_mapkit_MKAnnotation_boolean:(annotation ? annotation : JAVA_NULL) :animated];\n}\n\n"
+      "reverse": "- (void) deselectAnnotation:(id<MKAnnotation>) annotation animated:(BOOL) animated\n{\n    [self deselectAnnotation___crossmobile_ios_mapkit_MKAnnotation_boolean:(annotation ? annotation : JAVA_NULL) :animated];\n}\n\n",
+      "super": "- (void) deselectAnnotation___crossmobile_ios_mapkit_MKAnnotation_boolean:(id<MKAnnotation>) annotation :(BOOL) animated \n{\n    [super deselectAnnotation:(annotation == JAVA_NULL ? nil : annotation) animated:animated];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKAnnotation"
+      ]
     },
+    "didAddSubview(crossmobile.ios.uikit.UIView)": null,
+    "didMoveToSuperview()": null,
+    "didMoveToWindow()": null,
+    "drawRect(crossmobile.ios.coregraphics.CGRect)": null,
     "exchangeOverlayAtIndex(int,int)": {
-      "code": "- (void) exchangeOverlayAtIndex:(NSUInteger) index1 withOverlayAtIndex:(NSUInteger) index2\n{\n    [self exchangeOverlayAtIndex___int_int:index1 :index2];\n}\n\n"
+      "reverse": "- (void) exchangeOverlayAtIndex:(NSUInteger) index1 withOverlayAtIndex:(NSUInteger) index2\n{\n    [self exchangeOverlayAtIndex___int_int:index1 :index2];\n}\n\n",
+      "super": "- (void) exchangeOverlayAtIndex___int_int:(int) index1 :(int) index2 \n{\n    [super exchangeOverlayAtIndex:index1 withOverlayAtIndex:index2];\n}\n\n"
     },
+    "frame()": null,
+    "gestureRecognizers()": null,
+    "heightAnchor()": null,
+    "hitTest(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "insertOverlay(crossmobile.ios.mapkit.MKOverlay,int)": {
-      "code": "- (void) insertOverlay:(id<MKOverlay>) overlay atIndex:(NSUInteger) index\n{\n    [self insertOverlay___crossmobile_ios_mapkit_MKOverlay_int:(overlay ? overlay : JAVA_NULL) :index];\n}\n\n"
+      "reverse": "- (void) insertOverlay:(id<MKOverlay>) overlay atIndex:(NSUInteger) index\n{\n    [self insertOverlay___crossmobile_ios_mapkit_MKOverlay_int:(overlay ? overlay : JAVA_NULL) :index];\n}\n\n",
+      "super": "- (void) insertOverlay___crossmobile_ios_mapkit_MKOverlay_int:(id<MKOverlay>) overlay :(int) index \n{\n    [super insertOverlay:(overlay == JAVA_NULL ? nil : overlay) atIndex:index];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKOverlay"
+      ]
     },
     "insertOverlayAboveOverlay(crossmobile.ios.mapkit.MKOverlay,crossmobile.ios.mapkit.MKOverlay)": {
-      "code": "- (void) insertOverlay:(id<MKOverlay>) overlay aboveOverlay:(id<MKOverlay>) sibling\n{\n    [self insertOverlayAboveOverlay___crossmobile_ios_mapkit_MKOverlay_crossmobile_ios_mapkit_MKOverlay:(overlay ? overlay : JAVA_NULL) :(sibling ? sibling : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) insertOverlay:(id<MKOverlay>) overlay aboveOverlay:(id<MKOverlay>) sibling\n{\n    [self insertOverlayAboveOverlay___crossmobile_ios_mapkit_MKOverlay_crossmobile_ios_mapkit_MKOverlay:(overlay ? overlay : JAVA_NULL) :(sibling ? sibling : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) insertOverlayAboveOverlay___crossmobile_ios_mapkit_MKOverlay_crossmobile_ios_mapkit_MKOverlay:(id<MKOverlay>) overlay :(id<MKOverlay>) sibling \n{\n    [super insertOverlay:(overlay == JAVA_NULL ? nil : overlay) aboveOverlay:(sibling == JAVA_NULL ? nil : sibling)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKOverlay"
+      ]
     },
     "insertOverlayBelowOverlay(crossmobile.ios.mapkit.MKOverlay,crossmobile.ios.mapkit.MKOverlay)": {
-      "code": "- (void) insertOverlay:(id<MKOverlay>) overlay belowOverlay:(id<MKOverlay>) sibling\n{\n    [self insertOverlayBelowOverlay___crossmobile_ios_mapkit_MKOverlay_crossmobile_ios_mapkit_MKOverlay:(overlay ? overlay : JAVA_NULL) :(sibling ? sibling : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) insertOverlay:(id<MKOverlay>) overlay belowOverlay:(id<MKOverlay>) sibling\n{\n    [self insertOverlayBelowOverlay___crossmobile_ios_mapkit_MKOverlay_crossmobile_ios_mapkit_MKOverlay:(overlay ? overlay : JAVA_NULL) :(sibling ? sibling : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) insertOverlayBelowOverlay___crossmobile_ios_mapkit_MKOverlay_crossmobile_ios_mapkit_MKOverlay:(id<MKOverlay>) overlay :(id<MKOverlay>) sibling \n{\n    [super insertOverlay:(overlay == JAVA_NULL ? nil : overlay) belowOverlay:(sibling == JAVA_NULL ? nil : sibling)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKOverlay"
+      ]
     },
+    "insertSubview(crossmobile.ios.uikit.UIView,int)": null,
+    "insetsLayoutMarginsFromSafeArea()": null,
+    "intrinsicContentSize()": null,
+    "invalidateIntrinsicContentSize()": null,
+    "isFirstResponder()": null,
+    "isHidden()": null,
+    "isMultipleTouchEnabled()": null,
+    "isOpaque()": null,
     "isScrollEnabled()": {
-      "code": "- (BOOL) isScrollEnabled\n{\n    return [self isScrollEnabled__];\n}\n\n"
+      "reverse": "- (BOOL) isScrollEnabled\n{\n    return [self isScrollEnabled__];\n}\n\n",
+      "super": "- (BOOL) isScrollEnabled__\n{\n    return [super isScrollEnabled];\n}\n\n"
     },
+    "isUserInteractionEnabled()": null,
     "isUserLocationVisible()": {
-      "code": "- (BOOL) isUserLocationVisible\n{\n    return [self isUserLocationVisible__];\n}\n\n"
+      "reverse": "- (BOOL) isUserLocationVisible\n{\n    return [self isUserLocationVisible__];\n}\n\n",
+      "super": "- (BOOL) isUserLocationVisible__\n{\n    return [super isUserLocationVisible];\n}\n\n"
     },
     "isZoomEnabled()": {
-      "code": "- (BOOL) isZoomEnabled\n{\n    return [self isZoomEnabled__];\n}\n\n"
+      "reverse": "- (BOOL) isZoomEnabled\n{\n    return [self isZoomEnabled__];\n}\n\n",
+      "super": "- (BOOL) isZoomEnabled__\n{\n    return [super isZoomEnabled];\n}\n\n"
     },
+    "layer()": null,
+    "layoutIfNeeded()": null,
+    "layoutMargins()": null,
+    "layoutMarginsDidChange()": null,
+    "layoutMarginsGuide()": null,
+    "layoutSubviews()": null,
+    "leadingAnchor()": null,
+    "leftAnchor()": null,
     "mapRectThatFits(crossmobile.ios.mapkit.MKMapRect)": {
-      "code": "- (MKMapRect) mapRectThatFits:(MKMapRect) mapRect\n{\n    crossmobile_ios_mapkit_MKMapRect* mapRect$conv = [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:mapRect];\n    crossmobile_ios_mapkit_MKMapRect* re$ult = [self mapRectThatFits___crossmobile_ios_mapkit_MKMapRect:mapRect$conv];\n    MKMapRect re$ult$conv = [re$ult getMKMapRect];\n    [re$ult release];\n    [mapRect$conv release];\n    return re$ult$conv;\n}\n\n"
+      "reverse": "- (MKMapRect) mapRectThatFits:(MKMapRect) mapRect\n{\n    crossmobile_ios_mapkit_MKMapRect* mapRect$conv = [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:mapRect];\n    crossmobile_ios_mapkit_MKMapRect* re$ult = [self mapRectThatFits___crossmobile_ios_mapkit_MKMapRect:mapRect$conv];\n    MKMapRect re$ult$conv = [re$ult getMKMapRect];\n    [re$ult release];\n    [mapRect$conv release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_mapkit_MKMapRect*) mapRectThatFits___crossmobile_ios_mapkit_MKMapRect:(crossmobile_ios_mapkit_MKMapRect*) mapRect \n{\n    return [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:[super mapRectThatFits:[mapRect getMKMapRect]]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKMapRect"
+      ]
     },
     "mapRectThatFits(crossmobile.ios.mapkit.MKMapRect,crossmobile.ios.uikit.UIEdgeInsets)": {
-      "code": "- (MKMapRect) mapRectThatFits:(MKMapRect) mapRect edgePadding:(UIEdgeInsets) insets\n{\n    crossmobile_ios_mapkit_MKMapRect* mapRect$conv = [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:mapRect];\n    crossmobile_ios_uikit_UIEdgeInsets* insets$conv = [[crossmobile_ios_uikit_UIEdgeInsets alloc] initWithUIEdgeInsets:insets];\n    crossmobile_ios_mapkit_MKMapRect* re$ult = [self mapRectThatFits___crossmobile_ios_mapkit_MKMapRect_crossmobile_ios_uikit_UIEdgeInsets:mapRect$conv :insets$conv];\n    MKMapRect re$ult$conv = [re$ult getMKMapRect];\n    [re$ult release];\n    [mapRect$conv release];\n    [insets$conv release];\n    return re$ult$conv;\n}\n\n"
+      "reverse": "- (MKMapRect) mapRectThatFits:(MKMapRect) mapRect edgePadding:(UIEdgeInsets) insets\n{\n    crossmobile_ios_mapkit_MKMapRect* mapRect$conv = [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:mapRect];\n    crossmobile_ios_uikit_UIEdgeInsets* insets$conv = [[crossmobile_ios_uikit_UIEdgeInsets alloc] initWithUIEdgeInsets:insets];\n    crossmobile_ios_mapkit_MKMapRect* re$ult = [self mapRectThatFits___crossmobile_ios_mapkit_MKMapRect_crossmobile_ios_uikit_UIEdgeInsets:mapRect$conv :insets$conv];\n    MKMapRect re$ult$conv = [re$ult getMKMapRect];\n    [re$ult release];\n    [mapRect$conv release];\n    [insets$conv release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_mapkit_MKMapRect*) mapRectThatFits___crossmobile_ios_mapkit_MKMapRect_crossmobile_ios_uikit_UIEdgeInsets:(crossmobile_ios_mapkit_MKMapRect*) mapRect :(crossmobile_ios_uikit_UIEdgeInsets*) insets \n{\n    return [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:[super mapRectThatFits:[mapRect getMKMapRect] edgePadding:[insets getUIEdgeInsets]]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKMapRect",
+        "crossmobile_ios_uikit_UIEdgeInsets"
+      ]
     },
     "mapType()": {
-      "code": "- (MKMapType) mapType\n{\n    return [self mapType__];\n}\n\n"
+      "reverse": "- (MKMapType) mapType\n{\n    return [self mapType__];\n}\n\n",
+      "super": "- (int) mapType__\n{\n    return [super mapType];\n}\n\n"
     },
+    "needsUpdateConstraints()": null,
+    "nextResponder()": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
     "overlays()": {
-      "code": "- (NSArray<id<MKOverlay>> *) overlays\n{\n    NSArray<id<MKOverlay>> * re$ult = [self overlays__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSArray<id<MKOverlay>> *) overlays\n{\n    NSArray<id<MKOverlay>> * re$ult = [self overlays__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSArray*) overlays__\n{\n    NSArray* re$ult = [super overlays];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
     },
+    "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
+    "preservesSuperviewLayoutMargins()": null,
     "region()": {
-      "code": "- (MKCoordinateRegion) region\n{\n    crossmobile_ios_mapkit_MKCoordinateRegion* re$ult = [self region__];\n    MKCoordinateRegion re$ult$conv = [re$ult getMKCoordinateRegion];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n"
+      "reverse": "- (MKCoordinateRegion) region\n{\n    crossmobile_ios_mapkit_MKCoordinateRegion* re$ult = [self region__];\n    MKCoordinateRegion re$ult$conv = [re$ult getMKCoordinateRegion];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_mapkit_MKCoordinateRegion*) region__\n{\n    return [[crossmobile_ios_mapkit_MKCoordinateRegion alloc] initWithMKCoordinateRegion:[super region]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKCoordinateRegion"
+      ]
     },
     "regionThatFits(crossmobile.ios.mapkit.MKCoordinateRegion)": {
-      "code": "- (MKCoordinateRegion) regionThatFits:(MKCoordinateRegion) region\n{\n    crossmobile_ios_mapkit_MKCoordinateRegion* region$conv = [[crossmobile_ios_mapkit_MKCoordinateRegion alloc] initWithMKCoordinateRegion:region];\n    crossmobile_ios_mapkit_MKCoordinateRegion* re$ult = [self regionThatFits___crossmobile_ios_mapkit_MKCoordinateRegion:region$conv];\n    MKCoordinateRegion re$ult$conv = [re$ult getMKCoordinateRegion];\n    [re$ult release];\n    [region$conv release];\n    return re$ult$conv;\n}\n\n"
+      "reverse": "- (MKCoordinateRegion) regionThatFits:(MKCoordinateRegion) region\n{\n    crossmobile_ios_mapkit_MKCoordinateRegion* region$conv = [[crossmobile_ios_mapkit_MKCoordinateRegion alloc] initWithMKCoordinateRegion:region];\n    crossmobile_ios_mapkit_MKCoordinateRegion* re$ult = [self regionThatFits___crossmobile_ios_mapkit_MKCoordinateRegion:region$conv];\n    MKCoordinateRegion re$ult$conv = [re$ult getMKCoordinateRegion];\n    [re$ult release];\n    [region$conv release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_mapkit_MKCoordinateRegion*) regionThatFits___crossmobile_ios_mapkit_MKCoordinateRegion:(crossmobile_ios_mapkit_MKCoordinateRegion*) region \n{\n    return [[crossmobile_ios_mapkit_MKCoordinateRegion alloc] initWithMKCoordinateRegion:[super regionThatFits:[region getMKCoordinateRegion]]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKCoordinateRegion"
+      ]
     },
     "removeAnnotation(crossmobile.ios.mapkit.MKAnnotation)": {
-      "code": "- (void) removeAnnotation:(id<MKAnnotation>) annotation\n{\n    [self removeAnnotation___crossmobile_ios_mapkit_MKAnnotation:(annotation ? annotation : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) removeAnnotation:(id<MKAnnotation>) annotation\n{\n    [self removeAnnotation___crossmobile_ios_mapkit_MKAnnotation:(annotation ? annotation : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) removeAnnotation___crossmobile_ios_mapkit_MKAnnotation:(id<MKAnnotation>) annotation \n{\n    [super removeAnnotation:(annotation == JAVA_NULL ? nil : annotation)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKAnnotation"
+      ]
     },
     "removeAnnotations(java.util.List)": {
-      "code": "- (void) removeAnnotations:(NSArray<id<MKAnnotation>> *) annotations\n{\n    [self removeAnnotations___java_util_List:(annotations ? annotations : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) removeAnnotations:(NSArray<id<MKAnnotation>> *) annotations\n{\n    [self removeAnnotations___java_util_List:(annotations ? annotations : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) removeAnnotations___java_util_List:(NSArray*) annotations \n{\n    [super removeAnnotations:(annotations == JAVA_NULL ? nil : annotations)];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
     },
+    "removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
+    "removeConstraints(java.util.List)": null,
+    "removeFromSuperview()": null,
+    "removeGestureRecognizer(crossmobile.ios.uikit.UIGestureRecognizer)": null,
+    "removeLayoutGuide(crossmobile.ios.uikit.UILayoutGuide)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "removeOverlay(crossmobile.ios.mapkit.MKOverlay)": {
-      "code": "- (void) removeOverlay:(id<MKOverlay>) overlay\n{\n    [self removeOverlay___crossmobile_ios_mapkit_MKOverlay:(overlay ? overlay : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) removeOverlay:(id<MKOverlay>) overlay\n{\n    [self removeOverlay___crossmobile_ios_mapkit_MKOverlay:(overlay ? overlay : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) removeOverlay___crossmobile_ios_mapkit_MKOverlay:(id<MKOverlay>) overlay \n{\n    [super removeOverlay:(overlay == JAVA_NULL ? nil : overlay)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKOverlay"
+      ]
     },
     "removeOverlays(java.util.List)": {
-      "code": "- (void) removeOverlays:(NSArray<id<MKOverlay>> *) overlays\n{\n    [self removeOverlays___java_util_List:(overlays ? overlays : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) removeOverlays:(NSArray<id<MKOverlay>> *) overlays\n{\n    [self removeOverlays___java_util_List:(overlays ? overlays : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) removeOverlays___java_util_List:(NSArray*) overlays \n{\n    [super removeOverlays:(overlays == JAVA_NULL ? nil : overlays)];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
     },
+    "resignFirstResponder()": null,
+    "restorationIdentifier()": null,
+    "rightAnchor()": null,
+    "safeAreaInsets()": null,
+    "safeAreaLayoutGuide()": null,
     "selectAnnotation(crossmobile.ios.mapkit.MKAnnotation,boolean)": {
-      "code": "- (void) selectAnnotation:(id<MKAnnotation>) annotation animated:(BOOL) animated\n{\n    [self selectAnnotation___crossmobile_ios_mapkit_MKAnnotation_boolean:(annotation ? annotation : JAVA_NULL) :animated];\n}\n\n"
+      "reverse": "- (void) selectAnnotation:(id<MKAnnotation>) annotation animated:(BOOL) animated\n{\n    [self selectAnnotation___crossmobile_ios_mapkit_MKAnnotation_boolean:(annotation ? annotation : JAVA_NULL) :animated];\n}\n\n",
+      "super": "- (void) selectAnnotation___crossmobile_ios_mapkit_MKAnnotation_boolean:(id<MKAnnotation>) annotation :(BOOL) animated \n{\n    [super selectAnnotation:(annotation == JAVA_NULL ? nil : annotation) animated:animated];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKAnnotation"
+      ]
     },
     "selectedAnnotations()": {
-      "code": "- (NSArray<id<MKAnnotation>> *) selectedAnnotations\n{\n    NSArray<id<MKAnnotation>> * re$ult = [self selectedAnnotations__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSArray<id<MKAnnotation>> *) selectedAnnotations\n{\n    NSArray<id<MKAnnotation>> * re$ult = [self selectedAnnotations__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSArray*) selectedAnnotations__\n{\n    NSArray* re$ult = [super selectedAnnotations];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
     },
+    "sendSubviewToBack(crossmobile.ios.uikit.UIView)": null,
+    "setAccessibilityIdentifier(java.lang.String)": null,
+    "setAlpha(double)": null,
+    "setAutoresizesSubviews(boolean)": null,
+    "setAutoresizingMask(int)": null,
+    "setBackgroundColor(crossmobile.ios.uikit.UIColor)": null,
+    "setBounds(crossmobile.ios.coregraphics.CGRect)": null,
+    "setCenter(crossmobile.ios.coregraphics.CGPoint)": null,
     "setCenterCoordinate(crossmobile.ios.corelocation.CLLocationCoordinate2D)": {
-      "code": "- (void) setCenterCoordinate:(CLLocationCoordinate2D) centerCoordinate\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* centerCoordinate$conv = [[crossmobile_ios_corelocation_CLLocationCoordinate2D alloc] initWithCLLocationCoordinate2D:centerCoordinate];\n    [self setCenterCoordinate___crossmobile_ios_corelocation_CLLocationCoordinate2D:centerCoordinate$conv];\n    [centerCoordinate$conv release];\n}\n\n"
+      "reverse": "- (void) setCenterCoordinate:(CLLocationCoordinate2D) centerCoordinate\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* centerCoordinate$conv = [[crossmobile_ios_corelocation_CLLocationCoordinate2D alloc] initWithCLLocationCoordinate2D:centerCoordinate];\n    [self setCenterCoordinate___crossmobile_ios_corelocation_CLLocationCoordinate2D:centerCoordinate$conv];\n    [centerCoordinate$conv release];\n}\n\n",
+      "super": "- (void) setCenterCoordinate___crossmobile_ios_corelocation_CLLocationCoordinate2D:(crossmobile_ios_corelocation_CLLocationCoordinate2D*) centerCoordinate \n{\n    [super setCenterCoordinate:[centerCoordinate getCLLocationCoordinate2D]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocationCoordinate2D"
+      ]
     },
     "setCenterCoordinate(crossmobile.ios.corelocation.CLLocationCoordinate2D,boolean)": {
-      "code": "- (void) setCenterCoordinate:(CLLocationCoordinate2D) coordinate animated:(BOOL) animated\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* coordinate$conv = [[crossmobile_ios_corelocation_CLLocationCoordinate2D alloc] initWithCLLocationCoordinate2D:coordinate];\n    [self setCenterCoordinate___crossmobile_ios_corelocation_CLLocationCoordinate2D_boolean:coordinate$conv :animated];\n    [coordinate$conv release];\n}\n\n"
+      "reverse": "- (void) setCenterCoordinate:(CLLocationCoordinate2D) coordinate animated:(BOOL) animated\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* coordinate$conv = [[crossmobile_ios_corelocation_CLLocationCoordinate2D alloc] initWithCLLocationCoordinate2D:coordinate];\n    [self setCenterCoordinate___crossmobile_ios_corelocation_CLLocationCoordinate2D_boolean:coordinate$conv :animated];\n    [coordinate$conv release];\n}\n\n",
+      "super": "- (void) setCenterCoordinate___crossmobile_ios_corelocation_CLLocationCoordinate2D_boolean:(crossmobile_ios_corelocation_CLLocationCoordinate2D*) coordinate :(BOOL) animated \n{\n    [super setCenterCoordinate:[coordinate getCLLocationCoordinate2D] animated:animated];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocationCoordinate2D"
+      ]
     },
+    "setClearsContextBeforeDrawing(boolean)": null,
+    "setClipsToBounds(boolean)": null,
+    "setContentCompressionResistancePriority(float,int)": null,
+    "setContentHuggingPriority(float,int)": null,
+    "setContentMode(int)": null,
     "setDelegate(crossmobile.ios.mapkit.MKMapViewDelegate)": {
-      "code": "- (void) setDelegate:(id<MKMapViewDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_mapkit_MKMapViewDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setDelegate:(id<MKMapViewDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_mapkit_MKMapViewDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setDelegate___crossmobile_ios_mapkit_MKMapViewDelegate:(id<MKMapViewDelegate>) delegate \n{\n    objc_setAssociatedObject(self, @selector(setDelegate:), delegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);\n    [super setDelegate:(delegate == JAVA_NULL ? nil : delegate)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKMapViewDelegate"
+      ]
     },
+    "setFrame(crossmobile.ios.coregraphics.CGRect)": null,
+    "setGestureRecognizers(java.util.List)": null,
+    "setHidden(boolean)": null,
+    "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
+    "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
     "setMapType(int)": {
-      "code": "- (void) setMapType:(MKMapType) mapType\n{\n    [self setMapType___int:mapType];\n}\n\n"
+      "reverse": "- (void) setMapType:(MKMapType) mapType\n{\n    [self setMapType___int:mapType];\n}\n\n",
+      "super": "- (void) setMapType___int:(int) mapType \n{\n    [super setMapType:mapType];\n}\n\n"
     },
+    "setMultipleTouchEnabled(boolean)": null,
+    "setNeedsDisplay()": null,
+    "setNeedsLayout()": null,
+    "setNeedsUpdateConstraints()": null,
+    "setOpaque(boolean)": null,
+    "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRegion(crossmobile.ios.mapkit.MKCoordinateRegion)": {
-      "code": "- (void) setRegion:(MKCoordinateRegion) region\n{\n    crossmobile_ios_mapkit_MKCoordinateRegion* region$conv = [[crossmobile_ios_mapkit_MKCoordinateRegion alloc] initWithMKCoordinateRegion:region];\n    [self setRegion___crossmobile_ios_mapkit_MKCoordinateRegion:region$conv];\n    [region$conv release];\n}\n\n"
+      "reverse": "- (void) setRegion:(MKCoordinateRegion) region\n{\n    crossmobile_ios_mapkit_MKCoordinateRegion* region$conv = [[crossmobile_ios_mapkit_MKCoordinateRegion alloc] initWithMKCoordinateRegion:region];\n    [self setRegion___crossmobile_ios_mapkit_MKCoordinateRegion:region$conv];\n    [region$conv release];\n}\n\n",
+      "super": "- (void) setRegion___crossmobile_ios_mapkit_MKCoordinateRegion:(crossmobile_ios_mapkit_MKCoordinateRegion*) region \n{\n    [super setRegion:[region getMKCoordinateRegion]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKCoordinateRegion"
+      ]
     },
     "setRegion(crossmobile.ios.mapkit.MKCoordinateRegion,boolean)": {
-      "code": "- (void) setRegion:(MKCoordinateRegion) region animated:(BOOL) animated\n{\n    crossmobile_ios_mapkit_MKCoordinateRegion* region$conv = [[crossmobile_ios_mapkit_MKCoordinateRegion alloc] initWithMKCoordinateRegion:region];\n    [self setRegion___crossmobile_ios_mapkit_MKCoordinateRegion_boolean:region$conv :animated];\n    [region$conv release];\n}\n\n"
+      "reverse": "- (void) setRegion:(MKCoordinateRegion) region animated:(BOOL) animated\n{\n    crossmobile_ios_mapkit_MKCoordinateRegion* region$conv = [[crossmobile_ios_mapkit_MKCoordinateRegion alloc] initWithMKCoordinateRegion:region];\n    [self setRegion___crossmobile_ios_mapkit_MKCoordinateRegion_boolean:region$conv :animated];\n    [region$conv release];\n}\n\n",
+      "super": "- (void) setRegion___crossmobile_ios_mapkit_MKCoordinateRegion_boolean:(crossmobile_ios_mapkit_MKCoordinateRegion*) region :(BOOL) animated \n{\n    [super setRegion:[region getMKCoordinateRegion] animated:animated];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKCoordinateRegion"
+      ]
     },
+    "setRestorationIdentifier(java.lang.String)": null,
     "setScrollEnabled(boolean)": {
-      "code": "- (void) setScrollEnabled:(BOOL) scrollEnabled\n{\n    [self setScrollEnabled___boolean:scrollEnabled];\n}\n\n"
+      "reverse": "- (void) setScrollEnabled:(BOOL) scrollEnabled\n{\n    [self setScrollEnabled___boolean:scrollEnabled];\n}\n\n",
+      "super": "- (void) setScrollEnabled___boolean:(BOOL) scrollEnabled \n{\n    [super setScrollEnabled:scrollEnabled];\n}\n\n"
     },
     "setSelectedAnnotations(java.util.List)": {
-      "code": "- (void) setSelectedAnnotations:(NSArray<id<MKAnnotation>> *) selectedAnnotations\n{\n    [self setSelectedAnnotations___java_util_List:(selectedAnnotations ? selectedAnnotations : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setSelectedAnnotations:(NSArray<id<MKAnnotation>> *) selectedAnnotations\n{\n    [self setSelectedAnnotations___java_util_List:(selectedAnnotations ? selectedAnnotations : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setSelectedAnnotations___java_util_List:(NSArray*) selectedAnnotations \n{\n    [super setSelectedAnnotations:(selectedAnnotations == JAVA_NULL ? nil : selectedAnnotations)];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
     },
     "setShowsUserLocation(boolean)": {
-      "code": "- (void) setShowsUserLocation:(BOOL) showsUserLocation\n{\n    [self setShowsUserLocation___boolean:showsUserLocation];\n}\n\n"
+      "reverse": "- (void) setShowsUserLocation:(BOOL) showsUserLocation\n{\n    [self setShowsUserLocation___boolean:showsUserLocation];\n}\n\n",
+      "super": "- (void) setShowsUserLocation___boolean:(BOOL) showsUserLocation \n{\n    [super setShowsUserLocation:showsUserLocation];\n}\n\n"
     },
+    "setTag(int)": null,
+    "setTintAdjustmentMode(int)": null,
+    "setTintColor(crossmobile.ios.uikit.UIColor)": null,
+    "setTransform(crossmobile.ios.coregraphics.CGAffineTransform)": null,
+    "setTranslatesAutoresizingMaskIntoConstraints(boolean)": null,
+    "setUserInteractionEnabled(boolean)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
     "setVisibleMapRect(crossmobile.ios.mapkit.MKMapRect)": {
-      "code": "- (void) setVisibleMapRect:(MKMapRect) visibleMapRect\n{\n    crossmobile_ios_mapkit_MKMapRect* visibleMapRect$conv = [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:visibleMapRect];\n    [self setVisibleMapRect___crossmobile_ios_mapkit_MKMapRect:visibleMapRect$conv];\n    [visibleMapRect$conv release];\n}\n\n"
+      "reverse": "- (void) setVisibleMapRect:(MKMapRect) visibleMapRect\n{\n    crossmobile_ios_mapkit_MKMapRect* visibleMapRect$conv = [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:visibleMapRect];\n    [self setVisibleMapRect___crossmobile_ios_mapkit_MKMapRect:visibleMapRect$conv];\n    [visibleMapRect$conv release];\n}\n\n",
+      "super": "- (void) setVisibleMapRect___crossmobile_ios_mapkit_MKMapRect:(crossmobile_ios_mapkit_MKMapRect*) visibleMapRect \n{\n    [super setVisibleMapRect:[visibleMapRect getMKMapRect]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKMapRect"
+      ]
     },
     "setVisibleMapRect(crossmobile.ios.mapkit.MKMapRect,boolean)": {
-      "code": "- (void) setVisibleMapRect:(MKMapRect) mapRect animated:(BOOL) animate\n{\n    crossmobile_ios_mapkit_MKMapRect* mapRect$conv = [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:mapRect];\n    [self setVisibleMapRect___crossmobile_ios_mapkit_MKMapRect_boolean:mapRect$conv :animate];\n    [mapRect$conv release];\n}\n\n"
+      "reverse": "- (void) setVisibleMapRect:(MKMapRect) mapRect animated:(BOOL) animate\n{\n    crossmobile_ios_mapkit_MKMapRect* mapRect$conv = [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:mapRect];\n    [self setVisibleMapRect___crossmobile_ios_mapkit_MKMapRect_boolean:mapRect$conv :animate];\n    [mapRect$conv release];\n}\n\n",
+      "super": "- (void) setVisibleMapRect___crossmobile_ios_mapkit_MKMapRect_boolean:(crossmobile_ios_mapkit_MKMapRect*) mapRect :(BOOL) animate \n{\n    [super setVisibleMapRect:[mapRect getMKMapRect] animated:animate];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKMapRect"
+      ]
     },
     "setVisibleMapRect(crossmobile.ios.mapkit.MKMapRect,crossmobile.ios.uikit.UIEdgeInsets,boolean)": {
-      "code": "- (void) setVisibleMapRect:(MKMapRect) mapRect edgePadding:(UIEdgeInsets) insets animated:(BOOL) animate\n{\n    crossmobile_ios_mapkit_MKMapRect* mapRect$conv = [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:mapRect];\n    crossmobile_ios_uikit_UIEdgeInsets* insets$conv = [[crossmobile_ios_uikit_UIEdgeInsets alloc] initWithUIEdgeInsets:insets];\n    [self setVisibleMapRect___crossmobile_ios_mapkit_MKMapRect_crossmobile_ios_uikit_UIEdgeInsets_boolean:mapRect$conv :insets$conv :animate];\n    [mapRect$conv release];\n    [insets$conv release];\n}\n\n"
+      "reverse": "- (void) setVisibleMapRect:(MKMapRect) mapRect edgePadding:(UIEdgeInsets) insets animated:(BOOL) animate\n{\n    crossmobile_ios_mapkit_MKMapRect* mapRect$conv = [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:mapRect];\n    crossmobile_ios_uikit_UIEdgeInsets* insets$conv = [[crossmobile_ios_uikit_UIEdgeInsets alloc] initWithUIEdgeInsets:insets];\n    [self setVisibleMapRect___crossmobile_ios_mapkit_MKMapRect_crossmobile_ios_uikit_UIEdgeInsets_boolean:mapRect$conv :insets$conv :animate];\n    [mapRect$conv release];\n    [insets$conv release];\n}\n\n",
+      "super": "- (void) setVisibleMapRect___crossmobile_ios_mapkit_MKMapRect_crossmobile_ios_uikit_UIEdgeInsets_boolean:(crossmobile_ios_mapkit_MKMapRect*) mapRect :(crossmobile_ios_uikit_UIEdgeInsets*) insets :(BOOL) animate \n{\n    [super setVisibleMapRect:[mapRect getMKMapRect] edgePadding:[insets getUIEdgeInsets] animated:animate];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKMapRect",
+        "crossmobile_ios_uikit_UIEdgeInsets"
+      ]
     },
     "setZoomEnabled(boolean)": {
-      "code": "- (void) setZoomEnabled:(BOOL) zoomEnabled\n{\n    [self setZoomEnabled___boolean:zoomEnabled];\n}\n\n"
+      "reverse": "- (void) setZoomEnabled:(BOOL) zoomEnabled\n{\n    [self setZoomEnabled___boolean:zoomEnabled];\n}\n\n",
+      "super": "- (void) setZoomEnabled___boolean:(BOOL) zoomEnabled \n{\n    [super setZoomEnabled:zoomEnabled];\n}\n\n"
     },
     "showsUserLocation()": {
-      "code": "- (BOOL) showsUserLocation\n{\n    return [self showsUserLocation__];\n}\n\n"
+      "reverse": "- (BOOL) showsUserLocation\n{\n    return [self showsUserLocation__];\n}\n\n",
+      "super": "- (BOOL) showsUserLocation__\n{\n    return [super showsUserLocation];\n}\n\n"
     },
+    "sizeThatFits(crossmobile.ios.coregraphics.CGSize)": null,
+    "sizeToFit()": null,
+    "subviews()": null,
+    "superview()": null,
+    "tag()": null,
+    "tintAdjustmentMode()": null,
+    "tintColor()": null,
+    "tintColorDidChange()": null,
+    "topAnchor()": null,
+    "touchesBegan(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesCancelled(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesEnded(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesMoved(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "trailingAnchor()": null,
+    "transform()": null,
+    "translatesAutoresizingMaskIntoConstraints()": null,
+    "updateConstraints()": null,
+    "updateConstraintsIfNeeded()": null,
+    "userInterfaceLayoutDirection()": null,
     "userLocation()": {
-      "code": "- (MKUserLocation *) userLocation\n{\n    MKUserLocation * re$ult = [self userLocation__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (MKUserLocation *) userLocation\n{\n    MKUserLocation * re$ult = [self userLocation__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (MKUserLocation*) userLocation__\n{\n    MKUserLocation* re$ult = [super userLocation];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKUserLocation"
+      ]
     },
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null,
     "viewForAnnotation(crossmobile.ios.mapkit.MKAnnotation)": {
-      "code": "- (MKAnnotationView *) viewForAnnotation:(id<MKAnnotation>) annotation\n{\n    MKAnnotationView * re$ult = [self viewForAnnotation___crossmobile_ios_mapkit_MKAnnotation:(annotation ? annotation : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (MKAnnotationView *) viewForAnnotation:(id<MKAnnotation>) annotation\n{\n    MKAnnotationView * re$ult = [self viewForAnnotation___crossmobile_ios_mapkit_MKAnnotation:(annotation ? annotation : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (MKAnnotationView*) viewForAnnotation___crossmobile_ios_mapkit_MKAnnotation:(id<MKAnnotation>) annotation \n{\n    MKAnnotationView* re$ult = [super viewForAnnotation:(annotation == JAVA_NULL ? nil : annotation)];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKAnnotation",
+        "crossmobile_ios_mapkit_MKAnnotationView"
+      ]
     },
+    "viewForFirstBaselineLayout()": null,
+    "viewForLastBaselineLayout()": null,
     "viewForOverlay(crossmobile.ios.mapkit.MKOverlay)": {
-      "code": "- (MKOverlayView *) viewForOverlay:(id<MKOverlay>) overlay\n{\n    MKOverlayView * re$ult = [self viewForOverlay___crossmobile_ios_mapkit_MKOverlay:(overlay ? overlay : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (MKOverlayView *) viewForOverlay:(id<MKOverlay>) overlay\n{\n    MKOverlayView * re$ult = [self viewForOverlay___crossmobile_ios_mapkit_MKOverlay:(overlay ? overlay : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (MKOverlayView*) viewForOverlay___crossmobile_ios_mapkit_MKOverlay:(id<MKOverlay>) overlay \n{\n    MKOverlayView* re$ult = [super viewForOverlay:(overlay == JAVA_NULL ? nil : overlay)];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKOverlay",
+        "crossmobile_ios_mapkit_MKOverlayView"
+      ]
     },
     "visibleMapRect()": {
-      "code": "- (MKMapRect) visibleMapRect\n{\n    crossmobile_ios_mapkit_MKMapRect* re$ult = [self visibleMapRect__];\n    MKMapRect re$ult$conv = [re$ult getMKMapRect];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n"
-    }
+      "reverse": "- (MKMapRect) visibleMapRect\n{\n    crossmobile_ios_mapkit_MKMapRect* re$ult = [self visibleMapRect__];\n    MKMapRect re$ult$conv = [re$ult getMKMapRect];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_mapkit_MKMapRect*) visibleMapRect__\n{\n    return [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:[super visibleMapRect]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKMapRect"
+      ]
+    },
+    "widthAnchor()": null,
+    "willMoveToSuperview(crossmobile.ios.uikit.UIView)": null,
+    "willMoveToWindow(crossmobile.ios.uikit.UIWindow)": null,
+    "willRemoveSubview(crossmobile.ios.uikit.UIView)": null,
+    "window()": null
   },
   "crossmobile.ios.mapkit.MKMapViewDelegate": {
     "annotationViewCalloutAccessoryControlTapped(crossmobile.ios.mapkit.MKMapView,crossmobile.ios.mapkit.MKAnnotationView,crossmobile.ios.uikit.UIControl)": {
-      "code": "- (void) mapView:(MKMapView *) mapView annotationView:(MKAnnotationView *) view calloutAccessoryControlTapped:(UIControl *) control\n{\n    [self annotationViewCalloutAccessoryControlTapped___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_mapkit_MKAnnotationView_crossmobile_ios_uikit_UIControl:(mapView ? mapView : JAVA_NULL) :(view ? view : JAVA_NULL) :(control ? control : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) mapView:(MKMapView *) mapView annotationView:(MKAnnotationView *) view calloutAccessoryControlTapped:(UIControl *) control\n{\n    [self annotationViewCalloutAccessoryControlTapped___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_mapkit_MKAnnotationView_crossmobile_ios_uikit_UIControl:(mapView ? mapView : JAVA_NULL) :(view ? view : JAVA_NULL) :(control ? control : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) annotationViewCalloutAccessoryControlTapped___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_mapkit_MKAnnotationView_crossmobile_ios_uikit_UIControl:(MKMapView*) mapView :(MKAnnotationView*) view :(UIControl*) control \n{\n    [super mapView:(mapView == JAVA_NULL ? nil : mapView) annotationView:(view == JAVA_NULL ? nil : view) calloutAccessoryControlTapped:(control == JAVA_NULL ? nil : control)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKAnnotationView",
+        "crossmobile_ios_mapkit_MKMapView",
+        "crossmobile_ios_uikit_UIControl"
+      ]
     },
     "annotationViewDidChangeDragState(crossmobile.ios.mapkit.MKMapView,crossmobile.ios.mapkit.MKAnnotationView,int,int)": {
-      "code": "- (void) mapView:(MKMapView *) mapView annotationView:(MKAnnotationView *) view didChangeDragState:(MKAnnotationViewDragState) newState fromOldState:(MKAnnotationViewDragState) oldState\n{\n    [self annotationViewDidChangeDragState___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_mapkit_MKAnnotationView_int_int:(mapView ? mapView : JAVA_NULL) :(view ? view : JAVA_NULL) :newState :oldState];\n}\n\n"
+      "reverse": "- (void) mapView:(MKMapView *) mapView annotationView:(MKAnnotationView *) view didChangeDragState:(MKAnnotationViewDragState) newState fromOldState:(MKAnnotationViewDragState) oldState\n{\n    [self annotationViewDidChangeDragState___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_mapkit_MKAnnotationView_int_int:(mapView ? mapView : JAVA_NULL) :(view ? view : JAVA_NULL) :newState :oldState];\n}\n\n",
+      "super": "- (void) annotationViewDidChangeDragState___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_mapkit_MKAnnotationView_int_int:(MKMapView*) mapView :(MKAnnotationView*) view :(int) newState :(int) oldState \n{\n    [super mapView:(mapView == JAVA_NULL ? nil : mapView) annotationView:(view == JAVA_NULL ? nil : view) didChangeDragState:newState fromOldState:oldState];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKAnnotationView",
+        "crossmobile_ios_mapkit_MKMapView"
+      ]
     },
     "didAddAnnotationViews(crossmobile.ios.mapkit.MKMapView,java.util.List)": {
-      "code": "- (void) mapView:(MKMapView *) mapView didAddAnnotationViews:(NSArray<MKAnnotationView *> *) views\n{\n    [self didAddAnnotationViews___crossmobile_ios_mapkit_MKMapView_java_util_List:(mapView ? mapView : JAVA_NULL) :(views ? views : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) mapView:(MKMapView *) mapView didAddAnnotationViews:(NSArray<MKAnnotationView *> *) views\n{\n    [self didAddAnnotationViews___crossmobile_ios_mapkit_MKMapView_java_util_List:(mapView ? mapView : JAVA_NULL) :(views ? views : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didAddAnnotationViews___crossmobile_ios_mapkit_MKMapView_java_util_List:(MKMapView*) mapView :(NSArray*) views \n{\n    [super mapView:(mapView == JAVA_NULL ? nil : mapView) didAddAnnotationViews:(views == JAVA_NULL ? nil : views)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKMapView",
+        "java_util_List"
+      ]
     },
     "didAddOverlayViews(crossmobile.ios.mapkit.MKMapView,java.util.List)": {
-      "code": "- (void) mapView:(MKMapView *) mapView didAddOverlayViews:(NSArray *) overlayViews\n{\n    [self didAddOverlayViews___crossmobile_ios_mapkit_MKMapView_java_util_List:(mapView ? mapView : JAVA_NULL) :(overlayViews ? overlayViews : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) mapView:(MKMapView *) mapView didAddOverlayViews:(NSArray *) overlayViews\n{\n    [self didAddOverlayViews___crossmobile_ios_mapkit_MKMapView_java_util_List:(mapView ? mapView : JAVA_NULL) :(overlayViews ? overlayViews : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didAddOverlayViews___crossmobile_ios_mapkit_MKMapView_java_util_List:(MKMapView*) mapView :(NSArray*) overlayViews \n{\n    [super mapView:(mapView == JAVA_NULL ? nil : mapView) didAddOverlayViews:(overlayViews == JAVA_NULL ? nil : overlayViews)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKMapView",
+        "java_util_List"
+      ]
     },
     "didDeselectAnnotationView(crossmobile.ios.mapkit.MKMapView,crossmobile.ios.mapkit.MKAnnotationView)": {
-      "code": "- (void) mapView:(MKMapView *) mapView didDeselectAnnotationView:(MKAnnotationView *) view\n{\n    [self didDeselectAnnotationView___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_mapkit_MKAnnotationView:(mapView ? mapView : JAVA_NULL) :(view ? view : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) mapView:(MKMapView *) mapView didDeselectAnnotationView:(MKAnnotationView *) view\n{\n    [self didDeselectAnnotationView___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_mapkit_MKAnnotationView:(mapView ? mapView : JAVA_NULL) :(view ? view : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didDeselectAnnotationView___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_mapkit_MKAnnotationView:(MKMapView*) mapView :(MKAnnotationView*) view \n{\n    [super mapView:(mapView == JAVA_NULL ? nil : mapView) didDeselectAnnotationView:(view == JAVA_NULL ? nil : view)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKAnnotationView",
+        "crossmobile_ios_mapkit_MKMapView"
+      ]
     },
     "didFailLoadingMap(crossmobile.ios.mapkit.MKMapView,crossmobile.ios.foundation.NSError)": {
-      "code": "- (void) mapViewDidFailLoadingMap:(MKMapView *) mapView withError:(NSError *) error\n{\n    [self didFailLoadingMap___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_foundation_NSError:(mapView ? mapView : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) mapViewDidFailLoadingMap:(MKMapView *) mapView withError:(NSError *) error\n{\n    [self didFailLoadingMap___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_foundation_NSError:(mapView ? mapView : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didFailLoadingMap___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_foundation_NSError:(MKMapView*) mapView :(NSError*) error \n{\n    [super mapViewDidFailLoadingMap:(mapView == JAVA_NULL ? nil : mapView) withError:(error == JAVA_NULL ? nil : error)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSError",
+        "crossmobile_ios_mapkit_MKMapView"
+      ]
     },
     "didFailToLocateUserWithError(crossmobile.ios.mapkit.MKMapView,crossmobile.ios.foundation.NSError)": {
-      "code": "- (void) mapView:(MKMapView *) mapView didFailToLocateUserWithError:(NSError *) error\n{\n    [self didFailToLocateUserWithError___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_foundation_NSError:(mapView ? mapView : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) mapView:(MKMapView *) mapView didFailToLocateUserWithError:(NSError *) error\n{\n    [self didFailToLocateUserWithError___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_foundation_NSError:(mapView ? mapView : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didFailToLocateUserWithError___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_foundation_NSError:(MKMapView*) mapView :(NSError*) error \n{\n    [super mapView:(mapView == JAVA_NULL ? nil : mapView) didFailToLocateUserWithError:(error == JAVA_NULL ? nil : error)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSError",
+        "crossmobile_ios_mapkit_MKMapView"
+      ]
     },
     "didFinishLoadingMap(crossmobile.ios.mapkit.MKMapView)": {
-      "code": "- (void) mapViewDidFinishLoadingMap:(MKMapView *) mapView\n{\n    [self didFinishLoadingMap___crossmobile_ios_mapkit_MKMapView:(mapView ? mapView : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) mapViewDidFinishLoadingMap:(MKMapView *) mapView\n{\n    [self didFinishLoadingMap___crossmobile_ios_mapkit_MKMapView:(mapView ? mapView : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didFinishLoadingMap___crossmobile_ios_mapkit_MKMapView:(MKMapView*) mapView \n{\n    [super mapViewDidFinishLoadingMap:(mapView == JAVA_NULL ? nil : mapView)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKMapView"
+      ]
     },
     "didSelectAnnotationView(crossmobile.ios.mapkit.MKMapView,crossmobile.ios.mapkit.MKAnnotationView)": {
-      "code": "- (void) mapView:(MKMapView *) mapView didSelectAnnotationView:(MKAnnotationView *) view\n{\n    [self didSelectAnnotationView___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_mapkit_MKAnnotationView:(mapView ? mapView : JAVA_NULL) :(view ? view : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) mapView:(MKMapView *) mapView didSelectAnnotationView:(MKAnnotationView *) view\n{\n    [self didSelectAnnotationView___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_mapkit_MKAnnotationView:(mapView ? mapView : JAVA_NULL) :(view ? view : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didSelectAnnotationView___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_mapkit_MKAnnotationView:(MKMapView*) mapView :(MKAnnotationView*) view \n{\n    [super mapView:(mapView == JAVA_NULL ? nil : mapView) didSelectAnnotationView:(view == JAVA_NULL ? nil : view)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKAnnotationView",
+        "crossmobile_ios_mapkit_MKMapView"
+      ]
     },
     "didStopLocatingUser(crossmobile.ios.mapkit.MKMapView)": {
-      "code": "- (void) mapViewDidStopLocatingUser:(MKMapView *) mapView\n{\n    [self didStopLocatingUser___crossmobile_ios_mapkit_MKMapView:(mapView ? mapView : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) mapViewDidStopLocatingUser:(MKMapView *) mapView\n{\n    [self didStopLocatingUser___crossmobile_ios_mapkit_MKMapView:(mapView ? mapView : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didStopLocatingUser___crossmobile_ios_mapkit_MKMapView:(MKMapView*) mapView \n{\n    [super mapViewDidStopLocatingUser:(mapView == JAVA_NULL ? nil : mapView)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKMapView"
+      ]
     },
     "didUpdateUserLocation(crossmobile.ios.mapkit.MKMapView,crossmobile.ios.mapkit.MKUserLocation)": {
-      "code": "- (void) mapView:(MKMapView *) mapView didUpdateUserLocation:(MKUserLocation *) userLocation\n{\n    [self didUpdateUserLocation___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_mapkit_MKUserLocation:(mapView ? mapView : JAVA_NULL) :(userLocation ? userLocation : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) mapView:(MKMapView *) mapView didUpdateUserLocation:(MKUserLocation *) userLocation\n{\n    [self didUpdateUserLocation___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_mapkit_MKUserLocation:(mapView ? mapView : JAVA_NULL) :(userLocation ? userLocation : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didUpdateUserLocation___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_mapkit_MKUserLocation:(MKMapView*) mapView :(MKUserLocation*) userLocation \n{\n    [super mapView:(mapView == JAVA_NULL ? nil : mapView) didUpdateUserLocation:(userLocation == JAVA_NULL ? nil : userLocation)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKMapView",
+        "crossmobile_ios_mapkit_MKUserLocation"
+      ]
     },
     "regionDidChangeAnimated(crossmobile.ios.mapkit.MKMapView,boolean)": {
-      "code": "- (void) mapView:(MKMapView *) mapView regionDidChangeAnimated:(BOOL) animated\n{\n    [self regionDidChangeAnimated___crossmobile_ios_mapkit_MKMapView_boolean:(mapView ? mapView : JAVA_NULL) :animated];\n}\n\n"
+      "reverse": "- (void) mapView:(MKMapView *) mapView regionDidChangeAnimated:(BOOL) animated\n{\n    [self regionDidChangeAnimated___crossmobile_ios_mapkit_MKMapView_boolean:(mapView ? mapView : JAVA_NULL) :animated];\n}\n\n",
+      "super": "- (void) regionDidChangeAnimated___crossmobile_ios_mapkit_MKMapView_boolean:(MKMapView*) mapView :(BOOL) animated \n{\n    [super mapView:(mapView == JAVA_NULL ? nil : mapView) regionDidChangeAnimated:animated];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKMapView"
+      ]
     },
     "regionWillChangeAnimated(crossmobile.ios.mapkit.MKMapView,boolean)": {
-      "code": "- (void) mapView:(MKMapView *) mapView regionWillChangeAnimated:(BOOL) animated\n{\n    [self regionWillChangeAnimated___crossmobile_ios_mapkit_MKMapView_boolean:(mapView ? mapView : JAVA_NULL) :animated];\n}\n\n"
+      "reverse": "- (void) mapView:(MKMapView *) mapView regionWillChangeAnimated:(BOOL) animated\n{\n    [self regionWillChangeAnimated___crossmobile_ios_mapkit_MKMapView_boolean:(mapView ? mapView : JAVA_NULL) :animated];\n}\n\n",
+      "super": "- (void) regionWillChangeAnimated___crossmobile_ios_mapkit_MKMapView_boolean:(MKMapView*) mapView :(BOOL) animated \n{\n    [super mapView:(mapView == JAVA_NULL ? nil : mapView) regionWillChangeAnimated:animated];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKMapView"
+      ]
     },
     "viewForAnnotation(crossmobile.ios.mapkit.MKMapView,crossmobile.ios.mapkit.MKAnnotation)": {
-      "code": "- (MKAnnotationView *) mapView:(MKMapView *) mapView viewForAnnotation:(id<MKAnnotation>) annotation\n{\n    MKAnnotationView * re$ult = [self viewForAnnotation___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_mapkit_MKAnnotation:(mapView ? mapView : JAVA_NULL) :(annotation ? annotation : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (MKAnnotationView *) mapView:(MKMapView *) mapView viewForAnnotation:(id<MKAnnotation>) annotation\n{\n    MKAnnotationView * re$ult = [self viewForAnnotation___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_mapkit_MKAnnotation:(mapView ? mapView : JAVA_NULL) :(annotation ? annotation : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (MKAnnotationView*) viewForAnnotation___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_mapkit_MKAnnotation:(MKMapView*) mapView :(id<MKAnnotation>) annotation \n{\n    MKAnnotationView* re$ult = [super mapView:(mapView == JAVA_NULL ? nil : mapView) viewForAnnotation:(annotation == JAVA_NULL ? nil : annotation)];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKAnnotation",
+        "crossmobile_ios_mapkit_MKAnnotationView",
+        "crossmobile_ios_mapkit_MKMapView"
+      ]
     },
     "viewForOverlay(crossmobile.ios.mapkit.MKMapView,crossmobile.ios.mapkit.MKOverlay)": {
-      "code": "- (MKOverlayView *) mapView:(MKMapView *) mapView viewForOverlay:(id<MKOverlay>) overlay\n{\n    MKOverlayView * re$ult = [self viewForOverlay___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_mapkit_MKOverlay:(mapView ? mapView : JAVA_NULL) :(overlay ? overlay : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (MKOverlayView *) mapView:(MKMapView *) mapView viewForOverlay:(id<MKOverlay>) overlay\n{\n    MKOverlayView * re$ult = [self viewForOverlay___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_mapkit_MKOverlay:(mapView ? mapView : JAVA_NULL) :(overlay ? overlay : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (MKOverlayView*) viewForOverlay___crossmobile_ios_mapkit_MKMapView_crossmobile_ios_mapkit_MKOverlay:(MKMapView*) mapView :(id<MKOverlay>) overlay \n{\n    MKOverlayView* re$ult = [super mapView:(mapView == JAVA_NULL ? nil : mapView) viewForOverlay:(overlay == JAVA_NULL ? nil : overlay)];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKMapView",
+        "crossmobile_ios_mapkit_MKOverlay",
+        "crossmobile_ios_mapkit_MKOverlayView"
+      ]
     },
     "willStartLoadingMap(crossmobile.ios.mapkit.MKMapView)": {
-      "code": "- (void) mapViewWillStartLoadingMap:(MKMapView *) mapView\n{\n    [self willStartLoadingMap___crossmobile_ios_mapkit_MKMapView:(mapView ? mapView : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) mapViewWillStartLoadingMap:(MKMapView *) mapView\n{\n    [self willStartLoadingMap___crossmobile_ios_mapkit_MKMapView:(mapView ? mapView : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) willStartLoadingMap___crossmobile_ios_mapkit_MKMapView:(MKMapView*) mapView \n{\n    [super mapViewWillStartLoadingMap:(mapView == JAVA_NULL ? nil : mapView)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKMapView"
+      ]
     },
     "willStartLocatingUser(crossmobile.ios.mapkit.MKMapView)": {
-      "code": "- (void) mapViewWillStartLocatingUser:(MKMapView *) mapView\n{\n    [self willStartLocatingUser___crossmobile_ios_mapkit_MKMapView:(mapView ? mapView : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) mapViewWillStartLocatingUser:(MKMapView *) mapView\n{\n    [self willStartLocatingUser___crossmobile_ios_mapkit_MKMapView:(mapView ? mapView : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) willStartLocatingUser___crossmobile_ios_mapkit_MKMapView:(MKMapView*) mapView \n{\n    [super mapViewWillStartLocatingUser:(mapView == JAVA_NULL ? nil : mapView)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKMapView"
+      ]
     }
   },
   "crossmobile.ios.mapkit.MKOverlay": {
     "boundingMapRect()": {
-      "code": "- (MKMapRect) boundingMapRect\n{\n    crossmobile_ios_mapkit_MKMapRect* re$ult = [self boundingMapRect__];\n    MKMapRect re$ult$conv = [re$ult getMKMapRect];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n"
+      "reverse": "- (MKMapRect) boundingMapRect\n{\n    crossmobile_ios_mapkit_MKMapRect* re$ult = [self boundingMapRect__];\n    MKMapRect re$ult$conv = [re$ult getMKMapRect];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_mapkit_MKMapRect*) boundingMapRect__\n{\n    return [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:[super boundingMapRect]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKMapRect"
+      ]
     },
     "canReplaceMapContent()": {
-      "code": "- (BOOL) canReplaceMapContent\n{\n    return [self canReplaceMapContent__];\n}\n\n"
+      "reverse": "- (BOOL) canReplaceMapContent\n{\n    return [self canReplaceMapContent__];\n}\n\n",
+      "super": "- (BOOL) canReplaceMapContent__\n{\n    return [super canReplaceMapContent];\n}\n\n"
+    },
+    "coordinate()": {
+      "reverse": "- (CLLocationCoordinate2D) coordinate\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* re$ult = [self coordinate__];\n    CLLocationCoordinate2D re$ult$conv = [re$ult getCLLocationCoordinate2D];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_corelocation_CLLocationCoordinate2D*) coordinate__\n{\n    return [[crossmobile_ios_corelocation_CLLocationCoordinate2D alloc] initWithCLLocationCoordinate2D:[super coordinate]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocationCoordinate2D"
+      ]
     },
     "intersectsMapRect(crossmobile.ios.mapkit.MKMapRect)": {
-      "code": "- (BOOL) intersectsMapRect:(MKMapRect) mapRect\n{\n    crossmobile_ios_mapkit_MKMapRect* mapRect$conv = [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:mapRect];\n    BOOL re$ult = [self intersectsMapRect___crossmobile_ios_mapkit_MKMapRect:mapRect$conv];\n    [mapRect$conv release];\n    return re$ult;\n}\n\n"
+      "reverse": "- (BOOL) intersectsMapRect:(MKMapRect) mapRect\n{\n    crossmobile_ios_mapkit_MKMapRect* mapRect$conv = [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:mapRect];\n    BOOL re$ult = [self intersectsMapRect___crossmobile_ios_mapkit_MKMapRect:mapRect$conv];\n    [mapRect$conv release];\n    return re$ult;\n}\n\n",
+      "super": "- (BOOL) intersectsMapRect___crossmobile_ios_mapkit_MKMapRect:(crossmobile_ios_mapkit_MKMapRect*) mapRect \n{\n    return [super intersectsMapRect:[mapRect getMKMapRect]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKMapRect"
+      ]
+    },
+    "setCoordinate(crossmobile.ios.corelocation.CLLocationCoordinate2D)": {
+      "reverse": "- (void) setCoordinate:(CLLocationCoordinate2D) newCoordinate\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* newCoordinate$conv = [[crossmobile_ios_corelocation_CLLocationCoordinate2D alloc] initWithCLLocationCoordinate2D:newCoordinate];\n    [self setCoordinate___crossmobile_ios_corelocation_CLLocationCoordinate2D:newCoordinate$conv];\n    [newCoordinate$conv release];\n}\n\n",
+      "super": "- (void) setCoordinate___crossmobile_ios_corelocation_CLLocationCoordinate2D:(crossmobile_ios_corelocation_CLLocationCoordinate2D*) newCoordinate \n{\n    [super setCoordinate:[newCoordinate getCLLocationCoordinate2D]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocationCoordinate2D"
+      ]
+    },
+    "subtitle()": {
+      "reverse": "- (NSString *) subtitle\n{\n    NSString * re$ult = [self subtitle__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) subtitle__\n{\n    NSString* re$ult = [super subtitle];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
+    "title()": {
+      "reverse": "- (NSString *) title\n{\n    NSString * re$ult = [self title__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) title__\n{\n    NSString* re$ult = [super title];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     }
   },
   "crossmobile.ios.mapkit.MKOverlayView": {
+    "accessibilityIdentifier()": null,
+    "addConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
+    "addConstraints(java.util.List)": null,
+    "addGestureRecognizer(crossmobile.ios.uikit.UIGestureRecognizer)": null,
+    "addLayoutGuide(crossmobile.ios.uikit.UILayoutGuide)": null,
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "addSubview(crossmobile.ios.uikit.UIView)": null,
+    "alpha()": null,
+    "autoresizesSubviews()": null,
+    "autoresizingMask()": null,
+    "backgroundColor()": null,
+    "becomeFirstResponder()": null,
+    "bottomAnchor()": null,
+    "bounds()": null,
+    "bringSubviewToFront(crossmobile.ios.uikit.UIView)": null,
     "canDrawMapRect(crossmobile.ios.mapkit.MKMapRect,double)": {
-      "code": "- (BOOL) canDrawMapRect:(MKMapRect) mapRect zoomScale:(MKZoomScale) zoomScale\n{\n    crossmobile_ios_mapkit_MKMapRect* mapRect$conv = [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:mapRect];\n    BOOL re$ult = [self canDrawMapRect___crossmobile_ios_mapkit_MKMapRect_double:mapRect$conv :zoomScale];\n    [mapRect$conv release];\n    return re$ult;\n}\n\n"
+      "reverse": "- (BOOL) canDrawMapRect:(MKMapRect) mapRect zoomScale:(MKZoomScale) zoomScale\n{\n    crossmobile_ios_mapkit_MKMapRect* mapRect$conv = [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:mapRect];\n    BOOL re$ult = [self canDrawMapRect___crossmobile_ios_mapkit_MKMapRect_double:mapRect$conv :zoomScale];\n    [mapRect$conv release];\n    return re$ult;\n}\n\n",
+      "super": "- (BOOL) canDrawMapRect___crossmobile_ios_mapkit_MKMapRect_double:(crossmobile_ios_mapkit_MKMapRect*) mapRect :(double) zoomScale \n{\n    return [super canDrawMapRect:[mapRect getMKMapRect] zoomScale:zoomScale];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKMapRect"
+      ]
     },
+    "center()": null,
+    "centerXAnchor()": null,
+    "centerYAnchor()": null,
+    "clipsToBounds()": null,
+    "constraints()": null,
+    "contentCompressionResistancePriorityForAxis(int)": null,
+    "contentHuggingPriorityForAxis(int)": null,
+    "contentMode()": null,
+    "convertPointFromView(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIView)": null,
+    "convertPointToView(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIView)": null,
+    "convertRectFromView(crossmobile.ios.coregraphics.CGRect,crossmobile.ios.uikit.UIView)": null,
+    "convertRectToView(crossmobile.ios.coregraphics.CGRect,crossmobile.ios.uikit.UIView)": null,
+    "didAddSubview(crossmobile.ios.uikit.UIView)": null,
+    "didMoveToSuperview()": null,
+    "didMoveToWindow()": null,
     "drawMapRect(crossmobile.ios.mapkit.MKMapRect,double,crossmobile.ios.coregraphics.CGContext)": {
-      "code": "- (void) drawMapRect:(MKMapRect) mapRect zoomScale:(MKZoomScale) zoomScale inContext:(CGContextRef) context\n{\n    crossmobile_ios_mapkit_MKMapRect* mapRect$conv = [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:mapRect];\n    crossmobile_ios_coregraphics_CGContext* context$conv = [[crossmobile_ios_coregraphics_CGContext alloc] initWithCGContext:context];\n    [self drawMapRect___crossmobile_ios_mapkit_MKMapRect_double_crossmobile_ios_coregraphics_CGContext:mapRect$conv :zoomScale :context$conv];\n    [mapRect$conv release];\n    [context$conv release];\n}\n\n"
+      "reverse": "- (void) drawMapRect:(MKMapRect) mapRect zoomScale:(MKZoomScale) zoomScale inContext:(CGContextRef) context\n{\n    crossmobile_ios_mapkit_MKMapRect* mapRect$conv = [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:mapRect];\n    crossmobile_ios_coregraphics_CGContext* context$conv = [[crossmobile_ios_coregraphics_CGContext alloc] initWithCGContext:context];\n    [self drawMapRect___crossmobile_ios_mapkit_MKMapRect_double_crossmobile_ios_coregraphics_CGContext:mapRect$conv :zoomScale :context$conv];\n    [mapRect$conv release];\n    [context$conv release];\n}\n\n",
+      "super": "- (void) drawMapRect___crossmobile_ios_mapkit_MKMapRect_double_crossmobile_ios_coregraphics_CGContext:(crossmobile_ios_mapkit_MKMapRect*) mapRect :(double) zoomScale :(crossmobile_ios_coregraphics_CGContext*) context \n{\n    [super drawMapRect:[mapRect getMKMapRect] zoomScale:zoomScale inContext:context->$reference];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_coregraphics_CGContext",
+        "crossmobile_ios_mapkit_MKMapRect"
+      ]
     },
+    "drawRect(crossmobile.ios.coregraphics.CGRect)": null,
+    "frame()": null,
+    "gestureRecognizers()": null,
+    "heightAnchor()": null,
+    "hitTest(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
+    "insertSubview(crossmobile.ios.uikit.UIView,int)": null,
+    "insetsLayoutMarginsFromSafeArea()": null,
+    "intrinsicContentSize()": null,
+    "invalidateIntrinsicContentSize()": null,
+    "isFirstResponder()": null,
+    "isHidden()": null,
+    "isMultipleTouchEnabled()": null,
+    "isOpaque()": null,
+    "isUserInteractionEnabled()": null,
+    "layer()": null,
+    "layoutIfNeeded()": null,
+    "layoutMargins()": null,
+    "layoutMarginsDidChange()": null,
+    "layoutMarginsGuide()": null,
+    "layoutSubviews()": null,
+    "leadingAnchor()": null,
+    "leftAnchor()": null,
     "mapPointForPoint(crossmobile.ios.coregraphics.CGPoint)": {
-      "code": "- (MKMapPoint) mapPointForPoint:(CGPoint) point\n{\n    crossmobile_ios_coregraphics_CGPoint* point$conv = [[crossmobile_ios_coregraphics_CGPoint alloc] initWithCGPoint:point];\n    crossmobile_ios_mapkit_MKMapPoint* re$ult = [self mapPointForPoint___crossmobile_ios_coregraphics_CGPoint:point$conv];\n    MKMapPoint re$ult$conv = [re$ult getMKMapPoint];\n    [re$ult release];\n    [point$conv release];\n    return re$ult$conv;\n}\n\n"
+      "reverse": "- (MKMapPoint) mapPointForPoint:(CGPoint) point\n{\n    crossmobile_ios_coregraphics_CGPoint* point$conv = [[crossmobile_ios_coregraphics_CGPoint alloc] initWithCGPoint:point];\n    crossmobile_ios_mapkit_MKMapPoint* re$ult = [self mapPointForPoint___crossmobile_ios_coregraphics_CGPoint:point$conv];\n    MKMapPoint re$ult$conv = [re$ult getMKMapPoint];\n    [re$ult release];\n    [point$conv release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_mapkit_MKMapPoint*) mapPointForPoint___crossmobile_ios_coregraphics_CGPoint:(crossmobile_ios_coregraphics_CGPoint*) point \n{\n    return [[crossmobile_ios_mapkit_MKMapPoint alloc] initWithMKMapPoint:[super mapPointForPoint:[point getCGPoint]]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_coregraphics_CGPoint",
+        "crossmobile_ios_mapkit_MKMapPoint"
+      ]
     },
     "mapRectForRect(crossmobile.ios.coregraphics.CGRect)": {
-      "code": "- (MKMapRect) mapRectForRect:(CGRect) rect\n{\n    crossmobile_ios_coregraphics_CGRect* rect$conv = [[crossmobile_ios_coregraphics_CGRect alloc] initWithCGRect:rect];\n    crossmobile_ios_mapkit_MKMapRect* re$ult = [self mapRectForRect___crossmobile_ios_coregraphics_CGRect:rect$conv];\n    MKMapRect re$ult$conv = [re$ult getMKMapRect];\n    [re$ult release];\n    [rect$conv release];\n    return re$ult$conv;\n}\n\n"
+      "reverse": "- (MKMapRect) mapRectForRect:(CGRect) rect\n{\n    crossmobile_ios_coregraphics_CGRect* rect$conv = [[crossmobile_ios_coregraphics_CGRect alloc] initWithCGRect:rect];\n    crossmobile_ios_mapkit_MKMapRect* re$ult = [self mapRectForRect___crossmobile_ios_coregraphics_CGRect:rect$conv];\n    MKMapRect re$ult$conv = [re$ult getMKMapRect];\n    [re$ult release];\n    [rect$conv release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_mapkit_MKMapRect*) mapRectForRect___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) rect \n{\n    return [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:[super mapRectForRect:[rect getCGRect]]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_coregraphics_CGRect",
+        "crossmobile_ios_mapkit_MKMapRect"
+      ]
     },
+    "needsUpdateConstraints()": null,
+    "nextResponder()": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
     "overlay()": {
-      "code": "- (id<MKOverlay>) overlay\n{\n    id<MKOverlay> re$ult = [self overlay__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (id<MKOverlay>) overlay\n{\n    id<MKOverlay> re$ult = [self overlay__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (id<MKOverlay>) overlay__\n{\n    id<MKOverlay> re$ult = [super overlay];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKOverlay"
+      ]
     },
     "pointForMapPoint(crossmobile.ios.mapkit.MKMapPoint)": {
-      "code": "- (CGPoint) pointForMapPoint:(MKMapPoint) mapPoint\n{\n    crossmobile_ios_mapkit_MKMapPoint* mapPoint$conv = [[crossmobile_ios_mapkit_MKMapPoint alloc] initWithMKMapPoint:mapPoint];\n    crossmobile_ios_coregraphics_CGPoint* re$ult = [self pointForMapPoint___crossmobile_ios_mapkit_MKMapPoint:mapPoint$conv];\n    CGPoint re$ult$conv = [re$ult getCGPoint];\n    [re$ult release];\n    [mapPoint$conv release];\n    return re$ult$conv;\n}\n\n"
+      "reverse": "- (CGPoint) pointForMapPoint:(MKMapPoint) mapPoint\n{\n    crossmobile_ios_mapkit_MKMapPoint* mapPoint$conv = [[crossmobile_ios_mapkit_MKMapPoint alloc] initWithMKMapPoint:mapPoint];\n    crossmobile_ios_coregraphics_CGPoint* re$ult = [self pointForMapPoint___crossmobile_ios_mapkit_MKMapPoint:mapPoint$conv];\n    CGPoint re$ult$conv = [re$ult getCGPoint];\n    [re$ult release];\n    [mapPoint$conv release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_coregraphics_CGPoint*) pointForMapPoint___crossmobile_ios_mapkit_MKMapPoint:(crossmobile_ios_mapkit_MKMapPoint*) mapPoint \n{\n    return [[crossmobile_ios_coregraphics_CGPoint alloc] initWithCGPoint:[super pointForMapPoint:[mapPoint getMKMapPoint]]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_coregraphics_CGPoint",
+        "crossmobile_ios_mapkit_MKMapPoint"
+      ]
     },
+    "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
+    "preservesSuperviewLayoutMargins()": null,
     "rectForMapRect(crossmobile.ios.mapkit.MKMapRect)": {
-      "code": "- (CGRect) rectForMapRect:(MKMapRect) mapRect\n{\n    crossmobile_ios_mapkit_MKMapRect* mapRect$conv = [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:mapRect];\n    crossmobile_ios_coregraphics_CGRect* re$ult = [self rectForMapRect___crossmobile_ios_mapkit_MKMapRect:mapRect$conv];\n    CGRect re$ult$conv = [re$ult getCGRect];\n    [re$ult release];\n    [mapRect$conv release];\n    return re$ult$conv;\n}\n\n"
+      "reverse": "- (CGRect) rectForMapRect:(MKMapRect) mapRect\n{\n    crossmobile_ios_mapkit_MKMapRect* mapRect$conv = [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:mapRect];\n    crossmobile_ios_coregraphics_CGRect* re$ult = [self rectForMapRect___crossmobile_ios_mapkit_MKMapRect:mapRect$conv];\n    CGRect re$ult$conv = [re$ult getCGRect];\n    [re$ult release];\n    [mapRect$conv release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_coregraphics_CGRect*) rectForMapRect___crossmobile_ios_mapkit_MKMapRect:(crossmobile_ios_mapkit_MKMapRect*) mapRect \n{\n    return [[crossmobile_ios_coregraphics_CGRect alloc] initWithCGRect:[super rectForMapRect:[mapRect getMKMapRect]]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_coregraphics_CGRect",
+        "crossmobile_ios_mapkit_MKMapRect"
+      ]
     },
+    "removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
+    "removeConstraints(java.util.List)": null,
+    "removeFromSuperview()": null,
+    "removeGestureRecognizer(crossmobile.ios.uikit.UIGestureRecognizer)": null,
+    "removeLayoutGuide(crossmobile.ios.uikit.UILayoutGuide)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "resignFirstResponder()": null,
+    "restorationIdentifier()": null,
+    "rightAnchor()": null,
+    "safeAreaInsets()": null,
+    "safeAreaLayoutGuide()": null,
+    "sendSubviewToBack(crossmobile.ios.uikit.UIView)": null,
+    "setAccessibilityIdentifier(java.lang.String)": null,
+    "setAlpha(double)": null,
+    "setAutoresizesSubviews(boolean)": null,
+    "setAutoresizingMask(int)": null,
+    "setBackgroundColor(crossmobile.ios.uikit.UIColor)": null,
+    "setBounds(crossmobile.ios.coregraphics.CGRect)": null,
+    "setCenter(crossmobile.ios.coregraphics.CGPoint)": null,
+    "setClearsContextBeforeDrawing(boolean)": null,
+    "setClipsToBounds(boolean)": null,
+    "setContentCompressionResistancePriority(float,int)": null,
+    "setContentHuggingPriority(float,int)": null,
+    "setContentMode(int)": null,
+    "setFrame(crossmobile.ios.coregraphics.CGRect)": null,
+    "setGestureRecognizers(java.util.List)": null,
+    "setHidden(boolean)": null,
+    "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
+    "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMultipleTouchEnabled(boolean)": null,
+    "setNeedsDisplay()": null,
     "setNeedsDisplayInMapRect(crossmobile.ios.mapkit.MKMapRect)": {
-      "code": "- (void) setNeedsDisplayInMapRect:(MKMapRect) mapRect\n{\n    crossmobile_ios_mapkit_MKMapRect* mapRect$conv = [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:mapRect];\n    [self setNeedsDisplayInMapRect___crossmobile_ios_mapkit_MKMapRect:mapRect$conv];\n    [mapRect$conv release];\n}\n\n"
+      "reverse": "- (void) setNeedsDisplayInMapRect:(MKMapRect) mapRect\n{\n    crossmobile_ios_mapkit_MKMapRect* mapRect$conv = [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:mapRect];\n    [self setNeedsDisplayInMapRect___crossmobile_ios_mapkit_MKMapRect:mapRect$conv];\n    [mapRect$conv release];\n}\n\n",
+      "super": "- (void) setNeedsDisplayInMapRect___crossmobile_ios_mapkit_MKMapRect:(crossmobile_ios_mapkit_MKMapRect*) mapRect \n{\n    [super setNeedsDisplayInMapRect:[mapRect getMKMapRect]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKMapRect"
+      ]
     },
     "setNeedsDisplayInMapRect(crossmobile.ios.mapkit.MKMapRect,double)": {
-      "code": "- (void) setNeedsDisplayInMapRect:(MKMapRect) mapRect zoomScale:(MKZoomScale) zoomScale\n{\n    crossmobile_ios_mapkit_MKMapRect* mapRect$conv = [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:mapRect];\n    [self setNeedsDisplayInMapRect___crossmobile_ios_mapkit_MKMapRect_double:mapRect$conv :zoomScale];\n    [mapRect$conv release];\n}\n\n"
-    }
+      "reverse": "- (void) setNeedsDisplayInMapRect:(MKMapRect) mapRect zoomScale:(MKZoomScale) zoomScale\n{\n    crossmobile_ios_mapkit_MKMapRect* mapRect$conv = [[crossmobile_ios_mapkit_MKMapRect alloc] initWithMKMapRect:mapRect];\n    [self setNeedsDisplayInMapRect___crossmobile_ios_mapkit_MKMapRect_double:mapRect$conv :zoomScale];\n    [mapRect$conv release];\n}\n\n",
+      "super": "- (void) setNeedsDisplayInMapRect___crossmobile_ios_mapkit_MKMapRect_double:(crossmobile_ios_mapkit_MKMapRect*) mapRect :(double) zoomScale \n{\n    [super setNeedsDisplayInMapRect:[mapRect getMKMapRect] zoomScale:zoomScale];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKMapRect"
+      ]
+    },
+    "setNeedsLayout()": null,
+    "setNeedsUpdateConstraints()": null,
+    "setOpaque(boolean)": null,
+    "setPreservesSuperviewLayoutMargins(boolean)": null,
+    "setRestorationIdentifier(java.lang.String)": null,
+    "setTag(int)": null,
+    "setTintAdjustmentMode(int)": null,
+    "setTintColor(crossmobile.ios.uikit.UIColor)": null,
+    "setTransform(crossmobile.ios.coregraphics.CGAffineTransform)": null,
+    "setTranslatesAutoresizingMaskIntoConstraints(boolean)": null,
+    "setUserInteractionEnabled(boolean)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "sizeThatFits(crossmobile.ios.coregraphics.CGSize)": null,
+    "sizeToFit()": null,
+    "subviews()": null,
+    "superview()": null,
+    "tag()": null,
+    "tintAdjustmentMode()": null,
+    "tintColor()": null,
+    "tintColorDidChange()": null,
+    "topAnchor()": null,
+    "touchesBegan(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesCancelled(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesEnded(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesMoved(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "trailingAnchor()": null,
+    "transform()": null,
+    "translatesAutoresizingMaskIntoConstraints()": null,
+    "updateConstraints()": null,
+    "updateConstraintsIfNeeded()": null,
+    "userInterfaceLayoutDirection()": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null,
+    "viewForFirstBaselineLayout()": null,
+    "viewForLastBaselineLayout()": null,
+    "widthAnchor()": null,
+    "willMoveToSuperview(crossmobile.ios.uikit.UIView)": null,
+    "willMoveToWindow(crossmobile.ios.uikit.UIWindow)": null,
+    "willRemoveSubview(crossmobile.ios.uikit.UIView)": null,
+    "window()": null
   },
   "crossmobile.ios.mapkit.MKPinAnnotationView": {
+    "accessibilityIdentifier()": null,
+    "addConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
+    "addConstraints(java.util.List)": null,
+    "addGestureRecognizer(crossmobile.ios.uikit.UIGestureRecognizer)": null,
+    "addLayoutGuide(crossmobile.ios.uikit.UILayoutGuide)": null,
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "addSubview(crossmobile.ios.uikit.UIView)": null,
+    "alpha()": null,
     "animatesDrop()": {
-      "code": "- (BOOL) animatesDrop\n{\n    return [self animatesDrop__];\n}\n\n"
+      "reverse": "- (BOOL) animatesDrop\n{\n    return [self animatesDrop__];\n}\n\n",
+      "super": "- (BOOL) animatesDrop__\n{\n    return [super animatesDrop];\n}\n\n"
     },
+    "annotation()": null,
+    "autoresizesSubviews()": null,
+    "autoresizingMask()": null,
+    "backgroundColor()": null,
+    "becomeFirstResponder()": null,
+    "bottomAnchor()": null,
+    "bounds()": null,
+    "bringSubviewToFront(crossmobile.ios.uikit.UIView)": null,
+    "calloutOffset()": null,
+    "canShowCallout()": null,
+    "center()": null,
+    "centerOffset()": null,
+    "centerXAnchor()": null,
+    "centerYAnchor()": null,
+    "clipsToBounds()": null,
+    "constraints()": null,
+    "contentCompressionResistancePriorityForAxis(int)": null,
+    "contentHuggingPriorityForAxis(int)": null,
+    "contentMode()": null,
+    "convertPointFromView(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIView)": null,
+    "convertPointToView(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIView)": null,
+    "convertRectFromView(crossmobile.ios.coregraphics.CGRect,crossmobile.ios.uikit.UIView)": null,
+    "convertRectToView(crossmobile.ios.coregraphics.CGRect,crossmobile.ios.uikit.UIView)": null,
+    "didAddSubview(crossmobile.ios.uikit.UIView)": null,
+    "didMoveToSuperview()": null,
+    "didMoveToWindow()": null,
+    "dragState()": null,
+    "drawRect(crossmobile.ios.coregraphics.CGRect)": null,
+    "frame()": null,
+    "gestureRecognizers()": null,
+    "heightAnchor()": null,
+    "hitTest(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
+    "image()": null,
+    "insertSubview(crossmobile.ios.uikit.UIView,int)": null,
+    "insetsLayoutMarginsFromSafeArea()": null,
+    "intrinsicContentSize()": null,
+    "invalidateIntrinsicContentSize()": null,
+    "isDraggable()": null,
+    "isEnabled()": null,
+    "isFirstResponder()": null,
+    "isHidden()": null,
+    "isHighlighted()": null,
+    "isMultipleTouchEnabled()": null,
+    "isOpaque()": null,
+    "isSelected()": null,
+    "isUserInteractionEnabled()": null,
+    "layer()": null,
+    "layoutIfNeeded()": null,
+    "layoutMargins()": null,
+    "layoutMarginsDidChange()": null,
+    "layoutMarginsGuide()": null,
+    "layoutSubviews()": null,
+    "leadingAnchor()": null,
+    "leftAnchor()": null,
+    "leftCalloutAccessoryView()": null,
+    "needsUpdateConstraints()": null,
+    "nextResponder()": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
     "pinColor()": {
-      "code": "- (MKPinAnnotationColor) pinColor\n{\n    return [self pinColor__];\n}\n\n"
+      "reverse": "- (MKPinAnnotationColor) pinColor\n{\n    return [self pinColor__];\n}\n\n",
+      "super": "- (int) pinColor__\n{\n    return [super pinColor];\n}\n\n"
     },
+    "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
+    "prepareForReuse()": null,
+    "preservesSuperviewLayoutMargins()": null,
+    "removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
+    "removeConstraints(java.util.List)": null,
+    "removeFromSuperview()": null,
+    "removeGestureRecognizer(crossmobile.ios.uikit.UIGestureRecognizer)": null,
+    "removeLayoutGuide(crossmobile.ios.uikit.UILayoutGuide)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "resignFirstResponder()": null,
+    "restorationIdentifier()": null,
+    "reuseIdentifier()": null,
+    "rightAnchor()": null,
+    "rightCalloutAccessoryView()": null,
+    "safeAreaInsets()": null,
+    "safeAreaLayoutGuide()": null,
+    "sendSubviewToBack(crossmobile.ios.uikit.UIView)": null,
+    "setAccessibilityIdentifier(java.lang.String)": null,
+    "setAlpha(double)": null,
     "setAnimatesDrop(boolean)": {
-      "code": "- (void) setAnimatesDrop:(BOOL) animatesDrop\n{\n    [self setAnimatesDrop___boolean:animatesDrop];\n}\n\n"
+      "reverse": "- (void) setAnimatesDrop:(BOOL) animatesDrop\n{\n    [self setAnimatesDrop___boolean:animatesDrop];\n}\n\n",
+      "super": "- (void) setAnimatesDrop___boolean:(BOOL) animatesDrop \n{\n    [super setAnimatesDrop:animatesDrop];\n}\n\n"
     },
+    "setAnnotation(crossmobile.ios.mapkit.MKAnnotation)": null,
+    "setAutoresizesSubviews(boolean)": null,
+    "setAutoresizingMask(int)": null,
+    "setBackgroundColor(crossmobile.ios.uikit.UIColor)": null,
+    "setBounds(crossmobile.ios.coregraphics.CGRect)": null,
+    "setCalloutOffset(crossmobile.ios.coregraphics.CGPoint)": null,
+    "setCanShowCallout(boolean)": null,
+    "setCenter(crossmobile.ios.coregraphics.CGPoint)": null,
+    "setCenterOffset(crossmobile.ios.coregraphics.CGPoint)": null,
+    "setClearsContextBeforeDrawing(boolean)": null,
+    "setClipsToBounds(boolean)": null,
+    "setContentCompressionResistancePriority(float,int)": null,
+    "setContentHuggingPriority(float,int)": null,
+    "setContentMode(int)": null,
+    "setDragState(int)": null,
+    "setDragState(int,boolean)": null,
+    "setDraggable(boolean)": null,
+    "setEnabled(boolean)": null,
+    "setFrame(crossmobile.ios.coregraphics.CGRect)": null,
+    "setGestureRecognizers(java.util.List)": null,
+    "setHidden(boolean)": null,
+    "setHighlighted(boolean)": null,
+    "setImage(crossmobile.ios.uikit.UIImage)": null,
+    "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
+    "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setLeftCalloutAccessoryView(crossmobile.ios.uikit.UIView)": null,
+    "setMultipleTouchEnabled(boolean)": null,
+    "setNeedsDisplay()": null,
+    "setNeedsLayout()": null,
+    "setNeedsUpdateConstraints()": null,
+    "setOpaque(boolean)": null,
     "setPinColor(int)": {
-      "code": "- (void) setPinColor:(MKPinAnnotationColor) pinColor\n{\n    [self setPinColor___int:pinColor];\n}\n\n"
-    }
+      "reverse": "- (void) setPinColor:(MKPinAnnotationColor) pinColor\n{\n    [self setPinColor___int:pinColor];\n}\n\n",
+      "super": "- (void) setPinColor___int:(int) pinColor \n{\n    [super setPinColor:pinColor];\n}\n\n"
+    },
+    "setPreservesSuperviewLayoutMargins(boolean)": null,
+    "setRestorationIdentifier(java.lang.String)": null,
+    "setRightCalloutAccessoryView(crossmobile.ios.uikit.UIView)": null,
+    "setSelected(boolean)": null,
+    "setSelected(boolean,boolean)": null,
+    "setTag(int)": null,
+    "setTintAdjustmentMode(int)": null,
+    "setTintColor(crossmobile.ios.uikit.UIColor)": null,
+    "setTransform(crossmobile.ios.coregraphics.CGAffineTransform)": null,
+    "setTranslatesAutoresizingMaskIntoConstraints(boolean)": null,
+    "setUserInteractionEnabled(boolean)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "sizeThatFits(crossmobile.ios.coregraphics.CGSize)": null,
+    "sizeToFit()": null,
+    "subviews()": null,
+    "superview()": null,
+    "tag()": null,
+    "tintAdjustmentMode()": null,
+    "tintColor()": null,
+    "tintColorDidChange()": null,
+    "topAnchor()": null,
+    "touchesBegan(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesCancelled(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesEnded(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesMoved(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "trailingAnchor()": null,
+    "transform()": null,
+    "translatesAutoresizingMaskIntoConstraints()": null,
+    "updateConstraints()": null,
+    "updateConstraintsIfNeeded()": null,
+    "userInterfaceLayoutDirection()": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null,
+    "viewForFirstBaselineLayout()": null,
+    "viewForLastBaselineLayout()": null,
+    "widthAnchor()": null,
+    "willMoveToSuperview(crossmobile.ios.uikit.UIView)": null,
+    "willMoveToWindow(crossmobile.ios.uikit.UIWindow)": null,
+    "willRemoveSubview(crossmobile.ios.uikit.UIView)": null,
+    "window()": null
   },
   "crossmobile.ios.mapkit.MKPlacemark": {
+    "ISOcountryCode()": null,
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "addressDictionary()": null,
+    "administrativeArea()": null,
+    "areasOfInterest()": null,
+    "coordinate()": {
+      "reverse": "- (CLLocationCoordinate2D) coordinate\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* re$ult = [self coordinate__];\n    CLLocationCoordinate2D re$ult$conv = [re$ult getCLLocationCoordinate2D];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_corelocation_CLLocationCoordinate2D*) coordinate__\n{\n    return [[crossmobile_ios_corelocation_CLLocationCoordinate2D alloc] initWithCLLocationCoordinate2D:[super coordinate]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocationCoordinate2D"
+      ]
+    },
+    "country()": null,
     "countryCode()": {
-      "code": "- (NSString *) countryCode\n{\n    NSString * re$ult = [self countryCode__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
-    }
+      "reverse": "- (NSString *) countryCode\n{\n    NSString * re$ult = [self countryCode__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) countryCode__\n{\n    NSString* re$ult = [super countryCode];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
+    "inlandWater()": null,
+    "locality()": null,
+    "location()": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "ocean()": null,
+    "postalCode()": null,
+    "region()": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "subAdministrativeArea()": null,
+    "subLocality()": null,
+    "subThoroughfare()": null,
+    "thoroughfare()": null,
+    "timeZone()": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.mapkit.MKReverseGeocoder": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "cancel()": {
-      "code": "- (void) cancel\n{\n    [self cancel__];\n}\n\n"
+      "reverse": "- (void) cancel\n{\n    [self cancel__];\n}\n\n",
+      "super": "- (void) cancel__\n{\n    [super cancel];\n}\n\n"
     },
     "coordinate()": {
-      "code": "- (CLLocationCoordinate2D) coordinate\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* re$ult = [self coordinate__];\n    CLLocationCoordinate2D re$ult$conv = [re$ult getCLLocationCoordinate2D];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n"
+      "reverse": "- (CLLocationCoordinate2D) coordinate\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* re$ult = [self coordinate__];\n    CLLocationCoordinate2D re$ult$conv = [re$ult getCLLocationCoordinate2D];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_corelocation_CLLocationCoordinate2D*) coordinate__\n{\n    return [[crossmobile_ios_corelocation_CLLocationCoordinate2D alloc] initWithCLLocationCoordinate2D:[super coordinate]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocationCoordinate2D"
+      ]
     },
     "delegate()": {
-      "code": "- (id<MKReverseGeocoderDelegate>) delegate\n{\n    id<MKReverseGeocoderDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (id<MKReverseGeocoderDelegate>) delegate\n{\n    id<MKReverseGeocoderDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (id<MKReverseGeocoderDelegate>) delegate__\n{\n    id<MKReverseGeocoderDelegate> re$ult = [super delegate];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKReverseGeocoderDelegate"
+      ]
     },
     "isQuerying()": {
-      "code": "- (BOOL) isQuerying\n{\n    return [self isQuerying__];\n}\n\n"
+      "reverse": "- (BOOL) isQuerying\n{\n    return [self isQuerying__];\n}\n\n",
+      "super": "- (BOOL) isQuerying__\n{\n    return [super isQuerying];\n}\n\n"
     },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
     "placemark()": {
-      "code": "- (MKPlacemark *) placemark\n{\n    MKPlacemark * re$ult = [self placemark__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (MKPlacemark *) placemark\n{\n    MKPlacemark * re$ult = [self placemark__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (MKPlacemark*) placemark__\n{\n    MKPlacemark* re$ult = [super placemark];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKPlacemark"
+      ]
     },
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setDelegate(crossmobile.ios.mapkit.MKReverseGeocoderDelegate)": {
-      "code": "- (void) setDelegate:(id<MKReverseGeocoderDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_mapkit_MKReverseGeocoderDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setDelegate:(id<MKReverseGeocoderDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_mapkit_MKReverseGeocoderDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setDelegate___crossmobile_ios_mapkit_MKReverseGeocoderDelegate:(id<MKReverseGeocoderDelegate>) delegate \n{\n    objc_setAssociatedObject(self, @selector(setDelegate:), delegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);\n    [super setDelegate:(delegate == JAVA_NULL ? nil : delegate)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKReverseGeocoderDelegate"
+      ]
     },
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
     "start()": {
-      "code": "- (void) start\n{\n    [self start__];\n}\n\n"
-    }
+      "reverse": "- (void) start\n{\n    [self start__];\n}\n\n",
+      "super": "- (void) start__\n{\n    [super start];\n}\n\n"
+    },
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.mapkit.MKReverseGeocoderDelegate": {
     "didFailWithError(crossmobile.ios.mapkit.MKReverseGeocoder,crossmobile.ios.foundation.NSError)": {
-      "code": "- (void) reverseGeocoder:(MKReverseGeocoder *) geocoder didFailWithError:(NSError *) error\n{\n    [self didFailWithError___crossmobile_ios_mapkit_MKReverseGeocoder_crossmobile_ios_foundation_NSError:(geocoder ? geocoder : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) reverseGeocoder:(MKReverseGeocoder *) geocoder didFailWithError:(NSError *) error\n{\n    [self didFailWithError___crossmobile_ios_mapkit_MKReverseGeocoder_crossmobile_ios_foundation_NSError:(geocoder ? geocoder : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didFailWithError___crossmobile_ios_mapkit_MKReverseGeocoder_crossmobile_ios_foundation_NSError:(MKReverseGeocoder*) geocoder :(NSError*) error \n{\n    [super reverseGeocoder:(geocoder == JAVA_NULL ? nil : geocoder) didFailWithError:(error == JAVA_NULL ? nil : error)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSError",
+        "crossmobile_ios_mapkit_MKReverseGeocoder"
+      ]
     },
     "didFindPlacemark(crossmobile.ios.mapkit.MKReverseGeocoder,crossmobile.ios.mapkit.MKPlacemark)": {
-      "code": "- (void) reverseGeocoder:(MKReverseGeocoder *) geocoder didFindPlacemark:(MKPlacemark *) placemark\n{\n    [self didFindPlacemark___crossmobile_ios_mapkit_MKReverseGeocoder_crossmobile_ios_mapkit_MKPlacemark:(geocoder ? geocoder : JAVA_NULL) :(placemark ? placemark : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) reverseGeocoder:(MKReverseGeocoder *) geocoder didFindPlacemark:(MKPlacemark *) placemark\n{\n    [self didFindPlacemark___crossmobile_ios_mapkit_MKReverseGeocoder_crossmobile_ios_mapkit_MKPlacemark:(geocoder ? geocoder : JAVA_NULL) :(placemark ? placemark : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didFindPlacemark___crossmobile_ios_mapkit_MKReverseGeocoder_crossmobile_ios_mapkit_MKPlacemark:(MKReverseGeocoder*) geocoder :(MKPlacemark*) placemark \n{\n    [super reverseGeocoder:(geocoder == JAVA_NULL ? nil : geocoder) didFindPlacemark:(placemark == JAVA_NULL ? nil : placemark)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mapkit_MKPlacemark",
+        "crossmobile_ios_mapkit_MKReverseGeocoder"
+      ]
     }
   },
   "crossmobile.ios.mapkit.MKUserLocation": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "coordinate()": {
+      "reverse": "- (CLLocationCoordinate2D) coordinate\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* re$ult = [self coordinate__];\n    CLLocationCoordinate2D re$ult$conv = [re$ult getCLLocationCoordinate2D];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_corelocation_CLLocationCoordinate2D*) coordinate__\n{\n    return [[crossmobile_ios_corelocation_CLLocationCoordinate2D alloc] initWithCLLocationCoordinate2D:[super coordinate]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocationCoordinate2D"
+      ]
+    },
     "isUpdating()": {
-      "code": "- (BOOL) isUpdating\n{\n    return [self isUpdating__];\n}\n\n"
+      "reverse": "- (BOOL) isUpdating\n{\n    return [self isUpdating__];\n}\n\n",
+      "super": "- (BOOL) isUpdating__\n{\n    return [super isUpdating];\n}\n\n"
     },
     "location()": {
-      "code": "- (CLLocation *) location\n{\n    CLLocation * re$ult = [self location__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (CLLocation *) location\n{\n    CLLocation * re$ult = [self location__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (CLLocation*) location__\n{\n    CLLocation* re$ult = [super location];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocation"
+      ]
     },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setSubtitle(java.lang.String)": {
-      "code": "- (void) setSubtitle:(NSString *) subtitle\n{\n    [self setSubtitle___java_lang_String:(subtitle ? subtitle : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setSubtitle:(NSString *) subtitle\n{\n    [self setSubtitle___java_lang_String:(subtitle ? subtitle : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setSubtitle___java_lang_String:(NSString*) subtitle \n{\n    [super setSubtitle:(subtitle == JAVA_NULL ? nil : subtitle)];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "setTitle(java.lang.String)": {
-      "code": "- (void) setTitle:(NSString *) title\n{\n    [self setTitle___java_lang_String:(title ? title : JAVA_NULL)];\n}\n\n"
-    }
+      "reverse": "- (void) setTitle:(NSString *) title\n{\n    [self setTitle___java_lang_String:(title ? title : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setTitle___java_lang_String:(NSString*) title \n{\n    [super setTitle:(title == JAVA_NULL ? nil : title)];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "subtitle()": {
+      "reverse": "- (NSString *) subtitle\n{\n    NSString * re$ult = [self subtitle__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) subtitle__\n{\n    NSString* re$ult = [super subtitle];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
+    "title()": {
+      "reverse": "- (NSString *) title\n{\n    NSString * re$ult = [self title__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) title__\n{\n    NSString* re$ult = [super title];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   }
 }

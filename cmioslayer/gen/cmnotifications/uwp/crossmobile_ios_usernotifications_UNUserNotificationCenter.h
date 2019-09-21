@@ -1,8 +1,9 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.usernotifications.UNUserNotificationCenter definition
+// crossmobile_ios_usernotifications_UNUserNotificationCenter definition
 
 #import "xmlvm.h"
+#import <UIKit/UIKit.h>
 #import <UserNotifications/UserNotifications.h>
 @class crossmobile_ios_foundation_NSError;
 @class crossmobile_ios_usernotifications_UNNotificationRequest;

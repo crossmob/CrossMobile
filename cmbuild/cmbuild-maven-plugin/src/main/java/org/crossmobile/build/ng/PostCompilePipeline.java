@@ -90,7 +90,7 @@ public class PostCompilePipeline implements Runnable {
             // Post-process ObjC files
             AnnConnXcode.exec(annotations, cacheSource);
             ObjCPostProcess.exec(cacheSource, env.getProperties().getProperty(OBJC_IGNORE_INCLUDES.tag().name));
-            GenerateReverseConnection.exec(classesDir, asList(env.root().getCompileOnlyDependencies(true), DependencyItem::getFile), cacheSource);
+            ReverseCodeInjector.exec(classesDir, asList(env.root().getCompileOnlyDependencies(true), DependencyItem::getFile), cacheSource);
 
             SyncObjCFiles.exec(classesDir, cacheSource, xcodeSource);
         }
@@ -174,18 +174,18 @@ public class PostCompilePipeline implements Runnable {
         if (DiffSync.exec(classesDir, cacheClasses, cacheDiffClasses)) {
             File cacheSource = new File(cacheBase, XCODE_EXT_APP);
             XMLVMLauncher.exec(cacheDiffClasses, cacheSource, env.getXMLVM(), Boolean.parseBoolean(env.getProperties().getProperty("cm.objc.safemembers", "true")));
-            // Post-process ObjC files
-            AnnConnXcode.exec(annotations, cacheSource);
-            ObjCPostProcess.exec(cacheSource, env.getProperties().getProperty(OBJC_IGNORE_INCLUDES.tag().name));
-            GenerateReverseConnection.exec(classesDir, asList(env.root().getCompileOnlyDependencies(true), DependencyItem::getFile), cacheSource);
             SyncObjCFiles.exec(classesDir, cacheSource, xcodeSource);
+            new JavaCleanFiles(classesDir, xcodeSource).execute();
+
+            // Post-process ObjC files
+            ObjCPostProcess.exec(xcodeSource, env.getProperties().getProperty(OBJC_IGNORE_INCLUDES.tag().name));
+            AnnConnXcode.exec(annotations, xcodeSource);
+            ReverseCodeInjector.exec(classesDir, asList(env.root().getCompileOnlyDependencies(true), DependencyItem::getFile), xcodeSource);
         }
 
         // Extract binary libraries and include files
         ObjCLibrary objCLibrary = ObjCLibrary.extract(env.root(), xcodeLibs, xcodeInclude, env.getRelativeBuildToBase());
         Log.debug("Xcode Lib List : " + objCLibrary.getLibraries());
-        //        <!-- Update needed source files -->
-        new JavaCleanFiles(classesDir, xcodeSource).execute();
 
         //        <!-- create Xcode project -->
         Map<String, File> xmfontsValue = FontExtractor.findFonts(env.getMaterialsDir());

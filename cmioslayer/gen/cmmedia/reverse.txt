@@ -1,120 +1,442 @@
 {
   "crossmobile.ios.avfoundation.AVAudioPlayer": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "currentTime()": {
-      "code": "- (NSTimeInterval) currentTime\n{\n    return [self currentTime__];\n}\n\n"
+      "reverse": "- (NSTimeInterval) currentTime\n{\n    return [self currentTime__];\n}\n\n",
+      "super": "- (double) currentTime__\n{\n    return [super currentTime];\n}\n\n"
     },
     "data()": {
-      "code": "- (NSData *) data\n{\n    NSData * re$ult = [self data__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSData *) data\n{\n    NSData * re$ult = [self data__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSData*) data__\n{\n    NSData* re$ult = [super data];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSData"
+      ]
     },
     "delegate()": {
-      "code": "- (id<AVAudioPlayerDelegate>) delegate\n{\n    id<AVAudioPlayerDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (id<AVAudioPlayerDelegate>) delegate\n{\n    id<AVAudioPlayerDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (id<AVAudioPlayerDelegate>) delegate__\n{\n    id<AVAudioPlayerDelegate> re$ult = [super delegate];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_avfoundation_AVAudioPlayerDelegate"
+      ]
     },
     "duration()": {
-      "code": "- (NSTimeInterval) duration\n{\n    return [self duration__];\n}\n\n"
+      "reverse": "- (NSTimeInterval) duration\n{\n    return [self duration__];\n}\n\n",
+      "super": "- (double) duration__\n{\n    return [super duration];\n}\n\n"
     },
     "isPlaying()": {
-      "code": "- (BOOL) isPlaying\n{\n    return [self isPlaying__];\n}\n\n"
+      "reverse": "- (BOOL) isPlaying\n{\n    return [self isPlaying__];\n}\n\n",
+      "super": "- (BOOL) isPlaying__\n{\n    return [super isPlaying];\n}\n\n"
     },
     "numberOfChannels()": {
-      "code": "- (NSUInteger) numberOfChannels\n{\n    return [self numberOfChannels__];\n}\n\n"
+      "reverse": "- (NSUInteger) numberOfChannels\n{\n    return [self numberOfChannels__];\n}\n\n",
+      "super": "- (int) numberOfChannels__\n{\n    return [super numberOfChannels];\n}\n\n"
     },
     "numberOfLoops()": {
-      "code": "- (NSInteger) numberOfLoops\n{\n    return [self numberOfLoops__];\n}\n\n"
+      "reverse": "- (NSInteger) numberOfLoops\n{\n    return [self numberOfLoops__];\n}\n\n",
+      "super": "- (int) numberOfLoops__\n{\n    return [super numberOfLoops];\n}\n\n"
     },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
     "pause()": {
-      "code": "- (void) pause\n{\n    [self pause__];\n}\n\n"
+      "reverse": "- (void) pause\n{\n    [self pause__];\n}\n\n",
+      "super": "- (void) pause__\n{\n    [super pause];\n}\n\n"
     },
     "play()": {
-      "code": "- (BOOL) play\n{\n    return [self play__];\n}\n\n"
+      "reverse": "- (BOOL) play\n{\n    return [self play__];\n}\n\n",
+      "super": "- (BOOL) play__\n{\n    return [super play];\n}\n\n"
     },
     "playAtTime(double)": {
-      "code": "- (BOOL) playAtTime:(NSTimeInterval) time\n{\n    return [self playAtTime___double:time];\n}\n\n"
+      "reverse": "- (BOOL) playAtTime:(NSTimeInterval) time\n{\n    return [self playAtTime___double:time];\n}\n\n",
+      "super": "- (BOOL) playAtTime___double:(double) time \n{\n    return [super playAtTime:time];\n}\n\n"
     },
     "prepareToPlay()": {
-      "code": "- (BOOL) prepareToPlay\n{\n    return [self prepareToPlay__];\n}\n\n"
+      "reverse": "- (BOOL) prepareToPlay\n{\n    return [self prepareToPlay__];\n}\n\n",
+      "super": "- (BOOL) prepareToPlay__\n{\n    return [super prepareToPlay];\n}\n\n"
     },
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setCurrentTime(double)": {
-      "code": "- (void) setCurrentTime:(NSTimeInterval) currentTime\n{\n    [self setCurrentTime___double:currentTime];\n}\n\n"
+      "reverse": "- (void) setCurrentTime:(NSTimeInterval) currentTime\n{\n    [self setCurrentTime___double:currentTime];\n}\n\n",
+      "super": "- (void) setCurrentTime___double:(double) currentTime \n{\n    [super setCurrentTime:currentTime];\n}\n\n"
     },
     "setDelegate(crossmobile.ios.avfoundation.AVAudioPlayerDelegate)": {
-      "code": "- (void) setDelegate:(id<AVAudioPlayerDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_avfoundation_AVAudioPlayerDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setDelegate:(id<AVAudioPlayerDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_avfoundation_AVAudioPlayerDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setDelegate___crossmobile_ios_avfoundation_AVAudioPlayerDelegate:(id<AVAudioPlayerDelegate>) delegate \n{\n    objc_setAssociatedObject(self, @selector(setDelegate:), delegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);\n    [super setDelegate:(delegate == JAVA_NULL ? nil : delegate)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_avfoundation_AVAudioPlayerDelegate"
+      ]
     },
     "setNumberOfLoops(int)": {
-      "code": "- (void) setNumberOfLoops:(NSInteger) numberOfLoops\n{\n    [self setNumberOfLoops___int:numberOfLoops];\n}\n\n"
+      "reverse": "- (void) setNumberOfLoops:(NSInteger) numberOfLoops\n{\n    [self setNumberOfLoops___int:numberOfLoops];\n}\n\n",
+      "super": "- (void) setNumberOfLoops___int:(int) numberOfLoops \n{\n    [super setNumberOfLoops:numberOfLoops];\n}\n\n"
     },
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
     "setVolume(float)": {
-      "code": "- (void) setVolume:(float) volume\n{\n    [self setVolume___float:volume];\n}\n\n"
+      "reverse": "- (void) setVolume:(float) volume\n{\n    [self setVolume___float:volume];\n}\n\n",
+      "super": "- (void) setVolume___float:(float) volume \n{\n    [super setVolume:volume];\n}\n\n"
     },
     "stop()": {
-      "code": "- (void) stop\n{\n    [self stop__];\n}\n\n"
+      "reverse": "- (void) stop\n{\n    [self stop__];\n}\n\n",
+      "super": "- (void) stop__\n{\n    [super stop];\n}\n\n"
     },
     "url()": {
-      "code": "- (NSURL *) url\n{\n    NSURL * re$ult = [self url__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSURL *) url\n{\n    NSURL * re$ult = [self url__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSURL*) url__\n{\n    NSURL* re$ult = [super url];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSURL"
+      ]
     },
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null,
     "volume()": {
-      "code": "- (float) volume\n{\n    return [self volume__];\n}\n\n"
+      "reverse": "- (float) volume\n{\n    return [self volume__];\n}\n\n",
+      "super": "- (float) volume__\n{\n    return [super volume];\n}\n\n"
     }
   },
   "crossmobile.ios.avfoundation.AVAudioPlayerDelegate": {
     "beginInterruption(crossmobile.ios.avfoundation.AVAudioPlayer)": {
-      "code": "- (void) audioPlayerBeginInterruption:(AVAudioPlayer *) player\n{\n    [self beginInterruption___crossmobile_ios_avfoundation_AVAudioPlayer:(player ? player : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) audioPlayerBeginInterruption:(AVAudioPlayer *) player\n{\n    [self beginInterruption___crossmobile_ios_avfoundation_AVAudioPlayer:(player ? player : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) beginInterruption___crossmobile_ios_avfoundation_AVAudioPlayer:(AVAudioPlayer*) player \n{\n    [super audioPlayerBeginInterruption:(player == JAVA_NULL ? nil : player)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_avfoundation_AVAudioPlayer"
+      ]
     },
     "decodeErrorDidOccur(crossmobile.ios.avfoundation.AVAudioPlayer,crossmobile.ios.foundation.NSError)": {
-      "code": "- (void) audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *) player error:(NSError *) error\n{\n    [self decodeErrorDidOccur___crossmobile_ios_avfoundation_AVAudioPlayer_crossmobile_ios_foundation_NSError:(player ? player : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *) player error:(NSError *) error\n{\n    [self decodeErrorDidOccur___crossmobile_ios_avfoundation_AVAudioPlayer_crossmobile_ios_foundation_NSError:(player ? player : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) decodeErrorDidOccur___crossmobile_ios_avfoundation_AVAudioPlayer_crossmobile_ios_foundation_NSError:(AVAudioPlayer*) player :(NSError*) error \n{\n    [super audioPlayerDecodeErrorDidOccur:(player == JAVA_NULL ? nil : player) error:(error == JAVA_NULL ? nil : error)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_avfoundation_AVAudioPlayer",
+        "crossmobile_ios_foundation_NSError"
+      ]
     },
     "didFinishPlaying(crossmobile.ios.avfoundation.AVAudioPlayer,boolean)": {
-      "code": "- (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *) player successfully:(BOOL) flag\n{\n    [self didFinishPlaying___crossmobile_ios_avfoundation_AVAudioPlayer_boolean:(player ? player : JAVA_NULL) :flag];\n}\n\n"
+      "reverse": "- (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *) player successfully:(BOOL) flag\n{\n    [self didFinishPlaying___crossmobile_ios_avfoundation_AVAudioPlayer_boolean:(player ? player : JAVA_NULL) :flag];\n}\n\n",
+      "super": "- (void) didFinishPlaying___crossmobile_ios_avfoundation_AVAudioPlayer_boolean:(AVAudioPlayer*) player :(BOOL) flag \n{\n    [super audioPlayerDidFinishPlaying:(player == JAVA_NULL ? nil : player) successfully:flag];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_avfoundation_AVAudioPlayer"
+      ]
     },
     "endInterruption(crossmobile.ios.avfoundation.AVAudioPlayer)": {
-      "code": "- (void) audioPlayerEndInterruption:(AVAudioPlayer *) player\n{\n    [self endInterruption___crossmobile_ios_avfoundation_AVAudioPlayer:(player ? player : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) audioPlayerEndInterruption:(AVAudioPlayer *) player\n{\n    [self endInterruption___crossmobile_ios_avfoundation_AVAudioPlayer:(player ? player : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) endInterruption___crossmobile_ios_avfoundation_AVAudioPlayer:(AVAudioPlayer*) player \n{\n    [super audioPlayerEndInterruption:(player == JAVA_NULL ? nil : player)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_avfoundation_AVAudioPlayer"
+      ]
     }
   },
   "crossmobile.ios.mediaplayer.MPMoviePlayerController": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "backgroundColor()": {
-      "code": "- (UIColor *) backgroundColor\n{\n    UIColor * re$ult = [self backgroundColor__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (UIColor *) backgroundColor\n{\n    UIColor * re$ult = [self backgroundColor__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (UIColor*) backgroundColor__\n{\n    UIColor* re$ult = [super backgroundColor];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIColor"
+      ]
     },
     "contentURL()": {
-      "code": "- (NSURL *) contentURL\n{\n    NSURL * re$ult = [self contentURL__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSURL *) contentURL\n{\n    NSURL * re$ult = [self contentURL__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSURL*) contentURL__\n{\n    NSURL* re$ult = [super contentURL];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSURL"
+      ]
     },
     "initialPlaybackTime()": {
-      "code": "- (NSTimeInterval) initialPlaybackTime\n{\n    return [self initialPlaybackTime__];\n}\n\n"
+      "reverse": "- (NSTimeInterval) initialPlaybackTime\n{\n    return [self initialPlaybackTime__];\n}\n\n",
+      "super": "- (double) initialPlaybackTime__\n{\n    return [super initialPlaybackTime];\n}\n\n"
     },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
     "pause()": {
-      "code": "- (void) pause\n{\n    [self pause__];\n}\n\n"
+      "reverse": "- (void) pause\n{\n    [self pause__];\n}\n\n",
+      "super": "- (void) pause__\n{\n    [super pause];\n}\n\n"
     },
     "play()": {
-      "code": "- (void) play\n{\n    [self play__];\n}\n\n"
+      "reverse": "- (void) play\n{\n    [self play__];\n}\n\n",
+      "super": "- (void) play__\n{\n    [super play];\n}\n\n"
     },
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "scalingMode()": {
-      "code": "- (MPMovieScalingMode) scalingMode\n{\n    return [self scalingMode__];\n}\n\n"
+      "reverse": "- (MPMovieScalingMode) scalingMode\n{\n    return [self scalingMode__];\n}\n\n",
+      "super": "- (int) scalingMode__\n{\n    return [super scalingMode];\n}\n\n"
     },
     "setInitialPlaybackTime(double)": {
-      "code": "- (void) setInitialPlaybackTime:(NSTimeInterval) initialPlaybackTime\n{\n    [self setInitialPlaybackTime___double:initialPlaybackTime];\n}\n\n"
+      "reverse": "- (void) setInitialPlaybackTime:(NSTimeInterval) initialPlaybackTime\n{\n    [self setInitialPlaybackTime___double:initialPlaybackTime];\n}\n\n",
+      "super": "- (void) setInitialPlaybackTime___double:(double) initialPlaybackTime \n{\n    [super setInitialPlaybackTime:initialPlaybackTime];\n}\n\n"
     },
     "setScalingMode(int)": {
-      "code": "- (void) setScalingMode:(MPMovieScalingMode) scalingMode\n{\n    [self setScalingMode___int:scalingMode];\n}\n\n"
+      "reverse": "- (void) setScalingMode:(MPMovieScalingMode) scalingMode\n{\n    [self setScalingMode___int:scalingMode];\n}\n\n",
+      "super": "- (void) setScalingMode___int:(int) scalingMode \n{\n    [super setScalingMode:scalingMode];\n}\n\n"
     },
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
     "stop()": {
-      "code": "- (void) stop\n{\n    [self stop__];\n}\n\n"
-    }
+      "reverse": "- (void) stop\n{\n    [self stop__];\n}\n\n",
+      "super": "- (void) stop__\n{\n    [super stop];\n}\n\n"
+    },
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.mediaplayer.MPMoviePlayerViewController": {
+    "addChildViewController(crossmobile.ios.uikit.UIViewController)": null,
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "additionalSafeAreaInsets()": null,
+    "allowedChildViewControllersForUnwindingFromSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "automaticallyAdjustsScrollViewInsets()": null,
+    "becomeFirstResponder()": null,
+    "beginAppearanceTransition(boolean,boolean)": null,
+    "bottomLayoutGuide()": null,
+    "childViewControllerContainingSegueSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "childViewControllers()": null,
+    "contentSizeForViewInPopover()": null,
+    "definesPresentationContext()": null,
+    "didReceiveMemoryWarning()": null,
+    "didRotateFromInterfaceOrientation(int)": null,
+    "disablesAutomaticKeyboardDismissal()": null,
+    "dismissModalViewControllerAnimated(boolean)": null,
+    "edgesForExtendedLayout()": null,
+    "editButtonItem()": null,
+    "endAppearanceTransition()": null,
+    "extensionContext()": null,
+    "hidesBottomBarWhenPushed()": null,
+    "interfaceOrientation()": null,
+    "isEditing()": null,
+    "isFirstResponder()": null,
+    "isModalInPopover()": null,
+    "isViewLoaded()": null,
+    "loadView()": null,
+    "loadViewIfNeeded()": null,
+    "modalPresentationStyle()": null,
+    "modalTransitionStyle()": null,
     "moviePlayer()": {
-      "code": "- (MPMoviePlayerController *) moviePlayer\n{\n    MPMoviePlayerController * re$ult = [self moviePlayer__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
-    }
+      "reverse": "- (MPMoviePlayerController *) moviePlayer\n{\n    MPMoviePlayerController * re$ult = [self moviePlayer__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (MPMoviePlayerController*) moviePlayer__\n{\n    MPMoviePlayerController* re$ult = [super moviePlayer];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_mediaplayer_MPMoviePlayerController"
+      ]
+    },
+    "navigationController()": null,
+    "navigationItem()": null,
+    "nextResponder()": null,
+    "nibName()": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "parentViewController()": null,
+    "performSegueWithIdentifier(java.lang.String,java.lang.Object)": null,
+    "preferredInterfaceOrientationForPresentation()": null,
+    "prefersStatusBarHidden()": null,
+    "prepareForSegue(crossmobile.ios.uikit.UIStoryboardSegue,java.lang.Object)": null,
+    "presentModalViewController(crossmobile.ios.uikit.UIViewController,boolean)": null,
+    "presentedViewController()": null,
+    "presentingViewController()": null,
+    "providesPresentationContextTransitionStyle()": null,
+    "removeFromParentViewController()": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "resignFirstResponder()": null,
+    "restorationIdentifier()": null,
+    "rotatingFooterView()": null,
+    "rotatingHeaderView()": null,
+    "setAdditionalSafeAreaInsets(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setAutomaticallyAdjustsScrollViewInsets(boolean)": null,
+    "setContentSizeForViewInPopover(crossmobile.ios.coregraphics.CGSize)": null,
+    "setDefinesPresentationContext(boolean)": null,
+    "setEdgesForExtendedLayout(int)": null,
+    "setEditing(boolean)": null,
+    "setEditing(boolean,boolean)": null,
+    "setHidesBottomBarWhenPushed(boolean)": null,
+    "setModalInPopover(boolean)": null,
+    "setModalPresentationStyle(int)": null,
+    "setModalTransitionStyle(int)": null,
+    "setProvidesPresentationContextTransitionStyle(boolean)": null,
+    "setRestorationIdentifier(java.lang.String)": null,
+    "setTabBarItem(crossmobile.ios.uikit.UITabBarItem)": null,
+    "setTitle(java.lang.String)": null,
+    "setToolbarItems(java.util.List)": null,
+    "setToolbarItems(java.util.List,boolean)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "setView(crossmobile.ios.uikit.UIView)": null,
+    "setWantsFullScreenLayout(boolean)": null,
+    "shouldAutomaticallyForwardAppearanceMethods()": null,
+    "shouldAutorotate()": null,
+    "shouldAutorotateToInterfaceOrientation(int)": null,
+    "shouldPerformSegueWithIdentifier(java.lang.String,java.lang.Object)": null,
+    "showDetailViewController(crossmobile.ios.uikit.UIViewController,java.lang.Object)": null,
+    "showViewController(crossmobile.ios.uikit.UIViewController,java.lang.Object)": null,
+    "splitViewController()": null,
+    "storyboard()": null,
+    "supportedInterfaceOrientations()": null,
+    "tabBarController()": null,
+    "tabBarItem()": null,
+    "title()": null,
+    "toolbarItems()": null,
+    "topLayoutGuide()": null,
+    "touchesBegan(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesCancelled(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesEnded(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesMoved(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null,
+    "view()": null,
+    "viewDidAppear(boolean)": null,
+    "viewDidDisappear(boolean)": null,
+    "viewDidLayoutSubviews()": null,
+    "viewDidLoad()": null,
+    "viewDidUnload()": null,
+    "viewIfLoaded()": null,
+    "viewSafeAreaInsetsDidChange()": null,
+    "viewWillAppear(boolean)": null,
+    "viewWillDisappear(boolean)": null,
+    "viewWillLayoutSubviews()": null,
+    "wantsFullScreenLayout()": null,
+    "willAnimateRotationToInterfaceOrientation(int,double)": null,
+    "willRotateToInterfaceOrientation(int,double)": null
   },
   "crossmobile.ios.mediaplayer.MPVolumeView": {
+    "accessibilityIdentifier()": null,
+    "addConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
+    "addConstraints(java.util.List)": null,
+    "addGestureRecognizer(crossmobile.ios.uikit.UIGestureRecognizer)": null,
+    "addLayoutGuide(crossmobile.ios.uikit.UILayoutGuide)": null,
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "addSubview(crossmobile.ios.uikit.UIView)": null,
+    "alpha()": null,
+    "autoresizesSubviews()": null,
+    "autoresizingMask()": null,
+    "backgroundColor()": null,
+    "becomeFirstResponder()": null,
+    "bottomAnchor()": null,
+    "bounds()": null,
+    "bringSubviewToFront(crossmobile.ios.uikit.UIView)": null,
+    "center()": null,
+    "centerXAnchor()": null,
+    "centerYAnchor()": null,
+    "clipsToBounds()": null,
+    "constraints()": null,
+    "contentCompressionResistancePriorityForAxis(int)": null,
+    "contentHuggingPriorityForAxis(int)": null,
+    "contentMode()": null,
+    "convertPointFromView(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIView)": null,
+    "convertPointToView(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIView)": null,
+    "convertRectFromView(crossmobile.ios.coregraphics.CGRect,crossmobile.ios.uikit.UIView)": null,
+    "convertRectToView(crossmobile.ios.coregraphics.CGRect,crossmobile.ios.uikit.UIView)": null,
+    "didAddSubview(crossmobile.ios.uikit.UIView)": null,
+    "didMoveToSuperview()": null,
+    "didMoveToWindow()": null,
+    "drawRect(crossmobile.ios.coregraphics.CGRect)": null,
+    "frame()": null,
+    "gestureRecognizers()": null,
+    "heightAnchor()": null,
+    "hitTest(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
+    "insertSubview(crossmobile.ios.uikit.UIView,int)": null,
+    "insetsLayoutMarginsFromSafeArea()": null,
+    "intrinsicContentSize()": null,
+    "invalidateIntrinsicContentSize()": null,
+    "isFirstResponder()": null,
+    "isHidden()": null,
+    "isMultipleTouchEnabled()": null,
+    "isOpaque()": null,
+    "isUserInteractionEnabled()": null,
+    "layer()": null,
+    "layoutIfNeeded()": null,
+    "layoutMargins()": null,
+    "layoutMarginsDidChange()": null,
+    "layoutMarginsGuide()": null,
+    "layoutSubviews()": null,
+    "leadingAnchor()": null,
+    "leftAnchor()": null,
+    "needsUpdateConstraints()": null,
+    "nextResponder()": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
+    "preservesSuperviewLayoutMargins()": null,
+    "removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
+    "removeConstraints(java.util.List)": null,
+    "removeFromSuperview()": null,
+    "removeGestureRecognizer(crossmobile.ios.uikit.UIGestureRecognizer)": null,
+    "removeLayoutGuide(crossmobile.ios.uikit.UILayoutGuide)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "resignFirstResponder()": null,
+    "restorationIdentifier()": null,
+    "rightAnchor()": null,
+    "safeAreaInsets()": null,
+    "safeAreaLayoutGuide()": null,
+    "sendSubviewToBack(crossmobile.ios.uikit.UIView)": null,
+    "setAccessibilityIdentifier(java.lang.String)": null,
+    "setAlpha(double)": null,
+    "setAutoresizesSubviews(boolean)": null,
+    "setAutoresizingMask(int)": null,
+    "setBackgroundColor(crossmobile.ios.uikit.UIColor)": null,
+    "setBounds(crossmobile.ios.coregraphics.CGRect)": null,
+    "setCenter(crossmobile.ios.coregraphics.CGPoint)": null,
+    "setClearsContextBeforeDrawing(boolean)": null,
+    "setClipsToBounds(boolean)": null,
+    "setContentCompressionResistancePriority(float,int)": null,
+    "setContentHuggingPriority(float,int)": null,
+    "setContentMode(int)": null,
+    "setFrame(crossmobile.ios.coregraphics.CGRect)": null,
+    "setGestureRecognizers(java.util.List)": null,
+    "setHidden(boolean)": null,
+    "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
+    "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMultipleTouchEnabled(boolean)": null,
+    "setNeedsDisplay()": null,
+    "setNeedsLayout()": null,
+    "setNeedsUpdateConstraints()": null,
+    "setOpaque(boolean)": null,
+    "setPreservesSuperviewLayoutMargins(boolean)": null,
+    "setRestorationIdentifier(java.lang.String)": null,
     "setShowsRouteButton(boolean)": {
-      "code": "- (void) setShowsRouteButton:(BOOL) showsRouteButton\n{\n    [self setShowsRouteButton___boolean:showsRouteButton];\n}\n\n"
+      "reverse": "- (void) setShowsRouteButton:(BOOL) showsRouteButton\n{\n    [self setShowsRouteButton___boolean:showsRouteButton];\n}\n\n",
+      "super": "- (void) setShowsRouteButton___boolean:(BOOL) showsRouteButton \n{\n    [super setShowsRouteButton:showsRouteButton];\n}\n\n"
     },
     "setShowsVolumeSlider(boolean)": {
-      "code": "- (void) setShowsVolumeSlider:(BOOL) showsVolumeSlider\n{\n    [self setShowsVolumeSlider___boolean:showsVolumeSlider];\n}\n\n"
+      "reverse": "- (void) setShowsVolumeSlider:(BOOL) showsVolumeSlider\n{\n    [self setShowsVolumeSlider___boolean:showsVolumeSlider];\n}\n\n",
+      "super": "- (void) setShowsVolumeSlider___boolean:(BOOL) showsVolumeSlider \n{\n    [super setShowsVolumeSlider:showsVolumeSlider];\n}\n\n"
     },
+    "setTag(int)": null,
+    "setTintAdjustmentMode(int)": null,
+    "setTintColor(crossmobile.ios.uikit.UIColor)": null,
+    "setTransform(crossmobile.ios.coregraphics.CGAffineTransform)": null,
+    "setTranslatesAutoresizingMaskIntoConstraints(boolean)": null,
+    "setUserInteractionEnabled(boolean)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
     "showsRouteButton()": {
-      "code": "- (BOOL) showsRouteButton\n{\n    return [self showsRouteButton__];\n}\n\n"
+      "reverse": "- (BOOL) showsRouteButton\n{\n    return [self showsRouteButton__];\n}\n\n",
+      "super": "- (BOOL) showsRouteButton__\n{\n    return [super showsRouteButton];\n}\n\n"
     },
     "showsVolumeSlider()": {
-      "code": "- (BOOL) showsVolumeSlider\n{\n    return [self showsVolumeSlider__];\n}\n\n"
-    }
+      "reverse": "- (BOOL) showsVolumeSlider\n{\n    return [self showsVolumeSlider__];\n}\n\n",
+      "super": "- (BOOL) showsVolumeSlider__\n{\n    return [super showsVolumeSlider];\n}\n\n"
+    },
+    "sizeThatFits(crossmobile.ios.coregraphics.CGSize)": null,
+    "sizeToFit()": null,
+    "subviews()": null,
+    "superview()": null,
+    "tag()": null,
+    "tintAdjustmentMode()": null,
+    "tintColor()": null,
+    "tintColorDidChange()": null,
+    "topAnchor()": null,
+    "touchesBegan(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesCancelled(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesEnded(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesMoved(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "trailingAnchor()": null,
+    "transform()": null,
+    "translatesAutoresizingMaskIntoConstraints()": null,
+    "updateConstraints()": null,
+    "updateConstraintsIfNeeded()": null,
+    "userInterfaceLayoutDirection()": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null,
+    "viewForFirstBaselineLayout()": null,
+    "viewForLastBaselineLayout()": null,
+    "widthAnchor()": null,
+    "willMoveToSuperview(crossmobile.ios.uikit.UIView)": null,
+    "willMoveToWindow(crossmobile.ios.uikit.UIWindow)": null,
+    "willRemoveSubview(crossmobile.ios.uikit.UIView)": null,
+    "window()": null
   }
 }

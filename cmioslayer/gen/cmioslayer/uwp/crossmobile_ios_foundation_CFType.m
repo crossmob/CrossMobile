@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.foundation.CFType implementation
+// crossmobile_ios_foundation_CFType implementation
 
 #import "crossmobile_ios_foundation_CFType.h"
 

@@ -1,118 +1,45 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.contacts.CNLabeledValue implementation
+// crossmobile_ios_contacts_CNLabeledValue implementation
 
 #import "crossmobile_ios_contacts_CNLabeledValue.h"
-#import "crossmobile_ios_foundation_NSObject.h"
 #import "java_lang_Object.h"
 #import "java_lang_String.h"
-#import "java_util_Map.h"
 
 @implementation crossmobile_ios_contacts_CNLabeledValue$Ext
-
-// (CNLabeledValue) @property(readonly, copy, nonatomic) NSString *label;
-- (NSString*) label__
-{
-    NSString* re$ult = [super label];
-    return [(re$ult ? re$ult : JAVA_NULL) retain];
-}
-
-// (CNLabeledValue) @property(readonly, copy, nonatomic) ValueType value;
-- (id) value__
-{
-    id re$ult = [super value];
-    return [(re$ult ? re$ult : JAVA_NULL) retain];
-}
-
-// (NSObject) - (void)addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context;
-- (void) addObserver___crossmobile_ios_foundation_NSObject_java_lang_String_int_java_lang_Object:(NSObject*) observer :(NSString*) keyPath :(int) options :(id) context 
-{
-    [super addObserver:(observer == JAVA_NULL ? nil : observer) forKeyPath:(keyPath == JAVA_NULL ? nil : keyPath) options:options context:(context == JAVA_NULL ? nil : context)];
-}
-
-// (CNLabeledValue) - (instancetype)labeledValueBySettingLabel:(NSString *)label;
-- (instancetype) labeledValueBySettingLabel___java_lang_String:(NSString*) label 
-{
-    id re$ult = [super labeledValueBySettingLabel:(label == JAVA_NULL ? nil : label)];
-    return [(re$ult ? re$ult : JAVA_NULL) retain];
-}
-
-// (NSObject) - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey, id> *)change context:(void *)context;
-- (void) observeValueForKeyPath___java_lang_String_java_lang_Object_java_util_Map_java_lang_Object:(NSString*) keyPath :(id) object :(NSDictionary*) change :(id) context 
-{
-    [super observeValueForKeyPath:(keyPath == JAVA_NULL ? nil : keyPath) ofObject:(object == JAVA_NULL ? nil : object) change:(change == JAVA_NULL ? nil : change) context:(context == JAVA_NULL ? nil : context)];
-}
-
-// (NSObject) - (void)removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath;
-- (void) removeObserver___crossmobile_ios_foundation_NSObject_java_lang_String:(NSObject*) observer :(NSString*) keyPath 
-{
-    [super removeObserver:(observer == JAVA_NULL ? nil : observer) forKeyPath:(keyPath == JAVA_NULL ? nil : keyPath)];
-}
-
-// (NSObject) - (void)removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath context:(void *)context;
-- (void) removeObserver___crossmobile_ios_foundation_NSObject_java_lang_String_java_lang_Object:(NSObject*) observer :(NSString*) keyPath :(id) context 
-{
-    [super removeObserver:(observer == JAVA_NULL ? nil : observer) forKeyPath:(keyPath == JAVA_NULL ? nil : keyPath) context:(context == JAVA_NULL ? nil : context)];
-}
-
-// (NSObject) - (void)setValue:(id)value forKey:(NSString *)key;
-- (void) setValueForKey___java_lang_Object_java_lang_String:(id) value :(NSString*) key 
-{
-    [super setValue:(value == JAVA_NULL ? nil : value) forKey:(key == JAVA_NULL ? nil : key)];
-}
-
-// (NSObject) - (void)setValue:(id)value forUndefinedKey:(NSString *)key;
-- (void) setValueForUndefinedKey___java_lang_Object_java_lang_String:(id) value :(NSString*) key 
-{
-    [super setValue:(value == JAVA_NULL ? nil : value) forUndefinedKey:(key == JAVA_NULL ? nil : key)];
-}
-
-// (NSObject) - (id)valueForKey:(NSString *)key;
-- (id) valueForKey___java_lang_String:(NSString*) key 
-{
-    id re$ult = [super valueForKey:(key == JAVA_NULL ? nil : key)];
-    return [(re$ult ? re$ult : JAVA_NULL) retain];
-}
-
-// (NSObject) - (id)valueForUndefinedKey:(NSString *)key;
-- (id) valueForUndefinedKey___java_lang_String:(NSString*) key 
-{
-    id re$ult = [super valueForUndefinedKey:(key == JAVA_NULL ? nil : key)];
-    return [(re$ult ? re$ult : JAVA_NULL) retain];
-}
 
 @end
 
 @implementation CNLabeledValue (cm_crossmobile_ios_contacts_CNLabeledValue)
 
-// direct binding of: + (NSString *)localizedStringForLabel:(NSString *)label;
+// + (NSString *)localizedStringForLabel:(NSString *)label;
 + (NSString*) localizedStringForLabel___java_lang_String:(NSString*) label 
 {
     NSString* re$ult = [CNLabeledValue localizedStringForLabel:(label == JAVA_NULL ? nil : label)];
     return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 
-// direct binding of: - (instancetype)initWithLabel:(NSString *)label value:(ValueType)value;
+// - (instancetype)initWithLabel:(NSString *)label value:(ValueType)value;
 - (instancetype) __init_crossmobile_ios_contacts_CNLabeledValue___java_lang_String_java_lang_Object:(NSString*) label :(id) value 
 {
     return [self initWithLabel:(label == JAVA_NULL ? nil : label) value:(value == JAVA_NULL ? nil : value)];
 }
 
-// direct binding of: @property(readonly, copy, nonatomic) NSString *label;
+// @property(readonly, copy, nonatomic) NSString *label;
 - (NSString*) label__
 {
     NSString* re$ult = [self label];
     return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 
-// direct binding of: @property(readonly, copy, nonatomic) ValueType value;
+// @property(readonly, copy, nonatomic) ValueType value;
 - (id) value__
 {
     id re$ult = [self value];
     return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 
-// direct binding of: - (instancetype)labeledValueBySettingLabel:(NSString *)label;
+// - (instancetype)labeledValueBySettingLabel:(NSString *)label;
 - (instancetype) labeledValueBySettingLabel___java_lang_String:(NSString*) label 
 {
     id re$ult = [self labeledValueBySettingLabel:(label == JAVA_NULL ? nil : label)];

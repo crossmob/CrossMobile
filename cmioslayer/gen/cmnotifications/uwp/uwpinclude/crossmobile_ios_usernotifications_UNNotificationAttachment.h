@@ -1,8 +1,9 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.usernotifications.UNNotificationAttachment definition
+// crossmobile_ios_usernotifications_UNNotificationAttachment definition
 
 #import "xmlvm.h"
+#import <UIKit/UIKit.h>
 #import <UserNotifications/UserNotifications.h>
 @class crossmobile_ios_foundation_NSURL;
 @class crossmobile_rt_StrongReference;

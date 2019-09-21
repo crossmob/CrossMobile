@@ -27,8 +27,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.TreeSet;
 
-import static org.crossmobile.plugin.utils.Texters.toObjC;
-import static org.crossmobile.utils.NamingUtils.getClassNameBare;
+import static org.crossmobile.utils.NamingUtils.toObjC;
 
 public final class NObject {
 
@@ -64,35 +63,17 @@ public final class NObject {
         return selectors;
     }
 
-    public Collection<NSelector> getAllSelectors() {
-        Collection<NSelector> allSelectors = new TreeSet<>();
-        getSelectorsRecursively(this, allSelectors, true);
-        return allSelectors;
-    }
-
-    private static void getSelectorsRecursively(NObject base, Collection<NSelector> selectors, boolean thisObject) {
-        if (base == null) {
-        } else if (!base.isObjCBased())
-            selectors.addAll(base.selectors);
-        else {
-            getSelectorsRecursively(ObjectRegistry.retrieve(base.type.getSuperclass()), selectors, false);
-            for (NSelector sel : base.selectors)
-                if (thisObject || sel.needsOverrideBindings())
-                    selectors.add(sel);
-        }
-    }
-
-    public Collection<String> getDependencies(boolean allSelectors) {
+    public Collection<String> getDependencies() {
         Collection<String> dependencies = new TreeSet<>();
-        for (NSelector selector : allSelectors ? getAllSelectors() : getSelectors())
+        for (NSelector selector : getSelectors())
             dependencies.addAll(selector.getDependencies());
         if (isStruct())
             for (Field f : type.getFields())
                 if (!f.getType().isPrimitive())
-                    dependencies.add(toObjC(getClassNameBare(f.getType())));
+                    dependencies.add(toObjC(f.getType()));
         if (isCBased())
-            dependencies.add(toObjC(getClassNameBare(Object.class)));
-        dependencies.remove(toObjC(getClassNameBare(type)));
+            dependencies.add(toObjC(Object.class));
+        dependencies.remove(toObjC(type));
         if (CollectionUtils.containsAny(dependencies, TypeDef.Numbers))
             dependencies.add("java_lang_Number");
         return dependencies;

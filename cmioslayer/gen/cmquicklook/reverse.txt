@@ -1,58 +1,219 @@
 {
   "crossmobile.ios.quicklook.QLPreviewController": {
+    "addChildViewController(crossmobile.ios.uikit.UIViewController)": null,
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "additionalSafeAreaInsets()": null,
+    "allowedChildViewControllersForUnwindingFromSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "automaticallyAdjustsScrollViewInsets()": null,
+    "becomeFirstResponder()": null,
+    "beginAppearanceTransition(boolean,boolean)": null,
+    "bottomLayoutGuide()": null,
+    "childViewControllerContainingSegueSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "childViewControllers()": null,
+    "contentSizeForViewInPopover()": null,
     "currentPreviewItem()": {
-      "code": "- (id<QLPreviewItem>) currentPreviewItem\n{\n    id<QLPreviewItem> re$ult = [self currentPreviewItem__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (id<QLPreviewItem>) currentPreviewItem\n{\n    id<QLPreviewItem> re$ult = [self currentPreviewItem__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (id<QLPreviewItem>) currentPreviewItem__\n{\n    id<QLPreviewItem> re$ult = [super currentPreviewItem];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_quicklook_QLPreviewItem"
+      ]
     },
     "currentPreviewItemIndex()": {
-      "code": "- (NSInteger) currentPreviewItemIndex\n{\n    return [self currentPreviewItemIndex__];\n}\n\n"
+      "reverse": "- (NSInteger) currentPreviewItemIndex\n{\n    return [self currentPreviewItemIndex__];\n}\n\n",
+      "super": "- (int) currentPreviewItemIndex__\n{\n    return [super currentPreviewItemIndex];\n}\n\n"
     },
     "dataSource()": {
-      "code": "- (id<QLPreviewControllerDataSource>) dataSource\n{\n    id<QLPreviewControllerDataSource> re$ult = [self dataSource__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (id<QLPreviewControllerDataSource>) dataSource\n{\n    id<QLPreviewControllerDataSource> re$ult = [self dataSource__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (id<QLPreviewControllerDataSource>) dataSource__\n{\n    id<QLPreviewControllerDataSource> re$ult = [super dataSource];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_quicklook_QLPreviewControllerDataSource"
+      ]
     },
+    "definesPresentationContext()": null,
     "delegate()": {
-      "code": "- (id<QLPreviewControllerDelegate>) delegate\n{\n    id<QLPreviewControllerDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (id<QLPreviewControllerDelegate>) delegate\n{\n    id<QLPreviewControllerDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (id<QLPreviewControllerDelegate>) delegate__\n{\n    id<QLPreviewControllerDelegate> re$ult = [super delegate];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_quicklook_QLPreviewControllerDelegate"
+      ]
     },
+    "didReceiveMemoryWarning()": null,
+    "didRotateFromInterfaceOrientation(int)": null,
+    "disablesAutomaticKeyboardDismissal()": null,
+    "dismissModalViewControllerAnimated(boolean)": null,
+    "edgesForExtendedLayout()": null,
+    "editButtonItem()": null,
+    "endAppearanceTransition()": null,
+    "extensionContext()": null,
+    "hidesBottomBarWhenPushed()": null,
+    "interfaceOrientation()": null,
+    "isEditing()": null,
+    "isFirstResponder()": null,
+    "isModalInPopover()": null,
+    "isViewLoaded()": null,
+    "loadView()": null,
+    "loadViewIfNeeded()": null,
+    "modalPresentationStyle()": null,
+    "modalTransitionStyle()": null,
+    "navigationController()": null,
+    "navigationItem()": null,
+    "nextResponder()": null,
+    "nibName()": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "parentViewController()": null,
+    "performSegueWithIdentifier(java.lang.String,java.lang.Object)": null,
+    "preferredInterfaceOrientationForPresentation()": null,
+    "prefersStatusBarHidden()": null,
+    "prepareForSegue(crossmobile.ios.uikit.UIStoryboardSegue,java.lang.Object)": null,
+    "presentModalViewController(crossmobile.ios.uikit.UIViewController,boolean)": null,
+    "presentedViewController()": null,
+    "presentingViewController()": null,
+    "providesPresentationContextTransitionStyle()": null,
     "refreshCurrentPreviewItem()": {
-      "code": "- (void) refreshCurrentPreviewItem\n{\n    [self refreshCurrentPreviewItem__];\n}\n\n"
+      "reverse": "- (void) refreshCurrentPreviewItem\n{\n    [self refreshCurrentPreviewItem__];\n}\n\n",
+      "super": "- (void) refreshCurrentPreviewItem__\n{\n    [super refreshCurrentPreviewItem];\n}\n\n"
     },
     "reloadData()": {
-      "code": "- (void) reloadData\n{\n    [self reloadData__];\n}\n\n"
+      "reverse": "- (void) reloadData\n{\n    [self reloadData__];\n}\n\n",
+      "super": "- (void) reloadData__\n{\n    [super reloadData];\n}\n\n"
     },
+    "removeFromParentViewController()": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "resignFirstResponder()": null,
+    "restorationIdentifier()": null,
+    "rotatingFooterView()": null,
+    "rotatingHeaderView()": null,
+    "setAdditionalSafeAreaInsets(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setAutomaticallyAdjustsScrollViewInsets(boolean)": null,
+    "setContentSizeForViewInPopover(crossmobile.ios.coregraphics.CGSize)": null,
     "setCurrentPreviewItemIndex(int)": {
-      "code": "- (void) setCurrentPreviewItemIndex:(NSInteger) currentPreviewItemIndex\n{\n    [self setCurrentPreviewItemIndex___int:currentPreviewItemIndex];\n}\n\n"
+      "reverse": "- (void) setCurrentPreviewItemIndex:(NSInteger) currentPreviewItemIndex\n{\n    [self setCurrentPreviewItemIndex___int:currentPreviewItemIndex];\n}\n\n",
+      "super": "- (void) setCurrentPreviewItemIndex___int:(int) currentPreviewItemIndex \n{\n    [super setCurrentPreviewItemIndex:currentPreviewItemIndex];\n}\n\n"
     },
     "setDataSource(crossmobile.ios.quicklook.QLPreviewControllerDataSource)": {
-      "code": "- (void) setDataSource:(id<QLPreviewControllerDataSource>) dataSource\n{\n    [self setDataSource___crossmobile_ios_quicklook_QLPreviewControllerDataSource:(dataSource ? dataSource : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setDataSource:(id<QLPreviewControllerDataSource>) dataSource\n{\n    [self setDataSource___crossmobile_ios_quicklook_QLPreviewControllerDataSource:(dataSource ? dataSource : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setDataSource___crossmobile_ios_quicklook_QLPreviewControllerDataSource:(id<QLPreviewControllerDataSource>) dataSource \n{\n    objc_setAssociatedObject(self, @selector(setDataSource:), dataSource, OBJC_ASSOCIATION_RETAIN_NONATOMIC);\n    [super setDataSource:(dataSource == JAVA_NULL ? nil : dataSource)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_quicklook_QLPreviewControllerDataSource"
+      ]
     },
+    "setDefinesPresentationContext(boolean)": null,
     "setDelegate(crossmobile.ios.quicklook.QLPreviewControllerDelegate)": {
-      "code": "- (void) setDelegate:(id<QLPreviewControllerDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_quicklook_QLPreviewControllerDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n"
-    }
+      "reverse": "- (void) setDelegate:(id<QLPreviewControllerDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_quicklook_QLPreviewControllerDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setDelegate___crossmobile_ios_quicklook_QLPreviewControllerDelegate:(id<QLPreviewControllerDelegate>) delegate \n{\n    objc_setAssociatedObject(self, @selector(setDelegate:), delegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);\n    [super setDelegate:(delegate == JAVA_NULL ? nil : delegate)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_quicklook_QLPreviewControllerDelegate"
+      ]
+    },
+    "setEdgesForExtendedLayout(int)": null,
+    "setEditing(boolean)": null,
+    "setEditing(boolean,boolean)": null,
+    "setHidesBottomBarWhenPushed(boolean)": null,
+    "setModalInPopover(boolean)": null,
+    "setModalPresentationStyle(int)": null,
+    "setModalTransitionStyle(int)": null,
+    "setProvidesPresentationContextTransitionStyle(boolean)": null,
+    "setRestorationIdentifier(java.lang.String)": null,
+    "setTabBarItem(crossmobile.ios.uikit.UITabBarItem)": null,
+    "setTitle(java.lang.String)": null,
+    "setToolbarItems(java.util.List)": null,
+    "setToolbarItems(java.util.List,boolean)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "setView(crossmobile.ios.uikit.UIView)": null,
+    "setWantsFullScreenLayout(boolean)": null,
+    "shouldAutomaticallyForwardAppearanceMethods()": null,
+    "shouldAutorotate()": null,
+    "shouldAutorotateToInterfaceOrientation(int)": null,
+    "shouldPerformSegueWithIdentifier(java.lang.String,java.lang.Object)": null,
+    "showDetailViewController(crossmobile.ios.uikit.UIViewController,java.lang.Object)": null,
+    "showViewController(crossmobile.ios.uikit.UIViewController,java.lang.Object)": null,
+    "splitViewController()": null,
+    "storyboard()": null,
+    "supportedInterfaceOrientations()": null,
+    "tabBarController()": null,
+    "tabBarItem()": null,
+    "title()": null,
+    "toolbarItems()": null,
+    "topLayoutGuide()": null,
+    "touchesBegan(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesCancelled(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesEnded(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesMoved(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null,
+    "view()": null,
+    "viewDidAppear(boolean)": null,
+    "viewDidDisappear(boolean)": null,
+    "viewDidLayoutSubviews()": null,
+    "viewDidLoad()": null,
+    "viewDidUnload()": null,
+    "viewIfLoaded()": null,
+    "viewSafeAreaInsetsDidChange()": null,
+    "viewWillAppear(boolean)": null,
+    "viewWillDisappear(boolean)": null,
+    "viewWillLayoutSubviews()": null,
+    "wantsFullScreenLayout()": null,
+    "willAnimateRotationToInterfaceOrientation(int,double)": null,
+    "willRotateToInterfaceOrientation(int,double)": null
   },
   "crossmobile.ios.quicklook.QLPreviewControllerDataSource": {
     "numberOfPreviewItemsInPreviewController(crossmobile.ios.quicklook.QLPreviewController)": {
-      "code": "- (NSInteger) numberOfPreviewItemsInPreviewController:(QLPreviewController *) controller\n{\n    return [self numberOfPreviewItemsInPreviewController___crossmobile_ios_quicklook_QLPreviewController:(controller ? controller : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (NSInteger) numberOfPreviewItemsInPreviewController:(QLPreviewController *) controller\n{\n    return [self numberOfPreviewItemsInPreviewController___crossmobile_ios_quicklook_QLPreviewController:(controller ? controller : JAVA_NULL)];\n}\n\n",
+      "super": "- (int) numberOfPreviewItemsInPreviewController___crossmobile_ios_quicklook_QLPreviewController:(QLPreviewController*) controller \n{\n    return [super numberOfPreviewItemsInPreviewController:(controller == JAVA_NULL ? nil : controller)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_quicklook_QLPreviewController"
+      ]
     },
     "previewItemAtIndex(crossmobile.ios.quicklook.QLPreviewController,int)": {
-      "code": "- (id<QLPreviewItem>) previewController:(QLPreviewController *) controller previewItemAtIndex:(NSInteger) index\n{\n    id<QLPreviewItem> re$ult = [self previewItemAtIndex___crossmobile_ios_quicklook_QLPreviewController_int:(controller ? controller : JAVA_NULL) :index];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (id<QLPreviewItem>) previewController:(QLPreviewController *) controller previewItemAtIndex:(NSInteger) index\n{\n    id<QLPreviewItem> re$ult = [self previewItemAtIndex___crossmobile_ios_quicklook_QLPreviewController_int:(controller ? controller : JAVA_NULL) :index];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (id<QLPreviewItem>) previewItemAtIndex___crossmobile_ios_quicklook_QLPreviewController_int:(QLPreviewController*) controller :(int) index \n{\n    id<QLPreviewItem> re$ult = [super previewController:(controller == JAVA_NULL ? nil : controller) previewItemAtIndex:index];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_quicklook_QLPreviewController",
+        "crossmobile_ios_quicklook_QLPreviewItem"
+      ]
     }
   },
   "crossmobile.ios.quicklook.QLPreviewControllerDelegate": {
     "didDismiss(crossmobile.ios.quicklook.QLPreviewController)": {
-      "code": "- (void) previewControllerDidDismiss:(QLPreviewController *) controller\n{\n    [self didDismiss___crossmobile_ios_quicklook_QLPreviewController:(controller ? controller : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) previewControllerDidDismiss:(QLPreviewController *) controller\n{\n    [self didDismiss___crossmobile_ios_quicklook_QLPreviewController:(controller ? controller : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didDismiss___crossmobile_ios_quicklook_QLPreviewController:(QLPreviewController*) controller \n{\n    [super previewControllerDidDismiss:(controller == JAVA_NULL ? nil : controller)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_quicklook_QLPreviewController"
+      ]
     },
     "shouldOpenURL(crossmobile.ios.quicklook.QLPreviewController,crossmobile.ios.foundation.NSURL,crossmobile.ios.quicklook.QLPreviewItem)": {
-      "code": "- (BOOL) previewController:(QLPreviewController *) controller shouldOpenURL:(NSURL *) url forPreviewItem:(id<QLPreviewItem>) item\n{\n    return [self shouldOpenURL___crossmobile_ios_quicklook_QLPreviewController_crossmobile_ios_foundation_NSURL_crossmobile_ios_quicklook_QLPreviewItem:(controller ? controller : JAVA_NULL) :(url ? url : JAVA_NULL) :(item ? item : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (BOOL) previewController:(QLPreviewController *) controller shouldOpenURL:(NSURL *) url forPreviewItem:(id<QLPreviewItem>) item\n{\n    return [self shouldOpenURL___crossmobile_ios_quicklook_QLPreviewController_crossmobile_ios_foundation_NSURL_crossmobile_ios_quicklook_QLPreviewItem:(controller ? controller : JAVA_NULL) :(url ? url : JAVA_NULL) :(item ? item : JAVA_NULL)];\n}\n\n",
+      "super": "- (BOOL) shouldOpenURL___crossmobile_ios_quicklook_QLPreviewController_crossmobile_ios_foundation_NSURL_crossmobile_ios_quicklook_QLPreviewItem:(QLPreviewController*) controller :(NSURL*) url :(id<QLPreviewItem>) item \n{\n    return [super previewController:(controller == JAVA_NULL ? nil : controller) shouldOpenURL:(url == JAVA_NULL ? nil : url) forPreviewItem:(item == JAVA_NULL ? nil : item)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSURL",
+        "crossmobile_ios_quicklook_QLPreviewController",
+        "crossmobile_ios_quicklook_QLPreviewItem"
+      ]
     },
     "willDismiss(crossmobile.ios.quicklook.QLPreviewController)": {
-      "code": "- (void) previewControllerWillDismiss:(QLPreviewController *) controller\n{\n    [self willDismiss___crossmobile_ios_quicklook_QLPreviewController:(controller ? controller : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) previewControllerWillDismiss:(QLPreviewController *) controller\n{\n    [self willDismiss___crossmobile_ios_quicklook_QLPreviewController:(controller ? controller : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) willDismiss___crossmobile_ios_quicklook_QLPreviewController:(QLPreviewController*) controller \n{\n    [super previewControllerWillDismiss:(controller == JAVA_NULL ? nil : controller)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_quicklook_QLPreviewController"
+      ]
     }
   },
   "crossmobile.ios.quicklook.QLPreviewItem": {
     "previewItemTitle()": {
-      "code": "- (NSString *) previewItemTitle\n{\n    NSString * re$ult = [self previewItemTitle__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) previewItemTitle\n{\n    NSString * re$ult = [self previewItemTitle__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) previewItemTitle__\n{\n    NSString* re$ult = [super previewItemTitle];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "previewItemURL()": {
-      "code": "- (NSURL *) previewItemURL\n{\n    NSURL * re$ult = [self previewItemURL__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSURL *) previewItemURL\n{\n    NSURL * re$ult = [self previewItemURL__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSURL*) previewItemURL__\n{\n    NSURL* re$ult = [super previewItemURL];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSURL"
+      ]
     }
   }
 }

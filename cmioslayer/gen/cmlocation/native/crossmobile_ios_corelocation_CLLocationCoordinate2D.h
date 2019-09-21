@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.corelocation.CLLocationCoordinate2D definition
+// crossmobile_ios_corelocation_CLLocationCoordinate2D definition
 
 #import "xmlvm.h"
 #import <CoreLocation/CoreLocation.h>

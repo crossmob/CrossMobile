@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.foundation.NSObject implementation
+// crossmobile_ios_foundation_NSObject implementation
 
 #import "crossmobile_ios_foundation_NSObject.h"
 #import "crossmobile_ios_foundation_NSSelector.h"
@@ -10,135 +10,85 @@
 
 @implementation crossmobile_ios_foundation_NSObject$Ext
 
-// (NSObject) - (void)addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context;
-- (void) addObserver___crossmobile_ios_foundation_NSObject_java_lang_String_int_java_lang_Object:(NSObject*) observer :(NSString*) keyPath :(int) options :(id) context 
-{
-    [super addObserver:(observer == JAVA_NULL ? nil : observer) forKeyPath:(keyPath == JAVA_NULL ? nil : keyPath) options:options context:(context == JAVA_NULL ? nil : context)];
-}
-
-// (NSObject) - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey, id> *)change context:(void *)context;
-- (void) observeValueForKeyPath___java_lang_String_java_lang_Object_java_util_Map_java_lang_Object:(NSString*) keyPath :(id) object :(NSDictionary*) change :(id) context 
-{
-    [super observeValueForKeyPath:(keyPath == JAVA_NULL ? nil : keyPath) ofObject:(object == JAVA_NULL ? nil : object) change:(change == JAVA_NULL ? nil : change) context:(context == JAVA_NULL ? nil : context)];
-}
-
-// (NSObject) - (void)removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath;
-- (void) removeObserver___crossmobile_ios_foundation_NSObject_java_lang_String:(NSObject*) observer :(NSString*) keyPath 
-{
-    [super removeObserver:(observer == JAVA_NULL ? nil : observer) forKeyPath:(keyPath == JAVA_NULL ? nil : keyPath)];
-}
-
-// (NSObject) - (void)removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath context:(void *)context;
-- (void) removeObserver___crossmobile_ios_foundation_NSObject_java_lang_String_java_lang_Object:(NSObject*) observer :(NSString*) keyPath :(id) context 
-{
-    [super removeObserver:(observer == JAVA_NULL ? nil : observer) forKeyPath:(keyPath == JAVA_NULL ? nil : keyPath) context:(context == JAVA_NULL ? nil : context)];
-}
-
-// (NSObject) - (void)setValue:(id)value forKey:(NSString *)key;
-- (void) setValueForKey___java_lang_Object_java_lang_String:(id) value :(NSString*) key 
-{
-    [super setValue:(value == JAVA_NULL ? nil : value) forKey:(key == JAVA_NULL ? nil : key)];
-}
-
-// (NSObject) - (void)setValue:(id)value forUndefinedKey:(NSString *)key;
-- (void) setValueForUndefinedKey___java_lang_Object_java_lang_String:(id) value :(NSString*) key 
-{
-    [super setValue:(value == JAVA_NULL ? nil : value) forUndefinedKey:(key == JAVA_NULL ? nil : key)];
-}
-
-// (NSObject) - (id)valueForKey:(NSString *)key;
-- (id) valueForKey___java_lang_String:(NSString*) key 
-{
-    id re$ult = [super valueForKey:(key == JAVA_NULL ? nil : key)];
-    return [(re$ult ? re$ult : JAVA_NULL) retain];
-}
-
-// (NSObject) - (id)valueForUndefinedKey:(NSString *)key;
-- (id) valueForUndefinedKey___java_lang_String:(NSString*) key 
-{
-    id re$ult = [super valueForUndefinedKey:(key == JAVA_NULL ? nil : key)];
-    return [(re$ult ? re$ult : JAVA_NULL) retain];
-}
-
 @end
 
 @implementation NSObject (cm_crossmobile_ios_foundation_NSObject)
 
-// direct binding of: -(instancetype) init;
+// -(instancetype) init;
 - (instancetype) __init_crossmobile_ios_foundation_NSObject__
 {
     return [self init];
 }
 
-// direct binding of: - (void)addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context;
+// - (void)addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context;
 - (void) addObserver___crossmobile_ios_foundation_NSObject_java_lang_String_int_java_lang_Object:(NSObject*) observer :(NSString*) keyPath :(int) options :(id) context 
 {
     [self addObserver:(observer == JAVA_NULL ? nil : observer) forKeyPath:(keyPath == JAVA_NULL ? nil : keyPath) options:options context:(context == JAVA_NULL ? nil : context)];
 }
 
-// direct binding of: - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey, id> *)change context:(void *)context;
+// - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey, id> *)change context:(void *)context;
 - (void) observeValueForKeyPath___java_lang_String_java_lang_Object_java_util_Map_java_lang_Object:(NSString*) keyPath :(id) object :(NSDictionary*) change :(id) context 
 {
     [self observeValueForKeyPath:(keyPath == JAVA_NULL ? nil : keyPath) ofObject:(object == JAVA_NULL ? nil : object) change:(change == JAVA_NULL ? nil : change) context:(context == JAVA_NULL ? nil : context)];
 }
 
-// direct binding of: - (void)performSelector:(SEL)aSelector withObject:(id)anArgument afterDelay:(NSTimeInterval)delay;
+// - (void)performSelector:(SEL)aSelector withObject:(id)anArgument afterDelay:(NSTimeInterval)delay;
 - (void) performSelector___crossmobile_ios_foundation_NSSelector_java_lang_Object_double:(id<crossmobile_ios_foundation_NSSelector>) aSelector :(id) anArgument :(double) delay 
 {
     [(aSelector == JAVA_NULL ? nil : aSelector) performSelector:@selector(exec___java_lang_Object:) withObject:(anArgument == JAVA_NULL ? nil : anArgument) afterDelay:delay];
 }
 
-// direct binding of: - (void)performSelectorOnMainThread:(SEL)aSelector withObject:(id)arg waitUntilDone:(BOOL)wait;
+// - (void)performSelectorOnMainThread:(SEL)aSelector withObject:(id)arg waitUntilDone:(BOOL)wait;
 - (void) performSelectorOnMainThread___crossmobile_ios_foundation_NSSelector_java_lang_Object_boolean:(id<crossmobile_ios_foundation_NSSelector>) aSelector :(id) arg :(BOOL) wait 
 {
     [(aSelector == JAVA_NULL ? nil : aSelector) performSelectorOnMainThread:@selector(exec___java_lang_Object:) withObject:(arg == JAVA_NULL ? nil : arg) waitUntilDone:wait];
 }
 
-// direct binding of: - (oneway void)release;
+// - (oneway void)release;
 - (void) release__
 {
     [self release];
 }
 
-// direct binding of: - (void)removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath;
+// - (void)removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath;
 - (void) removeObserver___crossmobile_ios_foundation_NSObject_java_lang_String:(NSObject*) observer :(NSString*) keyPath 
 {
     [self removeObserver:(observer == JAVA_NULL ? nil : observer) forKeyPath:(keyPath == JAVA_NULL ? nil : keyPath)];
 }
 
-// direct binding of: - (void)removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath context:(void *)context;
+// - (void)removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath context:(void *)context;
 - (void) removeObserver___crossmobile_ios_foundation_NSObject_java_lang_String_java_lang_Object:(NSObject*) observer :(NSString*) keyPath :(id) context 
 {
     [self removeObserver:(observer == JAVA_NULL ? nil : observer) forKeyPath:(keyPath == JAVA_NULL ? nil : keyPath) context:(context == JAVA_NULL ? nil : context)];
 }
 
-// direct binding of: - (instancetype)retain;
+// - (instancetype)retain;
 - (instancetype) retain__
 {
     id re$ult = [self retain];
     return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 
-// direct binding of: - (void)setValue:(id)value forKey:(NSString *)key;
+// - (void)setValue:(id)value forKey:(NSString *)key;
 - (void) setValueForKey___java_lang_Object_java_lang_String:(id) value :(NSString*) key 
 {
     [self setValue:(value == JAVA_NULL ? nil : value) forKey:(key == JAVA_NULL ? nil : key)];
 }
 
-// direct binding of: - (void)setValue:(id)value forUndefinedKey:(NSString *)key;
+// - (void)setValue:(id)value forUndefinedKey:(NSString *)key;
 - (void) setValueForUndefinedKey___java_lang_Object_java_lang_String:(id) value :(NSString*) key 
 {
     [self setValue:(value == JAVA_NULL ? nil : value) forUndefinedKey:(key == JAVA_NULL ? nil : key)];
 }
 
-// direct binding of: - (id)valueForKey:(NSString *)key;
+// - (id)valueForKey:(NSString *)key;
 - (id) valueForKey___java_lang_String:(NSString*) key 
 {
     id re$ult = [self valueForKey:(key == JAVA_NULL ? nil : key)];
     return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 
-// direct binding of: - (id)valueForUndefinedKey:(NSString *)key;
+// - (id)valueForUndefinedKey:(NSString *)key;
 - (id) valueForUndefinedKey___java_lang_String:(NSString*) key 
 {
     id re$ult = [self valueForUndefinedKey:(key == JAVA_NULL ? nil : key)];

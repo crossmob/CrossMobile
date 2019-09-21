@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.storekit.SKProductsRequestDelegate definition
+// crossmobile_ios_storekit_SKProductsRequestDelegate definition
 
 #import "xmlvm.h"
 #import <StoreKit/StoreKit.h>

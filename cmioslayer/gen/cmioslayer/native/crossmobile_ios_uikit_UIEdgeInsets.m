@@ -1,72 +1,72 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.uikit.UIEdgeInsets implementation
+// crossmobile_ios_uikit_UIEdgeInsets implementation
 
 #import "crossmobile_ios_uikit_UIEdgeInsets.h"
 
 @implementation crossmobile_ios_uikit_UIEdgeInsets
 
-// direct binding of: extern const UIEdgeInsets UIEdgeInsetsZero;
+// extern const UIEdgeInsets UIEdgeInsetsZero;
 + (crossmobile_ios_uikit_UIEdgeInsets*) zero__
 {
     return [[crossmobile_ios_uikit_UIEdgeInsets alloc] initWithUIEdgeInsets:UIEdgeInsetsZero];
 }
 
-// direct binding of: UIEdgeInsets UIEdgeInsetsMake(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right);
+// UIEdgeInsets UIEdgeInsetsMake(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right);
 - (crossmobile_ios_uikit_UIEdgeInsets*) __init_crossmobile_ios_uikit_UIEdgeInsets___double_double_double_double:(double) top :(double) left :(double) bottom :(double) right 
 {
     return [self initWithUIEdgeInsets:UIEdgeInsetsMake(top, left, bottom, right)];
 }
 
-// direct binding of: CGFloat bottom;
+// CGFloat bottom;
 - (void) setBottom___double:(double) bottom 
 {
     self->bottom_double = bottom;
 }
 
-// direct binding of: CGFloat bottom;
+// CGFloat bottom;
 - (double) getBottom__
 {
     return self->bottom_double;
 }
 
-// direct binding of: CGFloat left;
+// CGFloat left;
 - (void) setLeft___double:(double) left 
 {
     self->left_double = left;
 }
 
-// direct binding of: CGFloat left;
+// CGFloat left;
 - (double) getLeft__
 {
     return self->left_double;
 }
 
-// direct binding of: CGFloat right;
+// CGFloat right;
 - (void) setRight___double:(double) right 
 {
     self->right_double = right;
 }
 
-// direct binding of: CGFloat right;
+// CGFloat right;
 - (double) getRight__
 {
     return self->right_double;
 }
 
-// direct binding of: CGFloat top;
+// CGFloat top;
 - (void) setTop___double:(double) top 
 {
     self->top_double = top;
 }
 
-// direct binding of: CGFloat top;
+// CGFloat top;
 - (double) getTop__
 {
     return self->top_double;
 }
 
-// direct binding of: BOOL UIEdgeInsetsEqualToEdgeInsets(UIEdgeInsets insets1, UIEdgeInsets insets2);
+// BOOL UIEdgeInsetsEqualToEdgeInsets(UIEdgeInsets insets1, UIEdgeInsets insets2);
 - (BOOL) equalToEdgeInsets___crossmobile_ios_uikit_UIEdgeInsets:(crossmobile_ios_uikit_UIEdgeInsets*) insets2 
 {
     return UIEdgeInsetsEqualToEdgeInsets([self getUIEdgeInsets], [insets2 getUIEdgeInsets]);

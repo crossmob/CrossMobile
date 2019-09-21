@@ -1,8 +1,9 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.usernotifications.UNPushNotificationTrigger definition
+// crossmobile_ios_usernotifications_UNPushNotificationTrigger definition
 
 #import "xmlvm.h"
+#import <UIKit/UIKit.h>
 #import <UserNotifications/UserNotifications.h>
 
 @interface crossmobile_ios_usernotifications_UNPushNotificationTrigger$Ext : UNPushNotificationTrigger

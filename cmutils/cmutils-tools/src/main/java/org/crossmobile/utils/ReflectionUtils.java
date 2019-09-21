@@ -17,7 +17,9 @@
 package org.crossmobile.utils;
 
 import javassist.ClassPool;
+import javassist.CtClass;
 import javassist.NotFoundException;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.utils.CustomTypeClasses.VoidRef;
 
 import java.io.File;
@@ -26,8 +28,6 @@ import java.lang.reflect.*;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.*;
-
-import static java.util.Comparator.comparing;
 
 public class ReflectionUtils {
 
@@ -250,6 +250,12 @@ public class ReflectionUtils {
         }
     }
 
+    public static Class<?> getBareClass(Class<?> baseClass) {
+        while (baseClass.isArray())
+            baseClass = baseClass.getComponentType();
+        return baseClass;
+    }
+
     public static boolean isReservedWord(String word) {
         return reservedWords.contains(word);
     }
@@ -356,6 +362,35 @@ public class ReflectionUtils {
                 } catch (NotFoundException ex) {
                 }
         return cp;
+    }
+
+    public static CtClass getCtClass(ClassPool cp, String className) {
+        try {
+            return cp.get(className);
+        } catch (NotFoundException e) {
+            BaseUtils.throwException(e);
+            throw new RuntimeException(e);  // will never come here
+        }
+    }
+
+    public static Collection<CtClass> getInheritedClasses(CtClass cls) {
+        Collection<CtClass> inherited = new ArrayList<>();
+        CtClass superClass = getSuperClass(cls);
+        if (superClass != null)
+            inherited.add(superClass);
+        try {
+            inherited.addAll(Arrays.asList(cls.getInterfaces()));
+        } catch (NotFoundException ignored) {
+        }
+        return inherited;
+    }
+
+    public static CtClass getSuperClass(CtClass cls) {
+        try {
+            return cls.getSuperclass();
+        } catch (NotFoundException e) {
+            return null;
+        }
     }
 
     public static Class<?> getTopLevelClass(Class<?> cls) {

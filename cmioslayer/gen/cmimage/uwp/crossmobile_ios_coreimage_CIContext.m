@@ -1,86 +1,26 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.coreimage.CIContext implementation
+// crossmobile_ios_coreimage_CIContext implementation
 
 #import "crossmobile_ios_coregraphics_CGImage.h"
 #import "crossmobile_ios_coregraphics_CGRect.h"
 #import "crossmobile_ios_coreimage_CIContext.h"
 #import "crossmobile_ios_coreimage_CIImage.h"
-#import "crossmobile_ios_foundation_NSObject.h"
-#import "java_lang_Object.h"
-#import "java_lang_String.h"
-#import "java_util_Map.h"
 
 @implementation crossmobile_ios_coreimage_CIContext$Ext
-
-// (NSObject) - (void)addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context;
-- (void) addObserver___crossmobile_ios_foundation_NSObject_java_lang_String_int_java_lang_Object:(NSObject*) observer :(NSString*) keyPath :(int) options :(id) context 
-{
-    [super addObserver:(observer == JAVA_NULL ? nil : observer) forKeyPath:(keyPath == JAVA_NULL ? nil : keyPath) options:options context:(context == JAVA_NULL ? nil : context)];
-}
-
-// (CIContext) - (CGImageRef)createCGImage:(CIImage *)image fromRect:(CGRect)fromRect;
-- (crossmobile_ios_coregraphics_CGImage*) createCGImage___crossmobile_ios_coreimage_CIImage_crossmobile_ios_coregraphics_CGRect:(CIImage*) image :(crossmobile_ios_coregraphics_CGRect*) fromRect 
-{
-    return [[crossmobile_ios_coregraphics_CGImage alloc] initWithCGImage:[super createCGImage:(image == JAVA_NULL ? nil : image) fromRect:[fromRect getCGRect]]];
-}
-
-// (NSObject) - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey, id> *)change context:(void *)context;
-- (void) observeValueForKeyPath___java_lang_String_java_lang_Object_java_util_Map_java_lang_Object:(NSString*) keyPath :(id) object :(NSDictionary*) change :(id) context 
-{
-    [super observeValueForKeyPath:(keyPath == JAVA_NULL ? nil : keyPath) ofObject:(object == JAVA_NULL ? nil : object) change:(change == JAVA_NULL ? nil : change) context:(context == JAVA_NULL ? nil : context)];
-}
-
-// (NSObject) - (void)removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath;
-- (void) removeObserver___crossmobile_ios_foundation_NSObject_java_lang_String:(NSObject*) observer :(NSString*) keyPath 
-{
-    [super removeObserver:(observer == JAVA_NULL ? nil : observer) forKeyPath:(keyPath == JAVA_NULL ? nil : keyPath)];
-}
-
-// (NSObject) - (void)removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath context:(void *)context;
-- (void) removeObserver___crossmobile_ios_foundation_NSObject_java_lang_String_java_lang_Object:(NSObject*) observer :(NSString*) keyPath :(id) context 
-{
-    [super removeObserver:(observer == JAVA_NULL ? nil : observer) forKeyPath:(keyPath == JAVA_NULL ? nil : keyPath) context:(context == JAVA_NULL ? nil : context)];
-}
-
-// (NSObject) - (void)setValue:(id)value forKey:(NSString *)key;
-- (void) setValueForKey___java_lang_Object_java_lang_String:(id) value :(NSString*) key 
-{
-    [super setValue:(value == JAVA_NULL ? nil : value) forKey:(key == JAVA_NULL ? nil : key)];
-}
-
-// (NSObject) - (void)setValue:(id)value forUndefinedKey:(NSString *)key;
-- (void) setValueForUndefinedKey___java_lang_Object_java_lang_String:(id) value :(NSString*) key 
-{
-    [super setValue:(value == JAVA_NULL ? nil : value) forUndefinedKey:(key == JAVA_NULL ? nil : key)];
-}
-
-// (NSObject) - (id)valueForKey:(NSString *)key;
-- (id) valueForKey___java_lang_String:(NSString*) key 
-{
-    id re$ult = [super valueForKey:(key == JAVA_NULL ? nil : key)];
-    return [(re$ult ? re$ult : JAVA_NULL) retain];
-}
-
-// (NSObject) - (id)valueForUndefinedKey:(NSString *)key;
-- (id) valueForUndefinedKey___java_lang_String:(NSString*) key 
-{
-    id re$ult = [super valueForUndefinedKey:(key == JAVA_NULL ? nil : key)];
-    return [(re$ult ? re$ult : JAVA_NULL) retain];
-}
 
 @end
 
 @implementation CIContext (cm_crossmobile_ios_coreimage_CIContext)
 
-// direct binding of: + (CIContext *)context;
+// + (CIContext *)context;
 + (CIContext*) context__
 {
     CIContext* re$ult = [CIContext context];
     return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 
-// direct binding of: - (CGImageRef)createCGImage:(CIImage *)image fromRect:(CGRect)fromRect;
+// - (CGImageRef)createCGImage:(CIImage *)image fromRect:(CGRect)fromRect;
 - (crossmobile_ios_coregraphics_CGImage*) createCGImage___crossmobile_ios_coreimage_CIImage_crossmobile_ios_coregraphics_CGRect:(CIImage*) image :(crossmobile_ios_coregraphics_CGRect*) fromRect 
 {
     return [[crossmobile_ios_coregraphics_CGImage alloc] initWithCGImage:[self createCGImage:(image == JAVA_NULL ? nil : image) fromRect:[fromRect getCGRect]]];

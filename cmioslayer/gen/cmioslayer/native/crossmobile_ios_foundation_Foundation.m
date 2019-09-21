@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.foundation.Foundation implementation
+// crossmobile_ios_foundation_Foundation implementation
 
 #import "crossmobile_ios_foundation_Foundation.h"
 #import "java_lang_String.h"
@@ -8,27 +8,27 @@
 
 @implementation crossmobile_ios_foundation_Foundation
 
-// direct binding of: NSString * NSHomeDirectory ( void );
+// NSString * NSHomeDirectory ( void );
 + (NSString*) NSHomeDirectory__
 {
     NSString* re$ult = NSHomeDirectory();
     return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 
-// direct binding of: void NSLog(NSString *format, ...);
+// void NSLog(NSString *format, ...);
 + (void) NSLog___java_lang_String_java_lang_Object_ARRAYTYPE:(NSString*) format :(XMLVMArray*) va_array 
 {
     xmlvm_formatWith(FFI_FN(NSLog), NO, 1, va_array, (format == JAVA_NULL ? nil : format));
 }
 
-// direct binding of: NSArray<NSString *> * NSSearchPathForDirectoriesInDomains ( NSSearchPathDirectory directory, NSSearchPathDomainMask domainMask, BOOL expandTilde );
+// NSArray<NSString *> * NSSearchPathForDirectoriesInDomains ( NSSearchPathDirectory directory, NSSearchPathDomainMask domainMask, BOOL expandTilde );
 + (NSArray*) NSSearchPathForDirectoriesInDomains___int_int_boolean:(int) directory :(int) domainMask :(BOOL) expandTilde 
 {
     NSArray* re$ult = NSSearchPathForDirectoriesInDomains(directory, domainMask, expandTilde);
     return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 
-// direct binding of: NSString * NSTemporaryDirectory ( void );
+// NSString * NSTemporaryDirectory ( void );
 + (NSString*) NSTemporaryDirectory__
 {
     NSString* re$ult = NSTemporaryDirectory();

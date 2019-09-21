@@ -25,7 +25,7 @@ import org.crossmobile.utils.Log;
 import java.util.*;
 
 import static org.crossmobile.plugin.actions.FormerTests.testEnumType;
-import static org.crossmobile.plugin.utils.Texters.toObjC;
+import static org.crossmobile.utils.NamingUtils.toObjC;
 import static org.crossmobile.utils.NamingUtils.*;
 
 public class TypeDef {
@@ -63,11 +63,11 @@ public class TypeDef {
             // lazy addition of items, so that original aliases will have advantage
             Class old = map.get(typeName);
             if (old != null)
-                map.put(toObjC(getClassNameBare(type)), old);   // just in case it is not present
+                map.put(toObjC(type), old);   // just in case it is not present
             else {
                 if (asAlias)
                     type = map.getOrDefault(toObjC(getClassNameFull(type)), type);
-                map.put(toObjC(getClassNameBare(type)), type);
+                map.put(toObjC(type), type);
                 map.put(typeName, type);
             }
 

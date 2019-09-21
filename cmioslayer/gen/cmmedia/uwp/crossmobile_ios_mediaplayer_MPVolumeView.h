@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.mediaplayer.MPVolumeView definition
+// crossmobile_ios_mediaplayer_MPVolumeView definition
 
 #import "xmlvm.h"
 #import <AVFoundation/AVFoundation.h>

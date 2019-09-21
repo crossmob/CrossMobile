@@ -1,36 +1,36 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.corelocation.CLLocationCoordinate2D implementation
+// crossmobile_ios_corelocation_CLLocationCoordinate2D implementation
 
 #import "crossmobile_ios_corelocation_CLLocationCoordinate2D.h"
 
 @implementation crossmobile_ios_corelocation_CLLocationCoordinate2D
 
-// direct binding of: CLLocationCoordinate2D CLLocationCoordinate2DMake(CLLocationDegrees latitude, CLLocationDegrees longitude);
+// CLLocationCoordinate2D CLLocationCoordinate2DMake(CLLocationDegrees latitude, CLLocationDegrees longitude);
 - (crossmobile_ios_corelocation_CLLocationCoordinate2D*) __init_crossmobile_ios_corelocation_CLLocationCoordinate2D___double_double:(double) latitude :(double) longitude 
 {
     return [self initWithCLLocationCoordinate2D:CLLocationCoordinate2DMake(latitude, longitude)];
 }
 
-// direct binding of: CLLocationDegrees latitude;
+// CLLocationDegrees latitude;
 - (void) setLatitude___double:(double) latitude 
 {
     self->latitude_double = latitude;
 }
 
-// direct binding of: CLLocationDegrees latitude;
+// CLLocationDegrees latitude;
 - (double) getLatitude__
 {
     return self->latitude_double;
 }
 
-// direct binding of: CLLocationDegrees longitude;
+// CLLocationDegrees longitude;
 - (void) setLongitude___double:(double) longitude 
 {
     self->longitude_double = longitude;
 }
 
-// direct binding of: CLLocationDegrees longitude;
+// CLLocationDegrees longitude;
 - (double) getLongitude__
 {
     return self->longitude_double;

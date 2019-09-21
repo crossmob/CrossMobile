@@ -18,7 +18,7 @@ package org.crossmobile.plugin.objc.param;
 
 import org.crossmobile.plugin.model.NType;
 
-import static org.crossmobile.plugin.utils.Texters.toObjC;
+import static org.crossmobile.utils.NamingUtils.toObjC;
 import static org.crossmobile.plugin.utils.Texters.toObjCType;
 import static org.crossmobile.utils.NamingUtils.getClassNameSimple;
 

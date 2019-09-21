@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.audiotoolbox.AudioServices definition
+// crossmobile_ios_audiotoolbox_AudioServices definition
 
 #import "xmlvm.h"
 #import <AVFoundation/AVFoundation.h>

@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.mapkit.MKPinAnnotationView definition
+// crossmobile_ios_mapkit_MKPinAnnotationView definition
 
 #import "xmlvm.h"
 #import <CoreLocation/CoreLocation.h>

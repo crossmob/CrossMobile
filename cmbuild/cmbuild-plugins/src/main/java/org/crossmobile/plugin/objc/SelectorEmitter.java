@@ -21,23 +21,18 @@ import org.crossmobile.plugin.model.*;
 import org.crossmobile.plugin.objc.param.Emitter;
 import org.crossmobile.plugin.objc.param.ParamEmitter;
 import org.crossmobile.plugin.objc.param.ResultEmitter;
-import org.crossmobile.plugin.reg.PluginRegistry;
 import org.crossmobile.plugin.utils.Streamer;
-import org.crossmobile.utils.CollectionUtils;
+import org.crossmobile.utils.NamingUtils;
 
 import java.io.IOException;
 import java.lang.reflect.Executable;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 import static org.crossmobile.plugin.utils.Collectors.getParameter;
 import static org.crossmobile.plugin.utils.Texters.*;
 import static org.crossmobile.utils.CollectionUtils.*;
-import static org.crossmobile.utils.NamingUtils.getClassNameBare;
-import static org.crossmobile.utils.NamingUtils.getClassNameSimple;
+import static org.crossmobile.utils.NamingUtils.*;
 
 public class SelectorEmitter {
 
@@ -247,7 +242,7 @@ public class SelectorEmitter {
     private String getParentName() {
         NObject parent = selector.getContainer();
         return parent.isCBased()
-                ? toObjC(getClassNameBare(parent.getType()))
+                ? toObjC(parent.getType())
                 : toObjC(getClassNameSimple(parent.getType()));
     }
 

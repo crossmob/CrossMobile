@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.uikit.UIImagePickerController definition
+// crossmobile_ios_uikit_UIImagePickerController definition
 
 #import "xmlvm.h"
 #import <CoreImage/CoreImage.h>

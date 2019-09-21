@@ -1,287 +1,734 @@
 {
   "crossmobile.ios.uikit.UIMutableUserNotificationAction": {
+    "activationMode()": null,
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "behavior()": null,
+    "identifier()": null,
+    "isAuthenticationRequired()": null,
+    "isDestructive()": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "parameters()": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setActivationMode(int)": {
-      "code": "- (void) setActivationMode:(UIUserNotificationActivationMode) activationMode\n{\n    [self setActivationMode___int:activationMode];\n}\n\n"
+      "reverse": "- (void) setActivationMode:(UIUserNotificationActivationMode) activationMode\n{\n    [self setActivationMode___int:activationMode];\n}\n\n",
+      "super": "- (void) setActivationMode___int:(int) activationMode \n{\n    [super setActivationMode:activationMode];\n}\n\n"
     },
     "setAuthenticationRequired(boolean)": {
-      "code": "- (void) setAuthenticationRequired:(BOOL) authenticationRequired\n{\n    [self setAuthenticationRequired___boolean:authenticationRequired];\n}\n\n"
+      "reverse": "- (void) setAuthenticationRequired:(BOOL) authenticationRequired\n{\n    [self setAuthenticationRequired___boolean:authenticationRequired];\n}\n\n",
+      "super": "- (void) setAuthenticationRequired___boolean:(BOOL) authenticationRequired \n{\n    [super setAuthenticationRequired:authenticationRequired];\n}\n\n"
     },
     "setBehavior(int)": {
-      "code": "- (void) setBehavior:(UIUserNotificationActionBehavior) behavior\n{\n    [self setBehavior___int:behavior];\n}\n\n"
+      "reverse": "- (void) setBehavior:(UIUserNotificationActionBehavior) behavior\n{\n    [self setBehavior___int:behavior];\n}\n\n",
+      "super": "- (void) setBehavior___int:(int) behavior \n{\n    [super setBehavior:behavior];\n}\n\n"
     },
     "setDestructive(boolean)": {
-      "code": "- (void) setDestructive:(BOOL) destructive\n{\n    [self setDestructive___boolean:destructive];\n}\n\n"
+      "reverse": "- (void) setDestructive:(BOOL) destructive\n{\n    [self setDestructive___boolean:destructive];\n}\n\n",
+      "super": "- (void) setDestructive___boolean:(BOOL) destructive \n{\n    [super setDestructive:destructive];\n}\n\n"
     },
     "setIdentifier(java.lang.String)": {
-      "code": "- (void) setIdentifier:(NSString *) identifier\n{\n    [self setIdentifier___java_lang_String:(identifier ? identifier : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setIdentifier:(NSString *) identifier\n{\n    [self setIdentifier___java_lang_String:(identifier ? identifier : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setIdentifier___java_lang_String:(NSString*) identifier \n{\n    [super setIdentifier:(identifier == JAVA_NULL ? nil : identifier)];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "setParameters(java.util.Map)": {
-      "code": "- (void) setParameters:(NSDictionary *) parameters\n{\n    [self setParameters___java_util_Map:(parameters ? parameters : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setParameters:(NSDictionary *) parameters\n{\n    [self setParameters___java_util_Map:(parameters ? parameters : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setParameters___java_util_Map:(NSDictionary*) parameters \n{\n    [super setParameters:(parameters == JAVA_NULL ? nil : parameters)];\n}\n\n",
+      "supimport": [
+        "java_util_Map"
+      ]
     },
     "setTitle(java.lang.String)": {
-      "code": "- (void) setTitle:(NSString *) title\n{\n    [self setTitle___java_lang_String:(title ? title : JAVA_NULL)];\n}\n\n"
-    }
+      "reverse": "- (void) setTitle:(NSString *) title\n{\n    [self setTitle___java_lang_String:(title ? title : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setTitle___java_lang_String:(NSString*) title \n{\n    [super setTitle:(title == JAVA_NULL ? nil : title)];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "title()": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.uikit.UIMutableUserNotificationCategory": {
+    "actionsForContext(int)": null,
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "identifier()": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setActions(java.util.List,int)": {
-      "code": "- (void) setActions:(NSArray<UIUserNotificationAction *> *) actions forContext:(UIUserNotificationActionContext) context\n{\n    [self setActions___java_util_List_int:(actions ? actions : JAVA_NULL) :context];\n}\n\n"
+      "reverse": "- (void) setActions:(NSArray<UIUserNotificationAction *> *) actions forContext:(UIUserNotificationActionContext) context\n{\n    [self setActions___java_util_List_int:(actions ? actions : JAVA_NULL) :context];\n}\n\n",
+      "super": "- (void) setActions___java_util_List_int:(NSArray*) actions :(int) context \n{\n    [super setActions:(actions == JAVA_NULL ? nil : actions) forContext:context];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
     },
     "setIdentifier(java.lang.String)": {
-      "code": "- (void) setIdentifier:(NSString *) identifier\n{\n    [self setIdentifier___java_lang_String:(identifier ? identifier : JAVA_NULL)];\n}\n\n"
-    }
+      "reverse": "- (void) setIdentifier:(NSString *) identifier\n{\n    [self setIdentifier___java_lang_String:(identifier ? identifier : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setIdentifier___java_lang_String:(NSString*) identifier \n{\n    [super setIdentifier:(identifier == JAVA_NULL ? nil : identifier)];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.uikit.UIUserNotificationAction": {
     "activationMode()": {
-      "code": "- (UIUserNotificationActivationMode) activationMode\n{\n    return [self activationMode__];\n}\n\n"
+      "reverse": "- (UIUserNotificationActivationMode) activationMode\n{\n    return [self activationMode__];\n}\n\n",
+      "super": "- (int) activationMode__\n{\n    return [super activationMode];\n}\n\n"
     },
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "behavior()": {
-      "code": "- (UIUserNotificationActionBehavior) behavior\n{\n    return [self behavior__];\n}\n\n"
+      "reverse": "- (UIUserNotificationActionBehavior) behavior\n{\n    return [self behavior__];\n}\n\n",
+      "super": "- (int) behavior__\n{\n    return [super behavior];\n}\n\n"
     },
     "identifier()": {
-      "code": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) identifier__\n{\n    NSString* re$ult = [super identifier];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "isAuthenticationRequired()": {
-      "code": "- (BOOL) isAuthenticationRequired\n{\n    return [self isAuthenticationRequired__];\n}\n\n"
+      "reverse": "- (BOOL) isAuthenticationRequired\n{\n    return [self isAuthenticationRequired__];\n}\n\n",
+      "super": "- (BOOL) isAuthenticationRequired__\n{\n    return [super isAuthenticationRequired];\n}\n\n"
     },
     "isDestructive()": {
-      "code": "- (BOOL) isDestructive\n{\n    return [self isDestructive__];\n}\n\n"
+      "reverse": "- (BOOL) isDestructive\n{\n    return [self isDestructive__];\n}\n\n",
+      "super": "- (BOOL) isDestructive__\n{\n    return [super isDestructive];\n}\n\n"
     },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
     "parameters()": {
-      "code": "- (NSDictionary *) parameters\n{\n    NSDictionary * re$ult = [self parameters__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSDictionary *) parameters\n{\n    NSDictionary * re$ult = [self parameters__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSDictionary*) parameters__\n{\n    NSDictionary* re$ult = [super parameters];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_util_Map"
+      ]
     },
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
     "title()": {
-      "code": "- (NSString *) title\n{\n    NSString * re$ult = [self title__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
-    }
+      "reverse": "- (NSString *) title\n{\n    NSString * re$ult = [self title__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) title__\n{\n    NSString* re$ult = [super title];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.uikit.UIUserNotificationCategory": {
     "actionsForContext(int)": {
-      "code": "- (NSArray<UIUserNotificationAction *> *) actionsForContext:(UIUserNotificationActionContext) context\n{\n    NSArray<UIUserNotificationAction *> * re$ult = [self actionsForContext___int:context];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSArray<UIUserNotificationAction *> *) actionsForContext:(UIUserNotificationActionContext) context\n{\n    NSArray<UIUserNotificationAction *> * re$ult = [self actionsForContext___int:context];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSArray*) actionsForContext___int:(int) context \n{\n    NSArray* re$ult = [super actionsForContext:context];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
     },
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "identifier()": {
-      "code": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
-    }
+      "reverse": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) identifier__\n{\n    NSString* re$ult = [super identifier];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.usernotifications.UNCalendarNotificationTrigger": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "dateComponents()": {
-      "code": "- (NSDateComponents *) dateComponents\n{\n    NSDateComponents * re$ult = [self dateComponents__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSDateComponents *) dateComponents\n{\n    NSDateComponents * re$ult = [self dateComponents__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSDateComponents*) dateComponents__\n{\n    NSDateComponents* re$ult = [super dateComponents];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSDateComponents"
+      ]
     },
     "nextTriggerDate()": {
-      "code": "- (NSDate *) nextTriggerDate\n{\n    NSDate * re$ult = [self nextTriggerDate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
-    }
+      "reverse": "- (NSDate *) nextTriggerDate\n{\n    NSDate * re$ult = [self nextTriggerDate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSDate*) nextTriggerDate__\n{\n    NSDate* re$ult = [super nextTriggerDate];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSDate"
+      ]
+    },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "repeats()": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.usernotifications.UNLocationNotificationTrigger": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
     "region()": {
-      "code": "- (CLRegion *) region\n{\n    CLRegion * re$ult = [self region__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
-    }
+      "reverse": "- (CLRegion *) region\n{\n    CLRegion * re$ult = [self region__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (CLRegion*) region__\n{\n    CLRegion* re$ult = [super region];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLRegion"
+      ]
+    },
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "repeats()": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.usernotifications.UNMutableNotificationContent": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "attachments()": null,
+    "badge()": null,
+    "body()": null,
+    "categoryIdentifier()": null,
+    "launchImageName()": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setAttachments(java.util.List)": {
-      "code": "- (void) setAttachments:(NSArray<UNNotificationAttachment *> *) attachments\n{\n    [self setAttachments___java_util_List:(attachments ? attachments : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setAttachments:(NSArray<UNNotificationAttachment *> *) attachments\n{\n    [self setAttachments___java_util_List:(attachments ? attachments : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setAttachments___java_util_List:(NSArray*) attachments \n{\n    [super setAttachments:(attachments == JAVA_NULL ? nil : attachments)];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
     },
     "setBadge(java.lang.Number)": {
-      "code": "- (void) setBadge:(NSNumber *) badge\n{\n    [self setBadge___java_lang_Number:(badge ? badge : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setBadge:(NSNumber *) badge\n{\n    [self setBadge___java_lang_Number:(badge ? badge : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setBadge___java_lang_Number:(java_lang_Number*) badge \n{\n    [super setBadge:(badge == JAVA_NULL ? nil : badge)];\n}\n\n",
+      "supimport": [
+        "java_lang_Number"
+      ]
     },
     "setBody(java.lang.String)": {
-      "code": "- (void) setBody:(NSString *) body\n{\n    [self setBody___java_lang_String:(body ? body : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setBody:(NSString *) body\n{\n    [self setBody___java_lang_String:(body ? body : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setBody___java_lang_String:(NSString*) body \n{\n    [super setBody:(body == JAVA_NULL ? nil : body)];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "setCategoryIdentifier(java.lang.String)": {
-      "code": "- (void) setCategoryIdentifier:(NSString *) categoryIdentifier\n{\n    [self setCategoryIdentifier___java_lang_String:(categoryIdentifier ? categoryIdentifier : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setCategoryIdentifier:(NSString *) categoryIdentifier\n{\n    [self setCategoryIdentifier___java_lang_String:(categoryIdentifier ? categoryIdentifier : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setCategoryIdentifier___java_lang_String:(NSString*) categoryIdentifier \n{\n    [super setCategoryIdentifier:(categoryIdentifier == JAVA_NULL ? nil : categoryIdentifier)];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "setLaunchImageName(java.lang.String)": {
-      "code": "- (void) setLaunchImageName:(NSString *) launchImageName\n{\n    [self setLaunchImageName___java_lang_String:(launchImageName ? launchImageName : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setLaunchImageName:(NSString *) launchImageName\n{\n    [self setLaunchImageName___java_lang_String:(launchImageName ? launchImageName : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setLaunchImageName___java_lang_String:(NSString*) launchImageName \n{\n    [super setLaunchImageName:(launchImageName == JAVA_NULL ? nil : launchImageName)];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "setSound(crossmobile.ios.usernotifications.UNNotificationSound)": {
-      "code": "- (void) setSound:(UNNotificationSound *) sound\n{\n    [self setSound___crossmobile_ios_usernotifications_UNNotificationSound:(sound ? sound : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setSound:(UNNotificationSound *) sound\n{\n    [self setSound___crossmobile_ios_usernotifications_UNNotificationSound:(sound ? sound : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setSound___crossmobile_ios_usernotifications_UNNotificationSound:(UNNotificationSound*) sound \n{\n    [super setSound:(sound == JAVA_NULL ? nil : sound)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_usernotifications_UNNotificationSound"
+      ]
     },
     "setSubtitle(java.lang.String)": {
-      "code": "- (void) setSubtitle:(NSString *) subtitle\n{\n    [self setSubtitle___java_lang_String:(subtitle ? subtitle : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setSubtitle:(NSString *) subtitle\n{\n    [self setSubtitle___java_lang_String:(subtitle ? subtitle : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setSubtitle___java_lang_String:(NSString*) subtitle \n{\n    [super setSubtitle:(subtitle == JAVA_NULL ? nil : subtitle)];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "setThreadIdentifier(java.lang.String)": {
-      "code": "- (void) setThreadIdentifier:(NSString *) threadIdentifier\n{\n    [self setThreadIdentifier___java_lang_String:(threadIdentifier ? threadIdentifier : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setThreadIdentifier:(NSString *) threadIdentifier\n{\n    [self setThreadIdentifier___java_lang_String:(threadIdentifier ? threadIdentifier : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setThreadIdentifier___java_lang_String:(NSString*) threadIdentifier \n{\n    [super setThreadIdentifier:(threadIdentifier == JAVA_NULL ? nil : threadIdentifier)];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "setTitle(java.lang.String)": {
-      "code": "- (void) setTitle:(NSString *) title\n{\n    [self setTitle___java_lang_String:(title ? title : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setTitle:(NSString *) title\n{\n    [self setTitle___java_lang_String:(title ? title : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setTitle___java_lang_String:(NSString*) title \n{\n    [super setTitle:(title == JAVA_NULL ? nil : title)];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "setUserInfo(java.util.Map)": {
-      "code": "- (void) setUserInfo:(NSDictionary *) userInfo\n{\n    [self setUserInfo___java_util_Map:(userInfo ? userInfo : JAVA_NULL)];\n}\n\n"
-    }
+      "reverse": "- (void) setUserInfo:(NSDictionary *) userInfo\n{\n    [self setUserInfo___java_util_Map:(userInfo ? userInfo : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setUserInfo___java_util_Map:(NSDictionary*) userInfo \n{\n    [super setUserInfo:(userInfo == JAVA_NULL ? nil : userInfo)];\n}\n\n",
+      "supimport": [
+        "java_util_Map"
+      ]
+    },
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "sound()": null,
+    "subtitle()": null,
+    "threadIdentifier()": null,
+    "title()": null,
+    "userInfo()": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.usernotifications.UNNotification": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "date()": {
-      "code": "- (NSDate *) date\n{\n    NSDate * re$ult = [self date__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSDate *) date\n{\n    NSDate * re$ult = [self date__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSDate*) date__\n{\n    NSDate* re$ult = [super date];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSDate"
+      ]
     },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "request()": {
-      "code": "- (UNNotificationRequest *) request\n{\n    UNNotificationRequest * re$ult = [self request__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
-    }
+      "reverse": "- (UNNotificationRequest *) request\n{\n    UNNotificationRequest * re$ult = [self request__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (UNNotificationRequest*) request__\n{\n    UNNotificationRequest* re$ult = [super request];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_usernotifications_UNNotificationRequest"
+      ]
+    },
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.usernotifications.UNNotificationAction": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "identifier()": {
-      "code": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) identifier__\n{\n    NSString* re$ult = [super identifier];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
     "options()": {
-      "code": "- (UNNotificationActionOptions) options\n{\n    return [self options__];\n}\n\n"
+      "reverse": "- (UNNotificationActionOptions) options\n{\n    return [self options__];\n}\n\n",
+      "super": "- (JAVA_LONG) options__\n{\n    return [super options];\n}\n\n"
     },
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
     "title()": {
-      "code": "- (NSString *) title\n{\n    NSString * re$ult = [self title__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
-    }
+      "reverse": "- (NSString *) title\n{\n    NSString * re$ult = [self title__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) title__\n{\n    NSString* re$ult = [super title];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.usernotifications.UNNotificationAttachment": {
     "URL()": {
-      "code": "- (NSURL *) URL\n{\n    NSURL * re$ult = [self URL__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSURL *) URL\n{\n    NSURL * re$ult = [self URL__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSURL*) URL__\n{\n    NSURL* re$ult = [super URL];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSURL"
+      ]
     },
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "identifier()": {
-      "code": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) identifier__\n{\n    NSString* re$ult = [super identifier];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
     "type()": {
-      "code": "- (NSString *) type\n{\n    NSString * re$ult = [self type__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
-    }
+      "reverse": "- (NSString *) type\n{\n    NSString * re$ult = [self type__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) type__\n{\n    NSString* re$ult = [super type];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.usernotifications.UNNotificationCategory": {
     "actions()": {
-      "code": "- (NSArray<UNNotificationAction *> *) actions\n{\n    NSArray<UNNotificationAction *> * re$ult = [self actions__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSArray<UNNotificationAction *> *) actions\n{\n    NSArray<UNNotificationAction *> * re$ult = [self actions__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSArray*) actions__\n{\n    NSArray* re$ult = [super actions];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
     },
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "identifier()": {
-      "code": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) identifier__\n{\n    NSString* re$ult = [super identifier];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "intentIdentifiers()": {
-      "code": "- (NSArray<NSString *> *) intentIdentifiers\n{\n    NSArray<NSString *> * re$ult = [self intentIdentifiers__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSArray<NSString *> *) intentIdentifiers\n{\n    NSArray<NSString *> * re$ult = [self intentIdentifiers__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSArray*) intentIdentifiers__\n{\n    NSArray* re$ult = [super intentIdentifiers];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
     },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
     "options()": {
-      "code": "- (UNNotificationCategoryOptions) options\n{\n    return [self options__];\n}\n\n"
-    }
+      "reverse": "- (UNNotificationCategoryOptions) options\n{\n    return [self options__];\n}\n\n",
+      "super": "- (JAVA_LONG) options__\n{\n    return [super options];\n}\n\n"
+    },
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.usernotifications.UNNotificationContent": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "attachments()": {
-      "code": "- (NSArray<UNNotificationAttachment *> *) attachments\n{\n    NSArray<UNNotificationAttachment *> * re$ult = [self attachments__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSArray<UNNotificationAttachment *> *) attachments\n{\n    NSArray<UNNotificationAttachment *> * re$ult = [self attachments__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSArray*) attachments__\n{\n    NSArray* re$ult = [super attachments];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
     },
     "badge()": {
-      "code": "- (NSNumber *) badge\n{\n    NSNumber * re$ult = [self badge__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSNumber *) badge\n{\n    NSNumber * re$ult = [self badge__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (java_lang_Number*) badge__\n{\n    java_lang_Number* re$ult = [super badge];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_Number"
+      ]
     },
     "body()": {
-      "code": "- (NSString *) body\n{\n    NSString * re$ult = [self body__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) body\n{\n    NSString * re$ult = [self body__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) body__\n{\n    NSString* re$ult = [super body];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "categoryIdentifier()": {
-      "code": "- (NSString *) categoryIdentifier\n{\n    NSString * re$ult = [self categoryIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) categoryIdentifier\n{\n    NSString * re$ult = [self categoryIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) categoryIdentifier__\n{\n    NSString* re$ult = [super categoryIdentifier];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "launchImageName()": {
-      "code": "- (NSString *) launchImageName\n{\n    NSString * re$ult = [self launchImageName__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) launchImageName\n{\n    NSString * re$ult = [self launchImageName__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) launchImageName__\n{\n    NSString* re$ult = [super launchImageName];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
     "sound()": {
-      "code": "- (UNNotificationSound *) sound\n{\n    UNNotificationSound * re$ult = [self sound__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (UNNotificationSound *) sound\n{\n    UNNotificationSound * re$ult = [self sound__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (UNNotificationSound*) sound__\n{\n    UNNotificationSound* re$ult = [super sound];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_usernotifications_UNNotificationSound"
+      ]
     },
     "subtitle()": {
-      "code": "- (NSString *) subtitle\n{\n    NSString * re$ult = [self subtitle__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) subtitle\n{\n    NSString * re$ult = [self subtitle__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) subtitle__\n{\n    NSString* re$ult = [super subtitle];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "threadIdentifier()": {
-      "code": "- (NSString *) threadIdentifier\n{\n    NSString * re$ult = [self threadIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) threadIdentifier\n{\n    NSString * re$ult = [self threadIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) threadIdentifier__\n{\n    NSString* re$ult = [super threadIdentifier];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "title()": {
-      "code": "- (NSString *) title\n{\n    NSString * re$ult = [self title__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) title\n{\n    NSString * re$ult = [self title__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) title__\n{\n    NSString* re$ult = [super title];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "userInfo()": {
-      "code": "- (NSDictionary *) userInfo\n{\n    NSDictionary * re$ult = [self userInfo__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
-    }
+      "reverse": "- (NSDictionary *) userInfo\n{\n    NSDictionary * re$ult = [self userInfo__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSDictionary*) userInfo__\n{\n    NSDictionary* re$ult = [super userInfo];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_util_Map"
+      ]
+    },
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.usernotifications.UNNotificationRequest": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "content()": {
-      "code": "- (UNNotificationContent *) content\n{\n    UNNotificationContent * re$ult = [self content__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (UNNotificationContent *) content\n{\n    UNNotificationContent * re$ult = [self content__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (UNNotificationContent*) content__\n{\n    UNNotificationContent* re$ult = [super content];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_usernotifications_UNNotificationContent"
+      ]
     },
     "identifier()": {
-      "code": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) identifier\n{\n    NSString * re$ult = [self identifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) identifier__\n{\n    NSString* re$ult = [super identifier];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
     "trigger()": {
-      "code": "- (UNNotificationTrigger *) trigger\n{\n    UNNotificationTrigger * re$ult = [self trigger__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
-    }
+      "reverse": "- (UNNotificationTrigger *) trigger\n{\n    UNNotificationTrigger * re$ult = [self trigger__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (UNNotificationTrigger*) trigger__\n{\n    UNNotificationTrigger* re$ult = [super trigger];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_usernotifications_UNNotificationTrigger"
+      ]
+    },
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.usernotifications.UNNotificationResponse": {
     "actionIdentifier()": {
-      "code": "- (NSString *) actionIdentifier\n{\n    NSString * re$ult = [self actionIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) actionIdentifier\n{\n    NSString * re$ult = [self actionIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) actionIdentifier__\n{\n    NSString* re$ult = [super actionIdentifier];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "notification()": {
-      "code": "- (UNNotification *) notification\n{\n    UNNotification * re$ult = [self notification__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
-    }
+      "reverse": "- (UNNotification *) notification\n{\n    UNNotification * re$ult = [self notification__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (UNNotification*) notification__\n{\n    UNNotification* re$ult = [super notification];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_usernotifications_UNNotification"
+      ]
+    },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.usernotifications.UNNotificationServiceExtension": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "serviceExtensionTimeWillExpire()": {
-      "code": "- (void) serviceExtensionTimeWillExpire\n{\n    [self serviceExtensionTimeWillExpire__];\n}\n\n"
-    }
+      "reverse": "- (void) serviceExtensionTimeWillExpire\n{\n    [self serviceExtensionTimeWillExpire__];\n}\n\n",
+      "super": "- (void) serviceExtensionTimeWillExpire__\n{\n    [super serviceExtensionTimeWillExpire];\n}\n\n"
+    },
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.usernotifications.UNNotificationSettings": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "alertSetting()": {
-      "code": "- (UNNotificationSetting) alertSetting\n{\n    return [self alertSetting__];\n}\n\n"
+      "reverse": "- (UNNotificationSetting) alertSetting\n{\n    return [self alertSetting__];\n}\n\n",
+      "super": "- (JAVA_LONG) alertSetting__\n{\n    return [super alertSetting];\n}\n\n"
     },
     "alertStyle()": {
-      "code": "- (UNAlertStyle) alertStyle\n{\n    return [self alertStyle__];\n}\n\n"
+      "reverse": "- (UNAlertStyle) alertStyle\n{\n    return [self alertStyle__];\n}\n\n",
+      "super": "- (int) alertStyle__\n{\n    return [super alertStyle];\n}\n\n"
     },
     "authorizationStatus()": {
-      "code": "- (UNAuthorizationStatus) authorizationStatus\n{\n    return [self authorizationStatus__];\n}\n\n"
+      "reverse": "- (UNAuthorizationStatus) authorizationStatus\n{\n    return [self authorizationStatus__];\n}\n\n",
+      "super": "- (int) authorizationStatus__\n{\n    return [super authorizationStatus];\n}\n\n"
     },
     "badgeSetting()": {
-      "code": "- (UNNotificationSetting) badgeSetting\n{\n    return [self badgeSetting__];\n}\n\n"
+      "reverse": "- (UNNotificationSetting) badgeSetting\n{\n    return [self badgeSetting__];\n}\n\n",
+      "super": "- (JAVA_LONG) badgeSetting__\n{\n    return [super badgeSetting];\n}\n\n"
     },
     "carPlaySetting()": {
-      "code": "- (UNNotificationSetting) carPlaySetting\n{\n    return [self carPlaySetting__];\n}\n\n"
+      "reverse": "- (UNNotificationSetting) carPlaySetting\n{\n    return [self carPlaySetting__];\n}\n\n",
+      "super": "- (JAVA_LONG) carPlaySetting__\n{\n    return [super carPlaySetting];\n}\n\n"
     },
     "lockScreenSetting()": {
-      "code": "- (UNNotificationSetting) lockScreenSetting\n{\n    return [self lockScreenSetting__];\n}\n\n"
+      "reverse": "- (UNNotificationSetting) lockScreenSetting\n{\n    return [self lockScreenSetting__];\n}\n\n",
+      "super": "- (JAVA_LONG) lockScreenSetting__\n{\n    return [super lockScreenSetting];\n}\n\n"
     },
     "notificationCenterSetting()": {
-      "code": "- (UNNotificationSetting) notificationCenterSetting\n{\n    return [self notificationCenterSetting__];\n}\n\n"
+      "reverse": "- (UNNotificationSetting) notificationCenterSetting\n{\n    return [self notificationCenterSetting__];\n}\n\n",
+      "super": "- (JAVA_LONG) notificationCenterSetting__\n{\n    return [super notificationCenterSetting];\n}\n\n"
     },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
     "soundSetting()": {
-      "code": "- (UNNotificationSetting) soundSetting\n{\n    return [self soundSetting__];\n}\n\n"
-    }
+      "reverse": "- (UNNotificationSetting) soundSetting\n{\n    return [self soundSetting__];\n}\n\n",
+      "super": "- (JAVA_LONG) soundSetting__\n{\n    return [super soundSetting];\n}\n\n"
+    },
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
+  },
+  "crossmobile.ios.usernotifications.UNNotificationSound": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.usernotifications.UNNotificationTrigger": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "repeats()": {
-      "code": "- (BOOL) repeats\n{\n    return [self repeats__];\n}\n\n"
-    }
+      "reverse": "- (BOOL) repeats\n{\n    return [self repeats__];\n}\n\n",
+      "super": "- (BOOL) repeats__\n{\n    return [super repeats];\n}\n\n"
+    },
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
+  },
+  "crossmobile.ios.usernotifications.UNPushNotificationTrigger": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "repeats()": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.usernotifications.UNTimeIntervalNotificationTrigger": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "nextTriggerDate()": {
-      "code": "- (NSDate *) nextTriggerDate\n{\n    NSDate * re$ult = [self nextTriggerDate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSDate *) nextTriggerDate\n{\n    NSDate * re$ult = [self nextTriggerDate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSDate*) nextTriggerDate__\n{\n    NSDate* re$ult = [super nextTriggerDate];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSDate"
+      ]
     },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "repeats()": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
     "timeInterval()": {
-      "code": "- (NSTimeInterval) timeInterval\n{\n    return [self timeInterval__];\n}\n\n"
-    }
+      "reverse": "- (NSTimeInterval) timeInterval\n{\n    return [self timeInterval__];\n}\n\n",
+      "super": "- (double) timeInterval__\n{\n    return [super timeInterval];\n}\n\n"
+    },
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.usernotifications.UNUserNotificationCenter": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "delegate()": {
-      "code": "- (id<UNUserNotificationCenterDelegate>) delegate\n{\n    id<UNUserNotificationCenterDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (id<UNUserNotificationCenterDelegate>) delegate\n{\n    id<UNUserNotificationCenterDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (id<UNUserNotificationCenterDelegate>) delegate__\n{\n    id<UNUserNotificationCenterDelegate> re$ult = [super delegate];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_usernotifications_UNUserNotificationCenterDelegate"
+      ]
     },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
     "removeAllDeliveredNotifications()": {
-      "code": "- (void) removeAllDeliveredNotifications\n{\n    [self removeAllDeliveredNotifications__];\n}\n\n"
+      "reverse": "- (void) removeAllDeliveredNotifications\n{\n    [self removeAllDeliveredNotifications__];\n}\n\n",
+      "super": "- (void) removeAllDeliveredNotifications__\n{\n    [super removeAllDeliveredNotifications];\n}\n\n"
     },
     "removeAllPendingNotificationRequests()": {
-      "code": "- (void) removeAllPendingNotificationRequests\n{\n    [self removeAllPendingNotificationRequests__];\n}\n\n"
+      "reverse": "- (void) removeAllPendingNotificationRequests\n{\n    [self removeAllPendingNotificationRequests__];\n}\n\n",
+      "super": "- (void) removeAllPendingNotificationRequests__\n{\n    [super removeAllPendingNotificationRequests];\n}\n\n"
     },
     "removeDeliveredNotificationsWithIdentifiers(java.util.List)": {
-      "code": "- (void) removeDeliveredNotificationsWithIdentifiers:(NSArray<NSString *> *) identifiers\n{\n    [self removeDeliveredNotificationsWithIdentifiers___java_util_List:(identifiers ? identifiers : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) removeDeliveredNotificationsWithIdentifiers:(NSArray<NSString *> *) identifiers\n{\n    [self removeDeliveredNotificationsWithIdentifiers___java_util_List:(identifiers ? identifiers : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) removeDeliveredNotificationsWithIdentifiers___java_util_List:(NSArray*) identifiers \n{\n    [super removeDeliveredNotificationsWithIdentifiers:(identifiers == JAVA_NULL ? nil : identifiers)];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
     },
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "removePendingNotificationRequestsWithIdentifiers(java.util.List)": {
-      "code": "- (void) removePendingNotificationRequestsWithIdentifiers:(NSArray<NSString *> *) identifiers\n{\n    [self removePendingNotificationRequestsWithIdentifiers___java_util_List:(identifiers ? identifiers : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) removePendingNotificationRequestsWithIdentifiers:(NSArray<NSString *> *) identifiers\n{\n    [self removePendingNotificationRequestsWithIdentifiers___java_util_List:(identifiers ? identifiers : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) removePendingNotificationRequestsWithIdentifiers___java_util_List:(NSArray*) identifiers \n{\n    [super removePendingNotificationRequestsWithIdentifiers:(identifiers == JAVA_NULL ? nil : identifiers)];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
     },
     "setDelegate(crossmobile.ios.usernotifications.UNUserNotificationCenterDelegate)": {
-      "code": "- (void) setDelegate:(id<UNUserNotificationCenterDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_usernotifications_UNUserNotificationCenterDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setDelegate:(id<UNUserNotificationCenterDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_usernotifications_UNUserNotificationCenterDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setDelegate___crossmobile_ios_usernotifications_UNUserNotificationCenterDelegate:(id<UNUserNotificationCenterDelegate>) delegate \n{\n    objc_setAssociatedObject(self, @selector(setDelegate:), delegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);\n    [super setDelegate:(delegate == JAVA_NULL ? nil : delegate)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_usernotifications_UNUserNotificationCenterDelegate"
+      ]
     },
     "setNotificationCategories(java.util.Set)": {
-      "code": "- (void) setNotificationCategories:(NSSet<UNNotificationCategory *> *) categories\n{\n    [self setNotificationCategories___java_util_Set:(categories ? categories : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setNotificationCategories:(NSSet<UNNotificationCategory *> *) categories\n{\n    [self setNotificationCategories___java_util_Set:(categories ? categories : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setNotificationCategories___java_util_Set:(NSSet*) categories \n{\n    [super setNotificationCategories:(categories == JAVA_NULL ? nil : categories)];\n}\n\n",
+      "supimport": [
+        "java_util_Set"
+      ]
     },
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
     "supportsContentExtensions()": {
-      "code": "- (BOOL) supportsContentExtensions\n{\n    return [self supportsContentExtensions__];\n}\n\n"
-    }
+      "reverse": "- (BOOL) supportsContentExtensions\n{\n    return [self supportsContentExtensions__];\n}\n\n",
+      "super": "- (BOOL) supportsContentExtensions__\n{\n    return [super supportsContentExtensions];\n}\n\n"
+    },
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.usernotifications.UNUserNotificationCenterDelegate": {
     "didReceiveNotificationResponse(crossmobile.ios.usernotifications.UNUserNotificationCenter,crossmobile.ios.usernotifications.UNNotificationResponse,java.lang.Runnable)": {
-      "code": "- (void) userNotificationCenter:(UNUserNotificationCenter *) center didReceiveNotificationResponse:(UNNotificationResponse *) response withCompletionHandler:(void (^)(void)) completionHandler\n{\n    CM_Block_Reverse_cmnotifications_0* completionHandler$conv = [[CM_Block_Reverse_cmnotifications_0 alloc] initWithCMBlock:completionHandler];\n    [self didReceiveNotificationResponse___crossmobile_ios_usernotifications_UNUserNotificationCenter_crossmobile_ios_usernotifications_UNNotificationResponse_java_lang_Runnable:(center ? center : JAVA_NULL) :(response ? response : JAVA_NULL) :completionHandler$conv];\n    [completionHandler$conv release];\n}\n\n",
-      "classes": [
+      "reverse": "- (void) userNotificationCenter:(UNUserNotificationCenter *) center didReceiveNotificationResponse:(UNNotificationResponse *) response withCompletionHandler:(void (^)(void)) completionHandler\n{\n    CM_Block_Reverse_cmnotifications_0* completionHandler$conv = [[CM_Block_Reverse_cmnotifications_0 alloc] initWithCMBlock:completionHandler];\n    [self didReceiveNotificationResponse___crossmobile_ios_usernotifications_UNUserNotificationCenter_crossmobile_ios_usernotifications_UNNotificationResponse_java_lang_Runnable:(center ? center : JAVA_NULL) :(response ? response : JAVA_NULL) :completionHandler$conv];\n    [completionHandler$conv release];\n}\n\n",
+      "revimport": [
         "CM_Block_Reverse_cmnotifications_0"
+      ],
+      "super": "- (void) didReceiveNotificationResponse___crossmobile_ios_usernotifications_UNUserNotificationCenter_crossmobile_ios_usernotifications_UNNotificationResponse_java_lang_Runnable:(UNUserNotificationCenter*) center :(UNNotificationResponse*) response :(id<java_lang_Runnable>) completionHandler \n{\n    [super userNotificationCenter:(center == JAVA_NULL ? nil : center) didReceiveNotificationResponse:(response == JAVA_NULL ? nil : response) withCompletionHandler:(completionHandler == JAVA_NULL ? nil : ^{\n        [completionHandler run__];\n    })];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_usernotifications_UNNotificationResponse",
+        "crossmobile_ios_usernotifications_UNUserNotificationCenter",
+        "java_lang_Runnable"
       ]
     },
     "willPresentNotification(crossmobile.ios.usernotifications.UNUserNotificationCenter,crossmobile.ios.usernotifications.UNNotification,org.robovm.objc.block.VoidBlock1)": {
-      "code": "- (void) userNotificationCenter:(UNUserNotificationCenter *) center willPresentNotification:(UNNotification *) notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options)) completionHandler\n{\n    CM_Block_Reverse_cmnotifications_1* completionHandler$conv = [[CM_Block_Reverse_cmnotifications_1 alloc] initWithCMBlock:completionHandler];\n    [self willPresentNotification___crossmobile_ios_usernotifications_UNUserNotificationCenter_crossmobile_ios_usernotifications_UNNotification_org_robovm_objc_block_VoidBlock1:(center ? center : JAVA_NULL) :(notification ? notification : JAVA_NULL) :completionHandler$conv];\n    [completionHandler$conv release];\n}\n\n",
-      "classes": [
+      "reverse": "- (void) userNotificationCenter:(UNUserNotificationCenter *) center willPresentNotification:(UNNotification *) notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options)) completionHandler\n{\n    CM_Block_Reverse_cmnotifications_1* completionHandler$conv = [[CM_Block_Reverse_cmnotifications_1 alloc] initWithCMBlock:completionHandler];\n    [self willPresentNotification___crossmobile_ios_usernotifications_UNUserNotificationCenter_crossmobile_ios_usernotifications_UNNotification_org_robovm_objc_block_VoidBlock1:(center ? center : JAVA_NULL) :(notification ? notification : JAVA_NULL) :completionHandler$conv];\n    [completionHandler$conv release];\n}\n\n",
+      "revimport": [
         "CM_Block_Reverse_cmnotifications_1"
+      ],
+      "super": "- (void) willPresentNotification___crossmobile_ios_usernotifications_UNUserNotificationCenter_crossmobile_ios_usernotifications_UNNotification_org_robovm_objc_block_VoidBlock1:(UNUserNotificationCenter*) center :(UNNotification*) notification :(id<org_robovm_objc_block_VoidBlock1>) completionHandler \n{\n    [super userNotificationCenter:(center == JAVA_NULL ? nil : center) willPresentNotification:(notification == JAVA_NULL ? nil : notification) withCompletionHandler:(completionHandler == JAVA_NULL ? nil : ^(UNNotificationPresentationOptions options) {\n        java_lang_Long* options$conv = [[java_lang_Long alloc] initWithLongLong:options];\n        [completionHandler invoke___java_lang_Object:options$conv];\n        [options$conv release];\n    })];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_usernotifications_UNNotification",
+        "crossmobile_ios_usernotifications_UNUserNotificationCenter",
+        "org_robovm_objc_block_VoidBlock1"
       ]
     }
   }

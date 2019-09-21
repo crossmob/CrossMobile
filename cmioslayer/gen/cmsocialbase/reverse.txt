@@ -1,104 +1,420 @@
 {
   "crossmobile.ios.social.SLComposeServiceViewController": {
+    "addChildViewController(crossmobile.ios.uikit.UIViewController)": null,
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "additionalSafeAreaInsets()": null,
+    "allowedChildViewControllersForUnwindingFromSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
     "autoCompletionViewController()": {
-      "code": "- (UIViewController *) autoCompletionViewController\n{\n    UIViewController * re$ult = [self autoCompletionViewController__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (UIViewController *) autoCompletionViewController\n{\n    UIViewController * re$ult = [self autoCompletionViewController__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (UIViewController*) autoCompletionViewController__\n{\n    UIViewController* re$ult = [super autoCompletionViewController];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIViewController"
+      ]
     },
+    "automaticallyAdjustsScrollViewInsets()": null,
+    "becomeFirstResponder()": null,
+    "beginAppearanceTransition(boolean,boolean)": null,
+    "bottomLayoutGuide()": null,
     "cancel()": {
-      "code": "- (void) cancel\n{\n    [self cancel__];\n}\n\n"
+      "reverse": "- (void) cancel\n{\n    [self cancel__];\n}\n\n",
+      "super": "- (void) cancel__\n{\n    [super cancel];\n}\n\n"
     },
     "charactersRemaining()": {
-      "code": "- (NSNumber *) charactersRemaining\n{\n    NSNumber * re$ult = [self charactersRemaining__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSNumber *) charactersRemaining\n{\n    NSNumber * re$ult = [self charactersRemaining__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (java_lang_Number*) charactersRemaining__\n{\n    java_lang_Number* re$ult = [super charactersRemaining];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_Number"
+      ]
     },
+    "childViewControllerContainingSegueSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "childViewControllers()": null,
     "configurationItems()": {
-      "code": "- (NSArray *) configurationItems\n{\n    NSArray * re$ult = [self configurationItems__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSArray *) configurationItems\n{\n    NSArray * re$ult = [self configurationItems__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSArray*) configurationItems__\n{\n    NSArray* re$ult = [super configurationItems];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
     },
+    "contentSizeForViewInPopover()": null,
     "contentText()": {
-      "code": "- (NSString *) contentText\n{\n    NSString * re$ult = [self contentText__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) contentText\n{\n    NSString * re$ult = [self contentText__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) contentText__\n{\n    NSString* re$ult = [super contentText];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
+    "definesPresentationContext()": null,
+    "didReceiveMemoryWarning()": null,
+    "didRotateFromInterfaceOrientation(int)": null,
     "didSelectCancel()": {
-      "code": "- (void) didSelectCancel\n{\n    [self didSelectCancel__];\n}\n\n"
+      "reverse": "- (void) didSelectCancel\n{\n    [self didSelectCancel__];\n}\n\n",
+      "super": "- (void) didSelectCancel__\n{\n    [super didSelectCancel];\n}\n\n"
     },
     "didSelectPost()": {
-      "code": "- (void) didSelectPost\n{\n    [self didSelectPost__];\n}\n\n"
+      "reverse": "- (void) didSelectPost\n{\n    [self didSelectPost__];\n}\n\n",
+      "super": "- (void) didSelectPost__\n{\n    [super didSelectPost];\n}\n\n"
     },
+    "disablesAutomaticKeyboardDismissal()": null,
+    "dismissModalViewControllerAnimated(boolean)": null,
+    "edgesForExtendedLayout()": null,
+    "editButtonItem()": null,
+    "endAppearanceTransition()": null,
+    "extensionContext()": null,
+    "hidesBottomBarWhenPushed()": null,
+    "interfaceOrientation()": null,
     "isContentValid()": {
-      "code": "- (BOOL) isContentValid\n{\n    return [self isContentValid__];\n}\n\n"
+      "reverse": "- (BOOL) isContentValid\n{\n    return [self isContentValid__];\n}\n\n",
+      "super": "- (BOOL) isContentValid__\n{\n    return [super isContentValid];\n}\n\n"
     },
+    "isEditing()": null,
+    "isFirstResponder()": null,
+    "isModalInPopover()": null,
+    "isViewLoaded()": null,
     "loadPreviewView()": {
-      "code": "- (UIView *) loadPreviewView\n{\n    UIView * re$ult = [self loadPreviewView__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (UIView *) loadPreviewView\n{\n    UIView * re$ult = [self loadPreviewView__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (UIView*) loadPreviewView__\n{\n    UIView* re$ult = [super loadPreviewView];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIView"
+      ]
     },
+    "loadView()": null,
+    "loadViewIfNeeded()": null,
+    "modalPresentationStyle()": null,
+    "modalTransitionStyle()": null,
+    "navigationController()": null,
+    "navigationItem()": null,
+    "nextResponder()": null,
+    "nibName()": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "parentViewController()": null,
+    "performSegueWithIdentifier(java.lang.String,java.lang.Object)": null,
     "placeholder()": {
-      "code": "- (NSString *) placeholder\n{\n    NSString * re$ult = [self placeholder__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) placeholder\n{\n    NSString * re$ult = [self placeholder__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) placeholder__\n{\n    NSString* re$ult = [super placeholder];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
     "popConfigurationViewController()": {
-      "code": "- (void) popConfigurationViewController\n{\n    [self popConfigurationViewController__];\n}\n\n"
+      "reverse": "- (void) popConfigurationViewController\n{\n    [self popConfigurationViewController__];\n}\n\n",
+      "super": "- (void) popConfigurationViewController__\n{\n    [super popConfigurationViewController];\n}\n\n"
     },
+    "preferredInterfaceOrientationForPresentation()": null,
+    "prefersStatusBarHidden()": null,
+    "prepareForSegue(crossmobile.ios.uikit.UIStoryboardSegue,java.lang.Object)": null,
+    "presentModalViewController(crossmobile.ios.uikit.UIViewController,boolean)": null,
     "presentationAnimationDidFinish()": {
-      "code": "- (void) presentationAnimationDidFinish\n{\n    [self presentationAnimationDidFinish__];\n}\n\n"
+      "reverse": "- (void) presentationAnimationDidFinish\n{\n    [self presentationAnimationDidFinish__];\n}\n\n",
+      "super": "- (void) presentationAnimationDidFinish__\n{\n    [super presentationAnimationDidFinish];\n}\n\n"
     },
+    "presentedViewController()": null,
+    "presentingViewController()": null,
+    "providesPresentationContextTransitionStyle()": null,
     "pushConfigurationViewController(crossmobile.ios.uikit.UIViewController)": {
-      "code": "- (void) pushConfigurationViewController:(UIViewController *) viewController\n{\n    [self pushConfigurationViewController___crossmobile_ios_uikit_UIViewController:(viewController ? viewController : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) pushConfigurationViewController:(UIViewController *) viewController\n{\n    [self pushConfigurationViewController___crossmobile_ios_uikit_UIViewController:(viewController ? viewController : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) pushConfigurationViewController___crossmobile_ios_uikit_UIViewController:(UIViewController*) viewController \n{\n    [super pushConfigurationViewController:(viewController == JAVA_NULL ? nil : viewController)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIViewController"
+      ]
     },
     "reloadConfigurationItems()": {
-      "code": "- (void) reloadConfigurationItems\n{\n    [self reloadConfigurationItems__];\n}\n\n"
+      "reverse": "- (void) reloadConfigurationItems\n{\n    [self reloadConfigurationItems__];\n}\n\n",
+      "super": "- (void) reloadConfigurationItems__\n{\n    [super reloadConfigurationItems];\n}\n\n"
     },
+    "removeFromParentViewController()": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "resignFirstResponder()": null,
+    "restorationIdentifier()": null,
+    "rotatingFooterView()": null,
+    "rotatingHeaderView()": null,
+    "setAdditionalSafeAreaInsets(crossmobile.ios.uikit.UIEdgeInsets)": null,
     "setAutoCompletionViewController(crossmobile.ios.uikit.UIViewController)": {
-      "code": "- (void) setAutoCompletionViewController:(UIViewController *) autoCompletionViewController\n{\n    [self setAutoCompletionViewController___crossmobile_ios_uikit_UIViewController:(autoCompletionViewController ? autoCompletionViewController : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setAutoCompletionViewController:(UIViewController *) autoCompletionViewController\n{\n    [self setAutoCompletionViewController___crossmobile_ios_uikit_UIViewController:(autoCompletionViewController ? autoCompletionViewController : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setAutoCompletionViewController___crossmobile_ios_uikit_UIViewController:(UIViewController*) autoCompletionViewController \n{\n    [super setAutoCompletionViewController:(autoCompletionViewController == JAVA_NULL ? nil : autoCompletionViewController)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIViewController"
+      ]
     },
+    "setAutomaticallyAdjustsScrollViewInsets(boolean)": null,
     "setCharactersRemaining(java.lang.Number)": {
-      "code": "- (void) setCharactersRemaining:(NSNumber *) charactersRemaining\n{\n    [self setCharactersRemaining___java_lang_Number:(charactersRemaining ? charactersRemaining : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setCharactersRemaining:(NSNumber *) charactersRemaining\n{\n    [self setCharactersRemaining___java_lang_Number:(charactersRemaining ? charactersRemaining : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setCharactersRemaining___java_lang_Number:(java_lang_Number*) charactersRemaining \n{\n    [super setCharactersRemaining:(charactersRemaining == JAVA_NULL ? nil : charactersRemaining)];\n}\n\n",
+      "supimport": [
+        "java_lang_Number"
+      ]
     },
+    "setContentSizeForViewInPopover(crossmobile.ios.coregraphics.CGSize)": null,
+    "setDefinesPresentationContext(boolean)": null,
+    "setEdgesForExtendedLayout(int)": null,
+    "setEditing(boolean)": null,
+    "setEditing(boolean,boolean)": null,
+    "setHidesBottomBarWhenPushed(boolean)": null,
+    "setModalInPopover(boolean)": null,
+    "setModalPresentationStyle(int)": null,
+    "setModalTransitionStyle(int)": null,
     "setPlaceholder(java.lang.String)": {
-      "code": "- (void) setPlaceholder:(NSString *) placeholder\n{\n    [self setPlaceholder___java_lang_String:(placeholder ? placeholder : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setPlaceholder:(NSString *) placeholder\n{\n    [self setPlaceholder___java_lang_String:(placeholder ? placeholder : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setPlaceholder___java_lang_String:(NSString*) placeholder \n{\n    [super setPlaceholder:(placeholder == JAVA_NULL ? nil : placeholder)];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
+    "setProvidesPresentationContextTransitionStyle(boolean)": null,
+    "setRestorationIdentifier(java.lang.String)": null,
+    "setTabBarItem(crossmobile.ios.uikit.UITabBarItem)": null,
+    "setTitle(java.lang.String)": null,
+    "setToolbarItems(java.util.List)": null,
+    "setToolbarItems(java.util.List,boolean)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "setView(crossmobile.ios.uikit.UIView)": null,
+    "setWantsFullScreenLayout(boolean)": null,
+    "shouldAutomaticallyForwardAppearanceMethods()": null,
+    "shouldAutorotate()": null,
+    "shouldAutorotateToInterfaceOrientation(int)": null,
+    "shouldPerformSegueWithIdentifier(java.lang.String,java.lang.Object)": null,
+    "showDetailViewController(crossmobile.ios.uikit.UIViewController,java.lang.Object)": null,
+    "showViewController(crossmobile.ios.uikit.UIViewController,java.lang.Object)": null,
+    "splitViewController()": null,
+    "storyboard()": null,
+    "supportedInterfaceOrientations()": null,
+    "tabBarController()": null,
+    "tabBarItem()": null,
     "textView()": {
-      "code": "- (UITextView *) textView\n{\n    UITextView * re$ult = [self textView__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (UITextView *) textView\n{\n    UITextView * re$ult = [self textView__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (UITextView*) textView__\n{\n    UITextView* re$ult = [super textView];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UITextView"
+      ]
     },
+    "title()": null,
+    "toolbarItems()": null,
+    "topLayoutGuide()": null,
+    "touchesBegan(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesCancelled(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesEnded(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesMoved(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
     "validateContent()": {
-      "code": "- (void) validateContent\n{\n    [self validateContent__];\n}\n\n"
-    }
+      "reverse": "- (void) validateContent\n{\n    [self validateContent__];\n}\n\n",
+      "super": "- (void) validateContent__\n{\n    [super validateContent];\n}\n\n"
+    },
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null,
+    "view()": null,
+    "viewDidAppear(boolean)": null,
+    "viewDidDisappear(boolean)": null,
+    "viewDidLayoutSubviews()": null,
+    "viewDidLoad()": null,
+    "viewDidUnload()": null,
+    "viewIfLoaded()": null,
+    "viewSafeAreaInsetsDidChange()": null,
+    "viewWillAppear(boolean)": null,
+    "viewWillDisappear(boolean)": null,
+    "viewWillLayoutSubviews()": null,
+    "wantsFullScreenLayout()": null,
+    "willAnimateRotationToInterfaceOrientation(int,double)": null,
+    "willRotateToInterfaceOrientation(int,double)": null
   },
   "crossmobile.ios.social.SLComposeViewController": {
+    "addChildViewController(crossmobile.ios.uikit.UIViewController)": null,
     "addImage(crossmobile.ios.uikit.UIImage)": {
-      "code": "- (BOOL) addImage:(UIImage *) image\n{\n    return [self addImage___crossmobile_ios_uikit_UIImage:(image ? image : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (BOOL) addImage:(UIImage *) image\n{\n    return [self addImage___crossmobile_ios_uikit_UIImage:(image ? image : JAVA_NULL)];\n}\n\n",
+      "super": "- (BOOL) addImage___crossmobile_ios_uikit_UIImage:(UIImage*) image \n{\n    return [super addImage:(image == JAVA_NULL ? nil : image)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIImage"
+      ]
     },
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "addURL(crossmobile.ios.foundation.NSURL)": {
-      "code": "- (BOOL) addURL:(NSURL *) url\n{\n    return [self addURL___crossmobile_ios_foundation_NSURL:(url ? url : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (BOOL) addURL:(NSURL *) url\n{\n    return [self addURL___crossmobile_ios_foundation_NSURL:(url ? url : JAVA_NULL)];\n}\n\n",
+      "super": "- (BOOL) addURL___crossmobile_ios_foundation_NSURL:(NSURL*) url \n{\n    return [super addURL:(url == JAVA_NULL ? nil : url)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSURL"
+      ]
     },
+    "additionalSafeAreaInsets()": null,
+    "allowedChildViewControllersForUnwindingFromSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "automaticallyAdjustsScrollViewInsets()": null,
+    "becomeFirstResponder()": null,
+    "beginAppearanceTransition(boolean,boolean)": null,
+    "bottomLayoutGuide()": null,
+    "childViewControllerContainingSegueSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "childViewControllers()": null,
+    "contentSizeForViewInPopover()": null,
+    "definesPresentationContext()": null,
+    "didReceiveMemoryWarning()": null,
+    "didRotateFromInterfaceOrientation(int)": null,
+    "disablesAutomaticKeyboardDismissal()": null,
+    "dismissModalViewControllerAnimated(boolean)": null,
+    "edgesForExtendedLayout()": null,
+    "editButtonItem()": null,
+    "endAppearanceTransition()": null,
+    "extensionContext()": null,
+    "hidesBottomBarWhenPushed()": null,
+    "interfaceOrientation()": null,
+    "isEditing()": null,
+    "isFirstResponder()": null,
+    "isModalInPopover()": null,
+    "isViewLoaded()": null,
+    "loadView()": null,
+    "loadViewIfNeeded()": null,
+    "modalPresentationStyle()": null,
+    "modalTransitionStyle()": null,
+    "navigationController()": null,
+    "navigationItem()": null,
+    "nextResponder()": null,
+    "nibName()": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "parentViewController()": null,
+    "performSegueWithIdentifier(java.lang.String,java.lang.Object)": null,
+    "preferredInterfaceOrientationForPresentation()": null,
+    "prefersStatusBarHidden()": null,
+    "prepareForSegue(crossmobile.ios.uikit.UIStoryboardSegue,java.lang.Object)": null,
+    "presentModalViewController(crossmobile.ios.uikit.UIViewController,boolean)": null,
+    "presentedViewController()": null,
+    "presentingViewController()": null,
+    "providesPresentationContextTransitionStyle()": null,
     "removeAllImages()": {
-      "code": "- (BOOL) removeAllImages\n{\n    return [self removeAllImages__];\n}\n\n"
+      "reverse": "- (BOOL) removeAllImages\n{\n    return [self removeAllImages__];\n}\n\n",
+      "super": "- (BOOL) removeAllImages__\n{\n    return [super removeAllImages];\n}\n\n"
     },
     "removeAllURLs()": {
-      "code": "- (BOOL) removeAllURLs\n{\n    return [self removeAllURLs__];\n}\n\n"
+      "reverse": "- (BOOL) removeAllURLs\n{\n    return [self removeAllURLs__];\n}\n\n",
+      "super": "- (BOOL) removeAllURLs__\n{\n    return [super removeAllURLs];\n}\n\n"
     },
+    "removeFromParentViewController()": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "resignFirstResponder()": null,
+    "restorationIdentifier()": null,
+    "rotatingFooterView()": null,
+    "rotatingHeaderView()": null,
     "serviceType()": {
-      "code": "- (NSString *) serviceType\n{\n    NSString * re$ult = [self serviceType__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) serviceType\n{\n    NSString * re$ult = [self serviceType__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) serviceType__\n{\n    NSString* re$ult = [super serviceType];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
+    "setAdditionalSafeAreaInsets(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setAutomaticallyAdjustsScrollViewInsets(boolean)": null,
+    "setContentSizeForViewInPopover(crossmobile.ios.coregraphics.CGSize)": null,
+    "setDefinesPresentationContext(boolean)": null,
+    "setEdgesForExtendedLayout(int)": null,
+    "setEditing(boolean)": null,
+    "setEditing(boolean,boolean)": null,
+    "setHidesBottomBarWhenPushed(boolean)": null,
     "setInitialText(java.lang.String)": {
-      "code": "- (BOOL) setInitialText:(NSString *) text\n{\n    return [self setInitialText___java_lang_String:(text ? text : JAVA_NULL)];\n}\n\n"
-    }
+      "reverse": "- (BOOL) setInitialText:(NSString *) text\n{\n    return [self setInitialText___java_lang_String:(text ? text : JAVA_NULL)];\n}\n\n",
+      "super": "- (BOOL) setInitialText___java_lang_String:(NSString*) text \n{\n    return [super setInitialText:(text == JAVA_NULL ? nil : text)];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
+    "setModalInPopover(boolean)": null,
+    "setModalPresentationStyle(int)": null,
+    "setModalTransitionStyle(int)": null,
+    "setProvidesPresentationContextTransitionStyle(boolean)": null,
+    "setRestorationIdentifier(java.lang.String)": null,
+    "setTabBarItem(crossmobile.ios.uikit.UITabBarItem)": null,
+    "setTitle(java.lang.String)": null,
+    "setToolbarItems(java.util.List)": null,
+    "setToolbarItems(java.util.List,boolean)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "setView(crossmobile.ios.uikit.UIView)": null,
+    "setWantsFullScreenLayout(boolean)": null,
+    "shouldAutomaticallyForwardAppearanceMethods()": null,
+    "shouldAutorotate()": null,
+    "shouldAutorotateToInterfaceOrientation(int)": null,
+    "shouldPerformSegueWithIdentifier(java.lang.String,java.lang.Object)": null,
+    "showDetailViewController(crossmobile.ios.uikit.UIViewController,java.lang.Object)": null,
+    "showViewController(crossmobile.ios.uikit.UIViewController,java.lang.Object)": null,
+    "splitViewController()": null,
+    "storyboard()": null,
+    "supportedInterfaceOrientations()": null,
+    "tabBarController()": null,
+    "tabBarItem()": null,
+    "title()": null,
+    "toolbarItems()": null,
+    "topLayoutGuide()": null,
+    "touchesBegan(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesCancelled(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesEnded(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesMoved(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null,
+    "view()": null,
+    "viewDidAppear(boolean)": null,
+    "viewDidDisappear(boolean)": null,
+    "viewDidLayoutSubviews()": null,
+    "viewDidLoad()": null,
+    "viewDidUnload()": null,
+    "viewIfLoaded()": null,
+    "viewSafeAreaInsetsDidChange()": null,
+    "viewWillAppear(boolean)": null,
+    "viewWillDisappear(boolean)": null,
+    "viewWillLayoutSubviews()": null,
+    "wantsFullScreenLayout()": null,
+    "willAnimateRotationToInterfaceOrientation(int,double)": null,
+    "willRotateToInterfaceOrientation(int,double)": null
   },
   "crossmobile.ios.social.SLRequest": {
     "URL()": {
-      "code": "- (NSURL *) URL\n{\n    NSURL * re$ult = [self URL__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSURL *) URL\n{\n    NSURL * re$ult = [self URL__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSURL*) URL__\n{\n    NSURL* re$ult = [super URL];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSURL"
+      ]
     },
     "account()": {
-      "code": "- (ACAccount *) account\n{\n    ACAccount * re$ult = [self account__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (ACAccount *) account\n{\n    ACAccount * re$ult = [self account__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (ACAccount*) account__\n{\n    ACAccount* re$ult = [super account];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_accounts_ACAccount"
+      ]
     },
     "addMultipartData(crossmobile.ios.foundation.NSData,java.lang.String,java.lang.String,java.lang.String)": {
-      "code": "- (void) addMultipartData:(NSData *) data withName:(NSString *) name type:(NSString *) type filename:(NSString *) filename\n{\n    [self addMultipartData___crossmobile_ios_foundation_NSData_java_lang_String_java_lang_String_java_lang_String:(data ? data : JAVA_NULL) :(name ? name : JAVA_NULL) :(type ? type : JAVA_NULL) :(filename ? filename : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) addMultipartData:(NSData *) data withName:(NSString *) name type:(NSString *) type filename:(NSString *) filename\n{\n    [self addMultipartData___crossmobile_ios_foundation_NSData_java_lang_String_java_lang_String_java_lang_String:(data ? data : JAVA_NULL) :(name ? name : JAVA_NULL) :(type ? type : JAVA_NULL) :(filename ? filename : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) addMultipartData___crossmobile_ios_foundation_NSData_java_lang_String_java_lang_String_java_lang_String:(NSData*) data :(NSString*) name :(NSString*) type :(NSString*) filename \n{\n    [super addMultipartData:(data == JAVA_NULL ? nil : data) withName:(name == JAVA_NULL ? nil : name) type:(type == JAVA_NULL ? nil : type) filename:(filename == JAVA_NULL ? nil : filename)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSData",
+        "java_lang_String"
+      ]
     },
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
     "parameters()": {
-      "code": "- (NSDictionary *) parameters\n{\n    NSDictionary * re$ult = [self parameters__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSDictionary *) parameters\n{\n    NSDictionary * re$ult = [self parameters__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSDictionary*) parameters__\n{\n    NSDictionary* re$ult = [super parameters];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_util_Map"
+      ]
     },
     "preparedURLRequest()": {
-      "code": "- (NSURLRequest *) preparedURLRequest\n{\n    NSURLRequest * re$ult = [self preparedURLRequest__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSURLRequest *) preparedURLRequest\n{\n    NSURLRequest * re$ult = [self preparedURLRequest__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSURLRequest*) preparedURLRequest__\n{\n    NSURLRequest* re$ult = [super preparedURLRequest];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSURLRequest"
+      ]
     },
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "requestMethod()": {
-      "code": "- (SLRequestMethod) requestMethod\n{\n    return [self requestMethod__];\n}\n\n"
+      "reverse": "- (SLRequestMethod) requestMethod\n{\n    return [self requestMethod__];\n}\n\n",
+      "super": "- (int) requestMethod__\n{\n    return [super requestMethod];\n}\n\n"
     },
     "setAccount(crossmobile.ios.accounts.ACAccount)": {
-      "code": "- (void) setAccount:(ACAccount *) account\n{\n    [self setAccount___crossmobile_ios_accounts_ACAccount:(account ? account : JAVA_NULL)];\n}\n\n"
-    }
+      "reverse": "- (void) setAccount:(ACAccount *) account\n{\n    [self setAccount___crossmobile_ios_accounts_ACAccount:(account ? account : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setAccount___crossmobile_ios_accounts_ACAccount:(ACAccount*) account \n{\n    [super setAccount:(account == JAVA_NULL ? nil : account)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_accounts_ACAccount"
+      ]
+    },
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   }
 }

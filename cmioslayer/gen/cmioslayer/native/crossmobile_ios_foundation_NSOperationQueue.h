@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.foundation.NSOperationQueue definition
+// crossmobile_ios_foundation_NSOperationQueue definition
 
 #import "xmlvm.h"
 #import <CoreGraphics/CoreGraphics.h>

@@ -1,58 +1,374 @@
 {
   "crossmobile.ios.messageui.MFMailComposeViewController": {
     "addAttachmentData(crossmobile.ios.foundation.NSData,java.lang.String,java.lang.String)": {
-      "code": "- (void) addAttachmentData:(NSData *) attachment mimeType:(NSString *) mimeType fileName:(NSString *) filename\n{\n    [self addAttachmentData___crossmobile_ios_foundation_NSData_java_lang_String_java_lang_String:(attachment ? attachment : JAVA_NULL) :(mimeType ? mimeType : JAVA_NULL) :(filename ? filename : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) addAttachmentData:(NSData *) attachment mimeType:(NSString *) mimeType fileName:(NSString *) filename\n{\n    [self addAttachmentData___crossmobile_ios_foundation_NSData_java_lang_String_java_lang_String:(attachment ? attachment : JAVA_NULL) :(mimeType ? mimeType : JAVA_NULL) :(filename ? filename : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) addAttachmentData___crossmobile_ios_foundation_NSData_java_lang_String_java_lang_String:(NSData*) attachment :(NSString*) mimeType :(NSString*) filename \n{\n    [super addAttachmentData:(attachment == JAVA_NULL ? nil : attachment) mimeType:(mimeType == JAVA_NULL ? nil : mimeType) fileName:(filename == JAVA_NULL ? nil : filename)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSData",
+        "java_lang_String"
+      ]
     },
+    "addChildViewController(crossmobile.ios.uikit.UIViewController)": null,
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "additionalSafeAreaInsets()": null,
+    "allowedChildViewControllersForUnwindingFromSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "automaticallyAdjustsScrollViewInsets()": null,
+    "becomeFirstResponder()": null,
+    "beginAppearanceTransition(boolean,boolean)": null,
+    "bottomLayoutGuide()": null,
+    "childViewControllerContainingSegueSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "childViewControllers()": null,
+    "contentSizeForViewInPopover()": null,
+    "definesPresentationContext()": null,
+    "delegate()": null,
+    "didReceiveMemoryWarning()": null,
+    "didRotateFromInterfaceOrientation(int)": null,
+    "disablesAutomaticKeyboardDismissal()": null,
+    "dismissModalViewControllerAnimated(boolean)": null,
+    "edgesForExtendedLayout()": null,
+    "editButtonItem()": null,
+    "endAppearanceTransition()": null,
+    "extensionContext()": null,
+    "hidesBottomBarWhenPushed()": null,
+    "interfaceOrientation()": null,
+    "isEditing()": null,
+    "isFirstResponder()": null,
+    "isModalInPopover()": null,
+    "isNavigationBarHidden()": null,
+    "isToolbarHidden()": null,
+    "isViewLoaded()": null,
+    "loadView()": null,
+    "loadViewIfNeeded()": null,
     "mailComposeDelegate()": {
-      "code": "- (id<MFMailComposeViewControllerDelegate>) mailComposeDelegate\n{\n    id<MFMailComposeViewControllerDelegate> re$ult = [self mailComposeDelegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (id<MFMailComposeViewControllerDelegate>) mailComposeDelegate\n{\n    id<MFMailComposeViewControllerDelegate> re$ult = [self mailComposeDelegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (id<MFMailComposeViewControllerDelegate>) mailComposeDelegate__\n{\n    id<MFMailComposeViewControllerDelegate> re$ult = [super mailComposeDelegate];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_messageui_MFMailComposeViewControllerDelegate"
+      ]
     },
+    "modalPresentationStyle()": null,
+    "modalTransitionStyle()": null,
+    "navigationBar()": null,
+    "navigationController()": null,
+    "navigationItem()": null,
+    "nextResponder()": null,
+    "nibName()": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "parentViewController()": null,
+    "performSegueWithIdentifier(java.lang.String,java.lang.Object)": null,
+    "popToRootViewControllerAnimated(boolean)": null,
+    "popToViewController(crossmobile.ios.uikit.UIViewController,boolean)": null,
+    "popViewControllerAnimated(boolean)": null,
+    "preferredInterfaceOrientationForPresentation()": null,
+    "prefersStatusBarHidden()": null,
+    "prepareForSegue(crossmobile.ios.uikit.UIStoryboardSegue,java.lang.Object)": null,
+    "presentModalViewController(crossmobile.ios.uikit.UIViewController,boolean)": null,
+    "presentedViewController()": null,
+    "presentingViewController()": null,
+    "providesPresentationContextTransitionStyle()": null,
+    "pushViewController(crossmobile.ios.uikit.UIViewController,boolean)": null,
+    "removeFromParentViewController()": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "resignFirstResponder()": null,
+    "restorationIdentifier()": null,
+    "rotatingFooterView()": null,
+    "rotatingHeaderView()": null,
+    "setAdditionalSafeAreaInsets(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setAutomaticallyAdjustsScrollViewInsets(boolean)": null,
     "setBccRecipients(java.util.List)": {
-      "code": "- (void) setBccRecipients:(NSArray<NSString *> *) bccRecipients\n{\n    [self setBccRecipients___java_util_List:(bccRecipients ? bccRecipients : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setBccRecipients:(NSArray<NSString *> *) bccRecipients\n{\n    [self setBccRecipients___java_util_List:(bccRecipients ? bccRecipients : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setBccRecipients___java_util_List:(NSArray*) bccRecipients \n{\n    [super setBccRecipients:(bccRecipients == JAVA_NULL ? nil : bccRecipients)];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
     },
     "setCcRecipients(java.util.List)": {
-      "code": "- (void) setCcRecipients:(NSArray<NSString *> *) ccRecipients\n{\n    [self setCcRecipients___java_util_List:(ccRecipients ? ccRecipients : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setCcRecipients:(NSArray<NSString *> *) ccRecipients\n{\n    [self setCcRecipients___java_util_List:(ccRecipients ? ccRecipients : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setCcRecipients___java_util_List:(NSArray*) ccRecipients \n{\n    [super setCcRecipients:(ccRecipients == JAVA_NULL ? nil : ccRecipients)];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
     },
+    "setContentSizeForViewInPopover(crossmobile.ios.coregraphics.CGSize)": null,
+    "setDefinesPresentationContext(boolean)": null,
+    "setDelegate(crossmobile.ios.uikit.UINavigationControllerDelegate)": null,
+    "setEdgesForExtendedLayout(int)": null,
+    "setEditing(boolean)": null,
+    "setEditing(boolean,boolean)": null,
+    "setHidesBottomBarWhenPushed(boolean)": null,
     "setMailComposeDelegate(crossmobile.ios.messageui.MFMailComposeViewControllerDelegate)": {
-      "code": "- (void) setMailComposeDelegate:(id<MFMailComposeViewControllerDelegate>) mailComposeDelegate\n{\n    [self setMailComposeDelegate___crossmobile_ios_messageui_MFMailComposeViewControllerDelegate:(mailComposeDelegate ? mailComposeDelegate : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setMailComposeDelegate:(id<MFMailComposeViewControllerDelegate>) mailComposeDelegate\n{\n    [self setMailComposeDelegate___crossmobile_ios_messageui_MFMailComposeViewControllerDelegate:(mailComposeDelegate ? mailComposeDelegate : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setMailComposeDelegate___crossmobile_ios_messageui_MFMailComposeViewControllerDelegate:(id<MFMailComposeViewControllerDelegate>) mailComposeDelegate \n{\n    objc_setAssociatedObject(self, @selector(setMailComposeDelegate:), mailComposeDelegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);\n    [super setMailComposeDelegate:(mailComposeDelegate == JAVA_NULL ? nil : mailComposeDelegate)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_messageui_MFMailComposeViewControllerDelegate"
+      ]
     },
     "setMessageBody(java.lang.String,boolean)": {
-      "code": "- (void) setMessageBody:(NSString *) body isHTML:(BOOL) isHTML\n{\n    [self setMessageBody___java_lang_String_boolean:(body ? body : JAVA_NULL) :isHTML];\n}\n\n"
+      "reverse": "- (void) setMessageBody:(NSString *) body isHTML:(BOOL) isHTML\n{\n    [self setMessageBody___java_lang_String_boolean:(body ? body : JAVA_NULL) :isHTML];\n}\n\n",
+      "super": "- (void) setMessageBody___java_lang_String_boolean:(NSString*) body :(BOOL) isHTML \n{\n    [super setMessageBody:(body == JAVA_NULL ? nil : body) isHTML:isHTML];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
+    "setModalInPopover(boolean)": null,
+    "setModalPresentationStyle(int)": null,
+    "setModalTransitionStyle(int)": null,
+    "setNavigationBarHidden(boolean)": null,
+    "setNavigationBarHidden(boolean,boolean)": null,
+    "setProvidesPresentationContextTransitionStyle(boolean)": null,
+    "setRestorationIdentifier(java.lang.String)": null,
     "setSubject(java.lang.String)": {
-      "code": "- (void) setSubject:(NSString *) subject\n{\n    [self setSubject___java_lang_String:(subject ? subject : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setSubject:(NSString *) subject\n{\n    [self setSubject___java_lang_String:(subject ? subject : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setSubject___java_lang_String:(NSString*) subject \n{\n    [super setSubject:(subject == JAVA_NULL ? nil : subject)];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
+    "setTabBarItem(crossmobile.ios.uikit.UITabBarItem)": null,
+    "setTitle(java.lang.String)": null,
     "setToRecipients(java.util.List)": {
-      "code": "- (void) setToRecipients:(NSArray<NSString *> *) toRecipients\n{\n    [self setToRecipients___java_util_List:(toRecipients ? toRecipients : JAVA_NULL)];\n}\n\n"
-    }
+      "reverse": "- (void) setToRecipients:(NSArray<NSString *> *) toRecipients\n{\n    [self setToRecipients___java_util_List:(toRecipients ? toRecipients : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setToRecipients___java_util_List:(NSArray*) toRecipients \n{\n    [super setToRecipients:(toRecipients == JAVA_NULL ? nil : toRecipients)];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
+    },
+    "setToolbarHidden(boolean)": null,
+    "setToolbarHidden(boolean,boolean)": null,
+    "setToolbarItems(java.util.List)": null,
+    "setToolbarItems(java.util.List,boolean)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "setView(crossmobile.ios.uikit.UIView)": null,
+    "setViewControllers(java.util.List)": null,
+    "setViewControllers(java.util.List,boolean)": null,
+    "setWantsFullScreenLayout(boolean)": null,
+    "shouldAutomaticallyForwardAppearanceMethods()": null,
+    "shouldAutorotate()": null,
+    "shouldAutorotateToInterfaceOrientation(int)": null,
+    "shouldPerformSegueWithIdentifier(java.lang.String,java.lang.Object)": null,
+    "showDetailViewController(crossmobile.ios.uikit.UIViewController,java.lang.Object)": null,
+    "showViewController(crossmobile.ios.uikit.UIViewController,java.lang.Object)": null,
+    "splitViewController()": null,
+    "storyboard()": null,
+    "supportedInterfaceOrientations()": null,
+    "tabBarController()": null,
+    "tabBarItem()": null,
+    "title()": null,
+    "toolbar()": null,
+    "toolbarItems()": null,
+    "topLayoutGuide()": null,
+    "topViewController()": null,
+    "touchesBegan(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesCancelled(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesEnded(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesMoved(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null,
+    "view()": null,
+    "viewControllers()": null,
+    "viewDidAppear(boolean)": null,
+    "viewDidDisappear(boolean)": null,
+    "viewDidLayoutSubviews()": null,
+    "viewDidLoad()": null,
+    "viewDidUnload()": null,
+    "viewIfLoaded()": null,
+    "viewSafeAreaInsetsDidChange()": null,
+    "viewWillAppear(boolean)": null,
+    "viewWillDisappear(boolean)": null,
+    "viewWillLayoutSubviews()": null,
+    "visibleViewController()": null,
+    "wantsFullScreenLayout()": null,
+    "willAnimateRotationToInterfaceOrientation(int,double)": null,
+    "willRotateToInterfaceOrientation(int,double)": null
   },
   "crossmobile.ios.messageui.MFMailComposeViewControllerDelegate": {
     "didFinishWithResult(crossmobile.ios.messageui.MFMailComposeViewController,int,crossmobile.ios.foundation.NSError)": {
-      "code": "- (void) mailComposeController:(MFMailComposeViewController *) controller didFinishWithResult:(MFMailComposeResult) result error:(NSError *) error\n{\n    [self didFinishWithResult___crossmobile_ios_messageui_MFMailComposeViewController_int_crossmobile_ios_foundation_NSError:(controller ? controller : JAVA_NULL) :result :(error ? error : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) mailComposeController:(MFMailComposeViewController *) controller didFinishWithResult:(MFMailComposeResult) result error:(NSError *) error\n{\n    [self didFinishWithResult___crossmobile_ios_messageui_MFMailComposeViewController_int_crossmobile_ios_foundation_NSError:(controller ? controller : JAVA_NULL) :result :(error ? error : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didFinishWithResult___crossmobile_ios_messageui_MFMailComposeViewController_int_crossmobile_ios_foundation_NSError:(MFMailComposeViewController*) controller :(int) result :(NSError*) error \n{\n    [super mailComposeController:(controller == JAVA_NULL ? nil : controller) didFinishWithResult:result error:(error == JAVA_NULL ? nil : error)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSError",
+        "crossmobile_ios_messageui_MFMailComposeViewController"
+      ]
     }
   },
   "crossmobile.ios.messageui.MFMessageComposeViewController": {
+    "addChildViewController(crossmobile.ios.uikit.UIViewController)": null,
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "additionalSafeAreaInsets()": null,
+    "allowedChildViewControllersForUnwindingFromSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "automaticallyAdjustsScrollViewInsets()": null,
+    "becomeFirstResponder()": null,
+    "beginAppearanceTransition(boolean,boolean)": null,
     "body()": {
-      "code": "- (NSString *) body\n{\n    NSString * re$ult = [self body__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSString *) body\n{\n    NSString * re$ult = [self body__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) body__\n{\n    NSString* re$ult = [super body];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
+    "bottomLayoutGuide()": null,
+    "childViewControllerContainingSegueSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "childViewControllers()": null,
+    "contentSizeForViewInPopover()": null,
+    "definesPresentationContext()": null,
+    "delegate()": null,
+    "didReceiveMemoryWarning()": null,
+    "didRotateFromInterfaceOrientation(int)": null,
+    "disablesAutomaticKeyboardDismissal()": null,
+    "dismissModalViewControllerAnimated(boolean)": null,
+    "edgesForExtendedLayout()": null,
+    "editButtonItem()": null,
+    "endAppearanceTransition()": null,
+    "extensionContext()": null,
+    "hidesBottomBarWhenPushed()": null,
+    "interfaceOrientation()": null,
+    "isEditing()": null,
+    "isFirstResponder()": null,
+    "isModalInPopover()": null,
+    "isNavigationBarHidden()": null,
+    "isToolbarHidden()": null,
+    "isViewLoaded()": null,
+    "loadView()": null,
+    "loadViewIfNeeded()": null,
     "messageComposeDelegate()": {
-      "code": "- (id<MFMessageComposeViewControllerDelegate>) messageComposeDelegate\n{\n    id<MFMessageComposeViewControllerDelegate> re$ult = [self messageComposeDelegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (id<MFMessageComposeViewControllerDelegate>) messageComposeDelegate\n{\n    id<MFMessageComposeViewControllerDelegate> re$ult = [self messageComposeDelegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (id<MFMessageComposeViewControllerDelegate>) messageComposeDelegate__\n{\n    id<MFMessageComposeViewControllerDelegate> re$ult = [super messageComposeDelegate];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_messageui_MFMessageComposeViewControllerDelegate"
+      ]
     },
+    "modalPresentationStyle()": null,
+    "modalTransitionStyle()": null,
+    "navigationBar()": null,
+    "navigationController()": null,
+    "navigationItem()": null,
+    "nextResponder()": null,
+    "nibName()": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "parentViewController()": null,
+    "performSegueWithIdentifier(java.lang.String,java.lang.Object)": null,
+    "popToRootViewControllerAnimated(boolean)": null,
+    "popToViewController(crossmobile.ios.uikit.UIViewController,boolean)": null,
+    "popViewControllerAnimated(boolean)": null,
+    "preferredInterfaceOrientationForPresentation()": null,
+    "prefersStatusBarHidden()": null,
+    "prepareForSegue(crossmobile.ios.uikit.UIStoryboardSegue,java.lang.Object)": null,
+    "presentModalViewController(crossmobile.ios.uikit.UIViewController,boolean)": null,
+    "presentedViewController()": null,
+    "presentingViewController()": null,
+    "providesPresentationContextTransitionStyle()": null,
+    "pushViewController(crossmobile.ios.uikit.UIViewController,boolean)": null,
     "recipients()": {
-      "code": "- (NSArray<NSString *> *) recipients\n{\n    NSArray<NSString *> * re$ult = [self recipients__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSArray<NSString *> *) recipients\n{\n    NSArray<NSString *> * re$ult = [self recipients__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSArray*) recipients__\n{\n    NSArray* re$ult = [super recipients];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
     },
+    "removeFromParentViewController()": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "resignFirstResponder()": null,
+    "restorationIdentifier()": null,
+    "rotatingFooterView()": null,
+    "rotatingHeaderView()": null,
+    "setAdditionalSafeAreaInsets(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setAutomaticallyAdjustsScrollViewInsets(boolean)": null,
     "setBody(java.lang.String)": {
-      "code": "- (void) setBody:(NSString *) body\n{\n    [self setBody___java_lang_String:(body ? body : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setBody:(NSString *) body\n{\n    [self setBody___java_lang_String:(body ? body : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setBody___java_lang_String:(NSString*) body \n{\n    [super setBody:(body == JAVA_NULL ? nil : body)];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
     },
+    "setContentSizeForViewInPopover(crossmobile.ios.coregraphics.CGSize)": null,
+    "setDefinesPresentationContext(boolean)": null,
+    "setDelegate(crossmobile.ios.uikit.UINavigationControllerDelegate)": null,
+    "setEdgesForExtendedLayout(int)": null,
+    "setEditing(boolean)": null,
+    "setEditing(boolean,boolean)": null,
+    "setHidesBottomBarWhenPushed(boolean)": null,
     "setMessageComposeDelegate(crossmobile.ios.messageui.MFMessageComposeViewControllerDelegate)": {
-      "code": "- (void) setMessageComposeDelegate:(id<MFMessageComposeViewControllerDelegate>) messageComposeDelegate\n{\n    [self setMessageComposeDelegate___crossmobile_ios_messageui_MFMessageComposeViewControllerDelegate:(messageComposeDelegate ? messageComposeDelegate : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setMessageComposeDelegate:(id<MFMessageComposeViewControllerDelegate>) messageComposeDelegate\n{\n    [self setMessageComposeDelegate___crossmobile_ios_messageui_MFMessageComposeViewControllerDelegate:(messageComposeDelegate ? messageComposeDelegate : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setMessageComposeDelegate___crossmobile_ios_messageui_MFMessageComposeViewControllerDelegate:(id<MFMessageComposeViewControllerDelegate>) messageComposeDelegate \n{\n    objc_setAssociatedObject(self, @selector(setMessageComposeDelegate:), messageComposeDelegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);\n    [super setMessageComposeDelegate:(messageComposeDelegate == JAVA_NULL ? nil : messageComposeDelegate)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_messageui_MFMessageComposeViewControllerDelegate"
+      ]
     },
+    "setModalInPopover(boolean)": null,
+    "setModalPresentationStyle(int)": null,
+    "setModalTransitionStyle(int)": null,
+    "setNavigationBarHidden(boolean)": null,
+    "setNavigationBarHidden(boolean,boolean)": null,
+    "setProvidesPresentationContextTransitionStyle(boolean)": null,
     "setRecipients(java.util.List)": {
-      "code": "- (void) setRecipients:(NSArray<NSString *> *) recipients\n{\n    [self setRecipients___java_util_List:(recipients ? recipients : JAVA_NULL)];\n}\n\n"
-    }
+      "reverse": "- (void) setRecipients:(NSArray<NSString *> *) recipients\n{\n    [self setRecipients___java_util_List:(recipients ? recipients : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setRecipients___java_util_List:(NSArray*) recipients \n{\n    [super setRecipients:(recipients == JAVA_NULL ? nil : recipients)];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
+    },
+    "setRestorationIdentifier(java.lang.String)": null,
+    "setTabBarItem(crossmobile.ios.uikit.UITabBarItem)": null,
+    "setTitle(java.lang.String)": null,
+    "setToolbarHidden(boolean)": null,
+    "setToolbarHidden(boolean,boolean)": null,
+    "setToolbarItems(java.util.List)": null,
+    "setToolbarItems(java.util.List,boolean)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "setView(crossmobile.ios.uikit.UIView)": null,
+    "setViewControllers(java.util.List)": null,
+    "setViewControllers(java.util.List,boolean)": null,
+    "setWantsFullScreenLayout(boolean)": null,
+    "shouldAutomaticallyForwardAppearanceMethods()": null,
+    "shouldAutorotate()": null,
+    "shouldAutorotateToInterfaceOrientation(int)": null,
+    "shouldPerformSegueWithIdentifier(java.lang.String,java.lang.Object)": null,
+    "showDetailViewController(crossmobile.ios.uikit.UIViewController,java.lang.Object)": null,
+    "showViewController(crossmobile.ios.uikit.UIViewController,java.lang.Object)": null,
+    "splitViewController()": null,
+    "storyboard()": null,
+    "supportedInterfaceOrientations()": null,
+    "tabBarController()": null,
+    "tabBarItem()": null,
+    "title()": null,
+    "toolbar()": null,
+    "toolbarItems()": null,
+    "topLayoutGuide()": null,
+    "topViewController()": null,
+    "touchesBegan(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesCancelled(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesEnded(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesMoved(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null,
+    "view()": null,
+    "viewControllers()": null,
+    "viewDidAppear(boolean)": null,
+    "viewDidDisappear(boolean)": null,
+    "viewDidLayoutSubviews()": null,
+    "viewDidLoad()": null,
+    "viewDidUnload()": null,
+    "viewIfLoaded()": null,
+    "viewSafeAreaInsetsDidChange()": null,
+    "viewWillAppear(boolean)": null,
+    "viewWillDisappear(boolean)": null,
+    "viewWillLayoutSubviews()": null,
+    "visibleViewController()": null,
+    "wantsFullScreenLayout()": null,
+    "willAnimateRotationToInterfaceOrientation(int,double)": null,
+    "willRotateToInterfaceOrientation(int,double)": null
   },
   "crossmobile.ios.messageui.MFMessageComposeViewControllerDelegate": {
     "didFinishWithResult(crossmobile.ios.messageui.MFMessageComposeViewController,int)": {
-      "code": "- (void) messageComposeViewController:(MFMessageComposeViewController *) controller didFinishWithResult:(MessageComposeResult) result\n{\n    [self didFinishWithResult___crossmobile_ios_messageui_MFMessageComposeViewController_int:(controller ? controller : JAVA_NULL) :result];\n}\n\n"
+      "reverse": "- (void) messageComposeViewController:(MFMessageComposeViewController *) controller didFinishWithResult:(MessageComposeResult) result\n{\n    [self didFinishWithResult___crossmobile_ios_messageui_MFMessageComposeViewController_int:(controller ? controller : JAVA_NULL) :result];\n}\n\n",
+      "super": "- (void) didFinishWithResult___crossmobile_ios_messageui_MFMessageComposeViewController_int:(MFMessageComposeViewController*) controller :(int) result \n{\n    [super messageComposeViewController:(controller == JAVA_NULL ? nil : controller) didFinishWithResult:result];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_messageui_MFMessageComposeViewController"
+      ]
     }
   }
 }

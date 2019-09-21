@@ -23,9 +23,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import static org.crossmobile.plugin.utils.Texters.toObjC;
-import static org.crossmobile.utils.NamingUtils.getClassNameBare;
-import static org.crossmobile.utils.NamingUtils.getClassNameFull;
+import static org.crossmobile.utils.NamingUtils.*;
 import static org.crossmobile.utils.TextUtils.capitalize;
 
 public class NStructField {
@@ -41,7 +39,7 @@ public class NStructField {
         this.type = type;
         this.getter = getter;
         this.setter = setter;
-        this.objc_name = name + "_" + toObjC(getClassNameBare(type));
+        this.objc_name = name + "_" + toObjC(type);
         this.index = index;
     }
 

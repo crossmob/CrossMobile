@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.addressbook.ABRecord definition
+// crossmobile_ios_addressbook_ABRecord definition
 
 #import "xmlvm.h"
 #import <Accounts/Accounts.h>

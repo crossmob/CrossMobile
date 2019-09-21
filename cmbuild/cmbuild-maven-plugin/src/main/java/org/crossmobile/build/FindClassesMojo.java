@@ -25,7 +25,7 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.utils.ClasspathUtils;
-import org.crossmobile.utils.NativeCodeCollection;
+import org.crossmobile.utils.ReverseCodeCollection;
 
 import java.io.File;
 import java.util.Collection;
@@ -47,7 +47,7 @@ public class FindClassesMojo extends GenericMojo {
 
     public static Collection<String> findAllImports(Collection<File> classpath) {
         Collection<String> classes = new TreeSet<>();
-        NativeCodeCollection dbn = new NativeCodeCollection(classpath);
+        ReverseCodeCollection dbn = new ReverseCodeCollection(classpath);
         for (String classname : ClasspathUtils.getClasspathClasses(classpath, true)) {
             try {
                 CtClass cls = dbn.getClassPool().get(classname);

@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.accounts.ACAccount definition
+// crossmobile_ios_accounts_ACAccount definition
 
 #import "xmlvm.h"
 #import <Accounts/Accounts.h>

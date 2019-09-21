@@ -22,7 +22,7 @@ import org.crossmobile.plugin.utils.Streamer;
 
 import java.io.IOException;
 
-import static org.crossmobile.plugin.utils.Texters.toObjC;
+import static org.crossmobile.utils.NamingUtils.toObjC;
 import static org.crossmobile.utils.NamingUtils.*;
 
 public abstract class FileEmitter {
@@ -35,7 +35,7 @@ public abstract class FileEmitter {
 
     public void emitInfo(Streamer out) throws IOException {
         out.append(Statics.COPYRIGHT);
-        out.append("// ").append(getClassNameBare(obj.getType())).append(" ").append(getFileType()).append("\n\n");
+        out.append("// ").append(toObjC(obj.getType())).append(" ").append(getFileType()).append("\n\n");
     }
 
     public void emitEnd(Streamer out, boolean extraSpace) throws IOException {

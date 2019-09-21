@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.contacts.CNContactsUserDefaults definition
+// crossmobile_ios_contacts_CNContactsUserDefaults definition
 
 #import "xmlvm.h"
 #import <Accounts/Accounts.h>

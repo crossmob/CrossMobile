@@ -18,7 +18,7 @@ package org.crossmobile.plugin.objc.param;
 
 import crossmobile.rt.StrongReference;
 import org.crossmobile.plugin.model.*;
-import org.crossmobile.plugin.objc.ReverseBlockRegistry;
+import org.crossmobile.plugin.objc.ReverseImportRegistry;
 import org.crossmobile.plugin.utils.Texters;
 
 import java.lang.reflect.Modifier;
@@ -40,11 +40,11 @@ public class ParamEmitter {
         return new ParamEmitter(sel, null, true, instancename);
     }
 
-    public static ParamEmitter reverse(NSelector sel, ReverseBlockRegistry handleRegistry, String instancename) {
+    public static ParamEmitter reverse(NSelector sel, ReverseImportRegistry handleRegistry, String instancename) {
         return new ParamEmitter(sel, handleRegistry, false, instancename == null ? "self" : instancename);
     }
 
-    private ParamEmitter(NSelector sel, ReverseBlockRegistry handleRegistry, boolean forward, String instanceName) {
+    private ParamEmitter(NSelector sel, ReverseImportRegistry handleRegistry, boolean forward, String instanceName) {
         this.instanceName = instanceName;
         this.staticObject = forward ? sel.isStatic() : Modifier.isStatic(sel.getJavaExecutable().getModifiers());
         this.name = forward ? sel.getName() : Texters.methodObjCName(sel.getJavaExecutable());
@@ -53,7 +53,7 @@ public class ParamEmitter {
         this.result = new ResultEmitter(sel, forward);
     }
 
-    private Emitter parseParam(NParam param, NSelector sel, ReverseBlockRegistry handleRegistry, boolean forward) {
+    private Emitter parseParam(NParam param, NSelector sel, ReverseImportRegistry handleRegistry, boolean forward) {
         NType type = param.getNType();
         if (param.getAffiliation() != null)
             if (param.getAffiliation().getType().equals(NParamAffiliation.Type.MEMBLOCK))

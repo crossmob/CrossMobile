@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.quartzcore.CATransition definition
+// crossmobile_ios_quartzcore_CATransition definition
 
 #import "xmlvm.h"
 #import <CoreGraphics/CoreGraphics.h>

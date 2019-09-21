@@ -46,19 +46,18 @@ public class BodyEmitter extends FileEmitter {
         emitIncludes(out);
         if (obj.needsOverrideBindings()) {
             emitDefinition(out, true);
-            emitSelectors(out, swift, filter, true);
             emitEnd(out, true);
         }
 //        emitStaticFunctionPointers(out);
         emitDefinition(out, false);
 //        emitLoad(out);
-        emitSelectors(out, swift, filter, false);
+        emitSelectors(out, swift, filter);
         emitHelperSelectors(out);
         emitEnd(out, false);
     }
 
     private void emitIncludes(Streamer out) throws IOException {
-        Collection<String> dependencies = obj.getDependencies(true);
+        Collection<String> dependencies = obj.getDependencies();
         dependencies.add(fullName());
         if (!obj.isObjCBased() && obj.getType().getSuperclass() != null)
             dependencies.remove(fullName(obj.getType().getSuperclass()));
@@ -133,19 +132,13 @@ public class BodyEmitter extends FileEmitter {
             StructConstructorParser.helperMethods(obj, out);
     }
 
-    private void emitSelectors(Streamer out, Streamer swift, String[] filter, boolean overridableSelectors) throws IOException {
+    private void emitSelectors(Streamer out, Streamer swift, String[] filter) throws IOException {
         String selfName = TypeRegistry.isObjCReference(obj.getType()) ? "self->" + REFERENCE_NAME : null;
-        for (NSelector sel : overridableSelectors ? obj.getAllSelectors() : obj.getSelectors())
-            if (filter == null || startsWith(sel.getName(), Arrays.asList(filter)))
-                if (overridableSelectors) {
-                    if (sel.needsOverrideBindings()) {
-                        out.append("// (").append(getClassNameSimple(sel.getContainer().getType())).append(") ").append(sel.getOriginalCode()).append("\n");
-                        new SelectorEmitter(sel, "super").emitImplementation(out);
-                    }
-                } else {
-                    out.append("// direct binding of: ").append(sel.getOriginalCode()).append("\n");
-                    new SelectorEmitter(sel, selfName).emitImplementation(out).emitSwift(swift);
-                }
+        for (NSelector sel : obj.getSelectors())
+            if (filter == null || startsWith(sel.getName(), Arrays.asList(filter))) {
+                out.append("// ").append(sel.getOriginalCode()).append("\n");
+                new SelectorEmitter(sel, selfName).emitImplementation(out).emitSwift(swift);
+            }
     }
 
     @Override

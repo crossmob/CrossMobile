@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.quicklook.QLPreviewControllerDataSource definition
+// crossmobile_ios_quicklook_QLPreviewControllerDataSource definition
 
 #import "xmlvm.h"
 #import <QuickLook/QuickLook.h>

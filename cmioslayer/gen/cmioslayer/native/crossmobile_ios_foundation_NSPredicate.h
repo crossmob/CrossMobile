@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.foundation.NSPredicate definition
+// crossmobile_ios_foundation_NSPredicate definition
 
 #import "xmlvm.h"
 #import <CoreGraphics/CoreGraphics.h>

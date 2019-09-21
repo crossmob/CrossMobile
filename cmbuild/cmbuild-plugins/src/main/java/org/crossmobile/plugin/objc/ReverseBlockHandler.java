@@ -25,7 +25,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.joining;
-import static org.crossmobile.plugin.utils.Texters.toObjC;
+import static org.crossmobile.utils.NamingUtils.toObjC;
 import static org.crossmobile.utils.CollectionUtils.KeyValue.map;
 import static org.crossmobile.utils.CollectionUtils.mapOf;
 

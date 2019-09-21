@@ -25,9 +25,8 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-import static org.crossmobile.plugin.utils.Texters.toObjC;
+import static org.crossmobile.utils.NamingUtils.toObjC;
 import static org.crossmobile.plugin.utils.Texters.toObjCType;
-import static org.crossmobile.utils.NamingUtils.getClassNameBare;
 import static org.crossmobile.utils.NamingUtils.getClassNameSimple;
 
 public class StructConstructorParser {
@@ -41,7 +40,7 @@ public class StructConstructorParser {
             out.append("+ (id) alloc\n{\n").tab();
             out.append(toObjCType(nobj.getType())).append(" obj = [super alloc];\n");
             for (NStructField f : primaryFields)
-                out.append("obj->").append(f.objc_name).append(" = ").append("[").append(toObjC(getClassNameBare(f.type))).append(" alloc];\n");
+                out.append("obj->").append(f.objc_name).append(" = ").append("[").append(toObjC(f.type)).append(" alloc];\n");
             out.append("return obj;\n").untab().append("}\n\n");
 
             // Custom deallocator

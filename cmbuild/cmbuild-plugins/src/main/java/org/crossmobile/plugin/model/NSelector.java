@@ -16,17 +16,15 @@
  */
 package org.crossmobile.plugin.model;
 
-import org.crossmobile.utils.CollectionUtils;
-
 import java.lang.reflect.Executable;
 import java.lang.reflect.Modifier;
 import java.util.*;
 
-import static org.crossmobile.plugin.reg.TypeRegistry.*;
-import static org.crossmobile.plugin.utils.Texters.toObjC;
+import static org.crossmobile.plugin.reg.TypeRegistry.getJavaBoxed;
+import static org.crossmobile.plugin.reg.TypeRegistry.isBlockParameterSupported;
 import static org.crossmobile.utils.CollectionUtils.forEach;
 import static org.crossmobile.utils.NamingUtils.execSignature;
-import static org.crossmobile.utils.NamingUtils.getClassNameBare;
+import static org.crossmobile.utils.NamingUtils.toObjC;
 import static org.crossmobile.utils.ReflectionUtils.appearsInParent;
 
 public class NSelector extends NParsable implements Comparable<NSelector> {
@@ -114,7 +112,7 @@ public class NSelector extends NParsable implements Comparable<NSelector> {
         if (forceBoxed)
             javaType = getJavaBoxed(nativeType);
         if (!javaType.isPrimitive() && !javaType.isArray())
-            deps.add(toObjC(getClassNameBare(javaType)));
+            deps.add(toObjC(javaType));
     }
 
     public void setJavaExecutable(Executable javaMethod, Class javaReturn) {

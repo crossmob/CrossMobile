@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.uikit.UITextInputTraits definition
+// crossmobile_ios_uikit_UITextInputTraits definition
 
 #import "xmlvm.h"
 #import <CoreGraphics/CoreGraphics.h>

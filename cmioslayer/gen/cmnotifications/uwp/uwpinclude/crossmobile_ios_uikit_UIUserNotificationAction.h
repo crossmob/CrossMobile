@@ -1,8 +1,9 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.uikit.UIUserNotificationAction definition
+// crossmobile_ios_uikit_UIUserNotificationAction definition
 
 #import "xmlvm.h"
+#import <UIKit/UIKit.h>
 #import <UserNotifications/UserNotifications.h>
 @class java_lang_String;
 @protocol java_util_Map;

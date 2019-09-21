@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.addressbook.ABAddressBookRequestAccessCompletionHandler definition
+// crossmobile_ios_addressbook_ABAddressBookRequestAccessCompletionHandler definition
 
 #import "xmlvm.h"
 #import <Accounts/Accounts.h>

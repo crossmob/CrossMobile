@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.coreimage.CIFilter definition
+// crossmobile_ios_coreimage_CIFilter definition
 
 #import "xmlvm.h"
 #import <CoreImage/CoreImage.h>

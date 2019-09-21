@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.uikit.UIScrollView definition
+// crossmobile_ios_uikit_UIScrollView definition
 
 #import "xmlvm.h"
 #import <CoreGraphics/CoreGraphics.h>

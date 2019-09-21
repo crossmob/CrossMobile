@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.mapkit.MKMapRect implementation
+// crossmobile_ios_mapkit_MKMapRect implementation
 
 #import "crossmobile_ios_mapkit_MKMapPoint.h"
 #import "crossmobile_ios_mapkit_MKMapRect.h"
@@ -8,31 +8,31 @@
 
 @implementation crossmobile_ios_mapkit_MKMapRect
 
-// direct binding of: MKMapRect MKMapRectMake ( double x, double y, double width, double height );
+// MKMapRect MKMapRectMake ( double x, double y, double width, double height );
 - (crossmobile_ios_mapkit_MKMapRect*) __init_crossmobile_ios_mapkit_MKMapRect___double_double_double_double:(double) x :(double) y :(double) width :(double) height 
 {
     return [self initWithMKMapRect:MKMapRectMake(x, y, width, height)];
 }
 
-// direct binding of: MKMapPoint origin;
+// MKMapPoint origin;
 - (void) setOrigin___crossmobile_ios_mapkit_MKMapPoint:(crossmobile_ios_mapkit_MKMapPoint*) origin 
 {
     [self->origin_crossmobile_ios_mapkit_MKMapPoint setMKMapPoint:[origin getMKMapPoint]];
 }
 
-// direct binding of: MKMapPoint origin;
+// MKMapPoint origin;
 - (crossmobile_ios_mapkit_MKMapPoint*) getOrigin__
 {
     return [self->origin_crossmobile_ios_mapkit_MKMapPoint retain];
 }
 
-// direct binding of: MKMapSize size;
+// MKMapSize size;
 - (void) setSize___crossmobile_ios_mapkit_MKMapSize:(crossmobile_ios_mapkit_MKMapSize*) size 
 {
     [self->size_crossmobile_ios_mapkit_MKMapSize setMKMapSize:[size getMKMapSize]];
 }
 
-// direct binding of: MKMapSize size;
+// MKMapSize size;
 - (crossmobile_ios_mapkit_MKMapSize*) getSize__
 {
     return [self->size_crossmobile_ios_mapkit_MKMapSize retain];

@@ -1,36 +1,36 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.mapkit.MKCoordinateSpan implementation
+// crossmobile_ios_mapkit_MKCoordinateSpan implementation
 
 #import "crossmobile_ios_mapkit_MKCoordinateSpan.h"
 
 @implementation crossmobile_ios_mapkit_MKCoordinateSpan
 
-// direct binding of: MKCoordinateSpan MKCoordinateSpanMake ( CLLocationDegrees latitudeDelta, CLLocationDegrees longitudeDelta );
+// MKCoordinateSpan MKCoordinateSpanMake ( CLLocationDegrees latitudeDelta, CLLocationDegrees longitudeDelta );
 - (crossmobile_ios_mapkit_MKCoordinateSpan*) __init_crossmobile_ios_mapkit_MKCoordinateSpan___double_double:(double) latitudeDelta :(double) longitudeDelta 
 {
     return [self initWithMKCoordinateSpan:MKCoordinateSpanMake(latitudeDelta, longitudeDelta)];
 }
 
-// direct binding of: CLLocationDegrees latitudeDelta;
+// CLLocationDegrees latitudeDelta;
 - (void) setLatitudeDelta___double:(double) latitudeDelta 
 {
     self->latitudeDelta_double = latitudeDelta;
 }
 
-// direct binding of: CLLocationDegrees latitudeDelta;
+// CLLocationDegrees latitudeDelta;
 - (double) getLatitudeDelta__
 {
     return self->latitudeDelta_double;
 }
 
-// direct binding of: CLLocationDegrees longitudeDelta;
+// CLLocationDegrees longitudeDelta;
 - (void) setLongitudeDelta___double:(double) longitudeDelta 
 {
     self->longitudeDelta_double = longitudeDelta;
 }
 
-// direct binding of: CLLocationDegrees longitudeDelta;
+// CLLocationDegrees longitudeDelta;
 - (double) getLongitudeDelta__
 {
     return self->longitudeDelta_double;

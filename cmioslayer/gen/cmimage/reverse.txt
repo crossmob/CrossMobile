@@ -1,111 +1,340 @@
 {
   "crossmobile.ios.coreimage.CIContext": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "createCGImage(crossmobile.ios.coreimage.CIImage,crossmobile.ios.coregraphics.CGRect)": {
-      "code": "- (CGImageRef) createCGImage:(CIImage *) image fromRect:(CGRect) fromRect\n{\n    crossmobile_ios_coregraphics_CGRect* fromRect$conv = [[crossmobile_ios_coregraphics_CGRect alloc] initWithCGRect:fromRect];\n    crossmobile_ios_coregraphics_CGImage* re$ult = [self createCGImage___crossmobile_ios_coreimage_CIImage_crossmobile_ios_coregraphics_CGRect:(image ? image : JAVA_NULL) :fromRect$conv];\n    [re$ult autorelease];\n    [fromRect$conv release];\n    return re$ult->$reference;\n}\n\n"
-    }
+      "reverse": "- (CGImageRef) createCGImage:(CIImage *) image fromRect:(CGRect) fromRect\n{\n    crossmobile_ios_coregraphics_CGRect* fromRect$conv = [[crossmobile_ios_coregraphics_CGRect alloc] initWithCGRect:fromRect];\n    crossmobile_ios_coregraphics_CGImage* re$ult = [self createCGImage___crossmobile_ios_coreimage_CIImage_crossmobile_ios_coregraphics_CGRect:(image ? image : JAVA_NULL) :fromRect$conv];\n    [re$ult autorelease];\n    [fromRect$conv release];\n    return re$ult->$reference;\n}\n\n",
+      "super": "- (crossmobile_ios_coregraphics_CGImage*) createCGImage___crossmobile_ios_coreimage_CIImage_crossmobile_ios_coregraphics_CGRect:(CIImage*) image :(crossmobile_ios_coregraphics_CGRect*) fromRect \n{\n    return [[crossmobile_ios_coregraphics_CGImage alloc] initWithCGImage:[super createCGImage:(image == JAVA_NULL ? nil : image) fromRect:[fromRect getCGRect]]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_coregraphics_CGImage",
+        "crossmobile_ios_coregraphics_CGRect",
+        "crossmobile_ios_coreimage_CIImage"
+      ]
+    },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.coreimage.CIFilter": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "attributes()": {
-      "code": "- (NSDictionary<NSString *,id> *) attributes\n{\n    NSDictionary<NSString *,id> * re$ult = [self attributes__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSDictionary<NSString *,id> *) attributes\n{\n    NSDictionary<NSString *,id> * re$ult = [self attributes__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSDictionary*) attributes__\n{\n    NSDictionary* re$ult = [super attributes];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_util_Map"
+      ]
     },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
     "outputImage()": {
-      "code": "- (CIImage *) outputImage\n{\n    CIImage * re$ult = [self outputImage__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
-    }
+      "reverse": "- (CIImage *) outputImage\n{\n    CIImage * re$ult = [self outputImage__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (CIImage*) outputImage__\n{\n    CIImage* re$ult = [super outputImage];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_coreimage_CIImage"
+      ]
+    },
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.coreimage.CIImage": {
     "CGImage()": {
-      "code": "- (CGImageRef) CGImage\n{\n    crossmobile_ios_coregraphics_CGImage* re$ult = [self CGImage__];\n    [re$ult autorelease];\n    return re$ult->$reference;\n}\n\n"
-    }
+      "reverse": "- (CGImageRef) CGImage\n{\n    crossmobile_ios_coregraphics_CGImage* re$ult = [self CGImage__];\n    [re$ult autorelease];\n    return re$ult->$reference;\n}\n\n",
+      "super": "- (crossmobile_ios_coregraphics_CGImage*) CGImage__\n{\n    return [[crossmobile_ios_coregraphics_CGImage alloc] initWithCGImage:[super CGImage]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_coregraphics_CGImage"
+      ]
+    },
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.uikit.UIImagePickerController": {
+    "addChildViewController(crossmobile.ios.uikit.UIViewController)": null,
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "additionalSafeAreaInsets()": null,
+    "allowedChildViewControllersForUnwindingFromSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
     "allowsEditing()": {
-      "code": "- (BOOL) allowsEditing\n{\n    return [self allowsEditing__];\n}\n\n"
+      "reverse": "- (BOOL) allowsEditing\n{\n    return [self allowsEditing__];\n}\n\n",
+      "super": "- (BOOL) allowsEditing__\n{\n    return [super allowsEditing];\n}\n\n"
     },
+    "automaticallyAdjustsScrollViewInsets()": null,
+    "becomeFirstResponder()": null,
+    "beginAppearanceTransition(boolean,boolean)": null,
+    "bottomLayoutGuide()": null,
     "cameraCaptureMode()": {
-      "code": "- (UIImagePickerControllerCameraCaptureMode) cameraCaptureMode\n{\n    return [self cameraCaptureMode__];\n}\n\n"
+      "reverse": "- (UIImagePickerControllerCameraCaptureMode) cameraCaptureMode\n{\n    return [self cameraCaptureMode__];\n}\n\n",
+      "super": "- (int) cameraCaptureMode__\n{\n    return [super cameraCaptureMode];\n}\n\n"
     },
     "cameraDevice()": {
-      "code": "- (UIImagePickerControllerCameraDevice) cameraDevice\n{\n    return [self cameraDevice__];\n}\n\n"
+      "reverse": "- (UIImagePickerControllerCameraDevice) cameraDevice\n{\n    return [self cameraDevice__];\n}\n\n",
+      "super": "- (int) cameraDevice__\n{\n    return [super cameraDevice];\n}\n\n"
     },
     "cameraFlashMode()": {
-      "code": "- (UIImagePickerControllerCameraFlashMode) cameraFlashMode\n{\n    return [self cameraFlashMode__];\n}\n\n"
+      "reverse": "- (UIImagePickerControllerCameraFlashMode) cameraFlashMode\n{\n    return [self cameraFlashMode__];\n}\n\n",
+      "super": "- (int) cameraFlashMode__\n{\n    return [super cameraFlashMode];\n}\n\n"
     },
     "cameraOverlayView()": {
-      "code": "- (UIView *) cameraOverlayView\n{\n    UIView * re$ult = [self cameraOverlayView__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (UIView *) cameraOverlayView\n{\n    UIView * re$ult = [self cameraOverlayView__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (UIView*) cameraOverlayView__\n{\n    UIView* re$ult = [super cameraOverlayView];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIView"
+      ]
     },
     "cameraViewTransform()": {
-      "code": "- (CGAffineTransform) cameraViewTransform\n{\n    crossmobile_ios_coregraphics_CGAffineTransform* re$ult = [self cameraViewTransform__];\n    CGAffineTransform re$ult$conv = [re$ult getCGAffineTransform];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n"
+      "reverse": "- (CGAffineTransform) cameraViewTransform\n{\n    crossmobile_ios_coregraphics_CGAffineTransform* re$ult = [self cameraViewTransform__];\n    CGAffineTransform re$ult$conv = [re$ult getCGAffineTransform];\n    [re$ult release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_coregraphics_CGAffineTransform*) cameraViewTransform__\n{\n    return [[crossmobile_ios_coregraphics_CGAffineTransform alloc] initWithCGAffineTransform:[super cameraViewTransform]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_coregraphics_CGAffineTransform"
+      ]
     },
+    "childViewControllerContainingSegueSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "childViewControllers()": null,
+    "contentSizeForViewInPopover()": null,
+    "definesPresentationContext()": null,
+    "delegate()": null,
+    "didReceiveMemoryWarning()": null,
+    "didRotateFromInterfaceOrientation(int)": null,
+    "disablesAutomaticKeyboardDismissal()": null,
+    "dismissModalViewControllerAnimated(boolean)": null,
+    "edgesForExtendedLayout()": null,
+    "editButtonItem()": null,
+    "endAppearanceTransition()": null,
+    "extensionContext()": null,
+    "hidesBottomBarWhenPushed()": null,
+    "interfaceOrientation()": null,
+    "isEditing()": null,
+    "isFirstResponder()": null,
+    "isModalInPopover()": null,
+    "isNavigationBarHidden()": null,
+    "isToolbarHidden()": null,
+    "isViewLoaded()": null,
+    "loadView()": null,
+    "loadViewIfNeeded()": null,
     "mediaTypes()": {
-      "code": "- (NSArray<NSString *> *) mediaTypes\n{\n    NSArray<NSString *> * re$ult = [self mediaTypes__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n"
+      "reverse": "- (NSArray<NSString *> *) mediaTypes\n{\n    NSArray<NSString *> * re$ult = [self mediaTypes__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSArray*) mediaTypes__\n{\n    NSArray* re$ult = [super mediaTypes];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
     },
+    "modalPresentationStyle()": null,
+    "modalTransitionStyle()": null,
+    "navigationBar()": null,
+    "navigationController()": null,
+    "navigationItem()": null,
+    "nextResponder()": null,
+    "nibName()": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "parentViewController()": null,
+    "performSegueWithIdentifier(java.lang.String,java.lang.Object)": null,
+    "popToRootViewControllerAnimated(boolean)": null,
+    "popToViewController(crossmobile.ios.uikit.UIViewController,boolean)": null,
+    "popViewControllerAnimated(boolean)": null,
+    "preferredInterfaceOrientationForPresentation()": null,
+    "prefersStatusBarHidden()": null,
+    "prepareForSegue(crossmobile.ios.uikit.UIStoryboardSegue,java.lang.Object)": null,
+    "presentModalViewController(crossmobile.ios.uikit.UIViewController,boolean)": null,
+    "presentedViewController()": null,
+    "presentingViewController()": null,
+    "providesPresentationContextTransitionStyle()": null,
+    "pushViewController(crossmobile.ios.uikit.UIViewController,boolean)": null,
+    "removeFromParentViewController()": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "resignFirstResponder()": null,
+    "restorationIdentifier()": null,
+    "rotatingFooterView()": null,
+    "rotatingHeaderView()": null,
+    "setAdditionalSafeAreaInsets(crossmobile.ios.uikit.UIEdgeInsets)": null,
     "setAllowsEditing(boolean)": {
-      "code": "- (void) setAllowsEditing:(BOOL) allowsEditing\n{\n    [self setAllowsEditing___boolean:allowsEditing];\n}\n\n"
+      "reverse": "- (void) setAllowsEditing:(BOOL) allowsEditing\n{\n    [self setAllowsEditing___boolean:allowsEditing];\n}\n\n",
+      "super": "- (void) setAllowsEditing___boolean:(BOOL) allowsEditing \n{\n    [super setAllowsEditing:allowsEditing];\n}\n\n"
     },
+    "setAutomaticallyAdjustsScrollViewInsets(boolean)": null,
     "setCameraCaptureMode(int)": {
-      "code": "- (void) setCameraCaptureMode:(UIImagePickerControllerCameraCaptureMode) cameraCaptureMode\n{\n    [self setCameraCaptureMode___int:cameraCaptureMode];\n}\n\n"
+      "reverse": "- (void) setCameraCaptureMode:(UIImagePickerControllerCameraCaptureMode) cameraCaptureMode\n{\n    [self setCameraCaptureMode___int:cameraCaptureMode];\n}\n\n",
+      "super": "- (void) setCameraCaptureMode___int:(int) cameraCaptureMode \n{\n    [super setCameraCaptureMode:cameraCaptureMode];\n}\n\n"
     },
     "setCameraDevice(int)": {
-      "code": "- (void) setCameraDevice:(UIImagePickerControllerCameraDevice) cameraDevice\n{\n    [self setCameraDevice___int:cameraDevice];\n}\n\n"
+      "reverse": "- (void) setCameraDevice:(UIImagePickerControllerCameraDevice) cameraDevice\n{\n    [self setCameraDevice___int:cameraDevice];\n}\n\n",
+      "super": "- (void) setCameraDevice___int:(int) cameraDevice \n{\n    [super setCameraDevice:cameraDevice];\n}\n\n"
     },
     "setCameraFlashMode(int)": {
-      "code": "- (void) setCameraFlashMode:(UIImagePickerControllerCameraFlashMode) cameraFlashMode\n{\n    [self setCameraFlashMode___int:cameraFlashMode];\n}\n\n"
+      "reverse": "- (void) setCameraFlashMode:(UIImagePickerControllerCameraFlashMode) cameraFlashMode\n{\n    [self setCameraFlashMode___int:cameraFlashMode];\n}\n\n",
+      "super": "- (void) setCameraFlashMode___int:(int) cameraFlashMode \n{\n    [super setCameraFlashMode:cameraFlashMode];\n}\n\n"
     },
     "setCameraOverlayView(crossmobile.ios.uikit.UIView)": {
-      "code": "- (void) setCameraOverlayView:(UIView *) cameraOverlayView\n{\n    [self setCameraOverlayView___crossmobile_ios_uikit_UIView:(cameraOverlayView ? cameraOverlayView : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setCameraOverlayView:(UIView *) cameraOverlayView\n{\n    [self setCameraOverlayView___crossmobile_ios_uikit_UIView:(cameraOverlayView ? cameraOverlayView : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setCameraOverlayView___crossmobile_ios_uikit_UIView:(UIView*) cameraOverlayView \n{\n    [super setCameraOverlayView:(cameraOverlayView == JAVA_NULL ? nil : cameraOverlayView)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIView"
+      ]
     },
     "setCameraViewTransform(crossmobile.ios.coregraphics.CGAffineTransform)": {
-      "code": "- (void) setCameraViewTransform:(CGAffineTransform) cameraViewTransform\n{\n    crossmobile_ios_coregraphics_CGAffineTransform* cameraViewTransform$conv = [[crossmobile_ios_coregraphics_CGAffineTransform alloc] initWithCGAffineTransform:cameraViewTransform];\n    [self setCameraViewTransform___crossmobile_ios_coregraphics_CGAffineTransform:cameraViewTransform$conv];\n    [cameraViewTransform$conv release];\n}\n\n"
+      "reverse": "- (void) setCameraViewTransform:(CGAffineTransform) cameraViewTransform\n{\n    crossmobile_ios_coregraphics_CGAffineTransform* cameraViewTransform$conv = [[crossmobile_ios_coregraphics_CGAffineTransform alloc] initWithCGAffineTransform:cameraViewTransform];\n    [self setCameraViewTransform___crossmobile_ios_coregraphics_CGAffineTransform:cameraViewTransform$conv];\n    [cameraViewTransform$conv release];\n}\n\n",
+      "super": "- (void) setCameraViewTransform___crossmobile_ios_coregraphics_CGAffineTransform:(crossmobile_ios_coregraphics_CGAffineTransform*) cameraViewTransform \n{\n    [super setCameraViewTransform:[cameraViewTransform getCGAffineTransform]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_coregraphics_CGAffineTransform"
+      ]
     },
+    "setContentSizeForViewInPopover(crossmobile.ios.coregraphics.CGSize)": null,
+    "setDefinesPresentationContext(boolean)": null,
+    "setDelegate(crossmobile.ios.uikit.UINavigationControllerDelegate)": null,
+    "setEdgesForExtendedLayout(int)": null,
+    "setEditing(boolean)": null,
+    "setEditing(boolean,boolean)": null,
+    "setHidesBottomBarWhenPushed(boolean)": null,
     "setMediaTypes(java.util.List)": {
-      "code": "- (void) setMediaTypes:(NSArray<NSString *> *) mediaTypes\n{\n    [self setMediaTypes___java_util_List:(mediaTypes ? mediaTypes : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) setMediaTypes:(NSArray<NSString *> *) mediaTypes\n{\n    [self setMediaTypes___java_util_List:(mediaTypes ? mediaTypes : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setMediaTypes___java_util_List:(NSArray*) mediaTypes \n{\n    [super setMediaTypes:(mediaTypes == JAVA_NULL ? nil : mediaTypes)];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
     },
+    "setModalInPopover(boolean)": null,
+    "setModalPresentationStyle(int)": null,
+    "setModalTransitionStyle(int)": null,
+    "setNavigationBarHidden(boolean)": null,
+    "setNavigationBarHidden(boolean,boolean)": null,
+    "setProvidesPresentationContextTransitionStyle(boolean)": null,
+    "setRestorationIdentifier(java.lang.String)": null,
     "setShowsCameraControls(boolean)": {
-      "code": "- (void) setShowsCameraControls:(BOOL) showsCameraControls\n{\n    [self setShowsCameraControls___boolean:showsCameraControls];\n}\n\n"
+      "reverse": "- (void) setShowsCameraControls:(BOOL) showsCameraControls\n{\n    [self setShowsCameraControls___boolean:showsCameraControls];\n}\n\n",
+      "super": "- (void) setShowsCameraControls___boolean:(BOOL) showsCameraControls \n{\n    [super setShowsCameraControls:showsCameraControls];\n}\n\n"
     },
     "setSourceType(int)": {
-      "code": "- (void) setSourceType:(UIImagePickerControllerSourceType) sourceType\n{\n    [self setSourceType___int:sourceType];\n}\n\n"
+      "reverse": "- (void) setSourceType:(UIImagePickerControllerSourceType) sourceType\n{\n    [self setSourceType___int:sourceType];\n}\n\n",
+      "super": "- (void) setSourceType___int:(int) sourceType \n{\n    [super setSourceType:sourceType];\n}\n\n"
     },
+    "setTabBarItem(crossmobile.ios.uikit.UITabBarItem)": null,
+    "setTitle(java.lang.String)": null,
+    "setToolbarHidden(boolean)": null,
+    "setToolbarHidden(boolean,boolean)": null,
+    "setToolbarItems(java.util.List)": null,
+    "setToolbarItems(java.util.List,boolean)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
     "setVideoMaximumDuration(double)": {
-      "code": "- (void) setVideoMaximumDuration:(NSTimeInterval) videoMaximumDuration\n{\n    [self setVideoMaximumDuration___double:videoMaximumDuration];\n}\n\n"
+      "reverse": "- (void) setVideoMaximumDuration:(NSTimeInterval) videoMaximumDuration\n{\n    [self setVideoMaximumDuration___double:videoMaximumDuration];\n}\n\n",
+      "super": "- (void) setVideoMaximumDuration___double:(double) videoMaximumDuration \n{\n    [super setVideoMaximumDuration:videoMaximumDuration];\n}\n\n"
     },
     "setVideoQuality(int)": {
-      "code": "- (void) setVideoQuality:(UIImagePickerControllerQualityType) videoQuality\n{\n    [self setVideoQuality___int:videoQuality];\n}\n\n"
+      "reverse": "- (void) setVideoQuality:(UIImagePickerControllerQualityType) videoQuality\n{\n    [self setVideoQuality___int:videoQuality];\n}\n\n",
+      "super": "- (void) setVideoQuality___int:(int) videoQuality \n{\n    [super setVideoQuality:videoQuality];\n}\n\n"
     },
+    "setView(crossmobile.ios.uikit.UIView)": null,
+    "setViewControllers(java.util.List)": null,
+    "setViewControllers(java.util.List,boolean)": null,
+    "setWantsFullScreenLayout(boolean)": null,
+    "shouldAutomaticallyForwardAppearanceMethods()": null,
+    "shouldAutorotate()": null,
+    "shouldAutorotateToInterfaceOrientation(int)": null,
+    "shouldPerformSegueWithIdentifier(java.lang.String,java.lang.Object)": null,
+    "showDetailViewController(crossmobile.ios.uikit.UIViewController,java.lang.Object)": null,
+    "showViewController(crossmobile.ios.uikit.UIViewController,java.lang.Object)": null,
     "showsCameraControls()": {
-      "code": "- (BOOL) showsCameraControls\n{\n    return [self showsCameraControls__];\n}\n\n"
+      "reverse": "- (BOOL) showsCameraControls\n{\n    return [self showsCameraControls__];\n}\n\n",
+      "super": "- (BOOL) showsCameraControls__\n{\n    return [super showsCameraControls];\n}\n\n"
     },
     "sourceType()": {
-      "code": "- (UIImagePickerControllerSourceType) sourceType\n{\n    return [self sourceType__];\n}\n\n"
+      "reverse": "- (UIImagePickerControllerSourceType) sourceType\n{\n    return [self sourceType__];\n}\n\n",
+      "super": "- (int) sourceType__\n{\n    return [super sourceType];\n}\n\n"
     },
+    "splitViewController()": null,
     "startVideoCapture()": {
-      "code": "- (BOOL) startVideoCapture\n{\n    return [self startVideoCapture__];\n}\n\n"
+      "reverse": "- (BOOL) startVideoCapture\n{\n    return [self startVideoCapture__];\n}\n\n",
+      "super": "- (BOOL) startVideoCapture__\n{\n    return [super startVideoCapture];\n}\n\n"
     },
     "stopVideoCapture()": {
-      "code": "- (void) stopVideoCapture\n{\n    [self stopVideoCapture__];\n}\n\n"
+      "reverse": "- (void) stopVideoCapture\n{\n    [self stopVideoCapture__];\n}\n\n",
+      "super": "- (void) stopVideoCapture__\n{\n    [super stopVideoCapture];\n}\n\n"
     },
+    "storyboard()": null,
+    "supportedInterfaceOrientations()": null,
+    "tabBarController()": null,
+    "tabBarItem()": null,
     "takePicture()": {
-      "code": "- (void) takePicture\n{\n    [self takePicture__];\n}\n\n"
+      "reverse": "- (void) takePicture\n{\n    [self takePicture__];\n}\n\n",
+      "super": "- (void) takePicture__\n{\n    [super takePicture];\n}\n\n"
     },
+    "title()": null,
+    "toolbar()": null,
+    "toolbarItems()": null,
+    "topLayoutGuide()": null,
+    "topViewController()": null,
+    "touchesBegan(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesCancelled(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesEnded(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesMoved(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null,
     "videoMaximumDuration()": {
-      "code": "- (NSTimeInterval) videoMaximumDuration\n{\n    return [self videoMaximumDuration__];\n}\n\n"
+      "reverse": "- (NSTimeInterval) videoMaximumDuration\n{\n    return [self videoMaximumDuration__];\n}\n\n",
+      "super": "- (double) videoMaximumDuration__\n{\n    return [super videoMaximumDuration];\n}\n\n"
     },
     "videoQuality()": {
-      "code": "- (UIImagePickerControllerQualityType) videoQuality\n{\n    return [self videoQuality__];\n}\n\n"
-    }
+      "reverse": "- (UIImagePickerControllerQualityType) videoQuality\n{\n    return [self videoQuality__];\n}\n\n",
+      "super": "- (int) videoQuality__\n{\n    return [super videoQuality];\n}\n\n"
+    },
+    "view()": null,
+    "viewControllers()": null,
+    "viewDidAppear(boolean)": null,
+    "viewDidDisappear(boolean)": null,
+    "viewDidLayoutSubviews()": null,
+    "viewDidLoad()": null,
+    "viewDidUnload()": null,
+    "viewIfLoaded()": null,
+    "viewSafeAreaInsetsDidChange()": null,
+    "viewWillAppear(boolean)": null,
+    "viewWillDisappear(boolean)": null,
+    "viewWillLayoutSubviews()": null,
+    "visibleViewController()": null,
+    "wantsFullScreenLayout()": null,
+    "willAnimateRotationToInterfaceOrientation(int,double)": null,
+    "willRotateToInterfaceOrientation(int,double)": null
   },
   "crossmobile.ios.uikit.UIImagePickerControllerDelegate": {
     "didCancel(crossmobile.ios.uikit.UIImagePickerController)": {
-      "code": "- (void) imagePickerControllerDidCancel:(UIImagePickerController *) picker\n{\n    [self didCancel___crossmobile_ios_uikit_UIImagePickerController:(picker ? picker : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) imagePickerControllerDidCancel:(UIImagePickerController *) picker\n{\n    [self didCancel___crossmobile_ios_uikit_UIImagePickerController:(picker ? picker : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didCancel___crossmobile_ios_uikit_UIImagePickerController:(UIImagePickerController*) picker \n{\n    [super imagePickerControllerDidCancel:(picker == JAVA_NULL ? nil : picker)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIImagePickerController"
+      ]
     },
     "didFinishPickingMediaWithInfo(crossmobile.ios.uikit.UIImagePickerController,java.util.Map)": {
-      "code": "- (void) imagePickerController:(UIImagePickerController *) picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *) info\n{\n    [self didFinishPickingMediaWithInfo___crossmobile_ios_uikit_UIImagePickerController_java_util_Map:(picker ? picker : JAVA_NULL) :(info ? info : JAVA_NULL)];\n}\n\n"
+      "reverse": "- (void) imagePickerController:(UIImagePickerController *) picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *) info\n{\n    [self didFinishPickingMediaWithInfo___crossmobile_ios_uikit_UIImagePickerController_java_util_Map:(picker ? picker : JAVA_NULL) :(info ? info : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didFinishPickingMediaWithInfo___crossmobile_ios_uikit_UIImagePickerController_java_util_Map:(UIImagePickerController*) picker :(NSDictionary*) info \n{\n    [super imagePickerController:(picker == JAVA_NULL ? nil : picker) didFinishPickingMediaWithInfo:(info == JAVA_NULL ? nil : info)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIImagePickerController",
+        "java_util_Map"
+      ]
     },
     "didShowViewController(crossmobile.ios.uikit.UINavigationController,crossmobile.ios.uikit.UIViewController,boolean)": {
-      "code": "- (void) navigationController:(UINavigationController *) navigationController didShowViewController:(UIViewController *) viewController animated:(BOOL) animated\n{\n    [self didShowViewController___crossmobile_ios_uikit_UINavigationController_crossmobile_ios_uikit_UIViewController_boolean:(navigationController ? navigationController : JAVA_NULL) :(viewController ? viewController : JAVA_NULL) :animated];\n}\n\n"
+      "reverse": "- (void) navigationController:(UINavigationController *) navigationController didShowViewController:(UIViewController *) viewController animated:(BOOL) animated\n{\n    [self didShowViewController___crossmobile_ios_uikit_UINavigationController_crossmobile_ios_uikit_UIViewController_boolean:(navigationController ? navigationController : JAVA_NULL) :(viewController ? viewController : JAVA_NULL) :animated];\n}\n\n",
+      "super": "- (void) didShowViewController___crossmobile_ios_uikit_UINavigationController_crossmobile_ios_uikit_UIViewController_boolean:(UINavigationController*) navigationController :(UIViewController*) viewController :(BOOL) animated \n{\n    [super navigationController:(navigationController == JAVA_NULL ? nil : navigationController) didShowViewController:(viewController == JAVA_NULL ? nil : viewController) animated:animated];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UINavigationController",
+        "crossmobile_ios_uikit_UIViewController"
+      ]
     },
     "willShowViewController(crossmobile.ios.uikit.UINavigationController,crossmobile.ios.uikit.UIViewController,boolean)": {
-      "code": "- (void) navigationController:(UINavigationController *) navigationController willShowViewController:(UIViewController *) viewController animated:(BOOL) animated\n{\n    [self willShowViewController___crossmobile_ios_uikit_UINavigationController_crossmobile_ios_uikit_UIViewController_boolean:(navigationController ? navigationController : JAVA_NULL) :(viewController ? viewController : JAVA_NULL) :animated];\n}\n\n"
+      "reverse": "- (void) navigationController:(UINavigationController *) navigationController willShowViewController:(UIViewController *) viewController animated:(BOOL) animated\n{\n    [self willShowViewController___crossmobile_ios_uikit_UINavigationController_crossmobile_ios_uikit_UIViewController_boolean:(navigationController ? navigationController : JAVA_NULL) :(viewController ? viewController : JAVA_NULL) :animated];\n}\n\n",
+      "super": "- (void) willShowViewController___crossmobile_ios_uikit_UINavigationController_crossmobile_ios_uikit_UIViewController_boolean:(UINavigationController*) navigationController :(UIViewController*) viewController :(BOOL) animated \n{\n    [super navigationController:(navigationController == JAVA_NULL ? nil : navigationController) willShowViewController:(viewController == JAVA_NULL ? nil : viewController) animated:animated];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UINavigationController",
+        "crossmobile_ios_uikit_UIViewController"
+      ]
     }
   }
 }

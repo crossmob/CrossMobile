@@ -99,7 +99,7 @@ public class PluginAssembler {
                     unzipJar(f, runtime);
             }, "Extract embedded jars");
 
-        CodeReverse codeRev = (buildIos || buildUwp) ? time(() -> new CodeReverse(cc.getClassPool()), "Create reverse code") : null;
+        ReverseCode codeRev = (buildIos || buildUwp) ? time(() -> new ReverseCode(cc.getClassPool()), "Create reverse code") : null;
         if (buildIos || buildUwp) {
 //            time(() -> new JavaTransformer(cc.getClassPool(), runtime_rvm));
             time(() -> new CreateDylib(resolver, target, cachedir, vendorSrc, null, codeRev.getHandleRegistry(), buildIos), "Create iOS libraries");

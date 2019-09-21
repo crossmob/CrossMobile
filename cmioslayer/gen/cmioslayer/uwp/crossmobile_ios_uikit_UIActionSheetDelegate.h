@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.uikit.UIActionSheetDelegate definition
+// crossmobile_ios_uikit_UIActionSheetDelegate definition
 
 #import "xmlvm.h"
 #import <CoreGraphics/CoreGraphics.h>

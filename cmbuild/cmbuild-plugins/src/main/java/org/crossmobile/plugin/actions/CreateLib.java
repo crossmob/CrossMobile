@@ -18,7 +18,7 @@ package org.crossmobile.plugin.actions;
 
 import org.crossmobile.build.ArtifactInfo;
 import org.crossmobile.plugin.model.NObject;
-import org.crossmobile.plugin.objc.ReverseBlockRegistry;
+import org.crossmobile.plugin.objc.ReverseImportRegistry;
 import org.crossmobile.plugin.objc.ObjectEmitter;
 import org.crossmobile.plugin.reg.*;
 import org.crossmobile.plugin.utils.Streamer;
@@ -40,9 +40,8 @@ import static org.crossmobile.build.utils.PlistUtils.isInclude;
 import static org.crossmobile.plugin.reg.PluginRegistry.*;
 import static org.crossmobile.plugin.utils.Streamer.asBody;
 import static org.crossmobile.plugin.utils.Streamer.asHeader;
-import static org.crossmobile.plugin.utils.Texters.toObjC;
+import static org.crossmobile.utils.NamingUtils.toObjC;
 import static org.crossmobile.utils.FileUtils.*;
-import static org.crossmobile.utils.NamingUtils.getClassNameBare;
 import static org.crossmobile.utils.TextUtils.plural;
 import static org.crossmobile.utils.TimeUtils.time;
 
@@ -53,7 +52,7 @@ public abstract class CreateLib {
     private static final Function<String, String> IOSLibName = l -> "lib" + l + ".a";
     private static final Function<String, String> UWPLibName = l -> l + ".dll";
 
-    public CreateLib(Function<ArtifactInfo, File> resolver, File target, File cache, File vendor, File IDELocation, ReverseBlockRegistry handleRegistry, boolean asIOS, boolean build) throws IOException {
+    public CreateLib(Function<ArtifactInfo, File> resolver, File target, File cache, File vendor, File IDELocation, ReverseImportRegistry handleRegistry, boolean asIOS, boolean build) throws IOException {
         // Create native files in the scratch folder
         Function<String, File> prodResolv = plugin -> new File(target, PLATFORM.apply(asIOS) + separator + plugin);
         final Function<String, String> LIBNAME = asIOS ? IOSLibName : UWPLibName;
@@ -139,7 +138,7 @@ public abstract class CreateLib {
         Map<String, Streamer> swift = new HashMap<>();
         for (NObject obj : ObjectRegistry.retrieveAll()) {
             ObjectEmitter out = new ObjectEmitter(obj);
-            String name = toObjC(getClassNameBare(obj.getType()));
+            String name = toObjC(obj.getType());
             String plugin = getPlugin(obj.getType().getName());
             if (plugin != null) {
                 Streamer swiftStreamer = swift.computeIfAbsent(plugin, o -> Streamer.asString());

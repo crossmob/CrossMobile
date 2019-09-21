@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.accounts.ACAccountCredential definition
+// crossmobile_ios_accounts_ACAccountCredential definition
 
 #import "xmlvm.h"
 #import <Accounts/Accounts.h>

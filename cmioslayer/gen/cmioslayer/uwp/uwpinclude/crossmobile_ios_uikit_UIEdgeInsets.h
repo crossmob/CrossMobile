@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.uikit.UIEdgeInsets definition
+// crossmobile_ios_uikit_UIEdgeInsets definition
 
 #import "xmlvm.h"
 #import <CoreGraphics/CoreGraphics.h>

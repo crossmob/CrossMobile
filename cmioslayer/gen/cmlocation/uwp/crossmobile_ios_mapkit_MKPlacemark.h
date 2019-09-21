@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.mapkit.MKPlacemark definition
+// crossmobile_ios_mapkit_MKPlacemark definition
 
 #import "xmlvm.h"
 #import <CoreLocation/CoreLocation.h>

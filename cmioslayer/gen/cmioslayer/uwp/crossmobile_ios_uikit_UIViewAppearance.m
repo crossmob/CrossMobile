@@ -1,13 +1,13 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.uikit.UIViewAppearance implementation
+// crossmobile_ios_uikit_UIViewAppearance implementation
 
 #import "crossmobile_ios_uikit_UIColor.h"
 #import "crossmobile_ios_uikit_UIViewAppearance.h"
 
 @implementation crossmobile_ios_uikit_UIViewAppearance
 
-// direct binding of: @property(nonatomic, copy) UIColor *backgroundColor;
+// @property(nonatomic, copy) UIColor *backgroundColor;
 - (void) setBackgroundColor___crossmobile_ios_uikit_UIColor:(UIColor*) backgroundColor 
 {
     [self->$reference setBackgroundColor:(backgroundColor == JAVA_NULL ? nil : backgroundColor)];

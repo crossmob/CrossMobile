@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.coregraphics.CGLayer definition
+// crossmobile_ios_coregraphics_CGLayer definition
 
 #import "xmlvm.h"
 #import <CoreGraphics/CoreGraphics.h>

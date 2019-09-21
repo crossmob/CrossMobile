@@ -1,8 +1,9 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.usernotifications.UNCalendarNotificationTrigger definition
+// crossmobile_ios_usernotifications_UNCalendarNotificationTrigger definition
 
 #import "xmlvm.h"
+#import <UIKit/UIKit.h>
 #import <UserNotifications/UserNotifications.h>
 @class crossmobile_ios_foundation_NSDate;
 @class crossmobile_ios_foundation_NSDateComponents;

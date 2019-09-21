@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.accounts.ACAccountStoreRemoveCompletionHandler definition
+// crossmobile_ios_accounts_ACAccountStoreRemoveCompletionHandler definition
 
 #import "xmlvm.h"
 #import <Accounts/Accounts.h>

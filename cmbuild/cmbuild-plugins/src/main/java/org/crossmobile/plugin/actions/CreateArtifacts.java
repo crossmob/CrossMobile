@@ -43,7 +43,7 @@ import static org.crossmobile.utils.TextUtils.iterableToString;
 public class CreateArtifacts {
 
     public static void installPlugin(Consumer<ArtifactInfo> installer,
-                                     String plugin, File target, DependencyItem item, File cache, File vendorSrc, File vendorBin, CodeReverse rc,
+                                     String plugin, File target, DependencyItem item, File cache, File vendorSrc, File vendorBin, ReverseCode rc,
                                      boolean buildDesktop, boolean buildIos, boolean buildUwp, boolean buildAndroid, boolean buildRvm, boolean buildCore,
                                      Writer report) {
         // Get plugin data
@@ -64,7 +64,7 @@ public class CreateArtifacts {
                 new File(cache, plugin + File.separator + "plugin.txt"));
 
         if (buildIos || buildUwp) {
-            Log.debug("Back references for " + plugin + ": " + iterableToString(rc.getClasses(plugin), ";"));
+            Log.debug("Back references for " + plugin + ": " + iterableToString(rc.getListOfClasses(plugin), ";"));
             copy(write(new File(compileTarget, REVERSE_INF), rc.toString(plugin)),
                     new File(cache, plugin + File.separator + "reverse.txt"));
             Log.debug("Installing native files of plugin " + plugin);

@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.mapkit.MKCoordinateRegion implementation
+// crossmobile_ios_mapkit_MKCoordinateRegion implementation
 
 #import "crossmobile_ios_corelocation_CLLocationCoordinate2D.h"
 #import "crossmobile_ios_mapkit_MKCoordinateRegion.h"
@@ -8,31 +8,31 @@
 
 @implementation crossmobile_ios_mapkit_MKCoordinateRegion
 
-// direct binding of: MKCoordinateRegion MKCoordinateRegionMake ( CLLocationCoordinate2D centerCoordinate, MKCoordinateSpan span );
+// MKCoordinateRegion MKCoordinateRegionMake ( CLLocationCoordinate2D centerCoordinate, MKCoordinateSpan span );
 - (crossmobile_ios_mapkit_MKCoordinateRegion*) __init_crossmobile_ios_mapkit_MKCoordinateRegion___crossmobile_ios_corelocation_CLLocationCoordinate2D_crossmobile_ios_mapkit_MKCoordinateSpan:(crossmobile_ios_corelocation_CLLocationCoordinate2D*) centerCoordinate :(crossmobile_ios_mapkit_MKCoordinateSpan*) span 
 {
     return [self initWithMKCoordinateRegion:MKCoordinateRegionMake([centerCoordinate getCLLocationCoordinate2D], [span getMKCoordinateSpan])];
 }
 
-// direct binding of: CLLocationCoordinate2D center;
+// CLLocationCoordinate2D center;
 - (void) setCenter___crossmobile_ios_corelocation_CLLocationCoordinate2D:(crossmobile_ios_corelocation_CLLocationCoordinate2D*) center 
 {
     [self->center_crossmobile_ios_corelocation_CLLocationCoordinate2D setCLLocationCoordinate2D:[center getCLLocationCoordinate2D]];
 }
 
-// direct binding of: CLLocationCoordinate2D center;
+// CLLocationCoordinate2D center;
 - (crossmobile_ios_corelocation_CLLocationCoordinate2D*) getCenter__
 {
     return [self->center_crossmobile_ios_corelocation_CLLocationCoordinate2D retain];
 }
 
-// direct binding of: MKCoordinateSpan span;
+// MKCoordinateSpan span;
 - (void) setSpan___crossmobile_ios_mapkit_MKCoordinateSpan:(crossmobile_ios_mapkit_MKCoordinateSpan*) span 
 {
     [self->span_crossmobile_ios_mapkit_MKCoordinateSpan setMKCoordinateSpan:[span getMKCoordinateSpan]];
 }
 
-// direct binding of: MKCoordinateSpan span;
+// MKCoordinateSpan span;
 - (crossmobile_ios_mapkit_MKCoordinateSpan*) getSpan__
 {
     return [self->span_crossmobile_ios_mapkit_MKCoordinateSpan retain];

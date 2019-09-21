@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.uikit.UIAccessibilityIdentification definition
+// crossmobile_ios_uikit_UIAccessibilityIdentification definition
 
 #import "xmlvm.h"
 #import <CoreGraphics/CoreGraphics.h>

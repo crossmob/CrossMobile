@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.uikit.UIGraphics implementation
+// crossmobile_ios_uikit_UIGraphics implementation
 
 #import "crossmobile_ios_coregraphics_CGContext.h"
 #import "crossmobile_ios_coregraphics_CGSize.h"
@@ -9,44 +9,44 @@
 
 @implementation crossmobile_ios_uikit_UIGraphics
 
-// direct binding of: void UIGraphicsBeginImageContext ( CGSize size );
+// void UIGraphicsBeginImageContext ( CGSize size );
 + (void) beginImageContext___crossmobile_ios_coregraphics_CGSize:(crossmobile_ios_coregraphics_CGSize*) size 
 {
     UIGraphicsBeginImageContext([size getCGSize]);
 }
 
-// direct binding of: void UIGraphicsBeginImageContextWithOptions ( CGSize size, BOOL opaque, CGFloat scale );
+// void UIGraphicsBeginImageContextWithOptions ( CGSize size, BOOL opaque, CGFloat scale );
 + (void) beginImageContextWithOptions___crossmobile_ios_coregraphics_CGSize_boolean_double:(crossmobile_ios_coregraphics_CGSize*) size :(BOOL) opaque :(double) scale 
 {
     UIGraphicsBeginImageContextWithOptions([size getCGSize], opaque, scale);
 }
 
-// direct binding of: void UIGraphicsEndImageContext ( void );
+// void UIGraphicsEndImageContext ( void );
 + (void) endImageContext__
 {
     UIGraphicsEndImageContext();
 }
 
-// direct binding of: CGContextRef UIGraphicsGetCurrentContext ( void );
+// CGContextRef UIGraphicsGetCurrentContext ( void );
 + (crossmobile_ios_coregraphics_CGContext*) getCurrentContext__
 {
     return [[crossmobile_ios_coregraphics_CGContext alloc] initWithCGContext:UIGraphicsGetCurrentContext()];
 }
 
-// direct binding of: UIImage * UIGraphicsGetImageFromCurrentImageContext ( void );
+// UIImage * UIGraphicsGetImageFromCurrentImageContext ( void );
 + (UIImage*) getImageFromCurrentImageContext__
 {
     UIImage* re$ult = UIGraphicsGetImageFromCurrentImageContext();
     return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 
-// direct binding of: void UIGraphicsPopContext ( void );
+// void UIGraphicsPopContext ( void );
 + (void) popContext__
 {
     UIGraphicsPopContext();
 }
 
-// direct binding of: void UIGraphicsPushContext ( CGContextRef context );
+// void UIGraphicsPushContext ( CGContextRef context );
 + (void) pushContext___crossmobile_ios_coregraphics_CGContext:(crossmobile_ios_coregraphics_CGContext*) context 
 {
     UIGraphicsPushContext(context->$reference);

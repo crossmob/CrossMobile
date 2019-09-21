@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.foundation.NSHTTPURLResponse definition
+// crossmobile_ios_foundation_NSHTTPURLResponse definition
 
 #import "xmlvm.h"
 #import <CoreGraphics/CoreGraphics.h>

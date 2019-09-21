@@ -22,7 +22,7 @@ import com.dd.plist.PropertyListParser;
 import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.build.ArtifactInfo;
 import org.crossmobile.build.utils.PlistUtils.*;
-import org.crossmobile.plugin.objc.ReverseBlockRegistry;
+import org.crossmobile.plugin.objc.ReverseImportRegistry;
 import org.crossmobile.plugin.reg.Plugin;
 import org.crossmobile.utils.Commander;
 import org.crossmobile.utils.Log;
@@ -49,7 +49,7 @@ import static org.crossmobile.utils.TextUtils.plural;
 
 public class CreateDylib extends CreateLib {
 
-    public CreateDylib(Function<ArtifactInfo, File> resolver, File target, File cache, File vendor, File IDELocation, ReverseBlockRegistry handleRegistry, boolean build) throws IOException {
+    public CreateDylib(Function<ArtifactInfo, File> resolver, File target, File cache, File vendor, File IDELocation, ReverseImportRegistry handleRegistry, boolean build) throws IOException {
         super(resolver, target, cache, vendor, IDELocation, handleRegistry, true, build);
     }
 

@@ -312,8 +312,6 @@ public class TypeRegistry {
             return Byte.class;
         else if (short.class.equals(primitiveClass))
             return Short.class;
-        else if (int.class.equals(primitiveClass))
-            return Integer.class;
         else if (long.class.equals(primitiveClass))
             return Long.class;
         else if (float.class.equals(primitiveClass))

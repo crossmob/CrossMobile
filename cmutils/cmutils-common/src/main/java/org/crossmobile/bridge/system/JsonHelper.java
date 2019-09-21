@@ -182,15 +182,16 @@ public class JsonHelper {
         else if (value instanceof Double)
             return Json.value((Double) value);
         else if (value instanceof Map) {
+            //noinspection unchecked
             Map<String, Object> map = (Map<String, Object>) value;
             JsonObject json = new JsonObject();
             for (String key : map.keySet())
                 json.add(key, fromCollection(map.get(key)));
             return json;
-        } else if (value instanceof List) {
-            List list = (List) value;
+        } else if (value instanceof Collection) {
+            Collection collection = (Collection) value;
             JsonArray json = new JsonArray();
-            for (Object item : list)
+            for (Object item : collection)
                 json.add(fromCollection(item));
             return json;
         } else if (value instanceof CharSequence)

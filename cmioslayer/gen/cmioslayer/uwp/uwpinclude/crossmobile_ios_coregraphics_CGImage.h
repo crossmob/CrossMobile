@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.coregraphics.CGImage definition
+// crossmobile_ios_coregraphics_CGImage definition
 
 #import "xmlvm.h"
 #import <CoreGraphics/CoreGraphics.h>

@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.touchid.LAContext definition
+// crossmobile_ios_touchid_LAContext definition
 
 #import "xmlvm.h"
 #import <LocalAuthentication/LocalAuthentication.h>

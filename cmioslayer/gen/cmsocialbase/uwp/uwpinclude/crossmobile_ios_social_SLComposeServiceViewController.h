@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.social.SLComposeServiceViewController definition
+// crossmobile_ios_social_SLComposeServiceViewController definition
 
 #import "xmlvm.h"
 #import <Social/Social.h>

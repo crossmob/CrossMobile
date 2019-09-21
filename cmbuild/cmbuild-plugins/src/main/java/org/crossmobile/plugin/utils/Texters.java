@@ -38,12 +38,8 @@ public class Texters {
 
     public static void outProtocols(Streamer out, Collection<NObject> parentProtocols) throws IOException {
         out.append("<");
-        forEach(parentProtocols).onTail(p -> out.append(",")).onAny(p -> out.append(toObjC(getClassNameBare(p.getType())))).go();
+        forEach(parentProtocols).onTail(p -> out.append(",")).onAny(p -> out.append(toObjC(p.getType()))).go();
         out.append(">");
-    }
-
-    public static String toObjC(String javaName) {
-        return javaName.replace('.', '_').replaceAll("\\[\\]", "_ARRAYTYPE");
     }
 
     public static String toObjCType(Class<?> type) {
@@ -66,7 +62,7 @@ public class Texters {
             return "NSDictionary*";
         if (type.equals(CustomTypeClasses.VoidRef.class))
             return "void*";
-        String typeName = toObjC(TypeRegistry.isObjCBased(type) ? getClassNameSimple(type) : getClassNameBare(type));
+        String typeName = TypeRegistry.isObjCBased(type) ? toObjC(getClassNameSimple(type)) : toObjC(type);
         if (type.isInterface())
             typeName = "id<" + typeName + ">";
         else if (!type.isPrimitive())
@@ -92,7 +88,7 @@ public class Texters {
             return "NSSet*";
         if (type.equals(Map.class))
             return "NSDictionary*";
-        String typeName = toObjC(getClassNameBare(type));
+        String typeName = toObjC(type);
         return typeName;
     }
 
@@ -107,7 +103,7 @@ public class Texters {
     public static String methodObjCName(Executable m) {
         StringBuilder out = new StringBuilder();
         if (m instanceof Constructor)
-            out.append("__init_").append(toObjC(getClassNameBare(m.getDeclaringClass())));
+            out.append("__init_").append(toObjC(m.getDeclaringClass()));
         else
             out.append(m.getName());
         out.append("__");
@@ -154,5 +150,9 @@ public class Texters {
 
     public static String getClassNameReference(NObject obj) {
         return getClassNameSimple(obj.getType()) + "Meta$CMCache";
+    }
+
+    public static String getSelectorSignature(NSelector selector) {
+        return execSignature(selector.getJavaExecutable(), false);
     }
 }

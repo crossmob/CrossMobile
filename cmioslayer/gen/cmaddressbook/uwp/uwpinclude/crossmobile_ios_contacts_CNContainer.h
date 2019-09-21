@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.contacts.CNContainer definition
+// crossmobile_ios_contacts_CNContainer definition
 
 #import "xmlvm.h"
 #import <Accounts/Accounts.h>

@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.gamekit.GKDataReceiveHandler definition
+// crossmobile_ios_gamekit_GKDataReceiveHandler definition
 
 #import "xmlvm.h"
 #import <GameKit/GameKit.h>

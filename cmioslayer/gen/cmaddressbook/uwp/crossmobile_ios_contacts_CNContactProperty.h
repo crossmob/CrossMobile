@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.contacts.CNContactProperty definition
+// crossmobile_ios_contacts_CNContactProperty definition
 
 #import "xmlvm.h"
 #import <Accounts/Accounts.h>

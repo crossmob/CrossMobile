@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.mapkit.MKMapRect definition
+// crossmobile_ios_mapkit_MKMapRect definition
 
 #import "xmlvm.h"
 #import <CoreLocation/CoreLocation.h>

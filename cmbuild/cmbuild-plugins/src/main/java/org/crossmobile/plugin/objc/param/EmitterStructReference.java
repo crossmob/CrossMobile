@@ -20,7 +20,7 @@ import org.crossmobile.plugin.model.NParam;
 import org.crossmobile.plugin.model.NType;
 
 import static org.crossmobile.plugin.utils.Factories.getDereferType;
-import static org.crossmobile.plugin.utils.Texters.toObjC;
+import static org.crossmobile.utils.NamingUtils.toObjC;
 import static org.crossmobile.utils.NamingUtils.getClassNameSimple;
 import static org.crossmobile.utils.TextUtils.TAB;
 

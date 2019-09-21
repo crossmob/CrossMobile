@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.uikit.UIActivity definition
+// crossmobile_ios_uikit_UIActivity definition
 
 #import "xmlvm.h"
 #import <CoreGraphics/CoreGraphics.h>

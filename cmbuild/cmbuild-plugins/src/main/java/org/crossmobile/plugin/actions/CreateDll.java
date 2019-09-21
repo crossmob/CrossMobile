@@ -21,7 +21,7 @@ import difflib.Patch;
 import difflib.PatchFailedException;
 import org.crossmobile.build.ArtifactInfo;
 import org.crossmobile.plugin.model.NObject;
-import org.crossmobile.plugin.objc.ReverseBlockRegistry;
+import org.crossmobile.plugin.objc.ReverseImportRegistry;
 import org.crossmobile.plugin.reg.ObjectRegistry;
 import org.crossmobile.plugin.reg.Plugin;
 import org.crossmobile.utils.*;
@@ -46,15 +46,14 @@ import static org.crossmobile.build.utils.PlistUtils.isInclude;
 import static org.crossmobile.plugin.reg.PluginRegistry.getPlugin;
 import static org.crossmobile.plugin.reg.TypeRegistry.isReference;
 import static org.crossmobile.plugin.utils.Templates.LIB_DEF;
-import static org.crossmobile.plugin.utils.Texters.toObjC;
+import static org.crossmobile.utils.NamingUtils.toObjC;
 import static org.crossmobile.plugin.utils.Texters.toObjCTypeForLibDef;
 import static org.crossmobile.utils.FileUtils.*;
-import static org.crossmobile.utils.NamingUtils.getClassNameBare;
 import static org.crossmobile.utils.TimeUtils.time;
 
 public class CreateDll extends CreateLib {
 
-    public CreateDll(Function<ArtifactInfo, File> resolver, File target, File cache, File vendor, File IDELocation, ReverseBlockRegistry handleRegistry, boolean build) throws IOException {
+    public CreateDll(Function<ArtifactInfo, File> resolver, File target, File cache, File vendor, File IDELocation, ReverseImportRegistry handleRegistry, boolean build) throws IOException {
         super(resolver, target, cache, vendor, IDELocation, handleRegistry, false, build);
     }
 
@@ -125,7 +124,7 @@ public class CreateDll extends CreateLib {
                             .append("\t").append("__objc_class_name_").append(toObjCTypeForLibDef(obj.getType()).replaceAll("\\*", "")).append(" ").append("CONSTANT").append("\n");
                 if (obj.isStruct())
                     for (Field f : obj.getType().getFields()) {
-                        String fieldName = toObjC(getClassNameBare(f.getType()));
+                        String fieldName = toObjC(f.getType());
                         builder.append("\t").append("__objc_ivar_offset_").append(toObjCTypeForLibDef(obj.getType()).replaceAll("\\*", "")).append(".").append(f.getName()).append("_").append(fieldName).append("\n");
                     }
                 else if (obj.isCBased() && obj.isReference() && (obj.isStruct() || (obj.isReference() && !isReference(obj.getType().getSuperclass()))))

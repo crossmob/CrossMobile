@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.uikit.UITabBar definition
+// crossmobile_ios_uikit_UITabBar definition
 
 #import "xmlvm.h"
 #import <CoreGraphics/CoreGraphics.h>

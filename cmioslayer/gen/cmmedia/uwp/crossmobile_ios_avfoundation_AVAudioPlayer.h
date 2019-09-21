@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.avfoundation.AVAudioPlayer definition
+// crossmobile_ios_avfoundation_AVAudioPlayer definition
 
 #import "xmlvm.h"
 #import <AVFoundation/AVFoundation.h>

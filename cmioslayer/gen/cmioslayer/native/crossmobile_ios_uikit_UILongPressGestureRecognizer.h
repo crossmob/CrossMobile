@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.uikit.UILongPressGestureRecognizer definition
+// crossmobile_ios_uikit_UILongPressGestureRecognizer definition
 
 #import "xmlvm.h"
 #import <CoreGraphics/CoreGraphics.h>

@@ -28,10 +28,9 @@ import java.util.TreeSet;
 
 import static org.crossmobile.bridge.ann.CMReference.REFERENCE_NAME;
 import static org.crossmobile.plugin.reg.TypeRegistry.*;
-import static org.crossmobile.plugin.utils.Texters.toObjC;
 import static org.crossmobile.plugin.utils.Texters.toObjCType;
-import static org.crossmobile.utils.NamingUtils.getClassNameBare;
 import static org.crossmobile.utils.NamingUtils.getClassNameSimple;
+import static org.crossmobile.utils.NamingUtils.toObjC;
 
 public class HeaderEmitter extends FileEmitter {
     private final boolean asImportHeaders;
@@ -56,7 +55,7 @@ public class HeaderEmitter extends FileEmitter {
         out.append("#import \"xmlvm.h\"\n");
         for (String imp : imports)
             out.append("#import ").append(imp).append("\n");
-        Collection<String> dependencies = obj.getDependencies(false);
+        Collection<String> dependencies = obj.getDependencies();
         if (!obj.isObjCBased() && obj.getType().getSuperclass() != null) {
             String parent = fullName(obj.getType().getSuperclass());
             dependencies.remove(parent);
@@ -81,7 +80,7 @@ public class HeaderEmitter extends FileEmitter {
                 out.append(" {\n");
             if (obj.isStruct())
                 for (NStructField field : obj.getStructFields()) {
-                    String simpleType = toObjC(getClassNameBare(field.type));
+                    String simpleType = toObjC(field.type);
                     String objType = toObjCType(field.type);
                     out.append("@public ").append(objType).append(" ").append(field.name).append("_").append(simpleType).append(";\n");
                 }

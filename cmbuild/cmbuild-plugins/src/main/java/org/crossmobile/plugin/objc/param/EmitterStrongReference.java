@@ -19,9 +19,8 @@ package org.crossmobile.plugin.objc.param;
 import crossmobile.rt.StrongReference;
 import org.crossmobile.plugin.model.NParam;
 
-import static org.crossmobile.plugin.utils.Texters.toObjC;
+import static org.crossmobile.utils.NamingUtils.toObjC;
 import static org.crossmobile.plugin.utils.Texters.toObjCType;
-import static org.crossmobile.utils.NamingUtils.getClassNameBare;
 import static org.crossmobile.utils.TextUtils.TAB;
 
 class EmitterStrongReference extends Emitter {
@@ -50,7 +49,7 @@ class EmitterStrongReference extends Emitter {
     @Override
     protected String initReverse() {
         return toObjCType(StrongReference.class) + " " + paramVar() + " = " + givenVar() + " ? [["
-                + toObjC(getClassNameBare(StrongReference.class))
+                + toObjC(StrongReference.class)
                 + " alloc] __init_crossmobile_ios_StrongReference___java_lang_Object:*" + givenVar() + "] : JAVA_NULL;\n";
     }
 

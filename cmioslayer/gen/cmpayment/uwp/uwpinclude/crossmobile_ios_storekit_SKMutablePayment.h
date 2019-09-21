@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.storekit.SKMutablePayment definition
+// crossmobile_ios_storekit_SKMutablePayment definition
 
 #import "xmlvm.h"
 #import <StoreKit/StoreKit.h>

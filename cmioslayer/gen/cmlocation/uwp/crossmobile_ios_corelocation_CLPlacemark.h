@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.corelocation.CLPlacemark definition
+// crossmobile_ios_corelocation_CLPlacemark definition
 
 #import "xmlvm.h"
 #import <CoreLocation/CoreLocation.h>

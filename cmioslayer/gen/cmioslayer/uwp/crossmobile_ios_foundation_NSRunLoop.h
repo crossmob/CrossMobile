@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.foundation.NSRunLoop definition
+// crossmobile_ios_foundation_NSRunLoop definition
 
 #import "xmlvm.h"
 #import <CoreGraphics/CoreGraphics.h>

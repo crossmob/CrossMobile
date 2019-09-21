@@ -38,7 +38,7 @@ public class ObjectRegistry {
     }
 
     public static NObject retrieve(Class objClass) {
-        return objects.get(objClass);
+        return objClass == null ? null : objects.get(objClass);
     }
 
     public static Iterable<NObject> retrieveAll() {

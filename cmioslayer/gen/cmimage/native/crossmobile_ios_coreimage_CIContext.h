@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.coreimage.CIContext definition
+// crossmobile_ios_coreimage_CIContext definition
 
 #import "xmlvm.h"
 #import <CoreImage/CoreImage.h>

@@ -24,8 +24,7 @@ import org.crossmobile.plugin.reg.TypeRegistry;
 import java.lang.reflect.Modifier;
 
 import static org.crossmobile.bridge.ann.CMReference.REFERENCE_NAME;
-import static org.crossmobile.plugin.utils.Texters.toObjC;
-import static org.crossmobile.utils.NamingUtils.getClassNameBare;
+import static org.crossmobile.utils.NamingUtils.toObjC;
 import static org.crossmobile.utils.NamingUtils.getClassNameSimple;
 
 class EmitterCType extends Emitter {
@@ -48,7 +47,7 @@ class EmitterCType extends Emitter {
         super(paramName, varName, type, true, forward);
         selfType = selfType == null ? type.getType() : selfType;
         this.nativeName = getClassNameSimple(selfType);
-        this.javaClassName = toObjC(getClassNameBare(selfType));
+        this.javaClassName = toObjC(selfType);
         this.struct = TypeRegistry.isStruct(selfType);
         this.asSelf = asSelf;
         this.constructor = constructor;

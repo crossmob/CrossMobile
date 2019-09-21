@@ -23,13 +23,9 @@ import javassist.NotFoundException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Executable;
 
-public class NamingUtils {
+import static org.crossmobile.utils.ReflectionUtils.getBareClass;
 
-    public static String getClassNameBare(Class cls) {
-        while (cls.isArray())
-            cls = cls.getComponentType();
-        return cls.getName();
-    }
+public class NamingUtils {
 
     public static String getClassNameFull(CtClass cls) {
         StringBuilder array = new StringBuilder();
@@ -53,7 +49,7 @@ public class NamingUtils {
     }
 
     public static String getClassNameSimple(Class cls) {
-        String name = getClassNameBare(cls);
+        String name = getBareClass(cls).getName();
         int dot = name.lastIndexOf('.');
         return dot >= 0 ? name.substring(dot + 1) : name;
     }
@@ -65,7 +61,7 @@ public class NamingUtils {
     public static String execSignature(Executable exec, boolean fullname) {
         StringBuilder out = new StringBuilder();
         if (fullname)
-            out.append(getClassNameBare(exec.getDeclaringClass())).append(".");
+            out.append(getBareClass(exec.getDeclaringClass()).getName()).append(".");
         if (Constructor.class.isAssignableFrom(exec.getClass()))
             out.append(getClassNameSimple(exec.getDeclaringClass()));
         else
@@ -107,5 +103,13 @@ public class NamingUtils {
             return null;
         int lastDot = clsname.lastIndexOf('.');
         return lastDot > 0 ? clsname.substring(0, lastDot) : "";
+    }
+
+    public static String toObjC(String javaName) {
+        return javaName.replace('.', '_').replaceAll("\\[\\]", "_ARRAYTYPE");
+    }
+
+    public static String toObjC(Class<?> cls) {
+        return toObjC(getBareClass(cls).getName());
     }
 }

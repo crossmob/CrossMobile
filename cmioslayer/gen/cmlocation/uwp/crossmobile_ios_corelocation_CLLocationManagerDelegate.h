@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.corelocation.CLLocationManagerDelegate definition
+// crossmobile_ios_corelocation_CLLocationManagerDelegate definition
 
 #import "xmlvm.h"
 #import <CoreLocation/CoreLocation.h>

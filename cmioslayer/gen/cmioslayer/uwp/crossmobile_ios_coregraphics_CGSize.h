@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.coregraphics.CGSize definition
+// crossmobile_ios_coregraphics_CGSize definition
 
 #import "xmlvm.h"
 #import <CoreGraphics/CoreGraphics.h>

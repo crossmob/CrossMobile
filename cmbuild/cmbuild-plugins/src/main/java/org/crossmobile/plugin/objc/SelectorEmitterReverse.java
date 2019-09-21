@@ -28,13 +28,13 @@ import static org.crossmobile.utils.NamingUtils.execSignature;
 public class SelectorEmitterReverse extends SelectorEmitter {
 
     private final String blockvar;
-    private final ReverseBlockRegistry handleRegistry;
+    private final ReverseImportRegistry handleRegistry;
 
-    public SelectorEmitterReverse(NSelector selector, ReverseBlockRegistry handleRegistry) {
+    public SelectorEmitterReverse(NSelector selector, ReverseImportRegistry handleRegistry) {
         this(selector, null, handleRegistry);
     }
 
-    SelectorEmitterReverse(NSelector selector, String blockvar, ReverseBlockRegistry handleRegistry) {
+    SelectorEmitterReverse(NSelector selector, String blockvar, ReverseImportRegistry handleRegistry) {
         super(selector);
         this.blockvar = blockvar;
         this.handleRegistry = handleRegistry;

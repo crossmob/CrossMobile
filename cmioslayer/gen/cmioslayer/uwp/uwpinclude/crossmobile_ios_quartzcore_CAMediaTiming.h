@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.quartzcore.CAMediaTiming definition
+// crossmobile_ios_quartzcore_CAMediaTiming definition
 
 #import "xmlvm.h"
 #import <CoreGraphics/CoreGraphics.h>

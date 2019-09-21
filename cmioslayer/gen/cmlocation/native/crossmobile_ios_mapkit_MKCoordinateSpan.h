@@ -1,6 +1,6 @@
 // (c) 2019 under LGPL by CrossMobile plugin tools
 
-// crossmobile.ios.mapkit.MKCoordinateSpan definition
+// crossmobile_ios_mapkit_MKCoordinateSpan definition
 
 #import "xmlvm.h"
 #import <CoreLocation/CoreLocation.h>
