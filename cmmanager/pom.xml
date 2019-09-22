@@ -231,7 +231,7 @@
                                         </exec>
                                         <!-- security find-identity -v -p codesigning -->
                                         <exec executable="codesign" failonerror="true">
-                                            <arg line="--force --verify --verbose --sign ${osx_id} /Volumes/CrossMobile/CrossMobile.app"/>
+                                            <arg line="--deep --force --verify --verbose --sign ${osx_id} --options runtime /Volumes/CrossMobile/CrossMobile.app"/>
                                         </exec>
                                         <exec executable="hdiutil" failonerror="true">
                                             <arg line="detach -force /Volumes/CrossMobile"/>
