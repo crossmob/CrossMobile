@@ -1,24 +1,35 @@
 # Changelog
-This is the CrossMobile change log.
 
-## [HEAD] - now
+Click on the version header to go to the actual commits for each release.
+
+## [HEAD]
+###### now
 
 ### Added
 - First-class support of obfuscation in Android & Desktop by ProGuard
-- Launch Android simulators in CrossMobile management application
+- Launch Android emulator in CrossMobile management application
+- Added Android Log level filters
+- Added `accessibilityIdentifier` to be able to support UI testing
 
 ### Fixed
 - UITableView behaviour better matches the iOS devices
+- Update visuals when changing signing key in android target
+- Able to override `loadView` when loading a view from a StoryBoard
 
 ### Changed
-- There's a **code breaking** change with NSLog. Now this function lives in Foundation class, instead of it's own arbitrary class.
+- Move location of `NSLog` from `NSLog.log` to `Foundation.NSLog`
 
-## [v2.6.1] - 2019-9-15
+### Removed
+- Optimization of the overridable super call methods in native objects
+- Properly remove empty spaces from POM files
+
+## [v2.6.1]
+###### 2019-9-15
 ### Fixed
-- Support of bitcode project
+- Support of bitcode projects
 
-## [v2.6] - 2019-9-9
-
+## [v2.6]
+###### 2019-9-9
 ### Added
 - Support Adaptive icons under Android
 - Bootstrap mechanism to install required Android libraries for compilation
@@ -56,8 +67,8 @@ This is the CrossMobile change log.
 - Obsolete JavaFX build dependency
 - Swift as dependency for varargs
 
-## [v2.5] - 2019-7-1
-
+## [v2.5]
+###### 2019-7-1
 ### Added
 - First public binary stable release
 - Animation API updates
@@ -82,7 +93,8 @@ This is the CrossMobile change log.
 - Debug project
 - XRay plugin
 
-## [v2.5.pre1.cm] - 2019-5-1
+## [v2.5.pre1.cm]
+###### 2019-5-1
 ### Added
 - First public source release
 
