@@ -22,6 +22,7 @@ import org.crossmobile.gui.elements.NewProjectInfo;
 import org.crossmobile.gui.init.InitializationWizard;
 import org.crossmobile.gui.init.InitializationWizard.Card;
 import org.crossmobile.gui.utils.CMMvnActions;
+import org.crossmobile.gui.utils.NameConverter;
 import org.crossmobile.utils.*;
 import org.crossmobile.utils.images.ImageHound;
 
@@ -137,7 +138,7 @@ public class ProjectInfo {
                 props.load(new InputStreamReader(new FileInputStream(new File(basedir, "nbproject" + File.separator + "project.properties")), StandardCharsets.UTF_8));
             } catch (IOException ignored) {
             }
-        props.computeIfAbsent(ARTIFACT_ID.tag().name, k -> newProjectInfo != null ? newProjectInfo.getApplicationName() : NameConvertor.unicodeToAsciiID(basedir.getAbsolutePath()));
+        props.computeIfAbsent(ARTIFACT_ID.tag().name, k -> newProjectInfo != null ? newProjectInfo.getApplicationName() : NameConverter.unicodeToAsciiID(basedir.getAbsolutePath()));
         props.computeIfAbsent(DISPLAY_NAME.tag().name, k -> newProjectInfo != null ? newProjectInfo.getDisplayName() : basedir.getName());
         name = props.get(DISPLAY_NAME.tag().name).toString();
 

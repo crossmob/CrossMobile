@@ -23,9 +23,8 @@ import org.crossmobile.gui.actives.ActivePanel;
 import org.crossmobile.gui.actives.ActiveRadioButton;
 import org.crossmobile.gui.actives.ActiveTextField;
 import org.crossmobile.gui.parameters.impl.ArtifactIdParameter;
-import org.crossmobile.gui.project.TemplateType;
 import org.crossmobile.prefs.Prefs;
-import org.crossmobile.utils.NameConvertor;
+import org.crossmobile.gui.utils.NameConverter;
 
 import javax.swing.text.AbstractDocument;
 import java.awt.*;
@@ -79,7 +78,7 @@ public final class NewProjectInfo extends HiResDialog {
     }
 
     public String getApplicationName() {
-        return NameConvertor.unicodeToAsciiID(appnameT.getText().trim()).toLowerCase();
+        return NameConverter.unicodeToAsciiID(appnameT.getText().trim()).toLowerCase();
     }
 
     public String getTemplateType() {

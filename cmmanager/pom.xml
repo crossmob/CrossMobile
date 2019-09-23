@@ -45,6 +45,11 @@
             <artifactId>proguard-retrace</artifactId>
             <version>${version.proguard}</version>
         </dependency>
+        <dependency>
+            <groupId>net.gcardone.junidecode</groupId>
+            <artifactId>junidecode</artifactId>
+            <version>${version.junidecode}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -59,7 +64,7 @@
                             <mainClass>org.crossmobile.CrossMobile</mainClass>
                         </manifest>
                         <manifestEntries>
-                            <Class-Path>jupidator.jar appenh.jar loadlib.jar hrgui.jar minimal-json.jar cmutils-common.jar cmutils-tools.jar proguard-retrace.jar proguard-base.jar</Class-Path>
+                            <Class-Path>jupidator.jar appenh.jar loadlib.jar hrgui.jar minimal-json.jar cmutils-common.jar cmutils-tools.jar proguard-retrace.jar proguard-base.jar junidecode.jar</Class-Path>
                             <SplashScreen-Image>images/splash.png</SplashScreen-Image>
                         </manifestEntries>
                     </archive>
@@ -130,6 +135,8 @@
                                                       tofile="@{dest}/lib/proguard-retrace.jar"/>
                                                 <copy file="${user.home}/.m2/repository/net/sf/proguard/proguard-base/${version.proguard}/proguard-base-${version.proguard}.jar"
                                                       tofile="@{dest}/lib/proguard-base.jar"/>
+                                                <copy file="${user.home}/.m2/repository/net/gcardone/junidecode/junidecode/${version.junidecode}/junidecode-${version.junidecode}.jar"
+                                                      tofile="@{dest}/lib/junidecode.jar"/>
                                                 <copy todir="@{dest}/lib/apache-maven">
                                                     <fileset dir="../resources/lib/apache-maven"/>
                                                 </copy>

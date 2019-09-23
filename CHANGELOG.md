@@ -15,6 +15,7 @@ Click on the version header to go to the actual commits for each release.
 - UITableView behaviour better matches the iOS devices
 - Update visuals when changing signing key in android target
 - Able to override `loadView` when loading a view from a StoryBoard
+- Use junidecode to handle non-ASCII characters when creating project
 
 ### Changed
 - Move location of `NSLog` from `NSLog.log` to `Foundation.NSLog`

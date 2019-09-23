@@ -41,7 +41,7 @@ public class CMMvnActions {
 
     private static String repoLocation;
 
-    private final static String DEDENDENCY_POM_DIR = "dependencies/pom.xml";
+    private final static String DEPENDENCY_POM_DIR = "dependencies/pom.xml";
 
     public static String resolveRepository() {
         if (repoLocation != null)
@@ -127,7 +127,7 @@ public class CMMvnActions {
         try {
             tempDirectory = Files.createTempDirectory("org.crossmobile.gui.utils");
             System.out.println(tempDirectory);
-            FileUtils.copyResource(DEDENDENCY_POM_DIR, new File(tempDirectory.toFile(), "pom.xml").getAbsolutePath());
+            FileUtils.copyResource(DEPENDENCY_POM_DIR, new File(tempDirectory.toFile(), "pom.xml").getAbsolutePath());
             tempDirectory.toFile().deleteOnExit();
         } catch (IOException | ProjectException e) {
             return null;
