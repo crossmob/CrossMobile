@@ -54,7 +54,6 @@ public class Project {
     private final Collection<Image> appicons;
     private final boolean asOldCrossmobile;
     ProjectPlugins plugins;
-    //private Consumer<String> appNameListener;
     private boolean asOldXMLVMProject;
     private Profile profile;
     private String debugProfile = DEBUG_PROFILE.tag().deflt;
@@ -189,10 +188,6 @@ public class Project {
 
     public String getVersion() {
         return params.get(BUNDLE_VERSION.tag());
-    }
-
-    public String getMainClass() {
-        return params.get(MAIN_CLASS.tag());
     }
 
     public File getPath() {

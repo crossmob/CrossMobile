@@ -1159,9 +1159,20 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
     }//GEN-LAST:event_errorTBActionPerformed
 
     private void logMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logMActionPerformed
-        String[] cmds = {Prefs.getAndroidSDKLocation() + File.separator + "platform-tools" + File.separator + ADB.filename()
-                , "logcat", "-s", "AndroidRuntime:E", "System.out:I", "System.err:W", "CrossMob:*"};
-        launch = ProjectLauncher.launch(cmds, null, initLaunchVisualsOut("Display Android Logs", "Android logs"), initLaunchVisualsErr(),
+        java.util.List<String> cmds = new ArrayList<>();
+        cmds.add(Prefs.getAndroidSDKLocation() + File.separator + "platform-tools" + File.separator + ADB.filename());
+        cmds.add("logcat");
+        cmds.add("-s");
+        cmds.add("CrossMob:*");
+        switch (proj.getDebugProfile()) {
+            case "full":
+                cmds.add("AndroidRuntime:E");
+            case "outerr":
+                cmds.add("System.out:I");
+            case "err":
+                cmds.add("System.err:W");
+        }
+        launch = ProjectLauncher.launch(cmds.toArray(new String[0]), null, initLaunchVisualsOut("Display Android Logs", "Android logs"), initLaunchVisualsErr(),
                 res -> launchCallback.accept(res), null, (l, q) -> outputTB.setText("Out*"), (l, q) -> errorTB.setText("Error*"), StreamListener.NONE);
     }//GEN-LAST:event_logMActionPerformed
 
