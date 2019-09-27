@@ -22,7 +22,6 @@ import org.crossmobile.plugin.objc.param.Emitter;
 import org.crossmobile.plugin.objc.param.ParamEmitter;
 import org.crossmobile.plugin.objc.param.ResultEmitter;
 import org.crossmobile.plugin.utils.Streamer;
-import org.crossmobile.utils.NamingUtils;
 
 import java.io.IOException;
 import java.lang.reflect.Executable;
@@ -102,7 +101,7 @@ public class SelectorEmitter {
             out.append("if (!").append(FUNC_REF).append(")\n").tab();
             out.append(FUNC_REF).append(" = class_getMethodImplementation(");
             out.append(selector.isStatic() ? getMetaClassNameReference(selector.getContainer()) : getClassNameReference(selector.getContainer()));
-            out.append(", @selector(").append(selector.getSignature()).append("));\n").untab();
+            out.append(", @selector(").append(selector.getObjCSignature()).append("));\n").untab();
         }
     }
 
@@ -115,7 +114,7 @@ public class SelectorEmitter {
         }).go();
         out.append("))").append(FUNC_REF);
         out.append(")(").append(emitter.isStatic() ? getClassNameReference(selector.getContainer()) : "self");
-        out.append(", @selector(").append(selector.getSignature()).append(")");
+        out.append(", @selector(").append(selector.getObjCSignature()).append(")");
 
         forEach(emitter.getNativeParameters()).setFilter(e -> !e.isParameterHidden()).
                 onAny(e -> out.append(",").append(e.embed())).go();
@@ -169,7 +168,7 @@ public class SelectorEmitter {
             if (containerClass.endsWith("*"))
                 containerClass = containerClass.substring(0, containerClass.length() - 1);
             out.append(", ").append(selector.isStatic() ? "[" + containerClass + " class]" : "[" + containerClass + " alloc]");
-            out.append(", ").append("(id)NSSelectorFromString(@\"").append(selector.getSignature()).append("\")");
+            out.append(", ").append("(id)NSSelectorFromString(@\"").append(selector.getObjCSignature()).append("\")");
         }
         for (Emitter e : front(emitter.getNativeParameters()))
             out.append(", ").append(e.embed());

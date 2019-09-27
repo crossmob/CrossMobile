@@ -116,6 +116,10 @@
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "title()": {
       "reverse": "- (NSString *) title\n{\n    NSString * re$ult = [self title__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
       "super": "- (NSString*) title__\n{\n    NSString* re$ult = [super title];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
@@ -147,6 +151,10 @@
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "valueForKey(java.lang.String)": null,
     "valueForUndefinedKey(java.lang.String)": null
   },
@@ -325,6 +333,10 @@
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "title()": {
       "reverse": "- (NSString *) title\n{\n    NSString * re$ult = [self title__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
       "super": "- (NSString*) title__\n{\n    NSString* re$ult = [super title];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
@@ -398,6 +410,10 @@
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "valueForKey(java.lang.String)": null,
     "valueForUndefinedKey(java.lang.String)": null
   },
@@ -457,6 +473,10 @@
         "java_lang_String"
       ]
     },
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "threadIdentifier()": {
       "reverse": "- (NSString *) threadIdentifier\n{\n    NSString * re$ult = [self threadIdentifier__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
       "super": "- (NSString*) threadIdentifier__\n{\n    NSString* re$ult = [super threadIdentifier];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
@@ -502,6 +522,10 @@
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "trigger()": {
       "reverse": "- (UNNotificationTrigger *) trigger\n{\n    UNNotificationTrigger * re$ult = [self trigger__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
       "super": "- (UNNotificationTrigger*) trigger__\n{\n    UNNotificationTrigger* re$ult = [super trigger];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
@@ -533,6 +557,10 @@
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "valueForKey(java.lang.String)": null,
     "valueForUndefinedKey(java.lang.String)": null
   },
@@ -589,6 +617,10 @@
       "reverse": "- (UNNotificationSetting) soundSetting\n{\n    return [self soundSetting__];\n}\n\n",
       "super": "- (JAVA_LONG) soundSetting__\n{\n    return [super soundSetting];\n}\n\n"
     },
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "valueForKey(java.lang.String)": null,
     "valueForUndefinedKey(java.lang.String)": null
   },
@@ -599,6 +631,10 @@
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "valueForKey(java.lang.String)": null,
     "valueForUndefinedKey(java.lang.String)": null
   },
@@ -613,6 +649,10 @@
     },
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "valueForKey(java.lang.String)": null,
     "valueForUndefinedKey(java.lang.String)": null
   },

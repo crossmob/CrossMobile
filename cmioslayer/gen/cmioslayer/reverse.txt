@@ -76,6 +76,10 @@
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "valueForKey(java.lang.String)": null,
     "valueForUndefinedKey(java.lang.String)": null
   },
@@ -111,6 +115,10 @@
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "valueForKey(java.lang.String)": null,
     "valueForUndefinedKey(java.lang.String)": null,
     "writeToFile(java.lang.String,boolean)": {
@@ -128,6 +136,10 @@
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "timeIntervalSince1970()": {
       "reverse": "- (NSTimeInterval) timeIntervalSince1970\n{\n    return [self timeIntervalSince1970__];\n}\n\n",
       "super": "- (double) timeIntervalSince1970__\n{\n    return [super timeIntervalSince1970];\n}\n\n"
@@ -210,6 +222,10 @@
       "reverse": "- (void) setYear:(NSInteger) year\n{\n    [self setYear___int:year];\n}\n\n",
       "super": "- (void) setYear___int:(int) year \n{\n    [super setYear:year];\n}\n\n"
     },
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "valueForKey(java.lang.String)": null,
     "valueForUndefinedKey(java.lang.String)": null,
     "week()": {
@@ -254,6 +270,10 @@
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "userInfo()": {
       "reverse": "- (NSDictionary *) userInfo\n{\n    NSDictionary * re$ult = [self userInfo__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
       "super": "- (NSDictionary*) userInfo__\n{\n    NSDictionary* re$ult = [super userInfo];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
@@ -316,6 +336,10 @@
     },
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "userInfo()": {
       "reverse": "- (NSDictionary *) userInfo\n{\n    NSDictionary * re$ult = [self userInfo__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
       "super": "- (NSDictionary*) userInfo__\n{\n    NSDictionary* re$ult = [super userInfo];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
@@ -648,6 +672,10 @@
     },
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "valueForKey(java.lang.String)": null,
     "valueForUndefinedKey(java.lang.String)": null
   },
@@ -713,6 +741,10 @@
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "valueForKey(java.lang.String)": null,
     "valueForUndefinedKey(java.lang.String)": null,
     "variantCode()": {
@@ -1052,6 +1084,10 @@
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "valueForKey(java.lang.String)": null,
     "valueForUndefinedKey(java.lang.String)": null
   },
@@ -1086,6 +1122,10 @@
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "valueForKey(java.lang.String)": null,
     "valueForUndefinedKey(java.lang.String)": null
   },
@@ -1103,6 +1143,10 @@
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "valueForKey(java.lang.String)": null,
     "valueForUndefinedKey(java.lang.String)": null
   },
@@ -1167,6 +1211,10 @@
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "valueForKey(java.lang.String)": null,
     "valueForUndefinedKey(java.lang.String)": null
   },
@@ -1984,11 +2032,30 @@
         "crossmobile_ios_quartzcore_CAAnimation"
       ]
     },
+    "autoreverses()": {
+      "reverse": "- (BOOL) autoreverses\n{\n    return [self autoreverses__];\n}\n\n",
+      "super": "- (BOOL) autoreverses__\n{\n    return [super autoreverses];\n}\n\n"
+    },
+    "beginTime()": {
+      "reverse": "- (CFTimeInterval) beginTime\n{\n    return [self beginTime__];\n}\n\n",
+      "super": "- (double) beginTime__\n{\n    return [super beginTime];\n}\n\n"
+    },
     "delegate()": {
       "reverse": "- (id) delegate\n{\n    id re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
       "super": "- (id) delegate__\n{\n    id re$ult = [super delegate];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
       "supimport": [
         "java_lang_Object"
+      ]
+    },
+    "duration()": {
+      "reverse": "- (CFTimeInterval) duration\n{\n    return [self duration__];\n}\n\n",
+      "super": "- (double) duration__\n{\n    return [super duration];\n}\n\n"
+    },
+    "fillMode()": {
+      "reverse": "- (NSString *) fillMode\n{\n    NSString * re$ult = [self fillMode__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) fillMode__\n{\n    NSString* re$ult = [super fillMode];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
       ]
     },
     "isRemovedOnCompletion()": {
@@ -1998,6 +2065,31 @@
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "repeatCount()": {
+      "reverse": "- (float) repeatCount\n{\n    return [self repeatCount__];\n}\n\n",
+      "super": "- (float) repeatCount__\n{\n    return [super repeatCount];\n}\n\n"
+    },
+    "repeatDuration()": {
+      "reverse": "- (CFTimeInterval) repeatDuration\n{\n    return [self repeatDuration__];\n}\n\n",
+      "super": "- (double) repeatDuration__\n{\n    return [super repeatDuration];\n}\n\n"
+    },
+    "runActionForKey(java.lang.String,crossmobile.ios.foundation.NSObject,java.util.Map)": {
+      "reverse": "- (void) runActionForKey:(NSString *) event object:(id) anObject arguments:(NSDictionary *) dict\n{\n    [self runActionForKey___java_lang_String_crossmobile_ios_foundation_NSObject_java_util_Map:(event ? event : JAVA_NULL) :(anObject ? anObject : JAVA_NULL) :(dict ? dict : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) runActionForKey___java_lang_String_crossmobile_ios_foundation_NSObject_java_util_Map:(NSString*) event :(NSObject*) anObject :(NSDictionary*) dict \n{\n    [super runActionForKey:(event == JAVA_NULL ? nil : event) object:(anObject == JAVA_NULL ? nil : anObject) arguments:(dict == JAVA_NULL ? nil : dict)];\n}\n\n",
+      "supimport": [
+        "java_lang_Object",
+        "java_lang_String",
+        "java_util_Map"
+      ]
+    },
+    "setAutoreverses(boolean)": {
+      "reverse": "- (void) setAutoreverses:(BOOL) autoreverses\n{\n    [self setAutoreverses___boolean:autoreverses];\n}\n\n",
+      "super": "- (void) setAutoreverses___boolean:(BOOL) autoreverses \n{\n    [super setAutoreverses:autoreverses];\n}\n\n"
+    },
+    "setBeginTime(double)": {
+      "reverse": "- (void) setBeginTime:(CFTimeInterval) beginTime\n{\n    [self setBeginTime___double:beginTime];\n}\n\n",
+      "super": "- (void) setBeginTime___double:(double) beginTime \n{\n    [super setBeginTime:beginTime];\n}\n\n"
+    },
     "setDelegate(crossmobile.ios.foundation.NSObject)": {
       "reverse": "- (void) setDelegate:(id) delegate\n{\n    [self setDelegate___crossmobile_ios_foundation_NSObject:(delegate ? delegate : JAVA_NULL)];\n}\n\n",
       "super": "- (void) setDelegate___crossmobile_ios_foundation_NSObject:(NSObject*) delegate \n{\n    [super setDelegate:(delegate == JAVA_NULL ? nil : delegate)];\n}\n\n",
@@ -2005,12 +2097,47 @@
         "java_lang_Object"
       ]
     },
+    "setDuration(double)": {
+      "reverse": "- (void) setDuration:(CFTimeInterval) duration\n{\n    [self setDuration___double:duration];\n}\n\n",
+      "super": "- (void) setDuration___double:(double) duration \n{\n    [super setDuration:duration];\n}\n\n"
+    },
+    "setFillMode(java.lang.String)": {
+      "reverse": "- (void) setFillMode:(NSString *) fillMode\n{\n    [self setFillMode___java_lang_String:(fillMode ? fillMode : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setFillMode___java_lang_String:(NSString*) fillMode \n{\n    [super setFillMode:(fillMode == JAVA_NULL ? nil : fillMode)];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
     "setRemovedOnCompletion(boolean)": {
       "reverse": "- (void) setRemovedOnCompletion:(BOOL) removedOnCompletion\n{\n    [self setRemovedOnCompletion___boolean:removedOnCompletion];\n}\n\n",
       "super": "- (void) setRemovedOnCompletion___boolean:(BOOL) removedOnCompletion \n{\n    [super setRemovedOnCompletion:removedOnCompletion];\n}\n\n"
     },
+    "setRepeatCount(float)": {
+      "reverse": "- (void) setRepeatCount:(float) repeatCount\n{\n    [self setRepeatCount___float:repeatCount];\n}\n\n",
+      "super": "- (void) setRepeatCount___float:(float) repeatCount \n{\n    [super setRepeatCount:repeatCount];\n}\n\n"
+    },
+    "setRepeatDuration(double)": {
+      "reverse": "- (void) setRepeatDuration:(CFTimeInterval) repeatDuration\n{\n    [self setRepeatDuration___double:repeatDuration];\n}\n\n",
+      "super": "- (void) setRepeatDuration___double:(double) repeatDuration \n{\n    [super setRepeatDuration:repeatDuration];\n}\n\n"
+    },
+    "setSpeed(float)": {
+      "reverse": "- (void) setSpeed:(float) speed\n{\n    [self setSpeed___float:speed];\n}\n\n",
+      "super": "- (void) setSpeed___float:(float) speed \n{\n    [super setSpeed:speed];\n}\n\n"
+    },
+    "setTimeOffset(double)": {
+      "reverse": "- (void) setTimeOffset:(CFTimeInterval) timeOffset\n{\n    [self setTimeOffset___double:timeOffset];\n}\n\n",
+      "super": "- (void) setTimeOffset___double:(double) timeOffset \n{\n    [super setTimeOffset:timeOffset];\n}\n\n"
+    },
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "speed()": {
+      "reverse": "- (float) speed\n{\n    return [self speed__];\n}\n\n",
+      "super": "- (float) speed__\n{\n    return [super speed];\n}\n\n"
+    },
+    "timeOffset()": {
+      "reverse": "- (CFTimeInterval) timeOffset\n{\n    return [self timeOffset__];\n}\n\n",
+      "super": "- (double) timeOffset__\n{\n    return [super timeOffset];\n}\n\n"
+    },
     "valueForKey(java.lang.String)": null,
     "valueForUndefinedKey(java.lang.String)": null
   },
@@ -4399,6 +4526,10 @@
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "valueForKey(java.lang.String)": null,
     "valueForUndefinedKey(java.lang.String)": null
   },
@@ -5306,6 +5437,10 @@
       "supimport": [
         "crossmobile_ios_uikit_UIImage"
       ]
+    },
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
     },
     "valueForKey(java.lang.String)": null,
     "valueForUndefinedKey(java.lang.String)": null
@@ -11584,6 +11719,14 @@
     "window()": null
   },
   "crossmobile.ios.uikit.UITableViewController": {
+    "accessoryButtonTappedForRowWithIndexPath(crossmobile.ios.uikit.UITableView,crossmobile.ios.foundation.NSIndexPath)": {
+      "reverse": "- (void) tableView:(UITableView *) tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *) indexPath\n{\n    [self accessoryButtonTappedForRowWithIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath:(tableView ? tableView : JAVA_NULL) :(indexPath ? indexPath : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) accessoryButtonTappedForRowWithIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath:(UITableView*) tableView :(NSIndexPath*) indexPath \n{\n    [super tableView:(tableView == JAVA_NULL ? nil : tableView) accessoryButtonTappedForRowWithIndexPath:(indexPath == JAVA_NULL ? nil : indexPath)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSIndexPath",
+        "crossmobile_ios_uikit_UITableView"
+      ]
+    },
     "addChildViewController(crossmobile.ios.uikit.UIViewController)": null,
     "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "additionalSafeAreaInsets()": null,
@@ -11592,6 +11735,22 @@
     "becomeFirstResponder()": null,
     "beginAppearanceTransition(boolean,boolean)": null,
     "bottomLayoutGuide()": null,
+    "canEditRowAtIndexPath(crossmobile.ios.uikit.UITableView,crossmobile.ios.foundation.NSIndexPath)": {
+      "reverse": "- (BOOL) tableView:(UITableView *) tableView canEditRowAtIndexPath:(NSIndexPath *) indexPath\n{\n    return [self canEditRowAtIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath:(tableView ? tableView : JAVA_NULL) :(indexPath ? indexPath : JAVA_NULL)];\n}\n\n",
+      "super": "- (BOOL) canEditRowAtIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath:(UITableView*) tableView :(NSIndexPath*) indexPath \n{\n    return [super tableView:(tableView == JAVA_NULL ? nil : tableView) canEditRowAtIndexPath:(indexPath == JAVA_NULL ? nil : indexPath)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSIndexPath",
+        "crossmobile_ios_uikit_UITableView"
+      ]
+    },
+    "canMoveRowAtIndexPath(crossmobile.ios.uikit.UITableView,crossmobile.ios.foundation.NSIndexPath)": {
+      "reverse": "- (BOOL) tableView:(UITableView *) tableView canMoveRowAtIndexPath:(NSIndexPath *) indexPath\n{\n    return [self canMoveRowAtIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath:(tableView ? tableView : JAVA_NULL) :(indexPath ? indexPath : JAVA_NULL)];\n}\n\n",
+      "super": "- (BOOL) canMoveRowAtIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath:(UITableView*) tableView :(NSIndexPath*) indexPath \n{\n    return [super tableView:(tableView == JAVA_NULL ? nil : tableView) canMoveRowAtIndexPath:(indexPath == JAVA_NULL ? nil : indexPath)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSIndexPath",
+        "crossmobile_ios_uikit_UITableView"
+      ]
+    },
     "cellForRowAtIndexPath(crossmobile.ios.uikit.UITableView,crossmobile.ios.foundation.NSIndexPath)": {
       "reverse": "- (UITableViewCell *) tableView:(UITableView *) tableView cellForRowAtIndexPath:(NSIndexPath *) indexPath\n{\n    UITableViewCell * re$ult = [self cellForRowAtIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath:(tableView ? tableView : JAVA_NULL) :(indexPath ? indexPath : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
       "super": "- (UITableViewCell*) cellForRowAtIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath:(UITableView*) tableView :(NSIndexPath*) indexPath \n{\n    UITableViewCell* re$ult = [super tableView:(tableView == JAVA_NULL ? nil : tableView) cellForRowAtIndexPath:(indexPath == JAVA_NULL ? nil : indexPath)];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
@@ -11603,16 +11762,70 @@
     },
     "childViewControllerContainingSegueSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
     "childViewControllers()": null,
+    "commitEditingStyle(crossmobile.ios.uikit.UITableView,int,crossmobile.ios.foundation.NSIndexPath)": {
+      "reverse": "- (void) tableView:(UITableView *) tableView commitEditingStyle:(UITableViewCellEditingStyle) editingStyle forRowAtIndexPath:(NSIndexPath *) indexPath\n{\n    [self commitEditingStyle___crossmobile_ios_uikit_UITableView_int_crossmobile_ios_foundation_NSIndexPath:(tableView ? tableView : JAVA_NULL) :editingStyle :(indexPath ? indexPath : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) commitEditingStyle___crossmobile_ios_uikit_UITableView_int_crossmobile_ios_foundation_NSIndexPath:(UITableView*) tableView :(int) editingStyle :(NSIndexPath*) indexPath \n{\n    [super tableView:(tableView == JAVA_NULL ? nil : tableView) commitEditingStyle:editingStyle forRowAtIndexPath:(indexPath == JAVA_NULL ? nil : indexPath)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSIndexPath",
+        "crossmobile_ios_uikit_UITableView"
+      ]
+    },
     "contentSizeForViewInPopover()": null,
     "definesPresentationContext()": null,
+    "didDeselectRowAtIndexPath(crossmobile.ios.uikit.UITableView,crossmobile.ios.foundation.NSIndexPath)": {
+      "reverse": "- (void) tableView:(UITableView *) tableView didDeselectRowAtIndexPath:(NSIndexPath *) indexPath\n{\n    [self didDeselectRowAtIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath:(tableView ? tableView : JAVA_NULL) :(indexPath ? indexPath : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didDeselectRowAtIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath:(UITableView*) tableView :(NSIndexPath*) indexPath \n{\n    [super tableView:(tableView == JAVA_NULL ? nil : tableView) didDeselectRowAtIndexPath:(indexPath == JAVA_NULL ? nil : indexPath)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSIndexPath",
+        "crossmobile_ios_uikit_UITableView"
+      ]
+    },
+    "didEndEditingRowAtIndexPath(crossmobile.ios.uikit.UITableView,crossmobile.ios.foundation.NSIndexPath)": {
+      "reverse": "- (void) tableView:(UITableView *) tableView didEndEditingRowAtIndexPath:(NSIndexPath *) indexPath\n{\n    [self didEndEditingRowAtIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath:(tableView ? tableView : JAVA_NULL) :(indexPath ? indexPath : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didEndEditingRowAtIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath:(UITableView*) tableView :(NSIndexPath*) indexPath \n{\n    [super tableView:(tableView == JAVA_NULL ? nil : tableView) didEndEditingRowAtIndexPath:(indexPath == JAVA_NULL ? nil : indexPath)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSIndexPath",
+        "crossmobile_ios_uikit_UITableView"
+      ]
+    },
     "didReceiveMemoryWarning()": null,
     "didRotateFromInterfaceOrientation(int)": null,
+    "didSelectRowAtIndexPath(crossmobile.ios.uikit.UITableView,crossmobile.ios.foundation.NSIndexPath)": {
+      "reverse": "- (void) tableView:(UITableView *) tableView didSelectRowAtIndexPath:(NSIndexPath *) indexPath\n{\n    [self didSelectRowAtIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath:(tableView ? tableView : JAVA_NULL) :(indexPath ? indexPath : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didSelectRowAtIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath:(UITableView*) tableView :(NSIndexPath*) indexPath \n{\n    [super tableView:(tableView == JAVA_NULL ? nil : tableView) didSelectRowAtIndexPath:(indexPath == JAVA_NULL ? nil : indexPath)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSIndexPath",
+        "crossmobile_ios_uikit_UITableView"
+      ]
+    },
     "disablesAutomaticKeyboardDismissal()": null,
     "dismissModalViewControllerAnimated(boolean)": null,
     "edgesForExtendedLayout()": null,
     "editButtonItem()": null,
+    "editingStyleForRowAtIndexPath(crossmobile.ios.uikit.UITableView,crossmobile.ios.foundation.NSIndexPath)": {
+      "reverse": "- (UITableViewCellEditingStyle) tableView:(UITableView *) tableView editingStyleForRowAtIndexPath:(NSIndexPath *) indexPath\n{\n    return [self editingStyleForRowAtIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath:(tableView ? tableView : JAVA_NULL) :(indexPath ? indexPath : JAVA_NULL)];\n}\n\n",
+      "super": "- (int) editingStyleForRowAtIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath:(UITableView*) tableView :(NSIndexPath*) indexPath \n{\n    return [super tableView:(tableView == JAVA_NULL ? nil : tableView) editingStyleForRowAtIndexPath:(indexPath == JAVA_NULL ? nil : indexPath)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSIndexPath",
+        "crossmobile_ios_uikit_UITableView"
+      ]
+    },
     "endAppearanceTransition()": null,
     "extensionContext()": null,
+    "heightForFooterInSection(crossmobile.ios.uikit.UITableView,int)": {
+      "reverse": "- (CGFloat) tableView:(UITableView *) tableView heightForFooterInSection:(NSInteger) section\n{\n    return [self heightForFooterInSection___crossmobile_ios_uikit_UITableView_int:(tableView ? tableView : JAVA_NULL) :section];\n}\n\n",
+      "super": "- (double) heightForFooterInSection___crossmobile_ios_uikit_UITableView_int:(UITableView*) tableView :(int) section \n{\n    return [super tableView:(tableView == JAVA_NULL ? nil : tableView) heightForFooterInSection:section];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UITableView"
+      ]
+    },
+    "heightForHeaderInSection(crossmobile.ios.uikit.UITableView,int)": {
+      "reverse": "- (CGFloat) tableView:(UITableView *) tableView heightForHeaderInSection:(NSInteger) section\n{\n    return [self heightForHeaderInSection___crossmobile_ios_uikit_UITableView_int:(tableView ? tableView : JAVA_NULL) :section];\n}\n\n",
+      "super": "- (double) heightForHeaderInSection___crossmobile_ios_uikit_UITableView_int:(UITableView*) tableView :(int) section \n{\n    return [super tableView:(tableView == JAVA_NULL ? nil : tableView) heightForHeaderInSection:section];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UITableView"
+      ]
+    },
     "heightForRowAtIndexPath(crossmobile.ios.uikit.UITableView,crossmobile.ios.foundation.NSIndexPath)": {
       "reverse": "- (CGFloat) tableView:(UITableView *) tableView heightForRowAtIndexPath:(NSIndexPath *) indexPath\n{\n    return [self heightForRowAtIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath:(tableView ? tableView : JAVA_NULL) :(indexPath ? indexPath : JAVA_NULL)];\n}\n\n",
       "super": "- (double) heightForRowAtIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath:(UITableView*) tableView :(NSIndexPath*) indexPath \n{\n    return [super tableView:(tableView == JAVA_NULL ? nil : tableView) heightForRowAtIndexPath:(indexPath == JAVA_NULL ? nil : indexPath)];\n}\n\n",
@@ -11631,6 +11844,14 @@
     "loadViewIfNeeded()": null,
     "modalPresentationStyle()": null,
     "modalTransitionStyle()": null,
+    "moveRowAtIndexPath(crossmobile.ios.uikit.UITableView,crossmobile.ios.foundation.NSIndexPath,crossmobile.ios.foundation.NSIndexPath)": {
+      "reverse": "- (void) tableView:(UITableView *) tableView moveRowAtIndexPath:(NSIndexPath *) sourceIndexPath toIndexPath:(NSIndexPath *) destinationIndexPath\n{\n    [self moveRowAtIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath_crossmobile_ios_foundation_NSIndexPath:(tableView ? tableView : JAVA_NULL) :(sourceIndexPath ? sourceIndexPath : JAVA_NULL) :(destinationIndexPath ? destinationIndexPath : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) moveRowAtIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath_crossmobile_ios_foundation_NSIndexPath:(UITableView*) tableView :(NSIndexPath*) sourceIndexPath :(NSIndexPath*) destinationIndexPath \n{\n    [super tableView:(tableView == JAVA_NULL ? nil : tableView) moveRowAtIndexPath:(sourceIndexPath == JAVA_NULL ? nil : sourceIndexPath) toIndexPath:(destinationIndexPath == JAVA_NULL ? nil : destinationIndexPath)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSIndexPath",
+        "crossmobile_ios_uikit_UITableView"
+      ]
+    },
     "navigationController()": null,
     "navigationItem()": null,
     "nextResponder()": null,
@@ -11697,6 +11918,14 @@
     "shouldAutomaticallyForwardAppearanceMethods()": null,
     "shouldAutorotate()": null,
     "shouldAutorotateToInterfaceOrientation(int)": null,
+    "shouldIndentWhileEditingRowAtIndexPath(crossmobile.ios.uikit.UITableView,crossmobile.ios.foundation.NSIndexPath)": {
+      "reverse": "- (BOOL) tableView:(UITableView *) tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *) indexPath\n{\n    return [self shouldIndentWhileEditingRowAtIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath:(tableView ? tableView : JAVA_NULL) :(indexPath ? indexPath : JAVA_NULL)];\n}\n\n",
+      "super": "- (BOOL) shouldIndentWhileEditingRowAtIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath:(UITableView*) tableView :(NSIndexPath*) indexPath \n{\n    return [super tableView:(tableView == JAVA_NULL ? nil : tableView) shouldIndentWhileEditingRowAtIndexPath:(indexPath == JAVA_NULL ? nil : indexPath)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSIndexPath",
+        "crossmobile_ios_uikit_UITableView"
+      ]
+    },
     "shouldPerformSegueWithIdentifier(java.lang.String,java.lang.Object)": null,
     "showDetailViewController(crossmobile.ios.uikit.UIViewController,java.lang.Object)": null,
     "showViewController(crossmobile.ios.uikit.UIViewController,java.lang.Object)": null,
@@ -11713,6 +11942,15 @@
       ]
     },
     "title()": null,
+    "titleForDeleteConfirmationButtonForRowAtIndexPath(crossmobile.ios.uikit.UITableView,crossmobile.ios.foundation.NSIndexPath)": {
+      "reverse": "- (NSString *) tableView:(UITableView *) tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *) indexPath\n{\n    NSString * re$ult = [self titleForDeleteConfirmationButtonForRowAtIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath:(tableView ? tableView : JAVA_NULL) :(indexPath ? indexPath : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) titleForDeleteConfirmationButtonForRowAtIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath:(UITableView*) tableView :(NSIndexPath*) indexPath \n{\n    NSString* re$ult = [super tableView:(tableView == JAVA_NULL ? nil : tableView) titleForDeleteConfirmationButtonForRowAtIndexPath:(indexPath == JAVA_NULL ? nil : indexPath)];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSIndexPath",
+        "crossmobile_ios_uikit_UITableView",
+        "java_lang_String"
+      ]
+    },
     "titleForFooterInSection(crossmobile.ios.uikit.UITableView,int)": {
       "reverse": "- (NSString *) tableView:(UITableView *) tableView titleForFooterInSection:(NSInteger) section\n{\n    NSString * re$ult = [self titleForFooterInSection___crossmobile_ios_uikit_UITableView_int:(tableView ? tableView : JAVA_NULL) :section];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
       "super": "- (NSString*) titleForFooterInSection___crossmobile_ios_uikit_UITableView_int:(UITableView*) tableView :(int) section \n{\n    NSString* re$ult = [super tableView:(tableView == JAVA_NULL ? nil : tableView) titleForFooterInSection:section];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
@@ -11743,6 +11981,22 @@
     "viewDidLayoutSubviews()": null,
     "viewDidLoad()": null,
     "viewDidUnload()": null,
+    "viewForFooterInSection(crossmobile.ios.uikit.UITableView,int)": {
+      "reverse": "- (UIView *) tableView:(UITableView *) tableView viewForFooterInSection:(NSInteger) section\n{\n    UIView * re$ult = [self viewForFooterInSection___crossmobile_ios_uikit_UITableView_int:(tableView ? tableView : JAVA_NULL) :section];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (UIView*) viewForFooterInSection___crossmobile_ios_uikit_UITableView_int:(UITableView*) tableView :(int) section \n{\n    UIView* re$ult = [super tableView:(tableView == JAVA_NULL ? nil : tableView) viewForFooterInSection:section];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UITableView",
+        "crossmobile_ios_uikit_UIView"
+      ]
+    },
+    "viewForHeaderInSection(crossmobile.ios.uikit.UITableView,int)": {
+      "reverse": "- (UIView *) tableView:(UITableView *) tableView viewForHeaderInSection:(NSInteger) section\n{\n    UIView * re$ult = [self viewForHeaderInSection___crossmobile_ios_uikit_UITableView_int:(tableView ? tableView : JAVA_NULL) :section];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (UIView*) viewForHeaderInSection___crossmobile_ios_uikit_UITableView_int:(UITableView*) tableView :(int) section \n{\n    UIView* re$ult = [super tableView:(tableView == JAVA_NULL ? nil : tableView) viewForHeaderInSection:section];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UITableView",
+        "crossmobile_ios_uikit_UIView"
+      ]
+    },
     "viewIfLoaded()": null,
     "viewSafeAreaInsetsDidChange()": null,
     "viewWillAppear(boolean)": null,
@@ -11750,6 +12004,23 @@
     "viewWillLayoutSubviews()": null,
     "wantsFullScreenLayout()": null,
     "willAnimateRotationToInterfaceOrientation(int,double)": null,
+    "willBeginEditingRowAtIndexPath(crossmobile.ios.uikit.UITableView,crossmobile.ios.foundation.NSIndexPath)": {
+      "reverse": "- (void) tableView:(UITableView *) tableView willBeginEditingRowAtIndexPath:(NSIndexPath *) indexPath\n{\n    [self willBeginEditingRowAtIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath:(tableView ? tableView : JAVA_NULL) :(indexPath ? indexPath : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) willBeginEditingRowAtIndexPath___crossmobile_ios_uikit_UITableView_crossmobile_ios_foundation_NSIndexPath:(UITableView*) tableView :(NSIndexPath*) indexPath \n{\n    [super tableView:(tableView == JAVA_NULL ? nil : tableView) willBeginEditingRowAtIndexPath:(indexPath == JAVA_NULL ? nil : indexPath)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSIndexPath",
+        "crossmobile_ios_uikit_UITableView"
+      ]
+    },
+    "willDisplayCell(crossmobile.ios.uikit.UITableView,crossmobile.ios.uikit.UITableViewCell,crossmobile.ios.foundation.NSIndexPath)": {
+      "reverse": "- (void) tableView:(UITableView *) tableView willDisplayCell:(UITableViewCell *) cell forRowAtIndexPath:(NSIndexPath *) indexPath\n{\n    [self willDisplayCell___crossmobile_ios_uikit_UITableView_crossmobile_ios_uikit_UITableViewCell_crossmobile_ios_foundation_NSIndexPath:(tableView ? tableView : JAVA_NULL) :(cell ? cell : JAVA_NULL) :(indexPath ? indexPath : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) willDisplayCell___crossmobile_ios_uikit_UITableView_crossmobile_ios_uikit_UITableViewCell_crossmobile_ios_foundation_NSIndexPath:(UITableView*) tableView :(UITableViewCell*) cell :(NSIndexPath*) indexPath \n{\n    [super tableView:(tableView == JAVA_NULL ? nil : tableView) willDisplayCell:(cell == JAVA_NULL ? nil : cell) forRowAtIndexPath:(indexPath == JAVA_NULL ? nil : indexPath)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSIndexPath",
+        "crossmobile_ios_uikit_UITableView",
+        "crossmobile_ios_uikit_UITableViewCell"
+      ]
+    },
     "willRotateToInterfaceOrientation(int,double)": null
   },
   "crossmobile.ios.uikit.UITableViewDataSource": {
@@ -12213,6 +12484,22 @@
       "super": "- (void) setSecureTextEntry___boolean:(BOOL) secureTextEntry \n{\n    [super setSecureTextEntry:secureTextEntry];\n}\n\n"
     },
     "setSelected(boolean)": null,
+    "setSmartDashesType(int)": {
+      "reverse": "- (void) setSmartDashesType:(UITextSmartDashesType) smartDashesType\n{\n    [self setSmartDashesType___int:smartDashesType];\n}\n\n",
+      "super": "- (void) setSmartDashesType___int:(int) smartDashesType \n{\n    [super setSmartDashesType:smartDashesType];\n}\n\n"
+    },
+    "setSmartInsertDeleteType(int)": {
+      "reverse": "- (void) setSmartInsertDeleteType:(UITextSmartInsertDeleteType) smartInsertDeleteType\n{\n    [self setSmartInsertDeleteType___int:smartInsertDeleteType];\n}\n\n",
+      "super": "- (void) setSmartInsertDeleteType___int:(int) smartInsertDeleteType \n{\n    [super setSmartInsertDeleteType:smartInsertDeleteType];\n}\n\n"
+    },
+    "setSmartQuotesType(int)": {
+      "reverse": "- (void) setSmartQuotesType:(UITextSmartQuotesType) smartQuotesType\n{\n    [self setSmartQuotesType___int:smartQuotesType];\n}\n\n",
+      "super": "- (void) setSmartQuotesType___int:(int) smartQuotesType \n{\n    [super setSmartQuotesType:smartQuotesType];\n}\n\n"
+    },
+    "setSpellCheckingType(int)": {
+      "reverse": "- (void) setSpellCheckingType:(UITextSpellCheckingType) spellCheckingType\n{\n    [self setSpellCheckingType___int:spellCheckingType];\n}\n\n",
+      "super": "- (void) setSpellCheckingType___int:(int) spellCheckingType \n{\n    [super setSpellCheckingType:spellCheckingType];\n}\n\n"
+    },
     "setTag(int)": null,
     "setText(java.lang.String)": {
       "reverse": "- (void) setText:(NSString *) text\n{\n    [self setText___java_lang_String:(text ? text : JAVA_NULL)];\n}\n\n",
@@ -12248,6 +12535,22 @@
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
     "sizeThatFits(crossmobile.ios.coregraphics.CGSize)": null,
     "sizeToFit()": null,
+    "smartDashesType()": {
+      "reverse": "- (UITextSmartDashesType) smartDashesType\n{\n    return [self smartDashesType__];\n}\n\n",
+      "super": "- (int) smartDashesType__\n{\n    return [super smartDashesType];\n}\n\n"
+    },
+    "smartInsertDeleteType()": {
+      "reverse": "- (UITextSmartInsertDeleteType) smartInsertDeleteType\n{\n    return [self smartInsertDeleteType__];\n}\n\n",
+      "super": "- (int) smartInsertDeleteType__\n{\n    return [super smartInsertDeleteType];\n}\n\n"
+    },
+    "smartQuotesType()": {
+      "reverse": "- (UITextSmartQuotesType) smartQuotesType\n{\n    return [self smartQuotesType__];\n}\n\n",
+      "super": "- (int) smartQuotesType__\n{\n    return [super smartQuotesType];\n}\n\n"
+    },
+    "spellCheckingType()": {
+      "reverse": "- (UITextSpellCheckingType) spellCheckingType\n{\n    return [self spellCheckingType__];\n}\n\n",
+      "super": "- (int) spellCheckingType__\n{\n    return [super spellCheckingType];\n}\n\n"
+    },
     "state()": null,
     "subviews()": null,
     "superview()": null,

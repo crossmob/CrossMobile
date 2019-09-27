@@ -146,7 +146,7 @@ public class MethodBuilder {
         try {
             method.buildNative();
         } catch (Exception e) {
-            Log.error("could not make \"" + method.getSelector().getSignature() + "\" . cause : " + e.getMessage());
+            Log.error("could not make \"" + method.getSelector().getObjCSignature() + "\" . cause : " + e.getMessage());
         }
     }
 

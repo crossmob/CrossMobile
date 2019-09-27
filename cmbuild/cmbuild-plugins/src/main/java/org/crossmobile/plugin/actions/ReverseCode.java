@@ -67,30 +67,40 @@ public final class ReverseCode {
 
         private final ReverseCodeCollection codeCollection = new ReverseCodeCollection(cp);
 
-        private void attachObject(NObject obj) {
+        private void attachObject(final NObject obj) {
             NObject current = obj;
+            Collection<NSelector> selectors = new TreeSet<>();
             while (current != null) {
-                NObject _current = current;
-                current.getSelectors().stream().filter(NSelector::needsOverrideBindings).forEach(sel -> {
-                    try {
-                        String signature = Texters.getSelectorSignature(sel);
-                        Streamer reverseCode = Streamer.asString();
-                        Streamer superCode = Streamer.asString();
-                        Collection<String> reverseImports = Collections.emptyList();
-                        Collection<String> superImports = Collections.emptyList();
-                        if (_current == obj) {
-                            new SelectorEmitterReverse(sel, handleRegistry).emitImplementation(reverseCode);
-                            new SelectorEmitter(sel, "super").emitImplementation(superCode);
-                            reverseImports = handleRegistry.getReverseImports(obj.getType(), signature);
-                            superImports = getSuperImports(sel);
-                        }
-                        codeCollection.addFromSource(signature, obj.getType()
-                                , reverseCode.toString(), superCode.toString()
-                                , reverseImports, superImports);
-                    } catch (IOException ignored) {
-                    }
-                });
+                current.getSelectors().stream().filter(NSelector::needsOverrideBindings).forEach(selectors::add);
                 current = ObjectRegistry.retrieve(current.getType().getSuperclass());
+            }
+            for (Class<?> inter : obj.getType().getInterfaces()) {
+                NObject interClass = ObjectRegistry.retrieve(inter);
+                if (interClass != null)
+                    selectors.addAll(interClass.getSelectors());
+            }
+
+            for (NSelector sel : selectors)
+                attachSelector(sel, obj, sel.getContainer().isProtocol() || sel.getContainer() == obj);
+        }
+
+        private void attachSelector(NSelector sel, NObject obj, boolean shouldEmitMethods) {
+            try {
+                String signature = Texters.getSelectorSignature(sel);
+                Streamer reverseCode = Streamer.asString();
+                Streamer superCode = Streamer.asString();
+                Collection<String> reverseImports = Collections.emptyList();
+                Collection<String> superImports = Collections.emptyList();
+                if (shouldEmitMethods) {
+                    new SelectorEmitterReverse(sel, handleRegistry).emitImplementation(reverseCode);
+                    reverseImports = handleRegistry.getReverseImports(obj.getType(), signature);
+                    new SelectorEmitter(sel, "super").emitImplementation(superCode);
+                    superImports = getSuperImports(sel);
+                }
+                codeCollection.addFromSource(signature, obj.getType()
+                        , reverseCode.toString(), superCode.toString()
+                        , reverseImports, superImports);
+            } catch (IOException ignored) {
             }
         }
 
@@ -121,7 +131,7 @@ public final class ReverseCode {
         }
     }
 
-    public ReverseImportRegistry getHandleRegistry() {
+    ReverseImportRegistry getHandleRegistry() {
         return handleRegistry;
     }
 

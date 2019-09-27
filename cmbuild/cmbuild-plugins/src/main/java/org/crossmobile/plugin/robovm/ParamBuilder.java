@@ -57,7 +57,7 @@ public class ParamBuilder {
             return new StringArrayRParam(nParam, parameter, type);
         else if (Method.class.equals(parameter)){
             //ignore for now
-            Log.error("No RParam available for Ntype : " + type.getType() + " , with parameter : " + parameter + " and native type : " + type.getNativeType() + ", for selector : " + selector.getSignature() + ", in class : " + selector.getJavaExecutable().getDeclaringClass().getName());
+            Log.error("No RParam available for Ntype : " + type.getType() + " , with parameter : " + parameter + " and native type : " + type.getNativeType() + ", for selector : " + selector.getObjCSignature() + ", in class : " + selector.getJavaExecutable().getDeclaringClass().getName());
         }
         else if (type.getType().equals(parameter))
             return new NativeRParam(nParam, parameter, type);
@@ -84,7 +84,7 @@ public class ParamBuilder {
         else if (type.getNativeType().endsWith("Ref") && type.getType().isAssignableFrom(parameter))
             return new RefRParam(nParam, parameter, type);
             else
-            Log.error("No RParam available for Ntype : " + type.getType() + " , with parameter : " + parameter + " and native type : " + type.getNativeType() + ", for selector : " + selector.getSignature() + ", in class : " + selector.getJavaExecutable().getDeclaringClass().getName());
+            Log.error("No RParam available for Ntype : " + type.getType() + " , with parameter : " + parameter + " and native type : " + type.getNativeType() + ", for selector : " + selector.getObjCSignature() + ", in class : " + selector.getJavaExecutable().getDeclaringClass().getName());
         return null;
     }
 

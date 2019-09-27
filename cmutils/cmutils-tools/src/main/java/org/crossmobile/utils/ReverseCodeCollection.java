@@ -114,32 +114,32 @@ public class ReverseCodeCollection {
         for (File classpath : classpaths)
             if (classpath.isDirectory())
                 try {
-                    loadSources(new FileInputStream(new File(classpath, REVERSE_INF)), classpath);
+                    loadSources(new FileInputStream(new File(classpath, REVERSE_INF)), classpath.getAbsolutePath());
                 } catch (Exception ex) {
                 }
             else if (classpath.isFile())
                 try {
                     JarFile jar = new JarFile(classpath);
                     ZipEntry codeentry = jar.getEntry(REVERSE_INF);
-                    loadSources(jar.getInputStream(codeentry), classpath);
+                    loadSources(jar.getInputStream(codeentry), classpath.getAbsolutePath());
                 } catch (Exception ex) {
                     BaseUtils.throwException(new IOException("Unable to locate reverse bindings for plugin " + classpath.getName(), ex));
                 }
     }
 
     @SuppressWarnings("unchecked")
-    public void loadSources(InputStream stream, File location) {
+    public void loadSources(InputStream stream, String location) {
         String content = FileUtils.readSafe(stream, "plugin file");
         if (content == null || content.isEmpty())
-            throw new RuntimeException("Unable to load reverse bindings from " + location.getAbsolutePath());
-        Map<String, Object> classes = (Map<String, Object>) JsonHelper.decode(content);
+            throw new RuntimeException("Unable to load reverse bindings from " + location);
+        Map<String, Map<String, Map<String, Object>>> classes = (Map<String, Map<String, Map<String, Object>>>) JsonHelper.decode(content);
         for (String className : classes.keySet()) {
-            Map<String, Object> classData = (Map<String, Object>) classes.get(className);
+            Map<String, Map<String, Object>> classData = classes.get(className);
             for (String method : classData.keySet()) {
-                Map<String, Object> methodData = (Map<String, Object>) classData.get(method);
+                Map<String, Object> methodData = classData.get(method);
                 add(method, className
-                        , methodData == null ? "" : (String) methodData.get(REVERSE_KEY)
-                        , methodData == null ? "" : (String) methodData.get(SUPER_KEY)
+                        , methodData == null ? "" : methodData.get(REVERSE_KEY).toString()
+                        , methodData == null ? "" : methodData.get(SUPER_KEY).toString()
                         , methodData == null ? emptyList() : (Collection<String>) methodData.getOrDefault(REV_IMPORT_KEY, emptyList())
                         , methodData == null ? emptyList() : (Collection<String>) methodData.getOrDefault(SUP_IMPORT_KEY, emptyList()));
             }

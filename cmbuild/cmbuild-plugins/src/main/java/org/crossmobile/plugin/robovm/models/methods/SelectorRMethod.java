@@ -34,6 +34,6 @@ public class SelectorRMethod extends RMethod {
 
     @Override
     protected void addMethodAnnotation() {
-        addAnnotation(method, METHOD_ANN, toParam("selector", getSelector().getSignature()));
+        addAnnotation(method, METHOD_ANN, toParam("selector", getSelector().getObjCSignature()));
     }
 }

@@ -39,6 +39,10 @@
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "valueForKey(java.lang.String)": null,
     "valueForUndefinedKey(java.lang.String)": null
   },
@@ -56,6 +60,10 @@
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "valueForKey(java.lang.String)": null,
     "valueForUndefinedKey(java.lang.String)": null
   },

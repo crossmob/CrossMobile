@@ -34,6 +34,6 @@ public class GlobalVariableRMethod extends FunctionRMethod {
 
     @Override
     protected void addMethodAnnotation() {
-        addAnnotation(method, GLOBALVALUE_ANN, toParam("symbol", getSelector().getSignature()), toParam("optional", true));
+        addAnnotation(method, GLOBALVALUE_ANN, toParam("symbol", getSelector().getObjCSignature()), toParam("optional", true));
     }
 }

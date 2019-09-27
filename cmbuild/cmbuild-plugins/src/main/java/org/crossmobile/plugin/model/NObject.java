@@ -130,4 +130,9 @@ public final class NObject {
     public Collection<NStructField> getStructFields() {
         return structFields;
     }
+
+    @Override
+    public String toString() {
+        return type.getName();
+    }
 }

@@ -81,12 +81,12 @@ public class ConstructorRMethod extends RMethod {
 
     @Override
     protected void addMappingAnnotation() {
-        addAnnotation(mapping, METHOD_ANN, toParam("selector", getSelector().getSignature()));
+        addAnnotation(mapping, METHOD_ANN, toParam("selector", getSelector().getObjCSignature()));
     }
 
     @Override
     protected void addMethodAnnotation() {
-        addAnnotation(method, METHOD_ANN, toParam("selector", getSelector().getSignature()));
+        addAnnotation(method, METHOD_ANN, toParam("selector", getSelector().getObjCSignature()));
     }
 
 

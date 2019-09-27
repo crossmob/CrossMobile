@@ -71,13 +71,17 @@ public class NSelector extends NParsable implements Comparable<NSelector> {
         return name;
     }
 
-    public String getSignature() {
+    public String getObjCSignature() {
         StringBuilder out = new StringBuilder();
         out.append(name);
         forEach(params)
                 .onFront(n -> out.append(n.getName()).append(":"))
                 .go();
         return out.toString();
+    }
+
+    private String getJavaSignature() {
+        return execSignature(java, false);
     }
 
     public void addParam(NParam param) {
@@ -184,7 +188,7 @@ public class NSelector extends NParsable implements Comparable<NSelector> {
         if (this.property != null && other.property != null) {
             if (this.property.getName().equals(other.property.getName())) {
                 if (this.isSetter() == other.isSetter())
-                    return 0;
+                    return getJavaSignature().compareTo(other.getJavaSignature());
                 return this.isSetter() ? -1 : 1;
             }
             return this.property.getName().compareTo(other.property.getName());
@@ -192,7 +196,7 @@ public class NSelector extends NParsable implements Comparable<NSelector> {
             return -1;
         else if (other.property != null)
             return 1;
-        return execSignature(this.getJavaExecutable(), false).compareTo(execSignature(other.getJavaExecutable(), false));
+        return getJavaSignature().compareTo(other.getJavaSignature());
     }
 
     @Override
@@ -211,7 +215,9 @@ public class NSelector extends NParsable implements Comparable<NSelector> {
         if (getClass() != obj.getClass())
             return false;
         final NSelector other = (NSelector) obj;
-        return Objects.equals(this.getJavaExecutable(), other.getJavaExecutable());
+        if (!this.java.getName().equals(other.java.getName()))
+            return false;
+        return getJavaSignature().equals(other.getJavaSignature());
     }
 
     public String getFamily() {
@@ -238,7 +244,7 @@ public class NSelector extends NParsable implements Comparable<NSelector> {
         return fakeConstructor;
     }
 
-    public void setSwiftMethod2(String swiftMethod) {
+    public void setSwiftMethod(String swiftMethod) {
         this.swiftMethod = swiftMethod;
     }
 
@@ -248,6 +254,11 @@ public class NSelector extends NParsable implements Comparable<NSelector> {
      */
     public String getSwiftMethod() {
         return swiftMethod;
+    }
+
+    @Override
+    public String toString() {
+        return getJavaSignature();
     }
 
     /**

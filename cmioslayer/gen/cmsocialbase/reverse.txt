@@ -44,6 +44,34 @@
       ]
     },
     "definesPresentationContext()": null,
+    "didBeginEditing(crossmobile.ios.uikit.UITextView)": {
+      "reverse": "- (void) textViewDidBeginEditing:(UITextView *) textView\n{\n    [self didBeginEditing___crossmobile_ios_uikit_UITextView:(textView ? textView : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didBeginEditing___crossmobile_ios_uikit_UITextView:(UITextView*) textView \n{\n    [super textViewDidBeginEditing:(textView == JAVA_NULL ? nil : textView)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UITextView"
+      ]
+    },
+    "didChange(crossmobile.ios.uikit.UITextView)": {
+      "reverse": "- (void) textViewDidChange:(UITextView *) textView\n{\n    [self didChange___crossmobile_ios_uikit_UITextView:(textView ? textView : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didChange___crossmobile_ios_uikit_UITextView:(UITextView*) textView \n{\n    [super textViewDidChange:(textView == JAVA_NULL ? nil : textView)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UITextView"
+      ]
+    },
+    "didChangeSelection(crossmobile.ios.uikit.UITextView)": {
+      "reverse": "- (void) textViewDidChangeSelection:(UITextView *) textView\n{\n    [self didChangeSelection___crossmobile_ios_uikit_UITextView:(textView ? textView : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didChangeSelection___crossmobile_ios_uikit_UITextView:(UITextView*) textView \n{\n    [super textViewDidChangeSelection:(textView == JAVA_NULL ? nil : textView)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UITextView"
+      ]
+    },
+    "didEndEditing(crossmobile.ios.uikit.UITextView)": {
+      "reverse": "- (void) textViewDidEndEditing:(UITextView *) textView\n{\n    [self didEndEditing___crossmobile_ios_uikit_UITextView:(textView ? textView : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didEndEditing___crossmobile_ios_uikit_UITextView:(UITextView*) textView \n{\n    [super textViewDidEndEditing:(textView == JAVA_NULL ? nil : textView)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UITextView"
+      ]
+    },
     "didReceiveMemoryWarning()": null,
     "didRotateFromInterfaceOrientation(int)": null,
     "didSelectCancel()": {
@@ -173,6 +201,29 @@
     "shouldAutomaticallyForwardAppearanceMethods()": null,
     "shouldAutorotate()": null,
     "shouldAutorotateToInterfaceOrientation(int)": null,
+    "shouldBeginEditing(crossmobile.ios.uikit.UITextView)": {
+      "reverse": "- (BOOL) textViewShouldBeginEditing:(UITextView *) textView\n{\n    return [self shouldBeginEditing___crossmobile_ios_uikit_UITextView:(textView ? textView : JAVA_NULL)];\n}\n\n",
+      "super": "- (BOOL) shouldBeginEditing___crossmobile_ios_uikit_UITextView:(UITextView*) textView \n{\n    return [super textViewShouldBeginEditing:(textView == JAVA_NULL ? nil : textView)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UITextView"
+      ]
+    },
+    "shouldChangeTextInRange(crossmobile.ios.uikit.UITextView,crossmobile.ios.foundation.NSRange,java.lang.String)": {
+      "reverse": "- (BOOL) textView:(UITextView *) textView shouldChangeTextInRange:(NSRange) range replacementText:(NSString *) text\n{\n    crossmobile_ios_foundation_NSRange* range$conv = [[crossmobile_ios_foundation_NSRange alloc] initWithNSRange:range];\n    BOOL re$ult = [self shouldChangeTextInRange___crossmobile_ios_uikit_UITextView_crossmobile_ios_foundation_NSRange_java_lang_String:(textView ? textView : JAVA_NULL) :range$conv :(text ? text : JAVA_NULL)];\n    [range$conv release];\n    return re$ult;\n}\n\n",
+      "super": "- (BOOL) shouldChangeTextInRange___crossmobile_ios_uikit_UITextView_crossmobile_ios_foundation_NSRange_java_lang_String:(UITextView*) textView :(crossmobile_ios_foundation_NSRange*) range :(NSString*) text \n{\n    return [super textView:(textView == JAVA_NULL ? nil : textView) shouldChangeTextInRange:[range getNSRange] replacementText:(text == JAVA_NULL ? nil : text)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSRange",
+        "crossmobile_ios_uikit_UITextView",
+        "java_lang_String"
+      ]
+    },
+    "shouldEndEditing(crossmobile.ios.uikit.UITextView)": {
+      "reverse": "- (BOOL) textViewShouldEndEditing:(UITextView *) textView\n{\n    return [self shouldEndEditing___crossmobile_ios_uikit_UITextView:(textView ? textView : JAVA_NULL)];\n}\n\n",
+      "super": "- (BOOL) shouldEndEditing___crossmobile_ios_uikit_UITextView:(UITextView*) textView \n{\n    return [super textViewShouldEndEditing:(textView == JAVA_NULL ? nil : textView)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UITextView"
+      ]
+    },
     "shouldPerformSegueWithIdentifier(java.lang.String,java.lang.Object)": null,
     "showDetailViewController(crossmobile.ios.uikit.UIViewController,java.lang.Object)": null,
     "showViewController(crossmobile.ios.uikit.UIViewController,java.lang.Object)": null,

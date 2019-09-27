@@ -34,6 +34,6 @@ public class PropertyRMethod extends SelectorRMethod {
 
     @Override
     protected void addMethodAnnotation() {
-        addAnnotation(method, PROPERTY_ANN, toParam("selector", getSelector().getSignature()));
+        addAnnotation(method, PROPERTY_ANN, toParam("selector", getSelector().getObjCSignature()));
     }
 }

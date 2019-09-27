@@ -20,12 +20,9 @@ import crossmobile.rt.StrongReference;
 import org.crossmobile.bridge.ann.*;
 import org.crossmobile.plugin.model.*;
 import org.crossmobile.plugin.parser.AnnotationParser;
-import org.crossmobile.plugin.reg.TypeRegistry;
 import org.crossmobile.plugin.utils.Collectors;
 import org.crossmobile.plugin.utils.Factories;
 import org.crossmobile.utils.Log;
-import org.crossmobile.utils.Param;
-import org.crossmobile.utils.ReflectionUtils;
 
 import java.lang.reflect.*;
 import java.util.ArrayList;
@@ -68,7 +65,7 @@ public class ElementParser {
             return false;
         } else {
             sel.getReturnType().setSizeResolver(sizeResolver);
-            sel.setSwiftMethod2(swiftMethod);
+            sel.setSwiftMethod(swiftMethod);
             return parseSelector(nobj, sel, m, m.getReturnType(), forceStatic ? StaticMappingType.JAVA : StaticMappingType.NONE);
         }
     }
@@ -105,7 +102,7 @@ public class ElementParser {
             return false;
         } else if (!func.getParams().isEmpty()) {
             func.getReturnType().setSizeResolver(sizeResolver);
-            func.setSwiftMethod2(swiftMethod);
+            func.setSwiftMethod(swiftMethod);
             Class firstParam = getReferencedJavaClass(func.getParams().get(0).getNType().getType());
             if (isAssignableFrom(firstParam, nobj.getType(), null))
                 staticMapping = StaticMappingType.NATIVE;

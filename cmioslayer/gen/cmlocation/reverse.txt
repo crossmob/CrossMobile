@@ -21,6 +21,10 @@
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "timestamp()": {
       "reverse": "- (NSDate *) timestamp\n{\n    NSDate * re$ult = [self timestamp__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
       "super": "- (NSDate*) timestamp__\n{\n    NSDate* re$ult = [super timestamp];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
@@ -83,6 +87,10 @@
     "speed()": {
       "reverse": "- (CLLocationSpeed) speed\n{\n    return [self speed__];\n}\n\n",
       "super": "- (double) speed__\n{\n    return [super speed];\n}\n\n"
+    },
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
     },
     "timestamp()": {
       "reverse": "- (NSDate *) timestamp\n{\n    NSDate * re$ult = [self timestamp__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
@@ -398,6 +406,10 @@
         "java_lang_String"
       ]
     },
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "thoroughfare()": {
       "reverse": "- (NSString *) thoroughfare\n{\n    NSString * re$ult = [self thoroughfare__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
       "super": "- (NSString*) thoroughfare__\n{\n    NSString* re$ult = [super thoroughfare];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
@@ -447,6 +459,10 @@
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "supportsSecureCoding()": {
+      "reverse": "- (BOOL) supportsSecureCoding\n{\n    return [self supportsSecureCoding__];\n}\n\n",
+      "super": "- (BOOL) supportsSecureCoding__\n{\n    return [super supportsSecureCoding];\n}\n\n"
+    },
     "valueForKey(java.lang.String)": null,
     "valueForUndefinedKey(java.lang.String)": null
   },
@@ -1832,13 +1848,34 @@
     "region()": null,
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setCoordinate(crossmobile.ios.corelocation.CLLocationCoordinate2D)": {
+      "reverse": "- (void) setCoordinate:(CLLocationCoordinate2D) newCoordinate\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* newCoordinate$conv = [[crossmobile_ios_corelocation_CLLocationCoordinate2D alloc] initWithCLLocationCoordinate2D:newCoordinate];\n    [self setCoordinate___crossmobile_ios_corelocation_CLLocationCoordinate2D:newCoordinate$conv];\n    [newCoordinate$conv release];\n}\n\n",
+      "super": "- (void) setCoordinate___crossmobile_ios_corelocation_CLLocationCoordinate2D:(crossmobile_ios_corelocation_CLLocationCoordinate2D*) newCoordinate \n{\n    [super setCoordinate:[newCoordinate getCLLocationCoordinate2D]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocationCoordinate2D"
+      ]
+    },
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
     "subAdministrativeArea()": null,
     "subLocality()": null,
     "subThoroughfare()": null,
+    "subtitle()": {
+      "reverse": "- (NSString *) subtitle\n{\n    NSString * re$ult = [self subtitle__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) subtitle__\n{\n    NSString* re$ult = [super subtitle];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
     "thoroughfare()": null,
     "timeZone()": null,
+    "title()": {
+      "reverse": "- (NSString *) title\n{\n    NSString * re$ult = [self title__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) title__\n{\n    NSString* re$ult = [super title];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
     "valueForKey(java.lang.String)": null,
     "valueForUndefinedKey(java.lang.String)": null
   },
@@ -1933,6 +1970,13 @@
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
     "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setCoordinate(crossmobile.ios.corelocation.CLLocationCoordinate2D)": {
+      "reverse": "- (void) setCoordinate:(CLLocationCoordinate2D) newCoordinate\n{\n    crossmobile_ios_corelocation_CLLocationCoordinate2D* newCoordinate$conv = [[crossmobile_ios_corelocation_CLLocationCoordinate2D alloc] initWithCLLocationCoordinate2D:newCoordinate];\n    [self setCoordinate___crossmobile_ios_corelocation_CLLocationCoordinate2D:newCoordinate$conv];\n    [newCoordinate$conv release];\n}\n\n",
+      "super": "- (void) setCoordinate___crossmobile_ios_corelocation_CLLocationCoordinate2D:(crossmobile_ios_corelocation_CLLocationCoordinate2D*) newCoordinate \n{\n    [super setCoordinate:[newCoordinate getCLLocationCoordinate2D]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_corelocation_CLLocationCoordinate2D"
+      ]
+    },
     "setSubtitle(java.lang.String)": {
       "reverse": "- (void) setSubtitle:(NSString *) subtitle\n{\n    [self setSubtitle___java_lang_String:(subtitle ? subtitle : JAVA_NULL)];\n}\n\n",
       "super": "- (void) setSubtitle___java_lang_String:(NSString*) subtitle \n{\n    [super setSubtitle:(subtitle == JAVA_NULL ? nil : subtitle)];\n}\n\n",
