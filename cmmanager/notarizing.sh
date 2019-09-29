@@ -21,7 +21,8 @@ UUID=`grep <target/send.log RequestUUID | awk -F '=' '{print $2;}'`
 echo UUID: $UUID
 
 while true ; do
-    sleep 10
+    echo Sleeping for '10"'
+    sleep 20
     echo Check status of package
     xcrun &>target/check.log altool --notarization-info $UUID -u panayotis@panayotis.com -p $APPLE_APP_PASSWORD
     cat target/check.log
@@ -29,7 +30,7 @@ while true ; do
     APPROVED=`grep <target/check.log "Package Approved"`
     if [ -n "$APPROVED" ] ; then
         echo Stapling DMG
-        xcrun stapler staple -v $DMG
+        xcrun stapler staple -v target/installers/$DMG
         exit 0
     fi
 
