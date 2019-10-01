@@ -42,6 +42,7 @@ import java.awt.event.WindowEvent;
 import java.util.Collection;
 
 import static java.util.Arrays.asList;
+import static org.crossmobile.Version.RELEASE;
 import static org.crossmobile.Version.VERSION;
 import static org.crossmobile.gui.elements.Config.*;
 import static org.crossmobile.gui.init.ApplicationRequirements.*;
@@ -180,7 +181,7 @@ public class CrossMobile {
 
     private static void showUpdate(WelcomeFrame app, boolean force) {
         new Thread(() -> {
-            Updater updater = Updater.start("https://crossmobile.tech/versions/release/crossmobile.xml", Paths.getApplicationPath(), 2, VERSION, app, force);
+            Updater updater = Updater.start("https://crossmobile.tech/versions/release/crossmobile.xml", Paths.getApplicationPath(), RELEASE, VERSION, app, force);
             if (force && updater == null)
                 JOptionPane.showMessageDialog(app, "Unable to connect to Update Center", "CrossMobile Update", JOptionPane.WARNING_MESSAGE);
         }).start();

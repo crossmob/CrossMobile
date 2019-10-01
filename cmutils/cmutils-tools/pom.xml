@@ -53,6 +53,7 @@
                                     <arg value="-c"/>
                                     <arg value="echo $((`git rev-list --count HEAD` + 2019))"/>
                                 </exec>
+                                <echo>*** Current release is ${project.release} ***</echo>
                             </target>
                             <exportAntProperties>true</exportAntProperties>
                         </configuration>

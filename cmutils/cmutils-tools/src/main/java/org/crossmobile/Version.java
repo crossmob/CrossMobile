@@ -17,6 +17,7 @@
 package org.crossmobile;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
@@ -29,14 +30,16 @@ public class Version {
     static {
         Properties props = new Properties();
         try {
-            props.load(new InputStreamReader(Version.class.getClassLoader().getResourceAsStream("org/crossmobile/version.properties"), StandardCharsets.UTF_8));
-        } catch (IOException ex) {
+            InputStream resource = Version.class.getClassLoader().getResourceAsStream("org/crossmobile/version.properties");
+            if (resource != null)
+                props.load(new InputStreamReader(resource, StandardCharsets.UTF_8));
+        } catch (IOException ignored) {
         }
         VERSION = props.getProperty("current.version", "-unknown-");
-        int rel = Integer.MAX_VALUE;
+        int rel = 0;
         try {
             rel = Integer.parseInt(props.getProperty("current.release"));
-        } catch (NumberFormatException ex) {
+        } catch (NumberFormatException ignored) {
         }
         RELEASE = rel;
     }
