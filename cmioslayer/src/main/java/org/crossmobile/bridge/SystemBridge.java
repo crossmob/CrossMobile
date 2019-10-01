@@ -21,14 +21,17 @@ import crossmobile.ios.uikit.UIAlertView;
 import crossmobile.ios.uikit.UIAlertViewDelegate;
 import org.crossmobile.backend.android.AndroidPermissions;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 public interface SystemBridge {
+    SimpleDateFormat GMT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
+    String LOGTAG = "CrossMob";
     int CANCEL_ID = -1;
     int DESTROY_ID = -2;
-    AtomicLong lastExec = new AtomicLong(System.currentTimeMillis());
 
     /**
      * Use this method to run some code to the event thread as fast as possible.
@@ -74,20 +77,13 @@ public interface SystemBridge {
 
     boolean isEventThread();
 
-    void error(Object message, Throwable th);
+    void error(String message, Throwable th);
 
-    void debug(Object message, Throwable th);
-
-    default void debugAndStamp(Object message) {
-        debugAndStamp(message, null);
+    default void log(String message) {
+        System.out.println(GMT.format(new Date()) + ": " + message);
     }
 
-    default void debugAndStamp(Object message, Throwable th) {
-        long now = System.currentTimeMillis();
-        String timeStamp = (now - lastExec.getAndSet(now)) / 1000.0 + "s";
-        message = message == null ? timeStamp : timeStamp + " " + message;
-        debug(message, th);
-    }
+    void debug(String message, Throwable th);
 
     String version();
 

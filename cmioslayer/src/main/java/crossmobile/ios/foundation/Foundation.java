@@ -81,6 +81,6 @@ public final class Foundation {
      */
     @CMFunction("void NSLog(NSString *format, ...);")
     public static void NSLog(String format, Object... args) {
-        Native.system().error(NSString.initWithFormat(format, args), null);
+        Native.system().log(NSString.initWithFormat(format, args));
     }
 }

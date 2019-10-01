@@ -41,16 +41,16 @@ public abstract class DesktopSystemBridge implements SystemBridgeExt {
     }
 
     @Override
-    public void error(Object message, Throwable th) {
+    public void error(String message, Throwable th) {
         if (message != null)
-            error.println(message.toString());
+            error.println(message);
         if (th != null)
             th.printStackTrace(error);
         error.flush();
     }
 
     @Override
-    public void debug(Object message, Throwable th) {
+    public void debug(String message, Throwable th) {
         if (Debug)
             error(message, th);
     }

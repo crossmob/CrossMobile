@@ -46,9 +46,6 @@ import static org.crossmobile.bridge.ann.CMLibTarget.ANDROID;
 
 @CMLib(target = ANDROID, name = "cmioslayer")
 public class AndroidSystemBridge implements SystemBridgeExt {
-
-    private static final String LOGTAG = "CrossMob";
-
     private AndroidPermissions permissions;
 
     public static void printError(Object message, Throwable th) {
@@ -58,15 +55,20 @@ public class AndroidSystemBridge implements SystemBridgeExt {
     }
 
     @Override
-    public void error(Object message, Throwable th) {
+    public void error(String message, Throwable th) {
         printError(message, th);
     }
 
     @Override
-    public void debug(Object message, Throwable th) {
-        Log.d(LOGTAG, message == null ? "null" : message.toString(), th);
+    public void debug(String message, Throwable th) {
+        Log.d(LOGTAG, message == null ? "null" : message, th);
         if (th != null)
             th.printStackTrace(new PrintWriter(System.err));
+    }
+
+    @Override
+    public void log(String message) {
+        Log.i(LOGTAG, message == null ? "null" : message);
     }
 
     @Override

@@ -1782,10 +1782,15 @@ com/eclipsesource/json/WriterConfig$1.class v1.5
 com/eclipsesource/json/WriterConfig.class v1.5
 com/eclipsesource/json/WritingBuffer.class v1.5
 com/eclipsesource/json/package-info.class v8
+com/panayotis/appenh/AFileChooser$1.class v1.6
+com/panayotis/appenh/AFileChooser$2.class v1.6
+com/panayotis/appenh/AFileChooser$FileSelectionMode.class v1.6
+com/panayotis/appenh/AFileChooser.class v1.6
 com/panayotis/appenh/DefaultEnhancer.class v1.6
 com/panayotis/appenh/Enhancer$FileOpenRunnable.class v1.6
 com/panayotis/appenh/Enhancer.class v1.6
 com/panayotis/appenh/EnhancerManager.class v1.6
+com/panayotis/appenh/FileChooserFactory.class v1.6
 com/panayotis/appenh/LinuxEnhancer$1.class v1.6
 com/panayotis/appenh/LinuxEnhancer.class v1.6
 com/panayotis/appenh/MacEnhancer$1.class v1.6
@@ -1793,6 +1798,11 @@ com/panayotis/appenh/MacEnhancer$2.class v1.6
 com/panayotis/appenh/MacEnhancer$3.class v1.6
 com/panayotis/appenh/MacEnhancer$4.class v1.6
 com/panayotis/appenh/MacEnhancer$5.class v1.6
+com/panayotis/appenh/MacEnhancer$6.class v1.6
+com/panayotis/appenh/MacEnhancer$7.class v1.6
+com/panayotis/appenh/MacEnhancer$8.class v1.6
+com/panayotis/appenh/MacEnhancer$FileDialogCallback.class v1.6
+com/panayotis/appenh/MacEnhancer$OpenDialogLambda.class v1.6
 com/panayotis/appenh/MacEnhancer.class v1.6
 com/panayotis/appenh/libmacenh.dylib
 com/panayotis/ce/CEventCommons.class v8
