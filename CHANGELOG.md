@@ -2,8 +2,8 @@
 
 Click on the version header to go to the actual commits for each release.
 
-## [HEAD]
-###### now
+## [v2.7]
+###### 2019-10-1
 
 ### Added
 - First-class support of obfuscation in Android & Desktop by ProGuard
@@ -16,9 +16,11 @@ Click on the version header to go to the actual commits for each release.
 - Update visuals when changing signing key in android target
 - Able to override `loadView` when loading a view from a StoryBoard
 - Use junidecode to handle non-ASCII characters when creating project
+- NSLog output in Desktop resembles more the NSLog output of iOS
 
 ### Changed
 - Move location of `NSLog` from `NSLog.log` to `Foundation.NSLog`
+- In macOS all file selection dialogs are native
 
 ### Removed
 - Optimization of the overridable super call methods in native objects
@@ -99,7 +101,7 @@ Click on the version header to go to the actual commits for each release.
 ### Added
 - First public source release
 
-[HEAD]: https://github.com/crossmob/CrossMobile/compare/v2.6.1...HEAD
+[v2.7]: https://github.com/crossmob/CrossMobile/compare/v2.6.1...v2.7
 [v2.6.1]: https://github.com/crossmob/CrossMobile/compare/v2.6...v2.6.1
 [v2.6]: https://github.com/crossmob/CrossMobile/compare/v2.5...v2.6
 [v2.5]: https://github.com/crossmob/CrossMobile/compare/v2.5.pre1.cm...v2.5
