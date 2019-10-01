@@ -16,10 +16,14 @@
  */
 package org.crossmobile.gui;
 
+import com.panayotis.appenh.AFileChooser;
 import com.panayotis.appenh.EnhancerManager;
 import com.panayotis.hrgui.*;
 import org.crossmobile.gui.actives.*;
-import org.crossmobile.gui.elements.*;
+import org.crossmobile.gui.elements.BottomPanel;
+import org.crossmobile.gui.elements.DebugInfo;
+import org.crossmobile.gui.elements.GradientPanel;
+import org.crossmobile.gui.elements.Theme;
 import org.crossmobile.gui.parameters.ProjectParameter;
 import org.crossmobile.gui.project.Project;
 import org.crossmobile.gui.project.ProjectLauncher;
@@ -42,7 +46,6 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 
 import static org.crossmobile.gui.actives.ActiveContextLabel.Context.*;
-import static org.crossmobile.gui.elements.DebugInfo.streamsHaveTraces;
 import static org.crossmobile.gui.utils.Profile.OBFUSCATE;
 import static org.crossmobile.prefs.Prefs.*;
 import static org.crossmobile.utils.ParamsCommon.DEBUG_PROFILE;
@@ -247,13 +250,11 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
         if (result != null && result == KILL_RESULT && currentTaskName == null && taskName == null)
             return;
 
-        boolean shouldShowSendTrace = false;
         boolean running;
         if (result != null) {
             boolean success = result == 0;
             boolean wasKilled = result == KILL_RESULT;
             boolean notSaved = result == NOT_SAVED;
-            shouldShowSendTrace = !success && !wasKilled && streamsHaveTraces(outputTxt.getText(), errorTxt.getText());
             String oldTaskName = taskName;
             String tn = oldTaskName == null ? "Operation" : oldTaskName;
             tn += " : " + (success ? "success" : (wasKilled ? "interrupted" : (notSaved ? "not saved" : "failed, error code " + result)));
@@ -273,7 +274,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
         }
 
         setProjectEnabled(!running);
-        updateToolButtons(shouldShowSendTrace);
+        updateToolButtons();
         actionB.setText(running ? "Stop" : "Start");
         actionB.setIcon(running ? STOP_I : RUN_I);
         outputB.setEnabled(true);
@@ -284,7 +285,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
         taskName = currentTaskName;
     }
 
-    private void updateToolButtons(boolean shouldShowSendTrace) {
+    private void updateToolButtons() {
         inoutP.removeAll();
         if (proj.getProfile() == OBFUSCATE) {
             String target = getCurrentTarget();
@@ -298,8 +299,6 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
                 inoutP.add(magicWandB);
             }
         }
-        if (shouldShowSendTrace && false)
-            inoutP.add(SendStackTrace.getButton(this));
         inoutP.add(outputTB);
         inoutP.add(errorTB);
         inoutP.validate();
@@ -336,12 +335,9 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
     }
 
     private void saveOutPut() {
-        JFileChooser chooser = new JFileChooser();
-        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int result = chooser.showSaveDialog(this);
-        System.out.println(chooser.getSelectedFile() + " " + result);
-        if (result == 0)
-            try (Writer writer = new OutputStreamWriter(new FileOutputStream(chooser.getSelectedFile()), SystemDependent.getEncoding())) {
+        File outfile = new AFileChooser().setFile("output.txt").save();
+        if (outfile != null) {
+            try (Writer writer = new OutputStreamWriter(new FileOutputStream(outfile), SystemDependent.getEncoding())) {
                 String text = currentlyShowsOutput ? outputTxt.getText() : errorTxt.getText();
                 writer.write(text);
             } catch (IOException ex) {
@@ -350,6 +346,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
                         "Save Error",
                         JOptionPane.ERROR_MESSAGE);
             }
+        }
     }
 
     private String getCurrentTarget() {

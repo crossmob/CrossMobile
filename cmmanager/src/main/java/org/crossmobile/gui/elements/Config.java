@@ -78,7 +78,6 @@ public class Config extends HiResDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        keyChooser = new javax.swing.JFileChooser();
         themeGroup = new javax.swing.ButtonGroup();
         jPanel4 = new GradientPanel();
         jPanel10 = new HiResPanel();
@@ -124,9 +123,6 @@ public class Config extends HiResDialog {
         darkB = new ActiveRadioButton();
         jPanel1 = new HiResPanel();
         closeB = new HiResButton();
-
-        keyChooser.setDialogTitle("Default key file");
-        keyChooser.setSelectedFile(new File(Prefs.getAndroidKeyLocation()));
 
         setTitle("CrossMobile Configuration");
         setResizable(false);
@@ -493,7 +489,6 @@ public class Config extends HiResDialog {
     private javax.swing.JButton jdkB;
     private javax.swing.JLabel jdkL;
     private javax.swing.JTextField jdkT;
-    private javax.swing.JFileChooser keyChooser;
     private javax.swing.JTextField keyT;
     private javax.swing.JButton keystoreB;
     private javax.swing.JLabel keystoreL;

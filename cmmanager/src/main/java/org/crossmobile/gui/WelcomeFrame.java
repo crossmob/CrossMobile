@@ -16,6 +16,7 @@
  */
 package org.crossmobile.gui;
 
+import com.panayotis.appenh.AFileChooser;
 import com.panayotis.appenh.EnhancerManager;
 import com.panayotis.hrgui.HiResEmptyBorder;
 import com.panayotis.hrgui.HiResIcon;
@@ -50,8 +51,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.util.Collection;
+
+import static com.panayotis.appenh.AFileChooser.FileSelectionMode.FilesAndDirectories;
 
 public class WelcomeFrame extends RegisteredFrame implements UpdatedApplication {
+
+    private static final AFileChooser afc = new AFileChooser().setDirectory(Prefs.getCurrentDir()).setMode(FilesAndDirectories);
 
     private ProjectListModel projlist;
     private boolean textualVersion = true;
@@ -210,14 +216,14 @@ public class WelcomeFrame extends RegisteredFrame implements UpdatedApplication 
 
         Background.setLayout(new BorderLayout());
 
-        jPanel3.setBorder(new HiResEmptyBorder(2,2,2,24));
+        jPanel3.setBorder(new HiResEmptyBorder(2, 2, 2, 24));
         jPanel3.setOpaque(false);
         jPanel3.setLayout(new BorderLayout(0, 2));
 
         ProjectsSP.setMinimumSize(new Dimension(260, 400));
         ProjectsSP.setPreferredSize(ProjectsSP.getMinimumSize());
 
-        ProjectsL.setFont(ProjectsL.getFont().deriveFont(ProjectsL.getFont().getSize()+1f));
+        ProjectsL.setFont(ProjectsL.getFont().deriveFont(ProjectsL.getFont().getSize() + 1f));
         ProjectsL.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 ProjectsLMouseClicked(evt);
@@ -234,7 +240,7 @@ public class WelcomeFrame extends RegisteredFrame implements UpdatedApplication 
 
         jLabel2.setHorizontalAlignment(SwingConstants.RIGHT);
         jLabel2.setText("Recent Projects  ");
-        jLabel2.setBorder(new HiResEmptyBorder(4,0,4,0));
+        jLabel2.setBorder(new HiResEmptyBorder(4, 0, 4, 0));
         jPanel3.add(jLabel2, BorderLayout.NORTH);
 
         jPanel10.setOpaque(false);
@@ -263,7 +269,7 @@ public class WelcomeFrame extends RegisteredFrame implements UpdatedApplication 
 
         Background.add(jPanel3, BorderLayout.CENTER);
 
-        jPanel8.setBorder(new HiResEmptyBorder(16,8,8,4));
+        jPanel8.setBorder(new HiResEmptyBorder(16, 8, 8, 4));
         jPanel8.setOpaque(false);
         jPanel8.setLayout(new BorderLayout());
 
@@ -274,19 +280,19 @@ public class WelcomeFrame extends RegisteredFrame implements UpdatedApplication 
         jPanel1.setOpaque(false);
         jPanel1.setLayout(new GridLayout(0, 1));
 
-        jLabel3.setFont(jLabel3.getFont().deriveFont(jLabel3.getFont().getStyle() | Font.BOLD, jLabel3.getFont().getSize()+15));
+        jLabel3.setFont(jLabel3.getFont().deriveFont(jLabel3.getFont().getStyle() | Font.BOLD, jLabel3.getFont().getSize() + 15));
         jLabel3.setHorizontalAlignment(SwingConstants.CENTER);
         jLabel3.setText("Welcome to");
         jPanel1.add(jLabel3);
 
-        jLabel4.setFont(jLabel4.getFont().deriveFont(jLabel4.getFont().getStyle() | Font.BOLD, jLabel4.getFont().getSize()+15));
+        jLabel4.setFont(jLabel4.getFont().deriveFont(jLabel4.getFont().getStyle() | Font.BOLD, jLabel4.getFont().getSize() + 15));
         jLabel4.setHorizontalAlignment(SwingConstants.CENTER);
         jLabel4.setText("CrossMobile");
         jPanel1.add(jLabel4);
 
         jPanel4.add(jPanel1, BorderLayout.NORTH);
 
-        versionL.setFont(versionL.getFont().deriveFont((versionL.getFont().getStyle() | Font.ITALIC), versionL.getFont().getSize()-1));
+        versionL.setFont(versionL.getFont().deriveFont((versionL.getFont().getStyle() | Font.ITALIC), versionL.getFont().getSize() - 1));
         versionL.setHorizontalAlignment(SwingConstants.CENTER);
         versionL.setText("release");
         versionL.addMouseListener(new MouseAdapter() {
@@ -300,7 +306,7 @@ public class WelcomeFrame extends RegisteredFrame implements UpdatedApplication 
 
         jLabel1.setHorizontalAlignment(SwingConstants.CENTER);
         jLabel1.setIcon(new HiResIcon("images/logo", false));
-        jLabel1.setBorder(new HiResEmptyBorder(16,0,30,0));
+        jLabel1.setBorder(new HiResEmptyBorder(16, 0, 30, 0));
         jPanel8.add(jLabel1, BorderLayout.CENTER);
 
         jPanel5.setOpaque(false);
@@ -388,8 +394,11 @@ public class WelcomeFrame extends RegisteredFrame implements UpdatedApplication 
     }//GEN-LAST:event_ProjectsLValueChanged
 
     private void openProjectBActionPerformed(ActionEvent evt) {//GEN-FIRST:event_openProjectBActionPerformed
-        for (File selected : FileChooser.dialog("Open Project", "Open", false, false))
+        Collection<File> result = afc.setDirectory(Prefs.getCurrentDir()).openMulti();
+        for (File selected : result) {
             addProjectWithMessage(selected);
+            Prefs.setCurrentDir(selected.getParentFile());
+        }
     }//GEN-LAST:event_openProjectBActionPerformed
 
     private void openBActionPerformed(ActionEvent evt) {//GEN-FIRST:event_openBActionPerformed

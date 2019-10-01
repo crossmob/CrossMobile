@@ -16,25 +16,25 @@
  */
 package org.crossmobile.gui.lic;
 
+import com.panayotis.appenh.AFileChooser;
 import com.panayotis.hrgui.HiResDialog;
 import org.crossmobile.Version;
 import org.crossmobile.gui.actives.*;
-import org.crossmobile.gui.elements.FileChooser;
 import org.crossmobile.gui.elements.GradientPanel;
 import org.crossmobile.gui.elements.Theme;
 import org.crossmobile.gui.project.ProjectLauncher;
 import org.crossmobile.gui.utils.Paths;
 import org.crossmobile.gui.utils.StreamQuality;
 import org.crossmobile.prefs.Prefs;
-import org.crossmobile.utils.*;
+import org.crossmobile.utils.FileUtils;
+import org.crossmobile.utils.XMLWalker;
+import org.crossmobile.utils.launcher.Flavour;
 import org.crossmobile.utils.lic.LicenseManager;
 import org.crossmobile.utils.lic.LicenseManager.UserPass;
-import org.crossmobile.utils.launcher.Flavour;
 import org.crossmobile.utils.lic.LicensedApplication;
 import org.crossmobile.utils.lic.LicensedArtifact;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileFilter;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
@@ -480,23 +480,12 @@ public class LicenseDialog extends HiResDialog {
     private void browseBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseBActionPerformed
         pluginInfoT.setText("");
         pomT.setText("");
-        Collection<File> found = FileChooser.dialog("Please select a plugin pom file", "Open", false, new FileFilter() {
-            @Override
-            public boolean accept(File f) {
-                return f.isDirectory() || f.getName().toLowerCase().equals("pom.xml");
-            }
-
-            @Override
-            public String getDescription() {
-                return "POM files";
-            }
-        }, true);
-        File pom;
-        if (found.isEmpty() || !(pom = found.iterator().next()).getName().toLowerCase().equals("pom.xml"))
-            return;
-        pomT.setText(pom.getAbsolutePath());
-        Prefs.setCurrentDir(pom.getParentFile());
-        fixPomFile(pom);
+        File pom = new AFileChooser().openSingle();
+        if (pom != null) {
+            pomT.setText(pom.getAbsolutePath());
+            Prefs.setCurrentDir(pom.getParentFile());
+            fixPomFile(pom);
+        }
     }//GEN-LAST:event_browseBActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

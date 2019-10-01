@@ -16,6 +16,8 @@
  */
 package org.crossmobile.gui.elements;
 
+import com.panayotis.appenh.AFileChooser;
+import com.panayotis.appenh.Enhancer;
 import com.panayotis.hrgui.HiResButton;
 import com.panayotis.hrgui.HiResDialog;
 import org.crossmobile.gui.actives.ActiveLabel;
@@ -23,28 +25,27 @@ import org.crossmobile.gui.actives.ActivePanel;
 import org.crossmobile.gui.actives.ActiveRadioButton;
 import org.crossmobile.gui.actives.ActiveTextField;
 import org.crossmobile.gui.parameters.impl.ArtifactIdParameter;
-import org.crossmobile.prefs.Prefs;
 import org.crossmobile.gui.utils.NameConverter;
+import org.crossmobile.prefs.Prefs;
 
 import javax.swing.text.AbstractDocument;
 import java.awt.*;
 import java.io.File;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.panayotis.appenh.AFileChooser.FileSelectionMode.DirectoriesOnly;
 import static org.crossmobile.gui.project.TemplateType.*;
 
 public final class NewProjectInfo extends HiResDialog {
 
     private static final Color error = Color.red;
     private static final String PROJECT_PREFIX = "project";
+    private static final AFileChooser afc = new AFileChooser().setRememberSelection(true).setDirectory(Prefs.getCurrentDir()).setMode(DirectoriesOnly);
 
     private final Color def;
-
     private File parentpath;
-
     private boolean accepted = false;
 
     public NewProjectInfo() {
@@ -382,15 +383,14 @@ public final class NewProjectInfo extends HiResDialog {
     private void browseBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseBActionPerformed
         File current = Prefs.getCurrentDir();
         Prefs.setCurrentDir(Prefs.getProjectsDir());
-        Collection<File> result = FileChooser.dialog("Create Project", "Select", false, true);
-        if (result != null && !result.isEmpty()) {
-            parentpath = result.iterator().next();
+        File path = afc.openSingle();
+        if (path != null) {
+            parentpath = path;
             if (parentpath.isFile() || !parentpath.exists())
                 parentpath = parentpath.getParentFile();
             locationT.setText(parentpath.getAbsolutePath());
             Prefs.setProjectsDir(parentpath);
         }
-        Prefs.setCurrentDir(current);
     }//GEN-LAST:event_browseBActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

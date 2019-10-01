@@ -16,6 +16,8 @@
  */
 package org.crossmobile.gui.elements;
 
+import com.panayotis.appenh.AFileChooser;
+import com.panayotis.appenh.Enhancer;
 import org.crossmobile.prefs.Prefs;
 
 import javax.swing.*;
@@ -27,23 +29,16 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
+import static com.panayotis.appenh.AFileChooser.FileSelectionMode.FilesOnly;
+
 public class KeystoreManager {
-
-    private final static JFileChooser KEY_CHOOSER;
-
-    static {
-        KEY_CHOOSER = new JFileChooser(Prefs.getAndroidKeyLocation());
-        KEY_CHOOSER.setDialogTitle("Default key file");
-        KEY_CHOOSER.setFileHidingEnabled(false);
-    }
+    private static final AFileChooser afc = new AFileChooser().setMode(FilesOnly).setRememberSelection(true);
 
     public static String browseKeystore() {
-        if (KEY_CHOOSER.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            File found = KEY_CHOOSER.getSelectedFile();
-            if (found != null && found.isFile() && found.exists() && isKeystoreFile(found))
-                return found.getAbsolutePath();
-        }
-        return null;
+        File keystore = afc.setDirectory(new File(Prefs.getAndroidKeyLocation())).openSingle();
+        return keystore != null && keystore.exists() && isKeystoreFile(keystore)
+                ? keystore.getAbsolutePath()
+                : null;
     }
 
     public static boolean isKeystoreFile(File file) {

@@ -2,14 +2,6 @@
 
 <Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <NonVisualComponents>
-    <Component class="javax.swing.JFileChooser" name="keyChooser">
-      <Properties>
-        <Property name="dialogTitle" type="java.lang.String" value="Default key file"/>
-        <Property name="selectedFile" type="java.io.File" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new File(Prefs.getAndroidKeyLocation())" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
     <Component class="javax.swing.ButtonGroup" name="themeGroup">
     </Component>
   </NonVisualComponents>

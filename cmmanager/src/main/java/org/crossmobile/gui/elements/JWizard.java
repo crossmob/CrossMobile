@@ -16,11 +16,12 @@
  */
 package org.crossmobile.gui.elements;
 
+import com.panayotis.appenh.AFileChooser;
 import com.panayotis.hrgui.HiResButton;
 import com.panayotis.hrgui.HiResEmptyBorder;
 import org.crossmobile.gui.actives.*;
-import org.crossmobile.utils.TreeWalker;
 import org.crossmobile.utils.LocationTarget;
+import org.crossmobile.utils.TreeWalker;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,6 +32,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.function.Consumer;
 
+import static com.panayotis.appenh.AFileChooser.FileSelectionMode.FilesAndDirectories;
 import static java.util.Collections.singletonList;
 
 public class JWizard extends JDialog {
@@ -61,7 +63,6 @@ public class JWizard extends JDialog {
     public void fire(LocationTarget target, String oldLocation) {
         this.target = target;
         this.oldLocation = oldLocation;
-        fdialog.setSelectedFile(new File(""));
         pleaseWaitL.setVisible(false);
         resolveTypeP.setVisible(true);
         CancelB.setEnabled(true);
@@ -130,7 +131,6 @@ public class JWizard extends JDialog {
     private void initComponents() {
 
         AutoSel = new javax.swing.ButtonGroup();
-        fdialog = new javax.swing.JFileChooser();
         Background = new GradientPanel();
         CardsP = new ActivePanel();
         WelcomeP = new ActivePanel();
@@ -159,8 +159,6 @@ public class JWizard extends JDialog {
         ContinueB = new HiResButton();
         jLabel1 = new ActiveLabel();
 
-        fdialog.setFileSelectionMode(javax.swing.JFileChooser.FILES_AND_DIRECTORIES);
-
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("External plugin Wizard");
         setResizable(false);
@@ -174,7 +172,7 @@ public class JWizard extends JDialog {
 
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        WelcomeTitle.setFont(WelcomeTitle.getFont().deriveFont(WelcomeTitle.getFont().getStyle() | java.awt.Font.BOLD, WelcomeTitle.getFont().getSize()+2));
+        WelcomeTitle.setFont(WelcomeTitle.getFont().deriveFont(WelcomeTitle.getFont().getStyle() | java.awt.Font.BOLD, WelcomeTitle.getFont().getSize() + 2));
         WelcomeTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         WelcomeTitle.setText(name);
         WelcomeTitle.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 3, 12, 0));
@@ -246,7 +244,7 @@ public class JWizard extends JDialog {
 
         WelcomeP.add(jPanel2, java.awt.BorderLayout.NORTH);
 
-        pleaseWaitL.setFont(pleaseWaitL.getFont().deriveFont((pleaseWaitL.getFont().getStyle() | java.awt.Font.ITALIC) | java.awt.Font.BOLD, pleaseWaitL.getFont().getSize()+2));
+        pleaseWaitL.setFont(pleaseWaitL.getFont().deriveFont((pleaseWaitL.getFont().getStyle() | java.awt.Font.ITALIC) | java.awt.Font.BOLD, pleaseWaitL.getFont().getSize() + 2));
         pleaseWaitL.setText("Please wait while initializing wizard...");
         WelcomeP.add(pleaseWaitL, java.awt.BorderLayout.CENTER);
 
@@ -256,7 +254,7 @@ public class JWizard extends JDialog {
 
         jPanel3.setLayout(new java.awt.BorderLayout());
 
-        SearchTitle.setFont(SearchTitle.getFont().deriveFont(SearchTitle.getFont().getStyle() | java.awt.Font.BOLD, SearchTitle.getFont().getSize()+2));
+        SearchTitle.setFont(SearchTitle.getFont().deriveFont(SearchTitle.getFont().getStyle() | java.awt.Font.BOLD, SearchTitle.getFont().getSize() + 2));
         SearchTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         SearchTitle.setText("Locating " + name + " executable...");
         SearchTitle.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 3, 12, 0));
@@ -272,7 +270,7 @@ public class JWizard extends JDialog {
 
         FinishP.setLayout(new java.awt.BorderLayout());
 
-        FinishTitle.setFont(FinishTitle.getFont().deriveFont(FinishTitle.getFont().getStyle() | java.awt.Font.BOLD, FinishTitle.getFont().getSize()+2));
+        FinishTitle.setFont(FinishTitle.getFont().deriveFont(FinishTitle.getFont().getStyle() | java.awt.Font.BOLD, FinishTitle.getFont().getSize() + 2));
         FinishTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         FinishTitle.setText(name + " executable");
         FinishTitle.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 3, 12, 0));
@@ -329,9 +327,7 @@ public class JWizard extends JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BrowseBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BrowseBActionPerformed
-        if (fdialog.showOpenDialog(this) != JFileChooser.APPROVE_OPTION)
-            return;
-        File selectedFile = fdialog.getSelectedFile();
+        File selectedFile = new AFileChooser().setMode(FilesAndDirectories).openSingle();
         if (selectedFile != null) {
             FilenameT.setText(selectedFile.getAbsolutePath());
             ContinueB.setEnabled(true);
@@ -383,7 +379,6 @@ public class JWizard extends JDialog {
     private javax.swing.JPanel WelcomeP;
     private javax.swing.JTextArea WelcomeText;
     private javax.swing.JLabel WelcomeTitle;
-    private javax.swing.JFileChooser fdialog;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

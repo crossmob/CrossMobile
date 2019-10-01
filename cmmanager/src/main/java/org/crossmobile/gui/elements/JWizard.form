@@ -4,11 +4,6 @@
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="AutoSel">
     </Component>
-    <Component class="javax.swing.JFileChooser" name="fdialog">
-      <Properties>
-        <Property name="fileSelectionMode" type="int" value="2"/>
-      </Properties>
-    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="0"/>

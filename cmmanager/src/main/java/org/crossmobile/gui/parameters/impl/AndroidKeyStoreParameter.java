@@ -33,8 +33,8 @@
  public class AndroidKeyStoreParameter extends FreeFileParameter {
 
      public AndroidKeyStoreParameter(ParamList list) {
-         super(list, KEY_STORE.tag(), Prefs.getAndroidKeyLocation(), true, true);
-         setButonPanelCallback((HiResPanel buttons) -> {
+         super(list, KEY_STORE.tag(), Prefs.getAndroidKeyLocation(), true);
+         setButtonPanelCallback((HiResPanel buttons) -> {
              HiResButton clear = new HiResButton("Default");
              clear.setOpaque(false);
              clear.addActionListener((ActionEvent ae) -> {

@@ -30,10 +30,10 @@ import org.crossmobile.gui.project.ProjectInfo;
 import org.crossmobile.gui.project.ProjectLoader;
 import org.crossmobile.gui.utils.Paths;
 import org.crossmobile.prefs.Prefs;
+import org.crossmobile.utils.LocationRequest;
 import org.crossmobile.utils.Log;
 import org.crossmobile.utils.ProjectException;
 import org.crossmobile.utils.TreeWalker;
-import org.crossmobile.utils.LocationRequest;
 
 import javax.swing.*;
 import java.awt.*;
@@ -147,11 +147,11 @@ public class CrossMobile {
                 }).start();
             });
             initW.setVisible(true);
-        } else if (!isAndroidConfigured() && !isJDKconfigured() && JOptionPane.showConfirmDialog(frame, "CrossMobile environment hasn't been properly configured.\nDo you want to configure it now?", "Configure CrossMobile", JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION)
+        } else if (!isAndroidConfigured() && !isJDKconfigured() && JOptionPane.showConfirmDialog(frame, "CrossMobile environment hasn't been properly configured.\nDo you want to configure it now?", "Configure CrossMobile", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION)
             Config.showConfig();
-        else if (!isAndroidConfigured() && JOptionPane.showConfirmDialog(frame, "Android SDK environment hasn't been properly configured.\nDo you want to configure it now?", "Configure CrossMobile", JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION)
+        else if (!isAndroidConfigured() && JOptionPane.showConfirmDialog(frame, "Android SDK environment hasn't been properly configured.\nDo you want to configure it now?", "Configure CrossMobile", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION)
             Config.showConfig();
-        else if (!isJDKconfigured() && JOptionPane.showConfirmDialog(frame, "JDK environment hasn't been properly configured.\nDo you want to configure it now?", "Configure CrossMobile", JOptionPane.WARNING_MESSAGE) == JOptionPane.OK_OPTION)
+        else if (!isJDKconfigured() && JOptionPane.showConfirmDialog(frame, "JDK environment hasn't been properly configured.\nDo you want to configure it now?", "Configure CrossMobile", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION)
             Config.showConfig();
         frame.updateProjects(null);
         EnhancerManager.getDefault().registerUpdate(() -> showUpdate(frame, true));

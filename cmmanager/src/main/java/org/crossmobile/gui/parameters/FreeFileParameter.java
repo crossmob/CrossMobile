@@ -16,6 +16,7 @@
  */
 package org.crossmobile.gui.parameters;
 
+import com.panayotis.appenh.AFileChooser;
 import com.panayotis.hrgui.HiResButton;
 import com.panayotis.hrgui.HiResComponent;
 import com.panayotis.hrgui.HiResPanel;
@@ -35,28 +36,23 @@ import java.io.IOException;
 import java.util.function.Consumer;
 
 public abstract class FreeFileParameter extends ProjectParameter {
-
-    private static JFileChooser chooser;
-    //
     private File file;
-    private ActiveTextField filedata;
-    private Consumer<HiResPanel> butonPanelCallback;
+    private ActiveTextField fileData;
+    private Consumer<HiResPanel> buttonPanelCallback;
     private final boolean editable;
-    private final boolean allFiles;
+    private AFileChooser afc = new AFileChooser().setRememberSelection(true);
 
     public FreeFileParameter(String location) {
-        this(null, null, location, false, false);
+        this(null, null, location, false);
     }
 
     public FreeFileParameter(ParamList list, Param key, boolean editable) {
-        this(list, key, null, editable, false);
+        this(list, key, null, editable);
     }
 
-    public FreeFileParameter(ParamList list, Param key, String deflt, boolean editable, boolean allFiles) {
+    public FreeFileParameter(ParamList list, Param key, String deflt, boolean editable) {
         super(list, key);
         this.editable = editable;
-        this.allFiles = allFiles;
-
         String pfile = deflt == null ? (key != null ? key.deflt : null) : deflt;
         this.file = pfile == null ? null : (list == null ? new File(pfile) : new File(list.dereferenceValue(pfile, true)));
         if (list != null) {
@@ -66,8 +62,8 @@ public abstract class FreeFileParameter extends ProjectParameter {
         }
     }
 
-    public void setButonPanelCallback(Consumer<HiResPanel> butonPanelCallback) {
-        this.butonPanelCallback = butonPanelCallback;
+    public void setButtonPanelCallback(Consumer<HiResPanel> buttonPanelCallback) {
+        this.buttonPanelCallback = buttonPanelCallback;
     }
 
     @Override
@@ -85,10 +81,10 @@ public abstract class FreeFileParameter extends ProjectParameter {
         HiResPanel comp = new HiResPanel(new BorderLayout());
         comp.setOpaque(false);
 
-        filedata = new ActiveTextField(file == null ? "" : Paths.getPath(file.getPath(), HomeReference.PROPERTY_STYLE));
-        filedata.setColumns(10);
-        filedata.setEditable(false);
-        filedata.setBackground(Theme.current().disabled);
+        fileData = new ActiveTextField(file == null ? "" : Paths.getPath(file.getPath(), HomeReference.PROPERTY_STYLE));
+        fileData.setColumns(10);
+        fileData.setEditable(false);
+        fileData.setBackground(Theme.current().disabled);
 
         HiResPanel buttons = new HiResPanel();
         buttons.setLayout(new BoxLayout(buttons, BoxLayout.X_AXIS));
@@ -99,16 +95,12 @@ public abstract class FreeFileParameter extends ProjectParameter {
             browse.setOpaque(false);
             browse.addActionListener((ActionEvent e) -> {
                 if (editable) {
-                    if (chooser == null) {
-                        chooser = new JFileChooser();
-                        chooser.setApproveButtonText("Use");
-                        chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-                        chooser.setDialogTitle(getVisualTag());
-                        chooser.setFileHidingEnabled(!allFiles);
-                    }
-                    chooser.setSelectedFile(file);
-                    if (chooser.showOpenDialog(comp) == JFileChooser.APPROVE_OPTION)
-                        setFile(chooser.getSelectedFile());
+                    File old = new File(getValue());
+                    if (old.isFile() || old.isDirectory())
+                        afc.setDirectory(old.isFile() ? old.getParentFile() : old);
+                    File selection = afc.openSingle();
+                    if (selection != null)
+                        setFile(selection);
                 } else
                     try {
                         Desktop.getDesktop().open(file.isDirectory() ? file : file.getParentFile());
@@ -119,18 +111,18 @@ public abstract class FreeFileParameter extends ProjectParameter {
             buttons.add(browse);
         }
 
-        if (butonPanelCallback != null)
-            butonPanelCallback.accept(buttons);
+        if (buttonPanelCallback != null)
+            buttonPanelCallback.accept(buttons);
         else if (editable) {
             HiResButton clear = new HiResButton("Clear");
             clear.setOpaque(false);
             clear.addActionListener((ActionEvent ae) -> {
                 file = null;
-                filedata.setText("");
+                fileData.setText("");
             });
             buttons.add(clear);
         }
-        comp.add(filedata, BorderLayout.CENTER);
+        comp.add(fileData, BorderLayout.CENTER);
         comp.add(buttons, BorderLayout.EAST);
         return comp;
     }
@@ -142,7 +134,7 @@ public abstract class FreeFileParameter extends ProjectParameter {
     protected void setFile(File newfile) {
         if (isFileAccepted(newfile) && !file.equals(newfile)) {
             file = newfile;
-            filedata.setText(Paths.getPath(file.getPath(), HomeReference.PROPERTY_STYLE));
+            fileData.setText(Paths.getPath(file.getPath(), HomeReference.PROPERTY_STYLE));
             fireValueUpdated();
         }
     }
