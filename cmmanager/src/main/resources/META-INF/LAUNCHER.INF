@@ -5,6 +5,11 @@
       "-Xdock:icon=@@LAUNCH_LOCATION@@/../Resources/CrossMobile.icns"
     ]
   },
+  "linux": {
+    "jvmargs": [
+      "-Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2"
+    ]
+  },
   "jvmargs": [
     "-Dawt.useSystemAAFontSettings=on",
     "-Dswing.aatext=true"

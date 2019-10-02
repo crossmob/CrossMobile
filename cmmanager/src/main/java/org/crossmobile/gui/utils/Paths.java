@@ -16,7 +16,6 @@
  */
 package org.crossmobile.gui.utils;
 
-import org.crossmobile.Version;
 import org.crossmobile.utils.Commander;
 import org.crossmobile.utils.Log;
 import org.crossmobile.utils.SystemDependent;
@@ -54,22 +53,10 @@ public final class Paths {
         String path = dir.getAbsolutePath();
         if (path.startsWith("/tmp/.mount_")) {
             // as an AppImage
-            int mntTarget = path.substring(5).indexOf('/');
-            String location = path.substring(0, 5 + mntTarget);
-            Commander mountExec = new Commander("mount");
-            AtomicReference<String> originalLocation = new AtomicReference<>();
-            mountExec.setOutListener(l -> {
-                int upTo = l.indexOf(" on " + location);
-                if (upTo >= 0)
-                    originalLocation.set(l.substring(0, upTo));
-            });
-            mountExec.setDebug(false);
-            mountExec.exec();
-            mountExec.waitFor();
-            if (originalLocation.get() == null)
-                Log.error("Unable to locate the original location of an AppImage bundle");
-            else
-                return new File(originalLocation.get()).getParentFile().getAbsolutePath();
+            path = System.getenv("APPIMAGE");
+            if (path != null)
+                return path;
+            Log.error("Application started as AppImage but the file location was not found.");
         }
         return path;
     }

@@ -16,8 +16,6 @@
  */
 package org.crossmobile.utils;
 
-import org.robovm.objc.block.VoidBlock1;
-
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;

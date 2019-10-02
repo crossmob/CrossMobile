@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<updatelist application="CrossMobile" baseurl="http://jupidator.panayotis.com/files/" jupidator="898">
-    <architect arch="i386" os="mac" tag="osx">
-        <launcher exec="${APPHOME}/../MacOS/CrossMobile"/>
-    </architect>
-    <architect arch="x86" os="mac" tag="osx">
-        <launcher exec="${APPHOME}/../MacOS/CrossMobile"/>
-    </architect>
-    <architect arch="i386" os="linux" tag="linux">
-        <launcher exec="crossmobile32"/>
-    </architect>
-    <architect arch="amd64" os="linux" tag="linux">
-        <launcher exec="crossmobile"/>
-    </architect>
-    <architect arch="x86" os="windows" tag="windows">
-        <launcher exec="${APPHOME}\CrossMobile.exe"/>
-    </architect>
-    <architect arch="amd64" os="windows" tag="windows">
-        <launcher exec="${APPHOME}\CrossMobile.exe"/>
-    </architect>
-    <version release="1916" version="1.0.0-rc2">
-        <description>Required migration update of Jupidator library</description>
-        <arch name="all">
+<updatelist application="CrossMobile" baseurl="https://github.com/crossmob/CrossMobile/releases/download" jupidator="898">
+    <architect arch="x86_64" os="mac" tag="osx"/>
+    <architect arch="amd64" os="linux" tag="linux"/>
+    <architect arch="x86" os="windows" tag="windows"/>
+    <architect arch="amd64" os="windows" tag="windows"/>
+    <version release="2301" version="2.7.1">
+        <description>Test update</description>
+        <arch name="linux">
+            <rm file="${APPEXEC}"/>
+            <file name="CrossMobile-2.7.0.x86_64.appimage" localsize="40357864" sourcedir="v2.7"/>
+            <chmod attr="a+x" file="${APPHOME}/CrossMobile-2.7.0.x86_64.appimage"/>
+            <exec executable="${APPHOME}/CrossMobile-2.7.0.x86_64.appimage"/>
+        </arch>
+        <arch name="osx">
+            <file name="CrossMobile-2.7.0.dmg" localsize="38944167" sourcedir="v2.7" destdir="${WORKDIR}"/>
+            <exec executable="/usr/bin/open">
+                <argument value="-W"/>
+                <argument value="${WORKDIR}/CrossMobile-2.7.0.dmg"/>
+            </exec>
+            <wait msecs="5000" time="after"/>
         </arch>
     </version>
 </updatelist>
+

@@ -84,15 +84,15 @@ public final class FileUtils {
         }
     }
 
-    public static String readSafe(InputStream input, String sourceDescrition, String deflt) {
-        String result = readSafe(input, sourceDescrition);
+    public static String readSafe(InputStream input, String sourceDescription, String deflt) {
+        String result = readSafe(input, sourceDescription);
         return result == null ? deflt : result;
     }
 
-    public static String readSafe(InputStream input, String sourceDescrition) {
+    public static String readSafe(InputStream input, String sourceDescription) {
         final StringBuilder out = new StringBuilder();
         try {
-            read(input, sourceDescrition, (String data) -> out.append(data).append(NL));
+            read(input, sourceDescription, (String data) -> out.append(data).append(NL));
         } catch (ProjectException ex) {
             return null;
         }

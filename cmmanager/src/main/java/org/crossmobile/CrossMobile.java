@@ -19,7 +19,6 @@ package org.crossmobile;
 import com.panayotis.appenh.Enhancer;
 import com.panayotis.appenh.EnhancerManager;
 import com.panayotis.hrgui.ScreenUtils;
-import com.panayotis.jupidator.Updater;
 import org.crossmobile.gui.RegisteredFrame;
 import org.crossmobile.gui.WelcomeFrame;
 import org.crossmobile.gui.elements.About;
@@ -28,7 +27,6 @@ import org.crossmobile.gui.init.InitializationWizard;
 import org.crossmobile.gui.init.InitializationWizard.Card;
 import org.crossmobile.gui.project.ProjectInfo;
 import org.crossmobile.gui.project.ProjectLoader;
-import org.crossmobile.gui.utils.Paths;
 import org.crossmobile.prefs.Prefs;
 import org.crossmobile.utils.LocationRequest;
 import org.crossmobile.utils.Log;
@@ -42,8 +40,6 @@ import java.awt.event.WindowEvent;
 import java.util.Collection;
 
 import static java.util.Arrays.asList;
-import static org.crossmobile.Version.RELEASE;
-import static org.crossmobile.Version.VERSION;
 import static org.crossmobile.gui.elements.Config.*;
 import static org.crossmobile.gui.init.ApplicationRequirements.*;
 
@@ -80,10 +76,11 @@ public class CrossMobile {
                     if (message != null || th != null) {
                         if (message != null)
                             System.err.println(message);
-                        th.printStackTrace(System.err);
-
-                        if (message == null)
-                            message = th.toString();
+                        if (th != null) {
+                            th.printStackTrace(System.err);
+                            if (message == null)
+                                message = th.toString();
+                        }
                         JOptionPane.showMessageDialog(null, message, "CrossMobile", JOptionPane.ERROR_MESSAGE);
                     }
                 }
@@ -155,8 +152,7 @@ public class CrossMobile {
         else if (!isJDKconfigured() && JOptionPane.showConfirmDialog(frame, "JDK environment hasn't been properly configured.\nDo you want to configure it now?", "Configure CrossMobile", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION)
             Config.showConfig();
         frame.updateProjects(null);
-        EnhancerManager.getDefault().registerUpdate(() -> showUpdate(frame, true));
-        checkJavaVersion(frame, () -> showUpdate(frame, false));
+        checkJavaVersion(frame, frame::checkSelfUpdate);
     }
 
     private static void showHelp(int exitCode) {
@@ -177,13 +173,5 @@ public class CrossMobile {
         System.err.println();
         System.err.println();
         showHelp(1);
-    }
-
-    private static void showUpdate(WelcomeFrame app, boolean force) {
-        new Thread(() -> {
-            Updater updater = Updater.start("https://crossmobile.tech/versions/release/crossmobile.xml", Paths.getApplicationPath(), RELEASE, VERSION, app, force);
-            if (force && updater == null)
-                JOptionPane.showMessageDialog(app, "Unable to connect to Update Center", "CrossMobile Update", JOptionPane.WARNING_MESSAGE);
-        }).start();
     }
 }

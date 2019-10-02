@@ -23,11 +23,8 @@ import com.panayotis.hrgui.HiResIcon;
 import com.panayotis.hrgui.HiResMatteBorder;
 import com.panayotis.hrgui.ScreenUtils;
 import com.panayotis.jupidator.UpdatedApplication;
-import org.crossmobile.Version;
-import org.crossmobile.gui.actives.ActiveButton;
-import org.crossmobile.gui.actives.ActiveIcon;
-import org.crossmobile.gui.actives.ActiveLabel;
-import org.crossmobile.gui.actives.ActiveList;
+import com.panayotis.jupidator.Updater;
+import org.crossmobile.gui.actives.*;
 import org.crossmobile.gui.elements.*;
 import org.crossmobile.gui.lic.LicenseDialog;
 import org.crossmobile.gui.project.ProjectInfo;
@@ -54,6 +51,8 @@ import java.io.File;
 import java.util.Collection;
 
 import static com.panayotis.appenh.AFileChooser.FileSelectionMode.FilesAndDirectories;
+import static org.crossmobile.Version.RELEASE;
+import static org.crossmobile.Version.VERSION;
 
 public class WelcomeFrame extends RegisteredFrame implements UpdatedApplication {
 
@@ -61,6 +60,7 @@ public class WelcomeFrame extends RegisteredFrame implements UpdatedApplication 
 
     private ProjectListModel projlist;
     private boolean textualVersion = true;
+    private Updater updater;
 
     static {
         ScreenUtils.setTint(Theme.current().icontop, Theme.current().iconbottom);
@@ -134,7 +134,7 @@ public class WelcomeFrame extends RegisteredFrame implements UpdatedApplication 
     }
 
     private void updateVersion() {
-        versionL.setText(textualVersion ? "version " + Version.VERSION + " " : "release " + Version.RELEASE + " ");
+        versionL.setText(textualVersion ? "version " + VERSION + " " : "release " + RELEASE + " ");
     }
 
     private void addProjectSilently(File file) {
@@ -154,6 +154,16 @@ public class WelcomeFrame extends RegisteredFrame implements UpdatedApplication 
 
     private void addProject(File file) throws ProjectException {
         ProjectLoader.showProject(ProjectInfo.load(file.getAbsolutePath()), this);
+    }
+
+    public void checkSelfUpdate() {
+        new Thread(() -> {
+            updater = Updater.start("https://jubler.org/test/crossmobile.xml", Paths.getApplicationPath(), RELEASE, VERSION, this, true, false);
+            if (updater != null && updater.isUpdatable()) {
+                newVersionL.setEnabled(true);
+                newVersionL.setText("New version found");
+            }
+        }).start();
     }
 
     /**
@@ -193,6 +203,8 @@ public class WelcomeFrame extends RegisteredFrame implements UpdatedApplication 
         jPanel9 = new JPanel();
         settingsB = new ActiveButton();
         aboutB = new ActiveButton();
+        jPanel6 = new JPanel();
+        newVersionL = new ActiveLink();
 
         openM.setText("Open project");
         openM.addActionListener(new ActionListener() {
@@ -371,6 +383,20 @@ public class WelcomeFrame extends RegisteredFrame implements UpdatedApplication 
 
         jPanel5.add(jPanel9);
 
+        jPanel6.setBorder(BorderFactory.createEmptyBorder(6, 0, 0, 0));
+        jPanel6.setOpaque(false);
+        jPanel6.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+        newVersionL.setEnabled(false);
+        newVersionL.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                newVersionLMouseClicked(evt);
+            }
+        });
+        jPanel6.add(newVersionL);
+
+        jPanel5.add(jPanel6);
+
         jPanel8.add(jPanel5, BorderLayout.SOUTH);
 
         Background.add(jPanel8, BorderLayout.WEST);
@@ -457,6 +483,10 @@ public class WelcomeFrame extends RegisteredFrame implements UpdatedApplication 
         new LicenseDialog(this).setVisible(true);
     }//GEN-LAST:event_licenseBActionPerformed
 
+    private void newVersionLMouseClicked(MouseEvent evt) {//GEN-FIRST:event_newVersionLMouseClicked
+        updater.actionDisplay();
+    }//GEN-LAST:event_newVersionLMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JPanel Background;
     public JList ProjectsL;
@@ -474,12 +504,14 @@ public class WelcomeFrame extends RegisteredFrame implements UpdatedApplication 
     private JPanel jPanel3;
     private JPanel jPanel4;
     private JPanel jPanel5;
+    private JPanel jPanel6;
     private JPanel jPanel7;
     private JPanel jPanel8;
     private JPanel jPanel9;
     private Separator jSeparator1;
     private JButton licenseB;
     private JButton newProjectB;
+    private JLabel newVersionL;
     private JButton openB;
     private JMenuItem openM;
     private JButton openProjectB;
