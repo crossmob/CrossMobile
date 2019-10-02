@@ -51,6 +51,12 @@ public class Commander {
     private boolean err_is_terminated = true;
     private Thread waitThread;
     private long pid;
+    private boolean debug;
+
+    public Commander setDebug(boolean debug) {
+        this.debug = debug;
+        return this;
+    }
 
     public Commander(List<String> command) {
         for (String candidate : command)
@@ -175,7 +181,8 @@ public class Commander {
         proc = null;
         waitThread = null;
         try {
-            Log.debug(toString());
+            if (debug)
+                Log.debug(toString());
             ProcessBuilder pb = new ProcessBuilder(command);
             pb.directory(currentDir);
             pb.environment().putAll(envp);

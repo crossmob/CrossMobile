@@ -17,11 +17,14 @@
 package org.crossmobile.gui.utils;
 
 import org.crossmobile.Version;
+import org.crossmobile.utils.Commander;
+import org.crossmobile.utils.Log;
 import org.crossmobile.utils.SystemDependent;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static org.crossmobile.utils.SystemDependent.Execs.MVN;
 import static org.crossmobile.utils.SystemDependent.getHome;
@@ -47,7 +50,28 @@ public final class Paths {
     }
 
     public static String getApplicationPath() {
-        return APPFILE.getPath();
+        File dir = APPFILE.isFile() ? APPFILE.getParentFile() : APPFILE;
+        String path = dir.getAbsolutePath();
+        if (path.startsWith("/tmp/.mount_")) {
+            // as an AppImage
+            int mntTarget = path.substring(5).indexOf('/');
+            String location = path.substring(0, 5 + mntTarget);
+            Commander mountExec = new Commander("mount");
+            AtomicReference<String> originalLocation = new AtomicReference<>();
+            mountExec.setOutListener(l -> {
+                int upTo = l.indexOf(" on " + location);
+                if (upTo >= 0)
+                    originalLocation.set(l.substring(0, upTo));
+            });
+            mountExec.setDebug(false);
+            mountExec.exec();
+            mountExec.waitFor();
+            if (originalLocation.get() == null)
+                Log.error("Unable to locate the original location of an AppImage bundle");
+            else
+                return new File(originalLocation.get()).getParentFile().getAbsolutePath();
+        }
+        return path;
     }
 
     public static String getPath(File path, HomeReference overrideHome) {

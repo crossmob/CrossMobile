@@ -140,7 +140,7 @@ public class WelcomeFrame extends RegisteredFrame implements UpdatedApplication 
     private void addProjectSilently(File file) {
         try {
             addProject(file);
-        } catch (ProjectException ex) {
+        } catch (ProjectException ignored) {
         }
     }
 
