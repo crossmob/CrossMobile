@@ -30,11 +30,11 @@ public final class UIApplicationState {
     /**
      * The application is in the foreground but not in active state
      */
-    public static final int Inactive = 0;
+    public static final int Inactive = 1;
     /**
      * The application runs in the background
      */
-    public static final int Background = 0;
+    public static final int Background = 2;
 
     private UIApplicationState() {
     }

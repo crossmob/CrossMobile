@@ -45,7 +45,7 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
     private boolean applicationIsInitialized = false;
     private Thread.UncaughtExceptionHandler systemHandler;
     private boolean isQuitting = false;
-    private boolean isActive;
+    private boolean inBackground;
 
     @SuppressWarnings("CharsetObjectCanBeUsed")
     @Override
@@ -93,7 +93,7 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
 
     @Override
     public void activate() {
-        isActive = true;
+        inBackground = false;
         UIApplication app = UIApplication.sharedApplication();
         if (app != null && app.delegate() != null)
             app.delegate().willEnterForeground(app);
@@ -101,7 +101,7 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
 
     @Override
     public void deactivate() {
-        isActive = false;
+        inBackground = true;
         UIApplication app = UIApplication.sharedApplication();
         if (app != null && app.delegate() != null)
             app.delegate().didEnterBackground(app);
@@ -202,6 +202,6 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
 
     @Override
     public int getApplicationState() {
-        return isActive ? UIApplicationState.Active : UIApplicationState.Background;
+        return inBackground ? UIApplicationState.Background : UIApplicationState.Active;
     }
 }
