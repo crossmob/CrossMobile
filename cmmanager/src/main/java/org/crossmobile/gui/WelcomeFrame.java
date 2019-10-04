@@ -158,7 +158,7 @@ public class WelcomeFrame extends RegisteredFrame implements UpdatedApplication 
 
     public void checkSelfUpdate() {
         new Thread(() -> {
-            updater = Updater.start("https://jubler.org/test/crossmobile.xml", Paths.getApplicationPath(), RELEASE, VERSION, this, true, false);
+            updater = Updater.start("https://crossmobile.org/content/repositories/crossmobile/crossmobile.xml", Paths.getApplicationPath(), RELEASE, VERSION, this, true, false);
             if (updater != null && updater.isUpdatable()) {
                 newVersionL.setEnabled(true);
                 newVersionL.setText("New version found");
