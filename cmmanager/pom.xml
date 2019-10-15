@@ -249,7 +249,7 @@
                                         <delete file="/tmp/CrossMobile.dmg"/>
 
                                         <!-- Prepare for Windows -->
-                                        <installto dest="${workinstall.dir}/Windows" jrearch="windows"/>
+                                        <installto dest="${workinstall.dir}/Windows" jrearch="windows32"/>
                                     </target>
                                 </configuration>
                             </execution>
@@ -277,13 +277,11 @@
                                 </goals>
                                 <configuration>
                                     <icon>${resources.dir}/installers/windows/app.ico</icon>
-                                    <downloadUrl>http://www.oracle.com/technetwork/java/javase/downloads/index.html
-                                    </downloadUrl>
                                     <headerType>gui</headerType>
                                     <stayAlive>true</stayAlive>
                                     <jar>lib/crossmobile.jar</jar>
                                     <dontWrapJar>true</dontWrapJar>
-                                    <errTitle>Unable to find Java Development Kit</errTitle>
+                                    <errTitle>Unable to launch CrossMobile</errTitle>
                                     <outfile>${workinstall.dir}/Windows/CrossMobile.exe</outfile>
                                     <classPath>
                                         <mainClass>org.crossmobile.CrossMobile</mainClass>
