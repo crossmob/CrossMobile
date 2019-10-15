@@ -44,7 +44,8 @@
 
 - (instancetype) __init_java_lang_String___byte_ARRAYTYPE_java_lang_String: (XMLVMArray*) bytes :(java_lang_String*) encoding
 {
-    return [self initWithString:[[NSString alloc] initWithBytes:bytes->array.b length:bytes->length encoding:[NSString encodingToNSEncoding:encoding]]];
+    NSString* result = [self initWithBytes:bytes->array.b length:bytes->length encoding:[NSString encodingToNSEncoding:encoding]];
+    return XMLVM_NIL2NULL(result);
 }
 
 - (instancetype) __init_java_lang_String___char_ARRAYTYPE: (XMLVMArray*) chars
