@@ -90,7 +90,7 @@ public class UIDevice extends NSObject {
      */
     @CMGetter("@property(nonatomic, readonly, strong) NSString *systemVersion;")
     public String systemVersion() {
-        return "7.0";
+        return "13.0";
     }
 
     /**
