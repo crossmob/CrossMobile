@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BUNDLEID=org.crossmobile.gui
-PASSLOC=../../resources/keys/notarizing-key.sh
+PASSLOC=../resources/keys/notarizing-key.sh
 DMGLOC=target/installers
 USERNAME=panayotis@panayotis.com
 SLEEP=10
