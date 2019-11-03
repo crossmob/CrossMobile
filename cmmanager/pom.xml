@@ -240,11 +240,20 @@
                                         <exec executable="codesign" failonerror="true">
                                             <arg line="--deep --force --verify --verbose --sign ${osx_id} --options runtime /Volumes/CrossMobile/CrossMobile.app"/>
                                         </exec>
+                                        <exec executable="codesign" failonerror="true">
+                                            <arg line="--verify --verbose /Volumes/CrossMobile/CrossMobile.app"/>
+                                        </exec>
                                         <exec executable="hdiutil" failonerror="true">
                                             <arg line="detach -force /Volumes/CrossMobile"/>
                                         </exec>
                                         <exec executable="hdiutil" failonerror="true">
                                             <arg line="convert /tmp/CrossMobile.dmg -format UDZO -imagekey zlib-level=9 -ov -o ${installers.dir}/CrossMobile-${project.version}.dmg"/>
+                                        </exec>
+                                        <exec executable="codesign" failonerror="true">
+                                            <arg line="--deep --force --verify --verbose --sign ${osx_id} --options runtime ${installers.dir}/CrossMobile-${project.version}.dmg"/>
+                                        </exec>
+                                        <exec executable="codesign" failonerror="true">
+                                            <arg line="--verify --verbose ${installers.dir}/CrossMobile-${project.version}.dmg"/>
                                         </exec>
                                         <delete file="/tmp/CrossMobile.dmg"/>
 
