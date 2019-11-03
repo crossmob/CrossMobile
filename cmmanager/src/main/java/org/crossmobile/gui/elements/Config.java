@@ -34,9 +34,9 @@ import static org.crossmobile.utils.SystemDependent.Execs.*;
 
 public class Config extends HiResDialog {
 
-    public static final LocationTarget Netbeans = new LocationTarget(NETBEANS);
-    public static final LocationTarget Studio = new LocationTarget(STUDIO, STUDIO64.filename());
-    public static final LocationTarget IntelliJ = new LocationTarget(IDEA);
+    public static final LocationTarget Netbeans = new LocationTarget(NETBEANS, NETBEANS.filename());
+    public static final LocationTarget Studio = new LocationTarget(STUDIO, STUDIO.filename(), STUDIO64.filename());
+    public static final LocationTarget IntelliJ = new LocationTarget(IDEA, IDEA.filename());
     public static final LocationTarget Android = new LocationTarget("tools/bin/sdkmanager.bat", "tools/bin/sdkmanager", "platform-tools/adb", "platform-tools/adb.exe");
     public static final LocationTarget JDK = new LocationTarget("lib/dt.jar", "lib/tools.jar", "jmods/jdk.compiler.jmod");
 
@@ -127,10 +127,10 @@ public class Config extends HiResDialog {
         setTitle("CrossMobile Configuration");
         setResizable(false);
 
-        jPanel4.setBorder(new HiResEmptyBorder(12,12,0,12));
+        jPanel4.setBorder(new HiResEmptyBorder(12, 12, 0, 12));
         jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.Y_AXIS));
 
-        jPanel10.setBorder(new HiResEmptyBorder(8,0,8,0));
+        jPanel10.setBorder(new HiResEmptyBorder(8, 0, 8, 0));
         jPanel10.setOpaque(false);
         jPanel10.setLayout(new java.awt.BorderLayout());
 
@@ -192,7 +192,7 @@ public class Config extends HiResDialog {
 
         jPanel4.add(jPanel10);
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createCompoundBorder(new HiResMatteBorder(1,0,0,0,Theme.current().line), new HiResEmptyBorder(8,0,8,0)));
+        jPanel5.setBorder(javax.swing.BorderFactory.createCompoundBorder(new HiResMatteBorder(1, 0, 0, 0, Theme.current().line), new HiResEmptyBorder(8, 0, 8, 0)));
         jPanel5.setOpaque(false);
         jPanel5.setLayout(new java.awt.BorderLayout());
 
@@ -252,7 +252,7 @@ public class Config extends HiResDialog {
 
         jPanel4.add(jPanel5);
 
-        jPanel11.setBorder(javax.swing.BorderFactory.createCompoundBorder(new HiResMatteBorder(1,0,1,0,Theme.current().line), javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1)));
+        jPanel11.setBorder(javax.swing.BorderFactory.createCompoundBorder(new HiResMatteBorder(1, 0, 1, 0, Theme.current().line), javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1)));
         jPanel11.setOpaque(false);
         jPanel11.setLayout(new java.awt.BorderLayout());
 
@@ -314,7 +314,7 @@ public class Config extends HiResDialog {
 
         jPanel4.add(jPanel11);
 
-        jPanel20.setBorder(new HiResEmptyBorder(8,0,8,0));
+        jPanel20.setBorder(new HiResEmptyBorder(8, 0, 8, 0));
         jPanel20.setOpaque(false);
         jPanel20.setLayout(new java.awt.BorderLayout());
 
