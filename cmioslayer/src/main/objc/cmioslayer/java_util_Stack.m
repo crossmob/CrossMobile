@@ -44,44 +44,37 @@
 
 - (int) size__
 {
-	return [theStack count];
+	return (int)[theStack count];
 }
 
 - (java_lang_Object*) push___java_lang_Object :(java_lang_Object*) item
 {
 	[theStack addObject: item];
-	[item retain];
-	return item;
+	return [item retain];
 }
 
 - (java_lang_Object*) get___int :(int) idx
 {
-	java_lang_Object* item = (java_lang_Object*) [theStack objectAtIndex: idx];
-	[item retain];
-	return item;
+    return [[theStack objectAtIndex: idx] retain];
 }
 
 - (java_lang_Object*) remove___int :(int) idx
 {
-	java_lang_Object* o = [theStack objectAtIndex: idx];
-	[o retain];
+	id o = [[theStack objectAtIndex: idx] retain];
 	[theStack removeObjectAtIndex: idx];
 	return o;
 }
 
 - (java_lang_Object*) pop__
 {
-	java_lang_Object* o = [theStack lastObject];
-	[o retain];
+	id o = [[theStack lastObject] retain];
 	[theStack removeLastObject];
 	return o;
 }
 
 - (java_lang_Object*) peek__
 {
-	java_lang_Object* o = [theStack lastObject];
-	[o retain];
-	return o;
+	return [[theStack lastObject] retain];
 }
 
 - (BOOL) empty__

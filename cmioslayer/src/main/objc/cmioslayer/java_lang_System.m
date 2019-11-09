@@ -176,7 +176,7 @@ java_util_Properties* _STATIC_java_util_Properties_props = nil;
 	}
 	XMLVMArray* srcArr = (XMLVMArray*) src;
 	XMLVMArray* destArr = (XMLVMArray*) dest;
-	int d = 1;
+	int step = 1;
 	if (srcArr == destArr) {
 		if (srcPos == destPos) {
 			// Nothing to do
@@ -186,49 +186,48 @@ java_util_Properties* _STATIC_java_util_Properties_props = nil;
 			// We have to copy backwards to ensure we don't overwrite ourselves while copying
 			srcPos += length - 1;
 			destPos += length - 1;
-			d = -1;
+			step = -1;
 		}
 	}
 	switch (srcArr->type) {
 	case 0:
 		// We copy object references
 		for (int i = 0; i < length; i++) {
-			id o = [srcArr objectAtIndex:srcPos];
-			[destArr replaceObjectAtIndex:destPos withObject:o];
-			srcPos += d;
-			destPos += d;
+			[destArr replaceObjectAtIndex:destPos withObject:srcArr->array.o[srcPos]];
+			srcPos += step;
+			destPos += step;
 		}
 		break;
     case 1: // boolean
     case 3: // byte
 		for (int i = 0; i < length; i++) {
 			destArr->array.b[destPos] = srcArr->array.b[srcPos];
-			srcPos += d;
-			destPos += d;
+			srcPos += step;
+			destPos += step;
 		}
         break;
     case 2: // char
     case 4: // short
 		for (int i = 0; i < length; i++) {
 			destArr->array.s[destPos] = srcArr->array.s[srcPos];
-			srcPos += d;
-			destPos += d;
+			srcPos += step;
+			destPos += step;
 		}
         break;
     case 5: // int
     case 6: // float
 		for (int i = 0; i < length; i++) {
 			destArr->array.i[destPos] = srcArr->array.i[srcPos];
-			srcPos += d;
-			destPos += d;
+			srcPos += step;
+			destPos += step;
 		}
         break;
     case 7: // double
     case 8: // long
 		for (int i = 0; i < length; i++) {
 			destArr->array.l[destPos] = srcArr->array.l[srcPos];
-			srcPos += d;
-			destPos += d;
+			srcPos += step;
+			destPos += step;
 		}
         break;
 	}

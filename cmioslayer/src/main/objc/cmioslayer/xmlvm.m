@@ -39,7 +39,7 @@ void xmlvm_init()
       JAVA_NULL = [NSNull null];
 }
 
-int isObjectInstanceOf(id * obj, char* className)
+int isObjectInstanceOf(id obj, char* className)
 {
     if (obj==JAVA_NULL)
         return FALSE;
@@ -245,17 +245,10 @@ XMLVMElemPtr copyData(int type, int length, XMLVMElemPtr olddata)
     }
 }
 
-- (id) objectAtIndex:(int) idx
-{
-    id obj = self->array.o[idx];
-    return [obj retain];
-}
-
 - (void) replaceObjectAtIndex:(int) idx withObject:(id) obj
 {
-    [obj retain];
     [self->array.o[idx] release];
-    self->array.o[idx] = obj;
+    self->array.o[idx] = [obj retain];
 }
 
 - (int) count

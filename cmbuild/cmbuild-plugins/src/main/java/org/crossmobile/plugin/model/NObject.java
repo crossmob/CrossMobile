@@ -16,7 +16,6 @@
  */
 package org.crossmobile.plugin.model;
 
-import org.crossmobile.plugin.reg.ObjectRegistry;
 import org.crossmobile.plugin.reg.TypeDef;
 import org.crossmobile.plugin.reg.TypeRegistry;
 import org.crossmobile.utils.CollectionUtils;

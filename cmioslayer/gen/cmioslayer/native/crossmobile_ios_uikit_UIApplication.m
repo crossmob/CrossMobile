@@ -24,7 +24,7 @@
         argv$conv = malloc(argv->length * (sizeof(char*)));
         NSString * argv$conv$str;
         for (int argv$conv$i = 0; argv$conv$i < argv->length; argv$conv$i++) {
-            argv$conv$str = [argv objectAtIndex:argv$conv$i];
+            argv$conv$str = argv->array.o[argv$conv$i];
             if (argv$conv$str == nil || argv$conv$str == JAVA_NULL || argv$conv$str == NULL)
                 argv$conv[argv$conv$i] = 0;
             else

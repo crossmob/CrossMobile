@@ -39,7 +39,7 @@ typedef NSString *UIActivityType;
 void xmlvm_init(void);
 
 void xmlvm_error(NSString* msg);
-int isObjectInstanceOf(id * obj, char* className);
+int isObjectInstanceOf(id obj, char* className);
 NSString* jclass_to_string(java_lang_Class* classname);
 Class jclass_to_class(java_lang_Class* classname);
 NSArray<Class>* jclass_to_class_list(java_util_List* list);
@@ -87,7 +87,6 @@ extern id JAVA_NULL;
 + (XMLVMArray*) createMultiDimensionsWithType:(int) type dimensions:(XMLVMElem*) dim count:(int)count;
 + (void) fillArray:(XMLVMArray*) array withData:(void*) data;
 + (int) sizeOfBaseTypeInBytes:(int) type;
-- (id) objectAtIndex:(int) idx;
 - (void) replaceObjectAtIndex:(int) idx withObject:(id) obj;
 - (int) count;
 - (XMLVMArray*) clone__;

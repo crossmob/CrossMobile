@@ -85,7 +85,7 @@
 {
     BOOL result = false;
     for(int i = 0 ; i < elements->length ; i++)
-        result |= [c add___java_lang_Object:[elements objectAtIndex:i]];
+        result |= [c add___java_lang_Object:elements->array.o[i]];
     return result;
 }
 

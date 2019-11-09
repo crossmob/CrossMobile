@@ -52,7 +52,7 @@ class EmitterArray extends Emitter {
                     + TAB + paramVar() + " = malloc(" + givenVar() + "->length * (sizeof(char*)));\n"
                     + TAB + "NSString * " + string + ";\n"
                     + TAB + "for (int " + i + " = 0; " + i + " < " + givenVar() + "->length; " + i + "++) {\n"
-                    + TAB + TAB + string + " = [" + givenVar() + " objectAtIndex:" + i + "];\n"
+                    + TAB + TAB + string + " = " + givenVar() + "->array.o[" + i + "];\n"
                     + TAB + TAB + "if (" + string + " == nil || " + string + " == JAVA_NULL || " + string + " == NULL)\n"
                     + TAB + TAB + TAB + paramVar() + "[" + i + "] = 0;\n"
                     + TAB + TAB + "else\n"

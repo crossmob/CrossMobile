@@ -38,7 +38,7 @@ class EmitterVarArgs extends Emitter {
         StringBuilder out = new StringBuilder();
         out.append('\n');
         for (int i = 0; i < VARARG_SIZE_SUPPORT; i++)
-            out.append(TAB).append("($ != JAVA_NULL && $->length > # ? [$ objectAtIndex:#] : ".replace("$", givenVar()).replace("#", Integer.toString(i))).
+            out.append(TAB).append("($ != JAVA_NULL && $->length > # ? $->array.o[#] : ".replace("$", givenVar()).replace("#", Integer.toString(i))).
                     append(type.function ? "NULL" : "nil").
                     append("),\n");
         out.append(TAB).append(type.function ? "NULL" : "nil");
