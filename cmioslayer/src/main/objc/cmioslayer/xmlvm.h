@@ -22,7 +22,6 @@
 #import <objc/runtime.h>
 #import <math.h>
 #import <Foundation/Foundation.h>
-#import "ffi.h"
 @class java_lang_Class;
 @class java_util_List;
 
@@ -95,7 +94,7 @@ extern id JAVA_NULL;
 
 @end
 
-NSString* xmlvm_formatWith( void (*func)(void), BOOL returns, int extraParamSize, XMLVMArray* varargs, ...);
+NSString* xmlvm_format(NSString* format, XMLVMArray* varargs);
 
 #define Infinity 0x7f800000
 #define NaN 0x7fc00000

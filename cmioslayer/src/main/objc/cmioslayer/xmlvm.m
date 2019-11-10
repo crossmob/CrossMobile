@@ -314,55 +314,85 @@ XMLVMElemPtr copyData(int type, int length, XMLVMElemPtr olddata)
 
 @end
 
-NSString* xmlvm_formatWith( void (*func)(void), BOOL returns, int extraSize, XMLVMArray* varargs, ...)
+typedef struct PosRangeStruct {
+    NSRange range;
+    NSString* format;
+    NSUInteger pos;
+} PosRange;
+
+NSString* xmlvm_format(NSString* format, XMLVMArray* varargs)
 {
-    int count = extraSize + [varargs count];
-    ffi_type *argType[count];
-    XMLVMElem argValue[count];
-    void *argPointer[count];
-    ffi_cif cif;
-    ffi_arg rc;
-    if (func==nil)
-        func = FFI_FN(objc_msgSend);
-    
-    va_list vaargs;
-    va_start(vaargs, varargs);
-    for(int i = 0 ; i < extraSize ; i++) {
-        argType[i] = &ffi_type_pointer;
-        argValue[i].o = va_arg(vaargs, id);
-        argPointer[i] = &argValue[i].o;
-    }
-    for(int i = 0 ; i < [varargs count] ; i++) {
-        int idx = i + extraSize;
-        id item = varargs->array.o[i];
-        const char* className = class_getName([item class]);
-        if (strcmp(className, "java_lang_Boolean")==0) {
-            argType[idx] = &ffi_type_sint32;
-            argValue[idx].i = [item booleanValue__];
-        } else if (strcmp(className, "java_lang_Byte")==0 || strcmp(className, "java_lang_Short")==0 || strcmp(className, "java_lang_Integer")==0) {
-            argType[idx] = &ffi_type_sint32;
-            argValue[idx].i = [item intValue__];
-        } else if (strcmp(className, "java_lang_Long")==0) {
-            argType[idx] = &ffi_type_sint64;
-            argValue[idx].l = [item longValue__];
-        } else if (strcmp(className, "java_lang_Float")==0 || strcmp(className, "java_lang_Double")==0) {
-            argType[idx] = &ffi_type_double;
-            argValue[idx].d = [item doubleValue__];
-        } else if (strcmp(className, "java_lang_Character")==0) {
-            argType[idx] = &ffi_type_uint16;
-            argValue[idx].c = [item charValue__];
-        } else {
-            argType[idx] = &ffi_type_pointer;
-            argValue[idx].o = item;
+    // Initialize regular expressions
+    static NSRegularExpression *specRegex = nil;    // format specifiers
+    static NSRegularExpression *posRegex = nil;     // positional specifiers
+    if (specRegex==nil)
+        specRegex = [NSRegularExpression regularExpressionWithPattern:@"%.*?[@%aAcCdDeEfFgGinoOpsSxXuU]" options:0 error:nil];
+    if (posRegex==nil)
+        posRegex = [NSRegularExpression regularExpressionWithPattern:@"^%[0-9]+\\$" options:0 error:nil];
+
+    // find all specifiers
+    NSUInteger totalSize = [varargs count];
+    NSArray *matches = [specRegex matchesInString:format options:0 range:NSMakeRange(0, [format length])];
+    NSInteger howmany = [matches count];
+    if (howmany > 0) {
+        // specifiers found
+        PosRange ranges[howmany];
+        for(NSInteger i = 0 ; i < howmany ; i++) {
+            // current specifier data
+            NSRange cRange = [[matches objectAtIndex:i] range];
+            NSString* cFormat = [format substringWithRange:cRange];
+            NSUInteger cPos = i;
+            
+            NSArray* positional = [posRegex matchesInString:cFormat options:0 range:NSMakeRange(0, [cFormat length])];
+            if ([positional count]==1) {
+                // this specifier has positional data, needs to be parsed
+                NSRange nprange = [[positional objectAtIndex:0] range];
+                nprange.length-=2;
+                nprange.location++;
+                // update position based on given value
+                cPos = [[cFormat substringWithRange:nprange] intValue]-1;
+                // update format to remove positional data
+                cFormat = [NSString stringWithFormat:@"%%%@", [cFormat substringFromIndex:nprange.length+2]];
+            }
+            // sanitize position
+            if (cPos>=totalSize)
+                cPos = totalSize-1;
+            if (cPos<0)
+                cPos = 0;
+            
+            ranges[i].range = cRange;
+            ranges[i].format = cFormat;
+            ranges[i].pos = cPos;
         }
-        argPointer[idx] = & argValue[idx];
+        for (NSInteger i = howmany-1 ; i >= 0 ; i--) {
+            // get current parameter and format
+            id item = varargs->array.o[i];
+            NSString* cFormat = ranges[i].format;
+            NSString* param;
+            const char* className = class_getName([item class]);
+            // Change param according to it's actual type
+            if (strcmp(className, "java_lang_Boolean")==0) {
+                param = [NSString stringWithFormat:cFormat, [item booleanValue__]];
+            } else if (strcmp(className, "java_lang_Byte")==0 || strcmp(className, "java_lang_Short")==0 || strcmp(className, "java_lang_Integer")==0) {
+                param = [NSString stringWithFormat:cFormat, [item intValue__]];
+            } else if (strcmp(className, "java_lang_Long")==0) {
+                param = [NSString stringWithFormat:cFormat, [item longValue__]];
+            } else if (strcmp(className, "java_lang_Float")==0 || strcmp(className, "java_lang_Double")==0) {
+                param = [NSString stringWithFormat:cFormat, [item doubleValue__]];
+            } else if (strcmp(className, "java_lang_Character")==0) {
+                param = [NSString stringWithFormat:cFormat, [item charValue__]];
+            } else {
+                param = [NSString stringWithFormat:cFormat, item];
+            }
+            
+            // Collect param inside format string
+            NSRange range = ranges[i].range;
+            NSString* before = range.location <= 0 ? @"" : [format substringToIndex:range.location];
+            NSString* after = (range.location + range.length) >= [format length] ? @"" : [format substringFromIndex:(range.location+range.length)];
+            format = [NSString stringWithFormat:@"%@%@%@", before, param, after ];
+        }
     }
-    
-    if (ffi_prep_cif(&cif, FFI_DEFAULT_ABI, count,
-                     returns ? &ffi_type_pointer :  &ffi_type_void, argType) == FFI_OK) {
-        ffi_call(&cif, func, &rc, argPointer);
-    }
-    return returns ? rc : nil;
+    return format;
 }
 
 @implementation NSNull (cat_crossmobile_null)

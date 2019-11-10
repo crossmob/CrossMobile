@@ -1294,10 +1294,6 @@ crossmobile/rt/package-info.class v8
 native/CM_Block_Reverse_cmioslayer_0.h
 native/CM_Block_Reverse_cmioslayer_1.h
 native/CM_Block_Reverse_cmioslayer_2.h
-native/arm64_ffi.h
-native/arm64_ffitarget.h
-native/armv7_ffi.h
-native/armv7_ffitarget.h
 native/cmioslayer.a
 native/crossmobile_ios_coregraphics_CGAffineTransform.h
 native/crossmobile_ios_coregraphics_CGBitmapContext.h
@@ -1485,10 +1481,6 @@ native/crossmobile_ios_uikit_UIWebView.h
 native/crossmobile_ios_uikit_UIWebViewDelegate.h
 native/crossmobile_ios_uikit_UIWindow.h
 native/crossmobile_rt_StrongReference.h
-native/ffi.a
-native/ffi.h
-native/i386_ffi.h
-native/i386_ffitarget.h
 native/java_io_BufferedInputStream.h
 native/java_io_BufferedOutputStream.h
 native/java_io_BufferedReader.h
@@ -1661,8 +1653,6 @@ native/org_robovm_objc_block_VoidBlock4.h
 native/org_robovm_objc_block_VoidBlock5.h
 native/org_robovm_objc_block_VoidBlock6.h
 native/org_xml_sax_SAXException.h
-native/x86_64_ffi.h
-native/x86_64_ffitarget.h
 native/xmlvm.h
 org/crossmobile/backend/ios/NativeIOS.class v8
 org/crossmobile/backend/ios/package-info.class v8

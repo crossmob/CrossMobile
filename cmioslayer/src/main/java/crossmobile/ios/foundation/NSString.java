@@ -38,8 +38,10 @@ import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
-import java.util.*;
-import java.util.regex.Matcher;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import static crossmobile.ios.coregraphics.$coregraphics.context;
@@ -375,11 +377,18 @@ public class NSString extends NSObject implements NSSecureCoding {
      */
     @CMSelector(value = "- (instancetype)initWithFormat:(NSString *)format, ...;", staticMapping = true)
     public static String initWithFormat(String format, Object... args) {
-        return initWithFormat(format, null, args);
+        return String.format(objcToJavaFormat(format), args);
     }
 
+    /**
+     * Get a localized version of a formatted String using current locale
+     *
+     * @param format The iOS-type formatting
+     * @param args   The possible arguments, up to 20 arguments
+     * @return A localized version of the formatted String
+     */
     @CMSelector("+ (instancetype)localizedStringWithFormat:(NSString *)format, ...;")
-    public static String localizedStringWithFormat(String format, Object... args) {
+    public static String localizedStringWithFormat(String format, Integer... args) {
         return initWithFormat(format, NSLocale.currentLocale(), args);
     }
 
@@ -387,27 +396,33 @@ public class NSString extends NSObject implements NSSecureCoding {
      * Get a localized version of a formatted String
      *
      * @param format The iOS-type formatting
-     * @param args   The possible arguments
+     * @param args   The possible arguments, up to 20 arguments
      * @param loc    The preferred locale
      * @return A localized version of the formatted String
      */
     @CMSelector(value = "- (instancetype)initWithFormat:(NSString *)format \n" +
             "                        locale:(id)locale, ...;", staticMapping = true)
-    public static String initWithFormat(String format, NSLocale loc, Object... args) {
+    public static String initWithFormat(String format, NSLocale loc, Integer... args) {
         loc = loc == null ? NSLocale.systemLocale() : loc;
         if (I18N_SUPPORT)
             format = I18NBridge.retrieveFormat(format, loc.few, loc.many, args);
         format = objcToJavaFormat(format);
+        Object[] argsO = new Object[args != null && args.length > 0 ? args.length : 0];
+        //noinspection ManualArrayCopy
+        for (int i = 0; i < argsO.length; i++)
+            argsO[i] = args[i];
         try {
             return loc == NSLocale.systemLocale()
-                    ? String.format(format, args)
-                    : String.format(loc.loc, format, args);
+                    ? String.format(format, argsO)
+                    : String.format(loc.loc, format, argsO);
         } catch (Exception e) {
             return format;
         }
     }
 
     private static String objcToJavaFormat(String format) {
+        if (format == null)
+            throw new IllegalArgumentException("format should not be null");
         for (Pattern pattern : FORMAT_PATTERNS.keySet())
             format = pattern.matcher(format).replaceAll(FORMAT_PATTERNS.get(pattern));
         return format;

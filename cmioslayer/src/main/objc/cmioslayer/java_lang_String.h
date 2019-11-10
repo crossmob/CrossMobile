@@ -73,3 +73,8 @@
 - (java_lang_String*) trim__;
 - (int) isEmpty__;
 @end
+
+void NSLog_cmva(NSString* format, XMLVMArray* va_array);
+NSString* NSString_initWithFormat_locale_cmva(NSString* format, NSLocale* locale, XMLVMArray* va_array);
+NSString* NSString_initWithFormat_cmva(NSString* format, XMLVMArray* va_array);
+NSString* NSString_localizedStringWithFormat_cmva(NSString* format, XMLVMArray* va_array);

@@ -18,7 +18,7 @@
 // void NSLog(NSString *format, ...);
 + (void) NSLog___java_lang_String_java_lang_Object_ARRAYTYPE:(NSString*) format :(XMLVMArray*) va_array 
 {
-    xmlvm_formatWith(FFI_FN(NSLog), NO, 1, va_array, (format == JAVA_NULL ? nil : format));
+    NSLog_cmva((format == JAVA_NULL ? nil : format), (va_array == JAVA_NULL ? nil : va_array));
 }
 
 // NSArray<NSString *> * NSSearchPathForDirectoriesInDomains ( NSSearchPathDirectory directory, NSSearchPathDomainMask domainMask, BOOL expandTilde );

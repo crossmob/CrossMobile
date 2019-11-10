@@ -22,6 +22,7 @@ import org.crossmobile.plugin.objc.param.Emitter;
 import org.crossmobile.plugin.objc.param.ParamEmitter;
 import org.crossmobile.plugin.objc.param.ResultEmitter;
 import org.crossmobile.plugin.utils.Streamer;
+import org.crossmobile.utils.Log;
 
 import java.io.IOException;
 import java.lang.reflect.Executable;
@@ -157,22 +158,12 @@ public class SelectorEmitter {
     /* only for NSString.format and friends. Needs more implementation for other systems */
     private String emitSelectorAsVarArg(ParamEmitter emitter) {
         StringBuilder out = new StringBuilder();
-        String methodName = selector.getMethodType().isFunction() ? selector.getName() : "nil"; // nil will be later converted to objc_msgSend
-        out.append("xmlvm_formatWith(FFI_FN(").append(methodName).append("), ");
-        out.append(selector.getReturnType().getType().equals(void.class) ? "NO" : "YES").append(", ");
-        boolean asInstance = !selector.getMethodType().isFunction();
-        out.append(selector.getParams().size() - 1 + (asInstance ? 2 : 0)).append(", ");
-        out.append(last(emitter.getNativeParameters()).embed());
-        if (asInstance) {
-            String containerClass = toObjCType(selector.getContainer().getType());
-            if (containerClass.endsWith("*"))
-                containerClass = containerClass.substring(0, containerClass.length() - 1);
-            out.append(", ").append(selector.isStatic() ? "[" + containerClass + " class]" : "[" + containerClass + " alloc]");
-            out.append(", ").append("(id)NSSelectorFromString(@\"").append(selector.getObjCSignature()).append("\")");
-        }
+        if (!selector.getMethodType().isFunction())
+            out.append(getClassNameSimple(selector.getContainer().getType())).append("_");
+        out.append(selector.getObjCSignature().replace(':', '_')).append("cmva(");
         for (Emitter e : front(emitter.getNativeParameters()))
-            out.append(", ").append(e.embed());
-        out.append(")");
+            out.append(e.embed()).append(", ");
+        out.append("(va_array == JAVA_NULL ? nil : va_array))");
         return out.toString();
     }
 

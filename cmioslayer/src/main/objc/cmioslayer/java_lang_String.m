@@ -437,3 +437,46 @@ static BOOL instanceof(id obj, const char *className) {
 }
 
 @end
+
+
+// Vararg versions
+
+NSString* NSString_initWithFormat_cmva(NSString* format, XMLVMArray* va_array)
+{
+    return [xmlvm_format(format, va_array) retain];
+}
+
+void NSLog_cmva(NSString* format, XMLVMArray* va_array)
+{
+    NSLog(@"%@", xmlvm_format(format, va_array));
+}
+
+NSString* NSString_initWithFormat_locale_cmva(NSString* format, NSLocale* locale, XMLVMArray* va_array)
+{
+    return [[NSString alloc] initWithFormat:format locale:locale,
+     (int32_t)(va_array && va_array->length > 0 ? [va_array->array.o[0] intValue] : 0),
+     (int32_t)(va_array && va_array->length > 1 ? [va_array->array.o[1] intValue]: 0),
+     (int32_t)(va_array && va_array->length > 2 ? [va_array->array.o[2] intValue]: 0),
+     (int32_t)(va_array && va_array->length > 3 ? [va_array->array.o[3] intValue]: 0),
+     (int32_t)(va_array && va_array->length > 4 ? [va_array->array.o[4] intValue]: 0),
+     (int32_t)(va_array && va_array->length > 5 ? [va_array->array.o[5] intValue]: 0),
+     (int32_t)(va_array && va_array->length > 6 ? [va_array->array.o[6] intValue]: 0),
+     (int32_t)(va_array && va_array->length > 7 ? [va_array->array.o[7] intValue]: 0),
+     (int32_t)(va_array && va_array->length > 8 ? [va_array->array.o[8] intValue]: 0),
+     (int32_t)(va_array && va_array->length > 9 ? [va_array->array.o[9] intValue]: 0),
+     (int32_t)(va_array && va_array->length > 10 ? [va_array->array.o[10] intValue]: 0),
+     (int32_t)(va_array && va_array->length > 11 ? [va_array->array.o[11] intValue]: 0),
+     (int32_t)(va_array && va_array->length > 12 ? [va_array->array.o[12] intValue]: 0),
+     (int32_t)(va_array && va_array->length > 13 ? [va_array->array.o[13] intValue]: 0),
+     (int32_t)(va_array && va_array->length > 14 ? [va_array->array.o[14] intValue]: 0),
+     (int32_t)(va_array && va_array->length > 15 ? [va_array->array.o[15] intValue]: 0),
+     (int32_t)(va_array && va_array->length > 16 ? [va_array->array.o[16] intValue]: 0),
+     (int32_t)(va_array && va_array->length > 17 ? [va_array->array.o[17] intValue]: 0),
+     (int32_t)(va_array && va_array->length > 18 ? [va_array->array.o[18] intValue]: 0),
+     (int32_t)(va_array && va_array->length > 19 ? [va_array->array.o[19] intValue]: 0)];
+}
+
+NSString* NSString_localizedStringWithFormat_cmva(NSString* format, XMLVMArray* va_array)
+{
+    return  NSString_initWithFormat_locale_cmva(format, [NSLocale currentLocale], va_array);
+}
