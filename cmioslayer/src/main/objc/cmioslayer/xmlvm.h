@@ -94,8 +94,6 @@ extern id JAVA_NULL;
 
 @end
 
-NSString* xmlvm_format(NSString* format, XMLVMArray* varargs);
-
 #define Infinity 0x7f800000
 #define NaN 0x7fc00000
 
@@ -123,3 +121,21 @@ NSString* xmlvm_format(NSString* format, XMLVMArray* varargs);
 
 // This is used to support optional protocol implementation in Java. Declare that an ObjC selector exists ONLY if the JAVA selector exists. CHECK is the current selector being asked.
 #define XMLVM_REROUTE(CHECK,OBJC,JAVA) if (sel_isEqual(CHECK, @selector(OBJC))) return [super respondsToSelector:@selector(JAVA)];
+
+
+// Varargs
+#if __LP64__
+    #define VARARG_64
+    #define MAXVAR_SIZE_MULTIPLIER 1
+    typedef long long vartype;
+    #if TARGET_OS_SIMULATOR
+        #define VARARG_SIM_64
+    #else
+        #define VARARG_PHONE_64
+    #endif
+#else
+    #define VARARG_32
+    #define MAXVAR_SIZE_MULTIPLIER 2
+    typedef int vartype;
+#endif
+void gather_va_args(XMLVMArray* va_array, vartype**params, double** doubles, int va_maxsize);

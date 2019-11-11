@@ -151,4 +151,8 @@ public abstract class Emitter {
     public boolean isParameterHidden() {
         return false;
     }
+
+    public String objCParamSeparator() {
+        return ":";
+    }
 }

@@ -406,6 +406,26 @@ public class CollectionUtils {
         }
     }
 
+    public static List<Integer> intList(int from, int to) {
+        return intList(from, to, false);
+    }
+
+    public static List<Integer> intList(int from, int to, boolean inclusive) {
+        return new AbstractList<Integer>() {
+            @Override
+            public Integer get(int index) {
+                if (index >= size() || index < 0)
+                    throw new ArrayIndexOutOfBoundsException("Unable to locate item at position " + index);
+                return from + index;
+            }
+
+            @Override
+            public int size() {
+                return to - from + (inclusive ? 1 : 0);
+            }
+        };
+    }
+
     public static class KeyValue<K, V> {
         private final K key;
         private final V value;

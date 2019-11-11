@@ -314,85 +314,61 @@ XMLVMElemPtr copyData(int type, int length, XMLVMElemPtr olddata)
 
 @end
 
-typedef struct PosRangeStruct {
-    NSRange range;
-    NSString* format;
-    NSUInteger pos;
-} PosRange;
+// Vararg versions
 
-NSString* xmlvm_format(NSString* format, XMLVMArray* varargs)
-{
-    // Initialize regular expressions
-    static NSRegularExpression *specRegex = nil;    // format specifiers
-    static NSRegularExpression *posRegex = nil;     // positional specifiers
-    if (specRegex==nil)
-        specRegex = [NSRegularExpression regularExpressionWithPattern:@"%.*?[@%aAcCdDeEfFgGinoOpsSxXuU]" options:0 error:nil];
-    if (posRegex==nil)
-        posRegex = [NSRegularExpression regularExpressionWithPattern:@"^%[0-9]+\\$" options:0 error:nil];
+void gather_va_args(XMLVMArray* va_array, vartype**params, double** doubles, int va_maxsize) {
+    int maxvar_size = va_maxsize * MAXVAR_SIZE_MULTIPLIER;
+    vartype* p = malloc(maxvar_size*sizeof(vartype));
+    memset(p, 0, maxvar_size*sizeof(vartype));
+    *params = p;
+    
+    double* d = malloc(maxvar_size*sizeof(double));
+    memset(d, 0, maxvar_size*sizeof(double));
+    *doubles = d;
+    if (!va_array || va_array == JAVA_NULL)
+        return;
 
-    // find all specifiers
-    NSUInteger totalSize = [varargs count];
-    NSArray *matches = [specRegex matchesInString:format options:0 range:NSMakeRange(0, [format length])];
-    NSInteger howmany = [matches count];
-    if (howmany > 0) {
-        // specifiers found
-        PosRange ranges[howmany];
-        for(NSInteger i = 0 ; i < howmany ; i++) {
-            // current specifier data
-            NSRange cRange = [[matches objectAtIndex:i] range];
-            NSString* cFormat = [format substringWithRange:cRange];
-            NSUInteger cPos = i;
-            
-            NSArray* positional = [posRegex matchesInString:cFormat options:0 range:NSMakeRange(0, [cFormat length])];
-            if ([positional count]==1) {
-                // this specifier has positional data, needs to be parsed
-                NSRange nprange = [[positional objectAtIndex:0] range];
-                nprange.length-=2;
-                nprange.location++;
-                // update position based on given value
-                cPos = [[cFormat substringWithRange:nprange] intValue]-1;
-                // update format to remove positional data
-                cFormat = [NSString stringWithFormat:@"%%%@", [cFormat substringFromIndex:nprange.length+2]];
-            }
-            // sanitize position
-            if (cPos>=totalSize)
-                cPos = totalSize-1;
-            if (cPos<0)
-                cPos = 0;
-            
-            ranges[i].range = cRange;
-            ranges[i].format = cFormat;
-            ranges[i].pos = cPos;
-        }
-        for (NSInteger i = howmany-1 ; i >= 0 ; i--) {
-            // get current parameter and format
-            id item = varargs->array.o[i];
-            NSString* cFormat = ranges[i].format;
-            NSString* param;
-            const char* className = class_getName([item class]);
-            // Change param according to it's actual type
-            if (strcmp(className, "java_lang_Boolean")==0) {
-                param = [NSString stringWithFormat:cFormat, [item booleanValue__]];
-            } else if (strcmp(className, "java_lang_Byte")==0 || strcmp(className, "java_lang_Short")==0 || strcmp(className, "java_lang_Integer")==0) {
-                param = [NSString stringWithFormat:cFormat, [item intValue__]];
-            } else if (strcmp(className, "java_lang_Long")==0) {
-                param = [NSString stringWithFormat:cFormat, [item longValue__]];
-            } else if (strcmp(className, "java_lang_Float")==0 || strcmp(className, "java_lang_Double")==0) {
-                param = [NSString stringWithFormat:cFormat, [item doubleValue__]];
-            } else if (strcmp(className, "java_lang_Character")==0) {
-                param = [NSString stringWithFormat:cFormat, [item charValue__]];
-            } else {
-                param = [NSString stringWithFormat:cFormat, item];
-            }
-            
-            // Collect param inside format string
-            NSRange range = ranges[i].range;
-            NSString* before = range.location <= 0 ? @"" : [format substringToIndex:range.location];
-            NSString* after = (range.location + range.length) >= [format length] ? @"" : [format substringFromIndex:(range.location+range.length)];
-            format = [NSString stringWithFormat:@"%@%@%@", before, param, after ];
+#ifdef VARARG_SIM_64
+    int di = 0;
+#endif
+#ifdef VARARG_32
+    uint32_t buffer[2];
+#endif
+    
+    int pi = 0;
+    for(int i = 0 ; i < va_array->length && i < va_maxsize ; i++) {
+        id item = va_array->array.o[i];
+        const char* className = class_getName([item class]);        // Change param according to it's actual type
+        if (strcmp(className, "java_lang_Boolean")==0) {
+            p[pi++] = [item boolValue];
+        } else if (strcmp(className, "java_lang_Byte")==0 || strcmp(className, "java_lang_Short")==0 || strcmp(className, "java_lang_Integer")==0 || strcmp(className, "java_lang_Character")==0) {
+            p[pi++] = [item intValue];
+        } else if (strcmp(className, "java_lang_Long")==0) {
+#ifdef VARARG_32
+            *(long long *)(buffer) = [item longLongValue];
+            p[pi++] = buffer[0];
+            p[pi++] = buffer[1];
+#else
+            p[pi++] = [item longLongValue];
+#endif
+        } else if (strcmp(className, "java_lang_Float")==0 || strcmp(className, "java_lang_Double")==0) {
+#ifdef VARARG_32
+            *(double*)(buffer) = [item doubleValue];
+            p[pi++] = buffer[0];
+            p[pi++] = buffer[1];
+#endif
+#ifdef VARARG_PHONE_64
+            *(double*)(p+pi) = [item doubleValue];
+            pi++;
+#endif
+#ifdef VARARG_SIM_64
+            *(double*)(d+di) = [item doubleValue];
+            di++;
+#endif
+        } else {
+            p[pi++] = (vartype)item;
         }
     }
-    return format;
 }
 
 @implementation NSNull (cat_crossmobile_null)

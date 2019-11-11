@@ -22,7 +22,6 @@ import org.crossmobile.plugin.objc.param.Emitter;
 import org.crossmobile.plugin.objc.param.ParamEmitter;
 import org.crossmobile.plugin.objc.param.ResultEmitter;
 import org.crossmobile.plugin.utils.Streamer;
-import org.crossmobile.utils.Log;
 
 import java.io.IOException;
 import java.lang.reflect.Executable;
@@ -74,15 +73,13 @@ public class SelectorEmitter {
             switch (selector.getMethodType()) {
                 case SELECTOR:
                 case BLOCK:
+                case VA_SELECTOR:
 //                selValue = shouldEmitSelectorAsMethodImp() ? emitSelectorAsIMP(p) : emitSelectorAsObjC(p);
                     selValue = emitSelectorAsObjC(p);
                     break;
                 case FUNCTION:
-                    selValue = emitFunction(p);
-                    break;
                 case VA_FUNCTION:
-                case VA_SELECTOR:
-                    selValue = emitSelectorAsVarArg(p);
+                    selValue = emitFunction(p);
                     break;
                 case EXTERNAL:
                     selValue = selector.getName();
@@ -148,22 +145,10 @@ public class SelectorEmitter {
         forEach(emitter.getNativeParameters()).
                 setFilter(e -> !e.isParameterHidden()).onTail(e -> out.append(" ")).onAny(e -> {
             out.append(e.paramName());
-            out.append(":");
+            out.append(e.objCParamSeparator());
             out.append(e.embed());
         }).go();
         out.append("]");
-        return out.toString();
-    }
-
-    /* only for NSString.format and friends. Needs more implementation for other systems */
-    private String emitSelectorAsVarArg(ParamEmitter emitter) {
-        StringBuilder out = new StringBuilder();
-        if (!selector.getMethodType().isFunction())
-            out.append(getClassNameSimple(selector.getContainer().getType())).append("_");
-        out.append(selector.getObjCSignature().replace(':', '_')).append("cmva(");
-        for (Emitter e : front(emitter.getNativeParameters()))
-            out.append(e.embed()).append(", ");
-        out.append("(va_array == JAVA_NULL ? nil : va_array))");
         return out.toString();
     }
 

@@ -372,7 +372,7 @@ public class NSString extends NSObject implements NSSecureCoding {
      * Create a String based on the provided format
      *
      * @param format The iOS-type formatting
-     * @param args   The possible arguments
+     * @param args   The possible arguments, up to 20 arguments
      * @return The formatted String
      */
     @CMSelector(value = "- (instancetype)initWithFormat:(NSString *)format, ...;", staticMapping = true)
@@ -388,7 +388,7 @@ public class NSString extends NSObject implements NSSecureCoding {
      * @return A localized version of the formatted String
      */
     @CMSelector("+ (instancetype)localizedStringWithFormat:(NSString *)format, ...;")
-    public static String localizedStringWithFormat(String format, Integer... args) {
+    public static String localizedStringWithFormat(String format, Object... args) {
         return initWithFormat(format, NSLocale.currentLocale(), args);
     }
 
@@ -402,19 +402,15 @@ public class NSString extends NSObject implements NSSecureCoding {
      */
     @CMSelector(value = "- (instancetype)initWithFormat:(NSString *)format \n" +
             "                        locale:(id)locale, ...;", staticMapping = true)
-    public static String initWithFormat(String format, NSLocale loc, Integer... args) {
+    public static String initWithFormat(String format, NSLocale loc, Object... args) {
         loc = loc == null ? NSLocale.systemLocale() : loc;
         if (I18N_SUPPORT)
             format = I18NBridge.retrieveFormat(format, loc.few, loc.many, args);
         format = objcToJavaFormat(format);
-        Object[] argsO = new Object[args != null && args.length > 0 ? args.length : 0];
-        //noinspection ManualArrayCopy
-        for (int i = 0; i < argsO.length; i++)
-            argsO[i] = args[i];
         try {
             return loc == NSLocale.systemLocale()
-                    ? String.format(format, argsO)
-                    : String.format(loc.loc, format, argsO);
+                    ? String.format(format, args)
+                    : String.format(loc.loc, format, args);
         } catch (Exception e) {
             return format;
         }
