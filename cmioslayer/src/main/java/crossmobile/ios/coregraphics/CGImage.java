@@ -27,6 +27,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import static org.crossmobile.bind.graphics.ImageBridgeConstants.*;
+
 /**
  * CGImage class defines an object that represents a bitmap image.
  */
@@ -72,7 +74,7 @@ public class CGImage extends CFType {
         if (filename == null && bitmap != null) {
             String tempFile = Native.file().getRandomLocation();
             try {
-                Native.image().fillStreamAndClose(bitmap, ImageBridgeConstants.PNG, 1, new FileOutputStream(tempFile));
+                Native.image().fillStreamAndClose(bitmap, ImageType.PNG, 1, new FileOutputStream(tempFile));
                 filename = tempFile;
             } catch (IOException ex) {
                 new File(tempFile).delete();

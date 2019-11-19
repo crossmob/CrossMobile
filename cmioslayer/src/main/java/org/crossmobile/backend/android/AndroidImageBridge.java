@@ -19,6 +19,7 @@ package org.crossmobile.backend.android;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.*;
+import android.graphics.Bitmap.CompressFormat;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -101,12 +102,12 @@ public class AndroidImageBridge extends AbstractImageBridge {
     }
 
     @Override
-    public void fillStreamAndClose(NativeBitmap nativebitmap, int method, double quality, OutputStream out) throws IOException {
+    public void fillStreamAndClose(NativeBitmap nativebitmap, ImageType type, double quality, OutputStream out) throws IOException {
         Bitmap bitmap = ((AndroidBitmap) nativebitmap).bitmap;
+        CompressFormat compress = type == ImageType.JPEG ? CompressFormat.JPEG : CompressFormat.PNG;
         try {
-            Bitmap.CompressFormat compress = method == JPEG ? Bitmap.CompressFormat.JPEG : Bitmap.CompressFormat.PNG;
             if (!bitmap.compress(compress, (int) (quality * 100), out))
-                throw new IOException("Unable to compress image with type " + (method == PNG ? "PNG" : "JPEG"));
+                throw new IOException("Unable to compress image with type " + type.name());
         } finally {
             closeR(out);
         }

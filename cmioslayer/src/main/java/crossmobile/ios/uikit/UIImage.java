@@ -22,6 +22,7 @@ import crossmobile.ios.foundation.NSObject;
 import crossmobile.ios.foundation.NSSecureCoding;
 import org.crossmobile.bind.graphics.ImageBridgeConstants;
 import org.crossmobile.bind.graphics.ImageBridgeConstants.ImageInfo;
+import org.crossmobile.bind.graphics.ImageBridgeConstants.ImageType;
 import org.crossmobile.bind.graphics.NativeBitmap;
 import org.crossmobile.bind.system.Promise;
 import org.crossmobile.bridge.Native;
@@ -336,7 +337,7 @@ public class UIImage extends NSObject implements NSSecureCoding {
      */
     @CMFunction(" NSData * UIImagePNGRepresentation ( UIImage *image ); ")
     public NSData PNGRepresentation() {
-        return getImageRepresentation(ImageBridgeConstants.PNG, 1);
+        return getImageRepresentation(ImageType.PNG, 1);
     }
 
     /**
@@ -347,14 +348,14 @@ public class UIImage extends NSObject implements NSSecureCoding {
      */
     @CMFunction(" NSData * UIImageJPEGRepresentation ( UIImage *image, CGFloat compressionQuality ); ")
     public NSData JPEGRepresentation(double compressionQuality) {
-        return getImageRepresentation(ImageBridgeConstants.JPEG, compressionQuality);
+        return getImageRepresentation(ImageType.JPEG, compressionQuality);
     }
 
-    private NSData getImageRepresentation(int method, double quality) {
+    private NSData getImageRepresentation(ImageType type, double quality) {
         ByteArrayOutputStream out = null;
         try {
             out = new ByteArrayOutputStream();
-            Native.image().fillStreamAndClose(bitmap(orig), method, quality, out);
+            Native.image().fillStreamAndClose(bitmap(orig), type, quality, out);
             NSData result = NSData.dataWithBytesNoCopy(out.toByteArray());
             return result;
         } catch (IOException ex) {

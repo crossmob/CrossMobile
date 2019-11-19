@@ -2456,6 +2456,7 @@ org/crossmobile/bind/graphics/Geometry.class v8
 org/crossmobile/bind/graphics/GraphicsBridgeConstants.class v8
 org/crossmobile/bind/graphics/GraphicsContext.class v8
 org/crossmobile/bind/graphics/ImageBridgeConstants$ImageInfo.class v8
+org/crossmobile/bind/graphics/ImageBridgeConstants$ImageType.class v8
 org/crossmobile/bind/graphics/ImageBridgeConstants.class v8
 org/crossmobile/bind/graphics/Insets.class v8
 org/crossmobile/bind/graphics/NativeBitmap.class v8
@@ -3195,6 +3196,7 @@ org/crossmobile/bind/graphics/Geometry.class v8
 org/crossmobile/bind/graphics/GraphicsBridgeConstants.class v8
 org/crossmobile/bind/graphics/GraphicsContext.class v8
 org/crossmobile/bind/graphics/ImageBridgeConstants$ImageInfo.class v8
+org/crossmobile/bind/graphics/ImageBridgeConstants$ImageType.class v8
 org/crossmobile/bind/graphics/ImageBridgeConstants.class v8
 org/crossmobile/bind/graphics/Insets.class v8
 org/crossmobile/bind/graphics/NativeBitmap.class v8

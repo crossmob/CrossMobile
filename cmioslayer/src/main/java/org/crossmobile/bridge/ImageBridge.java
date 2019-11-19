@@ -17,7 +17,9 @@
 package org.crossmobile.bridge;
 
 import crossmobile.ios.coregraphics.CGImage;
+import org.crossmobile.bind.graphics.ImageBridgeConstants;
 import org.crossmobile.bind.graphics.ImageBridgeConstants.ImageInfo;
+import org.crossmobile.bind.graphics.ImageBridgeConstants.ImageType;
 import org.crossmobile.bind.graphics.NativeBitmap;
 import org.robovm.objc.block.VoidBlock1;
 
@@ -34,7 +36,7 @@ public interface ImageBridge {
 
     void recycle();
 
-    void fillStreamAndClose(NativeBitmap bitmap, int method, double quality, OutputStream out) throws IOException;
+    void fillStreamAndClose(NativeBitmap bitmap, ImageType type, double quality, OutputStream out) throws IOException;
 
     NativeBitmap stretch(NativeBitmap bitmap, int top, int right, int bottom, int left, int reqX, int reqY);
 

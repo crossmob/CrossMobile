@@ -17,9 +17,9 @@
 package org.crossmobile.backend.desktop;
 
 import crossmobile.ios.coregraphics.$coregraphics;
-import crossmobile.ios.coregraphics.CGContext;
 import crossmobile.ios.coregraphics.CGImage;
 import org.crossmobile.bind.graphics.AbstractImageBridge;
+import org.crossmobile.bind.graphics.ImageBridgeConstants.ImageType;
 import org.crossmobile.bind.graphics.NativeBitmap;
 import org.crossmobile.bridge.Native;
 import org.robovm.objc.block.VoidBlock1;
@@ -30,7 +30,6 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
 
-import static org.crossmobile.bind.graphics.ImageBridgeConstants.JPEG;
 import static org.crossmobile.bind.system.SystemUtilities.closeR;
 
 public abstract class DesktopImageBridge extends AbstractImageBridge {
@@ -86,12 +85,12 @@ public abstract class DesktopImageBridge extends AbstractImageBridge {
     }
 
     @Override
-    public void fillStreamAndClose(NativeBitmap in, int method, double quality, OutputStream out) throws IOException {
+    public void fillStreamAndClose(NativeBitmap in, ImageType type, double quality, OutputStream out) throws IOException {
         BufferedImage bi = nativeToBuffered(in);
         if (out == null)
             throw new NullPointerException("Output stream could not be null");
         try {
-            if (!ImageIO.write(bi, method == JPEG ? "jpeg" : "png", out))
+            if (!ImageIO.write(bi, type.name().toLowerCase(), out))
                 throw new IOException("Unable to store image");
         } finally {
             closeR(out);

@@ -20,8 +20,6 @@ import org.crossmobile.bridge.Native;
 
 public final class ImageBridgeConstants {
 
-    public static final int PNG = 1;
-    public static final int JPEG = 2;
     public static final int SYSSIZE = Native.file().getSystemPrefix().length();
     public static final int APPSIZE = Native.file().getApplicationPrefix().length() + 1; // we also want to eliminate the "/" character
     public static final String SYSNAME = Native.file().getSystemPrefix().toLowerCase();
@@ -46,5 +44,9 @@ public final class ImageBridgeConstants {
     }
 
     private ImageBridgeConstants() {
+    }
+
+    public enum ImageType {
+        PNG, JPEG
     }
 }
