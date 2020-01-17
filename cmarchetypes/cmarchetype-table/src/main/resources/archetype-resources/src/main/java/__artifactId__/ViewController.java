@@ -37,8 +37,7 @@ public class ViewController extends UIViewController implements UITableViewDeleg
     @Override
     public void didSelectRowAtIndexPath(UITableView tableview, NSIndexPath indexPath) {
         DataModel item = items.get(indexPath.row());
-        navigationController()
-                .pushViewController(new NewViewController(item),true);
+        navigationController().pushViewController(new NewViewController(item), true);
     }
 
     @Override

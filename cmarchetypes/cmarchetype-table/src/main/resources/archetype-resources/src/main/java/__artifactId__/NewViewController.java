@@ -19,19 +19,19 @@ public class NewViewController extends UIViewController {
         UIView view = new UIView();
         view.setBackgroundColor(UIColor.whiteColor());
 
-        UILabel details_label = new UILabel(new CGRect(50,100,100,50));
-        details_label.setText("Details : ");
+        UILabel detailsLabel = new UILabel(new CGRect(50,100,100,50));
+        detailsLabel.setText("Details : ");
 
-        UILabel details_text = new UILabel(new CGRect(150,100,width-100,50));
-        details_text.setAutoresizingMask(UIViewAutoresizing.FlexibleWidth);
+        UILabel detailsText = new UILabel(new CGRect(150,100,width-100,50));
+        detailsText.setAutoresizingMask(UIViewAutoresizing.FlexibleWidth);
 
         if(model.subtitle != "")
-            details_text.setText( String.join(" ", model.subtitle, String.valueOf(model.title.charAt(model.title.length() - 1)) ) );
+            detailsText.setText(model.subtitle + " " + model.title.charAt(model.title.length() - 1));
         else
-            details_text.setText("No Subtitle");
+            detailsText.setText("No Subtitle");
 
-        view.addSubview(details_label);
-        view.addSubview(details_text);
+        view.addSubview(detailsLabel);
+        view.addSubview(detailsText);
 
         setView(view);
     }
