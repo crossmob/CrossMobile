@@ -24,6 +24,8 @@ import java.util.List;
 
 public class TreeWalker {
 
+    private static final Collection<File> BLACKLIST = SystemDependent.getBlacklistedLocations();
+
     public static void searchExecutable(Collection<LocationRequest> requests, Collection<String> specific_locations, boolean auto, Active active) {
         try {
             List<ExtPath> paths = new ArrayList<>();
@@ -61,7 +63,6 @@ public class TreeWalker {
     /* filename is already in lower case */
     @SuppressWarnings("UseSpecificCatch")
     private static void walkPath(File root, Collection<LocationRequest> requests, int recursive, Active active) {
-        String rootNameL = root.getName().toLowerCase();
         if (!root.exists() || !root.canRead() || !active.isActive())
             return;
         try {
@@ -73,8 +74,11 @@ public class TreeWalker {
                     recursive--;
                     File[] children = root.listFiles();
                     if (children != null)
-                        for (File child : children)
-                            walkPath(child, requests, recursive, active);
+                        for (File child : children) {
+                            child = child.getCanonicalFile();
+                            if (BLACKLIST != null && !BLACKLIST.contains(child))
+                                walkPath(child, requests, recursive, active);
+                        }
                 }
         } catch (Exception ex) {
             Log.debug("Error while searching executables: " + ex.toString());

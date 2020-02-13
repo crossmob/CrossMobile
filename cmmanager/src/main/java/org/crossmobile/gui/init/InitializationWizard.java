@@ -177,6 +177,8 @@ public class InitializationWizard extends HiResDialog implements Active {
                 Prefs.setWizardExecuted(true);
                 setVisible(false);
             });
+        else
+            setAction("Choose alternatives...", null);
         subtitleL.setText(allAppsAreSelected ? (allAppsAreResolved ? "All applications have been successfully resolved" : "Please open Settings after initialization to solve unresolved applications.") : "Please resolve external applications");
     }
 
@@ -232,6 +234,8 @@ public class InitializationWizard extends HiResDialog implements Active {
         welcomeP = new javax.swing.JPanel();
         infoL = new ActiveLabel();
         externalsP = new javax.swing.JPanel();
+        jPanel14 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jdkL = new ActiveLabel();
         jPanel9 = new javax.swing.JPanel();
@@ -240,14 +244,16 @@ public class InitializationWizard extends HiResDialog implements Active {
         androidL = new ActiveLabel();
         jPanel10 = new javax.swing.JPanel();
         androidB = new HiResButton();
-        jPanel3 = new javax.swing.JPanel();
-        netbeansL = new ActiveLabel();
-        jPanel11 = new javax.swing.JPanel();
-        netbeansB = new HiResButton();
+        jPanel15 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         intellijL = new ActiveLabel();
         jPanel12 = new javax.swing.JPanel();
         intellijB = new HiResButton();
+        jPanel3 = new javax.swing.JPanel();
+        netbeansL = new ActiveLabel();
+        jPanel11 = new javax.swing.JPanel();
+        netbeansB = new HiResButton();
         jPanel8 = new javax.swing.JPanel();
         studioL = new ActiveLabel();
         jPanel13 = new javax.swing.JPanel();
@@ -298,6 +304,17 @@ public class InitializationWizard extends HiResDialog implements Active {
         externalsP.setOpaque(false);
         externalsP.setLayout(new javax.swing.BoxLayout(externalsP, javax.swing.BoxLayout.Y_AXIS));
 
+        jPanel14.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 0, 0, 0));
+        jPanel14.setOpaque(false);
+        jPanel14.setLayout(new java.awt.BorderLayout());
+
+        jLabel1.setFont(jLabel1.getFont().deriveFont((jLabel1.getFont().getStyle() | java.awt.Font.ITALIC)));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Required Components");
+        jPanel14.add(jLabel1, java.awt.BorderLayout.CENTER);
+
+        externalsP.add(jPanel14);
+
         jPanel2.setOpaque(false);
         jPanel2.setLayout(new java.awt.BorderLayout());
 
@@ -342,27 +359,15 @@ public class InitializationWizard extends HiResDialog implements Active {
 
         externalsP.add(jPanel6);
 
-        jPanel3.setOpaque(false);
-        jPanel3.setLayout(new java.awt.BorderLayout());
+        jPanel15.setOpaque(false);
+        jPanel15.setLayout(new java.awt.BorderLayout());
 
-        netbeansL.setText("Netbeans");
-        netbeansL.setIconTextGap(8);
-        jPanel3.add(netbeansL, java.awt.BorderLayout.WEST);
+        jLabel2.setFont(jLabel2.getFont().deriveFont((jLabel2.getFont().getStyle() | java.awt.Font.ITALIC)));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Optional Components");
+        jPanel15.add(jLabel2, java.awt.BorderLayout.CENTER);
 
-        jPanel11.setOpaque(false);
-        jPanel11.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
-
-        netbeansB.setText("Choose");
-        netbeansB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                netbeansBActionPerformed(evt);
-            }
-        });
-        jPanel11.add(netbeansB);
-
-        jPanel3.add(jPanel11, java.awt.BorderLayout.EAST);
-
-        externalsP.add(jPanel3);
+        externalsP.add(jPanel15);
 
         jPanel5.setOpaque(false);
         jPanel5.setLayout(new java.awt.BorderLayout());
@@ -385,6 +390,28 @@ public class InitializationWizard extends HiResDialog implements Active {
         jPanel5.add(jPanel12, java.awt.BorderLayout.EAST);
 
         externalsP.add(jPanel5);
+
+        jPanel3.setOpaque(false);
+        jPanel3.setLayout(new java.awt.BorderLayout());
+
+        netbeansL.setText("Netbeans");
+        netbeansL.setIconTextGap(8);
+        jPanel3.add(netbeansL, java.awt.BorderLayout.WEST);
+
+        jPanel11.setOpaque(false);
+        jPanel11.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
+
+        netbeansB.setText("Choose");
+        netbeansB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                netbeansBActionPerformed(evt);
+            }
+        });
+        jPanel11.add(netbeansB);
+
+        jPanel3.add(jPanel11, java.awt.BorderLayout.EAST);
+
+        externalsP.add(jPanel3);
 
         jPanel8.setOpaque(false);
         jPanel8.setLayout(new java.awt.BorderLayout());
@@ -530,11 +557,15 @@ public class InitializationWizard extends HiResDialog implements Active {
     private javax.swing.JPanel infoP;
     private javax.swing.JButton intellijB;
     private javax.swing.JLabel intellijL;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

@@ -21,7 +21,11 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.attribute.PosixFilePermissions;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static org.crossmobile.utils.SystemDependent.Execs.JAVA;
 
@@ -92,7 +96,7 @@ public class SystemDependent {
         // Might no need to add /Application because under OSX we can use spotlight instead
         res.add(new ExtPath(HOME + "/Applications", 4));
         res.add(new ExtPath(HOME + "/AppData", 5));
-        res.add(new ExtPath(HOME + "/Library", 4));
+        res.add(new ExtPath(HOME + "/Library/Android", 3));
         res.add(new ExtPath(HOME + "/Downloads", 3));
         res.add(new ExtPath(HOME + "/Desktop", 3));
         res.add(new ExtPath(HOME + "/Android", 3));
@@ -165,16 +169,6 @@ public class SystemDependent {
         return numbs.get(3) < 111;
     }
 
-    public static String getAppliationRoot(File mainclasspath) {
-        if (mainclasspath.getName().toLowerCase().endsWith("jar"))
-            return IS_MACOSX // one path more, since the JAR is already a file
-                    ? mainclasspath.getParentFile().getParentFile().getParent()
-                    : mainclasspath.getParentFile().getParent();
-        return IS_MACOSX
-                ? new File(mainclasspath.getParent(), "crossmobile/app/CrossMobile.app").getAbsolutePath()
-                : new File(mainclasspath.getParent(), "crossmobile").getAbsolutePath();
-    }
-
     public static boolean canMakeIos() {
         return IS_MACOSX;
     }
@@ -239,6 +233,21 @@ public class SystemDependent {
 
     public static String getFileManagerName() {
         return IS_MACOSX ? "Finder" : IS_WINDOWS ? "Explorer" : "File Manager";
+    }
+
+    public static Collection<File> getBlacklistedLocations() {
+        try {
+            if (IS_MACOSX) {
+                Collection<File> blacklist = new HashSet<>();
+                blacklist.add(new File(HOME, "Library/Application Support/AddressBook").getCanonicalFile());
+                blacklist.add(new File(HOME, "Library/Calendars").getCanonicalFile());
+                blacklist.add(new File(HOME, "Library/Reminders").getCanonicalFile());
+                blacklist.add(new File(HOME, "Pictures/Photos.photoslibrary").getCanonicalFile());
+                return blacklist;
+            }
+        } catch (IOException ignored) {
+        }
+        return null;
     }
 
     public enum Execs {
