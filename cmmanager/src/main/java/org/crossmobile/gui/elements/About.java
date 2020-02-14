@@ -1,5 +1,5 @@
 /*
- * (c) 2019 by Panayotis Katsaloulis
+ * (c) 2020 by Panayotis Katsaloulis
  *
  * CrossMobile is free software; you can redistribute it and/or modify
  * it under the terms of the CrossMobile Community License as published
@@ -49,7 +49,7 @@ public class About extends HiResDialog {
             setIconImage(ImageIO.read(getClass().getClassLoader().getResourceAsStream("images/logo-small.png")));
         } catch (IOException ex) {
         }
-        licenseT.setText(FileUtils.readSafe(getClass().getResourceAsStream("/org/crossmobile/LICENSE"), "license", "(c) 2019 by Panayotis Katsaloulis"));
+        licenseT.setText(FileUtils.readSafe(getClass().getResourceAsStream("/org/crossmobile/LICENSE"), "license", "(c) 2020 by Panayotis Katsaloulis"));
         licenseT.setCaretPosition(0);
 
         setLocationRelativeTo(null);
