@@ -519,9 +519,10 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
         jarM = new ActiveMenuItem();
         apkM = new ActiveMenuItem();
         jSeparator1 = new ActiveMenuSeparator();
-        studioM = new ActiveMenuItem();
+        otherIDEs = new ActiveMenu();
         xcodeM = new ActiveMenuItem();
         vstudioM = new ActiveMenuItem();
+        studioM = new ActiveMenuItem();
         cleanM = new ActivePopupMenu();
         cleanAllPM = new ActiveMenuItem();
         actionsAndroidM = new ActivePopupMenu();
@@ -667,19 +668,10 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
         openM.add(apkM);
         openM.add(jSeparator1);
 
-        studioM.setIcon(STUDIO_I);
-        studioM.setText(" in Android Studio");
-        studioM.setActionCommand(OPEN_STUDIO);
-        studioM.setDisabledIcon(STUDIO_D);
-        studioM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                openCommand(evt);
-            }
-        });
-        openM.add(studioM);
+        otherIDEs.setText("Other IDEs...");
 
         xcodeM.setIcon(XCODE_I);
-        xcodeM.setText(" in Xcode");
+        xcodeM.setText(" Xcode");
         xcodeM.setActionCommand(OPEN_XCODE);
         xcodeM.setDisabledIcon(XCODE_D);
         xcodeM.addActionListener(new java.awt.event.ActionListener() {
@@ -687,10 +679,10 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
                 openCommand(evt);
             }
         });
-        openM.add(xcodeM);
+        otherIDEs.add(xcodeM);
 
         vstudioM.setIcon(VSTUDIO_I);
-        vstudioM.setText(" in Visual Studio");
+        vstudioM.setText(" Visual Studio");
         vstudioM.setActionCommand(OPEN_VSTUDIO);
         vstudioM.setDisabledIcon(VSTUDIO_D);
         vstudioM.addActionListener(new java.awt.event.ActionListener() {
@@ -698,7 +690,20 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
                 openCommand(evt);
             }
         });
-        openM.add(vstudioM);
+        otherIDEs.add(vstudioM);
+
+        studioM.setIcon(STUDIO_I);
+        studioM.setText(" Android Studio");
+        studioM.setActionCommand(OPEN_STUDIO);
+        studioM.setDisabledIcon(STUDIO_D);
+        studioM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openCommand(evt);
+            }
+        });
+        otherIDEs.add(studioM);
+
+        openM.add(otherIDEs);
 
         cleanAllPM.setIcon(CLEANPROJ_I);
         cleanAllPM.setText("Clean Project files");
@@ -974,7 +979,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
         infoP.setOpaque(false);
         infoP.setLayout(new java.awt.BorderLayout());
 
-        outResult.setBorder(new com.panayotis.hrgui.HiResEmptyBorder(4, 8, 4, 0));
+        outResult.setBorder(new com.panayotis.hrgui.HiResEmptyBorder(4,8,4,0));
         outResult.setOpaque(true);
         infoP.add(outResult, java.awt.BorderLayout.CENTER);
 
@@ -1216,6 +1221,7 @@ public final class ProjectFrame extends RegisteredFrame implements DebugInfo.Con
     private javax.swing.JMenuItem netbeansM;
     private javax.swing.JButton openB;
     private javax.swing.JPopupMenu openM;
+    private javax.swing.JMenu otherIDEs;
     private javax.swing.JLabel outResult;
     private javax.swing.JPanel outerrorP;
     private javax.swing.JToggleButton outputB;
