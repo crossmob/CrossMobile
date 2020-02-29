@@ -1,4 +1,4 @@
-// (c) 2019 under LGPL by CrossMobile plugin tools
+// (c) 2020 under LGPL by CrossMobile plugin tools
 
 // crossmobile_ios_uikit_UIAlertAction implementation
 
