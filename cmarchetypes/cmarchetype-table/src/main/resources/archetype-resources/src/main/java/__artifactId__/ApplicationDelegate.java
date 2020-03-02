@@ -20,7 +20,7 @@ public class ApplicationDelegate implements UIApplicationDelegate {
     @Override
     public boolean didFinishLaunchingWithOptions(UIApplication app, Map<String, Object> launchOptions) {
         window = new UIWindow(UIScreen.mainScreen().bounds());
-        window.setRootViewController(new ViewController());
+        window.setRootViewController( new UINavigationController(new ViewController()));
         window.makeKeyAndVisible();
         return true;
     }
