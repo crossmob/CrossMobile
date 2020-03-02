@@ -27,6 +27,8 @@ commercially published applications.
 ### How to get it
 Please go to the [download](https://github.com/crossmob/CrossMobile/releases/latest) page to download the latest release.
 
+If you want to compile it from source yourself, make sure to have a look at the [COMPILE.md](https://github.com/crossmob/CrossMobile/blob/master/COMPILE.md) file first.
+
 ### History
 
 A human-friendly Release ChangeLog could be found [here](https://github.com/crossmob/CrossMobile/blob/master/RELEASES.md),

@@ -1,5 +1,11 @@
 # How to compile CrossMobile
 
+First of all, make sure you have downloaded the full CrossMobile distribution:
+
+```git clone --recursive https://github.com/crossmob/CrossMobile```
+
+or otherwise parts of the code might be missing.
+
 ## Requirements:
 **Please note that in order to use the iOS backend, a macOS machine is required. Likewise for the UWP backend.**
 
