@@ -17,6 +17,5 @@
     <modules>
         <module>cmutils-common</module>
         <module>cmutils-tools</module>
-        <module>cmutils-maven</module>
     </modules>
 </project>

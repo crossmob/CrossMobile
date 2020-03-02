@@ -10,10 +10,10 @@
 
     <modules>
         <module>cmutils</module>
-        <module>cmframework</module>
+        <module>cmmanager</module>
         <module>cmbuild</module>
+        <module>cmioslayer</module>
         <module>cmarchetypes</module>
-
         <module>cmtheme</module>
         <module>cmprojects/cmproject</module>
         <module>cmprojects/cmforeign</module>
@@ -36,6 +36,11 @@
         <version.loadlib>0.2.1</version.loadlib>
         <version.procyon>0.5.36</version.procyon>
         <version.robovm>2.3.5</version.robovm>
+
+        <version.appbundler>1.1.0</version.appbundler>
+        <version.appenh>0.3.1</version.appenh>
+        <version.hrgui>0.2.2</version.hrgui>
+        <version.jupidator>0.9.0.0</version.jupidator>
     </properties>
 
     <build>

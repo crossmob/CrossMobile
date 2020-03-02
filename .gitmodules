@@ -1,0 +1,6 @@
+[submodule "cmmanager"]
+	path = cmmanager
+	url = https://github.com/crossmob/cmmanager
+[submodule "cmbuild"]
+	path = cmbuild
+	url = https://github.com/crossmob/cmbuild
