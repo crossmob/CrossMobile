@@ -138,7 +138,8 @@ public class Prefs {
 
     public static String getAndroidSDKLocation() {
         String location = getTagLocation(ANDROID_LOCATION);
-        return location.isEmpty() || getSafeFile(location + File.separator + "tools" + File.separator + ANDROID.filename()).isEmpty()
+        return location.isEmpty() ||
+                getSafeFile(location + File.separator + "tools" + File.separator + "bin" + File.separator + SDKMANAGER.filename()).isEmpty()
                 ? ""
                 : location;
     }
@@ -164,7 +165,7 @@ public class Prefs {
         String sdk = getAndroidSDKLocation();
         return sdk.isEmpty()
                 ? ""
-                : sdk + "/tools/bin/" + SDKMANAGER.filename();
+                : sdk + File.separator + "tools" + File.separator + "bin" + File.separator + SDKMANAGER.filename();
     }
 
     public static void setAndroidKeyLocation(String location) {
