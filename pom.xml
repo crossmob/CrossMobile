@@ -38,7 +38,7 @@
         <version.robovm>2.3.5</version.robovm>
 
         <version.appbundler>1.1.0</version.appbundler>
-        <version.appenh>0.3.1</version.appenh>
+        <version.appenh>0.3.2</version.appenh>
         <version.hrgui>0.2.2</version.hrgui>
         <version.jupidator>0.9.0.0</version.jupidator>
     </properties>
