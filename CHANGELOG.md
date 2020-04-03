@@ -2,6 +2,26 @@
 
 Click on the version header to go to the actual commits for each release.
 
+## [v2.8]
+###### 2020-04-04
+
+### Added
+- Dark theme support on macOS
+- SPDX headers: more clear license between modules
+
+### Fixed
+- Android SDK issues
+- Application States are now supported
+- Memory leak in initialization String with bytes
+- Improved array management
+- varargs work now
+- Launcher under macOS and Linux
+
+### Changed
+- Improved Manager visuals to follow required and non-required elements
+- Better Table archetype
+- Gradle is downloaded through github and not as a maven dependency
+
 ## [v2.7]
 ###### 2019-10-1
 
@@ -101,6 +121,7 @@ Click on the version header to go to the actual commits for each release.
 ### Added
 - First public source release
 
+[v2.8]: https://github.com/crossmob/CrossMobile/compare/v2.7...v2.8.0
 [v2.7]: https://github.com/crossmob/CrossMobile/compare/v2.6.1...v2.7
 [v2.6.1]: https://github.com/crossmob/CrossMobile/compare/v2.6...v2.6.1
 [v2.6]: https://github.com/crossmob/CrossMobile/compare/v2.5...v2.6

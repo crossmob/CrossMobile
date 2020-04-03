@@ -27,20 +27,19 @@ commercially published applications.
 ### How to get it
 Please go to the [download](https://github.com/crossmob/CrossMobile/releases/latest) page to download the latest release.
 
-If you want to compile it from source yourself, make sure to have a look at the [COMPILE.md](https://github.com/crossmob/CrossMobile/blob/master/COMPILE.md) file first. <br/>
-Make sure you recursively download all modules with the following command: ```git clone --recurse-submodules https://github.com/crossmob/CrossMobile.git```
+If you want to compile it from source yourself, make sure to have a look at the [COMPILE.md](https://github.com/crossmob/CrossMobile/blob/master/COMPILE.md) file first with info how to get the source code and how to compile it.
 
 ### History
 
-A human-friendly Release ChangeLog could be found [here](https://github.com/crossmob/CrossMobile/blob/master/RELEASES.md),
+A human-friendly Release log could be found [here](https://github.com/crossmob/CrossMobile/blob/master/RELEASES.md),
 or a detailed ChangeLog [here](https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md).
 
 ### Requirements
 
 |   | macOS | Windows | Linux |
 |---|-------|---------|--------|
-| Required | macOS Sierra 10.12.6 <br/> Xcode 9.2 <br/> Android command line tools 3.5 | Windows 7 <br/> Android command line tools 3.5 | x64 distribution <br/> Android command line tools 3.5
-| Recommended | macOS Mojave 10.14.6 <br/> Xcode 10.3 <br/> Android Studio 3.5 | Windows 10 64 bit<br/> Android Studio 3.5 | x64 distribution <br/> Android Studio 3.5
+| Required | macOS 10.12.6 <br/> Xcode 9.2 <br/> Android command line tools 3.5 | Windows 7 <br/> Android command line tools 3.5 | x64 distribution <br/> Android command line tools 3.5
+| Recommended | macOS 10.14+ <br/> Xcode 10.3+ <br/> Android Studio 3.5+ | Windows 10 64 bit<br/> Android Studio 3.5+ | x64 distribution <br/> Android Studio 3.5+
 
 ### More information
 For more information about CrossMobile, please visit its dedicated site [crossmobile.tech](https://crossmobile.tech).

@@ -2,6 +2,13 @@
 
 Click on the version header to go to the detailed ChangeLog.
 
+## [v2.8]
+
+- Dark theme is officialy supported on macOS, thanks to the new [javalauncher], written in `nim`, which is able to better locate JRE and launch the application.
+- License of modules is more clear now: all runtime parts are still in permissive LGPL license, while non-redistributable are under AGPL license.
+- Fix various Andoid SDK issues. The build system is again more compatible with current Android tools.
+- Various memory issues fixed (in String, arrays, and vararg parameters)
+
 ## [v2.7]
 
 -  There's a **code breaking** change with NSLog. Now this function lives in Foundation class, instead of it's own arbitrary class. The fix is easy, to replace all calls of `NSLog.log` with `Foundation.NSLog`, but it will not be performed automatically.
@@ -22,6 +29,8 @@ Click on the version header to go to the detailed ChangeLog.
 ## [v2.5]
 - First public binary stable release
 
+[javalauncher]: https://github.com/teras/javalauncher
+[v2.8]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v28
 [v2.7]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v27
 [v2.6.1]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v261
 [v2.6]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v26

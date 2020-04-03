@@ -41,7 +41,7 @@ brew cask install adoptopenjdk8
     - in macOS is under `~/Library/Android/sdk`
     - in Windows is under `%HOME%\AppData\Local\Android\Sdk`
     - ... or use the location of the command line tools root folder
-- Use a command similar to the following to define the location of the Android SDK: `export ANDROID_SDK=~/Android/Sdk/`
+- Use a command similar to the following to define the location of the Android SDK: `export ANDROID_SDK_ROOT=~/Android/Sdk/`
 
 ## Run the bootstap script
 On the root folder of CrossMobile issue the following command:
