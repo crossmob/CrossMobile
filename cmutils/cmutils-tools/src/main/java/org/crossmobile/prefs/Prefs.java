@@ -127,14 +127,23 @@ public class Prefs {
             prefs.put(ANDROID_LOCATION, fname);
     }
 
+
+    private static String getAndroidSDKManagerLocation(String androidSDKLocation) {
+        return androidSDKLocation.isEmpty() ? "" : getSafeFile(androidSDKLocation + File.separator + "tools" + File.separator + "bin" + File.separator + SDKMANAGER.filename());
+    }
+
+    private static String getAdbLocation(String androidSDKLocation) {
+        return androidSDKLocation.isEmpty() ? "" : getSafeFile(androidSDKLocation + File.separator + "platform-tools" + File.separator + ADB.filename());
+    }
+
     public static String getAndroidSDKLocation() {
         String location = getTagLocation(ANDROID_LOCATION);
         if (location.isEmpty())
             return "";
-        String sdkmanager = getSafeFile(location + File.separator + "tools" + File.separator + "bin" + File.separator + SDKMANAGER.filename());
+        String sdkmanager = getAndroidSDKManagerLocation(location);
         if (!sdkmanager.isEmpty())
             return location;
-        String adb = getSafeFile(location + File.separator + "platform-tools" + File.separator + ADB.filename());
+        String adb = getAdbLocation(location);
         return adb.isEmpty() ? "" : location;
     }
 
@@ -150,11 +159,8 @@ public class Prefs {
         return getTagLocation(VISUALSTUDIO_LOCATION);
     }
 
-    public static String getAndroidManagerLocation() {
-        String sdk = getAndroidSDKLocation();
-        return sdk.isEmpty()
-                ? ""
-                : sdk + File.separator + "tools" + File.separator + "bin" + File.separator + SDKMANAGER.filename();
+    public static String getAndroidSDKManagerLocation() {
+        return getAndroidSDKManagerLocation(getAndroidSDKLocation());
     }
 
     public static void setAndroidKeyLocation(String location) {
