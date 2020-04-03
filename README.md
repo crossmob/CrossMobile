@@ -27,7 +27,8 @@ commercially published applications.
 ### How to get it
 Please go to the [download](https://github.com/crossmob/CrossMobile/releases/latest) page to download the latest release.
 
-If you want to compile it from source yourself, make sure to have a look at the [COMPILE.md](https://github.com/crossmob/CrossMobile/blob/master/COMPILE.md) file first.
+If you want to compile it from source yourself, make sure to have a look at the [COMPILE.md](https://github.com/crossmob/CrossMobile/blob/master/COMPILE.md) file first. <br/>
+Make sure you recursively download all modules with the following command: ```git clone --recurse-submodules https://github.com/crossmob/CrossMobile.git```
 
 ### History
 
