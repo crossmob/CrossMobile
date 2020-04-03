@@ -29,7 +29,7 @@ public class AndroidLauncher {
         String mainClass = props.getProperty("mainclass");
         if (mainClass == null || mainClass.trim().isEmpty()) {
             System.err.println("Unable to locate main class");
-            System.exit(-1);
+            System.exit(1);
         }
 
         File loc = null;
@@ -38,23 +38,24 @@ public class AndroidLauncher {
         } catch (Exception e) {
             System.err.println("Unable to find location of main class " + mainClass);
             e.printStackTrace(System.err);
-            System.exit(-1);
+            System.exit(1);
         }
         File basedir = loc.getName().equals("classes") ? loc.getParentFile() : null;
         basedir = basedir != null && basedir.getName().equals("target") ? basedir.getParentFile() : null;
         if (basedir == null) {
             System.err.println("Expected base dir to exist inside the folders 'target" + File.separator + "classes` : base dir found at " + loc.getAbsolutePath());
-            System.exit(-1);
+            System.exit(1);
         }
 
         try {
             props.load(new InputStreamReader(new FileInputStream(new File(basedir, "local.properties")), StandardCharsets.UTF_8));
         } catch (Exception ex) {
             System.err.println("Unable to load local properties");
-            System.exit(-1);
+            System.exit(1);
         }
+
         if (props.getProperty("sdk.dir", "").isEmpty()) {
-            System.out.println("[ERROR] Android SDK not defined, please use the configuration wizard to select the desired SDK");
+            System.out.println("[ERROR] SDK location not found, please use the configuration wizard to select the desired Android SDK");
             System.exit(1);
         }
         sdkDir = new File(props.getProperty("sdk.dir"));
@@ -67,7 +68,7 @@ public class AndroidLauncher {
             currentApkFile = getApkFile(basedir, release);
             if (currentApkFile == null) {
                 System.out.println("Unable to locate APK");
-                System.exit(-1);
+                System.exit(1);
             }
         }
         String apkFile = currentApkFile;
@@ -95,7 +96,7 @@ public class AndroidLauncher {
             adb.setDevice(dvc);
             if (!adb.foundDevice()) {
                 System.out.println("No devices selected, exiting.");
-                System.exit(-1);
+                System.exit(1);
                 return;
             }
             adb.installApk(apkFile);

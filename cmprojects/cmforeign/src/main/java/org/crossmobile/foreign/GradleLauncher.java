@@ -24,7 +24,7 @@ public class GradleLauncher {
         if (!isInstalled())
             downloadGradle(getGradleHome());
         Commander gradle = IS_WINDOWS
-                ? new Commander("cmd.exe", "/c", "start", getGradleBin(), release ? "assembleRelease" : "assembleDebug")
+                ? new Commander("cmd.exe", "/c", getGradleBin(), release ? "assembleRelease" : "assembleDebug")
                 : new Commander(getGradleBin(), release ? "assembleRelease" : "assembleDebug");
         gradle.setCurrentDir(currentDir);
         gradle.setOutListener(System.out::println);
@@ -96,7 +96,7 @@ public class GradleLauncher {
     private static void error(String message, File destinationFolder) {
         delete(destinationFolder);
         System.out.printf("Unable to download gradle %s: %s%n", GRADLE_VERSION, message);
-        System.exit(-1);
+        System.exit(1);
     }
 
     public static void delete(File file) {
