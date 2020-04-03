@@ -26,7 +26,6 @@ public class Prefs {
     private static final String VISUALSTUDIO_LOCATION = "location.visualstudio";
     private static final String JDK_LOCATION = "location.jdk";
     private static final String ANDROID_LOCATION = "android.sdk.location";
-    private static final String ANDROID_TARGET = "android.target";
     private static final String ANDROID_KEY = "android.key";
     private static final String LAUNCH_TARGET = "launch.target.";
     private static final String LAUNCH_TYPE = "launch.type.";
@@ -123,12 +122,20 @@ public class Prefs {
                 : location;
     }
 
+    public static void setAndroidSDKLocation(String fname) {
+        if (fname != null)
+            prefs.put(ANDROID_LOCATION, fname);
+    }
+
     public static String getAndroidSDKLocation() {
         String location = getTagLocation(ANDROID_LOCATION);
-        return location.isEmpty() ||
-                getSafeFile(location + File.separator + "tools" + File.separator + "bin" + File.separator + SDKMANAGER.filename()).isEmpty()
-                ? ""
-                : location;
+        if (location.isEmpty())
+            return "";
+        String sdkmanager = getSafeFile(location + File.separator + "tools" + File.separator + "bin" + File.separator + SDKMANAGER.filename());
+        if (!sdkmanager.isEmpty())
+            return location;
+        String adb = getSafeFile(location + File.separator + "platform-tools" + File.separator + ADB.filename());
+        return adb.isEmpty() ? "" : location;
     }
 
     public static boolean isAndroidLicenseLocationValid() {
@@ -141,11 +148,6 @@ public class Prefs {
 
     public static String getVisualStudioLocation() {
         return getTagLocation(VISUALSTUDIO_LOCATION);
-    }
-
-    public static void setAndroidSDKLocation(String fname) {
-        if (fname != null)
-            prefs.put(ANDROID_LOCATION, fname);
     }
 
     public static String getAndroidManagerLocation() {
@@ -161,10 +163,6 @@ public class Prefs {
 
     public static String getAndroidKeyLocation() {
         return prefs.get(ANDROID_KEY, "");
-    }
-
-    public static void setAndroidTarget(String target) {
-        prefs.put(ANDROID_TARGET, target);
     }
 
     public static void setStudioLocation(String fname) {
