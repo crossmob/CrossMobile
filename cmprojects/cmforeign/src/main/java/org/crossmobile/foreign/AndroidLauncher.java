@@ -53,7 +53,25 @@ public class AndroidLauncher {
             System.err.println("Unable to load local properties");
             System.exit(-1);
         }
+        if (props.getProperty("sdk.dir", "").isEmpty()) {
+            System.out.println("[ERROR] Android SDK not defined, please use the configuration wizard to select the desired SDK");
+            System.exit(1);
+        }
         sdkDir = new File(props.getProperty("sdk.dir"));
+
+        boolean release = props.getProperty("release", "false").equals("true");
+        String currentApkFile = getApkFile(basedir, release);
+        if (currentApkFile == null) {
+            System.out.println("Will try to rebuild APK");
+            GradleLauncher.runGradle(basedir, release);
+            currentApkFile = getApkFile(basedir, release);
+            if (currentApkFile == null) {
+                System.out.println("Unable to locate APK");
+                System.exit(-1);
+            }
+        }
+        String apkFile = currentApkFile;
+
         File adbFile = new File(sdkDir, "platform-tools" + File.separator + (isWindows ? "adb.exe" : "adb"));
         if (!adbFile.isFile()) {
             System.out.println("[ERROR] Android SDK must be set to run Android");
@@ -64,21 +82,10 @@ public class AndroidLauncher {
         adb.setBaseDir(basedir);
         adb.setDebugProfile(props.getProperty("debug.profile"));
         bundleID = props.getProperty("bundleId");
-        boolean release = props.getProperty("release", "false").equals("true");
 
         // Android SDK is peculiar. The name of the APK is based on the name of the current folder.
         // apkName = props.getProperty("appId");
-        String apkName = basedir.getName();
         ConnectedAndroidDispatcher.setAdbLocation(adb.getPath());
-
-        String rel_deb = release ? "release" : "debug";
-        File oldLocation = new File(basedir + APK_PREFIX + apkName + "-" + rel_deb + ".apk");
-        File newLocation = new File(basedir + APK_PREFIX + rel_deb + File.separator + apkName + "-" + rel_deb + ".apk");
-        if (!oldLocation.isFile() && !newLocation.isFile()) {
-            System.out.println("Unable to locate APK under " + newLocation.getAbsolutePath() + " or " + oldLocation.getAbsolutePath() + "\nExiting.");
-            System.exit(-1);
-            return;
-        }
 
         System.out.println("Listing connected Android devices");
         File emulator = new File(sdkDir, "emulator/emulator" + (isWindows ? ".exe" : ""));
@@ -91,7 +98,7 @@ public class AndroidLauncher {
                 System.exit(-1);
                 return;
             }
-            adb.installApk(newLocation.isFile() ? newLocation.getAbsolutePath() : oldLocation.getAbsolutePath());
+            adb.installApk(apkFile);
             String oldPid = adb.getPid(bundleID);
             adb.launchApp(bundleID + "/" + bundleID + ".CMLauncher");
 
@@ -113,6 +120,14 @@ public class AndroidLauncher {
         }, emulator);
         while (true)
             waitSomeTime();
+    }
+
+    private static String getApkFile(File basedir, boolean release) {
+        String apkName = basedir.getName();
+        String rel_deb = release ? "release" : "debug";
+        File oldLocation = new File(basedir + APK_PREFIX + apkName + "-" + rel_deb + ".apk");
+        File newLocation = new File(basedir + APK_PREFIX + rel_deb + File.separator + apkName + "-" + rel_deb + ".apk");
+        return newLocation.isFile() ? newLocation.getAbsolutePath() : (oldLocation.isFile() ? oldLocation.getAbsolutePath() : null);
     }
 
     private static void waitSomeTime() {

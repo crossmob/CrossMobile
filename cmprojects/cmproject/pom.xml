@@ -12,7 +12,6 @@
 
     <properties>
         <crossmobile.version>2.8.0</crossmobile.version>
-        <cm.gradle.target>assembleDebug</cm.gradle.target>
         <cm.launch.desktop>${project.build.directory}/${project.artifactId}-${project.version}-desktop.jar</cm.launch.desktop>
         <cm.proguard.android>-Pdontuseproguard</cm.proguard.android>
     </properties>
@@ -20,7 +19,6 @@
         <profile>
             <id>release</id>
             <properties>
-                <cm.gradle.target>assembleRelease</cm.gradle.target>
                 <maven.compiler.debuglevel>none</maven.compiler.debuglevel>
                 <maven.compiler.optimize>true</maven.compiler.optimize>
             </properties>
@@ -139,31 +137,6 @@
             </dependencies>
             <build>
                 <plugins>
-                    <plugin>
-                        <groupId>codes.rafael.gradlemavenplugin</groupId>
-                        <artifactId>gradle-maven-plugin</artifactId>
-                        <version>1.0.10</version>
-                        <configuration>
-                            <gradleVersion>5.6.2</gradleVersion>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>invoke</goal>
-                                </goals>
-                                <configuration>
-                                    <tasks>
-                                        <task>${cm.gradle.target}</task>
-                                    </tasks>
-                                    <args>
-                                        <arg>--stacktrace</arg>
-                                        <arg>${cm.proguard.android}</arg>
-                                    </args>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
                     <plugin>
                         <groupId>org.crossmobile</groupId>
                         <artifactId>cmbuild-maven-plugin</artifactId>
