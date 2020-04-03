@@ -43,7 +43,7 @@ if [ "$ANDROID_SDK_ROOT" == "" ]; then
 fi
 
 # Accept license
-"$ANDROID_SDK_ROOT/tools/bin/sdkmanager" --licenses
+"$ANDROID_SDK_ROOT/tools/bin/sdkmanager" --sdk_root="${ANDROID_SDK_ROOT}" --licenses
 
 # Run demo Android project, afterwards all artifacts should be here
 # echo >local.properties "sdk.dir=$ANDROID_SDK_ROOT"
