@@ -63,7 +63,7 @@ public class TreeWalker {
                     if (children != null)
                         for (File child : children) {
                             child = child.getCanonicalFile();
-                            if (BLACKLIST != null && !BLACKLIST.contains(child))
+                            if (BLACKLIST == null || !BLACKLIST.contains(child))
                                 walkPath(child, requests, recursive, active);
                         }
                 }

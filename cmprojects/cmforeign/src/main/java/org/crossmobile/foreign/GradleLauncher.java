@@ -23,9 +23,7 @@ public class GradleLauncher {
     public static void runGradle(File currentDir, boolean release) {
         if (!isInstalled())
             downloadGradle(getGradleHome());
-        Commander gradle = IS_WINDOWS
-                ? new Commander("cmd.exe", "/c", getGradleBin(), release ? "assembleRelease" : "assembleDebug")
-                : new Commander(getGradleBin(), release ? "assembleRelease" : "assembleDebug");
+        Commander gradle = new Commander(getGradleBin(), release ? "assembleRelease" : "assembleDebug");
         gradle.setCurrentDir(currentDir);
         gradle.setOutListener(System.out::println);
         gradle.setErrListener(System.out::println);
@@ -42,7 +40,7 @@ public class GradleLauncher {
     }
 
     private static String getGradleBin() {
-        return new File(getGradleHome(), format("bin%sgradle", separator)).getAbsolutePath();
+        return new File(getGradleHome(), format("bin%sgradle%s", separator, IS_WINDOWS ? ".bat" : "")).getAbsolutePath();
     }
 
     private static String getGradleURL() {
