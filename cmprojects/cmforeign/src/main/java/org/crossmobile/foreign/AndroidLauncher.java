@@ -61,17 +61,13 @@ public class AndroidLauncher {
         sdkDir = new File(props.getProperty("sdk.dir"));
 
         boolean release = props.getProperty("release", "false").equals("true");
-        String currentApkFile = getApkFile(basedir, release);
-        if (currentApkFile == null) {
-            System.out.println("Will try to rebuild APK");
-            GradleLauncher.runGradle(basedir, release);
-            currentApkFile = getApkFile(basedir, release);
-            if (currentApkFile == null) {
-                System.out.println("Unable to locate APK");
-                System.exit(1);
-            }
+        System.out.println("[INFO] Rebuild APK");
+        GradleLauncher.runGradle(basedir, release);
+        String apkFile = getApkFile(basedir, release);
+        if (apkFile == null) {
+            System.out.println("Unable to locate APK");
+            System.exit(1);
         }
-        String apkFile = currentApkFile;
 
         File adbFile = new File(sdkDir, "platform-tools" + File.separator + (isWindows ? "adb.exe" : "adb"));
         if (!adbFile.isFile()) {
