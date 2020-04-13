@@ -25,10 +25,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 
 import static crossmobile.ios.coregraphics.$coregraphics.context;
@@ -45,18 +42,26 @@ import static org.crossmobile.bind.system.i18n.I18NTest.I18N_SUPPORT;
 @CMLib(target = CMLibTarget.API_NOUWP)
 @CMClass
 public class NSString extends NSObject implements NSSecureCoding {
-    private static final Map<Pattern, String> FORMAT_PATTERNS = new HashMap<>();
+    private static final Map<Pattern, String> FORMAT_PATTERNS = new LinkedHashMap<>();
 
     static {
-        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)?C"), "%$1c");
-        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)?u"), "%$1d");
-        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)?U"), "%$1d");
-        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)?lld"), "%$1d");
-        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)?llo"), "%$1o");
-        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)?llx"), "%$1x");
-        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)?llX"), "%$1X");
-        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)?@"), "%$1s");
-        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)?@"), "%$1s");
+        FORMAT_PATTERNS.put(Pattern.compile("%C"), "%c");
+        FORMAT_PATTERNS.put(Pattern.compile("%u"), "%d");
+        FORMAT_PATTERNS.put(Pattern.compile("%U"), "%d");
+        FORMAT_PATTERNS.put(Pattern.compile("%lld"), "%d");
+        FORMAT_PATTERNS.put(Pattern.compile("%llo"), "%o");
+        FORMAT_PATTERNS.put(Pattern.compile("%llx"), "%x");
+        FORMAT_PATTERNS.put(Pattern.compile("%llX"), "%X");
+        FORMAT_PATTERNS.put(Pattern.compile("%@"), "%s");
+
+        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)C"), "%$1c");
+        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)u"), "%$1d");
+        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)U"), "%$1d");
+        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)lld"), "%$1d");
+        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)llo"), "%$1o");
+        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)llx"), "%$1x");
+        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)llX"), "%$1X");
+        FORMAT_PATTERNS.put(Pattern.compile("%([0-9]+\\$)@"), "%$1s");
     }
 
     private NSString() {
