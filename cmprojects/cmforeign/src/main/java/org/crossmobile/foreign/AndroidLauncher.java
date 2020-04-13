@@ -4,9 +4,7 @@
 package org.crossmobile.foreign;
 
 import javax.swing.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
@@ -28,7 +26,7 @@ public class AndroidLauncher {
 
         String mainClass = props.getProperty("mainclass");
         if (mainClass == null || mainClass.trim().isEmpty()) {
-            System.err.println("Unable to locate main class");
+            Log.error("Unable to locate main class");
             System.exit(1);
         }
 
@@ -36,42 +34,44 @@ public class AndroidLauncher {
         try {
             loc = new File(Class.forName(mainClass).getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
         } catch (Exception e) {
-            System.err.println("Unable to find location of main class " + mainClass);
-            e.printStackTrace(System.err);
+            Log.error("Unable to find location of main class " + mainClass);
+            StringWriter s = new StringWriter();
+            e.printStackTrace(new PrintWriter(s));
+            Log.error(s.toString());
             System.exit(1);
         }
         File basedir = loc.getName().equals("classes") ? loc.getParentFile() : null;
         basedir = basedir != null && basedir.getName().equals("target") ? basedir.getParentFile() : null;
         if (basedir == null) {
-            System.err.println("Expected base dir to exist inside the folders 'target" + File.separator + "classes` : base dir found at " + loc.getAbsolutePath());
+            Log.error("Expected base dir to exist inside the folders 'target" + File.separator + "classes` : base dir found at " + loc.getAbsolutePath());
             System.exit(1);
         }
 
         try {
             props.load(new InputStreamReader(new FileInputStream(new File(basedir, "local.properties")), StandardCharsets.UTF_8));
         } catch (Exception ex) {
-            System.err.println("Unable to load local properties");
+            Log.error("Unable to load local properties");
             System.exit(1);
         }
 
         if (props.getProperty("sdk.dir", "").isEmpty()) {
-            System.out.println("[ERROR] SDK location not found, please use the configuration wizard to select the desired Android SDK");
+            Log.error("SDK location not found, please use the configuration wizard to select the desired Android SDK");
             System.exit(1);
         }
         sdkDir = new File(props.getProperty("sdk.dir"));
 
         boolean release = props.getProperty("release", "false").equals("true");
-        System.out.println("[INFO] Rebuild APK");
+        Log.info("Rebuild APK");
         GradleLauncher.runGradle(basedir, release);
         String apkFile = getApkFile(basedir, release);
         if (apkFile == null) {
-            System.out.println("Unable to locate APK");
+            Log.error("Unable to locate APK");
             System.exit(1);
         }
 
         File adbFile = new File(sdkDir, "platform-tools" + File.separator + (isWindows ? "adb.exe" : "adb"));
         if (!adbFile.isFile()) {
-            System.out.println("[ERROR] Android SDK must be set to run Android");
+            Log.error("Android SDK must be set to run Android");
             System.exit(1);
         }
 
@@ -84,14 +84,14 @@ public class AndroidLauncher {
         // apkName = props.getProperty("appId");
         ConnectedAndroidDispatcher.setAdbLocation(adb.getPath());
 
-        System.out.println("Listing connected Android devices");
+        Log.info("Listing connected Android devices");
         File emulator = new File(sdkDir, "emulator/emulator" + (isWindows ? ".exe" : ""));
         if (!emulator.isFile())
             emulator = new File(sdkDir, "tools/emulator" + (isWindows ? ".exe" : ""));
         AndroidTargetSelector selector = new AndroidTargetSelector(dvc -> {
             adb.setDevice(dvc);
             if (!adb.foundDevice()) {
-                System.out.println("No devices selected, exiting.");
+                Log.error("No devices selected, exiting.");
                 System.exit(1);
                 return;
             }
@@ -109,7 +109,7 @@ public class AndroidLauncher {
                 waitSomeTime();
             }
             if (newPid == null) {
-                System.out.println("[ERROR] Unable to retrieve PID of activity " + bundleID);
+                Log.error("Unable to retrieve PID of activity " + bundleID);
                 System.exit(1);
             }
 

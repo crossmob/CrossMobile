@@ -122,7 +122,7 @@ public class Commander {
         waitThread = null;
         try {
             if (debug)
-                System.out.println("( " + environmentToString() + pathToString() + commandToString() + ")");
+                Log.info("( " + environmentToString() + pathToString() + commandToString() + ")");
             ProcessBuilder pb = new ProcessBuilder(command);
             pb.directory(currentDir);
             pb.environment().putAll(envp);

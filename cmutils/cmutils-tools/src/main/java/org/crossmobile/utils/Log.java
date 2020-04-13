@@ -91,7 +91,7 @@ public class Log {
         }
     }
 
-    public static enum Level {
+    public enum Level {
         DEBUG, INFO, WARNING, ERROR, NONE;
     }
 

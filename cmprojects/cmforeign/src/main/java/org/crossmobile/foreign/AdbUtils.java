@@ -30,7 +30,7 @@ public class AdbUtils {
 
     private String getPidNew(String bundleID) {
         AtomicReference<String> pid = new AtomicReference<>();
-        exec(false, line -> {
+        exec(line -> {
             line = line.trim();
             int space = line.indexOf(' ');
             if (space >= 0 && space < line.length() + 1 && bundleID.equals(line.substring(space).trim())) {
@@ -46,7 +46,7 @@ public class AdbUtils {
     private String getPidOld(String bundleID) {
         AtomicReference<String> pid = new AtomicReference<>();
         AtomicInteger pidColumn = new AtomicInteger(-1);
-        exec(false, line -> {
+        exec(line -> {
             line = line.trim();
             List<String> parts = Arrays.asList(line.split("\\s+"));
             if (pidColumn.get() < 0) {
@@ -80,11 +80,11 @@ public class AdbUtils {
     }
 
     public void installApk(String fileLocation) {
-        exec(true, adb, "-s", device, "install", "-r", fileLocation);
+        exec(adb, "-s", device, "install", "-r", fileLocation);
     }
 
     public void launchApp(String launchId) {
-        exec(true, adb, "-s", device, "shell", "am", "start", "-n", launchId);
+        exec(adb, "-s", device, "shell", "am", "start", "-n", launchId);
     }
 
     public void log(String pid) {
@@ -127,45 +127,46 @@ public class AdbUtils {
     }
 
     private void logOld(String pid) {
-        exec(true, false, line -> {
+        Log.info("");
+        exec(false, line -> {
             if (line.contains(pid)) {
-                System.out.println(line);
+                Log.passInfo(line);
                 if (line.contains("CrossMob") && line.contains("Activity destroyed"))
                     System.exit(line.contains("error") ? -1 : 0);
             }
-        }, System.out::println, createLogcatArgs(null));
+        }, createLogcatArgs(null));
     }
 
     private void logNew(String pid) {
-        exec(true, true, line -> {
-            System.out.println(line);
+        Log.info("");
+        exec(true, line -> {
+            Log.passInfo(line);
             if (line.contains("CrossMob") && line.contains("Activity destroyed"))
                 System.exit(line.contains("error") ? -1 : 0);
-        }, System.out::println, createLogcatArgs(pid));
+        }, createLogcatArgs(pid));
     }
 
-    private void exec(boolean debug, String... cmds) {
-        exec(debug, debug, null, null, null, cmds);
+    private void exec(String... cmds) {
+        exec(true, true, null, null, cmds);
     }
 
-    private void exec(boolean debug, Consumer<String> out, String... cmds) {
-        exec(debug, debug, out, null, null, cmds);
+    private void exec(Consumer<String> out, String... cmds) {
+        exec(false, false, out, null, cmds);
     }
 
-    private void exec(boolean debug, boolean terminateOnError, Consumer<String> out, Runnable start, String... cmds) {
-        exec(debug, terminateOnError, out, null, start, cmds);
+    private void exec(boolean terminateOnError, Consumer<String> out, String... cmds) {
+        exec(true, terminateOnError, out, null, cmds);
     }
 
-    private void exec(boolean debug, boolean terminateOnError, Consumer<String> out, Consumer<String> err, Runnable start, String... cmds) {
+    private void exec(boolean displayCommand, boolean quitOnError, Consumer<String> out, Consumer<String> err, String... cmds) {
         Commander cmd = new Commander(cmds);
         cmd.setCurrentDir(baseDir);
-        cmd.setOutListener(out == null ? System.out::println : out);
-        cmd.setErrListener(err == null ? System.out::println : err);
-        cmd.setStartListener(start);
-        cmd.setDebug(debug);
+        cmd.setOutListener(out == null ? Log::passInfo : out);
+        cmd.setErrListener(err == null ? Log::passError : err);
+        cmd.setDebug(displayCommand);
         cmd.exec();
         cmd.waitFor();
-        if (terminateOnError && cmd.exitValue() != 0)
+        if (quitOnError && cmd.exitValue() != 0)
             System.exit(cmd.exitValue());
     }
 

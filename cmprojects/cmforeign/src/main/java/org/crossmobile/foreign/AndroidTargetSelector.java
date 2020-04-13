@@ -113,7 +113,7 @@ public class AndroidTargetSelector extends JDialog implements AListener {
             if (!s.trim().isEmpty())
                 devices.add(s);
         });
-        c.setErrListener(System.out::println);
+        c.setErrListener(Log::passError);
         c.exec();
         c.waitFor();
         return devices;
@@ -147,7 +147,7 @@ public class AndroidTargetSelector extends JDialog implements AListener {
         jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 4, 4, 1));
         getContentPane().add(jLabel1, java.awt.BorderLayout.PAGE_START);
 
-        deviceL.setFont(deviceL.getFont().deriveFont(deviceL.getFont().getSize()+1f));
+        deviceL.setFont(deviceL.getFont().deriveFont(deviceL.getFont().getSize() + 1f));
         deviceL.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         deviceL.setFixedCellHeight(32);
         deviceL.addMouseListener(new java.awt.event.MouseAdapter() {

@@ -25,8 +25,8 @@ public class GradleLauncher {
             downloadGradle(getGradleHome());
         Commander gradle = new Commander(getGradleBin(), release ? "assembleRelease" : "assembleDebug");
         gradle.setCurrentDir(currentDir);
-        gradle.setOutListener(System.out::println);
-        gradle.setErrListener(System.out::println);
+        gradle.setOutListener(Log::passInfo);
+        gradle.setErrListener(Log::passError);
         gradle.exec();
         gradle.waitFor();
     }
@@ -48,7 +48,7 @@ public class GradleLauncher {
     }
 
     private static void downloadGradle(File destinationFolder) {
-        System.out.printf("Installing gradle to %s from %s%n", destinationFolder.getPath(), getGradleURL());
+        Log.info("Installing gradle to " + destinationFolder.getPath() + " from " + getGradleURL());
         Timer downloader = null;
         delete(destinationFolder);
         destinationFolder.mkdirs();
@@ -59,7 +59,7 @@ public class GradleLauncher {
             downloader.scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {
-                    System.out.println(cis.percentage() + "% downloaded");
+                    Log.info(cis.percentage() + "% downloaded");
                 }
             }, 0, 1000);
             cis.setTotal(TOTAL_SIZE);
@@ -82,7 +82,7 @@ public class GradleLauncher {
             }
             if (cis.countBytes != cis.total)
                 error(String.format("Size mismatch, expected %d, found %d bytes", cis.total, cis.countBytes), destinationFolder);
-            System.out.printf("Finished downloading %d bytes.%n", cis.countBytes);
+            Log.passInfo("Finished downloading " + cis.countBytes + " bytes.");
         } catch (IOException e) {
             error(e.toString(), destinationFolder);
         } finally {
@@ -93,7 +93,7 @@ public class GradleLauncher {
 
     private static void error(String message, File destinationFolder) {
         delete(destinationFolder);
-        System.out.printf("Unable to download gradle %s: %s%n", GRADLE_VERSION, message);
+        Log.error("Unable to download gradle " + GRADLE_VERSION + ": " + message);
         System.exit(1);
     }
 

@@ -18,7 +18,7 @@ public class IOSLauncher {
         try {
             Runtime.getRuntime().exec(new String[]{"open", project.getAbsolutePath()});
         } catch (IOException ex) {
-            System.out.println("Unable to launch project " + project.getName());
+            Log.error("Unable to launch project " + project.getName());
             System.exit(1);
         }
     }
