@@ -12,6 +12,8 @@ import java.util.TreeSet;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import static org.crossmobile.bridge.system.BaseUtils.listFiles;
+
 public class ClasspathUtils {
 
     private static final String CLASS_SIG = ".class";
@@ -35,12 +37,9 @@ public class ClasspathUtils {
                     if (entryName.toLowerCase().endsWith(CLASS_SIG))
                         names.add(convert(entryName, canonicalNames));
                 }
-            } else if (cp.isDirectory()) {
-                File[] list = cp.listFiles();
-                if (list != null && list.length > 0)
-                    for (File ccp : list)
-                        walkDir("", ccp, names, canonicalNames);
-            }
+            } else if (cp.isDirectory())
+                for (File ccp : listFiles(cp))
+                    walkDir("", ccp, names, canonicalNames);
         }
         return names;
     }
@@ -51,11 +50,9 @@ public class ClasspathUtils {
             if (cname.toLowerCase().endsWith(CLASS_SIG))
                 names.add(convert(pckg + "/" + cname, canonicalNames));
         } else if (entry.isDirectory()) {
-            File[] entries = entry.listFiles();
             pckg = (pckg.isEmpty() ? "" : pckg + "/") + entry.getName();
-            if (entries != null && entries.length > 0)
-                for (File subentry : entries)
-                    walkDir(pckg, subentry, names, canonicalNames);
+            for (File subEntry : listFiles(entry))
+                walkDir(pckg, subEntry, names, canonicalNames);
         }
     }
 

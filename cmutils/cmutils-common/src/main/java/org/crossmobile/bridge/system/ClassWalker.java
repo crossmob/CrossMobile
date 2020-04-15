@@ -16,6 +16,8 @@ import java.util.function.Consumer;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import static org.crossmobile.bridge.system.BaseUtils.listFiles;
+
 public class ClassWalker {
 
     private static String classpath;
@@ -85,10 +87,7 @@ public class ClassWalker {
 
     // Recursively check classes
     private static void checkClasses(String packagePrefix, File currentPath, Consumer<String> classConsumer, Collection<String> extensions) {
-        File[] children = currentPath.listFiles();
-        if (children == null || children.length == 0)
-            return;
-        for (File child : children) {
+        for (File child : listFiles(currentPath)) {
             String entryName = packagePrefix.isEmpty() ? child.getName() : packagePrefix + "/" + child.getName();
             if (child.isDirectory())
                 checkClasses(entryName, child, classConsumer, extensions);

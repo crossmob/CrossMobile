@@ -35,6 +35,7 @@ import java.io.File;
 import java.util.Iterator;
 
 import static android.content.Context.DOWNLOAD_SERVICE;
+import static org.crossmobile.bridge.system.BaseUtils.listFiles;
 
 public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, AndroidGraphicsContext> {
 
@@ -208,7 +209,7 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
                                 Toast.makeText(MainActivity.current, "Unable to display external file. It can still be found as Downloaded content", 2).show();
                             }
                         } else if (status == DownloadManager.STATUS_FAILED) {
-                            for (File f : new File(MainActivity.current.getCacheDir().getAbsolutePath()).listFiles())
+                            for (File f : listFiles(new File(MainActivity.current.getCacheDir().getAbsolutePath())))
                                 if (f.getName().contains(String.valueOf(downloadId))) {
                                     //noinspection ResultOfMethodCallIgnored
                                     f.delete();

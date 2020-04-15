@@ -7,7 +7,6 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.function.BiConsumer;
@@ -17,6 +16,8 @@ import java.util.function.Supplier;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import static java.util.stream.Collectors.toList;
+import static org.crossmobile.bridge.system.BaseUtils.listFiles;
 import static org.crossmobile.utils.TextUtils.NL;
 
 public final class FileUtils {
@@ -242,10 +243,8 @@ public final class FileUtils {
     public static void delete(File file, File backupDir) {
         if (backupDir != null)
             backup(file, backupDir, false);
-        File[] children = file.listFiles();
-        if (children != null && children.length > 0)
-            for (File child : children)
-                delete(child, null);
+        for (File child : listFiles(file))
+            delete(child, null);
         file.delete();
     }
 
@@ -401,8 +400,8 @@ public final class FileUtils {
     public static int delete(File current) {
         int hm = 0;
         if (current.isDirectory())
-            for (File sub : current.listFiles())
-                hm += delete(sub);
+            for (File child : listFiles(current))
+                hm += delete(child);
         if (current.exists())
             if (!current.delete())
                 throw new FileUtilsException("Unable to delete file " + current.getAbsolutePath());
@@ -412,10 +411,16 @@ public final class FileUtils {
     }
 
     public static int copy(File source, File target) {
+        return copy(source, target, pTRUE);
+    }
+
+    public static int copy(File source, File target, Predicate<File> predicate) {
         if (source == null || target == null)
             return 0;
         int files = 0;
         if (!source.exists())
+            return 0;
+        if (!predicate.test(source))
             return 0;
 
         if (target.exists() && source.isDirectory() != target.isDirectory())
@@ -424,26 +429,33 @@ public final class FileUtils {
         if (source.isDirectory()) {
             if ((!target.exists()) && (!target.mkdirs()))
                 throw new FileUtilsException("Unable to create directory " + target.getPath());
-            for (File item : source.listFiles())
-                files += copy(item, new File(target, item.getName()));
+            for (File item : listFiles(source))
+                files += copy(item, new File(target, item.getName()), predicate);
         } else {
+            //noinspection ResultOfMethodCallIgnored
             target.delete();
-            BufferedInputStream in = null;
+            BufferedInputStream in;
             try {
                 in = new BufferedInputStream(new FileInputStream(source));
             } catch (FileNotFoundException ex) {
+                throw new FileUtilsException("FileNotFoundException: " + ex.getMessage());
             }
 
+            //noinspection ResultOfMethodCallIgnored
             target.getParentFile().mkdirs();
-            BufferedOutputStream out = null;
+            BufferedOutputStream out;
             try {
                 out = new BufferedOutputStream(new FileOutputStream(target));
             } catch (FileNotFoundException ex) {
+                throw new FileUtilsException("FileNotFoundException: " + ex.getMessage());
             }
+
             if (copyStream(in, out)) {
+                //noinspection ResultOfMethodCallIgnored
                 target.setLastModified(source.lastModified());
                 files++;
-            }
+            } else
+                throw new FileUtilsException("Unable to copy file from " + source.getAbsolutePath() + " to " + target.getAbsolutePath());
         }
         return files;
     }
@@ -482,14 +494,12 @@ public final class FileUtils {
 
     public static long getLastModified(File dir) {
         long mod = dir.lastModified();
-        if (dir.isDirectory()) {
-            File[] children = dir.listFiles();
-            for (File child : children) {
+        if (dir.isDirectory())
+            for (File child : listFiles(dir)) {
                 long cmod = child.lastModified();
                 if (cmod > mod)
                     mod = cmod;
             }
-        }
         return mod;
     }
 
@@ -497,10 +507,8 @@ public final class FileUtils {
         long mod = path.lastModified();
         long old = mod;
         if (path.isDirectory()) {
-            File[] children = path.listFiles();
-            if (children != null)
-                for (File child : children)
-                    mod = Math.max(mod, fixLastModified(child));
+            for (File child : listFiles(path))
+                mod = Math.max(mod, fixLastModified(child));
             if (old != mod) {
                 path.setLastModified(mod);
                 if (mod != path.lastModified())
@@ -510,74 +518,89 @@ public final class FileUtils {
         return mod;
     }
 
-    public static boolean equalFiles(File file1, File file2) {
-        if (!file1.isFile() || !file2.isFile() || file1.length() != file2.length())
-            return false;
-        byte[] f1;
-        byte[] f2;
-        try {
-            f1 = Files.readAllBytes(file1.toPath());
-        } catch (IOException ex) {
-            return false;
+    public static int trimEmptyDirs(File dir) {
+        int changed = 0;
+        for (File child : listFiles(dir)) {
+            if (child.isDirectory()) {
+                trimEmptyDirs(child);
+                if (listFiles(child).isEmpty()) {
+                    //noinspection ResultOfMethodCallIgnored
+                    child.delete();
+                    changed++;
+                }
+            }
         }
-        try {
-            f2 = Files.readAllBytes(file2.toPath());
-        } catch (IOException ex) {
-            return false;
-        }
-        return Arrays.equals(f1, f2);
+        return changed;
     }
+
+    public static boolean filesDiffer(File file1, File file2) {
+        if (!file1.isFile() || !file2.isFile() || file1.length() != file2.length())
+            return true;
+        try (InputStream in1 = new FileInputStream(file1); InputStream in2 = new FileInputStream(file2)) {
+            int v1;
+            while ((v1 = in1.read()) >= 0)
+                if (v1 != in2.read())
+                    return true;
+            return false;
+        } catch (IOException e) {
+            return true;
+        }
+    }
+
+    private static int copyDual(File from, File to, File alsoTo, Predicate<File> predicate) {
+        if (alsoTo != null)
+            copy(from, alsoTo, predicate);
+        return copy(from, to, predicate);
+    }
+
+    private static final Predicate<File> pTRUE = f -> true;
 
     /**
      * Sync directories
      *
-     * @param from
-     * @param to
-     * @param removeMissingFiles
+     * @param from               The soruce directory to check upon
+     * @param to                 The destination directory to check
+     * @param diff               Where added changes should be stored; could be null
+     * @param removeMissingFiles If missing files found in destination (to) directory but not in source (from) directory should be deleted
+     * @param acceptPredicate    A predicate mechanism to accept specific files
      * @return how many files have changed
      */
-    public static int sync(File from, File to, boolean removeMissingFiles, String... ignore) {
+    public static int sync(File from, File to, File diff, boolean removeMissingFiles, Predicate<File> acceptPredicate) {
+        if (acceptPredicate == null)
+            acceptPredicate = pTRUE;
         if (!from.exists())
             throw new FileUtilsException("Unable to synchronize folder " + from.getAbsolutePath() + " to " + to.getAbsolutePath());
-        if (ignore != null && ignore.length > 0)
-            for (String it : ignore)
-                if (from.getName().equals(it))
-                    return 0;
         if (!to.exists())
-            return copy(from, to);
+            return copyDual(from, to, diff, acceptPredicate);
 
         // Both file paths exist
         int files = 0;
         if (from.isFile() && to.isFile()) {
-            if (!equalFiles(from, to))
-                if (copy(from, to) > 0)
+            if (acceptPredicate.test(from) && filesDiffer(from, to))
+                if (copyDual(from, to, diff, acceptPredicate) > 0)
                     files++;
                 else
-                    Log.error("Unable to synchronize file " + from.getAbsolutePath());
-        } else if (from.isDirectory() && to.isDirectory()) {
-            Collection<String> dest = new HashSet<>();
-            for (File oldF : to.listFiles())
-                if (ignore != null && ignore.length > 0) {
-                    for (String it : ignore)
-                        if (!oldF.getName().equals(it))
-                            dest.add(oldF.getName());
-                } else
-                    dest.add(oldF.getName());
-
-            for (File newF : from.listFiles()) {
-                String fname = newF.getName();
-                if (dest.contains(fname)) {
-                    files += sync(newF, new File(to, fname), removeMissingFiles);
-                    dest.remove(fname);
-                } else
-                    files += copy(newF, new File(to, fname));
+                    throw new FileUtilsException("Unable to synchronize file " + from.getAbsolutePath());
+        } else if (from.isDirectory() && to.isDirectory()) {    // try to merge: the only reason this part exists, is because we might want to merge the contents of both directories (i.e. when removeMissingFiles is false)
+            Collection<String> toFileNames = listFiles(to).stream().filter(acceptPredicate).map(File::getName).collect(toList());
+            for (File fromFile : listFiles(from)) {
+                String fromName = fromFile.getName();
+                File diffFile = diff == null ? null : new File(diff, fromName);
+                File toFile = new File(to, fromName);
+                if (toFileNames.remove(fromName))  // if file exists in both places
+                    files += sync(fromFile, toFile, diffFile, removeMissingFiles, acceptPredicate);
+                else
+                    files += copyDual(fromFile, toFile, diffFile, acceptPredicate);
             }
             if (removeMissingFiles)
-                for (String oldF : dest)
-                    files += delete(new File(to, oldF));
+                for (String obsoleteName : toFileNames) {
+                    if (diff != null)
+                        delete(new File(diff, obsoleteName));
+                    files += delete(new File(to, obsoleteName));
+                }
         } else {
             delete(to);
-            files += copy(from, to);
+            files += copyDual(from, diff, to, acceptPredicate);
         }
         return files;
     }
@@ -596,45 +619,23 @@ public final class FileUtils {
         return dot < 0 ? filename : filename.substring(0, dot);
     }
 
-    public static Collection<File> list(File directory) {
-        return list(directory, null);
-    }
-
-    public static Collection<File> list(File directory, FilenameFilter filter) {
-        if (directory == null)
-            //noinspection unchecked
-            return Collections.EMPTY_LIST;
-        File[] files = filter == null ? directory.listFiles() : directory.listFiles(filter);
-        return files == null || files.length == 0 ? Collections.emptyList() : Arrays.asList(files);
-    }
-
-    public static void forAllRecursively(File file, Predicate<File> predicate, BiConsumer<String, File> consumer) {
+    public static void forAllFiles(File file, Predicate<File> predicate, BiConsumer<String, File> consumer) {
         if (file == null || consumer == null)
             return;
-        forAllImpl(file, predicate, consumer, "", true);
+        forAllFiles(file, predicate == null ? f -> true : predicate, consumer, "");
     }
 
-    public static void forAll(File file, Predicate<File> predicate, BiConsumer<String, File> consumer) {
-        if (file == null || consumer == null)
-            return;
-        forAllImpl(file, predicate, consumer, "", false);
-    }
-
-    private static void forAllImpl(File file, Predicate<File> predicate, BiConsumer<String, File> consumer, String pathUpToNow, boolean recursively) {
+    private static void forAllFiles(File file, Predicate<File> predicate, BiConsumer<String, File> consumer, String pathUpToNow) {
         if (file.isFile()) {
-            if (predicate == null || predicate.test(file))
+            if (predicate.test(file))
                 consumer.accept(pathUpToNow, file);
-        } else if (file.isDirectory()) {
-            File[] children = file.listFiles();
-            if (children != null && children.length > 0)
-                for (File child : children)
-                    if (child.isDirectory()) {
-                        if (recursively)
-                            forAllImpl(child, predicate, consumer, pathUpToNow + (pathUpToNow.isEmpty() ? "" : File.separator) + child.getName(), recursively);
-                    } else if (child.isFile())
-                        if (predicate == null || predicate.test(child))
-                            consumer.accept(pathUpToNow, child);
-        }
+        } else if (file.isDirectory())
+            for (File child : listFiles(file))
+                if (child.isDirectory())
+                    forAllFiles(child, predicate, consumer, pathUpToNow + (pathUpToNow.isEmpty() ? "" : File.separator) + child.getName());
+                else if (child.isFile())
+                    if (predicate.test(child))
+                        consumer.accept(pathUpToNow, child);
     }
 
     public static URL toURL(File f) {

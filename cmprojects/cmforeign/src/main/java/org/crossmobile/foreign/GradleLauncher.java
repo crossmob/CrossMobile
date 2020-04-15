@@ -11,6 +11,7 @@ import java.util.zip.GZIPInputStream;
 
 import static java.io.File.separator;
 import static java.lang.String.format;
+import static org.crossmobile.bridge.system.BaseUtils.listFiles;
 
 @SuppressWarnings("ResultOfMethodCallIgnored")
 public class GradleLauncher {
@@ -98,12 +99,8 @@ public class GradleLauncher {
     }
 
     public static void delete(File file) {
-        if (file.isDirectory()) {
-            File[] children = file.listFiles();
-            if (children != null && children.length > 0)
-                for (File child : children)
-                    delete(child);
-        }
+        for (File child : listFiles(file))
+            delete(child);
         file.delete();
     }
 

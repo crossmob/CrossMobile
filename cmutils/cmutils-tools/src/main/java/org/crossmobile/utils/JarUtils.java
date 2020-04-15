@@ -18,6 +18,8 @@ import java.util.jar.*;
 import java.util.zip.Deflater;
 import java.util.zip.ZipEntry;
 
+import static org.crossmobile.bridge.system.BaseUtils.listFiles;
+
 public class JarUtils {
 
     public static List<JarPathEntry> getListOfEntries(JarFile jarpath, String dirpath) {
@@ -179,10 +181,8 @@ public class JarUtils {
                 } catch (Exception ex) {
                 }
             }
-            File[] children = in.listFiles();
-            if (children != null && children.length > 0)
-                for (File child : children)
-                    appendInJar(entries, child, out, depth, false);
+            for (File child : listFiles(in))
+                appendInJar(entries, child, out, depth, false);
         } else if (in.isFile()) {
             BufferedInputStream bin = null;
             try {

@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import static org.crossmobile.bind.system.SystemUtilities.closeR;
+import static org.crossmobile.bridge.system.BaseUtils.listFiles;
 
 public interface FileBridge {
 
@@ -16,10 +17,9 @@ public interface FileBridge {
 
     default void deleteRecursive(File f) {
         if (f.exists()) {
-            File[] list = f.listFiles();
-            if (list != null)
-                for (File c : list)
-                    deleteRecursive(c);
+            for (File c : listFiles(f))
+                deleteRecursive(c);
+            //noinspection ResultOfMethodCallIgnored
             f.delete();
         }
     }

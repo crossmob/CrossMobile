@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
+import static org.crossmobile.bridge.system.BaseUtils.listFiles;
 import static org.crossmobile.prefs.Config.BACK_ICONS;
 import static org.crossmobile.prefs.Config.FORE_ICONS;
 
@@ -45,7 +46,7 @@ public class ImageHound {
         if (!container(asFore).isEmpty())
             throw new IllegalArgumentException("Images already set for " + (asFore ? "fore" : "back") + "ground set");
         for (File srcDir : srcDirs)
-            for (File child : FileUtils.list(srcDir))
+            for (File child : listFiles(srcDir))
                 try {
                     MetaImage old = child.isFile() ? addImage(new MetaImage(child), asFore) : null;
                     if (old != null)

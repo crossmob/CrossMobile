@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import static org.crossmobile.bridge.system.BaseUtils.listFiles;
+
 public class TreeWalker {
 
     private static final Collection<File> BLACKLIST = SystemDependent.getBlacklistedLocations();
@@ -59,13 +61,11 @@ public class TreeWalker {
             else if (root.isDirectory())
                 if (active.isActive() && recursive >= ExtPath.FILE_ONLY) {// More recursive could be done
                     recursive--;
-                    File[] children = root.listFiles();
-                    if (children != null)
-                        for (File child : children) {
-                            child = child.getCanonicalFile();
-                            if (BLACKLIST == null || !BLACKLIST.contains(child))
-                                walkPath(child, requests, recursive, active);
-                        }
+                    for (File child : listFiles(root)) {
+                        child = child.getCanonicalFile();
+                        if (BLACKLIST == null || !BLACKLIST.contains(child))
+                            walkPath(child, requests, recursive, active);
+                    }
                 }
         } catch (Exception ex) {
             Log.debug("Error while searching executables: " + ex.toString());
