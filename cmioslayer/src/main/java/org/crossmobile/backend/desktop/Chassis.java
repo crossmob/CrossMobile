@@ -25,6 +25,7 @@ import java.util.TreeSet;
 
 import static crossmobile.ios.uikit.UIInterfaceOrientationMask.*;
 import static org.crossmobile.bind.system.SystemUtilities.stringToBoolean;
+import static org.crossmobile.bridge.system.BaseUtils.throwExceptionAndReturn;
 
 public class Chassis implements Comparable<Chassis> {
 
@@ -73,7 +74,7 @@ public class Chassis implements Comparable<Chassis> {
                 skinlist[1].add(handler.info);
                 skinlist[2].add(handler.descr);
             } catch (Exception ex) {
-                return BaseUtils.throwException(ex);
+                return throwExceptionAndReturn(ex);
             }
         return skinlist;
     }
@@ -108,7 +109,7 @@ public class Chassis implements Comparable<Chassis> {
             parser.parse(new InputSource(Chassis.class.getResourceAsStream(DesktopImageBridge.DESKTOPSKIN + chassisName + ".xml")), handler);
             return handler.ch;
         } catch (Exception ex) {
-            return BaseUtils.throwException(ex);
+            return throwExceptionAndReturn(ex);
         }
     }
 

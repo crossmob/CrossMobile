@@ -50,7 +50,7 @@ public class ReverseCodeCollection {
     }
 
     /* Add from reflection */
-    public void addFromSource(String method, Class typeClass, String reverseCode, String superCode, Collection<String> reverseImport, Collection<String> superImport) {
+    public void addFromSource(String method, Class<?> typeClass, String reverseCode, String superCode, Collection<String> reverseImport, Collection<String> superImport) {
         add(method, typeClass.getName(), reverseCode, superCode, reverseImport, superImport);
     }
 
@@ -102,7 +102,7 @@ public class ReverseCodeCollection {
             if (classpath.isDirectory())
                 try {
                     loadSources(new FileInputStream(new File(classpath, REVERSE_INF)), classpath.getAbsolutePath());
-                } catch (Exception ex) {
+                } catch (Exception ignored) {
                 }
             else if (classpath.isFile())
                 try {

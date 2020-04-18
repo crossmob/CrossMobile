@@ -25,6 +25,7 @@ import java.util.StringTokenizer;
 import java.util.jar.JarFile;
 import java.util.zip.ZipEntry;
 
+import static org.crossmobile.bridge.system.BaseUtils.throwExceptionAndReturn;
 import static org.crossmobile.bridge.system.MaterialsCommon.MATERIALS_TAG;
 
 public class MobileApp implements Comparable<MobileApp> {
@@ -145,7 +146,7 @@ public class MobileApp implements Comparable<MobileApp> {
                     icon = ImageIO.read(getClass().getResource(DEFAULTICONPATH));
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Unable to load icon", "CrossMobile", JOptionPane.ERROR_MESSAGE);
-                    return BaseUtils.throwException(ex);
+                    return throwExceptionAndReturn(ex);
                 }
             selectedicon = highlight.filter(this.icon, null);
         }

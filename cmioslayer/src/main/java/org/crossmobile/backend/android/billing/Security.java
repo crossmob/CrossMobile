@@ -23,6 +23,8 @@ import java.security.*;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 
+import static org.crossmobile.bridge.system.BaseUtils.throwExceptionAndReturn;
+
 /**
  * Security-related methods. For a secure implementation, all of this code
  * should be implemented on a server that communicates with the application on
@@ -83,7 +85,7 @@ public class Security {
             KeyFactory keyFactory = KeyFactory.getInstance(KEY_FACTORY_ALGORITHM);
             return keyFactory.generatePublic(new X509EncodedKeySpec(decodedKey));
         } catch (NoSuchAlgorithmException e) {
-            return BaseUtils.throwException(e);
+            return throwExceptionAndReturn(e);
         } catch (InvalidKeySpecException e) {
             Log.e(TAG, "Invalid key specification.");
             throw new IllegalArgumentException(e);

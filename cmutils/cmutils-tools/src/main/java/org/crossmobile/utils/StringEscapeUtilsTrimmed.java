@@ -28,6 +28,8 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Locale;
 
+import static org.crossmobile.bridge.system.BaseUtils.throwExceptionAndReturn;
+
 /**
  * <p>
  * Escapes and unescapes <code>String</code>s for Java, Java Script, HTML, XML,
@@ -189,7 +191,7 @@ public class StringEscapeUtilsTrimmed {
             return writer.toString();
         } catch (IOException ioe) {
             // this should never ever happen while writing to a StringWriter
-            return BaseUtils.throwException(ioe);
+            return throwExceptionAndReturn(ioe);
         }
     }
 
@@ -309,7 +311,7 @@ public class StringEscapeUtilsTrimmed {
             return writer.toString();
         } catch (IOException ioe) {
             // this should never ever happen while writing to a StringWriter
-            return BaseUtils.throwException(ioe);
+            return throwExceptionAndReturn(ioe);
         }
     }
 

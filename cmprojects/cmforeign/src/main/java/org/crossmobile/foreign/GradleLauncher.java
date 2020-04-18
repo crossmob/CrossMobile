@@ -1,3 +1,6 @@
+// (c) 2020 by Panayotis Katsaloulis
+// SPDX-License-Identifier: AGPL-3.0-only
+
 package org.crossmobile.foreign;
 
 import org.kamranzafar.jtar.TarEntry;
@@ -15,11 +18,11 @@ import static org.crossmobile.bridge.system.BaseUtils.listFiles;
 
 @SuppressWarnings("ResultOfMethodCallIgnored")
 public class GradleLauncher {
-    private static String GRADLE_VERSION = "5.6.4";
+    private static final String GRADLE_VERSION = "5.6.4";
     @SuppressWarnings("FieldCanBeLocal")
-    private static long TOTAL_SIZE = 93_835_007;
+    private static final long TOTAL_SIZE = 93_835_007;
 
-    private static boolean IS_WINDOWS = System.getProperty("os.name").toLowerCase().contains("windows");
+    private static final boolean IS_WINDOWS = System.getProperty("os.name").toLowerCase().contains("windows");
 
     public static void runGradle(File currentDir, boolean release) {
         if (!isInstalled())

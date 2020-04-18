@@ -10,9 +10,14 @@ import java.util.*;
 
 public class BaseUtils {
 
-    public static <R> R throwException(Throwable th) {  // should return "something", to make happy methods that need to return "something"
+    public static <R> R throwExceptionAndReturn(Throwable th) {  // should return "something", to make happy methods that need to return "something"
         //noinspection RedundantTypeArguments,unchecked
         return (R) BaseUtils.<RuntimeException>throwExceptionImpl(th);
+    }
+
+    public static void throwException(Throwable th) {  // should return "something", to make happy methods that need to return "something"
+        //noinspection RedundantTypeArguments,unchecked
+        BaseUtils.<RuntimeException>throwExceptionImpl(th);
     }
 
     private static <T extends Throwable> Object throwExceptionImpl(Throwable th) throws T {

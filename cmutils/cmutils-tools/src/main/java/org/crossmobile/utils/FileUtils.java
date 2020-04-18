@@ -150,9 +150,12 @@ public final class FileUtils {
 
     public static File writeIfDiffers(File out, String data) {
         String oldData = read(out);
-        if (data.equals(oldData))
+        if (data == null)
             return null;
-        return write(out, data);
+        return data.equals(oldData)
+                ? out
+                : write(out, data);
+
     }
 
     public static boolean copyResource(String resource, File dest) {
@@ -626,10 +629,11 @@ public final class FileUtils {
     }
 
     private static void forAllFiles(File file, Predicate<File> predicate, BiConsumer<String, File> consumer, String pathUpToNow) {
-        if (file.isFile()) {
-            if (predicate.test(file))
-                consumer.accept(pathUpToNow, file);
-        } else if (file.isDirectory())
+        if (!predicate.test(file))
+            return;
+        if (file.isFile())
+            consumer.accept(pathUpToNow, file);
+        else if (file.isDirectory())
             for (File child : listFiles(file))
                 if (child.isDirectory())
                     forAllFiles(child, predicate, consumer, pathUpToNow + (pathUpToNow.isEmpty() ? "" : File.separator) + child.getName());
