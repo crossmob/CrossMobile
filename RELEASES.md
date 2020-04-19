@@ -2,6 +2,12 @@
 
 Click on the version header to go to the detailed ChangeLog.
 
+## [v2.8.1]
+
+- Use library on older versions of Xcode, bypassing 11.4 Xcode bug.
+- Optimizations on the iOS backend; the system is smart enough to compile only the required files.
+- Android backend compilation optimizations.
+
 ## [v2.8]
 
 - Dark theme is officialy supported on macOS, thanks to the new [javalauncher], written in `nim`, which is able to better locate JRE and launch the application.
@@ -29,9 +35,10 @@ Click on the version header to go to the detailed ChangeLog.
 ## [v2.5]
 - First public binary stable release
 
-[javalauncher]: https://github.com/teras/javalauncher
+[v2.8.1]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v281
 [v2.8]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v28
 [v2.7]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v27
 [v2.6.1]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v261
 [v2.6]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v26
 [v2.5]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v25
+[javalauncher]: https://github.com/teras/javalauncher
