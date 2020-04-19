@@ -5,10 +5,7 @@
 
 package ${groupId}.${artifactId};
 
-import crossmobile.ios.uikit.UIApplication;
-import crossmobile.ios.uikit.UIApplicationDelegate;
-import crossmobile.ios.uikit.UIScreen;
-import crossmobile.ios.uikit.UIWindow;
+import crossmobile.ios.uikit.*;
 
 import java.util.Map;
 

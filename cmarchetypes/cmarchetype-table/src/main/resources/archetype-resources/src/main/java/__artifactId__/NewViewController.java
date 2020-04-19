@@ -5,6 +5,9 @@
 
 package ${groupId}.${artifactId};
 
+import crossmobile.ios.coregraphics.CGRect;
+import crossmobile.ios.uikit.*;
+
 public class NewViewController extends UIViewController {
     private final DataModel model;
 
