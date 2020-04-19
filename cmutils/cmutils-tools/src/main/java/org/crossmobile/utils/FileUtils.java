@@ -9,10 +9,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
+import java.util.function.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -623,23 +620,30 @@ public final class FileUtils {
     }
 
     public static void forAllFiles(File file, Predicate<File> predicate, BiConsumer<String, File> consumer) {
-        if (file == null || consumer == null)
-            return;
-        forAllFiles(file, predicate == null ? f -> true : predicate, consumer, "");
+        forAllFiles(file, (p, f) -> predicate.test(f), consumer);
     }
 
-    private static void forAllFiles(File file, Predicate<File> predicate, BiConsumer<String, File> consumer, String pathUpToNow) {
-        if (!predicate.test(file))
+    public static void forAllFiles(File file, BiConsumer<String, File> consumer) {
+        forAllFiles(file, (BiPredicate<String, File>) null, consumer);
+    }
+
+    public static void forAllFiles(File file, BiPredicate<String, File> predicate, BiConsumer<String, File> consumer) {
+        if (file == null || consumer == null)
             return;
-        if (file.isFile())
-            consumer.accept(pathUpToNow, file);
-        else if (file.isDirectory())
-            for (File child : listFiles(file))
-                if (child.isDirectory())
-                    forAllFiles(child, predicate, consumer, pathUpToNow + (pathUpToNow.isEmpty() ? "" : File.separator) + child.getName());
-                else if (child.isFile())
-                    if (predicate.test(child))
-                        consumer.accept(pathUpToNow, child);
+        if (file.isFile()) {
+            if (predicate.test("", file))
+                consumer.accept("", file);
+        } else
+            forAllFiles(file, predicate == null ? (p, f) -> true : predicate, consumer, "");
+    }
+
+    private static void forAllFiles(File folder, BiPredicate<String, File> predicate, BiConsumer<String, File> consumer, String pathUpToNow) {
+        for (File file : listFiles(folder))
+            if (file.isFile()) {
+                if (predicate.test(pathUpToNow, file))
+                    consumer.accept(pathUpToNow, file);
+            } else if (file.isDirectory())
+                forAllFiles(file, predicate, consumer, pathUpToNow + (pathUpToNow.isEmpty() ? "" : File.separator) + file.getName());
     }
 
     public static URL toURL(File f) {
