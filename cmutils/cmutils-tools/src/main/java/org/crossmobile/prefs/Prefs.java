@@ -3,8 +3,10 @@
 
 package org.crossmobile.prefs;
 
+import org.crossmobile.utils.SystemDependent;
 import org.crossmobile.utils.TextUtils;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.security.MessageDigest;
@@ -93,8 +95,7 @@ public class Prefs {
     }
 
     public static void setNetbeansLocation(String fname) {
-        if (fname != null)
-            prefs.put(NETBEANS_LOCATION, fname);
+        setTagLocation(NETBEANS_LOCATION, fname);
     }
 
     public static String getNetbeansLocation() {
@@ -102,8 +103,7 @@ public class Prefs {
     }
 
     public static void setIntelliJLocation(String fname) {
-        if (fname != null)
-            prefs.put(INTELLIJ_LOCATION, fname);
+        setTagLocation(INTELLIJ_LOCATION, fname);
     }
 
     public static String getIntelliJLocation() {
@@ -111,8 +111,7 @@ public class Prefs {
     }
 
     public static void setJDKLocation(String fname) {
-        if (fname != null)
-            prefs.put(JDK_LOCATION, fname);
+        setTagLocation("JDK", JDK_LOCATION, fname);
     }
 
     public static String getJDKLocation() {
@@ -123,8 +122,7 @@ public class Prefs {
     }
 
     public static void setAndroidSDKLocation(String fname) {
-        if (fname != null)
-            prefs.put(ANDROID_LOCATION, fname);
+        setTagLocation("Android SDK", ANDROID_LOCATION, fname);
     }
 
 
@@ -172,13 +170,11 @@ public class Prefs {
     }
 
     public static void setStudioLocation(String fname) {
-        if (fname != null)
-            prefs.put(STUDIO_LOCATION, fname);
+        setTagLocation(STUDIO_LOCATION, fname);
     }
 
     public static void setVisualStudioLocation(String fname) {
-        if (fname != null)
-            prefs.put(VISUALSTUDIO_LOCATION, fname);
+        setTagLocation(VISUALSTUDIO_LOCATION, fname);
     }
 
     private static String getSafeFile(String path) {
@@ -187,6 +183,25 @@ public class Prefs {
 
     private static String getTagLocation(String TAG) {
         return getSafeFile(prefs.get(TAG, ""));
+    }
+
+    private static void setTagLocation(String TAG, String location) {
+        setTagLocation(null, TAG, location);
+    }
+
+    private static void setTagLocation(String appName, String TAG, String location) {
+        if (location == null)
+            return;
+        String old = getTagLocation(TAG);
+        if (!old.equals(location)) {
+            if (appName != null) {
+                String accError = SystemDependent.canAccessPath(appName, location);
+                if (accError != null)
+                    SwingUtilities.invokeLater(()
+                            -> JOptionPane.showMessageDialog(null, accError, "External program access issue", JOptionPane.WARNING_MESSAGE));
+            }
+            prefs.put(TAG, location);
+        }
     }
 
     public static void setSelectedLaunchAction(String path, String action) {

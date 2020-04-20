@@ -11,8 +11,6 @@ import java.nio.file.attribute.PosixFilePermissions;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static org.crossmobile.utils.SystemDependent.Execs.JAVA;
 
@@ -233,6 +231,15 @@ public class SystemDependent {
                 return blacklist;
             }
         } catch (IOException ignored) {
+        }
+        return null;
+    }
+
+    public static String canAccessPath(String appName, String location) {
+        try {
+            if (IS_MACOSX && new File(location).getAbsoluteFile().getCanonicalPath().startsWith(HOME + File.separator + "Desktop"))
+                return "Location of " + appName + " seems to be under user's Desktop.\nThis is not recommended under Apple's file policy.\nNote you might experience hangs when accessing it.\n\nPlease consider installing it to a different location.";
+        } catch (Exception ignored) {
         }
         return null;
     }
