@@ -43,11 +43,11 @@ if [ "$ANDROID_SDK_ROOT" == "" ]; then
 fi
 
 # Accept license
-"$ANDROID_SDK_ROOT/tools/bin/sdkmanager" --sdk_root="${ANDROID_SDK_ROOT}" --licenses
+yes | "$ANDROID_SDK_ROOT/tools/bin/sdkmanager" --sdk_root="${ANDROID_SDK_ROOT}" --licenses
 
 # Run demo Android project, afterwards all artifacts should be here
 # echo >local.properties "sdk.dir=$ANDROID_SDK_ROOT"
-gradle --no-daemon compileDebugSources --warning-mode all -g ./cache
+gradle --no-daemon compileDebugSources --warning-mode all --console=plain -g ./cache
 
 for art in $PACKAGES; do
     LOC=`find cache/caches/modules-2 -name $art'*' | grep /$art/ | grep [aj]ar`

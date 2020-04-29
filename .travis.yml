@@ -1,0 +1,46 @@
+language: objective-c
+osx_image: xcode11.3
+
+addons:
+  homebrew:
+    packages:
+    - gradle
+    - maven
+    - nuget
+    taps: homebrew/cask-versions
+    casks: adoptopenjdk8
+
+
+#os:
+#  - osx
+
+env:
+  global:
+    - ANDROID_SDK_ROOT=$HOME/android-sdk
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+    # Android SDK
+    - $HOME/android-sdk-dl
+    - $HOME/android-sdk
+
+    # Gradle dependencies
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+
+    # Android build cache (see http://tools.android.com/tech-docs/build-cache)
+    - $HOME/.android/build-cache
+
+
+install:
+  - set -e
+  - if test ! -e $HOME/android-sdk-dl/sdk-tools.zip ; then curl https://dl.google.com/android/repository/commandlinetools-linux-6200805_latest.zip > $HOME/android-sdk-dl/sdk-tools.zip ; fi
+  - unzip -qq -n $HOME/android-sdk-dl/sdk-tools.zip -d $HOME/android-sdk
+  - ./resources/bootstrap/install-android.sh
+
+script:
+  - mvn clean install
