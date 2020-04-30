@@ -1,3 +1,6 @@
+![travis status](https://travis-ci.com/crossmob/CrossMobile.svg?branch=master)
+
+
 # How to compile CrossMobile
 
 First of all, make sure you have downloaded the full CrossMobile distribution:
