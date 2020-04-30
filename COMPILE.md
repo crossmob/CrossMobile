@@ -32,6 +32,7 @@ You also need to install `gradle` version 5.1.1+. Please install it manually and
 - Run the following command:
 ```
 brew install gradle nuget maven
+brew tap homebrew/cask-versions
 brew cask install adoptopenjdk8
 ```
 - Make sure JDK 8 is the default environment.
