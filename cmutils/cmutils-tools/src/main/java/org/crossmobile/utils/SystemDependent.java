@@ -244,6 +244,13 @@ public class SystemDependent {
         return null;
     }
 
+    public static boolean is64Bit() {
+        for (String prop : new String[]{"sun.arch.data.model", "com.ibm.vm.bitmode", "os.arch"})
+            if (System.getProperty(prop, "").contains("64"))
+                return true;
+        return false;
+    }
+
     public enum Execs {
 
         JAVA("exe"),

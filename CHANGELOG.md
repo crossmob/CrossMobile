@@ -14,6 +14,7 @@ Click on the version header to go to the actual commits for each release.
 - Table support archetype
 - Materials are properly put into place now
 - Improve Manager visuals
+- Support of Android SDK on Windows 32 machines
 
 ### Changed
 - Bump iOS SDK version to 13.0
