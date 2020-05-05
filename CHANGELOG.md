@@ -2,16 +2,22 @@
 
 Click on the version header to go to the actual commits for each release.
 
-## [v2.8.1]
-###### 2020-04-19
+## [v2.8.2]
+###### 2020-05-05
 
 ### Fixed
 - Bypass Xcode bug to force using latest (11.4) version
 - iOS pipeline does not require any more to clean & build project
+- Android SDK build updates
 - Fix Android issue not to build APK under certain conditions
 - String.format under Android doesn't support back references; use a workaround for this
+- Table support archetype
+- Materials are properly put into place now
 - Improve Manager visuals
 
+### Changed
+- Bump iOS SDK version to 13.0
+- Update Manager launchers
 
 ## [v2.8]
 ###### 2020-04-04
@@ -132,7 +138,7 @@ Click on the version header to go to the actual commits for each release.
 ### Added
 - First public source release
 
-[v2.8.1]: https://github.com/crossmob/CrossMobile/compare/v2.8.0...v2.8.1
+[v2.8.2]: https://github.com/crossmob/CrossMobile/compare/v2.8.0...v2.8.2
 [v2.8]: https://github.com/crossmob/CrossMobile/compare/v2.7...v2.8.0
 [v2.7]: https://github.com/crossmob/CrossMobile/compare/v2.6.1...v2.7
 [v2.6.1]: https://github.com/crossmob/CrossMobile/compare/v2.6...v2.6.1

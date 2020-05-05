@@ -2,11 +2,12 @@
 
 Click on the version header to go to the detailed ChangeLog.
 
-## [v2.8.1]
+## [v2.8.2]
 
 - Use library on older versions of Xcode, bypassing 11.4 Xcode bug.
+- Upgrade target iOS SDK version to 13.0, as requested upstream.
 - Optimizations on the iOS backend; the system is smart enough to compile only the required files.
-- Android backend compilation optimizations.
+- Android backend compilation updates and optimizations.
 
 ## [v2.8]
 
@@ -35,7 +36,7 @@ Click on the version header to go to the detailed ChangeLog.
 ## [v2.5]
 - First public binary stable release
 
-[v2.8.1]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v281
+[v2.8.2]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v282
 [v2.8]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v28
 [v2.7]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v27
 [v2.6.1]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v261
