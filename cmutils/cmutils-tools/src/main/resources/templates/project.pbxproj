@@ -107,7 +107,7 @@
 							"GCC_WARN_UNINITIALIZED_AUTOS" = "YES";
 							"GCC_WARN_UNUSED_FUNCTION" = "YES";
 							"GCC_WARN_UNUSED_VARIABLE" = "NO";
-							"IPHONEOS_DEPLOYMENT_TARGET" = "9.0";
+							"IPHONEOS_DEPLOYMENT_TARGET" = "13.0";
 							"ONLY_ACTIVE_ARCH" = "YES";
 							"OTHER_LDFLAGS" = "-ObjC";
 							"SDKROOT" = "iphoneos";
@@ -142,7 +142,7 @@
 							"GCC_WARN_UNINITIALIZED_AUTOS" = "YES";
 							"GCC_WARN_UNUSED_FUNCTION" = "YES";
 							"GCC_WARN_UNUSED_VARIABLE" = "NO";
-							"IPHONEOS_DEPLOYMENT_TARGET" = "9.0";
+							"IPHONEOS_DEPLOYMENT_TARGET" = "13.0";
 							"SDKROOT" = "iphoneos";
 							"VALIDATE_PRODUCT" = "YES";
 							"OTHER_LDFLAGS" = "-ObjC";
