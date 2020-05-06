@@ -33,7 +33,8 @@ public class Prefs {
     private static final String LAUNCH_TYPE = "launch.type.";
     private static final String LAUNCH_ACTION = "launch.action";
     private static final String INITIAL_WIZARD = "initial.wizard";
-    private static final String GUI_THEME = "gui.theme";
+    private static final String USER_THEME = "user.theme";
+    private static final String SYSTEM_THEME = "system.theme";
 
     public static final String LAUNCH_TARGET_IOS = "ios";
     public static final String LAUNCH_TARGET_ANDROID = "android";
@@ -246,12 +247,21 @@ public class Prefs {
         }
     }
 
-    public static String getTheme() {
-        return prefs.get(GUI_THEME, "bright");
+    public static String getUserTheme() {
+        return prefs.get(USER_THEME, "auto");
     }
 
-    public static void setTheme(String theme) {
+    public static void setUserTheme(String theme) {
+        theme = theme == null || theme.trim().isEmpty() ? "auto" : theme.trim();
+        prefs.put(USER_THEME, theme);
+    }
+
+    public static String getSystemTheme() {
+        return prefs.get(SYSTEM_THEME, "bright");
+    }
+
+    public static void setSystemTheme(String theme) {
         theme = theme == null || theme.trim().isEmpty() ? "bright" : theme.trim();
-        prefs.put(GUI_THEME, theme);
+        prefs.put(SYSTEM_THEME, theme);
     }
 }
