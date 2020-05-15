@@ -92,25 +92,26 @@ public class AdbUtils {
             exec(adb, "-s", device, "shell", "am", "start", "-n", launchId);
     }
 
-    public void joinDebugPort(String pid) {
-        for (int port = 3132; port < 3152; port++) {
-            try {
-                new ServerSocket(port);
-                exec(adb, "forward", "tcp:3132", "jdwp:" + pid);
-                Log.info("PID " + pid + " uses " + port + " for debugging");
-                return;
-            } catch (IOException ex) {
-                // Loop until a valid port is found
+    public String joinDebugPort(String pid, boolean debug) {
+        if (debug) {
+            for (int port = 3132; port < 31320; port++) {
+                try {
+                    new ServerSocket(port);
+                    exec(adb, "forward", "tcp:3132", "jdwp:" + pid);
+                    return String.valueOf(port);
+                } catch (IOException ex) { // Loop until a valid port is found
+                }
             }
+            Log.error("Unable to open debug port");
         }
-        Log.error("Unable to open debug port");
+        return "unknown";
     }
 
-    public void log(String pid) {
+    public void pipeLog(String pid) {
         if (isLogNew())
-            logNew(pid);
+            pipeLogNew(pid);
         else
-            logOld(pid);
+            pipeLogOld(pid);
     }
 
     private boolean isLogNew() {
@@ -145,7 +146,7 @@ public class AdbUtils {
         return commands.toArray(new String[0]);
     }
 
-    private void logOld(String pid) {
+    private void pipeLogOld(String pid) {
         Log.info("");
         exec(false, line -> {
             if (line.contains(pid)) {
@@ -156,7 +157,7 @@ public class AdbUtils {
         }, createLogcatArgs(null));
     }
 
-    private void logNew(String pid) {
+    private void pipeLogNew(String pid) {
         Log.info("");
         exec(true, line -> {
             Log.passInfo(line);

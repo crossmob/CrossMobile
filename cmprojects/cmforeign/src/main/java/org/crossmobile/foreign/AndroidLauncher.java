@@ -89,7 +89,7 @@ public class AndroidLauncher {
         File emulator = new File(sdkDir, "emulator/emulator" + (isWindows ? ".exe" : ""));
         if (!emulator.isFile())
             emulator = new File(sdkDir, "tools/emulator" + (isWindows ? ".exe" : ""));
-        AndroidTargetSelector selector = new AndroidTargetSelector(dvc -> {
+        AndroidTargetSelector.init(dvc -> {
             adb.setDevice(dvc);
             if (!adb.foundDevice()) {
                 Log.error("No devices selected, exiting.");
@@ -113,9 +113,8 @@ public class AndroidLauncher {
                 Log.error("Unable to retrieve PID of activity " + bundleID);
                 System.exit(1);
             }
-            if (debug)
-                adb.joinDebugPort(newPid);
-            adb.log(newPid);
+            Log.info("PID " + newPid + " uses " + adb.joinDebugPort(newPid, debug) + " port for debugging");
+            adb.pipeLog(newPid);
         }, emulator);
         while (true)
             waitSomeTime();

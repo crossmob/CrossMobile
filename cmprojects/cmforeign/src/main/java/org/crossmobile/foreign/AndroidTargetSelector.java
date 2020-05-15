@@ -25,8 +25,12 @@ public class AndroidTargetSelector extends JDialog implements AListener {
     private Consumer<String> callback;
     private boolean onlyTheFirstTime = true;
 
+    public static void init(Consumer<String> callback, File emulator) {
+        new AndroidTargetSelector(callback, emulator);
+    }
+
     @SuppressWarnings("OverridableMethodCallInConstructor")
-    public AndroidTargetSelector(Consumer<String> callback, File emulator) {
+    private AndroidTargetSelector(Consumer<String> callback, File emulator) {
         super((JDialog) null, true);
         this.emulator = emulator;
         initComponents();
@@ -34,7 +38,7 @@ public class AndroidTargetSelector extends JDialog implements AListener {
             emuLaunchB.setVisible(false);
 
         this.callback = callback;
-        ConnectedAndroidDispatcher.addListener(AndroidTargetSelector.this);
+        ConnectedAndroidDispatcher.addListener(this);
 
         setLocationRelativeTo(null);
         addWindowListener(new WindowAdapter() {
@@ -53,7 +57,7 @@ public class AndroidTargetSelector extends JDialog implements AListener {
     }
 
     private void deviceInfo(String device) {
-        ConnectedAndroidDispatcher.removeListener(AndroidTargetSelector.this);
+        ConnectedAndroidDispatcher.removeListener(this);
         setVisible(false);
         if (callback != null)
             synchronized (this) {
