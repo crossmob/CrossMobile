@@ -4,6 +4,8 @@
 package org.crossmobile.foreign;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.ServerSocket;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -83,8 +85,25 @@ public class AdbUtils {
         exec(adb, "-s", device, "install", "-r", fileLocation);
     }
 
-    public void launchApp(String launchId) {
-        exec(adb, "-s", device, "shell", "am", "start", "-n", launchId);
+    public void launchApp(String launchId, boolean waitForDebugger) {
+        if (waitForDebugger)
+            exec(adb, "-s", device, "shell", "am", "start", "-D", "-n", launchId);
+        else
+            exec(adb, "-s", device, "shell", "am", "start", "-n", launchId);
+    }
+
+    public void joinDebugPort(String pid) {
+        for (int port = 3132; port < 3152; port++) {
+            try {
+                new ServerSocket(port);
+                Log.info("Use " + port + " for debugging");
+                exec(adb, "forward", "tcp:3132", "jdwp:" + pid);
+                return;
+            } catch (IOException ex) {
+                // Loop until a valid port is found
+            }
+        }
+        Log.error("Unable to open debug port");
     }
 
     public void log(String pid) {
@@ -177,4 +196,5 @@ public class AdbUtils {
     public void setDebugProfile(String debugProfile) {
         this.debugProfile = debugProfile;
     }
+
 }

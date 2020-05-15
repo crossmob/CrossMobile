@@ -79,6 +79,7 @@ public class AndroidLauncher {
         adb.setBaseDir(basedir);
         adb.setDebugProfile(props.getProperty("debug.profile"));
         bundleID = props.getProperty("bundleId");
+        boolean debug = !props.getProperty("release", "false").trim().toLowerCase().startsWith("t");
 
         // Android SDK is peculiar. The name of the APK is based on the name of the current folder.
         // apkName = props.getProperty("appId");
@@ -97,7 +98,7 @@ public class AndroidLauncher {
             }
             adb.installApk(apkFile);
             String oldPid = adb.getPid(bundleID);
-            adb.launchApp(bundleID + "/" + bundleID + ".CMLauncher");
+            adb.launchApp(bundleID + "/" + bundleID + ".CMLauncher", false);
 
             String newPid = null;
             for (int i = 0; i < 10; i++) {
@@ -112,7 +113,8 @@ public class AndroidLauncher {
                 Log.error("Unable to retrieve PID of activity " + bundleID);
                 System.exit(1);
             }
-
+            if (debug)
+                adb.joinDebugPort(newPid);
             adb.log(newPid);
         }, emulator);
         while (true)
