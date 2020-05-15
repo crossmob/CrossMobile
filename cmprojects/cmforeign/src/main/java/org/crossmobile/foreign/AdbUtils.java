@@ -96,7 +96,7 @@ public class AdbUtils {
         for (int port = 3132; port < 3152; port++) {
             try {
                 new ServerSocket(port);
-                Log.info("Use " + port + " for debugging");
+                Log.info("Use " + port + " for debugging PID " + pid);
                 exec(adb, "forward", "tcp:3132", "jdwp:" + pid);
                 return;
             } catch (IOException ex) {
