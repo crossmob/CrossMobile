@@ -94,10 +94,10 @@ public class AdbUtils {
 
     public String joinDebugPort(String pid, boolean debug) {
         if (debug) {
-            for (int port = 3132; port < 31320; port++) {
+            for (int port = 39622; port < 65000; port++) {
                 try {
                     new ServerSocket(port);
-                    exec(adb, "forward", "tcp:3132", "jdwp:" + pid);
+                    exec(adb, "forward", "tcp:" + port, "jdwp:" + pid);
                     return String.valueOf(port);
                 } catch (IOException ex) { // Loop until a valid port is found
                 }
