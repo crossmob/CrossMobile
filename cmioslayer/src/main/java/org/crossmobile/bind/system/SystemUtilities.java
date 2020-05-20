@@ -306,6 +306,34 @@ public class SystemUtilities {
         return (a == b) || (a != null && a.equals(b));
     }
 
+    public static String fixURI(String url) {
+        String MATRIX = "0123456789ABCDEF";
+        StringBuilder uri = new StringBuilder();
+        for (char c : url.toCharArray()) {
+            if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9')
+                    || c == '+' || c == '.' || c == '-'
+                    || c == ':'
+                    || c == '_' || c == '~' || c == '/' || c == '?' || c == '#' || c == '['
+                    || c == ']' || c == '@' || c == '!' || c == '$' || c == '&' || c == '\''
+                    || c == '(' || c == ')' || c == '*' || c == ',' || c == ';' || c == '='
+                    || c == '%')
+                uri.append(c);
+            else {
+                try {
+                    //noinspection CharsetObjectCanBeUsed
+                    for (byte b : String.valueOf(c).getBytes("UTF-8")) {
+                        int u = b & 0xFF;   // convert to unsigned
+                        uri.append('%');
+                        uri.append(MATRIX.charAt((u >>> 4) % 16));
+                        uri.append(MATRIX.charAt(u % 16));
+                    }
+                } catch (UnsupportedEncodingException ignored) {
+                }
+            }
+        }
+        return uri.toString();
+    }
+
     public static String URIEncode(String path) {
         StringBuilder uri = new StringBuilder();
         char c;

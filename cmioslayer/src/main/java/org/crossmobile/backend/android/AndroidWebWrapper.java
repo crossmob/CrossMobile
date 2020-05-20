@@ -28,6 +28,7 @@ import org.crossmobile.backend.android.AndroidNativeDispatcher.AndroidNativeWidg
 import org.crossmobile.backend.android.web.VideoEnabledWebChromeClient;
 import org.crossmobile.backend.android.web.VideoEnabledWebView;
 import org.crossmobile.bind.io.AbstractFileBridge;
+import org.crossmobile.bind.system.SystemUtilities;
 import org.crossmobile.bind.wrapper.WebWrapper;
 import org.crossmobile.bridge.Native;
 
@@ -165,7 +166,7 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
                 }
 
                 private boolean shouldOverrideUrlLoading(String url) {
-                    return !acceptsURL(url, UIWebViewNavigationType.LinkClicked);
+                    return !acceptsURL(SystemUtilities.fixURI(url), UIWebViewNavigationType.LinkClicked);
                 }
             });
         }
