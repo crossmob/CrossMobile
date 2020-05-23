@@ -36,6 +36,7 @@
         <version.loadlib>0.2.1</version.loadlib>
         <version.procyon>0.5.36</version.procyon>
         <version.robovm>2.3.5</version.robovm>
+        <version.javaparser>3.15.22</version.javaparser>
 
         <version.appbundler>1.1.0</version.appbundler>
         <version.appenh>0.3.2</version.appenh>
