@@ -281,7 +281,7 @@ public final class CGAffineTransform {
      */
     @CMFunction(" bool CGAffineTransformIsIdentity ( CGAffineTransform t ); ")
     public boolean isIdentity() {
-        return valueEquals(IDENTITY);
+        return equals(IDENTITY);
     }
 
     /**
@@ -320,35 +320,36 @@ public final class CGAffineTransform {
     }
 
     @Override
+    @CMPure
     public int hashCode() {
         int hash = 5;
-        hash = 47 * hash + Float.floatToIntBits((float) this.a);
-        hash = 47 * hash + Float.floatToIntBits((float) this.b);
-        hash = 47 * hash + Float.floatToIntBits((float) this.c);
-        hash = 47 * hash + Float.floatToIntBits((float) this.d);
-        hash = 47 * hash + Float.floatToIntBits((float) this.tx);
-        hash = 47 * hash + Float.floatToIntBits((float) this.ty);
+        hash = 47 * hash + (int) getA();
+        hash = 47 * hash + (int) getB();
+        hash = 47 * hash + (int) getC();
+        hash = 47 * hash + (int) getD();
+        hash = 47 * hash + (int) getTx();
+        hash = 47 * hash + (int) getTy();
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
+    @CMPure
+    public boolean equals(Object o) {
+        if (this == o)
             return true;
-        if (obj == null)
+        if (o == null)
             return false;
-        if (getClass() != obj.getClass())
+        if (getClass() != o.getClass())
             return false;
-        return valueEquals((CGAffineTransform) obj);
-    }
-
-    private boolean valueEquals(CGAffineTransform other) {
-        return a == other.a && b == other.b && c == other.c && d == other.d && tx == other.tx && ty == other.ty;
+        CGAffineTransform other = (CGAffineTransform) o;
+        return getA() == other.getA() && getB() == other.getB()
+                && getC() == other.getC() && getD() == other.getD()
+                && getTx() == other.getTx() && getTy() == other.getTy();
     }
 
     @Override
+    @CMPure
     public String toString() {
-        return "CGAffineTransform{" + "a=" + a + ", c=" + c + ", tx=" + tx + ", b=" + b + ", d=" + d + ", ty=" + ty + '}';
+        return "a=" + getA() + ", c=" + getC() + ", tx=" + getTx() + ", b=" + getB() + ", d=" + getD() + ", ty=" + getTy();
     }
-
 }

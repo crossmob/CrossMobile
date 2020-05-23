@@ -199,21 +199,6 @@ public final class CGRect {
         return size.getHeight() < 0 ? origin.getY() : origin.getY() + size.getHeight();
     }
 
-    @Override
-    public String toString() {
-        return origin.toString() + ":" + size.toString();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null)
-            return false;
-        if (!(o instanceof CGRect))
-            return false;
-        CGRect r = (CGRect) o;
-        return origin.equals(r.origin) && size.equals(r.size);
-    }
-
     /**
      * Applies the specified affine transformation to this rectangle.
      *
@@ -241,10 +226,32 @@ public final class CGRect {
     }
 
     @Override
+    @CMPure
     public int hashCode() {
+        CGPoint or = getOrigin();
+        CGSize si = getSize();
         int hash = 7;
-        hash = 29 * hash + (this.origin != null ? this.getOrigin().hashCode() : 0);
-        hash = 29 * hash + (this.size != null ? this.getSize().hashCode() : 0);
+        hash = 29 * hash + (or != null ? or.hashCode() : 0);
+        hash = 29 * hash + (si != null ? si.hashCode() : 0);
         return hash;
+    }
+
+    @Override
+    @CMPure
+    public String toString() {
+        return "origin=(" + getOrigin().toString() + "), size=(" + getSize().toString() + ")";
+    }
+
+    @Override
+    @CMPure
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (o == null)
+            return false;
+        if (!(o instanceof CGRect))
+            return false;
+        CGRect other = (CGRect) o;
+        return getOrigin().equals(other.getOrigin()) && getSize().equals(other.getSize());
     }
 }

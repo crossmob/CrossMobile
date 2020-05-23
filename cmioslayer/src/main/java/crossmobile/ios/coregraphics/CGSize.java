@@ -6,6 +6,8 @@ package crossmobile.ios.coregraphics;
 import org.crossmobile.bind.graphics.Geometry;
 import org.crossmobile.bridge.ann.*;
 
+import java.util.Objects;
+
 import static org.crossmobile.bind.graphics.Geometry.apply;
 
 /**
@@ -70,18 +72,6 @@ public final class CGSize {
         set(other.width, other.height);
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof CGSize))
-            return false;
-        return Geometry.equals(this, (CGSize) obj);
-    }
-
-    @Override
-    public int hashCode() {
-        return (int) (width * 10000 + height);
-    }
-
     /**
      * Applies the specified affine transformation to this CGSize object.
      *
@@ -96,7 +86,27 @@ public final class CGSize {
     }
 
     @Override
+    @CMPure
+    public int hashCode() {
+        return (int) (getWidth() * 521 + getHeight());
+    }
+
+    @Override
+    @CMPure
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null)
+            return false;
+        if (!(o instanceof CGSize))
+            return false;
+        CGSize other = (CGSize) o;
+        return other.getWidth() == getWidth() && other.getHeight() == getHeight();
+    }
+
+    @Override
+    @CMPure
     public String toString() {
-        return ((int) (width * 10)) / 10d + "," + ((int) (height * 10)) / 10d;
+        return "width=" + ((int) (getWidth() * 10)) / 10d + ", height=" + ((int) (getHeight() * 10)) / 10d;
     }
 }

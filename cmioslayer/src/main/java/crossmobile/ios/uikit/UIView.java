@@ -395,7 +395,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
      */
     @CMSetter("@property(nonatomic) CGRect frame;")
     public void setFrame(CGRect frame) {
-        if (!Geometry.equals(this.frame, frame))
+        if (!this.frame.equals(frame))
             if (pendingAnim != null)
                 pendingAnim.setFrame(this, frame);
             else {
@@ -477,8 +477,8 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
      */
     @CMSelector("- (void)layoutIfNeeded;")
     public void layoutIfNeeded() {
-        boolean sameSize = Geometry.equals(oldFrame.getSize(), frame.getSize());
-        boolean sameOrigin = Geometry.equals(oldFrame.getOrigin(), frame.getOrigin());
+        boolean sameSize = oldFrame.equals(frame);
+        boolean sameOrigin = oldFrame.getOrigin().equals(frame.getOrigin());
         Geometry.set(oldFrame, frame);
         if (!sameSize) {
             updateConstraints();
@@ -1488,19 +1488,6 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
         }
     }
 
-    @Override
-    public String toString() {
-        StringBuilder out = new StringBuilder();
-        out.append(SystemUtilities.getClassName(getClass()));
-        out.append(" frame=");
-        out.append(frame.toString());
-        if (tag != 0)
-            out.append(" tag=").append(tag);
-        if (transform != null)
-            out.append(" transf=").append(Geometry.toString(transform));
-        return out.toString();
-    }
-
     String parentList() {
         UIView sview = superview();
         return sview == null ? "Orphan" : selfAndParentList();
@@ -2487,7 +2474,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
             safeAreaInsets = new UIEdgeInsets(top, left, bottom, right);
         } else
             safeAreaInsets = UIEdgeInsets.zero();
-        if (!Geometry.equals(safeAreaInsets, oldInsets)) {
+        if (!safeAreaInsets.equals(oldInsets)) {
             // Safe area insets changed
             if (controller != null)
                 controller.viewSafeAreaInsetsDidChange();
@@ -2558,7 +2545,21 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
         return accessibilityIdentifier;
     }
 
-    private class Anchor {
+    @Override
+    @CMPure
+    public String toString() {
+        StringBuilder out = new StringBuilder();
+        out.append(SystemUtilities.getClassName(getClass()));
+        out.append(" frame=");
+        out.append(frame().toString());
+        if (tag() != 0)
+            out.append(" tag=").append(tag);
+        if (!transform().isIdentity())
+            out.append(" transf=").append(transform().toString());
+        return out.toString();
+    }
+
+    private static class Anchor {
 
         private NSLayoutYAxisAnchor bottomAnchor;
         private NSLayoutXAxisAnchor centerXAnchor;

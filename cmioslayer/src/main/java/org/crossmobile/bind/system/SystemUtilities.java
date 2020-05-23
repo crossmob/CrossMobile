@@ -7,6 +7,7 @@ import crossmobile.ios.coregraphics.CGSize;
 import crossmobile.ios.foundation.NSBundle;
 import crossmobile.ios.foundation.NSLocale;
 import org.crossmobile.bridge.Native;
+import org.crossmobile.bridge.ann.CMPure;
 
 import java.io.*;
 import java.lang.reflect.Constructor;
@@ -14,6 +15,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.regex.Pattern;
 
+@CMPure(full = false)
 public class SystemUtilities {
     private static final Pattern ESC_N = Pattern.compile("\\\\n");
     private static final Pattern ESC_R = Pattern.compile("\\\\r");
@@ -162,12 +164,13 @@ public class SystemUtilities {
         }
     }
 
-    public static String getClassName(Class clss) {
-        String classname = clss.getName();
-        int point = classname.lastIndexOf('.');
+    @CMPure
+    public static String getClassName(Class<?> cls) {
+        String className = cls.getName();
+        int point = className.lastIndexOf('.');
         if (point >= 0)
-            classname = classname.substring(point + 1);
-        return classname;
+            className = className.substring(point + 1);
+        return className;
     }
 
     public static <T> T construct(Class<T> typeClass) {

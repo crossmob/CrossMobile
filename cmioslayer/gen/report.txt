@@ -775,6 +775,7 @@ org/crossmobile/bridge/ann/CMLibTarget$BaseTarget.class v8
 org/crossmobile/bridge/ann/CMLibTarget.class v8
 org/crossmobile/bridge/ann/CMParamMod.class v8
 org/crossmobile/bridge/ann/CMPod.class v8
+org/crossmobile/bridge/ann/CMPure.class v8
 org/crossmobile/bridge/ann/CMRef.class v8
 org/crossmobile/bridge/ann/CMReference.class v8
 org/crossmobile/bridge/ann/CMSelector.class v8
@@ -1699,6 +1700,7 @@ org/crossmobile/bridge/ann/CMLibTarget$BaseTarget.class v8
 org/crossmobile/bridge/ann/CMLibTarget.class v8
 org/crossmobile/bridge/ann/CMParamMod.class v8
 org/crossmobile/bridge/ann/CMPod.class v8
+org/crossmobile/bridge/ann/CMPure.class v8
 org/crossmobile/bridge/ann/CMRef.class v8
 org/crossmobile/bridge/ann/CMReference.class v8
 org/crossmobile/bridge/ann/CMSelector.class v8
@@ -2583,6 +2585,7 @@ org/crossmobile/bridge/ann/CMLibTarget$BaseTarget.class v8
 org/crossmobile/bridge/ann/CMLibTarget.class v8
 org/crossmobile/bridge/ann/CMParamMod.class v8
 org/crossmobile/bridge/ann/CMPod.class v8
+org/crossmobile/bridge/ann/CMPure.class v8
 org/crossmobile/bridge/ann/CMRef.class v8
 org/crossmobile/bridge/ann/CMReference.class v8
 org/crossmobile/bridge/ann/CMSelector.class v8
@@ -3323,6 +3326,7 @@ org/crossmobile/bridge/ann/CMLibTarget$BaseTarget.class v8
 org/crossmobile/bridge/ann/CMLibTarget.class v8
 org/crossmobile/bridge/ann/CMParamMod.class v8
 org/crossmobile/bridge/ann/CMPod.class v8
+org/crossmobile/bridge/ann/CMPure.class v8
 org/crossmobile/bridge/ann/CMRef.class v8
 org/crossmobile/bridge/ann/CMReference.class v8
 org/crossmobile/bridge/ann/CMSelector.class v8

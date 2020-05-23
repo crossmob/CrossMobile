@@ -7,8 +7,9 @@ import crossmobile.ios.coregraphics.CGAffineTransform;
 import crossmobile.ios.coregraphics.CGPoint;
 import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.coregraphics.CGSize;
-import crossmobile.ios.uikit.UIEdgeInsets;
+import org.crossmobile.bridge.ann.CMPure;
 
+@CMPure(full = true)
 public class Geometry {
 
     public static float distance(CGPoint self, CGPoint other) {
@@ -34,26 +35,6 @@ public class Geometry {
             self.setHeight(other.getHeight());
         if (other.getWidth() > self.getWidth())
             self.setWidth(other.getWidth());
-    }
-
-    public static boolean equals(CGPoint self, CGPoint other) {
-        return other.getX() == self.getX() && other.getY() == self.getY();
-    }
-
-    public static boolean equals(CGSize self, CGSize other) {
-        return other.getWidth() == self.getWidth() && other.getHeight() == self.getHeight();
-    }
-
-    public static boolean equals(UIEdgeInsets self, UIEdgeInsets other) {
-        return self.getLeft() == other.getLeft() &&
-                self.getTop() == other.getTop() &&
-                self.getRight() == other.getRight() &&
-                self.getBottom() == other.getBottom();
-    }
-
-    public static boolean equals(CGRect self, CGRect other) {
-        return other.getOrigin().getX() == self.getOrigin().getX() && other.getOrigin().getY() == self.getOrigin().getY() &&
-                other.getSize().getWidth() == self.getSize().getWidth() && other.getSize().getHeight() == self.getSize().getHeight();
     }
 
     public static boolean isZero(CGSize self) {
@@ -123,9 +104,5 @@ public class Geometry {
         destination.setTy(source.getTy());
         return destination;
 
-    }
-
-    public static String toString(CGAffineTransform self) {
-        return self.getA() + "," + self.getC() + "," + self.getTx() + ":" + self.getB() + "," + self.getD() + "," + self.getTy();
     }
 }

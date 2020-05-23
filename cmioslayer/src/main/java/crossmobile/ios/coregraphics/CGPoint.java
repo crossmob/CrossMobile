@@ -95,25 +95,26 @@ public final class CGPoint {
     }
 
     @Override
+    @CMPure
+    public int hashCode() {
+        return (int) (getX() * 521 + getY());
+    }
+
+    @Override
+    @CMPure
     public boolean equals(Object o) {
+        if (o == this)
+            return true;
         if (o == null)
             return false;
         if (!(o instanceof CGPoint))
             return false;
-        CGPoint p = (CGPoint) o;
-        return p.x == x && p.y == y;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + Float.floatToIntBits((float) this.x);
-        hash = 89 * hash + Float.floatToIntBits((float) this.y);
-        return hash;
+        CGPoint other = (CGPoint) o;
+        return getX() == other.getX() && getY() == other.getY();
     }
 
     @Override
     public String toString() {
-        return ((int) (x * 10)) / 10f + "," + ((int) (y * 10)) / 10.0;
+        return "x=" + ((int) (getX() * 10)) / 10d + ", y=" + ((int) (getY() * 10)) / 10d;
     }
 }
