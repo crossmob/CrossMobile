@@ -1,5 +1,8 @@
-// (c) 2020 by Panayotis Katsaloulis
-// SPDX-License-Identifier: LGPL-3.0-only
+/*
+ * (c) 2020 by Panayotis Katsaloulis
+ *
+ * SPDX-License-Identifier: LGPL-3.0-only
+ */
 
 @CMLib(name = "cmaddressbook", libs = {"AddressBook.framework", "AddressBookUI.framework"},
         displayName = "AddressBook Framework", description = "CrossMobile© Compatibility library for AddressBook Framework",

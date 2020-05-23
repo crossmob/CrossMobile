@@ -1,5 +1,8 @@
-// (c) 2020 by Panayotis Katsaloulis
-// SPDX-License-Identifier: LGPL-3.0-only
+/*
+ * (c) 2020 by Panayotis Katsaloulis
+ *
+ * SPDX-License-Identifier: LGPL-3.0-only
+ */
 
 @CMLib(name = "cmimage", libs = "CoreImage.framework", includes = "<CoreImage/CoreImage.h>", target = CMLibTarget.API_NOUWP,
         displayName = "CoreImage Framework", description = "CrossMobile© Compatibility library for Camera and CoreImage Framework",

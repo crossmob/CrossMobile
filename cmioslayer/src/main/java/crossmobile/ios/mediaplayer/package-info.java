@@ -1,5 +1,8 @@
-// (c) 2020 by Panayotis Katsaloulis
-// SPDX-License-Identifier: LGPL-3.0-only
+/*
+ * (c) 2020 by Panayotis Katsaloulis
+ *
+ * SPDX-License-Identifier: LGPL-3.0-only
+ */
 
 @CMLib(name = "cmmedia", libs = {"MediaPlayer.framework~", "CoreMedia.framework~"}, includes = "<MediaPlayer/MediaPlayer.h>",
         displayName = "MediaPlayer Framework", description = "CrossMobile© Compatibility library for MediaPlayer and relative Frameworks",

@@ -1,5 +1,8 @@
-// (c) 2020 by Panayotis Katsaloulis
-// SPDX-License-Identifier: LGPL-3.0-only
+/*
+ * (c) 2020 by Panayotis Katsaloulis
+ *
+ * SPDX-License-Identifier: LGPL-3.0-only
+ */
 
 @CMLib(name = "cmpayment", libs = "StoreKit.framework", includes = "<StoreKit/StoreKit.h>",
         displayName = "in App Payment Framework", description = "CrossMobile© Compatibility library for inAppPayment Framework",

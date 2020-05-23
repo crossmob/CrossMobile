@@ -1,5 +1,8 @@
-// (c) 2020 by Panayotis Katsaloulis
-// SPDX-License-Identifier: LGPL-3.0-only
+/*
+ * (c) 2020 by Panayotis Katsaloulis
+ *
+ * SPDX-License-Identifier: LGPL-3.0-only
+ */
 
 // Modified version of this answer: http://stackoverflow.com/a/18070681/339146
 package org.crossmobile.support;
