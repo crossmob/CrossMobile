@@ -36,19 +36,23 @@ public class CollectionUtils {
     }
 
     public static <S, T> List<T> asList(Iterable<S> input, Function<S, T> converter, Predicate<T> acceptance) {
-        if (input == null || converter == null)
+        if (input == null)
             return null;
         List<T> result = new ArrayList<>();
         for (S item : input) {
-            T out = converter.apply(item);
+            T out = converter == null ? (T) item : converter.apply(item);
             if (acceptance == null || acceptance.test(out))
-                result.add(converter.apply(item));
+                result.add(out);
         }
         return result;
     }
 
     public static <S, T> List<T> asList(Iterable<S> input, Function<S, T> converter) {
         return asList(input, converter, null);
+    }
+
+    public static <T> List<T> asList(Iterable<T> input) {
+        return asList(input, null, null);
     }
 
     public static <S, T> Iterable<T> asIterable(Function<S, T> converter, Iterable<S> input) {
