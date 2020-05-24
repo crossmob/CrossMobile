@@ -390,4 +390,18 @@ public class TextUtils {
     public static String trim(String base, String prefix) {
         return base.startsWith(prefix) ? base.substring(prefix.length()) : base;
     }
+
+    public static boolean nullOrEmpty(String input) {
+        return input == null || input.isEmpty();
+    }
+
+    public static void requireValue(String input) {
+        requireValue(input, null);
+    }
+
+    public static void requireValue(String input, String reason) {
+        if (nullOrEmpty(input))
+            throw new NullPointerException(reason == null ? "Item should not be null or empty" : reason);
+    }
+
 }

@@ -196,6 +196,7 @@
                             </sourceFileExcludes>
                             <excludePackageNames>org.*:crossmobile.ios.$:com.*</excludePackageNames>
                             <failOnError>true</failOnError>
+                            <quiet>true</quiet>
                         </configuration>
                     </plugin>
                 </plugins>

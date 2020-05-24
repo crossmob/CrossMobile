@@ -11,21 +11,21 @@ import org.crossmobile.bridge.system.BaseUtils;
 public class TimeUtils {
 
 
-    public static void time(Procedure r, String description) {
-        timeImpl(() -> {
+    public static void time(String description, Procedure r) {
+        timeImpl(description, () -> {
             r.run();
             return null;
-        }, description);
+        });
     }
 
-    public static <R> R time(ProcedureR<R> r, String description) {
-        return timeImpl(r, description);
+    public static <R> R time(String description, ProcedureR<R> r) {
+        return timeImpl(description, r);
     }
 
-    private static <R> R timeImpl(ProcedureR<R> r, String description) {
+    private static <R> R timeImpl(String description, ProcedureR<R> r) {
         if (description == null || description.trim().isEmpty())
             throw new NullPointerException("Description should not be empty");
-        boolean error = false;
+        String error = null;
 
         int howmany = -1;   // ignore current
         String myClassName = TimeUtils.class.getName();
@@ -41,19 +41,22 @@ public class TimeUtils {
             R result = r.run();
             nano = System.nanoTime() - nano;
             return result;
+        } catch (NestedException ex) {
+            nano = System.nanoTime() - nano;
+            error = ex.getMessage();
+            throw ex;
         } catch (Throwable th) {
             nano = System.nanoTime() - nano;
-            error = true;
-            BaseUtils.throwException(th);
-            return null;
+            error = th.toString();
+            throw new NestedException("Error caused in " + description.trim(), th);
         } finally {
             log(nano, description, error);
         }
     }
 
-    private static void log(long nano, String description, boolean error) {
-        if (error)
-            Log.error(description + ": Error found");
+    private static void log(long nano, String description, String error) {
+        if (error != null)
+            Log.error(description + ": " + error);
         Log.debug(description + ": time elapsed " + (nano / 1_000_000_000.d) + "s");
     }
 
@@ -67,4 +70,9 @@ public class TimeUtils {
         R run() throws Throwable;
     }
 
+    private static class NestedException extends RuntimeException {
+        public NestedException(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
 }
