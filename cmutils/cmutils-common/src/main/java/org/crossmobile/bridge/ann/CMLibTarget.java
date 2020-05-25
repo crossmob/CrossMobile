@@ -93,6 +93,8 @@ public enum CMLibTarget {
 
     public boolean matches(BaseTarget filter) {
         switch (filter) {
+            case ALL:
+                return true;
             case DESKTOP:
                 return desktop;
             case ANDROID:
@@ -110,7 +112,7 @@ public enum CMLibTarget {
     }
 
     public enum BaseTarget {
-        DESKTOP, ANDROID, IOS, UWP, COMPILE, BUILDDEP
+        DESKTOP, ANDROID, IOS, UWP, COMPILE, BUILDDEP, ALL
     }
 
     public String listTargets() {

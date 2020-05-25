@@ -6,8 +6,6 @@
 
 package org.crossmobile.utils;
 
-import org.crossmobile.bridge.system.BaseUtils;
-
 public class TimeUtils {
 
 

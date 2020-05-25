@@ -62,6 +62,65 @@ crossmobile/ios/contacts/package-info.class v8
 Creating file cmplugin-builddep-cmaddressbook-<VERSION>.jar
 
 
+Creating file cmplugin-cmaddressbook-<VERSION>-sources.jar
+crossmobile/ios/accounts/ACAccount.java
+crossmobile/ios/accounts/ACAccountCredential.java
+crossmobile/ios/accounts/ACAccountCredentialRenewResult.java
+crossmobile/ios/accounts/ACAccountStore.java
+crossmobile/ios/accounts/ACAccountStoreCredentialRenewalHandler.java
+crossmobile/ios/accounts/ACAccountStoreRemoveCompletionHandler.java
+crossmobile/ios/accounts/ACAccountStoreRequestAccessCompletionHandler.java
+crossmobile/ios/accounts/ACAccountStoreSaveCompletionHandler.java
+crossmobile/ios/accounts/ACAccountType.java
+crossmobile/ios/accounts/ACAccountTypeIdentifier.java
+crossmobile/ios/accounts/ACErrorCode.java
+crossmobile/ios/accounts/ACFacebook.java
+crossmobile/ios/accounts/ACFacebookAudience.java
+crossmobile/ios/accounts/package-info.java
+crossmobile/ios/addressbook/ABAddressBook.java
+crossmobile/ios/addressbook/ABAddressBookRequestAccessCompletionHandler.java
+crossmobile/ios/addressbook/ABAuthorizationStatus.java
+crossmobile/ios/addressbook/ABMultiValue.java
+crossmobile/ios/addressbook/ABMutableMultiValue.java
+crossmobile/ios/addressbook/ABNewPersonViewController.java
+crossmobile/ios/addressbook/ABNewPersonViewControllerDelegate.java
+crossmobile/ios/addressbook/ABPeoplePickerNavigationController.java
+crossmobile/ios/addressbook/ABPeoplePickerNavigationControllerDelegate.java
+crossmobile/ios/addressbook/ABPersonSortOrdering.java
+crossmobile/ios/addressbook/ABPersonViewController.java
+crossmobile/ios/addressbook/ABPersonViewControllerDelegate.java
+crossmobile/ios/addressbook/ABPropertyType.java
+crossmobile/ios/addressbook/ABRecord.java
+crossmobile/ios/addressbook/ABUnknownPersonViewController.java
+crossmobile/ios/addressbook/ABUnknownPersonViewControllerDelegate.java
+crossmobile/ios/addressbook/package-info.java
+crossmobile/ios/contacts/CNAuthorizationStatus.java
+crossmobile/ios/contacts/CNContact.java
+crossmobile/ios/contacts/CNContactDisplayNameOrder.java
+crossmobile/ios/contacts/CNContactFetchRequest.java
+crossmobile/ios/contacts/CNContactFormatter.java
+crossmobile/ios/contacts/CNContactFormatterStyle.java
+crossmobile/ios/contacts/CNContactProperty.java
+crossmobile/ios/contacts/CNContactRelation.java
+crossmobile/ios/contacts/CNContactSortOrder.java
+crossmobile/ios/contacts/CNContactStore.java
+crossmobile/ios/contacts/CNContactType.java
+crossmobile/ios/contacts/CNContactsUserDefaults.java
+crossmobile/ios/contacts/CNContainer.java
+crossmobile/ios/contacts/CNContainerType.java
+crossmobile/ios/contacts/CNEntityType.java
+crossmobile/ios/contacts/CNGroup.java
+crossmobile/ios/contacts/CNInstantMessageAddress.java
+crossmobile/ios/contacts/CNLabelPhoneNumber.java
+crossmobile/ios/contacts/CNLabeledValue.java
+crossmobile/ios/contacts/CNMutableContact.java
+crossmobile/ios/contacts/CNPhoneNumber.java
+crossmobile/ios/contacts/CNPostalAddress.java
+crossmobile/ios/contacts/CNSaveRequest.java
+crossmobile/ios/contacts/CNSocialProfile.java
+crossmobile/ios/contacts/CNValueType.java
+crossmobile/ios/contacts/package-info.java
+
 Creating file cmplugin-ios-cmaddressbook-<VERSION>.jar
 crossmobile/ios/accounts/ACAccount.class v8
 crossmobile/ios/accounts/ACAccountCredential.class v8
@@ -297,6 +356,18 @@ crossmobile/ios/gamekit/package-info.class v8
 Creating file cmplugin-builddep-cmgamekit-<VERSION>.jar
 
 
+Creating file cmplugin-cmgamekit-<VERSION>-sources.jar
+crossmobile/ios/gamekit/GKDataReceiveHandler.java
+crossmobile/ios/gamekit/GKPeerConnectionState.java
+crossmobile/ios/gamekit/GKPeerPickerConnectionType.java
+crossmobile/ios/gamekit/GKPeerPickerController.java
+crossmobile/ios/gamekit/GKPeerPickerControllerDelegate.java
+crossmobile/ios/gamekit/GKSendDataMode.java
+crossmobile/ios/gamekit/GKSession.java
+crossmobile/ios/gamekit/GKSessionDelegate.java
+crossmobile/ios/gamekit/GKSessionMode.java
+crossmobile/ios/gamekit/package-info.java
+
 Creating file cmplugin-ios-cmgamekit-<VERSION>.jar
 crossmobile/ios/gamekit/GKDataReceiveHandler.class v8
 crossmobile/ios/gamekit/GKPeerConnectionState.class v8
@@ -349,6 +420,9 @@ META-INF/REVERSE.INF
 Creating file cmplugin-builddep-cmi18n-<VERSION>.jar
 
 
+Creating file cmplugin-cmi18n-<VERSION>-sources.jar
+org/crossmobile/bind/system/i18n/I18N.java
+
 Creating file cmplugin-ios-cmi18n-<VERSION>.jar
 
 
@@ -388,6 +462,19 @@ crossmobile/ios/uikit/UIImagePickerControllerSourceType.class v8
 
 Creating file cmplugin-builddep-cmimage-<VERSION>.jar
 
+
+Creating file cmplugin-cmimage-<VERSION>-sources.jar
+crossmobile/ios/coreimage/CIContext.java
+crossmobile/ios/coreimage/CIFilter.java
+crossmobile/ios/coreimage/CIImage.java
+crossmobile/ios/coreimage/package-info.java
+crossmobile/ios/uikit/UIImagePickerController.java
+crossmobile/ios/uikit/UIImagePickerControllerCameraCaptureMode.java
+crossmobile/ios/uikit/UIImagePickerControllerCameraDevice.java
+crossmobile/ios/uikit/UIImagePickerControllerCameraFlashMode.java
+crossmobile/ios/uikit/UIImagePickerControllerDelegate.java
+crossmobile/ios/uikit/UIImagePickerControllerQualityType.java
+crossmobile/ios/uikit/UIImagePickerControllerSourceType.java
 
 Creating file cmplugin-ios-cmimage-<VERSION>.jar
 crossmobile/ios/coreimage/CIContext.class v8
@@ -841,6 +928,545 @@ org/crossmobile/bridge/UIGuidelinesBridge.class v8
 org/crossmobile/bridge/WrapperBridge.class v8
 org/crossmobile/bridge/WrapperMapBridge.class v8
 org/crossmobile/bridge/package-info.class v8
+
+Creating file cmplugin-cmioslayer-<VERSION>-sources.jar
+com/eclipsesource/json/package-info.java
+com/panayotis/ce/package-info.java
+com/panayotis/package-info.java
+crossmobile/ios/coregraphics/$coregraphics.java
+crossmobile/ios/coregraphics/CGAffineTransform.java
+crossmobile/ios/coregraphics/CGBitmapContext.java
+crossmobile/ios/coregraphics/CGBitmapInfo.java
+crossmobile/ios/coregraphics/CGBlendMode.java
+crossmobile/ios/coregraphics/CGColor.java
+crossmobile/ios/coregraphics/CGColorRenderingIntent.java
+crossmobile/ios/coregraphics/CGColorSpace.java
+crossmobile/ios/coregraphics/CGContext.java
+crossmobile/ios/coregraphics/CGDataProvider.java
+crossmobile/ios/coregraphics/CGFont.java
+crossmobile/ios/coregraphics/CGGradient.java
+crossmobile/ios/coregraphics/CGGradientDrawingOptions.java
+crossmobile/ios/coregraphics/CGImage.java
+crossmobile/ios/coregraphics/CGInterpolationQuality.java
+crossmobile/ios/coregraphics/CGLayer.java
+crossmobile/ios/coregraphics/CGLineCap.java
+crossmobile/ios/coregraphics/CGLineJoin.java
+crossmobile/ios/coregraphics/CGPath.java
+crossmobile/ios/coregraphics/CGPathDrawingMode.java
+crossmobile/ios/coregraphics/CGPoint.java
+crossmobile/ios/coregraphics/CGRect.java
+crossmobile/ios/coregraphics/CGSize.java
+crossmobile/ios/coregraphics/CGTextDrawingMode.java
+crossmobile/ios/coregraphics/CGTextEncoding.java
+crossmobile/ios/coregraphics/package-info.java
+crossmobile/ios/foundation/$foundation.java
+crossmobile/ios/foundation/CFNumberFormatterStyle.java
+crossmobile/ios/foundation/CFType.java
+crossmobile/ios/foundation/Foundation.java
+crossmobile/ios/foundation/NSAttributedStringKey.java
+crossmobile/ios/foundation/NSBundle.java
+crossmobile/ios/foundation/NSCalendar.java
+crossmobile/ios/foundation/NSCalendarOptions.java
+crossmobile/ios/foundation/NSCalendarUnit.java
+crossmobile/ios/foundation/NSCoder.java
+crossmobile/ios/foundation/NSData.java
+crossmobile/ios/foundation/NSDataBase64DecodingOptions.java
+crossmobile/ios/foundation/NSDataBase64EncodingOptions.java
+crossmobile/ios/foundation/NSDate.java
+crossmobile/ios/foundation/NSDateComponents.java
+crossmobile/ios/foundation/NSDictionary.java
+crossmobile/ios/foundation/NSError.java
+crossmobile/ios/foundation/NSExtensionContext.java
+crossmobile/ios/foundation/NSExtensionItem.java
+crossmobile/ios/foundation/NSFileHandle.java
+crossmobile/ios/foundation/NSFileManager.java
+crossmobile/ios/foundation/NSHTTPCookie.java
+crossmobile/ios/foundation/NSHTTPCookieAcceptPolicy.java
+crossmobile/ios/foundation/NSHTTPCookieStorage.java
+crossmobile/ios/foundation/NSHTTPURLResponse.java
+crossmobile/ios/foundation/NSIndexPath.java
+crossmobile/ios/foundation/NSItemProvider.java
+crossmobile/ios/foundation/NSItemProviderCompletionHandler.java
+crossmobile/ios/foundation/NSItemProviderLoadHandler.java
+crossmobile/ios/foundation/NSJSONReadingOptions.java
+crossmobile/ios/foundation/NSJSONSerialization.java
+crossmobile/ios/foundation/NSJSONWritingOptions.java
+crossmobile/ios/foundation/NSKeyValueChangeKey.java
+crossmobile/ios/foundation/NSKeyValueObservingOptions.java
+crossmobile/ios/foundation/NSLineBreakMode.java
+crossmobile/ios/foundation/NSLocale.java
+crossmobile/ios/foundation/NSMutableData.java
+crossmobile/ios/foundation/NSMutableURLRequest.java
+crossmobile/ios/foundation/NSNotification.java
+crossmobile/ios/foundation/NSNotificationCenter.java
+crossmobile/ios/foundation/NSNotificationName.java
+crossmobile/ios/foundation/NSNumberFormatter.java
+crossmobile/ios/foundation/NSNumberFormatterStyle.java
+crossmobile/ios/foundation/NSObject.java
+crossmobile/ios/foundation/NSOperationQueue.java
+crossmobile/ios/foundation/NSOrdered.java
+crossmobile/ios/foundation/NSPredicate.java
+crossmobile/ios/foundation/NSRange.java
+crossmobile/ios/foundation/NSRunLoop.java
+crossmobile/ios/foundation/NSRunLoopMode.java
+crossmobile/ios/foundation/NSSearchPathDirectory.java
+crossmobile/ios/foundation/NSSearchPathDomainMask.java
+crossmobile/ios/foundation/NSSecureCoding.java
+crossmobile/ios/foundation/NSSelector.java
+crossmobile/ios/foundation/NSString.java
+crossmobile/ios/foundation/NSStringCompareOptions.java
+crossmobile/ios/foundation/NSStringEncoding.java
+crossmobile/ios/foundation/NSTimeZone.java
+crossmobile/ios/foundation/NSTimer.java
+crossmobile/ios/foundation/NSTimerDelegate.java
+crossmobile/ios/foundation/NSURL.java
+crossmobile/ios/foundation/NSURLCache.java
+crossmobile/ios/foundation/NSURLConnection.java
+crossmobile/ios/foundation/NSURLConnectionDataDelegate.java
+crossmobile/ios/foundation/NSURLConnectionDelegate.java
+crossmobile/ios/foundation/NSURLRequest.java
+crossmobile/ios/foundation/NSURLRequestCachePolicy.java
+crossmobile/ios/foundation/NSURLResponse.java
+crossmobile/ios/foundation/NSURLSession.java
+crossmobile/ios/foundation/NSURLSessionAuthChallengeDisposition.java
+crossmobile/ios/foundation/NSURLSessionConfiguration.java
+crossmobile/ios/foundation/NSURLSessionDataTask.java
+crossmobile/ios/foundation/NSURLSessionDelegate.java
+crossmobile/ios/foundation/NSURLSessionDownloadTask.java
+crossmobile/ios/foundation/NSURLSessionStreamTask.java
+crossmobile/ios/foundation/NSURLSessionTask.java
+crossmobile/ios/foundation/NSURLSessionTaskPriority.java
+crossmobile/ios/foundation/NSURLSessionTaskState.java
+crossmobile/ios/foundation/NSURLSessionUploadTask.java
+crossmobile/ios/foundation/NSUUID.java
+crossmobile/ios/foundation/NSUserDefaults.java
+crossmobile/ios/foundation/NSXMLParser.java
+crossmobile/ios/foundation/NSXMLParserDelegate.java
+crossmobile/ios/foundation/package-info.java
+crossmobile/ios/mobilecoreservices/UTType.java
+crossmobile/ios/quartzcore/CAAction.java
+crossmobile/ios/quartzcore/CAAnimation.java
+crossmobile/ios/quartzcore/CALayer.java
+crossmobile/ios/quartzcore/CAMediaTiming.java
+crossmobile/ios/quartzcore/CATransition.java
+crossmobile/ios/quartzcore/package-info.java
+crossmobile/ios/uikit/$uikit.java
+crossmobile/ios/uikit/NSLayoutAnchor.java
+crossmobile/ios/uikit/NSLayoutAttribute.java
+crossmobile/ios/uikit/NSLayoutConstraint.java
+crossmobile/ios/uikit/NSLayoutDimension.java
+crossmobile/ios/uikit/NSLayoutFormatOptions.java
+crossmobile/ios/uikit/NSLayoutRelation.java
+crossmobile/ios/uikit/NSLayoutXAxisAnchor.java
+crossmobile/ios/uikit/NSLayoutYAxisAnchor.java
+crossmobile/ios/uikit/NSTextAlignment.java
+crossmobile/ios/uikit/UIAcceleration.java
+crossmobile/ios/uikit/UIAccelerometer.java
+crossmobile/ios/uikit/UIAccelerometerDelegate.java
+crossmobile/ios/uikit/UIAccessibilityIdentification.java
+crossmobile/ios/uikit/UIActionSheet.java
+crossmobile/ios/uikit/UIActionSheetDelegate.java
+crossmobile/ios/uikit/UIActivity.java
+crossmobile/ios/uikit/UIActivityCategory.java
+crossmobile/ios/uikit/UIActivityIndicatorView.java
+crossmobile/ios/uikit/UIActivityIndicatorViewStyle.java
+crossmobile/ios/uikit/UIActivityType.java
+crossmobile/ios/uikit/UIActivityViewController.java
+crossmobile/ios/uikit/UIActivityViewControllerCompletionHandler.java
+crossmobile/ios/uikit/UIActivityViewControllerCompletionWithItemsHandler.java
+crossmobile/ios/uikit/UIAlertAction.java
+crossmobile/ios/uikit/UIAlertActionStyle.java
+crossmobile/ios/uikit/UIAlertController.java
+crossmobile/ios/uikit/UIAlertControllerStyle.java
+crossmobile/ios/uikit/UIAlertView.java
+crossmobile/ios/uikit/UIAlertViewDelegate.java
+crossmobile/ios/uikit/UIAlertViewStyle.java
+crossmobile/ios/uikit/UIAppearance.java
+crossmobile/ios/uikit/UIAppearanceContainer.java
+crossmobile/ios/uikit/UIApplication.java
+crossmobile/ios/uikit/UIApplicationDelegate.java
+crossmobile/ios/uikit/UIApplicationLaunchOptionsKey.java
+crossmobile/ios/uikit/UIApplicationState.java
+crossmobile/ios/uikit/UIBackgroundFetchResult.java
+crossmobile/ios/uikit/UIBarButtonItem.java
+crossmobile/ios/uikit/UIBarButtonItemStyle.java
+crossmobile/ios/uikit/UIBarButtonSystemItem.java
+crossmobile/ios/uikit/UIBarItem.java
+crossmobile/ios/uikit/UIBarStyle.java
+crossmobile/ios/uikit/UIBaselineAdjustment.java
+crossmobile/ios/uikit/UIButton.java
+crossmobile/ios/uikit/UIButtonType.java
+crossmobile/ios/uikit/UIColor.java
+crossmobile/ios/uikit/UIControl.java
+crossmobile/ios/uikit/UIControlContentHorizontalAlignment.java
+crossmobile/ios/uikit/UIControlContentVerticalAlignment.java
+crossmobile/ios/uikit/UIControlDelegate.java
+crossmobile/ios/uikit/UIControlEvents.java
+crossmobile/ios/uikit/UIControlState.java
+crossmobile/ios/uikit/UIDataDetectorTypes.java
+crossmobile/ios/uikit/UIDatePicker.java
+crossmobile/ios/uikit/UIDatePickerMode.java
+crossmobile/ios/uikit/UIDevice.java
+crossmobile/ios/uikit/UIDeviceBatteryState.java
+crossmobile/ios/uikit/UIDeviceOrientation.java
+crossmobile/ios/uikit/UIEdgeInsets.java
+crossmobile/ios/uikit/UIEvent.java
+crossmobile/ios/uikit/UIEventSubtype.java
+crossmobile/ios/uikit/UIEventType.java
+crossmobile/ios/uikit/UIFont.java
+crossmobile/ios/uikit/UIGestureRecognizer.java
+crossmobile/ios/uikit/UIGestureRecognizerDelegate.java
+crossmobile/ios/uikit/UIGestureRecognizerState.java
+crossmobile/ios/uikit/UIGraphics.java
+crossmobile/ios/uikit/UIImage.java
+crossmobile/ios/uikit/UIImageOrientation.java
+crossmobile/ios/uikit/UIImageRenderingMode.java
+crossmobile/ios/uikit/UIImageResizingMode.java
+crossmobile/ios/uikit/UIImageView.java
+crossmobile/ios/uikit/UIImageWriteToPhotoAlbumHandler.java
+crossmobile/ios/uikit/UIInterfaceOrientation.java
+crossmobile/ios/uikit/UIInterfaceOrientationMask.java
+crossmobile/ios/uikit/UIKeyboardAppearance.java
+crossmobile/ios/uikit/UIKeyboardType.java
+crossmobile/ios/uikit/UILabel.java
+crossmobile/ios/uikit/UILayoutConstraintAxis.java
+crossmobile/ios/uikit/UILayoutGuide.java
+crossmobile/ios/uikit/UILayoutPriority.java
+crossmobile/ios/uikit/UILayoutSupport.java
+crossmobile/ios/uikit/UILocalNotification.java
+crossmobile/ios/uikit/UILongPressGestureRecognizer.java
+crossmobile/ios/uikit/UIModalPresentationStyle.java
+crossmobile/ios/uikit/UIModalTransitionStyle.java
+crossmobile/ios/uikit/UINavigationBar.java
+crossmobile/ios/uikit/UINavigationBarDelegate.java
+crossmobile/ios/uikit/UINavigationController.java
+crossmobile/ios/uikit/UINavigationControllerDelegate.java
+crossmobile/ios/uikit/UINavigationItem.java
+crossmobile/ios/uikit/UINib.java
+crossmobile/ios/uikit/UIOffset.java
+crossmobile/ios/uikit/UIPageControl.java
+crossmobile/ios/uikit/UIPanGestureRecognizer.java
+crossmobile/ios/uikit/UIPickerView.java
+crossmobile/ios/uikit/UIPickerViewDataSource.java
+crossmobile/ios/uikit/UIPickerViewDelegate.java
+crossmobile/ios/uikit/UIPinchGestureRecognizer.java
+crossmobile/ios/uikit/UIPopoverArrowDirection.java
+crossmobile/ios/uikit/UIPopoverController.java
+crossmobile/ios/uikit/UIPopoverControllerDelegate.java
+crossmobile/ios/uikit/UIPrintInteractionCompletionHandler.java
+crossmobile/ios/uikit/UIPrintInteractionController.java
+crossmobile/ios/uikit/UIProgressView.java
+crossmobile/ios/uikit/UIProgressViewStyle.java
+crossmobile/ios/uikit/UIRectEdge.java
+crossmobile/ios/uikit/UIRemoteNotificationType.java
+crossmobile/ios/uikit/UIResponder.java
+crossmobile/ios/uikit/UIReturnKeyType.java
+crossmobile/ios/uikit/UIRotationGestureRecognizer.java
+crossmobile/ios/uikit/UIScreen.java
+crossmobile/ios/uikit/UIScrollView.java
+crossmobile/ios/uikit/UIScrollViewDecelerationRate.java
+crossmobile/ios/uikit/UIScrollViewDelegate.java
+crossmobile/ios/uikit/UIScrollViewIndicatorStyle.java
+crossmobile/ios/uikit/UISearchBar.java
+crossmobile/ios/uikit/UISearchBarDelegate.java
+crossmobile/ios/uikit/UISearchBarIcon.java
+crossmobile/ios/uikit/UISearchBarStyle.java
+crossmobile/ios/uikit/UISegmentedControl.java
+crossmobile/ios/uikit/UISegmentedControlStyle.java
+crossmobile/ios/uikit/UISlider.java
+crossmobile/ios/uikit/UISplitViewController.java
+crossmobile/ios/uikit/UISplitViewControllerDelegate.java
+crossmobile/ios/uikit/UISplitViewControllerDisplayMode.java
+crossmobile/ios/uikit/UIStackView.java
+crossmobile/ios/uikit/UIStackViewAlignment.java
+crossmobile/ios/uikit/UIStackViewDistribution.java
+crossmobile/ios/uikit/UIStatusBarStyle.java
+crossmobile/ios/uikit/UIStepper.java
+crossmobile/ios/uikit/UIStoryboard.java
+crossmobile/ios/uikit/UIStoryboardSegue.java
+crossmobile/ios/uikit/UIStoryboardUnwindSegueSource.java
+crossmobile/ios/uikit/UISwipeGestureRecognizer.java
+crossmobile/ios/uikit/UISwipeGestureRecognizerDirection.java
+crossmobile/ios/uikit/UISwitch.java
+crossmobile/ios/uikit/UITabBar.java
+crossmobile/ios/uikit/UITabBarController.java
+crossmobile/ios/uikit/UITabBarControllerDelegate.java
+crossmobile/ios/uikit/UITabBarDelegate.java
+crossmobile/ios/uikit/UITabBarItem.java
+crossmobile/ios/uikit/UITabBarItemPositioning.java
+crossmobile/ios/uikit/UITableView.java
+crossmobile/ios/uikit/UITableViewCell.java
+crossmobile/ios/uikit/UITableViewCellAccessoryType.java
+crossmobile/ios/uikit/UITableViewCellEditingStyle.java
+crossmobile/ios/uikit/UITableViewCellSelectionStyle.java
+crossmobile/ios/uikit/UITableViewCellSeparatorStyle.java
+crossmobile/ios/uikit/UITableViewCellStyle.java
+crossmobile/ios/uikit/UITableViewController.java
+crossmobile/ios/uikit/UITableViewDataSource.java
+crossmobile/ios/uikit/UITableViewDelegate.java
+crossmobile/ios/uikit/UITableViewRowAnimation.java
+crossmobile/ios/uikit/UITableViewScrollPosition.java
+crossmobile/ios/uikit/UITableViewStyle.java
+crossmobile/ios/uikit/UITapGestureRecognizer.java
+crossmobile/ios/uikit/UITextAlignment.java
+crossmobile/ios/uikit/UITextAttribute.java
+crossmobile/ios/uikit/UITextAutocapitalizationType.java
+crossmobile/ios/uikit/UITextAutocorrectionType.java
+crossmobile/ios/uikit/UITextBorderStyle.java
+crossmobile/ios/uikit/UITextContentType.java
+crossmobile/ios/uikit/UITextField.java
+crossmobile/ios/uikit/UITextFieldDelegate.java
+crossmobile/ios/uikit/UITextInputTraits.java
+crossmobile/ios/uikit/UITextSmartDashesType.java
+crossmobile/ios/uikit/UITextSmartInsertDeleteType.java
+crossmobile/ios/uikit/UITextSmartQuotesType.java
+crossmobile/ios/uikit/UITextSpellCheckingType.java
+crossmobile/ios/uikit/UITextView.java
+crossmobile/ios/uikit/UITextViewDelegate.java
+crossmobile/ios/uikit/UIToolbar.java
+crossmobile/ios/uikit/UITouch.java
+crossmobile/ios/uikit/UITouchPhase.java
+crossmobile/ios/uikit/UIUserInterfaceIdiom.java
+crossmobile/ios/uikit/UIUserInterfaceLayoutDirection.java
+crossmobile/ios/uikit/UIUserNotificationSettings.java
+crossmobile/ios/uikit/UIView.java
+crossmobile/ios/uikit/UIViewAnimationCurve.java
+crossmobile/ios/uikit/UIViewAnimationOptions.java
+crossmobile/ios/uikit/UIViewAnimationTransition.java
+crossmobile/ios/uikit/UIViewAutoresizing.java
+crossmobile/ios/uikit/UIViewContentMode.java
+crossmobile/ios/uikit/UIViewController.java
+crossmobile/ios/uikit/UIViewTintAdjustmentMode.java
+crossmobile/ios/uikit/UIWebView.java
+crossmobile/ios/uikit/UIWebViewDelegate.java
+crossmobile/ios/uikit/UIWebViewNavigationType.java
+crossmobile/ios/uikit/UIWindow.java
+crossmobile/ios/uikit/cmAnimation.java
+crossmobile/ios/uikit/cmButtonStates.java
+crossmobile/ios/uikit/cmCells.java
+crossmobile/ios/uikit/cmConstraintWithVisualFormat.java
+crossmobile/ios/uikit/cmConstraints.java
+crossmobile/ios/uikit/cmDatePickers.java
+crossmobile/ios/uikit/cmEventDispatcher.java
+crossmobile/ios/uikit/cmPickerView.java
+crossmobile/ios/uikit/cmPickers.java
+crossmobile/ios/uikit/cmPrivateEvent.java
+crossmobile/ios/uikit/package-info.java
+crossmobile/package-info.java
+javazoom/jl/package-info.java
+org/crossmobile/backend/android/ActivityLifecycleListener.java
+org/crossmobile/backend/android/ActivityPermissionListener.java
+org/crossmobile/backend/android/ActivityResultListener.java
+org/crossmobile/backend/android/ActivityStateListener.java
+org/crossmobile/backend/android/AndroidBitmap.java
+org/crossmobile/backend/android/AndroidDrawableMetrics.java
+org/crossmobile/backend/android/AndroidFileBridge.java
+org/crossmobile/backend/android/AndroidFont.java
+org/crossmobile/backend/android/AndroidGraphicsBridge.java
+org/crossmobile/backend/android/AndroidGraphicsContext.java
+org/crossmobile/backend/android/AndroidImageBridge.java
+org/crossmobile/backend/android/AndroidInputConnection.java
+org/crossmobile/backend/android/AndroidLifecycleBridge.java
+org/crossmobile/backend/android/AndroidNativeDispatcher.java
+org/crossmobile/backend/android/AndroidNativePath.java
+org/crossmobile/backend/android/AndroidNetworkBridge.java
+org/crossmobile/backend/android/AndroidPermission.java
+org/crossmobile/backend/android/AndroidPermissions.java
+org/crossmobile/backend/android/AndroidShareBridge.java
+org/crossmobile/backend/android/AndroidSoundBridge.java
+org/crossmobile/backend/android/AndroidSoundPlayer.java
+org/crossmobile/backend/android/AndroidSystemBridge.java
+org/crossmobile/backend/android/AndroidTextWidget.java
+org/crossmobile/backend/android/AndroidTextWrapper.java
+org/crossmobile/backend/android/AndroidUIGuidelinesBridge.java
+org/crossmobile/backend/android/AndroidWebWrapper.java
+org/crossmobile/backend/android/AndroidWrapperBridge.java
+org/crossmobile/backend/android/ApplicationStateListener.java
+org/crossmobile/backend/android/MainActivity.java
+org/crossmobile/backend/android/MainApplication.java
+org/crossmobile/backend/android/MainView.java
+org/crossmobile/backend/android/NativeAndroid.java
+org/crossmobile/backend/android/OrientationManager.java
+org/crossmobile/backend/android/StatusBarListener.java
+org/crossmobile/backend/android/package-info.java
+org/crossmobile/backend/android/web/VideoEnabledWebChromeClient.java
+org/crossmobile/backend/android/web/VideoEnabledWebView.java
+org/crossmobile/backend/desktop/CArea.java
+org/crossmobile/backend/desktop/CButton.java
+org/crossmobile/backend/desktop/CClickable.java
+org/crossmobile/backend/desktop/CDrawable.java
+org/crossmobile/backend/desktop/CEvent.java
+org/crossmobile/backend/desktop/CEventCallback.java
+org/crossmobile/backend/desktop/CPoint.java
+org/crossmobile/backend/desktop/CScreen.java
+org/crossmobile/backend/desktop/Chassis.java
+org/crossmobile/backend/desktop/DesktopArguments.java
+org/crossmobile/backend/desktop/DesktopDrawableMetrics.java
+org/crossmobile/backend/desktop/DesktopFileBridge.java
+org/crossmobile/backend/desktop/DesktopGraphicsBridge.java
+org/crossmobile/backend/desktop/DesktopImageBridge.java
+org/crossmobile/backend/desktop/DesktopInAppBridge.java
+org/crossmobile/backend/desktop/DesktopLifecycleBridge.java
+org/crossmobile/backend/desktop/DesktopLocation.java
+org/crossmobile/backend/desktop/DesktopMessageBridge.java
+org/crossmobile/backend/desktop/DesktopNetworkBridge.java
+org/crossmobile/backend/desktop/DesktopNotificationsBridge.java
+org/crossmobile/backend/desktop/DesktopSecurityBridge.java
+org/crossmobile/backend/desktop/DesktopSoundBridge.java
+org/crossmobile/backend/desktop/DesktopSystemBridge.java
+org/crossmobile/backend/desktop/DesktopUIGuidelinesBridge.java
+org/crossmobile/backend/desktop/KeyboardSupport.java
+org/crossmobile/backend/desktop/NativeDesktop.java
+org/crossmobile/backend/desktop/OperatingSystem.java
+org/crossmobile/backend/desktop/Size.java
+org/crossmobile/backend/desktop/cat/ApplicationCatalogue.java
+org/crossmobile/backend/desktop/cat/ApplicationPresentation.form
+org/crossmobile/backend/desktop/cat/ApplicationPresentation.java
+org/crossmobile/backend/desktop/cat/IconHolder.java
+org/crossmobile/backend/desktop/cat/IconSelectionListener.java
+org/crossmobile/backend/desktop/cat/MobileApp.java
+org/crossmobile/backend/desktop/package-info.java
+org/crossmobile/backend/ios/NativeIOS.java
+org/crossmobile/backend/ios/package-info.java
+org/crossmobile/backend/package-info.java
+org/crossmobile/backend/robovm/RoboVMConverters.java
+org/crossmobile/backend/swing/AboutDialog.form
+org/crossmobile/backend/swing/AboutDialog.java
+org/crossmobile/backend/swing/JEmulatorFrame.java
+org/crossmobile/backend/swing/JEmulatorPanel.java
+org/crossmobile/backend/swing/NativeSwing.java
+org/crossmobile/backend/swing/SwingBitmap.java
+org/crossmobile/backend/swing/SwingDrawableMetrics.java
+org/crossmobile/backend/swing/SwingFont.java
+org/crossmobile/backend/swing/SwingGraphicsBridge.java
+org/crossmobile/backend/swing/SwingGraphicsContext.java
+org/crossmobile/backend/swing/SwingImageBridge.java
+org/crossmobile/backend/swing/SwingLifecycleBridge.java
+org/crossmobile/backend/swing/SwingNativeDispatcher.java
+org/crossmobile/backend/swing/SwingNativePath.java
+org/crossmobile/backend/swing/SwingSystemBridge.java
+org/crossmobile/backend/swing/SwingTextFieldWrapper.java
+org/crossmobile/backend/swing/SwingTextViewWrapper.java
+org/crossmobile/backend/swing/SwingWebWrapper.java
+org/crossmobile/backend/swing/SwingWrapperBridge.java
+org/crossmobile/backend/swing/SwingWrapperClickConsumer.java
+org/crossmobile/backend/swing/package-info.java
+org/crossmobile/bind/graphics/AbstractGraphicsBridge.java
+org/crossmobile/bind/graphics/AbstractImageBridge.java
+org/crossmobile/bind/graphics/AppearanceRegistry.java
+org/crossmobile/bind/graphics/DrawableMetrics.java
+org/crossmobile/bind/graphics/Geometry.java
+org/crossmobile/bind/graphics/GraphicsBridgeConstants.java
+org/crossmobile/bind/graphics/GraphicsContext.java
+org/crossmobile/bind/graphics/ImageBridgeConstants.java
+org/crossmobile/bind/graphics/Insets.java
+org/crossmobile/bind/graphics/NativeBitmap.java
+org/crossmobile/bind/graphics/NativeFont.java
+org/crossmobile/bind/graphics/NativePath.java
+org/crossmobile/bind/graphics/TextHelpers.java
+org/crossmobile/bind/graphics/Theme.java
+org/crossmobile/bind/graphics/UIStatusBar.java
+org/crossmobile/bind/graphics/curve/EaseInCurve.java
+org/crossmobile/bind/graphics/curve/EaseInOutCurve.java
+org/crossmobile/bind/graphics/curve/EaseOutCurve.java
+org/crossmobile/bind/graphics/curve/InterpolationCurve.java
+org/crossmobile/bind/graphics/curve/LinearCurve.java
+org/crossmobile/bind/io/AbstractFileBridge.java
+org/crossmobile/bind/io/AbstractNetworkBridge.java
+org/crossmobile/bind/io/AdsBridge.java
+org/crossmobile/bind/io/AdsDummyBridge.java
+org/crossmobile/bind/io/FileBridgeConstants.java
+org/crossmobile/bind/io/GenericSocialBridge.java
+org/crossmobile/bind/io/InAppBridgeExt.java
+org/crossmobile/bind/io/MailAttachment.java
+org/crossmobile/bind/io/NativeCookieManager.java
+org/crossmobile/bind/io/SoundDelegate.java
+org/crossmobile/bind/io/SoundPlayer.java
+org/crossmobile/bind/package-info.java
+org/crossmobile/bind/system/AbstractLifecycleBridge.java
+org/crossmobile/bind/system/AbstractLocationBridge.java
+org/crossmobile/bind/system/AppConstants.java
+org/crossmobile/bind/system/BitField.java
+org/crossmobile/bind/system/Core.java
+org/crossmobile/bind/system/Debug.java
+org/crossmobile/bind/system/Predicate.java
+org/crossmobile/bind/system/Promise.java
+org/crossmobile/bind/system/Recycler.java
+org/crossmobile/bind/system/SystemBridgeExt.java
+org/crossmobile/bind/system/SystemUtilities.java
+org/crossmobile/bind/system/Ticker.java
+org/crossmobile/bind/system/TickerConsumer.java
+org/crossmobile/bind/system/VelocityFilter.java
+org/crossmobile/bind/system/i18n/I18NBridge.java
+org/crossmobile/bind/system/i18n/I18NSelf.java
+org/crossmobile/bind/system/i18n/I18NTest.java
+org/crossmobile/bind/wrapper/MapViewWrapper.java
+org/crossmobile/bind/wrapper/NativeDispatcher.java
+org/crossmobile/bind/wrapper/NativeTouch.java
+org/crossmobile/bind/wrapper/NativeWrapper.java
+org/crossmobile/bind/wrapper/TextWrapper.java
+org/crossmobile/bind/wrapper/WebWrapper.java
+org/crossmobile/bind/wrapper/WidgetWrapper.java
+org/crossmobile/bridge/CustomNotifications.java
+org/crossmobile/bridge/FileBridge.java
+org/crossmobile/bridge/GraphicsBridge.java
+org/crossmobile/bridge/ImageBridge.java
+org/crossmobile/bridge/InAppBridge.java
+org/crossmobile/bridge/LifecycleBridge.java
+org/crossmobile/bridge/LocationBridge.java
+org/crossmobile/bridge/MessageBridge.java
+org/crossmobile/bridge/Native.java
+org/crossmobile/bridge/NetworkBridge.java
+org/crossmobile/bridge/NotificationBridge.java
+org/crossmobile/bridge/SecurityBridge.java
+org/crossmobile/bridge/ShareBridge.java
+org/crossmobile/bridge/SocialBridge.java
+org/crossmobile/bridge/SoundBridge.java
+org/crossmobile/bridge/SystemBridge.java
+org/crossmobile/bridge/UIGuidelinesBridge.java
+org/crossmobile/bridge/WrapperBridge.java
+org/crossmobile/bridge/WrapperMapBridge.java
+org/crossmobile/bridge/package-info.java
+org/crossmobile/bridge/resolver/AndroidBridgeResolver.java
+org/crossmobile/bridge/resolver/ForeignResolver.java
+org/crossmobile/bridge/resolver/SwingBridgeResolver.java
+org/crossmobile/bridge/resolver/package-info.java
+org/crossmobile/build/StoryBoardBinder.java
+org/crossmobile/build/package-info.java
+org/crossmobile/support/CookieManagerProxy.java
+org/crossmobile/support/MiGBase64.java
+org/crossmobile/support/cassowary/CL.java
+org/crossmobile/support/cassowary/CLException.java
+org/crossmobile/support/cassowary/CLInternalError.java
+org/crossmobile/support/cassowary/ClAbstractVariable.java
+org/crossmobile/support/cassowary/ClDouble.java
+org/crossmobile/support/cassowary/ClDummyVariable.java
+org/crossmobile/support/cassowary/ClEditInfo.java
+org/crossmobile/support/cassowary/ClLinearExpression.java
+org/crossmobile/support/cassowary/ClObjectiveVariable.java
+org/crossmobile/support/cassowary/ClPoint.java
+org/crossmobile/support/cassowary/ClSimplexSolver.java
+org/crossmobile/support/cassowary/ClSlackVariable.java
+org/crossmobile/support/cassowary/ClStrength.java
+org/crossmobile/support/cassowary/ClSymbolicWeight.java
+org/crossmobile/support/cassowary/ClTableau.java
+org/crossmobile/support/cassowary/ClVariable.java
+org/crossmobile/support/cassowary/ConstraintNotFoundException.java
+org/crossmobile/support/cassowary/NonlinearExpressionException.java
+org/crossmobile/support/cassowary/NotEnoughStaysException.java
+org/crossmobile/support/cassowary/RequiredConstraintFailureException.java
+org/crossmobile/support/cassowary/Timer.java
+org/crossmobile/support/cassowary/TooDifficultException.java
+org/crossmobile/support/cassowary/clconstraint/ClConstraint.java
+org/crossmobile/support/cassowary/clconstraint/ClEditConstraint.java
+org/crossmobile/support/cassowary/clconstraint/ClEditOrStayConstraint.java
+org/crossmobile/support/cassowary/clconstraint/ClLinearConstraint.java
+org/crossmobile/support/cassowary/clconstraint/ClLinearEquation.java
+org/crossmobile/support/cassowary/clconstraint/ClLinearInequality.java
+org/crossmobile/support/cassowary/clconstraint/ClStayConstraint.java
+org/crossmobile/support/cassowary/util/IdentityHashDoubleMap.java
+org/crossmobile/support/cassowary/util/IdentityHashSet.java
+org/crossmobile/support/package-info.java
 
 Creating file cmplugin-ios-cmioslayer-<VERSION>.jar
 com/eclipsesource/json/Json$DefaultHandler.class v1.5
@@ -3459,6 +4085,46 @@ crossmobile/ios/mapkit/package-info.class v8
 Creating file cmplugin-builddep-cmlocation-<VERSION>.jar
 
 
+Creating file cmplugin-cmlocation-<VERSION>-sources.jar
+crossmobile/ios/corelocation/CLDeviceOrientation.java
+crossmobile/ios/corelocation/CLDistanceFilter.java
+crossmobile/ios/corelocation/CLHeading.java
+crossmobile/ios/corelocation/CLHeadingFilter.java
+crossmobile/ios/corelocation/CLLocation.java
+crossmobile/ios/corelocation/CLLocationAccuracy.java
+crossmobile/ios/corelocation/CLLocationCoordinate2D.java
+crossmobile/ios/corelocation/CLLocationManager.java
+crossmobile/ios/corelocation/CLLocationManagerDelegate.java
+crossmobile/ios/corelocation/CLPlacemark.java
+crossmobile/ios/corelocation/CLRegion.java
+crossmobile/ios/corelocation/package-info.java
+crossmobile/ios/mapkit/MKAnnotation.java
+crossmobile/ios/mapkit/MKAnnotationView.java
+crossmobile/ios/mapkit/MKAnnotationViewDragState.java
+crossmobile/ios/mapkit/MKCoordinateRegion.java
+crossmobile/ios/mapkit/MKCoordinateSpan.java
+crossmobile/ios/mapkit/MKMapPoint.java
+crossmobile/ios/mapkit/MKMapRect.java
+crossmobile/ios/mapkit/MKMapSize.java
+crossmobile/ios/mapkit/MKMapType.java
+crossmobile/ios/mapkit/MKMapView.java
+crossmobile/ios/mapkit/MKMapViewDelegate.java
+crossmobile/ios/mapkit/MKOverlay.java
+crossmobile/ios/mapkit/MKOverlayView.java
+crossmobile/ios/mapkit/MKPinAnnotationColor.java
+crossmobile/ios/mapkit/MKPinAnnotationView.java
+crossmobile/ios/mapkit/MKPlacemark.java
+crossmobile/ios/mapkit/MKReverseGeocoder.java
+crossmobile/ios/mapkit/MKReverseGeocoderDelegate.java
+crossmobile/ios/mapkit/MKUserLocation.java
+crossmobile/ios/mapkit/MKUserLocationView.java
+crossmobile/ios/mapkit/package-info.java
+org/crossmobile/backend/android/AndroidLocation.java
+org/crossmobile/backend/android/AndroidMapViewWrapper.java
+org/crossmobile/backend/android/AndroidWrapperMapBridge.java
+org/crossmobile/backend/swing/SwingMapViewWrapper.java
+org/crossmobile/backend/swing/SwingWrapperMapBridge.java
+
 Creating file cmplugin-ios-cmlocation-<VERSION>.jar
 crossmobile/ios/corelocation/CLDeviceOrientation.class v8
 crossmobile/ios/corelocation/CLDistanceFilter.class v8
@@ -3629,6 +4295,20 @@ crossmobile/ios/mediaplayer/package-info.class v8
 Creating file cmplugin-builddep-cmmedia-<VERSION>.jar
 
 
+Creating file cmplugin-cmmedia-<VERSION>-sources.jar
+crossmobile/ios/audiotoolbox/AudioServices.java
+crossmobile/ios/audiotoolbox/SystemSoundID.java
+crossmobile/ios/audiotoolbox/package-info.java
+crossmobile/ios/avfoundation/AVAudioPlayer.java
+crossmobile/ios/avfoundation/AVAudioPlayerDelegate.java
+crossmobile/ios/avfoundation/package-info.java
+crossmobile/ios/mediaplayer/MPMovieControlMode.java
+crossmobile/ios/mediaplayer/MPMoviePlayerController.java
+crossmobile/ios/mediaplayer/MPMoviePlayerViewController.java
+crossmobile/ios/mediaplayer/MPMovieScalingMode.java
+crossmobile/ios/mediaplayer/MPVolumeView.java
+crossmobile/ios/mediaplayer/package-info.java
+
 Creating file cmplugin-ios-cmmedia-<VERSION>.jar
 crossmobile/ios/audiotoolbox/AudioServices.class v8
 crossmobile/ios/audiotoolbox/SystemSoundID.class v8
@@ -3697,6 +4377,16 @@ crossmobile/ios/messageui/package-info.class v8
 
 Creating file cmplugin-builddep-cmmessages-<VERSION>.jar
 
+
+Creating file cmplugin-cmmessages-<VERSION>-sources.jar
+crossmobile/ios/messageui/MFMailComposeResult.java
+crossmobile/ios/messageui/MFMailComposeViewController.java
+crossmobile/ios/messageui/MFMailComposeViewControllerDelegate.java
+crossmobile/ios/messageui/MFMessageComposeViewController.java
+crossmobile/ios/messageui/MFMessageComposeViewControllerDelegate.java
+crossmobile/ios/messageui/MessageComposeResult.java
+crossmobile/ios/messageui/package-info.java
+org/crossmobile/backend/android/AndroidMessageBridge.java
 
 Creating file cmplugin-ios-cmmessages-<VERSION>.jar
 crossmobile/ios/messageui/MFMailComposeResult.class v8
@@ -3777,6 +4467,48 @@ crossmobile/ios/usernotifications/package-info.class v8
 
 Creating file cmplugin-builddep-cmnotifications-<VERSION>.jar
 
+
+Creating file cmplugin-cmnotifications-<VERSION>-sources.jar
+crossmobile/ios/uikit/UIMutableUserNotificationAction.java
+crossmobile/ios/uikit/UIMutableUserNotificationCategory.java
+crossmobile/ios/uikit/UIUserNotificationAction.java
+crossmobile/ios/uikit/UIUserNotificationActionBehavior.java
+crossmobile/ios/uikit/UIUserNotificationActionContext.java
+crossmobile/ios/uikit/UIUserNotificationActivationMode.java
+crossmobile/ios/uikit/UIUserNotificationCategory.java
+crossmobile/ios/uikit/UIUserNotificationType.java
+crossmobile/ios/usernotifications/UNAlertStyle.java
+crossmobile/ios/usernotifications/UNAuthorizationOptions.java
+crossmobile/ios/usernotifications/UNAuthorizationStatus.java
+crossmobile/ios/usernotifications/UNCalendarNotificationTrigger.java
+crossmobile/ios/usernotifications/UNErrorCode.java
+crossmobile/ios/usernotifications/UNLocationNotificationTrigger.java
+crossmobile/ios/usernotifications/UNMutableNotificationContent.java
+crossmobile/ios/usernotifications/UNNotification.java
+crossmobile/ios/usernotifications/UNNotificationAction.java
+crossmobile/ios/usernotifications/UNNotificationActionOptions.java
+crossmobile/ios/usernotifications/UNNotificationAttachment.java
+crossmobile/ios/usernotifications/UNNotificationAttachmentOptions.java
+crossmobile/ios/usernotifications/UNNotificationCategory.java
+crossmobile/ios/usernotifications/UNNotificationCategoryOptions.java
+crossmobile/ios/usernotifications/UNNotificationContent.java
+crossmobile/ios/usernotifications/UNNotificationPresentationOptions.java
+crossmobile/ios/usernotifications/UNNotificationRequest.java
+crossmobile/ios/usernotifications/UNNotificationResponse.java
+crossmobile/ios/usernotifications/UNNotificationServiceExtension.java
+crossmobile/ios/usernotifications/UNNotificationSetting.java
+crossmobile/ios/usernotifications/UNNotificationSettings.java
+crossmobile/ios/usernotifications/UNNotificationSound.java
+crossmobile/ios/usernotifications/UNNotificationTrigger.java
+crossmobile/ios/usernotifications/UNPushNotificationTrigger.java
+crossmobile/ios/usernotifications/UNTimeIntervalNotificationTrigger.java
+crossmobile/ios/usernotifications/UNUserNotificationCenter.java
+crossmobile/ios/usernotifications/UNUserNotificationCenterDelegate.java
+crossmobile/ios/usernotifications/package-info.java
+org/crossmobile/backend/android/AndroidNotificationBridge.java
+org/crossmobile/backend/android/notifications/CrossMobileFirebaseMessagingService.java
+org/crossmobile/backend/android/notifications/FirebaseInitializer.java
+org/crossmobile/backend/android/notifications/package-info.java
 
 Creating file cmplugin-ios-cmnotifications-<VERSION>.jar
 crossmobile/ios/uikit/UIMutableUserNotificationAction.class v8
@@ -3946,6 +4678,34 @@ crossmobile/ios/storekit/package-info.class v8
 Creating file cmplugin-builddep-cmpayment-<VERSION>.jar
 
 
+Creating file cmplugin-cmpayment-<VERSION>-sources.jar
+com/android/vending/billing/IInAppBillingService.java
+com/android/vending/billing/package-info.java
+crossmobile/ios/storekit/$storekit.java
+crossmobile/ios/storekit/SKError.java
+crossmobile/ios/storekit/SKMutablePayment.java
+crossmobile/ios/storekit/SKPayment.java
+crossmobile/ios/storekit/SKPaymentQueue.java
+crossmobile/ios/storekit/SKPaymentTransaction.java
+crossmobile/ios/storekit/SKPaymentTransactionObserver.java
+crossmobile/ios/storekit/SKPaymentTransactionState.java
+crossmobile/ios/storekit/SKProduct.java
+crossmobile/ios/storekit/SKProductsRequest.java
+crossmobile/ios/storekit/SKProductsRequestDelegate.java
+crossmobile/ios/storekit/SKProductsResponse.java
+crossmobile/ios/storekit/SKRequest.java
+crossmobile/ios/storekit/SKRequestDelegate.java
+crossmobile/ios/storekit/package-info.java
+org/crossmobile/backend/android/AndroidInAppBridge.java
+org/crossmobile/backend/android/billing/IabException.java
+org/crossmobile/backend/android/billing/IabHelper.java
+org/crossmobile/backend/android/billing/IabResult.java
+org/crossmobile/backend/android/billing/Inventory.java
+org/crossmobile/backend/android/billing/Purchase.java
+org/crossmobile/backend/android/billing/Security.java
+org/crossmobile/backend/android/billing/SkuDetails.java
+org/crossmobile/backend/android/billing/package-info.java
+
 Creating file cmplugin-ios-cmpayment-<VERSION>.jar
 crossmobile/ios/storekit/$storekit.class v8
 crossmobile/ios/storekit/SKError.class v8
@@ -4048,6 +4808,13 @@ crossmobile/ios/quicklook/package-info.class v8
 Creating file cmplugin-builddep-cmquicklook-<VERSION>.jar
 
 
+Creating file cmplugin-cmquicklook-<VERSION>-sources.jar
+crossmobile/ios/quicklook/QLPreviewController.java
+crossmobile/ios/quicklook/QLPreviewControllerDataSource.java
+crossmobile/ios/quicklook/QLPreviewControllerDelegate.java
+crossmobile/ios/quicklook/QLPreviewItem.java
+crossmobile/ios/quicklook/package-info.java
+
 Creating file cmplugin-ios-cmquicklook-<VERSION>.jar
 crossmobile/ios/quicklook/QLPreviewController.class v8
 crossmobile/ios/quicklook/QLPreviewControllerDataSource.class v8
@@ -4092,6 +4859,17 @@ crossmobile/ios/social/package-info.class v8
 
 Creating file cmplugin-builddep-cmsocialbase-<VERSION>.jar
 
+
+Creating file cmplugin-cmsocialbase-<VERSION>-sources.jar
+crossmobile/ios/social/SLComposeServiceViewController.java
+crossmobile/ios/social/SLComposeViewController.java
+crossmobile/ios/social/SLComposeViewControllerCompletionHandler.java
+crossmobile/ios/social/SLComposeViewControllerResult.java
+crossmobile/ios/social/SLRequest.java
+crossmobile/ios/social/SLRequestHandler.java
+crossmobile/ios/social/SLRequestMethod.java
+crossmobile/ios/social/SLServiceType.java
+crossmobile/ios/social/package-info.java
 
 Creating file cmplugin-ios-cmsocialbase-<VERSION>.jar
 crossmobile/ios/social/SLComposeServiceViewController.class v8
@@ -4149,6 +4927,17 @@ crossmobile/ios/touchid/package-info.class v8
 
 Creating file cmplugin-builddep-cmtouchid-<VERSION>.jar
 
+
+Creating file cmplugin-cmtouchid-<VERSION>-sources.jar
+crossmobile/ios/touchid/LAAccessControlOperation.java
+crossmobile/ios/touchid/LABiometryType.java
+crossmobile/ios/touchid/LAContext.java
+crossmobile/ios/touchid/LACredentialType.java
+crossmobile/ios/touchid/LAError.java
+crossmobile/ios/touchid/LAPolicy.java
+crossmobile/ios/touchid/LATouchIDAuthentication.java
+crossmobile/ios/touchid/package-info.java
+org/crossmobile/backend/android/AndroidSecurityBridge.java
 
 Creating file cmplugin-ios-cmtouchid-<VERSION>.jar
 crossmobile/ios/touchid/LAAccessControlOperation.class v8
