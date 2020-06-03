@@ -45,19 +45,14 @@ public class AndroidPermissions {
             if (notGrantedPermissions != null)
                 notGrantedPermissions.invoke(alreadyAsked);
         } else {
-            int reqCode = MainActivity.current.getStateListener().register(new ActivityPermissionListener() {
-                @Override
-                public void result(String[] permissions, int[] grantResults) {
-                    MainActivity.current.getStateListener().unregister(this);
-                    if (permissions == null || grantResults == null || notGrantedPermissions == null)
-                        return;
-                    for (int i = 0; i < permissions.length && i < grantResults.length; i++)
-                        if (grantResults[i] == PackageManager.PERMISSION_GRANTED)
-                            reqPermissions.remove(permissions[i]);
-                    notGrantedPermissions.invoke(reqPermissions);
-                }
-            });
-            ActivityCompat.requestPermissions(MainActivity.current(), reqPermissions.toArray(new String[0]), reqCode);
+            MainActivity.current.getStateListener().request((givenPermissions, grantResults) -> {
+                if (givenPermissions == null || grantResults == null || notGrantedPermissions == null)
+                    return;
+                for (int i = 0; i < givenPermissions.length && i < grantResults.length; i++)
+                    if (grantResults[i] == PackageManager.PERMISSION_GRANTED)
+                        reqPermissions.remove(givenPermissions[i]);
+                notGrantedPermissions.invoke(reqPermissions);
+            }, reqPermissions);
         }
     }
 

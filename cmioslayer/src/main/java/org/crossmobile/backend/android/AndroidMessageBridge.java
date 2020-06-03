@@ -55,16 +55,10 @@ public class AndroidMessageBridge implements MessageBridge {
         smsIntent.putExtra("sms_body", body);
         smsIntent.putExtra("exit_on_sent", true);
 
-        ActivityResultListener activityResult = new ActivityResultListener() {
-            @Override
-            public void result(int resultCode, Intent data) {
-                MainActivity.current.getStateListener().unregister(this);
-                if (controller != null && controller.messageComposeDelegate() != null)
-                    controller.messageComposeDelegate().didFinishWithResult(controller, MessageComposeResult.Sent);
-            }
-        };
-        int reqCode = MainActivity.current.getStateListener().register(activityResult);
-        MainActivity.current.startActivityForResult(smsIntent, reqCode);
+        MainActivity.current.getStateListener().launch((resultCode, data) -> {
+            if (controller != null && controller.messageComposeDelegate() != null)
+                controller.messageComposeDelegate().didFinishWithResult(controller, MessageComposeResult.Sent);
+        }, smsIntent);
         return true;
     }
 }

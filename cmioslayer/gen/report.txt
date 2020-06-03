@@ -3782,7 +3782,6 @@ org/crossmobile/backend/android/AndroidNativePath.class v8
 org/crossmobile/backend/android/AndroidNetworkBridge$1.class v8
 org/crossmobile/backend/android/AndroidNetworkBridge.class v8
 org/crossmobile/backend/android/AndroidPermission.class v8
-org/crossmobile/backend/android/AndroidPermissions$1.class v8
 org/crossmobile/backend/android/AndroidPermissions.class v8
 org/crossmobile/backend/android/AndroidShareBridge.class v8
 org/crossmobile/backend/android/AndroidSoundBridge.class v8
@@ -4419,7 +4418,6 @@ crossmobile/ios/messageui/MFMessageComposeViewController.class v8
 crossmobile/ios/messageui/MFMessageComposeViewControllerDelegate.class v8
 crossmobile/ios/messageui/MessageComposeResult.class v8
 crossmobile/ios/messageui/package-info.class v8
-org/crossmobile/backend/android/AndroidMessageBridge$1.class v8
 org/crossmobile/backend/android/AndroidMessageBridge.class v8
 
 Creating file cmplugin-rvm-cmmessages-<VERSION>.jar

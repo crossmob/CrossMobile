@@ -9,22 +9,24 @@ package org.crossmobile.backend.android;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import androidx.core.app.ActivityCompat;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.CMLib;
 import org.crossmobile.bridge.ann.CMLibTarget;
+import org.robovm.objc.block.VoidBlock1;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
+import java.util.function.Consumer;
 
 @CMLib(target = CMLibTarget.ANDROID_PLUGIN)
 public class ActivityStateListener {
 
     private static int activityId = 1;
-    private final Map<ActivityResultListener, Integer> result = new HashMap<>();
-    private final Map<ActivityPermissionListener, Integer> perms = new HashMap<>();
-    private final Collection<ActivityLifecycleListener> lifecycle = new HashSet<>();
+    private final Map<ActivityResultListener, Integer> launch = new LinkedHashMap<>();
+    private final Map<ActivityPermissionListener, Integer> perms = new LinkedHashMap<>();
+    private final Collection<ActivityLifecycleListener> lifecycle = new LinkedHashSet<>();
+    private final Collection<ActivityResultListener> autoResultListener = new HashSet<>();
+    private final Collection<ActivityPermissionListener> autoPermissionListener = new HashSet<>();
 
     private int getNextId() {
         synchronized (this) {
@@ -35,28 +37,45 @@ public class ActivityStateListener {
         }
     }
 
-    public int register(ActivityResultListener listener) {
+    /**
+     * Register an activity result for the whole lifecycle of the application
+     *
+     * @param listener Callback
+     * @return the automatically provided request code
+     */
+    public int registerGlobally(ActivityResultListener listener) {
         int newId = 0;
         if (listener != null)
-            result.put(listener, newId = getNextId());
+            launch.put(listener, newId = getNextId());
         return newId;
     }
 
-    public void unregister(ActivityResultListener listener) {
-        if (listener != null)
-            result.remove(listener);
+    /**
+     * Launch an intent and get the result
+     *
+     * @param listener Callback
+     * @param intent   The intent to launch
+     */
+    public void launch(ActivityResultListener listener, Intent intent) {
+        if (listener != null) {
+            autoResultListener.add(listener);
+            MainActivity.current.startActivityForResult(intent, registerGlobally(listener));
+        }
     }
 
-    public int register(ActivityPermissionListener listener) {
-        int newId = 0;
-        if (listener != null)
-            perms.put(listener, newId = getNextId());
-        return newId;
-    }
-
-    public void unregister(ActivityPermissionListener listener) {
-        if (listener != null)
-            perms.remove(listener);
+    /**
+     * Request permissions from the system
+     *
+     * @param listener    Callback
+     * @param permissions list of permissions
+     */
+    public void request(ActivityPermissionListener listener, Collection<String> permissions) {
+        if (listener != null) {
+            autoPermissionListener.add(listener);
+            int reqCode = getNextId();
+            perms.put(listener, reqCode);
+            ActivityCompat.requestPermissions(MainActivity.current(), permissions.toArray(new String[0]), reqCode);
+        }
     }
 
     public void register(ActivityLifecycleListener listener) {
@@ -64,23 +83,31 @@ public class ActivityStateListener {
             lifecycle.add(listener);
     }
 
-
     public void unregister(ActivityLifecycleListener listener) {
         if (listener != null)
             lifecycle.remove(listener);
     }
 
     void onActivityResult(int requestCode, int resultCode, Intent data) {
-        for (ActivityResultListener key : result.keySet())
-            if (requestCode == result.get(key))
-                Native.system().safeRun(() -> key.result(resultCode, data));
+        onAutoRemovable(launch, autoResultListener, requestCode,
+                listener -> listener.result(resultCode, data));
     }
 
+    void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        onAutoRemovable(perms, autoPermissionListener, requestCode,
+                listener -> listener.result(permissions, grantResults));
+    }
 
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        for (ActivityPermissionListener key : perms.keySet())
-            if (requestCode == perms.get(key))
-                Native.system().safeRun(() -> key.result(permissions, grantResults));
+    private <K> void onAutoRemovable(Map<K, Integer> registry, Collection<K> autoRemove, int requestCode, VoidBlock1<K> consumer) {
+        Collection<K> activeListeners = new ArrayList<>();
+        for (K key : registry.keySet())
+            if (requestCode == registry.get(key))
+                activeListeners.add(key);
+        for (K listener : activeListeners) {
+            if (autoRemove.remove(listener))
+                registry.remove(listener);
+            Native.system().safeRun(() -> consumer.invoke(listener));
+        }
     }
 
     void onStart() {

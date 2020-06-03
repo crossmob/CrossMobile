@@ -13,5 +13,9 @@ import org.crossmobile.bridge.ann.CMLibTarget;
 @CMLib(target = CMLibTarget.ANDROID_PLUGIN)
 public interface ActivityResultListener {
 
+    /**
+     * @param resultCode The result code of the returned Intent
+     * @param data       The data of the Intent
+     */
     void result(int resultCode, Intent data);
 }

@@ -187,7 +187,6 @@ public class AndroidImageBridge extends AbstractImageBridge {
                 ActivityResultListener activityResult = new ActivityResultListener() {
                     @Override
                     public void result(int resultCode, Intent data) {
-                        MainActivity.current.getStateListener().unregister(this);
                         CGImage cgimage = resultCode == RESULT_OK
                                 ? $coregraphics.cgimage(rawPhotoPath, null)
                                 : null;
@@ -196,8 +195,7 @@ public class AndroidImageBridge extends AbstractImageBridge {
                         filepathResult.invoke(cgimage);
                     }
                 };
-                int reqCode = MainActivity.current.getStateListener().register(activityResult);
-                MainActivity.current.startActivityForResult(takePictureIntent, reqCode);
+                MainActivity.current.getStateListener().launch(activityResult, takePictureIntent);
             } else filepathResult.invoke(null);
         }, AndroidPermission.CAMERA);
     }
@@ -209,7 +207,6 @@ public class AndroidImageBridge extends AbstractImageBridge {
             public void result(int resultCode, Intent data) {
                 CGImage cgimage = null;
                 if (resultCode == RESULT_OK && data != null && data.getData() != null) {
-                    MainActivity.current.getStateListener().unregister(this);
                     Uri uri = data.getData();
                     String photoPath = Native.file().getRandomLocation();
                     File photoFile = new File(photoPath);
@@ -232,11 +229,9 @@ public class AndroidImageBridge extends AbstractImageBridge {
 // Always show the chooser (if there are multiple options available)
         // MainActivity.current.startActivityForResult(Intent.createChooser(photoChooserIntent, "Select Picture"), PICK_IMAGE_REQUEST);
 
-        int reqCode = MainActivity.current.getStateListener().register(activityResult);
         //MainActivity.current.startActivityForResult(takePictureIntent, );
         if (photoChooserIntent.resolveActivity(MainActivity.current.getPackageManager()) != null)
-            MainActivity.current.startActivityForResult(photoChooserIntent, reqCode);
-
+            MainActivity.current.getStateListener().launch(activityResult, photoChooserIntent);
     }
 
     @Override

@@ -41,7 +41,7 @@ public class AndroidInAppBridge implements InAppBridge, OnIabSetupFinishedListen
     @SuppressWarnings("LeakingThisInConstructor")
     public AndroidInAppBridge() {
         // As long as this bridge is active (i.e. always) no unregister is required
-        reqCode = MainActivity.current.getStateListener().register(this);
+        reqCode = MainActivity.current.getStateListener().registerGlobally(this);
         billingHelper = new IabHelper(MainActivity.current, System.getProperty("org.crossmobile.cmplugin-cmpayment.key"));
         billingHelper.startSetup(this);
     }
