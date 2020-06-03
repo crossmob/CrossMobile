@@ -1,14 +1,24 @@
 package org.crossmobile.backend.android.web;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 import android.widget.FrameLayout;
+import android.widget.Toast;
+import org.crossmobile.backend.android.MainActivity;
 
 /**
+ * This Client is heavily inspired by an implementation of Cristian Perez (http://cpr.name)
+ */
+
+/*
  * This class serves as a WebChromeClient to be set to a WebView, allowing it to play video.
  * Video will play differently depending on target API level (in-line, fullscreen, or both).
  * <p>
@@ -21,17 +31,13 @@ import android.widget.FrameLayout;
  * - For API level 11+, android:hardwareAccelerated="true" must be set in the application manifest.
  * - The invoking activity must call VideoEnabledWebChromeClient's onBackPressed() inside of its own onBackPressed().
  * - Tested in Android API levels 8-19. Only tested on http://m.youtube.com.
- *
- * @author Cristian Perez (http://cpr.name)
  */
-public class VideoEnabledWebChromeClient extends WebChromeClient implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener {
+public class VideoEnabledWebChromeClient extends WebChromeClient implements MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener {
     public interface ToggledFullscreenCallback {
-        public void toggledFullscreen(boolean fullscreen);
+        void toggledFullscreen(boolean fullscreen);
     }
 
-    private View activityNonVideoView;
-    private ViewGroup activityVideoView;
-    private View loadingView;
+    private ViewGroup parentView;
     private VideoEnabledWebView webView;
 
     private boolean isVideoFullscreen; // Indicates if the video is being displayed using a custom view (typically full-screen)
@@ -41,58 +47,15 @@ public class VideoEnabledWebChromeClient extends WebChromeClient implements Medi
     private ToggledFullscreenCallback toggledFullscreenCallback;
 
     /**
-     * Never use this constructor alone.
-     * This constructor allows this class to be defined as an inline inner class in which the user can override methods
-     */
-    @SuppressWarnings("unused")
-    public VideoEnabledWebChromeClient() {
-    }
-
-    /**
      * Builds a video enabled WebChromeClient.
      *
-     * @param activityNonVideoView A View in the activity's layout that contains every other view that should be hidden when the video goes full-screen.
-     * @param activityVideoView    A ViewGroup in the activity's layout that will display the video. Typically you would like this to fill the whole layout.
+     * @param parentView A ViewGroup in the activity's layout that will display the video. Typically you would like this to fill the whole layout.
+     * @param webView    The owner VideoEnabledWebView. Passing it will enable the VideoEnabledWebChromeClient to detect the HTML5 video ended event and exit full-screen.
+     *                   Note: The web page must only contain one video tag in order for the HTML5 video ended event to work. This could be improved if needed (see Javascript code).
      */
     @SuppressWarnings("unused")
-    public VideoEnabledWebChromeClient(View activityNonVideoView, ViewGroup activityVideoView) {
-        this.activityNonVideoView = activityNonVideoView;
-        this.activityVideoView = activityVideoView;
-        this.loadingView = null;
-        this.webView = null;
-        this.isVideoFullscreen = false;
-    }
-
-    /**
-     * Builds a video enabled WebChromeClient.
-     *
-     * @param activityNonVideoView A View in the activity's layout that contains every other view that should be hidden when the video goes full-screen.
-     * @param activityVideoView    A ViewGroup in the activity's layout that will display the video. Typically you would like this to fill the whole layout.
-     * @param loadingView          A View to be shown while the video is loading (typically only used in API level <11). Must be already inflated and not attached to a parent view.
-     */
-    @SuppressWarnings("unused")
-    public VideoEnabledWebChromeClient(View activityNonVideoView, ViewGroup activityVideoView, View loadingView) {
-        this.activityNonVideoView = activityNonVideoView;
-        this.activityVideoView = activityVideoView;
-        this.loadingView = loadingView;
-        this.webView = null;
-        this.isVideoFullscreen = false;
-    }
-
-    /**
-     * Builds a video enabled WebChromeClient.
-     *
-     * @param activityNonVideoView A View in the activity's layout that contains every other view that should be hidden when the video goes full-screen.
-     * @param activityVideoView    A ViewGroup in the activity's layout that will display the video. Typically you would like this to fill the whole layout.
-     * @param loadingView          A View to be shown while the video is loading (typically only used in API level <11). Must be already inflated and not attached to a parent view.
-     * @param webView              The owner VideoEnabledWebView. Passing it will enable the VideoEnabledWebChromeClient to detect the HTML5 video ended event and exit full-screen.
-     *                             Note: The web page must only contain one video tag in order for the HTML5 video ended event to work. This could be improved if needed (see Javascript code).
-     */
-    @SuppressWarnings("unused")
-    public VideoEnabledWebChromeClient(View activityNonVideoView, ViewGroup activityVideoView, View loadingView, VideoEnabledWebView webView) {
-        this.activityNonVideoView = activityNonVideoView;
-        this.activityVideoView = activityVideoView;
-        this.loadingView = loadingView;
+    public VideoEnabledWebChromeClient(ViewGroup parentView, VideoEnabledWebView webView) {
+        this.parentView = parentView;
         this.webView = webView;
         this.isVideoFullscreen = false;
     }
@@ -116,6 +79,34 @@ public class VideoEnabledWebChromeClient extends WebChromeClient implements Medi
         this.toggledFullscreenCallback = callback;
     }
 
+    //..<3.0
+    public void openFileChooser(ValueCallback<Uri> uploadMsg) {
+        openFileChooser(uploadMsg, null, null);
+    }
+
+    //3.0..<4.0
+    public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType) {
+        openFileChooser(uploadMsg, acceptType, null);
+    }
+
+    // 4.0..<5.0
+    public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture) {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        MainActivity.current().getStateListener().launch((resultCode, data)
+                -> uploadMsg.onReceiveValue(data == null ? null : data.getData()), intent);
+    }
+
+    // 5.0..
+    @Override
+    public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> uploadMsg, WebChromeClient.FileChooserParams fileChooserParams) {
+        MainActivity.current().getStateListener().launch((resultCode, data)
+                        -> uploadMsg.onReceiveValue(new Uri[]{data.getData()})
+                , fileChooserParams.createIntent());
+        return true;
+    }
+
     @Override
     public void onShowCustomView(View view, CustomViewCallback callback) {
         if (view instanceof FrameLayout) {
@@ -129,17 +120,14 @@ public class VideoEnabledWebChromeClient extends WebChromeClient implements Medi
             this.videoViewCallback = callback;
 
             // Hide the non-video view, add the video view, and show it
-            activityNonVideoView.setVisibility(View.INVISIBLE);
             videoViewContainer.setBackgroundColor(Color.BLACK);
-            activityVideoView.addView(videoViewContainer, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            activityVideoView.setVisibility(View.VISIBLE);
+            parentView.addView(videoViewContainer, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
             if (focusedChild instanceof android.widget.VideoView) {
                 // android.widget.VideoView (typically API level <11)
                 android.widget.VideoView videoView = (android.widget.VideoView) focusedChild;
 
                 // Handle all the required events
-                videoView.setOnPreparedListener(this);
                 videoView.setOnCompletionListener(this);
                 videoView.setOnErrorListener(this);
             } else {
@@ -191,9 +179,7 @@ public class VideoEnabledWebChromeClient extends WebChromeClient implements Medi
 
         if (isVideoFullscreen) {
             // Hide the video view, remove it, and show the non-video view
-            activityVideoView.setVisibility(View.INVISIBLE);
-            activityVideoView.removeView(videoViewContainer);
-            activityNonVideoView.setVisibility(View.VISIBLE);
+            parentView.removeView(videoViewContainer);
 
             // Call back (only in API level <19, because in API level 19+ with chromium webview it crashes)
             if (videoViewCallback != null && !videoViewCallback.getClass().getName().contains(".chromium.")) {
@@ -209,25 +195,6 @@ public class VideoEnabledWebChromeClient extends WebChromeClient implements Medi
             if (toggledFullscreenCallback != null) {
                 toggledFullscreenCallback.toggledFullscreen(false);
             }
-        }
-    }
-
-    @Override
-    public View getVideoLoadingProgressView() // Video will start loading
-    {
-        if (loadingView != null) {
-            loadingView.setVisibility(View.VISIBLE);
-            return loadingView;
-        } else {
-            return super.getVideoLoadingProgressView();
-        }
-    }
-
-    @Override
-    public void onPrepared(MediaPlayer mp) // Video will start playing, only called in the case of android.widget.VideoView (typically API level <11)
-    {
-        if (loadingView != null) {
-            loadingView.setVisibility(View.GONE);
         }
     }
 

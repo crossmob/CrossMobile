@@ -126,7 +126,7 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
         public NativeW() {
             super(MainActivity.current);
             updateSettings(getSettings());
-            setWebChromeClient(new VideoEnabledWebChromeClient(MainView.current, MainView.current, null, this));
+            setWebChromeClient(new VideoEnabledWebChromeClient(MainView.current, this));
             setDownloadListener((String url, String userAgent, String contentDisposition, String mimetype, long contentLength) -> {
                 downloadFile(url, mimetype);
             });

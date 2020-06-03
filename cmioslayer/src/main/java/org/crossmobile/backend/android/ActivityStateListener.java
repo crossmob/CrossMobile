@@ -6,9 +6,11 @@
 
 package org.crossmobile.backend.android;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.CMLib;
@@ -59,7 +61,13 @@ public class ActivityStateListener {
     public void launch(ActivityResultListener listener, Intent intent) {
         if (listener != null) {
             autoResultListener.add(listener);
-            MainActivity.current.startActivityForResult(intent, registerGlobally(listener));
+            if (intent != null)
+                try {
+                    MainActivity.current.startActivityForResult(intent, registerGlobally(listener));
+                } catch (ActivityNotFoundException exception) {
+                    Native.system().error("Unable to launch Intent", exception);
+                    Toast.makeText(MainActivity.current(), exception.getMessage(), 3);
+                }
         }
     }
 
