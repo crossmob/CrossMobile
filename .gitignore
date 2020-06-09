@@ -9,4 +9,3 @@ cmioslayer/gen/lib
 .idea/
 *.iml
 /.project
-resources/keys/*

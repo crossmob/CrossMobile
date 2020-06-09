@@ -3,12 +3,12 @@
 VERSION=$1
 LONGVERSION=$2
 
-if [ -z "$VERSION" -o -z "$LONGVERSION" ] ; then
+if [[ -z ${VERSION} || -z ${LONGVERSION} ]] ; then
     echo Usage: update-version.sh VERSION LONGVERSION
     exit -1
 fi
 
-if [ -z `which xmlstarlet` ] ; then
+if [[ -z `which xmlstarlet` ]] ; then
     echo xmlstarlet not installed
     exit -1
 fi
