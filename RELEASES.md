@@ -2,6 +2,12 @@
 
 Click on the version header to go to the detailed ChangeLog.
 
+## [v2.9.0]
+
+- Attach to debugger for Android and Desktop projects
+- Support file chooser under WebView for Android
+- Create source artifacts for plugins
+
 ## [v2.8.2]
 
 - Use library on older versions of Xcode, bypassing 11.4 Xcode bug.
@@ -36,6 +42,7 @@ Click on the version header to go to the detailed ChangeLog.
 ## [v2.5]
 - First public binary stable release
 
+[v2.9.0]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v290
 [v2.8.2]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v282
 [v2.8]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v28
 [v2.7]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v27

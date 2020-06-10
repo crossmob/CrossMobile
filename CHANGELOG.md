@@ -2,6 +2,24 @@
 
 Click on the version header to go to the actual commits for each release.
 
+## [v2.9.0]
+###### 2020-06-06
+
+### Added
+- Support of attach to debugger for Android and Desktop projects
+- Display Android and Desktop PID
+- Support file chooser under WebView for Android
+- Create source artifacts for plugins
+
+### Fixed
+- Escape non-URI characters in Android WebView
+- Support SDKMAN! repositories
+
+### Changed
+- Simplify Manager output panels
+- Manager now supports system dark theme on macOS
+- Improve plugin creation
+
 ## [v2.8.2]
 ###### 2020-05-05
 
@@ -139,6 +157,7 @@ Click on the version header to go to the actual commits for each release.
 ### Added
 - First public source release
 
+[v2.9.0]: https://github.com/crossmob/CrossMobile/compare/v2.8.2...v2.9.0
 [v2.8.2]: https://github.com/crossmob/CrossMobile/compare/v2.8.0...v2.8.2
 [v2.8]: https://github.com/crossmob/CrossMobile/compare/v2.7...v2.8.0
 [v2.7]: https://github.com/crossmob/CrossMobile/compare/v2.6.1...v2.7
