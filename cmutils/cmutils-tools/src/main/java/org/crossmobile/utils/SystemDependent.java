@@ -262,6 +262,7 @@ public class SystemDependent {
         ANDROID("bat"),
         SDKMANAGER("bat"),
         ADB("exe"),
+        EMULATOR("exe"),
         NETBEANS("exe"),
         IDEA("exe", "sh"),
         STUDIO("exe", "sh"),

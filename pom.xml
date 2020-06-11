@@ -15,8 +15,7 @@
         <module>cmioslayer</module>
         <module>cmarchetypes</module>
         <module>cmtheme</module>
-        <module>cmprojects/cmproject</module>
-        <module>cmprojects/cmforeign</module>
+        <module>cmproject</module>
     </modules>
 
     <properties>

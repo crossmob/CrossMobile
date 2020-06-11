@@ -46,11 +46,11 @@ public enum ParamsCommon {
     MAIN_STORYBOARD(""),
     LAUNCH_STORYBOARD(""),
     CM_SCREEN_SCALE("DPI"),
-    CM_DESKTOP_FRAMEWORK("false"),
     CM_PROJECT("iphone"),
     CM_DESKTOP_SKIN("system-s"),
     CM_KEYBOARD_SUPPORT("quit:pause:back:menu:home:rotate:multitouch"),
     CM_SPLASH_DELAY("2"),
+    CM_FULLSCREEN_DESKTOP("false"),
 
     // The following tags are recalculated inside ParameterList
     MAIN_CLASS("");

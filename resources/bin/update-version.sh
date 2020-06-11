@@ -30,6 +30,6 @@ xmlstarlet ed -P -L -u "/_:project/_:parent/_:version" -v "$VERSION" cmarchetype
 xmlstarlet ed -P -L -u "/_:project/_:parent/_:version" -v "$VERSION" cmarchetypes/cmarchetype-single/src/main/resources/archetype-resources/pom.xml
 xmlstarlet ed -P -L -u "/_:project/_:parent/_:version" -v "$VERSION" cmarchetypes/cmarchetype-storyboard/src/main/resources/archetype-resources/pom.xml
 xmlstarlet ed -P -L -u "/_:project/_:parent/_:version" -v "$VERSION" cmarchetypes/cmarchetype-table/src/main/resources/archetype-resources/pom.xml
-xmlstarlet ed -P -L -u "/_:project/_:properties/_:crossmobile.version" -v "$VERSION" cmprojects/cmproject/pom.xml
+xmlstarlet ed -P -L -u "/_:project/_:properties/_:crossmobile.version" -v "$VERSION" cmproject/pom.xml
 xmlstarlet ed -P -L -u  '/repositories/repository[@id="themes"]/plugins/plugin/version' -v "$VERSION" cmutils/cmutils-tools/src/main/resources/plugins/baseplugins.xml
 xmlstarlet ed -P -L -u  '/repositories/repository[@id="crossmobile"]/plugins/plugin/version' -v "$VERSION" cmutils/cmutils-tools/src/main/resources/plugins/baseplugins.xml

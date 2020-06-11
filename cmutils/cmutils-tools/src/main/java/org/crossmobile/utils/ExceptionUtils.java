@@ -1,0 +1,16 @@
+/*
+ * (c) 2020 by Panayotis Katsaloulis
+ *
+ * SPDX-License-Identifier: LGPL-3.0-only
+ */
+
+package org.crossmobile.utils;
+
+public class ExceptionUtils {
+    public static void callNoException(UnsafeRunnable runnable) {
+        try {
+            runnable.run();
+        } catch (Throwable ignored) {
+        }
+    }
+}

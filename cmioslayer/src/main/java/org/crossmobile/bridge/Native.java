@@ -7,14 +7,7 @@
 package org.crossmobile.bridge;
 
 import org.crossmobile.bridge.resolver.AndroidBridgeResolver;
-import org.crossmobile.bridge.resolver.ForeignResolver;
 import org.crossmobile.bridge.resolver.SwingBridgeResolver;
-
-import java.io.InputStreamReader;
-import java.util.Properties;
-
-import static org.crossmobile.bridge.system.LauncherCommons.OUTPUT_FILE;
-import static org.crossmobile.bridge.system.LauncherCommons.OUTPUT_PACKAGE;
 
 /**
  * Native bridge and method factory
@@ -78,33 +71,9 @@ public abstract class Native {
 
     private static Native bridge() {
         if (bridge == null)
-            if (runsUnderAndroid)
-                bridge = AndroidBridgeResolver.resolve();
-            else {
-                Properties props = new Properties();
-                String flavour = "";
-                try {
-                    props.load(new InputStreamReader(Native.class.getResourceAsStream("/" + OUTPUT_PACKAGE + "/" + OUTPUT_FILE), "UTF-8"));
-                    flavour = props.getProperty("flavour", "").toLowerCase().trim();
-                } catch (Exception ex) {
-                    System.err.println("Unable to read CrossMobile launch properties: " + ex.toString());
-                }
-                switch (flavour) {
-                    case "desktop":
-                        bridge = SwingBridgeResolver.resolve();
-                        break;
-                    case "ios":
-                    case "android":
-                    case "uwp":
-                        ForeignResolver.launch(props, flavour);
-                        break;  // will never come here
-                    default:
-                        if (flavour.isEmpty())
-                            throw new RuntimeException("Platform target not set");
-                        else
-                            throw new RuntimeException("Unable to recognize target '" + flavour + "'");
-                }
-            }
+            bridge = runsUnderAndroid
+                    ? AndroidBridgeResolver.resolve()
+                    : SwingBridgeResolver.resolve();
         return bridge;
     }
 

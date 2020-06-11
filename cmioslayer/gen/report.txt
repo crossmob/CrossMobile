@@ -1428,7 +1428,6 @@ org/crossmobile/bridge/WrapperBridge.java
 org/crossmobile/bridge/WrapperMapBridge.java
 org/crossmobile/bridge/package-info.java
 org/crossmobile/bridge/resolver/AndroidBridgeResolver.java
-org/crossmobile/bridge/resolver/ForeignResolver.java
 org/crossmobile/bridge/resolver/SwingBridgeResolver.java
 org/crossmobile/bridge/resolver/package-info.java
 org/crossmobile/build/StoryBoardBinder.java
@@ -2339,7 +2338,6 @@ org/crossmobile/bridge/ann/SDKVersion.class v8
 org/crossmobile/bridge/ann/package-info.class v8
 org/crossmobile/bridge/package-info.class v8
 org/crossmobile/bridge/resolver/AndroidBridgeResolver.class v8
-org/crossmobile/bridge/resolver/ForeignResolver.class v8
 org/crossmobile/bridge/resolver/SwingBridgeResolver.class v8
 org/crossmobile/bridge/resolver/package-info.class v8
 org/crossmobile/bridge/system/BaseUtils.class v8
@@ -3224,7 +3222,6 @@ org/crossmobile/bridge/ann/SDKVersion.class v8
 org/crossmobile/bridge/ann/package-info.class v8
 org/crossmobile/bridge/package-info.class v8
 org/crossmobile/bridge/resolver/AndroidBridgeResolver.class v8
-org/crossmobile/bridge/resolver/ForeignResolver.class v8
 org/crossmobile/bridge/resolver/SwingBridgeResolver.class v8
 org/crossmobile/bridge/resolver/package-info.class v8
 org/crossmobile/bridge/system/BaseUtils.class v8
@@ -3964,7 +3961,6 @@ org/crossmobile/bridge/ann/SDKVersion.class v8
 org/crossmobile/bridge/ann/package-info.class v8
 org/crossmobile/bridge/package-info.class v8
 org/crossmobile/bridge/resolver/AndroidBridgeResolver.class v8
-org/crossmobile/bridge/resolver/ForeignResolver.class v8
 org/crossmobile/bridge/resolver/SwingBridgeResolver.class v8
 org/crossmobile/bridge/resolver/package-info.class v8
 org/crossmobile/bridge/system/BaseUtils.class v8
