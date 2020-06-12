@@ -13,7 +13,6 @@ import org.crossmobile.bridge.ann.CMLibTarget;
 public final class AnnotationConfig {
 
     public static final String ANN_LOCATION = "ann";
-    public static final String OUTLET_PGK = "org.crossmobile.sys";
     public static final String GENERATED_EXT = ".ibgenerated";
     public static final String OBJECTS_EXT = ".ibobjects";
     public static final String ACTION = "ACT";
