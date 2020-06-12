@@ -5,7 +5,7 @@
     <groupId>org.crossmobile</groupId>
     <artifactId>env</artifactId>
     <packaging>pom</packaging>
-    <version>2.9.0</version>
+    <version>2.9.1</version>
     <name>CrossMobile SDK</name>
 
     <modules>
@@ -19,7 +19,7 @@
     </modules>
 
     <properties>
-        <long.version>2.9.0.0</long.version>
+        <long.version>2.9.1.0</long.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
