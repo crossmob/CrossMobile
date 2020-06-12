@@ -28,15 +28,9 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.crossmobile</groupId>
-            <artifactId>cmforeign</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
             <groupId>com.panayotis</groupId>
             <artifactId>appenh</artifactId>
             <version>${version.appenh}</version>
-            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>javazoom</groupId>

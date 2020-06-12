@@ -15,18 +15,14 @@ import static org.crossmobile.utils.CollectionUtils.asList;
 
 public class DependencyItem implements Comparable<DependencyItem> {
 
-    public static final String BlackListGroup = "org.crossmobile";
-    public static final Set<String> BlackListArtifacts = new TreeSet<>(Collections.singletonList("cmforeign"));
-
     private final String groupID;
     private final String artifactID;
     private final String version;
     private final String type;
     private final File file;
 
-    private final Collection<DependencyItem> runtime = new TreeSet<>();
-    private final Collection<DependencyItem> compile = new TreeSet<>();
-    private final Collection<DependencyItem> blacklisted = new TreeSet<>();
+    private final Set<DependencyItem> runtime = new TreeSet<>();
+    private final Set<DependencyItem> compile = new TreeSet<>();
 
     public DependencyItem() {
         this.groupID = null;
@@ -44,15 +40,10 @@ public class DependencyItem implements Comparable<DependencyItem> {
         this.file = file;
     }
 
-    private DependencyItem add(String groupId, String artifactId, String version, String type, Collection<DependencyItem> where, File file) {
+    private DependencyItem add(String groupId, String artifactId, String version, String type, Set<DependencyItem> where, File file) {
         DependencyItem item = new DependencyItem(groupId, artifactId, version, type, file);
-        if (!(groupId.equals(BlackListGroup) && BlackListArtifacts.contains(artifactId))) {
-            where.add(item);
-            return item;
-        } else {
-            blacklisted.add(item);
-            return null;
-        }
+        where.add(item);
+        return item;
     }
 
     public DependencyItem addCompiletime(String groupId, String artifactId, String version, String type, File file) {
@@ -85,20 +76,6 @@ public class DependencyItem implements Comparable<DependencyItem> {
             return result;
         } else
             return new TreeSet<>(runtime);
-    }
-
-    private void getBlacklisted(Collection<DependencyItem> result) {
-        result.addAll(blacklisted);
-        for (DependencyItem item : compile)
-            item.getBlacklisted(result);
-        for (DependencyItem item : runtime)
-            item.getBlacklisted(result);
-    }
-
-    public Iterable<DependencyItem> getBlacklisted() {
-        Collection<DependencyItem> result = new TreeSet<>();
-        getBlacklisted(result);
-        return result;
     }
 
     public Iterable<PluginMetaData> getPluginMetaData() {
