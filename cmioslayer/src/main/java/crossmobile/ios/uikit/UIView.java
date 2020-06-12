@@ -121,6 +121,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
     private UILayoutGuide safeAreaLayoutGuide;
     private boolean insetsLayoutMarginsFromSafeArea = true;
     private int userInterfaceLayoutDirection = UIApplication.sharedApplication().userInterfaceLayoutDirection();
+    private int overrideUserInterfaceStyle = UIUserInterfaceStyle.Unspecified;
     private String accessibilityIdentifier;
     private boolean debugSelf;
 
@@ -1006,6 +1007,28 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
     @CMGetter("@property(nonatomic) UIViewTintAdjustmentMode tintAdjustmentMode;")
     public int tintAdjustmentMode() {
         return tintAdjustmentMode;
+    }
+
+    /**
+     * Override the user style, whether be light or dark. This could be applied to the
+     * UIWindow view of the application to affect the whole application.
+     *
+     * @param overrideUserInterfaceStyle the new user interface style
+     */
+    @CMSetter(value = "@property(nonatomic) UIUserInterfaceStyle overrideUserInterfaceStyle;", sinceIos = "13.0")
+    public void setOverrideUserInterfaceStyle(int overrideUserInterfaceStyle) {
+        this.overrideUserInterfaceStyle = overrideUserInterfaceStyle;
+    }
+
+    /**
+     * Retrieve the current user interface style. If it is unspecified, it inherits from
+     * the parent UIView
+     *
+     * @return the current user interface style
+     */
+    @CMGetter(value = "@property(nonatomic) UIUserInterfaceStyle overrideUserInterfaceStyle;", sinceIos = "13.0")
+    public int overrideUserInterfaceStyle() {
+        return overrideUserInterfaceStyle;
     }
 
     /**

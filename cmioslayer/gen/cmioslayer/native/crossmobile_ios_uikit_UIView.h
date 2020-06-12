@@ -94,6 +94,8 @@
 - (BOOL) isMultipleTouchEnabled__;
 - (void) setOpaque___boolean:(BOOL) opaque ;
 - (BOOL) isOpaque__;
+- (void) setOverrideUserInterfaceStyle___int:(int) overrideUserInterfaceStyle ;
+- (int) overrideUserInterfaceStyle__;
 - (void) setPreservesSuperviewLayoutMargins___boolean:(BOOL) preservesSuperviewLayoutMargins ;
 - (BOOL) preservesSuperviewLayoutMargins__;
 - (void) setRestorationIdentifier___java_lang_String:(NSString*) restorationIdentifier ;

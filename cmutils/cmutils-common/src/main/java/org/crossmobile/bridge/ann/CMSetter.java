@@ -19,4 +19,6 @@ public @interface CMSetter {
 
     String value();
 
+    String sinceIos() default "";
+
 }

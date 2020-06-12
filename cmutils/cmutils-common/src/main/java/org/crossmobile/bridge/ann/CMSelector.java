@@ -38,11 +38,6 @@ public @interface CMSelector {
      */
     String sizeResolver() default "";
 
-    /**
-     * Use this native Swift method, if there is a need for a Swift bridge.
-     * Historically this method was used to define variadic calls which were handled by Swift.
-     * Now there is no direct need.
-     */
-    String swiftMethod() default "";
+    String sinceIos() default "";
 
 }

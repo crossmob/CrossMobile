@@ -424,6 +424,18 @@
     return [self isOpaque];
 }
 
+// @property(nonatomic) UIUserInterfaceStyle overrideUserInterfaceStyle;
+- (void) setOverrideUserInterfaceStyle___int:(int) overrideUserInterfaceStyle 
+{
+    [self setOverrideUserInterfaceStyle:overrideUserInterfaceStyle];
+}
+
+// @property(nonatomic) UIUserInterfaceStyle overrideUserInterfaceStyle;
+- (int) overrideUserInterfaceStyle__
+{
+    return [self overrideUserInterfaceStyle];
+}
+
 // @property(nonatomic) BOOL preservesSuperviewLayoutMargins;
 - (void) setPreservesSuperviewLayoutMargins___boolean:(BOOL) preservesSuperviewLayoutMargins 
 {

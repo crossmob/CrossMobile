@@ -823,6 +823,7 @@ crossmobile/ios/uikit/UITouch.class v8
 crossmobile/ios/uikit/UITouchPhase.class v8
 crossmobile/ios/uikit/UIUserInterfaceIdiom.class v8
 crossmobile/ios/uikit/UIUserInterfaceLayoutDirection.class v8
+crossmobile/ios/uikit/UIUserInterfaceStyle.class v8
 crossmobile/ios/uikit/UIUserNotificationSettings.class v8
 crossmobile/ios/uikit/UIView.class v8
 crossmobile/ios/uikit/UIViewAnimationCurve.class v8
@@ -1228,6 +1229,7 @@ crossmobile/ios/uikit/UITouch.java
 crossmobile/ios/uikit/UITouchPhase.java
 crossmobile/ios/uikit/UIUserInterfaceIdiom.java
 crossmobile/ios/uikit/UIUserInterfaceLayoutDirection.java
+crossmobile/ios/uikit/UIUserInterfaceStyle.java
 crossmobile/ios/uikit/UIUserNotificationSettings.java
 crossmobile/ios/uikit/UIView.java
 crossmobile/ios/uikit/UIViewAnimationCurve.java
@@ -1836,6 +1838,7 @@ crossmobile/ios/uikit/UITouch.class v8
 crossmobile/ios/uikit/UITouchPhase.class v8
 crossmobile/ios/uikit/UIUserInterfaceIdiom.class v8
 crossmobile/ios/uikit/UIUserInterfaceLayoutDirection.class v8
+crossmobile/ios/uikit/UIUserInterfaceStyle.class v8
 crossmobile/ios/uikit/UIUserNotificationSettings.class v8
 crossmobile/ios/uikit/UIView$1.class v8
 crossmobile/ios/uikit/UIView$Anchor.class v8
@@ -2775,6 +2778,7 @@ crossmobile/ios/uikit/UITouch.class v8
 crossmobile/ios/uikit/UITouchPhase.class v8
 crossmobile/ios/uikit/UIUserInterfaceIdiom.class v8
 crossmobile/ios/uikit/UIUserInterfaceLayoutDirection.class v8
+crossmobile/ios/uikit/UIUserInterfaceStyle.class v8
 crossmobile/ios/uikit/UIUserNotificationSettings.class v8
 crossmobile/ios/uikit/UIView$1.class v8
 crossmobile/ios/uikit/UIView$Anchor.class v8
@@ -3673,6 +3677,7 @@ crossmobile/ios/uikit/UITouch.class v8
 crossmobile/ios/uikit/UITouchPhase.class v8
 crossmobile/ios/uikit/UIUserInterfaceIdiom.class v8
 crossmobile/ios/uikit/UIUserInterfaceLayoutDirection.class v8
+crossmobile/ios/uikit/UIUserInterfaceStyle.class v8
 crossmobile/ios/uikit/UIUserNotificationSettings.class v8
 crossmobile/ios/uikit/UIView$1.class v8
 crossmobile/ios/uikit/UIView$Anchor.class v8

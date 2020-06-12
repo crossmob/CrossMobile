@@ -19,6 +19,8 @@ public @interface CMGetter {
 
     String value();
 
+    String sinceIos() default "";
+
     /**
      * Use this native method to resolve the size of an unknown array, i.e. when
      * we return one from a method

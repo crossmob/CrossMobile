@@ -424,6 +424,24 @@
     return [self isOpaque];
 }
 
+// @property(nonatomic) UIUserInterfaceStyle overrideUserInterfaceStyle;
+- (void) setOverrideUserInterfaceStyle___int:(int) overrideUserInterfaceStyle 
+{
+    if (@available(iOS 13.0, *)) {
+        [self setOverrideUserInterfaceStyle:overrideUserInterfaceStyle];
+    }
+}
+
+// @property(nonatomic) UIUserInterfaceStyle overrideUserInterfaceStyle;
+- (int) overrideUserInterfaceStyle__
+{
+    if (@available(iOS 13.0, *)) {
+        return [self overrideUserInterfaceStyle];
+    } else {
+        return 0;
+    }
+}
+
 // @property(nonatomic) BOOL preservesSuperviewLayoutMargins;
 - (void) setPreservesSuperviewLayoutMargins___boolean:(BOOL) preservesSuperviewLayoutMargins 
 {

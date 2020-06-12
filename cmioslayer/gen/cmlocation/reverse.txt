@@ -611,6 +611,7 @@
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "prepareForReuse()": {
       "reverse": "- (void) prepareForReuse\n{\n    [self prepareForReuse__];\n}\n\n",
@@ -725,6 +726,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setRightCalloutAccessoryView(crossmobile.ios.uikit.UIView)": {
@@ -1013,6 +1015,7 @@
         "java_util_List"
       ]
     },
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "preservesSuperviewLayoutMargins()": null,
     "region()": {
@@ -1131,6 +1134,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRegion(crossmobile.ios.mapkit.MKCoordinateRegion)": {
       "reverse": "- (void) setRegion:(MKCoordinateRegion) region\n{\n    crossmobile_ios_mapkit_MKCoordinateRegion* region$conv = [[crossmobile_ios_mapkit_MKCoordinateRegion alloc] initWithMKCoordinateRegion:region];\n    [self setRegion___crossmobile_ios_mapkit_MKCoordinateRegion:region$conv];\n    [region$conv release];\n}\n\n",
@@ -1536,6 +1540,7 @@
         "crossmobile_ios_mapkit_MKOverlay"
       ]
     },
+    "overrideUserInterfaceStyle()": null,
     "pointForMapPoint(crossmobile.ios.mapkit.MKMapPoint)": {
       "reverse": "- (CGPoint) pointForMapPoint:(MKMapPoint) mapPoint\n{\n    crossmobile_ios_mapkit_MKMapPoint* mapPoint$conv = [[crossmobile_ios_mapkit_MKMapPoint alloc] initWithMKMapPoint:mapPoint];\n    crossmobile_ios_coregraphics_CGPoint* re$ult = [self pointForMapPoint___crossmobile_ios_mapkit_MKMapPoint:mapPoint$conv];\n    CGPoint re$ult$conv = [re$ult getCGPoint];\n    [re$ult release];\n    [mapPoint$conv release];\n    return re$ult$conv;\n}\n\n",
       "super": "- (crossmobile_ios_coregraphics_CGPoint*) pointForMapPoint___crossmobile_ios_mapkit_MKMapPoint:(crossmobile_ios_mapkit_MKMapPoint*) mapPoint \n{\n    return [[crossmobile_ios_coregraphics_CGPoint alloc] initWithCGPoint:[super pointForMapPoint:[mapPoint getMKMapPoint]]];\n}\n\n",
@@ -1603,6 +1608,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setTag(int)": null,
@@ -1713,6 +1719,7 @@
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pinColor()": {
       "reverse": "- (MKPinAnnotationColor) pinColor\n{\n    return [self pinColor__];\n}\n\n",
       "super": "- (int) pinColor__\n{\n    return [super pinColor];\n}\n\n"
@@ -1772,6 +1779,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPinColor(int)": {
       "reverse": "- (void) setPinColor:(MKPinAnnotationColor) pinColor\n{\n    [self setPinColor___int:pinColor];\n}\n\n",
       "super": "- (void) setPinColor___int:(int) pinColor \n{\n    [super setPinColor:pinColor];\n}\n\n"

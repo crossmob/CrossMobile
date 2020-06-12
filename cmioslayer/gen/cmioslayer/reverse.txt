@@ -2783,6 +2783,7 @@
       "super": "- (int) numberOfButtons__\n{\n    return [super numberOfButtons];\n}\n\n"
     },
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "preservesSuperviewLayoutMargins()": null,
     "removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
@@ -2827,6 +2828,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setTag(int)": null,
@@ -3080,6 +3082,7 @@
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "preservesSuperviewLayoutMargins()": null,
     "removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
@@ -3132,6 +3135,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setTag(int)": null,
@@ -3558,6 +3562,7 @@
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "preservesSuperviewLayoutMargins()": null,
     "removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
@@ -3613,6 +3618,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setTag(int)": null,
@@ -4321,6 +4327,7 @@
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "preservesSuperviewLayoutMargins()": null,
     "removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
@@ -4400,6 +4407,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setSelected(boolean)": null,
@@ -4624,6 +4632,7 @@
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "preservesSuperviewLayoutMargins()": null,
     "removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
@@ -4689,6 +4698,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setSelected(boolean)": {
@@ -4846,6 +4856,7 @@
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "preservesSuperviewLayoutMargins()": null,
     "removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
@@ -4943,6 +4954,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setSelected(boolean)": null,
@@ -5537,6 +5549,7 @@
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "preservesSuperviewLayoutMargins()": null,
     "removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
@@ -5606,6 +5619,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setTag(int)": null,
@@ -5747,6 +5761,7 @@
       "super": "- (int) numberOfLines__\n{\n    return [super numberOfLines];\n}\n\n"
     },
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "preferredMaxLayoutWidth()": {
       "reverse": "- (CGFloat) preferredMaxLayoutWidth\n{\n    return [self preferredMaxLayoutWidth__];\n}\n\n",
@@ -5826,6 +5841,7 @@
       "super": "- (void) setNumberOfLines___int:(int) numberOfLines \n{\n    [super setNumberOfLines:numberOfLines];\n}\n\n"
     },
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreferredMaxLayoutWidth(double)": {
       "reverse": "- (void) setPreferredMaxLayoutWidth:(CGFloat) preferredMaxLayoutWidth\n{\n    [self setPreferredMaxLayoutWidth___double:preferredMaxLayoutWidth];\n}\n\n",
       "super": "- (void) setPreferredMaxLayoutWidth___double:(double) preferredMaxLayoutWidth \n{\n    [super setPreferredMaxLayoutWidth:preferredMaxLayoutWidth];\n}\n\n"
@@ -6380,6 +6396,7 @@
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "popNavigationItemAnimated(boolean)": {
       "reverse": "- (UINavigationItem *) popNavigationItemAnimated:(BOOL) animated\n{\n    UINavigationItem * re$ult = [self popNavigationItemAnimated___boolean:animated];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
@@ -6463,6 +6480,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setTag(int)": null,
@@ -7028,6 +7046,7 @@
       "super": "- (int) numberOfPages__\n{\n    return [super numberOfPages];\n}\n\n"
     },
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pageIndicatorTintColor()": {
       "reverse": "- (UIColor *) pageIndicatorTintColor\n{\n    UIColor * re$ult = [self pageIndicatorTintColor__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
       "super": "- (UIColor*) pageIndicatorTintColor__\n{\n    UIColor* re$ult = [super pageIndicatorTintColor];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
@@ -7101,6 +7120,7 @@
       "super": "- (void) setNumberOfPages___int:(int) numberOfPages \n{\n    [super setNumberOfPages:numberOfPages];\n}\n\n"
     },
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPageIndicatorTintColor(crossmobile.ios.uikit.UIColor)": {
       "reverse": "- (void) setPageIndicatorTintColor:(UIColor *) pageIndicatorTintColor\n{\n    [self setPageIndicatorTintColor___crossmobile_ios_uikit_UIColor:(pageIndicatorTintColor ? pageIndicatorTintColor : JAVA_NULL)];\n}\n\n",
       "super": "- (void) setPageIndicatorTintColor___crossmobile_ios_uikit_UIColor:(UIColor*) pageIndicatorTintColor \n{\n    [super setPageIndicatorTintColor:(pageIndicatorTintColor == JAVA_NULL ? nil : pageIndicatorTintColor)];\n}\n\n",
@@ -7313,6 +7333,7 @@
       "super": "- (int) numberOfRowsInComponent___int:(int) component \n{\n    return [super numberOfRowsInComponent:component];\n}\n\n"
     },
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "preservesSuperviewLayoutMargins()": null,
     "reloadAllComponents()": {
@@ -7387,6 +7408,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setShowsSelectionIndicator(boolean)": {
@@ -7764,6 +7786,7 @@
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "preservesSuperviewLayoutMargins()": null,
     "progress()": {
@@ -7816,6 +7839,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setProgress(float)": {
       "reverse": "- (void) setProgress:(float) progress\n{\n    [self setProgress___float:progress];\n}\n\n",
@@ -8160,6 +8184,7 @@
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "preservesSuperviewLayoutMargins()": null,
     "removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
@@ -8282,6 +8307,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPagingEnabled(boolean)": {
       "reverse": "- (void) setPagingEnabled:(BOOL) pagingEnabled\n{\n    [self setPagingEnabled___boolean:pagingEnabled];\n}\n\n",
       "super": "- (void) setPagingEnabled___boolean:(BOOL) pagingEnabled \n{\n    [super setPagingEnabled:pagingEnabled];\n}\n\n"
@@ -8536,6 +8562,7 @@
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "placeholder()": {
       "reverse": "- (NSString *) placeholder\n{\n    NSString * re$ult = [self placeholder__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
       "super": "- (NSString*) placeholder__\n{\n    NSString* re$ult = [super placeholder];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
@@ -8639,6 +8666,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPlaceholder(java.lang.String)": {
       "reverse": "- (void) setPlaceholder:(NSString *) placeholder\n{\n    [self setPlaceholder___java_lang_String:(placeholder ? placeholder : JAVA_NULL)];\n}\n\n",
       "super": "- (void) setPlaceholder___java_lang_String:(NSString*) placeholder \n{\n    [super setPlaceholder:(placeholder == JAVA_NULL ? nil : placeholder)];\n}\n\n",
@@ -8907,6 +8935,7 @@
       "super": "- (int) numberOfSegments__\n{\n    return [super numberOfSegments];\n}\n\n"
     },
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "preservesSuperviewLayoutMargins()": null,
     "removeAllSegments()": {
@@ -8977,6 +9006,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setSegmentedControlStyle(int)": {
@@ -9178,6 +9208,7 @@
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "preservesSuperviewLayoutMargins()": null,
     "removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
@@ -9275,6 +9306,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setSelected(boolean)": null,
@@ -9764,6 +9796,7 @@
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "preservesSuperviewLayoutMargins()": null,
     "removeArrangedSubview(crossmobile.ios.uikit.UIView)": {
@@ -9828,6 +9861,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setSpacing(double)": {
@@ -9982,6 +10016,7 @@
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "preservesSuperviewLayoutMargins()": null,
     "removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
@@ -10069,6 +10104,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setSelected(boolean)": null,
@@ -10350,6 +10386,7 @@
         "crossmobile_ios_uikit_UIColor"
       ]
     },
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "preservesSuperviewLayoutMargins()": null,
     "removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
@@ -10408,6 +10445,7 @@
       ]
     },
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setSelected(boolean)": null,
@@ -10582,6 +10620,7 @@
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "preservesSuperviewLayoutMargins()": null,
     "removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
@@ -10691,6 +10730,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setSelectedImageTintColor(crossmobile.ios.uikit.UIColor)": {
@@ -11235,6 +11275,7 @@
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "preservesSuperviewLayoutMargins()": null,
     "registerClass(java.lang.Class,java.lang.String)": {
@@ -11390,6 +11431,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPagingEnabled(boolean)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
@@ -11576,6 +11618,7 @@
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "prepareForReuse()": {
       "reverse": "- (void) prepareForReuse\n{\n    [self prepareForReuse__];\n}\n\n",
@@ -11657,6 +11700,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setSelected(boolean)": {
@@ -12370,6 +12414,7 @@
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "placeholder()": {
       "reverse": "- (NSString *) placeholder\n{\n    NSString * re$ult = [self placeholder__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
       "super": "- (NSString*) placeholder__\n{\n    NSString* re$ult = [super placeholder];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
@@ -12466,6 +12511,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPlaceholder(java.lang.String)": {
       "reverse": "- (void) setPlaceholder:(NSString *) placeholder\n{\n    [self setPlaceholder___java_lang_String:(placeholder ? placeholder : JAVA_NULL)];\n}\n\n",
       "super": "- (void) setPlaceholder___java_lang_String:(NSString*) placeholder \n{\n    [super setPlaceholder:(placeholder == JAVA_NULL ? nil : placeholder)];\n}\n\n",
@@ -12863,6 +12909,7 @@
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "preservesSuperviewLayoutMargins()": null,
     "removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
@@ -12946,6 +12993,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setReturnKeyType(int)": {
@@ -13174,6 +13222,7 @@
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "preservesSuperviewLayoutMargins()": null,
     "removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
@@ -13236,6 +13285,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setTag(int)": null,
@@ -13649,6 +13699,10 @@
     },
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": {
+      "reverse": "- (UIUserInterfaceStyle) overrideUserInterfaceStyle\n{\n    return [self overrideUserInterfaceStyle__];\n}\n\n",
+      "super": "- (int) overrideUserInterfaceStyle__\n{\n    return [super overrideUserInterfaceStyle];\n}\n\n"
+    },
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": {
       "reverse": "- (BOOL) pointInside:(CGPoint) point withEvent:(UIEvent *) event\n{\n    crossmobile_ios_coregraphics_CGPoint* point$conv = [[crossmobile_ios_coregraphics_CGPoint alloc] initWithCGPoint:point];\n    BOOL re$ult = [self pointInside___crossmobile_ios_coregraphics_CGPoint_crossmobile_ios_uikit_UIEvent:point$conv :(event ? event : JAVA_NULL)];\n    [point$conv release];\n    return re$ult;\n}\n\n",
       "super": "- (BOOL) pointInside___crossmobile_ios_coregraphics_CGPoint_crossmobile_ios_uikit_UIEvent:(crossmobile_ios_coregraphics_CGPoint*) point :(UIEvent*) event \n{\n    return [super pointInside:[point getCGPoint] withEvent:(event == JAVA_NULL ? nil : event)];\n}\n\n",
@@ -13839,6 +13893,10 @@
     "setOpaque(boolean)": {
       "reverse": "- (void) setOpaque:(BOOL) opaque\n{\n    [self setOpaque___boolean:opaque];\n}\n\n",
       "super": "- (void) setOpaque___boolean:(BOOL) opaque \n{\n    [super setOpaque:opaque];\n}\n\n"
+    },
+    "setOverrideUserInterfaceStyle(int)": {
+      "reverse": "- (void) setOverrideUserInterfaceStyle:(UIUserInterfaceStyle) overrideUserInterfaceStyle\n{\n    [self setOverrideUserInterfaceStyle___int:overrideUserInterfaceStyle];\n}\n\n",
+      "super": "- (void) setOverrideUserInterfaceStyle___int:(int) overrideUserInterfaceStyle \n{\n    [super setOverrideUserInterfaceStyle:overrideUserInterfaceStyle];\n}\n\n"
     },
     "setPreservesSuperviewLayoutMargins(boolean)": {
       "reverse": "- (void) setPreservesSuperviewLayoutMargins:(BOOL) preservesSuperviewLayoutMargins\n{\n    [self setPreservesSuperviewLayoutMargins___boolean:preservesSuperviewLayoutMargins];\n}\n\n",
@@ -14643,6 +14701,7 @@
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "preservesSuperviewLayoutMargins()": null,
     "reload()": {
@@ -14710,6 +14769,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setScalesPageToFit(boolean)": {
@@ -14884,6 +14944,7 @@
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "preservesSuperviewLayoutMargins()": null,
     "removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
@@ -14935,6 +14996,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setRootViewController(crossmobile.ios.uikit.UIViewController)": {

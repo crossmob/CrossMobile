@@ -347,6 +347,7 @@
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
     "preservesSuperviewLayoutMargins()": null,
     "removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
@@ -384,6 +385,7 @@
     "setNeedsLayout()": null,
     "setNeedsUpdateConstraints()": null,
     "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
     "setPreservesSuperviewLayoutMargins(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setShowsRouteButton(boolean)": {
