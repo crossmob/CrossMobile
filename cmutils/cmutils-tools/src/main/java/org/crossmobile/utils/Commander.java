@@ -511,7 +511,7 @@ public class Commander {
         if (script == null) return null;
         script.deleteOnExit();
 
-        String bash = SystemDependent.getBash();
+        String bash = SystemDependent.getBashExec();
         if (bash == null) return null;
 
         String cdToDir = currentDir == null ? "" : "cd \"" + currentDir.getAbsolutePath() + "\"\n";

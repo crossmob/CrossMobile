@@ -256,7 +256,11 @@ public class SystemDependent {
         return false;
     }
 
-    public static String getBash() {
+    public static String getOSBinName() {
+        return IS_WINDOWS ? "windows" : IS_LINUX ? "linux64" : "macos";
+    }
+
+    public static String getBashExec() {
         for (String part : Opt.of(System.getenv("PATH")).getOrElse("").split(File.pathSeparator)) {
             File path = new File(part, BASH.filename());
             if (path.isFile())
@@ -278,7 +282,8 @@ public class SystemDependent {
         STUDIO("exe", "sh"),
         STUDIO64("exe", "sh"),
         BASH("exe"),
-        MVN("cmd");
+        MVN("cmd"),
+        MAKEAPP("exe");
 
         private final String ext;
         private final String lext;
