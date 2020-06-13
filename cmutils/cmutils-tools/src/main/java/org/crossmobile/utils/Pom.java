@@ -34,13 +34,11 @@ public class Pom {
     }
 
     public boolean isValid() {
-        return Nullable.of(pomWalker).def(false).set(root -> root.setMeta(false).
-                execIf(w -> w.pathExists("/project/parent"), parent -> parent.last().execIf(
-                        c -> CROSSMOBILE_GROUP_ID.equals(parent.tag(0).nodeExists("groupID") ? parent.last().text() : null)
-                                && (CROSSMOBILE_PARENT_ID.equals(parent.toTag(0).nodeExists("artifactId") ? parent.last().text() : null)
-                                || CROSSMOBILE_PARENT_ID_DEBUG.equals(parent.toTag(0).nodeExists("artifactId") ? parent.last().text() : null)),
-                        c -> root.setMeta(true))).meta())
-                .get(Boolean.class);
+        return Opt.of(pomWalker).ifExists(p -> p.setMeta(false).execIf(w -> w.pathExists("/project/parent"), parent -> parent.last().execIf(
+                c -> CROSSMOBILE_GROUP_ID.equals(parent.tag(0).nodeExists("groupID") ? parent.last().text() : null)
+                        && (CROSSMOBILE_PARENT_ID.equals(parent.toTag(0).nodeExists("artifactId") ? parent.last().text() : null)
+                        || CROSSMOBILE_PARENT_ID_DEBUG.equals(parent.toTag(0).nodeExists("artifactId") ? parent.last().text() : null)),
+                c -> c.setMeta(true)))).map(p -> (Boolean) p.meta()).getOrElse(false);
     }
 
     public String parentVersion() {

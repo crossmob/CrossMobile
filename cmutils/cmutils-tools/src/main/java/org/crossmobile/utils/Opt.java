@@ -8,6 +8,7 @@ package org.crossmobile.utils;
 
 import org.crossmobile.bridge.system.BaseUtils;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -16,17 +17,23 @@ public class Opt<T> {
     private final T value;
     private Consumer<Throwable> errorHandler;
 
-    private static final Opt<?> nullable = new Opt<>(null);
+    @SuppressWarnings("rawtypes")
+    private static final Opt nullable = new Opt<>(null);
+
+    @SuppressWarnings("unchecked")
+    private static <Q> Opt<Q> nullable() {
+        return nullable;
+    }
 
     public static <Q> Opt<Q> of(Q value) {
-        return value == null ? (Opt<Q>) nullable : new Opt<>(value);
+        return value == null ? nullable() : new Opt<>(value);
     }
 
     public static <Q> Opt<Q> of(UnsafeSupplier<Q> supplier) {
         try {
             return of(supplier.get());
         } catch (Throwable throwable) {
-            return (Opt<Q>) nullable;
+            return nullable();
         }
     }
 
@@ -40,7 +47,7 @@ public class Opt<T> {
     }
 
     public Opt<T> ifExists(UnsafeConsumer<T> consumer) {
-        if (value != null) {
+        if (exists()) {
             try {
                 consumer.accept(value);
             } catch (Throwable e) {
@@ -54,7 +61,7 @@ public class Opt<T> {
     }
 
     public Opt<T> ifMissing(UnsafeRunnable runnable) {
-        if (value == null) {
+        if (!exists()) {
             try {
                 runnable.run();
             } catch (Throwable e) {
@@ -71,19 +78,21 @@ public class Opt<T> {
         return value;
     }
 
+    public boolean exists() {
+        return value != null;
+    }
+
     public T getOrElse(T otherValue) {
-        return value == null ? otherValue : value;
+        return exists() ? get() : otherValue;
     }
 
     public Opt<T> filter(Predicate<T> predicate) {
-        if (value != null && predicate.test(value))
-            return this;
-        else return new Opt<>(null);
+        Objects.requireNonNull(predicate);
+        return exists() && predicate.test(value) ? this : nullable();
     }
 
     public <S> Opt<S> map(Function<T, S> mapper) {
-        if (value != null)
-            return new Opt<>(mapper.apply(value));
-        else return new Opt<>(null);
+        Objects.requireNonNull(mapper);
+        return exists() ? Opt.of(mapper.apply(value)) : nullable();
     }
 }
