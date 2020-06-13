@@ -8,14 +8,12 @@ package org.crossmobile.utils;
 
 import org.crossmobile.NativeHandler;
 
-import javax.swing.*;
 import java.io.*;
 import java.lang.reflect.Field;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.attribute.PosixFilePermission;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.function.BiConsumer;
@@ -185,7 +183,7 @@ public class Commander {
             if (detachable)
                 Opt.of(getBashNohup(currentDir)).ifExists(f -> command.add(0, f));
             if (debug)
-                Log.info(toString());
+                Log.debug(toString());
             ProcessBuilder pb = new ProcessBuilder(command);
             pb.directory(currentDir);
             pb.environment().putAll(envp);
