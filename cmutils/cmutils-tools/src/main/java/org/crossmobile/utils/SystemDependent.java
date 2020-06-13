@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
+import static org.crossmobile.utils.SystemDependent.Execs.BASH;
 import static org.crossmobile.utils.SystemDependent.Execs.JAVA;
 
 public class SystemDependent {
@@ -255,6 +256,15 @@ public class SystemDependent {
         return false;
     }
 
+    public static String getBash() {
+        for (String part : Opt.of(System.getenv("PATH")).getOrElse("").split(File.pathSeparator)) {
+            File path = new File(part, BASH.filename());
+            if (path.isFile())
+                return path.getAbsolutePath();
+        }
+        return null;
+    }
+
     public enum Execs {
 
         JAVA("exe"),
@@ -267,6 +277,7 @@ public class SystemDependent {
         IDEA("exe", "sh"),
         STUDIO("exe", "sh"),
         STUDIO64("exe", "sh"),
+        BASH("exe"),
         MVN("cmd");
 
         private final String ext;

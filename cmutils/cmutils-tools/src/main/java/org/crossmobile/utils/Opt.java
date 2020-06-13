@@ -16,11 +16,21 @@ public class Opt<T> {
     private final T value;
     private Consumer<Throwable> errorHandler;
 
+    private static final Opt<?> nullable = new Opt<>(null);
+
     public static <Q> Opt<Q> of(Q value) {
-        return new Opt<>(value);
+        return value == null ? (Opt<Q>) nullable : new Opt<>(value);
     }
 
-    public Opt(T value) {
+    public static <Q> Opt<Q> of(UnsafeSupplier<Q> supplier) {
+        try {
+            return of(supplier.get());
+        } catch (Throwable throwable) {
+            return (Opt<Q>) nullable;
+        }
+    }
+
+    private Opt(T value) {
         this.value = value;
     }
 

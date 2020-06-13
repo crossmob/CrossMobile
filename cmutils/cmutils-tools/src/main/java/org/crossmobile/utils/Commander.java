@@ -8,14 +8,20 @@ package org.crossmobile.utils;
 
 import org.crossmobile.NativeHandler;
 
+import javax.swing.*;
 import java.io.*;
 import java.lang.reflect.Field;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.attribute.PosixFilePermission;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+
+import static java.nio.file.attribute.PosixFilePermission.*;
 
 public class Commander {
 
@@ -42,6 +48,7 @@ public class Commander {
     private Thread waitThread;
     private long pid;
     private boolean debug;
+    private boolean detachable = false;
 
     public Commander setDebug(boolean debug) {
         this.debug = debug;
@@ -137,6 +144,10 @@ public class Commander {
         return this;
     }
 
+    public void setDetachable(boolean detachable) {
+        this.detachable = detachable;
+    }
+
     public Commander setCurrentDir(File cdir) {
         if (proc != null)
             throw new RuntimeException("Command already running");
@@ -171,8 +182,10 @@ public class Commander {
         proc = null;
         waitThread = null;
         try {
+            if (detachable)
+                Opt.of(getBashNohup(currentDir)).ifExists(f -> command.add(0, f));
             if (debug)
-                Log.debug(toString());
+                Log.info(toString());
             ProcessBuilder pb = new ProcessBuilder(command);
             pb.directory(currentDir);
             pb.environment().putAll(envp);
@@ -200,7 +213,7 @@ public class Commander {
         if (proc != null) {
             // First try Java 9
             try {
-                pid = (long) proc.getClass().getMethod("getPid", (Class[]) null).invoke(proc, (Object[]) null);
+                pid = (long) proc.getClass().getMethod("getPid").invoke(proc);
                 return;
             } catch (Exception ignored) {
             }
@@ -295,7 +308,7 @@ public class Commander {
             @Override
             public void run() {
                 doWaitFor(duration, tu);    // will also nullify `proc`
-                while (!(out_is_terminated && err_is_terminated) && !waitThread.isInterrupted()) {
+                while (!(out_is_terminated && err_is_terminated) && waitThread != null && !waitThread.isInterrupted()) {
                     try {
                         synchronized (this) {
                             wait(1000);
@@ -491,5 +504,21 @@ public class Commander {
         else if (charStream != null)
             for (char c : what.toCharArray())
                 charStream.accept(c);
+    }
+
+    private static String getBashNohup(File currentDir) {
+        File script = Opt.of(() -> File.createTempFile("launch_emulator_", ".launch")).get();
+        if (script == null) return null;
+        script.deleteOnExit();
+
+        String bash = SystemDependent.getBash();
+        if (bash == null) return null;
+
+        String cdToDir = currentDir == null ? "" : "cd \"" + currentDir.getAbsolutePath() + "\"\n";
+        Path path = Opt.of(() -> Files.write(script.toPath(), ("#!" + bash + "\n" + cdToDir + "nohup &>/dev/null \"$@\" &").getBytes(StandardCharsets.UTF_8))).get();
+        if (path == null) return null;
+
+        ExceptionUtils.callNoException(() -> Files.setPosixFilePermissions(path, EnumSet.of(OWNER_READ, OWNER_WRITE, OWNER_EXECUTE)));
+        return script.getAbsolutePath();
     }
 }
