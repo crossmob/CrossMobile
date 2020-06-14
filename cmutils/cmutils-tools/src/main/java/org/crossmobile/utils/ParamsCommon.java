@@ -51,6 +51,9 @@ public enum ParamsCommon {
     CM_KEYBOARD_SUPPORT("quit:pause:back:menu:home:rotate:multitouch"),
     CM_SPLASH_DELAY("2"),
     CM_FULLSCREEN_DESKTOP("false"),
+    CM_VENDOR(""),
+    CM_DESCRIPTION(""),
+    CM_URL(""),
 
     // The following tags are recalculated inside ParameterList
     MAIN_CLASS("");

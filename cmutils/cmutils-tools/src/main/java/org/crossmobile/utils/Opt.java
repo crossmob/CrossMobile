@@ -47,29 +47,25 @@ public class Opt<T> {
     }
 
     public Opt<T> ifExists(UnsafeConsumer<T> consumer) {
-        if (exists()) {
-            try {
-                consumer.accept(value);
-            } catch (Throwable e) {
-                if (errorHandler != null)
-                    errorHandler.accept(e);
-                else
-                    BaseUtils.throwException(e);
-            }
-        }
+        if (exists())
+            always(consumer);
         return this;
     }
 
     public Opt<T> ifMissing(UnsafeRunnable runnable) {
-        if (!exists()) {
-            try {
-                runnable.run();
-            } catch (Throwable e) {
-                if (errorHandler != null)
-                    errorHandler.accept(e);
-                else
-                    BaseUtils.throwException(e);
-            }
+        if (!exists())
+            always(q -> runnable.run());
+        return this;
+    }
+
+    public Opt<T> always(UnsafeConsumer<T> runnable) {
+        try {
+            runnable.accept(value);
+        } catch (Throwable e) {
+            if (errorHandler != null)
+                errorHandler.accept(e);
+            else
+                BaseUtils.throwException(e);
         }
         return this;
     }

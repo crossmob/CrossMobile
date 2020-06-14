@@ -394,8 +394,7 @@ public class Commander {
     private String commandToString() {
         StringBuilder out = new StringBuilder();
         for (String part : command)
-            if (part != null)
-                out.append(escapeIfRequired(part)).append(" ");
+            out.append(escapeIfRequired(part)).append(" ");
         return out.toString();
     }
 
@@ -414,7 +413,7 @@ public class Commander {
     }
 
     private String escapeIfRequired(String input) {
-        if (input.contains(" ") || input.contains("!"))
+        if (input.contains(" ") || input.contains("!") || input.isEmpty())
             return "'" + input + "'";
         else
             return input;
