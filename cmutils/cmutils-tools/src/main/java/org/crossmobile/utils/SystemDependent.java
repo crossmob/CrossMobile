@@ -6,6 +6,8 @@
 
 package org.crossmobile.utils;
 
+import org.crossmobile.utils.func.Opt;
+
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;

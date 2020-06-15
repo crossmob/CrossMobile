@@ -6,6 +6,8 @@
 
 package org.crossmobile.utils;
 
+import org.crossmobile.utils.func.UnsafeRunnable;
+
 public class ExceptionUtils {
     public static void callNoException(UnsafeRunnable runnable) {
         try {

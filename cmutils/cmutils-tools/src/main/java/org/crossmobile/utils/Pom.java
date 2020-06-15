@@ -7,6 +7,7 @@
 package org.crossmobile.utils;
 
 import org.crossmobile.Version;
+import org.crossmobile.utils.func.Opt;
 import org.crossmobile.utils.launcher.Flavour;
 
 import java.io.File;

@@ -12,6 +12,7 @@ import org.crossmobile.utils.Log;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -73,7 +74,11 @@ public class ImageHound {
         return asFore ? foreImages : backImages;
     }
 
-    public List<Image> getImages() {
+    public BufferedImage requestImage(int size) {
+        return findFore(size, true).withBackground(findBack(size, true)).image;
+    }
+
+    public List<Image> getDeclaredImages() {
         List<Image> files = new ArrayList<>();
         for (MetaImage foreImage : container(true).values())
             if (foreImage.isValid()) {

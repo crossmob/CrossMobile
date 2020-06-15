@@ -4,14 +4,13 @@
  * SPDX-License-Identifier: LGPL-3.0-only
  */
 
-package org.crossmobile.utils;
+package org.crossmobile.utils.func;
 
 import org.crossmobile.bridge.system.BaseUtils;
+import org.crossmobile.utils.UnsafeConsumer;
 
 import java.util.Objects;
 import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
 
 public class Opt<T> {
     private final T value;
@@ -82,13 +81,21 @@ public class Opt<T> {
         return exists() ? get() : otherValue;
     }
 
-    public Opt<T> filter(Predicate<T> predicate) {
+    public Opt<T> filter(UnsafePredicate<T> predicate) {
         Objects.requireNonNull(predicate);
-        return exists() && predicate.test(value) ? this : nullable();
+        try {
+            return exists() && predicate.test(value) ? this : nullable();
+        } catch (Throwable throwable) {
+            return nullable();
+        }
     }
 
-    public <S> Opt<S> map(Function<T, S> mapper) {
+    public <S> Opt<S> map(UnsafeFunction<T, S> mapper) {
         Objects.requireNonNull(mapper);
-        return exists() ? Opt.of(mapper.apply(value)) : nullable();
+        try {
+            return exists() ? Opt.of(mapper.apply(value)) : nullable();
+        } catch (Throwable throwable) {
+            return nullable();
+        }
     }
 }

@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import static org.junit.Assert.*;
 
-import org.crossmobile.utils.Opt;
+import org.crossmobile.utils.func.Opt;
 import org.junit.Test;
 
 public class OptTest {

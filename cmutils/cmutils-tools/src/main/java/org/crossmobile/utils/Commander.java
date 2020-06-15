@@ -7,6 +7,7 @@
 package org.crossmobile.utils;
 
 import org.crossmobile.NativeHandler;
+import org.crossmobile.utils.func.Opt;
 
 import java.io.*;
 import java.lang.reflect.Field;
