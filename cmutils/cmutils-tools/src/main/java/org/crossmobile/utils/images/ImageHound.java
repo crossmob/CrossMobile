@@ -7,12 +7,10 @@
 package org.crossmobile.utils.images;
 
 import org.crossmobile.bridge.system.BaseUtils;
-import org.crossmobile.utils.FileUtils;
 import org.crossmobile.utils.Log;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,8 +20,6 @@ import java.util.Map;
 import java.util.function.Predicate;
 
 import static org.crossmobile.bridge.system.BaseUtils.listFiles;
-import static org.crossmobile.prefs.Config.BACK_ICONS;
-import static org.crossmobile.prefs.Config.FORE_ICONS;
 
 public class ImageHound {
     private final Map<Integer, MetaImage> foreImages = new HashMap<>();
@@ -72,10 +68,6 @@ public class ImageHound {
 
     private Map<Integer, MetaImage> container(boolean asFore) {
         return asFore ? foreImages : backImages;
-    }
-
-    public BufferedImage requestImage(int size) {
-        return findFore(size, true).withBackground(findBack(size, true)).image;
     }
 
     public List<Image> getDeclaredImages() {
