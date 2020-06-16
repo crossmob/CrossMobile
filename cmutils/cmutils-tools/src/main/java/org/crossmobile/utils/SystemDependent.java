@@ -271,6 +271,36 @@ public class SystemDependent {
         return null;
     }
 
+    public static String getFullName() {
+        if (IS_MACOSX) {
+            StringBuilder out = new StringBuilder();
+            Commander c = new Commander("id", "-F");
+            c.setOutListener(out::append);
+            c.exec();
+            c.waitFor();
+            String name = out.toString();
+            if (c.exitValue() == 0 && !name.trim().isEmpty())
+                return name.trim();
+        }
+        String username = System.getProperty("user.name", "").trim();
+        if (!username.isEmpty()) {
+            String passwd = FileUtils.read(new File("/etc/passwd"));
+            String check = username + ":";
+            if (passwd != null)
+                for (String line : passwd.split("\\r?\\n"))
+                    if (line.startsWith(check)) {
+                        String[] parts = line.split(":");
+                        if (parts.length >= 5) {
+                            String[] name = parts[4].split(",");
+                            if (name.length > 0 && name[0].trim().length() > 0)
+                                return name[0];
+                        }
+                    }
+            return username.substring(0, 1).toUpperCase() + (username.length() > 1 ? username.substring(1) : "");
+        }
+        return "Company";
+    }
+
     public enum Execs {
 
         JAVA("exe"),
