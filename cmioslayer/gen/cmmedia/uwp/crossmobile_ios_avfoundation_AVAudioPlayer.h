@@ -16,8 +16,8 @@
 
 #define crossmobile_ios_avfoundation_AVAudioPlayer AVAudioPlayer
 @interface AVAudioPlayer (cm_crossmobile_ios_avfoundation_AVAudioPlayer)
-- (instancetype) __init_crossmobile_ios_avfoundation_AVAudioPlayer___crossmobile_ios_foundation_NSData_crossmobile_rt_StrongReference:(NSData*) data :(crossmobile_rt_StrongReference*) outError ;
-- (instancetype) __init_crossmobile_ios_avfoundation_AVAudioPlayer___crossmobile_ios_foundation_NSURL_crossmobile_rt_StrongReference:(NSURL*) url :(crossmobile_rt_StrongReference*) outError ;
++ (instancetype) initWithContentsOfURL___crossmobile_ios_foundation_NSURL_crossmobile_rt_StrongReference:(NSURL*) url :(crossmobile_rt_StrongReference*) outError ;
++ (instancetype) initWithData___crossmobile_ios_foundation_NSData_crossmobile_rt_StrongReference:(NSData*) data :(crossmobile_rt_StrongReference*) outError ;
 - (void) setCurrentTime___double:(double) currentTime ;
 - (double) currentTime__;
 - (NSData*) data__;

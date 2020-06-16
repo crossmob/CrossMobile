@@ -14,23 +14,23 @@
 
 @implementation AVAudioPlayer (cm_crossmobile_ios_avfoundation_AVAudioPlayer)
 
-// - (instancetype)initWithData:(NSData *)data error:(NSError * _Nullable *)outError;
-- (instancetype) __init_crossmobile_ios_avfoundation_AVAudioPlayer___crossmobile_ios_foundation_NSData_crossmobile_rt_StrongReference:(NSData*) data :(crossmobile_rt_StrongReference*) outError 
+// - (instancetype)initWithContentsOfURL:(NSURL *)url error:(NSError * _Nullable *)outError;
++ (instancetype) initWithContentsOfURL___crossmobile_ios_foundation_NSURL_crossmobile_rt_StrongReference:(NSURL*) url :(crossmobile_rt_StrongReference*) outError 
 {
     outError = outError == JAVA_NULL ? nil : outError;
     id outError$conv = nil;
-    id re$ult = [self initWithData:(data == JAVA_NULL ? nil : data) error:(outError ? &outError$conv : nil)];
+    id re$ult = [[AVAudioPlayer alloc] initWithContentsOfURL:(url == JAVA_NULL ? nil : url) error:(outError ? &outError$conv : nil)];
     if (outError)
         [outError set___java_lang_Object:(outError$conv ? outError$conv : JAVA_NULL)];
     return re$ult;
 }
 
-// - (instancetype)initWithContentsOfURL:(NSURL *)url error:(NSError * _Nullable *)outError;
-- (instancetype) __init_crossmobile_ios_avfoundation_AVAudioPlayer___crossmobile_ios_foundation_NSURL_crossmobile_rt_StrongReference:(NSURL*) url :(crossmobile_rt_StrongReference*) outError 
+// - (instancetype)initWithData:(NSData *)data error:(NSError * _Nullable *)outError;
++ (instancetype) initWithData___crossmobile_ios_foundation_NSData_crossmobile_rt_StrongReference:(NSData*) data :(crossmobile_rt_StrongReference*) outError 
 {
     outError = outError == JAVA_NULL ? nil : outError;
     id outError$conv = nil;
-    id re$ult = [self initWithContentsOfURL:(url == JAVA_NULL ? nil : url) error:(outError ? &outError$conv : nil)];
+    id re$ult = [[AVAudioPlayer alloc] initWithData:(data == JAVA_NULL ? nil : data) error:(outError ? &outError$conv : nil)];
     if (outError)
         [outError set___java_lang_Object:(outError$conv ? outError$conv : JAVA_NULL)];
     return re$ult;

@@ -50,6 +50,13 @@ public class AVAudioPlayer extends NSObject {
         }
     };
 
+    private AVAudioPlayer(NSURL url, StrongReference<NSError> error) throws Exception {
+        if (error != null)
+            error.set(null);
+        this.url = url;
+        this.player = Native.sound().getSoundPlayer(url, sdelegate);
+    }
+
     /**
      * Constructs and returns an AVAudioPlayer with the specified URL for the
      * sound and error handing values.
@@ -57,17 +64,15 @@ public class AVAudioPlayer extends NSObject {
      * @param url   The URL of the sound to play.
      * @param error The error that occurs in case of failure.
      */
-    @CMConstructor("- (instancetype)initWithContentsOfURL:(NSURL *)url\n"
-            + "                                error:(NSError * _Nullable *)outError")
-    public AVAudioPlayer(NSURL url, StrongReference<NSError> error) {
+    @CMSelector(value = "- (instancetype)initWithContentsOfURL:(NSURL *)url\n"
+            + "                                error:(NSError * _Nullable *)outError", staticMapping = true)
+    public static AVAudioPlayer initWithContentsOfURL(NSURL url, StrongReference<NSError> error) {
         try {
-            if (error != null)
-                error.set(null);
-            this.url = url;
-            this.player = Native.sound().getSoundPlayer(url, sdelegate);
+            return new AVAudioPlayer(url, error);
         } catch (Exception ex) {
             if (error != null)
                 error.set(NSError.errorWithDomain(NSError.Domain.NSURL, NSError.ErrorCode.Unknown, errorFromThrowable(ex)));
+            return null;
         }
     }
 
@@ -75,13 +80,13 @@ public class AVAudioPlayer extends NSObject {
      * Constructs and returns an AVAudioPlayer with the specified NSData and
      * error handing values.
      *
-     * @param data The data of the sound to play.
-     * @param error  The error that occurs in case of failure.
+     * @param data  The data of the sound to play.
+     * @param error The error that occurs in case of failure.
      */
-    @CMConstructor("- (instancetype)initWithData:(NSData *)data\n"
-            + "                       error:(NSError * _Nullable *)outError")
-    public AVAudioPlayer(NSData data, StrongReference<NSError> error) {
-        this(NSURL.fileURLWithPath(SystemUtilities.writeToRandomFile(data.bytes())), error);
+    @CMSelector(value = "- (instancetype)initWithData:(NSData *)data\n"
+            + "                       error:(NSError * _Nullable *)outError", staticMapping = true)
+    public static AVAudioPlayer initWithData(NSData data, StrongReference<NSError> error) {
+        return initWithContentsOfURL(NSURL.fileURLWithPath(SystemUtilities.writeToRandomFile(data.bytes())), error);
     }
 
     /**

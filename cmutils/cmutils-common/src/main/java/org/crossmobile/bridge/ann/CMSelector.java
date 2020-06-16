@@ -20,11 +20,12 @@ public @interface CMSelector {
 
     /**
      * Use this annotation to define that this static method is applied on an
-     * object, that does not map directly to the Java object, i.e. NSString
-     * selectors on String class. If the return type of this selector is
-     * "instancetype" and it is a Java-static method, then it will be considered
-     * as a constructor and the first object will be kept from arguments. Otherwise
-     * the first object will become the "self" object.
+     * object, that does not map directly to the Java Object schematics, i.e.
+     * NSString selectors on String class or constructors returning null objects.
+     * If the return type of this selector is "instancetype" and it is a
+     * Java-static method, then it will be considered as a constructor and the
+     * first object will be kept from arguments. Otherwise the first object
+     * will become the "self" object.
      *
      * @return true, if static mapping is performed, usually false
      */
