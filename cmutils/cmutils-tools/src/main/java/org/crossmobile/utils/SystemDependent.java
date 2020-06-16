@@ -165,6 +165,10 @@ public class SystemDependent {
         return IS_MACOSX;
     }
 
+    public static boolean canMakeMacos() {
+        return IS_MACOSX;
+    }
+
     public static boolean canMakeUwp() {
         return IS_WINDOWS;
     }
