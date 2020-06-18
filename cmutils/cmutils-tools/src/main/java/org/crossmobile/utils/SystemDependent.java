@@ -13,12 +13,11 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.attribute.PosixFilePermissions;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 import static org.crossmobile.utils.SystemDependent.Execs.BASH;
 import static org.crossmobile.utils.SystemDependent.Execs.JAVA;
+import static org.crossmobile.utils.TextUtils.iterableToString;
 
 public class SystemDependent {
 
@@ -303,6 +302,15 @@ public class SystemDependent {
             return username.substring(0, 1).toUpperCase() + (username.length() > 1 ? username.substring(1) : "");
         }
         return "Company";
+    }
+
+    public static Map<String, String> getEnvWithFixedPaths() {
+        Map<String, String> env = new HashMap<>(System.getenv());
+        Collection<String> paths = new LinkedHashSet<>(Arrays.asList(env.getOrDefault("PATH", "").split(File.pathSeparator)));
+        paths.add("/usr/local/bin");
+        paths.add("/usr/local/sbin");
+        env.put("PATH", iterableToString(paths, File.pathSeparator));
+        return env;
     }
 
     public enum Execs {
