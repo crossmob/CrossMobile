@@ -49,53 +49,27 @@ public class Chassis implements Comparable<Chassis> {
     private String info;
     private String descr;
     private float priority;
-    //
+
     private CDrawable led;
     private CScreen screen;
-    //
+
     private Insets[] insets;
 
-    public static List<String>[] getSkinInfo(String classpath) {
-        List<String>[] skinlist = new ArrayList[3];
-        skinlist[0] = new ArrayList<>();
-        skinlist[1] = new ArrayList<>();
-        skinlist[2] = new ArrayList<>();
-        skinlist[0].add(Default.name);
-        skinlist[1].add(Default.info);
-        skinlist[2].add(Default.descr);
-        for (String name : getSkinNames(classpath))
-            try {
-                name = name.replace(':', '-');
-                ChassisInfoHandler handler = new ChassisInfoHandler();
-                SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
-                parser.parse(new InputSource(Chassis.class.getResourceAsStream(DesktopImageLocations.SKINS + name + ".xml")), handler);
-                skinlist[0].add(name);
-                skinlist[1].add(handler.info);
-                skinlist[2].add(handler.descr);
-            } catch (Exception ex) {
-                return throwExceptionAndReturn(ex);
-            }
-        return skinlist;
-    }
-
-    static Collection<Chassis> getSkins(String classpath) {
+    static Collection<Chassis> getSkins() {
         Collection<Chassis> result = new TreeSet<>();
         result.add(Default);
-        for (String name : getSkinNames(classpath))
+        for (String name : getSkinNames())
             result.add(getChassis(name));
         return result;
     }
 
-    private static Collection<String> getSkinNames(String classpath) {
+    private static Collection<String> getSkinNames() {
         String testPackage = DesktopImageLocations.SKINS.substring(1).replace('/', '.');
         Collection<String> names = new ArrayList<>();
-        Collection<String> classes = new ArrayList<>();
-        ClassWalker.getClasspathEntries(classpath, item -> {
+        ClassWalker.getClasspathEntries(item -> {
             if (item.startsWith(testPackage))
-                classes.add(item);
+                names.add(item.substring(testPackage.length()));
         }, "xml");
-        for (String matchedName : classes)
-            names.add(matchedName.substring(testPackage.length()));
         return names;
     }
 

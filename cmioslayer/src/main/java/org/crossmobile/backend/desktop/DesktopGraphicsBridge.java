@@ -70,13 +70,13 @@ public abstract class DesktopGraphicsBridge<CANVAS, NTVP, TRANSF> extends Abstra
         return backChar;
     }
 
-    public abstract void draw(CDrawable drawable, GraphicsContext cxt, int orientation);
+    public abstract void draw(CDrawable drawable, GraphicsContext<?, ?> cxt, int orientation);
 
     @SuppressWarnings("UseSpecificCatch")
     public static void loadFonts() {
         if (fontsLoaded)
             return;
-        ClassWalker.getClasspathEntries(null, fontName -> {
+        ClassWalker.getClasspathEntries(fontName -> {
             String lowCase = fontName.toLowerCase();
             if (!lowCase.endsWith(".ttf") && !lowCase.endsWith(".otf"))
                 return;

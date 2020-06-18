@@ -103,7 +103,7 @@ public abstract class DesktopLifecycleBridge extends AbstractLifecycleBridge {
             String[] args = new String[]{
                     OperatingSystem.getJavaExec(),
                     "-cp",
-                    ClassWalker.getClassPath(),
+                    System.getProperty("java.class.path"),
                     System.getProperty("cm.main.class"),
                     UIDevice.currentDevice().userInterfaceIdiom() == UIUserInterfaceIdiom.Pad ? "--skin=phone" : "--skin=pad"
             };

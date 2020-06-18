@@ -14,7 +14,7 @@ public class DesktopArguments {
 
     private static final String emphOn;
     private static final String emphOff;
-    //
+
     private double scale = 1;
     private String skin = null;
 
@@ -58,7 +58,7 @@ public class DesktopArguments {
                             + "List of supported skins.\n"
                             + "These skins can be activated with the --skin=NAME command.\n"
                             + "\n");
-                    for (Chassis ch : Chassis.getSkins(null)) {
+                    for (Chassis ch : Chassis.getSkins()) {
                         System.out.println("  " + ch.getName() + ": " + ch.getInfo());
                         System.out.println("      " + ch.getDescr());
                     }

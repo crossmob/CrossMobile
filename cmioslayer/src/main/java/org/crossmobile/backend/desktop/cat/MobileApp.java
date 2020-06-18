@@ -50,7 +50,7 @@ public class MobileApp implements Comparable<MobileApp> {
             return new MobileApp(System.getProperty("cm.display.name"),
                     Native.system().bundleID(),
                     new File(System.getProperty("user.dir")).getAbsolutePath(),
-                    ClassWalker.getClassPath(),
+                    System.getProperty("java.class.path"),
                     System.getProperty("cm.main.class"));
         } catch (IOException ex) {
         }

@@ -10,12 +10,14 @@ import org.crossmobile.Version;
 import org.crossmobile.backend.desktop.DesktopImageLocations;
 import org.crossmobile.bridge.ann.CMLibParam.ParamContext;
 import org.crossmobile.bridge.system.ClassWalker;
+import org.crossmobile.utils.func.Opt;
 
 import java.io.ByteArrayInputStream;
 import java.util.*;
 
 import static java.util.Comparator.comparingInt;
 import static org.crossmobile.utils.CollectionUtils.asList;
+import static org.crossmobile.utils.FileUtils.readResourceSafe;
 import static org.crossmobile.utils.Pom.CROSSMOBILE_GROUP_ID;
 import static org.crossmobile.utils.Pom.CROSSMOBILE_THEME_ID;
 
@@ -37,25 +39,21 @@ public class Dependency {
     public static Collection<DesktopSkin> getSystemSkins() {
         if (SKINS == null) {
             SKINS = new ArrayList<>();
-            ClassWalker.getClasspathEntries(null, item -> {
-                String name = item.substring(item.lastIndexOf('/') + 1);
-                item = "/" + item + ".xml";
-                if (item.startsWith(DesktopImageLocations.SKINS)) {
-                    XMLWalker skin = XMLWalker.load(ClassWalker.class.getResourceAsStream(item));
-                    if (skin != null && skin.pathExists("/chassis/meta")) {
-                        skin.path("/chassis/meta");
-                        int priority = 100;
-                        try {
-                            priority = Integer.parseInt(skin.attribute("priority"));
-                        } catch (Exception ignored) {
-                        }
-                        if (priority >= 0)
-                            SKINS.add(new DesktopSkin(name, skin.attribute("info"), skin.attribute("descr"), priority));
+            for (String skinFile : Opt.of(readResourceSafe("org/crossmobile/backend/desktop/skin/catalog"))
+                    .ifMissing(() -> SKINS.add(new DesktopSkin("system", "Default", "Default System application", 0)))
+                    .getOrElse("").split("\n")) {
+                XMLWalker skin = XMLWalker.load(ClassWalker.class.getResourceAsStream(DesktopImageLocations.SKINS + skinFile));
+                if (skin != null && skin.pathExists("/chassis/meta")) {
+                    skin.path("/chassis/meta");
+                    int priority = 100;
+                    try {
+                        priority = Integer.parseInt(skin.attribute("priority"));
+                    } catch (Exception ignored) {
                     }
+                    if (priority >= 0)
+                        SKINS.add(new DesktopSkin(skinFile.substring(0, skinFile.length() - 4), skin.attribute("info"), skin.attribute("descr"), priority));
                 }
-            }, "xml");
-            if (SKINS.isEmpty())
-                SKINS.add(new DesktopSkin("system", "Default", "Default System application", 0));
+            }
             SKINS.sort(comparingInt(o -> o.priority));
         }
         return SKINS;
