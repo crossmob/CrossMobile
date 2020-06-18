@@ -13,7 +13,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.*;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
@@ -95,9 +94,9 @@ public class JarUtils {
      */
     public static Throwable execJar(File jar, String mainClassName, String... argumens) {
         try {
-            URLClassLoader cl = new URLClassLoader(new URL[]{jar.toURI().toURL()}, JarUtils.class.getClassLoader());
-            Class mainClass = Class.forName(mainClassName, false, cl);
-            Method method = mainClass.getMethod("main", new Class[]{String[].class});
+            ClassLoader cl = new java.net.URLClassLoader(new URL[]{jar.toURI().toURL()}, JarUtils.class.getClassLoader());
+            Class<?> mainClass = Class.forName(mainClassName, false, cl);
+            Method method = mainClass.getMethod("main", String[].class);
             method.invoke(null, new Object[]{argumens == null ? new String[]{} : argumens});
         } catch (MalformedURLException | ClassNotFoundException | NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
             return ex;

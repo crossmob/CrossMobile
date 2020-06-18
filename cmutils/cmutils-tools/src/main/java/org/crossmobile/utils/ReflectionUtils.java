@@ -16,7 +16,6 @@ import java.io.File;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.*;
 import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.*;
 
 public class ReflectionUtils {
@@ -198,7 +197,7 @@ public class ReflectionUtils {
             }
     }
 
-    public static Class getClassForName(String type) {
+    public static Class<?> getClassForName(String type) {
         switch (type) {
             case "boolean":
                 return boolean.class;
@@ -392,7 +391,7 @@ public class ReflectionUtils {
         return cl;
     }
 
-    public static final class ExtClassLoader extends URLClassLoader {
+    public static final class ExtClassLoader extends java.net.URLClassLoader {
         private ExtClassLoader() {
             super(new URL[0], ExtClassLoader.class.getClassLoader());
         }
