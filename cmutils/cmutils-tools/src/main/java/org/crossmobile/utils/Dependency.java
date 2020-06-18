@@ -54,6 +54,8 @@ public class Dependency {
                     }
                 }
             }, "xml");
+            if (SKINS.isEmpty())
+                SKINS.add(new DesktopSkin("system", "Default", "Default System application", 0));
             SKINS.sort(comparingInt(o -> o.priority));
         }
         return SKINS;
