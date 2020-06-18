@@ -60,10 +60,10 @@ public abstract class DrawableMetrics {
         String given = System.getProperty("cm.device", "").toLowerCase();
         int proposed = given.equals("iphone") ? UIUserInterfaceIdiom.Phone : (given.equals("ipad") ? UIUserInterfaceIdiom.Pad : -1);
         setScale();
-        idiom = calculateIdom(proposed);
+        idiom = calculateIdiom(proposed);
     }
 
-    protected abstract int calculateIdom(int proposedInterfaceIdiom);
+    protected abstract int calculateIdiom(int proposedInterfaceIdiom);
 
     protected abstract void setScale();
 

@@ -42,7 +42,7 @@ public abstract class DesktopDrawableMetrics extends DrawableMetrics {
     }
 
     @Override
-    protected int calculateIdom(int proposedInterfaceIdiom) {
+    protected int calculateIdiom(int proposedInterfaceIdiom) {
         this.proposedInterfaceIdiom = proposedInterfaceIdiom;
         setVirtualDimension(vWidth, vHeight);
         setHardwareDimension(scr.width(), scr.height());
@@ -176,12 +176,12 @@ public abstract class DesktopDrawableMetrics extends DrawableMetrics {
         }
     }
 
-    public boolean isDecorated() {
-        return chassis().isDecorated();
+    public boolean isFullScreen() {
+        return chassis().isFullscreen();
     }
 
-    public boolean isAutoResized() {
-        return chassis().isAutoResized();
+    public boolean isSimulator() {
+        return chassis().isSimulator();
     }
 
     public boolean isStretched() {

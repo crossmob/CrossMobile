@@ -33,27 +33,23 @@ public class SwingLifecycleBridge extends DesktopLifecycleBridge {
          */
         if (SwingGraphicsBridge.frame == null) {
             SwingGraphicsBridge.frame = new JEmulatorFrame();
-            SwingGraphicsBridge.component = new JEmulatorPanel();
-            SwingGraphicsBridge.frame.add(SwingGraphicsBridge.component);
-            SwingGraphicsBridge.frame.pack(); // Or else CGContext retrieval of Graphics2D will not work!
+            SwingGraphicsBridge.frame.add(SwingGraphicsBridge.component = new JEmulatorPanel());
         }
 
         super.init(args);
 
-        SwingGraphicsBridge.frame = new JEmulatorFrame();
-        SwingGraphicsBridge.frame.initialize(((DesktopDrawableMetrics) Native.graphics().metrics()).isDecorated());
-        SwingGraphicsBridge.component = new JEmulatorPanel();
-        SwingGraphicsBridge.frame.setLayout(new BorderLayout());
-        SwingGraphicsBridge.frame.add(SwingGraphicsBridge.component, BorderLayout.CENTER);
-        SwingGraphicsBridge.frame.setResizable(false);
+        DesktopDrawableMetrics metrics = (DesktopDrawableMetrics) Native.graphics().metrics();
+        double scale = arguments().getScale(metrics.getIdiom());
 
-        double scale = arguments().getScale(Native.graphics().metrics().getIdiom());
-        Native.graphics().metrics().setScaling(scale, scale, true);
+        SwingGraphicsBridge.frame = new JEmulatorFrame(metrics.isFullScreen());
+        SwingGraphicsBridge.frame.add(SwingGraphicsBridge.component = new JEmulatorPanel(metrics.isSimulator()), BorderLayout.CENTER);
+
+        metrics.setScaling(scale, scale, true);
         Native.graphics().setOrientation(DefaultInitialOrientation);
         Native.graphics().relayoutMainView();
         SwingGraphicsBridge.frame.setLocationRelativeTo(null);  // should center before relayoutMainView, since relayoutMainView shows frame
-        SwingGraphicsBridge.frame.addResizeListener();
         SwingGraphicsBridge.frame.setVisible(true);
+        SwingGraphicsBridge.frame.postInitialize(metrics.isFullScreen());
         enhancer.registerAbout(this::showAbout);
     }
 
@@ -66,16 +62,25 @@ public class SwingLifecycleBridge extends DesktopLifecycleBridge {
         if (isQuitting)
             return;
         isQuitting = true;
-        super.quit(error, throwable);
         if (error != null && !error.isEmpty()) {
-            JOptionPane.showMessageDialog(null, error, "Error while executing CrossMobile", JOptionPane.ERROR_MESSAGE);
-            System.exit(-1);
-        } else
+            if (throwable != null)
+                throwable.printStackTrace();
+            if (JOptionPane.showConfirmDialog(null, "Error while executing " + System.getProperty("cm.display.name") + ":\n  " + error + "\n\nDo you want to continue running the application?"
+                    , "Error while executing", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE) == JOptionPane.NO_OPTION) {
+                super.quit(error, throwable);
+                System.exit(-1);
+            } else isQuitting = false;
+        } else {
+            super.quit(error, throwable);
             System.exit(0);
+        }
     }
 
     @Override
     public void splashTerminated() {
+        DesktopDrawableMetrics metrics = (DesktopDrawableMetrics) Native.graphics().metrics();
+        if (metrics.isFullScreen() || metrics.isSimulator())
+            return;
         SwingGraphicsBridge.frame.setResizable(true);
     }
 }

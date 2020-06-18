@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--<!DOCTYPE chassis SYSTEM "skin.dtd">-->
-<chassis width="768" height="1024" decorated="true" resize="true" idiom="pad">
-    <meta priority="50" info="System large" descr="Use system decorations and a resizable display, while keeping PPI, for a large display"/>
-    <screen x="0" y="0" width="768" height="1024" statusbar="false"/>
-</chassis>

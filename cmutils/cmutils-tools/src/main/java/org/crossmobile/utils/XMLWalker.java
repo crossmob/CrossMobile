@@ -406,6 +406,10 @@ public class XMLWalker {
         return XMLUtils.getAttribute(current, name);
     }
 
+    public boolean attributeExists(String name) {
+        return !XMLUtils.getAttribute(current, name).isEmpty();
+    }
+
     public XMLWalker attributes(BiConsumer<String, String> attributes) {
         if (attributes != null) {
             Map<String, String> attrs = XMLUtils.getAttributes(current);

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<!DOCTYPE chassis SYSTEM "skin.dtd">-->
+<chassis width="768" height="1024" idiom="pad">
+    <meta priority="60" info="Vertical application" descr="Use system decorations and a resizable vertical display, similar to the dimensions of a typical pad"/>
+    <screen x="0" y="0" width="768" height="1024" statusbar="false"/>
+</chassis>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<!DOCTYPE chassis SYSTEM "skin.dtd">-->
+<chassis width="320" height="568" idiom="phone">
+    <meta priority="65" info="Vertical small application" descr="Use system decorations and a small resizable vertical display, similar to the dimensions of a typical phone"/>
+    <screen x="0" y="0" width="320" height="568" statusbar="false"/>
+</chassis>

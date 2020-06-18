@@ -2402,7 +2402,6 @@ com/eclipsesource/json/WriterConfig.class v1.5
 com/eclipsesource/json/WritingBuffer.class v1.5
 com/eclipsesource/json/package-info.class v8
 com/panayotis/appenh/AFileChooser$1.class v1.6
-com/panayotis/appenh/AFileChooser$2.class v1.6
 com/panayotis/appenh/AFileChooser$FileSelectionMode.class v1.6
 com/panayotis/appenh/AFileChooser.class v1.6
 com/panayotis/appenh/DefaultEnhancer.class v1.6
@@ -2963,6 +2962,7 @@ org/crossmobile/backend/desktop/DesktopFileBridge$1.class v8
 org/crossmobile/backend/desktop/DesktopFileBridge.class v8
 org/crossmobile/backend/desktop/DesktopGraphicsBridge.class v8
 org/crossmobile/backend/desktop/DesktopImageBridge.class v8
+org/crossmobile/backend/desktop/DesktopImageLocations.class v8
 org/crossmobile/backend/desktop/DesktopInAppBridge$1.class v8
 org/crossmobile/backend/desktop/DesktopInAppBridge.class v8
 org/crossmobile/backend/desktop/DesktopLifecycleBridge.class v8
@@ -3006,6 +3006,7 @@ org/crossmobile/backend/desktop/package-info.class v8
 org/crossmobile/backend/desktop/skin/fixed-l.xml
 org/crossmobile/backend/desktop/skin/fixed-m.xml
 org/crossmobile/backend/desktop/skin/fixed-s.xml
+org/crossmobile/backend/desktop/skin/fullscreen.xml
 org/crossmobile/backend/desktop/skin/pad-w.xml
 org/crossmobile/backend/desktop/skin/pad.xml
 org/crossmobile/backend/desktop/skin/pad/action_down.png
@@ -3040,9 +3041,11 @@ org/crossmobile/backend/desktop/skin/phone/menu_up.png
 org/crossmobile/backend/desktop/skin/phone/power_down.png
 org/crossmobile/backend/desktop/skin/phone/power_up.png
 org/crossmobile/backend/desktop/skin/skin.dtd
-org/crossmobile/backend/desktop/skin/system-l.xml
 org/crossmobile/backend/desktop/skin/system-o.xml
-org/crossmobile/backend/desktop/skin/system-s.xml
+org/crossmobile/backend/desktop/skin/system.xml
+org/crossmobile/backend/desktop/skin/system800.xml
+org/crossmobile/backend/desktop/skin/vertical-l.xml
+org/crossmobile/backend/desktop/skin/vertical-s.xml
 org/crossmobile/backend/swing/AboutDialog.class v8
 org/crossmobile/backend/swing/JEmulatorFrame$1.class v8
 org/crossmobile/backend/swing/JEmulatorFrame$2.class v8

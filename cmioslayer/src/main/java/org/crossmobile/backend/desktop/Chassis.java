@@ -13,7 +13,6 @@ import org.crossmobile.bind.graphics.Insets;
 import org.crossmobile.bind.graphics.NativeBitmap;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.system.ClassWalker;
-import org.crossmobile.bridge.system.BaseUtils;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -21,10 +20,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.TreeSet;
+import java.util.*;
 
 import static crossmobile.ios.uikit.UIInterfaceOrientationMask.*;
 import static org.crossmobile.bind.system.SystemUtilities.stringToBoolean;
@@ -36,7 +32,7 @@ public class Chassis implements Comparable<Chassis> {
 
         @SuppressWarnings("OverridableMethodCallInConstructor")
         private DefaultChassis() {
-            super("default", 0, 0, 0, false, false);
+            super("default", 0, 0, 0, null);
             setMeta("Default skin", "Skin based on project type", 1000);
         }
     }
@@ -46,8 +42,8 @@ public class Chassis implements Comparable<Chassis> {
     private final int idiom;
     private final int width;
     private final int height;
-    private final boolean decorated;
-    private final boolean resize;
+    private final boolean fullscreen;
+    private final boolean simulator;
     private final List<CArea> areas = new ArrayList<>();
     private final String name;
     private String info;
@@ -72,7 +68,7 @@ public class Chassis implements Comparable<Chassis> {
                 name = name.replace(':', '-');
                 ChassisInfoHandler handler = new ChassisInfoHandler();
                 SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
-                parser.parse(new InputSource(Chassis.class.getResourceAsStream(DesktopImageBridge.DESKTOPSKIN + name + ".xml")), handler);
+                parser.parse(new InputSource(Chassis.class.getResourceAsStream(DesktopImageLocations.SKINS + name + ".xml")), handler);
                 skinlist[0].add(name);
                 skinlist[1].add(handler.info);
                 skinlist[2].add(handler.descr);
@@ -91,7 +87,7 @@ public class Chassis implements Comparable<Chassis> {
     }
 
     private static Collection<String> getSkinNames(String classpath) {
-        String testPackage = DesktopImageBridge.DESKTOPSKIN.substring(1).replace('/', '.');
+        String testPackage = DesktopImageLocations.SKINS.substring(1).replace('/', '.');
         Collection<String> names = new ArrayList<>();
         Collection<String> classes = new ArrayList<>();
         ClassWalker.getClasspathEntries(classpath, item -> {
@@ -109,20 +105,20 @@ public class Chassis implements Comparable<Chassis> {
             chassisName = chassisName.replace(':', '-');
             ChassisHandler handler = new ChassisHandler(chassisName);
             SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
-            parser.parse(new InputSource(Chassis.class.getResourceAsStream(DesktopImageBridge.DESKTOPSKIN + chassisName + ".xml")), handler);
+            parser.parse(new InputSource(Chassis.class.getResourceAsStream(DesktopImageLocations.SKINS + chassisName + ".xml")), handler);
             return handler.ch;
         } catch (Exception ex) {
             return throwExceptionAndReturn(ex);
         }
     }
 
-    private Chassis(String fileName, int idiom, int width, int height, boolean decorated, boolean resize) {
+    private Chassis(String fileName, int idiom, int width, int height, String device) {
         this.name = fileName.replace('-', ':');
         this.idiom = idiom;
         this.width = width;
         this.height = height;
-        this.decorated = decorated;
-        this.resize = resize;
+        this.fullscreen = "fullscreen".equals(device);
+        this.simulator = "simulator".equals(device);
         this.info = info == null ? "" : info;
         this.descr = descr == null ? "" : descr;
     }
@@ -201,12 +197,12 @@ public class Chassis implements Comparable<Chassis> {
         return screen;
     }
 
-    boolean isDecorated() {
-        return decorated;
+    boolean isFullscreen() {
+        return fullscreen;
     }
 
-    boolean isAutoResized() {
-        return resize;
+    boolean isSimulator() {
+        return simulator;
     }
 
     void updateMetrics(int frameWidth, int frameHeight, int hardwareWidth, int hardwareHeight) {
@@ -257,7 +253,7 @@ public class Chassis implements Comparable<Chassis> {
         if (getClass() != obj.getClass())
             return false;
         final Chassis other = (Chassis) obj;
-        return !((this.name == null) ? (other.name != null) : !this.name.equals(other.name));
+        return Objects.equals(this.name, other.name);
     }
 
     private static class ChassisInfoHandler extends DefaultHandler {
@@ -277,7 +273,7 @@ public class Chassis implements Comparable<Chassis> {
     private static class ChassisHandler extends DefaultHandler {
 
         final String fileName;
-        Chassis ch;
+        private Chassis ch;
         String chassisInfo = "";
         String attrName;
 
@@ -294,8 +290,8 @@ public class Chassis implements Comparable<Chassis> {
                             toIdiom(attributes, "idiom"),
                             toInt(attributes, "width"),
                             toInt(attributes, "height"),
-                            stringToBoolean(attributes.getValue("decorated"), false),
-                            stringToBoolean(attributes.getValue("resize"), false));
+                            attributes.getValue("device")
+                    );
                     break;
                 case "meta":
                     ch.setMeta(chassisInfo = attributes.getValue("info"),
@@ -451,7 +447,7 @@ public class Chassis implements Comparable<Chassis> {
             if (imagename == null)
                 return null;
             try {
-                return Native.image().retrieve(getClass().getResource(DesktopImageBridge.DESKTOPSKIN + imagename).toURI().toString());
+                return Native.image().retrieve(getClass().getResource(DesktopImageLocations.SKINS + imagename).toURI().toString());
             } catch (Exception ex) {
                 System.err.println(error(tag, "No Image found under '" + imagename + "'"));
             }

@@ -24,8 +24,6 @@ import static org.crossmobile.bind.system.SystemUtilities.closeR;
 
 public abstract class DesktopImageBridge extends AbstractImageBridge {
 
-    public static final String DESKTOPICONS = "/org/crossmobile/backend/desktop/icons/";
-    public static final String DESKTOPSKIN = "/org/crossmobile/backend/desktop/skin/";
     protected static final GraphicsConfiguration GFXCONF = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
     protected static FileDialog fd;
 

@@ -30,7 +30,7 @@ public class AndroidDrawableMetrics extends DrawableMetrics {
     }
 
     @Override
-    protected int calculateIdom(int proposedInterfaceIdiom) {
+    protected int calculateIdiom(int proposedInterfaceIdiom) {
         // Get hardware dimensions
         DisplayMetrics displayMetrics = displayMetrics();
         boolean isWide = displayMetrics.widthPixels > displayMetrics.heightPixels;

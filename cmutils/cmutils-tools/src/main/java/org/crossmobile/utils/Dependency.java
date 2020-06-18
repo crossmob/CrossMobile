@@ -7,11 +7,14 @@
 package org.crossmobile.utils;
 
 import org.crossmobile.Version;
+import org.crossmobile.backend.desktop.DesktopImageLocations;
 import org.crossmobile.bridge.ann.CMLibParam.ParamContext;
+import org.crossmobile.bridge.system.ClassWalker;
 
 import java.io.ByteArrayInputStream;
 import java.util.*;
 
+import static java.util.Comparator.comparingInt;
 import static org.crossmobile.utils.CollectionUtils.asList;
 import static org.crossmobile.utils.Pom.CROSSMOBILE_GROUP_ID;
 import static org.crossmobile.utils.Pom.CROSSMOBILE_THEME_ID;
@@ -20,7 +23,7 @@ public class Dependency {
 
     private final static Map<String, List<Dependency>> PLUGINS = new TreeMap<>();
     private final static Map<String, List<Dependency>> THEMES = new TreeMap<>();
-    private final static List<DesktopSkin> SKINS = new ArrayList<>();
+    private static List<DesktopSkin> SKINS;
 
     private static Dependency DEFAULT_THEME = new Dependency(CROSSMOBILE_GROUP_ID, CROSSMOBILE_THEME_ID, Version.VERSION, null, null, null, null, null, null);
 
@@ -32,17 +35,26 @@ public class Dependency {
     }
 
     public static Collection<DesktopSkin> getSystemSkins() {
-        if (SKINS.isEmpty()) {
-            XMLWalker walker = loadWalker("plugins/baseskins.xml");
-            try {
-                if (walker != null)
-                    walker.path("/skins").nodes("skin", skin
-                            -> SKINS.add(new DesktopSkin(skin.node("name").text(), skin.parent().node("info").text(), skin.parent().node("description").text())));
-            } catch (Exception ex) {
-            } finally {
-                if (walker == null)
-                    SKINS.add(new DesktopSkin("phone", "Phone", "A phone-like skin"));
-            }
+        if (SKINS == null) {
+            SKINS = new ArrayList<>();
+            ClassWalker.getClasspathEntries(null, item -> {
+                String name = item.substring(item.lastIndexOf('/') + 1);
+                item = "/" + item + ".xml";
+                if (item.startsWith(DesktopImageLocations.SKINS)) {
+                    XMLWalker skin = XMLWalker.load(ClassWalker.class.getResourceAsStream(item));
+                    if (skin != null && skin.pathExists("/chassis/meta")) {
+                        skin.path("/chassis/meta");
+                        int priority = 100;
+                        try {
+                            priority = Integer.parseInt(skin.attribute("priority"));
+                        } catch (Exception ignored) {
+                        }
+                        if (priority >= 0)
+                            SKINS.add(new DesktopSkin(name, skin.attribute("info"), skin.attribute("descr"), priority));
+                    }
+                }
+            }, "xml");
+            SKINS.sort(comparingInt(o -> o.priority));
         }
         return SKINS;
     }

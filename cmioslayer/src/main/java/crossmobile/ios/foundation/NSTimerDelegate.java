@@ -22,5 +22,5 @@ public interface NSTimerDelegate {
      * @param timer The NSTimer that corresponds to the event.
      */
     @CMSelector("- (void)timerFireMethod:(NSTimer *)timer")
-    public void fireMethod(NSTimer timer);
+    void fireMethod(NSTimer timer);
 }

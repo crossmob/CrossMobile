@@ -40,31 +40,34 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
     private Point2D.Double hardwareMouse = new Point2D.Double(0, 0);
     private boolean multiTouch = false;
 
-    static {
-        Toolkit tk = Toolkit.getDefaultToolkit();
-        try {
-            BufferedImage img = ImageIO.read(JEmulatorPanel.class.getResource(SwingImageBridge.DESKTOPICONS + "single.png"));
-            singleTouch = tk.createCustomCursor(img, new Point(13, 1), "singleTouch");
-        } catch (IOException | IndexOutOfBoundsException | HeadlessException ex) {
-        }
-        try {
-            BufferedImage img = ImageIO.read(JEmulatorPanel.class.getResource(SwingImageBridge.DESKTOPICONS + "double.png"));
-            doubleTouch = tk.createCustomCursor(img, new Point(19, 1), "doubleTouch");
-        } catch (HeadlessException | IOException | IndexOutOfBoundsException ex) {
-        }
+    public JEmulatorPanel() {
     }
 
     @SuppressWarnings({"LeakingThisInConstructor", "OverridableMethodCallInConstructor"})
-    public JEmulatorPanel() {
+    public JEmulatorPanel(boolean simulator) {
         setOpaque(true);
         setBackground(Color.black);
         setFocusable(true);
         addMouseListener(this);
         addMouseMotionListener(this);
-        addKeyListener(this);
         addMouseWheelListener(this);
         setLayout(null);
-        updateMouse();
+
+        if (simulator) {
+            addKeyListener(this);
+            Toolkit tk = Toolkit.getDefaultToolkit();
+            try {
+                BufferedImage img = ImageIO.read(JEmulatorPanel.class.getResource(DesktopImageLocations.ICONS + "single.png"));
+                singleTouch = tk.createCustomCursor(img, new Point(13, 1), "singleTouch");
+            } catch (IOException | IndexOutOfBoundsException | HeadlessException ignored) {
+            }
+            try {
+                BufferedImage img = ImageIO.read(JEmulatorPanel.class.getResource(DesktopImageLocations.ICONS + "double.png"));
+                doubleTouch = tk.createCustomCursor(img, new Point(19, 1), "doubleTouch");
+            } catch (HeadlessException | IOException | IndexOutOfBoundsException ignored) {
+            }
+            updateMouse();
+        }
     }
 
     @Override
@@ -95,8 +98,6 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
             repaint();
         else if (e.getSource() instanceof SwingNativeDispatcher.DesktopNativeWidget)
             widgetTouchCorrection(e, Began);
-        else if (clicked.isWindow())
-            SwingGraphicsBridge.frame.dragBegin(e);
         else if (clicked.isArea()) {
             fireTouchEvent(e.getX(), e.getY(), e, Began, false, false);
             if (multiTouch)
@@ -122,9 +123,7 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
         if (e.getSource() instanceof SwingNativeDispatcher.DesktopNativeWidget) {
             widgetTouchCorrection(e, Moved);
             hardwareMouse = new Point2D.Double(e.getX(), e.getY());
-        } else if (clicked.isWindow())
-            SwingGraphicsBridge.frame.dragContinue(e);
-        else if (clicked.isButton()) {
+        } else if (clicked.isButton()) {
             metrics.updateMouseMoving(e.getX(), e.getY(), clicked);
             repaint();
         } else {
@@ -139,8 +138,6 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
             return;
         if (e.getSource() instanceof SwingNativeDispatcher.DesktopNativeWidget)
             widgetTouchCorrection(e, Ended);
-        else if (clicked.isWindow())
-            SwingGraphicsBridge.frame.dragStop(e);
 //        else if (e.getSource() instanceof DesktopNativeWidget)
 //            widgetTouchCorrection(e, Ended);
         else if (clicked.isButton()) {
@@ -227,7 +224,7 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
                     "org.crossmobile.backend.desktop.cat.ApplicationPresentation"
             };
             Runtime.getRuntime().exec(args);
-        } catch (IOException ex) {
+        } catch (IOException ignored) {
         } finally {
             System.exit(0);
         }
@@ -300,11 +297,10 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
         nativeFocusTarget = focus;
     }
 
-    private void updateMouse() {
+    void updateMouse() {
         if (!multiTouch && singleTouch != null)
             setCursor(singleTouch);
         else if (doubleTouch != null)
             setCursor(doubleTouch);
     }
-
 }
