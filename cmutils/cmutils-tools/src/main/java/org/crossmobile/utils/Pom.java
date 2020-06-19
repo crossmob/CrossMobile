@@ -214,7 +214,15 @@ public class Pom {
                 );
     }
 
-    public void save() {
-        pomWalker.store(pomFile, true);
+    private File getTemp() {
+        return new File(pomFile.getAbsolutePath() + ".new");
+    }
+
+    public void saveTemp() {
+        pomWalker.store(getTemp(), true);
+    }
+
+    public void putInPlace() {
+        FileUtils.move(getTemp(), pomFile, null);
     }
 }

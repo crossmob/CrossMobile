@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--<!DOCTYPE chassis SYSTEM "skin.dtd">-->
 <chassis width="810" height="1350" idiom="pad" device="simulator">
-    <meta priority="75" info="Wide pad Simulator" descr="An emulator-like wide big screen resolution (800x1280) skin"/>
+    <meta priority="65" info="Pad wide Simulator" descr="An emulator-like wide big screen resolution (800x1280) skin"/>
     <image x="0" y="0" width="810" height="1350" file="pad/chassis_w.png"/>
     <screen x="5" y="35" width="800" height="1280"/>
     <power x="774" y="0" width="46" height="46" imagedown="pad/power_down_w.png" imageup="pad/power_up_w.png"/>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--<!DOCTYPE chassis SYSTEM "skin.dtd">-->
 <chassis width="368" height="697" idiom="phone" device="simulator">
-    <meta priority="25" info="Phone Simulator" descr="An emulator-like small screen resolution (320x568) skin"/>
+    <meta priority="50" info="Phone Simulator" descr="An emulator-like small screen resolution (320x568) skin"/>
     <image x="0" y="0" width="368" height="697" file="phone/chassis.png"/>
     <screen x="24" y="58" width="320" height="568"/>
     <led x="330" y="27" width="11" height="11" imageoff="phone/ledred.png" imageon="phone/ledgreen.png"/>

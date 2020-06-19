@@ -60,8 +60,12 @@ public final class FileUtils {
         return null;
     }
 
+    private static String normalizeResource(String resource) {
+        return resource.startsWith("/") ? resource.substring(1) : resource;
+    }
+
     public static String readResourceSafe(String resource) {
-        return readSafe(FileUtils.class.getClassLoader().getResourceAsStream(resource), "resource " + resource);
+        return readSafe(Thread.currentThread().getContextClassLoader().getResourceAsStream(normalizeResource(resource)), "resource " + resource);
     }
 
     public static String read(File input) {
@@ -171,11 +175,15 @@ public final class FileUtils {
         File fout = new File(dest);
         fout.getParentFile().mkdirs();
 
-        BufferedInputStream in = new BufferedInputStream(FileUtils.class.getClassLoader().getResourceAsStream(resource));
+        InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(normalizeResource(resource));
+        if (inputStream == null)
+            throw new ProjectException("Unable to find resource " + resource);
+
+        BufferedInputStream in = new BufferedInputStream(inputStream);
         BufferedOutputStream out = null;
         try {
             out = new BufferedOutputStream(new FileOutputStream(fout));
-        } catch (FileNotFoundException ex) {
+        } catch (FileNotFoundException ignored) {
         }
         if (!copyStream(in, out))
             throw new ProjectException("Unable to copy resource " + resource);

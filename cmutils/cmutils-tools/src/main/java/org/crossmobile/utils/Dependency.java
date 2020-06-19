@@ -39,7 +39,7 @@ public class Dependency {
     public static Collection<DesktopSkin> getSystemSkins() {
         if (SKINS == null) {
             SKINS = new ArrayList<>();
-            for (String skinFile : Opt.of(readResourceSafe("org/crossmobile/backend/desktop/skin/catalog"))
+            for (String skinFile : Opt.of(readResourceSafe(DesktopImageLocations.SKINS + "catalog"))
                     .ifMissing(() -> SKINS.add(new DesktopSkin("system", "Default", "Default System application", 0)))
                     .getOrElse("").split("\n")) {
                 XMLWalker skin = XMLWalker.load(ClassWalker.class.getResourceAsStream(DesktopImageLocations.SKINS + skinFile));

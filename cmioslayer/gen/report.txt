@@ -3003,6 +3003,7 @@ org/crossmobile/backend/desktop/javazoom/l3reorder.ser
 org/crossmobile/backend/desktop/javazoom/lin2au.ser
 org/crossmobile/backend/desktop/javazoom/sfd.ser
 org/crossmobile/backend/desktop/package-info.class v8
+org/crossmobile/backend/desktop/skin/catalog
 org/crossmobile/backend/desktop/skin/fixed-l.xml
 org/crossmobile/backend/desktop/skin/fixed-m.xml
 org/crossmobile/backend/desktop/skin/fixed-s.xml
@@ -3040,7 +3041,6 @@ org/crossmobile/backend/desktop/skin/phone/menu_down.png
 org/crossmobile/backend/desktop/skin/phone/menu_up.png
 org/crossmobile/backend/desktop/skin/phone/power_down.png
 org/crossmobile/backend/desktop/skin/phone/power_up.png
-org/crossmobile/backend/desktop/skin/skin.dtd
 org/crossmobile/backend/desktop/skin/system-o.xml
 org/crossmobile/backend/desktop/skin/system.xml
 org/crossmobile/backend/desktop/skin/system800.xml

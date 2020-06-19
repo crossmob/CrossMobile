@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--<!DOCTYPE chassis SYSTEM "skin.dtd">-->
 <chassis width="816" height="1126" idiom="pad" device="simulator">
-    <meta priority="30" info="Pad Simulator" descr="An emulator-like big screen resolution (768x1024) skin"/>
+    <meta priority="60" info="Pad Simulator" descr="An emulator-like big screen resolution (768x1024) skin"/>
     <image x="0" y="0" width="816" height="1126" file="pad/chassis.png"/>
     <screen x="24" y="40" width="768" height="1024"/>
     <led x="640" y="20" width="11" height="11" imageon="pad/ledgreen.png" imageoff="pad/ledred.png"/>
