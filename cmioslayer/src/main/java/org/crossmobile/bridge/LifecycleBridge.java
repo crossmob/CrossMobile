@@ -11,10 +11,21 @@ import java.util.Map;
 public interface LifecycleBridge extends Thread.UncaughtExceptionHandler {
 
     String UNKNOWN_NAME = "Unknown";
-    String CROSSMOBILE_PROPERTIES = "crossmobile.properties";
     String THEME_PROPERTIES = "theme.properties";
 
+    /**
+     * Initialize bridge. This method should guarantee to call the parseArguments method.
+     *
+     * @param args user provided arguments which sould be passed to parseArguments
+     */
     void init(String[] args);
+
+    /**
+     * Parse command line arguments. This method is called from inside init method
+     *
+     * @param args user provided arguments as passed by init
+     */
+    void parseArguments(String[] args);
 
     void splashTerminated();
 

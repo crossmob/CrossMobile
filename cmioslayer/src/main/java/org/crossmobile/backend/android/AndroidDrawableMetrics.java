@@ -9,9 +9,9 @@ package org.crossmobile.backend.android;
 import android.util.DisplayMetrics;
 import crossmobile.ios.coregraphics.CGPoint;
 import crossmobile.ios.uikit.UIUserInterfaceIdiom;
+import org.crossmobile.backend.desktop.Size;
 import org.crossmobile.bind.graphics.DrawableMetrics;
 import org.crossmobile.bind.graphics.GraphicsContext;
-import org.crossmobile.bridge.Native;
 
 import static crossmobile.ios.uikit.UIDeviceOrientation.*;
 
@@ -29,15 +29,25 @@ public class AndroidDrawableMetrics extends DrawableMetrics {
         hasSoftBar = transparentId != 0 && MainActivity.current.getResources().getBoolean(transparentId);
     }
 
+    protected Size initDPIScale() {
+        DisplayMetrics m = displayMetrics();
+        return new Size((int) (m.widthPixels / m.scaledDensity), (int) (m.heightPixels / m.scaledDensity));
+    }
+
+    protected Size initNativeScale() {
+        DisplayMetrics m = displayMetrics();
+        return new Size(m.widthPixels, m.heightPixels);
+    }
+
     @Override
-    protected int calculateIdiom(int proposedInterfaceIdiom) {
+    protected int finalizeScale(int proposedInterfaceIdiom, Size size) {
         // Get hardware dimensions
         DisplayMetrics displayMetrics = displayMetrics();
         boolean isWide = displayMetrics.widthPixels > displayMetrics.heightPixels;
         int width = isWide ? displayMetrics.heightPixels : displayMetrics.widthPixels;
-        int heigh = isWide ? displayMetrics.widthPixels : displayMetrics.heightPixels;
-        setVirtualDimension(isWide ? vHeight : vWidth, isWide ? vWidth : vHeight);
-        setHardwareDimension(width, heigh);
+        int height = isWide ? displayMetrics.widthPixels : displayMetrics.heightPixels;
+        setVirtualDimension(isWide ? size.height : size.width, isWide ? size.width : size.height);
+        setHardwareDimension(width, height);
         return proposedInterfaceIdiom >= 0
                 ? proposedInterfaceIdiom
                 : (displayMetrics.heightPixels / displayMetrics.densityDpi) > 6 ? UIUserInterfaceIdiom.Pad : UIUserInterfaceIdiom.Phone;
@@ -104,26 +114,6 @@ public class AndroidDrawableMetrics extends DrawableMetrics {
                 orientationTranslateY = 0;
                 orientationRotate = 0;
                 break;
-        }
-    }
-
-    @Override
-    public void setScaling(double scaleWidth, double scaleHeight, boolean affectHardwareMetrics) {
-        Native.lifecycle().notImplemented();
-    }
-
-    @Override
-    protected void setScale() {
-        DisplayMetrics m = displayMetrics();
-        if (System.getProperty("cm.screen.scale").equals("DPI")) {
-            vHeight = (int) (m.heightPixels / m.scaledDensity);
-            vWidth = (int) (m.widthPixels / m.scaledDensity);
-        } else if (System.getProperty("cm.screen.scale").split(":")[0].equals("FIXED")) {
-            vWidth = Integer.parseInt(System.getProperty("cm.screen.scale").split(":")[1]);
-            vHeight = Integer.parseInt(System.getProperty("cm.screen.scale").split(":")[2]);
-        } else {
-            vHeight = m.heightPixels;
-            vWidth = m.widthPixels;
         }
     }
 

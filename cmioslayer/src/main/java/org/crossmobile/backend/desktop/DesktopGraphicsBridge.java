@@ -6,6 +6,7 @@
 
 package org.crossmobile.backend.desktop;
 
+import org.crossmobile.backend.desktop.cgeo.CDrawable;
 import org.crossmobile.bind.graphics.AbstractGraphicsBridge;
 import org.crossmobile.bind.graphics.GraphicsBridgeConstants;
 import org.crossmobile.bind.graphics.GraphicsContext;
@@ -42,8 +43,11 @@ public abstract class DesktopGraphicsBridge<CANVAS, NTVP, TRANSF> extends Abstra
     @Override
     public void setOrientation(int orientation) {
         Native.graphics().metrics().setOrientationMetrics(orientation);
+        resizeWindow();
         Native.graphics().relayoutMainView();
     }
+
+    public abstract void resizeWindow();
 
     public static void rotateDevice(boolean clockwise) {
         int orientation = Native.graphics().metrics().getOrientation();

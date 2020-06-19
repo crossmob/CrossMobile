@@ -23,7 +23,6 @@ public abstract class DesktopLifecycleBridge extends AbstractLifecycleBridge {
 
     private static boolean applicationIsInitialized = false;
     private static boolean initial_activation_performed = false;
-    private static DesktopArguments arguments;
     protected Enhancer enhancer;
 
     /**
@@ -37,8 +36,6 @@ public abstract class DesktopLifecycleBridge extends AbstractLifecycleBridge {
     public void init(String[] args) {
         if (!applicationIsInitialized) {
             applicationIsInitialized = true;    // Enter only once
-            arguments = new DesktopArguments();
-            arguments.parse(args);
             System.setProperty("apple.laf.useScreenMenuBar", "true");
             System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Simple");
             System.setProperty("apple.awt.application.name", "Simple");
@@ -48,6 +45,11 @@ public abstract class DesktopLifecycleBridge extends AbstractLifecycleBridge {
             enhancer.setApplicationIcons(getAppIcons());
             // ApplicationCatalogue.store();
         }
+    }
+
+    @Override
+    public void parseArguments(String[] args) {
+        new DesktopArguments().parse(args);
     }
 
     @Override
@@ -78,10 +80,6 @@ public abstract class DesktopLifecycleBridge extends AbstractLifecycleBridge {
         }
     }
 
-    public static DesktopArguments arguments() {
-        return arguments;
-    }
-
     public void toggleActivation() {
         if (((DesktopDrawableMetrics) Native.graphics().metrics()).isActive())
             deactivate();
@@ -95,23 +93,6 @@ public abstract class DesktopLifecycleBridge extends AbstractLifecycleBridge {
                 systemPrefix + "icon_16.png", systemPrefix + "icon_24.png",
                 systemPrefix + "icon_32.png", systemPrefix + "icon_128.png",
                 systemPrefix + "icon_512.png"};
-    }
-
-    public static void changeIdiom() {
-        Native.lifecycle().quit(null, null);
-        try {
-            String[] args = new String[]{
-                    OperatingSystem.getJavaExec(),
-                    "-cp",
-                    System.getProperty("java.class.path"),
-                    System.getProperty("cm.main.class"),
-                    UIDevice.currentDevice().userInterfaceIdiom() == UIUserInterfaceIdiom.Pad ? "--skin=phone" : "--skin=pad"
-            };
-            Runtime.getRuntime().exec(args);
-        } catch (IOException ignored) {
-        } finally {
-            System.exit(0);
-        }
     }
 
     @Override

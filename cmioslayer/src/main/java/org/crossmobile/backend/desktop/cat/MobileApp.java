@@ -45,6 +45,23 @@ public class MobileApp implements Comparable<MobileApp> {
     private BufferedImage icon;
     private BufferedImage selectedicon;
 
+
+    public static void goToHome() {
+        Native.lifecycle().quit(null, null);
+        try {
+            String[] args = new String[]{
+                    OperatingSystem.getJavaExec(),
+                    "-cp",
+                    System.getProperty("java.class.path"),
+                    "org.crossmobile.backend.desktop.cat.ApplicationPresentation"
+            };
+            Runtime.getRuntime().exec(args);
+        } catch (IOException ignored) {
+        } finally {
+            System.exit(0);
+        }
+    }
+
     public static MobileApp current() {
         try {
             return new MobileApp(System.getProperty("cm.display.name"),

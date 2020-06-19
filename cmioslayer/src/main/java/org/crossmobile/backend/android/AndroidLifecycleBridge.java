@@ -74,6 +74,11 @@ public class AndroidLifecycleBridge extends AbstractLifecycleBridge {
     }
 
     @Override
+    public void parseArguments(String[] args) {
+        // No argument parsing in Android
+    }
+
+    @Override
     public void splashTerminated() {
     }
 }

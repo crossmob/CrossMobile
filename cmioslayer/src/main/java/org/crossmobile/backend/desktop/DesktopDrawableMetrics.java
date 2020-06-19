@@ -8,8 +8,11 @@ package org.crossmobile.backend.desktop;
 
 import crossmobile.ios.coregraphics.CGPoint;
 import crossmobile.ios.coregraphics.CGRect;
-import crossmobile.ios.uikit.UIInterfaceOrientation;
-import crossmobile.ios.uikit.UIUserInterfaceIdiom;
+import crossmobile.ios.uikit.*;
+import org.crossmobile.backend.desktop.cgeo.CArea;
+import org.crossmobile.backend.desktop.cgeo.CEvent;
+import org.crossmobile.backend.desktop.cgeo.Chassis;
+import org.crossmobile.backend.desktop.cgeo.ChassisLoader;
 import org.crossmobile.bind.graphics.DrawableMetrics;
 import org.crossmobile.bridge.Native;
 
@@ -42,19 +45,69 @@ public abstract class DesktopDrawableMetrics extends DrawableMetrics {
     }
 
     @Override
-    protected int calculateIdiom(int proposedInterfaceIdiom) {
+    public void initIdiom() {
+        if (ch != null)
+            throw new RuntimeException("Chassis already defined");
+        ch = ChassisLoader.getChassis(System.getProperty(DesktopArguments.USER_ARG_SKIN, System.getProperty("cm.desktop.skin")));
+        scr = ch.screen();
+        super.initIdiom();
+    }
+
+    @Override
+    protected Size initDPIScale() {
+        double userScale = 1;
+        try {
+            userScale = Float.parseFloat(System.getProperty(DesktopArguments.USER_ARG_SCALE, "1"));
+        } catch (NumberFormatException ignored) {
+        }
+        ch.setScale(userScale);
+        return new Size(scr.virtualWidth(), scr.virtualHeight());
+    }
+
+    @Override
+    protected Size initNativeScale() {
+        return new Size(scr.virtualWidth(), scr.virtualHeight());   // don't support raw pixels yet
+    }
+
+    @Override
+    protected int finalizeScale(int proposedInterfaceIdiom, Size size) {
         this.proposedInterfaceIdiom = proposedInterfaceIdiom;
-        setVirtualDimension(vWidth, vHeight);
-        setHardwareDimension(scr.width(), scr.height());
-        // Set outsets AFTER hardware dimension, in order for the metrics to be properly normalized.
+        outsetLeft = scr.hardwareX();
+        outsetTop = scr.hardwareY();
+        outsetRight = ch.hardwareWidth() - scr.hardwareRightEdge();
+        outsetBottom = ch.hardwareHeight() - scr.hardwareBottomEdge();
+        setVirtualDimension(size.width, size.height);
+        setHardwareDimension(scr.hardwareWidth(), scr.hardwareHeight());
         if (hardwareWidth == 1 || hardwareHeight == 1)
             throw new RuntimeException("Method setOutsetsInPortrait should be called AFTER setHardwareDimension has been set.");
-        outsetTop = scr.y();
-        outsetRight = ch.width() - scr.uptoX();
-        outsetBottom = ch.height() - scr.uptoY();
-        outsetLeft = scr.x();
-        update();
         return proposedInterfaceIdiom >= 0 ? proposedInterfaceIdiom : ch.getIdiom();
+    }
+
+    public void windowResized(int width, int height) {
+        if (orientation == UIInterfaceOrientation.LandscapeLeft || orientation == UIInterfaceOrientation.LandscapeRight) {
+            int swap = width;
+            //noinspection SuspiciousNameCombination
+            width = height;
+            height = swap;
+        }
+        height -= outsetTop + outsetBottom;
+        width -= outsetLeft + outsetRight;
+        if (hardwareWidth == width && hardwareHeight == height)
+            return;
+        setHardwareDimension(width, height);
+        if (!isStretched()) {
+            setVirtualDimension(ch.unscaled(width), ch.unscaled(height));
+            UIApplication app = UIApplication.sharedApplication();
+            if (app == null)
+                return;
+            UIWindow win = $uikit.splashWindow();
+            if (win == null)
+                win = app.keyWindow();
+            if (win == null)
+                return;
+            win.setFrame(new CGRect(0, 0, ch.unscaled(width), ch.unscaled(height)));  // frame NEEDS to be updated here
+            Native.graphics().relayoutMainView();
+        }
     }
 
     public int getOrientedFrameWidth() {
@@ -82,7 +135,7 @@ public abstract class DesktopDrawableMetrics extends DrawableMetrics {
             frameWidth = outsetLeft + hardwareWidth + outsetRight;
             frameHeight = outsetTop + hardwareHeight + outsetBottom;
         }
-        ch.updateMetrics(frameWidth, frameHeight, hardwareWidth, hardwareHeight);
+        ch.resize(virtualWidth, virtualHeight);
 
         switch (orientation) {
             case LandscapeLeft:
@@ -129,18 +182,18 @@ public abstract class DesktopDrawableMetrics extends DrawableMetrics {
     }
 
     public CEvent findArea(int x, int y) {
-        CGPoint point = getHardwareToVirtual(x, y, 1, 1, 0, 0);
+        CGPoint point = getHardwareToVirtual(x, y, false);
         return ch.findArea((int) (point.getX() + 0.5), (int) (point.getY() + 0.5), 1 << orientation);
     }
 
     public void updateMouseMoving(int x, int y, CEvent clicked) {
-        CGPoint point = getHardwareToVirtual(x, y, 1, 1, 0, 0);
-        clicked.owner.setActive((int) (point.getX() + 0.5), (int) (point.getY() + 0.5), 1 << orientation);
+        CGPoint point = getHardwareToVirtual(x, y, false);
+        clicked.getOwner().setActive((int) (point.getX() + 0.5), (int) (point.getY() + 0.5), 1 << orientation);
     }
 
     @Override
     public CGPoint getHardwareToVirtual(double x, double y) {
-        return getHardwareToVirtual(x, y, scaleOnX, scaleOnY, outsetLeft, outsetTop);
+        return getHardwareToVirtual(x, y, true);
     }
 
     @Override
@@ -148,17 +201,17 @@ public abstract class DesktopDrawableMetrics extends DrawableMetrics {
         return getVirtualToHardware(x, y, scaleOnX, scaleOnY, outsetLeft, outsetTop);
     }
 
-    protected CGPoint getHardwareToVirtual(double x, double y, double scX, double scY, double dx, double dy) {
+    protected CGPoint getHardwareToVirtual(double x, double y, boolean useOutset) {
         switch (orientation) {
             case LandscapeRight:
-                return new CGPoint((y - dx) / scX, (frameWidth - x - dy) / scY);
+                return new CGPoint((y - (useOutset ? outsetLeft : 0)) / scaleOnX, (frameWidth - x - (useOutset ? outsetTop : 0)) / scaleOnY);
             case LandscapeLeft:
-                return new CGPoint((frameHeight - y - dx) / scX, (x - dy) / scY);
+                return new CGPoint((frameHeight - y - (useOutset ? outsetLeft : 0)) / scaleOnX, (x - (useOutset ? outsetTop : 0)) / scaleOnY);
             case PortraitUpsideDown:
-                return new CGPoint((frameWidth - x - dx) / scX, (frameHeight - y - dy) / scY);
+                return new CGPoint((frameWidth - x - (useOutset ? outsetLeft : 0)) / scaleOnX, (frameHeight - y - (useOutset ? outsetTop : 0)) / scaleOnY);
             case Portrait:
             default:
-                return new CGPoint((x - dx) / scX, (y - dy) / scY);
+                return new CGPoint((x - (useOutset ? outsetLeft : 0)) / scaleOnX, (y - (useOutset ? outsetTop : 0)) / scaleOnY);
         }
     }
 
@@ -193,33 +246,6 @@ public abstract class DesktopDrawableMetrics extends DrawableMetrics {
     }
 
     @Override
-    protected void setScale() {
-        if (ch != null)
-            throw new RuntimeException("Chassis already defined");
-        String skin = System.getProperty("cm.desktop.skin");
-        if (skin.equals(Chassis.Default.getName()))
-            skin = proposedInterfaceIdiom == UIUserInterfaceIdiom.Pad ? "pad" : "phone";
-        ch = Chassis.getChassis(skin);
-        /*
-         * First set virtual & hardware dimension. Ignore virtual dimension and use skins values instead.
-         */
-        scr = ch.screen();
-        if (System.getProperty("cm.screen.scale").equals("DPI")) {
-            scaleOnX = 1;
-            scaleOnY = 1;
-            vHeight = (int) (((float) scr.height()) / scaleOnY);
-            vWidth = (int) (((float) scr.width()) / scaleOnX);
-        }
-        if (System.getProperty("cm.screen.scale").split(":")[0].equals("FIXED")) {
-            vWidth = Integer.parseInt(System.getProperty("cm.screen.scale").split(":")[1]);
-            vHeight = Integer.parseInt(System.getProperty("cm.screen.scale").split(":")[2]);
-        } else {
-            vHeight = scr.height();
-            vWidth = scr.width();
-        }
-    }
-
-    @Override
     public int getInsetTop() {
         return ch.getInset(orientation).top;
     }
@@ -237,18 +263,5 @@ public abstract class DesktopDrawableMetrics extends DrawableMetrics {
     @Override
     public int getInsetLeft() {
         return ch.getInset(orientation).left;
-    }
-
-    public Size calculateHardwareSize(int width, int height) {
-        if (orientation == UIInterfaceOrientation.LandscapeLeft || orientation == UIInterfaceOrientation.LandscapeRight) {
-            int swap = width;
-            width = height;
-            height = swap;
-        }
-        height -= outsetTop + outsetBottom;
-        width -= outsetLeft + outsetRight;
-        return (hardwareWidth == width && hardwareHeight == height)
-                ? null
-                : new Size(width, height);
     }
 }

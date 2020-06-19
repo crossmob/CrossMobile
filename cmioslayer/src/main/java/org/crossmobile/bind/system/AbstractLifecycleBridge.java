@@ -27,6 +27,7 @@ import static crossmobile.ios.coregraphics.$coregraphics.convertBaseContextToCGC
 import static crossmobile.ios.foundation.$foundation.quitTimers;
 import static crossmobile.ios.uikit.$uikit.getViewControllerFromView;
 import static org.crossmobile.bridge.CustomNotifications.AndroidBackButtonNotification;
+import static org.crossmobile.bridge.system.LauncherCommons.CROSSMOBILE_PROPERTIES;
 
 public abstract class AbstractLifecycleBridge implements LifecycleBridge {
 
@@ -59,6 +60,7 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
         }
 
         cleanTemporaryLocation();
+        parseArguments(args);
         Native.graphics().metrics().initIdiom();
         //noinspection unchecked
         UIGraphics.pushContext(convertBaseContextToCGContext(Native.graphics().newGraphicsContext(null, true)));

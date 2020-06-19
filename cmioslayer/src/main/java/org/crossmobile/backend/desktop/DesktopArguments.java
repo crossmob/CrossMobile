@@ -6,20 +6,22 @@
 
 package org.crossmobile.backend.desktop;
 
+import org.crossmobile.backend.desktop.cgeo.Chassis;
+
 import java.io.PrintStream;
 
 import static org.crossmobile.bridge.LifecycleBridge.UNKNOWN_NAME;
 
 public class DesktopArguments {
 
+    public static final String USER_ARG_SCALE = "user.arg.scale";
+    public static final String USER_ARG_SKIN = "user.arg.skin";
+
     private static final String emphOn;
     private static final String emphOff;
 
-    private double scale = 1;
-    private String skin = null;
-
     static {
-        if (OperatingSystem.current == OperatingSystem.Windows)
+        if (System.console() == null || System.getenv("TERM") == null)
             emphOn = emphOff = "";
         else {
             emphOn = "\033[0m\033[4m";
@@ -28,45 +30,49 @@ public class DesktopArguments {
     }
 
     public void parse(String[] args) {
-        skin = Chassis.Default.getName();
         if (args == null || args.length == 0)
             return;
+        String descr = System.getProperty("cm.description", "");
+        if (descr.trim().isEmpty())
+            descr = "A CrossMobile Application";
+        String header = emphOff + emphOn + System.getProperty("cm.display.name", UNKNOWN_NAME) + emphOff + " : " + descr + "\n";
         for (String s : args) {
             s = s.toLowerCase().trim();
             if (s.startsWith("--scale="))
                 try {
                     s = s.substring("--scale=".length());
-                    scale = Double.parseDouble(s);
-                    if (scale < 0.5) {
-                        scale = 0.5;
-                        System.out.println("Set to minimum supported scale: 0.5");
-                    } else if (scale > 2) {
-                        scale = 2;
-                        System.out.println("Set to maximum supported scale: 2");
+                    double scale = Double.parseDouble(s);
+                    if (scale < 0.01) {
+                        scale = 0.01;
+                        System.err.println("Set to minimum supported scale: " + scale);
+                    } else if (scale > 100) {
+                        scale = 100;
+                        System.err.println("Set to maximum supported scale: " + scale);
                     }
+                    System.getProperties().put(USER_ARG_SCALE, String.valueOf(scale));
                 } catch (Exception ex) {
                     System.err.println("Unable to parse scaling factor '" + s + "'");
                     ex.printStackTrace(new PrintStream(System.err));
                     System.exit(1);
                 }
             else if (s.startsWith("--skin=")) {
-                skin = s.substring("--skin=".length()).trim();
+                String skin = s.substring("--skin=".length()).trim();
                 if (skin.equals("help") || skin.equals("?")) {
                     System.out.print(""
-                            + emphOff + emphOn + System.getProperty("cm.display.name", UNKNOWN_NAME) + emphOff + " : a CrossMobile application\n"
+                            + header
                             + "\n"
                             + "List of supported skins.\n"
-                            + "These skins can be activated with the --skin=NAME command.\n"
-                            + "\n");
+                            + "These skins can be activated with the --skin=NAME command.\n");
                     for (Chassis ch : Chassis.getSkins()) {
                         System.out.println("  " + ch.getName() + ": " + ch.getInfo());
                         System.out.println("      " + ch.getDescr());
                     }
                     System.exit(0);
-                }
+                } else if (!skin.trim().isEmpty())
+                    System.getProperties().put(USER_ARG_SKIN, skin);
             } else if (s.equals("--help")) {
                 System.out.println(""
-                        + emphOff + emphOn + System.getProperty("cm.display.name", UNKNOWN_NAME) + emphOff + " : a CrossMobile application\n"
+                        + header
                         + "\n"
                         + "Usage:\n"
                         + "  Skins and themes:\n"
@@ -85,13 +91,5 @@ public class DesktopArguments {
                 System.exit(-1);
             }
         }
-    }
-
-    public double getScale(int idiom) {
-        return scale;
-    }
-
-    public String getSkin() {
-        return skin == null || skin.equals("") ? Chassis.Default.getName() : skin;
     }
 }

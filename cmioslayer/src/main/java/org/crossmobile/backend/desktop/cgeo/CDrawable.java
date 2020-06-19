@@ -4,19 +4,19 @@
  * SPDX-License-Identifier: LGPL-3.0-only
  */
 
-package org.crossmobile.backend.desktop;
+package org.crossmobile.backend.desktop.cgeo;
 
 import org.crossmobile.bind.graphics.NativeBitmap;
 
 public class CDrawable extends CArea {
 
     private boolean isActive = false;
-    public final NativeBitmap active;
-    public final NativeBitmap inactive;
+    private final NativeBitmap active;
+    private final NativeBitmap inactive;
     public final boolean autorotate;
 
-    CDrawable(CPoint loc, int width, int height, int orientation, NativeBitmap active, NativeBitmap inactive, boolean autorotate) {
-        super(loc, width, height, orientation);
+    CDrawable(int x, int y, int width, int height, int orientation, NativeBitmap active, NativeBitmap inactive, boolean autorotate) {
+        super(x, y, width, height, orientation);
         this.active = active;
         this.inactive = inactive == null ? active : inactive;
         this.autorotate = autorotate;
@@ -26,7 +26,16 @@ public class CDrawable extends CArea {
         this.isActive = active;
     }
 
-    public boolean isActive() {
+    boolean isActive() {
         return isActive;
+    }
+
+    public NativeBitmap getImage() {
+        return isActive ? active : inactive;
+    }
+
+    @Override
+    protected String getName() {
+        return "Drawable";
     }
 }

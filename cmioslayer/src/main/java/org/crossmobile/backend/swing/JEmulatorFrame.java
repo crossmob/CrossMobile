@@ -7,13 +7,8 @@
 package org.crossmobile.backend.swing;
 
 import com.panayotis.appenh.EnhancerManager;
-import crossmobile.ios.coregraphics.CGRect;
-import crossmobile.ios.uikit.$uikit;
-import crossmobile.ios.uikit.UIApplication;
-import crossmobile.ios.uikit.UIWindow;
 import org.crossmobile.backend.desktop.DesktopDrawableMetrics;
 import org.crossmobile.backend.desktop.KeyboardSupport;
-import org.crossmobile.backend.desktop.Size;
 import org.crossmobile.bind.system.AppConstants;
 import org.crossmobile.bridge.Native;
 
@@ -62,37 +57,19 @@ public class JEmulatorFrame extends JFrame {
     }
 
     public void postInitialize(boolean isFullScreen) {
+        DesktopDrawableMetrics metrics = (DesktopDrawableMetrics) Native.graphics().metrics();
         if (isFullScreen) {
             EnhancerManager.getDefault().toggleFullScreen(this);
-            frameResized(Toolkit.getDefaultToolkit().getScreenSize());
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            metrics.windowResized(screenSize.width, screenSize.height);
         }
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                frameResized(getContentPane().getSize());
+                Dimension size = getContentPane().getSize();
+                metrics.windowResized(size.width, size.height);
             }
         });
-    }
-
-    private void frameResized(Dimension csize) {
-        Size d = ((DesktopDrawableMetrics) Native.graphics().metrics()).calculateHardwareSize(csize.width, csize.height);
-        if (d == null)
-            return;
-        Native.graphics().metrics().setHardwareDimension(d.width, d.height);
-        if (!((DesktopDrawableMetrics) Native.graphics().metrics()).isStretched()) {
-            SwingGraphicsBridge.setComponentSize(SwingGraphicsBridge.component, new Dimension(d.width, d.height));
-            UIApplication app = UIApplication.sharedApplication();
-            if (app == null)
-                return;
-            UIWindow win = $uikit.splashWindow();
-            if (win == null)
-                win = app.keyWindow();
-            if (win == null)
-                return;
-            Native.graphics().metrics().setVirtualDimension(d.width, d.height);
-            win.setFrame(new CGRect(0, 0, d.width, d.height));  // frame NEEDS to be updated here
-            Native.graphics().relayoutMainView();
-        }
     }
 
     @SuppressWarnings("SleepWhileInLoop")

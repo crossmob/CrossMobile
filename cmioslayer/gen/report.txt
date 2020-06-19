@@ -1293,15 +1293,6 @@ org/crossmobile/backend/android/StatusBarListener.java
 org/crossmobile/backend/android/package-info.java
 org/crossmobile/backend/android/web/VideoEnabledWebChromeClient.java
 org/crossmobile/backend/android/web/VideoEnabledWebView.java
-org/crossmobile/backend/desktop/CArea.java
-org/crossmobile/backend/desktop/CButton.java
-org/crossmobile/backend/desktop/CClickable.java
-org/crossmobile/backend/desktop/CDrawable.java
-org/crossmobile/backend/desktop/CEvent.java
-org/crossmobile/backend/desktop/CEventCallback.java
-org/crossmobile/backend/desktop/CPoint.java
-org/crossmobile/backend/desktop/CScreen.java
-org/crossmobile/backend/desktop/Chassis.java
 org/crossmobile/backend/desktop/DesktopArguments.java
 org/crossmobile/backend/desktop/DesktopDrawableMetrics.java
 org/crossmobile/backend/desktop/DesktopFileBridge.java
@@ -1327,6 +1318,17 @@ org/crossmobile/backend/desktop/cat/ApplicationPresentation.java
 org/crossmobile/backend/desktop/cat/IconHolder.java
 org/crossmobile/backend/desktop/cat/IconSelectionListener.java
 org/crossmobile/backend/desktop/cat/MobileApp.java
+org/crossmobile/backend/desktop/cgeo/CArea.java
+org/crossmobile/backend/desktop/cgeo/CButton.java
+org/crossmobile/backend/desktop/cgeo/CClickable.java
+org/crossmobile/backend/desktop/cgeo/CDrawable.java
+org/crossmobile/backend/desktop/cgeo/CEvent.java
+org/crossmobile/backend/desktop/cgeo/CEventCallback.java
+org/crossmobile/backend/desktop/cgeo/CScalable.java
+org/crossmobile/backend/desktop/cgeo/CScreen.java
+org/crossmobile/backend/desktop/cgeo/CSizable.java
+org/crossmobile/backend/desktop/cgeo/Chassis.java
+org/crossmobile/backend/desktop/cgeo/ChassisLoader.java
 org/crossmobile/backend/desktop/package-info.java
 org/crossmobile/backend/ios/NativeIOS.java
 org/crossmobile/backend/ios/package-info.java
@@ -2935,27 +2937,6 @@ javazoom/jl/player/advanced/jlap$1.class v1.6
 javazoom/jl/player/advanced/jlap$InfoListener.class v1.6
 javazoom/jl/player/advanced/jlap.class v1.6
 javazoom/jl/player/jlp.class v1.6
-org/crossmobile/backend/desktop/CArea.class v8
-org/crossmobile/backend/desktop/CButton.class v8
-org/crossmobile/backend/desktop/CClickable$Reverse$1.class v8
-org/crossmobile/backend/desktop/CClickable$Reverse.class v8
-org/crossmobile/backend/desktop/CClickable.class v8
-org/crossmobile/backend/desktop/CDrawable.class v8
-org/crossmobile/backend/desktop/CEvent.class v8
-org/crossmobile/backend/desktop/CEventCallback.class v8
-org/crossmobile/backend/desktop/CPoint$1.class v8
-org/crossmobile/backend/desktop/CPoint$Anchor$1.class v8
-org/crossmobile/backend/desktop/CPoint$Anchor$2.class v8
-org/crossmobile/backend/desktop/CPoint$Anchor$3.class v8
-org/crossmobile/backend/desktop/CPoint$Anchor.class v8
-org/crossmobile/backend/desktop/CPoint$CPointException.class v8
-org/crossmobile/backend/desktop/CPoint.class v8
-org/crossmobile/backend/desktop/CScreen.class v8
-org/crossmobile/backend/desktop/Chassis$1.class v8
-org/crossmobile/backend/desktop/Chassis$ChassisHandler.class v8
-org/crossmobile/backend/desktop/Chassis$ChassisInfoHandler.class v8
-org/crossmobile/backend/desktop/Chassis$DefaultChassis.class v8
-org/crossmobile/backend/desktop/Chassis.class v8
 org/crossmobile/backend/desktop/DesktopArguments.class v8
 org/crossmobile/backend/desktop/DesktopDrawableMetrics.class v8
 org/crossmobile/backend/desktop/DesktopFileBridge$1.class v8
@@ -2995,6 +2976,19 @@ org/crossmobile/backend/desktop/cat/IconHolder.class v8
 org/crossmobile/backend/desktop/cat/IconSelectionListener.class v8
 org/crossmobile/backend/desktop/cat/MobileApp.class v8
 org/crossmobile/backend/desktop/cat/default.png
+org/crossmobile/backend/desktop/cgeo/CArea.class v8
+org/crossmobile/backend/desktop/cgeo/CButton.class v8
+org/crossmobile/backend/desktop/cgeo/CClickable$Reverse$1.class v8
+org/crossmobile/backend/desktop/cgeo/CClickable$Reverse.class v8
+org/crossmobile/backend/desktop/cgeo/CClickable.class v8
+org/crossmobile/backend/desktop/cgeo/CDrawable.class v8
+org/crossmobile/backend/desktop/cgeo/CEvent.class v8
+org/crossmobile/backend/desktop/cgeo/CEventCallback.class v8
+org/crossmobile/backend/desktop/cgeo/CScalable.class v8
+org/crossmobile/backend/desktop/cgeo/CScreen.class v8
+org/crossmobile/backend/desktop/cgeo/CSizable.class v8
+org/crossmobile/backend/desktop/cgeo/Chassis.class v8
+org/crossmobile/backend/desktop/cgeo/ChassisLoader.class v8
 org/crossmobile/backend/desktop/icons/delete.png
 org/crossmobile/backend/desktop/icons/double.png
 org/crossmobile/backend/desktop/icons/single.png

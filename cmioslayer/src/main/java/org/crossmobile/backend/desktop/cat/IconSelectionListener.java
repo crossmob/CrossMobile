@@ -8,7 +8,7 @@ package org.crossmobile.backend.desktop.cat;
 
 public interface IconSelectionListener {
 
-    public void iconSelected(MobileApp app);
+    void iconSelected(MobileApp app);
 
-    public void iconInfo(MobileApp app);
+    void iconInfo(MobileApp app);
 }

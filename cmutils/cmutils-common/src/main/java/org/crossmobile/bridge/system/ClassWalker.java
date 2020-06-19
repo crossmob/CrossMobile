@@ -6,8 +6,13 @@
 
 package org.crossmobile.bridge.system;
 
+import org.crossmobile.backend.desktop.DesktopImageLocations;
+
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.zip.ZipEntry;
@@ -16,6 +21,24 @@ import java.util.zip.ZipFile;
 import static org.crossmobile.bridge.system.BaseUtils.listFiles;
 
 public class ClassWalker {
+
+    public static Collection<String> getSkinFiles() {
+        Collection<String> skins = new ArrayList<>();
+        try {
+            Enumeration<URL> resources = Thread.currentThread().getContextClassLoader().getResources(DesktopImageLocations.SKINS.substring(1) + "catalog");
+            while (resources.hasMoreElements()) {
+                //noinspection CharsetObjectCanBeUsed
+                try (BufferedReader in = new BufferedReader(new InputStreamReader(resources.nextElement().openStream(), "UTF-8"))) {
+                    String data;
+                    while ((data = in.readLine()) != null)
+                        skins.add(data.trim());
+                } catch (IOException ignored) {
+                }
+            }
+        } catch (Exception ignored) {
+        }
+        return skins;
+    }
 
     public static void getClasspathEntries(Consumer<String> classConsumer, String... fileExtensions) {
         getClasspathEntries(System.getProperty("java.class.path"), classConsumer, fileExtensions);

@@ -7,7 +7,7 @@
 package org.crossmobile.backend.swing;
 
 import crossmobile.ios.coregraphics.CGAffineTransform;
-import org.crossmobile.backend.desktop.CDrawable;
+import org.crossmobile.backend.desktop.cgeo.CDrawable;
 import org.crossmobile.backend.desktop.DesktopDrawableMetrics;
 import org.crossmobile.backend.desktop.DesktopGraphicsBridge;
 import org.crossmobile.bind.graphics.*;
@@ -85,10 +85,7 @@ public class SwingGraphicsBridge extends DesktopGraphicsBridge<Graphics2D, Swing
     }
 
     @Override
-    public void relayoutMainView() {
-//        Point center = frame.getLocation();
-//        center.x += frame.getWidth() / 2;
-//        center.y += frame.getHeight() / 2;
+    public void resizeWindow() {
         DesktopDrawableMetrics metrics = (DesktopDrawableMetrics) metrics();
         Dimension wants = new Dimension(metrics.getOrientedFrameWidth(), metrics.getOrientedFrameHeight());
         JEmulatorPanel panel = SwingGraphicsBridge.component;
@@ -98,10 +95,7 @@ public class SwingGraphicsBridge extends DesktopGraphicsBridge<Graphics2D, Swing
             frame.add(panel, BorderLayout.CENTER);
             frame.pack();
         }
-//        if (OperatingSystem.current != OperatingSystem.Windows)
-//            frame.setLocation(center.x - frame.getWidth() / 2, center.y - frame.getHeight() / 2);
         Native.widget().resignFocus();
-        super.relayoutMainView();
     }
 
     public static void setComponentSize(SizableComponent c, Dimension d) {
@@ -117,7 +111,7 @@ public class SwingGraphicsBridge extends DesktopGraphicsBridge<Graphics2D, Swing
     }
 
     @Override
-    public void draw(CDrawable drawable, GraphicsContext cxt, int orientation) {
+    public void draw(CDrawable drawable, GraphicsContext<?, ?> cxt, int orientation) {
         Graphics2D g = ((SwingGraphicsContext) cxt).g2;
         if ((drawable.orientation & orientation) != 0) {
             AffineTransform t = null;
@@ -125,9 +119,9 @@ public class SwingGraphicsBridge extends DesktopGraphicsBridge<Graphics2D, Swing
                 t = g.getTransform();
                 g.rotate(
                         orientation == PortraitUpsideDown ? Math.PI : (orientation == LandscapeLeft ? Math.PI / 2 : Math.PI * 3 / 2),
-                        drawable.x() + (drawable.width() / 2d), drawable.y() + (drawable.height() / 2d));
+                        drawable.virtualX() + (drawable.virtualWidth() / 2d), drawable.virtualY() + (drawable.virtualHeight() / 2d));
             }
-            g.drawImage(drawable.isActive() ? ((SwingBitmap) drawable.active).img : ((SwingBitmap) drawable.inactive).img, drawable.x(), drawable.y(), drawable.width(), drawable.height(), null);
+            g.drawImage(((SwingBitmap) drawable.getImage()).img, drawable.hardwareX(), drawable.hardwareY(), drawable.hardwareWidth(), drawable.hardwareHeight(), null);
             if (t != null)
                 g.setTransform(t);
         }

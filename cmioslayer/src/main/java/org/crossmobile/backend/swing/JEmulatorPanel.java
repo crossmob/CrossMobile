@@ -12,6 +12,9 @@ import crossmobile.ios.uikit.UITouch;
 import crossmobile.ios.uikit.UIView;
 import crossmobile.ios.uikit.UIWindow;
 import org.crossmobile.backend.desktop.*;
+import org.crossmobile.backend.desktop.cat.MobileApp;
+import org.crossmobile.backend.desktop.cgeo.CEvent;
+import org.crossmobile.backend.desktop.cgeo.CEventCallback;
 import org.crossmobile.backend.swing.SwingGraphicsBridge.SizableComponent;
 import org.crossmobile.bind.graphics.DrawableMetrics;
 import org.crossmobile.bind.system.AbstractLifecycleBridge;
@@ -215,19 +218,7 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
 
     @Override
     public void home() {
-        Native.lifecycle().quit(null, null);
-        try {
-            String[] args = new String[]{
-                    OperatingSystem.getJavaExec(),
-                    "-cp",
-                    System.getProperty("java.class.path"),
-                    "org.crossmobile.backend.desktop.cat.ApplicationPresentation"
-            };
-            Runtime.getRuntime().exec(args);
-        } catch (IOException ignored) {
-        } finally {
-            System.exit(0);
-        }
+        MobileApp.goToHome();
     }
 
     @Override

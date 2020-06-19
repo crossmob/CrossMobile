@@ -6,6 +6,7 @@
 
 package org.crossmobile.backend.swing;
 
+import org.crossmobile.backend.desktop.DesktopArguments;
 import org.crossmobile.backend.desktop.DesktopDrawableMetrics;
 import org.crossmobile.backend.desktop.DesktopLifecycleBridge;
 import org.crossmobile.bridge.Native;
@@ -39,15 +40,10 @@ public class SwingLifecycleBridge extends DesktopLifecycleBridge {
         super.init(args);
 
         DesktopDrawableMetrics metrics = (DesktopDrawableMetrics) Native.graphics().metrics();
-        double scale = arguments().getScale(metrics.getIdiom());
-
         SwingGraphicsBridge.frame = new JEmulatorFrame(metrics.isFullScreen());
         SwingGraphicsBridge.frame.add(SwingGraphicsBridge.component = new JEmulatorPanel(metrics.isSimulator()), BorderLayout.CENTER);
-
-        metrics.setScaling(scale, scale, true);
         Native.graphics().setOrientation(DefaultInitialOrientation);
-        Native.graphics().relayoutMainView();
-        SwingGraphicsBridge.frame.setLocationRelativeTo(null);  // should center before relayoutMainView, since relayoutMainView shows frame
+        SwingGraphicsBridge.frame.setLocationRelativeTo(null);
         SwingGraphicsBridge.frame.setVisible(true);
         SwingGraphicsBridge.frame.postInitialize(metrics.isFullScreen());
         enhancer.registerAbout(this::showAbout);

@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: LGPL-3.0-only
  */
 
-package org.crossmobile.backend.desktop;
+package org.crossmobile.backend.desktop.cgeo;
 
 import org.crossmobile.bridge.Native;
 
@@ -103,5 +103,9 @@ public class CEvent {
                 }
             });
         }
+    }
+
+    public CButton getOwner() {
+        return owner;
     }
 }

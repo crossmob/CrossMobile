@@ -15,7 +15,7 @@ import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import static org.crossmobile.bridge.LifecycleBridge.CROSSMOBILE_PROPERTIES;
+import static org.crossmobile.bridge.system.LauncherCommons.CROSSMOBILE_PROPERTIES;
 import static org.crossmobile.bridge.system.MaterialsCommon.MATERIALS_TAG;
 
 public class DesktopFileBridge extends AbstractFileBridge {

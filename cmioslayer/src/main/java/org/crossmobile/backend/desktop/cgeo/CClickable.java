@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: LGPL-3.0-only
  */
 
-package org.crossmobile.backend.desktop;
+package org.crossmobile.backend.desktop.cgeo;
 
 import java.util.Iterator;
 import java.util.List;

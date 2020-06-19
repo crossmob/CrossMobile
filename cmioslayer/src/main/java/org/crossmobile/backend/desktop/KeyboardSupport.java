@@ -6,6 +6,7 @@
 
 package org.crossmobile.backend.desktop;
 
+import org.crossmobile.backend.desktop.cgeo.CEventCallback;
 import org.crossmobile.bridge.Native;
 
 import java.awt.event.KeyEvent;

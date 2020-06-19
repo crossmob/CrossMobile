@@ -8,29 +8,32 @@ package org.crossmobile.bind.graphics;
 
 import crossmobile.ios.coregraphics.CGPoint;
 import crossmobile.ios.uikit.UIUserInterfaceIdiom;
+import org.crossmobile.backend.desktop.Size;
 
 import static crossmobile.ios.uikit.UIDeviceOrientation.LandscapeLeft;
 import static crossmobile.ios.uikit.UIDeviceOrientation.LandscapeRight;
 
 public abstract class DrawableMetrics {
 
-    // Core parameters
-    // These are fixed parameters which do not get recalculated
+    // Core parameters which do not get recalculated
+
+    // Virtual width & height in points
     protected int virtualWidth = 1;
     protected int virtualHeight = 1;
+
+    // Actual width and height in pixels
     protected int hardwareWidth = 1;
     protected int hardwareHeight = 1;
+
     protected int orientation = 0; // Unknown
     protected int idiom;
+
     // Computed parameters based on scaling & orientation
-    protected float scaleOnX = 1;
-    protected float scaleOnY = 1;
-    protected float orientedScaledWidth;
-    protected float orientedScaledHeight;
-    //Parameters for Scaling Purposes
-    protected int vHeight;
-    protected int vWidth;
-    //
+    protected double scaleOnX = 1;
+    protected double scaleOnY = 1;
+    protected double orientedScaledWidth;
+    protected double orientedScaledHeight;
+
     private CGPoint[] lastTouchPoints = null;  // This is used by debug touch events
 
     public void setVirtualDimension(int width, int height) {
@@ -59,30 +62,30 @@ public abstract class DrawableMetrics {
     public void initIdiom() {
         String given = System.getProperty("cm.device", "").toLowerCase();
         int proposed = given.equals("iphone") ? UIUserInterfaceIdiom.Phone : (given.equals("ipad") ? UIUserInterfaceIdiom.Pad : -1);
-        setScale();
-        idiom = calculateIdiom(proposed);
-    }
-
-    protected abstract int calculateIdiom(int proposedInterfaceIdiom);
-
-    protected abstract void setScale();
-
-    public void setScaling(double scaleWidth, double scaleHeight, boolean affectHardwareMetrics) {
-        if (affectHardwareMetrics) {
-            int newWidth = (int) (virtualWidth * scaleWidth + 0.5);
-            int newHeight = (int) (virtualHeight * scaleHeight + 0.5);
-            if (newHeight == hardwareHeight && newWidth == hardwareWidth)
-                return;
-            setHardwareDimension(newWidth, newHeight);
-        } else {
-            int newWidth = (int) (hardwareWidth / scaleWidth + 0.5);
-            int newHeight = (int) (hardwareHeight / scaleHeight + 0.5);
-            if (newHeight == virtualHeight && newWidth == virtualWidth)
-                return;
-            setVirtualDimension(newWidth, newHeight);
+        Size size;
+        switch (System.getProperty("cm.screen.scale")) {
+            case "NATIVE":
+                size = initNativeScale();
+                break;
+            case "DPI":
+                size = initDPIScale();
+                break;
+            default:
+                String[] values = System.getProperty("cm.screen.scale").split(":");
+                size = initFixedScale(Integer.parseInt(values[1]), Integer.parseInt(values[1]));
         }
-        // No need to update, since it is alrady updated by setHardwareDimension/setVirtualDimention
+        idiom = finalizeScale(proposed, size);
     }
+
+    protected abstract Size initDPIScale();
+
+    protected Size initFixedScale(int width, int height) {
+        return new Size(width, height);
+    }
+
+    protected abstract Size initNativeScale();
+
+    protected abstract int finalizeScale(int proposedInterfaceIdiom, Size size);
 
     public int getOrientation() {
         return orientation;
@@ -136,20 +139,22 @@ public abstract class DrawableMetrics {
 
     public abstract int getInsetLeft();
 
-    public void preDraw(GraphicsContext ctx) {
+    public void preDraw(GraphicsContext<?, ?> ctx) {
         ctx.scale(scaleOnX, scaleOnY);
     }
 
-    public void postDraw(GraphicsContext ctx) {
+    public void postDraw(GraphicsContext<?, ?> ctx) {
     }
 
     protected void update() {
         if (hardwareWidth <= 1 || hardwareHeight <= 1)
             return;
-        scaleOnX = ((float) hardwareWidth) / virtualWidth;
-        scaleOnY = ((float) hardwareHeight) / virtualHeight;
+        scaleOnX = ((double) hardwareWidth) / virtualWidth;
+        scaleOnY = ((double) hardwareHeight) / virtualHeight;
         if (orientation == LandscapeLeft || orientation == LandscapeRight) {
+            //noinspection SuspiciousNameCombination
             orientedScaledWidth = scaleOnY;
+            //noinspection SuspiciousNameCombination
             orientedScaledHeight = scaleOnX;
         } else {
             orientedScaledWidth = scaleOnX;

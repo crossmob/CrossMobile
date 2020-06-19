@@ -16,6 +16,7 @@ public final class LauncherCommons {
 
     public static final String OUTPUT_PACKAGE = "META-INF";
     public static final String OUTPUT_FILE = "launcher.properties";
+    public static final String CROSSMOBILE_PROPERTIES = "crossmobile.properties";
 
     private LauncherCommons() {
     }

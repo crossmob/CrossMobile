@@ -16,6 +16,7 @@ import java.io.ByteArrayInputStream;
 import java.util.*;
 
 import static java.util.Comparator.comparingInt;
+import static org.crossmobile.bridge.system.ClassWalker.getSkinFiles;
 import static org.crossmobile.utils.CollectionUtils.asList;
 import static org.crossmobile.utils.FileUtils.readResourceSafe;
 import static org.crossmobile.utils.Pom.CROSSMOBILE_GROUP_ID;
@@ -39,10 +40,8 @@ public class Dependency {
     public static Collection<DesktopSkin> getSystemSkins() {
         if (SKINS == null) {
             SKINS = new ArrayList<>();
-            for (String skinFile : Opt.of(readResourceSafe(DesktopImageLocations.SKINS + "catalog"))
-                    .ifMissing(() -> SKINS.add(new DesktopSkin("system", "Default", "Default System application", 0)))
-                    .getOrElse("").split("\n")) {
-                XMLWalker skin = XMLWalker.load(ClassWalker.class.getResourceAsStream(DesktopImageLocations.SKINS + skinFile));
+            for (String name : getSkinFiles()) {
+                XMLWalker skin = XMLWalker.load(ClassWalker.class.getResourceAsStream(DesktopImageLocations.SKINS + name));
                 if (skin != null && skin.pathExists("/chassis/meta")) {
                     skin.path("/chassis/meta");
                     int priority = 100;
@@ -51,10 +50,13 @@ public class Dependency {
                     } catch (Exception ignored) {
                     }
                     if (priority >= 0)
-                        SKINS.add(new DesktopSkin(skinFile.substring(0, skinFile.length() - 4), skin.attribute("info"), skin.attribute("descr"), priority));
+                        SKINS.add(new DesktopSkin(name.substring(0, name.length() - 4), skin.attribute("info"), skin.attribute("descr"), priority));
                 }
             }
-            SKINS.sort(comparingInt(o -> o.priority));
+            if (SKINS.isEmpty())
+                SKINS.add(new DesktopSkin("system", "Default", "Default System application", 0));
+            else
+                SKINS.sort(comparingInt(o -> o.priority));
         }
         return SKINS;
     }
