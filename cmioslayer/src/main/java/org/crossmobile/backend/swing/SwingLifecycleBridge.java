@@ -6,7 +6,7 @@
 
 package org.crossmobile.backend.swing;
 
-import org.crossmobile.backend.desktop.DesktopArguments;
+import com.panayotis.appenh.EnhancerManager;
 import org.crossmobile.backend.desktop.DesktopDrawableMetrics;
 import org.crossmobile.backend.desktop.DesktopLifecycleBridge;
 import org.crossmobile.bridge.Native;
@@ -22,6 +22,9 @@ public class SwingLifecycleBridge extends DesktopLifecycleBridge {
 
     @Override
     public void init(String[] args) {
+        // This should be called before ANY visuals are being initialized
+        EnhancerManager.getDefault().fixDPI();
+
         /*
          * Initialization of JFrame is required early by CGContext.
          * Decoration though is set later on, after JFrame initialization.
