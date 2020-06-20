@@ -153,6 +153,26 @@
                             <plugin>cmioslayer</plugin>
                             <target>SOURCEONLY</target>
                         </package>
+                        <package>
+                            <name>com.panayotis.ce</name>
+                            <plugin>cmioslayer</plugin>
+                            <target>JAVA</target>
+                        </package>
+                        <package>
+                            <name>com.panayotis</name>
+                            <plugin>cmioslayer</plugin>
+                            <target>DESKTOP</target>
+                        </package>
+                        <package>
+                            <name>com.eclipsesource</name>
+                            <plugin>cmioslayer</plugin>
+                            <target>RUNTIME</target>
+                        </package>
+                        <package>
+                            <name>javazoom</name>
+                            <plugin>cmioslayer</plugin>
+                            <target>DESKTOP</target>
+                        </package>
                     </packages>
                     <repository>
                         <id>crossmobile</id>

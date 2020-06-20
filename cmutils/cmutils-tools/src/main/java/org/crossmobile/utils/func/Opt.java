@@ -98,4 +98,13 @@ public class Opt<T> {
             return nullable();
         }
     }
+
+    public Opt<T> mapMissing(UnsafeSupplier<T> supplier) {
+        Objects.requireNonNull(supplier);
+        try {
+            return !exists() ? Opt.of(supplier.get()) : this;
+        } catch (Throwable throwable) {
+            return this;
+        }
+    }
 }

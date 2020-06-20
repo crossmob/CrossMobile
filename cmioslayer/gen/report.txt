@@ -931,9 +931,6 @@ org/crossmobile/bridge/WrapperMapBridge.class v8
 org/crossmobile/bridge/package-info.class v8
 
 Creating file cmplugin-cmioslayer-<VERSION>-sources.jar
-com/eclipsesource/json/package-info.java
-com/panayotis/ce/package-info.java
-com/panayotis/package-info.java
 crossmobile/ios/coregraphics/$coregraphics.java
 crossmobile/ios/coregraphics/CGAffineTransform.java
 crossmobile/ios/coregraphics/CGBitmapContext.java
@@ -1255,7 +1252,6 @@ crossmobile/ios/uikit/cmPickers.java
 crossmobile/ios/uikit/cmPrivateEvent.java
 crossmobile/ios/uikit/package-info.java
 crossmobile/package-info.java
-javazoom/jl/package-info.java
 org/crossmobile/backend/android/ActivityLifecycleListener.java
 org/crossmobile/backend/android/ActivityPermissionListener.java
 org/crossmobile/backend/android/ActivityResultListener.java
@@ -1495,7 +1491,6 @@ com/eclipsesource/json/PrettyPrint.class v1.5
 com/eclipsesource/json/WriterConfig$1.class v1.5
 com/eclipsesource/json/WriterConfig.class v1.5
 com/eclipsesource/json/WritingBuffer.class v1.5
-com/eclipsesource/json/package-info.class v8
 crossmobile/ios/coregraphics/$coregraphics.class v8
 crossmobile/ios/coregraphics/CGAffineTransform.class v8
 crossmobile/ios/coregraphics/CGBitmapContext.class v8
@@ -2401,7 +2396,6 @@ com/eclipsesource/json/PrettyPrint.class v1.5
 com/eclipsesource/json/WriterConfig$1.class v1.5
 com/eclipsesource/json/WriterConfig.class v1.5
 com/eclipsesource/json/WritingBuffer.class v1.5
-com/eclipsesource/json/package-info.class v8
 com/panayotis/appenh/AFileChooser$1.class v1.6
 com/panayotis/appenh/AFileChooser$FileSelectionMode.class v1.6
 com/panayotis/appenh/AFileChooser.class v1.6
@@ -2431,9 +2425,7 @@ com/panayotis/ce/CEventCommons.class v8
 com/panayotis/ce/CEventData.class v8
 com/panayotis/ce/CEventListener.class v8
 com/panayotis/ce/CEventManager.class v8
-com/panayotis/ce/package-info.class v8
 com/panayotis/loadlib/LoadLib.class v1.6
-com/panayotis/package-info.class v8
 crossmobile/ios/coregraphics/$coregraphics.class v8
 crossmobile/ios/coregraphics/CGAffineTransform.class v8
 crossmobile/ios/coregraphics/CGBitmapContext.class v8
@@ -2919,7 +2911,6 @@ javazoom/jl/decoder/huffcodetab.class v1.6
 javazoom/jl/decoder/l3reorder.ser
 javazoom/jl/decoder/lin2au.ser
 javazoom/jl/decoder/sfd.ser
-javazoom/jl/package-info.class v8
 javazoom/jl/player/AudioDevice.class v1.6
 javazoom/jl/player/AudioDeviceBase.class v1.6
 javazoom/jl/player/AudioDeviceFactory.class v1.6
@@ -3323,12 +3314,10 @@ com/eclipsesource/json/PrettyPrint.class v1.5
 com/eclipsesource/json/WriterConfig$1.class v1.5
 com/eclipsesource/json/WriterConfig.class v1.5
 com/eclipsesource/json/WritingBuffer.class v1.5
-com/eclipsesource/json/package-info.class v8
 com/panayotis/ce/CEventCommons.class v8
 com/panayotis/ce/CEventData.class v8
 com/panayotis/ce/CEventListener.class v8
 com/panayotis/ce/CEventManager.class v8
-com/panayotis/ce/package-info.class v8
 crossmobile/ios/coregraphics/$coregraphics.class v8
 crossmobile/ios/coregraphics/CGAffineTransform.class v8
 crossmobile/ios/coregraphics/CGBitmapContext.class v8
