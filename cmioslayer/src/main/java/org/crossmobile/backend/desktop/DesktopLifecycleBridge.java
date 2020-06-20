@@ -8,15 +8,10 @@ package org.crossmobile.backend.desktop;
 
 import com.panayotis.appenh.Enhancer;
 import com.panayotis.appenh.EnhancerManager;
-import crossmobile.ios.uikit.UIDevice;
-import crossmobile.ios.uikit.UIUserInterfaceIdiom;
 import org.crossmobile.bind.system.AbstractLifecycleBridge;
 import org.crossmobile.bridge.Native;
-import org.crossmobile.bridge.system.ClassWalker;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 public abstract class DesktopLifecycleBridge extends AbstractLifecycleBridge {

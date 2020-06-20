@@ -6,8 +6,10 @@
 
 package org.crossmobile.backend.desktop;
 
-public class DesktopImageLocations {
+public class DesktopLocations {
     public static final String SKINS = "/org/crossmobile/backend/desktop/skin/";
     public static final String ICONS = "/org/crossmobile/backend/desktop/icons/";
+
+    public static final String FONT_LIST = "org/crossmobile/materials/sys/font.list";
 
 }

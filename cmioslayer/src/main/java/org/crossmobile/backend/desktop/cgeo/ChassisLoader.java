@@ -7,7 +7,7 @@
 package org.crossmobile.backend.desktop.cgeo;
 
 import crossmobile.ios.uikit.UIUserInterfaceIdiom;
-import org.crossmobile.backend.desktop.DesktopImageLocations;
+import org.crossmobile.backend.desktop.DesktopLocations;
 import org.crossmobile.bind.graphics.NativeBitmap;
 import org.crossmobile.bridge.Native;
 import org.xml.sax.Attributes;
@@ -36,7 +36,7 @@ public class ChassisLoader extends DefaultHandler {
         try {
             ChassisLoader handler = new ChassisLoader(name);
             SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
-            parser.parse(new InputSource(Chassis.class.getResourceAsStream(DesktopImageLocations.SKINS + name + ".xml")), handler);
+            parser.parse(new InputSource(Chassis.class.getResourceAsStream(DesktopLocations.SKINS + name + ".xml")), handler);
             return handler.ch;
         } catch (Exception ex) {
             return throwExceptionAndReturn(ex);
@@ -212,7 +212,7 @@ public class ChassisLoader extends DefaultHandler {
         if (imagename == null)
             return null;
         try {
-            return Native.image().retrieve(getClass().getResource(DesktopImageLocations.SKINS + imagename).toURI().toString());
+            return Native.image().retrieve(getClass().getResource(DesktopLocations.SKINS + imagename).toURI().toString());
         } catch (Exception ex) {
             System.err.println(error(tag, "No Image found under '" + imagename + "'"));
         }

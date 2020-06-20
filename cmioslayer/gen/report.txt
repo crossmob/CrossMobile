@@ -2346,7 +2346,6 @@ org/crossmobile/bridge/resolver/AndroidBridgeResolver.class v8
 org/crossmobile/bridge/resolver/SwingBridgeResolver.class v8
 org/crossmobile/bridge/resolver/package-info.class v8
 org/crossmobile/bridge/system/BaseUtils.class v8
-org/crossmobile/bridge/system/ClassWalker.class v8
 org/crossmobile/bridge/system/JsonHelper$1.class v8
 org/crossmobile/bridge/system/JsonHelper$JList.class v8
 org/crossmobile/bridge/system/JsonHelper$JMap$JSet$JSONIterator.class v8
@@ -2943,11 +2942,11 @@ org/crossmobile/backend/desktop/DesktopFileBridge$1.class v8
 org/crossmobile/backend/desktop/DesktopFileBridge.class v8
 org/crossmobile/backend/desktop/DesktopGraphicsBridge.class v8
 org/crossmobile/backend/desktop/DesktopImageBridge.class v8
-org/crossmobile/backend/desktop/DesktopImageLocations.class v8
 org/crossmobile/backend/desktop/DesktopInAppBridge$1.class v8
 org/crossmobile/backend/desktop/DesktopInAppBridge.class v8
 org/crossmobile/backend/desktop/DesktopLifecycleBridge.class v8
 org/crossmobile/backend/desktop/DesktopLocation.class v8
+org/crossmobile/backend/desktop/DesktopLocations.class v8
 org/crossmobile/backend/desktop/DesktopMessageBridge.class v8
 org/crossmobile/backend/desktop/DesktopNetworkBridge.class v8
 org/crossmobile/backend/desktop/DesktopNotificationsBridge.class v8
@@ -2962,6 +2961,7 @@ org/crossmobile/backend/desktop/MP3SoundPlayer$1.class v8
 org/crossmobile/backend/desktop/MP3SoundPlayer.class v8
 org/crossmobile/backend/desktop/NativeDesktop.class v8
 org/crossmobile/backend/desktop/OperatingSystem.class v8
+org/crossmobile/backend/desktop/ResourceResolver.class v8
 org/crossmobile/backend/desktop/Size.class v8
 org/crossmobile/backend/desktop/WAVSoundPlayer.class v8
 org/crossmobile/backend/desktop/cat/ApplicationCatalogue.class v8
@@ -3226,7 +3226,6 @@ org/crossmobile/bridge/resolver/AndroidBridgeResolver.class v8
 org/crossmobile/bridge/resolver/SwingBridgeResolver.class v8
 org/crossmobile/bridge/resolver/package-info.class v8
 org/crossmobile/bridge/system/BaseUtils.class v8
-org/crossmobile/bridge/system/ClassWalker.class v8
 org/crossmobile/bridge/system/JsonHelper$1.class v8
 org/crossmobile/bridge/system/JsonHelper$JList.class v8
 org/crossmobile/bridge/system/JsonHelper$JMap$JSet$JSONIterator.class v8
@@ -3966,7 +3965,6 @@ org/crossmobile/bridge/resolver/AndroidBridgeResolver.class v8
 org/crossmobile/bridge/resolver/SwingBridgeResolver.class v8
 org/crossmobile/bridge/resolver/package-info.class v8
 org/crossmobile/bridge/system/BaseUtils.class v8
-org/crossmobile/bridge/system/ClassWalker.class v8
 org/crossmobile/bridge/system/JsonHelper$1.class v8
 org/crossmobile/bridge/system/JsonHelper$JList.class v8
 org/crossmobile/bridge/system/JsonHelper$JMap$JSet$JSONIterator.class v8

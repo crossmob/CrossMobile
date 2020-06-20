@@ -10,8 +10,6 @@ import crossmobile.ios.foundation.NSData;
 import crossmobile.ios.foundation.NSJSONSerialization;
 import org.crossmobile.backend.desktop.OperatingSystem;
 import org.crossmobile.bridge.Native;
-import org.crossmobile.bridge.system.BaseUtils;
-import org.crossmobile.bridge.system.ClassWalker;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -185,5 +183,4 @@ public class MobileApp implements Comparable<MobileApp> {
     public String toString() {
         return "MobileApp{" + "name=" + name + ", identifier=" + identifier + ", path=" + path + '}';
     }
-
 }

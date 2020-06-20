@@ -13,7 +13,6 @@ import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.graphics.Theme;
 import org.crossmobile.bind.io.AbstractFileBridge;
 import org.crossmobile.bridge.Native;
-import org.crossmobile.bridge.system.ClassWalker;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -80,23 +79,14 @@ public abstract class DesktopGraphicsBridge<CANVAS, NTVP, TRANSF> extends Abstra
     public static void loadFonts() {
         if (fontsLoaded)
             return;
-        ClassWalker.getClasspathEntries(fontName -> {
-            String lowCase = fontName.toLowerCase();
-            if (!lowCase.endsWith(".ttf") && !lowCase.endsWith(".otf"))
-                return;
-            fontName = '/' + fontName;
-            if (fontName.startsWith(APPRESOURCE)) {
-                fontName = fontName.substring(APPRESOURCE.length());
-                if (!fontName.contains("/"))
-                    try {
-                        GraphicsEnvironment.getLocalGraphicsEnvironment().
-                                registerFont(Font.createFont(Font.TRUETYPE_FONT,
-                                        ((AbstractFileBridge) Native.file()).getApplicationFileStream(fontName)));
-                    } catch (Exception ex) {
-                        Native.system().error("Unable to load font " + fontName + ", reason: " + ex.toString(), null);
-                    }
+        for (String fontName : ResourceResolver.getFontFiles())
+            try {
+                GraphicsEnvironment.getLocalGraphicsEnvironment().
+                        registerFont(Font.createFont(Font.TRUETYPE_FONT,
+                                ((AbstractFileBridge) Native.file()).getApplicationFileStream(fontName)));
+            } catch (Exception ex) {
+                Native.system().error("Unable to load font " + fontName + ", reason: " + ex.toString(), null);
             }
-        });
         fontsLoaded = true;
     }
 
@@ -115,5 +105,4 @@ public abstract class DesktopGraphicsBridge<CANVAS, NTVP, TRANSF> extends Abstra
                 fonts.add(f.getFontName());
         return fonts;
     }
-
 }

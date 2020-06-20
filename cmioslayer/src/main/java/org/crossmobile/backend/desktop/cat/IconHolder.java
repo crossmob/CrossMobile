@@ -6,7 +6,7 @@
 
 package org.crossmobile.backend.desktop.cat;
 
-import org.crossmobile.backend.desktop.DesktopImageLocations;
+import org.crossmobile.backend.desktop.DesktopLocations;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -59,7 +59,7 @@ public class IconHolder extends JPanel {
     static {
         BufferedImage d = null;
         try {
-            d = ImageIO.read(IconHolder.class.getResourceAsStream(DesktopImageLocations.ICONS + "delete.png"));
+            d = ImageIO.read(IconHolder.class.getResourceAsStream(DesktopLocations.ICONS + "delete.png"));
         } catch (Exception ex) {
         }
         delete = d;

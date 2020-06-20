@@ -60,12 +60,12 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
             addKeyListener(this);
             Toolkit tk = Toolkit.getDefaultToolkit();
             try {
-                BufferedImage img = ImageIO.read(JEmulatorPanel.class.getResource(DesktopImageLocations.ICONS + "single.png"));
+                BufferedImage img = ImageIO.read(JEmulatorPanel.class.getResource(DesktopLocations.ICONS + "single.png"));
                 singleTouch = tk.createCustomCursor(img, new Point(13, 1), "singleTouch");
             } catch (IOException | IndexOutOfBoundsException | HeadlessException ignored) {
             }
             try {
-                BufferedImage img = ImageIO.read(JEmulatorPanel.class.getResource(DesktopImageLocations.ICONS + "double.png"));
+                BufferedImage img = ImageIO.read(JEmulatorPanel.class.getResource(DesktopLocations.ICONS + "double.png"));
                 doubleTouch = tk.createCustomCursor(img, new Point(19, 1), "doubleTouch");
             } catch (HeadlessException | IOException | IndexOutOfBoundsException ignored) {
             }

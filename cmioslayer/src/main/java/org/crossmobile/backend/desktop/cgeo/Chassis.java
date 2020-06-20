@@ -15,8 +15,8 @@ import org.crossmobile.bridge.Native;
 import java.util.*;
 
 import static crossmobile.ios.uikit.UIInterfaceOrientationMask.*;
+import static org.crossmobile.backend.desktop.ResourceResolver.getSkinFiles;
 import static org.crossmobile.backend.desktop.cgeo.ChassisLoader.getChassis;
-import static org.crossmobile.bridge.system.ClassWalker.getSkinFiles;
 
 public class Chassis extends CSizable implements Comparable<Chassis> {
 

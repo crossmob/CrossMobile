@@ -8,6 +8,7 @@ package org.crossmobile.backend.swing;
 
 import crossmobile.ios.coregraphics.CGSize;
 import org.crossmobile.backend.desktop.DesktopGraphicsBridge;
+import org.crossmobile.backend.desktop.ResourceResolver;
 import org.crossmobile.bind.graphics.NativeFont;
 import org.crossmobile.bind.graphics.Theme;
 import org.crossmobile.bridge.Native;

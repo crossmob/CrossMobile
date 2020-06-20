@@ -7,18 +7,15 @@
 package org.crossmobile.utils;
 
 import org.crossmobile.Version;
-import org.crossmobile.backend.desktop.DesktopImageLocations;
+import org.crossmobile.backend.desktop.DesktopLocations;
 import org.crossmobile.bridge.ann.CMLibParam.ParamContext;
-import org.crossmobile.bridge.system.ClassWalker;
-import org.crossmobile.utils.func.Opt;
 
 import java.io.ByteArrayInputStream;
 import java.util.*;
 
 import static java.util.Comparator.comparingInt;
-import static org.crossmobile.bridge.system.ClassWalker.getSkinFiles;
+import static org.crossmobile.backend.desktop.ResourceResolver.getSkinFiles;
 import static org.crossmobile.utils.CollectionUtils.asList;
-import static org.crossmobile.utils.FileUtils.readResourceSafe;
 import static org.crossmobile.utils.Pom.CROSSMOBILE_GROUP_ID;
 import static org.crossmobile.utils.Pom.CROSSMOBILE_THEME_ID;
 
@@ -41,7 +38,7 @@ public class Dependency {
         if (SKINS == null) {
             SKINS = new ArrayList<>();
             for (String name : getSkinFiles()) {
-                XMLWalker skin = XMLWalker.load(ClassWalker.class.getResourceAsStream(DesktopImageLocations.SKINS + name));
+                XMLWalker skin = XMLWalker.load(Dependency.class.getResourceAsStream(DesktopLocations.SKINS + name));
                 if (skin != null && skin.pathExists("/chassis/meta")) {
                     skin.path("/chassis/meta");
                     int priority = 100;
