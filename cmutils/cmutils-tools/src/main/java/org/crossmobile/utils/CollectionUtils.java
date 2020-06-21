@@ -26,15 +26,6 @@ public class CollectionUtils {
                 : new ArrayList<>(collection);
     }
 
-    public static <T> List<T> asList(Map<?, List<T>> map) {
-        if (map == null || map.isEmpty())
-            return Collections.emptyList();
-        List<T> collective = new ArrayList<>();
-        for (Object key : map.keySet())
-            collective.addAll(map.get(key));
-        return collective;
-    }
-
     public static <S, T> List<T> asList(Iterable<S> input, Function<S, T> converter, Predicate<T> acceptance) {
         if (input == null)
             return null;
@@ -262,6 +253,13 @@ public class CollectionUtils {
                 return converter.apply(next);
             }
         };
+    }
+
+    public static <T> Iterable<T> allValues(Map<?, Collection<T>> map) {
+        Collection<Iterator<? extends T>> iterators = new ArrayList<>();
+        for (Collection<T> collection : map.values())
+            iterators.add(collection.iterator());
+        return () -> joinIterator(iterators);
     }
 
     public static <T> Iterable<T> filter(Iterable<T> source, Predicate<T> filter) {

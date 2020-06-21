@@ -6,8 +6,11 @@
 
 package org.crossmobile.backend.desktop;
 
+import org.robovm.objc.block.VoidBlock1;
+
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
@@ -18,21 +21,32 @@ import static org.crossmobile.backend.desktop.DesktopLocations.FONT_LIST;
 
 public class ResourceResolver {
 
+    public static void getResources(String path, VoidBlock1<InputStream> streams) {
+        Enumeration<URL> resources;
+        try {
+            resources = ResourceResolver.class.getClassLoader().getResources(path);
+        } catch (IOException e) {
+            return;
+        }
+        while (resources.hasMoreElements()) {
+            try (InputStream inputStream = resources.nextElement().openStream()) {
+                streams.invoke(inputStream);
+            } catch (Exception ignored) {
+            }
+        }
+    }
+
     private static Collection<String> getTextResources(String path) {
         Collection<String> result = new ArrayList<>();
-        try {
-            Enumeration<URL> resources = ResourceResolver.class.getClassLoader().getResources(path);
-            while (resources.hasMoreElements()) {
-                //noinspection CharsetObjectCanBeUsed
-                try (BufferedReader in = new BufferedReader(new InputStreamReader(resources.nextElement().openStream(), "UTF-8"))) {
-                    String data;
-                    while ((data = in.readLine()) != null)
-                        result.add(data);
-                } catch (IOException ignored) {
-                }
+        getResources(path, inputStream -> {
+            //noinspection CharsetObjectCanBeUsed
+            try (BufferedReader in = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"))) {
+                String data;
+                while ((data = in.readLine()) != null)
+                    result.add(data);
+            } catch (IOException ignored) {
             }
-        } catch (Exception ignored) {
-        }
+        });
         return result;
     }
 
