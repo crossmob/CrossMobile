@@ -149,11 +149,6 @@
                     </embedlibs>
                     <packages>
                         <package>
-                            <name>META-INF</name>
-                            <plugin>cmioslayer</plugin>
-                            <target>SOURCEONLY</target>
-                        </package>
-                        <package>
                             <name>com.panayotis.ce</name>
                             <plugin>cmioslayer</plugin>
                             <target>JAVA</target>

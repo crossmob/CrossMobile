@@ -127,7 +127,7 @@ public class ReflectionUtils {
             return null;
     }
 
-    public static Method getLambdaMethod(Class interf) {
+    public static Method getLambdaMethod(Class<?> interf) {
         if (!interf.isInterface())
             return null;
         Method result = null;
@@ -140,14 +140,14 @@ public class ReflectionUtils {
         return result;
     }
 
-    public static Constructor getParentConstructor(Constructor cs) {
+    public static Constructor<?> getParentConstructor(Constructor<?> cs) {
         if (cs == null)
             return null;
-        Class cls = cs.getDeclaringClass().getSuperclass();
+        Class<?> cls = cs.getDeclaringClass().getSuperclass();
         while (cls != null) {
             try {
                 return cls.getConstructor(cs.getParameterTypes());
-            } catch (NoSuchMethodException | SecurityException ex) {
+            } catch (NoSuchMethodException | SecurityException ignored) {
             }
             cls = cls.getSuperclass();
         }
@@ -258,7 +258,7 @@ public class ReflectionUtils {
         return counter;
     }
 
-    public static Method createMethod(Class<?> declaringClass, String name, Class[] paramTypes, Class returnType) {
+    public static Method createMethod(Class<?> declaringClass, String name, Class<?>[] paramTypes, Class<?> returnType) {
         return createMethod(declaringClass, name, paramTypes, declaringClass, null, 0, 0, "", null, null, null);
     }
 
@@ -348,7 +348,7 @@ public class ReflectionUtils {
             for (File file : jarfiles)
                 try {
                     cp.appendPathList(file.getAbsolutePath());
-                } catch (NotFoundException ex) {
+                } catch (NotFoundException ignored) {
                 }
         return cp;
     }

@@ -46,7 +46,7 @@ public class TimeUtils {
         } catch (Throwable th) {
             nano = System.nanoTime() - nano;
             error = th.toString();
-            throw new NestedException("Error caused in " + description.trim(), th);
+            throw new NestedException("Error caused in " + description.trim() + ": " + th.toString(), th);
         } finally {
             log(nano, description, error);
         }
