@@ -25,7 +25,7 @@ public abstract class Native {
     private LifecycleBridge lifecycle;
     private GraphicsBridge graphics;
     private SoundBridge sound;
-    private WrapperBridge widget;
+    private WrapperUIBridge widget;
     private WrapperMapBridge map;
     private InAppBridge inapp;
     private LocationBridge location;
@@ -113,7 +113,7 @@ public abstract class Native {
         return bridge.sound;
     }
 
-    public static WrapperBridge widget() {
+    public static WrapperUIBridge widget() {
         if (bridge().widget == null)
             bridge.widget = bridge.initWidget();
         return bridge.widget;
@@ -195,7 +195,7 @@ public abstract class Native {
 
     protected abstract SoundBridge initSound();
 
-    protected abstract WrapperBridge initWidget();
+    protected abstract WrapperUIBridge initWidget();
 
     protected abstract FileBridge initFile();
 

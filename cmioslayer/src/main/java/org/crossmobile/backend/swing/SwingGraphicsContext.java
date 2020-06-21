@@ -24,16 +24,16 @@ public class SwingGraphicsContext implements GraphicsContext<SwingNativePath, Af
     private static final int UNKNOWN = -1;
     private static final int FILL = 1;
     private static final int DRAW = 2;
-    //
+
     final Graphics2D g2;
     final private boolean isLive;
     private final Stack<GState> states;  // J2D does not provide a saved state - we have to implement our own
-    //
+
     private Color fill_paint = Color.BLACK;
     private Color draw_paint = Color.BLACK;
     private int last_paint = UNKNOWN;
     private SwingFont last_font = null;
-    //
+
     private double line_width = 1;
     private int line_cap = BasicStroke.CAP_BUTT;
     private int line_join = BasicStroke.JOIN_MITER;

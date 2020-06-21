@@ -14,7 +14,7 @@ import org.crossmobile.bridge.ann.CMLib;
 import static org.crossmobile.bridge.ann.CMLibTarget.ANDROID;
 
 @CMLib(target = ANDROID, name = "cmlocation")
-public class AndroidWrapperMapBridge extends AndroidWrapperBridge implements WrapperMapBridge {
+public class AndroidWrapperMapBridge extends AndroidWrapperUIBridge implements WrapperMapBridge {
     @Override
     public MapViewWrapper mapView(MKMapView parent) {
         return new AndroidMapViewWrapper(parent);

@@ -41,8 +41,8 @@ public class NativeAndroid extends Native {
     }
 
     @Override
-    protected WrapperBridge initWidget() {
-        return new AndroidWrapperBridge();
+    protected WrapperUIBridge initWidget() {
+        return new AndroidWrapperUIBridge();
     }
 
     @Override

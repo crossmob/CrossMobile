@@ -14,7 +14,7 @@ import org.crossmobile.bind.wrapper.TextWrapper;
 import org.crossmobile.bind.wrapper.WebWrapper;
 import org.crossmobile.bind.wrapper.WidgetWrapper;
 
-public interface WrapperBridge<NW> {
+public interface WrapperUIBridge<NW> {
 
     WebWrapper webView(UIWebView parent);
 

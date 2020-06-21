@@ -22,12 +22,12 @@ import org.crossmobile.bind.wrapper.NativeDispatcher;
 import org.crossmobile.bind.wrapper.WebWrapper;
 import org.crossmobile.bind.wrapper.WidgetWrapper;
 import org.crossmobile.bridge.Native;
-import org.crossmobile.bridge.WrapperBridge;
+import org.crossmobile.bridge.WrapperUIBridge;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
-public class AndroidWrapperBridge implements WrapperBridge<View> {
+public class AndroidWrapperUIBridge implements WrapperUIBridge<View> {
 
     private final Runnable resignFocus = () -> {
         MainView.current.requestFocus();

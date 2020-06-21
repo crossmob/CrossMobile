@@ -37,7 +37,7 @@ public class NativeSwing extends NativeDesktop {
     }
 
     @Override
-    protected WrapperBridge initWidget() {
-        return new SwingWrapperBridge();
+    protected WrapperUIBridge initWidget() {
+        return new SwingWrapperUIBridge();
     }
 }

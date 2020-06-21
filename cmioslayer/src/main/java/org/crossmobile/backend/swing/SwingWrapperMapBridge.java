@@ -13,7 +13,7 @@ import org.crossmobile.bridge.ann.CMLib;
 import org.crossmobile.bridge.ann.CMLibTarget;
 
 @CMLib(target = CMLibTarget.DESKTOP, name = "cmlocation")
-public class SwingWrapperMapBridge extends SwingWrapperBridge implements WrapperMapBridge {
+public class SwingWrapperMapBridge extends SwingWrapperUIBridge implements WrapperMapBridge {
     @Override
     public MapViewWrapper mapView(MKMapView parent) {
         return new SwingMapViewWrapper(parent);

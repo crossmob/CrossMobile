@@ -926,8 +926,8 @@ org/crossmobile/bridge/SocialBridge.class v8
 org/crossmobile/bridge/SoundBridge.class v8
 org/crossmobile/bridge/SystemBridge.class v8
 org/crossmobile/bridge/UIGuidelinesBridge.class v8
-org/crossmobile/bridge/WrapperBridge.class v8
 org/crossmobile/bridge/WrapperMapBridge.class v8
+org/crossmobile/bridge/WrapperUIBridge.class v8
 org/crossmobile/bridge/package-info.class v8
 
 Creating file cmplugin-cmioslayer-<VERSION>-sources.jar
@@ -1278,7 +1278,7 @@ org/crossmobile/backend/android/AndroidTextWidget.java
 org/crossmobile/backend/android/AndroidTextWrapper.java
 org/crossmobile/backend/android/AndroidUIGuidelinesBridge.java
 org/crossmobile/backend/android/AndroidWebWrapper.java
-org/crossmobile/backend/android/AndroidWrapperBridge.java
+org/crossmobile/backend/android/AndroidWrapperUIBridge.java
 org/crossmobile/backend/android/ApplicationStateListener.java
 org/crossmobile/backend/android/MainActivity.java
 org/crossmobile/backend/android/MainApplication.java
@@ -1326,8 +1326,6 @@ org/crossmobile/backend/desktop/cgeo/CSizable.java
 org/crossmobile/backend/desktop/cgeo/Chassis.java
 org/crossmobile/backend/desktop/cgeo/ChassisLoader.java
 org/crossmobile/backend/desktop/package-info.java
-org/crossmobile/backend/ios/NativeIOS.java
-org/crossmobile/backend/ios/package-info.java
 org/crossmobile/backend/package-info.java
 org/crossmobile/backend/robovm/RoboVMConverters.java
 org/crossmobile/backend/swing/AboutDialog.form
@@ -1348,8 +1346,8 @@ org/crossmobile/backend/swing/SwingSystemBridge.java
 org/crossmobile/backend/swing/SwingTextFieldWrapper.java
 org/crossmobile/backend/swing/SwingTextViewWrapper.java
 org/crossmobile/backend/swing/SwingWebWrapper.java
-org/crossmobile/backend/swing/SwingWrapperBridge.java
 org/crossmobile/backend/swing/SwingWrapperClickConsumer.java
+org/crossmobile/backend/swing/SwingWrapperUIBridge.java
 org/crossmobile/backend/swing/package-info.java
 org/crossmobile/bind/graphics/AbstractGraphicsBridge.java
 org/crossmobile/bind/graphics/AbstractImageBridge.java
@@ -1424,8 +1422,8 @@ org/crossmobile/bridge/SocialBridge.java
 org/crossmobile/bridge/SoundBridge.java
 org/crossmobile/bridge/SystemBridge.java
 org/crossmobile/bridge/UIGuidelinesBridge.java
-org/crossmobile/bridge/WrapperBridge.java
 org/crossmobile/bridge/WrapperMapBridge.java
+org/crossmobile/bridge/WrapperUIBridge.java
 org/crossmobile/bridge/package-info.java
 org/crossmobile/bridge/resolver/AndroidBridgeResolver.java
 org/crossmobile/bridge/resolver/SwingBridgeResolver.java
@@ -2280,8 +2278,6 @@ native/org_robovm_objc_block_VoidBlock5.h
 native/org_robovm_objc_block_VoidBlock6.h
 native/org_xml_sax_SAXException.h
 native/xmlvm.h
-org/crossmobile/backend/ios/NativeIOS.class v8
-org/crossmobile/backend/ios/package-info.class v8
 org/crossmobile/bridge/CrossMobilePlugin.class v8
 org/crossmobile/bridge/FileBridge.class v8
 org/crossmobile/bridge/GraphicsBridge.class v8
@@ -2302,8 +2298,8 @@ org/crossmobile/bridge/SocialBridge.class v8
 org/crossmobile/bridge/SoundBridge.class v8
 org/crossmobile/bridge/SystemBridge.class v8
 org/crossmobile/bridge/UIGuidelinesBridge.class v8
-org/crossmobile/bridge/WrapperBridge.class v8
 org/crossmobile/bridge/WrapperMapBridge.class v8
+org/crossmobile/bridge/WrapperUIBridge.class v8
 org/crossmobile/bridge/ann/AssociationType.class v8
 org/crossmobile/bridge/ann/BuildModule.class v8
 org/crossmobile/bridge/ann/CMAndroidInjections.class v8
@@ -3064,8 +3060,8 @@ org/crossmobile/backend/swing/SwingTextViewWrapper.class v8
 org/crossmobile/backend/swing/SwingWebWrapper$NativeW$1.class v8
 org/crossmobile/backend/swing/SwingWebWrapper$NativeW.class v8
 org/crossmobile/backend/swing/SwingWebWrapper.class v8
-org/crossmobile/backend/swing/SwingWrapperBridge.class v8
 org/crossmobile/backend/swing/SwingWrapperClickConsumer.class v8
+org/crossmobile/backend/swing/SwingWrapperUIBridge.class v8
 org/crossmobile/backend/swing/package-info.class v8
 org/crossmobile/bind/graphics/AbstractGraphicsBridge$1.class v8
 org/crossmobile/bind/graphics/AbstractGraphicsBridge$RefreshRunnable.class v8
@@ -3178,8 +3174,8 @@ org/crossmobile/bridge/SocialBridge.class v8
 org/crossmobile/bridge/SoundBridge.class v8
 org/crossmobile/bridge/SystemBridge.class v8
 org/crossmobile/bridge/UIGuidelinesBridge.class v8
-org/crossmobile/bridge/WrapperBridge.class v8
 org/crossmobile/bridge/WrapperMapBridge.class v8
+org/crossmobile/bridge/WrapperUIBridge.class v8
 org/crossmobile/bridge/ann/AssociationType.class v8
 org/crossmobile/bridge/ann/BuildModule.class v8
 org/crossmobile/bridge/ann/CMAndroidInjections.class v8
@@ -3784,7 +3780,7 @@ org/crossmobile/backend/android/AndroidWebWrapper$NativeW$1.class v8
 org/crossmobile/backend/android/AndroidWebWrapper$NativeW$2.class v8
 org/crossmobile/backend/android/AndroidWebWrapper$NativeW.class v8
 org/crossmobile/backend/android/AndroidWebWrapper.class v8
-org/crossmobile/backend/android/AndroidWrapperBridge.class v8
+org/crossmobile/backend/android/AndroidWrapperUIBridge.class v8
 org/crossmobile/backend/android/ApplicationStateListener.class v8
 org/crossmobile/backend/android/MainActivity.class v8
 org/crossmobile/backend/android/MainApplication.class v8
@@ -3915,8 +3911,8 @@ org/crossmobile/bridge/SocialBridge.class v8
 org/crossmobile/bridge/SoundBridge.class v8
 org/crossmobile/bridge/SystemBridge.class v8
 org/crossmobile/bridge/UIGuidelinesBridge.class v8
-org/crossmobile/bridge/WrapperBridge.class v8
 org/crossmobile/bridge/WrapperMapBridge.class v8
+org/crossmobile/bridge/WrapperUIBridge.class v8
 org/crossmobile/bridge/ann/AssociationType.class v8
 org/crossmobile/bridge/ann/BuildModule.class v8
 org/crossmobile/bridge/ann/CMAndroidInjections.class v8

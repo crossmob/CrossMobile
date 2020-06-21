@@ -52,7 +52,7 @@ public abstract class WebWrapper<NWIDG extends NativeWrapper<GCX>, GCX extends G
     }
 
     protected static class HistorySanitizer {
-        private List<String> urls = new ArrayList<>();
+        private final List<String> urls = new ArrayList<>();
         private int current;
 
         public HistorySanitizer(int currentIdx, Iterator<String> urlProvider) {

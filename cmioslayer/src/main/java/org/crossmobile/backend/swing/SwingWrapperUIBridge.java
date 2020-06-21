@@ -13,7 +13,8 @@ import org.crossmobile.bind.wrapper.NativeDispatcher;
 import org.crossmobile.bind.wrapper.WebWrapper;
 import org.crossmobile.bind.wrapper.WidgetWrapper;
 import org.crossmobile.bridge.Native;
-import org.crossmobile.bridge.WrapperBridge;
+import org.crossmobile.bridge.WrapperUIBridge;
+import org.crossmobile.bridge.system.BaseUtils;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -21,23 +22,32 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
 
-public class SwingWrapperBridge implements WrapperBridge<JComponent> {
+public class SwingWrapperUIBridge implements WrapperUIBridge<JComponent> {
 
-    private Boolean hasJFX;
+    private Constructor<? extends WebWrapper<?, SwingGraphicsContext>> constructor;
 
-    @Override
-    public WebWrapper webView(UIWebView parent) {
-        if (hasJFX == null) {
+    {
+        try {
+            //noinspection unchecked
+            constructor = (Constructor<WebWrapper<?, SwingGraphicsContext>>) Class.forName("org.crossmobile.backend.desktop.FXWebWrapper").getConstructor(UIWebView.class);
+        } catch (Exception ignored) {
             try {
-                Class.forName("javafx.scene.web.WebView");
-                hasJFX = true;
-            } catch (Throwable e) {
-                hasJFX = false;
+                constructor = SwingWebWrapper.class.getConstructor(UIWebView.class);
+            } catch (NoSuchMethodException ex) {
+                BaseUtils.throwException(ex);
             }
         }
-//        return hasJFX ? new JFXWebWrapper(parent) : new SwingWebWrapper(parent);
-        return new SwingWebWrapper(parent);
+    }
+
+    @Override
+    public WebWrapper<?, SwingGraphicsContext> webView(UIWebView parent) {
+        try {
+            return constructor.newInstance(parent);
+        } catch (Exception e) {
+            return BaseUtils.throwExceptionAndReturn(e);
+        }
     }
 
     @Override

@@ -31,7 +31,7 @@ public class SwingWebWrapper extends WebWrapper<SwingWebWrapper.NativeW, SwingGr
 
     private boolean isLoading = false;
 
-    SwingWebWrapper(UIWebView wv) {
+    public SwingWebWrapper(UIWebView wv) {
         super(wv);
     }
 
@@ -136,7 +136,7 @@ public class SwingWebWrapper extends WebWrapper<SwingWebWrapper.NativeW, SwingGr
             addPropertyChangeListener("page", (PropertyChangeEvent evt) -> {
                 isLoading = false;
                 // Take care of event that the page  has loaded
-                UIWebView wv = (UIWebView) getIOSWidget();
+                UIWebView wv = getIOSWidget();
                 if (wv == null)
                     return;
                 Native.graphics().refreshDisplay();
