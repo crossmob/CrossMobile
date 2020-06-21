@@ -1013,11 +1013,11 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
      * Override the user style, whether be light or dark. This could be applied to the
      * UIWindow view of the application to affect the whole application.
      *
-     * @param overrideUserInterfaceStyle the new user interface style
+     * @param UIUserInterfaceStyle the new user interface style
      */
     @CMSetter(value = "@property(nonatomic) UIUserInterfaceStyle overrideUserInterfaceStyle;", sinceIos = "13.0")
-    public void setOverrideUserInterfaceStyle(int overrideUserInterfaceStyle) {
-        this.overrideUserInterfaceStyle = overrideUserInterfaceStyle;
+    public void setOverrideUserInterfaceStyle(int UIUserInterfaceStyle) {
+        this.overrideUserInterfaceStyle = UIUserInterfaceStyle;
     }
 
     /**
