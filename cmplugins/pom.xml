@@ -8,9 +8,9 @@
         <version>2.9.1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>cmtheme</artifactId>
+    <artifactId>cmplugins</artifactId>
     <packaging>pom</packaging>
-    <name>Themes</name>
+    <name>CrossMobile Plugins</name>
 
     <modules>
         <module>cmtheme-bright</module>

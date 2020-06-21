@@ -14,7 +14,7 @@
         <module>cmbuild</module>
         <module>cmioslayer</module>
         <module>cmarchetypes</module>
-        <module>cmtheme</module>
+        <module>cmplugins</module>
         <module>cmproject</module>
     </modules>
 
