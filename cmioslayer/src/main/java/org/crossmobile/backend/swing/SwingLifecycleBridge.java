@@ -29,6 +29,8 @@ public class SwingLifecycleBridge extends DesktopLifecycleBridge {
         System.setProperty("apple.awt.application.name", appname);
         EnhancerManager.getDefault().fixDPI();
 
+        Native.lifecycle().loadSystemProperties(); // Load system properties before any actual initialization
+
         /*
          * Initialization of JFrame is required early by CGContext.
          * Decoration though is set later on, after JFrame initialization.

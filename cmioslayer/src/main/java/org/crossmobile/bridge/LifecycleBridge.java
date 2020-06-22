@@ -18,12 +18,8 @@ public interface LifecycleBridge extends Thread.UncaughtExceptionHandler {
     String THEME_PROPERTIES = "theme.properties";
 
     /**
-     * Initialize bridge. This method should guarantee to call the parseArguments method.
-     *
-     * @param args user provided arguments which sould be passed to parseArguments
+     * Load System properties BEFORE any initialization. It is the OS responsibility to properly initialize these valuees.
      */
-    void init(String[] args);
-
     default void loadSystemProperties() {
         try {
             System.getProperties().load(new InputStreamReader(Native.file().getFileStream(Native.file().getApplicationPrefix() + "/" + CROSSMOBILE_PROPERTIES), "UTF-8"));
@@ -36,6 +32,14 @@ public interface LifecycleBridge extends Thread.UncaughtExceptionHandler {
         } catch (Exception ignored) {
         }
     }
+
+    /**
+     * Initialize bridge. This method should guarantee to call the parseArguments method.
+     *
+     * @param args user provided arguments which sould be passed to parseArguments
+     */
+    void init(String[] args);
+
 
     /**
      * Parse command line arguments. This method is called from inside init method

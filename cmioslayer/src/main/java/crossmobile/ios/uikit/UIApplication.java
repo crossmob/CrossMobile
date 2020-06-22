@@ -64,7 +64,6 @@ public class UIApplication extends UIResponder {
                            @CMParamMod(convertWith = "jclass_to_string", type = String.class) Class<? extends UIApplication> UIApplication,
                            @CMParamMod(convertWith = "jclass_to_string", type = String.class) Class<? extends UIApplicationDelegate> UIApplicationDelegate) {
         Native.prepare(null);
-        Native.lifecycle().loadSystemProperties();
         Native.lifecycle().init(args);
 
         // This is preferred since the constraint put during lifetime initialization under Android might not be enough, and a second one here might be required.
