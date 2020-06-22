@@ -14,6 +14,7 @@ import org.crossmobile.backend.desktop.cgeo.CEvent;
 import org.crossmobile.backend.desktop.cgeo.Chassis;
 import org.crossmobile.backend.desktop.cgeo.ChassisLoader;
 import org.crossmobile.bind.graphics.DrawableMetrics;
+import org.crossmobile.bind.graphics.Size;
 import org.crossmobile.bridge.Native;
 
 import static crossmobile.ios.uikit.UIDeviceOrientation.*;

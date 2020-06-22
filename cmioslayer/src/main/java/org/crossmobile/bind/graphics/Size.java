@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: LGPL-3.0-only
  */
 
-package org.crossmobile.backend.desktop;
+package org.crossmobile.bind.graphics;
 
 public final class Size {
     public final int width;

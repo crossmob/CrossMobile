@@ -9,7 +9,7 @@ package org.crossmobile.backend.android;
 import android.util.DisplayMetrics;
 import crossmobile.ios.coregraphics.CGPoint;
 import crossmobile.ios.uikit.UIUserInterfaceIdiom;
-import org.crossmobile.backend.desktop.Size;
+import org.crossmobile.bind.graphics.Size;
 import org.crossmobile.bind.graphics.DrawableMetrics;
 import org.crossmobile.bind.graphics.GraphicsContext;
 
