@@ -9,7 +9,6 @@ package org.crossmobile.backend.android;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
-import androidx.core.content.FileProvider;
 import org.crossmobile.bind.io.AbstractFileBridge;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.CMLib;
@@ -123,6 +122,6 @@ public class AndroidFileBridge extends AbstractFileBridge {
     public static Uri getExternalUri(File file) {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.N
                 ? Uri.fromFile(file)
-                : FileProvider.getUriForFile(MainActivity.current, AndroidPermissions.current().getAuthority(), file);
+                : CMFileProvider.getUriForFile(MainActivity.current, AndroidPermissions.current().getAuthority(), file);
     }
 }

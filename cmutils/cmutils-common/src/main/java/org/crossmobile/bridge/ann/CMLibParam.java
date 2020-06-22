@@ -12,11 +12,11 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-@Retention(RUNTIME)
-@Target(TYPE)
 /**
  * Single parameter of a CrossMobile plugin
  */
+@Retention(RUNTIME)
+@Target(TYPE)
 public @interface CMLibParam {
 
     /**

@@ -1287,6 +1287,7 @@ org/crossmobile/backend/android/AndroidUIGuidelinesBridge.java
 org/crossmobile/backend/android/AndroidWebWrapper.java
 org/crossmobile/backend/android/AndroidWrapperUIBridge.java
 org/crossmobile/backend/android/ApplicationStateListener.java
+org/crossmobile/backend/android/CMFileProvider.java
 org/crossmobile/backend/android/MainActivity.java
 org/crossmobile/backend/android/MainApplication.java
 org/crossmobile/backend/android/MainView.java
@@ -3796,6 +3797,7 @@ org/crossmobile/backend/android/AndroidWebWrapper$NativeW.class v8
 org/crossmobile/backend/android/AndroidWebWrapper.class v8
 org/crossmobile/backend/android/AndroidWrapperUIBridge.class v8
 org/crossmobile/backend/android/ApplicationStateListener.class v8
+org/crossmobile/backend/android/CMFileProvider.class v8
 org/crossmobile/backend/android/MainActivity.class v8
 org/crossmobile/backend/android/MainApplication.class v8
 org/crossmobile/backend/android/MainView.class v8
@@ -4838,7 +4840,7 @@ crossmobile/ios/quicklook/package-info.class v8
 Creating file cmplugin-rvm-cmquicklook-<VERSION>.jar
 
 
-Creating file cmplugin-cmsocialbase-<VERSION>.jar
+Creating file cmplugin-cmsocial-<VERSION>.jar
 META-INF/PLUGIN.INF
 META-INF/REVERSE.INF
 crossmobile/ios/social/SLComposeServiceViewController.class v8
@@ -4851,10 +4853,10 @@ crossmobile/ios/social/SLRequestMethod.class v8
 crossmobile/ios/social/SLServiceType.class v8
 crossmobile/ios/social/package-info.class v8
 
-Creating file cmplugin-builddep-cmsocialbase-<VERSION>.jar
+Creating file cmplugin-builddep-cmsocial-<VERSION>.jar
 
 
-Creating file cmplugin-cmsocialbase-<VERSION>-sources.jar
+Creating file cmplugin-cmsocial-<VERSION>-sources.jar
 crossmobile/ios/social/SLComposeServiceViewController.java
 crossmobile/ios/social/SLComposeViewController.java
 crossmobile/ios/social/SLComposeViewControllerCompletionHandler.java
@@ -4864,8 +4866,11 @@ crossmobile/ios/social/SLRequestHandler.java
 crossmobile/ios/social/SLRequestMethod.java
 crossmobile/ios/social/SLServiceType.java
 crossmobile/ios/social/package-info.java
+org/crossmobile/backend/android/AndroidSocial.java
+org/crossmobile/backend/desktop/DesktopSocial.java
+org/crossmobile/bind/system/SocialRegister.java
 
-Creating file cmplugin-ios-cmsocialbase-<VERSION>.jar
+Creating file cmplugin-ios-cmsocial-<VERSION>.jar
 crossmobile/ios/social/SLComposeServiceViewController.class v8
 crossmobile/ios/social/SLComposeViewController.class v8
 crossmobile/ios/social/SLComposeViewControllerCompletionHandler.class v8
@@ -4875,14 +4880,14 @@ crossmobile/ios/social/SLRequestHandler.class v8
 crossmobile/ios/social/SLRequestMethod.class v8
 crossmobile/ios/social/SLServiceType.class v8
 crossmobile/ios/social/package-info.class v8
-native/cmsocialbase.a
+native/cmsocial.a
 native/crossmobile_ios_social_SLComposeServiceViewController.h
 native/crossmobile_ios_social_SLComposeViewController.h
 native/crossmobile_ios_social_SLComposeViewControllerCompletionHandler.h
 native/crossmobile_ios_social_SLRequest.h
 native/crossmobile_ios_social_SLRequestHandler.h
 
-Creating file cmplugin-desktop-cmsocialbase-<VERSION>.jar
+Creating file cmplugin-desktop-cmsocial-<VERSION>.jar
 crossmobile/ios/social/SLComposeServiceViewController.class v8
 crossmobile/ios/social/SLComposeViewController.class v8
 crossmobile/ios/social/SLComposeViewControllerCompletionHandler.class v8
@@ -4892,8 +4897,10 @@ crossmobile/ios/social/SLRequestHandler.class v8
 crossmobile/ios/social/SLRequestMethod.class v8
 crossmobile/ios/social/SLServiceType.class v8
 crossmobile/ios/social/package-info.class v8
+org/crossmobile/backend/desktop/DesktopSocial.class v8
+org/crossmobile/bind/system/SocialRegister.class v8
 
-Creating file cmplugin-android-cmsocialbase-<VERSION>.jar
+Creating file cmplugin-android-cmsocial-<VERSION>.jar
 crossmobile/ios/social/SLComposeServiceViewController.class v8
 crossmobile/ios/social/SLComposeViewController.class v8
 crossmobile/ios/social/SLComposeViewControllerCompletionHandler.class v8
@@ -4903,8 +4910,12 @@ crossmobile/ios/social/SLRequestHandler.class v8
 crossmobile/ios/social/SLRequestMethod.class v8
 crossmobile/ios/social/SLServiceType.class v8
 crossmobile/ios/social/package-info.class v8
+org/crossmobile/backend/android/AndroidSocial$1$1.class v8
+org/crossmobile/backend/android/AndroidSocial$1.class v8
+org/crossmobile/backend/android/AndroidSocial.class v8
+org/crossmobile/bind/system/SocialRegister.class v8
 
-Creating file cmplugin-rvm-cmsocialbase-<VERSION>.jar
+Creating file cmplugin-rvm-cmsocial-<VERSION>.jar
 
 
 Creating file cmplugin-cmtouchid-<VERSION>.jar

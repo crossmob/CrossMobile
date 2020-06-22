@@ -20,7 +20,12 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 public @interface CMAndroidInjections {
     /**
      * Extra information needed to be appended to the application section of the
-     * AndroidManifest.xml file
+     * AndroidManifest.xml file.
+     * <p>
+     * Note these values support meta-parsing of other parameters. Other parameters
+     * can be referenced inside this section in the format of ${plugin_package.parameter_name}.
+     * The syntax is the same as the name of the property in the &lt;properties&gt; section
+     * of the POM file.
      *
      * @return the application section of the manifest
      */

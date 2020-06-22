@@ -1,0 +1,7 @@
+# Plugin cmsocial
+objc.libs=Social.framework;Twitter.framework~
+java.initializer=org.crossmobile.bind.system.SocialRegister
+objc.pods=
+android.permissions=
+android.injections={"appSection"\:["<provider android\:authorities\=\\"com.facebook.app.FacebookContentProvider${org.crossmobile.cmplugin-cmsocial.facebookappid}\\"\\n          android\:name\=\\"com.facebook.FacebookContentProvider\\"\\n          android\:exported\=\\"true\\"/>"]}
+android.extra.dependencies=com.facebook.android\:facebook-android-sdk\:7.+\:

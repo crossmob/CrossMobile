@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: LGPL-3.0-only
  */
 
-@CMLib(name = "cmsocialbase", libs = {"Social.framework", "Twitter.framework~"}, includes = "<Social/Social.h>",
+@CMLib(name = "cmsocial", libs = {"Social.framework", "Twitter.framework~"}, includes = "<Social/Social.h>",
         displayName = "Social Framework", description = "CrossMobile© Compatibility library for Social Framework",
         depends = @CMLibDepends(pluginName = "cmaddressbook"), target = CMLibTarget.API_NOUWP)
 package crossmobile.ios.social;

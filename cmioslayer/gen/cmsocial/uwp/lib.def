@@ -1,4 +1,4 @@
-LIBRARY cmsocialbase
+LIBRARY cmsocial
 EXPORTS
 
 	_OBJC_CLASS_crossmobile_ios_social_SLComposeServiceViewController$Ext DATA

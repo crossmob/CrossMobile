@@ -7,10 +7,13 @@
 package org.crossmobile.utils;
 
 import org.crossmobile.bridge.system.Pair;
+import org.crossmobile.utils.func.ScopeUtils;
 
 import java.util.*;
 import java.util.function.Function;
 import java.util.regex.Pattern;
+
+import static org.crossmobile.utils.func.ScopeUtils.with;
 
 public class TextUtils {
 
@@ -217,6 +220,17 @@ public class TextUtils {
         for (int i = 0; i < chunks.length; i++, loc += size)
             chunks[i] = input.substring(loc, Math.min(input.length(), (i + 1) * size));
         return chunks;
+    }
+
+    public static void replaceMultiple(StringBuilder base, String from, String to) {
+        int toSize = from.length();
+        int found;
+        while ((found = base.indexOf(from)) >= 0)
+            base.replace(found, found + toSize, to);
+    }
+
+    public static String replaceMultiple(CharSequence base, String from, String to) {
+        return with(new StringBuilder(base), s -> replaceMultiple(s, from, to)).toString();
     }
 
     public static String replaceOldString(String oldVar, String newVar, String description) {
