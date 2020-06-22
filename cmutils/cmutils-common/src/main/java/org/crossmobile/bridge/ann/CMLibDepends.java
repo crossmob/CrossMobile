@@ -59,11 +59,4 @@ public @interface CMLibDepends {
      * @return defaults to UNKNOWN
      */
     CMLibTarget target() default CMLibTarget.UNKNOWN;
-
-    /**
-     * If depedency is Crossmobile specific or external
-     *
-     * @return
-     */
-    boolean isCMPlugin() default true;
 }

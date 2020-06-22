@@ -23,7 +23,7 @@ import java.net.URI;
 import static org.crossmobile.bind.system.SystemUtilities.URIEncode;
 import static org.crossmobile.bind.system.SystemUtilities.closeR;
 
-@CMLib(depends = @CMLibDepends(groupId = "androidx.core", pluginName = "core", version = "1.3.0", isCMPlugin = false))
+@CMLib(depends = @CMLibDepends(groupId = "androidx.core", pluginName = "core", version = "1.3.0"))
 public class AndroidFileBridge extends AbstractFileBridge {
 
     private static String homepath;

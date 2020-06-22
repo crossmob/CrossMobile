@@ -27,9 +27,9 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 @CMLib(name = "cmnotifications", depends = {
-        @CMLibDepends(groupId = "com.google.firebase", pluginName = "firebase-messaging", version = "19.0.1", isCMPlugin = false),
-        @CMLibDepends(groupId = "com.google.firebase", pluginName = "firebase-iid", version = "19.0.1", isCMPlugin = false),
-        @CMLibDepends(groupId = "com.google.firebase", pluginName = "firebase-core", version = "17.0.1", isCMPlugin = false)})
+        @CMLibDepends(groupId = "com.google.firebase", pluginName = "firebase-messaging", version = "19.0.1"),
+        @CMLibDepends(groupId = "com.google.firebase", pluginName = "firebase-iid", version = "19.0.1"),
+        @CMLibDepends(groupId = "com.google.firebase", pluginName = "firebase-core", version = "17.0.1")})
 public class AndroidNotificationBridge implements NotificationBridge {
 
     private Map<UNNotificationRequest, VoidBlock1<NSError>> pendingRequests = new ConcurrentHashMap<>();
