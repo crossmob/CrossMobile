@@ -18,7 +18,6 @@ public abstract class DesktopLifecycleBridge extends AbstractLifecycleBridge {
 
     private static boolean applicationIsInitialized = false;
     private static boolean initial_activation_performed = false;
-    protected Enhancer enhancer;
 
     /**
      * Desktop backend directly starts this method from the wrapper launcher, so
@@ -31,11 +30,8 @@ public abstract class DesktopLifecycleBridge extends AbstractLifecycleBridge {
     public void init(String[] args) {
         if (!applicationIsInitialized) {
             applicationIsInitialized = true;    // Enter only once
-            System.setProperty("apple.laf.useScreenMenuBar", "true");
-            System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Simple");
-            System.setProperty("apple.awt.application.name", "Simple");
             super.init(args);
-            enhancer = EnhancerManager.getDefault();
+            Enhancer enhancer = EnhancerManager.getDefault();
             enhancer.setSafeLookAndFeel();
             enhancer.setApplicationIcons(getAppIcons());
             // ApplicationCatalogue.store();
@@ -82,7 +78,7 @@ public abstract class DesktopLifecycleBridge extends AbstractLifecycleBridge {
             activate();
     }
 
-    private static String[] getAppIcons() {
+    protected String[] getAppIcons() {
         String systemPrefix = Native.file().getSystemPrefix();
         return new String[]{
                 systemPrefix + "icon_16.png", systemPrefix + "icon_24.png",

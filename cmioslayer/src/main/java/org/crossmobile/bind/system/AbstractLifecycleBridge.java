@@ -48,17 +48,6 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
         systemHandler = Thread.getDefaultUncaughtExceptionHandler();
         Thread.setDefaultUncaughtExceptionHandler(this);
 
-        try {
-            System.getProperties().load(new InputStreamReader(Native.file().getFileStream(Native.file().getApplicationPrefix() + "/" + CROSSMOBILE_PROPERTIES), "UTF-8"));
-        } catch (IOException ex) {
-            Native.lifecycle().quit("Corrupted CrossMobile application: " + ex.toString(), ex);
-            return;
-        }
-        try {
-            System.getProperties().load(new InputStreamReader(Native.file().getFileStream(Native.file().getApplicationPrefix() + "/" + THEME_PROPERTIES), "UTF-8"));
-        } catch (Exception ignored) {
-        }
-
         cleanTemporaryLocation();
         parseArguments(args);
         Native.graphics().metrics().initIdiom();

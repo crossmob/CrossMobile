@@ -12,7 +12,7 @@ import static org.crossmobile.bridge.system.MaterialsCommon.MATERIALS_TAG;
 
 public class AboutDialog extends javax.swing.JDialog {
 
-    public AboutDialog() {
+    public AboutDialog(String[] icons) {
         super(SwingGraphicsBridge.frame, true);
         initComponents();
         setLocationRelativeTo(null);

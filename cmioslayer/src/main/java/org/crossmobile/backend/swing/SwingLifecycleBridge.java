@@ -22,7 +22,11 @@ public class SwingLifecycleBridge extends DesktopLifecycleBridge {
 
     @Override
     public void init(String[] args) {
-        // This should be called before ANY visuals are being initialized
+        // This should be called before ANY visuals are being initialized. System properties first.
+        String appname = System.getProperty("cm.display.name", "CrossMobileApp");
+        System.setProperty("apple.laf.useScreenMenuBar", "true");
+        System.setProperty("com.apple.mrj.application.apple.menu.about.name", appname);
+        System.setProperty("apple.awt.application.name", appname);
         EnhancerManager.getDefault().fixDPI();
 
         /*
@@ -49,11 +53,7 @@ public class SwingLifecycleBridge extends DesktopLifecycleBridge {
         SwingGraphicsBridge.frame.setLocationRelativeTo(null);
         SwingGraphicsBridge.frame.setVisible(true);
         SwingGraphicsBridge.frame.postInitialize(metrics.isFullScreen());
-        enhancer.registerAbout(this::showAbout);
-    }
-
-    private void showAbout() {
-        new AboutDialog().setVisible(true);
+        EnhancerManager.getDefault().registerAbout(() -> new AboutDialog(getAppIcons()).setVisible(true));
     }
 
     @Override
