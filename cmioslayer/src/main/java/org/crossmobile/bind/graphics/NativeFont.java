@@ -6,23 +6,29 @@
 
 package org.crossmobile.bind.graphics;
 
+import org.crossmobile.bridge.ann.CMLib;
+import org.crossmobile.bridge.ann.CMLibTarget;
+
+@CMLib(target = CMLibTarget.RUNTIME_PLUGIN)
 public interface NativeFont {
 
-    public String getFamily();
+    String getFamily();
 
-    public float getSize();
+    float getSize();
 
-    public boolean isBold();
+    boolean isBold();
 
-    public boolean isItalic();
+    boolean isItalic();
 
-    public int getAscent();
+    int getAscent();
 
-    public int getDescent();
+    int getDescent();
 
-    public int getUnitsPerEm();
+    int getUnitsPerEm();
 
-    public final static class Helper {
+    Object getFont();
+
+    final class Helper {
 
         public static String toString(NativeFont font) {
             return font.getFamily() + (font.isBold() ? " Bold" : "") + (font.isItalic() ? " Italic" : "") + " " + font.getSize();

@@ -12,10 +12,9 @@ import crossmobile.ios.uikit.UIGraphics;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import static crossmobile.ios.coregraphics.$coregraphics.context;
-import static crossmobile.ios.coregraphics.$coregraphics.font;
+import static crossmobile.ios.coregraphics.CoreGraphicsDrill.font;
 
 public class TextHelpers {
 
@@ -52,7 +51,7 @@ public class TextHelpers {
         String ctext;
         String lasttext;
         int idx = 0;
-        GraphicsContext cxt = context(UIGraphics.getCurrentContext());
+        GraphicsContext<?,?> cxt = context(UIGraphics.getCurrentContext());
         while (idx < words.size() && numlines > tb.lines.size()) {
             ctext = lasttext = "";
             csize = lastsize = null;

@@ -9,6 +9,7 @@ package crossmobile.ios.uikit;
 import crossmobile.ios.coregraphics.CGContext;
 import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.coregraphics.CGSize;
+import crossmobile.ios.coregraphics.CoreGraphicsDrill;
 import crossmobile.ios.foundation.NSLineBreakMode;
 import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.graphics.TextHelpers.TextBlock;
@@ -424,7 +425,7 @@ public class UILabel extends UIView {
 
         CGContext cx = UIGraphics.getCurrentContext();
         GraphicsContext gcx = context(cx);
-        gcx.setFont(crossmobile.ios.coregraphics.$coregraphics.font(fontDraw.cgfont));
+        gcx.setFont(CoreGraphicsDrill.font(fontDraw.cgfont));
 
         int actualTextAlignment = textAlignment;
         if (textAlignment == NSTextAlignment.Natural)

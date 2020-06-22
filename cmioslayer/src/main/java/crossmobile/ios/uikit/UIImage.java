@@ -10,7 +10,6 @@ import crossmobile.ios.coregraphics.*;
 import crossmobile.ios.foundation.NSData;
 import crossmobile.ios.foundation.NSObject;
 import crossmobile.ios.foundation.NSSecureCoding;
-import org.crossmobile.bind.graphics.ImageBridgeConstants;
 import org.crossmobile.bind.graphics.ImageBridgeConstants.ImageInfo;
 import org.crossmobile.bind.graphics.ImageBridgeConstants.ImageType;
 import org.crossmobile.bind.graphics.NativeBitmap;
@@ -268,9 +267,9 @@ public class UIImage extends NSObject implements NSSecureCoding {
             int cright = (int) (capInsets.getRight() * scale);
             int bmwidth = Math.max((int) (rect.getSize().getWidth() * scale), cright + cleft);
             int bmheight = Math.max((int) (rect.getSize().getHeight() * scale), ctop + cbottom);
-            NativeBitmap bitmap = bitmap(scaled);
+            NativeBitmap bitmap = CoreGraphicsDrill.bitmap(scaled);
             if (bitmap.getWidth() != bmwidth || bitmap.getHeight() != bmheight)
-                scaled = cgimage(null, Native.image().stretch(bitmap(orig), ctop, cright, cbottom, cleft, bmwidth, bmheight));
+                scaled = cgimage(null, Native.image().stretch(CoreGraphicsDrill.bitmap(orig), ctop, cright, cbottom, cleft, bmwidth, bmheight));
         }
         UIGraphics.getCurrentContext().drawImage(rect, scaled);
     }
@@ -345,7 +344,7 @@ public class UIImage extends NSObject implements NSSecureCoding {
         ByteArrayOutputStream out = null;
         try {
             out = new ByteArrayOutputStream();
-            Native.image().fillStreamAndClose(bitmap(orig), type, quality, out);
+            Native.image().fillStreamAndClose(CoreGraphicsDrill.bitmap(orig), type, quality, out);
             NSData result = NSData.dataWithBytesNoCopy(out.toByteArray());
             return result;
         } catch (IOException ex) {
@@ -392,7 +391,7 @@ public class UIImage extends NSObject implements NSSecureCoding {
                 if (ref == null)
                     return this;
                 else
-                    return o.cloneWithBitmap(Native.image().masked(bitmap(o.orig), color(ref.tintColor().cgcolor)));
+                    return o.cloneWithBitmap(Native.image().masked(CoreGraphicsDrill.bitmap(o.orig), color(ref.tintColor().cgcolor)));
             }
         });
     }
@@ -400,10 +399,10 @@ public class UIImage extends NSObject implements NSSecureCoding {
     Promise<UIImage> cacheTinted(boolean favourTint, CGColor color) {
         return new Promise<>(this, o -> o.renderingMode() == UIImageRenderingMode.AlwaysOriginal
                 || (!favourTint && o.renderingMode() == UIImageRenderingMode.Automatic)
-                ? this : o.cloneWithBitmap(Native.image().masked(bitmap(o.orig), color(color))));
+                ? this : o.cloneWithBitmap(Native.image().masked(CoreGraphicsDrill.bitmap(o.orig), color(color))));
     }
 
     Promise<UIImage> cacheAdjusted(double saturation, double brightness) {
-        return new Promise<>(this, o -> o.cloneWithBitmap(Native.image().adjustColor(bitmap(o.orig), saturation, brightness)));
+        return new Promise<>(this, o -> o.cloneWithBitmap(Native.image().adjustColor(CoreGraphicsDrill.bitmap(o.orig), saturation, brightness)));
     }
 }

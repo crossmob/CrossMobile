@@ -14,6 +14,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Surface;
 import android.view.WindowManager;
+import android.widget.Toast;
 import crossmobile.ios.uikit.UIDeviceOrientation;
 import org.crossmobile.bind.system.AbstractLifecycleBridge;
 import org.crossmobile.bind.system.SystemUtilities;
@@ -21,8 +22,7 @@ import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.CMLib;
 import org.crossmobile.bridge.ann.CMLibTarget;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static org.crossmobile.bind.graphics.GraphicsBridgeConstants.DefaultInitialOrientation;
 import static org.crossmobile.bind.system.AbstractLifecycleBridge.memoryWarning;
@@ -216,6 +216,36 @@ public class MainActivity extends Activity {
             stateListener.onNewIntent(intent);
         if (launchDebug)
             Native.system().debug("New Intent", null);
+    }
+
+    private List<Integer> startSpy;
+
+    void startSpying() {
+        if (startSpy != null)
+            Toast.makeText(this, "Already requesting to start Intent", 2);
+        else
+            startSpy = new ArrayList<>();
+    }
+
+    Collection<Integer> stopSpying() {
+        Collection<Integer> result = startSpy;
+        startSpy = null;
+        return result;
+    }
+
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode) {
+        if (startSpy != null)
+            startSpy.add(requestCode);
+        Native.system().debug("Start Activity with code " + requestCode + " and Intent " + (intent == null ? "null" : intent.toString()), null);
+        super.startActivityForResult(intent, requestCode);
+    }
+
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode, Bundle options) {
+        if (startSpy != null)
+            startSpy.add(requestCode);
+        super.startActivityForResult(intent, requestCode, options);
     }
 
     public ActivityStateListener getStateListener() {

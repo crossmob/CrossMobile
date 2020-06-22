@@ -93,4 +93,8 @@ public class SwingFont implements NativeFont {
         return 0;
     }
 
+    @Override
+    public Object getFont() {
+        return font;
+    }
 }

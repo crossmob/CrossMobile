@@ -103,6 +103,11 @@ public class AndroidFont implements NativeFont {
         return 0;
     }
 
+    @Override
+    public Object getFont() {
+        return typeface;
+    }
+
     @SuppressWarnings("UseSpecificCatch")
     private static Map<String, Map<String, FontInfo>> fonts() {
         if (font_map != null)

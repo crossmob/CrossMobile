@@ -17,16 +17,8 @@ public class $coregraphics {
         return c.color;
     }
 
-    public static GraphicsContext context(CGContext c) {
+    public static GraphicsContext<?, ?> context(CGContext c) {
         return c.context;
-    }
-
-    public static NativeFont font(CGFont f) {
-        return f.nfont;
-    }
-
-    public static NativeBitmap bitmap(CGImage i) {
-        return i.bitmap();
     }
 
     public static CGImage cgimage(String filename, NativeBitmap bitmap) {
@@ -65,7 +57,7 @@ public class $coregraphics {
             ((CGBitmapContext) ctx).destroy();
     }
 
-    public static CGContext convertBaseContextToCGContext(GraphicsContext context) {
+    public static CGContext convertBaseContextToCGContext(GraphicsContext<?, ?> context) {
         context.setAntialias(true);
         return new CGContext(context);
     }

@@ -18,13 +18,15 @@ import org.crossmobile.bridge.ann.CMLibTarget;
 import org.robovm.objc.block.VoidBlock1;
 
 import java.util.*;
-import java.util.function.Consumer;
 
 @CMLib(target = CMLibTarget.ANDROID_PLUGIN)
 public class ActivityStateListener {
 
     private static int activityId = 1;
+
+    private static Collection ALWAYS_REMOVE = Collections.emptyList();
     private final Map<ActivityResultListener, Integer> launch = new LinkedHashMap<>();
+    private final Map<ActivityExtendedResultListener, Integer> extlaunch = new LinkedHashMap<>();
     private final Map<ActivityPermissionListener, Integer> perms = new LinkedHashMap<>();
     private final Collection<ActivityLifecycleListener> lifecycle = new LinkedHashSet<>();
     private final Collection<ActivityResultListener> autoResultListener = new HashSet<>();
@@ -72,6 +74,27 @@ public class ActivityStateListener {
     }
 
     /**
+     * Bind directly an activity result listener to the onActivityResult method. This method is used for special cases
+     * only, when someone else has triggered the launching of the new Activity.
+     * <p>
+     * It is strongly recommended not to use this method, but use the launch method instead.
+     *
+     * @param listener The callback listener
+     */
+    public void launch(ActivityExtendedResultListener listener, Runnable launcher) {
+        if (listener != null) {
+            MainActivity.current().startSpying();
+            launcher.run();
+            Collection<Integer> requests = MainActivity.current.stopSpying();
+            if (requests.isEmpty())
+                Toast.makeText(MainActivity.current(), "Unable to register Activity callback", 2);
+            else
+                for (Integer request : requests)
+                    extlaunch.put(listener, request);
+        }
+    }
+
+    /**
      * Request permissions from the system
      *
      * @param listener    Callback
@@ -97,8 +120,10 @@ public class ActivityStateListener {
     }
 
     void onActivityResult(int requestCode, int resultCode, Intent data) {
-        onAutoRemovable(launch, autoResultListener, requestCode,
+        boolean handled = onAutoRemovable(launch, autoResultListener, requestCode,
                 listener -> listener.result(resultCode, data));
+        if (!handled)
+            onAutoRemovable(extlaunch, ALWAYS_REMOVE, requestCode, listener -> listener.result(requestCode, resultCode, data));
     }
 
     void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -106,16 +131,17 @@ public class ActivityStateListener {
                 listener -> listener.result(permissions, grantResults));
     }
 
-    private <K> void onAutoRemovable(Map<K, Integer> registry, Collection<K> autoRemove, int requestCode, VoidBlock1<K> consumer) {
+    private <K> boolean onAutoRemovable(Map<K, Integer> registry, Collection<K> autoRemove, int requestCode, VoidBlock1<K> consumer) {
         Collection<K> activeListeners = new ArrayList<>();
         for (K key : registry.keySet())
             if (requestCode == registry.get(key))
                 activeListeners.add(key);
         for (K listener : activeListeners) {
-            if (autoRemove.remove(listener))
+            if (autoRemove == ALWAYS_REMOVE || autoRemove.remove(listener))
                 registry.remove(listener);
             Native.system().safeRun(() -> consumer.invoke(listener));
         }
+        return !activeListeners.isEmpty();
     }
 
     void onStart() {

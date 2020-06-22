@@ -18,7 +18,7 @@ import org.crossmobile.bridge.ann.CMSelector;
 import java.util.List;
 
 import static crossmobile.ios.coregraphics.$coregraphics.cgfont;
-import static crossmobile.ios.coregraphics.$coregraphics.font;
+import static crossmobile.ios.coregraphics.CoreGraphicsDrill.font;
 
 /**
  * UIFont class contains all the information related to fonts such size, family

@@ -899,6 +899,8 @@ org/robovm/objc/block/VoidBooleanBlock.class v8
 org/robovm/objc/block/package-info.class v8
 
 Creating file cmplugin-builddep-cmioslayer-<VERSION>.jar
+crossmobile/ios/coregraphics/CoreGraphicsDrill.class v8
+org/crossmobile/backend/android/ActivityExtendedResultListener.class v8
 org/crossmobile/backend/android/ActivityLifecycleListener.class v8
 org/crossmobile/backend/android/ActivityPermissionListener.class v8
 org/crossmobile/backend/android/ActivityResultListener.class v8
@@ -906,6 +908,9 @@ org/crossmobile/backend/android/ActivityStateListener.class v8
 org/crossmobile/backend/android/ApplicationStateListener.class v8
 org/crossmobile/backend/android/MainActivity.class v8
 org/crossmobile/backend/android/MainApplication.class v8
+org/crossmobile/bind/graphics/NativeBitmap.class v8
+org/crossmobile/bind/graphics/NativeFont$Helper.class v8
+org/crossmobile/bind/graphics/NativeFont.class v8
 org/crossmobile/bridge/CrossMobilePlugin.class v8
 org/crossmobile/bridge/FileBridge.class v8
 org/crossmobile/bridge/GraphicsBridge.class v8
@@ -956,6 +961,7 @@ crossmobile/ios/coregraphics/CGRect.java
 crossmobile/ios/coregraphics/CGSize.java
 crossmobile/ios/coregraphics/CGTextDrawingMode.java
 crossmobile/ios/coregraphics/CGTextEncoding.java
+crossmobile/ios/coregraphics/CoreGraphicsDrill.java
 crossmobile/ios/coregraphics/package-info.java
 crossmobile/ios/foundation/$foundation.java
 crossmobile/ios/foundation/CFNumberFormatterStyle.java
@@ -1252,6 +1258,7 @@ crossmobile/ios/uikit/cmPickers.java
 crossmobile/ios/uikit/cmPrivateEvent.java
 crossmobile/ios/uikit/package-info.java
 crossmobile/package-info.java
+org/crossmobile/backend/android/ActivityExtendedResultListener.java
 org/crossmobile/backend/android/ActivityLifecycleListener.java
 org/crossmobile/backend/android/ActivityPermissionListener.java
 org/crossmobile/backend/android/ActivityResultListener.java
@@ -1517,6 +1524,7 @@ crossmobile/ios/coregraphics/CGRect.class v8
 crossmobile/ios/coregraphics/CGSize.class v8
 crossmobile/ios/coregraphics/CGTextDrawingMode.class v8
 crossmobile/ios/coregraphics/CGTextEncoding.class v8
+crossmobile/ios/coregraphics/CoreGraphicsDrill.class v8
 crossmobile/ios/coregraphics/package-info.class v8
 crossmobile/ios/foundation/$foundation.class v8
 crossmobile/ios/foundation/CFNumberFormatterStyle.class v8
@@ -2278,6 +2286,9 @@ native/org_robovm_objc_block_VoidBlock5.h
 native/org_robovm_objc_block_VoidBlock6.h
 native/org_xml_sax_SAXException.h
 native/xmlvm.h
+org/crossmobile/bind/graphics/NativeBitmap.class v8
+org/crossmobile/bind/graphics/NativeFont$Helper.class v8
+org/crossmobile/bind/graphics/NativeFont.class v8
 org/crossmobile/bridge/CrossMobilePlugin.class v8
 org/crossmobile/bridge/FileBridge.class v8
 org/crossmobile/bridge/GraphicsBridge.class v8
@@ -2450,6 +2461,7 @@ crossmobile/ios/coregraphics/CGRect.class v8
 crossmobile/ios/coregraphics/CGSize.class v8
 crossmobile/ios/coregraphics/CGTextDrawingMode.class v8
 crossmobile/ios/coregraphics/CGTextEncoding.class v8
+crossmobile/ios/coregraphics/CoreGraphicsDrill.class v8
 crossmobile/ios/coregraphics/package-info.class v8
 crossmobile/ios/foundation/$foundation.class v8
 crossmobile/ios/foundation/CFNumberFormatterStyle.class v8
@@ -3342,6 +3354,7 @@ crossmobile/ios/coregraphics/CGRect.class v8
 crossmobile/ios/coregraphics/CGSize.class v8
 crossmobile/ios/coregraphics/CGTextDrawingMode.class v8
 crossmobile/ios/coregraphics/CGTextEncoding.class v8
+crossmobile/ios/coregraphics/CoreGraphicsDrill.class v8
 crossmobile/ios/coregraphics/package-info.class v8
 crossmobile/ios/foundation/$foundation.class v8
 crossmobile/ios/foundation/CFNumberFormatterStyle.class v8
@@ -3740,6 +3753,7 @@ crossmobile/ios/uikit/package-info.class v8
 crossmobile/package-info.class v8
 crossmobile/rt/StrongReference.class v8
 crossmobile/rt/package-info.class v8
+org/crossmobile/backend/android/ActivityExtendedResultListener.class v8
 org/crossmobile/backend/android/ActivityLifecycleListener.class v8
 org/crossmobile/backend/android/ActivityPermissionListener.class v8
 org/crossmobile/backend/android/ActivityResultListener.class v8

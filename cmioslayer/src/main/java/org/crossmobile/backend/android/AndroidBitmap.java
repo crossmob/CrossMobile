@@ -36,6 +36,12 @@ public class AndroidBitmap implements NativeBitmap {
         return UIImageOrientation.Up;
     }
 
+
+    @Override
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
     /**
      * Create NinePatch chunk under java based on:
      * https://gist.github.com/briangriffey/4391807

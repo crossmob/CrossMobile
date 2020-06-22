@@ -2,7 +2,7 @@
 
 PREFIX=org.crossmobile.ca
 
-PACKAGES="com.onesignal:OneSignal:3.10.6 com.facebook.android:facebook-common:4.42.0  com.facebook.android:facebook-core:4.42.0 androidx.core:core:1.0.2 com.google.firebase:firebase-messaging:19.0.1 com.google.firebase:firebase-iid:19.0.1 com.google.firebase:firebase-common:18.0.0 com.google.android.gms:play-services-base:17.0.0 com.google.android.gms:play-services-tasks:17.0.0 com.google.android.gms:play-services-location:17.0.0 com.google.android.gms:play-services-maps:17.0.0 com.google.android.gms:play-services-basement:17.0.0 androidx.multidex:multidex:2.0.1"
+PACKAGES="androidx.fragment:fragment:1.2.5 com.onesignal:OneSignal:3.10.6 com.facebook.android:facebook-common:7.0.1 com.facebook.android:facebook-core:7.0.1 androidx.core:core:1.3.0 com.google.firebase:firebase-messaging:19.0.1 com.google.firebase:firebase-iid:19.0.1 com.google.firebase:firebase-common:18.0.0 com.google.android.gms:play-services-base:17.0.0 com.google.android.gms:play-services-tasks:17.0.0 com.google.android.gms:play-services-location:17.0.0 com.google.android.gms:play-services-maps:17.0.0 com.google.android.gms:play-services-basement:17.0.0 androidx.multidex:multidex:2.0.1"
 
 
 error () {

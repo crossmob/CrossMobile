@@ -6,6 +6,10 @@
 
 package org.crossmobile.bind.graphics;
 
+import org.crossmobile.bridge.ann.CMLib;
+import org.crossmobile.bridge.ann.CMLibTarget;
+
+@CMLib(target = CMLibTarget.RUNTIME_PLUGIN)
 public interface NativeBitmap {
 
     int getWidth();
@@ -13,4 +17,6 @@ public interface NativeBitmap {
     int getHeight();
 
     int getOrientation();
+
+    Object getBitmap();
 }
