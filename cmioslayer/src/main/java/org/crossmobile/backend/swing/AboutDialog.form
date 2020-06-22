@@ -29,13 +29,12 @@
     <Component class="javax.swing.JLabel" name="iconL">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/org/crossmobile/&quot; + MaterialsCommon.MATERIALS_TAG + &quot;/sys/appicon.png&quot;))" type="code"/>
+          <Connection code="getIcon()" type="code"/>
         </Property>
         <Property name="alignmentX" type="float" value="0.5"/>
-        <Property name="autoscrolls" type="boolean" value="true"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
-            <EmptyBorder bottom="15" left="120" right="120" top="15"/>
+            <EmptyBorder bottom="15" left="90" right="90" top="15"/>
           </Border>
         </Property>
       </Properties>
@@ -67,6 +66,35 @@
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
             <EmptyBorder bottom="10" left="0" right="0" top="10"/>
+          </Border>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="vendorL">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+          <FontInfo relative="true">
+            <Font component="vendorL" property="font" relativeSize="true" size="-2"/>
+          </FontInfo>
+        </Property>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="getCopyright()" type="code"/>
+        </Property>
+        <Property name="alignmentX" type="float" value="0.5"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="poweredby">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+          <FontInfo relative="true">
+            <Font component="poweredby" property="font" relativeSize="true" size="-2"/>
+          </FontInfo>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Powered by CrossMobile"/>
+        <Property name="alignmentX" type="float" value="0.5"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+            <EmptyBorder bottom="8" left="0" right="0" top="4"/>
           </Border>
         </Property>
       </Properties>
