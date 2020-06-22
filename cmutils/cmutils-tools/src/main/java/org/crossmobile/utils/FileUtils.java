@@ -507,7 +507,7 @@ public final class FileUtils {
         long mod = dir.lastModified();
         if (dir.isDirectory())
             for (File child : listFiles(dir)) {
-                long cmod = child.lastModified();
+                long cmod = getLastModified(child);
                 if (cmod > mod)
                     mod = cmod;
             }
@@ -569,7 +569,7 @@ public final class FileUtils {
     /**
      * Sync directories
      *
-     * @param from               The soruce directory to check upon
+     * @param from               The source directory to check upon
      * @param to                 The destination directory to check
      * @param diff               Where added changes should be stored; could be null
      * @param removeMissingFiles If missing files found in destination (to) directory but not in source (from) directory should be deleted
