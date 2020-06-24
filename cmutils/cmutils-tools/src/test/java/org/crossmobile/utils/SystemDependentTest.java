@@ -24,6 +24,8 @@ public class SystemDependentTest {
             Integer.parseInt(Config.MAX_JAVA_VERSION);
         assertEquals(4, TextUtils.listOfInts(Config.MIN_JAVA_VERSION_FULL).size());
 
+        int current = Integer.parseInt(Config.MAX_JAVA_VERSION);
+
         assertFalse(SystemDependent.isJavaValid("1.0"));
         assertFalse(SystemDependent.isJavaValid("1.1"));
         assertFalse(SystemDependent.isJavaValid("1.2"));
@@ -37,10 +39,10 @@ public class SystemDependentTest {
         assertTrue(SystemDependent.isJavaValid("1.9.0"));
         assertTrue(SystemDependent.isJavaValid("10.0"));
         assertTrue(SystemDependent.isJavaValid("11.0"));
-        assertFalse(SystemDependent.isJavaValid("14.0"));
         assertTrue(SystemDependent.isJavaValid(Config.MIN_JAVA_VERSION_FULL));
         assertTrue(SystemDependent.isJavaValid(Config.MAX_JAVA_VERSION + ".0"));
         assertTrue(SystemDependent.isJavaValid(Config.MIN_JAVA_VERSION + ".1"));
-        assertFalse(SystemDependent.isJavaValid(String.valueOf(Integer.parseInt(Config.MAX_JAVA_VERSION) + 1)));
+        assertTrue(SystemDependent.isJavaValid(current + ".0"));
+        assertFalse(SystemDependent.isJavaValid((current + 1) + ".0"));
     }
 }
