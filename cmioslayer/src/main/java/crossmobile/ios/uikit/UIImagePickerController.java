@@ -6,7 +6,6 @@
 
 package crossmobile.ios.uikit;
 
-import crossmobile.ios.coregraphics.$coregraphics;
 import crossmobile.ios.coregraphics.CGAffineTransform;
 import crossmobile.ios.coregraphics.CGImage;
 import crossmobile.ios.foundation.NSURL;
@@ -20,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static crossmobile.ios.coregraphics.GraphicsDrill.filename;
 import static org.crossmobile.bridge.ImageBridge.ImageSource.*;
 
 /**
@@ -485,7 +485,7 @@ public class UIImagePickerController extends UINavigationController {
             UIImage image = UIImage.imageWithCGImage(cgimage);
             info.put(OriginalImage, image);
             info.put(EditedImage, image);
-            info.put(MediaURL, NSURL.fileURLWithPath($coregraphics.filename(cgimage)));
+            info.put(MediaURL, NSURL.fileURLWithPath(filename(cgimage)));
             delegate.didFinishPickingMediaWithInfo(UIImagePickerController.this, info);
         }
     }

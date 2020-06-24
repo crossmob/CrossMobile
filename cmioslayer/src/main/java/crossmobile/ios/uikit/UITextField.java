@@ -6,7 +6,6 @@
 
 package crossmobile.ios.uikit;
 
-import crossmobile.ios.coregraphics.$coregraphics;
 import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.coregraphics.CoreGraphicsDrill;
 import org.crossmobile.bind.graphics.GraphicsContext;
@@ -20,7 +19,7 @@ import org.crossmobile.bridge.ann.CMSetter;
 
 import java.util.Set;
 
-import static crossmobile.ios.coregraphics.$coregraphics.*;
+import static crossmobile.ios.coregraphics.GraphicsDrill.*;
 
 /**
  * UITextField class defines an object that represents a visible text area that
@@ -331,7 +330,7 @@ public class UITextField extends UIControl implements UITextInputTraits {
     @Override
     public void setBackgroundColor(UIColor background) {
         super.setBackgroundColor(background);
-        widget().setBackgroundColor($coregraphics.color(background.cgcolor));
+        widget().setBackgroundColor(color(background.cgcolor));
     }
 
     /**

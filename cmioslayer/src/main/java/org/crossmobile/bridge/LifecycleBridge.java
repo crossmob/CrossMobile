@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Map;
 
-import static org.crossmobile.bridge.system.LauncherCommons.CROSSMOBILE_PROPERTIES;
+import static org.crossmobile.bridge.system.RuntimeCommons.CROSSMOBILE_PROPERTIES;
 
 public interface LifecycleBridge extends Thread.UncaughtExceptionHandler {
 

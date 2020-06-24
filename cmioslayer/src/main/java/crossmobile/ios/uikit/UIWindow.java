@@ -17,7 +17,7 @@ import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.*;
 
 import static com.panayotis.ce.CEventCommons.DEBUG_GRAPHICS;
-import static crossmobile.ios.coregraphics.$coregraphics.context;
+import static crossmobile.ios.coregraphics.GraphicsDrill.context;
 import static org.crossmobile.bind.system.Debug.*;
 
 /**

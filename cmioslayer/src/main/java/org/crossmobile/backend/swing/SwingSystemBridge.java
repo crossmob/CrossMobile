@@ -7,7 +7,6 @@
 package org.crossmobile.backend.swing;
 
 import crossmobile.ios.foundation.NSSelector;
-import crossmobile.ios.uikit.NSTextAlignment;
 import crossmobile.ios.uikit.UIAlertView;
 import crossmobile.ios.uikit.UIAlertViewDelegate;
 import crossmobile.ios.uikit.UITextField;
@@ -18,7 +17,7 @@ import java.awt.*;
 import java.util.List;
 import java.util.*;
 
-import static crossmobile.ios.uikit.$uikit.getTextFieldWrapper;
+import static crossmobile.ios.uikit.UserInterfaceDrill.getTextFieldWrapper;
 
 public class SwingSystemBridge extends DesktopSystemBridge {
 

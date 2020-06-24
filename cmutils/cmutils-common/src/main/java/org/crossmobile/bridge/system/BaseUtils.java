@@ -8,7 +8,8 @@ package org.crossmobile.bridge.system;
 
 import org.robovm.objc.block.Block0;
 
-import java.io.File;
+import java.io.*;
+import java.lang.annotation.Native;
 import java.util.*;
 
 public class BaseUtils {
@@ -51,5 +52,29 @@ public class BaseUtils {
             return Collections.emptyList();
         File[] files = directory.listFiles();
         return files == null || files.length == 0 ? Collections.emptyList() : Arrays.asList(files);
+    }
+
+    public static boolean writeFile(File file, String data) {
+        file.getParentFile().mkdirs();
+        try (Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"))) {
+            out.write(data);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static String readFile(File file) {
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"))) {
+            StringBuilder out = new StringBuilder();
+            String line;
+            while ((line = in.readLine()) != null)
+                out.append(line).append("\n");
+            return out.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

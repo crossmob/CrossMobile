@@ -6,15 +6,15 @@
 
 package crossmobile.ios.uikit;
 
-import crossmobile.ios.coregraphics.$coregraphics;
 import crossmobile.ios.coregraphics.CGContext;
 import crossmobile.ios.coregraphics.CGRect;
+import crossmobile.ios.coregraphics.GraphicsDrill;
 import crossmobile.ios.foundation.NSTimer;
 import org.crossmobile.bind.graphics.Theme;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.*;
 
-import static crossmobile.ios.coregraphics.$coregraphics.context;
+import static crossmobile.ios.coregraphics.GraphicsDrill.context;
 
 /**
  * UIActivityIndicatorView class defines an object that is used to show that an
@@ -199,7 +199,7 @@ public class UIActivityIndicatorView extends UIView {
     public final void drawRect(CGRect rect) {
         CGContext cgc = UIGraphics.getCurrentContext();
         boolean isBig = activityIndicatorViewStyle == UIActivityIndicatorViewStyle.WhiteLarge;
-        int baseColor = $coregraphics.color(color.cgcolor) & 0xFFFFFF;
+        int baseColor = GraphicsDrill.color(color.cgcolor) & 0xFFFFFF;
         float fullRadius = isBig ? WIDTH_LARGE / 2 : WIDTH_SMALL / 2;
         double height = isBig ? Theme.ActivityIndicator.THICK : Theme.ActivityIndicator.THIN;
 

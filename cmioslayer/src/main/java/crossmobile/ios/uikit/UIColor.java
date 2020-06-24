@@ -15,8 +15,8 @@ import org.crossmobile.bridge.ann.CMGetter;
 import org.crossmobile.bridge.ann.CMParamMod;
 import org.crossmobile.bridge.ann.CMSelector;
 
-import static crossmobile.ios.coregraphics.$coregraphics.cgcolor;
-import static crossmobile.ios.coregraphics.$coregraphics.color;
+import static crossmobile.ios.coregraphics.GraphicsDrill.cgcolor;
+import static crossmobile.ios.coregraphics.GraphicsDrill.color;
 
 /**
  * UIColor class defines a color object used to store color data.

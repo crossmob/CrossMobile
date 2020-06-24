@@ -15,19 +15,16 @@ import org.crossmobile.bridge.LifecycleBridge;
 import org.crossmobile.bridge.Native;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static crossmobile.ios.coregraphics.$coregraphics.convertBaseContextToCGContext;
-import static crossmobile.ios.foundation.$foundation.quitTimers;
-import static crossmobile.ios.uikit.$uikit.getViewControllerFromView;
-import static org.crossmobile.bridge.CustomNotifications.AndroidBackButtonNotification;
-import static org.crossmobile.bridge.system.LauncherCommons.CROSSMOBILE_PROPERTIES;
+import static crossmobile.ios.coregraphics.GraphicsDrill.convertBaseContextToCGContext;
+import static crossmobile.ios.foundation.FoundationDrill.quitTimers;
+import static crossmobile.ios.uikit.UserInterfaceDrill.getViewControllerFromView;
+import static org.crossmobile.bridge.RuntimeKeys.AndroidBackButtonNotification;
 
 public abstract class AbstractLifecycleBridge implements LifecycleBridge {
 

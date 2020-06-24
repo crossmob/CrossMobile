@@ -6,7 +6,7 @@
 
 package org.crossmobile.prefs;
 
-import static org.crossmobile.bridge.system.MaterialsCommon.MATERIALS_TAG;
+import static org.crossmobile.bridge.system.RuntimeCommons.MATERIALS_TAG;
 
 public class Config {
 

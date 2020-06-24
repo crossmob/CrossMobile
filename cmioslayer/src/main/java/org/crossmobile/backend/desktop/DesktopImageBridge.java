@@ -6,7 +6,6 @@
 
 package org.crossmobile.backend.desktop;
 
-import crossmobile.ios.coregraphics.$coregraphics;
 import crossmobile.ios.coregraphics.CGImage;
 import org.crossmobile.bind.graphics.AbstractImageBridge;
 import org.crossmobile.bind.graphics.ImageBridgeConstants.ImageType;
@@ -20,6 +19,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
 
+import static crossmobile.ios.coregraphics.GraphicsDrill.cgimage;
 import static org.crossmobile.bind.system.SystemUtilities.closeR;
 
 public abstract class DesktopImageBridge extends AbstractImageBridge {
@@ -191,7 +191,7 @@ public abstract class DesktopImageBridge extends AbstractImageBridge {
         fd.setFile("*.jpg;*.jpeg;*.png;*.bmp");
         fd.setVisible(true);
         File[] files = fd.getFiles();
-        CGImage cgimage = files != null && files.length > 0 ? $coregraphics.cgimage(files[0].getAbsolutePath(), null) : null;
+        CGImage cgimage = files != null && files.length > 0 ? cgimage(files[0].getAbsolutePath(), null) : null;
         resultImg.invoke(cgimage);
     }
 }

@@ -21,7 +21,7 @@ import crossmobile.ios.uikit.UIWindow;
 import org.crossmobile.bridge.Native;
 
 import static android.view.MotionEvent.*;
-import static crossmobile.ios.uikit.$uikit.*;
+import static crossmobile.ios.uikit.UserInterfaceDrill.*;
 import static crossmobile.ios.uikit.UITouchPhase.*;
 
 public class MainView extends AbsoluteLayout {

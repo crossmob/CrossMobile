@@ -31,10 +31,10 @@ import java.text.Normalizer.Form;
 import java.util.*;
 import java.util.regex.Pattern;
 
-import static crossmobile.ios.coregraphics.$coregraphics.context;
+import static crossmobile.ios.coregraphics.GraphicsDrill.context;
 import static crossmobile.ios.coregraphics.CoreGraphicsDrill.font;
 import static crossmobile.ios.foundation.NSStringEncoding.convertIntToString;
-import static crossmobile.ios.uikit.$uikit.cgfont;
+import static crossmobile.ios.uikit.UserInterfaceDrill.cgfont;
 import static org.crossmobile.bind.system.SystemUtilities.closeR;
 import static org.crossmobile.bind.system.i18n.I18NTest.I18N_SUPPORT;
 

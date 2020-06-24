@@ -30,7 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static crossmobile.ios.uikit.$uikit.getTextFieldWrapper;
+import static crossmobile.ios.uikit.UserInterfaceDrill.getTextFieldWrapper;
 import static org.crossmobile.bridge.ann.CMLibTarget.ANDROID;
 
 

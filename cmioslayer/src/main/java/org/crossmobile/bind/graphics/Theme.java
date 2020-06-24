@@ -11,8 +11,8 @@ import crossmobile.ios.uikit.UIColor;
 import crossmobile.ios.uikit.UIFont;
 import org.crossmobile.bridge.Native;
 
-import static crossmobile.ios.coregraphics.$coregraphics.color;
-import static crossmobile.ios.uikit.$uikit.uicolor;
+import static crossmobile.ios.coregraphics.GraphicsDrill.color;
+import static crossmobile.ios.uikit.UserInterfaceDrill.uicolor;
 import static java.lang.Integer.getInteger;
 import static java.lang.Long.getLong;
 import static org.crossmobile.bind.system.SystemUtilities.*;

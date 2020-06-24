@@ -13,7 +13,7 @@ import crossmobile.ios.uikit.UIGraphics;
 import java.util.ArrayList;
 import java.util.List;
 
-import static crossmobile.ios.coregraphics.$coregraphics.context;
+import static crossmobile.ios.coregraphics.GraphicsDrill.context;
 import static crossmobile.ios.coregraphics.CoreGraphicsDrill.font;
 
 public class TextHelpers {

@@ -10,7 +10,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import crossmobile.ios.coregraphics.CGAffineTransform;
-import crossmobile.ios.uikit.$uikit;
+import crossmobile.ios.uikit.UserInterfaceDrill;
 import org.crossmobile.bind.graphics.*;
 import org.crossmobile.bridge.Native;
 
@@ -114,7 +114,7 @@ public class AndroidGraphicsBridge extends AbstractGraphicsBridge<Canvas, Androi
 
     @Override
     public void setOrientation(int iosOrientation) {
-        if ($uikit.splashWindow() != null)
+        if (UserInterfaceDrill.splashWindow() != null)
             MainActivity.current.setRequestedOrientation(AndroidOrientations[DefaultInitialOrientation]);
         else
             MainActivity.current.setRequestedOrientation(AndroidOrientations[iosOrientation]);

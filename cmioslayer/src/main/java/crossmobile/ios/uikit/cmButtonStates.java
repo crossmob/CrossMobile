@@ -6,13 +6,11 @@
 
 package crossmobile.ios.uikit;
 
-import crossmobile.ios.coregraphics.CGSize;
-import org.crossmobile.bind.graphics.Geometry;
 import org.crossmobile.bind.graphics.Theme;
 import org.crossmobile.bind.system.Promise;
 import org.crossmobile.bridge.Native;
 
-import static crossmobile.ios.coregraphics.$coregraphics.*;
+import static crossmobile.ios.coregraphics.GraphicsDrill.*;
 import static crossmobile.ios.uikit.UIControlState.*;
 
 class cmButtonStates {

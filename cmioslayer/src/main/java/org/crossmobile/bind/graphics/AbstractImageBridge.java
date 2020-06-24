@@ -14,7 +14,7 @@ import org.crossmobile.bridge.ImageBridge;
 import java.lang.ref.WeakReference;
 import java.util.*;
 
-import static crossmobile.ios.coregraphics.$coregraphics.trashCGImageMemory;
+import static crossmobile.ios.coregraphics.GraphicsDrill.trashCGImageMemory;
 import static org.crossmobile.bind.graphics.ImageBridgeConstants.SYSNAME;
 
 public abstract class AbstractImageBridge implements ImageBridge {

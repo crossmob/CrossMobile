@@ -14,8 +14,8 @@ import org.crossmobile.bridge.ann.CMFunction;
 
 import java.util.Stack;
 
-import static crossmobile.ios.coregraphics.$coregraphics.destroy;
-import static crossmobile.ios.coregraphics.$coregraphics.image;
+import static crossmobile.ios.coregraphics.GraphicsDrill.destroy;
+import static crossmobile.ios.coregraphics.GraphicsDrill.image;
 
 /**
  * UIGraphics class defines methods for creating and displaying images to custom

@@ -842,7 +842,7 @@ crossmobile/ios/uikit/package-info.class v8
 crossmobile/package-info.class v8
 crossmobile/rt/StrongReference.class v8
 crossmobile/rt/package-info.class v8
-org/crossmobile/bridge/CustomNotifications.class v8
+org/crossmobile/bridge/RuntimeKeys.class v8
 org/crossmobile/bridge/ann/AssociationType.class v8
 org/crossmobile/bridge/ann/BuildModule.class v8
 org/crossmobile/bridge/ann/CMAndroidInjections.class v8
@@ -900,6 +900,9 @@ org/robovm/objc/block/package-info.class v8
 
 Creating file cmplugin-builddep-cmioslayer-<VERSION>.jar
 crossmobile/ios/coregraphics/CoreGraphicsDrill.class v8
+crossmobile/ios/coregraphics/GraphicsDrill.class v8
+crossmobile/ios/foundation/FoundationDrill.class v8
+crossmobile/ios/uikit/UserInterfaceDrill.class v8
 org/crossmobile/backend/android/ActivityExtendedResultListener.class v8
 org/crossmobile/backend/android/ActivityLifecycleListener.class v8
 org/crossmobile/backend/android/ActivityPermissionListener.class v8
@@ -936,7 +939,6 @@ org/crossmobile/bridge/WrapperUIBridge.class v8
 org/crossmobile/bridge/package-info.class v8
 
 Creating file cmplugin-cmioslayer-<VERSION>-sources.jar
-crossmobile/ios/coregraphics/$coregraphics.java
 crossmobile/ios/coregraphics/CGAffineTransform.java
 crossmobile/ios/coregraphics/CGBitmapContext.java
 crossmobile/ios/coregraphics/CGBitmapInfo.java
@@ -962,11 +964,12 @@ crossmobile/ios/coregraphics/CGSize.java
 crossmobile/ios/coregraphics/CGTextDrawingMode.java
 crossmobile/ios/coregraphics/CGTextEncoding.java
 crossmobile/ios/coregraphics/CoreGraphicsDrill.java
+crossmobile/ios/coregraphics/GraphicsDrill.java
 crossmobile/ios/coregraphics/package-info.java
-crossmobile/ios/foundation/$foundation.java
 crossmobile/ios/foundation/CFNumberFormatterStyle.java
 crossmobile/ios/foundation/CFType.java
 crossmobile/ios/foundation/Foundation.java
+crossmobile/ios/foundation/FoundationDrill.java
 crossmobile/ios/foundation/NSAttributedStringKey.java
 crossmobile/ios/foundation/NSBundle.java
 crossmobile/ios/foundation/NSCalendar.java
@@ -1054,7 +1057,6 @@ crossmobile/ios/quartzcore/CALayer.java
 crossmobile/ios/quartzcore/CAMediaTiming.java
 crossmobile/ios/quartzcore/CATransition.java
 crossmobile/ios/quartzcore/package-info.java
-crossmobile/ios/uikit/$uikit.java
 crossmobile/ios/uikit/NSLayoutAnchor.java
 crossmobile/ios/uikit/NSLayoutAttribute.java
 crossmobile/ios/uikit/NSLayoutConstraint.java
@@ -1246,6 +1248,7 @@ crossmobile/ios/uikit/UIWebView.java
 crossmobile/ios/uikit/UIWebViewDelegate.java
 crossmobile/ios/uikit/UIWebViewNavigationType.java
 crossmobile/ios/uikit/UIWindow.java
+crossmobile/ios/uikit/UserInterfaceDrill.java
 crossmobile/ios/uikit/cmAnimation.java
 crossmobile/ios/uikit/cmButtonStates.java
 crossmobile/ios/uikit/cmCells.java
@@ -1413,7 +1416,6 @@ org/crossmobile/bind/wrapper/NativeWrapper.java
 org/crossmobile/bind/wrapper/TextWrapper.java
 org/crossmobile/bind/wrapper/WebWrapper.java
 org/crossmobile/bind/wrapper/WidgetWrapper.java
-org/crossmobile/bridge/CustomNotifications.java
 org/crossmobile/bridge/FileBridge.java
 org/crossmobile/bridge/GraphicsBridge.java
 org/crossmobile/bridge/ImageBridge.java
@@ -1424,6 +1426,7 @@ org/crossmobile/bridge/MessageBridge.java
 org/crossmobile/bridge/Native.java
 org/crossmobile/bridge/NetworkBridge.java
 org/crossmobile/bridge/NotificationBridge.java
+org/crossmobile/bridge/RuntimeKeys.java
 org/crossmobile/bridge/SecurityBridge.java
 org/crossmobile/bridge/ShareBridge.java
 org/crossmobile/bridge/SocialBridge.java
@@ -1497,7 +1500,6 @@ com/eclipsesource/json/PrettyPrint.class v1.5
 com/eclipsesource/json/WriterConfig$1.class v1.5
 com/eclipsesource/json/WriterConfig.class v1.5
 com/eclipsesource/json/WritingBuffer.class v1.5
-crossmobile/ios/coregraphics/$coregraphics.class v8
 crossmobile/ios/coregraphics/CGAffineTransform.class v8
 crossmobile/ios/coregraphics/CGBitmapContext.class v8
 crossmobile/ios/coregraphics/CGBitmapInfo.class v8
@@ -1526,11 +1528,12 @@ crossmobile/ios/coregraphics/CGSize.class v8
 crossmobile/ios/coregraphics/CGTextDrawingMode.class v8
 crossmobile/ios/coregraphics/CGTextEncoding.class v8
 crossmobile/ios/coregraphics/CoreGraphicsDrill.class v8
+crossmobile/ios/coregraphics/GraphicsDrill.class v8
 crossmobile/ios/coregraphics/package-info.class v8
-crossmobile/ios/foundation/$foundation.class v8
 crossmobile/ios/foundation/CFNumberFormatterStyle.class v8
 crossmobile/ios/foundation/CFType.class v8
 crossmobile/ios/foundation/Foundation.class v8
+crossmobile/ios/foundation/FoundationDrill.class v8
 crossmobile/ios/foundation/NSAttributedStringKey.class v8
 crossmobile/ios/foundation/NSBundle.class v8
 crossmobile/ios/foundation/NSCalendar.class v8
@@ -1631,8 +1634,6 @@ crossmobile/ios/quartzcore/CALayer.class v8
 crossmobile/ios/quartzcore/CAMediaTiming.class v8
 crossmobile/ios/quartzcore/CATransition.class v8
 crossmobile/ios/quartzcore/package-info.class v8
-crossmobile/ios/uikit/$uikit$1.class v8
-crossmobile/ios/uikit/$uikit.class v8
 crossmobile/ios/uikit/NSLayoutAnchor.class v8
 crossmobile/ios/uikit/NSLayoutAttribute.class v8
 crossmobile/ios/uikit/NSLayoutConstraint.class v8
@@ -1862,6 +1863,8 @@ crossmobile/ios/uikit/UIWebView.class v8
 crossmobile/ios/uikit/UIWebViewDelegate.class v8
 crossmobile/ios/uikit/UIWebViewNavigationType.class v8
 crossmobile/ios/uikit/UIWindow.class v8
+crossmobile/ios/uikit/UserInterfaceDrill$1.class v8
+crossmobile/ios/uikit/UserInterfaceDrill.class v8
 crossmobile/ios/uikit/cmAnimation$1.class v8
 crossmobile/ios/uikit/cmAnimation$AlphaTuple.class v8
 crossmobile/ios/uikit/cmAnimation$AnimationTransition.class v8
@@ -2356,9 +2359,8 @@ org/crossmobile/bridge/system/JsonHelper$JMap$JSet.class v8
 org/crossmobile/bridge/system/JsonHelper$JMap.class v8
 org/crossmobile/bridge/system/JsonHelper$JsonSerializable.class v8
 org/crossmobile/bridge/system/JsonHelper.class v8
-org/crossmobile/bridge/system/LauncherCommons.class v8
-org/crossmobile/bridge/system/MaterialsCommon.class v8
 org/crossmobile/bridge/system/Pair.class v8
+org/crossmobile/bridge/system/RuntimeCommons.class v8
 org/crossmobile/bridge/system/package-info.class v8
 org/crossmobile/build/StoryBoardBinder.class v8
 org/robovm/objc/annotation/IBAction.class v8
@@ -2434,7 +2436,6 @@ com/panayotis/ce/CEventData.class v8
 com/panayotis/ce/CEventListener.class v8
 com/panayotis/ce/CEventManager.class v8
 com/panayotis/loadlib/LoadLib.class v1.6
-crossmobile/ios/coregraphics/$coregraphics.class v8
 crossmobile/ios/coregraphics/CGAffineTransform.class v8
 crossmobile/ios/coregraphics/CGBitmapContext.class v8
 crossmobile/ios/coregraphics/CGBitmapInfo.class v8
@@ -2463,11 +2464,12 @@ crossmobile/ios/coregraphics/CGSize.class v8
 crossmobile/ios/coregraphics/CGTextDrawingMode.class v8
 crossmobile/ios/coregraphics/CGTextEncoding.class v8
 crossmobile/ios/coregraphics/CoreGraphicsDrill.class v8
+crossmobile/ios/coregraphics/GraphicsDrill.class v8
 crossmobile/ios/coregraphics/package-info.class v8
-crossmobile/ios/foundation/$foundation.class v8
 crossmobile/ios/foundation/CFNumberFormatterStyle.class v8
 crossmobile/ios/foundation/CFType.class v8
 crossmobile/ios/foundation/Foundation.class v8
+crossmobile/ios/foundation/FoundationDrill.class v8
 crossmobile/ios/foundation/NSAttributedStringKey.class v8
 crossmobile/ios/foundation/NSBundle.class v8
 crossmobile/ios/foundation/NSCalendar.class v8
@@ -2568,8 +2570,6 @@ crossmobile/ios/quartzcore/CALayer.class v8
 crossmobile/ios/quartzcore/CAMediaTiming.class v8
 crossmobile/ios/quartzcore/CATransition.class v8
 crossmobile/ios/quartzcore/package-info.class v8
-crossmobile/ios/uikit/$uikit$1.class v8
-crossmobile/ios/uikit/$uikit.class v8
 crossmobile/ios/uikit/NSLayoutAnchor.class v8
 crossmobile/ios/uikit/NSLayoutAttribute.class v8
 crossmobile/ios/uikit/NSLayoutConstraint.class v8
@@ -2799,6 +2799,8 @@ crossmobile/ios/uikit/UIWebView.class v8
 crossmobile/ios/uikit/UIWebViewDelegate.class v8
 crossmobile/ios/uikit/UIWebViewNavigationType.class v8
 crossmobile/ios/uikit/UIWindow.class v8
+crossmobile/ios/uikit/UserInterfaceDrill$1.class v8
+crossmobile/ios/uikit/UserInterfaceDrill.class v8
 crossmobile/ios/uikit/cmAnimation$1.class v8
 crossmobile/ios/uikit/cmAnimation$AlphaTuple.class v8
 crossmobile/ios/uikit/cmAnimation$AnimationTransition.class v8
@@ -3233,9 +3235,8 @@ org/crossmobile/bridge/system/JsonHelper$JMap$JSet.class v8
 org/crossmobile/bridge/system/JsonHelper$JMap.class v8
 org/crossmobile/bridge/system/JsonHelper$JsonSerializable.class v8
 org/crossmobile/bridge/system/JsonHelper.class v8
-org/crossmobile/bridge/system/LauncherCommons.class v8
-org/crossmobile/bridge/system/MaterialsCommon.class v8
 org/crossmobile/bridge/system/Pair.class v8
+org/crossmobile/bridge/system/RuntimeCommons.class v8
 org/crossmobile/bridge/system/package-info.class v8
 org/crossmobile/build/StoryBoardBinder.class v8
 org/crossmobile/support/CookieManagerProxy.class v8
@@ -3327,7 +3328,6 @@ com/panayotis/ce/CEventCommons.class v8
 com/panayotis/ce/CEventData.class v8
 com/panayotis/ce/CEventListener.class v8
 com/panayotis/ce/CEventManager.class v8
-crossmobile/ios/coregraphics/$coregraphics.class v8
 crossmobile/ios/coregraphics/CGAffineTransform.class v8
 crossmobile/ios/coregraphics/CGBitmapContext.class v8
 crossmobile/ios/coregraphics/CGBitmapInfo.class v8
@@ -3356,11 +3356,12 @@ crossmobile/ios/coregraphics/CGSize.class v8
 crossmobile/ios/coregraphics/CGTextDrawingMode.class v8
 crossmobile/ios/coregraphics/CGTextEncoding.class v8
 crossmobile/ios/coregraphics/CoreGraphicsDrill.class v8
+crossmobile/ios/coregraphics/GraphicsDrill.class v8
 crossmobile/ios/coregraphics/package-info.class v8
-crossmobile/ios/foundation/$foundation.class v8
 crossmobile/ios/foundation/CFNumberFormatterStyle.class v8
 crossmobile/ios/foundation/CFType.class v8
 crossmobile/ios/foundation/Foundation.class v8
+crossmobile/ios/foundation/FoundationDrill.class v8
 crossmobile/ios/foundation/NSAttributedStringKey.class v8
 crossmobile/ios/foundation/NSBundle.class v8
 crossmobile/ios/foundation/NSCalendar.class v8
@@ -3461,8 +3462,6 @@ crossmobile/ios/quartzcore/CALayer.class v8
 crossmobile/ios/quartzcore/CAMediaTiming.class v8
 crossmobile/ios/quartzcore/CATransition.class v8
 crossmobile/ios/quartzcore/package-info.class v8
-crossmobile/ios/uikit/$uikit$1.class v8
-crossmobile/ios/uikit/$uikit.class v8
 crossmobile/ios/uikit/NSLayoutAnchor.class v8
 crossmobile/ios/uikit/NSLayoutAttribute.class v8
 crossmobile/ios/uikit/NSLayoutConstraint.class v8
@@ -3692,6 +3691,8 @@ crossmobile/ios/uikit/UIWebView.class v8
 crossmobile/ios/uikit/UIWebViewDelegate.class v8
 crossmobile/ios/uikit/UIWebViewNavigationType.class v8
 crossmobile/ios/uikit/UIWindow.class v8
+crossmobile/ios/uikit/UserInterfaceDrill$1.class v8
+crossmobile/ios/uikit/UserInterfaceDrill.class v8
 crossmobile/ios/uikit/cmAnimation$1.class v8
 crossmobile/ios/uikit/cmAnimation$AlphaTuple.class v8
 crossmobile/ios/uikit/cmAnimation$AnimationTransition.class v8
@@ -3974,9 +3975,8 @@ org/crossmobile/bridge/system/JsonHelper$JMap$JSet.class v8
 org/crossmobile/bridge/system/JsonHelper$JMap.class v8
 org/crossmobile/bridge/system/JsonHelper$JsonSerializable.class v8
 org/crossmobile/bridge/system/JsonHelper.class v8
-org/crossmobile/bridge/system/LauncherCommons.class v8
-org/crossmobile/bridge/system/MaterialsCommon.class v8
 org/crossmobile/bridge/system/Pair.class v8
+org/crossmobile/bridge/system/RuntimeCommons.class v8
 org/crossmobile/bridge/system/package-info.class v8
 org/crossmobile/build/StoryBoardBinder.class v8
 org/crossmobile/support/CookieManagerProxy.class v8
@@ -4672,12 +4672,11 @@ crossmobile/ios/storekit/SKRequestDelegate.class v8
 crossmobile/ios/storekit/package-info.class v8
 
 Creating file cmplugin-builddep-cmpayment-<VERSION>.jar
-
+crossmobile/ios/storekit/StoreDrill.class v8
 
 Creating file cmplugin-cmpayment-<VERSION>-sources.jar
 com/android/vending/billing/IInAppBillingService.java
 com/android/vending/billing/package-info.java
-crossmobile/ios/storekit/$storekit.java
 crossmobile/ios/storekit/SKError.java
 crossmobile/ios/storekit/SKMutablePayment.java
 crossmobile/ios/storekit/SKPayment.java
@@ -4691,6 +4690,7 @@ crossmobile/ios/storekit/SKProductsRequestDelegate.java
 crossmobile/ios/storekit/SKProductsResponse.java
 crossmobile/ios/storekit/SKRequest.java
 crossmobile/ios/storekit/SKRequestDelegate.java
+crossmobile/ios/storekit/StoreDrill.java
 crossmobile/ios/storekit/package-info.java
 org/crossmobile/backend/android/AndroidInAppBridge.java
 org/crossmobile/backend/android/billing/IabException.java
@@ -4703,7 +4703,6 @@ org/crossmobile/backend/android/billing/SkuDetails.java
 org/crossmobile/backend/android/billing/package-info.java
 
 Creating file cmplugin-ios-cmpayment-<VERSION>.jar
-crossmobile/ios/storekit/$storekit.class v8
 crossmobile/ios/storekit/SKError.class v8
 crossmobile/ios/storekit/SKMutablePayment.class v8
 crossmobile/ios/storekit/SKPayment.class v8
@@ -4717,6 +4716,7 @@ crossmobile/ios/storekit/SKProductsRequestDelegate.class v8
 crossmobile/ios/storekit/SKProductsResponse.class v8
 crossmobile/ios/storekit/SKRequest.class v8
 crossmobile/ios/storekit/SKRequestDelegate.class v8
+crossmobile/ios/storekit/StoreDrill.class v8
 crossmobile/ios/storekit/package-info.class v8
 native/cmpayment.a
 native/crossmobile_ios_storekit_SKMutablePayment.h
@@ -4732,7 +4732,6 @@ native/crossmobile_ios_storekit_SKRequest.h
 native/crossmobile_ios_storekit_SKRequestDelegate.h
 
 Creating file cmplugin-desktop-cmpayment-<VERSION>.jar
-crossmobile/ios/storekit/$storekit.class v8
 crossmobile/ios/storekit/SKError.class v8
 crossmobile/ios/storekit/SKMutablePayment.class v8
 crossmobile/ios/storekit/SKPayment.class v8
@@ -4746,6 +4745,7 @@ crossmobile/ios/storekit/SKProductsRequestDelegate.class v8
 crossmobile/ios/storekit/SKProductsResponse.class v8
 crossmobile/ios/storekit/SKRequest.class v8
 crossmobile/ios/storekit/SKRequestDelegate.class v8
+crossmobile/ios/storekit/StoreDrill.class v8
 crossmobile/ios/storekit/package-info.class v8
 
 Creating file cmplugin-android-cmpayment-<VERSION>.jar
@@ -4753,7 +4753,6 @@ com/android/vending/billing/IInAppBillingService$Stub$Proxy.class v8
 com/android/vending/billing/IInAppBillingService$Stub.class v8
 com/android/vending/billing/IInAppBillingService.class v8
 com/android/vending/billing/package-info.class v8
-crossmobile/ios/storekit/$storekit.class v8
 crossmobile/ios/storekit/SKError.class v8
 crossmobile/ios/storekit/SKMutablePayment.class v8
 crossmobile/ios/storekit/SKPayment.class v8
@@ -4767,6 +4766,7 @@ crossmobile/ios/storekit/SKProductsRequestDelegate.class v8
 crossmobile/ios/storekit/SKProductsResponse.class v8
 crossmobile/ios/storekit/SKRequest.class v8
 crossmobile/ios/storekit/SKRequestDelegate.class v8
+crossmobile/ios/storekit/StoreDrill.class v8
 crossmobile/ios/storekit/package-info.class v8
 org/crossmobile/backend/android/AndroidInAppBridge.class v8
 org/crossmobile/backend/android/billing/IabException.class v8

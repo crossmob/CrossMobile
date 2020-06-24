@@ -27,7 +27,7 @@ import java.util.jar.JarFile;
 import java.util.zip.ZipEntry;
 
 import static org.crossmobile.bridge.system.BaseUtils.throwExceptionAndReturn;
-import static org.crossmobile.bridge.system.MaterialsCommon.MATERIALS_TAG;
+import static org.crossmobile.bridge.system.RuntimeCommons.MATERIALS_TAG;
 
 public class MobileApp implements Comparable<MobileApp> {
 

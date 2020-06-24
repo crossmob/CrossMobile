@@ -17,7 +17,7 @@ import org.crossmobile.bridge.ann.CMSelector;
 
 import java.util.List;
 
-import static crossmobile.ios.coregraphics.$coregraphics.cgfont;
+import static crossmobile.ios.coregraphics.GraphicsDrill.cgfont;
 import static crossmobile.ios.coregraphics.CoreGraphicsDrill.font;
 
 /**

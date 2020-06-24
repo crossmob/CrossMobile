@@ -23,6 +23,7 @@ import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareDialog;
 import crossmobile.ios.coregraphics.CoreGraphicsDrill;
+import crossmobile.ios.foundation.FoundationDrill;
 import crossmobile.ios.foundation.NSURL;
 import crossmobile.ios.social.SLComposeViewControllerCompletionHandler;
 import crossmobile.ios.social.SLComposeViewControllerResult;
@@ -36,6 +37,7 @@ import org.crossmobile.bridge.ann.CMLibParam;
 
 import java.util.Iterator;
 
+import static org.crossmobile.bridge.RuntimeKeys.FacebookSdkApplicationSignature;
 import static org.crossmobile.bridge.ann.CMLibParam.ParamContext.Android;
 import static org.crossmobile.bridge.ann.CMLibTarget.ANDROID;
 
@@ -100,6 +102,8 @@ public class AndroidSocial {
         try {
             FacebookSdk.setApplicationId(System.getProperty("org.crossmobile.cmplugin-cmsocial.facebookappid"));
             FacebookSdk.sdkInitialize(MainActivity.current());
+            FoundationDrill.addVirtualUserDefault(FacebookSdkApplicationSignature,
+                    () -> FacebookSdk.getApplicationSignature(MainActivity.current().getApplicationContext()));
             MainActivity.current().getStateListener().register(new ActivityLifecycleListener() {
                 @Override
                 public void onCreate(Bundle savedInstanceState) {

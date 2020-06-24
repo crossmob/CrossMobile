@@ -19,22 +19,22 @@ public class StoryBoardBinder {
     private static Properties outlets;
 
     public static void bindStoryboardWithViewController(UIViewController controller, UIStoryboard storyboard) {
-        $uikit.setStoryboard(controller, storyboard);
+        UserInterfaceDrill.setStoryboard(controller, storyboard);
     }
 
     public static void bindSegueWithViewController(UIViewController controller, String id, UIStoryboardSegue segueMap) {
-        $uikit.addSegue(controller, id, segueMap);
+        UserInterfaceDrill.addSegue(controller, id, segueMap);
     }
 
     public static void bindSegueWithTableviewCell(UITableViewCell cell, String trigger, UIStoryboardSegue segue) {
-        $uikit.addSegue(cell, trigger, segue);
+        UserInterfaceDrill.addSegue(cell, trigger, segue);
     }
 
     public static void addSectionToTableViewController(UITableViewController tableViewController, String headerTitle, String footerTitle, UITableViewCell[] cells) {
-        $uikit.addSection(tableViewController, headerTitle, footerTitle, cells);
+        UserInterfaceDrill.addSection(tableViewController, headerTitle, footerTitle, cells);
     }
 
     public static void bindRowHeightToTableViewCell(UITableViewCell cell, float rowHeight){
-        $uikit.setCellRowHeight(cell, rowHeight);
+        UserInterfaceDrill.setCellRowHeight(cell, rowHeight);
     }
 }

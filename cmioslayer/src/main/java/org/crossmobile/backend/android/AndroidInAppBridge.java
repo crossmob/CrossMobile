@@ -26,8 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import static crossmobile.ios.storekit.$storekit.newSKPaymentTransaction;
-import static crossmobile.ios.storekit.$storekit.newSKProduct;
+import static crossmobile.ios.storekit.StoreDrill.newSKPaymentTransaction;
+import static crossmobile.ios.storekit.StoreDrill.newSKProduct;
 import static org.crossmobile.bind.system.i18n.I18NSelf.ℑ;
 import static org.crossmobile.bridge.ann.CMLibTarget.ANDROID;
 

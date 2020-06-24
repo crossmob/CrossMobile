@@ -14,7 +14,7 @@ import org.crossmobile.bridge.ann.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static crossmobile.ios.coregraphics.$coregraphics.color;
+import static crossmobile.ios.coregraphics.GraphicsDrill.color;
 
 /**
  * UITabBar class defines a tab-bar object that visually consists of buttons

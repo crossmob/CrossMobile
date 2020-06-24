@@ -16,7 +16,7 @@ import org.crossmobile.bridge.ann.*;
 
 import java.util.Set;
 
-import static crossmobile.ios.coregraphics.$coregraphics.context;
+import static crossmobile.ios.coregraphics.GraphicsDrill.context;
 
 /**
  * UIWebView class defines an object that is attached to a window in order to

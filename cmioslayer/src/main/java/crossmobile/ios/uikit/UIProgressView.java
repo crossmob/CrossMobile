@@ -15,8 +15,8 @@ import org.crossmobile.bridge.ann.CMConstructor;
 import org.crossmobile.bridge.ann.CMGetter;
 import org.crossmobile.bridge.ann.CMSetter;
 
-import static crossmobile.ios.coregraphics.$coregraphics.color;
-import static crossmobile.ios.coregraphics.$coregraphics.context;
+import static crossmobile.ios.coregraphics.GraphicsDrill.color;
+import static crossmobile.ios.coregraphics.GraphicsDrill.context;
 
 /**
  * UIProgressView class defines an object that represents a visible bar that

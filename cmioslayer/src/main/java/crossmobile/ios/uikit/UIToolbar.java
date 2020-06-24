@@ -17,8 +17,8 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
-import static crossmobile.ios.coregraphics.$coregraphics.color;
-import static crossmobile.ios.coregraphics.$coregraphics.context;
+import static crossmobile.ios.coregraphics.GraphicsDrill.color;
+import static crossmobile.ios.coregraphics.GraphicsDrill.context;
 
 /**
  * UIToolbar class defines a toolbar that visually consists of buttons named

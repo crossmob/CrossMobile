@@ -10,10 +10,13 @@ import crossmobile.ios.foundation.NSData;
 import crossmobile.ios.foundation.NSDate;
 import crossmobile.ios.foundation.NSError;
 import crossmobile.ios.foundation.NSLocale;
+import org.crossmobile.bridge.ann.CMLib;
+import org.crossmobile.bridge.ann.CMLibTarget;
 
 import static org.crossmobile.bind.system.AbstractLifecycleBridge.errorFromInfo;
 
-public class $storekit {
+@CMLib(target = CMLibTarget.RUNTIME_PLUGIN)
+public class StoreDrill {
 
     public static SKProduct newSKProduct(String locDescription, String locTitle, double price, NSLocale locale, String prodId) {
         return new SKProduct(locDescription, locTitle, price, locale == null ? NSLocale.currentLocale() : locale, prodId);

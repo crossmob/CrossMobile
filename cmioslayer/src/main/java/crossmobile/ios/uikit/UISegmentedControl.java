@@ -6,7 +6,7 @@
 
 package crossmobile.ios.uikit;
 
-import crossmobile.ios.coregraphics.$coregraphics;
+import crossmobile.ios.coregraphics.GraphicsDrill;
 import crossmobile.ios.coregraphics.CGContext;
 import crossmobile.ios.coregraphics.CGPathDrawingMode;
 import crossmobile.ios.coregraphics.CGRect;
@@ -16,6 +16,8 @@ import org.crossmobile.bridge.ann.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static crossmobile.ios.coregraphics.GraphicsDrill.color;
 
 /**
  * UISegmentedControl class defines an object that is used in order to provide
@@ -433,7 +435,7 @@ public class UISegmentedControl extends UIControl {
     public final void drawRect(CGRect rect) {
         UIColor lastLastTint = lastTint;
         lastTint = tintColor();
-        double[] hsva = Native.graphics().colorRGBAtoHSVA($coregraphics.color(lastTint.cgcolor));
+        double[] hsva = Native.graphics().colorRGBAtoHSVA(color(lastTint.cgcolor));
         lastLabelColor = hsva[2] > 0.5 ? UIColor.blackColor() : UIColor.whiteColor();
         super.drawRect(rect);
     }

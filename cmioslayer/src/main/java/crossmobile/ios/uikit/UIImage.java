@@ -23,7 +23,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
-import static crossmobile.ios.coregraphics.$coregraphics.*;
+import static crossmobile.ios.coregraphics.GraphicsDrill.*;
 import static org.crossmobile.bind.system.SystemUtilities.writeToRandomFile;
 
 /**

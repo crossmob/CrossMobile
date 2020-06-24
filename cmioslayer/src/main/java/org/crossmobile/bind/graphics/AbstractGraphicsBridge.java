@@ -50,7 +50,7 @@ public abstract class AbstractGraphicsBridge<CANVAS, NTVP, TRANSF> implements Gr
         UIApplication app = UIApplication.sharedApplication();
         if (app == null)
             return;
-        UIWindow win = $uikit.splashWindow();
+        UIWindow win = UserInterfaceDrill.splashWindow();
         if (win == null)
             win = app.keyWindow();
         if (win == null)

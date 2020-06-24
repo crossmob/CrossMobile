@@ -10,8 +10,11 @@ import crossmobile.ios.uikit.UIImage;
 import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.graphics.NativeBitmap;
 import org.crossmobile.bind.graphics.NativeFont;
+import org.crossmobile.bridge.ann.CMLib;
+import org.crossmobile.bridge.ann.CMLibTarget;
 
-public class $coregraphics {
+@CMLib(target = CMLibTarget.RUNTIME_PLUGIN)
+public class GraphicsDrill {
 
     public static int color(CGColor c) {
         return c.color;

@@ -12,8 +12,8 @@ import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.*;
 
-import static crossmobile.ios.coregraphics.$coregraphics.color;
-import static crossmobile.ios.coregraphics.$coregraphics.context;
+import static crossmobile.ios.coregraphics.GraphicsDrill.color;
+import static crossmobile.ios.coregraphics.GraphicsDrill.context;
 
 /**
  * UIPageControl class defines an object that is used for custom control of

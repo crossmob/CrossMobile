@@ -6,7 +6,7 @@
 
 package crossmobile.ios.uikit;
 
-import crossmobile.ios.coregraphics.$coregraphics;
+import crossmobile.ios.coregraphics.GraphicsDrill;
 import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.coregraphics.CoreGraphicsDrill;
 import org.crossmobile.bind.graphics.GraphicsContext;
@@ -20,8 +20,8 @@ import org.crossmobile.bridge.ann.CMSetter;
 
 import java.util.Set;
 
-import static crossmobile.ios.coregraphics.$coregraphics.color;
-import static crossmobile.ios.coregraphics.$coregraphics.context;
+import static crossmobile.ios.coregraphics.GraphicsDrill.color;
+import static crossmobile.ios.coregraphics.GraphicsDrill.context;
 
 /**
  * UITextView class defines an object that represents a visible, rectangular
@@ -120,7 +120,7 @@ public class UITextView extends UIView {
      */
     @CMGetter("@property(nonatomic, strong) UIFont *font;")
     public UIFont font() {
-        return new UIFont($coregraphics.cgfont(widget().getFont()));
+        return new UIFont(GraphicsDrill.cgfont(widget().getFont()));
     }
 
     /**
@@ -377,7 +377,7 @@ public class UITextView extends UIView {
     private void synchronizeNativeBackgroundColor() {
         UIColor backCol = backgroundColor();
         if (backCol != null)
-            widget().setBackgroundColor($coregraphics.color(backCol.cgcolor));
+            widget().setBackgroundColor(GraphicsDrill.color(backCol.cgcolor));
     }
 
     /**

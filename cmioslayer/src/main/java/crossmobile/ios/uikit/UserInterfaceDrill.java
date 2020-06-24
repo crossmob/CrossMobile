@@ -13,10 +13,13 @@ import crossmobile.ios.coregraphics.CGPoint;
 import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.wrapper.TextWrapper;
 import org.crossmobile.bridge.Native;
+import org.crossmobile.bridge.ann.CMLib;
+import org.crossmobile.bridge.ann.CMLibTarget;
 
-import static crossmobile.ios.coregraphics.$coregraphics.convertBaseContextToCGContext;
+import static crossmobile.ios.coregraphics.GraphicsDrill.convertBaseContextToCGContext;
 
-public class $uikit {
+@CMLib(target = CMLibTarget.RUNTIME_PLUGIN)
+public class UserInterfaceDrill {
 
     public static CGFont cgfont(UIFont f) {
         return f.cgfont;

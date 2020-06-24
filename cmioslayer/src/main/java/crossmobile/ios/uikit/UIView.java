@@ -28,8 +28,8 @@ import org.robovm.objc.block.VoidBlock1;
 import java.lang.ref.WeakReference;
 import java.util.*;
 
-import static crossmobile.ios.coregraphics.$coregraphics.*;
-import static crossmobile.ios.foundation.$foundation.isUnderMainRunLoop;
+import static crossmobile.ios.coregraphics.GraphicsDrill.*;
+import static crossmobile.ios.foundation.FoundationDrill.isUnderMainRunLoop;
 import static crossmobile.ios.uikit.UIViewContentMode.*;
 import static org.crossmobile.bind.graphics.AbstractGraphicsBridge.DrawingDepth;
 import static org.crossmobile.bind.system.Debug.ENABLE_DEBUG;

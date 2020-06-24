@@ -16,7 +16,7 @@ import org.crossmobile.bridge.ann.*;
 
 import java.util.Set;
 
-import static crossmobile.ios.coregraphics.$coregraphics.context;
+import static crossmobile.ios.coregraphics.GraphicsDrill.context;
 
 /**
  * UITableViewCell class defines objects that represent cell elements used in

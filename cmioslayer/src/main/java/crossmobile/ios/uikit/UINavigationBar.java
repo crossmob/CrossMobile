@@ -8,7 +8,6 @@ package crossmobile.ios.uikit;
 
 import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.coregraphics.CGSize;
-import org.crossmobile.bind.graphics.DrawableMetrics;
 import org.crossmobile.bind.graphics.Theme;
 import org.crossmobile.bind.graphics.UIStatusBar;
 import org.crossmobile.bridge.Native;
@@ -20,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static crossmobile.ios.coregraphics.$coregraphics.color;
+import static crossmobile.ios.coregraphics.GraphicsDrill.color;
 import static crossmobile.ios.uikit.UIToolbar.fillBackground;
 
 /**

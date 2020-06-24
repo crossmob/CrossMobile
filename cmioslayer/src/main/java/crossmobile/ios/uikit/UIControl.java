@@ -13,7 +13,7 @@ import org.crossmobile.bridge.ann.*;
 
 import java.util.*;
 
-import static crossmobile.ios.coregraphics.$coregraphics.color;
+import static crossmobile.ios.coregraphics.GraphicsDrill.color;
 import static crossmobile.ios.uikit.UIControlEvents.*;
 
 /**

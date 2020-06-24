@@ -11,12 +11,13 @@ import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.CMClass;
 import org.crossmobile.bridge.ann.CMConstructor;
 import org.crossmobile.bridge.ann.CMSelector;
-import org.crossmobile.support.MiGBase64;
+import org.crossmobile.bridge.system.BaseUtils;
+import org.crossmobile.bridge.system.JsonHelper;
+import org.robovm.objc.block.Block0;
 
 import java.io.*;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.math.BigDecimal;
+import java.util.*;
 
 /**
  * NSUserDefaults class defines an object that provides support related to user
@@ -25,15 +26,17 @@ import java.util.Properties;
 @CMClass
 public class NSUserDefaults extends NSObject {
 
-    private static final File userPath = new File(
+    private static final File DEST_PATH = new File(
             Native.file().getHomeLocation() + File.separator
                     + FileBridgeConstants.DEFAULTPATHS[NSSearchPathDirectory.Library] + File.separator
-                    + "Preferences" + File.separator
-                    + Native.system().bundleID() + ".properties");
-    private static final String NSDATA_PREFIX = "[NSData]";
+                    + "Preferences");
+
     private static NSUserDefaults standard;
-    //
-    private final Properties values = new Properties();
+
+    private final String suitename;
+    private final HashMap<String, Object> user = new HashMap<>();
+    private HashMap<String, Object> bundle;
+    private HashMap<String, Block0<Object>> virtual;
 
     /**
      * Returns the shared NSUserDefaults object.
@@ -42,45 +45,56 @@ public class NSUserDefaults extends NSObject {
      */
     @CMSelector("+ (NSUserDefaults *)standardUserDefaults;")
     public static NSUserDefaults standardUserDefaults() {
-        if (standard == null) {
-            standard = new NSUserDefaults();
-            standard.parseSettings();
-            standard.parseUser();
-        }
+        if (standard == null)
+            standard = new NSUserDefaults("." + Native.system().bundleID() + "_properties").addBundleSettings();
         return standard;
     }
 
     @CMConstructor("- (instancetype)initWithSuiteName:(NSString *)suitename;")
     public NSUserDefaults(String suitename) {
+        this.suitename = suitename;
 
+        File sourceFile = new File(DEST_PATH, suitename);
+        if (!sourceFile.exists()) return;
+
+        String data = BaseUtils.readFile(sourceFile);
+        if (data == null) return;
+
+        Object jsonRaw = JsonHelper.decode(data);
+        if (jsonRaw == null) return;
+
+        //noinspection unchecked
+        Map<?, Object> json = (Map<?, Object>) jsonRaw;
+        for (Object key : json.keySet())
+            if (key instanceof String)
+                user.put((String) key, json.get(key));
     }
 
-    NSUserDefaults() {
-    }
-
-    private void parseSettings() {
+    @SuppressWarnings("unchecked")
+    private NSUserDefaults addBundleSettings() {
         Map<String, Object> dict = NSDictionary.dictionaryWithContentsOfFile(Native.file().getApplicationPrefix() + File.separator + "Settings.bundle" + File.separator + "Root.plist");
-        if (dict == null)
-            return;
-        List<Object> prefsList = (List<Object>) dict.get("PreferenceSpecifiers");
-        if (prefsList != null)
-            for (Object prefObj : prefsList) {
-                Map<String, Object> prefMap = (Map<String, Object>) prefObj;
-                String key = (String) prefMap.get("Key");
-                if (key != null) {
-                    Object value = prefMap.get("DefaultValue");
-                    if (value == null)
-                        value = "";
-                    values.setProperty(key, value.toString());
+        if (dict != null) {
+            bundle = new HashMap<>();
+            List<Object> prefsList = (List<Object>) dict.get("PreferenceSpecifiers");
+            if (prefsList != null)
+                for (Object prefObj : prefsList) {
+                    Map<String, Object> prefMap = (Map<String, Object>) prefObj;
+                    String key = (String) prefMap.get("Key");
+                    if (key != null) {
+                        Object value = prefMap.get("DefaultValue");
+                        bundle.put(key, value == null ? "" : value.toString());
+                    }
                 }
-            }
+        }
+        return this;
     }
 
-    private void parseUser() {
-        try {
-            values.load(new InputStreamReader(new FileInputStream(userPath), "UTF-8"));
-        } catch (IOException ex) {
-        }
+    void addVirtualValue(String key, Block0<Object> supplier) {
+        if (key == null || supplier == null)
+            return;
+        if (virtual == null)
+            virtual = new HashMap<>();
+        virtual.put(key, supplier);
     }
 
     /**
@@ -92,9 +106,9 @@ public class NSUserDefaults extends NSObject {
     @CMSelector("- (BOOL)synchronize;")
     public boolean synchronize() {
         try {
-            values.store(new OutputStreamWriter(new FileOutputStream(userPath), "UTF-8"), "CrossMobile user defaults");
-            return true;
-        } catch (IOException ex) {
+            return BaseUtils.writeFile(new File(DEST_PATH, suitename), JsonHelper.encode(user, false));
+        } catch (Exception e) {
+            Native.system().error("Unable to encode User Defaults", e);
             return false;
         }
     }
@@ -108,10 +122,18 @@ public class NSUserDefaults extends NSObject {
     @CMSelector("- (void)setObject:(id)value \n"
             + "           forKey:(NSString *)defaultName;")
     public void setObject(Object value, String key) {
-        if (value instanceof NSData)
-            values.setProperty(key, NSDATA_PREFIX + MiGBase64.encodeToString(((NSData) value).data, false));
+        if (value instanceof NSMutableData)
+            user.put(key, new NSData(((NSMutableData) value).bytes()));
+        else if (value instanceof List)
+            user.put(key, Collections.unmodifiableList((List<?>) value));
+        else if (value instanceof Set)
+            user.put(key, Collections.unmodifiableSet((Set<?>) value));
+        else if (value instanceof Collection)
+            user.put(key, Collections.unmodifiableCollection((Collection<?>) value));
+        else if (value instanceof Map)
+            user.put(key, Collections.unmodifiableMap((Map<?, ?>) value));
         else
-            values.setProperty(key, value.toString());
+            user.put(key, value);
         synchronize();
     }
 
@@ -123,27 +145,40 @@ public class NSUserDefaults extends NSObject {
      */
     @CMSelector("- (id)objectForKey:(NSString *)defaultName;")
     public Object objectForKey(String key) {
-        String val = values.getProperty(key);
-        if (val == null)
-            return null;
-        if (val.startsWith(NSDATA_PREFIX))
-            return dataForKey(key);
-        {
-            String valLC = val.toLowerCase();
-            if (valLC.equals("true") || valLC.equals("yes"))
-                return Boolean.TRUE;
-            if (valLC.equals("false") || valLC.equals("no"))
-                return Boolean.FALSE;
+        Object result = user.get(key);
+        if (result == null && bundle != null)
+            result = bundle.get(key);
+        if (result == null && virtual != null) {
+            Block0<Object> supplier = virtual.get(key);
+            if (supplier != null)
+                result = supplier.invoke();
         }
+        return result;
+    }
+
+    /**
+     * Removes the specified key from the dictionary.
+     *
+     * @param key The key that is removed.
+     */
+    @CMSelector("- (void)removeObjectForKey:(NSString *)defaultName")
+    public void removeObjectForKey(String key) {
+        user.remove(key);
+    }
+
+    private Number numberForKey(String key) {
         try {
-            return Integer.parseInt(val);
-        } catch (NumberFormatException ex) {
+            Object v = objectForKey(key);
+            if (v == null)
+                return 0;
+            if (v instanceof Boolean)
+                return (Boolean) v ? 1 : 0;
+            if (v instanceof Number)
+                return (Number) v;
+            return new BigDecimal(v.toString());
+        } catch (Exception ignored) {
         }
-        try {
-            return Double.parseDouble(val);
-        } catch (NumberFormatException ex) {
-        }
-        return val;
+        return 0;
     }
 
     /**
@@ -155,8 +190,7 @@ public class NSUserDefaults extends NSObject {
     @CMSelector("- (void)setInteger:(NSInteger)value \n"
             + "            forKey:(NSString *)defaultName;")
     public void setInteger(int value, String key) {
-        values.setProperty(key, Integer.toString(value));
-        synchronize();
+        setObject(value, key);
     }
 
     /**
@@ -167,40 +201,7 @@ public class NSUserDefaults extends NSObject {
      */
     @CMSelector("- (NSInteger)integerForKey:(NSString *)defaultName;")
     public int integerForKey(String key) {
-        try {
-            return Integer.parseInt(values.getProperty(key));
-        } catch (NumberFormatException ex) {
-        }
-        return 0;
-    }
-
-    /**
-     * Set the specified Boolean for the specified key.
-     *
-     * @param value The Boolean for the specified key.
-     * @param key   The key for which the Boolean value is set.
-     */
-    @CMSelector("- (void)setBool:(BOOL)value \n"
-            + "         forKey:(NSString *)defaultName;")
-    public void setBool(boolean value, String key) {
-        values.setProperty(key, Boolean.toString(value));
-        synchronize();
-    }
-
-    /**
-     * Returns a Boolean of the specified key either the default or false.
-     *
-     * @param key The key for which the Boolean is returned.
-     * @return FALSE if there is no default value.
-     */
-    @CMSelector("- (BOOL)boolForKey:(NSString *)defaultName;\n"
-            + "")
-    public boolean boolForKey(String key) {
-        String val = values.getProperty(key);
-        if (val == null)
-            return false;
-        val = val.toLowerCase();
-        return val.equals("true") || val.equals("yes");
+        return numberForKey(key).intValue();
     }
 
     /**
@@ -212,8 +213,7 @@ public class NSUserDefaults extends NSObject {
     @CMSelector("- (void)setFloat:(float)value \n"
             + "          forKey:(NSString *)defaultName;")
     public void setFloat(float value, String key) {
-        values.setProperty(key, Float.toString(value));
-        synchronize();
+        setObject(value, key);
     }
 
     /**
@@ -224,11 +224,7 @@ public class NSUserDefaults extends NSObject {
      */
     @CMSelector("- (float)floatForKey:(NSString *)defaultName;")
     public float floatForKey(String key) {
-        try {
-            return Float.parseFloat(values.getProperty(key));
-        } catch (NumberFormatException ex) {
-        }
-        return 0;
+        return numberForKey(key).floatValue();
     }
 
     /**
@@ -240,8 +236,7 @@ public class NSUserDefaults extends NSObject {
     @CMSelector("- (void)setDouble:(double)value \n" +
             "           forKey:(NSString *)defaultName;\n")
     public void setDouble(double value, String key) {
-        values.setProperty(key, Double.toString(value));
-        synchronize();
+        setObject(value, key);
     }
 
     /**
@@ -252,11 +247,7 @@ public class NSUserDefaults extends NSObject {
      */
     @CMSelector("- (double)doubleForKey:(NSString *)defaultName;")
     public double doubleForKey(String key) {
-        try {
-            return Double.parseDouble(values.getProperty(key));
-        } catch (NumberFormatException ex) {
-        }
-        return 0;
+        return numberForKey(key).doubleValue();
     }
 
     /**
@@ -267,7 +258,45 @@ public class NSUserDefaults extends NSObject {
      */
     @CMSelector("- (NSString *)stringForKey:(NSString *)defaultName;")
     public String stringForKey(String key) {
-        return values.getProperty(key);
+        Object v = objectForKey(key);
+        if (v == null)
+            return null;
+        if (v instanceof String)
+            return (String) v;
+        else
+            return v.toString();
+    }
+
+    /**
+     * Set the specified Boolean for the specified key.
+     *
+     * @param value The Boolean for the specified key.
+     * @param key   The key for which the Boolean value is set.
+     */
+    @CMSelector("- (void)setBool:(BOOL)value \n"
+            + "         forKey:(NSString *)defaultName;")
+    public void setBool(boolean value, String key) {
+        setObject(value, key);
+    }
+
+    /**
+     * Returns a Boolean of the specified key either the default or false.
+     *
+     * @param key The key for which the Boolean is returned.
+     * @return FALSE if there is no default value.
+     */
+    @CMSelector("- (BOOL)boolForKey:(NSString *)defaultName;\n"
+            + "")
+    public boolean boolForKey(String key) {
+        Object result = objectForKey(key);
+        if (result == null)
+            return false;
+        if (result instanceof Boolean)
+            return (Boolean) result;
+        String s = result.toString().toLowerCase();
+        if (s.equals("true") || s.equals("yes"))
+            return true;
+        return new BigDecimal(s).intValue() == 1;
     }
 
     /**
@@ -278,19 +307,7 @@ public class NSUserDefaults extends NSObject {
      */
     @CMSelector("- (NSData *)dataForKey:(NSString *)defaultName;")
     public NSData dataForKey(String key) {
-        String val = values.getProperty(key);
-        if (val == null || !val.startsWith(NSDATA_PREFIX))
-            return null;
-        return new NSData(MiGBase64.decode(val.substring(NSDATA_PREFIX.length())));
-    }
-
-    /**
-     * Removes the specified key from the dictionary.
-     *
-     * @param key The key that is removed.
-     */
-    @CMSelector("- (void)removeObjectForKey:(NSString *)defaultName")
-    public void removeObjectForKey(String key) {
-        values.remove(key);
+        Object v = objectForKey(key);
+        return v instanceof NSData ? (NSData) v : null;
     }
 }

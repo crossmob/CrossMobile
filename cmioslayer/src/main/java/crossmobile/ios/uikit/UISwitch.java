@@ -16,8 +16,8 @@ import org.crossmobile.bridge.ann.*;
 
 import java.util.Set;
 
-import static crossmobile.ios.coregraphics.$coregraphics.color;
-import static crossmobile.ios.coregraphics.$coregraphics.context;
+import static crossmobile.ios.coregraphics.GraphicsDrill.color;
+import static crossmobile.ios.coregraphics.GraphicsDrill.context;
 import static org.crossmobile.bind.graphics.Theme.Switch.*;
 
 /**

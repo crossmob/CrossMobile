@@ -27,7 +27,7 @@ import org.crossmobile.support.cassowary.clconstraint.ClStayConstraint;
 
 import java.util.*;
 
-import static crossmobile.ios.coregraphics.$coregraphics.context;
+import static crossmobile.ios.coregraphics.GraphicsDrill.context;
 import static org.crossmobile.bind.graphics.Geometry.meter;
 import static org.crossmobile.bind.graphics.Theme.Scroll.*;
 

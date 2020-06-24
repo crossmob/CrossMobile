@@ -19,8 +19,8 @@ import org.robovm.objc.block.VoidBlock1;
 
 import java.util.*;
 
-import static crossmobile.ios.coregraphics.$coregraphics.color;
-import static crossmobile.ios.coregraphics.$coregraphics.selfRotateScaleTranslate;
+import static crossmobile.ios.coregraphics.GraphicsDrill.color;
+import static crossmobile.ios.coregraphics.GraphicsDrill.selfRotateScaleTranslate;
 import static crossmobile.ios.uikit.UIViewAnimationCurve.*;
 import static crossmobile.ios.uikit.UIViewAnimationTransition.*;
 

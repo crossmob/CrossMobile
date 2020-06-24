@@ -18,6 +18,7 @@ import org.crossmobile.bind.graphics.Size;
 import org.crossmobile.bridge.Native;
 
 import static crossmobile.ios.uikit.UIDeviceOrientation.*;
+import static crossmobile.ios.uikit.UserInterfaceDrill.splashWindow;
 
 public abstract class DesktopDrawableMetrics extends DrawableMetrics {
 
@@ -101,7 +102,7 @@ public abstract class DesktopDrawableMetrics extends DrawableMetrics {
             UIApplication app = UIApplication.sharedApplication();
             if (app == null)
                 return;
-            UIWindow win = $uikit.splashWindow();
+            UIWindow win = splashWindow();
             if (win == null)
                 win = app.keyWindow();
             if (win == null)

@@ -13,7 +13,6 @@ import android.graphics.Bitmap.CompressFormat;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.provider.MediaStore;
-import crossmobile.ios.coregraphics.$coregraphics;
 import crossmobile.ios.coregraphics.CGImage;
 import org.crossmobile.bind.graphics.AbstractImageBridge;
 import org.crossmobile.bind.graphics.NativeBitmap;
@@ -23,6 +22,7 @@ import org.robovm.objc.block.VoidBlock1;
 import java.io.*;
 
 import static android.app.Activity.RESULT_OK;
+import static crossmobile.ios.coregraphics.GraphicsDrill.cgimage;
 import static org.crossmobile.bind.graphics.ImageBridgeConstants.*;
 import static org.crossmobile.bind.system.SystemUtilities.closeR;
 
@@ -188,7 +188,7 @@ public class AndroidImageBridge extends AbstractImageBridge {
                     @Override
                     public void result(int resultCode, Intent data) {
                         CGImage cgimage = resultCode == RESULT_OK
-                                ? $coregraphics.cgimage(rawPhotoPath, null)
+                                ? cgimage(rawPhotoPath, null)
                                 : null;
                         if (cgimage == null && photoFile.isFile())
                             photoFile.delete();
@@ -212,7 +212,7 @@ public class AndroidImageBridge extends AbstractImageBridge {
                     File photoFile = new File(photoPath);
                     try {
                         Native.file().copyStreamAndClose(MainActivity.current.getContentResolver().openInputStream(uri), new FileOutputStream(photoFile), IMAGE_STREAM_BUFFER_SIZE);
-                        cgimage = $coregraphics.cgimage(photoPath, null);
+                        cgimage = cgimage(photoPath, null);
                     } catch (IOException ex) {
                         if (photoFile.exists())
                             photoFile.delete();

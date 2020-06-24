@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static crossmobile.ios.uikit.$uikit.drawSelf;
+import static crossmobile.ios.uikit.UserInterfaceDrill.drawSelf;
 
 /**
  * CALayer class defines an object that is responsible for handling image
