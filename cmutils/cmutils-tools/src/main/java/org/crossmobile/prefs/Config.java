@@ -21,5 +21,10 @@ public class Config {
     public final static String BACK_ICONS = ICON_DIR + "background/";
     public final static String MASK_ICONS = ICON_DIR + "mask/";
     public final static String REVERSE_INF = "META-INF/REVERSE.INF";
-    public static String[] EXCEPTIONS = new String[]{"cross_screensize"};
+
+    public final static String MIN_JAVA_VERSION = "1.8";
+    public final static String MIN_JAVA_VERSION_FULL = "1.8.0_111";
+    public final static String MAX_JAVA_VERSION = "13";
+    public final static String JAVA_RANGE = "(" + MIN_JAVA_VERSION + " up to " + MAX_JAVA_VERSION + ")";
+
 }

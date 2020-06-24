@@ -6,6 +6,7 @@
 
 package org.crossmobile.utils;
 
+import org.crossmobile.prefs.Config;
 import org.crossmobile.utils.func.Opt;
 
 import java.io.*;
@@ -128,36 +129,40 @@ public class SystemDependent {
     }
 
     public static String getJavaExec() {
-        String JAVAHOME = System.getProperty("java.home");
+        String JAVA_HOME = System.getProperty("java.home");
         String EXEC = JAVA.filename();
-        String file = JAVAHOME + File.separator + "bin" + File.separator + EXEC;
+        String file = JAVA_HOME + File.separator + "bin" + File.separator + EXEC;
         if (new File(file).isFile())
             return file;
-        file = JAVAHOME + File.separator + "jre" + File.separator + "bin" + File.separator + EXEC;
+        file = JAVA_HOME + File.separator + "jre" + File.separator + "bin" + File.separator + EXEC;
         if (new File(file).isFile())
             return file;
         return null;
     }
 
-    public static boolean isJavaOld(String version) {
-        List<Integer> numbs = TextUtils.listOfInts(version);
-        if (numbs.isEmpty())
-            return true;
-        if (numbs.get(0) > 8)
+    public static boolean isJavaValid(String version) {
+        List<Integer> given = TextUtils.listOfInts(version.trim());
+        List<Integer> req = TextUtils.listOfInts(Config.MIN_JAVA_VERSION_FULL);
+        if (req.get(0) == 1)    // for versions 1.7 1.8 etc. Go directly to 7.X 8.X etc.
+            req.remove(0);
+
+        if (given.isEmpty())
             return false;
-        if (numbs.size() < 2)
+        if (given.get(0) > req.get(0) && given.get(0) <= Integer.parseInt(Config.MAX_JAVA_VERSION))
             return true;
-        if (numbs.get(1) < 8)
-            return true;
-        if (numbs.get(1) > 8)
+        if (given.size() < 2)
             return false;
-        if (numbs.size() < 3)
-            return true;
-        if (numbs.get(2) > 0)
+        if (given.get(1) < 8)
             return false;
-        if (numbs.size() < 4)
+        if (given.get(1) > 8)
             return true;
-        return numbs.get(3) < 111;
+        if (given.size() < 3)
+            return false;
+        if (given.get(2) > 0)
+            return true;
+        if (given.size() < 4)
+            return false;
+        return given.get(3) >= req.get(2);  // we have already removed the first 1. part
     }
 
     public static boolean canMakeIos() {

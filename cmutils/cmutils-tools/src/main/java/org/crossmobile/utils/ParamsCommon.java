@@ -9,6 +9,7 @@ package org.crossmobile.utils;
 import org.crossmobile.prefs.Prefs;
 import org.crossmobile.utils.Param.TagType;
 
+import static org.crossmobile.prefs.Config.MIN_JAVA_VERSION;
 import static org.crossmobile.utils.Param.TagType.*;
 
 public enum ParamsCommon {
@@ -28,8 +29,8 @@ public enum ParamsCommon {
     TARGET_NUMERIC(AndroidTarget.NUMERIC_DEFAULT, BUILD),
     ANDROID_GRADLE_ROOT("", BUILD),
     ANDROID_GRADLE_DEPS("", BUILD),
-    JAVAC_SOURCE("1.8", BUILD),
-    JAVAC_TARGET("1.8", BUILD),
+    JAVAC_SOURCE(MIN_JAVA_VERSION, BUILD),
+    JAVAC_TARGET(MIN_JAVA_VERSION, BUILD),
 
     KEY_STORE("${user.home}/.android/debug.keystore", true, LOCAL),
     KEY_ALIAS("androiddebugkey", true, LOCAL),
