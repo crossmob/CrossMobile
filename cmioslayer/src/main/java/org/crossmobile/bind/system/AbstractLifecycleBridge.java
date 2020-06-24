@@ -13,12 +13,10 @@ import crossmobile.ios.uikit.*;
 import org.crossmobile.bind.graphics.Theme;
 import org.crossmobile.bridge.LifecycleBridge;
 import org.crossmobile.bridge.Native;
+import org.robovm.objc.block.Block0;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static crossmobile.ios.coregraphics.GraphicsDrill.convertBaseContextToCGContext;
@@ -34,8 +32,10 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
     private Thread.UncaughtExceptionHandler systemHandler;
     private boolean isQuitting = false;
     private boolean inBackground;
+    private boolean shouldWait;
+    private Set<Runnable> runningTasks = new LinkedHashSet<>();
+    private Set<Runnable> waitingTasks = new LinkedHashSet<>();
 
-    @SuppressWarnings("CharsetObjectCanBeUsed")
     @Override
     public void init(String[] args) {
         if (applicationIsInitialized)
@@ -129,6 +129,7 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
         Native.file().deleteRecursive(new File(Native.file().getTemporaryLocation()));
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean backHandled() {
         UIApplication app = UIApplication.sharedApplication();
         if (app != null &&
@@ -181,5 +182,41 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
     @Override
     public int getApplicationState() {
         return inBackground ? UIApplicationState.Background : UIApplicationState.Active;
+    }
+
+    @Override
+    public void postWaitingTask(Runnable task) {
+        synchronized (this) {
+            if (task != null)
+                waitingTasks.add(task);
+            if (!shouldWait)
+                drainWaitingTasks();
+        }
+    }
+
+    @Override
+    public <T> T runInContext(Block0<T> commands) {
+        synchronized (this) {
+            shouldWait = true;
+            T result = commands.invoke();
+            if (!waitingTasks.isEmpty())
+                drainWaitingTasks();
+            shouldWait = false;
+            return result;
+        }
+    }
+
+    private void drainWaitingTasks() {
+        // Swap instead of assign running tasks to waiting tasks and clear waiting tasks, since run tasks should be empty anyway
+        Set<Runnable> empty = runningTasks;
+        runningTasks = waitingTasks;
+        waitingTasks = empty;
+
+        for (Runnable r : runningTasks)
+            r.run();    // This method might produce more waiting tasks
+        runningTasks.clear();
+
+        if (!waitingTasks.isEmpty()) // more waiting tasks have been produced, do the same procedure again
+            drainWaitingTasks();
     }
 }

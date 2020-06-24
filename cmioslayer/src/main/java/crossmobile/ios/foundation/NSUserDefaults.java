@@ -38,6 +38,8 @@ public class NSUserDefaults extends NSObject {
     private HashMap<String, Object> bundle;
     private HashMap<String, Block0<Object>> virtual;
 
+    private final Runnable synchronizeLater = () -> new Thread(this::synchronize).start();
+
     /**
      * Returns the shared NSUserDefaults object.
      *
@@ -134,7 +136,7 @@ public class NSUserDefaults extends NSObject {
             user.put(key, Collections.unmodifiableMap((Map<?, ?>) value));
         else
             user.put(key, value);
-        synchronize();
+        Native.lifecycle().postWaitingTask(synchronizeLater);
     }
 
     /**

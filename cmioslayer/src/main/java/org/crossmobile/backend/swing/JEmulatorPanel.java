@@ -73,18 +73,27 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
         }
     }
 
+    private void inContext(Runnable r) {
+        Native.lifecycle().runInContext(() -> {
+            r.run();
+            return null;
+        });
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        if (clicked.isUnset())
-            return;
-        if (multiTouch)
-            fireTouchEvent(e.getX(), e.getY(), e, Ended, true, true);
-        fireTouchEvent(e.getX(), e.getY(), e, Ended, false, false);
-        clicked = CEvent.unset();
+        inContext(() -> {
+            if (clicked.isUnset())
+                return;
+            if (multiTouch)
+                fireTouchEvent(e.getX(), e.getY(), e, Ended, true, true);
+            fireTouchEvent(e.getX(), e.getY(), e, Ended, false, false);
+            clicked = CEvent.unset();
+        });
     }
 
     @Override
@@ -93,19 +102,21 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (e.getButton() != MouseEvent.BUTTON1)
-            return;
-        DesktopDrawableMetrics metrics = (DesktopDrawableMetrics) Native.graphics().metrics();
-        clicked = metrics.findArea(e.getX(), e.getY());
-        if (clicked.isButton())
-            repaint();
-        else if (e.getSource() instanceof SwingNativeDispatcher.DesktopNativeWidget)
-            widgetTouchCorrection(e, Began);
-        else if (clicked.isArea()) {
-            fireTouchEvent(e.getX(), e.getY(), e, Began, false, false);
-            if (multiTouch)
-                fireTouchEvent(e.getX(), e.getY(), e, Began, true, true);
-        }
+        inContext(() -> {
+            if (e.getButton() != MouseEvent.BUTTON1)
+                return;
+            DesktopDrawableMetrics metrics = (DesktopDrawableMetrics) Native.graphics().metrics();
+            clicked = metrics.findArea(e.getX(), e.getY());
+            if (clicked.isButton())
+                repaint();
+            else if (e.getSource() instanceof SwingNativeDispatcher.DesktopNativeWidget)
+                widgetTouchCorrection(e, Began);
+            else if (clicked.isArea()) {
+                fireTouchEvent(e.getX(), e.getY(), e, Began, false, false);
+                if (multiTouch)
+                    fireTouchEvent(e.getX(), e.getY(), e, Began, true, true);
+            }
+        });
     }
 
     private void widgetTouchCorrection(MouseEvent e, int state) {
@@ -120,74 +131,87 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        if (e.getButton() != MouseEvent.BUTTON1 || clicked.isUnset())
-            return;
-        DesktopDrawableMetrics metrics = (DesktopDrawableMetrics) Native.graphics().metrics();
-        if (e.getSource() instanceof SwingNativeDispatcher.DesktopNativeWidget) {
-            widgetTouchCorrection(e, Moved);
-            hardwareMouse = new Point2D.Double(e.getX(), e.getY());
-        } else if (clicked.isButton()) {
-            metrics.updateMouseMoving(e.getX(), e.getY(), clicked);
-            repaint();
-        } else {
-            fireTouchEvent(e.getX(), e.getY(), e, Moved, false, multiTouch);
-            hardwareMouse = new Point2D.Double(e.getX(), e.getY());
-        }
+        inContext(() -> {
+            if (e.getButton() != MouseEvent.BUTTON1 || clicked.isUnset())
+                return;
+            DesktopDrawableMetrics metrics = (DesktopDrawableMetrics) Native.graphics().metrics();
+            if (e.getSource() instanceof SwingNativeDispatcher.DesktopNativeWidget) {
+                widgetTouchCorrection(e, Moved);
+                hardwareMouse = new Point2D.Double(e.getX(), e.getY());
+            } else if (clicked.isButton()) {
+                metrics.updateMouseMoving(e.getX(), e.getY(), clicked);
+                repaint();
+            } else {
+                fireTouchEvent(e.getX(), e.getY(), e, Moved, false, multiTouch);
+                hardwareMouse = new Point2D.Double(e.getX(), e.getY());
+            }
+        });
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        if (e.getButton() != MouseEvent.BUTTON1 || clicked.isUnset())
-            return;
-        if (e.getSource() instanceof SwingNativeDispatcher.DesktopNativeWidget)
-            widgetTouchCorrection(e, Ended);
+        inContext(() -> {
+            if (e.getButton() != MouseEvent.BUTTON1 || clicked.isUnset())
+                return;
+            if (e.getSource() instanceof SwingNativeDispatcher.DesktopNativeWidget)
+                widgetTouchCorrection(e, Ended);
 //        else if (e.getSource() instanceof DesktopNativeWidget)
 //            widgetTouchCorrection(e, Ended);
-        else if (clicked.isButton()) {
-            clicked.performAction(this);
-            repaint();
-        } else {
-            if (multiTouch)
-                fireTouchEvent(e.getX(), e.getY(), e, Ended, true, true);
-            fireTouchEvent(e.getX(), e.getY(), e, Ended, false, false);
-        }
-        clicked = CEvent.unset();
-
+            else if (clicked.isButton()) {
+                clicked.performAction(this);
+                repaint();
+            } else {
+                if (multiTouch)
+                    fireTouchEvent(e.getX(), e.getY(), e, Ended, true, true);
+                fireTouchEvent(e.getX(), e.getY(), e, Ended, false, false);
+            }
+            clicked = CEvent.unset();
+        });
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        hardwareMouse = new Point2D.Double(e.getX(), e.getY());
-        if (multiTouch)
-            repaint();
+        inContext(() -> {
+            hardwareMouse = new Point2D.Double(e.getX(), e.getY());
+            if (multiTouch)
+                repaint();
+        });
     }
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
-        int step = e.getWheelRotation() * (e.getScrollType() == MouseWheelEvent.WHEEL_UNIT_SCROLL ? e.getScrollAmount() : 3);
-        mouseDidScroll(e.getX(), e.getY(), step);
+        inContext(() -> {
+            int step = e.getWheelRotation() * (e.getScrollType() == MouseWheelEvent.WHEEL_UNIT_SCROLL ? e.getScrollAmount() : 3);
+            mouseDidScroll(e.getX(), e.getY(), step);
+        });
     }
 
     @Override
     public void keyPressed(KeyEvent key) {
-        if (nativeFocusTarget != null)  // might not be needed
-            nativeFocusTarget.dispatchEvent(key);
-        else
-            KeyboardSupport.reactToPressEvent(this, key.getKeyCode(), key.getModifiers());
+        inContext(() -> {
+            if (nativeFocusTarget != null)  // might not be needed
+                nativeFocusTarget.dispatchEvent(key);
+            else
+                KeyboardSupport.reactToPressEvent(this, key.getKeyCode(), key.getModifiers());
+        });
     }
 
     @Override
     public void keyReleased(KeyEvent key) {
-        if (nativeFocusTarget != null)  // might not be needed
-            nativeFocusTarget.dispatchEvent(key);
-        else
-            KeyboardSupport.reactToReleaseEvent(this, key.getKeyCode(), key.getModifiers());
+        inContext(() -> {
+            if (nativeFocusTarget != null)  // might not be needed
+                nativeFocusTarget.dispatchEvent(key);
+            else
+                KeyboardSupport.reactToReleaseEvent(this, key.getKeyCode(), key.getModifiers());
+        });
     }
 
     @Override
     public void keyTyped(KeyEvent key) {
-        if (nativeFocusTarget != null)  // might not be needed
-            nativeFocusTarget.dispatchEvent(key);
+        inContext(() -> {
+            if (nativeFocusTarget != null)  // might not be needed
+                nativeFocusTarget.dispatchEvent(key);
+        });
     }
 
     @Override
@@ -270,18 +294,20 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
     @Override
     @SuppressWarnings("unchecked")
     public void paint(Graphics gfx) {
-        drawWindow(Native.graphics().newGraphicsContext(gfx, true));
-        // Draw mouse
-        if (multiTouch) {
-            Graphics2D g2 = (Graphics2D) gfx;
-            gfx.setColor(new Color(clicked.isArea() ? 0.9f : 0.5f, clicked.isArea() ? 0.9f : 0.6f, 0.7f, 0.8f));
-            DrawableMetrics metrics = Native.graphics().metrics();
-            CGPoint core = metrics.getHardwareToVirtual(hardwareMouse.x, hardwareMouse.y);
-            CGPoint shadow = metrics.getMirrorVirtualFromHardwarePoint(hardwareMouse.x, hardwareMouse.y);
-            g2.fill(new Ellipse2D.Double(core.getX() - MOUSE_AURA, core.getY() - MOUSE_AURA, MOUSE_AURA * 2, MOUSE_AURA * 2));
-            g2.fill(new Ellipse2D.Double(shadow.getX() - MOUSE_AURA, shadow.getY() - MOUSE_AURA, MOUSE_AURA * 2, MOUSE_AURA * 2));
-        }
-        Toolkit.getDefaultToolkit().sync();
+        inContext(() -> {
+            drawWindow(Native.graphics().newGraphicsContext(gfx, true));
+            // Draw mouse
+            if (multiTouch) {
+                Graphics2D g2 = (Graphics2D) gfx;
+                gfx.setColor(new Color(clicked.isArea() ? 0.9f : 0.5f, clicked.isArea() ? 0.9f : 0.6f, 0.7f, 0.8f));
+                DrawableMetrics metrics = Native.graphics().metrics();
+                CGPoint core = metrics.getHardwareToVirtual(hardwareMouse.x, hardwareMouse.y);
+                CGPoint shadow = metrics.getMirrorVirtualFromHardwarePoint(hardwareMouse.x, hardwareMouse.y);
+                g2.fill(new Ellipse2D.Double(core.getX() - MOUSE_AURA, core.getY() - MOUSE_AURA, MOUSE_AURA * 2, MOUSE_AURA * 2));
+                g2.fill(new Ellipse2D.Double(shadow.getX() - MOUSE_AURA, shadow.getY() - MOUSE_AURA, MOUSE_AURA * 2, MOUSE_AURA * 2));
+            }
+            Toolkit.getDefaultToolkit().sync();
+        });
     }
 
     void registerKeyboardNativeTarget(JComponent focus) {

@@ -195,7 +195,7 @@ public class UIWindow extends UIView {
 
     final void drawWindow() {
         CGContext cgx = UIGraphics.getCurrentContext();
-        GraphicsContext cx = context(cgx);
+        GraphicsContext<?, ?> cx = context(cgx);
         Native.graphics().metrics().preDraw(cx);
         AbstractGraphicsBridge.DrawingDepth = 0;
 
@@ -215,17 +215,17 @@ public class UIWindow extends UIView {
         if (ENABLE_DEBUG) {
             CEventManager.fireEvent(DEBUG_GRAPHICS, this);
             if (Live_Graphics_Debug) {
-                CGPoint[] p = Native.graphics().metrics().getActiveTouchLocations();
-                if (p != null) {
+                CGPoint[] points = Native.graphics().metrics().getActiveTouchLocations();
+                if (points != null) {
                     cgx.setRGBStrokeColor(1, 0.3f, 0.2f, 0.7f);
                     cx.setLineWidth(2);
-                    for (int i = 0; i < p.length; i++) {
-                        cgx.moveToPoint(0, p[i].getY());
-                        cgx.addLineToPoint(getWidth(), p[i].getY());
-                        cgx.moveToPoint(p[i].getX(), 0);
-                        cgx.addLineToPoint(p[i].getX(), getHeight());
-                        cgx.moveToPoint(p[i].getX(), p[i].getY());
-                        cgx.addArc(p[i].getX(), p[i].getY(), 30, 0, GraphicsContext._2_PI - 0.00001f, 0);
+                    for (CGPoint point : points) {
+                        cgx.moveToPoint(0, point.getY());
+                        cgx.addLineToPoint(getWidth(), point.getY());
+                        cgx.moveToPoint(point.getX(), 0);
+                        cgx.addLineToPoint(point.getX(), getHeight());
+                        cgx.moveToPoint(point.getX(), point.getY());
+                        cgx.addArc(point.getX(), point.getY(), 30, 0, GraphicsContext._2_PI - 0.00001f, 0);
                         cgx.strokePath();
                     }
                 }

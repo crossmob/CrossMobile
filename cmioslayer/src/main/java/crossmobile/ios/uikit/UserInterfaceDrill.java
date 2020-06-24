@@ -33,7 +33,7 @@ public class UserInterfaceDrill {
         return new UIColor(color);
     }
 
-    public static void drawWindow(GraphicsContext cxt) {
+    public static void drawWindow(GraphicsContext<?,?> cxt) {
         UIGraphics.pushContext(convertBaseContextToCGContext(cxt));
         UIWindow window = UIApplication.splashWindow;
         if (window == null)

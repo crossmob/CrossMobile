@@ -44,57 +44,63 @@ public class MainView extends AbsoluteLayout {
     @Override
     @SuppressWarnings("null")
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        super.dispatchTouchEvent(ev);
-        int phase;
-        int pointer = -1;
-        switch (ev.getAction() & MotionEvent.ACTION_MASK) {
-            case ACTION_DOWN:
-                phase = Began;
-                break;
-            case ACTION_MOVE:
-                phase = Moved;
-                break;
-            case ACTION_UP:
-                phase = Ended;
-                break;
-            case ACTION_CANCEL:
-                phase = Cancelled;
-                break;
-            case ACTION_POINTER_DOWN:
-                phase = Began;
-                pointer = (ev.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) >>> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
-                break;
-            case ACTION_POINTER_UP:
-                phase = Ended;
-                pointer = (ev.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) >>> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
-                break;
-            default:
-                phase = Stationary;
-                break;
-        }
-        UIWindow window;
-        if (UIApplication.sharedApplication() != null && (window = UIApplication.sharedApplication().keyWindow()) != null) {
-            int pcount = ev.getPointerCount();
-            UITouch[] touches = new UITouch[pcount];
-            CGPoint[] touchLocations = phase == Began || phase == Moved ? new CGPoint[pcount] : null;
-            for (int p = 0; p < pcount; p++) {
-                touches[p] = newUITouch(ev.getX(p), ev.getY(p), p, window, pointer >= 0 && pointer != p ? Stationary : phase);
-                if (touchLocations != null)
-                    touchLocations[p] = touches[p].locationInView(null);
+        return Native.lifecycle().runInContext(() -> {
+            super.dispatchTouchEvent(ev);
+            int phase;
+            int pointer = -1;
+            switch (ev.getAction() & MotionEvent.ACTION_MASK) {
+                case ACTION_DOWN:
+                    phase = Began;
+                    break;
+                case ACTION_MOVE:
+                    phase = Moved;
+                    break;
+                case ACTION_UP:
+                    phase = Ended;
+                    break;
+                case ACTION_CANCEL:
+                    phase = Cancelled;
+                    break;
+                case ACTION_POINTER_DOWN:
+                    phase = Began;
+                    pointer = (ev.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) >>> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
+                    break;
+                case ACTION_POINTER_UP:
+                    phase = Ended;
+                    pointer = (ev.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) >>> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
+                    break;
+                default:
+                    phase = Stationary;
+                    break;
             }
-            Native.graphics().metrics().setActiveTouchLocations(touchLocations);
-            window.sendEvent(newUIEvent(touches, ev, phase));
-            return true;
-        }
-        return false;
+            UIWindow window;
+            if (UIApplication.sharedApplication() != null && (window = UIApplication.sharedApplication().keyWindow()) != null) {
+                int pcount = ev.getPointerCount();
+                UITouch[] touches = new UITouch[pcount];
+                CGPoint[] touchLocations = phase == Began || phase == Moved ? new CGPoint[pcount] : null;
+                for (int p = 0; p < pcount; p++) {
+                    touches[p] = newUITouch(ev.getX(p), ev.getY(p), p, window, pointer >= 0 && pointer != p ? Stationary : phase);
+                    if (touchLocations != null)
+                        touchLocations[p] = touches[p].locationInView(null);
+                }
+                Native.graphics().metrics().setActiveTouchLocations(touchLocations);
+                window.sendEvent(newUIEvent(touches, ev, phase));
+                return true;
+            }
+            return false;
+        });
     }
 
     @Override
     public void draw(Canvas canvas) {
-        canvas.save();
-        drawWindow(Native.graphics().newGraphicsContext(canvas, true));
-        canvas.restore();
-        super.draw(canvas);     // Needed!!!!! or else native widgets will not function properly... It seems that "draw" method does more than what it says
+        Native.lifecycle().runInContext(() -> {
+            canvas.save();
+            //noinspection unchecked
+            drawWindow(Native.graphics().newGraphicsContext(canvas, true));
+            canvas.restore();
+            super.draw(canvas);     // Needed!!!!! or else native widgets will not function properly... It seems that "draw" method does more than what it says
+            return null;
+        });
     }
 
     @Override
