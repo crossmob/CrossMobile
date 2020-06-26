@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<archetype-descriptor name="cmarchetype-sample">
+<archetype-descriptor name="cmarchetype-button">
     <fileSets>
         <fileSet>
             <directory>src/main/materials</directory>

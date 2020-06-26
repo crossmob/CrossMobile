@@ -26,7 +26,7 @@ public interface QLPreviewControllerDataSource {
      * preview navigation list.
      */
     @CMSelector("- (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller;")
-    public int numberOfPreviewItemsInPreviewController(QLPreviewController controller);
+    int numberOfPreviewItemsInPreviewController(QLPreviewController controller);
 
     /**
      * Returns the QLPreviewItem of the specified index position of this
@@ -39,5 +39,5 @@ public interface QLPreviewControllerDataSource {
      */
     @CMSelector("- (id<QLPreviewItem>)previewController:(QLPreviewController *)controller \n"
             + "                    previewItemAtIndex:(NSInteger)index;")
-    public QLPreviewItem previewItemAtIndex(QLPreviewController controller, int index);
+    QLPreviewItem previewItemAtIndex(QLPreviewController controller, int index);
 }

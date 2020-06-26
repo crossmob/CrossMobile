@@ -19,6 +19,7 @@
     </modules>
 
     <properties>
+        <crossmobile.version>2.9.1</crossmobile.version>
         <long.version>2.9.1.0</long.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -39,7 +40,7 @@
 
         <version.appbundler>1.1.0</version.appbundler>
         <version.appenh>0.3.7</version.appenh>
-        <version.hrgui>0.2.2</version.hrgui>
+        <version.hrgui>0.2.3</version.hrgui>
         <version.jupidator>0.9.0.0</version.jupidator>
     </properties>
 

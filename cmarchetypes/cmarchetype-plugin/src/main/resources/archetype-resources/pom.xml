@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>\${groupId}</groupId>
+    <artifactId>\${artifactId}</artifactId>
+    <version>\${version}</version>
+    <name>\${name}</name>
+    <parent>
+        <groupId>org.crossmobile</groupId>
+        <artifactId>cmplugin</artifactId>
+        <version>${project.version}</version>
+        <relativePath/>
+    </parent>
+
+    <dependencies>
+        <!-- Dependencies here are only handled at compile time. At run time, only dependencies explicitly defined with
+             @CMLibDepends are taken into account -->
+        <dependency>
+            <groupId>org.crossmobile</groupId>
+            <artifactId>cmioslayer</artifactId>
+            <version>\${crossmobile.version}</version>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>crossmobile</id>
+            <url>http://mvn.crossmobile.org/content/repositories/crossmobile/</url>
+        </repository>
+    </repositories>
+</project>

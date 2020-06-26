@@ -15,5 +15,6 @@
     <modules>
         <module>cmtheme-bright</module>
         <module>cmtheme-styled</module>
+        <module>cmplugin</module>
     </modules>
 </project>

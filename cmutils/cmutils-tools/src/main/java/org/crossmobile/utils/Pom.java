@@ -23,23 +23,35 @@ public class Pom {
 
     private final XMLWalker pomWalker;
     private final File pomFile;
+    private boolean isPlugin;
+
     public static final String CROSSMOBILE_GROUP_ID = "org.crossmobile";
     public static final String CROSSMOBILE_THEME_ID = "cmtheme-bright";
-    public static final String CROSSMOBILE_PARENT_ID = "cmproject";
-    public static final String CROSSMOBILE_PARENT_ID_DEBUG = "cmproject-debug";
+
+    private static final String CROSSMOBILE_PROJECT_ID = "cmproject";
+    private static final String CROSSMOBILE_PLUGIN_ID = "cmplugin";
 
     public Pom(File pomFile) {
         this.pomFile = pomFile;
         pomWalker = XMLWalker.load(pomFile);
-
+        isPlugin = pomWalker != null
+                && pomWalker.pathExists("/project/parent/artifactId")
+                && CROSSMOBILE_PLUGIN_ID.equals(pomWalker.path("/project/parent/artifactId").text());
     }
 
     public boolean isValid() {
-        return Opt.of(pomWalker).ifExists(p -> p.setMeta(false).execIf(w -> w.pathExists("/project/parent"), parent -> parent.last().execIf(
-                c -> CROSSMOBILE_GROUP_ID.equals(parent.tag(0).nodeExists("groupID") ? parent.last().text() : null)
-                        && (CROSSMOBILE_PARENT_ID.equals(parent.toTag(0).nodeExists("artifactId") ? parent.last().text() : null)
-                        || CROSSMOBILE_PARENT_ID_DEBUG.equals(parent.toTag(0).nodeExists("artifactId") ? parent.last().text() : null)),
-                c -> c.setMeta(true)))).map(p -> (Boolean) p.meta()).getOrElse(false);
+        if (pomWalker == null)
+            return false;
+        // parent groupId is valid
+        if (pomWalker.pathExists("/project/parent/groupId") && CROSSMOBILE_GROUP_ID.equals(pomWalker.path("/project/parent/groupId").text())) {
+            if (pomWalker.pathExists("/project/parent/artifactId") && CROSSMOBILE_PROJECT_ID.equals(pomWalker.path("/project/parent/artifactId").text()))
+                // project
+                return true;
+            //noinspection RedundantIfStatement
+            if (isPlugin)
+                return true;
+        }
+        return false;
     }
 
     public String parentVersion() {
@@ -111,19 +123,23 @@ public class Pom {
 
     public boolean updatePropertiesFromPom(Properties properties) {
         try {
-            StringBuilder name = new StringBuilder();
             pomWalker.
                     path("/project").
                     execIf(w -> w.nodeExists("artifactId"), w -> properties.put(ARTIFACT_ID.tag().name, w.last().text())).
-                    execIf(w -> w.nodeExists("groupId"), w -> properties.put(GROUP_ID.tag().name, w.last().text() + "." + name.toString())).
+                    execIf(w -> w.nodeExists("groupId"), w -> properties.put(GROUP_ID.tag().name, w.last().text())).
                     execIf(w -> w.nodeExists("version"), w -> properties.put(BUNDLE_VERSION.tag().name, w.last().text())).
                     execIf(w -> w.nodeExists("name"), w -> properties.put(DISPLAY_NAME.tag().name, w.last().text())).
                     execIf(w -> w.nodeExists("properties"), w -> w.node("properties").nodes(p -> properties.put(p.name(), p.last().text())));
-            properties.put(CM_PLUGINS.tag().name, packDependencies(getDependencies()));
+            if (!isPlugin)
+                properties.put(CM_PLUGINS.tag().name, packDependencies(getDependencies()));
             return true;
         } catch (Exception ex) {
             return false;
         }
+    }
+
+    public boolean isPlugin() {
+        return isPlugin;
     }
 
     private XMLWalker dependenciesForProfile(String profile) {
@@ -163,7 +179,7 @@ public class Pom {
                 .add("version").setText(theme.version.equals(Version.VERSION) ? "${crossmobile.version}" : theme.version);
     }
 
-    public Pom updatePomFromProperties(ParamSet paramset, Properties properties) {
+    public Pom updatePomFromProperties(ParamSet paramset, Properties properties, boolean isPlugin) {
         pomWalker.
                 path("/project").tag().
                 toTag().execIf(w -> !w.nodeExists("groupId"), w -> w.add("groupId")).node("groupId").setText(properties.getProperty(GROUP_ID.tag().name)).
@@ -173,7 +189,8 @@ public class Pom {
                 toTag().execIf(w -> !w.nodeExists("properties"), w -> w.add("properties")).
                 node("properties").tag("properties");
 
-        injectDependencies(unpackDependencies(properties.getProperty(CM_PLUGINS.tag().name)), properties.getProperty(BUNDLE_VERSION.tag().name));
+        if (!isPlugin)
+            injectDependencies(unpackDependencies(properties.getProperty(CM_PLUGINS.tag().name)), properties.getProperty(BUNDLE_VERSION.tag().name));
 
         for (Param param : paramset.build()) {
             String newValue = properties.getProperty(param.name, "");

@@ -24,6 +24,7 @@
         <module>cmarchetype-single</module>
         <module>cmarchetype-storyboard</module>
         <module>cmarchetype-table</module>
+        <module>cmarchetype-plugin</module>
     </modules>
 
 </project>

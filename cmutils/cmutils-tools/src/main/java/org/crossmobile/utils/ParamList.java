@@ -24,7 +24,7 @@ public class ParamList {
     private final ParamSet paramset = new ParamSet();
     private final Properties props = paramset.getDefaults();
 
-    public boolean updateFromProperties(File file) throws ProjectException {
+    public boolean updateFromProperties(File file) {
         if (file.isFile())
             try {
                 props.load(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
@@ -34,7 +34,7 @@ public class ParamList {
         return false;
     }
 
-    public boolean updateFromPom(File pom) throws ProjectException {
+    public boolean updateFromPom(File pom) {
         if (pom.exists())
             return new Pom(pom).updatePropertiesFromPom(props);
         return true;

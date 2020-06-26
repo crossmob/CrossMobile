@@ -24,7 +24,7 @@ public class ActivityStateListener {
 
     private static int activityId = 1;
 
-    private static Collection ALWAYS_REMOVE = Collections.emptyList();
+    private static final Collection ALWAYS_REMOVE = Collections.emptyList();
     private final Map<ActivityResultListener, Integer> launch = new LinkedHashMap<>();
     private final Map<ActivityExtendedResultListener, Integer> extlaunch = new LinkedHashMap<>();
     private final Map<ActivityPermissionListener, Integer> perms = new LinkedHashMap<>();
