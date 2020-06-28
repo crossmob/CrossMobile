@@ -28,7 +28,7 @@ public class Dependency {
     private static Map<String, Collection<Dependency>> THEMES;
     private static List<DesktopSkin> SKINS;
 
-    private static Dependency DEFAULT_THEME = new Dependency(CROSSMOBILE_GROUP_ID, CROSSMOBILE_THEME_ID, Version.VERSION, null, null, null, null, null, null);
+    private static Dependency DEFAULT_THEME = new Dependency(CROSSMOBILE_GROUP_ID, CROSSMOBILE_THEME_ID, Version.VERSION, null, null, null, null, null, null, null);
 
     public static Collection<DesktopSkin> getSystemSkins() {
         if (SKINS == null) {
@@ -79,7 +79,8 @@ public class Dependency {
                         Dependency d = new Dependency(groupId, artifactId,
                                 p.toTag().node("version").text(),
                                 p.toTag().nodeExists("classifier") ? p.node("classifier").text() : null,
-                                null,
+                                p.toTag().nodeExists("packaging") ? p.node("packaging").text() : null,
+                                p.toTag().nodeExists("scope") ? p.node("scope").text() : null,
                                 p.toTag().node("name").text(),
                                 p.toTag().node("description").text(),
                                 p.toTag().nodeExists("url") ? p.toTag().node("url").text() : null,
@@ -140,6 +141,7 @@ public class Dependency {
     public final String artifactId;
     public final String version;
     public final String classifier;
+    public final String packaging;
     public final String scope;
     public final String name;
     public final String description;
@@ -148,19 +150,20 @@ public class Dependency {
     public final boolean theme;
     private final Collection<DependencyParam> configParams;
 
-    public static Dependency find(String groupId, String artifactId, String version, String classifier, String scope) {
+    public static Dependency find(String groupId, String artifactId, String version, String classifier, String scope, String packaging) {
         if (groupId == null || groupId.trim().isEmpty()
                 || artifactId == null || artifactId.trim().isEmpty())
             return null;
         Dependency system = findSystemDependency(groupId, artifactId);
-        return system == null ? new Dependency(groupId, artifactId, version, classifier, scope, null, null, null, null) : system;
+        return system == null ? new Dependency(groupId, artifactId, version, classifier, packaging, scope, null, null, null, null) : system;
     }
 
-    private Dependency(String groupId, String artifactId, String version, String classifier, String scope, String name, String description, String url, Collection<DependencyParam> configParams) {
+    private Dependency(String groupId, String artifactId, String version, String classifier, String packaging, String scope, String name, String description, String url, Collection<DependencyParam> configParams) {
         // Already checked parameters
         this.groupId = groupId.trim();
         this.artifactId = artifactId.trim();
         // Unchecked parameters
+        this.packaging = packaging == null || packaging.trim().isEmpty() ? null : packaging.trim();
         this.cmplugin = this.artifactId.startsWith("cmplugin");
         this.version = version == null || version.isEmpty() ? null : version.trim();
         this.classifier = classifier == null || classifier.trim().isEmpty() ? null : classifier.trim();

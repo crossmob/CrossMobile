@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import static org.crossmobile.utils.ParamsCommon.*;
 
-public class Pom {
+public final class Pom {
 
     private final XMLWalker pomWalker;
     private final File pomFile;
@@ -31,7 +31,7 @@ public class Pom {
     private static final String CROSSMOBILE_PROJECT_ID = "cmproject";
     private static final String CROSSMOBILE_PLUGIN_ID = "cmplugin";
 
-    public Pom(File pomFile) {
+    private Pom(File pomFile) {
         this.pomFile = pomFile;
         pomWalker = XMLWalker.load(pomFile);
         isPlugin = pomWalker != null
@@ -39,19 +39,22 @@ public class Pom {
                 && CROSSMOBILE_PLUGIN_ID.equals(pomWalker.path("/project/parent/artifactId").text());
     }
 
-    public boolean isValid() {
-        if (pomWalker == null)
-            return false;
-        // parent groupId is valid
-        if (pomWalker.pathExists("/project/parent/groupId") && CROSSMOBILE_GROUP_ID.equals(pomWalker.path("/project/parent/groupId").text())) {
-            if (pomWalker.pathExists("/project/parent/artifactId") && CROSSMOBILE_PROJECT_ID.equals(pomWalker.path("/project/parent/artifactId").text()))
-                // project
-                return true;
-            //noinspection RedundantIfStatement
-            if (isPlugin)
-                return true;
-        }
-        return false;
+    public static Pom read(File pomFile) {
+        Pom pom = new Pom(pomFile);
+        if (pom.pomWalker == null)
+            return null;
+        if (!pom.pomWalker.pathExists("/project/parent/groupId") || !CROSSMOBILE_GROUP_ID.equals(pom.pomWalker.path("/project/parent/groupId").text()))
+            return null;
+        if (!pom.pomWalker.pathExists("/project/parent/artifactId"))
+            return null;
+        String parentArtifact = pom.pomWalker.path("/project/parent/artifactId").text();
+        if (CROSSMOBILE_PROJECT_ID.equals(parentArtifact)) {
+            pom.isPlugin = false;
+        } else if (CROSSMOBILE_PLUGIN_ID.equals(parentArtifact)) {
+            pom.isPlugin = true;
+        } else
+            return null;
+        return pom;
     }
 
     public String parentVersion() {
@@ -76,8 +79,8 @@ public class Pom {
         if (!dependenciesProp.isEmpty())
             for (String depPacked : dependenciesProp.split(";")) {
                 String[] dep_array = depPacked.split(":");
-                if (dep_array.length == 5) {
-                    Dependency dep = Dependency.find(dep_array[0], dep_array[1], dep_array[2], dep_array[3], dep_array[4]);
+                if (dep_array.length == 6) {
+                    Dependency dep = Dependency.find(dep_array[0], dep_array[1], dep_array[2], dep_array[3], dep_array[4], dep_array[5]);
                     if (dep != null)
                         dependencies.add(dep);
                 }
@@ -92,11 +95,28 @@ public class Pom {
                     .append(dep.artifactId).append(":")
                     .append(dep.version == null ? " " : dep.version).append(":")
                     .append(dep.classifier == null ? " " : dep.classifier).append(":")
-                    .append(dep.scope == null ? " " : dep.scope).append(";");
+                    .append(dep.scope == null ? " " : dep.scope).append(":")
+                    .append(dep.packaging == null ? " " : dep.packaging).append(";");
         return builder.length() > 0 ? builder.substring(0, builder.length() - 1) : "";
     }
 
-    private Collection<Dependency> getDependencies() {
+    private Collection<Dependency> getDummyAndroidDependencies() {
+        Collection<Dependency> deps = new ArrayList<>();
+        if (pomWalker.pathExists("/project/dependencies"))
+            pomWalker.path("/project/dependencies").nodes("dependency", w -> {
+                w.tag();
+                deps.add(Dependency.find(
+                        w.toTag().nodeExists("groupId") ? w.node("groupId").text() : "",
+                        w.toTag().nodeExists("artifactId") ? w.node("artifactId").text() : "",
+                        w.toTag().nodeExists("version") ? w.node("version").text() : "",
+                        w.toTag().nodeExists("classifier") ? w.node("classifier").text() : "",
+                        w.toTag().nodeExists("scope") ? w.node("scope").text() : "",
+                        w.toTag().nodeExists("packaging") ? w.node("packaging").text() : ""));
+            });
+        return deps;
+    }
+
+    private Collection<Dependency> getCrossMobileDependencies() {
         Collection<Dependency> deps = new ArrayList<>();
         AtomicBoolean foundTheme = new AtomicBoolean();
         pomWalker.path("/project/dependencies").nodes("dependency",
@@ -109,7 +129,8 @@ public class Pom {
                                     a.toTag().node("artifactId").text(),
                                     a.toTag().nodeExists("version") ? a.node("version").text() : null,
                                     a.toTag().nodeExists("classifier") ? a.node("classifier").text() : null,
-                                    a.toTag().nodeExists("scope") ? a.node("scope").text() : null);
+                                    a.toTag().nodeExists("scope") ? a.node("scope").text() : null,
+                                    a.toTag().nodeExists("packaging") ? a.node("packaging").text() : "");
                             if (current != null) {
                                 deps.add(current);
                                 if (current.theme)
@@ -121,7 +142,13 @@ public class Pom {
         return deps;
     }
 
-    public boolean updatePropertiesFromPom(Properties properties) {
+    public String getNameFromPom() {
+        return pomWalker.pathExists("/project/name")
+                ? pomWalker.path("/project/name").text()
+                : "Unknown" + (isPlugin ? "Plugin" : "Project");
+    }
+
+    public void updatePropertiesFromPom2(Properties properties) throws ProjectException {
         try {
             pomWalker.
                     path("/project").
@@ -133,11 +160,12 @@ public class Pom {
                     execIf(w -> w.nodeExists("url"), w -> properties.put(CM_URL.tag().name, w.last().text())).
                     execIf(w -> w.nodeExists("organization"), w -> properties.put(CM_VENDOR.tag().name, w.last().text())).
                     execIf(w -> w.nodeExists("properties"), w -> w.node("properties").nodes(p -> properties.put(p.name(), p.last().text())));
-            if (!isPlugin)
-                properties.put(CM_PLUGINS.tag().name, packDependencies(getDependencies()));
-            return true;
+            if (isPlugin)
+                properties.put(CM_PLUGINS.tag().name, packDependencies(getDummyAndroidDependencies()));
+            else
+                properties.put(CM_PLUGINS.tag().name, packDependencies(getCrossMobileDependencies()));
         } catch (Exception ex) {
-            return false;
+            throw new ProjectException(ex);
         }
     }
 

@@ -37,6 +37,7 @@
         <version.procyon>0.5.36</version.procyon>
         <version.robovm>2.3.5</version.robovm>
         <version.javaparser>3.15.22</version.javaparser>
+        <version.roaster>2.21.2.Final</version.roaster>
 
         <version.appbundler>1.1.0</version.appbundler>
         <version.appenh>0.3.7</version.appenh>

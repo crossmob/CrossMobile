@@ -14,7 +14,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-//import org.crossmobile.gui.parameters.impl.GroupIdParameter;
 
 public class ParamList {
 
@@ -24,20 +23,16 @@ public class ParamList {
     private final ParamSet paramset = new ParamSet();
     private final Properties props = paramset.getDefaults();
 
-    public boolean updateFromProperties(File file) {
+    public void updateFromProperties(File file) {
         if (file.isFile())
             try {
                 props.load(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
-                return true;
-            } catch (IOException ex) {
+            } catch (IOException ignored) {
             }
-        return false;
     }
 
-    public boolean updateFromPom(File pom) {
-        if (pom.exists())
-            return new Pom(pom).updatePropertiesFromPom(props);
-        return true;
+    public void updateFromPom(Pom pomFile) throws ProjectException {
+        pomFile.updatePropertiesFromPom2(props);
     }
 
     public String get(Param tag) {

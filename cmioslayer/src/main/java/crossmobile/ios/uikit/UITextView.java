@@ -8,7 +8,6 @@ package crossmobile.ios.uikit;
 
 import crossmobile.ios.coregraphics.GraphicsDrill;
 import crossmobile.ios.coregraphics.CGRect;
-import crossmobile.ios.coregraphics.CoreGraphicsDrill;
 import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.graphics.Theme;
 import org.crossmobile.bind.wrapper.TextWrapper;
@@ -62,7 +61,7 @@ public class UITextView extends UIView {
         super(rect, UIColor.whiteColor);
         registerWidget(Native.widget().textView(this));
         synchronizeNativeBackgroundColor();
-        widget().setFont(CoreGraphicsDrill.font(Theme.TextView.FONT.cgfont));
+        widget().setFont(GraphicsDrill.font(Theme.TextView.FONT.cgfont));
     }
 
     private TextWrapper widget() {
@@ -131,7 +130,7 @@ public class UITextView extends UIView {
      */
     @CMSetter("@property(nonatomic, strong) UIFont *font;")
     public void setFont(UIFont font) {
-        widget().setFont(CoreGraphicsDrill.font(font.cgfont));
+        widget().setFont(GraphicsDrill.font(font.cgfont));
         Native.graphics().refreshDisplay();
     }
 

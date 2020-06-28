@@ -821,7 +821,6 @@ org/robovm/objc/block/VoidBooleanBlock.class v8
 org/robovm/objc/block/package-info.class v8
 
 Creating file cmplugin-builddep-cmioslayer-<VERSION>.jar
-crossmobile/ios/coregraphics/CoreGraphicsDrill.class v8
 crossmobile/ios/coregraphics/GraphicsDrill.class v8
 crossmobile/ios/foundation/FoundationDrill.class v8
 crossmobile/ios/uikit/UserInterfaceDrill.class v8
@@ -885,7 +884,6 @@ crossmobile/ios/coregraphics/CGRect.java
 crossmobile/ios/coregraphics/CGSize.java
 crossmobile/ios/coregraphics/CGTextDrawingMode.java
 crossmobile/ios/coregraphics/CGTextEncoding.java
-crossmobile/ios/coregraphics/CoreGraphicsDrill.java
 crossmobile/ios/coregraphics/GraphicsDrill.java
 crossmobile/ios/coregraphics/package-info.java
 crossmobile/ios/foundation/CFNumberFormatterStyle.java
@@ -1844,7 +1842,6 @@ crossmobile/ios/coregraphics/CGRect.class v8
 crossmobile/ios/coregraphics/CGSize.class v8
 crossmobile/ios/coregraphics/CGTextDrawingMode.class v8
 crossmobile/ios/coregraphics/CGTextEncoding.class v8
-crossmobile/ios/coregraphics/CoreGraphicsDrill.class v8
 crossmobile/ios/coregraphics/GraphicsDrill.class v8
 crossmobile/ios/coregraphics/package-info.class v8
 crossmobile/ios/foundation/CFNumberFormatterStyle.class v8
@@ -2736,7 +2733,6 @@ crossmobile/ios/coregraphics/CGRect.class v8
 crossmobile/ios/coregraphics/CGSize.class v8
 crossmobile/ios/coregraphics/CGTextDrawingMode.class v8
 crossmobile/ios/coregraphics/CGTextEncoding.class v8
-crossmobile/ios/coregraphics/CoreGraphicsDrill.class v8
 crossmobile/ios/coregraphics/GraphicsDrill.class v8
 crossmobile/ios/coregraphics/package-info.class v8
 crossmobile/ios/foundation/CFNumberFormatterStyle.class v8

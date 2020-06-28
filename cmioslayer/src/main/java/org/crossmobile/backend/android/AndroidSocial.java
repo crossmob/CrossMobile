@@ -1,8 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * (c) 2020 by Panayotis Katsaloulis
+ *
+ * SPDX-License-Identifier: LGPL-3.0-only
  */
+
 package org.crossmobile.backend.android;
 
 import android.app.Activity;
@@ -22,7 +23,7 @@ import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareDialog;
-import crossmobile.ios.coregraphics.CoreGraphicsDrill;
+import crossmobile.ios.coregraphics.GraphicsDrill;
 import crossmobile.ios.foundation.FoundationDrill;
 import crossmobile.ios.foundation.NSURL;
 import crossmobile.ios.social.SLComposeViewControllerCompletionHandler;
@@ -139,7 +140,7 @@ public class AndroidSocial {
                     Iterator<NSURL> uit = urls.iterator();
                     for (UIImage image : images) {
                         SharePhoto.Builder photoContentBuilder = new SharePhoto.Builder();
-                        photoContentBuilder.setBitmap((Bitmap) CoreGraphicsDrill.bitmap(image.CGImage()).getBitmap());
+                        photoContentBuilder.setBitmap((Bitmap) GraphicsDrill.bitmap(image.CGImage()).getBitmap());
                         if (uit.hasNext())
                             photoContentBuilder.setImageUrl(Uri.parse(uit.next().absoluteString()));
                         contentBuilder.addPhoto(photoContentBuilder.build());

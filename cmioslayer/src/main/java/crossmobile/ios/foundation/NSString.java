@@ -32,7 +32,7 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 import static crossmobile.ios.coregraphics.GraphicsDrill.context;
-import static crossmobile.ios.coregraphics.CoreGraphicsDrill.font;
+import static crossmobile.ios.coregraphics.GraphicsDrill.font;
 import static crossmobile.ios.foundation.NSStringEncoding.convertIntToString;
 import static crossmobile.ios.uikit.UserInterfaceDrill.cgfont;
 import static org.crossmobile.bind.system.SystemUtilities.closeR;

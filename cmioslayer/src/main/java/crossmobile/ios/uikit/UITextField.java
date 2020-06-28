@@ -7,7 +7,7 @@
 package crossmobile.ios.uikit;
 
 import crossmobile.ios.coregraphics.CGRect;
-import crossmobile.ios.coregraphics.CoreGraphicsDrill;
+import crossmobile.ios.coregraphics.GraphicsDrill;
 import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.graphics.Theme;
 import org.crossmobile.bind.wrapper.TextWrapper;
@@ -68,7 +68,7 @@ public class UITextField extends UIControl implements UITextInputTraits {
     public UITextField(CGRect rect) {
         super(rect);
         registerWidget(Native.widget().textField(this));
-        widget().setFont(CoreGraphicsDrill.font(Theme.TextField.FONT.cgfont));
+        widget().setFont(GraphicsDrill.font(Theme.TextField.FONT.cgfont));
         setBorderStyle(UITextBorderStyle.None);
     }
 
@@ -241,7 +241,7 @@ public class UITextField extends UIControl implements UITextInputTraits {
      */
     @CMSetter("@property(nonatomic, strong) UIFont *font;")
     public void setFont(UIFont font) {
-        widget().setFont(CoreGraphicsDrill.font(font.cgfont));
+        widget().setFont(GraphicsDrill.font(font.cgfont));
         Native.graphics().refreshDisplay();
     }
 

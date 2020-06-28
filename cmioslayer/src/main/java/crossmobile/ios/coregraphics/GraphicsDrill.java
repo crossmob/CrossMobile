@@ -44,6 +44,14 @@ public class GraphicsDrill {
         return new CGFont(font);
     }
 
+    public static NativeFont font(CGFont f) {
+        return f.nfont;
+    }
+
+    public static NativeBitmap bitmap(CGImage i) {
+        return i.bitmap();
+    }
+
     public static CGAffineTransform selfRotateScaleTranslate(CGAffineTransform self, double alpha, double sx, double sy, double dx, double dy) {
         return self.identitySelf().
                 rotateSelf(alpha).
@@ -68,5 +76,4 @@ public class GraphicsDrill {
     public static void trashCGImageMemory(CGImage img) {
         img.trash();
     }
-
 }

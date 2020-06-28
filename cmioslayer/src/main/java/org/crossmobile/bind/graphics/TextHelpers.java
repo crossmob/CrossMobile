@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static crossmobile.ios.coregraphics.GraphicsDrill.context;
-import static crossmobile.ios.coregraphics.CoreGraphicsDrill.font;
+import static crossmobile.ios.coregraphics.GraphicsDrill.font;
 
 public class TextHelpers {
 
