@@ -113,6 +113,15 @@ public class XMLWalker {
     }
 
     /**
+     * Check if this node has any child nodes
+     *
+     * @return true, if at least one node exists
+     */
+    public boolean nodeExists() {
+        return current.getChildNodes().getLength() > 0;
+    }
+
+    /**
      * Node with specific text exists
      *
      * @param text

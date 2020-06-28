@@ -20,6 +20,9 @@ public enum ParamsCommon {
     ARTIFACT_ID("", SYSTEMRUNTIME),
     BUNDLE_VERSION("", SYSTEMRUNTIME),
     DISPLAY_NAME("", SYSTEMRUNTIME),
+    CM_VENDOR("", SYSTEMRUNTIME),
+    CM_DESCRIPTION("", SYSTEMRUNTIME),
+    CM_URL("", SYSTEMRUNTIME),
 
     INJECTED_INFOPLIST("", BUILD),
     OBJC_IGNORE_INCLUDES("", BUILD),
@@ -51,9 +54,6 @@ public enum ParamsCommon {
     CM_DESKTOP_SKIN("system"),
     CM_KEYBOARD_SUPPORT("quit:pause:back:menu:home:rotate:multitouch"),
     CM_SPLASH_DELAY("1"),
-    CM_VENDOR(""),
-    CM_DESCRIPTION(""),
-    CM_URL(""),
 
     // The following tags are recalculated inside ParameterList
     MAIN_CLASS("");

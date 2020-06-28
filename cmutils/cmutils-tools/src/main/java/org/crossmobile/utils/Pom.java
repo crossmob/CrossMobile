@@ -129,6 +129,9 @@ public class Pom {
                     execIf(w -> w.nodeExists("groupId"), w -> properties.put(GROUP_ID.tag().name, w.last().text())).
                     execIf(w -> w.nodeExists("version"), w -> properties.put(BUNDLE_VERSION.tag().name, w.last().text())).
                     execIf(w -> w.nodeExists("name"), w -> properties.put(DISPLAY_NAME.tag().name, w.last().text())).
+                    execIf(w -> w.nodeExists("description"), w -> properties.put(CM_DESCRIPTION.tag().name, w.last().text())).
+                    execIf(w -> w.nodeExists("url"), w -> properties.put(CM_URL.tag().name, w.last().text())).
+                    execIf(w -> w.nodeExists("organization"), w -> properties.put(CM_VENDOR.tag().name, w.last().text())).
                     execIf(w -> w.nodeExists("properties"), w -> w.node("properties").nodes(p -> properties.put(p.name(), p.last().text())));
             if (!isPlugin)
                 properties.put(CM_PLUGINS.tag().name, packDependencies(getDependencies()));
@@ -179,15 +182,24 @@ public class Pom {
                 .add("version").setText(theme.version.equals(Version.VERSION) ? "${crossmobile.version}" : theme.version);
     }
 
+    private void cleanupParam(Properties properties, ParamsCommon param, String pomparam) {
+        Opt.of(properties.getProperty(param.tag().name)).filter(p -> !p.trim().isEmpty())
+                .ifMissing(() -> pomWalker.toTag("project").execIf(w -> w.nodeExists(pomparam), w -> w.node(pomparam).remove()))
+                .ifExists(p -> pomWalker.toTag("project").execIf(w -> !w.nodeExists(pomparam), w -> w.add(pomparam)).node(pomparam).setText(p));
+    }
+
     public Pom updatePomFromProperties(ParamSet paramset, Properties properties, boolean isPlugin) {
         pomWalker.
-                path("/project").tag().
-                toTag().execIf(w -> !w.nodeExists("groupId"), w -> w.add("groupId")).node("groupId").setText(properties.getProperty(GROUP_ID.tag().name)).
-                toTag().execIf(w -> !w.nodeExists("artifactId"), w -> w.add("artifactId")).node("artifactId").setText(properties.getProperty(ARTIFACT_ID.tag().name)).
-                toTag().execIf(w -> !w.nodeExists("version"), w -> w.add("version")).node("version").setText(properties.getProperty(BUNDLE_VERSION.tag().name)).
-                toTag().execIf(w -> !w.nodeExists("name"), w -> w.add("name")).node("name").setText(properties.getProperty(DISPLAY_NAME.tag().name)).
-                toTag().execIf(w -> !w.nodeExists("properties"), w -> w.add("properties")).
+                path("/project").tag("project").
+                toTag("project").execIf(w -> !w.nodeExists("groupId"), w -> w.add("groupId")).node("groupId").setText(properties.getProperty(GROUP_ID.tag().name)).
+                toTag("project").execIf(w -> !w.nodeExists("artifactId"), w -> w.add("artifactId")).node("artifactId").setText(properties.getProperty(ARTIFACT_ID.tag().name)).
+                toTag("project").execIf(w -> !w.nodeExists("version"), w -> w.add("version")).node("version").setText(properties.getProperty(BUNDLE_VERSION.tag().name)).
+                toTag("project").execIf(w -> !w.nodeExists("properties"), w -> w.add("properties")).
                 node("properties").tag("properties");
+        cleanupParam(properties, DISPLAY_NAME, "name");
+        cleanupParam(properties, CM_DESCRIPTION, "description");
+        cleanupParam(properties, CM_URL, "url");
+        cleanupParam(properties, CM_VENDOR, "organization");
 
         if (!isPlugin)
             injectDependencies(unpackDependencies(properties.getProperty(CM_PLUGINS.tag().name)), properties.getProperty(BUNDLE_VERSION.tag().name));
@@ -199,6 +211,8 @@ public class Pom {
             else
                 pomWalker.toTag("properties").execIf(w -> !w.nodeExists(param.name), w -> w.add(param.name)).node(param.name).setText(newValue);
         }
+        pomWalker.toTag("properties").execIf(xmlWalker -> !xmlWalker.nodeExists(), XMLWalker::remove);
+
         // Update Maven repository from http to https
         pomWalker.path("/project").execIf(w -> w.nodeExists("repositories"), w -> {
             w.node("repositories").filterNodes("repository", r -> {
