@@ -32,7 +32,7 @@ public class ParamList {
     }
 
     public void updateFromPom(Pom pomFile) throws ProjectException {
-        pomFile.updatePropertiesFromPom2(props);
+        pomFile.updatePropertiesFromPom(props);
     }
 
     public String get(Param tag) {

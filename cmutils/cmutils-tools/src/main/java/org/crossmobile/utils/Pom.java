@@ -16,6 +16,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import static org.crossmobile.utils.ParamsCommon.*;
 
@@ -26,6 +28,7 @@ public final class Pom {
     private boolean isPlugin;
 
     public static final String CROSSMOBILE_GROUP_ID = "org.crossmobile";
+    public static final String SHADOW_ARTIFACT = "org.crossmobile.ca.";
     public static final String CROSSMOBILE_THEME_ID = "cmtheme-bright";
 
     private static final String CROSSMOBILE_PROJECT_ID = "cmproject";
@@ -100,7 +103,7 @@ public final class Pom {
         return builder.length() > 0 ? builder.substring(0, builder.length() - 1) : "";
     }
 
-    private Collection<Dependency> getDummyAndroidDependencies() {
+    private Collection<Dependency> getShadowDependencies() {
         Collection<Dependency> deps = new ArrayList<>();
         if (pomWalker.pathExists("/project/dependencies"))
             pomWalker.path("/project/dependencies").nodes("dependency", w -> {
@@ -148,7 +151,7 @@ public final class Pom {
                 : "Unknown" + (isPlugin ? "Plugin" : "Project");
     }
 
-    public void updatePropertiesFromPom2(Properties properties) throws ProjectException {
+    public void updatePropertiesFromPom(Properties properties) throws ProjectException {
         try {
             pomWalker.
                     path("/project").
@@ -158,10 +161,10 @@ public final class Pom {
                     execIf(w -> w.nodeExists("name"), w -> properties.put(DISPLAY_NAME.tag().name, w.last().text())).
                     execIf(w -> w.nodeExists("description"), w -> properties.put(CM_DESCRIPTION.tag().name, w.last().text())).
                     execIf(w -> w.nodeExists("url"), w -> properties.put(CM_URL.tag().name, w.last().text())).
-                    execIf(w -> w.nodeExists("organization"), w -> properties.put(CM_VENDOR.tag().name, w.last().text())).
+                    execIf(w -> w.pathExists("organization/name"), w -> properties.put(CM_VENDOR.tag().name, w.last().text())).
                     execIf(w -> w.nodeExists("properties"), w -> w.node("properties").nodes(p -> properties.put(p.name(), p.last().text())));
             if (isPlugin)
-                properties.put(CM_PLUGINS.tag().name, packDependencies(getDummyAndroidDependencies()));
+                properties.put(CM_PLUGINS.tag().name, packDependencies(getShadowDependencies()));
             else
                 properties.put(CM_PLUGINS.tag().name, packDependencies(getCrossMobileDependencies()));
         } catch (Exception ex) {
@@ -188,15 +191,14 @@ public final class Pom {
     }
 
     private boolean profileExists(String profile) {
-        final boolean[] exists = new boolean[1];
-        exists[0] = false;
+        AtomicBoolean exists = new AtomicBoolean(false);
         pomWalker.path("/project").execIf(w -> !w.nodeExists("profiles"),
                 w -> w.add("profiles").parent())
                 .node("profiles").execIf(w -> w.nodeExists("profile"),
                 w -> w.filterNodes("profile",
-                        p -> exists[0] = true, p -> p.nodeWithTextExists("id", profile)));
+                        p -> exists.set(true), p -> p.nodeWithTextExists("id", profile)));
 
-        return exists[0];
+        return exists.get();
     }
 
     private void updateTheme(Dependency theme, String version) {
@@ -210,10 +212,10 @@ public final class Pom {
                 .add("version").setText(theme.version.equals(Version.VERSION) ? "${crossmobile.version}" : theme.version);
     }
 
-    private void cleanupParam(Properties properties, ParamsCommon param, String pomparam) {
+    private void cleanupParam(Properties properties, ParamsCommon param, String pomparam, String tag) {
         Opt.of(properties.getProperty(param.tag().name)).filter(p -> !p.trim().isEmpty())
-                .ifMissing(() -> pomWalker.toTag("project").execIf(w -> w.nodeExists(pomparam), w -> w.node(pomparam).remove()))
-                .ifExists(p -> pomWalker.toTag("project").execIf(w -> !w.nodeExists(pomparam), w -> w.add(pomparam)).node(pomparam).setText(p));
+                .ifMissing(() -> pomWalker.toTag(tag).execIf(w -> w.nodeExists(pomparam), w -> w.node(pomparam).remove()))
+                .ifExists(p -> pomWalker.toTag(tag).execIf(w -> !w.nodeExists(pomparam), w -> w.add(pomparam)).node(pomparam).setText(p));
     }
 
     public Pom updatePomFromProperties(ParamSet paramset, Properties properties, boolean isPlugin) {
@@ -223,14 +225,19 @@ public final class Pom {
                 toTag("project").execIf(w -> !w.nodeExists("artifactId"), w -> w.add("artifactId")).node("artifactId").setText(properties.getProperty(ARTIFACT_ID.tag().name)).
                 toTag("project").execIf(w -> !w.nodeExists("version"), w -> w.add("version")).node("version").setText(properties.getProperty(BUNDLE_VERSION.tag().name)).
                 toTag("project").execIf(w -> !w.nodeExists("properties"), w -> w.add("properties")).
-                node("properties").tag("properties");
-        cleanupParam(properties, DISPLAY_NAME, "name");
-        cleanupParam(properties, CM_DESCRIPTION, "description");
-        cleanupParam(properties, CM_URL, "url");
-        cleanupParam(properties, CM_VENDOR, "organization");
+                node("properties").tag("properties").
+                toTag("project").execIf(w -> !w.nodeExists("organization"), w -> w.add("organization")).node("organization").tag("vendor");
+        cleanupParam(properties, DISPLAY_NAME, "name", "project");
+        cleanupParam(properties, CM_DESCRIPTION, "description", "project");
+        cleanupParam(properties, CM_URL, "url", "project");
+        cleanupParam(properties, CM_VENDOR, "name", "vendor");
+        if (pomWalker.pathExists("/project/organization"))
+            pomWalker.path("/project/organization").execIf(xmlWalker -> !xmlWalker.nodeExists(), XMLWalker::remove);
 
-        if (!isPlugin)
-            injectDependencies(unpackDependencies(properties.getProperty(CM_PLUGINS.tag().name)), properties.getProperty(BUNDLE_VERSION.tag().name));
+        if (isPlugin)
+            injectShadowDependencies(unpackDependencies(properties.getProperty(CM_PLUGINS.tag().name)));
+        else
+            injectCrossMobileDependencies(unpackDependencies(properties.getProperty(CM_PLUGINS.tag().name)), properties.getProperty(BUNDLE_VERSION.tag().name));
 
         for (Param param : paramset.build()) {
             String newValue = properties.getProperty(param.name, "");
@@ -251,26 +258,50 @@ public final class Pom {
         return this;
     }
 
-    private void injectDependencies(List<Dependency> dependencies, String version) {
-        updateDependencies(pomWalker.path("/project/dependencies"), dependencies, null);
+    private void injectShadowDependencies(List<Dependency> shadowDependencies) {
+        updateDependencies(pomWalker.path("/project/dependencies"),
+                shadowDependencies.stream().filter(d -> d.groupId.startsWith(SHADOW_ARTIFACT)),
+                null, true,
+                w -> w.node("groupId").text().startsWith(SHADOW_ARTIFACT));
+    }
+
+    private void injectCrossMobileDependencies(List<Dependency> dependencies, String version) {
+        Predicate<XMLWalker> deletePredicate = w -> w.node("artifactId").text().startsWith("cmplugin-");
+        Predicate<Dependency> insertPredicate = dependency -> dependency.cmplugin && !dependency.theme;
+
+        updateDependencies(pomWalker.path("/project/dependencies"), dependencies.stream().filter(insertPredicate),
+                null, false, deletePredicate);
         for (Flavour flavour : Flavour.values())
-            updateDependencies(dependenciesForProfile(flavour.getProfileName()), dependencies, flavour.getProfileName());
+            updateDependencies(dependenciesForProfile(flavour.getProfileName()), dependencies.stream().filter(insertPredicate),
+                    flavour.getProfileName(), false, deletePredicate);
         dependencies.stream().filter(t -> t.theme).findFirst().ifPresent(theme -> updateTheme(theme, version));
     }
 
-    private void updateDependencies(XMLWalker walker, List<Dependency> dependencies, String profile) {
-        walker.tag()
+    private void updateDependenciesNode(XMLWalker parentNode, String node, String value) {
+        if (value == null || value.trim().isEmpty()) {
+            if (parentNode.nodeExists(node))
+                parentNode.node(node).remove();
+        } else {
+            if (!parentNode.nodeExists(node))
+                parentNode.add(node).parent();
+            parentNode.node(node).setText(value);
+        }
+    }
+
+    private void updateDependencies(XMLWalker walker, Stream<Dependency> dependencies, String profile, boolean plugin, Predicate<XMLWalker> deletePredicate) {
+        walker.tag("deproot")
                 .execIf(n -> n.nodeExists("dependency"),
-                        n -> n.nodes("dependency",
-                                d -> d.execIf(w -> w.node("artifactId").text().startsWith("cmplugin-"), w -> w.remove())));
-        dependencies.stream().filter(dependency -> dependency.cmplugin && !dependency.theme)
-                .forEach(d -> walker.toTag()
-                        .add("dependency")
-                        .add("groupId").setText(d.groupId).parent()
-                        .add("artifactId").setText(d.artifactId(profile)).parent()
-                        .execIf(c -> d.version != null, c -> c.add("version").setText(d.version.equals(Version.VERSION) ? "${crossmobile.version}" : d.version).parent())
-                        .add("scope").setText(profile == null ? "provided" : "runtime")
-                );
+                        n -> n.nodes("dependency", d -> d.execIf(deletePredicate, XMLWalker::remove)));
+        dependencies.forEach(d -> {
+                    walker.toTag("deproot").add("dependency").tag("dep");
+                    updateDependenciesNode(walker.toTag("dep"), "groupId", d.groupId);
+                    updateDependenciesNode(walker.toTag("dep"), "artifactId", plugin ? d.artifactId : d.profileArtifactId(profile));
+                    updateDependenciesNode(walker.toTag("dep"), "version", d.version.equals(Version.VERSION) ? "${crossmobile.version}" : d.version);
+                    updateDependenciesNode(walker.toTag("dep"), "classifier", d.classifier);
+                    updateDependenciesNode(walker.toTag("dep"), "packaging", d.packaging == null || d.packaging.equals("jar") ? null : d.packaging);
+                    updateDependenciesNode(walker.toTag("dep"), "scope", plugin ? d.scope : profile == null ? "provided" : "runtime");
+                }
+        );
     }
 
     private File getTemp() {

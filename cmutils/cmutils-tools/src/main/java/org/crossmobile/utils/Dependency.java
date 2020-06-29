@@ -22,7 +22,7 @@ import static org.crossmobile.utils.CollectionUtils.asList;
 import static org.crossmobile.utils.Pom.CROSSMOBILE_GROUP_ID;
 import static org.crossmobile.utils.Pom.CROSSMOBILE_THEME_ID;
 
-public class Dependency {
+public class Dependency implements Comparable<Dependency> {
 
     private static Map<String, Collection<Dependency>> PLUGINS;
     private static Map<String, Collection<Dependency>> THEMES;
@@ -179,7 +179,7 @@ public class Dependency {
         return configParams;
     }
 
-    public String artifactId(String profile) {
+    public String profileArtifactId(String profile) {
         return "cmplugin" + (profile == null ? "" : "-" + profile) + artifactId.replaceFirst("cmplugin", "");
     }
 
@@ -206,15 +206,20 @@ public class Dependency {
     }
 
     public boolean isSame(Dependency dep) {
-        if (this.cmplugin == true && dep.cmplugin == true)
+        if (this.cmplugin && dep.cmplugin)
             return this.groupId.equals(dep.groupId) && this.artifactId.equals(dep.artifactId);
-        else if (this.cmplugin == false && dep.cmplugin == false)
+        else if (!this.cmplugin && !dep.cmplugin)
             return this.groupId.equals(dep.groupId)
                     && this.artifactId.equals(dep.artifactId)
-                    && (this.scope != null ? this.scope.equals(dep.scope) : dep.scope == null)
-                    && (this.classifier != null ? this.classifier.equals(dep.classifier) : dep.classifier == null);
+                    && (Objects.equals(this.scope, dep.scope))
+                    && (Objects.equals(this.classifier, dep.classifier));
         else
             return false;
     }
 
+    @Override
+    public int compareTo(Dependency other) {
+        int artifactComp = this.artifactId.compareTo(other.artifactId);
+        return artifactComp != 0 ? artifactComp : this.groupId.compareTo(other.artifactId);
+    }
 }

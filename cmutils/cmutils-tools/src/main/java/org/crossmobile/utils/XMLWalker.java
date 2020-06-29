@@ -118,7 +118,7 @@ public class XMLWalker {
      * @return true, if at least one node exists
      */
     public boolean nodeExists() {
-        return current.getChildNodes().getLength() > 0;
+        return !XMLUtils.getNodes(current).isEmpty();
     }
 
     /**

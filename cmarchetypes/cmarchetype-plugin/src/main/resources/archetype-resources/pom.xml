@@ -7,6 +7,10 @@
     <artifactId>\${artifactId}</artifactId>
     <version>\${version}</version>
     <name>\${name}</name>
+    <description>Plugin description</description>
+    <organization>
+        <name>My Company</name>
+    </organization>
     <parent>
         <groupId>org.crossmobile</groupId>
         <artifactId>cmplugin</artifactId>
