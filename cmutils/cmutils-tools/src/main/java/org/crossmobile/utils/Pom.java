@@ -163,6 +163,8 @@ public final class Pom {
                     execIf(w -> w.nodeExists("url"), w -> properties.put(CM_URL.tag().name, w.last().text())).
                     execIf(w -> w.pathExists("organization/name"), w -> properties.put(CM_VENDOR.tag().name, w.last().text())).
                     execIf(w -> w.nodeExists("properties"), w -> w.node("properties").nodes(p -> properties.put(p.name(), p.last().text())));
+            if (!pomWalker.pathExists("/project/groupId"))
+                properties.put(GROUP_ID.tag().name, pomWalker.path("/project/parent/groupId").text());
             if (isPlugin)
                 properties.put(CM_PLUGINS.tag().name, packDependencies(getShadowDependencies()));
             else
@@ -231,6 +233,8 @@ public final class Pom {
         cleanupParam(properties, CM_DESCRIPTION, "description", "project");
         cleanupParam(properties, CM_URL, "url", "project");
         cleanupParam(properties, CM_VENDOR, "name", "vendor");
+        if (CROSSMOBILE_GROUP_ID.equals(pomWalker.path("/project/groupId").text()))
+            pomWalker.path("/project/groupId").remove();
         if (pomWalker.pathExists("/project/organization"))
             pomWalker.path("/project/organization").execIf(xmlWalker -> !xmlWalker.nodeExists(), XMLWalker::remove);
 
