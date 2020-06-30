@@ -185,7 +185,8 @@ public class Dependency implements Comparable<Dependency> {
 
     @Override
     public String toString() {
-        return name == null ? (description == null ? groupId + ":" + artifactId + (version == null ? "" : (":" + version)) : description) : name;
+        return name == null ? (description == null ? groupId + ":" + artifactId + (packaging == null || packaging.equals("jar") ? "" : ":" + packaging)
+                + (version == null ? "" : (":" + version)) : description) : name;
     }
 
     public String getInformation() {

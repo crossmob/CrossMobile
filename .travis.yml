@@ -40,7 +40,7 @@ install:
   - set -e
   - if test ! -e $HOME/android-sdk-dl/sdk-tools.zip ; then curl https://dl.google.com/android/repository/commandlinetools-linux-6200805_latest.zip > $HOME/android-sdk-dl/sdk-tools.zip ; fi
   - unzip -qq -n $HOME/android-sdk-dl/sdk-tools.zip -d $HOME/android-sdk
-  - ./resources/bootstrap/install-android.sh
+  - ./resources/bin/bootstrap.sh
 
 script:
   - mvn clean install
