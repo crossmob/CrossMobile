@@ -11,15 +11,12 @@ import org.crossmobile.backend.desktop.DesktopLocations;
 import org.crossmobile.bridge.ann.CMLibParam.ParamContext;
 import org.crossmobile.utils.func.Opt;
 
-import java.io.ByteArrayInputStream;
 import java.util.*;
 
 import static java.util.Comparator.comparingInt;
 import static org.crossmobile.backend.desktop.ResourceResolver.getResources;
 import static org.crossmobile.backend.desktop.ResourceResolver.getSkinFiles;
 import static org.crossmobile.utils.CollectionUtils.allValues;
-import static org.crossmobile.utils.CollectionUtils.asList;
-import static org.crossmobile.utils.Pom.CROSSMOBILE_GROUP_ID;
 import static org.crossmobile.utils.Pom.CROSSMOBILE_THEME_ID;
 
 public class Dependency implements Comparable<Dependency> {
@@ -28,7 +25,7 @@ public class Dependency implements Comparable<Dependency> {
     private static Map<String, Collection<Dependency>> THEMES;
     private static List<DesktopSkin> SKINS;
 
-    private static Dependency DEFAULT_THEME = new Dependency(CROSSMOBILE_GROUP_ID, CROSSMOBILE_THEME_ID, Version.VERSION, null, null, null, null, null, null, null);
+    private static Dependency DEFAULT_THEME = new Dependency(Version.GROUPID, CROSSMOBILE_THEME_ID, Version.VERSION, null, null, null, null, null, null, null);
 
     public static Collection<DesktopSkin> getSystemSkins() {
         if (SKINS == null) {

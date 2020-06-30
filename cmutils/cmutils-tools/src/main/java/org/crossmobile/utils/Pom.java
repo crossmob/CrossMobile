@@ -27,10 +27,8 @@ public final class Pom {
     private final File pomFile;
     private boolean isPlugin;
 
-    public static final String CROSSMOBILE_GROUP_ID = "org.crossmobile";
-    public static final String SHADOW_ARTIFACT = "org.crossmobile.ca.";
+    public static final String SHADOW = "org.crossmobile.ca.";
     public static final String CROSSMOBILE_THEME_ID = "cmtheme-bright";
-
     private static final String CROSSMOBILE_PROJECT_ID = "cmproject";
     private static final String CROSSMOBILE_PLUGIN_ID = "cmplugin";
 
@@ -46,7 +44,7 @@ public final class Pom {
         Pom pom = new Pom(pomFile);
         if (pom.pomWalker == null)
             return null;
-        if (!pom.pomWalker.pathExists("/project/parent/groupId") || !CROSSMOBILE_GROUP_ID.equals(pom.pomWalker.path("/project/parent/groupId").text()))
+        if (!pom.pomWalker.pathExists("/project/parent/groupId") || !Version.GROUPID.equals(pom.pomWalker.path("/project/parent/groupId").text()))
             return null;
         if (!pom.pomWalker.pathExists("/project/parent/artifactId"))
             return null;
@@ -233,7 +231,7 @@ public final class Pom {
         cleanupParam(properties, CM_DESCRIPTION, "description", "project");
         cleanupParam(properties, CM_URL, "url", "project");
         cleanupParam(properties, CM_VENDOR, "name", "vendor");
-        if (CROSSMOBILE_GROUP_ID.equals(pomWalker.path("/project/groupId").text()))
+        if (Version.GROUPID.equals(pomWalker.path("/project/groupId").text()))
             pomWalker.path("/project/groupId").remove();
         if (pomWalker.pathExists("/project/organization"))
             pomWalker.path("/project/organization").execIf(xmlWalker -> !xmlWalker.nodeExists(), XMLWalker::remove);
@@ -264,9 +262,9 @@ public final class Pom {
 
     private void injectShadowDependencies(List<Dependency> shadowDependencies) {
         updateDependencies(pomWalker.path("/project/dependencies"),
-                shadowDependencies.stream().filter(d -> d.groupId.startsWith(SHADOW_ARTIFACT)),
+                shadowDependencies.stream().filter(d -> d.groupId.startsWith(SHADOW)),
                 null, true,
-                w -> w.node("groupId").text().startsWith(SHADOW_ARTIFACT));
+                w -> w.node("groupId").text().startsWith(SHADOW));
     }
 
     private void injectCrossMobileDependencies(List<Dependency> dependencies, String version) {
