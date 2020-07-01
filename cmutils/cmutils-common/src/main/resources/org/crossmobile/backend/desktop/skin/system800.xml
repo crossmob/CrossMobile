@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--<!DOCTYPE chassis SYSTEM "skin.dtd">-->
-<chassis width="800" height="600" idiom="pad">
-    <meta priority="15" info="Horizontal application 800x600" descr="The application looks like a regular windowed application with a resizable display"/>
-    <screen x="0" y="0" width="800" height="600" statusbar="false"/>
-</chassis>
