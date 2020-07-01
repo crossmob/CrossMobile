@@ -55,25 +55,29 @@ public class AndroidTextWidget extends EditText implements AndroidNativeWidget {
     @Override
     public void invalidate() {
         super.invalidate();
-        Native.graphics().refreshDisplay();
+        if (textWrapper != null)    // Due to early initialization
+            textWrapper.getIOSWidget().setNeedsDisplay();
     }
 
     @Override
     public void invalidate(Rect dirty) {
         super.invalidate(dirty);
-        Native.graphics().refreshDisplay();
+        if (textWrapper != null)    // Due to early initialization
+            textWrapper.getIOSWidget().setNeedsDisplay();
     }
 
     @Override
     public void invalidate(int l, int t, int r, int b) {
         super.invalidate(l, t, r, b);
-        Native.graphics().refreshDisplay();
+        if (textWrapper != null)    // Due to early initialization
+            textWrapper.getIOSWidget().setNeedsDisplay();
     }
 
     @Override
     public void invalidateDrawable(Drawable drawable) {
         super.invalidateDrawable(drawable);
-        Native.graphics().refreshDisplay();
+        if (textWrapper != null)    // Due to early initialization
+            textWrapper.getIOSWidget().setNeedsDisplay();
     }
 
     @Override

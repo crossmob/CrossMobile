@@ -253,7 +253,7 @@ public class UIWindow extends UIView {
         cmEventDispatcher.dispatcher.processTouchEvent(event);
         if (ENABLE_DEBUG)
             if (Live_Touch_Debug)
-                Native.graphics().refreshDisplay();
+                setNeedsDisplay();
     }
 
     @Override

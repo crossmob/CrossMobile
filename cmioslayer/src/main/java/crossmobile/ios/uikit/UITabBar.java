@@ -80,7 +80,7 @@ public class UITabBar extends UIView {
     @CMSetter("@property(nonatomic, strong) UIImage *backgroundImage;")
     public void setBackgroundImage(UIImage backgroundImage) {
         this.backgroundImage = backgroundImage;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -128,7 +128,7 @@ public class UITabBar extends UIView {
     @CMSetter("@property(nonatomic, strong) UIColor *selectedImageTintColor;")
     public void setSelectedImageTintColor(UIColor selectedImageTintColor) {
         this.selectedImageTintColor = selectedImageTintColor;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -149,7 +149,7 @@ public class UITabBar extends UIView {
     @CMSetter("@property(nonatomic, strong) UIImage *selectionIndicatorImage;")
     public void setSelectionIndicatorImage(UIImage selectionIndicatorImage) {
         this.selectionIndicatorImage = selectionIndicatorImage;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -170,7 +170,7 @@ public class UITabBar extends UIView {
     @CMSetter("@property(nonatomic, strong) UIImage *shadowImage;")
     public void setShadowImage(UIImage shadowImage) {
         this.shadowImage = shadowImage;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -218,7 +218,7 @@ public class UITabBar extends UIView {
     @CMSetter("@property(nonatomic) UIBarStyle barStyle;")
     public void setBarStyle(int barStyle) {
         this.barStyle = barStyle;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**

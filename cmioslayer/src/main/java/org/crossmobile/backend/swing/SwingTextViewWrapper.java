@@ -182,7 +182,7 @@ public class SwingTextViewWrapper extends TextWrapper<UITextView, SwingTextViewW
                 @Override
                 public void repaint(long tm, int x, int y, int width, int height) {
                     super.repaint(tm, x, y, width, height);
-                    Native.graphics().refreshDisplay();
+                    getIOSWidget().setNeedsDisplay();
                 }
             };
 

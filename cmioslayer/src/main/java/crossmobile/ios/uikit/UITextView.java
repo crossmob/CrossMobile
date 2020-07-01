@@ -86,7 +86,7 @@ public class UITextView extends UIView {
     @CMSetter("@property(nonatomic, copy) NSString *text;")
     public void setText(String txt) {
         widget().setText(txt);
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -131,7 +131,7 @@ public class UITextView extends UIView {
     @CMSetter("@property(nonatomic, strong) UIFont *font;")
     public void setFont(UIFont font) {
         widget().setFont(GraphicsDrill.font(font.cgfont));
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**

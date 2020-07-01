@@ -70,7 +70,7 @@ public class UIActivityIndicatorView extends UIView {
             color = UIColor.whiteColor;
         else if (style == UIActivityIndicatorViewStyle.Gray)
             color = UIColor.grayColor;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -174,7 +174,7 @@ public class UIActivityIndicatorView extends UIView {
                 progress++;
                 if (progress >= Theme.ActivityIndicator.SLICES)
                     progress = 0;
-                Native.graphics().refreshDisplay();
+                setNeedsDisplay();
             }, null, true);
         }
     }

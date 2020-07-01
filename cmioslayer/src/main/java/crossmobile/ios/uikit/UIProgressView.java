@@ -62,7 +62,7 @@ public class UIProgressView extends UIView {
             progress = 0;
         if (progress > 1)
             progress = 1;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**

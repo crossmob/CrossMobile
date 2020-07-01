@@ -86,7 +86,7 @@ public class UISwitch extends UIControl {
         if (where > TRACK_MOVING_AREA)
             where = TRACK_MOVING_AREA;
         sliderLoc = where / TRACK_MOVING_AREA;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     @Override
@@ -153,7 +153,7 @@ public class UISwitch extends UIControl {
     public void setOn(boolean on, boolean animated) {
         this.on = on;
         sliderLoc = on ? 1 : 0;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -181,7 +181,7 @@ public class UISwitch extends UIControl {
     public void setThumbTintColor(UIColor thumbTintColor) {
         this.thumbTintColor = thumbTintColor;
         thumbDownTintColor = null;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     @Override
@@ -192,7 +192,7 @@ public class UISwitch extends UIControl {
     @Override
     public void setTintColor(UIColor tintColor) {
         this.tintColor = tintColor;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     private UIColor superTintColor() {
@@ -217,7 +217,7 @@ public class UISwitch extends UIControl {
     @CMSetter("@property(nonatomic, strong) UIColor *onTintColor;")
     public void setOnTintColor(UIColor onTintColor) {
         this.onTintColor = onTintColor;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     @Override

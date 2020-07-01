@@ -136,7 +136,7 @@ public class UITableView extends UIScrollView {
         if (needsRelayout)
             Native.system().postOnEventThread(this::layoutSubviews);
         else
-            Native.graphics().refreshDisplay();
+            setNeedsDisplay();
     };
 
     private boolean relayoutCell(UITableViewCell cell, double width, NSIndexPath path) {
@@ -543,7 +543,7 @@ public class UITableView extends UIScrollView {
         this.isEditing = editing;
         for (UITableViewCell cell : active.values())
             cell.setEditing(isEditing, getEditingStyle(cell.path));
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     private int getEditingStyle(NSIndexPath path) {

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public abstract class WebWrapper<NWIDG extends NativeWrapper<GCX>, GCX extends GraphicsContext> extends WidgetWrapper<UIWebView, NWIDG, GCX> {
+public abstract class WebWrapper<NWIDG extends NativeWrapper<GCX>, GCX extends GraphicsContext<?, ?>> extends WidgetWrapper<UIWebView, NWIDG, GCX> {
 
     public WebWrapper(UIWebView wv) {
         super(wv);

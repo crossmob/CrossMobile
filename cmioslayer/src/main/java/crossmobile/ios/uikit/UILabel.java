@@ -151,7 +151,7 @@ public class UILabel extends UIView {
             textColor = color;
         else
             textColor = color;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -173,7 +173,7 @@ public class UILabel extends UIView {
     @CMSetter("@property(nonatomic, getter=isHighlighted) BOOL highlighted;")
     public void setHighlighted(boolean highlighted) {
         this.highlighted = highlighted;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -194,7 +194,7 @@ public class UILabel extends UIView {
     @CMSetter("@property(nonatomic, strong) UIColor *highlightedTextColor;")
     public void setHighlightedTextColor(UIColor highlightedTextColor) {
         this.highlightedTextColor = highlightedTextColor;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -217,7 +217,7 @@ public class UILabel extends UIView {
     public void setTextAlignment(int NSTextAlignment) {
         if (this.textAlignment != NSTextAlignment) {
             this.textAlignment = NSTextAlignment;
-            Native.graphics().refreshDisplay();
+            setNeedsDisplay();
         }
     }
 
@@ -289,7 +289,7 @@ public class UILabel extends UIView {
     @CMSetter("@property(nonatomic) CGSize shadowOffset;")
     public void setShadowOffset(CGSize shadowOffset) {
         this.shadowOffset = shadowOffset;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -310,7 +310,7 @@ public class UILabel extends UIView {
     @CMSetter("@property(nonatomic, strong) UIColor *shadowColor;")
     public void setShadowColor(UIColor shadowColor) {
         this.shadowColor = shadowColor;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**

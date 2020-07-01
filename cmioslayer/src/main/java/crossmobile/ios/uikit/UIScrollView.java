@@ -375,7 +375,7 @@ public class UIScrollView extends UIView {
         if (delegate != null)
             delegate.didScroll(UIScrollView.this);
         layoutNativeFromRoot();
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -728,7 +728,7 @@ public class UIScrollView extends UIView {
     @CMSetter("@property(nonatomic) UIEdgeInsets scrollIndicatorInsets;")
     public void setScrollIndicatorInsets(UIEdgeInsets scrollIndicatorInsets) {
         this.scrollIndicatorInsets.set(scrollIndicatorInsets);
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**

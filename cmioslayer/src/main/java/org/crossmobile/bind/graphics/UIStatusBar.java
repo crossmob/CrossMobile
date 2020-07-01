@@ -92,7 +92,7 @@ public final class UIStatusBar extends UIView {
         int minute = cal.get(Calendar.MINUTE);
         String tt = cal.get(Calendar.HOUR_OF_DAY) + ":" + (minute < 10 ? "0" : "") + cal.get(Calendar.MINUTE);
         time.setText(tt);
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     private void updateStyle() {
@@ -119,7 +119,7 @@ public final class UIStatusBar extends UIView {
             receptImg.setImage(UIImage.imageWithContentsOfFile(Native.file().getSystemPrefix() + (styleDark ? Theme.Images.REC_DARK[recept + 1] : Theme.Images.REC_BRIGHT[recept + 1])));
         }
 
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     public boolean statusBarStyleDark() {
@@ -162,7 +162,7 @@ public final class UIStatusBar extends UIView {
         else if (percent > 1)
             percent = 1;
         battery.level = percent;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     public boolean isStatusBarHidden() {

@@ -24,15 +24,15 @@ import java.lang.ref.WeakReference;
  * @param <EVENT>
  * @param <CXT>
  */
-public abstract class NativeDispatcher<IOSWIDG extends UIView, NWIDG extends NativeWrapper<CXT>, EVENT, CXT extends GraphicsContext> {
+public abstract class NativeDispatcher<IOSWIDG extends UIView, NWIDG extends NativeWrapper<CXT>, EVENT, CXT extends GraphicsContext<?, ?>> {
 
-    private final WeakReference<WidgetWrapper<IOSWIDG, ? extends NWIDG, ? extends GraphicsContext>> wrapper;
+    private final WeakReference<WidgetWrapper<IOSWIDG, ? extends NWIDG, ? extends GraphicsContext<?, ?>>> wrapper;
 
-    public NativeDispatcher(WidgetWrapper<IOSWIDG, ? extends NWIDG, ? extends GraphicsContext> holder) {
-        this.wrapper = new WeakReference<WidgetWrapper<IOSWIDG, ? extends NWIDG, ? extends GraphicsContext>>(holder);
+    public NativeDispatcher(WidgetWrapper<IOSWIDG, ? extends NWIDG, ? extends GraphicsContext<?, ?>> holder) {
+        this.wrapper = new WeakReference<>(holder);
     }
 
-    public WidgetWrapper<IOSWIDG, ? extends NWIDG, ? extends GraphicsContext> getWidgetWrapper() {
+    public WidgetWrapper<IOSWIDG, ? extends NWIDG, ? extends GraphicsContext<?, ?>> getWidgetWrapper() {
         return wrapper.get();
     }
 

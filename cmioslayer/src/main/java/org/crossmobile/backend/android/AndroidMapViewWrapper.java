@@ -400,25 +400,25 @@ public class AndroidMapViewWrapper extends MapViewWrapper<AndroidMapViewWrapper.
         @Override
         public void invalidate() {
             AndroidMapViewWrapper.NativeW.super.invalidate();
-            Native.graphics().refreshDisplay();
+            getIOSWidget().setNeedsDisplay();
         }
 
         @Override
         public void invalidate(Rect dirty) {
             super.invalidate(dirty);
-            Native.graphics().refreshDisplay();
+            getIOSWidget().setNeedsDisplay();
         }
 
         @Override
         public void invalidate(final int l, final int t, final int r, final int b) {
             super.invalidate(l, t, r, b);
-            Native.graphics().refreshDisplay();
+            getIOSWidget().setNeedsDisplay();
         }
 
         @Override
         public void invalidateDrawable(Drawable drawable) {
             super.invalidateDrawable(drawable);
-            Native.graphics().refreshDisplay();
+            getIOSWidget().setNeedsDisplay();
         }
 
         @Override

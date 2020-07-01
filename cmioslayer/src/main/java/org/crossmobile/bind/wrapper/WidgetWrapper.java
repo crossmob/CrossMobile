@@ -13,7 +13,7 @@ import org.crossmobile.bridge.Native;
 
 import java.lang.ref.WeakReference;
 
-public abstract class WidgetWrapper<IOSWIDG extends UIView, NWIDG extends NativeWrapper<? extends GraphicsContext>, CXT extends GraphicsContext> {
+public abstract class WidgetWrapper<IOSWIDG extends UIView, NWIDG extends NativeWrapper<? extends GraphicsContext<?,?>>, CXT extends GraphicsContext<?,?>> {
 
     public static final boolean useNativeDrawPipeline = false;
 

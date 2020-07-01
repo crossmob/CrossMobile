@@ -70,7 +70,7 @@ public class UIPageControl extends UIControl {
      */
     @CMSelector("- (void)updateCurrentPageDisplay;")
     public void updateCurrentPageDisplay() {
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**

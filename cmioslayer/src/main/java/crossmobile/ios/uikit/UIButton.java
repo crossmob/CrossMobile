@@ -105,7 +105,7 @@ public class UIButton extends UIControl {
     public void setFrame(CGRect frame) {
         super.setFrame(frame);
         dirtyVisuals = true;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -174,7 +174,7 @@ public class UIButton extends UIControl {
     public void layoutSubviews() {
         super.layoutSubviews();
         dirtyVisuals = true;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -243,7 +243,7 @@ public class UIButton extends UIControl {
     public void setTitle(String title, int UIControlState) {
         states.setTitle((byte) (UIControlState & MASK), title, label.font());
         dirtyVisuals = true;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -279,7 +279,7 @@ public class UIButton extends UIControl {
     public void setTitleColor(UIColor titleColor, int UIControlState) {
         states.setTitleColor((byte) (UIControlState & MASK), titleColor);
         dirtyVisuals = true;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -316,7 +316,7 @@ public class UIButton extends UIControl {
     public void setTitleShadowColor(UIColor shadowcolor, int UIControlState) {
         states.setShadowColor((byte) (UIControlState & MASK), shadowcolor);
         dirtyVisuals = true;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -357,7 +357,7 @@ public class UIButton extends UIControl {
     void setImage(Promise<UIImage> pimage, int controlstate) {
         states.setFore((byte) (controlstate & MASK), pimage);
         dirtyVisuals = true;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -395,7 +395,7 @@ public class UIButton extends UIControl {
     public void setBackgroundImage(UIImage img, int UIControlState) {
         states.setBack((byte) (UIControlState & MASK), img == null ? null : img.cacheTinted(false, this));
         dirtyVisuals = true;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -476,7 +476,7 @@ public class UIButton extends UIControl {
         else
             states.clearState((byte) Highlighted);
         dirtyVisuals = true;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     @Override
@@ -487,7 +487,7 @@ public class UIButton extends UIControl {
         else
             states.clearState((byte) Selected);
         dirtyVisuals = true;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     @Override
@@ -498,7 +498,7 @@ public class UIButton extends UIControl {
         else
             states.setState((byte) Disabled);
         dirtyVisuals = true;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     @Override

@@ -347,7 +347,7 @@ public class UISegmentedControl extends UIControl {
         if (selection >= 0)
             items.get(selection).setSelected(true);
         sendActionsForControlEvents(UIControlEvents.ValueChanged);
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -374,7 +374,7 @@ public class UISegmentedControl extends UIControl {
         // frame.getSize().height = (style ==
         // UISegmentedControlStyle.UISegmentedControlStyleBar) ?
         // kSegmentedControlHeightBar : kSegmentedControlHeightDefault;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -427,7 +427,7 @@ public class UISegmentedControl extends UIControl {
                 actualX += actualWidth;
 
             }
-            Native.graphics().refreshDisplay();
+            setNeedsDisplay();
         });
     }
 

@@ -12,7 +12,7 @@ import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.graphics.NativeFont;
 import org.crossmobile.bridge.Native;
 
-public abstract class TextWrapper<IOSWIDG extends UIView, NWIDG extends NativeWrapper<GCX>, GCX extends GraphicsContext> extends WidgetWrapper<IOSWIDG, NWIDG, GCX> {
+public abstract class TextWrapper<IOSWIDG extends UIView, NWIDG extends NativeWrapper<GCX>, GCX extends GraphicsContext<?,?>> extends WidgetWrapper<IOSWIDG, NWIDG, GCX> {
 
     public TextWrapper(IOSWIDG tf) {
         super(tf);

@@ -29,7 +29,6 @@ import java.lang.ref.WeakReference;
 import java.util.*;
 
 import static crossmobile.ios.coregraphics.GraphicsDrill.*;
-import static crossmobile.ios.foundation.FoundationDrill.isUnderMainRunLoop;
 import static crossmobile.ios.uikit.UIViewContentMode.*;
 import static org.crossmobile.bind.graphics.AbstractGraphicsBridge.DrawingDepth;
 import static org.crossmobile.bind.system.Debug.ENABLE_DEBUG;
@@ -46,6 +45,9 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
 
     /* Constants */
     public static final double NoIntrinsicMetric = 0;
+
+    // Use this universal Runnable whenever we want to refresh display
+    private static final Runnable refreshDisplay = () -> Native.graphics().refreshDisplay();
 
     private static final Object[] animationLock = new Object[0];
     private static cmAnimation pendingAnim;
@@ -105,7 +107,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
     private boolean multipleTouchEnabled = false;
     private CALayer layer;
     private cmConstraints ARMconstraints;
-    private WidgetWrapper<UIView, NativeWrapper<? extends GraphicsContext>, GraphicsContext> widget;
+    private WidgetWrapper<UIView, NativeWrapper<? extends GraphicsContext<?, ?>>, GraphicsContext<?, ?>> widget;
     // Debug variables
     private boolean translatesAutoresizingMaskIntoConstraints = true;
     private boolean needsUpdateConstraints = false;
@@ -490,7 +492,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
         } else if (!sameOrigin) {
             Geometry.set(oldFrame, frame);
             layoutNativeFromRoot();
-            Native.graphics().refreshDisplay();
+            setNeedsDisplay();
         }
     }
 
@@ -509,7 +511,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
         safeAreaInsets();
         if (autoresizesSubviews)
             applyLayout();
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -706,7 +708,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
             dv.doAdd();
             dv.delegateAfter();
         }
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -817,7 +819,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
     }
 
     UIView subview(Class<? extends UIView>... viewclasses) {
-        Class viewClass = getClass();
+        Class<?> viewClass = getClass();
         for (int i = 0; i < viewclasses.length; i++)
             if (viewclasses[i].isAssignableFrom(viewClass))
                 return this;
@@ -904,15 +906,11 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
     }
 
     /**
-     * Sets this view as one needed to be redrawn.
+     * Marks this view to be redrawn on the next even cycle.
      */
     @CMSelector("- (void)setNeedsDisplay;")
     public void setNeedsDisplay() {
-        if (Native.system().isEventThread() || isUnderMainRunLoop()) {
-            if (isAttachedToWindow())
-                Native.graphics().refreshDisplay();
-        } else
-            Native.system().debug("Calling setNeedsDisplay from outside main thread", null);
+        Native.lifecycle().postWaitingTask(refreshDisplay);
     }
 
     /**
@@ -930,7 +928,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
                 pendingAnim.setBackground(this, color(background.cgcolor));
         } else {
             setBackgroundColorImpl(background);
-            Native.graphics().refreshDisplay();
+            setNeedsDisplay();
         }
     }
 
@@ -958,7 +956,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
     public void setTintColor(UIColor tintColor) {
         this.tintColor = tintColor;
         tintColorDidChange();
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -1058,7 +1056,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
             pendingAnim.setTransformation(this, transform);
         else {
             setTransformImpl(transform);
-            Native.graphics().refreshDisplay();
+            setNeedsDisplay();
         }
     }
 
@@ -1131,7 +1129,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
             pendingAnim.setAlpha(this, alpha);
         else {
             this.alpha = alpha;
-            Native.graphics().refreshDisplay();
+            setNeedsDisplay();
         }
     }
 
@@ -2469,12 +2467,12 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
     }
 
     protected final void registerWidget(WidgetWrapper<UIView, NativeWrapper<? extends
-            GraphicsContext>, GraphicsContext> peer) {
+            GraphicsContext<?,?>>, GraphicsContext<?,?>> peer) {
         this.widget = peer;
         layoutNativeFromRoot();
     }
 
-    protected final WidgetWrapper<UIView, NativeWrapper<? extends GraphicsContext>, GraphicsContext> getWidget() {
+    protected final WidgetWrapper<UIView, NativeWrapper<? extends GraphicsContext<?,?>>, GraphicsContext<?,?>> getWidget() {
         return widget;
     }
 

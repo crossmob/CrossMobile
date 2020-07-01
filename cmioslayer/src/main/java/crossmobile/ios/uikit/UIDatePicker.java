@@ -97,7 +97,7 @@ public class UIDatePicker extends UIControl {
     public void setCountDownDuration(double countDownDuration) {
         picker.setCountDownDuration(countDownDuration);
         this.countDownDuration = countDownDuration;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -119,7 +119,7 @@ public class UIDatePicker extends UIControl {
     public void setDate(NSDate date) {
         picker.setDate(date);
         this.date = date;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -141,7 +141,7 @@ public class UIDatePicker extends UIControl {
     public void setDatePickerMode(int UIDatePickerMode) {
         picker.setUIDatePickerMode(UIDatePickerMode);
         this.datePickerMode = UIDatePickerMode;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -164,7 +164,7 @@ public class UIDatePicker extends UIControl {
     public void setLocale(NSLocale locale) {
         picker.setLocale(locale);
         this.locale = locale;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -187,7 +187,7 @@ public class UIDatePicker extends UIControl {
     public void setMaximumDate(NSDate maximumDate) {
         picker.setMaximumDate(maximumDate);
         this.maximumDate = maximumDate;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -210,7 +210,7 @@ public class UIDatePicker extends UIControl {
     public void setMinimumDate(NSDate minimumDate) {
         picker.setMinimumDate(minimumDate);
         this.minimumDate = minimumDate;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -233,7 +233,7 @@ public class UIDatePicker extends UIControl {
     public void setMinuteInterval(int minuteInterval) {
         picker.setInterval(minuteInterval);
         this.minuteInterval = minuteInterval;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -255,7 +255,7 @@ public class UIDatePicker extends UIControl {
     public void setTimeZone(NSTimeZone timeZone) {
         picker.setTimeZone(timeZone);
         this.timeZone = timeZone;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -271,7 +271,7 @@ public class UIDatePicker extends UIControl {
             + "       animated:(BOOL)animated;")
     public void setDate(NSDate date, boolean animated) {
         picker.setDate(date, animated);
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     @Override

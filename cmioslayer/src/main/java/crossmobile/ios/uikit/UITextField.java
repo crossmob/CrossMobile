@@ -144,7 +144,7 @@ public class UITextField extends UIControl implements UITextInputTraits {
     @Override
     public void setSecureTextEntry(boolean secureTextEntry) {
         widget().setSecure(secureTextEntry);
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     @Override
@@ -176,7 +176,7 @@ public class UITextField extends UIControl implements UITextInputTraits {
     public void setText(String text) {
         Native.system().runOnEventThread(() -> {
             widget().setText(text);
-            Native.graphics().refreshDisplay();
+            setNeedsDisplay();
         });
     }
 
@@ -198,7 +198,7 @@ public class UITextField extends UIControl implements UITextInputTraits {
     @CMSetter("@property(nonatomic, strong) UIColor *textColor;")
     public void setTextColor(UIColor color) {
         widget().setTextColor(color(color.cgcolor));
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -242,7 +242,7 @@ public class UITextField extends UIControl implements UITextInputTraits {
     @CMSetter("@property(nonatomic, strong) UIFont *font;")
     public void setFont(UIFont font) {
         widget().setFont(GraphicsDrill.font(font.cgfont));
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**

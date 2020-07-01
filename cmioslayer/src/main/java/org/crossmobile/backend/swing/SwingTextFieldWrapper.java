@@ -226,7 +226,7 @@ public class SwingTextFieldWrapper extends TextWrapper<UITextField, SwingTextFie
         @Override
         public void repaint(long tm, int x, int y, int width, int height) {
             super.repaint(tm, x, y, width, height);
-            Native.graphics().refreshDisplay();
+            getIOSWidget().setNeedsDisplay();
         }
 
         @Override

@@ -74,7 +74,7 @@ public class UISlider extends UIControl {
         if (where > track_moving_area)
             where = track_moving_area;
         setValue((float) (minimumValue + (maximumValue - minimumValue) * where / track_moving_area));
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     @Override
@@ -127,7 +127,7 @@ public class UISlider extends UIControl {
         if (val > maximumValue)
             val = maximumValue;
         value = val;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -154,7 +154,7 @@ public class UISlider extends UIControl {
             maximumValue = minimumValue;
         if (value < minimumValue)
             value = minimumValue;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -180,7 +180,7 @@ public class UISlider extends UIControl {
             minimumValue = maximumValue;
         if (value > maximumValue)
             value = minimumValue;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -238,7 +238,7 @@ public class UISlider extends UIControl {
     @CMSetter("@property(nonatomic, strong) UIImage *maximumValueImage;")
     public void setMaximumValueImage(UIImage maximumValueImage) {
         this.maximumValueImage = maximumValueImage;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -263,7 +263,7 @@ public class UISlider extends UIControl {
     @CMSetter("@property(nonatomic, strong) UIImage *minimumValueImage;")
     public void setMinimumValueImage(UIImage minimumValueImage) {
         this.minimumValueImage = minimumValueImage;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -397,7 +397,7 @@ public class UISlider extends UIControl {
     @CMSetter("@property(nonatomic, strong) UIColor *minimumTrackTintColor;")
     public void setMinimumTrackTintColor(UIColor minimumTrackTintColor) {
         this.minimumTrackTintColor = minimumTrackTintColor;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -418,7 +418,7 @@ public class UISlider extends UIControl {
     @CMSetter("@property(nonatomic, strong) UIColor *maximumTrackTintColor;")
     public void setMaximumTrackTintColor(UIColor maximumTrackTintColor) {
         this.maximumTrackTintColor = maximumTrackTintColor;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -440,7 +440,7 @@ public class UISlider extends UIControl {
     public void setThumbTintColor(UIColor thumbTintColor) {
         this.thumbTintColor = thumbTintColor;
         thumbDownTintColor = pressedColor(thumbTintColor);
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     @Override

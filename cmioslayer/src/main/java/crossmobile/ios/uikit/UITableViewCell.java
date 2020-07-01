@@ -179,7 +179,7 @@ public class UITableViewCell extends UIView {
             textlabel.setHighlightedTextColor(highlighted);
         if (detailedtextlabel != null)
             detailedtextlabel.setHighlightedTextColor(highlighted);
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**

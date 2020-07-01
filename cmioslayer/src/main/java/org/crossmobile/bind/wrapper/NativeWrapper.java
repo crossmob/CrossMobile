@@ -8,7 +8,7 @@ package org.crossmobile.bind.wrapper;
 
 import org.crossmobile.bind.graphics.GraphicsContext;
 
-public interface NativeWrapper<GCX extends GraphicsContext> {
+public interface NativeWrapper<GCX extends GraphicsContext<?, ?>> {
 
     void superDraw(GCX cxt);
 

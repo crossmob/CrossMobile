@@ -231,7 +231,7 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
         @Override
         public void invalidate() {
             NativeW.super.invalidate();
-            Native.graphics().refreshDisplay();
+            getIOSWidget().setNeedsDisplay();
         }
 
         @Override

@@ -17,7 +17,7 @@ import org.crossmobile.bind.graphics.GraphicsContext;
 import java.util.List;
 import java.util.Set;
 
-public abstract class MapViewWrapper<NWIDG extends NativeWrapper<GCX>, GCX extends GraphicsContext> extends WidgetWrapper<MKMapView, NWIDG, GCX> {
+public abstract class MapViewWrapper<NWIDG extends NativeWrapper<GCX>, GCX extends GraphicsContext<?,?>> extends WidgetWrapper<MKMapView, NWIDG, GCX> {
 
     public MapViewWrapper(MKMapView widg) {
         super(widg);

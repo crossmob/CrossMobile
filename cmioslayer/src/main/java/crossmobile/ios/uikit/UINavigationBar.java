@@ -267,7 +267,7 @@ public class UINavigationBar extends UIView {
                 }
             }
 
-            Native.graphics().refreshDisplay();
+            setNeedsDisplay();
         }
     }
 

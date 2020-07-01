@@ -71,7 +71,7 @@ public class UIControl extends UIView {
     @CMSetter("@property(nonatomic, getter=isSelected) BOOL selected;")
     public void setSelected(boolean selected) {
         this.selected = selected;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -149,7 +149,7 @@ public class UIControl extends UIView {
     @CMSetter("@property(nonatomic, getter=isEnabled) BOOL enabled;")
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     @Override
@@ -178,7 +178,7 @@ public class UIControl extends UIView {
     @CMSetter("@property(nonatomic, getter=isHighlighted) BOOL highlighted;")
     public void setHighlighted(boolean highlighted) {
         this.highlighted = highlighted;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -205,7 +205,7 @@ public class UIControl extends UIView {
         if (this.contentHorizontalAlignment == UIControlContentHorizontalAlignment)
             return;
         this.contentHorizontalAlignment = UIControlContentHorizontalAlignment;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -232,7 +232,7 @@ public class UIControl extends UIView {
         if (contentVerticalAlignment == this.contentVerticalAlignment)
             return;
         this.contentVerticalAlignment = contentVerticalAlignment;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**

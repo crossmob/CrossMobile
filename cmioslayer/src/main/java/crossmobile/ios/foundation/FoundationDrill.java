@@ -19,8 +19,4 @@ public class FoundationDrill {
     public static void quitTimers() {
         NSRunLoop.mainRunLoop().invalidateAll();
     }
-
-    public static boolean isUnderMainRunLoop() {
-        return NSRunLoop.isUnderMainRunLoop();
-    }
 }

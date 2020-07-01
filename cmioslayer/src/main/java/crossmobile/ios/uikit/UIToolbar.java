@@ -137,7 +137,7 @@ public class UIToolbar extends UIView {
                 } else if (item.systemItem == UIBarButtonSystemItem.FlexibleSpace)
                     flexibleOffset += flexibleSize;
             }
-            Native.graphics().refreshDisplay();
+            setNeedsDisplay();
         });
     }
 

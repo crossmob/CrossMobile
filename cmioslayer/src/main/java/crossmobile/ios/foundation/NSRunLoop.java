@@ -43,10 +43,6 @@ public class NSRunLoop extends NSObject {
         return mainRunLoop;
     }
 
-    static boolean isUnderMainRunLoop() {
-        return Thread.currentThread() == mainRunLoop.loopThread;
-    }
-
     /**
      * Registers the specified timer with the specified loop mode.
      *
@@ -130,5 +126,4 @@ public class NSRunLoop extends NSObject {
         for (NSTimer timer : mainRunLoop.registry)
             timer.invalidate();
     }
-
 }

@@ -71,7 +71,7 @@ public class UIImageView extends UIView {
         this.image = image;
         imageIsDirty = true;
         if (!isHighlighted())
-            Native.graphics().refreshDisplay();
+            setNeedsDisplay();
     }
 
     /**
@@ -99,7 +99,7 @@ public class UIImageView extends UIView {
         this.highlightedImage = highlightedImage;
         imageIsDirty = true;
         if (isHighlighted())
-            Native.graphics().refreshDisplay();
+            setNeedsDisplay();
     }
 
     /**
@@ -134,7 +134,7 @@ public class UIImageView extends UIView {
             return;
         this.highlighted = highlighted;
         imageIsDirty = true;
-        Native.graphics().refreshDisplay();
+        setNeedsDisplay();
     }
 
     /**
@@ -183,7 +183,7 @@ public class UIImageView extends UIView {
                 : UIImage.animatedImageWithImages(animationImages, animationImages.size() * 0.04).cacheTinted(false, this);
         imageIsDirty = true;
         if (!isHighlighted())
-            Native.graphics().refreshDisplay();
+            setNeedsDisplay();
     }
 
     /**
@@ -209,7 +209,7 @@ public class UIImageView extends UIView {
                 : UIImage.animatedImageWithImages(highlightedAnimationImages, highlightedAnimationImages.size() * 0.04).cacheTinted(false, this);
         imageIsDirty = true;
         if (isHighlighted())
-            Native.graphics().refreshDisplay();
+            setNeedsDisplay();
     }
 
     /**
@@ -292,7 +292,7 @@ public class UIImageView extends UIView {
             else {
                 view.animIdx++;
                 view.imageIsDirty = true;
-                Native.graphics().refreshDisplay();
+                view.setNeedsDisplay();
             }
         }
     }
