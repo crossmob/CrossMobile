@@ -910,7 +910,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
      */
     @CMSelector("- (void)setNeedsDisplay;")
     public void setNeedsDisplay() {
-        Native.lifecycle().postWaitingTask(refreshDisplay);
+        Native.lifecycle().runOnceLaterOnEventThread(refreshDisplay);
     }
 
     /**
@@ -2074,7 +2074,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
 
     void applyLayout() {
         try {
-            Native.system().runAndWaitOnEventThread(() -> {
+            Native.lifecycle().runAndWaitOnEventThread(() -> {
                 if (!constraints().isEmpty()) {
                     needsUpdateConstraints = false;
                     setViewAttributes();
@@ -2101,7 +2101,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
                         layoutGuide.applyResult();
             });
         } catch (ConcurrentModificationException ex) {
-            Native.system().postOnEventThread(this::applyLayout);
+            Native.lifecycle().postOnEventThread(this::applyLayout);
         }
     }
 
@@ -2467,12 +2467,12 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
     }
 
     protected final void registerWidget(WidgetWrapper<UIView, NativeWrapper<? extends
-            GraphicsContext<?,?>>, GraphicsContext<?,?>> peer) {
+            GraphicsContext<?, ?>>, GraphicsContext<?, ?>> peer) {
         this.widget = peer;
         layoutNativeFromRoot();
     }
 
-    protected final WidgetWrapper<UIView, NativeWrapper<? extends GraphicsContext<?,?>>, GraphicsContext<?,?>> getWidget() {
+    protected final WidgetWrapper<UIView, NativeWrapper<? extends GraphicsContext<?, ?>>, GraphicsContext<?, ?>> getWidget() {
         return widget;
     }
 

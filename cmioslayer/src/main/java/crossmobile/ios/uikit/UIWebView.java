@@ -64,7 +64,7 @@ public class UIWebView extends UIView {
     @CMSelector("- (void)loadRequest:(NSURLRequest *)request;")
     public void loadRequest(final NSURLRequest request) {
         if (request != null && request.URL() != null && request.URL().absoluteString() != null)
-            Native.system().postOnEventThread(() -> {
+            Native.lifecycle().postOnEventThread(() -> {
                 if (delegate == null || delegate.shouldStartLoadWithRequest(UIWebView.this, request, UIWebViewNavigationType.LinkClicked))
                     widget().loadRequest(request);
             });

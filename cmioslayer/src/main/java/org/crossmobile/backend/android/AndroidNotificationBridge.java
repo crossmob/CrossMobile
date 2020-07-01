@@ -122,6 +122,6 @@ public class AndroidNotificationBridge implements NotificationBridge {
     @Override
     public void registerForRemoteNotifications() {
         if (token != null)
-            Native.system().postOnEventThread(() -> UIApplication.sharedApplication().delegate().didRegisterForRemoteNotificationsWithDeviceToken(UIApplication.sharedApplication(), NSData.dataWithBytes(token)));
+            Native.lifecycle().postOnEventThread(() -> UIApplication.sharedApplication().delegate().didRegisterForRemoteNotificationsWithDeviceToken(UIApplication.sharedApplication(), NSData.dataWithBytes(token)));
     }
 }

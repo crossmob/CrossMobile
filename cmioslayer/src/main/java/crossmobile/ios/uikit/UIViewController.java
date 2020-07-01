@@ -609,7 +609,7 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
     public void presentViewController(UIViewController viewControllerToPresent, boolean flag, Runnable completion) {
         this.modalViewController = viewControllerToPresent;
         if (viewControllerToPresent != null)
-            Native.system().postOnEventThread(() -> {
+            Native.lifecycle().postOnEventThread(() -> {
                 viewControllerToPresent.presentingViewController = this;
                 viewControllerToPresent.view().setTransform(CGAffineTransform.makeTranslation(0, viewControllerToPresent.view().getHeight()));
                 Runnable animation = () -> {

@@ -20,6 +20,8 @@ import crossmobile.ios.uikit.UITouch;
 import crossmobile.ios.uikit.UIWindow;
 import org.crossmobile.bridge.Native;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import static android.view.MotionEvent.*;
 import static crossmobile.ios.uikit.UserInterfaceDrill.*;
 import static crossmobile.ios.uikit.UITouchPhase.*;
@@ -44,7 +46,8 @@ public class MainView extends AbsoluteLayout {
     @Override
     @SuppressWarnings("null")
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        return Native.lifecycle().runInContext(() -> {
+        AtomicBoolean result = new AtomicBoolean(false);
+        Native.lifecycle().runInContext(() -> {
             super.dispatchTouchEvent(ev);
             int phase;
             int pointer = -1;
@@ -85,10 +88,10 @@ public class MainView extends AbsoluteLayout {
                 }
                 Native.graphics().metrics().setActiveTouchLocations(touchLocations);
                 window.sendEvent(newUIEvent(touches, ev, phase));
-                return true;
+                result.set(true);
             }
-            return false;
         });
+        return result.get();
     }
 
     @Override
@@ -99,7 +102,6 @@ public class MainView extends AbsoluteLayout {
             drawWindow(Native.graphics().newGraphicsContext(canvas, true));
             canvas.restore();
             super.draw(canvas);     // Needed!!!!! or else native widgets will not function properly... It seems that "draw" method does more than what it says
-            return null;
         });
     }
 

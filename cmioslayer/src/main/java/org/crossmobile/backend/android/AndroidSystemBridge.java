@@ -21,8 +21,8 @@ import crossmobile.ios.foundation.NSSelector;
 import crossmobile.ios.uikit.UIAlertView;
 import crossmobile.ios.uikit.UIAlertViewDelegate;
 import crossmobile.ios.uikit.UITextField;
-import org.crossmobile.bind.system.SystemBridgeExt;
 import org.crossmobile.bridge.Native;
+import org.crossmobile.bridge.SystemBridge;
 import org.crossmobile.bridge.ann.CMLib;
 
 import java.io.PrintWriter;
@@ -35,7 +35,7 @@ import static org.crossmobile.bridge.ann.CMLibTarget.ANDROID;
 
 
 @CMLib(target = ANDROID, name = "cmioslayer")
-public class AndroidSystemBridge implements SystemBridgeExt {
+public class AndroidSystemBridge implements SystemBridge {
     private AndroidPermissions permissions;
 
     public static void printError(Object message, Throwable th) {
@@ -61,24 +61,6 @@ public class AndroidSystemBridge implements SystemBridgeExt {
         Log.i(LOGTAG, message == null ? "null" : message);
     }
 
-    @Override
-    public void runOnEventThread(Runnable r) {
-        Activity activity = MainActivity.current;
-        if (activity != null) // Run only if still active
-            activity.runOnUiThread(r);
-    }
-
-    @Override
-    public void postOnEventThread(Runnable r) {
-        View view = MainView.current;
-        if (view != null)
-            view.post(r);
-    }
-
-    @Override
-    public boolean isEventThread() {
-        return Looper.getMainLooper().getThread().getId() == Thread.currentThread().getId();
-    }
 
     @Override
     public String version() {
@@ -92,7 +74,7 @@ public class AndroidSystemBridge implements SystemBridgeExt {
 
     @Override
     public void showAlert(final UIAlertView view, final String title, final String message, final List<String> buttons, final UIAlertViewDelegate delegate) {
-        Native.system().runAndWaitOnEventThread(new Runnable() {
+        Native.lifecycle().runAndWaitOnEventThread(new Runnable() {
             final Map<EditText, EditText> joints = new HashMap<>();
 
             @Override
@@ -145,7 +127,7 @@ public class AndroidSystemBridge implements SystemBridgeExt {
 
     @Override
     public void showActionSheet(String title, String cancelTitle, String destructiveTitle, List<String> otherTitles, NSSelector<Integer> callback) {
-        Native.system().runAndWaitOnEventThread(() -> {
+        Native.lifecycle().runAndWaitOnEventThread(() -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.current);
             builder.setTitle(title);
             if (destructiveTitle != null)

@@ -25,7 +25,7 @@ public class AndroidNativeDispatcher extends NativeDispatcher<UIView, AndroidNat
 
     @Override
     public void setMetrics(final int x, final int y, final int width, final int height) {
-        Native.system().runOnEventThread(() -> {
+        Native.lifecycle().runOnEventThread(() -> {
             AndroidNativeWidget view = getWidgetWrapper().getNativeWidget();
             view.setLayoutParams(new android.widget.AbsoluteLayout.LayoutParams(width, height, x, y));
         });
@@ -34,7 +34,7 @@ public class AndroidNativeDispatcher extends NativeDispatcher<UIView, AndroidNat
     @Override
     public void sendTouchEvents(final MotionEvent original, final NativeTouch[] touches) {
 //        if (original != null)
-//            Native.system().runOnEventThread(new Runnable() {
+//            Native.lifecycle().runOnEventThread(new Runnable() {
 //                @Override
 //                public void run() {
 //                    MotionEvent.PointerCoords coords[] = new MotionEvent.PointerCoords[touches.length];

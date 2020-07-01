@@ -7,28 +7,18 @@
 package org.crossmobile.backend.desktop;
 
 import crossmobile.ios.uikit.UIAlertView;
-import org.crossmobile.bind.system.SystemBridgeExt;
+import org.crossmobile.bridge.SystemBridge;
 
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 
 import static org.crossmobile.bind.system.i18n.I18NSelf.ℑ;
 
 
-public abstract class DesktopSystemBridge implements SystemBridgeExt {
+public abstract class DesktopSystemBridge implements SystemBridge {
 
-    private static final PrintWriter error;
-
-    static {
-        Writer writer = null;
-        try {
-            writer = new OutputStreamWriter(System.err, "UTF-8");
-        } catch (UnsupportedEncodingException ex) {
-        }
-        error = new PrintWriter(writer);
-    }
+    private static final PrintWriter error = new PrintWriter(new OutputStreamWriter(System.err, StandardCharsets.UTF_8));
 
     @Override
     public void error(String message, Throwable th) {

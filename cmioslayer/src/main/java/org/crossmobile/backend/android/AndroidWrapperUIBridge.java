@@ -55,13 +55,13 @@ public class AndroidWrapperUIBridge implements WrapperUIBridge<View> {
 
     @Override
     public void resignFocus() {
-        Native.system().runOnEventThread(resignFocus);
+        Native.lifecycle().runOnEventThread(resignFocus);
         ((InputMethodManager) MainActivity.current.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(MainView.current.getWindowToken(), 0);
     }
 
     @Override
     public void requestFocus(final View nativeWidget) {
-        Native.system().runOnEventThread(() -> {
+        Native.lifecycle().runOnEventThread(() -> {
             nativeWidget.requestFocus();
             ((InputMethodManager) MainActivity.current.getSystemService(Context.INPUT_METHOD_SERVICE)).showSoftInput(nativeWidget, 0);
         });
@@ -69,7 +69,7 @@ public class AndroidWrapperUIBridge implements WrapperUIBridge<View> {
 
     @Override
     public void setAttached(final View view, final boolean isAttached) {
-        Native.system().runOnEventThread(() -> {
+        Native.lifecycle().runOnEventThread(() -> {
             ViewParent parent = view.getParent();
             boolean isAttachedNow = parent != null;
             if (isAttached == isAttachedNow)

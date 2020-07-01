@@ -8,6 +8,8 @@ package org.crossmobile.backend.android;
 
 import android.app.Activity;
 import android.location.LocationListener;
+import android.os.Looper;
+import android.view.View;
 import android.widget.Toast;
 import org.crossmobile.bind.system.AbstractLifecycleBridge;
 import org.crossmobile.bridge.Native;
@@ -43,7 +45,7 @@ public class AndroidLifecycleBridge extends AbstractLifecycleBridge {
         MainActivity c = MainActivity.current;
         if (c != null) {
             if (error != null)
-                Native.system().postOnEventThread(() -> Toast.makeText(c, error, Toast.LENGTH_LONG).show());
+                postOnEventThread(() -> Toast.makeText(c, error, Toast.LENGTH_LONG).show());
             c.finish();
         }
     }
@@ -81,4 +83,24 @@ public class AndroidLifecycleBridge extends AbstractLifecycleBridge {
     @Override
     public void splashTerminated() {
     }
+
+    @Override
+    public void runOnEventThread(Runnable r) {
+        Activity activity = MainActivity.current;
+        if (activity != null) // Run only if still active
+            activity.runOnUiThread(r);
+    }
+
+    @Override
+    public void postOnEventThread(Runnable r) {
+        View view = MainView.current;
+        if (view != null)
+            view.post(r);
+    }
+
+    @Override
+    public boolean isEventThread() {
+        return Looper.getMainLooper().getThread().getId() == Thread.currentThread().getId();
+    }
+
 }

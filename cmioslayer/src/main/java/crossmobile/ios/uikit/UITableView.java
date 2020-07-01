@@ -134,7 +134,7 @@ public class UITableView extends UIScrollView {
 
         setContentSize(new CGSize(width, Math.max(metrics().totalHeight(), getHeight()) - contentInset.getTop() - contentInset.getBottom()), false);
         if (needsRelayout)
-            Native.system().postOnEventThread(this::layoutSubviews);
+            Native.lifecycle().postOnEventThread(this::layoutSubviews);
         else
             setNeedsDisplay();
     };
@@ -699,7 +699,7 @@ public class UITableView extends UIScrollView {
 
     @Override
     public void layoutSubviews() {
-        Native.system().runAndWaitOnEventThread(layoutSubviews);
+        Native.lifecycle().runAndWaitOnEventThread(layoutSubviews);
     }
 
     @CMSelector("- (void)registerNib:(UINib *)nib forCellReuseIdentifier:(NSString *)identifier;")

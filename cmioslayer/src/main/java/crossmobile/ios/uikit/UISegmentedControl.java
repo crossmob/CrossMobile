@@ -409,7 +409,7 @@ public class UISegmentedControl extends UIControl {
 
         if (items.size() < 1)
             return;
-        Native.system().runAndWaitOnEventThread(() -> {
+        Native.lifecycle().runAndWaitOnEventThread(() -> {
             CGRect frame1 = frame();
             int actualX = 0;
             int actualWidth;

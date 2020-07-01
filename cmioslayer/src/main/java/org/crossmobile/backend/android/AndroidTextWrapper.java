@@ -43,7 +43,7 @@ public class AndroidTextWrapper extends TextWrapper<UIView, AndroidTextWidget, A
 
     @Override
     public void setText(String text) {
-        Native.system().runAndWaitOnEventThread(() -> {
+        Native.lifecycle().runAndWaitOnEventThread(() -> {
             selfChangingText = true;
             getNativeWidget().setText(text);
         });
@@ -108,7 +108,7 @@ public class AndroidTextWrapper extends TextWrapper<UIView, AndroidTextWidget, A
     @Override
     public void setFont(final NativeFont font) {
         this.font = font;
-        Native.system().runAndWaitOnEventThread(() -> {
+        Native.lifecycle().runAndWaitOnEventThread(() -> {
             AndroidFont afont = (AndroidFont) font;
             getNativeWidget().setTypeface(afont.typeface);
             switch (System.getProperty("cm.screen.scale")) {

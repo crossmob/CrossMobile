@@ -1321,7 +1321,6 @@ org/crossmobile/bind/system/Debug.java
 org/crossmobile/bind/system/Predicate.java
 org/crossmobile/bind/system/Promise.java
 org/crossmobile/bind/system/Recycler.java
-org/crossmobile/bind/system/SystemBridgeExt.java
 org/crossmobile/bind/system/SystemUtilities.java
 org/crossmobile/bind/system/Ticker.java
 org/crossmobile/bind/system/TickerConsumer.java
@@ -2518,6 +2517,8 @@ org/crossmobile/bind/io/SoundDelegate.class v8
 org/crossmobile/bind/io/SoundPlayer$Delegate.class v8
 org/crossmobile/bind/io/SoundPlayer.class v8
 org/crossmobile/bind/package-info.class v8
+org/crossmobile/bind/system/AbstractLifecycleBridge$1.class v8
+org/crossmobile/bind/system/AbstractLifecycleBridge$SyncRunnable.class v8
 org/crossmobile/bind/system/AbstractLifecycleBridge.class v8
 org/crossmobile/bind/system/AbstractLocationBridge.class v8
 org/crossmobile/bind/system/AppConstants.class v8
@@ -2527,8 +2528,6 @@ org/crossmobile/bind/system/Debug.class v8
 org/crossmobile/bind/system/Predicate.class v8
 org/crossmobile/bind/system/Promise.class v8
 org/crossmobile/bind/system/Recycler.class v8
-org/crossmobile/bind/system/SystemBridgeExt$SyncRunnable.class v8
-org/crossmobile/bind/system/SystemBridgeExt.class v8
 org/crossmobile/bind/system/SystemUtilities.class v8
 org/crossmobile/bind/system/Ticker$1.class v8
 org/crossmobile/bind/system/Ticker$2.class v8
@@ -3257,6 +3256,8 @@ org/crossmobile/bind/io/SoundDelegate.class v8
 org/crossmobile/bind/io/SoundPlayer$Delegate.class v8
 org/crossmobile/bind/io/SoundPlayer.class v8
 org/crossmobile/bind/package-info.class v8
+org/crossmobile/bind/system/AbstractLifecycleBridge$1.class v8
+org/crossmobile/bind/system/AbstractLifecycleBridge$SyncRunnable.class v8
 org/crossmobile/bind/system/AbstractLifecycleBridge.class v8
 org/crossmobile/bind/system/AbstractLocationBridge.class v8
 org/crossmobile/bind/system/AppConstants.class v8
@@ -3266,8 +3267,6 @@ org/crossmobile/bind/system/Debug.class v8
 org/crossmobile/bind/system/Predicate.class v8
 org/crossmobile/bind/system/Promise.class v8
 org/crossmobile/bind/system/Recycler.class v8
-org/crossmobile/bind/system/SystemBridgeExt$SyncRunnable.class v8
-org/crossmobile/bind/system/SystemBridgeExt.class v8
 org/crossmobile/bind/system/SystemUtilities.class v8
 org/crossmobile/bind/system/Ticker$1.class v8
 org/crossmobile/bind/system/Ticker$2.class v8

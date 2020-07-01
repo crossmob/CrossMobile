@@ -119,7 +119,7 @@ public class CGImage extends CFType {
     protected void finalize() throws Throwable {
         super.finalize();
         if (Native.file().isTemporaryLocation(filename))
-            Native.system().postOnEventThread(() -> new File(filename).delete());
+            Native.lifecycle().postOnEventThread(() -> new File(filename).delete());
     }
 
     String getFilename() {

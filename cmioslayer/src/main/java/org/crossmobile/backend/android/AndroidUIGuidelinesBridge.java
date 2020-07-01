@@ -29,7 +29,7 @@ public class AndroidUIGuidelinesBridge implements UIGuidelinesBridge {
     @Override
     public void setStatusBarDark(boolean dark) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            Native.system().runOnEventThread(() -> {
+            Native.lifecycle().runOnEventThread(() -> {
                 Window window = MainActivity.current.getWindow();
                 setStatusBarText(window, dark);
             });

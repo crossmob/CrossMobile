@@ -69,7 +69,7 @@ public class AndroidGraphicsBridge extends AbstractGraphicsBridge<Canvas, Androi
 
     @Override
     protected void requestRepaint() {
-        Native.system().runOnEventThread(() -> MainView.current.invalidate());
+        Native.lifecycle().runOnEventThread(() -> MainView.current.invalidate());
     }
 
     @Override

@@ -19,7 +19,7 @@ import java.util.Set;
 public class DesktopNotificationsBridge implements NotificationBridge {
     @Override
     public void requestAuthorizationWithOptions(VoidBlock2<Boolean, NSError> completionHandler) {
-        Native.system().postOnEventThread(() -> completionHandler.invoke(false, NSError.errorWithDomain("UNNOTIFICATION ERROR", UNErrorCode.NotificationsNotAllowed, null)));
+        Native.lifecycle().postOnEventThread(() -> completionHandler.invoke(false, NSError.errorWithDomain("UNNOTIFICATION ERROR", UNErrorCode.NotificationsNotAllowed, null)));
     }
 
     @Override

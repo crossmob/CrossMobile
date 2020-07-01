@@ -136,7 +136,7 @@ public class NSUserDefaults extends NSObject {
             user.put(key, Collections.unmodifiableMap((Map<?, ?>) value));
         else
             user.put(key, value);
-        Native.lifecycle().postWaitingTask(synchronizeLater);
+        Native.lifecycle().runOnceLaterOnEventThread(synchronizeLater);
     }
 
     /**

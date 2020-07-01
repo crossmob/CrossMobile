@@ -84,4 +84,29 @@ public class SwingLifecycleBridge extends DesktopLifecycleBridge {
             return;
         SwingGraphicsBridge.frame.setResizable(true);
     }
+
+    /**
+     * MAKE SURE that this method will run & return IMMEDIATELY when run from
+     * the dispatch thread
+     *
+     * @param r
+     */
+    @Override
+    public void runOnEventThread(Runnable r) {
+        if (EventQueue.isDispatchThread())  // Important!! or else will lock
+            r.run();
+        else
+            EventQueue.invokeLater(r);
+    }
+
+    @Override
+    public boolean isEventThread() {
+        return EventQueue.isDispatchThread();
+    }
+
+    @Override
+    public void postOnEventThread(Runnable r) {
+        EventQueue.invokeLater(r);
+    }
+
 }

@@ -53,7 +53,7 @@ public class UILongPressGestureRecognizer extends UIGestureRecognizer {
             timer = NSTimer.scheduledTimerWithTimeInterval(minimumPressDuration, timer -> {
                 if (state() == Possible) {
                     setState(Began);
-                    Native.system().runOnEventThread(this::performCallbacks);
+                    Native.lifecycle().runOnEventThread(this::performCallbacks);
                 }
             }, null, false);
         }

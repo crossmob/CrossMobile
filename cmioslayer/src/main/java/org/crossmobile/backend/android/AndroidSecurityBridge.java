@@ -90,7 +90,7 @@ public class AndroidSecurityBridge implements SecurityBridge {
         if (initCipher()) {
             FingerprintManager.CryptoObject cryptoObject = new FingerprintManager.CryptoObject(cipher);
             fingerprintManager.authenticate(cryptoObject, new CancellationSignal(), 0, new FingerPrintCallback(callback), null);
-            Native.system().runAndWaitOnEventThread(new Runnable() {
+            Native.lifecycle().runAndWaitOnEventThread(new Runnable() {
                 @Override
                 public void run() {
                     dialog = new AlertDialog.Builder(MainActivity.current).create();

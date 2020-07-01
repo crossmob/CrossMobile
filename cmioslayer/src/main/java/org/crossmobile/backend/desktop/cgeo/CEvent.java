@@ -86,7 +86,7 @@ public class CEvent {
     public void performAction(final CEventCallback callback) {
         if (owner.isActive()) {
             owner.setActive(Integer.MIN_VALUE, Integer.MIN_VALUE);
-            Native.system().postOnEventThread(() -> {
+            Native.lifecycle().postOnEventThread(() -> {
                 switch (buttonIdx) {
                     case _POWER:
                         callback.powerOff();

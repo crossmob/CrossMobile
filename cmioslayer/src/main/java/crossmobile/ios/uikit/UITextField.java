@@ -174,7 +174,7 @@ public class UITextField extends UIControl implements UITextInputTraits {
      */
     @CMSetter("@property(nonatomic, copy) NSString *text;")
     public void setText(String text) {
-        Native.system().runOnEventThread(() -> {
+        Native.lifecycle().runOnEventThread(() -> {
             widget().setText(text);
             setNeedsDisplay();
         });

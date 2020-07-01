@@ -239,7 +239,7 @@ class cmAnimation implements TickerConsumer {
 
     @Override
     public void end() {
-        Native.system().postOnEventThread(() -> {
+        Native.lifecycle().postOnEventThread(() -> {
             if (parent != null) {
                 if (viewLeave != null)
                     for (DelegateViews dv : viewLeave) {

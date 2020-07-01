@@ -497,7 +497,7 @@ public class UINavigationController extends UIViewController {
         thisView.bringSubviewToFront(navigationBar);
 
         if (animationOptions == UIViewAnimationOptions.TransitionNone && postEx != null)
-            Native.system().postOnEventThread(postEx::perform);
+            Native.lifecycle().postOnEventThread(postEx::perform);
     }
 
     private void preExchange(UIViewController old, UIViewController current, boolean animated) {

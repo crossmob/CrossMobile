@@ -30,7 +30,7 @@ public abstract class AbstractGraphicsBridge<CANVAS, NTVP, TRANSF> implements Gr
     public void refreshDisplay() {
         if (!refresh.isStillPending) {
             refresh.isStillPending = true;
-            Native.system().runOnEventThread(refresh);
+            Native.lifecycle().runOnEventThread(refresh);
         }
     }
 

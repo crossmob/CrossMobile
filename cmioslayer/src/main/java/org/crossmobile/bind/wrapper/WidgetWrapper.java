@@ -27,7 +27,7 @@ public abstract class WidgetWrapper<IOSWIDG extends UIView, NWIDG extends Native
     @SuppressWarnings({"LeakingThisInConstructor", "OverridableMethodCallInConstructor"})
     public WidgetWrapper(IOSWIDG widg) {
         this.ioswidget = new WeakReference<>(widg);
-        Native.system().runAndWaitOnEventThread(() -> {
+        Native.lifecycle().runAndWaitOnEventThread(() -> {
             nativewidget = newNativeWidget();
             dispatcher = Native.widget().newNativeDispatcher(WidgetWrapper.this);
         });
@@ -63,6 +63,6 @@ public abstract class WidgetWrapper<IOSWIDG extends UIView, NWIDG extends Native
     public abstract NWIDG newNativeWidget();
 
     public void setUserInteraction(final boolean status) {
-        Native.system().runOnEventThread(() -> nativewidget.setUserInteraction(status));
+        Native.lifecycle().runOnEventThread(() -> nativewidget.setUserInteraction(status));
     }
 }

@@ -139,63 +139,63 @@ public class ActivityStateListener {
         for (K listener : activeListeners) {
             if (autoRemove == ALWAYS_REMOVE || autoRemove.remove(listener))
                 registry.remove(listener);
-            Native.system().safeRun(() -> consumer.invoke(listener));
+            Native.lifecycle().safeRun(() -> consumer.invoke(listener));
         }
         return !activeListeners.isEmpty();
     }
 
     void onStart() {
         for (ActivityLifecycleListener listener : lifecycle)
-            Native.system().safeRun(listener::onStart);
+            Native.lifecycle().safeRun(listener::onStart);
     }
 
     void onPause() {
         for (ActivityLifecycleListener listener : lifecycle)
-            Native.system().safeRun(listener::onPause);
+            Native.lifecycle().safeRun(listener::onPause);
     }
 
     void onStop() {
         for (ActivityLifecycleListener listener : lifecycle)
-            Native.system().safeRun(listener::onStop);
+            Native.lifecycle().safeRun(listener::onStop);
     }
 
     void onResume() {
         for (ActivityLifecycleListener listener : lifecycle)
-            Native.system().safeRun(listener::onResume);
+            Native.lifecycle().safeRun(listener::onResume);
     }
 
     void onDestroy() {
         for (ActivityLifecycleListener listener : lifecycle)
-            Native.system().safeRun(listener::onDestroy);
+            Native.lifecycle().safeRun(listener::onDestroy);
     }
 
     void onLowMemory() {
         for (ActivityLifecycleListener listener : lifecycle)
-            Native.system().safeRun(listener::onLowMemory);
+            Native.lifecycle().safeRun(listener::onLowMemory);
     }
 
     void onCreate(Bundle savedInstanceState) {
         for (ActivityLifecycleListener listener : lifecycle)
-            Native.system().safeRun(() -> listener.onCreate(savedInstanceState));
+            Native.lifecycle().safeRun(() -> listener.onCreate(savedInstanceState));
     }
 
     void onSaveInstanceState(Bundle outState) {
         for (ActivityLifecycleListener listener : lifecycle)
-            Native.system().safeRun(() -> listener.onSaveInstanceState(outState));
+            Native.lifecycle().safeRun(() -> listener.onSaveInstanceState(outState));
     }
 
     void onConfigurationChanged(Configuration newConfig) {
         for (ActivityLifecycleListener listener : lifecycle)
-            Native.system().safeRun(() -> listener.onConfigurationChanged(newConfig));
+            Native.lifecycle().safeRun(() -> listener.onConfigurationChanged(newConfig));
     }
 
     void onOrientationChanged(int newOrientation) {
         for (ActivityLifecycleListener listener : lifecycle)
-            Native.system().safeRun(() -> listener.onOrientationChanged(newOrientation));
+            Native.lifecycle().safeRun(() -> listener.onOrientationChanged(newOrientation));
     }
 
     void onNewIntent(Intent intent) {
         for (ActivityLifecycleListener listener : lifecycle)
-            Native.system().safeRun(() -> listener.onNewIntent(intent));
+            Native.lifecycle().safeRun(() -> listener.onNewIntent(intent));
     }
 }

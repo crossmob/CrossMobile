@@ -73,20 +73,13 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
         }
     }
 
-    private void inContext(Runnable r) {
-        Native.lifecycle().runInContext(() -> {
-            r.run();
-            return null;
-        });
-    }
-
     @Override
     public void mouseClicked(MouseEvent e) {
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        inContext(() -> {
+        Native.lifecycle().runInContext(() -> {
             if (clicked.isUnset())
                 return;
             if (multiTouch)
@@ -102,7 +95,7 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
 
     @Override
     public void mousePressed(MouseEvent e) {
-        inContext(() -> {
+        Native.lifecycle().runInContext(() -> {
             if (e.getButton() != MouseEvent.BUTTON1)
                 return;
             DesktopDrawableMetrics metrics = (DesktopDrawableMetrics) Native.graphics().metrics();
@@ -131,7 +124,7 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        inContext(() -> {
+        Native.lifecycle().runInContext(() -> {
             if (e.getButton() != MouseEvent.BUTTON1 || clicked.isUnset())
                 return;
             DesktopDrawableMetrics metrics = (DesktopDrawableMetrics) Native.graphics().metrics();
@@ -150,7 +143,7 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        inContext(() -> {
+        Native.lifecycle().runInContext(() -> {
             if (e.getButton() != MouseEvent.BUTTON1 || clicked.isUnset())
                 return;
             if (e.getSource() instanceof SwingNativeDispatcher.DesktopNativeWidget)
@@ -171,7 +164,7 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        inContext(() -> {
+        Native.lifecycle().runInContext(() -> {
             hardwareMouse = new Point2D.Double(e.getX(), e.getY());
             if (multiTouch)
                 repaint();
@@ -180,7 +173,7 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
-        inContext(() -> {
+        Native.lifecycle().runInContext(() -> {
             int step = e.getWheelRotation() * (e.getScrollType() == MouseWheelEvent.WHEEL_UNIT_SCROLL ? e.getScrollAmount() : 3);
             mouseDidScroll(e.getX(), e.getY(), step);
         });
@@ -188,7 +181,7 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
 
     @Override
     public void keyPressed(KeyEvent key) {
-        inContext(() -> {
+        Native.lifecycle().runInContext(() -> {
             if (nativeFocusTarget != null)  // might not be needed
                 nativeFocusTarget.dispatchEvent(key);
             else
@@ -198,7 +191,7 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
 
     @Override
     public void keyReleased(KeyEvent key) {
-        inContext(() -> {
+        Native.lifecycle().runInContext(() -> {
             if (nativeFocusTarget != null)  // might not be needed
                 nativeFocusTarget.dispatchEvent(key);
             else
@@ -208,7 +201,7 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
 
     @Override
     public void keyTyped(KeyEvent key) {
-        inContext(() -> {
+        Native.lifecycle().runInContext(() -> {
             if (nativeFocusTarget != null)  // might not be needed
                 nativeFocusTarget.dispatchEvent(key);
         });
@@ -294,7 +287,7 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
     @Override
     @SuppressWarnings("unchecked")
     public void paint(Graphics gfx) {
-        inContext(() -> {
+        Native.lifecycle().runInContext(() -> {
             drawWindow(Native.graphics().newGraphicsContext(gfx, true));
             // Draw mouse
             if (multiTouch) {

@@ -58,9 +58,9 @@ public class NSObject {
     public final <A> void performSelectorOnMainThread(NSSelector<A> selector, final A arg, boolean waitUntilDone) {
         if (selector != null)
             if (waitUntilDone)
-                Native.system().runAndWaitOnEventThread(() -> selector.exec(arg));
+                Native.lifecycle().runAndWaitOnEventThread(() -> selector.exec(arg));
             else
-                Native.system().postOnEventThread(() -> selector.exec(arg));
+                Native.lifecycle().postOnEventThread(() -> selector.exec(arg));
     }
 
     /**

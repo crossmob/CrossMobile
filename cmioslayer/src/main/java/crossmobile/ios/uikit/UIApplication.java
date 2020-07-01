@@ -65,7 +65,7 @@ public class UIApplication extends UIResponder {
                            @CMParamMod(convertWith = "jclass_to_string", type = String.class) Class<? extends UIApplicationDelegate> UIApplicationDelegate) {
         Native.prepare(null);
         Native.lifecycle().init(args);
-        Native.system().runOnEventThread(() -> {
+        Native.lifecycle().runOnEventThread(() -> {
 
             // This is preferred since the constraint put during lifetime initialization under Android might not be enough, and a second one here might be required.
             if (instance == null)
@@ -81,13 +81,13 @@ public class UIApplication extends UIResponder {
                 Native.lifecycle().splashTerminated();
                 Native.graphics().refreshDisplay();
                 if (UIResponder.reqeuestResponderBeforeInit != null)
-                    Native.system().postOnEventThread(() -> {
+                    Native.lifecycle().postOnEventThread(() -> {
                         UIResponder.reqeuestResponderBeforeInit.becomeFirstResponder();
                         UIResponder.reqeuestResponderBeforeInit = null;
                     });
                 instance.setStatusBarStyle(UIStatusBarStyle.Default, false);
             };
-            Native.system().postOnEventThread(() -> {
+            Native.lifecycle().postOnEventThread(() -> {
                 if (instance == null) {
                     disableSplash(launchTime, splashWait, disableSplash);
                     return;
@@ -122,12 +122,12 @@ public class UIApplication extends UIResponder {
                     throw new NullPointerException("Unable to locate main View Controller");
                 instance.keyWindow.addSubview(instance.keyWindow.rootViewController().view());
                 Native.graphics().relayoutMainView();
-                Native.system().postOnEventThread(instance.keyWindow::layoutSubviews);
+                Native.lifecycle().postOnEventThread(instance.keyWindow::layoutSubviews);
                 disableSplash(launchTime, splashWait, disableSplash);
             });
         });
         final Object sleepForever = new Object();
-        if (!Native.system().isEventThread())
+        if (!Native.lifecycle().isEventThread())
             try {
                 //noinspection SynchronizationOnLocalVariableOrMethodParameter
                 synchronized (sleepForever) {
@@ -170,7 +170,7 @@ public class UIApplication extends UIResponder {
                 return 0;
             splashWindow.addSubview(splashWindow.rootViewController().view());
             Native.graphics().relayoutMainView();
-            Native.system().postOnEventThread(splashWindow.rootViewController().view()::layoutSubviews);
+            Native.lifecycle().postOnEventThread(splashWindow.rootViewController().view()::layoutSubviews);
 
             if (wait < 0.1)
                 wait = 0.3; // Minimum waiting 0.3 sec

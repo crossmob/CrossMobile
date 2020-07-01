@@ -45,7 +45,7 @@ public class AndroidMapViewWrapper extends MapViewWrapper<AndroidMapViewWrapper.
     private void defer(Runnable action) {
         synchronized (lock) {
             if (isReadyToAcceptChanges()) {
-                Native.system().runOnEventThread(() -> {
+                Native.lifecycle().runOnEventThread(() -> {
                     action.run();
                     NativeW nativeWidget = getNativeWidget();
                     if (nativeWidget != null && firstTime) {
@@ -329,7 +329,7 @@ public class AndroidMapViewWrapper extends MapViewWrapper<AndroidMapViewWrapper.
         super.setFrame(x, y, width, height);
         synchronized (lock) {
             if (isReadyToAcceptChanges()) {
-                Native.system().runOnEventThread(() -> {
+                Native.lifecycle().runOnEventThread(() -> {
                     for (Runnable r : deferAction)
                         r.run();
                     deferAction.clear();

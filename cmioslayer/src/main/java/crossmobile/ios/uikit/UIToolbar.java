@@ -97,7 +97,7 @@ public class UIToolbar extends UIView {
 
     @Override
     public void layoutSubviews() {
-        Native.system().runAndWaitOnEventThread(() -> {
+        Native.lifecycle().runAndWaitOnEventThread(() -> {
             if (items == null) // be safe with early initialization, due to overiding of setFrame method
                 return;
             for (UIView v : subviews())

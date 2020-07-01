@@ -185,32 +185,71 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
     }
 
     @Override
-    public void postWaitingTask(Runnable task) {
-        synchronized (this) {
-            if (task != null)
-                waitingTasks.add(task);
-            if (!shouldWait)
-                drainWaitingTasks();
+    public void runAndWaitOnEventThread(Runnable runnable) {
+        if (runnable == null)
+            return;
+
+        SyncRunnable runner = new SyncRunnable(runnable);
+        //noinspection SynchronizationOnLocalVariableOrMethodParameter
+        synchronized (runner) {
+            try {
+                Native.lifecycle().runOnEventThread(runner); // MAKE SURE that this method will run & return IMMEDIATELY when run from the dispatch thread
+                if (!runner.didRun())
+                    runner.wait();
+            } catch (InterruptedException ignored) {
+            }
+        }
+    }
+
+    private static final class SyncRunnable implements Runnable {
+
+        private boolean didRun = false; // by default set this thread not to be the same with the caller. If it indeed is, since the runOnUiThread calls directly the "run()" method, this variable is set immediately to "true"
+        private final Runnable runnable;
+
+        private SyncRunnable(Runnable runnable) {
+            this.runnable = runnable;
+        }
+
+        @Override
+        public synchronized final void run() {
+            runnable.run();
+            didRun = true;
+            notifyAll();
+        }
+
+        boolean didRun() {
+            return didRun;
         }
     }
 
     @Override
-    public <T> T runInContext(Block0<T> commands) {
+    public void runOnceLaterOnEventThread(Runnable task) {
         synchronized (this) {
+            if (task != null)
+                waitingTasks.add(task);
+        }
+        if (!shouldWait)
+            runOnEventThread(this::drainWaitingTasks);
+    }
+
+    @Override
+    public void runInContext(Runnable commands) {
+        runOnEventThread(() -> {
             shouldWait = true;
-            T result = commands.invoke();
+            commands.run();
             if (!waitingTasks.isEmpty())
                 drainWaitingTasks();
             shouldWait = false;
-            return result;
-        }
+        });
     }
 
     private void drainWaitingTasks() {
         // Swap instead of assign running tasks to waiting tasks and clear waiting tasks, since run tasks should be empty anyway
-        Set<Runnable> empty = runningTasks;
-        runningTasks = waitingTasks;
-        waitingTasks = empty;
+        synchronized (this) {
+            Set<Runnable> empty = runningTasks;
+            runningTasks = waitingTasks;
+            waitingTasks = empty;
+        }
 
         for (Runnable r : runningTasks)
             r.run();    // This method might produce more waiting tasks

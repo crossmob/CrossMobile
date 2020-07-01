@@ -67,7 +67,7 @@ public abstract class TextWrapper<IOSWIDG extends UIView, NWIDG extends NativeWr
             UITextView tv = (UITextView) getIOSWidget();
             UITextViewDelegate del = tv.delegate();
             if (del != null)
-                Native.system().postOnEventThread(() -> del.didChange(tv));
+                Native.lifecycle().postOnEventThread(() -> del.didChange(tv));
         }
     }
 

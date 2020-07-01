@@ -21,30 +21,6 @@ import static crossmobile.ios.uikit.UserInterfaceDrill.getTextFieldWrapper;
 
 public class SwingSystemBridge extends DesktopSystemBridge {
 
-    /**
-     * MAKE SURE that this method will run & return IMMEDIATELY when run from
-     * the dispatch thread
-     *
-     * @param r
-     */
-    @Override
-    public void runOnEventThread(Runnable r) {
-        if (EventQueue.isDispatchThread())  // Important!! or else will lock
-            r.run();
-        else
-            EventQueue.invokeLater(r);
-    }
-
-    @Override
-    public boolean isEventThread() {
-        return EventQueue.isDispatchThread();
-    }
-
-    @Override
-    public void postOnEventThread(Runnable r) {
-        EventQueue.invokeLater(r);
-    }
-
     @Override
     public void showAlert(UIAlertView view, String title, String message, List<String> buttons, UIAlertViewDelegate delegate) {
         JPanel visuals = null;
