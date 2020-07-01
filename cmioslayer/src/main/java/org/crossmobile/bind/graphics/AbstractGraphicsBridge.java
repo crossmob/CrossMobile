@@ -59,33 +59,30 @@ public abstract class AbstractGraphicsBridge<CANVAS, NTVP, TRANSF> implements Gr
         if (vc == null)
             return;
         UIView view = vc.view();
-        Runnable actions = () -> {
-            CGRect appframe = UIScreen.mainScreen().applicationFrame();
-            boolean isWide = metrics.orientation == LandscapeLeft || metrics.orientation == LandscapeRight;
-            double width = isWide ? appframe.getSize().getHeight() : appframe.getSize().getWidth();
-            double height = isWide ? appframe.getSize().getWidth() : appframe.getSize().getHeight();
+        CGRect appframe = UIScreen.mainScreen().applicationFrame();
+        boolean isWide = metrics.orientation == LandscapeLeft || metrics.orientation == LandscapeRight;
+        double width = isWide ? appframe.getSize().getHeight() : appframe.getSize().getWidth();
+        double height = isWide ? appframe.getSize().getWidth() : appframe.getSize().getHeight();
 
-            CGRect frame = new CGRect(appframe.getOrigin().getX() + (appframe.getSize().getWidth() - width) / 2, appframe.getOrigin().getY() + (appframe.getSize().getHeight() - height) / 2, width, height);
-            view.setFrame(frame);
-            view.layoutSubviews();
-            switch (metrics.orientation) {
-                case LandscapeRight:
-                    view.setTransform(CGAffineTransform.makeRotation(-GraphicsContext._PI_2));
-                    break;
-                case LandscapeLeft:
-                    view.setTransform(CGAffineTransform.makeRotation(GraphicsContext._PI_2));
-                    break;
-                case PortraitUpsideDown:
-                    view.setTransform(CGAffineTransform.makeRotation(GraphicsContext._PI));
-                    break;
-                case Portrait:
-                default:
-                    view.setTransform(null);
-                    break;
-            }
-            app.setStatusBarOrientation(metrics().getOrientation(), false);
-        };
-        actions.run();
+        CGRect frame = new CGRect(appframe.getOrigin().getX() + (appframe.getSize().getWidth() - width) / 2, appframe.getOrigin().getY() + (appframe.getSize().getHeight() - height) / 2, width, height);
+        view.setFrame(frame);
+        view.layoutSubviews();
+        switch (metrics.orientation) {
+            case LandscapeRight:
+                view.setTransform(CGAffineTransform.makeRotation(-GraphicsContext._PI_2));
+                break;
+            case LandscapeLeft:
+                view.setTransform(CGAffineTransform.makeRotation(GraphicsContext._PI_2));
+                break;
+            case PortraitUpsideDown:
+                view.setTransform(CGAffineTransform.makeRotation(GraphicsContext._PI));
+                break;
+            case Portrait:
+            default:
+                view.setTransform(null);
+                break;
+        }
+        app.setStatusBarOrientation(metrics().getOrientation(), false);
     }
 
     protected abstract void requestRepaint();

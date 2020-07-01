@@ -378,7 +378,7 @@ public class NSLayoutConstraint extends NSObject {
         Map<String, ClStayConstraint> temp = new HashMap<>();
         for (ClAbstractVariable clAbstractVariable : constraint.expression().terms().keySet())
             temp.put(clAbstractVariable.name(), new ClStayConstraint((ClVariable) clAbstractVariable, ClStrength.weak, 1.0));
-        for(String variableName :  temp.keySet()){
+        for (String variableName : temp.keySet()) {
             if (stays.keySet().contains(variableName))
                 solver.removeConstraint(stays.get(variableName));
             stays.put(variableName, temp.get(variableName));
@@ -506,8 +506,10 @@ public class NSLayoutConstraint extends NSObject {
             return ((UILayoutGuide) item).getVariable(attribute);
         else if (item instanceof UIViewController.LayoutSupport)
             return ((UIViewController.LayoutSupport) item).getVariable(attribute);
-        else
+        else if (item instanceof UIView)
             return ((UIView) item).getVariable(attribute);
+        else
+            return null;    // Don't know what to do
     }
 
     @Override

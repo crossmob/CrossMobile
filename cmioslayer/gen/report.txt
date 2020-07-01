@@ -2416,7 +2416,7 @@ org/crossmobile/backend/desktop/skin/phone/power_down.png
 org/crossmobile/backend/desktop/skin/phone/power_up.png
 org/crossmobile/backend/desktop/skin/system-o.xml
 org/crossmobile/backend/desktop/skin/system.xml
-org/crossmobile/backend/desktop/skin/system800.xml
+org/crossmobile/backend/desktop/skin/system1024.xml
 org/crossmobile/backend/desktop/skin/vertical-l.xml
 org/crossmobile/backend/desktop/skin/vertical-s.xml
 org/crossmobile/backend/swing/AboutDialog.class v8

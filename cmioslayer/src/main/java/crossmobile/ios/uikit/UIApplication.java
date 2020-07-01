@@ -65,64 +65,66 @@ public class UIApplication extends UIResponder {
                            @CMParamMod(convertWith = "jclass_to_string", type = String.class) Class<? extends UIApplicationDelegate> UIApplicationDelegate) {
         Native.prepare(null);
         Native.lifecycle().init(args);
+        Native.system().runOnEventThread(() -> {
 
-        // This is preferred since the constraint put during lifetime initialization under Android might not be enough, and a second one here might be required.
-        if (instance == null)
-            instance = SystemUtilities.safeInstantiation(UIApplication, crossmobile.ios.uikit.UIApplication.class);
-        double splashWait = initSplash();
-        double launchTime = System.currentTimeMillis();
-        Native.graphics().refreshDisplay();
-        NSTimerDelegate disableSplash = timer -> {
-            instance.windows.remove(splashWindow);
-            splashWindow = null;
-            if (instance.windows.isEmpty())
-                instance.setKeyWindow(null);
-            Native.lifecycle().splashTerminated();
+            // This is preferred since the constraint put during lifetime initialization under Android might not be enough, and a second one here might be required.
+            if (instance == null)
+                instance = SystemUtilities.safeInstantiation(UIApplication, crossmobile.ios.uikit.UIApplication.class);
+            double splashWait = initSplash();
+            double launchTime = System.currentTimeMillis();
             Native.graphics().refreshDisplay();
-            if (UIResponder.reqeuestResponderBeforeInit != null)
-                Native.system().postOnEventThread(() -> {
-                    UIResponder.reqeuestResponderBeforeInit.becomeFirstResponder();
-                    UIResponder.reqeuestResponderBeforeInit = null;
-                });
-            instance.setStatusBarStyle(crossmobile.ios.uikit.UIStatusBarStyle.Default, false);
-        };
-        Native.system().postOnEventThread(() -> {
-            if (instance == null) {
-                disableSplash(launchTime, splashWait, disableSplash);
-                return;
-            }
-            if (instance.delegate == null && UIApplicationDelegate != null)
-                instance.delegate = SystemUtilities.safeInstantiation(UIApplicationDelegate, crossmobile.ios.uikit.UIApplicationDelegate.class);
-            if (instance.delegate == null) {
-                disableSplash(launchTime, splashWait, disableSplash);
-                return;
-            }
-            UIViewController initial = initXibApp();
-            if (initial != null) {
-                if (instance.delegate.window() == null)
-                    instance.delegate.setWindow(new UIWindow(UIScreen.mainScreen().bounds()));
-                try {
-                    instance.delegate.window().setRootViewController(initial);
-                    instance.delegate.window().makeKeyAndVisible();
-                } catch (NullPointerException ex) {
-                    System.out.println("The app delegate must implement the window field and override window() and setWindow(UIWindow window) methods if it wants to use a main storyboard file.");
+            NSTimerDelegate disableSplash = timer -> {
+                instance.windows.remove(splashWindow);
+                splashWindow = null;
+                if (instance.windows.isEmpty())
+                    instance.setKeyWindow(null);
+                Native.lifecycle().splashTerminated();
+                Native.graphics().refreshDisplay();
+                if (UIResponder.reqeuestResponderBeforeInit != null)
+                    Native.system().postOnEventThread(() -> {
+                        UIResponder.reqeuestResponderBeforeInit.becomeFirstResponder();
+                        UIResponder.reqeuestResponderBeforeInit = null;
+                    });
+                instance.setStatusBarStyle(UIStatusBarStyle.Default, false);
+            };
+            Native.system().postOnEventThread(() -> {
+                if (instance == null) {
+                    disableSplash(launchTime, splashWait, disableSplash);
+                    return;
                 }
-            }
-            instance.setStatusBarHidden(Boolean.getBoolean("cm.statusbar.hidden"), false); // also sets orientation
-            instance.delegate.didFinishLaunchingWithOptions(instance, Native.lifecycle().consumeLaunchOptions());
-            NSNotificationCenter.defaultCenter().postNotificationName(NSNotificationName.UIApplicationDidFinishLaunching, instance);
+                if (instance.delegate == null && UIApplicationDelegate != null)
+                    instance.delegate = SystemUtilities.safeInstantiation(UIApplicationDelegate, crossmobile.ios.uikit.UIApplicationDelegate.class);
+                if (instance.delegate == null) {
+                    disableSplash(launchTime, splashWait, disableSplash);
+                    return;
+                }
+                UIViewController initial = initXibApp();
+                if (initial != null) {
+                    if (instance.delegate.window() == null)
+                        instance.delegate.setWindow(new UIWindow(UIScreen.mainScreen().bounds()));
+                    try {
+                        instance.delegate.window().setRootViewController(initial);
+                        instance.delegate.window().makeKeyAndVisible();
+                    } catch (NullPointerException ex) {
+                        System.out.println("The app delegate must implement the window field and override window() and setWindow(UIWindow window) methods if it wants to use a main storyboard file.");
+                    }
+                }
+                instance.setStatusBarHidden(Boolean.getBoolean("cm.statusbar.hidden"), false); // also sets orientation
+                instance.delegate.didFinishLaunchingWithOptions(instance, Native.lifecycle().consumeLaunchOptions());
+                NSNotificationCenter.defaultCenter().postNotificationName(NSNotificationName.UIApplicationDidFinishLaunching, instance);
 
-            instance.delegate.didBecomeActive(instance);
-            NSNotificationCenter.defaultCenter().postNotificationName(NSNotificationName.UIApplicationDidBecomeActive, instance);
+                instance.delegate.didBecomeActive(instance);
+                NSNotificationCenter.defaultCenter().postNotificationName(NSNotificationName.UIApplicationDidBecomeActive, instance);
 
-            if (instance.keyWindow == null)
-                throw new NullPointerException("Unable to locate main Window");
-            if (instance.keyWindow.rootViewController() == null)
-                throw new NullPointerException("Unable to locate main View Controller");
-            instance.keyWindow.addSubview(instance.keyWindow.rootViewController().view());
-            Native.graphics().relayoutMainView();
-            Native.system().postOnEventThread(instance.keyWindow::layoutSubviews);
-            disableSplash(launchTime, splashWait, disableSplash);
+                if (instance.keyWindow == null)
+                    throw new NullPointerException("Unable to locate main Window");
+                if (instance.keyWindow.rootViewController() == null)
+                    throw new NullPointerException("Unable to locate main View Controller");
+                instance.keyWindow.addSubview(instance.keyWindow.rootViewController().view());
+                Native.graphics().relayoutMainView();
+                Native.system().postOnEventThread(instance.keyWindow::layoutSubviews);
+                disableSplash(launchTime, splashWait, disableSplash);
+            });
         });
         final Object sleepForever = new Object();
         if (!Native.system().isEventThread())
@@ -141,7 +143,8 @@ public class UIApplication extends UIResponder {
         if (deltaTime >= splashWait)
             disableSplash.fireMethod(null);
         else
-            NSTimer.scheduledTimerWithTimeInterval(splashWait - deltaTime, disableSplash, null, false);
+            NSRunLoop.mainRunLoop().addTimer(NSTimer.timerWithTimeInterval(splashWait - deltaTime, disableSplash,
+                    null, false), NSRunLoopMode.Default);
     }
 
     private static double initSplash() {
