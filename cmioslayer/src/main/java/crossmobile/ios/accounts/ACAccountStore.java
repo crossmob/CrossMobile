@@ -29,7 +29,7 @@ public class ACAccountStore extends NSObject {
      */
     @CMGetter("@property(readonly, weak, nonatomic) NSArray *accounts;")
     public List accounts() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -41,7 +41,7 @@ public class ACAccountStore extends NSObject {
      */
     @CMSelector("- (ACAccount *)accountWithIdentifier:(NSString *)identifier;")
     public ACAccount accountWithIdentifier(String identifier) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -53,7 +53,7 @@ public class ACAccountStore extends NSObject {
      */
     @CMSelector("- (ACAccountType *)accountTypeWithAccountTypeIdentifier:(NSString *)typeIdentifier;")
     public ACAccountType accountTypeWithAccountTypeIdentifier(String typeIdentifier) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -66,7 +66,7 @@ public class ACAccountStore extends NSObject {
     @CMSelector("- (NSArray *)accountsWithAccountType:(ACAccountType *)accountType;\n"
             + "")
     public List accountsWithAccountType(ACAccountType accountType) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -80,7 +80,7 @@ public class ACAccountStore extends NSObject {
     @CMSelector("- (void)saveAccount:(ACAccount *)account \n"
             + "withCompletionHandler:(ACAccountStoreSaveCompletionHandler)completionHandler;")
     public void saveAccount(ACAccount account, ACAccountStoreSaveCompletionHandler completionHandler) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -92,7 +92,7 @@ public class ACAccountStore extends NSObject {
     @Deprecated
     @CMSelector("- (void)requestAccessToAccountsWithType:(ACAccountType *)accountType withCompletionHandler:(ACAccountStoreRequestAccessCompletionHandler)handler;")
     public void requestAccessToAccountsWithType(ACAccountType accountType, ACAccountStoreRequestAccessCompletionHandler handler) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -108,7 +108,7 @@ public class ACAccountStore extends NSObject {
             + "                                options:(NSDictionary *)options \n"
             + "                             completion:(ACAccountStoreRequestAccessCompletionHandler)completion;")
     public void requestAccessToAccountsWithType(ACAccountType accountType, Map options, ACAccountStoreRequestAccessCompletionHandler completion) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -122,7 +122,7 @@ public class ACAccountStore extends NSObject {
     @CMSelector("- (void)renewCredentialsForAccount:(ACAccount *)account \n"
             + "                        completion:(ACAccountStoreCredentialRenewalHandler)completionHandler;")
     public void renewCredentialsForAccount(ACAccount account, ACAccountStoreCredentialRenewalHandler completionHandler) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -135,6 +135,6 @@ public class ACAccountStore extends NSObject {
     @CMSelector("- (void)removeAccount:(ACAccount *)account \n"
             + "withCompletionHandler:(ACAccountStoreRemoveCompletionHandler)completionHandler;")
     public void removeAccount(ACAccount account, ACAccountStoreRemoveCompletionHandler completionHandler) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 }

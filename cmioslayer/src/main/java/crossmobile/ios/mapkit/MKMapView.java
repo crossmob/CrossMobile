@@ -339,7 +339,7 @@ public class MKMapView extends UIView {
     @CMSelector("- (CGPoint)convertCoordinate:(CLLocationCoordinate2D)coordinate \n"
             + "               toPointToView:(UIView *)view;")
     public CGPoint convertCoordinate(CLLocationCoordinate2D coordinate, UIView view) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -353,7 +353,7 @@ public class MKMapView extends UIView {
     @CMSelector("- (CLLocationCoordinate2D)convertPoint:(CGPoint)point \n"
             + "                  toCoordinateFromView:(UIView *)view;")
     public CLLocationCoordinate2D convertPoint(CGPoint point, UIView view) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -368,7 +368,7 @@ public class MKMapView extends UIView {
     @CMSelector("- (CGRect)convertRegion:(MKCoordinateRegion)region \n"
             + "           toRectToView:(UIView *)view;")
     public CGRect convertRegion(MKCoordinateRegion region, UIView view) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -382,7 +382,7 @@ public class MKMapView extends UIView {
     @CMSelector("- (MKCoordinateRegion)convertRect:(CGRect)rect \n"
             + "                 toRegionFromView:(UIView *)view;")
     public MKCoordinateRegion convertRect(CGRect rect, UIView view) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -394,7 +394,7 @@ public class MKMapView extends UIView {
      */
     @CMSelector("- (MKCoordinateRegion)regionThatFits:(MKCoordinateRegion)region;")
     public MKCoordinateRegion regionThatFits(MKCoordinateRegion region) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -406,7 +406,7 @@ public class MKMapView extends UIView {
      */
     @CMSelector("- (MKMapRect)mapRectThatFits:(MKMapRect)mapRect;")
     public MKMapRect mapRectThatFits(MKMapRect mapRect) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -420,7 +420,7 @@ public class MKMapView extends UIView {
     @CMSelector("- (MKMapRect)mapRectThatFits:(MKMapRect)mapRect\n"
             + "                 edgePadding:(UIEdgeInsets)insets")
     public MKMapRect mapRectThatFits(MKMapRect mapRect, UIEdgeInsets insets) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 

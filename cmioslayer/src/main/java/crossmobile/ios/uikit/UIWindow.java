@@ -102,7 +102,7 @@ public class UIWindow extends UIView {
     @CMSelector("- (CGPoint)convertPoint:(CGPoint)point \n"
             + "               toWindow:(UIWindow *)window;")
     public CGPoint convertPointToWindow(CGPoint point, UIWindow window) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -118,7 +118,7 @@ public class UIWindow extends UIView {
     @CMSelector("- (CGPoint)convertPoint:(CGPoint)point \n"
             + "             fromWindow:(UIWindow *)window;")
     public CGPoint convertPointFromWindow(CGPoint point, UIWindow window) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -135,7 +135,7 @@ public class UIWindow extends UIView {
     @CMSelector("- (CGRect)convertRect:(CGRect)rect \n"
             + "             toWindow:(UIWindow *)window;")
     public CGRect convertRectToWindow(CGRect point, UIWindow window) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -152,7 +152,7 @@ public class UIWindow extends UIView {
     @CMSelector("- (CGRect)convertRect:(CGRect)rect \n"
             + "           fromWindow:(UIWindow *)window;")
     public CGRect convertRectFromWindow(CGRect point, UIWindow window) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 

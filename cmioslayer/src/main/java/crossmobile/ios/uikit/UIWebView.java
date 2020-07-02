@@ -96,7 +96,7 @@ public class UIWebView extends UIView {
             + "textEncodingName:(NSString *)textEncodingName \n"
             + "         baseURL:(NSURL *)baseURL;")
     public void loadData(NSData data, String mimetype, String encodingName, NSURL baseURL) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -275,7 +275,7 @@ public class UIWebView extends UIView {
      */
     @CMGetter("@property(nonatomic, readonly, strong) UIScrollView *scrollView;")
     public UIScrollView scrollView() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return new UIScrollView();
     }
 }

@@ -150,7 +150,7 @@ public class CALayer extends NSObject {
     @CMSetter("@property CGPoint anchorPoint;")
     public void setAnchorPoint(CGPoint point) {
         this.anchorPoint = point;
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**

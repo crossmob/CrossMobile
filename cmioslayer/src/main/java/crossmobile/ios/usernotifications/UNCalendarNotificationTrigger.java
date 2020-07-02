@@ -31,7 +31,7 @@ public class UNCalendarNotificationTrigger extends UNNotificationTrigger {
 
     @CMSelector("- (NSDate *)nextTriggerDate;")
     public NSDate nextTriggerDate() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 

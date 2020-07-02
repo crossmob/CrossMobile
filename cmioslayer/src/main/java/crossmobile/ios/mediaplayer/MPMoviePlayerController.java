@@ -43,7 +43,7 @@ public class MPMoviePlayerController extends NSObject {
      */
     @CMSelector("- (void)play;")
     public void play() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -51,7 +51,7 @@ public class MPMoviePlayerController extends NSObject {
      */
     @CMSelector("- (void)pause;")
     public void pause() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -59,7 +59,7 @@ public class MPMoviePlayerController extends NSObject {
      */
     @CMSelector("- (void)stop;")
     public void stop() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**

@@ -81,7 +81,7 @@ public class UIPopoverController extends NSObject {
      */
     @CMGetter("@property(nonatomic) CGSize popoverContentSize;")
     public CGSize popoverContentSize() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -92,7 +92,7 @@ public class UIPopoverController extends NSObject {
      */
     @CMSetter("@property(nonatomic) CGSize popoverContentSize;")
     public void setPopoverContentSize(CGSize popoverContentSize) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -102,7 +102,7 @@ public class UIPopoverController extends NSObject {
      */
     @CMGetter("@property(nonatomic, readonly, getter=isPopoverVisible) BOOL popoverVisible;")
     public boolean isPopoverVisible() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return false;
     }
 
@@ -113,7 +113,7 @@ public class UIPopoverController extends NSObject {
      */
     @CMGetter("@property(nonatomic, readonly) UIPopoverArrowDirection popoverArrowDirection;")
     public long popoverArrowDirection() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return 0;
     }
 
@@ -124,7 +124,7 @@ public class UIPopoverController extends NSObject {
      */
     @CMGetter("@property(nonatomic, copy) NSArray<__kindof UIView *> *passthroughViews;")
     public List<UIView> passthroughViews() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -135,7 +135,7 @@ public class UIPopoverController extends NSObject {
      */
     @CMSetter("@property(nonatomic, copy) NSArray<__kindof UIView *> *passthroughViews;")
     public void setPassthroughViews(List<UIView> passthroughViews) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -147,7 +147,7 @@ public class UIPopoverController extends NSObject {
     @CMSelector("- (void)setContentViewController:(UIViewController *)viewController \n" +
             "                        animated:(BOOL)animated;")
     public void setContentViewController(UIViewController viewController, boolean animated) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -159,7 +159,7 @@ public class UIPopoverController extends NSObject {
     @CMSelector("- (void)setPopoverContentSize:(CGSize)size \n" +
             "                     animated:(BOOL)animated;")
     public void setPopoverContentSize(CGSize size, boolean animated) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -177,7 +177,7 @@ public class UIPopoverController extends NSObject {
             "      permittedArrowDirections:(UIPopoverArrowDirection)arrowDirections \n" +
             "                      animated:(BOOL)animated;")
     public void presentPopoverFromRect(CGRect rect, UIView view, long arrowDirections, boolean animated) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -193,7 +193,7 @@ public class UIPopoverController extends NSObject {
             "               permittedArrowDirections:(UIPopoverArrowDirection)arrowDirections \n" +
             "                               animated:(BOOL)animated;")
     public void presentPopoverFromBarButtonItem(UIBarButtonItem item, long arrowDirections, boolean animated) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -203,6 +203,6 @@ public class UIPopoverController extends NSObject {
      */
     @CMSelector("- (void)dismissPopoverAnimated:(BOOL)animated;")
     public void dismissPopoverAnimated(boolean animated) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 }

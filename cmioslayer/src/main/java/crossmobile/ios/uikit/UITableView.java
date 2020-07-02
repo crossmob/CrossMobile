@@ -260,7 +260,7 @@ public class UITableView extends UIScrollView {
     @CMSelector("- (void)deleteRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths \n"
             + "              withRowAnimation:(UITableViewRowAnimation)animation;")
     public void deleteRowsAtIndexPaths(List<NSIndexPath> indexPaths, int UITableViewRowAnimation) {
-        Native.lifecycle().notImplemented("will reload table instead");
+        Native.system().notImplemented("will reload table instead");
         reloadData();
     }
 
@@ -337,7 +337,7 @@ public class UITableView extends UIScrollView {
     @CMSelector("- (void)insertRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths \n"
             + "              withRowAnimation:(UITableViewRowAnimation)animation;")
     public void insertRowsAtIndexPaths(List<NSIndexPath> indexPaths, int UITableViewRowAnimation) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         reloadData();
     }
 

@@ -99,7 +99,7 @@ public class AndroidFont implements NativeFont {
 
     @Override
     public int getUnitsPerEm() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return 0;
     }
 

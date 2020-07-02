@@ -6,8 +6,6 @@
 
 package org.crossmobile.bridge;
 
-import org.robovm.objc.block.Block0;
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Map;
@@ -20,7 +18,7 @@ public interface LifecycleBridge extends Thread.UncaughtExceptionHandler {
     String THEME_PROPERTIES = "theme.properties";
 
     /**
-     * Load System properties BEFORE any initialization. It is the OS responsibility to properly initialize these valuees.
+     * Load System properties BEFORE any initialization. It is the OS responsibility to properly initialize these values.
      */
     default void loadSystemProperties() {
         try {
@@ -58,14 +56,10 @@ public interface LifecycleBridge extends Thread.UncaughtExceptionHandler {
 
     void quit(String error, Throwable throwable);
 
-    /* The age of this application; when updating this age increases */
+    /**
+     * The age of this application; when updating this age increases
+     */
     long currentAgeInMillis();
-
-    void notImplemented(String moreInfo);
-
-    default void notImplemented() {
-        notImplemented(null);
-    }
 
     /**
      * Retrieve launch options from the environment and destroy them

@@ -44,20 +44,20 @@ public class UIPickerView extends UIView {
         }
 
         private void removeFromSuperview() {
-            Native.lifecycle().notImplemented();
+            Native.system().notImplemented();
         }
 
         private void reloadData() {
-            Native.lifecycle().notImplemented();
+            Native.system().notImplemented();
         }
 
         private int selectedRow() {
-            Native.lifecycle().notImplemented();
+            Native.system().notImplemented();
             return 0;
         }
 
         private void selectRow(int row, boolean animated) {
-            Native.lifecycle().notImplemented();
+            Native.system().notImplemented();
         }
     }
 

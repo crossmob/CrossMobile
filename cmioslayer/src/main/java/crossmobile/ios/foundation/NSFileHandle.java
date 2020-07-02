@@ -130,7 +130,7 @@ public class NSFileHandle extends NSObject {
     @CMSelector("+ (instancetype)fileHandleForReadingFromURL:(NSURL *)url \n"
             + "                                      error:(NSError * _Nullable *)error;")
     public static NSFileHandle fileHandleForReadingFromURL(NSURL url, StrongReference<NSError> error) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -146,7 +146,7 @@ public class NSFileHandle extends NSObject {
     @CMSelector("+ (instancetype)fileHandleForWritingToURL:(NSURL *)url \n"
             + "                                    error:(NSError * _Nullable *)error;")
     public static NSFileHandle fileHandleForWritingToURL(NSURL url, StrongReference<NSError> error) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -162,7 +162,7 @@ public class NSFileHandle extends NSObject {
     @CMSelector("+ (instancetype)fileHandleForUpdatingURL:(NSURL *)url \n"
             + "                                   error:(NSError * _Nullable *)error;")
     public static NSFileHandle fileHandleForUpdatingURL(NSURL url, StrongReference<NSError> error) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -201,7 +201,7 @@ public class NSFileHandle extends NSObject {
      */
     @CMGetter("@property(readonly, copy) NSData *availableData;")
     public NSData availableData() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -213,7 +213,7 @@ public class NSFileHandle extends NSObject {
      */
     @CMSelector("- (NSData *)readDataToEndOfFile;")
     public NSData readDataToEndOfFile() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -225,7 +225,7 @@ public class NSFileHandle extends NSObject {
      */
     @CMSelector("- (NSData *)readDataOfLength:(NSUInteger)length;")
     public NSData readDataOfLength(int length) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -249,7 +249,7 @@ public class NSFileHandle extends NSObject {
      */
     @CMGetter("@property(readonly) unsigned long long offsetInFile;")
     public long offsetInFile() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return 0;
     }
 
@@ -291,7 +291,7 @@ public class NSFileHandle extends NSObject {
      */
     @CMSelector("- (void)truncateFileAtOffset:(unsigned long long)offset;")
     public void truncateFileAtOffset(long offset) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -299,7 +299,7 @@ public class NSFileHandle extends NSObject {
      */
     @CMSelector("- (void)synchronizeFile;")
     public void synchronizeFile() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -322,7 +322,7 @@ public class NSFileHandle extends NSObject {
      */
     @CMSelector("- (void)readInBackgroundAndNotifyForModes:(NSArray<NSString *> *)modes;")
     public void readInBackgroundAndNotifyForModes(List modes) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -332,7 +332,7 @@ public class NSFileHandle extends NSObject {
     @CMSelector("- (void)readInBackgroundAndNotify;\n"
             + "")
     public void readInBackgroundAndNotify() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -344,7 +344,7 @@ public class NSFileHandle extends NSObject {
      */
     @CMSelector("- (void)readToEndOfFileInBackgroundAndNotifyForModes:(NSArray<NSString *> *)modes;")
     public void readToEndOfFileInBackgroundAndNotifyForModes(List modes) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -354,7 +354,7 @@ public class NSFileHandle extends NSObject {
     @CMSelector("- (void)readToEndOfFileInBackgroundAndNotify;\n"
             + "")
     public void readToEndOfFileInBackgroundAndNotify() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -365,7 +365,7 @@ public class NSFileHandle extends NSObject {
      */
     @CMSelector("- (void)acceptConnectionInBackgroundAndNotifyForModes:(NSArray<NSString *> *)modes;")
     public void acceptConnectionInBackgroundAndNotifyForModes(List modes) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -373,7 +373,7 @@ public class NSFileHandle extends NSObject {
      */
     @CMSelector("- (void)acceptConnectionInBackgroundAndNotify;")
     public void acceptConnectionInBackgroundAndNotify() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -384,7 +384,7 @@ public class NSFileHandle extends NSObject {
      */
     @CMSelector("- (void)waitForDataInBackgroundAndNotifyForModes:(NSArray<NSString *> *)modes;")
     public void waitForDataInBackgroundAndNotifyForModes(List modes) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -393,7 +393,7 @@ public class NSFileHandle extends NSObject {
     @CMSelector("- (void)waitForDataInBackgroundAndNotify;\n"
             + "")
     public void waitForDataInBackgroundAndNotify() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -403,7 +403,7 @@ public class NSFileHandle extends NSObject {
      */
     @CMGetter("@property(readonly) int fileDescriptor;")
     public int fileDescriptor() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return 0;
     }
 }

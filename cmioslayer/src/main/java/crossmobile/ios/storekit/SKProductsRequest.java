@@ -83,6 +83,6 @@ public class SKProductsRequest extends SKRequest {
 
     @Override
     public void cancel() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 }

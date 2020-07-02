@@ -345,7 +345,7 @@ public class CGContext extends CFType {
      */
     @CMFunction(" CGRect CGContextGetClipBoundingBox ( CGContextRef c ); ")
     public CGRect getClipBoundingBox() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -356,7 +356,7 @@ public class CGContext extends CFType {
      */
     @CMFunction(" void CGContextSetFont ( CGContextRef c, CGFontRef font ); ")
     public void setFont(CGFont font) {
-        Native.lifecycle().notImplemented("You probably want to use selectFont instead");
+        Native.system().notImplemented("You probably want to use selectFont instead");
     }
 
     /**
@@ -366,7 +366,7 @@ public class CGContext extends CFType {
      */
     @CMFunction(" void CGContextSetFontSize ( CGContextRef c, CGFloat size ); ")
     public void setFontSize(double size) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -392,7 +392,7 @@ public class CGContext extends CFType {
     @CMFunction("void CGContextSetTextMatrix(CGContextRef c, CGAffineTransform t);")
     public void setTextMatrix(CGAffineTransform t) {
         this.textMatrix = t;
-        Native.lifecycle().notImplemented("Please use NSString.drawAtPoint instead");
+        Native.system().notImplemented("Please use NSString.drawAtPoint instead");
     }
 
     /**
@@ -456,7 +456,7 @@ public class CGContext extends CFType {
      */
     @CMFunction(" void CGContextSetTextDrawingMode ( CGContextRef c, CGTextDrawingMode mode ); ")
     public void setTextDrawingMode(int CGTextDrawingMode) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -526,7 +526,7 @@ public class CGContext extends CFType {
     public void addArcToPoint(double x1, double y1, double x2, double y2, double radius) {
         if (path == null)
             beginPath();
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -709,7 +709,7 @@ public class CGContext extends CFType {
      */
     @CMFunction(" void CGContextSetShadowWithColor ( CGContextRef c, CGSize offset, CGFloat blur, CGColorRef color ); ")
     public void setShadowWithColor(CGSize offset, double blur, CGColor color) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**

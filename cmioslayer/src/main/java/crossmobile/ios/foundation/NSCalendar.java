@@ -93,7 +93,7 @@ public class NSCalendar extends NSObject implements NSSecureCoding {
             "                          toDate:(NSDate *)resultDate \n" +
             "                         options:(NSCalendarOptions)opts;")
     public NSDateComponents components(int NSCalendarUnit, NSDate fromDate, NSDate toDate, int NSDateComponents) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -110,7 +110,7 @@ public class NSCalendar extends NSObject implements NSSecureCoding {
             "                            toDate:(NSDate *)date \n" +
             "                           options:(NSCalendarOptions)opts;")
     public NSDate dateByAddingComponents(NSDateComponents comps, NSDate toDate, int opts) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 

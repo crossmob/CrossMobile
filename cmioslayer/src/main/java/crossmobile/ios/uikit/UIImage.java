@@ -361,7 +361,7 @@ public class UIImage extends NSObject implements NSSecureCoding {
      */
     @CMFunction(" void UIImageWriteToSavedPhotosAlbum ( UIImage *image, id completionTarget, SEL completionSelector, void *contextInfo ); ")
     public void writeToSavedPhotosAlbum(@CMJoinSEL(selector = "completionSelector", target = "completionTarget") UIImageWriteToPhotoAlbumHandler callback, Object contextInfo) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     final boolean isStretchable() {

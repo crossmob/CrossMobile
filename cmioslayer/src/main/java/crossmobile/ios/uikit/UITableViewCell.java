@@ -67,9 +67,9 @@ public class UITableViewCell extends UIView {
         originalContentBackground = UIColor.whiteColor;
         supportsDetailedTextLabel = UITableViewCellStyle == crossmobile.ios.uikit.UITableViewCellStyle.Subtitle;
         if (UITableViewCellStyle == crossmobile.ios.uikit.UITableViewCellStyle.Value1)
-            Native.lifecycle().notImplemented("Cell type UITableViewCellStyle.Value1");
+            Native.system().notImplemented("Cell type UITableViewCellStyle.Value1");
         else if (UITableViewCellStyle == crossmobile.ios.uikit.UITableViewCellStyle.Value2)
-            Native.lifecycle().notImplemented("Cell type UITableViewCellStyle.Value2");
+            Native.system().notImplemented("Cell type UITableViewCellStyle.Value2");
         this.reuseIdentifier = reuseIdentifier;
         addSubview(contentV = new ContentView());
     }

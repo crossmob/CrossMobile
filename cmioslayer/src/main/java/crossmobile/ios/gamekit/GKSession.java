@@ -175,7 +175,7 @@ public class GKSession extends NSObject {
     @Deprecated
     @CMSelector("- (NSArray *)peersWithConnectionState:(GKPeerConnectionState)state;")
     public List<String> peersWithConnectionState(int GKPeerConnectionState) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -188,7 +188,7 @@ public class GKSession extends NSObject {
     @Deprecated
     @CMSelector("- (NSString *)displayNameForPeer:(NSString *)peerID;")
     public String displayNameForPeer(String peerID) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -202,7 +202,7 @@ public class GKSession extends NSObject {
     @CMSelector("- (void)connectToPeer:(NSString *)peerID \n"
             + "          withTimeout:(NSTimeInterval)timeout;")
     public void connectToPeer(String peerID, double timeout) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -213,7 +213,7 @@ public class GKSession extends NSObject {
     @Deprecated
     @CMSelector("- (void)cancelConnectToPeer:(NSString *)peerID;")
     public void cancelConnectToPeer(String peerID) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -227,7 +227,7 @@ public class GKSession extends NSObject {
     @CMSelector("- (BOOL)acceptConnectionFromPeer:(NSString *)peerID \n"
             + "                           error:(NSError **)error;")
     public boolean acceptConnectionFromPeer(String peerID, StrongReference<NSError> error) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return false;
     }
 
@@ -240,7 +240,7 @@ public class GKSession extends NSObject {
     @CMSelector("- (void)denyConnectionFromPeer:(NSString *)peerID;\n"
             + "")
     public void denyConnectionFromPeer(String peerID) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -253,7 +253,7 @@ public class GKSession extends NSObject {
     @CMSelector("- (void)setDataReceiveHandler:(id)handler \n"
             + "                  withContext:(void *)context;")
     public void setDataReceiveHandler(GKDataReceiveHandler handler, Object context) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -271,7 +271,7 @@ public class GKSession extends NSObject {
             + "    withDataMode:(GKSendDataMode)mode \n"
             + "           error:(NSError **)error;")
     public boolean sendData(NSData data, List<String> peers, int GKSendDataMode, StrongReference<NSError> error) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return false;
     }
 
@@ -288,7 +288,7 @@ public class GKSession extends NSObject {
             + "              withDataMode:(GKSendDataMode)mode \n"
             + "                     error:(NSError **)error;")
     public boolean sendDataToAllPeers(NSData data, int GKSendDataMode, StrongReference<NSError> error) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return false;
     }
 
@@ -298,7 +298,7 @@ public class GKSession extends NSObject {
     @Deprecated
     @CMSelector("- (void)disconnectFromAllPeers;")
     public void disconnectFromAllPeers() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -309,6 +309,6 @@ public class GKSession extends NSObject {
     @Deprecated
     @CMSelector("- (void)disconnectPeerFromAllPeers:(NSString *)peerID;")
     public void disconnectPeerFromAllPeers(String peerID) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 }

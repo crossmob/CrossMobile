@@ -13,10 +13,12 @@ import crossmobile.ios.uikit.*;
 import org.crossmobile.bind.graphics.Theme;
 import org.crossmobile.bridge.LifecycleBridge;
 import org.crossmobile.bridge.Native;
-import org.robovm.objc.block.Block0;
 
 import java.io.File;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static crossmobile.ios.coregraphics.GraphicsDrill.convertBaseContextToCGContext;
@@ -25,8 +27,6 @@ import static crossmobile.ios.uikit.UserInterfaceDrill.getViewControllerFromView
 import static org.crossmobile.bridge.RuntimeKeys.AndroidBackButtonNotification;
 
 public abstract class AbstractLifecycleBridge implements LifecycleBridge {
-
-    private final Set<String> NOT_IMPLEMENTED_ELEMENTS = new HashSet<>();
 
     private boolean applicationIsInitialized = false;
     private Thread.UncaughtExceptionHandler systemHandler;
@@ -108,22 +108,6 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
             systemHandler.uncaughtException(thread, throwable);
     }
 
-    @Override
-    public void notImplemented(String moreInfo) {
-        boolean foundSelfTrace = false;
-        for (StackTraceElement el : Thread.currentThread().getStackTrace()) {
-            String methodName = el.getMethodName();
-            if (methodName.contains("notImplemented"))
-                foundSelfTrace = true;
-            else if (foundSelfTrace) {
-                String elTxt = el.getClassName() + "." + methodName + "(" + el.getFileName() + ":" + el.getLineNumber() + ")";
-                if (NOT_IMPLEMENTED_ELEMENTS.add(elTxt))
-                    Native.system().error("Not implemented" + (moreInfo != null && !moreInfo.trim().isEmpty() ? " (" + moreInfo.trim() + ")" : "") +
-                            ": at " + elTxt, null);
-                return;
-            }
-        }
-    }
 
     private void cleanTemporaryLocation() {
         Native.file().deleteRecursive(new File(Native.file().getTemporaryLocation()));
@@ -243,6 +227,7 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
         });
     }
 
+    // This method is always run on event thread
     private void drainWaitingTasks() {
         // Swap instead of assign running tasks to waiting tasks and clear waiting tasks, since run tasks should be empty anyway
         synchronized (this) {

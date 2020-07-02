@@ -62,8 +62,8 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
      * These properties need to be addressed form the animations, so they
      * shouldn't be private
      */
-    private CGRect frame = CGRect.zero();
-    private CGRect oldFrame = CGRect.zero();
+    private final CGRect frame = CGRect.zero();
+    private final CGRect oldFrame = CGRect.zero();
     double alpha = 1;
     private double parentAlpha = 1;
     private UIColor background;
@@ -348,7 +348,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
      */
     @CMSelector("+ (void)setAnimationBeginsFromCurrentState:(BOOL)fromCurrentState;")
     public static void setAnimationBeginsFromCurrentState(boolean fromCurrentState) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -474,7 +474,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
      */
     @CMSelector("- (void)setNeedsLayout;")
     public void setNeedsLayout() {
-        layoutIfNeeded();
+        Native.lifecycle().runOnceLaterOnEventThread(this::layoutIfNeeded);
     }
 
     /**
@@ -1429,7 +1429,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
     @CMSelector("- (CGRect)convertRect:(CGRect)rect \n"
             + "               toView:(UIView *)view;")
     public CGRect convertRectToView(CGRect rect, UIView view) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -1446,7 +1446,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
     @CMSelector("- (CGRect)convertRect:(CGRect)rect \n"
             + "             fromView:(UIView *)view;")
     public CGRect convertRectFromView(CGRect rect, UIView view) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 

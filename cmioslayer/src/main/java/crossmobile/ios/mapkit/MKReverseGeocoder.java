@@ -99,7 +99,7 @@ public class MKReverseGeocoder extends NSObject {
     @Deprecated
     @CMSelector("- (void)start;")
     public void start() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -108,6 +108,6 @@ public class MKReverseGeocoder extends NSObject {
     @Deprecated
     @CMSelector("- (void)cancel;")
     public void cancel() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 }

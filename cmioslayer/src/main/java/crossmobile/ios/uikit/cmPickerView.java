@@ -87,7 +87,7 @@ class cmPickerView extends UIView {
     }
 
     CGSize rowSizeForComponent(int component) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 

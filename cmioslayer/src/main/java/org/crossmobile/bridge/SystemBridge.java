@@ -13,19 +13,20 @@ import org.crossmobile.backend.android.AndroidPermissions;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
 public interface SystemBridge {
     SimpleDateFormat GMT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+    Set<String> NOT_IMPLEMENTED_ELEMENTS = new HashSet<>();
 
     boolean Debug = true;
 
     String LOGTAG = "CrossMob";
     int CANCEL_ID = -1;
     int DESTROY_ID = -2;
-
-
 
     void error(String message, Throwable th);
 
@@ -55,4 +56,24 @@ public interface SystemBridge {
     boolean launchPhoneCall(String phone);
 
     boolean isRTL();
+
+    default void notImplemented() {
+        notImplemented(null);
+    }
+
+    default void notImplemented(String moreInfo) {
+        boolean foundSelfTrace = false;
+        for (StackTraceElement el : Thread.currentThread().getStackTrace()) {
+            String methodName = el.getMethodName();
+            if (methodName.contains("notImplemented"))
+                foundSelfTrace = true;
+            else if (foundSelfTrace) {
+                String elTxt = el.getClassName() + "." + methodName + "(" + el.getFileName() + ":" + el.getLineNumber() + ")";
+                if (NOT_IMPLEMENTED_ELEMENTS.add(elTxt))
+                    Native.system().error("Not implemented" + (moreInfo != null && !moreInfo.trim().isEmpty() ? " (" + moreInfo.trim() + ")" : "") +
+                            ": at " + elTxt, null);
+                return;
+            }
+        }
+    }
 }

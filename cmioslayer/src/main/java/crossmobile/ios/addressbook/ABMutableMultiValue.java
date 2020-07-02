@@ -40,7 +40,7 @@ public class ABMutableMultiValue extends ABMultiValue {
      */
     @CMFunction(" bool ABMultiValueAddValueAndLabel ( ABMutableMultiValueRef multiValue, CFTypeRef value, CFStringRef label, ABMultiValueIdentifier *outIdentifier ); ")
     public boolean addValueAndLabel(CFType value, String label, int[] outIdentifier) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return false;
     }
 
@@ -56,7 +56,7 @@ public class ABMutableMultiValue extends ABMultiValue {
      */
     @CMFunction(" bool ABMultiValueInsertValueAndLabelAtIndex ( ABMutableMultiValueRef multiValue, CFTypeRef value, CFStringRef label, CFIndex index, ABMultiValueIdentifier *outIdentifier ); ")
     public boolean insertValueAndLabelAtIndex(CFType value, String label, long index, int[] outIdentifier) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return false;
     }
 
@@ -68,7 +68,7 @@ public class ABMutableMultiValue extends ABMultiValue {
      */
     @CMFunction(" bool ABMultiValueRemoveValueAndLabelAtIndex ( ABMutableMultiValueRef multiValue, CFIndex index ); ")
     public boolean removeValueAndLabelAtIndex(long index) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return false;
     }
 
@@ -81,7 +81,7 @@ public class ABMutableMultiValue extends ABMultiValue {
      */
     @CMFunction(" bool ABMultiValueReplaceValueAtIndex ( ABMutableMultiValueRef multiValue, CFTypeRef value, CFIndex index ); ")
     public boolean replaceValueAtIndex(CFType value, long index) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return false;
     }
 
@@ -95,7 +95,7 @@ public class ABMutableMultiValue extends ABMultiValue {
      */
     @CMFunction(" bool ABMultiValueReplaceLabelAtIndex ( ABMutableMultiValueRef multiValue, CFStringRef label, CFIndex index ); ")
     public boolean replaceLabelAtIndex(String label, long index) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return false;
     }
 

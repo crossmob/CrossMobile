@@ -55,7 +55,7 @@ public class CGBitmapContext extends CGContext {
      */
     @CMFunction(value = " void * CGBitmapContextGetData ( CGContextRef context ); ", sizeResolver = "(CGBitmapContextGetBytesPerRow(self->" + CMReference.REFERENCE_NAME + ")*CGBitmapContextGetHeight(self->" + CMReference.REFERENCE_NAME + "))")
     public byte[] getData() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 

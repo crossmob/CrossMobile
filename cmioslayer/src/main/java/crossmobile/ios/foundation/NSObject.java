@@ -158,20 +158,20 @@ public class NSObject {
             "            options:(NSKeyValueObservingOptions)options \n" +
             "            context:(void *)context;\n")
     public void addObserver(NSObject observer, String keyPath, int NSKeyValueObservingOptions, Object context) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     @CMSelector("- (void)removeObserver:(NSObject *)observer \n" +
             "            forKeyPath:(NSString *)keyPath;")
     public void removeObserver(NSObject observer, String keyPath) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     @CMSelector("- (void)removeObserver:(NSObject *)observer \n" +
             "            forKeyPath:(NSString *)keyPath \n" +
             "               context:(void *)context;")
     public void removeObserver(NSObject observer, String keyPath, Object context) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     @CMSelector("- (void)observeValueForKeyPath:(NSString *)keyPath \n" +

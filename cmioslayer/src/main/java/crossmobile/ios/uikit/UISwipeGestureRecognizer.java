@@ -81,22 +81,22 @@ public class UISwipeGestureRecognizer extends UIGestureRecognizer {
 
     @Override
     public void touchesBegan(Set<UITouch> touches, UIEvent event) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     @Override
     public void touchesMoved(Set<UITouch> touches, UIEvent event) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     @Override
     public void touchesEnded(Set<UITouch> touches, UIEvent event) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     @Override
     public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     @Override

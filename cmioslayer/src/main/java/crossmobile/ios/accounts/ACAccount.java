@@ -48,7 +48,7 @@ public class ACAccount extends NSObject {
      */
     @CMGetter("@property(readonly, weak, nonatomic) NSString *identifier;")
     public String identifier() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 

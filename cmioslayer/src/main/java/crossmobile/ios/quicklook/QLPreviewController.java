@@ -33,7 +33,7 @@ public class QLPreviewController extends UIViewController {
      */
     @CMSelector("+ (BOOL)canPreviewItem:(id<QLPreviewItem>)item;")
     public static boolean canPreviewItem(QLPreviewItem item) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return false;
     }
 
@@ -65,7 +65,7 @@ public class QLPreviewController extends UIViewController {
      */
     @CMGetter("@property NSInteger currentPreviewItemIndex;")
     public int currentPreviewItemIndex() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return 0;
     }
 
@@ -77,7 +77,7 @@ public class QLPreviewController extends UIViewController {
      */
     @CMSetter("@property NSInteger currentPreviewItemIndex;")
     public void setCurrentPreviewItemIndex(int currentPreviewItemIndex) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -88,7 +88,7 @@ public class QLPreviewController extends UIViewController {
     @CMGetter("@property(readonly) id<QLPreviewItem> currentPreviewItem;\n"
             + "")
     public QLPreviewItem currentPreviewItem() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -119,7 +119,7 @@ public class QLPreviewController extends UIViewController {
      */
     @CMSelector("- (void)reloadData;")
     public void reloadData() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -127,6 +127,6 @@ public class QLPreviewController extends UIViewController {
      */
     @CMSelector("- (void)refreshCurrentPreviewItem;")
     public void refreshCurrentPreviewItem() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 }

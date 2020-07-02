@@ -58,7 +58,7 @@ class cmDatePickers {
         }
 
         void setCalendar(NSCalendar cal) {
-            Native.lifecycle().notImplemented();
+            Native.system().notImplemented();
         }
 
         void setMaximumDate(NSDate maximumDate) {
@@ -78,7 +78,7 @@ class cmDatePickers {
         }
 
         void setLocale(NSLocale locale) {
-            Native.lifecycle().notImplemented();
+            Native.system().notImplemented();
         }
 
         void setInterval(int interval) {

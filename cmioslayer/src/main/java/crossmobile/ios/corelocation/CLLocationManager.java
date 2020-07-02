@@ -99,7 +99,7 @@ public class CLLocationManager extends NSObject {
      */
     @CMSelector("+ (BOOL)headingAvailable;")
     public static boolean headingAvailable() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return false;
     }
 
@@ -112,7 +112,7 @@ public class CLLocationManager extends NSObject {
     @Deprecated
     @CMSelector("+ (BOOL)regionMonitoringAvailable;")
     public static boolean regionMonitoringAvailable() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return false;
     }
 
@@ -124,7 +124,7 @@ public class CLLocationManager extends NSObject {
      */
     @CMSelector("+ (BOOL)regionMonitoringEnabled;")
     public static boolean regionMonitoringEnabled() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return false;
     }
 
@@ -133,7 +133,7 @@ public class CLLocationManager extends NSObject {
      */
     @CMSelector("- (void)startUpdatingHeading;")
     public void startUpdatingHeading() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -141,7 +141,7 @@ public class CLLocationManager extends NSObject {
      */
     @CMSelector("- (void)stopUpdatingHeading;")
     public void stopUpdatingHeading() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -149,7 +149,7 @@ public class CLLocationManager extends NSObject {
      */
     @CMSelector("- (void)dismissHeadingCalibrationDisplay;")
     public void dismissHeadingCalibrationDisplay() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -161,7 +161,7 @@ public class CLLocationManager extends NSObject {
     @Deprecated
     @CMSelector("- (void)startMonitoringForRegion:(CLRegion *)region desiredAccuracy:(CLLocationAccuracy)accuracy;")
     public void startMonitoringForRegion(CLRegion region, double accuracy) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -171,7 +171,7 @@ public class CLLocationManager extends NSObject {
      */
     @CMSelector("- (void)stopMonitoringForRegion:(CLRegion *)region;")
     public void stopMonitoringForRegion(CLRegion region) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**

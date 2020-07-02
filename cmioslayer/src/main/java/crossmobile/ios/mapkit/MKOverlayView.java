@@ -57,7 +57,7 @@ public class MKOverlayView extends UIView {
     @Deprecated
     @CMSelector("- (CGPoint)pointForMapPoint:(MKMapPoint)mapPoint;")
     public CGPoint pointForMapPoint(MKMapPoint mapPoint) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -71,7 +71,7 @@ public class MKOverlayView extends UIView {
     @Deprecated
     @CMSelector("- (MKMapPoint)mapPointForPoint:(CGPoint)point;")
     public MKMapPoint mapPointForPoint(CGPoint point) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -87,7 +87,7 @@ public class MKOverlayView extends UIView {
     @CMSelector("- (CGRect)rectForMapRect:(MKMapRect)mapRect;\n"
             + "")
     public CGRect rectForMapRect(MKMapRect mapRect) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -101,7 +101,7 @@ public class MKOverlayView extends UIView {
     @Deprecated
     @CMSelector("- (MKMapRect)mapRectForRect:(CGRect)rect;")
     public MKMapRect mapRectForRect(CGRect rect) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -116,7 +116,7 @@ public class MKOverlayView extends UIView {
     @Deprecated
     @CMSelector("- (BOOL)canDrawMapRect:(MKMapRect)mapRect zoomScale:(MKZoomScale)zoomScale;")
     public boolean canDrawMapRect(MKMapRect mapRect, double zoomScale) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return false;
     }
 
@@ -131,7 +131,7 @@ public class MKOverlayView extends UIView {
     @Deprecated
     @CMSelector("- (void)drawMapRect:(MKMapRect)mapRect zoomScale:(MKZoomScale)zoomScale inContext:(CGContextRef)context;")
     public void drawMapRect(MKMapRect mapRect, double zoomScale, CGContext context) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -141,7 +141,7 @@ public class MKOverlayView extends UIView {
      */
     @CMSelector("- (void)setNeedsDisplayInMapRect:(MKMapRect)mapRect;")
     public void setNeedsDisplayInMapRect(MKMapRect mapRect) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -152,7 +152,7 @@ public class MKOverlayView extends UIView {
      */
     @CMSelector("- (void)setNeedsDisplayInMapRect:(MKMapRect)mapRect zoomScale:(MKZoomScale)zoomScale;")
     public void setNeedsDisplayInMapRect(MKMapRect mapRect, double zoomScale) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     @Override

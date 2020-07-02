@@ -89,7 +89,7 @@ public class SwingFont implements NativeFont {
 
     @Override
     public int getUnitsPerEm() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return 0;
     }
 

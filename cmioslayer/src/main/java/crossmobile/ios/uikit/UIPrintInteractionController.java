@@ -95,7 +95,7 @@ public class UIPrintInteractionController extends NSObject {
     @CMSelector("- (BOOL)presentAnimated:(BOOL)animated \n"
             + "      completionHandler:(UIPrintInteractionCompletionHandler)completion;")
     public boolean presentAnimated(boolean p1, UIPrintInteractionCompletionHandler p2) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return false;
     }
 
@@ -112,7 +112,7 @@ public class UIPrintInteractionController extends NSObject {
             + "                        animated:(BOOL)animated \n"
             + "               completionHandler:(UIPrintInteractionCompletionHandler)completion;")
     public boolean presentFromBarButtonItem(UIBarButtonItem p1, boolean p2, UIPrintInteractionCompletionHandler p3) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return false;
     }
 
@@ -131,7 +131,7 @@ public class UIPrintInteractionController extends NSObject {
             + "               animated:(BOOL)animated \n"
             + "      completionHandler:(UIPrintInteractionCompletionHandler)completion;")
     public boolean presentFromRect(CGRect p1, UIView p2, boolean p3, UIPrintInteractionCompletionHandler p4) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return false;
     }
 
@@ -142,7 +142,7 @@ public class UIPrintInteractionController extends NSObject {
      */
     @CMSelector("- (void)dismissAnimated:(BOOL)animated;")
     public void dismissAnimated(boolean p1) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**

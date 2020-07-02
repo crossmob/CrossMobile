@@ -31,7 +31,7 @@ public abstract class CAAnimation extends NSObject implements CAAction, CAMediaT
      */
     @CMSelector("+ (id)defaultValueForKey:(NSString *)key;")
     public static String defaultValueForKey(String key) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -42,7 +42,7 @@ public abstract class CAAnimation extends NSObject implements CAAction, CAMediaT
      */
     @CMSelector("+ (instancetype)animation;")
     public static CATransition animation() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 

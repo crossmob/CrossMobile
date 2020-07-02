@@ -40,7 +40,7 @@ public class SLRequest extends NSObject {
             + "                                 URL:(NSURL *)url \n"
             + "                          parameters:(NSDictionary *)parameters;")
     public static SLRequest requestForServiceType(String serviceType, int requestMethod, NSURL url, Map parameters) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -51,7 +51,7 @@ public class SLRequest extends NSObject {
      */
     @CMGetter("@property(retain, nonatomic) ACAccount *account;")
     public ACAccount account() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -62,7 +62,7 @@ public class SLRequest extends NSObject {
      */
     @CMSetter("@property(retain, nonatomic) ACAccount *account;")
     public void setAccount(ACAccount account) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -73,7 +73,7 @@ public class SLRequest extends NSObject {
     @CMGetter("@property(readonly, nonatomic) SLRequestMethod requestMethod;\n"
             + "")
     public int requestMethod() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return 0;
     }
 
@@ -84,7 +84,7 @@ public class SLRequest extends NSObject {
      */
     @CMGetter("@property(readonly, nonatomic) NSURL *URL;")
     public NSURL URL() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -95,7 +95,7 @@ public class SLRequest extends NSObject {
      */
     @CMGetter("@property(readonly, nonatomic) NSDictionary *parameters;")
     public Map parameters() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -112,7 +112,7 @@ public class SLRequest extends NSObject {
             + "                    type:(NSString *)type \n"
             + "                filename:(NSString *)filename;")
     public void addMultipartData(NSData data, String name, String type, String filename) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -123,7 +123,7 @@ public class SLRequest extends NSObject {
     @CMSelector("- (NSURLRequest *)preparedURLRequest;\n"
             + "")
     public NSURLRequest preparedURLRequest() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -135,6 +135,6 @@ public class SLRequest extends NSObject {
     @CMSelector("- (void)performRequestWithHandler:(SLRequestHandler)handler;\n"
             + "")
     public void performRequestWithHandler(SLRequestHandler handler) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 }

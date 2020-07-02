@@ -142,7 +142,7 @@ public class UIDevice extends NSObject {
     @CMSelector("- (void)beginGeneratingDeviceOrientationNotifications;\n"
             + "")
     public void beginGeneratingDeviceOrientationNotifications() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -150,7 +150,7 @@ public class UIDevice extends NSObject {
      */
     @CMSelector("- (void)endGeneratingDeviceOrientationNotifications;")
     public void endGeneratingDeviceOrientationNotifications() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**

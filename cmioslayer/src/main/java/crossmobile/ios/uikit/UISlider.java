@@ -286,7 +286,7 @@ public class UISlider extends UIControl {
      */
     @CMSelector("- (UIImage *)minimumTrackImageForState:(UIControlState)state;")
     public UIImage minimumTrackImageForState(int UIControlState) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -301,7 +301,7 @@ public class UISlider extends UIControl {
     @CMSelector("- (void)setMinimumTrackImage:(UIImage *)image \n"
             + "                    forState:(UIControlState)state;")
     public void setMinimumTrackImage(UIImage image, int UIControlState) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -324,7 +324,7 @@ public class UISlider extends UIControl {
      */
     @CMSelector("- (UIImage *)maximumTrackImageForState:(UIControlState)state;")
     public UIImage maximumTrackImageForState(int UIControlState) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -339,7 +339,7 @@ public class UISlider extends UIControl {
     @CMSelector("- (void)setMaximumTrackImage:(UIImage *)image \n"
             + "                    forState:(UIControlState)state;")
     public void setMaximumTrackImage(UIImage image, int UIControlState) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**
@@ -363,7 +363,7 @@ public class UISlider extends UIControl {
      */
     @CMSelector("- (UIImage *)thumbImageForState:(UIControlState)state;")
     public UIImage thumbImageForState(int UIControlState) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -376,7 +376,7 @@ public class UISlider extends UIControl {
     @CMSelector("- (void)setThumbImage:(UIImage *)image \n"
             + "             forState:(UIControlState)state;")
     public void setThumbImage(UIImage image, int UIControlState) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**

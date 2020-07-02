@@ -230,7 +230,7 @@ public class UINavigationItem extends NSObject {
         if (this.prompt == null ? prompt == null : this.prompt.equals(prompt))
             return;
 
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
 //        this.prompt = prompt;
 //        // set promptView if prompt is set
 //        if (prompt != null) {

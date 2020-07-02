@@ -76,34 +76,34 @@ public class SwingWebWrapper extends WebWrapper<SwingWebWrapper.NativeW, SwingGr
 
     @Override
     public void reload() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     @Override
     public void goBack() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     @Override
     public void goForward() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     @Override
     public boolean canGoBack() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return false;
     }
 
     @Override
     public boolean canGoForward() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return false;
     }
 
     @Override
     public String stringByEvaluatingJavaScriptFromString(String script) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 

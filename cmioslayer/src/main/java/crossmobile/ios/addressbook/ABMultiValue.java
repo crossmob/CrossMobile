@@ -31,7 +31,7 @@ public class ABMultiValue extends CFType {
      */
     @CMFunction(" ABPropertyType ABMultiValueGetPropertyType ( ABMultiValueRef multiValue ); ")
     public int getPropertyType() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return 0;
     }
 
@@ -42,7 +42,7 @@ public class ABMultiValue extends CFType {
      */
     @CMFunction(" CFIndex ABMultiValueGetCount ( ABMultiValueRef multiValue ); ")
     public long getCount() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return 0;
     }
 
@@ -54,7 +54,7 @@ public class ABMultiValue extends CFType {
      */
     @CMFunction(" CFTypeRef ABMultiValueCopyValueAtIndex ( ABMultiValueRef multiValue, CFIndex index ); ")
     public CFType copyValueAtIndex(long index) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -65,7 +65,7 @@ public class ABMultiValue extends CFType {
      */
     @CMFunction(" CFArrayRef ABMultiValueCopyArrayOfAllValues ( ABMultiValueRef multiValue ); ")
     public List copyArrayOfAllValues() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -77,7 +77,7 @@ public class ABMultiValue extends CFType {
      */
     @CMFunction(" CFStringRef ABMultiValueCopyLabelAtIndex ( ABMultiValueRef multiValue, CFIndex index ); ")
     public String copyLabelAtIndex(long index) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -89,7 +89,7 @@ public class ABMultiValue extends CFType {
      */
     @CMFunction(" CFIndex ABMultiValueGetIndexForIdentifier ( ABMultiValueRef multiValue, ABMultiValueIdentifier identifier ); ")
     public long getIndexForIdentifier(int identifier) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return 0;
     }
 
@@ -101,7 +101,7 @@ public class ABMultiValue extends CFType {
      */
     @CMFunction(" ABMultiValueIdentifier ABMultiValueGetIdentifierAtIndex ( ABMultiValueRef multiValue, CFIndex index ); ")
     public int getIdentifierAtIndex(long index) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return 0;
     }
 
@@ -113,7 +113,7 @@ public class ABMultiValue extends CFType {
      */
     @CMFunction(" CFIndex ABMultiValueGetFirstIndexOfValue ( ABMultiValueRef multiValue, CFTypeRef value ); ")
     public long getFirstIndexOfValue(CFType value) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return 0;
     }
 
@@ -124,7 +124,7 @@ public class ABMultiValue extends CFType {
      */
     @CMFunction("ABMutableMultiValueRef ABMultiValueCreateMutableCopy(ABMultiValueRef multiValue);")
     public ABMutableMultiValue createMutableCopy() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 }

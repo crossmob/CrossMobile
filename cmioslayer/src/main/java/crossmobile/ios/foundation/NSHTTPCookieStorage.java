@@ -101,7 +101,7 @@ public class NSHTTPCookieStorage extends NSObject {
             + "            forURL:(NSURL *)URL \n"
             + "   mainDocumentURL:(NSURL *)mainDocumentURL;")
     public void setCookies(List<NSHTTPCookie> cookies, NSURL url, NSURL mainDocumentURL) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**

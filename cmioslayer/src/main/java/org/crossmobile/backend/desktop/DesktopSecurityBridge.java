@@ -22,7 +22,7 @@ public class DesktopSecurityBridge implements SecurityBridge {
 
     @Override
     public void requestFingerprint(VoidBlock2<Boolean, NSError> callback, LAContext context) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
 }

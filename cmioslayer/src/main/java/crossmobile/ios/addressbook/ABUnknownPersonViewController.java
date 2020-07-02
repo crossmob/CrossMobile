@@ -34,7 +34,7 @@ public final class ABUnknownPersonViewController extends UIViewController {
      */
     @CMGetter(" @property(nonatomic, assign) id< ABUnknownPersonViewControllerDelegate > unknownPersonViewDelegate ")
     public ABUnknownPersonViewControllerDelegate unknownPersonViewDelegate() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -46,7 +46,7 @@ public final class ABUnknownPersonViewController extends UIViewController {
      */
     @CMSetter(" @property(nonatomic, assign) id< ABUnknownPersonViewControllerDelegate > unknownPersonViewDelegate ")
     public void setUnknownPersonViewDelegate(ABUnknownPersonViewControllerDelegate unknownPersonViewDelegate) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     /**

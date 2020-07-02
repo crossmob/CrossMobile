@@ -40,7 +40,7 @@ public class CGImage extends CFType {
      */
     @CMFunction(" CGImageRef CGImageCreateWithImageInRect ( CGImageRef image, CGRect rect ); ")
     public static CGImage createWithImageInRect(CGImage image, CGRect rect) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -55,7 +55,7 @@ public class CGImage extends CFType {
      */
     @CMFunction(" CGImageRef CGImageCreateWithPNGDataProvider ( CGDataProviderRef source, const CGFloat *decode, bool shouldInterpolate, CGColorRenderingIntent intent ); ")
     public static CGImage createWithPNGDataProvider(CGDataProvider provider, double[] decode, boolean shouldInterpolate, int CGColorRenderingIntent) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 

@@ -25,7 +25,7 @@ public class ACAccountType extends NSObject {
      */
     @CMGetter("@property(readonly, nonatomic) NSString *accountTypeDescription;")
     public String accountTypeDescription() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -36,7 +36,7 @@ public class ACAccountType extends NSObject {
      */
     @CMGetter("@property(readonly, nonatomic) NSString *identifier;")
     public String identifier() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -48,7 +48,7 @@ public class ACAccountType extends NSObject {
      */
     @CMGetter("@property(readonly, nonatomic) BOOL accessGranted;")
     public boolean accessGranted() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return false;
     }
 }

@@ -171,31 +171,31 @@ public class AndroidMapViewWrapper extends MapViewWrapper<AndroidMapViewWrapper.
 
     @Override
     public CGRect convertRegionToRectToView(MKCoordinateRegion region, UIView view) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
     @Override
     public MKCoordinateRegion convertRectToRegionFromView(CGRect rect, UIView view) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
     @Override
     public MKCoordinateRegion regionThatFits(MKCoordinateRegion region) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
     @Override
     public MKMapRect mapRectThatFits(MKMapRect mapRect) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
     @Override
     public MKMapRect mapRectThatFits(MKMapRect mapRect, UIEdgeInsets insets) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
@@ -218,93 +218,93 @@ public class AndroidMapViewWrapper extends MapViewWrapper<AndroidMapViewWrapper.
 
     @Override
     public MKAnnotationView viewForAnnotation(MKAnnotation annotation) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
     @Override
     public Set<MKAnnotation> annotationsInMapRect(MKMapRect rect) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
     @Override
     public CGRect annotationVisibleRect() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
     @Override
     public MKAnnotationView dequeueReusableAnnotationViewWithIdentifier(String id) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
     @Override
     public List<MKAnnotation> selectedAnnotations() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
     @Override
     public void setSelectedAnnotations(List<? extends MKAnnotation> selectedAnnotations) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     @Override
     public void selectAnnotation(MKAnnotation annotation, boolean animated) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     @Override
     public void deselectAnnotation(MKAnnotation annotation, boolean animated) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     @Override
     public List<MKOverlay> overlays() {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
     @Override
     public void addOverlay(MKOverlay overlay) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     @Override
     public void addOverlays(List<MKOverlay> overlays) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     @Override
     public void removeOverlay(MKOverlay overlay) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     @Override
     public void removeOverlays(List<MKOverlay> overlays) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     @Override
     public void insertOverlay(MKOverlay overlay, int index) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     @Override
     public void exchangeOverlayAtIndex(int index1, int index2) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     @Override
     public void insertOverlayAboveOverlay(MKOverlay overlay, MKOverlay sibling) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     @Override
     public void insertOverlayBelowOverlay(MKOverlay overlay, MKOverlay sibling) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
     }
 
     @Override
@@ -433,7 +433,7 @@ public class AndroidMapViewWrapper extends MapViewWrapper<AndroidMapViewWrapper.
 
         @Override
         public void setUserInteraction(boolean status) {
-            Native.lifecycle().notImplemented();
+            Native.system().notImplemented();
         }
 
     }

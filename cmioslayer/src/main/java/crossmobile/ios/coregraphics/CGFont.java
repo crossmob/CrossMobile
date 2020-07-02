@@ -36,7 +36,7 @@ public class CGFont extends CFType {
      */
     @CMFunction(" CGFontRef CGFontCreateWithDataProvider ( CGDataProviderRef provider ); ")
     public static CGFont createWithDataProvider(CGDataProvider provider) {
-        Native.lifecycle().notImplemented();
+        Native.system().notImplemented();
         return null;
     }
 
