@@ -249,7 +249,7 @@ public class Prefs {
     }
 
     public static String getUserTheme() {
-        return prefs.get(USER_THEME, "auto");
+        return prefs.get(USER_THEME, SystemDependent.getDefaultTheme());
     }
 
     public static void setUserTheme(String theme) {

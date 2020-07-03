@@ -72,7 +72,7 @@ public class SystemDependent {
             while ((line = in.readLine()) != null)
                 if (line.endsWith(".app"))
                     res.add(new ExtPath(line, ExtPath.BUNDLE_ONLY));
-        } catch (Exception ex) {
+        } catch (Exception ignored) {
         }
     }
 
@@ -114,6 +114,10 @@ public class SystemDependent {
             return Charset.forName("x-UTF-16LE-BOM");
         else
             return StandardCharsets.UTF_8;
+    }
+
+    public static String getDefaultTheme() {
+        return IS_MACOSX ? "auto" : "light";
     }
 
     public static String getHome() {
