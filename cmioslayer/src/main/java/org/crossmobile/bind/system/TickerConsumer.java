@@ -8,9 +8,9 @@ package org.crossmobile.bind.system;
 
 public interface TickerConsumer {
 
-    public void start();
+    void start();
 
-    public void apply(double progress);
+    void apply(double progress);
 
-    public void end();
+    void end();
 }

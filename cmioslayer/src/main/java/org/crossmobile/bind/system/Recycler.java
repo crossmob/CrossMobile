@@ -17,9 +17,9 @@ import java.util.Map;
 public class Recycler<C, V> {
 
     private final Map<C, LinkedList<V>> storage = new HashMap<>();
-    private Block1<C, V> constructor;
-    private VoidBlock1<V> cleanup;
-    private VoidBlock1<V> resurrect;
+    private final Block1<C, V> constructor;
+    private final VoidBlock1<V> cleanup;
+    private final VoidBlock1<V> resurrect;
 
     public Recycler() {
         this(null, null, null);

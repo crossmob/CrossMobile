@@ -8,8 +8,8 @@ package org.crossmobile.bind.system;
 
 public final class VelocityFilter {
 
-    private double time[];
-    private double value[];
+    private final double[] time;
+    private final double[] value;
     private int pointer;
     private int size;
 
@@ -17,9 +17,9 @@ public final class VelocityFilter {
         this(2);
     }
 
-    public VelocityFilter(int filtersize) {
-        time = new double[filtersize + 1];
-        value = new double[filtersize + 1];
+    public VelocityFilter(int filterSize) {
+        time = new double[filterSize + 1];
+        value = new double[filterSize + 1];
         reset();
     }
 

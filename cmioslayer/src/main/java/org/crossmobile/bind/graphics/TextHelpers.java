@@ -51,10 +51,10 @@ public class TextHelpers {
         String ctext;
         String lasttext;
         int idx = 0;
-        GraphicsContext<?,?> cxt = context(UIGraphics.getCurrentContext());
+        GraphicsContext<?, ?> cxt = context(UIGraphics.getCurrentContext());
         while (idx < words.size() && numlines > tb.lines.size()) {
-            ctext = lasttext = "";
-            csize = lastsize = null;
+            ctext = "";
+            csize = null;
             StringBuilder buffer = new StringBuilder();
             do {
                 lasttext = ctext;
@@ -77,10 +77,7 @@ public class TextHelpers {
         }
 
         double dots;
-        if (text == null || text.equals(""))
-            dots = 0;
-        else
-            dots = cxt.stringSizeWithFont("...", font).getWidth();
+        dots = text.equals("") ? 0 : cxt.stringSizeWithFont("...", font).getWidth();
         if (idx < words.size() && lastsize != null)
             if ((lastsize.getWidth() + dots) <= maxwidth)
                 tb.addDots("...", dots);

@@ -1291,6 +1291,7 @@ org/crossmobile/bind/graphics/Insets.java
 org/crossmobile/bind/graphics/NativeBitmap.java
 org/crossmobile/bind/graphics/NativeFont.java
 org/crossmobile/bind/graphics/NativePath.java
+org/crossmobile/bind/graphics/RelayoutRegistry.java
 org/crossmobile/bind/graphics/Size.java
 org/crossmobile/bind/graphics/TextHelpers.java
 org/crossmobile/bind/graphics/Theme.java
@@ -2471,6 +2472,7 @@ org/crossmobile/bind/graphics/NativeBitmap.class v8
 org/crossmobile/bind/graphics/NativeFont$Helper.class v8
 org/crossmobile/bind/graphics/NativeFont.class v8
 org/crossmobile/bind/graphics/NativePath.class v8
+org/crossmobile/bind/graphics/RelayoutRegistry.class v8
 org/crossmobile/bind/graphics/Size.class v8
 org/crossmobile/bind/graphics/TextHelpers$1.class v8
 org/crossmobile/bind/graphics/TextHelpers$TextBlock.class v8
@@ -3210,6 +3212,7 @@ org/crossmobile/bind/graphics/NativeBitmap.class v8
 org/crossmobile/bind/graphics/NativeFont$Helper.class v8
 org/crossmobile/bind/graphics/NativeFont.class v8
 org/crossmobile/bind/graphics/NativePath.class v8
+org/crossmobile/bind/graphics/RelayoutRegistry.class v8
 org/crossmobile/bind/graphics/Size.class v8
 org/crossmobile/bind/graphics/TextHelpers$1.class v8
 org/crossmobile/bind/graphics/TextHelpers$TextBlock.class v8

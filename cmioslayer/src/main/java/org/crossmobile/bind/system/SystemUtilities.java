@@ -41,8 +41,9 @@ public class SystemUtilities {
                     return new CGSize(Integer.parseInt(parts[0].trim()), Integer.parseInt(parts[1].trim()));
                 } catch (NumberFormatException ex) {
                     try {
+                        //noinspection CharsetObjectCanBeUsed
                         ex.printStackTrace(new PrintWriter(new OutputStreamWriter(System.err, "UTF-8")));
-                    } catch (UnsupportedEncodingException ex1) {
+                    } catch (UnsupportedEncodingException ignored) {
                     }
                 }
         }
@@ -79,8 +80,9 @@ public class SystemUtilities {
     public static String bytesToString(byte[] bytes) {
         try {
             if (bytes != null)
+                //noinspection CharsetObjectCanBeUsed
                 return new String(bytes, "UTF-8");
-        } catch (UnsupportedEncodingException ex) {
+        } catch (UnsupportedEncodingException ignored) {
         }
         return null;
     }
@@ -89,6 +91,7 @@ public class SystemUtilities {
         StringBuilder out = new StringBuilder();
         byte c;
         int l, h;
+        //noinspection ForLoopReplaceableByForEach
         for (int i = 0; i < bytes.length; i++) {
             c = bytes[i];
             h = (c & 240) >>> 4;
@@ -152,8 +155,6 @@ public class SystemUtilities {
         try {
             Class<?> clazz = SystemUtilities.class.getClassLoader().loadClass(classname);
             main = clazz.getMethod("main", args.getClass());
-            if (main == null)
-                throw new IllegalArgumentException("Class " + classname + " does not support method with signature 'public static void main(String[])'");
         } catch (Exception ex) {
             Native.lifecycle().quit("Unable to find CrossMobile application " + classname, ex);
             return;

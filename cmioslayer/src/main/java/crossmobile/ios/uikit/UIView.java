@@ -10,10 +10,7 @@ import crossmobile.ios.coregraphics.*;
 import crossmobile.ios.foundation.NSDate;
 import crossmobile.ios.foundation.NSTimer;
 import crossmobile.ios.quartzcore.CALayer;
-import org.crossmobile.bind.graphics.AppearanceRegistry;
-import org.crossmobile.bind.graphics.Geometry;
-import org.crossmobile.bind.graphics.GraphicsContext;
-import org.crossmobile.bind.graphics.Theme;
+import org.crossmobile.bind.graphics.*;
 import org.crossmobile.bind.system.Core;
 import org.crossmobile.bind.system.SystemUtilities;
 import org.crossmobile.bind.wrapper.NativeWrapper;
@@ -474,7 +471,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
      */
     @CMSelector("- (void)setNeedsLayout;")
     public void setNeedsLayout() {
-        Native.lifecycle().runLaterOnceOnEventThread(this::layoutIfNeeded);
+        RelayoutRegistry.register(this);
     }
 
     /**
