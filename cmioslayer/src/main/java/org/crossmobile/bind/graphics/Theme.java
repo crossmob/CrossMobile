@@ -33,6 +33,13 @@ public class Theme {
         return Native.graphics().colorHSBAtoRGBA(hsv[0], hsv[1], hsv[2], hsv[3]);
     }
 
+    public static boolean isDark(int base) {
+        double red = ((base >> 16) & 0xff) / 255.0;
+        double green = ((base >> 8) & 0xff) / 255.0;
+        double blue = (base & 0xff) / 255.0;
+        return Math.sqrt(red * red * 0.299 + green * green * 0.587 + blue * blue * 0.114) < 0.5;
+    }
+
     public final static class Images {
 
         public final static String ACTIVITY_BLACK = "activity";

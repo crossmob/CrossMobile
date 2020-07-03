@@ -124,9 +124,9 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
 
     @Override
     public void mouseDragged(MouseEvent e) {
+        if (e.getButton() != MouseEvent.BUTTON1 || clicked.isUnset())
+            return;
         Native.lifecycle().encapsulateContext(() -> {
-            if (e.getButton() != MouseEvent.BUTTON1 || clicked.isUnset())
-                return;
             DesktopDrawableMetrics metrics = (DesktopDrawableMetrics) Native.graphics().metrics();
             if (e.getSource() instanceof SwingNativeDispatcher.DesktopNativeWidget) {
                 widgetTouchCorrection(e, Moved);
@@ -164,11 +164,9 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        Native.lifecycle().encapsulateContext(() -> {
-            hardwareMouse = new Point2D.Double(e.getX(), e.getY());
-            if (multiTouch)
-                repaint();
-        });
+        hardwareMouse = new Point2D.Double(e.getX(), e.getY());
+        if (multiTouch)
+            Native.lifecycle().encapsulateContext(this::repaint);
     }
 
     @Override

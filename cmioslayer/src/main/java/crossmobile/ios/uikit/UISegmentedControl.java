@@ -6,10 +6,11 @@
 
 package crossmobile.ios.uikit;
 
-import crossmobile.ios.coregraphics.GraphicsDrill;
+import crossmobile.ios.coregraphics.CGColor;
 import crossmobile.ios.coregraphics.CGContext;
 import crossmobile.ios.coregraphics.CGPathDrawingMode;
 import crossmobile.ios.coregraphics.CGRect;
+import org.crossmobile.bind.graphics.Theme;
 import org.crossmobile.bind.system.Promise;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.*;
@@ -29,18 +30,15 @@ import static crossmobile.ios.coregraphics.GraphicsDrill.color;
 public class UISegmentedControl extends UIControl {
 
     private int selection = -1;
-    private List<Segment> items = new ArrayList<>();
+    private final List<Segment> items = new ArrayList<>();
     private int style = UISegmentedControlStyle.Plain;
     private boolean momentary = false;
-    private boolean deferupdate = false;
-    private UIColor lastTint = null;
-    private UIColor lastLabelColor = null;
-    //
-    private final UIControlDelegate touchDowmDelegate = (sender, event) -> setSelectedSegmentIndex(sender.tag());
 
+    private final UIControlDelegate touchDownDelegate = (sender, event) -> setSelectedSegmentIndex(sender.tag());
     private final UIControlDelegate touchUpDelegate = (sender, event) -> {
         if (momentary && selection >= 0)
             items.get(selection).setSelected(false);
+        selection = -1;
     };
 
     /**
@@ -61,7 +59,6 @@ public class UISegmentedControl extends UIControl {
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public UISegmentedControl(CGRect rect) {
         super(rect);
-        setTintColor(UIColor.blueColor());
     }
 
     /**
@@ -73,17 +70,15 @@ public class UISegmentedControl extends UIControl {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     @CMConstructor("- (instancetype)initWithItems:(NSArray *)items;")
-    public UISegmentedControl(List items) {
+    public UISegmentedControl(List<?> items) {
         if (items != null && !items.isEmpty()) {
-            deferupdate = true;
             for (int i = 0; i < items.size(); i++)
+                //noinspection DuplicateCondition
                 if (items.get(i) instanceof String)
                     insertSegmentWithTitle((String) items.get(i), i, false);
-                else if (items.get(i) instanceof UIImage)
-                    insertSegmentWithImage((UIImage) items.get(i), i, false);
-
-            deferupdate = false;
-            layoutSubviews();
+                else //noinspection DuplicateCondition
+                    if (items.get(i) instanceof UIImage)
+                        insertSegmentWithImage((UIImage) items.get(i), i, false);
         }
     }
 
@@ -167,120 +162,19 @@ public class UISegmentedControl extends UIControl {
         return addSegment(index, null);
     }
 
-    private class Segment extends UIButton {
-
-        private Promise<UIImage> selectedImage;
-        private Promise<UIImage> deselectedImage;
-
-        private Segment(UIImage segmentedImage) {
-            super(UIButtonType.Custom);
-            setSegmentedImage(segmentedImage);
-        }
-
-        //        @Override
-//        public void setHighlighted(boolean highlighted) {
-//            if (highlighted)
-//                setSegmentSelected(this, true, false);
-//        }
-        @Override
-        public void drawRect(CGRect rect) {
-            CGContext cx = UIGraphics.getCurrentContext();
-            cx.setFillColorWithColor(lastTint.cgcolor);
-            cx.beginPath();
-            if (this.equals(items.get(0))) {
-                cx.beginPath();
-                cx.moveToPoint(rect.getOrigin().getX() + 4, rect.getOrigin().getY());
-                cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY());
-                cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY() + rect.getSize().getHeight());
-                cx.addLineToPoint(rect.getOrigin().getX() + 4, rect.getOrigin().getY() + rect.getSize().getHeight());
-                cx.addCurveToPoint(rect.getOrigin().getX() + 3, rect.getOrigin().getY() + rect.getSize().getHeight() - 1, rect.getOrigin().getX() + 1, rect.getOrigin().getY() + rect.getSize().getHeight() - 3, rect.getOrigin().getX(), rect.getOrigin().getY() + rect.getSize().getHeight() - 4);
-                cx.addLineToPoint(rect.getOrigin().getX(), rect.getOrigin().getY() + 4);
-                cx.addCurveToPoint(rect.getOrigin().getX() + 1, rect.getOrigin().getY() + 3, rect.getOrigin().getX() + 3, rect.getOrigin().getY() + 1, rect.getOrigin().getX() + 4, rect.getOrigin().getY());
-            } else if (this.equals(items.get(items.size() - 1))) {
-                cx.beginPath();
-                cx.moveToPoint(rect.getOrigin().getX(), rect.getOrigin().getY());
-                cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth() - 4, rect.getOrigin().getY());
-                cx.addCurveToPoint(rect.getOrigin().getX() + rect.getSize().getWidth() - 3, rect.getOrigin().getY() + 1, rect.getOrigin().getX() + rect.getSize().getWidth() - 1, rect.getOrigin().getY() + 3, rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY() + 4);
-                cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY() + rect.getSize().getHeight() - 4);
-                cx.addCurveToPoint(rect.getOrigin().getX() + rect.getSize().getWidth() - 1, rect.getOrigin().getY() + rect.getSize().getHeight() - 3, rect.getOrigin().getX() + rect.getSize().getWidth() - 3, rect.getOrigin().getY() + rect.getSize().getHeight() - 1, rect.getOrigin().getX() + rect.getSize().getWidth() - 4, rect.getOrigin().getY() + rect.getSize().getHeight());
-                cx.addLineToPoint(rect.getOrigin().getX(), rect.getOrigin().getY() + rect.getSize().getHeight());
-            } else {
-                cx.beginPath();
-                cx.moveToPoint(rect.getOrigin().getX(), rect.getOrigin().getY());
-                cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY());
-                cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY() + rect.getSize().getHeight());
-                cx.addLineToPoint(rect.getOrigin().getX(), rect.getOrigin().getY() + rect.getSize().getHeight());
-
-            }
-            cx.setLineWidth(1);
-            cx.setStrokeColorWithColor(lastTint.cgcolor);
-
-            if (this.isSelected() || isHighlighted()) {
-                cx.drawPath(CGPathDrawingMode.FillStroke);
-                if (deselectedImage != null)
-                    drawIn(cx, deselectedImage.get());
-                else
-                    for (UIButton item : items)
-                        item.setTitleColor(lastLabelColor, UIControlState.Normal);
-            } //                    setBackgroundColor(tintColor());
-            else {
-                if (selectedImage != null)
-                    drawIn(cx, selectedImage.get());
-                for (UIButton item : items)
-                    item.setTitleColor(lastTint, UIControlState.Normal);
-            }
-//            if (segmentImage != null)
-//                cx.drawImage(new CGRect(frame.getSize().width / 2 - segmentImage.size().width / 2, frame.getSize().height / 2 - segmentImage.size().height / 2, segmentImage.size().width, segmentImage.size().height), segmentImage.getMasked(tintColor().cgcolor.color).CGImage());
-
-            cx.drawPath(CGPathDrawingMode.Stroke);
-            cx.closePath();
-            super.drawRect(rect);
-        }
-
-        private boolean drawIn(CGContext cx, UIImage img) {
-            if (img == null)
-                return false;
-            img.drawInRect(new CGRect(0, 0, getWidth(), getHeight()));
-            return true;
-        }
-
-        private void setSegmentedImage(UIImage image) {
-            selectedImage = image == null ? null : image.cacheTinted(true, this);
-            deselectedImage = image == null ? null : image.cacheTinted(true, UIColor.whiteColor.cgcolor);
-        }
-
-        private void invalidate() {
-            if (selectedImage != null)
-                selectedImage.destroy();
-            if (deselectedImage != null)
-                deselectedImage.destroy();
-        }
-    }
-
     private UIButton addSegment(int index, final UIImage img) {
         Segment segment = new Segment(img);
-//        segment.titleLabel().setShadowColor(UIColor.blackColor());
-//        segment.setAdjustsImageWhenHighlighted(true);
         int cindex = (index < 0) ? 0 : ((index > items.size()) ? items.size() : index);
 
         segment.setTag(index);
-        segment.addTarget(touchDowmDelegate, UIControlEvents.TouchDown);
+        segment.addTarget(touchDownDelegate, UIControlEvents.TouchDown);
         segment.addTarget(touchUpDelegate, UIControlEvents.TouchUpInside);
         segment.addTarget(touchUpDelegate, UIControlEvents.TouchUpOutside);
         items.add(cindex, segment);
         if (selection >= cindex)
             selection++;
-        if (!deferupdate)
-            layoutSubviews();
-
+        setNeedsLayout();
         return segment;
-    }
-
-    @Override
-    public void tintColorDidChange() {
-        super.tintColorDidChange();
-        for (Segment segment : items)
-            segment.invalidate();
     }
 
     /**
@@ -290,7 +184,7 @@ public class UISegmentedControl extends UIControl {
     public void removeAllSegments() {
         items.clear();
         setSelectedSegmentIndex(-1);
-        layoutSubviews();
+        setNeedsLayout();
     }
 
     /**
@@ -307,7 +201,7 @@ public class UISegmentedControl extends UIControl {
         else if (selection == index)
             setSelectedSegmentIndex(-1);
         items.remove(index);
-        layoutSubviews();
+        setNeedsLayout();
     }
 
     /**
@@ -395,20 +289,15 @@ public class UISegmentedControl extends UIControl {
      */
     @CMSetter("@property(nonatomic, getter=isMomentary) BOOL momentary;")
     public void setMomentary(boolean momentary) {
-        if (this.momentary == momentary)
-            return;
         this.momentary = momentary;
     }
 
     @Override
     public void layoutSubviews() {
-        if (items == null) // be safe with early initialization, due to overriding of setFrame method
+        if (items.size() < 1)
             return;
         for (UIView v : subviews())
             v.removeFromSuperview();
-
-        if (items.size() < 1)
-            return;
         Native.lifecycle().runAndWaitOnEventThread(() -> {
             CGRect frame1 = frame();
             int actualX = 0;
@@ -431,13 +320,80 @@ public class UISegmentedControl extends UIControl {
         });
     }
 
-    @Override
-    public final void drawRect(CGRect rect) {
-        UIColor lastLastTint = lastTint;
-        lastTint = tintColor();
-        double[] hsva = Native.graphics().colorRGBAtoHSVA(color(lastTint.cgcolor));
-        lastLabelColor = hsva[2] > 0.5 ? UIColor.blackColor() : UIColor.whiteColor();
-        super.drawRect(rect);
-    }
+    private class Segment extends UIButton {
 
+        private Promise<UIImage> selectedImage;
+        private Promise<UIImage> deselectedImage;
+
+        private Segment(UIImage segmentedImage) {
+            super(UIButtonType.Custom);
+            setSegmentedImage(segmentedImage);
+        }
+
+        @Override
+        public void tintColorDidChange() {
+            super.tintColorDidChange();
+            if (selectedImage != null)
+                selectedImage.destroy();
+            if (deselectedImage != null)
+                deselectedImage.destroy();
+
+            UIColor normal = tintColor();
+            UIColor selected = Theme.isDark(color(normal.cgcolor)) ? UIColor.whiteColor() : UIColor.blackColor();
+            setTitleColor(normal, UIControlState.Normal);
+            setTitleColor(selected, UIControlState.Selected);
+            setTitleColor(selected, UIControlState.Highlighted);
+//            setTitleColor(selected, UIControlState.Selected | UIControlState.Highlighted);
+        }
+
+        @Override
+        public void drawRect(CGRect rect) {
+            CGColor tintColor = tintColor().cgcolor;
+            CGContext cx = UIGraphics.getCurrentContext();
+            cx.beginPath();
+            if (this.equals(items.get(0))) {
+                // Left
+                cx.moveToPoint(rect.getOrigin().getX() + 4, rect.getOrigin().getY());
+                cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY());
+                cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY() + rect.getSize().getHeight());
+                cx.addLineToPoint(rect.getOrigin().getX() + 4, rect.getOrigin().getY() + rect.getSize().getHeight());
+                cx.addCurveToPoint(rect.getOrigin().getX() + 3, rect.getOrigin().getY() + rect.getSize().getHeight() - 1, rect.getOrigin().getX() + 1, rect.getOrigin().getY() + rect.getSize().getHeight() - 3, rect.getOrigin().getX(), rect.getOrigin().getY() + rect.getSize().getHeight() - 4);
+                cx.addLineToPoint(rect.getOrigin().getX(), rect.getOrigin().getY() + 4);
+                cx.addCurveToPoint(rect.getOrigin().getX() + 1, rect.getOrigin().getY() + 3, rect.getOrigin().getX() + 3, rect.getOrigin().getY() + 1, rect.getOrigin().getX() + 4, rect.getOrigin().getY());
+            } else if (this.equals(items.get(items.size() - 1))) {
+                // Right
+                cx.moveToPoint(rect.getOrigin().getX(), rect.getOrigin().getY());
+                cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth() - 4, rect.getOrigin().getY());
+                cx.addCurveToPoint(rect.getOrigin().getX() + rect.getSize().getWidth() - 3, rect.getOrigin().getY() + 1, rect.getOrigin().getX() + rect.getSize().getWidth() - 1, rect.getOrigin().getY() + 3, rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY() + 4);
+                cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY() + rect.getSize().getHeight() - 4);
+                cx.addCurveToPoint(rect.getOrigin().getX() + rect.getSize().getWidth() - 1, rect.getOrigin().getY() + rect.getSize().getHeight() - 3, rect.getOrigin().getX() + rect.getSize().getWidth() - 3, rect.getOrigin().getY() + rect.getSize().getHeight() - 1, rect.getOrigin().getX() + rect.getSize().getWidth() - 4, rect.getOrigin().getY() + rect.getSize().getHeight());
+                cx.addLineToPoint(rect.getOrigin().getX(), rect.getOrigin().getY() + rect.getSize().getHeight());
+            } else {
+                // Central
+                cx.moveToPoint(rect.getOrigin().getX(), rect.getOrigin().getY());
+                cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY());
+                cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY() + rect.getSize().getHeight());
+                cx.addLineToPoint(rect.getOrigin().getX(), rect.getOrigin().getY() + rect.getSize().getHeight());
+            }
+            cx.closePath();
+            cx.setLineWidth(1);
+            if (isSelected() || isHighlighted()) {
+                cx.setFillColorWithColor(tintColor);
+                cx.drawPath(CGPathDrawingMode.FillStroke);
+                if (deselectedImage != null)
+                    deselectedImage.get().drawInRect(new CGRect(0, 0, getWidth(), getHeight()));
+            } else {
+                cx.setStrokeColorWithColor(tintColor);
+                cx.drawPath(CGPathDrawingMode.Stroke);
+                if (selectedImage != null)
+                    selectedImage.get().drawInRect(new CGRect(0, 0, getWidth(), getHeight()));
+            }
+            super.drawRect(rect);
+        }
+
+        private void setSegmentedImage(UIImage image) {
+            selectedImage = image == null ? null : image.cacheTinted(true, this);
+            deselectedImage = image == null ? null : image.cacheTinted(true, UIColor.whiteColor.cgcolor);
+        }
+    }
 }

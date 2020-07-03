@@ -2654,8 +2654,8 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
                 newParent.children.add(idx, view);
             else
                 newParent.children.add(view);
-            view.tintColorDidChange();
             view.parentRef = new WeakReference<>(newParent);
+            view.tintColorDidChange();
         }
 
         void doRemove() {

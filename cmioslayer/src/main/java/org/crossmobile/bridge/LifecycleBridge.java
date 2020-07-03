@@ -111,18 +111,14 @@ public interface LifecycleBridge extends Thread.UncaughtExceptionHandler {
     }
 
     boolean isEventThread();
+
     /**
-     * Schedule to run some code at the event thread <b>once</b> at later time, when no drawing
-     * or event handling operations are performed.
-     *
-     * @param runnable The code to run
-     */
-    /**
-     * Send a task to be executed once, when the system finds appropriate, i.e. after the current
-     * drawing cycle, or immediately if no current drawing cycle is present.
+     * Send a task to be executed once on the event thread, when the system finds appropriate,
+     * i.e. after the current drawing or event handling cycle, or immediately if no current
+     * event thread working is performed.
      * <p>
      * The  uniqueness of the task is specified by the Runnable itself. It can be added more than
-     * once, as long as the ""equality" of this class is taken into account
+     * once, as long as the "equality" of this class is taken into account
      * <p>
      * This command should exit as soon as possible, since it is run on the same thread as the
      * event/drawing thread. If you require tasks that take time and no visuals synchronization is
