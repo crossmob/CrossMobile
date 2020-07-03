@@ -15,10 +15,7 @@ import org.crossmobile.bridge.LifecycleBridge;
 import org.crossmobile.bridge.Native;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static crossmobile.ios.coregraphics.GraphicsDrill.convertBaseContextToCGContext;
@@ -32,7 +29,7 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
     private Thread.UncaughtExceptionHandler systemHandler;
     private boolean isQuitting = false;
     private boolean inBackground;
-    private boolean shouldWait;
+    private boolean runLaterOnceLock;
     private Set<Runnable> runningTasks = new LinkedHashSet<>();
     private Set<Runnable> waitingTasks = new LinkedHashSet<>();
 
@@ -207,40 +204,41 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
     }
 
     @Override
-    public void runOnceLaterOnEventThread(Runnable task) {
-        synchronized (this) {
-            if (task != null)
-                waitingTasks.add(task);
-        }
-        if (!shouldWait)
-            runOnEventThread(this::drainWaitingTasks);
+    public void runLaterOnceOnEventThread(Runnable task) {
+        if (isEventThread()) {
+            waitingTasks.add(task);
+            if (!runLaterOnceLock)
+                drainWaitingTasks();
+        } else
+            runOnEventThread(() -> runLaterOnceOnEventThread(task));
+    }
+
+    private void runLocked(Runnable commands) {
+        runLaterOnceLock = true;
+        commands.run();  // This method might produce more waiting tasks
+        runLaterOnceLock = false;
     }
 
     @Override
-    public void runInContext(Runnable commands) {
-        runOnEventThread(() -> {
-            shouldWait = true;
-            commands.run();
-            if (!waitingTasks.isEmpty())
-                drainWaitingTasks();
-            shouldWait = false;
-        });
+    public void encapsulateContext(Runnable commands) {
+        runLocked(commands);
+        if (!waitingTasks.isEmpty())
+            drainWaitingTasks();
     }
 
     // This method is always run on event thread
     private void drainWaitingTasks() {
         // Swap instead of assign running tasks to waiting tasks and clear waiting tasks, since run tasks should be empty anyway
-        synchronized (this) {
-            Set<Runnable> empty = runningTasks;
-            runningTasks = waitingTasks;
-            waitingTasks = empty;
-        }
+        Set<Runnable> empty = runningTasks;
+        runningTasks = waitingTasks;
+        waitingTasks = empty;
 
         for (Runnable r : runningTasks)
-            r.run();    // This method might produce more waiting tasks
-        runningTasks.clear();
+            runLocked(r);
 
-        if (!waitingTasks.isEmpty()) // more waiting tasks have been produced, do the same procedure again
+        runningTasks.clear();
+        // more waiting tasks have been produced, do the same procedure again
+        while (waitingTasks != empty)
             drainWaitingTasks();
     }
 }

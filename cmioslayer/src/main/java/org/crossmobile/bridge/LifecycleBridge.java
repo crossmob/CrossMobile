@@ -131,7 +131,7 @@ public interface LifecycleBridge extends Thread.UncaughtExceptionHandler {
      *
      * @param task The task to run
      */
-    void runOnceLaterOnEventThread(Runnable task);
+    void runLaterOnceOnEventThread(Runnable task);
 
     /**
      * Run a specific task in waiting task context. THIS METHOD SHOULD ONLY BE CALLED FORM THE EVENT THREAD.
@@ -142,5 +142,5 @@ public interface LifecycleBridge extends Thread.UncaughtExceptionHandler {
      *
      * @param commands A block of running commands to run in a waiting context
      */
-    void runInContext(Runnable commands);
+    void encapsulateContext(Runnable commands);
 }

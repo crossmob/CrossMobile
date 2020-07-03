@@ -474,7 +474,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
      */
     @CMSelector("- (void)setNeedsLayout;")
     public void setNeedsLayout() {
-        Native.lifecycle().runOnceLaterOnEventThread(this::layoutIfNeeded);
+        Native.lifecycle().runLaterOnceOnEventThread(this::layoutIfNeeded);
     }
 
     /**
@@ -910,7 +910,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
      */
     @CMSelector("- (void)setNeedsDisplay;")
     public void setNeedsDisplay() {
-        Native.lifecycle().runOnceLaterOnEventThread(refreshDisplay);
+        Native.lifecycle().runLaterOnceOnEventThread(refreshDisplay);
     }
 
     /**

@@ -47,7 +47,7 @@ public class MainView extends AbsoluteLayout {
     @SuppressWarnings("null")
     public boolean dispatchTouchEvent(MotionEvent ev) {
         AtomicBoolean result = new AtomicBoolean(false);
-        Native.lifecycle().runInContext(() -> {
+        Native.lifecycle().encapsulateContext(() -> {
             super.dispatchTouchEvent(ev);
             int phase;
             int pointer = -1;
@@ -96,7 +96,7 @@ public class MainView extends AbsoluteLayout {
 
     @Override
     public void draw(Canvas canvas) {
-        Native.lifecycle().runInContext(() -> {
+        Native.lifecycle().encapsulateContext(() -> {
             canvas.save();
             //noinspection unchecked
             drawWindow(Native.graphics().newGraphicsContext(canvas, true));

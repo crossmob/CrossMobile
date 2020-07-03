@@ -136,7 +136,8 @@ public class NSUserDefaults extends NSObject {
             user.put(key, Collections.unmodifiableMap((Map<?, ?>) value));
         else
             user.put(key, value);
-        Native.lifecycle().runOnceLaterOnEventThread(synchronizeLater);
+        // We need to call it like this, thus saving will be performed only once at the end of the cycle
+        Native.lifecycle().runLaterOnceOnEventThread(synchronizeLater);
     }
 
     /**
