@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.com/crossmob/CrossMobile.svg?branch=master)](https://travis-ci.com/crossmob/CrossMobile)
+![GitHub](https://img.shields.io/github/license/crossmob/CrossMobile?color=dark)
+[![](https://img.shields.io/github/v/release/crossmob/CrossMobile)](https://github.com/crossmob/CrossMobile/releases)
 # CrossMobile
 
 ### General information

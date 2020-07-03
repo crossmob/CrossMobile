@@ -2,6 +2,52 @@
 
 Click on the version header to go to the actual commits for each release.
 
+## [v3.0.0]
+###### 2020-07-07
+
+### Added
+- Create Linux Arm 32 & 64 bit targets
+- Create Application packages for Windows, Linux and macOS
+- Create redistribution packages and installers for Windows 32 bit, Windows 64 bit, macOS, Linux, Linux Arm 32 bit and
+ Linux Arm 64 bit operating systems, alongside Android APK files. These packages do not have any external dependencies.
+- Plugins could now be created and manipulated from Manager, alongside regular CrossMobile project
+- Standardise Plugin mechanism. Now all plugins are of equal quality and features.
+- New plugin archetype, to make easier to create custom plugins
+- It is possible to resolve external Android build-time requirements from AAR files automatically from inside the Manager
+- Full screen display for desktop targets. Also support of various window sizes and orientations.
+- Support of user-provided automatically created NSUserDefaults. This feature provides feedback from plugins to the runtime. 
+- Definition of vendor, description and URL per project
+- Support UIUserInterfaceStyle for iOS targets
+- Basic support of sharing URLs with Twitter & Facebook app
+
+### Fixed
+- Support JDKs from 1.8 to 13; only JDK with the correct version are accepted any more
+- Properly support scaling for all skins and targets
+- Enable HiDPI support on Linux
+- Speed up launching of all targets
+- Speed up building of external plugins
+- Android emulation is now detachable
+- Display application name on macOS and fix about dialog
+- More than one plugin can now be built on the same Maven project
+- Thinner iOS build dependency
+- Various API fixes
+
+### Changed
+- To build projects, no more acceptance of the Android SDK License; use Open Source Android Rebuilds instead
+- Improved drawing and relayout speed on Java targets, while increasing thread safety
+- Simplify plugin creation and definition
+- Improved feedback when building Android projects
+- Improved font management on desktop clients
+- Faster bootstrapping of CrossMobile; no gradle required any more
+- General updates to the Manager UI
+- Use Docker for package creation
+- Renamed the Maven plugin required when creating plugins to follow Maven naming scheme 
+
+### Removed
+- Interface Builder files do not require recompilation any more 
+- Drop obsolete swift binaries; now iOS runtime is significantly smaller
+- Drop support of dedicated ant and older XMLVM based projects
+
 ## [v2.9.0]
 ###### 2020-06-06
 
@@ -157,6 +203,7 @@ Click on the version header to go to the actual commits for each release.
 ### Added
 - First public source release
 
+[v3.0.0]: https://github.com/crossmob/CrossMobile/compare/v2.9.0...v3.0.0
 [v2.9.0]: https://github.com/crossmob/CrossMobile/compare/v2.8.2...v2.9.0
 [v2.8.2]: https://github.com/crossmob/CrossMobile/compare/v2.8.0...v2.8.2
 [v2.8]: https://github.com/crossmob/CrossMobile/compare/v2.7...v2.8.0

@@ -2,6 +2,17 @@
 
 Click on the version header to go to the detailed ChangeLog.
 
+## [v3.0.0]
+
+- Support Linux Arm (32 & 64 bit) alongside Windows (32 and 64 bit), Linux (x86-64) and macOS
+- Create application packages and installers/redistribution self-contained packages for all supported platforms
+- Support JDKs 1.8 - 13 (all JDKs that are supported by the Android backend). The Open Source Android Rebuilds project is now as
+    the Android SDK 
+- Create, manage, fetch dependencies, and compile of user created plugins for CrossMobile, from inside CrossMobile
+    manager. Now plugins are first class citizens in CrossMobile
+- CrossMobile applications can now be used as full desktop applications, including full screen and HiDPI monitors
+- Speedups and bug fixes
+
 ## [v2.9.0]
 
 - Attach to debugger for Android and Desktop projects
@@ -42,6 +53,7 @@ Click on the version header to go to the detailed ChangeLog.
 ## [v2.5]
 - First public binary stable release
 
+[v3.0.0]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v300
 [v2.9.0]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v290
 [v2.8.2]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v282
 [v2.8]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v28
