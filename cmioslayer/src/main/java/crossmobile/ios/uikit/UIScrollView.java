@@ -58,6 +58,7 @@ public class UIScrollView extends UIView {
     private boolean dragging = false;
     private boolean tracking = false;
     private boolean decelerating = false;
+    private int rawState;
 
     private int indicatorStyle = UIScrollViewIndicatorStyle.Default;
     private boolean showsHorizontalScrollIndicator = true;
@@ -73,7 +74,6 @@ public class UIScrollView extends UIView {
     private NSTimer tapTimer = null;
     private NSTimer swipe = null;
     private NSTimer animatedScroll = null;
-    private boolean yieldTouches = false;
 
     private final Map<Integer, ClVariable> contentVariableMap = new HashMap<>();
     private final List<NSLayoutConstraint> contentConstraints = new ArrayList<>();
@@ -96,15 +96,12 @@ public class UIScrollView extends UIView {
         return pos;
     }
 
-    private boolean began = true;
     private final UIPanGestureRecognizer pan = new UIPanGestureRecognizer(new NSSelector<UIGestureRecognizer>() { // Should be friendly, so that the tableview can prevent it
         @Override
         public void exec(UIGestureRecognizer arg) {
             switch (pan.state()) {
                 case UIGestureRecognizerState.Cancelled:
-                    yieldTouches = false;
-                    tracking = false;
-                    dragging = false;
+                    tracking = dragging = false;
                     if (delegate != null)
                         delegate.didEndDragging(UIScrollView.this, false);
                     invalidateTimers();
@@ -112,18 +109,14 @@ public class UIScrollView extends UIView {
                     touchesCancelled(arg.touchList, arg.touchEvent);
                     break;
                 case UIGestureRecognizerState.Began:
-                    yieldTouches = false;
-                    began = true;
                     invalidateTimers();
                     pan.setTranslation(new CGPoint(-contentOffset.getX(), -contentOffset.getY()), UIScrollView.this);
                     dragging = false;
+                    rawState = UIGestureRecognizerState.Possible;
                     if (delegate != null)
                         delegate.willBeginDragging(UIScrollView.this);
-                    tapTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, timer -> {
-                        invalidateTimers();
-                        yieldTouches = true;
-                        touchesBegan(arg.touchList, arg.touchEvent);
-                    }, null, false);
+                    tapTimer = NSTimer.scheduledTimerWithTimeInterval(0.2, timer -> Native.lifecycle().runOnEventThread(()
+                            -> touchesBegan(arg.touchList, arg.touchEvent)), null, false);
                     break;
                 default:
                     tracking = false;
@@ -133,19 +126,19 @@ public class UIScrollView extends UIView {
                     double x = calculateNewPosition(-transl.getX(), contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight() - getWidth(), shouldSpring);
                     double y = calculateNewPosition(-transl.getY(), contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom() - getHeight(), shouldSpring);
                     if (pan.state() != UIGestureRecognizerState.Ended) { // UIGestureRecognizerState.Changed
-                        if (Math.sqrt(Math.pow(contentOffset.getX() - x, 2) + Math.pow(contentOffset.getY() - y, 2)) > SELECTION_THRESHOLD && !yieldTouches) {
+                        if (Math.sqrt(Math.pow(contentOffset.getX() - x, 2) + Math.pow(contentOffset.getY() - y, 2)) > SELECTION_THRESHOLD) {
                             // Dragging
                             invalidateTimers();
+                            touchesCancelled(arg.touchList, arg.touchEvent);
                             dragging = true;
                             tracking = true;
-                            began = false;
                             setContentOffset(x, y); // no special animation
                         }
                     } else {
                         // Ended
-                        yieldTouches = false;
                         if (tapTimer != null && tapTimer.isValid())
                             tapTimer.fire();
+                        touchesBegan(arg.touchList, arg.touchEvent);
                         touchesEnded(arg.touchList, arg.touchEvent);
                         if (dragging) {
                             invalidateTimers();
@@ -221,24 +214,35 @@ public class UIScrollView extends UIView {
 
     @Override
     public void touchesBegan(Set<UITouch> touches, UIEvent event) {
-        lastHit = super.hitTest(touches.iterator().next().locationInView(this), event);
-        if (lastHit == this)
-            lastHit = null; // We don't care for self hits
-        if (lastHit != null)
+        if (rawState == UIGestureRecognizerState.Began)
+            return; // Already fired this event through timer
+        if (rawState == UIGestureRecognizerState.Possible) {
+            lastHit = super.hitTest(touches.iterator().next().locationInView(this), event);
+            if (lastHit == this)
+                lastHit = null; // We don't care for self hits
+        } else
+            lastHit = null;
+        if (lastHit != null) {
+            rawState = UIGestureRecognizerState.Began;
             lastHit.touchesBegan(touches, event);
+        } else
+            rawState = UIGestureRecognizerState.Failed;
     }
 
     @Override
     public void touchesEnded(Set<UITouch> touches, UIEvent event) {
-        if (lastHit != null)
+        if (lastHit != null && rawState == UIGestureRecognizerState.Began) {
+            rawState = UIGestureRecognizerState.Ended;
             lastHit.touchesEnded(touches, event);
+        }
         lastHit = null;
     }
 
     @Override
     public void touchesCancelled(Set<UITouch> touches, UIEvent event) {
-        if (lastHit != null)
+        if (lastHit != null && rawState == UIGestureRecognizerState.Began)
             lastHit.touchesCancelled(touches, event);
+        rawState = UIGestureRecognizerState.Cancelled;
         lastHit = null;
     }
 
