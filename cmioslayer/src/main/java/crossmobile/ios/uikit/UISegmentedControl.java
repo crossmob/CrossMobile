@@ -36,9 +36,10 @@ public class UISegmentedControl extends UIControl {
 
     private final UIControlDelegate touchDownDelegate = (sender, event) -> setSelectedSegmentIndex(sender.tag());
     private final UIControlDelegate touchUpDelegate = (sender, event) -> {
-        if (momentary && selection >= 0)
+        if (momentary && selection >= 0) {
             items.get(selection).setSelected(false);
-        selection = -1;
+            selection = -1;
+        }
     };
 
     /**
