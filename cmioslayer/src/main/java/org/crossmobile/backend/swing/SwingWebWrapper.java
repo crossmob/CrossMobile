@@ -152,7 +152,9 @@ public class SwingWebWrapper extends WebWrapper<SwingWebWrapper.NativeW, SwingGr
         @Override
         public void repaint(long tm, int x, int y, int width, int height) {
             super.repaint(tm, x, y, width, height);
-            getIOSWidget().setNeedsDisplay();
+            UIWebView wv = getIOSWidget();
+            if (wv != null)
+                wv.setNeedsDisplay();
         }
 
         @Override

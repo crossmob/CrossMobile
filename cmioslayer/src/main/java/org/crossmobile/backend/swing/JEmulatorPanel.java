@@ -148,8 +148,6 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
                 return;
             if (e.getSource() instanceof SwingNativeDispatcher.DesktopNativeWidget)
                 widgetTouchCorrection(e, Ended);
-//        else if (e.getSource() instanceof DesktopNativeWidget)
-//            widgetTouchCorrection(e, Ended);
             else if (clicked.isButton()) {
                 clicked.performAction(this);
                 repaint();

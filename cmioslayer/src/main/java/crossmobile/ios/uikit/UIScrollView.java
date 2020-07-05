@@ -59,16 +59,16 @@ public class UIScrollView extends UIView {
     private boolean dragging = false;
     private boolean tracking = false;
     private boolean decelerating = false;
-    //
+
     private int indicatorStyle = UIScrollViewIndicatorStyle.Default;
     private boolean showsHorizontalScrollIndicator = true;
     private boolean showsVerticalScrollIndicator = true;
     private float flashAlpha = 1;
     private boolean flashing = false;
     private UIView lastHit;
-    //
+
     private UIScrollViewDelegate delegate = null;
-    //
+
     private NSTimer scroller = null;
     private NSTimer flasher = null;
     private NSTimer taptimer = null;
@@ -79,9 +79,9 @@ public class UIScrollView extends UIView {
     private final Map<Integer, ClVariable> contentVariableMap = new HashMap<>();
     private final List<NSLayoutConstraint> contentConstraints = new ArrayList<>();
 
-    private double calculateNewPosition(double initial, double delta, double safeValue, StrongReference<Boolean> shouldSpring) {
-        double pos = initial;
-        if (delta <= 0)
+    private double calculateNewPosition(double given, double max, double safeValue, StrongReference<Boolean> shouldSpring) {
+        double pos = given;
+        if (max <= 0)
             pos = safeValue;
         if (pos < 0)
             if (bounces) {
@@ -89,12 +89,12 @@ public class UIScrollView extends UIView {
                 pos = pos * SPRING_FACTOR;
             } else
                 pos = 0;
-        else if (pos > delta)
+        else if (pos > max)
             if (bounces) {
                 shouldSpring.set(true);
-                pos = pos + delta * SPRING_FACTOR;
+                pos = max + (pos - max) * SPRING_FACTOR;
             } else
-                pos = delta;
+                pos = max;
         return pos;
     }
 
@@ -104,7 +104,6 @@ public class UIScrollView extends UIView {
         public void exec(UIGestureRecognizer arg) {
             switch (pan.state()) {
                 case UIGestureRecognizerState.Cancelled:
-                    // Cancelled
                     yieldTouches = false;
                     tracking = false;
                     dragging = false;
@@ -115,7 +114,6 @@ public class UIScrollView extends UIView {
                     touchesCancelled(arg.touchList, arg.touchEvent);
                     break;
                 case UIGestureRecognizerState.Began:
-                    // Begun
                     yieldTouches = false;
                     began = true;
                     invalidateTimers();
@@ -176,7 +174,6 @@ public class UIScrollView extends UIView {
             }
         }
     });
-    private boolean disabled = false;
 
     /**
      * Constructs a default UIScrollView object located at (0,0) with 0 weight
@@ -256,7 +253,6 @@ public class UIScrollView extends UIView {
     @Override
     public UIView hitTest(CGPoint point, UIEvent event) {
         UIView view = super.hitTest(point, event);
-        if (disabled) return null;
         return view == null ? null : view instanceof UIScrollView || view == this ? view : firstAncestorScrollView(view);
     }
 
@@ -879,7 +875,7 @@ public class UIScrollView extends UIView {
             float c_alpha = dragging || tracking || decelerating ? 1 : flashAlpha;
             int fillColor = (int) (0xFF * c_alpha * 0.25f) << 24;
             int drawColor = ((int) (0xFF * c_alpha) << 24);
-            GraphicsContext ctx = context(cx);
+            GraphicsContext<?, ?> ctx = context(cx);
             if (willShowHorizontal) {
                 double offsetCorrection = contentOffset.getX() < 0 ? -contentOffset.getX() : 0; // too small offset
                 double sizeCorrection = Math.max((contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()), contentOffset.getX() + getWidth());  // too big offset

@@ -48,7 +48,7 @@ public class UITableView extends UIScrollView {
     int separatorStyle = UITableViewCellSeparatorStyle.SingleLine;
     private UITableViewDataSource dataSource;
     private UITableViewDelegate delegate;
-    //THIS SHOULD BE UITableViewAutomaticDimension = -1
+    // TODO This should be UITableViewAutomaticDimension = -1
     private double rowHeight = -1;
     private double sectionHeaderHeight = -1;
     private double sectionFooterHeight = -1;
@@ -57,7 +57,7 @@ public class UITableView extends UIScrollView {
     private boolean allowsMultipleSelection = false;
     private boolean isEditing = false;
     private Map<NSIndexPath, UITableViewCell> active = new HashMap<>();
-    private SortedSet<NSIndexPath> selected = new TreeSet<>(PATH_COMPARATOR);
+    private final SortedSet<NSIndexPath> selected = new TreeSet<>(PATH_COMPARATOR);
 
     private UIViewController closestController;
     private final Recycler<String, UITableViewCell> recycle = new Recycler<>(identifier -> {
@@ -86,7 +86,7 @@ public class UITableView extends UIScrollView {
         item.prepareForReuse();
     });
 
-    private List<NSIndexPath> newpaths = new ArrayList<>();
+    private final List<NSIndexPath> newpaths = new ArrayList<>();
     private final Runnable layoutSubviews = () -> {
         Map<NSIndexPath, UITableViewCell> pending = new HashMap<>();
         List<NSIndexPath> paths = indexPathsForVisibleRows();
@@ -704,7 +704,7 @@ public class UITableView extends UIScrollView {
 
     @CMSelector("- (void)registerNib:(UINib *)nib forCellReuseIdentifier:(NSString *)identifier;")
     public void registerNib(UINib nib, String identifier) {
-        //TODO implementation
+        Native.system().notImplemented();
     }
 
     @CMSelector("- (void)registerClass:(Class)cellClass forCellReuseIdentifier:(NSString *)identifier;")
