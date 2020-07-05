@@ -132,7 +132,7 @@ public class UITableView extends UIScrollView {
         metrics().relayoutLabels(true);
         metrics().relayoutLabels(false);
 
-        setContentSize(new CGSize(width, Math.max(metrics().totalHeight(), getHeight()) - contentInset.getTop() - contentInset.getBottom()), false);
+        setContentSize(new CGSize(width, Math.max(metrics().totalHeight(), getHeight())), false);
         if (needsRelayout)
             Native.lifecycle().postOnEventThread(this::layoutSubviews);
         else

@@ -43,9 +43,9 @@ public class UIScrollView extends UIView {
     private static final double SELECTION_THRESHOLD = 5;
     private final UIEdgeInsets scrollIndicatorInsets = UIEdgeInsets.zero();
     // Used in UITable view: for optimization reasons this is friendly
-    CGPoint contentOffset = new CGPoint(0, 0);
-    CGSize contentSize = new CGSize(0, 0);
-    UIEdgeInsets contentInset = UIEdgeInsets.zero();
+    final CGPoint contentOffset = new CGPoint(0, 0);
+    final CGSize contentSize = new CGSize(0, 0);
+    final UIEdgeInsets contentInset = UIEdgeInsets.zero();
     private boolean scrollEnabled = true;
     private boolean directionalLockEnabled = false;
     private boolean scrollsToTop = true;
@@ -71,7 +71,7 @@ public class UIScrollView extends UIView {
 
     private NSTimer scroller = null;
     private NSTimer flasher = null;
-    private NSTimer taptimer = null;
+    private NSTimer tapTimer = null;
     private NSTimer swipe = null;
     private NSTimer animatedScroll = null;
     private boolean yieldTouches = false;
@@ -79,10 +79,9 @@ public class UIScrollView extends UIView {
     private final Map<Integer, ClVariable> contentVariableMap = new HashMap<>();
     private final List<NSLayoutConstraint> contentConstraints = new ArrayList<>();
 
-    private double calculateNewPosition(double given, double max, double safeValue, StrongReference<Boolean> shouldSpring) {
-        double pos = given;
+    private double calculateNewPosition(double pos, double max, StrongReference<Boolean> shouldSpring) {
         if (max <= 0)
-            pos = safeValue;
+            return 0;
         if (pos < 0)
             if (bounces) {
                 shouldSpring.set(true);
@@ -99,7 +98,7 @@ public class UIScrollView extends UIView {
     }
 
     private boolean began = true;
-    private UIPanGestureRecognizer pan = new UIPanGestureRecognizer(new NSSelector<UIGestureRecognizer>() { // Should be friendly, so that the tableview can prevent it
+    private final UIPanGestureRecognizer pan = new UIPanGestureRecognizer(new NSSelector<UIGestureRecognizer>() { // Should be friendly, so that the tableview can prevent it
         @Override
         public void exec(UIGestureRecognizer arg) {
             switch (pan.state()) {
@@ -110,7 +109,7 @@ public class UIScrollView extends UIView {
                     if (delegate != null)
                         delegate.didEndDragging(UIScrollView.this, false);
                     invalidateTimers();
-                    taptimer = null;
+                    tapTimer = null;
                     touchesCancelled(arg.touchList, arg.touchEvent);
                     break;
                 case UIGestureRecognizerState.Began:
@@ -121,7 +120,7 @@ public class UIScrollView extends UIView {
                     dragging = false;
                     if (delegate != null)
                         delegate.willBeginDragging(UIScrollView.this);
-                    taptimer = NSTimer.scheduledTimerWithTimeInterval(0.1, timer -> {
+                    tapTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, timer -> {
                         invalidateTimers();
                         yieldTouches = true;
                         touchesBegan(arg.touchList, arg.touchEvent);
@@ -132,8 +131,8 @@ public class UIScrollView extends UIView {
                     CGPoint transl = pan.translationInView(UIScrollView.this);
                     CGPoint scrollVelocity = pan.velocityInView(UIScrollView.this);
                     StrongReference<Boolean> shouldSpring = new StrongReference<>(false);
-                    double x = calculateNewPosition(-transl.getX(), contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight() - getWidth(), contentOffset.getX(), shouldSpring);
-                    double y = calculateNewPosition(-transl.getY(), contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom() - getHeight(), contentOffset.getY(), shouldSpring);
+                    double x = calculateNewPosition(-transl.getX(), contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight() - getWidth(), shouldSpring);
+                    double y = calculateNewPosition(-transl.getY(), contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom() - getHeight(), shouldSpring);
                     if (pan.state() != UIGestureRecognizerState.Ended) { // UIGestureRecognizerState.Changed
                         if (Math.sqrt(Math.pow(contentOffset.getX() - x, 2) + Math.pow(contentOffset.getY() - y, 2)) > SELECTION_THRESHOLD && !yieldTouches) {
                             // Dragging
@@ -146,8 +145,8 @@ public class UIScrollView extends UIView {
                     } else {
                         // Ended
                         yieldTouches = false;
-                        if (taptimer != null && taptimer.isValid())
-                            taptimer.fire();
+                        if (tapTimer != null && tapTimer.isValid())
+                            tapTimer.fire();
                         touchesEnded(arg.touchList, arg.touchEvent);
                         if (dragging) {
                             invalidateTimers();
@@ -213,9 +212,9 @@ public class UIScrollView extends UIView {
         if (animatedScroll != null && animatedScroll.isValid())
             animatedScroll.invalidate();
         animatedScroll = null;
-        if (taptimer != null && taptimer.isValid())
-            taptimer.invalidate();
-        taptimer = null;
+        if (tapTimer != null && tapTimer.isValid())
+            tapTimer.invalidate();
+        tapTimer = null;
         if (scroller != null && scroller.isValid())
             scroller.invalidate();
         scroller = null;
@@ -400,10 +399,11 @@ public class UIScrollView extends UIView {
 
     /**
      * Sets the distance that the content of the scroll view is inset inside of
-     * the scroll view(expressed in points).
+     * the scroll view (expressed in points).
      *
      * @param contentInset The distance that the content of the scroll view is
-     *                     inset inside of the scroll view(expressed in points). .
+     *                     inset inside of the scroll view
+     *                     inset inside of the scroll view
      */
     @CMSetter("@property(nonatomic) UIEdgeInsets contentInset;")
     public void setContentInset(UIEdgeInsets contentInset) {
