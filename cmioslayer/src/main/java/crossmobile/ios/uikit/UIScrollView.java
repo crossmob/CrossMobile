@@ -13,7 +13,6 @@ import crossmobile.ios.coregraphics.CGSize;
 import crossmobile.ios.foundation.NSSelector;
 import crossmobile.ios.foundation.NSTimer;
 import crossmobile.rt.StrongReference;
-import org.crossmobile.bind.graphics.Geometry;
 import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.graphics.curve.InterpolationCurve;
 import org.crossmobile.bind.system.Ticker;
@@ -322,14 +321,13 @@ public class UIScrollView extends UIView {
      */
     @CMSetter("@property(nonatomic) CGSize contentSize;")
     public void setContentSize(CGSize contentSize) {
-        setContentSize(contentSize, true);
+        setContentSize(contentSize.getWidth(), contentSize.getHeight());
+        setNeedsLayout();
     }
 
-    void setContentSize(CGSize contentSize, boolean shouldUpdateLayout) {
-        // UITableView manipulates ContentSize, thus no optimization should be performed here
-        Geometry.set(this.contentSize, contentSize);
-        if (shouldUpdateLayout)
-            layoutSubviews(); // LayoutSubviews might use setContentSize, thus do this trick to prevent cycles
+    void setContentSize(double width, double height) {
+        contentSize.setWidth(width);
+        contentSize.setHeight(height);
     }
 
     /**
@@ -1065,7 +1063,8 @@ public class UIScrollView extends UIView {
             for (UIView child : subviews())
                 if (!child.translatesAutoresizingMaskIntoConstraints())
                     addContentConstraints(child.relevantConstraints(this));
-            applyContentSize();
+            setContentSize(getContentVariable(NSLayoutAttribute.Width).getValue(),
+                    getContentVariable(NSLayoutAttribute.Height).getValue());
         }
     }
 
@@ -1135,13 +1134,6 @@ public class UIScrollView extends UIView {
                 return true;
             }
         return false;
-    }
-
-    private void applyContentSize() {
-        if (contentSolver == null)
-            return;
-        setContentSize(new CGSize((float) getContentVariable(NSLayoutAttribute.Width).getValue(),
-                (float) getContentVariable(NSLayoutAttribute.Height).getValue()), false);
     }
 
     @Override
