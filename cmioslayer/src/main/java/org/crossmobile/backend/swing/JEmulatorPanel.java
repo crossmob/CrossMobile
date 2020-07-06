@@ -32,7 +32,7 @@ import java.io.IOException;
 import static crossmobile.ios.uikit.UserInterfaceDrill.*;
 import static crossmobile.ios.uikit.UITouchPhase.*;
 
-public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotionListener, MouseWheelListener, KeyListener, SizableComponent, CEventCallback {
+public class JEmulatorPanel extends JComponent implements MouseListener, MouseMotionListener, MouseWheelListener, KeyListener, SizableComponent, CEventCallback {
 
     private static Cursor singleTouch;
     private static Cursor doubleTouch;
@@ -124,7 +124,7 @@ public class JEmulatorPanel extends JPanel implements MouseListener, MouseMotion
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        if (e.getButton() != MouseEvent.BUTTON1 || clicked.isUnset())
+        if (clicked.isUnset() || (e.getButton() != MouseEvent.BUTTON1 && e.getButton() != MouseEvent.NOBUTTON))
             return;
         Native.lifecycle().encapsulateContext(() -> {
             DesktopDrawableMetrics metrics = (DesktopDrawableMetrics) Native.graphics().metrics();
