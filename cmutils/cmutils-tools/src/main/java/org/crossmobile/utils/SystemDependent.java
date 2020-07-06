@@ -16,9 +16,9 @@ import java.nio.file.Files;
 import java.nio.file.attribute.PosixFilePermissions;
 import java.util.*;
 
+import static java.io.File.pathSeparator;
 import static org.crossmobile.utils.SystemDependent.Execs.BASH;
 import static org.crossmobile.utils.SystemDependent.Execs.JAVA;
-import static org.crossmobile.utils.TextUtils.iterableToString;
 
 public class SystemDependent {
 
@@ -142,6 +142,10 @@ public class SystemDependent {
         if (new File(file).isFile())
             return file;
         return null;
+    }
+
+    public static String safeArg(String arg) {
+        return IS_WINDOWS ? (arg.isEmpty() ? " " : arg) : arg;
     }
 
     public static boolean isJavaValid(String version) {
@@ -275,7 +279,7 @@ public class SystemDependent {
     }
 
     public static String getBashExec() {
-        for (String part : Opt.of(System.getenv("PATH")).getOrElse("").split(File.pathSeparator)) {
+        for (String part : Opt.of(System.getenv("PATH")).getOrElse("").split(pathSeparator)) {
             File path = new File(part, BASH.filename());
             if (path.isFile())
                 return path.getAbsolutePath();
@@ -314,12 +318,9 @@ public class SystemDependent {
     }
 
     public static Map<String, String> getEnvWithFixedPaths() {
-        Map<String, String> env = new HashMap<>(System.getenv());
-        Collection<String> paths = new LinkedHashSet<>(Arrays.asList(env.getOrDefault("PATH", "").split(File.pathSeparator)));
-        paths.add("/usr/local/bin");
-        paths.add("/usr/local/sbin");
-        env.put("PATH", iterableToString(paths, File.pathSeparator));
-        return env;
+        String key = IS_WINDOWS ? "Path" : "PATH";
+        String path = System.getenv(key) + pathSeparator + "/usr/local/bin" + pathSeparator + "/usr/local/sbin";
+        return Collections.singletonMap(key, path);
     }
 
     public enum Execs {
