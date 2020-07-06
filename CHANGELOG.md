@@ -30,6 +30,7 @@ Click on the version header to go to the actual commits for each release.
 - Display application name on macOS and fix about dialog
 - More than one plugin can now be built on the same Maven project
 - Thinner iOS build dependency
+- Fix UIScrollView behaviour and visuals
 - Various API fixes
 
 ### Changed
