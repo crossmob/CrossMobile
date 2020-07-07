@@ -18,6 +18,7 @@
 #import "java_lang_Class.h"
 #import "java_util_List.h"
 #import <objc/message.h>
+#import <UIKit/UIDevice.h>
 
 id JAVA_NULL;
 
@@ -301,8 +302,20 @@ XMLVMElemPtr copyData(int type, int length, XMLVMElemPtr olddata)
 
 @end
 
-// Vararg versions
+// Support selectors based on version
+int isIosAtLeast(int req_major, int req_minor) {
+    static int dev_major = -1;
+    static int dev_minor = -1;
+    if (dev_major < 0) {
+        NSArray<NSString*>* components = [[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."];
+        dev_major = [[components firstObject] intValue];
+        dev_minor = [[components objectAtIndex:1] intValue];
+    }
+    return dev_major > req_major || (dev_major == req_major && dev_minor >= req_minor);
+}
 
+
+// Vararg versions
 void gather_va_args(XMLVMArray* va_array, vartype**params, double** doubles, int va_maxsize) {
     int maxvar_size = va_maxsize * MAXVAR_SIZE_MULTIPLIER;
     vartype* p = malloc(maxvar_size*sizeof(vartype));

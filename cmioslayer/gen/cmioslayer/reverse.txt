@@ -13700,8 +13700,8 @@
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
     "overrideUserInterfaceStyle()": {
-      "reverse": "- (UIUserInterfaceStyle) overrideUserInterfaceStyle\n{\n    if (@available(iOS 13.0, *)) {\n        return [self overrideUserInterfaceStyle__];\n    } else {\n        return 0;\n    }\n}\n\n",
-      "super": "- (int) overrideUserInterfaceStyle__\n{\n    if (@available(iOS 13.0, *)) {\n        return [super overrideUserInterfaceStyle];\n    } else {\n        return 0;\n    }\n}\n\n"
+      "reverse": "- (UIUserInterfaceStyle) overrideUserInterfaceStyle\n{\n    if (isIosAtLeast(13,0)){\n        return [self overrideUserInterfaceStyle__];\n    } else {\n        return 0;\n    }\n}\n\n",
+      "super": "- (int) overrideUserInterfaceStyle__\n{\n    if (isIosAtLeast(13,0)){\n        return [super overrideUserInterfaceStyle];\n    } else {\n        return 0;\n    }\n}\n\n"
     },
     "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": {
       "reverse": "- (BOOL) pointInside:(CGPoint) point withEvent:(UIEvent *) event\n{\n    crossmobile_ios_coregraphics_CGPoint* point$conv = [[crossmobile_ios_coregraphics_CGPoint alloc] initWithCGPoint:point];\n    BOOL re$ult = [self pointInside___crossmobile_ios_coregraphics_CGPoint_crossmobile_ios_uikit_UIEvent:point$conv :(event ? event : JAVA_NULL)];\n    [point$conv release];\n    return re$ult;\n}\n\n",
@@ -13895,8 +13895,8 @@
       "super": "- (void) setOpaque___boolean:(BOOL) opaque \n{\n    [super setOpaque:opaque];\n}\n\n"
     },
     "setOverrideUserInterfaceStyle(int)": {
-      "reverse": "- (void) setOverrideUserInterfaceStyle:(UIUserInterfaceStyle) overrideUserInterfaceStyle\n{\n    if (@available(iOS 13.0, *)) {\n        [self setOverrideUserInterfaceStyle___int:overrideUserInterfaceStyle];\n    }\n}\n\n",
-      "super": "- (void) setOverrideUserInterfaceStyle___int:(int) overrideUserInterfaceStyle \n{\n    if (@available(iOS 13.0, *)) {\n        [super setOverrideUserInterfaceStyle:overrideUserInterfaceStyle];\n    }\n}\n\n"
+      "reverse": "- (void) setOverrideUserInterfaceStyle:(UIUserInterfaceStyle) overrideUserInterfaceStyle\n{\n    if (isIosAtLeast(13,0)){\n        [self setOverrideUserInterfaceStyle___int:overrideUserInterfaceStyle];\n    }\n}\n\n",
+      "super": "- (void) setOverrideUserInterfaceStyle___int:(int) overrideUserInterfaceStyle \n{\n    if (isIosAtLeast(13,0)){\n        [super setOverrideUserInterfaceStyle:overrideUserInterfaceStyle];\n    }\n}\n\n"
     },
     "setPreservesSuperviewLayoutMargins(boolean)": {
       "reverse": "- (void) setPreservesSuperviewLayoutMargins:(BOOL) preservesSuperviewLayoutMargins\n{\n    [self setPreservesSuperviewLayoutMargins___boolean:preservesSuperviewLayoutMargins];\n}\n\n",

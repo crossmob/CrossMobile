@@ -93,22 +93,8 @@ extern id JAVA_NULL;
 // Same as return_XMLVM_SELECTOR, but also define the actual selector
 #define return_XMLVM_SELECTOR(SELECTOR) id __xmlvm_item = [SELECTOR]; return [XMLVM_NIL2NULL(__xmlvm_item) retain] ;
 
-// Set a property and retain it. Usually this is called when a delegate is given as a parameter. This object will automatically be released when this object will be released
-#define XMLVM_PROPERTY(PROPERTY,VALUE) XMLVM_PROPERTY_WITHCOMMAND(PROPERTY,VALUE,self.PROPERTY = __retainable)
-// Like XMLVM_PROPERTY but specify the exact command to execute to set this property (if any) 
-#define XMLVM_PROPERTY_WITHCOMMAND(PROPERTY,VALUE,COMMAND) id __retainable=(VALUE==JAVA_NULL)?nil:VALUE; COMMAND; static char PROPERTY_key; objc_setAssociatedObject(self, &PROPERTY_key, __retainable, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-
-// Under old iPhone simulator there is a bug, in which associations are not supported. This is a workaround, which actually leaves a memory leak, but it doesn't harm (much).
-#if __IPHONE_OS_VERSION_MAX_ALLOWED < 40000
-#if TARGET_IPHONE_SIMULATOR
-#define objc_setAssociatedObject(A,B,ITEM,D) [ITEM retain];
-#define OBJC_ASSOCIATION_RETAIN_NONATOMIC 1
-#endif
-#endif
-
-// This is used to support optional protocol implementation in Java. Declare that an ObjC selector exists ONLY if the JAVA selector exists. CHECK is the current selector being asked.
-#define XMLVM_REROUTE(CHECK,OBJC,JAVA) if (sel_isEqual(CHECK, @selector(OBJC))) return [super respondsToSelector:@selector(JAVA)];
-
+// Use this instead of @available since this is a light runtime check instead of compiletime check
+int isIosAtLeast(int major, int minor);
 
 // Varargs
 #if __LP64__

@@ -55,6 +55,8 @@ public enum ParamsCommon {
     CM_KEYBOARD_SUPPORT("quit:pause:back:menu:home:rotate:multitouch"),
     CM_SPLASH_DELAY("1"),
 
+    IPHONEOS_DEPLOYMENT_TARGET(SystemDependent.getDeploymentTarget()),
+
     // The following tags are recalculated inside ParameterList
     MAIN_CLASS("");
 

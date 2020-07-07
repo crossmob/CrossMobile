@@ -427,7 +427,7 @@
 // @property(nonatomic) UIUserInterfaceStyle overrideUserInterfaceStyle;
 - (void) setOverrideUserInterfaceStyle___int:(int) overrideUserInterfaceStyle 
 {
-    if (@available(iOS 13.0, *)) {
+    if (isIosAtLeast(13,0)){
         [self setOverrideUserInterfaceStyle:overrideUserInterfaceStyle];
     }
 }
@@ -435,7 +435,7 @@
 // @property(nonatomic) UIUserInterfaceStyle overrideUserInterfaceStyle;
 - (int) overrideUserInterfaceStyle__
 {
-    if (@available(iOS 13.0, *)) {
+    if (isIosAtLeast(13,0)){
         return [self overrideUserInterfaceStyle];
     } else {
         return 0;

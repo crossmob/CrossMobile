@@ -323,6 +323,18 @@ public class SystemDependent {
         return Collections.singletonMap(key, path);
     }
 
+    public static String getDeploymentTarget() {
+        if (IS_MACOSX) {
+            String[] parts = System.getProperty("os.version", "1.0").split("\\.");
+            try {
+                if (parts.length >= 2 && parts[0].equals("10") && Integer.parseInt(parts[1]) <= 13)
+                    return "10.0";
+            } catch (NumberFormatException ignored) {
+            }
+        }
+        return "13.0";
+    }
+
     public enum Execs {
 
         JAVA("exe"),
