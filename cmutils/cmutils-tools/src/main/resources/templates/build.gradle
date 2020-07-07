@@ -27,7 +27,7 @@ buildscript {
         }
     }
     dependencies {
-__ANDROID_GRADLE_DEPS__        classpath 'com.android.tools.build:gradle:3.2.1'
+__ANDROID_GRADLE_DEPS__        classpath 'com.android.tools.build:gradle:3.6.2'
     }
 }
 

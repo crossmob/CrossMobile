@@ -21,7 +21,7 @@ Click on the version header to go to the actual commits for each release.
 - Basic support of sharing URLs with Twitter & Facebook app
 
 ### Fixed
-- Support JDKs from 1.8 to 13; only JDK with the correct version are accepted any more
+- Support JDKs from 1.8 to 14; only JDK with the correct version could be selected
 - Properly support scaling for all skins and targets
 - Enable HiDPI support on Linux
 - Speed up launching of all targets

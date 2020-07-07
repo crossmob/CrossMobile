@@ -6,10 +6,10 @@ Click on the version header to go to the detailed ChangeLog.
 
 - Support Linux Arm (32 & 64 bit) alongside Windows (32 and 64 bit), Linux (x86-64) and macOS
 - Create application packages and installers/redistribution self-contained packages for all supported platforms
-- Support JDKs 1.8 - 13 (all JDKs that are supported by the Android backend). The Open Source Android Rebuilds project is now as
-    the Android SDK 
+- Support JDKs 1.8 - 14. The Open Source Android Rebuilds project is now used as
+    the core Android SDK 
 - Create, manage, fetch dependencies, and compile of user created plugins for CrossMobile, from inside CrossMobile
-    manager. Now plugins are first class citizens in CrossMobile
+    manager. Now plugins are first class citizens
 - CrossMobile applications can now be used as full desktop applications, including full screen and HiDPI monitors
 - Speedups and bug fixes
 
