@@ -36,8 +36,9 @@ brew cask install adoptopenjdk8
 ```
 - Make sure JDK 8 is the default environment.
 
-## Run the bootstap script
-On the root folder of CrossMobile issue the following command:
+## Bootstrapping (optional)
+Note that this step is **not required** if you want to compile CrossMobile yourself, since the bootstrap dependencies are already in the crossmobile repository.
+In the case you want to build them yourself, on the root folder of CrossMobile issue the following command:
 ```sh
 ./resources/bin/bootstrap.sh
 ```
@@ -48,5 +49,6 @@ Go to the root folder of CrossMobile and issue the following command:
 mvn install
 ```
 The procedure should finish successfully. If the procedure was not able to succeed, please issue a bug report.
+
 
 Happy hacking!
