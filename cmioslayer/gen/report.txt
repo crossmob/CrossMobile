@@ -59,9 +59,6 @@ crossmobile/ios/contacts/CNSocialProfile.class v8
 crossmobile/ios/contacts/CNValueType.class v8
 crossmobile/ios/contacts/package-info.class v8
 
-Creating file cmplugin-builddep-cmaddressbook-<VERSION>.jar
-
-
 Creating file cmplugin-cmaddressbook-<VERSION>-sources.jar
 crossmobile/ios/accounts/ACAccount.java
 crossmobile/ios/accounts/ACAccountCredential.java
@@ -296,9 +293,6 @@ crossmobile/ios/gamekit/GKSessionDelegate.class v8
 crossmobile/ios/gamekit/GKSessionMode.class v8
 crossmobile/ios/gamekit/package-info.class v8
 
-Creating file cmplugin-builddep-cmgamekit-<VERSION>.jar
-
-
 Creating file cmplugin-cmgamekit-<VERSION>-sources.jar
 crossmobile/ios/gamekit/GKDataReceiveHandler.java
 crossmobile/ios/gamekit/GKPeerConnectionState.java
@@ -350,9 +344,6 @@ Creating file cmplugin-cmi18n-<VERSION>.jar
 META-INF/PLUGIN.INF
 META-INF/REVERSE.INF
 
-Creating file cmplugin-builddep-cmi18n-<VERSION>.jar
-
-
 Creating file cmplugin-cmi18n-<VERSION>-sources.jar
 org/crossmobile/bind/system/i18n/I18N.java
 
@@ -392,9 +383,6 @@ crossmobile/ios/uikit/UIImagePickerControllerCameraFlashMode.class v8
 crossmobile/ios/uikit/UIImagePickerControllerDelegate.class v8
 crossmobile/ios/uikit/UIImagePickerControllerQualityType.class v8
 crossmobile/ios/uikit/UIImagePickerControllerSourceType.class v8
-
-Creating file cmplugin-builddep-cmimage-<VERSION>.jar
-
 
 Creating file cmplugin-cmimage-<VERSION>-sources.jar
 crossmobile/ios/coreimage/CIContext.java
@@ -819,45 +807,6 @@ org/robovm/objc/block/VoidBlock5.class v8
 org/robovm/objc/block/VoidBlock6.class v8
 org/robovm/objc/block/VoidBooleanBlock.class v8
 org/robovm/objc/block/package-info.class v8
-
-Creating file cmplugin-builddep-cmioslayer-<VERSION>.jar
-crossmobile/ios/coregraphics/GraphicsDrill.class v8
-crossmobile/ios/foundation/FoundationDrill.class v8
-crossmobile/ios/uikit/UserInterfaceDrill.class v8
-org/crossmobile/backend/android/ActivityExtendedResultListener.class v8
-org/crossmobile/backend/android/ActivityLifecycleListener.class v8
-org/crossmobile/backend/android/ActivityPermissionListener.class v8
-org/crossmobile/backend/android/ActivityResultListener.class v8
-org/crossmobile/backend/android/ActivityStateListener.class v8
-org/crossmobile/backend/android/ApplicationStateListener.class v8
-org/crossmobile/backend/android/MainActivity.class v8
-org/crossmobile/backend/android/MainApplication.class v8
-org/crossmobile/bind/graphics/NativeBitmap.class v8
-org/crossmobile/bind/graphics/NativeFont$Helper.class v8
-org/crossmobile/bind/graphics/NativeFont.class v8
-org/crossmobile/bridge/CrossMobilePlugin.class v8
-org/crossmobile/bridge/FileBridge.class v8
-org/crossmobile/bridge/GraphicsBridge.class v8
-org/crossmobile/bridge/ImageBridge$ImageSource.class v8
-org/crossmobile/bridge/ImageBridge.class v8
-org/crossmobile/bridge/InAppBridge.class v8
-org/crossmobile/bridge/LifecycleBridge.class v8
-org/crossmobile/bridge/LocationBridge$LocationChangeDelegate.class v8
-org/crossmobile/bridge/LocationBridge.class v8
-org/crossmobile/bridge/MessageBridge.class v8
-org/crossmobile/bridge/Native.class v8
-org/crossmobile/bridge/NetworkBridge.class v8
-org/crossmobile/bridge/NotificationBridge.class v8
-org/crossmobile/bridge/SecurityBridge.class v8
-org/crossmobile/bridge/ShareBridge.class v8
-org/crossmobile/bridge/SocialBridge$Handler.class v8
-org/crossmobile/bridge/SocialBridge.class v8
-org/crossmobile/bridge/SoundBridge.class v8
-org/crossmobile/bridge/SystemBridge.class v8
-org/crossmobile/bridge/UIGuidelinesBridge.class v8
-org/crossmobile/bridge/WrapperMapBridge.class v8
-org/crossmobile/bridge/WrapperUIBridge.class v8
-org/crossmobile/bridge/package-info.class v8
 
 Creating file cmplugin-cmioslayer-<VERSION>-sources.jar
 crossmobile/ios/coregraphics/CGAffineTransform.java
@@ -3458,9 +3407,6 @@ crossmobile/ios/mapkit/MKReverseGeocoderDelegate.class v8
 crossmobile/ios/mapkit/MKUserLocation.class v8
 crossmobile/ios/mapkit/package-info.class v8
 
-Creating file cmplugin-builddep-cmlocation-<VERSION>.jar
-
-
 Creating file cmplugin-cmlocation-<VERSION>-sources.jar
 crossmobile/ios/corelocation/CLDeviceOrientation.java
 crossmobile/ios/corelocation/CLDistanceFilter.java
@@ -3632,9 +3578,6 @@ crossmobile/ios/mediaplayer/MPMovieScalingMode.class v8
 crossmobile/ios/mediaplayer/MPVolumeView.class v8
 crossmobile/ios/mediaplayer/package-info.class v8
 
-Creating file cmplugin-builddep-cmmedia-<VERSION>.jar
-
-
 Creating file cmplugin-cmmedia-<VERSION>-sources.jar
 crossmobile/ios/audiotoolbox/AudioServices.java
 crossmobile/ios/audiotoolbox/SystemSoundID.java
@@ -3701,9 +3644,6 @@ crossmobile/ios/messageui/MFMessageComposeViewController.class v8
 crossmobile/ios/messageui/MFMessageComposeViewControllerDelegate.class v8
 crossmobile/ios/messageui/MessageComposeResult.class v8
 crossmobile/ios/messageui/package-info.class v8
-
-Creating file cmplugin-builddep-cmmessages-<VERSION>.jar
-
 
 Creating file cmplugin-cmmessages-<VERSION>-sources.jar
 crossmobile/ios/messageui/MFMailComposeResult.java
@@ -3783,9 +3723,6 @@ crossmobile/ios/usernotifications/UNTimeIntervalNotificationTrigger.class v8
 crossmobile/ios/usernotifications/UNUserNotificationCenter.class v8
 crossmobile/ios/usernotifications/UNUserNotificationCenterDelegate.class v8
 crossmobile/ios/usernotifications/package-info.class v8
-
-Creating file cmplugin-builddep-cmnotifications-<VERSION>.jar
-
 
 Creating file cmplugin-cmnotifications-<VERSION>-sources.jar
 crossmobile/ios/uikit/UIMutableUserNotificationAction.java
@@ -3958,9 +3895,6 @@ crossmobile/ios/storekit/SKRequest.class v8
 crossmobile/ios/storekit/SKRequestDelegate.class v8
 crossmobile/ios/storekit/package-info.class v8
 
-Creating file cmplugin-builddep-cmpayment-<VERSION>.jar
-crossmobile/ios/storekit/StoreDrill.class v8
-
 Creating file cmplugin-cmpayment-<VERSION>-sources.jar
 com/android/vending/billing/IInAppBillingService.java
 com/android/vending/billing/package-info.java
@@ -4073,9 +4007,6 @@ crossmobile/ios/quicklook/QLPreviewControllerDelegate.class v8
 crossmobile/ios/quicklook/QLPreviewItem.class v8
 crossmobile/ios/quicklook/package-info.class v8
 
-Creating file cmplugin-builddep-cmquicklook-<VERSION>.jar
-
-
 Creating file cmplugin-cmquicklook-<VERSION>-sources.jar
 crossmobile/ios/quicklook/QLPreviewController.java
 crossmobile/ios/quicklook/QLPreviewControllerDataSource.java
@@ -4119,9 +4050,6 @@ crossmobile/ios/social/SLRequestHandler.class v8
 crossmobile/ios/social/SLRequestMethod.class v8
 crossmobile/ios/social/SLServiceType.class v8
 crossmobile/ios/social/package-info.class v8
-
-Creating file cmplugin-builddep-cmsocial-<VERSION>.jar
-
 
 Creating file cmplugin-cmsocial-<VERSION>-sources.jar
 crossmobile/ios/social/SLComposeServiceViewController.java
@@ -4187,9 +4115,6 @@ crossmobile/ios/touchid/LAError.class v8
 crossmobile/ios/touchid/LAPolicy.class v8
 crossmobile/ios/touchid/LATouchIDAuthentication.class v8
 crossmobile/ios/touchid/package-info.class v8
-
-Creating file cmplugin-builddep-cmtouchid-<VERSION>.jar
-
 
 Creating file cmplugin-cmtouchid-<VERSION>-sources.jar
 crossmobile/ios/touchid/LAAccessControlOperation.java

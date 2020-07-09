@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: LGPL-3.0-only
  */
 
-@CMLib(name = "cmioslayer", target = CMLibTarget.RUNTIME_PLUGIN)
+@CMLib(name = "cmioslayer", target = CMLibTarget.RUNTIME)
 package org.crossmobile.bridge;
 
 import org.crossmobile.bridge.ann.CMLib;

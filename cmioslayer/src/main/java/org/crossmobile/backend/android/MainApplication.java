@@ -19,7 +19,7 @@ import org.crossmobile.bridge.ann.CMLibTarget;
 import java.util.Collection;
 import java.util.HashSet;
 
-@CMLib(target = CMLibTarget.ANDROID_PLUGIN)
+@CMLib(target = CMLibTarget.ANDROID)
 public class MainApplication extends Application {
 
     private Collection<ApplicationStateListener> appstates;

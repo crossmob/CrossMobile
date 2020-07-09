@@ -27,7 +27,7 @@ import java.util.*;
 import static org.crossmobile.bind.graphics.GraphicsBridgeConstants.DefaultInitialOrientation;
 import static org.crossmobile.bind.system.AbstractLifecycleBridge.memoryWarning;
 
-@CMLib(target = CMLibTarget.ANDROID_PLUGIN)
+@CMLib(target = CMLibTarget.ANDROID)
 public class MainActivity extends Activity {
 
     private final static String[] args = {};

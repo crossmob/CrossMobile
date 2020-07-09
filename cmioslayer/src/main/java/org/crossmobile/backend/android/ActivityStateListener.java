@@ -19,12 +19,12 @@ import org.robovm.objc.block.VoidBlock1;
 
 import java.util.*;
 
-@CMLib(target = CMLibTarget.ANDROID_PLUGIN)
+@CMLib(target = CMLibTarget.ANDROID)
 public class ActivityStateListener {
 
     private static int activityId = 1;
 
-    private static final Collection ALWAYS_REMOVE = Collections.emptyList();
+    private static final Collection<ActivityExtendedResultListener> ALWAYS_REMOVE = Collections.emptyList();
     private final Map<ActivityResultListener, Integer> launch = new LinkedHashMap<>();
     private final Map<ActivityExtendedResultListener, Integer> extlaunch = new LinkedHashMap<>();
     private final Map<ActivityPermissionListener, Integer> perms = new LinkedHashMap<>();

@@ -12,73 +12,59 @@ public enum CMLibTarget {
      * Elements only to appear in source code. Will disappear from all
      * libraries, compile and runtime.
      */
-    SOURCEONLY(false, false, false, false, false, false, false, false),
+    SOURCEONLY(false, false, false, false, false, false, false),
     /**
      * Elements used only at compile time. Will disappear in all runtime
      * libraries.
      */
-    BUILDONLY(true, false, false, false, false, false, false, false),
+    BUILDONLY(true, false, false, false, false, false, false),
     /**
      * Runtime elements specific for Desktop
      */
-    DESKTOP(false, true, false, false, false, false, false, false),
+    DESKTOP(false, true, false, false, false, false, false),
     /**
      * Runtime elements specific for Android
      */
-    ANDROID(false, false, true, false, false, false, false, false),
-    /**
-     * Runtime elements specific for Android, that are also required in plugins
-     */
-    ANDROID_PLUGIN(false, false, true, false, false, false, false, true),
+    ANDROID(false, false, true, false, false, false, false),
     /**
      * Java runtime elements, specific for iOS. Does not define native bindings.
      * Not present at compile time.
      */
-    IOS(false, false, false, true, false, false, false, false),
+    IOS(false, false, false, true, false, false, false),
     /**
      * Runtime elements specific for UWL
      */
-    UWP(false, false, false, false, false, true, false, false),
+    UWP(false, false, false, false, false, true, false),
     /**
      * Runtime elements specific for Desktop
      */
-    API_NOUWP(true, true, true, true, true, true, false, false),
+    API_NOUWP(true, true, true, true, true, true, false),
     /**
      * Used in Java based targets only.
      */
-    JAVA(false, true, true, false, false, false, false, false),
+    JAVA(false, true, true, false, false, false, false),
     /**
      * Defines the CrossMobile API. Is used for native bindings.
      */
-    API(true, true, true, true, true, true, true, false),
-    /**
-     * Part of the API, used only as a definition view for other plugins. Will
-     * not appear anywhere else at all.
-     */
-    PLUGIN(false, false, false, false, false, false, false, true),
+    API(true, true, true, true, true, true, true),
     /**
      * Part of the CrossMobile API. Is not used for native elements and do not
      * create plugins.
      */
-    APIJAVA(true, true, true, true, false, true, false, false),
+    APIJAVA(true, true, true, true, false, true, false),
     /**
      * Elements appear in all runtime environments, but not part of the API.
      */
-    RUNTIME(false, true, true, true, false, true, false, false),
-    /**
-     * Elements appear in all runtime environments, as well as are inherited for
-     * plugins, but not existing in compile time.
-     */
-    RUNTIME_PLUGIN(false, true, true, true, false, true, false, true),
+    RUNTIME(false, true, true, true, false, true, false),
     /**
      * Unknown target, default target for elements. Will launch a warning if an
      * element with this target is found.
      */
-    UNKNOWN(false, false, false, false, false, false, false, false);
+    UNKNOWN(false, false, false, false, false, false, false);
 
-    public final boolean compile, desktop, android, iosjava, iosnative, uwpjava, uwpnative, builddep;
+    public final boolean compile, desktop, android, iosjava, iosnative, uwpjava, uwpnative;
 
-    CMLibTarget(boolean compile, boolean desktop, boolean android, boolean iosjava, boolean iosnative, boolean uwpjava, boolean uwpnative, boolean builddep) {
+    CMLibTarget(boolean compile, boolean desktop, boolean android, boolean iosjava, boolean iosnative, boolean uwpjava, boolean uwpnative) {
         this.compile = compile;
         this.desktop = desktop;
         this.android = android;
@@ -86,9 +72,6 @@ public enum CMLibTarget {
         this.iosnative = iosnative;
         this.uwpjava = uwpjava;
         this.uwpnative = uwpnative;
-        this.builddep = builddep;
-        if (compile && builddep)
-            throw new RuntimeException("Invalid combination of compile and builddep");
     }
 
     public boolean matches(BaseTarget filter) {
@@ -105,14 +88,12 @@ public enum CMLibTarget {
                 return uwpjava;
             case COMPILE:
                 return compile;
-            case BUILDDEP:
-                return builddep;
         }
         return false;
     }
 
     public enum BaseTarget {
-        DESKTOP, ANDROID, IOS, UWP, COMPILE, BUILDDEP, ALL
+        DESKTOP, ANDROID, IOS, UWP, COMPILE, ALL
     }
 
     public String listTargets() {
@@ -131,8 +112,6 @@ public enum CMLibTarget {
             targets.append(",uwpjava");
         if (uwpnative)
             targets.append(",uwpnative");
-        if (builddep)
-            targets.append(",builddep");
         return targets.length() > 0 ? targets.substring(1) : "";
     }
 }

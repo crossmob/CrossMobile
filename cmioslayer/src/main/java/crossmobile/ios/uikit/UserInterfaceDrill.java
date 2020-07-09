@@ -18,7 +18,7 @@ import org.crossmobile.bridge.ann.CMLibTarget;
 
 import static crossmobile.ios.coregraphics.GraphicsDrill.convertBaseContextToCGContext;
 
-@CMLib(target = CMLibTarget.RUNTIME_PLUGIN)
+@CMLib(target = CMLibTarget.RUNTIME)
 public class UserInterfaceDrill {
 
     public static CGFont cgfont(UIFont f) {

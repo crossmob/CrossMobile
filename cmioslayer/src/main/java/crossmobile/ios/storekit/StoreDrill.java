@@ -15,7 +15,7 @@ import org.crossmobile.bridge.ann.CMLibTarget;
 
 import static org.crossmobile.bind.system.AbstractLifecycleBridge.errorFromInfo;
 
-@CMLib(target = CMLibTarget.RUNTIME_PLUGIN)
+@CMLib(target = CMLibTarget.RUNTIME)
 public class StoreDrill {
 
     public static SKProduct newSKProduct(String locDescription, String locTitle, double price, NSLocale locale, String prodId) {

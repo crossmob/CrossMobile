@@ -12,7 +12,7 @@ import android.os.Bundle;
 import org.crossmobile.bridge.ann.CMLib;
 import org.crossmobile.bridge.ann.CMLibTarget;
 
-@CMLib(target = CMLibTarget.ANDROID_PLUGIN)
+@CMLib(target = CMLibTarget.ANDROID)
 public interface ActivityLifecycleListener {
 
     default void onStart() {

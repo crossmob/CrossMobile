@@ -13,7 +13,7 @@ import org.crossmobile.bind.graphics.NativeFont;
 import org.crossmobile.bridge.ann.CMLib;
 import org.crossmobile.bridge.ann.CMLibTarget;
 
-@CMLib(target = CMLibTarget.RUNTIME_PLUGIN)
+@CMLib(target = CMLibTarget.RUNTIME)
 public class GraphicsDrill {
 
     public static int color(CGColor c) {

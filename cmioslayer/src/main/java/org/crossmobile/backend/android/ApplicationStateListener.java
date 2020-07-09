@@ -10,7 +10,7 @@ import android.content.res.Configuration;
 import org.crossmobile.bridge.ann.CMLib;
 import org.crossmobile.bridge.ann.CMLibTarget;
 
-@CMLib(target = CMLibTarget.ANDROID_PLUGIN)
+@CMLib(target = CMLibTarget.ANDROID)
 public interface ApplicationStateListener {
     /*
       On create is not relevant, since it is called too early in the run process.

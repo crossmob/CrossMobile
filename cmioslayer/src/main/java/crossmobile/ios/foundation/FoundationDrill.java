@@ -10,7 +10,7 @@ import org.crossmobile.bridge.ann.CMLib;
 import org.crossmobile.bridge.ann.CMLibTarget;
 import org.robovm.objc.block.Block0;
 
-@CMLib(target = CMLibTarget.RUNTIME_PLUGIN)
+@CMLib(target = CMLibTarget.RUNTIME)
 public class FoundationDrill {
     public static void addVirtualUserDefault(String key, Block0<Object> supplier) {
         NSUserDefaults.standardUserDefaults().addVirtualValue(key, supplier);

@@ -9,7 +9,7 @@ package org.crossmobile.bridge;
 import org.crossmobile.bridge.ann.CMLib;
 import org.crossmobile.bridge.ann.CMLibTarget;
 
-@CMLib(name = "cmioslayer", target = CMLibTarget.RUNTIME_PLUGIN)
+@CMLib(name = "cmioslayer", target = CMLibTarget.RUNTIME)
 public interface CrossMobilePlugin {
 
     default void initialize() {

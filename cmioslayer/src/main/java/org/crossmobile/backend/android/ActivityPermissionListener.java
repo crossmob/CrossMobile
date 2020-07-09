@@ -9,7 +9,7 @@ package org.crossmobile.backend.android;
 import org.crossmobile.bridge.ann.CMLib;
 import org.crossmobile.bridge.ann.CMLibTarget;
 
-@CMLib(target = CMLibTarget.ANDROID_PLUGIN)
+@CMLib(target = CMLibTarget.ANDROID)
 public interface ActivityPermissionListener {
 
     void result(String[] permissions, int[] grantResults);
