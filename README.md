@@ -42,7 +42,7 @@ or a detailed ChangeLog [here](https://github.com/crossmob/CrossMobile/blob/mast
 |   | macOS | Windows | Linux |
 |---|-------|---------|--------|
 | Required | macOS 10.12.6 <br/> Xcode 9.2 <br/> Android command line tools 3.5 | Windows 7 <br/> Android command line tools 3.5 | x64 distribution <br/> Android command line tools 3.5
-| Recommended | macOS 10.14+ <br/> Xcode 10.3+ <br/> Android Studio 3.5+ | Windows 10 64 bit<br/> Android Studio 3.5+ | x64 distribution <br/> Android Studio 3.5+
+| Recommended | macOS 10.14+ <br/> Xcode 11.+ <br/> Android Studio 3.5+ | Windows 10 64 bit<br/> Android Studio 3.5+ | x64 distribution <br/> Android Studio 3.5+
 
 ### More information
 For more information about CrossMobile, please visit its dedicated site [crossmobile.tech](https://crossmobile.tech).
