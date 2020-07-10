@@ -90,24 +90,21 @@ public class AndroidSecurityBridge implements SecurityBridge {
         if (initCipher()) {
             FingerprintManager.CryptoObject cryptoObject = new FingerprintManager.CryptoObject(cipher);
             fingerprintManager.authenticate(cryptoObject, new CancellationSignal(), 0, new FingerPrintCallback(callback), null);
-            Native.lifecycle().runAndWaitOnEventThread(new Runnable() {
-                @Override
-                public void run() {
-                    dialog = new AlertDialog.Builder(MainActivity.current).create();
-                    dialog.setTitle("Sign in for " + context.localizedReason());
-                    dialog.setMessage("Confirm fingerprint to continue");
-                    dialog.setButton(AlertDialog.BUTTON_NEGATIVE, context.localizedCancelTitle() == null ? "Cancel" : context.localizedCancelTitle(), (DialogInterface di, int i) -> {
-                        di.cancel();
-                        callback.invoke(false, new NSError(LAErrorDomain, LAError.UserCancel, getUserInfo("Canceled by user.")));
-                    });
-                    LinearLayout linear = new LinearLayout(MainActivity.current);
-                    linear.setOrientation(LinearLayout.VERTICAL);
-                    ImageView imageView = new ImageView(MainActivity.current());
-                    imageView.setImageBitmap(((AndroidBitmap) Native.image().lookup(Native.file().getSystemPrefix() + "fingerpint_android").bitmap).bitmap);
-                    linear.addView(imageView);
-                    dialog.setView(linear);
-                    dialog.show();
-                }
+            Native.lifecycle().runAndWaitOnEventThread(() -> {
+                dialog = new AlertDialog.Builder(MainActivity.current).create();
+                dialog.setTitle("Sign in for " + context.localizedReason());
+                dialog.setMessage("Confirm fingerprint to continue");
+                dialog.setButton(AlertDialog.BUTTON_NEGATIVE, context.localizedCancelTitle() == null ? "Cancel" : context.localizedCancelTitle(), (DialogInterface di, int i) -> {
+                    di.cancel();
+                    callback.invoke(false, new NSError(LAErrorDomain, LAError.UserCancel, getUserInfo("Canceled by user.")));
+                });
+                LinearLayout linear = new LinearLayout(MainActivity.current);
+                linear.setOrientation(LinearLayout.VERTICAL);
+                ImageView imageView = new ImageView(MainActivity.current());
+                imageView.setImageBitmap(((AndroidBitmap) Native.image().lookup(Native.file().getSystemPrefix() + "fingerpint_android").bitmap).bitmap);
+                linear.addView(imageView);
+                dialog.setView(linear);
+                dialog.show();
             });
         }
     }

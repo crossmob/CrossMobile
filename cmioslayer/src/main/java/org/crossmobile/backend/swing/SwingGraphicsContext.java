@@ -44,6 +44,10 @@ public class SwingGraphicsContext implements GraphicsContext<SwingNativePath, Af
         states = new Stack<>();
     }
 
+    public Graphics2D getGraphics() {
+        return g2;
+    }
+
     @Override
     public void setAlpha(double alpha) {
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) alpha));

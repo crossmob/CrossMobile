@@ -4150,7 +4150,6 @@ crossmobile/ios/touchid/LAError.class v8
 crossmobile/ios/touchid/LAPolicy.class v8
 crossmobile/ios/touchid/LATouchIDAuthentication.class v8
 crossmobile/ios/touchid/package-info.class v8
-org/crossmobile/backend/android/AndroidSecurityBridge$1.class v8
 org/crossmobile/backend/android/AndroidSecurityBridge$FingerPrintCallback.class v8
 org/crossmobile/backend/android/AndroidSecurityBridge$FingerprintException.class v8
 org/crossmobile/backend/android/AndroidSecurityBridge.class v8

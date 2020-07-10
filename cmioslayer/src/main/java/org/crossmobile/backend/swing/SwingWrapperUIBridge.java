@@ -23,20 +23,35 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
+import java.util.Collection;
+import java.util.Objects;
 
 public class SwingWrapperUIBridge implements WrapperUIBridge<JComponent> {
 
-    private Constructor<? extends WebWrapper<?, SwingGraphicsContext>> constructor;
+    private int webViewConstructorPriority = -1;
+    private Constructor<? extends WebWrapper<?, SwingGraphicsContext>> webViewConstructor;
 
     {
-        try {
-            //noinspection unchecked
-            constructor = (Constructor<WebWrapper<?, SwingGraphicsContext>>) Class.forName("org.crossmobile.backend.desktop.FXWebWrapper").getConstructor(UIWebView.class);
-        } catch (Exception ignored) {
+        registerWebView(SwingWebWrapper.class, 0);
+    }
+
+    /**
+     * Register a WebWrapper class to use for future implementations of UIWebView
+     *
+     * @param webViewClass the Class to use as a constructor
+     * @param priority     The priority to use this class. If this class has higher priority than the current one, then
+     *                     this class will be used. Otherwise the call to this registration will be ignored. The higher this
+     *                     number the bigger the priority. Priority of default  {@link JEditorPane}-based implementation
+     *                     is 0.
+     */
+    public void registerWebView(Class<? extends WebWrapper<?, SwingGraphicsContext>> webViewClass, int priority) {
+        Objects.requireNonNull(webViewClass);
+        if (priority > webViewConstructorPriority) {
             try {
-                constructor = SwingWebWrapper.class.getConstructor(UIWebView.class);
-            } catch (NoSuchMethodException ex) {
-                BaseUtils.throwException(ex);
+                webViewConstructor = webViewClass.getConstructor(UIWebView.class);
+                webViewConstructorPriority = priority;
+            } catch (NoSuchMethodException e) {
+                Native.system().error("Unable to register " + webViewClass.getName(), e);
             }
         }
     }
@@ -44,7 +59,7 @@ public class SwingWrapperUIBridge implements WrapperUIBridge<JComponent> {
     @Override
     public WebWrapper<?, SwingGraphicsContext> webView(UIWebView parent) {
         try {
-            return constructor.newInstance(parent);
+            return webViewConstructor.newInstance(parent);
         } catch (Exception e) {
             return BaseUtils.throwExceptionAndReturn(e);
         }
