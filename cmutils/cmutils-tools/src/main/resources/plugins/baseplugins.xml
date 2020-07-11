@@ -23,37 +23,44 @@
             <plugin>
                 <groupId>org.crossmobile</groupId>
                 <artifactId>cmplugin-cmreachability</artifactId>
-                <version>2.9</version>
+                <version>3.0.1</version>
                 <name>Reachability Plugin</name>
                 <description>Reachability Plugin for CrossMobile© Framework</description>
             </plugin>
             <plugin>
                 <groupId>org.crossmobile</groupId>
                 <artifactId>cmplugin-cmsqlite</artifactId>
-                <version>2.9</version>
+                <version>3.0.1</version>
                 <name>SQLite Plugin</name>
                 <description>SQLite Plugin for CrossMobile© Framework</description>
             </plugin>
             <plugin>
                 <groupId>org.crossmobile</groupId>
                 <artifactId>cmplugin-cmserbluetooth</artifactId>
-                <version>2.9</version>
+                <version>3.0.1</version>
                 <name>Serial Android Bluetooth Connection</name>
                 <description>CrossMobile© Android Serial connection interface</description>
             </plugin>
             <plugin>
                 <groupId>org.crossmobile</groupId>
                 <artifactId>cmplugin-cmkeychain</artifactId>
-                <version>2.9</version>
+                <version>3.0.1</version>
                 <name>STKeychain implementation</name>
                 <description>CrossMobile© implementation of STKeychain library</description>
             </plugin>
             <plugin>
                 <groupId>org.crossmobile</groupId>
                 <artifactId>cmplugin-cmzip</artifactId>
-                <version>2.9</version>
+                <version>3.0.1</version>
                 <name>Zip Plugin</name>
                 <description>Zip Plugin for CrossMobile© Framework</description>
+            </plugin>
+            <plugin>
+                <groupId>org.crossmobile</groupId>
+                <artifactId>cmplugin-cmjfxbrowser</artifactId>
+                <version>3.0.1</version>
+                <name>JavaFX Browser</name>
+                <description>CrossMobile© JavaFX Browser backend</description>
             </plugin>
         </plugins>
     </repository>
