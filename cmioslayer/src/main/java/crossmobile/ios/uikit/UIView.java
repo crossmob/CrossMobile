@@ -119,7 +119,6 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
     private UIEdgeInsets safeAreaInsets = UIEdgeInsets.zero();
     private UILayoutGuide safeAreaLayoutGuide;
     private boolean insetsLayoutMarginsFromSafeArea = true;
-    private int userInterfaceLayoutDirection = UIApplication.sharedApplication().userInterfaceLayoutDirection();
     private int overrideUserInterfaceStyle = UIUserInterfaceStyle.Unspecified;
     private String accessibilityIdentifier;
     private boolean debugSelf;
@@ -2609,7 +2608,9 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
 
     @CMGetter("@property(nonatomic, readonly) UIUserInterfaceLayoutDirection userInterfaceLayoutDirection;")
     public int userInterfaceLayoutDirection() {
-        return userInterfaceLayoutDirection;
+        return UIApplication.sharedApplication() == null
+                ? UIUserInterfaceLayoutDirection.LeftToRight
+                : UIApplication.sharedApplication().userInterfaceLayoutDirection();
     }
 
     private void meAndChildren(VoidBlock1<UIView> action, boolean depthFirst) {
