@@ -10,7 +10,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>cmtheme-bright</artifactId>
-    
+
     <profiles>
         <profile>
             <id>desktop</id>
@@ -32,15 +32,26 @@
                 </dependency>
             </dependencies>
         </profile>
-        <profile>
-            <id>ios</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.crossmobile</groupId>
-                    <artifactId>cmplugin-ios-cmioslayer</artifactId>
-                    <version>${project.version}</version>
-                </dependency>
-            </dependencies>
-        </profile>
     </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.crossmobile</groupId>
+                <artifactId>cmplugin-maven-plugin</artifactId>
+                <version>${project.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>theme</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <name>Bright theme</name>
+                    <description>A light, bright colored theme, based on latest versions of original platform</description>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

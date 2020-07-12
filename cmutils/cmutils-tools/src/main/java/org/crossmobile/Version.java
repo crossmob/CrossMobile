@@ -16,7 +16,8 @@ public class Version {
 
     public static final String VERSION;
     public static final int RELEASE;
-    public static final String GROUPID;
+    public static final String GROUPID = "org.crossmobile";
+    public static final String ARTIFACTID = "cmioslayer";
 
     static {
         Properties props = new Properties();
@@ -33,6 +34,5 @@ public class Version {
         } catch (NumberFormatException ignored) {
         }
         RELEASE = rel;
-        GROUPID = props.getProperty("groupId", "org.crossmobile");
     }
 }

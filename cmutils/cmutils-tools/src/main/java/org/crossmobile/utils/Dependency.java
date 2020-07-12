@@ -111,7 +111,7 @@ public class Dependency implements Comparable<Dependency> {
 
     public static Dependency findSystemDependency(String groupId, String artifactId) {
         if (groupId == null)
-            groupId = "org.crossmobile";
+            groupId = Version.GROUPID;
         for (Dependency plugin : getSystemPlugins())
             if (plugin.groupId.equals(groupId) && plugin.artifactId.equals(artifactId))
                 return plugin;

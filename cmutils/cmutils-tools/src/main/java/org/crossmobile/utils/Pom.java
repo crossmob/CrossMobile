@@ -27,7 +27,7 @@ public final class Pom {
     private final File pomFile;
     private boolean isPlugin;
 
-    public static final String SHADOW = "org.crossmobile.ca.";
+    public static final String SHADOW = GROUP_ID + ".ca.";
     public static final String CROSSMOBILE_THEME_ID = "cmtheme-bright";
     private static final String CROSSMOBILE_PROJECT_ID = "cmproject";
     private static final String CROSSMOBILE_PLUGIN_ID = "cmplugin";

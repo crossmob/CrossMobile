@@ -176,12 +176,6 @@
                             <target>DESKTOP</target>
                         </package>
                     </packages>
-                    <repository>
-                        <id>crossmobile</id>
-                        <file>../cmutils/cmutils-tools/src/main/resources/plugins/baseplugins.xml</file>
-                        <name>CrossMobile</name>
-                        <cleanEntries>true</cleanEntries>
-                    </repository>
                 </configuration>
             </plugin>
         </plugins>
