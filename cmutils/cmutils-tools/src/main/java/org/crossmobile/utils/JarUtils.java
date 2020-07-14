@@ -104,13 +104,31 @@ public class JarUtils {
         return null;
     }
 
-    public static void unzipJar(File injar, File outdir) {
-        unzipJar(injar, outdir, null);
+    public static void explodeClasspath(File in, File outdir) {
+        explodeClasspath(in, outdir, null);
     }
 
-    public static void unzipJar(File injar, File outdir, BiPredicate<JarEntry, File> predicate) {
-        if (injar == null || !injar.isFile())
-            throw new RuntimeException("Input JAR file " + injar + " does not exist");
+    public static void explodeClasspath(File in, File outdir, BiPredicate<JarEntry, File> predicate) {
+        if (in == null)
+            throw new RuntimeException("Input JAR file can not be null");
+        if (in.isDirectory()) {
+            if (predicate != null)
+                throw new RuntimeException("JAR predicate with directory-based classpath is not supported");
+            explodeDir(in, outdir);
+        } else if (in.isFile())
+            explodeJar(in, outdir, predicate);
+        else
+            throw new RuntimeException("Input JAR file " + in + " is of invalid type");
+    }
+
+    private static void explodeDir(File injar, File outdir) {
+        outdir.mkdirs();
+        if (!outdir.isDirectory())
+            throw new RuntimeException("Output file " + outdir + " is not a directory");
+        FileUtils.copy(injar, outdir);
+    }
+
+    private static void explodeJar(File injar, File outdir, BiPredicate<JarEntry, File> predicate) {
         outdir.mkdirs();
         if (!outdir.isDirectory())
             throw new RuntimeException("Output file " + outdir + " is not a directory");
@@ -144,7 +162,7 @@ public class JarUtils {
                 if (in.isFile() && in.getName().toLowerCase().endsWith(".jar")) {
                     File extract = File.createTempFile("jarextract", ".jar");
                     extract.delete();
-                    unzipJar(in, extract);
+                    explodeClasspath(in, extract);
                     extract.deleteOnExit();
                     in = extract;
                 }

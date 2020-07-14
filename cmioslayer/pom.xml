@@ -134,9 +134,11 @@
                 <executions>
                     <execution>
                         <goals>
+                            <goal>source</goal>
+                            <goal>process</goal>
+                            <goal>package</goal>
                             <goal>install</goal>
                             <goal>deploy</goal>
-                            <goal>modify</goal>
                         </goals>
                     </execution>
                 </executions>
