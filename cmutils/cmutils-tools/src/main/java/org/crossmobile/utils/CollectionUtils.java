@@ -16,6 +16,7 @@ import static org.crossmobile.utils.CollectionUtils.IteratorHandler.IterationCod
 
 public class CollectionUtils {
 
+    @SafeVarargs
     public static <T> List<T> asList(T... items) {
         return items == null || items.length < 1 ? Collections.EMPTY_LIST : Arrays.asList(items);
     }
@@ -52,6 +53,7 @@ public class CollectionUtils {
                 : () -> joinIterator(converter, input.iterator());
     }
 
+    @SafeVarargs
     public static <T> Collection<T> asCollection(Iterable<T>... iterables) {
         return iterables == null ? null
                 : iterables.length == 1 && iterables[0] != null && iterables[0] instanceof Collection
@@ -63,6 +65,7 @@ public class CollectionUtils {
         return asCollection(ArrayList.class, iterables);
     }
 
+    @SafeVarargs
     public static <T> Collection<T> asCollection(Class<? extends Collection> classtype, Iterable<T>... iterables) {
         return asCollection(Arrays.asList(iterables));
     }
@@ -83,6 +86,7 @@ public class CollectionUtils {
         }
     }
 
+    @SafeVarargs
     public static <T> Collection<T> asCollection(Collection<T>... parts) {
         return asCollection(Arrays.asList(parts));
     }
@@ -113,6 +117,7 @@ public class CollectionUtils {
         };
     }
 
+    @SafeVarargs
     public static <T> Collection<T> asCollection(Class<? extends Collection> classtype, Collection<T>... parts) {
         return asCollection(classtype, Arrays.asList(parts));
     }
@@ -173,34 +178,32 @@ public class CollectionUtils {
 
     public static <T> List<T> tail(Iterable<T> collection) {
         if (collection == null)
-            return Collections.EMPTY_LIST;
-        List<T> result = (collection instanceof List) ? (List) collection : asList(asCollection(collection));
+            return Collections.emptyList();
+        List<T> result = (collection instanceof List<?>) ? (List) collection : asList(asCollection(collection));
         if (result.size() < 2)
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         return result.subList(1, result.size());
     }
 
     public static <T> List<T> front(Iterable<T> collection) {
         if (collection == null)
-            return Collections.EMPTY_LIST;
-        List<T> result = (collection instanceof List) ? (List) collection : asList(asCollection(collection));
+            return Collections.emptyList();
+        List<T> result = (collection instanceof List<?>) ? (List) collection : asList(asCollection(collection));
         if (result.size() < 2)
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         return result.subList(0, result.size() - 1);
     }
 
     public static <T> T last(Iterable<T> collection) {
         if (collection == null)
             return null;
-        if (collection instanceof List) {
+        if (collection instanceof List<?>) {
             List<T> list = (List<T>) collection;
             return list.size() > 0 ? list.get(list.size() - 1) : null;
         }
         // generic method
         T last = null;
-        Iterator<T> it = collection.iterator();
-        while (it.hasNext())
-            last = it.next();
+        for (T t : collection) last = t;
         return last;
     }
 
@@ -216,10 +219,12 @@ public class CollectionUtils {
                 : EMPTY;
     }
 
+    @SafeVarargs
     public static <T> Iterator<T> joinIterator(Iterator<? extends T>... iterators) {
         return joinIterator((T t) -> t, iterators);
     }
 
+    @SafeVarargs
     public static <S, T> Iterator<T> joinIterator(Function<S, T> converter, Iterator<? extends S>... iterators) {
         return joinIterator(converter, Arrays.asList(iterators));
     }
@@ -304,7 +309,7 @@ public class CollectionUtils {
 
     public static final class IteratorHandler<T> {
 
-        static final IteratorHandler EMPTY = new IteratorHandler(Arrays.asList());
+        static final IteratorHandler EMPTY = new IteratorHandler(Collections.emptyList());
 
         public interface ConsumerEx<T> {
 

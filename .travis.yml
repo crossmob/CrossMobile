@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode11.3
+osx_image: xcode9.3
 
 addons:
   homebrew:
@@ -38,4 +38,5 @@ cache:
 script:
   - rm -rf cmioslayer/gen
   - mvn clean install
-  - git diff-index --quiet HEAD --
+  - git diff
+  - git diff-index HEAD
