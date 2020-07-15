@@ -36,4 +36,6 @@ cache:
     - $HOME/.android/build-cache
 
 script:
+  - rm -rf cmioslayer/gen
   - mvn clean install
+  - git diff-index --quiet HEAD --
