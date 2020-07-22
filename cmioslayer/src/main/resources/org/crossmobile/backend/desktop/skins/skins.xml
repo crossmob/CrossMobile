@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skins>
+<!--    <skin name="fixed-l" width="768" height="1024" idiom="pad">-->
+<!--        <meta priority="-1" info="Fixed large" descr="Use system decorations while stretching display, with base height of 1024 pixels"/>-->
+<!--        <screen x="0" y="0" width="768" height="1024" stretch="true"/>-->
+<!--    </skin>-->
+<!--    <skin name="fixed-m" width="320" height="568" idiom="phone">-->
+<!--        <meta priority="-1" info="Fixed medium" descr="Use system decorations while stretching display, with base height of 568 pixels"/>-->
+<!--        <screen x="0" y="0" width="320" height="568" stretch="true"/>-->
+<!--    </skin>-->
+<!--    <skin name="fixed-s" width="320" height="480" idiom="phone">-->
+<!--        <meta priority="-1" info="Fixed small" descr="Use system decorations while stretching display, with base height of 480 pixels"/>-->
+<!--        <screen x="0" y="0" width="320" height="480" stretch="true"/>-->
+<!--    </skin>-->
+    <skin name="fullscreen" width="1024" height="576" idiom="pad" device="fullscreen">
+        <meta priority="40" info="Full screen application" descr="The application covers the whole screen with no borders"/>
+        <screen x="0" y="0" width="1024" height="576" statusbar="false"/>
+    </skin>
+    <skin name="pad" width="816" height="1126" idiom="pad" device="simulator">
+        <meta priority="60" info="Pad Simulator" descr="An emulator-like big screen resolution (768x1024) skin"/>
+        <image x="0" y="0" width="816" height="1126" file="base_pad/chassis.png"/>
+        <screen x="24" y="40" width="768" height="1024"/>
+        <led x="640" y="20" width="11" height="11" imageon="base_pad/ledgreen.png" imageoff="base_pad/ledred.png"/>
+        <power x="390" y="0" width="46" height="46" imagedown="base_pad/power_down.png" imageup="base_pad/power_up.png"/>
+        <back x="278" y="1068" width="42" height="42" imagedown="base_pad/back_down.png" imageup="base_pad/back_up.png"/>
+        <home x="424" y="1068" width="42" height="42" imagedown="base_pad/home_down.png" imageup="base_pad/home_up.png"/>
+        <action x="494" y="1068" width="42" height="42" imagedown="base_pad/action_down.png" imageup="base_pad/action_up.png"/>
+    </skin>
+    <skin name="pad-w" width="810" height="1350" idiom="pad" device="simulator">
+        <meta priority="65" info="Pad wide Simulator" descr="An emulator-like wide big screen resolution (800x1280) skin"/>
+        <image x="0" y="0" width="810" height="1350" file="base_pad/chassis_w.png"/>
+        <screen x="5" y="35" width="800" height="1280"/>
+        <power x="774" y="0" width="46" height="46" imagedown="base_pad/power_down_w.png" imageup="base_pad/power_up_w.png"/>
+    </skin>
+    <skin name="phone" width="368" height="697" idiom="phone" device="simulator">
+        <meta priority="50" info="Phone Simulator" descr="An emulator-like small screen resolution (320x568) skin"/>
+        <image x="0" y="0" width="368" height="697" file="base_phone/chassis.png"/>
+        <screen x="24" y="58" width="320" height="568"/>
+        <led x="330" y="27" width="11" height="11" imageoff="base_phone/ledred.png" imageon="base_phone/ledgreen.png"/>
+        <power x="19" y="22" width="23" height="23" imagedown="base_phone/power_down.png" imageup="base_phone/power_up.png"/>
+        <back x="54" y="628" width="38" height="38" imagedown="base_phone/back_down.png" imageup="base_phone/back_up.png"/>
+        <home x="201" y="628" width="38" height="38" imagedown="base_phone/home_down.png" imageup="base_phone/home_up.png"/>
+        <action x="273" y="628" width="38" height="38" imagedown="base_phone/action_down.png" imageup="base_phone/action_up.png"/>
+    </skin>
+    <skin name="phone-s" width="368" height="589" idiom="phone" device="simulator">
+        <meta priority="55" info="Phone short Simulator" descr="An emulator-like short small screen resolution (320x480) skin"/>
+        <image x="0" y="0" width="368" height="589" file="base_phone/chassis.png"/>
+        <screen x="24" y="50" width="320" height="480"/>
+        <led x="330" y="23" width="11" height="11" imageoff="base_phone/ledred.png" imageon="base_phone/ledgreen.png"/>
+        <power x="20" y="16" width="23" height="23" imagedown="base_phone/power_down.png" imageup="base_phone/power_up.png"/>
+        <back x="54" y="531" width="38" height="38" imagedown="base_phone/back_down.png" imageup="base_phone/back_up.png"/>
+        <home x="201" y="531" width="38" height="38" imagedown="base_phone/home_down.png" imageup="base_phone/home_up.png"/>
+        <action x="273" y="531" width="38" height="38" imagedown="base_phone/action_down.png" imageup="base_phone/action_up.png"/>
+    </skin>
+    <skin name="system" width="800" height="600" idiom="pad">
+        <meta priority="10" info="Horizontal application 800x600" descr="The application looks like a regular windowed application with a resizable display"/>
+        <screen x="0" y="0" width="800" height="600" statusbar="false"/>
+    </skin>
+    <skin name="system1024" width="1024" height="768" idiom="pad">
+        <meta priority="15" info="Horizontal application 1024x768" descr="The application looks like a regular windowed application with a resizable display"/>
+        <screen x="0" y="0" width="1024" height="768" statusbar="false"/>
+    </skin>
+<!--    <skin name="system-o" width="360" height="608" idiom="phone">-->
+<!--        <meta priority="-1" info="System overlayed" descr="Use system decorations and a resizable display, while keeping PPI, for a small display"/>-->
+<!--        <screen x="20" y="20" width="320" height="568" statusbar="false"/>-->
+<!--        &lt;!&ndash;    <back orientation="portrait:portraitupsidedown" x="20%" y="-42" width="38" height="38" imagedown="base_phone/back_down.png" imageup="base_phone/back_up.png"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;    <home orientation="portrait:portraitupsidedown" x="80%" y="-42" width="38" height="38" imagedown="base_phone/home_down.png" imageup="base_phone/home_up.png"/>&ndash;&gt;-->
+<!--        <back orientation="landscape" x="20" y="42" width="38" height="38" imagedown="base_phone/back_down.png" imageup="base_phone/back_up.png" autorotate="true"/>-->
+<!--        <home orientation="landscape" x="80" y="42" width="38" height="38" imagedown="base_phone/home_down.png" imageup="base_phone/home_up.png" autorotate="true"/>-->
+<!--    </skin>-->
+    <skin name="vertical-l" width="768" height="1024" idiom="pad">
+        <meta priority="20" info="Vertical application 768x1024" descr="Use system decorations and a resizable vertical display, similar to the dimensions of a typical pad"/>
+        <screen x="0" y="0" width="768" height="1024" statusbar="false"/>
+    </skin>
+    <skin name="vertical-s" width="320" height="568" idiom="phone">
+        <meta priority="25" info="Vertical application 320x568" descr="Use system decorations and a small resizable vertical display, similar to the dimensions of a typical phone"/>
+        <screen x="0" y="0" width="320" height="568" statusbar="false"/>
+    </skin>
+</skins>

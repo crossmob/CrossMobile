@@ -50,7 +50,7 @@ public abstract class DesktopDrawableMetrics extends DrawableMetrics {
     public void initIdiom() {
         if (ch != null)
             throw new RuntimeException("Chassis already defined");
-        ch = ChassisLoader.getChassis(System.getProperty(DesktopArguments.USER_ARG_SKIN, System.getProperty("cm.desktop.skin")));
+        ch = Chassis.getSkin(System.getProperty(DesktopArguments.USER_ARG_SKIN, System.getProperty("cm.desktop.skin")));
         scr = ch.screen();
         super.initIdiom();
     }

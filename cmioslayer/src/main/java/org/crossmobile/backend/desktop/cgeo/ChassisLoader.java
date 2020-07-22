@@ -9,62 +9,61 @@ package org.crossmobile.backend.desktop.cgeo;
 import crossmobile.ios.uikit.UIUserInterfaceIdiom;
 import org.crossmobile.backend.desktop.DesktopLocations;
 import org.crossmobile.bind.graphics.NativeBitmap;
+import org.crossmobile.bind.system.LazyProperty;
 import org.crossmobile.bridge.Native;
 import org.xml.sax.Attributes;
-import org.xml.sax.InputSource;
 import org.xml.sax.helpers.DefaultHandler;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.util.Collection;
 
 import static crossmobile.ios.uikit.UIInterfaceOrientationMask.*;
-import static crossmobile.ios.uikit.UIInterfaceOrientationMask.All;
 import static org.crossmobile.bind.system.SystemUtilities.stringToBoolean;
-import static org.crossmobile.bridge.system.BaseUtils.throwExceptionAndReturn;
+import static org.crossmobile.bridge.system.BaseUtils.throwException;
 
 public class ChassisLoader extends DefaultHandler {
 
-    final String fileName;
-    private Chassis ch;
-    String chassisInfo = "";
-    String attrName;
+    private final Collection<Chassis> skins;
+    private Chassis current;
+    private String chassisInfo = "";
+    private String attrName;
 
     @SuppressWarnings("UseSpecificCatch")
-    public static Chassis getChassis(String name) {
-        if (name == null || name.trim().isEmpty())
-            name = "system";
+    static void loadSkins(InputStream io, Collection<Chassis> skins) {
         try {
-            ChassisLoader handler = new ChassisLoader(name);
+            ChassisLoader handler = new ChassisLoader(skins);
             SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
-            parser.parse(new InputSource(Chassis.class.getResourceAsStream(DesktopLocations.SKINS + name + ".xml")), handler);
-            return handler.ch;
+            parser.parse(io, handler);
         } catch (Exception ex) {
-            return throwExceptionAndReturn(ex);
+            throwException(ex);
         }
     }
 
-    private ChassisLoader(String fileName) {
-        this.fileName = fileName;
+    private ChassisLoader(Collection<Chassis> skins) {
+        this.skins = skins;
     }
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) {
         attrName = qName;
         switch (qName) {
-            case "chassis":
-                ch = new Chassis(fileName,
+            case "skin":
+                skins.add(current = new Chassis(attributes.getValue("name"),
                         toIdiom(attributes, "idiom"),
                         toInt(attributes, "width"),
                         toInt(attributes, "height"),
                         attributes.getValue("device")
-                );
+                ));
                 break;
             case "meta":
-                ch.setMeta(chassisInfo = attributes.getValue("info"),
+                current.setMeta(chassisInfo = attributes.getValue("info"),
                         attributes.getValue("descr"), toInt(attributes, "priority", 50));
                 break;
             case "screen":
-                ch.setScreen(new CScreen(toInt(attributes, "x"),
+                current.setScreen(new CScreen(toInt(attributes, "x"),
                         toInt(attributes, "y"),
                         toInt(attributes, "width"),
                         toInt(attributes, "height"),
@@ -72,7 +71,7 @@ public class ChassisLoader extends DefaultHandler {
                         stringToBoolean(attributes.getValue("statusbar"), true)));
                 break;
             case "led":
-                ch.setLed(new CDrawable(toInt(attributes, "x"),
+                current.setLed(new CDrawable(toInt(attributes, "x"),
                         toInt(attributes, "y"),
                         toInt(attributes, "width"),
                         toInt(attributes, "height"),
@@ -82,7 +81,7 @@ public class ChassisLoader extends DefaultHandler {
                         stringToBoolean(attributes.getValue("autorotate"), false)));
                 break;
             case "power":
-                ch.addArea(new CButton(toInt(attributes, "x"),
+                current.addArea(new CButton(toInt(attributes, "x"),
                         toInt(attributes, "y"),
                         toInt(attributes, "width"),
                         toInt(attributes, "height"),
@@ -93,7 +92,7 @@ public class ChassisLoader extends DefaultHandler {
                         stringToBoolean(attributes.getValue("autorotate"), false)));
                 break;
             case "back":
-                ch.addArea(new CButton(toInt(attributes, "x"),
+                current.addArea(new CButton(toInt(attributes, "x"),
                         toInt(attributes, "y"),
                         toInt(attributes, "width"),
                         toInt(attributes, "height"),
@@ -104,7 +103,7 @@ public class ChassisLoader extends DefaultHandler {
                         stringToBoolean(attributes.getValue("autorotate"), false)));
                 break;
             case "home":
-                ch.addArea(new CButton(toInt(attributes, "x"),
+                current.addArea(new CButton(toInt(attributes, "x"),
                         toInt(attributes, "y"),
                         toInt(attributes, "width"),
                         toInt(attributes, "height"),
@@ -115,7 +114,7 @@ public class ChassisLoader extends DefaultHandler {
                         stringToBoolean(attributes.getValue("autorotate"), false)));
                 break;
             case "action":
-                ch.addArea(new CButton(toInt(attributes, "x"),
+                current.addArea(new CButton(toInt(attributes, "x"),
                         toInt(attributes, "y"),
                         toInt(attributes, "width"),
                         toInt(attributes, "height"),
@@ -126,7 +125,7 @@ public class ChassisLoader extends DefaultHandler {
                         stringToBoolean(attributes.getValue("autorotate"), false)));
                 break;
             case "image":
-                ch.addArea(new CDrawable(toInt(attributes, "x"),
+                current.addArea(new CDrawable(toInt(attributes, "x"),
                         toInt(attributes, "y"),
                         toInt(attributes, "width"),
                         toInt(attributes, "height"),
@@ -136,14 +135,16 @@ public class ChassisLoader extends DefaultHandler {
                         stringToBoolean(attributes.getValue("autorotate"), false)));
                 break;
             case "insets":
-                ch.setInset(toOrientation(attributes, "orientation"),
+                current.setInset(toOrientation(attributes, "orientation"),
                         toInt(attributes, "top"),
                         toInt(attributes, "left"),
                         toInt(attributes, "bottom"),
                         toInt(attributes, "right"));
                 break;
+            case "skins":
+                break;
             default:
-                throw new RuntimeException("Unknown entry '" + qName + ";");
+                throw new RuntimeException("Unknown entry '" + qName + "'");
         }
     }
 
@@ -207,16 +208,18 @@ public class ChassisLoader extends DefaultHandler {
         return result;
     }
 
-    private NativeBitmap getImage(Attributes attributes, String tag) {
-        String imagename = attributes.getValue(tag);
-        if (imagename == null)
-            return null;
-        try {
-            return Native.image().retrieve(getClass().getResource(DesktopLocations.SKINS + imagename).toURI().toString());
-        } catch (Exception ex) {
-            System.err.println(error(tag, "No Image found under '" + imagename + "'"));
-        }
-        return null;
+    private LazyProperty<NativeBitmap> getImage(Attributes attributes, String tag) {
+        String imageName = attributes.getValue(tag);
+        if (imageName == null)
+            throw new NullPointerException("Unable to retrieve image name");
+        return new LazyProperty<>(() -> {
+            try {
+                return Native.image().retrieve(getClass().getResource(DesktopLocations.SKINS + imageName).toURI().toString());
+            } catch (URISyntaxException e) {
+                System.err.println(error(tag, "No Image found under '" + imageName + "'"));
+                return null;
+            }
+        });
     }
 
     private int toIdiom(Attributes attributes, String tag) {

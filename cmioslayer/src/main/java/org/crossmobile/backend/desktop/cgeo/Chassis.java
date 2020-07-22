@@ -8,6 +8,7 @@ package org.crossmobile.backend.desktop.cgeo;
 
 import crossmobile.ios.uikit.UIDeviceOrientation;
 import org.crossmobile.backend.desktop.DesktopGraphicsBridge;
+import org.crossmobile.backend.desktop.DesktopLocations;
 import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.graphics.Insets;
 import org.crossmobile.bridge.Native;
@@ -15,8 +16,8 @@ import org.crossmobile.bridge.Native;
 import java.util.*;
 
 import static crossmobile.ios.uikit.UIInterfaceOrientationMask.*;
-import static org.crossmobile.backend.desktop.ResourceResolver.getSkinFiles;
-import static org.crossmobile.backend.desktop.cgeo.ChassisLoader.getChassis;
+import static org.crossmobile.backend.desktop.ResourceResolver.getResources;
+import static org.crossmobile.backend.desktop.cgeo.ChassisLoader.loadSkins;
 
 public class Chassis extends CSizable implements Comparable<Chassis> {
 
@@ -36,14 +37,21 @@ public class Chassis extends CSizable implements Comparable<Chassis> {
 
     public static Collection<Chassis> getSkins() {
         Collection<Chassis> result = new TreeSet<>();
-        for (String file : getSkinFiles()) {
-            Chassis chassis = getChassis(file.substring(0, file.length() - 4));
-            if (chassis.priority >= 0)
-                result.add(chassis);
-        }
+        getResources(DesktopLocations.SKINS + "skins.xml", in -> loadSkins(in, result));
         if (result.isEmpty())
-            System.out.println("  No skins found");
+            throw new NullPointerException("No skins found");
         return result;
+    }
+
+    public static Chassis getSkin(String name) {
+        if (name == null || name.isEmpty())
+            name = "system";
+        Collection<Chassis> skins = getSkins();
+        for (Chassis chassis : skins)
+            if (chassis.name.equals(name))
+                return chassis;
+        Native.system().error("Unable to locate skin named " + name, null);
+        return skins.iterator().next();
     }
 
     Chassis(String fileName, int idiom, int width, int height, String device) {

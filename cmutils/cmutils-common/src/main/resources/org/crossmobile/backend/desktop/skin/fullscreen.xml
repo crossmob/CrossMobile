@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--<!DOCTYPE chassis SYSTEM "skin.dtd">-->
-<chassis width="1024" height="576" idiom="pad" device="fullscreen">
-    <meta priority="40" info="Full screen application" descr="The application covers the whole screen with no borders"/>
-    <screen x="0" y="0" width="1024" height="576" statusbar="false"/>
-</chassis>

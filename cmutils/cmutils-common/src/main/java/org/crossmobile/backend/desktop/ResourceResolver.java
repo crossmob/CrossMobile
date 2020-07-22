@@ -21,24 +21,9 @@ import static org.crossmobile.backend.desktop.DesktopLocations.FONT_LIST;
 
 public class ResourceResolver {
 
-    public static void getResources(String path, VoidBlock1<InputStream> streams) {
-        Enumeration<URL> resources;
-        try {
-            resources = ResourceResolver.class.getClassLoader().getResources(path);
-        } catch (IOException e) {
-            return;
-        }
-        while (resources.hasMoreElements()) {
-            try (InputStream inputStream = resources.nextElement().openStream()) {
-                streams.invoke(inputStream);
-            } catch (Exception ignored) {
-            }
-        }
-    }
-
-    private static Collection<String> getTextResources(String path) {
+    public static Collection<String> getFontNames() {
         Collection<String> result = new ArrayList<>();
-        getResources(path, inputStream -> {
+        getResources(FONT_LIST, inputStream -> {
             //noinspection CharsetObjectCanBeUsed
             try (BufferedReader in = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"))) {
                 String data;
@@ -50,11 +35,18 @@ public class ResourceResolver {
         return result;
     }
 
-    public static Collection<String> getSkinFiles() {
-        return getTextResources(DesktopLocations.SKINS.substring(1) + "catalog");
-    }
-
-    public static Collection<String> getFontFiles() {
-        return getTextResources(FONT_LIST);
+    public static void getResources(String path, VoidBlock1<InputStream> streams) {
+        Enumeration<URL> resources;
+        try {
+            resources = ResourceResolver.class.getClassLoader().getResources(path.startsWith("/") ? path.substring(1) : path);
+        } catch (IOException e) {
+            return;
+        }
+        while (resources.hasMoreElements()) {
+            try (InputStream inputStream = resources.nextElement().openStream()) {
+                streams.invoke(inputStream);
+            } catch (Exception ignored) {
+            }
+        }
     }
 }

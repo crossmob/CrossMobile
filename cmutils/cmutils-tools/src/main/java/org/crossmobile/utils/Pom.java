@@ -58,10 +58,6 @@ public final class Pom {
         return pom;
     }
 
-    public String parentVersion() {
-        return pomWalker.pathExists("/project/parent/version") ? pomWalker.path("/project/parent/version").text() : "";
-    }
-
     public void setParentProject(String version) {
         if (pomWalker.pathExists("/project/parent")) {
             if (pomWalker.pathExists("/project/parent/version"))
@@ -81,7 +77,7 @@ public final class Pom {
             for (String depPacked : dependenciesProp.split(";")) {
                 String[] dep_array = depPacked.split(":");
                 if (dep_array.length == 6) {
-                    Dependency dep = Dependency.find(dep_array[0], dep_array[1], dep_array[2], dep_array[3], dep_array[4], dep_array[5]);
+                    Dependency dep = PluginRegistry.find(dep_array[0], dep_array[1], dep_array[2], dep_array[3], dep_array[4], dep_array[5]);
                     if (dep != null)
                         dependencies.add(dep);
                 }
@@ -106,7 +102,7 @@ public final class Pom {
         if (pomWalker.pathExists("/project/dependencies"))
             pomWalker.path("/project/dependencies").nodes("dependency", w -> {
                 w.tag();
-                deps.add(Dependency.find(
+                deps.add(PluginRegistry.find(
                         w.toTag().nodeExists("groupId") ? w.node("groupId").text() : "",
                         w.toTag().nodeExists("artifactId") ? w.node("artifactId").text() : "",
                         w.toTag().nodeExists("version") ? w.node("version").text() : "",
@@ -126,7 +122,7 @@ public final class Pom {
                                 && (c.node("artifactId").text().startsWith("cmplugin")
                                 || c.parent().node("artifactId").text().startsWith("cmtheme")),
                         a -> {
-                            Dependency current = Dependency.find(a.tag().node("groupId").text(),
+                            Dependency current = PluginRegistry.find(a.tag().node("groupId").text(),
                                     a.toTag().node("artifactId").text(),
                                     a.toTag().nodeExists("version") ? a.node("version").text() : null,
                                     a.toTag().nodeExists("classifier") ? a.node("classifier").text() : null,
@@ -139,7 +135,7 @@ public final class Pom {
                             }
                         }));
         if (!foundTheme.get())
-            deps.add(Dependency.getSystemTheme(null));
+            deps.add(PluginRegistry.getDefaultTheme());
         return deps;
     }
 
@@ -168,7 +164,7 @@ public final class Pom {
             else
                 properties.put(CM_PLUGINS.tag().name, packDependencies(getCrossMobileDependencies()));
         } catch (Exception ex) {
-            throw new ProjectException(ex);
+            throw new ProjectException(ex.toString(), ex);
         }
     }
 
@@ -201,7 +197,7 @@ public final class Pom {
         return exists.get();
     }
 
-    private void updateTheme(Dependency theme, String version) {
+    private void updateTheme(Dependency theme) {
         pomWalker.path("/project/dependencies").tag().nodes("dependency",
                 d -> d.execIf(n -> n.node("artifactId").text().contains("cmtheme"),
                         XMLWalker::remove
@@ -218,7 +214,7 @@ public final class Pom {
                 .ifExists(p -> pomWalker.toTag(tag).execIf(w -> !w.nodeExists(pomparam), w -> w.add(pomparam)).node(pomparam).setText(p));
     }
 
-    public Pom updatePomFromProperties(ParamSet paramset, Properties properties, boolean isPlugin) {
+    public void updatePomFromProperties(ParamSet paramset, Properties properties, boolean isPlugin) {
         pomWalker.
                 path("/project").tag("project").
                 toTag("project").execIf(w -> !w.nodeExists("groupId"), w -> w.add("groupId")).node("groupId").setText(properties.getProperty(GROUP_ID.tag().name)).
@@ -239,7 +235,7 @@ public final class Pom {
         if (isPlugin)
             injectShadowDependencies(unpackDependencies(properties.getProperty(CM_PLUGINS.tag().name)));
         else
-            injectCrossMobileDependencies(unpackDependencies(properties.getProperty(CM_PLUGINS.tag().name)), properties.getProperty(BUNDLE_VERSION.tag().name));
+            injectCrossMobileDependencies(unpackDependencies(properties.getProperty(CM_PLUGINS.tag().name)));
 
         for (Param param : paramset.build()) {
             String newValue = properties.getProperty(param.name, "");
@@ -251,13 +247,11 @@ public final class Pom {
         pomWalker.toTag("properties").execIf(xmlWalker -> !xmlWalker.nodeExists(), XMLWalker::remove);
 
         // Update Maven repository from http to https
-        pomWalker.path("/project").execIf(w -> w.nodeExists("repositories"), w -> {
-            w.node("repositories").filterNodes("repository", r -> {
-                if (r.nodeExists("url") && r.node("url").text().toLowerCase().startsWith("http://mvn.crossmobile.org/"))
-                    r.setText("https://mvn.crossmobile.org/content/repositories/crossmobile/");
-            });
-        });
-        return this;
+        pomWalker.path("/project").execIf(w -> w.nodeExists("repositories"), w ->
+                w.node("repositories").filterNodes("repository", r -> {
+                    if (r.nodeExists("url") && r.node("url").text().toLowerCase().startsWith("http://mvn.crossmobile.org/"))
+                        r.setText("https://mvn.crossmobile.org/content/repositories/crossmobile/");
+                }));
     }
 
     private void injectShadowDependencies(List<Dependency> shadowDependencies) {
@@ -267,7 +261,7 @@ public final class Pom {
                 w -> w.node("groupId").text().startsWith(SHADOW));
     }
 
-    private void injectCrossMobileDependencies(List<Dependency> dependencies, String version) {
+    private void injectCrossMobileDependencies(List<Dependency> dependencies) {
         Predicate<XMLWalker> deletePredicate = w -> w.node("artifactId").text().startsWith("cmplugin-");
         Predicate<Dependency> insertPredicate = dependency -> dependency.cmplugin && !dependency.theme;
 
@@ -276,7 +270,7 @@ public final class Pom {
         for (Flavour flavour : Flavour.values())
             updateDependencies(dependenciesForProfile(flavour.getProfileName()), dependencies.stream().filter(insertPredicate),
                     flavour.getProfileName(), false, deletePredicate);
-        dependencies.stream().filter(t -> t.theme).findFirst().ifPresent(theme -> updateTheme(theme, version));
+        dependencies.stream().filter(t -> t.theme).findFirst().ifPresent(this::updateTheme);
     }
 
     private void updateDependenciesNode(XMLWalker parentNode, String node, String value) {

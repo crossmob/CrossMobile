@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--<!DOCTYPE chassis SYSTEM "skin.dtd">-->
-<chassis width="320" height="568" idiom="phone">
-    <meta priority="-1" info="Fixed medium" descr="Use system decorations while stretching display, with base height of 568 pixels"/>
-    <screen x="0" y="0" width="320" height="568" stretch="true"/>
-</chassis>

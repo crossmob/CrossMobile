@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--<!DOCTYPE chassis SYSTEM "skin.dtd">-->
-<chassis width="768" height="1024" idiom="pad">
-    <meta priority="-1" info="Fixed large" descr="Use system decorations while stretching display, with base height of 1024 pixels"/>
-    <screen x="0" y="0" width="768" height="1024" stretch="true"/>
-</chassis>

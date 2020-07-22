@@ -4,9 +4,9 @@
  * SPDX-License-Identifier: LGPL-3.0-only
  */
 
-@CMLib(name = "cmioslayer", target = SOURCEONLY)
+@CMLib(name = "cmioslayer", target = BUILDONLY)
 package org.crossmobile.backend;
 
 import org.crossmobile.bridge.ann.CMLib;
 
-import static org.crossmobile.bridge.ann.CMLibTarget.SOURCEONLY;
+import static org.crossmobile.bridge.ann.CMLibTarget.*;

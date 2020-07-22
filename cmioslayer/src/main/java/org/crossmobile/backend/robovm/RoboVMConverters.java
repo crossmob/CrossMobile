@@ -6,6 +6,11 @@
 
 package org.crossmobile.backend.robovm;
 
+import org.crossmobile.bridge.ann.CMLib;
+
+import static org.crossmobile.bridge.ann.CMLibTarget.*;
+
+@CMLib(name = "cmioslayer", target = IOS)
 
 public class RoboVMConverters {
 

@@ -19,8 +19,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.crossmobile.backend.desktop.DesktopFileBridge.APPRESOURCE;
-
 public abstract class DesktopGraphicsBridge<CANVAS, NTVP, TRANSF> extends AbstractGraphicsBridge<CANVAS, NTVP, TRANSF> {
 
     private static boolean fontsLoaded = false;
@@ -79,7 +77,7 @@ public abstract class DesktopGraphicsBridge<CANVAS, NTVP, TRANSF> extends Abstra
     public static void loadFonts() {
         if (fontsLoaded)
             return;
-        for (String fontName : ResourceResolver.getFontFiles())
+        for (String fontName : ResourceResolver.getFontNames())
             try {
                 GraphicsEnvironment.getLocalGraphicsEnvironment().
                         registerFont(Font.createFont(Font.TRUETYPE_FONT,

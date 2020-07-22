@@ -35,17 +35,18 @@ public final class FileUtils {
         for (File file : files)
             try {
                 urls.add(file.toURI().toURL());
-            } catch (MalformedURLException ex) {
+            } catch (MalformedURLException ignored) {
             }
         return urls;
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public static boolean isWritable(File path) {
         if (path.isFile())
             return SystemDependent.canWrite(path);
         while (path != null && !path.exists())
             path = path.getParentFile();
-        return path != null && SystemDependent.canWrite(path);
+        return SystemDependent.canWrite(path);
     }
 
     public static String isReadable(File test, String type) {
@@ -95,23 +96,16 @@ public final class FileUtils {
     public static void read(InputStream input, String sourceDescription, Consumer<String> linereader) throws ProjectException {
         if (linereader == null || input == null)
             return;
-        BufferedReader in = null;
-        try {
-            in = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8));
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8));) {
             String line;
             while ((line = in.readLine()) != null)
                 linereader.accept(line);
         } catch (Exception ex) {
             if (ex instanceof ProjectException)
+                //noinspection ConstantConditions
                 throw (ProjectException) ex;
             else
                 throw new ProjectException("Unable to read " + sourceDescription, ex);
-        } finally {
-            if (in != null)
-                try {
-                    in.close();
-                } catch (IOException ex) {
-                }
         }
     }
 
@@ -125,8 +119,8 @@ public final class FileUtils {
     }
 
     /**
-     * @param fileout
-     * @param data
+     * @param fileout the file to write to
+     * @param data    the data to write to this file
      * @return Provided fileout if everything went OK
      */
     @SuppressWarnings("UseSpecificCatch")

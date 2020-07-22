@@ -7,12 +7,13 @@
 package org.crossmobile.backend.desktop.cgeo;
 
 import org.crossmobile.bind.graphics.NativeBitmap;
+import org.crossmobile.bind.system.LazyProperty;
 
 public class CButton extends CDrawable implements CClickable {
 
     private final CEvent event;
 
-    CButton(int x, int y, int width, int height, int orientation, CEvent buttonType, NativeBitmap imagedown, NativeBitmap imageup, boolean autorotate) {
+    CButton(int x, int y, int width, int height, int orientation, CEvent buttonType, LazyProperty<NativeBitmap> imagedown, LazyProperty<NativeBitmap> imageup, boolean autorotate) {
         super(x, y, width, height, orientation, imagedown, imageup, autorotate);
         this.event = buttonType;
     }

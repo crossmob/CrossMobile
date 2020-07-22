@@ -29,8 +29,9 @@ public class PluginMetaData {
     private static final String INITIALIZER_KEY = "java.initializer";
     private static final String PODS_KEY = "objc.pods";
 
-    public final static String PLUGIN_LOC = "META-INF/PLUGIN.INF";
-    public final static String TOKEN = ";";
+    public static final String PLUGIN_LOC = "META-INF/PLUGIN.INF";
+    public static final String CURRENT_PLUGIN_REGISTRY = "org/crossmobile/backend/plugins.xml";
+    public static final String TOKEN = ";";
 
     private final Collection<String> libsObjC;
     private final Collection<String> androidPermissions;
@@ -134,7 +135,7 @@ public class PluginMetaData {
         Properties props = new Properties();
         try (JarFile jar = new JarFile(JAR); InputStreamReader in = new InputStreamReader(jar.getInputStream(jar.getEntry(PLUGIN_LOC)), StandardCharsets.UTF_8)) {
             props.load(in);
-        } catch (Exception ex) {
+        } catch (Exception ignored) {
         }
         return props;
     }

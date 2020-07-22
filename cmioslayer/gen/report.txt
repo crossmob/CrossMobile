@@ -752,6 +752,8 @@ crossmobile/ios/uikit/package-info.class v8
 crossmobile/package-info.class v8
 crossmobile/rt/StrongReference.class v8
 crossmobile/rt/package-info.class v8
+org/crossmobile/backend/package-info.class v8
+org/crossmobile/backend/plugins.xml
 org/crossmobile/bridge/RuntimeKeys.class v8
 org/crossmobile/bridge/ann/AssociationType.class v8
 org/crossmobile/bridge/ann/BuildModule.class v8
@@ -1268,6 +1270,7 @@ org/crossmobile/bind/system/AppConstants.java
 org/crossmobile/bind/system/BitField.java
 org/crossmobile/bind/system/Core.java
 org/crossmobile/bind/system/Debug.java
+org/crossmobile/bind/system/LazyProperty.java
 org/crossmobile/bind/system/Predicate.java
 org/crossmobile/bind/system/Promise.java
 org/crossmobile/bind/system/Recycler.java
@@ -2325,49 +2328,36 @@ org/crossmobile/backend/desktop/javazoom/l3reorder.ser
 org/crossmobile/backend/desktop/javazoom/lin2au.ser
 org/crossmobile/backend/desktop/javazoom/sfd.ser
 org/crossmobile/backend/desktop/package-info.class v8
-org/crossmobile/backend/desktop/skin/catalog
-org/crossmobile/backend/desktop/skin/fixed-l.xml
-org/crossmobile/backend/desktop/skin/fixed-m.xml
-org/crossmobile/backend/desktop/skin/fixed-s.xml
-org/crossmobile/backend/desktop/skin/fullscreen.xml
-org/crossmobile/backend/desktop/skin/pad-w.xml
-org/crossmobile/backend/desktop/skin/pad.xml
-org/crossmobile/backend/desktop/skin/pad/action_down.png
-org/crossmobile/backend/desktop/skin/pad/action_up.png
-org/crossmobile/backend/desktop/skin/pad/back_down.png
-org/crossmobile/backend/desktop/skin/pad/back_up.png
-org/crossmobile/backend/desktop/skin/pad/chassis.png
-org/crossmobile/backend/desktop/skin/pad/chassis_w.png
-org/crossmobile/backend/desktop/skin/pad/home_down.png
-org/crossmobile/backend/desktop/skin/pad/home_up.png
-org/crossmobile/backend/desktop/skin/pad/ledgreen.png
-org/crossmobile/backend/desktop/skin/pad/ledred.png
-org/crossmobile/backend/desktop/skin/pad/menu_down.png
-org/crossmobile/backend/desktop/skin/pad/menu_up.png
-org/crossmobile/backend/desktop/skin/pad/power_down.png
-org/crossmobile/backend/desktop/skin/pad/power_down_w.png
-org/crossmobile/backend/desktop/skin/pad/power_up.png
-org/crossmobile/backend/desktop/skin/pad/power_up_w.png
-org/crossmobile/backend/desktop/skin/phone-s.xml
-org/crossmobile/backend/desktop/skin/phone.xml
-org/crossmobile/backend/desktop/skin/phone/action_down.png
-org/crossmobile/backend/desktop/skin/phone/action_up.png
-org/crossmobile/backend/desktop/skin/phone/back_down.png
-org/crossmobile/backend/desktop/skin/phone/back_up.png
-org/crossmobile/backend/desktop/skin/phone/chassis.png
-org/crossmobile/backend/desktop/skin/phone/home_down.png
-org/crossmobile/backend/desktop/skin/phone/home_up.png
-org/crossmobile/backend/desktop/skin/phone/ledgreen.png
-org/crossmobile/backend/desktop/skin/phone/ledred.png
-org/crossmobile/backend/desktop/skin/phone/menu_down.png
-org/crossmobile/backend/desktop/skin/phone/menu_up.png
-org/crossmobile/backend/desktop/skin/phone/power_down.png
-org/crossmobile/backend/desktop/skin/phone/power_up.png
-org/crossmobile/backend/desktop/skin/system-o.xml
-org/crossmobile/backend/desktop/skin/system.xml
-org/crossmobile/backend/desktop/skin/system1024.xml
-org/crossmobile/backend/desktop/skin/vertical-l.xml
-org/crossmobile/backend/desktop/skin/vertical-s.xml
+org/crossmobile/backend/desktop/skins/base_pad/action_down.png
+org/crossmobile/backend/desktop/skins/base_pad/action_up.png
+org/crossmobile/backend/desktop/skins/base_pad/back_down.png
+org/crossmobile/backend/desktop/skins/base_pad/back_up.png
+org/crossmobile/backend/desktop/skins/base_pad/chassis.png
+org/crossmobile/backend/desktop/skins/base_pad/chassis_w.png
+org/crossmobile/backend/desktop/skins/base_pad/home_down.png
+org/crossmobile/backend/desktop/skins/base_pad/home_up.png
+org/crossmobile/backend/desktop/skins/base_pad/ledgreen.png
+org/crossmobile/backend/desktop/skins/base_pad/ledred.png
+org/crossmobile/backend/desktop/skins/base_pad/menu_down.png
+org/crossmobile/backend/desktop/skins/base_pad/menu_up.png
+org/crossmobile/backend/desktop/skins/base_pad/power_down.png
+org/crossmobile/backend/desktop/skins/base_pad/power_down_w.png
+org/crossmobile/backend/desktop/skins/base_pad/power_up.png
+org/crossmobile/backend/desktop/skins/base_pad/power_up_w.png
+org/crossmobile/backend/desktop/skins/base_phone/action_down.png
+org/crossmobile/backend/desktop/skins/base_phone/action_up.png
+org/crossmobile/backend/desktop/skins/base_phone/back_down.png
+org/crossmobile/backend/desktop/skins/base_phone/back_up.png
+org/crossmobile/backend/desktop/skins/base_phone/chassis.png
+org/crossmobile/backend/desktop/skins/base_phone/home_down.png
+org/crossmobile/backend/desktop/skins/base_phone/home_up.png
+org/crossmobile/backend/desktop/skins/base_phone/ledgreen.png
+org/crossmobile/backend/desktop/skins/base_phone/ledred.png
+org/crossmobile/backend/desktop/skins/base_phone/menu_down.png
+org/crossmobile/backend/desktop/skins/base_phone/menu_up.png
+org/crossmobile/backend/desktop/skins/base_phone/power_down.png
+org/crossmobile/backend/desktop/skins/base_phone/power_up.png
+org/crossmobile/backend/desktop/skins/skins.xml
 org/crossmobile/backend/swing/AboutDialog.class v8
 org/crossmobile/backend/swing/JEmulatorFrame$1.class v8
 org/crossmobile/backend/swing/JEmulatorFrame$2.class v8
@@ -2476,6 +2466,7 @@ org/crossmobile/bind/system/AppConstants.class v8
 org/crossmobile/bind/system/BitField.class v8
 org/crossmobile/bind/system/Core.class v8
 org/crossmobile/bind/system/Debug.class v8
+org/crossmobile/bind/system/LazyProperty.class v8
 org/crossmobile/bind/system/Predicate.class v8
 org/crossmobile/bind/system/Promise.class v8
 org/crossmobile/bind/system/Recycler.class v8
@@ -3216,6 +3207,7 @@ org/crossmobile/bind/system/AppConstants.class v8
 org/crossmobile/bind/system/BitField.class v8
 org/crossmobile/bind/system/Core.class v8
 org/crossmobile/bind/system/Debug.class v8
+org/crossmobile/bind/system/LazyProperty.class v8
 org/crossmobile/bind/system/Predicate.class v8
 org/crossmobile/bind/system/Promise.class v8
 org/crossmobile/bind/system/Recycler.class v8
