@@ -9,7 +9,7 @@ package org.crossmobile.backend.desktop.cgeo;
 import crossmobile.ios.uikit.UIUserInterfaceIdiom;
 import org.crossmobile.backend.desktop.DesktopLocations;
 import org.crossmobile.bind.graphics.NativeBitmap;
-import org.crossmobile.bind.system.LazyProperty;
+import org.crossmobile.bridge.system.LazyProperty;
 import org.crossmobile.bridge.Native;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;

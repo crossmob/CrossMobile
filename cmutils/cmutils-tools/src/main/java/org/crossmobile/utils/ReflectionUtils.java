@@ -33,7 +33,7 @@ public class ReflectionUtils {
                 Method m = cls.getDeclaredMethod(methodName, params);
                 m.setAccessible(true);
                 return m;
-            } catch (Exception ex) {
+            } catch (Exception ignored) {
             }
             cls = cls.getSuperclass();
         }
@@ -44,29 +44,29 @@ public class ReflectionUtils {
     private static final Collection<String> reservedWords = new HashSet<>(Arrays.asList("abstract", "continue", "for", "new", "switch", "assert", "default", "goto", "package", "synchronized", "boolean", "do", "if", "private", "this", "break", "double", "implements", "protected", "throw", "byte", "else", "import", "public", "throws", "case", "enum", "instanceof", "return", "transient", "catch", "extends", "int", "short", "try", "char", "final", "interface", "static", "void", "class", "finally", "long", "strictfp", "volatile", "const", "float", "native", "super", "while", "null"));
 
     public static Class<?> appearsInParent(Executable exec) {
-        Class givenClass = exec.getDeclaringClass();
+        Class<?> givenClass = exec.getDeclaringClass();
         String execName = exec.getName();
         Class<?>[] params = exec.getParameterTypes();
         for (Class<?> interf : givenClass.getInterfaces())
             try {
                 if (interf.getMethod(execName, params) != null)
                     return checkParentHierarchy(interf, execName, params);
-            } catch (NoSuchMethodException | SecurityException ex) {
+            } catch (NoSuchMethodException | SecurityException ignored) {
             }
         return checkParentHierarchy(givenClass, execName, params);
     }
 
-    private static Class<?> checkParentHierarchy(Class base, String execName, Class<?>... paramtype) {
-        Class current = base;
+    private static Class<?> checkParentHierarchy(Class<?> base, String execName, Class<?>... paramtype) {
+        Class<?> current = base;
         try {
             while ((current = current.getSuperclass()) != null && current.getMethod(execName, paramtype) != null)
                 base = current;
-        } catch (NoSuchMethodException | SecurityException ex) {
+        } catch (NoSuchMethodException | SecurityException ignored) {
         }
         return base;
     }
 
-    public static boolean appearsFirstIn(Executable exec, Class bottomClass) {
+    public static boolean appearsFirstIn(Executable exec, Class<?> bottomClass) {
         Class<?> thisClass = exec.getDeclaringClass();
         if (!bottomClass.isInterface() && !bottomClass.equals(thisClass))
             return false;
@@ -82,7 +82,7 @@ public class ReflectionUtils {
 
     public static <A extends Annotation> A getAnnotation(Executable exec, Class<A> annClass) {
         Class<?> base = exec.getDeclaringClass();
-        for (Class interf : base.getInterfaces()) {
+        for (Class<?> interf : base.getInterfaces()) {
             A ann = getAnnotationRecursively(interf, annClass, exec.getName(), exec.getParameterTypes());
             if (ann != null)
                 return ann;
@@ -90,7 +90,7 @@ public class ReflectionUtils {
         return getAnnotationRecursively(exec.getDeclaringClass(), annClass, exec.getName(), exec.getParameterTypes());
     }
 
-    public static <A extends Annotation> A getAnnotationRecursively(Class<?> baseClass, Class<A> annClass, String methodName, Class[] methodParams) {
+    public static <A extends Annotation> A getAnnotationRecursively(Class<?> baseClass, Class<A> annClass, String methodName, Class<?>[] methodParams) {
         A ann = null;
         while (ann == null && baseClass != null)
             try {
@@ -111,9 +111,10 @@ public class ReflectionUtils {
                 : getClass(typeArgs[0]);
     }
 
+    @SuppressWarnings("DuplicateCondition")
     public static Class<?> getClass(Type type) {
-        if (type instanceof Class)
-            return (Class) type;
+        if (type instanceof Class<?>)
+            return (Class<?>) type;
         else if (type instanceof ParameterizedType)
             return getClass(((ParameterizedType) type).getRawType());
         else if (type instanceof GenericArrayType) {
@@ -154,7 +155,7 @@ public class ReflectionUtils {
         return null;
     }
 
-    public static Class getArrayClassOfClass(Class classType) {
+    public static Class<?> getArrayClassOfClass(Class<?> classType) {
         if (classType == null)
             return null;
         if (classType.isArray())
@@ -301,7 +302,7 @@ public class ReflectionUtils {
     public static Package getParentPackage(Package pkg) {
         String cname = pkg.getName();
         Package found;
-        while (cname != null) {
+        while (true) {
             int dot = cname.lastIndexOf('.');
             if (dot < 0)
                 return null;
@@ -310,7 +311,6 @@ public class ReflectionUtils {
             if (found != null)
                 return found;
         }
-        return null;
     }
 
     public static Package findPackage(Package base, Class<? extends Annotation> annClass) {

@@ -1270,7 +1270,6 @@ org/crossmobile/bind/system/AppConstants.java
 org/crossmobile/bind/system/BitField.java
 org/crossmobile/bind/system/Core.java
 org/crossmobile/bind/system/Debug.java
-org/crossmobile/bind/system/LazyProperty.java
 org/crossmobile/bind/system/Predicate.java
 org/crossmobile/bind/system/Promise.java
 org/crossmobile/bind/system/Recycler.java
@@ -2466,7 +2465,6 @@ org/crossmobile/bind/system/AppConstants.class v8
 org/crossmobile/bind/system/BitField.class v8
 org/crossmobile/bind/system/Core.class v8
 org/crossmobile/bind/system/Debug.class v8
-org/crossmobile/bind/system/LazyProperty.class v8
 org/crossmobile/bind/system/Predicate.class v8
 org/crossmobile/bind/system/Promise.class v8
 org/crossmobile/bind/system/Recycler.class v8
@@ -2554,6 +2552,7 @@ org/crossmobile/bridge/system/JsonHelper$JMap$JSet.class v8
 org/crossmobile/bridge/system/JsonHelper$JMap.class v8
 org/crossmobile/bridge/system/JsonHelper$JsonSerializable.class v8
 org/crossmobile/bridge/system/JsonHelper.class v8
+org/crossmobile/bridge/system/LazyProperty.class v8
 org/crossmobile/bridge/system/Pair.class v8
 org/crossmobile/bridge/system/RuntimeCommons.class v8
 org/crossmobile/bridge/system/package-info.class v8
@@ -3207,7 +3206,6 @@ org/crossmobile/bind/system/AppConstants.class v8
 org/crossmobile/bind/system/BitField.class v8
 org/crossmobile/bind/system/Core.class v8
 org/crossmobile/bind/system/Debug.class v8
-org/crossmobile/bind/system/LazyProperty.class v8
 org/crossmobile/bind/system/Predicate.class v8
 org/crossmobile/bind/system/Promise.class v8
 org/crossmobile/bind/system/Recycler.class v8
@@ -3295,6 +3293,7 @@ org/crossmobile/bridge/system/JsonHelper$JMap$JSet.class v8
 org/crossmobile/bridge/system/JsonHelper$JMap.class v8
 org/crossmobile/bridge/system/JsonHelper$JsonSerializable.class v8
 org/crossmobile/bridge/system/JsonHelper.class v8
+org/crossmobile/bridge/system/LazyProperty.class v8
 org/crossmobile/bridge/system/Pair.class v8
 org/crossmobile/bridge/system/RuntimeCommons.class v8
 org/crossmobile/bridge/system/package-info.class v8

@@ -147,6 +147,7 @@ public class Chassis extends CSizable implements Comparable<Chassis> {
                 else
                     break;
             if (canDraw && area instanceof CDrawable)
+                //noinspection unchecked,rawtypes,ConstantConditions
                 ((DesktopGraphicsBridge) Native.graphics()).draw((CDrawable) area, context, orientation);
         }
     }

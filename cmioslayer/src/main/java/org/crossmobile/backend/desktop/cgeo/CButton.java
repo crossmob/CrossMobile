@@ -7,7 +7,7 @@
 package org.crossmobile.backend.desktop.cgeo;
 
 import org.crossmobile.bind.graphics.NativeBitmap;
-import org.crossmobile.bind.system.LazyProperty;
+import org.crossmobile.bridge.system.LazyProperty;
 
 public class CButton extends CDrawable implements CClickable {
 
