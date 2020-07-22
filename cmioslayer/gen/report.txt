@@ -752,7 +752,6 @@ crossmobile/ios/uikit/package-info.class v8
 crossmobile/package-info.class v8
 crossmobile/rt/StrongReference.class v8
 crossmobile/rt/package-info.class v8
-org/crossmobile/backend/package-info.class v8
 org/crossmobile/backend/plugins.xml
 org/crossmobile/bridge/RuntimeKeys.class v8
 org/crossmobile/bridge/ann/AssociationType.class v8
