@@ -384,9 +384,33 @@ static BOOL instanceof(id obj, const char *className) {
 
 - (XMLVMArray*) split___java_lang_String :(java_lang_String*)s
 {
-	NSArray *chunks = [self componentsSeparatedByString:s];
+    NSMutableArray *chunks;
+    NSError *error = NULL;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:s options:NSRegularExpressionCaseInsensitive error:&error];
+    if (error!=NULL) {
+        chunks = [NSMutableArray arrayWithObject:self];
+    } else {
+        chunks = [[NSMutableArray alloc] init];
+        __block NSRange old = NSMakeRange(-1,-1);
+        [regex enumerateMatchesInString:self options:0 range:NSMakeRange(0, [self length]) usingBlock:^(NSTextCheckingResult *match, NSMatchingFlags flags, BOOL *stop){
+            NSRange found = [match range];
+            unsigned long delta = old.length == -1 ? 0 : old.location + old.length;
+            unsigned long size = found.location - delta;
+            if (size > 0)
+                [chunks addObject:[self substringWithRange:NSMakeRange(delta, found.location - delta)]];
+            old = found;
+        }];
+        if (old.length==-1) {
+            // not found, use whole string
+            [chunks addObject:self];
+        } else if (old.length + old.location < [self length]) {
+            // add trailing part
+            unsigned long delta = old.length + old.location;
+            unsigned long size = [self length] - delta;
+            [chunks addObject:[self substringWithRange:NSMakeRange(delta, size)]];
+        }
+    }
 	int length = [chunks count];
-
 	XMLVMArray *result = [XMLVMArray createSingleDimensionWithType: 0 andSize: length]; // object reference array
 	for (int i=0; i<length; i++) {
 		result->array.o[i] = [[chunks objectAtIndex: i] retain];
