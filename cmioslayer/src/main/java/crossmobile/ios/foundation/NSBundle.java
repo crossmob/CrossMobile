@@ -100,6 +100,34 @@ public class NSBundle extends NSObject {
     }
 
     /**
+     * Return a NSURL given a resource name and extension, under specific subdirectory
+     *
+     * @param name    the name of the resource
+     * @param ext     the extension of the resource
+     * @param subpath the subdirectory where this resource exists
+     * @return the NSURL of this resource
+     */
+    @CMSelector("- (NSURL *)URLForResource:(NSString *)name \n" +
+            "            withExtension:(NSString *)ext \n" +
+            "             subdirectory:(NSString *)subpath;\n")
+    public NSURL URLForResource(String name, String ext, String subpath) {
+        return NSURL.fileURLWithPath(pathForResource(name, ext, subpath));
+    }
+
+    /**
+     * Return a NSURL given a resource name and extension
+     *
+     * @param name the name of the resource
+     * @param ext  the extension of the resource
+     * @return the NSURL of this resource
+     */
+    @CMSelector("- (NSURL *)URLForResource:(NSString *)name \n" +
+            "            withExtension:(NSString *)ext;\n")
+    public NSURL URLForResource(String name, String ext) {
+        return URLForResource(name, ext, null);
+    }
+
+    /**
      * The full path of this bundle.
      *
      * @return he full path of this bundle.

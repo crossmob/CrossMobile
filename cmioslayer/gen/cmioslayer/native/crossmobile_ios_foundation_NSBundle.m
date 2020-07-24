@@ -3,6 +3,7 @@
 // crossmobile_ios_foundation_NSBundle implementation
 
 #import "crossmobile_ios_foundation_NSBundle.h"
+#import "crossmobile_ios_foundation_NSURL.h"
 #import "java_lang_String.h"
 
 @implementation crossmobile_ios_foundation_NSBundle$Ext
@@ -29,6 +30,20 @@
 - (NSString*) bundlePath__
 {
     NSString* re$ult = [self bundlePath];
+    return [(re$ult ? re$ult : JAVA_NULL) retain];
+}
+
+// - (NSURL *)URLForResource:(NSString *)name withExtension:(NSString *)ext;
+- (NSURL*) URLForResource___java_lang_String_java_lang_String:(NSString*) name :(NSString*) ext 
+{
+    NSURL* re$ult = [self URLForResource:(name == JAVA_NULL ? nil : name) withExtension:(ext == JAVA_NULL ? nil : ext)];
+    return [(re$ult ? re$ult : JAVA_NULL) retain];
+}
+
+// - (NSURL *)URLForResource:(NSString *)name withExtension:(NSString *)ext subdirectory:(NSString *)subpath;
+- (NSURL*) URLForResource___java_lang_String_java_lang_String_java_lang_String:(NSString*) name :(NSString*) ext :(NSString*) subpath 
+{
+    NSURL* re$ult = [self URLForResource:(name == JAVA_NULL ? nil : name) withExtension:(ext == JAVA_NULL ? nil : ext) subdirectory:(subpath == JAVA_NULL ? nil : subpath)];
     return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 

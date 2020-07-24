@@ -84,7 +84,7 @@ public class NSString extends NSObject implements NSSecureCoding {
             if (string == null)
                 return null;
             return new NSData(string.getBytes(convertIntToString(NSStringEncoding)));
-        } catch (UnsupportedEncodingException ex) {
+        } catch (UnsupportedEncodingException ignored) {
         }
         return null;
     }
@@ -195,15 +195,15 @@ public class NSString extends NSObject implements NSSecureCoding {
     /**
      * Check whether a string can be converted to the specified encoding
      *
-     * @param string           the String to check if it can be converted
+     * @param self             the String to check if it can be converted
      * @param NSStringEncoding the desired encoding
-     * @return true if the string can be converted
+     * @return true if the self can be converted
      * @see NSStringEncoding
      */
     @CMSelector(value = "- (BOOL)canBeConvertedToEncoding:(NSStringEncoding)encoding;", staticMapping = true)
-    public static boolean canBeConvertedToEncoding(String string, int NSStringEncoding) {
+    public static boolean canBeConvertedToEncoding(String self, int NSStringEncoding) {
         try {
-            return Charset.forName(convertIntToString(NSStringEncoding)).newEncoder().canEncode(string);
+            return Charset.forName(convertIntToString(NSStringEncoding)).newEncoder().canEncode(self);
         } catch (UnsupportedCharsetException e) {
             return false;
         }
@@ -214,14 +214,14 @@ public class NSString extends NSObject implements NSSecureCoding {
      * specified URL replacing all percent escapes with the matching characters
      * using the specified encoding.
      *
-     * @param URL              The URL that is used.
+     * @param self             The URL that is used.
      * @param NSStringEncoding The encoding used for the returned string.
      * @return The final String.
      */
     @CMSelector(value = "- (NSString *)stringByReplacingPercentEscapesUsingEncoding:(NSStringEncoding)encoding", staticMapping = true)
-    public static String stringByReplacingPercentEscapesUsingEncoding(String URL, int NSStringEncoding) {
+    public static String stringByReplacingPercentEscapesUsingEncoding(String self, int NSStringEncoding) {
         try {
-            return URLDecoder.decode(URL, convertIntToString(NSStringEncoding));
+            return URLDecoder.decode(self, convertIntToString(NSStringEncoding));
         } catch (UnsupportedEncodingException ex) {
             return null;
         }
@@ -231,14 +231,14 @@ public class NSString extends NSObject implements NSSecureCoding {
      * Creates and returns a new NSString object by adding percent escapes in
      * order to convert it to a legal URL.
      *
-     * @param URL              The URL that is used.
+     * @param self             The URL that is used.
      * @param NSStringEncoding The encoding used for the returned string.
      * @return The final String.
      */
     @CMSelector(value = "- (NSString *)stringByAddingPercentEscapesUsingEncoding:(NSStringEncoding)encoding", staticMapping = true)
-    public static String stringByAddingPercentEscapesUsingEncoding(String URL, int NSStringEncoding) {
+    public static String stringByAddingPercentEscapesUsingEncoding(String self, int NSStringEncoding) {
         try {
-            return URLEncoder.encode(URL, convertIntToString(NSStringEncoding)).replace("+", "%20");
+            return URLEncoder.encode(self, convertIntToString(NSStringEncoding)).replace("+", "%20");
         } catch (UnsupportedEncodingException ex) {
             return null;
         }
@@ -247,36 +247,36 @@ public class NSString extends NSObject implements NSSecureCoding {
     /**
      * Compares the given Strings using the specified options.
      *
-     * @param from                   The first String to be compared.
+     * @param self                   The first String to be compared.
      * @param with                   The second String to be compared.
      * @param NSStringCompareOptions The option for searching the Strings.
      * @return The result of comparing the two Strings.
      * @see crossmobile.ios.foundation.NSOrdered
      */
     @CMSelector(value = "- (NSComparisonResult)compare:(NSString *)aString options:(NSStringCompareOptions)mask", staticMapping = true)
-    public static int compare(String from, String with, int NSStringCompareOptions) {
-        if (with == null && from == null)
+    public static int compare(String self, String with, int NSStringCompareOptions) {
+        if (with == null && self == null)
             return NSOrdered.Same;
         if (with == null)
             return NSOrdered.Descending;
-        if (from == null)
+        if (self == null)
             return NSOrdered.Ascending;
         int order;
 
         if ((NSStringCompareOptions & crossmobile.ios.foundation.NSStringCompareOptions.NSNumericSearch) != 0) {
-            double fromD = stringToRelaxedDouble(from);
+            double fromD = stringToRelaxedDouble(self);
             double withD = stringToRelaxedDouble(with);
             order = fromD == withD ? 0 : (fromD < withD ? -1 : 1);
         } else {
             if ((NSStringCompareOptions & crossmobile.ios.foundation.NSStringCompareOptions.NSCaseInsensitiveSearch) != 0) {
-                from = from.toLowerCase();
+                self = self.toLowerCase();
                 with = with.toLowerCase();
             }
             if ((NSStringCompareOptions & crossmobile.ios.foundation.NSStringCompareOptions.NSDiacriticInsensitiveSearch) != 0) {
-                from = Normalizer.normalize(from, Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+                self = Normalizer.normalize(self, Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
                 with = Normalizer.normalize(with, Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
             }
-            order = from.compareTo(with);
+            order = self.compareTo(with);
         }
         return order < 0 ? NSOrdered.Ascending : (order > 0 ? NSOrdered.Descending : NSOrdered.Same);
     }
@@ -324,23 +324,23 @@ public class NSString extends NSObject implements NSSecureCoding {
      * Returns a list that contains the substrings of the specified String
      * divided by the given separator.
      *
-     * @param stringtodivide The initial String.
-     * @param separator      The separator String.
+     * @param self      The initial String.
+     * @param separator The separator String.
      * @return The list that contains the substrings of the specified String
      * divided by the given separator.
      */
     @CMSelector(value = "- (NSArray<NSString *> *)componentsSeparatedByString:(NSString *)separator", staticMapping = true)
-    public static List<String> componentsSeparatedByString(String stringtodivide, String separator) {
+    public static List<String> componentsSeparatedByString(String self, String separator) {
         List<String> parts = new ArrayList<>();
         int loc;
         while (true) {
-            loc = stringtodivide.indexOf(separator);
+            loc = self.indexOf(separator);
             if (loc < 0) {
-                parts.add(stringtodivide);
+                parts.add(self);
                 break;
             } else {
-                parts.add(stringtodivide.substring(0, loc));
-                stringtodivide = stringtodivide.substring(loc + separator.length());
+                parts.add(self.substring(0, loc));
+                self = self.substring(loc + separator.length());
             }
         }
         return parts;
@@ -423,38 +423,38 @@ public class NSString extends NSObject implements NSSecureCoding {
      * Draws the specified string at the specified point using the specified
      * font.
      *
-     * @param texttodisplay The string that is drawn.
-     * @param point         The benchmark of the text drawing.
-     * @param font          The font that is used.
+     * @param self  The string that is drawn.
+     * @param point The benchmark of the text drawing.
+     * @param font  The font that is used.
      * @return The size of the string.
      */
     @Deprecated
     @CMSelector(value = "- (CGSize)drawAtPoint:(CGPoint)point withFont:(UIFont *)font;", staticMapping = true)
-    public static CGSize drawAtPoint(String texttodisplay, CGPoint point, UIFont font) {
+    public static CGSize drawAtPoint(String self, CGPoint point, UIFont font) {
         context(UIGraphics.getCurrentContext()).setFont(font(cgfont(font)));
-        UIGraphics.getCurrentContext().showTextAtPoint(point.getX(), point.getY(), texttodisplay);
-        return sizeWithFont(texttodisplay, font);
+        UIGraphics.getCurrentContext().showTextAtPoint(point.getX(), point.getY(), self);
+        return sizeWithFont(self, font);
     }
 
     /**
      * Returns the size that the specified string would have if it was depicted
      * with the specified font.
      *
-     * @param text The String for which the size is requested.
+     * @param self The String for which the size is requested.
      * @param font The font that the String would have.
      * @return The size of the String.
      */
     @Deprecated
     @CMSelector(value = "- (CGSize)sizeWithFont:(UIFont *)font;", staticMapping = true)
-    public static CGSize sizeWithFont(String text, UIFont font) {
-        return context(UIGraphics.getCurrentContext()).stringSizeWithFont(text, font(cgfont(font)));
+    public static CGSize sizeWithFont(String self, UIFont font) {
+        return context(UIGraphics.getCurrentContext()).stringSizeWithFont(self, font(cgfont(font)));
     }
 
     /**
      * Returns the size that the specified string would have if it was depicted
      * with the specified font and line attributes on a single line.
      *
-     * @param text            The String for which the size is requested.
+     * @param self            The String for which the size is requested.
      * @param font            The font that the String would have.
      * @param size            The initial size of the String.
      * @param NSLineBreakMode The line break options in order to compute the new
@@ -465,15 +465,15 @@ public class NSString extends NSObject implements NSSecureCoding {
     @CMSelector(value = "- (CGSize)sizeWithFont:(UIFont *)font\n"
             + "     constrainedToSize:(CGSize)size\n"
             + "         lineBreakMode:(NSLineBreakMode)lineBreakMode ;", staticMapping = true)
-    public static CGSize sizeWithFont(String text, UIFont font, CGSize size, int NSLineBreakMode) {
-        return TextHelpers.splitStringWithFontAndSize(text, cgfont(font), size.getWidth(), 0, NSLineBreakMode).size;
+    public static CGSize sizeWithFont(String self, UIFont font, CGSize size, int NSLineBreakMode) {
+        return TextHelpers.splitStringWithFontAndSize(self, cgfont(font), size.getWidth(), 0, NSLineBreakMode).size;
     }
 
     /**
      * Writes the specified content to the specified file using the given
      * encoding.
      *
-     * @param content          The content that will be written to the file.
+     * @param self             The content that will be written to the file.
      * @param path             The path of the file to which the content will be written.
      * @param atomically       FALSE if the content was written directly, TRUE if
      *                         there was an auxiliary file.
@@ -486,12 +486,12 @@ public class NSString extends NSObject implements NSSecureCoding {
             + "         atomically:(BOOL)useAuxiliaryFile\n"
             + "           encoding:(NSStringEncoding)enc\n"
             + "              error:(NSError * _Nullable *)error", staticMapping = true)
-    public static boolean writeToFile(String content, String path, boolean atomically, int NSStringEncoding, StrongReference<NSError> error) {
+    public static boolean writeToFile(String self, String path, boolean atomically, int NSStringEncoding, StrongReference<NSError> error) {
         Writer out = null;
         String outpath = atomically ? path + Math.random() : path;
         try {
             out = new OutputStreamWriter(new FileOutputStream(outpath), convertIntToString(NSStringEncoding));
-            out.write(content);
+            out.write(self);
         } catch (IOException ex) {
             return false;
         } finally {

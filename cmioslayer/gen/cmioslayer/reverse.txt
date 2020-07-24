@@ -1,5 +1,21 @@
 {
   "crossmobile.ios.foundation.NSBundle": {
+    "URLForResource(java.lang.String,java.lang.String)": {
+      "reverse": "- (NSURL *) URLForResource:(NSString *) name withExtension:(NSString *) ext\n{\n    NSURL * re$ult = [self URLForResource___java_lang_String_java_lang_String:(name ? name : JAVA_NULL) :(ext ? ext : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSURL*) URLForResource___java_lang_String_java_lang_String:(NSString*) name :(NSString*) ext \n{\n    NSURL* re$ult = [super URLForResource:(name == JAVA_NULL ? nil : name) withExtension:(ext == JAVA_NULL ? nil : ext)];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSURL",
+        "java_lang_String"
+      ]
+    },
+    "URLForResource(java.lang.String,java.lang.String,java.lang.String)": {
+      "reverse": "- (NSURL *) URLForResource:(NSString *) name withExtension:(NSString *) ext subdirectory:(NSString *) subpath\n{\n    NSURL * re$ult = [self URLForResource___java_lang_String_java_lang_String_java_lang_String:(name ? name : JAVA_NULL) :(ext ? ext : JAVA_NULL) :(subpath ? subpath : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSURL*) URLForResource___java_lang_String_java_lang_String_java_lang_String:(NSString*) name :(NSString*) ext :(NSString*) subpath \n{\n    NSURL* re$ult = [super URLForResource:(name == JAVA_NULL ? nil : name) withExtension:(ext == JAVA_NULL ? nil : ext) subdirectory:(subpath == JAVA_NULL ? nil : subpath)];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSURL",
+        "java_lang_String"
+      ]
+    },
     "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "bundlePath()": {
       "reverse": "- (NSString *) bundlePath\n{\n    NSString * re$ult = [self bundlePath__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
