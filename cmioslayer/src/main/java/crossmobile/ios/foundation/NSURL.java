@@ -57,9 +57,9 @@ public class NSURL extends NSObject implements NSSecureCoding {
      */
     @CMSelector("+ (NSURL *)fileURLWithPath:(NSString *)path;")
     public static NSURL fileURLWithPath(String path) {
-        if (Native.isAndroid())
-            return new NSURL(path);
-        return new NSURL("file://" + path);
+        if (!(path.startsWith("jar:") || path.startsWith("file:")))
+            path = "file://" + path;
+        return new NSURL(path);
     }
 
     /**
