@@ -17,6 +17,7 @@ import java.nio.file.attribute.PosixFilePermissions;
 import java.util.*;
 
 import static java.io.File.pathSeparator;
+import static java.io.File.separator;
 import static org.crossmobile.utils.SystemDependent.Execs.BASH;
 import static org.crossmobile.utils.SystemDependent.Execs.JAVA;
 
@@ -26,6 +27,7 @@ public class SystemDependent {
     private final static boolean IS_WINDOWS;
     private final static boolean IS_MACOSX;
     private final static String HOME;
+    private final static String PLUGINS;
 
     private static final String APP_HOME;
 
@@ -35,6 +37,7 @@ public class SystemDependent {
         IS_WINDOWS = OS.contains("windows");
         IS_MACOSX = OS.contains("mac");
         HOME = IS_WINDOWS ? System.getProperty("user.home").replace('\\', '/') : System.getProperty("user.home");
+        PLUGINS = HOME + separator + ".local" + separator + "share" + separator + "crossmobile";
         if (IS_MACOSX)
             APP_HOME = HOME + "/Library/Application Support/CrossMobile/";
         else if (IS_WINDOWS)
@@ -128,8 +131,12 @@ public class SystemDependent {
         return APP_HOME;
     }
 
-    public static String getPluginsDir() {
-        return HOME + "/.local/share/crossmobile/plugins";
+    public static String getManagerPluginsDir() {
+        return PLUGINS + separator + "manager-plugins";
+    }
+
+    public static String getMetaPluginsDir() {
+        return PLUGINS + separator + "plugins";
     }
 
     public static String getJavaExec() {
