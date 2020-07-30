@@ -44,7 +44,7 @@ class DesktopLocation extends AbstractLocationBridge {
         this.delegate = delegate;
         if (locationThread != null)
             return;
-        locationThread = new Thread(() -> updatingProcess(), "LocationFinder");
+        locationThread = new Thread(this::updatingProcess, "LocationFinder");
         locationThread.start();
     }
 

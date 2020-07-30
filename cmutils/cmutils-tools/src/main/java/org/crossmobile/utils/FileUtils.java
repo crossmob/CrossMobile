@@ -664,6 +664,8 @@ public final class FileUtils {
     }
 
     public static boolean unzip(File zipFilePath, File destDir) {
+        if (zipFilePath == null || destDir == null)
+            return false;
         destDir.mkdir();
         try (ZipInputStream zipIn = new ZipInputStream(new FileInputStream(zipFilePath))) {
             ZipEntry entry = zipIn.getNextEntry();
@@ -729,11 +731,13 @@ public final class FileUtils {
         return "<unknown>";
     }
 
-    public static File getTempDir() {
+    public static File createTempDir() {
         try {
             File tempFile = File.createTempFile("cmtemp-", "");
-            tempFile.delete();
-            tempFile.mkdirs();
+            if (!tempFile.delete())
+                return null;
+            if (!tempFile.mkdirs())
+                return null;
             return tempFile;
         } catch (IOException e) {
             return null;
