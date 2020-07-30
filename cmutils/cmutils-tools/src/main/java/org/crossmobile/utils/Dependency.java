@@ -88,6 +88,6 @@ public class Dependency implements Comparable<Dependency> {
     @Override
     public int compareTo(Dependency other) {
         int artifactComp = this.artifactId.compareTo(other.artifactId);
-        return artifactComp != 0 ? artifactComp : this.groupId.compareTo(other.artifactId);
+        return artifactComp != 0 ? artifactComp : this.groupId.compareTo(other.groupId);
     }
 }

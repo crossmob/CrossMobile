@@ -19,6 +19,7 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 
 import static org.crossmobile.utils.CollectionUtils.allValues;
+import static org.crossmobile.utils.CollectionUtils.filter;
 import static org.crossmobile.utils.Pom.CROSSMOBILE_THEME_ID;
 
 public class PluginRegistry {
@@ -26,6 +27,7 @@ public class PluginRegistry {
     private static final PluginRegistry current = new PluginRegistry();
 
     private final Map<String, Collection<Dependency>> PLUGINS = new TreeMap<>();
+    private final Map<Dependency, File> INV_PLUGINS = new TreeMap<>();
     private final Collection<Dependency> THEMES = new TreeSet<>();
     private final Collection<DesktopSkin> SKINS = new TreeSet<>(Comparator.comparingInt(o -> o.priority));
     private final Dependency DEFAULT_THEME = new Dependency(Version.GROUPID, CROSSMOBILE_THEME_ID, Version.VERSION, null, null, null, null, null, null, null);
@@ -33,7 +35,7 @@ public class PluginRegistry {
     public static void importFilePlugin(File xmlFile) {
         if (xmlFile.getName().endsWith(".xml"))
             try (FileInputStream in = new FileInputStream(xmlFile)) {
-                importPlugin(in);
+                importPlugin(in, xmlFile);
             } catch (IOException e) {
                 Log.error(e);
             }
@@ -56,11 +58,15 @@ public class PluginRegistry {
     }
 
     public static void importPlugin(InputStream inputStream) {
+        importPlugin(inputStream, null);
+    }
+
+    private static void importPlugin(InputStream inputStream, File origin) {
         Opt.of(XMLWalker.load(inputStream)).ifExists(walker -> {
             if (walker.pathExists("/skins"))
                 current.addSkinResource(walker);
             else if (walker.pathExists("/plugins"))
-                current.addPluginResource(walker);
+                current.addPluginResource(walker, origin);
         });
     }
 
@@ -77,7 +83,7 @@ public class PluginRegistry {
         });
     }
 
-    private void addPluginResource(XMLWalker walker) {
+    private void addPluginResource(XMLWalker walker, File origin) {
         walker.node("plugins");
         String type = walker.attribute("type");
         walker.nodes("plugin", p -> {
@@ -105,24 +111,54 @@ public class PluginRegistry {
                     params.isEmpty() ? null : Collections.unmodifiableCollection(params));
             if (d.theme)
                 THEMES.add(d);
-            else
-                PLUGINS.computeIfAbsent(type, k -> new ArrayList<>()).add(d);
+            else {
+                PLUGINS.computeIfAbsent(type, k -> new TreeSet<>()).add(d);
+                if (origin != null)
+                    INV_PLUGINS.put(d, origin.getAbsoluteFile());
+            }
         });
     }
 
-    public static Collection<DesktopSkin> getSystemSkins() {
+    public static Collection<DesktopSkin> getSkins() {
         if (current.SKINS.isEmpty())
             throw new NullPointerException("Skins not initialized");
         return current.SKINS;
     }
 
-    public static Iterable<Dependency> getSystemPlugins() {
+    public static Iterable<Dependency> getPlugins() {
         if (current.PLUGINS.isEmpty())
             throw new NullPointerException("System plugins not initialized");
         return allValues(current.PLUGINS);
     }
 
-    public static Iterable<Dependency> getSystemThemes() {
+    public static Iterable<Dependency> getExternalPlugins() {
+        if (current.PLUGINS.isEmpty())
+            throw new NullPointerException("System plugins not initialized");
+        Map<String, Collection<Dependency>> externals = new TreeMap<>(current.PLUGINS);
+        externals.remove("core");
+        return allValues(externals);
+    }
+
+    public static void removeExternalPlugin(Dependency dep) {
+        File file = current.INV_PLUGINS.get(dep);
+        if (file != null) {
+            Collection<Dependency> toRemove = new HashSet<>();
+            current.INV_PLUGINS.forEach((key, value) -> {
+                if (file.equals(value))
+                    toRemove.add(key);
+            });
+            toRemove.forEach(other -> {
+                current.INV_PLUGINS.remove(other);
+                current.PLUGINS.forEach((key, value) -> {
+                    if (!"core".equals(key))
+                        value.remove(other);
+                });
+            });
+            FileUtils.delete(file);
+        }
+    }
+
+    public static Iterable<Dependency> getThemes() {
         if (current.THEMES.isEmpty())
             throw new NullPointerException("System themes not initialized");
         return current.THEMES;
@@ -139,10 +175,10 @@ public class PluginRegistry {
     public static Dependency findSystemDependency(String groupId, String artifactId) {
         if (groupId == null)
             groupId = Version.GROUPID;
-        for (Dependency plugin : getSystemPlugins())
+        for (Dependency plugin : getPlugins())
             if (plugin.groupId.equals(groupId) && plugin.artifactId.equals(artifactId))
                 return plugin;
-        for (Dependency theme : getSystemThemes())
+        for (Dependency theme : getThemes())
             if (theme.groupId.equals(groupId) && theme.artifactId.equals(artifactId))
                 return theme;
         return null;
