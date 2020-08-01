@@ -29,7 +29,7 @@
         <version.maven-artifact>2.2.1</version.maven-artifact>
 
         <version.dd-plist>1.16</version.dd-plist>
-        <version.javassist>3.25.0-GA</version.javassist>
+        <version.javassist>3.27.0-GA</version.javassist>
         <version.minimal-json>0.9.5</version.minimal-json>
         <version.proguard>6.0.3</version.proguard>
         <version.junidecode>0.4.1</version.junidecode>
