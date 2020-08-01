@@ -2,6 +2,12 @@
 
 Click on the version header to go to the detailed ChangeLog.
 
+## [v3.1.0]
+
+- Create transferable and installable plugin packages
+- Smoother scrolling when dragging
+- Various bug fixes and updates
+
 ## [v3.0.0]
 
 - Support Linux Arm (32 & 64 bit) alongside Windows (32 and 64 bit), Linux (x86-64) and macOS
@@ -28,15 +34,15 @@ Click on the version header to go to the detailed ChangeLog.
 
 ## [v2.8]
 
-- Dark theme is officialy supported on macOS, thanks to the new [javalauncher], written in `nim`, which is able to better locate JRE and launch the application.
+- Dark theme is officially supported on macOS, thanks to the new [java launcher], written in `nim`, which is able to better locate JRE and launch the application.
 - License of modules is more clear now: all runtime parts are still in permissive LGPL license, while non-redistributable are under AGPL license.
-- Fix various Andoid SDK issues. The build system is again more compatible with current Android tools.
+- Fix various Android SDK issues. The build system is again more compatible with current Android tools.
 - Various memory issues fixed (in String, arrays, and vararg parameters)
 
 ## [v2.7]
 
 -  There's a **code breaking** change with NSLog. Now this function lives in Foundation class, instead of it's own arbitrary class. The fix is easy, to replace all calls of `NSLog.log` with `Foundation.NSLog`, but it will not be performed automatically.
-- Optimization of the overridable super call methods in native objects. Up to now there was a wrapper for all possible combinations of overriden methods on native objects. This was needed to be possible to call the `super` method on any native method that was overriden in Java. Otherwise it was either impossible or was a runtime infinite loop. This added a huge runtime overhead and made it costly to create new methods in root objects (i.e. on NSObject). With this new method overridable parts are inserted at compile time with custom categories per request, elliminating the overhead and cutting down runtime libraries into half size.
+- Optimization of the overridable super call methods in native objects. Up to now there was a wrapper for all possible combinations of overridden methods on native objects. This was needed to be possible to call the `super` method on any native method that was overridden in Java. Otherwise it was either impossible or was a runtime infinite loop. This added a huge runtime overhead and made it costly to create new methods in root objects (i.e. on NSObject). With this new method overridable parts are inserted at compile time with custom categories per request, eliminating the overhead and cutting down runtime libraries into half size.
 - Obfuscation is support in application compilation, not in library level. Now it is easier and officially supported to create obfuscated Android applications.
 - Launch Android emulator in CrossMobile management application 
 
@@ -53,6 +59,7 @@ Click on the version header to go to the detailed ChangeLog.
 ## [v2.5]
 - First public binary stable release
 
+[v3.1.0]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v310
 [v3.0.0]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v300
 [v2.9.0]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v290
 [v2.8.2]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v282

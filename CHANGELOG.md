@@ -2,6 +2,31 @@
 
 Click on the version header to go to the actual commits for each release.
 
+## [v3.1.0]
+###### 2020-08-01
+
+## Added
+- Create transferable plugin packages
+- Installing plugin packages
+- Allow deployment of cmioslayer artifact, to make it easier to create custom plugins with full potentiality.
+- Added URL-based NSBundle methods
+- Initial support JavaFX WebView plugin
+
+### Fixed
+- Smoother drag & scroll on Java targets
+- On macOS 10.12 & 10.13, default target is iOS 10.0
+- Improved emulator launch
+- Support of String.split & regular expressions
+- Improve NSURL initialization
+
+### Changed
+- Plugin registry is based on installed plugins
+- Missing configuration options are less intrusive
+- Bootstrapping is not required any more
+
+### Removed
+- Remove obsolete builddep artifact
+
 ## [v3.0.0]
 ###### 2020-07-07
 
@@ -204,6 +229,7 @@ Click on the version header to go to the actual commits for each release.
 ### Added
 - First public source release
 
+[v3.1.0]: https://github.com/crossmob/CrossMobile/compare/v3.0.0...v3.1.0
 [v3.0.0]: https://github.com/crossmob/CrossMobile/compare/v2.9.0...v3.0.0
 [v2.9.0]: https://github.com/crossmob/CrossMobile/compare/v2.8.2...v2.9.0
 [v2.8.2]: https://github.com/crossmob/CrossMobile/compare/v2.8.0...v2.8.2
