@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEPLOY=1
+DEPLOY=
 
 VERSION=29
 SDK=10
