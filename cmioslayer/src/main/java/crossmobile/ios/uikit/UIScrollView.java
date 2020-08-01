@@ -126,8 +126,10 @@ public class UIScrollView extends UIView {
                     double x = calculateNewPosition(-transl.getX(), contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight() - getWidth(), shouldSpring);
                     double y = calculateNewPosition(-transl.getY(), contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom() - getHeight(), shouldSpring);
                     if (pan.state() != UIGestureRecognizerState.Ended) { // UIGestureRecognizerState.Changed
-                        if (Math.sqrt(Math.pow(contentOffset.getX() - x, 2) + Math.pow(contentOffset.getY() - y, 2)) > SELECTION_THRESHOLD) {
-                            // Dragging
+                        if (dragging)
+                            setContentOffset(x, y); // no special animation
+                        else if (Math.sqrt(Math.pow(contentOffset.getX() - x, 2) + Math.pow(contentOffset.getY() - y, 2)) > SELECTION_THRESHOLD) {
+                            // Set dragging mode, disable component click mode
                             invalidateTimers();
                             touchesCancelled(arg.touchList, arg.touchEvent);
                             dragging = true;
