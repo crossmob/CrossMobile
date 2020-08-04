@@ -147,6 +147,18 @@ public class UIImageView extends UIView {
             animateTimer = NSTimer.scheduledTimerWithTimeInterval(0.04, new AnimDelegate(this), null, true);
     }
 
+    @Override
+    public void willMoveToWindow(UIWindow newWindow) {
+        if (newWindow == null && animateTimer != null)
+            animateTimer.invalidate();
+    }
+
+    @Override
+    public void didMoveToWindow() {
+        if (animating)
+            startAnimating();
+    }
+
     private void stopTimer() {
         if (animateTimer != null)
             animateTimer.invalidate();
@@ -287,7 +299,7 @@ public class UIImageView extends UIView {
             UIImageView view = parent.get();
             if (view == null)
                 timer.invalidate();
-            else if (view.animating == false)
+            else if (!view.animating)
                 view.stopTimer();
             else {
                 view.animIdx++;
@@ -295,6 +307,7 @@ public class UIImageView extends UIView {
                 view.setNeedsDisplay();
             }
         }
+
     }
 
     private UIImage getCurrent() {
