@@ -164,7 +164,6 @@ public class UIActivityIndicatorView extends UIView {
         }
     }
 
-
     private void startTimer() {
         synchronized (this) {
             if (animateTimer != null)
