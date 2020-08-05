@@ -14,9 +14,10 @@ import crossmobile.ios.foundation.NSSelector;
 import crossmobile.ios.foundation.NSTimer;
 import crossmobile.rt.StrongReference;
 import org.crossmobile.bind.graphics.GraphicsContext;
-import org.crossmobile.bind.graphics.curve.InterpolationCurve;
-import org.crossmobile.bind.system.Ticker;
-import org.crossmobile.bind.system.TickerConsumer;
+import org.crossmobile.bind.graphics.anim.Animation;
+import org.crossmobile.bind.graphics.anim.curve.CommonInterpolations;
+import org.crossmobile.bind.graphics.anim.Animator;
+import org.crossmobile.bind.graphics.anim.AnimationAction;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.*;
 import org.crossmobile.support.cassowary.*;
@@ -69,11 +70,11 @@ public class UIScrollView extends UIView {
 
     private UIScrollViewDelegate delegate = null;
 
-    private NSTimer scroller = null;
-    private NSTimer flasher = null;
     private NSTimer tapTimer = null;
-    private NSTimer swipe = null;
-    private NSTimer animatedScroll = null;
+    private Animation scroller = null;
+    private Animation flasher = null;
+    private Animation swipe = null;
+    private Animation animatedScroll = null;
 
     private final Map<Integer, ClVariable> contentVariableMap = new HashMap<>();
     private final List<NSLayoutConstraint> contentConstraints = new ArrayList<>();
@@ -158,7 +159,7 @@ public class UIScrollView extends UIView {
                             } else if (meter(scrollVelocity) > 1) {
                                 if (scroller != null)
                                     scroller.invalidate();
-                                scroller = Ticker.add(new SwipeContent(scrollVelocity), InterpolationCurve.EaseOut, 0.5F);
+                                scroller = Animator.add(new SwipeContent(scrollVelocity), CommonInterpolations.EaseOut, 0.5F);
                             } else if (pagingEnabled)
                                 setContentOffset(new CGPoint(x + 0.5, y + 0.5), true);
                         }
@@ -197,19 +198,19 @@ public class UIScrollView extends UIView {
     }
 
     private void invalidateTimers() {
-        if (flasher != null && flasher.isValid())
-            flasher.invalidate();
-        flasher = null;
-        if (swipe != null && swipe.isValid())
-            swipe.invalidate();
-        swipe = null;
-        if (animatedScroll != null && animatedScroll.isValid())
-            animatedScroll.invalidate();
-        animatedScroll = null;
         if (tapTimer != null && tapTimer.isValid())
             tapTimer.invalidate();
         tapTimer = null;
-        if (scroller != null && scroller.isValid())
+        if (flasher != null)
+            flasher.invalidate();
+        flasher = null;
+        if (swipe != null)
+            swipe.invalidate();
+        swipe = null;
+        if (animatedScroll != null)
+            animatedScroll.invalidate();
+        animatedScroll = null;
+        if (scroller != null)
             scroller.invalidate();
         scroller = null;
     }
@@ -359,7 +360,7 @@ public class UIScrollView extends UIView {
         if (!contentOffset.equals(offset))
             if (animated) {
                 invalidateTimers();
-                animatedScroll = Ticker.add(new ScrollContent(offset.getX(), offset.getY()), InterpolationCurve.EaseInOut, 0.3);
+                animatedScroll = Animator.add(new ScrollContent(offset.getX(), offset.getY()), CommonInterpolations.EaseInOut, 0.3);
             } else
                 setContentOffset(offset.getX(), offset.getY());
     }
@@ -835,7 +836,7 @@ public class UIScrollView extends UIView {
     public void flashScrollIndicators() {
         if (flasher != null)
             flasher.invalidate();
-        flasher = Ticker.add(new FlashIndicator(), InterpolationCurve.Linear, 0.6);
+        flasher = Animator.add(new FlashIndicator(), CommonInterpolations.Linear, 0.6);
     }
 
     @Override
@@ -918,7 +919,7 @@ public class UIScrollView extends UIView {
         super.drawRect(rect);
     }
 
-    private class ScrollContent implements TickerConsumer {
+    private class ScrollContent implements AnimationAction {
 
         final double xFrom, yFrom, xTo, yTo;
 
@@ -965,7 +966,7 @@ public class UIScrollView extends UIView {
         }
     }
 
-    private class SwipeContent implements TickerConsumer {
+    private class SwipeContent implements AnimationAction {
 
         private final double x, y;
         private double dx, dy;
@@ -1029,11 +1030,11 @@ public class UIScrollView extends UIView {
                 delegate.didEndDecelerating(UIScrollView.this);
             scroller = null;
             invalidateTimers();
-            swipe = Ticker.add(new UIScrollView.ScrollContent(contentOffset.getX(), contentOffset.getY()), InterpolationCurve.EaseOut);
+            swipe = Animator.add(new UIScrollView.ScrollContent(contentOffset.getX(), contentOffset.getY()), CommonInterpolations.EaseOut);
         }
     }
 
-    private class FlashIndicator implements TickerConsumer {
+    private class FlashIndicator implements AnimationAction {
 
         @Override
         public void start() {

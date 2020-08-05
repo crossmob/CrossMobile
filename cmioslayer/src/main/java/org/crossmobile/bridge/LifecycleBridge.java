@@ -6,6 +6,8 @@
 
 package org.crossmobile.bridge;
 
+import crossmobile.ios.foundation.NSTimer;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Map;
@@ -14,7 +16,6 @@ import static org.crossmobile.bridge.system.RuntimeCommons.CROSSMOBILE_PROPERTIE
 
 public interface LifecycleBridge extends Thread.UncaughtExceptionHandler {
 
-    String UNKNOWN_NAME = "Unknown";
     String THEME_PROPERTIES = "theme.properties";
 
     /**
@@ -130,7 +131,14 @@ public interface LifecycleBridge extends Thread.UncaughtExceptionHandler {
     void runLaterOnceOnEventThread(Runnable task);
 
     /**
-     * Run a specific task in waiting task context. THIS METHOD SHOULD ONLY BE CALLED FORM THE EVENT THREAD.
+     * Run all postponed tasks right now. This method should be called from the event thread.
+     *
+     * @see #runLaterOnceOnEventThread(Runnable)
+     */
+    void drainWaitingTasks();
+
+    /**
+     * Run a specific task in waiting task context. THIS METHOD SHOULD ONLY BE CALLED FROM THE EVENT THREAD.
      * <p>
      * When a method required to run something in context, and another thread is running, then this
      * thread is waiting for the other thread to finish first. Every time the run block is terminated,
@@ -139,4 +147,40 @@ public interface LifecycleBridge extends Thread.UncaughtExceptionHandler {
      * @param commands A block of running commands to run in a waiting context
      */
     void encapsulateContext(Runnable commands);
+
+    /**
+     * Create the system timer which is responsible to post NSTimer events.
+     * This is the equivalent of retrieving the NSRunLoop of current system.
+     * <p>
+     * By default a new Thread will be spawned which will run and forward
+     * events the the actual run thread. It is highly advisable to override
+     * this method and provide a system-native implementation of delayed
+     * post events.
+     *
+     * @return the {@link SystemTimerHandler} of current system.
+     */
+    SystemTimerHandler createSystemTimer();
+
+    /**
+     * Inform animation mechanism that animations are still active.
+     * It is <b>required</b> to call this method after each frame, to inform the system
+     * that more animation frames are available.
+     * <p>
+     * This method should only be called from the event thread.
+     *
+     * @param enabled Toggle animation mechanism on and off.
+     */
+    void hasAnimationFrames(boolean enabled);
+
+    default void requireEventThread() {
+        if (!isEventThread())
+            throw new RuntimeException("This method should be called on the event thread");
+    }
+
+    interface SystemTimerHandler {
+
+        void addTimer(NSTimer timer);
+
+        void terminate();
+    }
 }

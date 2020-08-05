@@ -1119,7 +1119,6 @@ crossmobile/ios/uikit/UIWebViewDelegate.java
 crossmobile/ios/uikit/UIWebViewNavigationType.java
 crossmobile/ios/uikit/UIWindow.java
 crossmobile/ios/uikit/UserInterfaceDrill.java
-crossmobile/ios/uikit/cmAnimation.java
 crossmobile/ios/uikit/cmButtonStates.java
 crossmobile/ios/uikit/cmCells.java
 crossmobile/ios/uikit/cmConstraintWithVisualFormat.java
@@ -1129,6 +1128,7 @@ crossmobile/ios/uikit/cmEventDispatcher.java
 crossmobile/ios/uikit/cmPickerView.java
 crossmobile/ios/uikit/cmPickers.java
 crossmobile/ios/uikit/cmPrivateEvent.java
+crossmobile/ios/uikit/cmViewAnimation.java
 crossmobile/ios/uikit/package-info.java
 crossmobile/package-info.java
 org/crossmobile/backend/android/ActivityExtendedResultListener.java
@@ -1246,11 +1246,15 @@ org/crossmobile/bind/graphics/Size.java
 org/crossmobile/bind/graphics/TextHelpers.java
 org/crossmobile/bind/graphics/Theme.java
 org/crossmobile/bind/graphics/UIStatusBar.java
-org/crossmobile/bind/graphics/curve/EaseInCurve.java
-org/crossmobile/bind/graphics/curve/EaseInOutCurve.java
-org/crossmobile/bind/graphics/curve/EaseOutCurve.java
-org/crossmobile/bind/graphics/curve/InterpolationCurve.java
-org/crossmobile/bind/graphics/curve/LinearCurve.java
+org/crossmobile/bind/graphics/anim/Animation.java
+org/crossmobile/bind/graphics/anim/AnimationAction.java
+org/crossmobile/bind/graphics/anim/Animator.java
+org/crossmobile/bind/graphics/anim/curve/CommonInterpolations.java
+org/crossmobile/bind/graphics/anim/curve/EaseInCurve.java
+org/crossmobile/bind/graphics/anim/curve/EaseInOutCurve.java
+org/crossmobile/bind/graphics/anim/curve/EaseOutCurve.java
+org/crossmobile/bind/graphics/anim/curve/InterpolationCurve.java
+org/crossmobile/bind/graphics/anim/curve/LinearCurve.java
 org/crossmobile/bind/io/AbstractFileBridge.java
 org/crossmobile/bind/io/AbstractNetworkBridge.java
 org/crossmobile/bind/io/AdsBridge.java
@@ -1269,12 +1273,11 @@ org/crossmobile/bind/system/AppConstants.java
 org/crossmobile/bind/system/BitField.java
 org/crossmobile/bind/system/Core.java
 org/crossmobile/bind/system/Debug.java
+org/crossmobile/bind/system/GenericSystemTimerHandler.java
 org/crossmobile/bind/system/Predicate.java
 org/crossmobile/bind/system/Promise.java
 org/crossmobile/bind/system/Recycler.java
 org/crossmobile/bind/system/SystemUtilities.java
-org/crossmobile/bind/system/Ticker.java
-org/crossmobile/bind/system/TickerConsumer.java
 org/crossmobile/bind/system/VelocityFilter.java
 org/crossmobile/bind/system/i18n/I18NBridge.java
 org/crossmobile/bind/system/i18n/I18NSelf.java
@@ -1852,7 +1855,6 @@ crossmobile/ios/foundation/NSOperationQueue.class v8
 crossmobile/ios/foundation/NSOrdered.class v8
 crossmobile/ios/foundation/NSPredicate.class v8
 crossmobile/ios/foundation/NSRange.class v8
-crossmobile/ios/foundation/NSRunLoop$LoopThread.class v8
 crossmobile/ios/foundation/NSRunLoop.class v8
 crossmobile/ios/foundation/NSRunLoopMode.class v8
 crossmobile/ios/foundation/NSSearchPathDirectory.class v8
@@ -2129,21 +2131,6 @@ crossmobile/ios/uikit/UIWebViewNavigationType.class v8
 crossmobile/ios/uikit/UIWindow.class v8
 crossmobile/ios/uikit/UserInterfaceDrill$1.class v8
 crossmobile/ios/uikit/UserInterfaceDrill.class v8
-crossmobile/ios/uikit/cmAnimation$1.class v8
-crossmobile/ios/uikit/cmAnimation$AlphaTuple.class v8
-crossmobile/ios/uikit/cmAnimation$AnimationTransition.class v8
-crossmobile/ios/uikit/cmAnimation$AnimationTuple.class v8
-crossmobile/ios/uikit/cmAnimation$BackgroundTuple.class v8
-crossmobile/ios/uikit/cmAnimation$CurlDownTransition.class v8
-crossmobile/ios/uikit/cmAnimation$CurlUpTransition.class v8
-crossmobile/ios/uikit/cmAnimation$FlipFromLeftTransition.class v8
-crossmobile/ios/uikit/cmAnimation$FlipFromRightTransition.class v8
-crossmobile/ios/uikit/cmAnimation$FrameTuple.class v8
-crossmobile/ios/uikit/cmAnimation$NoneTransition.class v8
-crossmobile/ios/uikit/cmAnimation$SimpleTransformationTuple.class v8
-crossmobile/ios/uikit/cmAnimation$SmartTransformationTuple.class v8
-crossmobile/ios/uikit/cmAnimation$TransformationTuple.class v8
-crossmobile/ios/uikit/cmAnimation.class v8
 crossmobile/ios/uikit/cmButtonStates$1.class v8
 crossmobile/ios/uikit/cmButtonStates$State.class v8
 crossmobile/ios/uikit/cmButtonStates.class v8
@@ -2187,6 +2174,21 @@ crossmobile/ios/uikit/cmPickers$PickerTable.class v8
 crossmobile/ios/uikit/cmPickers.class v8
 crossmobile/ios/uikit/cmPrivateEvent.class v8
 crossmobile/ios/uikit/cmTableViewMetrics.class v8
+crossmobile/ios/uikit/cmViewAnimation$1.class v8
+crossmobile/ios/uikit/cmViewAnimation$AlphaTuple.class v8
+crossmobile/ios/uikit/cmViewAnimation$AnimationTransition.class v8
+crossmobile/ios/uikit/cmViewAnimation$AnimationTuple.class v8
+crossmobile/ios/uikit/cmViewAnimation$BackgroundTuple.class v8
+crossmobile/ios/uikit/cmViewAnimation$CurlDownTransition.class v8
+crossmobile/ios/uikit/cmViewAnimation$CurlUpTransition.class v8
+crossmobile/ios/uikit/cmViewAnimation$FlipFromLeftTransition.class v8
+crossmobile/ios/uikit/cmViewAnimation$FlipFromRightTransition.class v8
+crossmobile/ios/uikit/cmViewAnimation$FrameTuple.class v8
+crossmobile/ios/uikit/cmViewAnimation$NoneTransition.class v8
+crossmobile/ios/uikit/cmViewAnimation$SimpleTransformationTuple.class v8
+crossmobile/ios/uikit/cmViewAnimation$SmartTransformationTuple.class v8
+crossmobile/ios/uikit/cmViewAnimation$TransformationTuple.class v8
+crossmobile/ios/uikit/cmViewAnimation.class v8
 crossmobile/ios/uikit/package-info.class v8
 crossmobile/package-info.class v8
 crossmobile/rt/StrongReference.class v8
@@ -2371,6 +2373,7 @@ org/crossmobile/backend/swing/SwingGraphicsContext$1.class v8
 org/crossmobile/backend/swing/SwingGraphicsContext$GState.class v8
 org/crossmobile/backend/swing/SwingGraphicsContext.class v8
 org/crossmobile/backend/swing/SwingImageBridge.class v8
+org/crossmobile/backend/swing/SwingLifecycleBridge$1.class v8
 org/crossmobile/backend/swing/SwingLifecycleBridge.class v8
 org/crossmobile/backend/swing/SwingNativeDispatcher$DesktopNativeWidget.class v8
 org/crossmobile/backend/swing/SwingNativeDispatcher.class v8
@@ -2437,11 +2440,15 @@ org/crossmobile/bind/graphics/Theme$TextView.class v8
 org/crossmobile/bind/graphics/Theme.class v8
 org/crossmobile/bind/graphics/UIStatusBar$UIBattery.class v8
 org/crossmobile/bind/graphics/UIStatusBar.class v8
-org/crossmobile/bind/graphics/curve/EaseInCurve.class v8
-org/crossmobile/bind/graphics/curve/EaseInOutCurve.class v8
-org/crossmobile/bind/graphics/curve/EaseOutCurve.class v8
-org/crossmobile/bind/graphics/curve/InterpolationCurve.class v8
-org/crossmobile/bind/graphics/curve/LinearCurve.class v8
+org/crossmobile/bind/graphics/anim/Animation.class v8
+org/crossmobile/bind/graphics/anim/AnimationAction.class v8
+org/crossmobile/bind/graphics/anim/Animator.class v8
+org/crossmobile/bind/graphics/anim/curve/CommonInterpolations.class v8
+org/crossmobile/bind/graphics/anim/curve/EaseInCurve.class v8
+org/crossmobile/bind/graphics/anim/curve/EaseInOutCurve.class v8
+org/crossmobile/bind/graphics/anim/curve/EaseOutCurve.class v8
+org/crossmobile/bind/graphics/anim/curve/InterpolationCurve.class v8
+org/crossmobile/bind/graphics/anim/curve/LinearCurve.class v8
 org/crossmobile/bind/io/AbstractFileBridge.class v8
 org/crossmobile/bind/io/AbstractNetworkBridge.class v8
 org/crossmobile/bind/io/AdsBridge.class v8
@@ -2464,14 +2471,11 @@ org/crossmobile/bind/system/AppConstants.class v8
 org/crossmobile/bind/system/BitField.class v8
 org/crossmobile/bind/system/Core.class v8
 org/crossmobile/bind/system/Debug.class v8
+org/crossmobile/bind/system/GenericSystemTimerHandler.class v8
 org/crossmobile/bind/system/Predicate.class v8
 org/crossmobile/bind/system/Promise.class v8
 org/crossmobile/bind/system/Recycler.class v8
 org/crossmobile/bind/system/SystemUtilities.class v8
-org/crossmobile/bind/system/Ticker$1.class v8
-org/crossmobile/bind/system/Ticker$2.class v8
-org/crossmobile/bind/system/Ticker.class v8
-org/crossmobile/bind/system/TickerConsumer.class v8
 org/crossmobile/bind/system/VelocityFilter.class v8
 org/crossmobile/bind/system/i18n/I18NBridge.class v8
 org/crossmobile/bind/system/i18n/I18NSelf$NumberTest.class v8
@@ -2491,6 +2495,7 @@ org/crossmobile/bridge/GraphicsBridge.class v8
 org/crossmobile/bridge/ImageBridge$ImageSource.class v8
 org/crossmobile/bridge/ImageBridge.class v8
 org/crossmobile/bridge/InAppBridge.class v8
+org/crossmobile/bridge/LifecycleBridge$SystemTimerHandler.class v8
 org/crossmobile/bridge/LifecycleBridge.class v8
 org/crossmobile/bridge/LocationBridge$LocationChangeDelegate.class v8
 org/crossmobile/bridge/LocationBridge.class v8
@@ -2732,7 +2737,6 @@ crossmobile/ios/foundation/NSOperationQueue.class v8
 crossmobile/ios/foundation/NSOrdered.class v8
 crossmobile/ios/foundation/NSPredicate.class v8
 crossmobile/ios/foundation/NSRange.class v8
-crossmobile/ios/foundation/NSRunLoop$LoopThread.class v8
 crossmobile/ios/foundation/NSRunLoop.class v8
 crossmobile/ios/foundation/NSRunLoopMode.class v8
 crossmobile/ios/foundation/NSSearchPathDirectory.class v8
@@ -3009,21 +3013,6 @@ crossmobile/ios/uikit/UIWebViewNavigationType.class v8
 crossmobile/ios/uikit/UIWindow.class v8
 crossmobile/ios/uikit/UserInterfaceDrill$1.class v8
 crossmobile/ios/uikit/UserInterfaceDrill.class v8
-crossmobile/ios/uikit/cmAnimation$1.class v8
-crossmobile/ios/uikit/cmAnimation$AlphaTuple.class v8
-crossmobile/ios/uikit/cmAnimation$AnimationTransition.class v8
-crossmobile/ios/uikit/cmAnimation$AnimationTuple.class v8
-crossmobile/ios/uikit/cmAnimation$BackgroundTuple.class v8
-crossmobile/ios/uikit/cmAnimation$CurlDownTransition.class v8
-crossmobile/ios/uikit/cmAnimation$CurlUpTransition.class v8
-crossmobile/ios/uikit/cmAnimation$FlipFromLeftTransition.class v8
-crossmobile/ios/uikit/cmAnimation$FlipFromRightTransition.class v8
-crossmobile/ios/uikit/cmAnimation$FrameTuple.class v8
-crossmobile/ios/uikit/cmAnimation$NoneTransition.class v8
-crossmobile/ios/uikit/cmAnimation$SimpleTransformationTuple.class v8
-crossmobile/ios/uikit/cmAnimation$SmartTransformationTuple.class v8
-crossmobile/ios/uikit/cmAnimation$TransformationTuple.class v8
-crossmobile/ios/uikit/cmAnimation.class v8
 crossmobile/ios/uikit/cmButtonStates$1.class v8
 crossmobile/ios/uikit/cmButtonStates$State.class v8
 crossmobile/ios/uikit/cmButtonStates.class v8
@@ -3067,6 +3056,21 @@ crossmobile/ios/uikit/cmPickers$PickerTable.class v8
 crossmobile/ios/uikit/cmPickers.class v8
 crossmobile/ios/uikit/cmPrivateEvent.class v8
 crossmobile/ios/uikit/cmTableViewMetrics.class v8
+crossmobile/ios/uikit/cmViewAnimation$1.class v8
+crossmobile/ios/uikit/cmViewAnimation$AlphaTuple.class v8
+crossmobile/ios/uikit/cmViewAnimation$AnimationTransition.class v8
+crossmobile/ios/uikit/cmViewAnimation$AnimationTuple.class v8
+crossmobile/ios/uikit/cmViewAnimation$BackgroundTuple.class v8
+crossmobile/ios/uikit/cmViewAnimation$CurlDownTransition.class v8
+crossmobile/ios/uikit/cmViewAnimation$CurlUpTransition.class v8
+crossmobile/ios/uikit/cmViewAnimation$FlipFromLeftTransition.class v8
+crossmobile/ios/uikit/cmViewAnimation$FlipFromRightTransition.class v8
+crossmobile/ios/uikit/cmViewAnimation$FrameTuple.class v8
+crossmobile/ios/uikit/cmViewAnimation$NoneTransition.class v8
+crossmobile/ios/uikit/cmViewAnimation$SimpleTransformationTuple.class v8
+crossmobile/ios/uikit/cmViewAnimation$SmartTransformationTuple.class v8
+crossmobile/ios/uikit/cmViewAnimation$TransformationTuple.class v8
+crossmobile/ios/uikit/cmViewAnimation.class v8
 crossmobile/ios/uikit/package-info.class v8
 crossmobile/package-info.class v8
 crossmobile/rt/StrongReference.class v8
@@ -3090,6 +3094,8 @@ org/crossmobile/backend/android/AndroidImageBridge$2.class v8
 org/crossmobile/backend/android/AndroidImageBridge$3.class v8
 org/crossmobile/backend/android/AndroidImageBridge.class v8
 org/crossmobile/backend/android/AndroidInputConnection.class v8
+org/crossmobile/backend/android/AndroidLifecycleBridge$1$1.class v8
+org/crossmobile/backend/android/AndroidLifecycleBridge$1.class v8
 org/crossmobile/backend/android/AndroidLifecycleBridge.class v8
 org/crossmobile/backend/android/AndroidNativeDispatcher$AndroidNativeWidget.class v8
 org/crossmobile/backend/android/AndroidNativeDispatcher.class v8
@@ -3178,11 +3184,15 @@ org/crossmobile/bind/graphics/Theme$TextView.class v8
 org/crossmobile/bind/graphics/Theme.class v8
 org/crossmobile/bind/graphics/UIStatusBar$UIBattery.class v8
 org/crossmobile/bind/graphics/UIStatusBar.class v8
-org/crossmobile/bind/graphics/curve/EaseInCurve.class v8
-org/crossmobile/bind/graphics/curve/EaseInOutCurve.class v8
-org/crossmobile/bind/graphics/curve/EaseOutCurve.class v8
-org/crossmobile/bind/graphics/curve/InterpolationCurve.class v8
-org/crossmobile/bind/graphics/curve/LinearCurve.class v8
+org/crossmobile/bind/graphics/anim/Animation.class v8
+org/crossmobile/bind/graphics/anim/AnimationAction.class v8
+org/crossmobile/bind/graphics/anim/Animator.class v8
+org/crossmobile/bind/graphics/anim/curve/CommonInterpolations.class v8
+org/crossmobile/bind/graphics/anim/curve/EaseInCurve.class v8
+org/crossmobile/bind/graphics/anim/curve/EaseInOutCurve.class v8
+org/crossmobile/bind/graphics/anim/curve/EaseOutCurve.class v8
+org/crossmobile/bind/graphics/anim/curve/InterpolationCurve.class v8
+org/crossmobile/bind/graphics/anim/curve/LinearCurve.class v8
 org/crossmobile/bind/io/AbstractFileBridge.class v8
 org/crossmobile/bind/io/AbstractNetworkBridge.class v8
 org/crossmobile/bind/io/AdsBridge.class v8
@@ -3205,14 +3215,11 @@ org/crossmobile/bind/system/AppConstants.class v8
 org/crossmobile/bind/system/BitField.class v8
 org/crossmobile/bind/system/Core.class v8
 org/crossmobile/bind/system/Debug.class v8
+org/crossmobile/bind/system/GenericSystemTimerHandler.class v8
 org/crossmobile/bind/system/Predicate.class v8
 org/crossmobile/bind/system/Promise.class v8
 org/crossmobile/bind/system/Recycler.class v8
 org/crossmobile/bind/system/SystemUtilities.class v8
-org/crossmobile/bind/system/Ticker$1.class v8
-org/crossmobile/bind/system/Ticker$2.class v8
-org/crossmobile/bind/system/Ticker.class v8
-org/crossmobile/bind/system/TickerConsumer.class v8
 org/crossmobile/bind/system/VelocityFilter.class v8
 org/crossmobile/bind/system/i18n/I18NBridge.class v8
 org/crossmobile/bind/system/i18n/I18NSelf$NumberTest.class v8
@@ -3232,6 +3239,7 @@ org/crossmobile/bridge/GraphicsBridge.class v8
 org/crossmobile/bridge/ImageBridge$ImageSource.class v8
 org/crossmobile/bridge/ImageBridge.class v8
 org/crossmobile/bridge/InAppBridge.class v8
+org/crossmobile/bridge/LifecycleBridge$SystemTimerHandler.class v8
 org/crossmobile/bridge/LifecycleBridge.class v8
 org/crossmobile/bridge/LocationBridge$LocationChangeDelegate.class v8
 org/crossmobile/bridge/LocationBridge.class v8

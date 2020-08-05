@@ -11,9 +11,10 @@ import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.foundation.NSTimer;
 import crossmobile.ios.uikit.UIView.DelegateViews;
 import org.crossmobile.bind.graphics.GraphicsBridgeConstants;
-import org.crossmobile.bind.graphics.curve.InterpolationCurve;
-import org.crossmobile.bind.system.Ticker;
-import org.crossmobile.bind.system.TickerConsumer;
+import org.crossmobile.bind.graphics.anim.curve.CommonInterpolations;
+import org.crossmobile.bind.graphics.anim.curve.InterpolationCurve;
+import org.crossmobile.bind.graphics.anim.Animator;
+import org.crossmobile.bind.graphics.anim.AnimationAction;
 import org.crossmobile.bridge.Native;
 import org.robovm.objc.block.VoidBlock1;
 
@@ -24,7 +25,7 @@ import static crossmobile.ios.coregraphics.GraphicsDrill.selfRotateScaleTranslat
 import static crossmobile.ios.uikit.UIViewAnimationCurve.*;
 import static crossmobile.ios.uikit.UIViewAnimationTransition.*;
 
-class cmAnimation implements TickerConsumer {
+class cmViewAnimation implements AnimationAction {
 
     private static final boolean ignoreSmartTransformation = true;
 
@@ -33,7 +34,7 @@ class cmAnimation implements TickerConsumer {
     private double delay = 0;
     private double repeats = 0;
     private boolean ping_pong = false;
-    private InterpolationCurve animationCurve = InterpolationCurve.Linear;
+    private InterpolationCurve animationCurve = CommonInterpolations.Linear;
     private double duration = GraphicsBridgeConstants.DefaultAnimationDuration;
     private UIView parent;
     private Collection<DelegateViews> viewEnter;
@@ -87,7 +88,6 @@ class cmAnimation implements TickerConsumer {
             tuples.add(new SimpleTransformationTuple(view, from.getA(), from.getB(), from.getC(), from.getD(), from.getTx(),
                     from.getTy(), to.getA() - from.getA(), to.getB() - from.getB(), to.getC() - from.getC(), to.getD() - from.getD(), to.getTx() - from.getTx(), to.getTy() - from.getTy()));
         else {
-            System.out.println("smart");
             double fromSx = (from.getA() > 0 ? 1 : -1) * Math.sqrt(from.getA() * from.getA() + from.getC() * from.getC());
             double fromSy = (from.getD() > 0 ? 1 : -1) * Math.sqrt(from.getB() * from.getB() + from.getD() * from.getD());
             double toSx = (to.getA() > 0 ? 1 : -1) * Math.sqrt(to.getA() * to.getA() + to.getC() * to.getC());
@@ -145,16 +145,16 @@ class cmAnimation implements TickerConsumer {
     void setCurve(int animationCurve) {
         switch (animationCurve) {
             case EaseIn:
-                this.animationCurve = InterpolationCurve.EaseIn;
+                this.animationCurve = CommonInterpolations.EaseIn;
                 break;
             case EaseOut:
-                this.animationCurve = InterpolationCurve.EaseOut;
+                this.animationCurve = CommonInterpolations.EaseOut;
                 break;
             case EaseInOut:
-                this.animationCurve = InterpolationCurve.EaseInOut;
+                this.animationCurve = CommonInterpolations.EaseInOut;
                 break;
             case Linear:
-                this.animationCurve = InterpolationCurve.Linear;
+                this.animationCurve = CommonInterpolations.Linear;
                 break;
             default:
         }
@@ -203,9 +203,9 @@ class cmAnimation implements TickerConsumer {
 
     void commit() {
         if (delay > 0)
-            NSTimer.scheduledTimerWithTimeInterval(delay, timer -> Ticker.add(cmAnimation.this, animationCurve, duration, repeats, ping_pong), null, false);
+            NSTimer.scheduledTimerWithTimeInterval(delay, i -> Animator.add(this, animationCurve, duration, repeats, ping_pong), null, false);
         else
-            Ticker.add(this, animationCurve, duration, repeats, ping_pong);
+            Animator.add(this, animationCurve, duration, repeats, ping_pong);
     }
 
     @Override
@@ -239,23 +239,21 @@ class cmAnimation implements TickerConsumer {
 
     @Override
     public void end() {
-        Native.lifecycle().postOnEventThread(() -> {
-            if (parent != null) {
-                if (viewLeave != null)
-                    for (DelegateViews dv : viewLeave) {
-                        dv.doRemove();
-                        dv.delegateAfter();
-                    }
-                if (viewEnter != null)
-                    for (DelegateViews dv : viewEnter)
-                        dv.delegateAfter();
-            }
-            if (viewFrames != null)
-                for (UIView view : viewFrames)
-                    view.updateConstraints();
-            if (delegate != null)
-                delegate.invoke(true);
-        });
+        if (parent != null) {
+            if (viewLeave != null)
+                for (DelegateViews dv : viewLeave) {
+                    dv.doRemove();
+                    dv.delegateAfter();
+                }
+            if (viewEnter != null)
+                for (DelegateViews dv : viewEnter)
+                    dv.delegateAfter();
+        }
+        if (viewFrames != null)
+            for (UIView view : viewFrames)
+                view.updateConstraints();
+        if (delegate != null)
+            delegate.invoke(true);
     }
 
     private interface AnimationTransition {

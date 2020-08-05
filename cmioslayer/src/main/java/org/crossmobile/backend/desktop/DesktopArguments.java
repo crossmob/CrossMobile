@@ -10,10 +10,9 @@ import org.crossmobile.backend.desktop.cgeo.Chassis;
 
 import java.io.PrintStream;
 
-import static org.crossmobile.bridge.LifecycleBridge.UNKNOWN_NAME;
-
 public class DesktopArguments {
 
+    private static final String UNKNOWN_NAME = "Unknown";
     public static final String USER_ARG_SCALE = "user.arg.scale";
     public static final String USER_ARG_SKIN = "user.arg.skin";
 

@@ -25,8 +25,8 @@ public class UINavigationController extends UIViewController {
 
     private List<UIViewController> items;
     private UINavigationControllerDelegate delegate;
-    private UINavigationBar navigationBar;
-    private UIToolbar toolBar;
+    private final UINavigationBar navigationBar;
+    private final UIToolbar toolBar;
 
 
     /**
@@ -445,7 +445,7 @@ public class UINavigationController extends UIViewController {
     public void loadView() {
         setView(new NavigationView());
         List<UIViewController> newlist = items;
-        items = Collections.EMPTY_LIST;
+        items = Collections.emptyList();
         setViewControllers(newlist, false);
     }
 
@@ -476,9 +476,10 @@ public class UINavigationController extends UIViewController {
 
         Runnable actions = () -> {
             UIView oldChildView = thisView.childView;
+            boolean oldChildViewExists = oldChildView != null;
             thisView.childView = childView;
-            thisView.addSubview(childView);
-            if (oldChildView != null)
+            thisView.insertSubview(childView, oldChildViewExists ? 1 : 0);
+            if (oldChildViewExists)
                 oldChildView.removeFromSuperview();
         };
 

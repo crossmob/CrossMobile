@@ -6,11 +6,11 @@
 
 package crossmobile.ios.foundation;
 
+import org.crossmobile.bind.system.AbstractLifecycleBridge;
+import org.crossmobile.bridge.LifecycleBridge.SystemTimerHandler;
+import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.CMClass;
 import org.crossmobile.bridge.ann.CMSelector;
-
-import java.util.Collection;
-import java.util.LinkedHashSet;
 
 /**
  * NSRunLoop class defines an object that is responsible for dispatching input
@@ -19,14 +19,10 @@ import java.util.LinkedHashSet;
 @CMClass
 public class NSRunLoop extends NSObject {
 
-    private static NSRunLoop mainRunLoop;
+    private final SystemTimerHandler timerHandler;
 
-    private final Collection<NSTimer> registry = new LinkedHashSet<>();
-    private final Collection<NSTimer> toAdd = new LinkedHashSet<>();
-    private final Collection<NSTimer> toRemove = new LinkedHashSet<>();
-    private final LoopThread loopThread = new LoopThread();
-
-    private NSRunLoop() {
+    NSRunLoop(SystemTimerHandler loopThread) {
+        this.timerHandler = loopThread;
     }
 
     /**
@@ -36,11 +32,7 @@ public class NSRunLoop extends NSObject {
      */
     @CMSelector("+ (NSRunLoop *)mainRunLoop;")
     public static NSRunLoop mainRunLoop() {
-        if (mainRunLoop == null) {
-            mainRunLoop = new NSRunLoop();
-            mainRunLoop.loopThread.start();
-        }
-        return mainRunLoop;
+        return ((AbstractLifecycleBridge) Native.lifecycle()).getMainRunLoop();
     }
 
     /**
@@ -52,78 +44,10 @@ public class NSRunLoop extends NSObject {
      */
     @CMSelector("- (void)addTimer:(NSTimer *)timer forMode:(NSString *)mode;")
     public void addTimer(NSTimer timer, String NSRunLoopMode) {
-        synchronized (toAdd) {
-            toAdd.add(timer);
-        }
-        synchronized (loopThread) {
-            loopThread.notifyAll();
-        }
+        timerHandler.addTimer(timer);
     }
 
-    private class LoopThread extends Thread {
-
-        public LoopThread() {
-            super("NSRunLoopThread");
-            setDaemon(true);
-        }
-
-        @Override
-        public void run() {
-            while (true) {
-                synchronized (toAdd) {
-                    if (!toAdd.isEmpty()) {
-                        registry.addAll(toAdd);
-                        toAdd.clear();
-                    }
-                }
-                try {
-                    long waitTime = getWaitingMillis();
-                    if (waitTime > 0)
-                        synchronized (this) {
-                            wait(waitTime);
-                        }
-                } catch (InterruptedException ex) {
-                }
-                synchronized (toRemove) {
-                    long now = System.currentTimeMillis();
-                    for (NSTimer timer : registry) {
-                        if (timer.fireMillis() <= now)
-                            timer.fire();
-                        if (!timer.isValid())
-                            toRemove.add(timer);
-                    }
-                    if (!toRemove.isEmpty()) {
-                        registry.removeAll(toRemove);
-                        toRemove.clear();
-                    }
-                }
-            }
-        }
-    }
-
-    private long getWaitingMillis() {
-        long now = System.currentTimeMillis();
-        long next = now + 60 * 60 * 1000;
-        long current;
-        for (NSTimer timer : registry) {
-            current = timer.fireMillis();
-            if (current <= now) {
-                next = now;
-                break;
-            } else if (current < next)
-                next = current;
-        }
-        return next - now;  // Always bigger than "now", could be 0
-    }
-
-    void notifyLoop() {
-        synchronized (loopThread) {
-            loopThread.notifyAll();
-        }
-    }
-
-    void invalidateAll() {
-        for (NSTimer timer : mainRunLoop.registry)
-            timer.invalidate();
+    void terminate() {
+        timerHandler.terminate();
     }
 }

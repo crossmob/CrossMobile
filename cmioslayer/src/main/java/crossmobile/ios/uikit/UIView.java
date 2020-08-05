@@ -47,7 +47,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
     private static final Runnable refreshDisplay = () -> Native.graphics().refreshDisplay();
 
     private static final Object[] animationLock = new Object[0];
-    private static cmAnimation pendingAnim;
+    private static cmViewAnimation pendingAnim;
     private static boolean animationsEnabled = true;
     private final List<UIView> children = new ArrayList<>();
     //parameters for auto layout
@@ -329,9 +329,9 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
         pendingAnim().setAutoReverse(repeatAutoreverses);
     }
 
-    private static cmAnimation pendingAnim() {
+    private static cmViewAnimation pendingAnim() {
         if (pendingAnim == null)
-            pendingAnim = new cmAnimation();
+            pendingAnim = new cmViewAnimation();
         return pendingAnim;
     }
 

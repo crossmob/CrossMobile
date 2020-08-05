@@ -6,9 +6,7 @@
 
 package org.crossmobile.bind.system;
 
-import crossmobile.ios.foundation.NSError;
-import crossmobile.ios.foundation.NSNotification;
-import crossmobile.ios.foundation.NSNotificationCenter;
+import crossmobile.ios.foundation.*;
 import crossmobile.ios.uikit.*;
 import org.crossmobile.bind.graphics.Theme;
 import org.crossmobile.bridge.LifecycleBridge;
@@ -36,6 +34,8 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
     private Set<Runnable> runningTasks = new LinkedHashSet<>();
     private Set<Runnable> waitingTasks = new LinkedHashSet<>();
 
+    private NSRunLoop mainRunLoop;
+
     @Override
     public void init(String[] args) {
         if (applicationIsInitialized)
@@ -58,6 +58,12 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
             Native.widget().updateNativeGraphics(button_up, button_down);
         initPlugins();
         Debug.init();
+    }
+
+    public NSRunLoop getMainRunLoop() {
+        if (mainRunLoop == null)
+            mainRunLoop = FoundationDrill.newNSRunLoop(Native.lifecycle().createSystemTimer());
+        return mainRunLoop;
     }
 
     @SuppressWarnings({"UseSpecificCatch"})
@@ -113,7 +119,6 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
         Native.file().deleteRecursive(new File(Native.file().getTemporaryLocation()));
     }
 
-    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean backHandled() {
         UIApplication app = UIApplication.sharedApplication();
         if (app != null &&
@@ -216,28 +221,30 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
             runOnEventThread(() -> runLaterOnceOnEventThread(task));
     }
 
-    private void runLocked(Runnable commands) {
+    @Override
+    public void encapsulateContext(Runnable commands) {
+        drainWaitingTasks();
         runLaterOnceLock = true;
         commands.run();  // This method might produce more waiting tasks
         runLaterOnceLock = false;
-    }
-
-    @Override
-    public void encapsulateContext(Runnable commands) {
-        runLocked(commands);
-        if (!waitingTasks.isEmpty())
-            drainWaitingTasks();
+        drainWaitingTasks();
     }
 
     // This method is always run on event thread
-    private void drainWaitingTasks() {
+    @Override
+    public void drainWaitingTasks() {
+        if (waitingTasks.isEmpty())
+            return;
+
         // Swap instead of assign running tasks to waiting tasks and clear waiting tasks, since run tasks should be empty anyway
         Set<Runnable> empty = runningTasks;
         runningTasks = waitingTasks;
         waitingTasks = empty;
 
+        runLaterOnceLock = true;
         for (Runnable r : runningTasks)
-            runLocked(r);
+            r.run();
+        runLaterOnceLock = false;
 
         runningTasks.clear();
         // more waiting tasks have been produced, do the same procedure again

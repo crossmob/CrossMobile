@@ -27,7 +27,6 @@ public class UIApplication extends UIResponder {
 
     static UIWindow splashWindow = null;
     private static UIApplication instance;
-    List<UIWindow> windows;
     private boolean idleTimerDisabled;
     private UIApplicationDelegate delegate;
     private UIWindow keyWindow;
@@ -36,6 +35,7 @@ public class UIApplication extends UIResponder {
     private UIUserNotificationSettings currentUserNotificationSettings;
     private int applicationIconBadgeNumber;
     private final int userInterfaceLayoutDirection = Native.system().isRTL() ? UIUserInterfaceLayoutDirection.RightToLeft : UIUserInterfaceLayoutDirection.LeftToRight;
+    List<UIWindow> windows;
 
     /**
      * The default constructor of the UIAplication.

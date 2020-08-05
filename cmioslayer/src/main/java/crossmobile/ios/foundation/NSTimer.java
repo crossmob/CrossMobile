@@ -17,11 +17,11 @@ import org.robovm.objc.block.VoidBlock1;
 public class NSTimer extends NSObject {
 
     private final double timerInterval;
-    private final boolean repeats;
     private final NSTimerDelegate target;
     private final Object userInfo;
     private boolean valid;
     private long fireMillis;
+    final boolean repeats;
 
     // These variables are used for increased precision when calculating executable time
     private double start;
@@ -127,13 +127,12 @@ public class NSTimer extends NSObject {
         fireMillis = Math.max(Math.round(date.secondsSince1970 * 1000), System.currentTimeMillis());
         timeTicks = 0;
         start = fireMillis / 1000d;
-        NSRunLoop.mainRunLoop().notifyLoop();
     }
 
     /**
      * Returns the time interval of the timer.
      *
-     * @return The time interval of the timer.
+     * @return The time between two successive calls of the timer.
      */
     @CMGetter("@property(readonly) NSTimeInterval timeInterval;")
     public double timeInterval() {

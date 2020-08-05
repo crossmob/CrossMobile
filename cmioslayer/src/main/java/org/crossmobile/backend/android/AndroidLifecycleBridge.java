@@ -8,15 +8,22 @@ package org.crossmobile.backend.android;
 
 import android.app.Activity;
 import android.location.LocationListener;
+import android.os.Handler;
 import android.os.Looper;
+import android.view.Choreographer;
 import android.view.View;
 import android.widget.Toast;
+import crossmobile.ios.foundation.NSTimer;
+import org.crossmobile.bind.graphics.anim.Animator;
 import org.crossmobile.bind.system.AbstractLifecycleBridge;
-import org.crossmobile.bridge.Native;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
+
+import static crossmobile.ios.foundation.FoundationDrill.fireMillis;
 
 public class AndroidLifecycleBridge extends AbstractLifecycleBridge {
 
@@ -103,4 +110,44 @@ public class AndroidLifecycleBridge extends AbstractLifecycleBridge {
         return Looper.getMainLooper().getThread().getId() == Thread.currentThread().getId();
     }
 
+    @Override
+    public SystemTimerHandler createSystemTimer() {
+        return new SystemTimerHandler() {
+            private final Collection<NSTimer> timers = new HashSet<>();
+            private final Handler handler = new Handler(Looper.getMainLooper());
+            boolean active = true;
+
+            @Override
+            public synchronized void addTimer(NSTimer timer) {
+                if (!active || timer == null || timers.contains(timer))
+                    return;
+                timers.add(timer);
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (!active)
+                            return;
+
+                        timer.fire();
+                        if (!timer.isValid())
+                            timers.remove(timer);
+                        else
+                            handler.postDelayed(this, Math.round(timer.timeInterval() * 1000));
+                    }
+                }, (int) Math.max(fireMillis(timer) - System.currentTimeMillis(), 0));
+            }
+
+            @Override
+            public synchronized void terminate() {
+                active = false;
+                timers.clear();
+            }
+        };
+    }
+
+    @Override
+    public void hasAnimationFrames(boolean enabled) {
+        if (enabled)
+            Choreographer.getInstance().postFrameCallback(frameNanos -> Animator.animate(frameNanos / 1_000_000));
+    }
 }

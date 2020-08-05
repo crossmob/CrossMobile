@@ -4,9 +4,9 @@
  * SPDX-License-Identifier: LGPL-3.0-only
  */
 
-package org.crossmobile.bind.system;
+package org.crossmobile.bind.graphics.anim;
 
-public interface TickerConsumer {
+public interface AnimationAction {
 
     void start();
 
