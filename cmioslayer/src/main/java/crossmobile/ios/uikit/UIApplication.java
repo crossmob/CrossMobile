@@ -72,6 +72,7 @@ public class UIApplication extends UIResponder {
                 instance = SystemUtilities.safeInstantiation(UIApplication, crossmobile.ios.uikit.UIApplication.class);
             double splashWait = initSplash();
             double launchTime = System.currentTimeMillis();
+            instance.setStatusBarStyle(UIStatusBarStyle.Default, false);
             Native.graphics().refreshDisplay();
             NSTimerDelegate disableSplash = timer -> {
                 instance.windows.remove(splashWindow);
@@ -85,7 +86,6 @@ public class UIApplication extends UIResponder {
                         UIResponder.reqeuestResponderBeforeInit.becomeFirstResponder();
                         UIResponder.reqeuestResponderBeforeInit = null;
                     });
-                instance.setStatusBarStyle(UIStatusBarStyle.Default, false);
             };
             Native.lifecycle().postOnEventThread(() -> {
                 if (instance == null) {
@@ -255,7 +255,7 @@ public class UIApplication extends UIResponder {
     @CMSelector("- (void)setStatusBarStyle:(UIStatusBarStyle)statusBarStyle \n"
             + "                 animated:(BOOL)animated;")
     public void setStatusBarStyle(int UIStatusBarStyle, boolean animated) {
-        UIStatusBar.getStatusBar().setStatusBarStyleDark(UIStatusBarStyle == crossmobile.ios.uikit.UIStatusBarStyle.Default);
+        UIStatusBar.getStatusBar().setStatusBarStyleDark(UIStatusBarStyle != crossmobile.ios.uikit.UIStatusBarStyle.LightContent);
     }
 
     /**

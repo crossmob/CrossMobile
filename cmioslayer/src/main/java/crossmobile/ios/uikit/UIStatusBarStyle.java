@@ -25,6 +25,11 @@ public final class UIStatusBarStyle {
      */
     public static final int LightContent = 1;
 
+    /**
+     * The status bar has dark style used mainly with light backgrounds.
+     */
+    public static final int DarkContent = 3;
+
     private UIStatusBarStyle() {
     }
 }

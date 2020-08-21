@@ -44,10 +44,13 @@ public class AndroidUIGuidelinesBridge implements UIGuidelinesBridge {
 
     private void setStatusBarText(Window window, boolean dark) {
         int visibility = window.getDecorView().getSystemUiVisibility();
-        if (dark)
+        if (dark) {
             visibility |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-        else
+            visibility |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+        } else {
             visibility &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            visibility &= ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+        }
         window.getDecorView().setSystemUiVisibility(visibility);
     }
 
