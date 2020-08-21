@@ -10,6 +10,7 @@ import crossmobile.ios.coregraphics.CGAffineTransform;
 import crossmobile.ios.coregraphics.CGPoint;
 import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.coregraphics.CGSize;
+import crossmobile.ios.uikit.UIEdgeInsets;
 import org.crossmobile.bridge.ann.CMPure;
 
 @CMPure(full = true)
@@ -98,14 +99,21 @@ public class Geometry {
         return self;
     }
 
-    public static CGAffineTransform set(CGAffineTransform source, CGAffineTransform destination) {
-        destination.setA(source.getA());
-        destination.setB(source.getB());
-        destination.setC(source.getC());
-        destination.setD(source.getD());
-        destination.setTx(source.getTx());
-        destination.setTy(source.getTy());
-        return destination;
+    public static CGAffineTransform set(CGAffineTransform self, CGAffineTransform other) {
+        self.setA(other.getA());
+        self.setB(other.getB());
+        self.setC(other.getC());
+        self.setD(other.getD());
+        self.setTx(other.getTx());
+        self.setTy(other.getTy());
+        return self;
+    }
 
+    public static UIEdgeInsets set(UIEdgeInsets self, UIEdgeInsets other) {
+        self.setTop(other.getTop());
+        self.setRight(other.getRight());
+        self.setBottom(other.getBottom());
+        self.setLeft(other.getLeft());
+        return self;
     }
 }

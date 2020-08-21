@@ -12,6 +12,7 @@ import crossmobile.ios.coregraphics.CGSize;
 import crossmobile.ios.foundation.NSBundle;
 import crossmobile.ios.foundation.NSExtensionContext;
 import org.crossmobile.bind.graphics.DrawableMetrics;
+import org.crossmobile.bind.graphics.Geometry;
 import org.crossmobile.bind.graphics.GraphicsBridgeConstants;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.*;
@@ -1012,11 +1013,12 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
 
     @CMSetter("@property(nonatomic) UIEdgeInsets additionalSafeAreaInsets;")
     public void setAdditionalSafeAreaInsets(UIEdgeInsets additionalSafeAreaInsets) {
-        this.additionalSafeAreaInsets = additionalSafeAreaInsets;
+        Geometry.set(this.additionalSafeAreaInsets, additionalSafeAreaInsets);
         if (view != null)
             view.safeAreaInsets();
     }
 
+    // TODO: probably use code from setAdditionalSafeAreaInsets
     @CMSelector("- (void)viewSafeAreaInsetsDidChange;")
     public void viewSafeAreaInsetsDidChange() {
 
@@ -1241,7 +1243,7 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
         this.restorationIdentifier = restorationIdentifier;
     }
 
-    class LayoutSupport implements UILayoutSupport {
+    static class LayoutSupport implements UILayoutSupport {
 
         private final NSLayoutYAxisAnchor topAnchor = new NSLayoutYAxisAnchor(this, NSLayoutAttribute.Top);
         private final NSLayoutYAxisAnchor bottomAnchor = new NSLayoutYAxisAnchor(this, NSLayoutAttribute.Bottom);

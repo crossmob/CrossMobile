@@ -106,10 +106,11 @@ public class MainView extends AbsoluteLayout {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     protected boolean fitSystemWindows(Rect insets) {
         if (!newAPI)
             ((AndroidDrawableMetrics) Native.graphics().metrics()).updateInsets(insets.top, insets.right, insets.bottom, insets.left);
-        return super.fitSystemWindows(insets); //To change body of generated methods, choose Tools | Templates.
+        return super.fitSystemWindows(insets);
     }
 
     @Override
@@ -119,6 +120,6 @@ public class MainView extends AbsoluteLayout {
                     insets.getSystemWindowInsetRight(),
                     insets.getSystemWindowInsetBottom(),
                     insets.getSystemWindowInsetLeft());
-        return super.onApplyWindowInsets(insets); //To change body of generated methods, choose Tools | Templates.
+        return super.onApplyWindowInsets(insets);
     }
 }

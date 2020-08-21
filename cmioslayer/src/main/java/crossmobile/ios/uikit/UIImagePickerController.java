@@ -339,7 +339,7 @@ public class UIImagePickerController extends UINavigationController {
         else if (this.cameraViewTransform == null)
             this.cameraViewTransform = Geometry.copy(cameraViewTransform);
         else
-            Geometry.set(cameraViewTransform, this.cameraViewTransform);
+            Geometry.set(this.cameraViewTransform, cameraViewTransform);
     }
 
     /**

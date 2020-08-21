@@ -1059,7 +1059,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
     synchronized void setTransformImpl(CGAffineTransform transform) {
         nativeDrawingTransf = null;
         fullTransform = inverseTransform = null;
-        this.transform = transform == null ? null : (this.transform == null ? Geometry.copy(transform) : Geometry.set(transform, this.transform));
+        this.transform = transform == null ? null : (this.transform == null ? Geometry.copy(transform) : Geometry.set(this.transform, transform));
     }
 
     private Object nativeTransformation() {
