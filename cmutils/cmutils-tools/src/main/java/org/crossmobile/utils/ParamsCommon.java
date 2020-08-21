@@ -26,6 +26,7 @@ public enum ParamsCommon {
 
     INJECTED_INFOPLIST("", BUILD),
     OBJC_IGNORE_INCLUDES("", BUILD),
+    IPHONEOS_DEPLOYMENT_TARGET(SystemDependent.getDeploymentTarget(), BUILD),
     DEBUG_PROFILE("outerr", BUILD),
     USES_PERMISSIONS("", BUILD),
     TARGET(AndroidTarget.DEFAULT, BUILD),
@@ -54,8 +55,6 @@ public enum ParamsCommon {
     CM_DESKTOP_SKIN("system"),
     CM_KEYBOARD_SUPPORT("quit:pause:back:menu:home:rotate:multitouch"),
     CM_SPLASH_DELAY("1"),
-
-    IPHONEOS_DEPLOYMENT_TARGET(SystemDependent.getDeploymentTarget()),
 
     // The following tags are recalculated inside ParameterList
     MAIN_CLASS("");

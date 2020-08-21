@@ -50,8 +50,9 @@ public class ParamList {
             return props.getProperty(tagkey);
     }
 
-    public final void put(Param key, String value) {
+    public final ParamList put(Param key, String value) {
         props.put(key.name, value);
+        return this;
     }
 
     public void remove(Param key) {
