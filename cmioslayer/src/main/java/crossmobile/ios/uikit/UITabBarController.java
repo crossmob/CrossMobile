@@ -151,7 +151,7 @@ public class UITabBarController extends UIViewController {
         if (selectedIndex < 0 || viewControllers == null || viewControllers.isEmpty() || selectedIndex == this.selectedIndex)
             return;
         UIViewController older = this.selectedIndex >= 0 ? viewControllers.get(this.selectedIndex) : null;
-        this.selectedIndex = selectedIndex >= 0 && selectedIndex < viewControllers.size() ? selectedIndex : -1;
+        this.selectedIndex = selectedIndex < viewControllers.size() ? selectedIndex : -1;
         UIViewController newer = this.selectedIndex >= 0 ? viewControllers.get(selectedIndex) : null;
 
         if (older != null)
@@ -161,16 +161,14 @@ public class UITabBarController extends UIViewController {
         if (newer != null) {
             if (!newer.isViewLoaded())
                 newer.loadView();
-            newer.viewSafeAreaInsetsDidChange();
-            newer.viewWillAppear(false);
+            newer.execViewWillAppear(false);
         }
         tabBar.setSelectedIndex(this.selectedIndex);
         updateView();
         if (older != null)
             older.viewWillDisappear(false);
         if (newer != null)
-            newer.viewSafeAreaInsetsDidChange();
-        newer.viewWillAppear(false);
+            newer.execViewDidAppear(false);
     }
 
     /**

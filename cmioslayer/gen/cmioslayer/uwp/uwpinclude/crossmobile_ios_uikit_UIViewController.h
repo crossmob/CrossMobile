@@ -42,6 +42,7 @@ CM_EXPORT_CLASS
 - (void) setAutomaticallyAdjustsScrollViewInsets___boolean:(BOOL) automaticallyAdjustsScrollViewInsets ;
 - (BOOL) automaticallyAdjustsScrollViewInsets__;
 - (id<UILayoutSupport>) bottomLayoutGuide__;
+- (UIViewController*) childViewControllerForStatusBarStyle__;
 - (NSArray*) childViewControllers__;
 - (void) setContentSizeForViewInPopover___crossmobile_ios_coregraphics_CGSize:(crossmobile_ios_coregraphics_CGSize*) contentSizeForViewInPopover ;
 - (crossmobile_ios_coregraphics_CGSize*) contentSizeForViewInPopover__;
@@ -66,6 +67,7 @@ CM_EXPORT_CLASS
 - (UINavigationItem*) navigationItem__;
 - (NSString*) nibName__;
 - (UIViewController*) parentViewController__;
+- (int) preferredStatusBarStyle__;
 - (UIViewController*) presentedViewController__;
 - (UIViewController*) presentingViewController__;
 - (void) setProvidesPresentationContextTransitionStyle___boolean:(BOOL) providesPresentationContextTransitionStyle ;
@@ -111,6 +113,7 @@ CM_EXPORT_CLASS
 - (UIView*) rotatingFooterView__;
 - (UIView*) rotatingHeaderView__;
 - (void) setEditing___boolean_boolean:(BOOL) editing :(BOOL) animated ;
+- (void) setNeedsStatusBarAppearanceUpdate__;
 - (void) setToolbarItems___java_util_List_boolean:(NSArray*) toolbarItems :(BOOL) animated ;
 - (BOOL) shouldAutorotate__;
 - (BOOL) shouldAutorotateToInterfaceOrientation___int:(int) toInterfaceOrientation ;

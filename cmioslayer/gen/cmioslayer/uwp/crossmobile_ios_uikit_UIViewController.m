@@ -80,6 +80,13 @@
     return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 
+// @property(nonatomic, readonly) UIViewController *childViewControllerForStatusBarStyle;
+- (UIViewController*) childViewControllerForStatusBarStyle__
+{
+    UIViewController* re$ult = [self childViewControllerForStatusBarStyle];
+    return [(re$ult ? re$ult : JAVA_NULL) retain];
+}
+
 // @property(nonatomic, readonly) NSArray<__kindof UIViewController *> *childViewControllers;
 - (NSArray*) childViewControllers__
 {
@@ -228,6 +235,12 @@
 {
     UIViewController* re$ult = [self parentViewController];
     return [(re$ult ? re$ult : JAVA_NULL) retain];
+}
+
+// @property(nonatomic, readonly) UIStatusBarStyle preferredStatusBarStyle;
+- (int) preferredStatusBarStyle__
+{
+    return [self preferredStatusBarStyle];
 }
 
 // @property(nonatomic, readonly) UIViewController *presentedViewController;
@@ -519,6 +532,12 @@
 - (void) setEditing___boolean_boolean:(BOOL) editing :(BOOL) animated 
 {
     [self setEditing:editing animated:animated];
+}
+
+// - (void)setNeedsStatusBarAppearanceUpdate;
+- (void) setNeedsStatusBarAppearanceUpdate__
+{
+    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 // - (void)setToolbarItems:(NSArray<UIBarButtonItem *> *)toolbarItems animated:(BOOL)animated;

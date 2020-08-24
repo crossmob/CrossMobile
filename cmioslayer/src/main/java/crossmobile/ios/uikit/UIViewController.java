@@ -608,21 +608,20 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
             + "    animated:(BOOL)flag\n"
             + "    completion:(void (^)(void))completion;")
     public void presentViewController(UIViewController viewControllerToPresent, boolean flag, Runnable completion) {
-        this.modalViewController = viewControllerToPresent;
         if (viewControllerToPresent != null)
             Native.lifecycle().postOnEventThread(() -> {
+                modalViewController = viewControllerToPresent;
                 viewControllerToPresent.presentingViewController = this;
                 viewControllerToPresent.view().setTransform(CGAffineTransform.makeTranslation(0, viewControllerToPresent.view().getHeight()));
-                Runnable animation = () -> {
+                viewControllerToPresent.execViewWillAppear(flag);
+                UIView.transitionWithView(viewControllerToPresent.view(), GraphicsBridgeConstants.DefaultAnimationDuration, UIViewAnimationOptions.TransitionNone, () -> {
                     UIApplication.sharedApplication().keyWindow().rootViewController().view().addSubview(viewControllerToPresent.view());
                     viewControllerToPresent.view().setTransform(CGAffineTransform.identity());
-                };
-                viewControllerToPresent.viewWillAppear(flag);
-                viewControllerToPresent.viewSafeAreaInsetsDidChange();
-                UIView.transitionWithView(viewControllerToPresent.view(), GraphicsBridgeConstants.DefaultAnimationDuration, UIViewAnimationOptions.TransitionNone, animation, null);
-                viewControllerToPresent.viewDidAppear(flag);
-                if (completion != null)
-                    completion.run();
+                }, result -> {
+                    viewControllerToPresent.execViewDidAppear(flag);
+                    if (completion != null)
+                        completion.run();
+                });
             });
     }
 
@@ -798,6 +797,11 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
     public void viewWillAppear(boolean animated) {
     }
 
+    void execViewWillAppear(boolean animated) {
+        viewSafeAreaInsetsDidChange();  // TODO: should we call it here?
+        viewWillAppear(animated);
+    }
+
     /**
      * Called after the view was added to the view controller's hierarchy with
      * animation or not according to the Boolean parameter.
@@ -806,6 +810,12 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
      */
     @CMSelector("- (void)viewDidAppear:(BOOL)animated;")
     public void viewDidAppear(boolean animated) {
+    }
+
+    void execViewDidAppear(boolean animated) {
+        setNeedsStatusBarAppearanceUpdate();
+        viewSafeAreaInsetsDidChange();
+        viewDidAppear(animated);
     }
 
     /**
@@ -1018,7 +1028,7 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
             view.safeAreaInsets();
     }
 
-    // TODO: probably use code from setAdditionalSafeAreaInsets
+    // TODO: probably use code from setAdditionalSafeAreaInsets and check who calls it
     @CMSelector("- (void)viewSafeAreaInsetsDidChange;")
     public void viewSafeAreaInsetsDidChange() {
 
@@ -1215,6 +1225,35 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
     @CMGetter("@property(nonatomic, readonly, strong) UITabBarController *tabBarController;")
     public UITabBarController tabBarController() {
         return getAncestorOf(UITabBarController.class);
+    }
+
+    @CMGetter("@property(nonatomic, readonly) UIStatusBarStyle preferredStatusBarStyle;")
+    public int preferredStatusBarStyle() {
+        return UIStatusBarStyle.Default;
+    }
+
+    @CMGetter("@property(nonatomic, readonly) UIViewController *childViewControllerForStatusBarStyle;")
+    public UIViewController childViewControllerForStatusBarStyle() {
+        return null;
+    }
+
+    @CMSelector("- (void)setNeedsStatusBarAppearanceUpdate;")
+    public void setNeedsStatusBarAppearanceUpdate() {
+        UIApplication app = UIApplication.sharedApplication();
+        if (app != null) {
+            if (app.STATUS_BAR_IN_APP)
+                return;
+            UIWindow window = app.keyWindow();
+            if (window != null) {
+                UIViewController controller = window.rootViewController();
+                if (controller != null) {
+                    UIViewController childController = controller.childViewControllerForStatusBarStyle();
+                    if (childController != null)
+                        controller = childController;
+                    app.setStatusBarStyle(controller.preferredStatusBarStyle());
+                }
+            }
+        }
     }
 
     private <T extends UIViewController> T getAncestorOf(Class<T> clazz) {

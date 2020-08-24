@@ -31,6 +31,7 @@ public final class UIStatusBar extends UIView {
     private UIImageView receptImg, wifiImg;
     private UIBattery battery;
     private boolean styleDark = true;
+    private boolean isStyleSet = false;
     private int recept = 5;
     private int wifi = 1;
 
@@ -126,9 +127,12 @@ public final class UIStatusBar extends UIView {
         return styleDark;
     }
 
-    public void setStatusBarStyleDark(boolean dark) {
-        this.styleDark = dark;
-        Native.uiguidelines().setStatusBarDark(dark);
+    public void setStatusBarStyleDark(boolean styleDark) {
+        if (isStyleSet && this.styleDark == styleDark)
+            return;
+        isStyleSet = true;
+        this.styleDark = styleDark;
+        Native.uiguidelines().setStatusBarDark(styleDark);
         updateStyle();
     }
 

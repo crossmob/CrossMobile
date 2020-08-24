@@ -507,10 +507,8 @@ public class UINavigationController extends UIViewController {
         if (current != null) {
             if (!current.isViewLoaded())
                 current.view();  // To properly initialize view
-            if (isViewLoaded()) {
-                current.viewSafeAreaInsetsDidChange();
-                current.viewWillAppear(animated);
-            }
+            if (isViewLoaded())
+                current.execViewWillAppear(animated);
         }
         if (delegate != null)
             delegate.willShowViewController(this, topViewController(), animated);
@@ -537,7 +535,7 @@ public class UINavigationController extends UIViewController {
             }
             view().layoutSubviews();
             if (current != null)
-                current.viewDidAppear(animated);
+                current.execViewDidAppear(animated);
         }
     }
 

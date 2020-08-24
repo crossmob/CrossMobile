@@ -9,6 +9,7 @@
     "beginAppearanceTransition(boolean,boolean)": null,
     "bottomLayoutGuide()": null,
     "childViewControllerContainingSegueSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "childViewControllerForStatusBarStyle()": null,
     "childViewControllers()": null,
     "contentSizeForViewInPopover()": null,
     "currentPreviewItem()": {
@@ -63,6 +64,7 @@
     "parentViewController()": null,
     "performSegueWithIdentifier(java.lang.String,java.lang.Object)": null,
     "preferredInterfaceOrientationForPresentation()": null,
+    "preferredStatusBarStyle()": null,
     "prefersStatusBarHidden()": null,
     "prepareForSegue(crossmobile.ios.uikit.UIStoryboardSegue,java.lang.Object)": null,
     "presentModalViewController(crossmobile.ios.uikit.UIViewController,boolean)": null,
@@ -113,6 +115,7 @@
     "setModalInPopover(boolean)": null,
     "setModalPresentationStyle(int)": null,
     "setModalTransitionStyle(int)": null,
+    "setNeedsStatusBarAppearanceUpdate()": null,
     "setProvidesPresentationContextTransitionStyle(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setTabBarItem(crossmobile.ios.uikit.UITabBarItem)": null,

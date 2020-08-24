@@ -153,12 +153,13 @@ public class MFMailComposeViewController extends UINavigationController {
     @Override
     public void viewWillAppear(boolean animated) {
         super.viewWillAppear(animated);
-        UIApplication.sharedApplication().openURL(NSURL.URLWithString("mailto:"
+        NSURL url = NSURL.URLWithString("mailto:"
                 + recipientsFromList(toRecipients)
                 + "?cc=" + recipientsFromList(ccRecipients)
                 + "&bcc=" + recipientsFromList(bccRecipients)
                 + "&subject=" + NSString.stringByAddingPercentEscapesUsingEncoding(subject, NSStringEncoding.UTF8)
-                + "&body=" + NSString.stringByAddingPercentEscapesUsingEncoding(body, NSStringEncoding.UTF8)));
+                + "&body=" + NSString.stringByAddingPercentEscapesUsingEncoding(body, NSStringEncoding.UTF8));
+        UIApplication.sharedApplication().openURL(url);
         if (delegate != null)
             delegate.didFinishWithResult(this, MFMailComposeResult.Sent, null);
     }

@@ -3209,6 +3209,7 @@
     "beginAppearanceTransition(boolean,boolean)": null,
     "bottomLayoutGuide()": null,
     "childViewControllerContainingSegueSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "childViewControllerForStatusBarStyle()": null,
     "childViewControllers()": null,
     "contentSizeForViewInPopover()": null,
     "definesPresentationContext()": null,
@@ -3245,6 +3246,7 @@
     "parentViewController()": null,
     "performSegueWithIdentifier(java.lang.String,java.lang.Object)": null,
     "preferredInterfaceOrientationForPresentation()": null,
+    "preferredStatusBarStyle()": null,
     "prefersStatusBarHidden()": null,
     "prepareForSegue(crossmobile.ios.uikit.UIStoryboardSegue,java.lang.Object)": null,
     "presentModalViewController(crossmobile.ios.uikit.UIViewController,boolean)": null,
@@ -3276,6 +3278,7 @@
     "setModalInPopover(boolean)": null,
     "setModalPresentationStyle(int)": null,
     "setModalTransitionStyle(int)": null,
+    "setNeedsStatusBarAppearanceUpdate()": null,
     "setProvidesPresentationContextTransitionStyle(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setTabBarItem(crossmobile.ios.uikit.UITabBarItem)": null,
@@ -3374,6 +3377,7 @@
     "beginAppearanceTransition(boolean,boolean)": null,
     "bottomLayoutGuide()": null,
     "childViewControllerContainingSegueSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "childViewControllerForStatusBarStyle()": null,
     "childViewControllers()": null,
     "contentSizeForViewInPopover()": null,
     "definesPresentationContext()": null,
@@ -3410,6 +3414,7 @@
     "parentViewController()": null,
     "performSegueWithIdentifier(java.lang.String,java.lang.Object)": null,
     "preferredInterfaceOrientationForPresentation()": null,
+    "preferredStatusBarStyle()": null,
     "preferredStyle()": {
       "reverse": "- (UIAlertControllerStyle) preferredStyle\n{\n    return [self preferredStyle__];\n}\n\n",
       "super": "- (int) preferredStyle__\n{\n    return [super preferredStyle];\n}\n\n"
@@ -3445,6 +3450,7 @@
     "setModalInPopover(boolean)": null,
     "setModalPresentationStyle(int)": null,
     "setModalTransitionStyle(int)": null,
+    "setNeedsStatusBarAppearanceUpdate()": null,
     "setProvidesPresentationContextTransitionStyle(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setTabBarItem(crossmobile.ios.uikit.UITabBarItem)": null,
@@ -6605,6 +6611,7 @@
     "beginAppearanceTransition(boolean,boolean)": null,
     "bottomLayoutGuide()": null,
     "childViewControllerContainingSegueSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "childViewControllerForStatusBarStyle()": null,
     "childViewControllers()": null,
     "contentSizeForViewInPopover()": null,
     "definesPresentationContext()": null,
@@ -6678,6 +6685,7 @@
       ]
     },
     "preferredInterfaceOrientationForPresentation()": null,
+    "preferredStatusBarStyle()": null,
     "prefersStatusBarHidden()": null,
     "prepareForSegue(crossmobile.ios.uikit.UIStoryboardSegue,java.lang.Object)": null,
     "presentModalViewController(crossmobile.ios.uikit.UIViewController,boolean)": null,
@@ -6724,6 +6732,7 @@
       "reverse": "- (void) setNavigationBarHidden:(BOOL) hidden animated:(BOOL) animated\n{\n    [self setNavigationBarHidden___boolean_boolean:hidden :animated];\n}\n\n",
       "super": "- (void) setNavigationBarHidden___boolean_boolean:(BOOL) hidden :(BOOL) animated \n{\n    [super setNavigationBarHidden:hidden animated:animated];\n}\n\n"
     },
+    "setNeedsStatusBarAppearanceUpdate()": null,
     "setProvidesPresentationContextTransitionStyle(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setTabBarItem(crossmobile.ios.uikit.UITabBarItem)": null,
@@ -9414,6 +9423,7 @@
     "beginAppearanceTransition(boolean,boolean)": null,
     "bottomLayoutGuide()": null,
     "childViewControllerContainingSegueSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "childViewControllerForStatusBarStyle()": null,
     "childViewControllers()": null,
     "contentSizeForViewInPopover()": null,
     "definesPresentationContext()": null,
@@ -9481,6 +9491,7 @@
       "reverse": "- (CGFloat) preferredPrimaryColumnWidthFraction\n{\n    return [self preferredPrimaryColumnWidthFraction__];\n}\n\n",
       "super": "- (double) preferredPrimaryColumnWidthFraction__\n{\n    return [super preferredPrimaryColumnWidthFraction];\n}\n\n"
     },
+    "preferredStatusBarStyle()": null,
     "prefersStatusBarHidden()": null,
     "prepareForSegue(crossmobile.ios.uikit.UIStoryboardSegue,java.lang.Object)": null,
     "presentModalViewController(crossmobile.ios.uikit.UIViewController,boolean)": null,
@@ -9528,6 +9539,7 @@
     "setModalInPopover(boolean)": null,
     "setModalPresentationStyle(int)": null,
     "setModalTransitionStyle(int)": null,
+    "setNeedsStatusBarAppearanceUpdate()": null,
     "setPreferredDisplayMode(int)": {
       "reverse": "- (void) setPreferredDisplayMode:(UISplitViewControllerDisplayMode) preferredDisplayMode\n{\n    [self setPreferredDisplayMode___int:preferredDisplayMode];\n}\n\n",
       "super": "- (void) setPreferredDisplayMode___int:(int) preferredDisplayMode \n{\n    [super setPreferredDisplayMode:preferredDisplayMode];\n}\n\n"
@@ -10835,6 +10847,7 @@
     "beginAppearanceTransition(boolean,boolean)": null,
     "bottomLayoutGuide()": null,
     "childViewControllerContainingSegueSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "childViewControllerForStatusBarStyle()": null,
     "childViewControllers()": null,
     "contentSizeForViewInPopover()": null,
     "customizableViewControllers()": {
@@ -10885,6 +10898,7 @@
     "parentViewController()": null,
     "performSegueWithIdentifier(java.lang.String,java.lang.Object)": null,
     "preferredInterfaceOrientationForPresentation()": null,
+    "preferredStatusBarStyle()": null,
     "prefersStatusBarHidden()": null,
     "prepareForSegue(crossmobile.ios.uikit.UIStoryboardSegue,java.lang.Object)": null,
     "presentModalViewController(crossmobile.ios.uikit.UIViewController,boolean)": null,
@@ -10934,6 +10948,7 @@
     "setModalInPopover(boolean)": null,
     "setModalPresentationStyle(int)": null,
     "setModalTransitionStyle(int)": null,
+    "setNeedsStatusBarAppearanceUpdate()": null,
     "setProvidesPresentationContextTransitionStyle(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setSelectedIndex(int)": {
@@ -11821,6 +11836,7 @@
       ]
     },
     "childViewControllerContainingSegueSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "childViewControllerForStatusBarStyle()": null,
     "childViewControllers()": null,
     "commitEditingStyle(crossmobile.ios.uikit.UITableView,int,crossmobile.ios.foundation.NSIndexPath)": {
       "reverse": "- (void) tableView:(UITableView *) tableView commitEditingStyle:(UITableViewCellEditingStyle) editingStyle forRowAtIndexPath:(NSIndexPath *) indexPath\n{\n    [self commitEditingStyle___crossmobile_ios_uikit_UITableView_int_crossmobile_ios_foundation_NSIndexPath:(tableView ? tableView : JAVA_NULL) :editingStyle :(indexPath ? indexPath : JAVA_NULL)];\n}\n\n",
@@ -11934,6 +11950,7 @@
     "parentViewController()": null,
     "performSegueWithIdentifier(java.lang.String,java.lang.Object)": null,
     "preferredInterfaceOrientationForPresentation()": null,
+    "preferredStatusBarStyle()": null,
     "prefersStatusBarHidden()": null,
     "prepareForSegue(crossmobile.ios.uikit.UIStoryboardSegue,java.lang.Object)": null,
     "presentModalViewController(crossmobile.ios.uikit.UIViewController,boolean)": null,
@@ -11958,6 +11975,7 @@
     "setModalInPopover(boolean)": null,
     "setModalPresentationStyle(int)": null,
     "setModalTransitionStyle(int)": null,
+    "setNeedsStatusBarAppearanceUpdate()": null,
     "setProvidesPresentationContextTransitionStyle(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setTabBarItem(crossmobile.ios.uikit.UITabBarItem)": null,
@@ -14142,6 +14160,13 @@
         "crossmobile_ios_uikit_UIViewController"
       ]
     },
+    "childViewControllerForStatusBarStyle()": {
+      "reverse": "- (UIViewController *) childViewControllerForStatusBarStyle\n{\n    UIViewController * re$ult = [self childViewControllerForStatusBarStyle__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (UIViewController*) childViewControllerForStatusBarStyle__\n{\n    UIViewController* re$ult = [super childViewControllerForStatusBarStyle];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIViewController"
+      ]
+    },
     "childViewControllers()": {
       "reverse": "- (NSArray<__kindof UIViewController *> *) childViewControllers\n{\n    NSArray<__kindof UIViewController *> * re$ult = [self childViewControllers__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
       "super": "- (NSArray*) childViewControllers__\n{\n    NSArray* re$ult = [super childViewControllers];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
@@ -14277,6 +14302,10 @@
       "reverse": "- (UIInterfaceOrientation) preferredInterfaceOrientationForPresentation\n{\n    return [self preferredInterfaceOrientationForPresentation__];\n}\n\n",
       "super": "- (int) preferredInterfaceOrientationForPresentation__\n{\n    return [super preferredInterfaceOrientationForPresentation];\n}\n\n"
     },
+    "preferredStatusBarStyle()": {
+      "reverse": "- (UIStatusBarStyle) preferredStatusBarStyle\n{\n    return [self preferredStatusBarStyle__];\n}\n\n",
+      "super": "- (int) preferredStatusBarStyle__\n{\n    return [super preferredStatusBarStyle];\n}\n\n"
+    },
     "prefersStatusBarHidden()": {
       "reverse": "- (BOOL) prefersStatusBarHidden\n{\n    return [self prefersStatusBarHidden__];\n}\n\n",
       "super": "- (BOOL) prefersStatusBarHidden__\n{\n    return [super prefersStatusBarHidden];\n}\n\n"
@@ -14391,6 +14420,10 @@
     "setModalTransitionStyle(int)": {
       "reverse": "- (void) setModalTransitionStyle:(UIModalTransitionStyle) modalTransitionStyle\n{\n    [self setModalTransitionStyle___int:modalTransitionStyle];\n}\n\n",
       "super": "- (void) setModalTransitionStyle___int:(int) modalTransitionStyle \n{\n    [super setModalTransitionStyle:modalTransitionStyle];\n}\n\n"
+    },
+    "setNeedsStatusBarAppearanceUpdate()": {
+      "reverse": "- (void) setNeedsStatusBarAppearanceUpdate\n{\n    [self setNeedsStatusBarAppearanceUpdate__];\n}\n\n",
+      "super": "- (void) setNeedsStatusBarAppearanceUpdate__\n{\n    [super setNeedsStatusBarAppearanceUpdate];\n}\n\n"
     },
     "setProvidesPresentationContextTransitionStyle(boolean)": {
       "reverse": "- (void) setProvidesPresentationContextTransitionStyle:(BOOL) providesPresentationContextTransitionStyle\n{\n    [self setProvidesPresentationContextTransitionStyle___boolean:providesPresentationContextTransitionStyle];\n}\n\n",

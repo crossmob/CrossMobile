@@ -107,6 +107,7 @@
       ]
     },
     "childViewControllerContainingSegueSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "childViewControllerForStatusBarStyle()": null,
     "childViewControllers()": null,
     "contentSizeForViewInPopover()": null,
     "definesPresentationContext()": null,
@@ -150,6 +151,7 @@
     "popToViewController(crossmobile.ios.uikit.UIViewController,boolean)": null,
     "popViewControllerAnimated(boolean)": null,
     "preferredInterfaceOrientationForPresentation()": null,
+    "preferredStatusBarStyle()": null,
     "prefersStatusBarHidden()": null,
     "prepareForSegue(crossmobile.ios.uikit.UIStoryboardSegue,java.lang.Object)": null,
     "presentModalViewController(crossmobile.ios.uikit.UIViewController,boolean)": null,
@@ -215,6 +217,7 @@
     "setModalTransitionStyle(int)": null,
     "setNavigationBarHidden(boolean)": null,
     "setNavigationBarHidden(boolean,boolean)": null,
+    "setNeedsStatusBarAppearanceUpdate()": null,
     "setProvidesPresentationContextTransitionStyle(boolean)": null,
     "setRestorationIdentifier(java.lang.String)": null,
     "setShowsCameraControls(boolean)": {

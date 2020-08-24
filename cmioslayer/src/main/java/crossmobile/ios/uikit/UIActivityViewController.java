@@ -63,7 +63,6 @@ public class UIActivityViewController extends UIViewController {
     @Override
     public void viewDidAppear(boolean animated) {
         super.viewDidAppear(animated);
-
         Native.share().share(activityItems, null, completionWithItemsHandler);
     }
 }

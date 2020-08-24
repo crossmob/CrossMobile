@@ -174,23 +174,21 @@ public class UIWindow extends UIView {
     }
 
     @Override
-    void willAddSubview(UIView subview) {
-        if (subview != null && subview.controller != null && UIApplication.sharedApplication().keyWindow() == this) {
-            subview.controller.viewSafeAreaInsetsDidChange();
-            subview.controller.viewDidAppear(true);
-        }
-    }
-
-    @Override
     void didRemoveSubview(UIView subview) {
         if (subview != null && subview.controller != null && UIApplication.sharedApplication().keyWindow() == this)
             subview.controller.viewDidDisappear(true);
     }
 
     @Override
+    void willAddSubview(UIView subview) {
+        if (subview != null && subview.controller != null && UIApplication.sharedApplication().keyWindow() == this)
+            subview.controller.execViewWillAppear(true);
+    }
+
+    @Override
     public void didAddSubview(UIView subview) {
         if (subview != null && subview.controller != null && UIApplication.sharedApplication().keyWindow() == this)
-            subview.controller.viewDidDisappear(true);
+            subview.controller.execViewDidAppear(true);
     }
 
     final void drawWindow() {
