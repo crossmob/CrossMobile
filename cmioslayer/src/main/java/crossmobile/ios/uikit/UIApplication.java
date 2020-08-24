@@ -74,7 +74,7 @@ public class UIApplication extends UIResponder {
                 instance = SystemUtilities.safeInstantiation(UIApplication, crossmobile.ios.uikit.UIApplication.class);
             double splashWait = initSplash();
             double launchTime = System.currentTimeMillis();
-            instance.setStatusBarStyle(UIStatusBarStyle.Default);
+            UIStatusBar.getStatusBar().setStatusBarStyle(UIStatusBarStyle.Default);
             Native.graphics().refreshDisplay();
             NSTimerDelegate disableSplash = timer -> {
                 instance.windows.remove(splashWindow);
@@ -258,13 +258,9 @@ public class UIApplication extends UIResponder {
             + "                 animated:(BOOL)animated;")
     public void setStatusBarStyle(int UIStatusBarStyle, boolean animated) {
         if (STATUS_BAR_IN_APP)
-            setStatusBarStyle(UIStatusBarStyle);
+            UIStatusBar.getStatusBar().setStatusBarStyle(UIStatusBarStyle);
         else
             Native.system().error("UIApplication.setStatusBarStyle has no effect when view controllers determine the StatusBar behavior", null);
-    }
-
-    void setStatusBarStyle(int UIStatusBarStyle) {
-        UIStatusBar.getStatusBar().setStatusBarStyleDark(UIStatusBarStyle != crossmobile.ios.uikit.UIStatusBarStyle.LightContent);
     }
 
     /**
@@ -287,7 +283,7 @@ public class UIApplication extends UIResponder {
     @Deprecated
     @CMSelector("- (void)setStatusBarHidden:(BOOL)hidden animated:(BOOL)animated;")
     public void setStatusBarHidden(boolean statusbarhidden, boolean animated) {
-        UIStatusBar.getStatusBar().setStatusBarHidden(statusbarhidden, animated);
+        UIStatusBar.getStatusBar().setStatusBarHidden(statusbarhidden);
     }
 
     /**

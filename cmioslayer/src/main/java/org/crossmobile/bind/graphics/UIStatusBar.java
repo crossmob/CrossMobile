@@ -27,12 +27,12 @@ public final class UIStatusBar extends UIView {
     private static UIStatusBar statusBar = new UIStatusBar();
 
     private final GregorianCalendar cal = new GregorianCalendar();
-    private UILabel time, appname;
-    private UIImageView receptImg, wifiImg;
+    private UILabel time, appName;
+    private UIImageView receiptImg, wifiImg;
     private UIBattery battery;
     private boolean styleDark = true;
     private boolean isStyleSet = false;
-    private int recept = 5;
+    private int receipt = 5;
     private int wifi = 1;
 
     public static UIStatusBar getStatusBar() {
@@ -47,13 +47,13 @@ public final class UIStatusBar extends UIView {
         if (!required)
             return;
 
-        appname = new UILabel(new CGRect(0, 0, 200, HEIGHT - 2)); // It is visually more attractive to push labels a pixel up
-        appname.setTextColor(UIColor.colorWithWhiteAlpha(0.7, 1));
-        appname.setText(System.getProperty("cm.display.name"));
-        appname.setTextAlignment(UITextAlignment.Center);
-        appname.setFont(UIFont.boldSystemFontOfSize(14));
-        appname.setAutoresizingMask(UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight);
-        addSubview(appname);
+        appName = new UILabel(new CGRect(0, 0, 200, HEIGHT - 2)); // It is visually more attractive to push labels a pixel up
+        appName.setTextColor(UIColor.colorWithWhiteAlpha(0.7, 1));
+        appName.setText(System.getProperty("cm.display.name"));
+        appName.setTextAlignment(UITextAlignment.Center);
+        appName.setFont(UIFont.boldSystemFontOfSize(14));
+        appName.setAutoresizingMask(UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight);
+        addSubview(appName);
 
         time = new UILabel(new CGRect(132, 0, 40, HEIGHT - 2));// It is visually more attractive to push labels a pixel up
         time.setTextColor(UIColor.colorWithWhiteAlpha(0.7, 1));
@@ -62,9 +62,9 @@ public final class UIStatusBar extends UIView {
         time.setAutoresizingMask(UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleHeight);
         addSubview(time);
 
-        receptImg = new UIImageView(new CGRect(4, 4, 14, 10));
-        receptImg.setContentMode(UIViewContentMode.ScaleToFill);
-        addSubview(receptImg);
+        receiptImg = new UIImageView(new CGRect(4, 4, 14, 10));
+        receiptImg.setContentMode(UIViewContentMode.ScaleToFill);
+        addSubview(receiptImg);
 
         wifiImg = new UIImageView(new CGRect(24, 4, 11, 10));
         wifiImg.setContentMode(UIViewContentMode.ScaleToFill);
@@ -103,7 +103,7 @@ public final class UIStatusBar extends UIView {
         UIColor color = styleDark
                 ? UIColor.blackColor()
                 : UIColor.whiteColor();
-        appname.setTextColor(color);
+        appName.setTextColor(color);
         time.setTextColor(color);
 
         if (wifi == -1)
@@ -113,11 +113,11 @@ public final class UIStatusBar extends UIView {
             wifiImg.setImage(UIImage.imageWithContentsOfFile(Native.file().getSystemPrefix() + (styleDark ? Theme.Images.WIFI1_DARK[wifi] : Theme.Images.WIFI1_BRIGHT[wifi])));
         }
 
-        if (recept == -2)
-            receptImg.setHidden(true);
+        if (receipt == -2)
+            receiptImg.setHidden(true);
         else {
-            receptImg.setHidden(false);
-            receptImg.setImage(UIImage.imageWithContentsOfFile(Native.file().getSystemPrefix() + (styleDark ? Theme.Images.REC_DARK[recept + 1] : Theme.Images.REC_BRIGHT[recept + 1])));
+            receiptImg.setHidden(false);
+            receiptImg.setImage(UIImage.imageWithContentsOfFile(Native.file().getSystemPrefix() + (styleDark ? Theme.Images.REC_DARK[receipt + 1] : Theme.Images.REC_BRIGHT[receipt + 1])));
         }
 
         setNeedsDisplay();
@@ -127,12 +127,13 @@ public final class UIStatusBar extends UIView {
         return styleDark;
     }
 
-    public void setStatusBarStyleDark(boolean styleDark) {
-        if (isStyleSet && this.styleDark == styleDark)
+    public void setStatusBarStyle(int requestStyle) {
+        boolean requestDark = requestStyle != UIStatusBarStyle.LightContent;
+        if (isStyleSet && this.styleDark == requestDark)
             return;
         isStyleSet = true;
-        this.styleDark = styleDark;
-        Native.uiguidelines().setStatusBarDark(styleDark);
+        this.styleDark = requestDark;
+        Native.uiguidelines().setStatusBarDark(requestDark);
         updateStyle();
     }
 
@@ -149,13 +150,13 @@ public final class UIStatusBar extends UIView {
 
     public void setReception(float reception) {
         if (reception < -1.5)
-            recept = -2;
+            receipt = -2;
         else if (reception < 0)
-            recept = -1;
+            receipt = -1;
         else {
-            recept = (int) (reception * 6);
-            if (recept > 5)
-                recept = 5;
+            receipt = (int) (reception * 6);
+            if (receipt > 5)
+                receipt = 5;
         }
         updateStyle();
     }
@@ -173,10 +174,10 @@ public final class UIStatusBar extends UIView {
         return isHidden();
     }
 
-    public void setStatusBarHidden(boolean statusbarhidden, boolean animated) {
-        if (statusbarhidden == isHidden())
+    public void setStatusBarHidden(boolean statusBarHidden) {
+        if (statusBarHidden == isHidden())
             return;
-        setHidden(statusbarhidden);
+        setHidden(statusBarHidden);
         UIApplication app = UIApplication.sharedApplication();
         if (app == null)
             return;
@@ -247,10 +248,10 @@ public final class UIStatusBar extends UIView {
             cxt.setFillColorWithColor(color);
 
             int batterySize = (int) (rect.getSize().getWidth() * 0.9);
-            int pindiff = (int) (rect.getSize().getHeight() * 0.25);
+            int pinDiff = (int) (rect.getSize().getHeight() * 0.25);
 
             cxt.strokeRect(new CGRect(rect.getOrigin().getX(), rect.getOrigin().getY(), batterySize, rect.getSize().getHeight()));
-            cxt.fillRect(new CGRect(rect.getOrigin().getX() + batterySize, rect.getOrigin().getY() + pindiff, rect.getSize().getWidth() - batterySize, rect.getSize().getHeight() - 2 * pindiff));
+            cxt.fillRect(new CGRect(rect.getOrigin().getX() + batterySize, rect.getOrigin().getY() + pinDiff, rect.getSize().getWidth() - batterySize, rect.getSize().getHeight() - 2 * pinDiff));
             cxt.fillRect(new CGRect(rect.getOrigin().getX(), rect.getOrigin().getY(), level * batterySize, rect.getSize().getHeight()));
         }
     }

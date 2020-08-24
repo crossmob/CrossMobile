@@ -42,6 +42,7 @@ CM_EXPORT_CLASS
 - (void) setAutomaticallyAdjustsScrollViewInsets___boolean:(BOOL) automaticallyAdjustsScrollViewInsets ;
 - (BOOL) automaticallyAdjustsScrollViewInsets__;
 - (id<UILayoutSupport>) bottomLayoutGuide__;
+- (UIViewController*) childViewControllerForStatusBarHidden__;
 - (UIViewController*) childViewControllerForStatusBarStyle__;
 - (NSArray*) childViewControllers__;
 - (void) setContentSizeForViewInPopover___crossmobile_ios_coregraphics_CGSize:(crossmobile_ios_coregraphics_CGSize*) contentSizeForViewInPopover ;
@@ -68,6 +69,7 @@ CM_EXPORT_CLASS
 - (NSString*) nibName__;
 - (UIViewController*) parentViewController__;
 - (int) preferredStatusBarStyle__;
+- (BOOL) prefersStatusBarHidden__;
 - (UIViewController*) presentedViewController__;
 - (UIViewController*) presentingViewController__;
 - (void) setProvidesPresentationContextTransitionStyle___boolean:(BOOL) providesPresentationContextTransitionStyle ;
@@ -105,7 +107,6 @@ CM_EXPORT_CLASS
 - (void) loadViewIfNeeded__;
 - (void) performSegueWithIdentifier___java_lang_String_java_lang_Object:(NSString*) identifier :(id) sender ;
 - (int) preferredInterfaceOrientationForPresentation__;
-- (BOOL) prefersStatusBarHidden__;
 - (void) prepareForSegue___crossmobile_ios_uikit_UIStoryboardSegue_java_lang_Object:(UIStoryboardSegue*) segue :(id) sender ;
 - (void) presentModalViewController___crossmobile_ios_uikit_UIViewController_boolean:(UIViewController*) modalViewController :(BOOL) animated ;
 - (void) presentViewController___crossmobile_ios_uikit_UIViewController_boolean_java_lang_Runnable:(UIViewController*) viewControllerToPresent :(BOOL) flag :(id<java_lang_Runnable>) completion ;

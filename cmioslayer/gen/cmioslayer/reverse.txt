@@ -3209,6 +3209,7 @@
     "beginAppearanceTransition(boolean,boolean)": null,
     "bottomLayoutGuide()": null,
     "childViewControllerContainingSegueSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "childViewControllerForStatusBarHidden()": null,
     "childViewControllerForStatusBarStyle()": null,
     "childViewControllers()": null,
     "contentSizeForViewInPopover()": null,
@@ -3377,6 +3378,7 @@
     "beginAppearanceTransition(boolean,boolean)": null,
     "bottomLayoutGuide()": null,
     "childViewControllerContainingSegueSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "childViewControllerForStatusBarHidden()": null,
     "childViewControllerForStatusBarStyle()": null,
     "childViewControllers()": null,
     "contentSizeForViewInPopover()": null,
@@ -6611,6 +6613,7 @@
     "beginAppearanceTransition(boolean,boolean)": null,
     "bottomLayoutGuide()": null,
     "childViewControllerContainingSegueSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "childViewControllerForStatusBarHidden()": null,
     "childViewControllerForStatusBarStyle()": null,
     "childViewControllers()": null,
     "contentSizeForViewInPopover()": null,
@@ -9423,6 +9426,7 @@
     "beginAppearanceTransition(boolean,boolean)": null,
     "bottomLayoutGuide()": null,
     "childViewControllerContainingSegueSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "childViewControllerForStatusBarHidden()": null,
     "childViewControllerForStatusBarStyle()": null,
     "childViewControllers()": null,
     "contentSizeForViewInPopover()": null,
@@ -10847,6 +10851,7 @@
     "beginAppearanceTransition(boolean,boolean)": null,
     "bottomLayoutGuide()": null,
     "childViewControllerContainingSegueSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "childViewControllerForStatusBarHidden()": null,
     "childViewControllerForStatusBarStyle()": null,
     "childViewControllers()": null,
     "contentSizeForViewInPopover()": null,
@@ -11836,6 +11841,7 @@
       ]
     },
     "childViewControllerContainingSegueSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "childViewControllerForStatusBarHidden()": null,
     "childViewControllerForStatusBarStyle()": null,
     "childViewControllers()": null,
     "commitEditingStyle(crossmobile.ios.uikit.UITableView,int,crossmobile.ios.foundation.NSIndexPath)": {
@@ -14157,6 +14163,13 @@
       "super": "- (UIViewController*) childViewControllerContainingSegueSource___crossmobile_ios_uikit_UIStoryboardUnwindSegueSource:(UIStoryboardUnwindSegueSource*) source \n{\n    UIViewController* re$ult = [super childViewControllerContainingSegueSource:(source == JAVA_NULL ? nil : source)];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
       "supimport": [
         "crossmobile_ios_uikit_UIStoryboardUnwindSegueSource",
+        "crossmobile_ios_uikit_UIViewController"
+      ]
+    },
+    "childViewControllerForStatusBarHidden()": {
+      "reverse": "- (UIViewController *) childViewControllerForStatusBarHidden\n{\n    UIViewController * re$ult = [self childViewControllerForStatusBarHidden__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (UIViewController*) childViewControllerForStatusBarHidden__\n{\n    UIViewController* re$ult = [super childViewControllerForStatusBarHidden];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
         "crossmobile_ios_uikit_UIViewController"
       ]
     },

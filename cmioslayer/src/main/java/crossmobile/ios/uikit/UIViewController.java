@@ -14,6 +14,7 @@ import crossmobile.ios.foundation.NSExtensionContext;
 import org.crossmobile.bind.graphics.DrawableMetrics;
 import org.crossmobile.bind.graphics.Geometry;
 import org.crossmobile.bind.graphics.GraphicsBridgeConstants;
+import org.crossmobile.bind.graphics.UIStatusBar;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.*;
 import org.crossmobile.support.cassowary.ClVariable;
@@ -915,18 +916,6 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
     }
 
     /**
-     * Return a Boolean that shows whether the status bar of this view
-     * controller is visible.
-     *
-     * @return A Boolean that shows whether the status bar of this view
-     * controller is visible.
-     */
-    @CMSelector("- (BOOL)prefersStatusBarHidden;")
-    public boolean prefersStatusBarHidden() {
-        return false;
-    }
-
-    /**
      * Called right before the user interface begins rotating in order to notify
      * the view controller.
      *
@@ -1153,12 +1142,10 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
     @CMSelector("- (void)beginAppearanceTransition:(BOOL)isAppearing \n" +
             "                         animated:(BOOL)animated;")
     public void beginAppearanceTransition(boolean isAppearing, boolean animated) {
-
     }
 
     @CMSelector("- (void)endAppearanceTransition;")
     public void endAppearanceTransition() {
-
     }
 
     //Getting Other Related View Controllers
@@ -1227,13 +1214,44 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
         return getAncestorOf(UITabBarController.class);
     }
 
+    /**
+     * Retrieve the preferred status bar style for the view controller
+     *
+     * @return the status bar style, as in {@link UIStatusBarStyle}
+     */
     @CMGetter("@property(nonatomic, readonly) UIStatusBarStyle preferredStatusBarStyle;")
     public int preferredStatusBarStyle() {
         return UIStatusBarStyle.Default;
     }
 
+    /**
+     * The view controller who is responsible of the status bar style
+     *
+     * @return the responsible view controller, or null if the responsible view controller is this
+     * @see #preferredStatusBarStyle()
+     */
     @CMGetter("@property(nonatomic, readonly) UIViewController *childViewControllerForStatusBarStyle;")
     public UIViewController childViewControllerForStatusBarStyle() {
+        return null;
+    }
+
+    /**
+     * Retrieve whether the status bar is preferred to be hidden or not for this view controller
+     *
+     * @return true to hide the status bar, false to display the status bar
+     */
+    @CMGetter("@property(nonatomic, readonly) BOOL prefersStatusBarHidden;")
+    public boolean prefersStatusBarHidden() {
+        return false;
+    }
+
+    /**
+     * The view controller who is responsible of the status bar visibility
+     *
+     * @return the responsible view controller, or null if the responsible view controller is this
+     */
+    @CMGetter("@property(nonatomic, readonly) UIViewController *childViewControllerForStatusBarHidden;")
+    public UIViewController childViewControllerForStatusBarHidden() {
         return null;
     }
 
@@ -1245,12 +1263,19 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
                 return;
             UIWindow window = app.keyWindow();
             if (window != null) {
-                UIViewController controller = window.rootViewController();
-                if (controller != null) {
-                    UIViewController childController = controller.childViewControllerForStatusBarStyle();
-                    if (childController != null)
-                        controller = childController;
-                    app.setStatusBarStyle(controller.preferredStatusBarStyle());
+                UIViewController rootController = window.rootViewController();
+                if (rootController != null) {
+                    UIViewController target;
+
+                    target = rootController.childViewControllerForStatusBarStyle();
+                    if (target == null)
+                        target = this;
+                    UIStatusBar.getStatusBar().setStatusBarStyle(target.preferredStatusBarStyle());
+
+                    target = rootController.childViewControllerForStatusBarHidden();
+                    if (target == null)
+                        target = this;
+                    UIStatusBar.getStatusBar().setStatusBarHidden(target.prefersStatusBarHidden());
                 }
             }
         }

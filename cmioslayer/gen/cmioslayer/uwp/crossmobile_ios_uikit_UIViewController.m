@@ -80,6 +80,13 @@
     return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 
+// @property(nonatomic, readonly) UIViewController *childViewControllerForStatusBarHidden;
+- (UIViewController*) childViewControllerForStatusBarHidden__
+{
+    UIViewController* re$ult = [self childViewControllerForStatusBarHidden];
+    return [(re$ult ? re$ult : JAVA_NULL) retain];
+}
+
 // @property(nonatomic, readonly) UIViewController *childViewControllerForStatusBarStyle;
 - (UIViewController*) childViewControllerForStatusBarStyle__
 {
@@ -241,6 +248,12 @@
 - (int) preferredStatusBarStyle__
 {
     return [self preferredStatusBarStyle];
+}
+
+// @property(nonatomic, readonly) BOOL prefersStatusBarHidden;
+- (BOOL) prefersStatusBarHidden__
+{
+    return [self prefersStatusBarHidden];
 }
 
 // @property(nonatomic, readonly) UIViewController *presentedViewController;
@@ -480,12 +493,6 @@
 - (int) preferredInterfaceOrientationForPresentation__
 {
     return [self preferredInterfaceOrientationForPresentation];
-}
-
-// - (BOOL)prefersStatusBarHidden;
-- (BOOL) prefersStatusBarHidden__
-{
-    return [self prefersStatusBarHidden];
 }
 
 // - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;

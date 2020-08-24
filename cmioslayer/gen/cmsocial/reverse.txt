@@ -27,6 +27,7 @@
       ]
     },
     "childViewControllerContainingSegueSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "childViewControllerForStatusBarHidden()": null,
     "childViewControllerForStatusBarStyle()": null,
     "childViewControllers()": null,
     "configurationItems()": {
@@ -294,6 +295,7 @@
     "beginAppearanceTransition(boolean,boolean)": null,
     "bottomLayoutGuide()": null,
     "childViewControllerContainingSegueSource(crossmobile.ios.uikit.UIStoryboardUnwindSegueSource)": null,
+    "childViewControllerForStatusBarHidden()": null,
     "childViewControllerForStatusBarStyle()": null,
     "childViewControllers()": null,
     "contentSizeForViewInPopover()": null,
