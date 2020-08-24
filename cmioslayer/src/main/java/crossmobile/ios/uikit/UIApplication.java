@@ -37,8 +37,6 @@ public class UIApplication extends UIResponder {
     private final int userInterfaceLayoutDirection = Native.system().isRTL() ? UIUserInterfaceLayoutDirection.RightToLeft : UIUserInterfaceLayoutDirection.LeftToRight;
     List<UIWindow> windows;
 
-    final boolean STATUS_BAR_IN_APP = System.getProperty("cm.viewcontrolled.statusbar", "true").equals("false");
-
     /**
      * The default constructor of the UIAplication.
      */
@@ -74,7 +72,6 @@ public class UIApplication extends UIResponder {
                 instance = SystemUtilities.safeInstantiation(UIApplication, crossmobile.ios.uikit.UIApplication.class);
             double splashWait = initSplash();
             double launchTime = System.currentTimeMillis();
-            UIStatusBar.getStatusBar().setStatusBarStyle(UIStatusBarStyle.Default);
             Native.graphics().refreshDisplay();
             NSTimerDelegate disableSplash = timer -> {
                 instance.windows.remove(splashWindow);
@@ -111,7 +108,6 @@ public class UIApplication extends UIResponder {
                         System.out.println("The app delegate must implement the window field and override window() and setWindow(UIWindow window) methods if it wants to use a main storyboard file.");
                     }
                 }
-                instance.setStatusBarHidden(Boolean.getBoolean("cm.statusbar.hidden"), false); // also sets orientation
                 instance.delegate.didFinishLaunchingWithOptions(instance, Native.lifecycle().consumeLaunchOptions());
                 NSNotificationCenter.defaultCenter().postNotificationName(NSNotificationName.UIApplicationDidFinishLaunching, instance);
 
@@ -166,10 +162,10 @@ public class UIApplication extends UIResponder {
             UIWindow w = new UIWindow(UIScreen.mainScreen().bounds());
             w.setRootViewController(splash);
             w.makeKeyAndVisible();
-            instance.setStatusBarHidden(Boolean.getBoolean("cm.statusbar.hidden"), false); // also sets orientation
             splashWindow = instance.keyWindow;
             if (splashWindow == null)
                 return 0;
+            UIStatusBar.getStatusBar().setStatusBarHidden(true);
             splashWindow.addSubview(splashWindow.rootViewController().view());
             Native.graphics().relayoutMainView();
             Native.lifecycle().postOnEventThread(splashWindow.rootViewController().view()::layoutSubviews);
@@ -257,10 +253,7 @@ public class UIApplication extends UIResponder {
     @CMSelector("- (void)setStatusBarStyle:(UIStatusBarStyle)statusBarStyle \n"
             + "                 animated:(BOOL)animated;")
     public void setStatusBarStyle(int UIStatusBarStyle, boolean animated) {
-        if (STATUS_BAR_IN_APP)
-            UIStatusBar.getStatusBar().setStatusBarStyle(UIStatusBarStyle);
-        else
-            Native.system().error("UIApplication.setStatusBarStyle has no effect when view controllers determine the StatusBar behavior", null);
+        Native.system().error("UIApplication.setStatusBarStyle is deprecated and has no effect", null);
     }
 
     /**
@@ -283,7 +276,7 @@ public class UIApplication extends UIResponder {
     @Deprecated
     @CMSelector("- (void)setStatusBarHidden:(BOOL)hidden animated:(BOOL)animated;")
     public void setStatusBarHidden(boolean statusbarhidden, boolean animated) {
-        UIStatusBar.getStatusBar().setStatusBarHidden(statusbarhidden);
+        Native.system().error("UIApplication.setStatusBarHidden is deprecated and has no effect", null);
     }
 
     /**

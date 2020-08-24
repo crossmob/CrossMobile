@@ -1259,8 +1259,6 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
     public void setNeedsStatusBarAppearanceUpdate() {
         UIApplication app = UIApplication.sharedApplication();
         if (app != null) {
-            if (app.STATUS_BAR_IN_APP)
-                return;
             UIWindow window = app.keyWindow();
             if (window != null) {
                 UIViewController rootController = window.rootViewController();

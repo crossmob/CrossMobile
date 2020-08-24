@@ -42,8 +42,6 @@ public enum ParamsCommon {
     KEY_ALIAS_PASSWORD("", true, LOCAL),
     SDK_DIR(Prefs.getAndroidSDKLocation(), true, LOCAL),
 
-    STATUSBARHIDDEN("false"),
-    VIEWCONTROLLED_STATUSBAR("true"),
     FILESHARINGENABLED("false"),
     CM_OBJC_SAFEMEMBERS("true"),
     ORIENTATIONS_INITIAL("UIInterfaceOrientationPortrait"),
