@@ -3727,6 +3727,13 @@
       "super": "- (int) applicationState__\n{\n    return [super applicationState];\n}\n\n"
     },
     "becomeFirstResponder()": null,
+    "canOpenURL(crossmobile.ios.foundation.NSURL)": {
+      "reverse": "- (BOOL) canOpenURL:(NSURL *) url\n{\n    return [self canOpenURL___crossmobile_ios_foundation_NSURL:(url ? url : JAVA_NULL)];\n}\n\n",
+      "super": "- (BOOL) canOpenURL___crossmobile_ios_foundation_NSURL:(NSURL*) url \n{\n    return [super canOpenURL:(url == JAVA_NULL ? nil : url)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSURL"
+      ]
+    },
     "currentUserNotificationSettings()": {
       "reverse": "- (UIUserNotificationSettings *) currentUserNotificationSettings\n{\n    UIUserNotificationSettings * re$ult = [self currentUserNotificationSettings__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
       "super": "- (UIUserNotificationSettings*) currentUserNotificationSettings__\n{\n    UIUserNotificationSettings* re$ult = [super currentUserNotificationSettings];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",

@@ -24,7 +24,7 @@ public class NSURL extends NSObject implements NSSecureCoding {
     private final String url;
 
     static {
-        /**
+        /*
          * Here is the mother of all URL requests. Thus put this code here to
          * make sure that cookies are properly handled.
          */

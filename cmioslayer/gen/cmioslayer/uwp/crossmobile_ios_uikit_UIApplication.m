@@ -7,8 +7,11 @@
 #import "crossmobile_ios_uikit_UIApplicationDelegate.h"
 #import "crossmobile_ios_uikit_UIUserNotificationSettings.h"
 #import "crossmobile_ios_uikit_UIWindow.h"
+#import "java_lang_Boolean.h"
 #import "java_lang_Class.h"
 #import "java_util_List.h"
+#import "java_util_Map.h"
+#import "org_robovm_objc_block_VoidBlock1.h"
 
 @implementation crossmobile_ios_uikit_UIApplication$Ext
 
@@ -150,6 +153,12 @@
     return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 
+// - (BOOL)canOpenURL:(NSURL *)url;
+- (BOOL) canOpenURL___crossmobile_ios_foundation_NSURL:(NSURL*) url 
+{
+    return [self canOpenURL:(url == JAVA_NULL ? nil : url)];
+}
+
 // - (UIRemoteNotificationType)enabledRemoteNotificationTypes;
 - (int) enabledRemoteNotificationTypes__
 {
@@ -160,6 +169,16 @@
 - (BOOL) openURL___crossmobile_ios_foundation_NSURL:(NSURL*) url 
 {
     return [self openURL:(url == JAVA_NULL ? nil : url)];
+}
+
+// - (void)openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenExternalURLOptionsKey, id> *)options completionHandler:(void (^)(BOOL success))completion;
+- (void) openURL___crossmobile_ios_foundation_NSURL_java_util_Map_org_robovm_objc_block_VoidBlock1:(NSURL*) url :(NSDictionary*) options :(id<org_robovm_objc_block_VoidBlock1>) completion 
+{
+    [self openURL:(url == JAVA_NULL ? nil : url) options:(options == JAVA_NULL ? nil : options) completionHandler:(completion == JAVA_NULL ? nil : ^(BOOL success) {
+        java_lang_Boolean* success$conv = [[java_lang_Boolean alloc] initWithBool:success];
+        [completion invoke___java_lang_Object:success$conv];
+        [success$conv release];
+    })];
 }
 
 // - (void)registerForRemoteNotificationTypes:(UIRemoteNotificationType)types;

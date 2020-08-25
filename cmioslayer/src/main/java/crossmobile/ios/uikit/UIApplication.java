@@ -12,9 +12,12 @@ import org.crossmobile.bind.graphics.UIStatusBar;
 import org.crossmobile.bind.system.SystemUtilities;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.*;
+import org.crossmobile.bridge.system.BaseUtils;
+import org.robovm.objc.block.VoidBlock1;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static crossmobile.ios.uikit.UIUserNotificationType.notificationTypeToAuthorizationOption;
 
@@ -165,7 +168,7 @@ public class UIApplication extends UIResponder {
             splashWindow = instance.keyWindow;
             if (splashWindow == null)
                 return 0;
-            UIStatusBar.getStatusBar().setStatusBarHidden(true);
+//            UIStatusBar.getStatusBar().setStatusBarHidden(true);
             splashWindow.addSubview(splashWindow.rootViewController().view());
             Native.graphics().relayoutMainView();
             Native.lifecycle().postOnEventThread(splashWindow.rootViewController().view()::layoutSubviews);
@@ -362,10 +365,47 @@ public class UIApplication extends UIResponder {
     }
 
     /**
+     * Check whether a URL can be opened
+     *
+     * @param url The URL to check
+     * @return true if this URL is supported
+     */
+    @CMSelector("- (BOOL)canOpenURL:(NSURL *)url;")
+    public boolean canOpenURL(NSURL url) {
+        return url != null && Native.network().canOpenURL(url.absoluteString());
+    }
+
+    /**
+     * Opens the specific URL using the provided URL options. In any case the completion handler is called
+     * with the success code. This method returns immediately.
+     *
+     * @param url        The requested URL
+     * @param options    A Map of open options, as described {@link }
+     * @param completion Callback if the requests to open the URL was successful
+     */
+    @CMSelector("- (void)openURL:(NSURL *)url \n" +
+            "        options:(NSDictionary<UIApplicationOpenExternalURLOptionsKey, id> *)options \n" +
+            "completionHandler:(void (^)(BOOL success))completion;")
+    public void openURL(NSURL url, Map<String, Object> options, VoidBlock1<Boolean> completion) {
+        Native.lifecycle().postOnEventThread(() -> {
+            boolean result = url != null && isValidLink(options, url) && openURL(url);
+            if (completion != null)
+                completion.invoke(result);
+        });
+    }
+
+    private static boolean isValidLink(Map<String, Object> options, NSURL url) {
+        if (options != null)
+            if (BaseUtils.objectToBoolean(options.get(UIApplicationOpenExternalURLOptionsKey.UniversalLinksOnly)))
+                return Native.network().isUniversalLink(url.absoluteString());
+        return true;
+    }
+
+    /**
      * Opens the specified URL with appropriate application for this scheme.
      *
-     * @param URLWithString An object with the specified scheme for the URL.
-     * @return True if opened successfully.
+     * @param URLWithString The requested URL
+     * @return True if opened successfully
      */
     @Deprecated
     @CMSelector("- (BOOL)openURL:(NSURL *)url;")

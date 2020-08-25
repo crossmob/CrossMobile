@@ -10,6 +10,7 @@ import org.robovm.objc.block.Block0;
 
 import java.io.*;
 import java.lang.annotation.Native;
+import java.math.BigDecimal;
 import java.util.*;
 
 public class BaseUtils {
@@ -76,5 +77,18 @@ public class BaseUtils {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static boolean objectToBoolean(Object o) {
+        if (o == null)
+            return false;
+        if (o instanceof Boolean)
+            return (Boolean) o;
+        if (o instanceof Number)
+            return ((Number) o).intValue() == 1;
+        String s = o.toString().toLowerCase();
+        if (s.equals("true") || s.equals("yes"))
+            return true;
+        return new BigDecimal(s).intValue() == 1;
     }
 }

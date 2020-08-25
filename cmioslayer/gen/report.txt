@@ -590,6 +590,7 @@ crossmobile/ios/uikit/UIAppearanceContainer.class v8
 crossmobile/ios/uikit/UIApplication.class v8
 crossmobile/ios/uikit/UIApplicationDelegate.class v8
 crossmobile/ios/uikit/UIApplicationLaunchOptionsKey.class v8
+crossmobile/ios/uikit/UIApplicationOpenExternalURLOptionsKey.class v8
 crossmobile/ios/uikit/UIApplicationState.class v8
 crossmobile/ios/uikit/UIBackgroundFetchResult.class v8
 crossmobile/ios/uikit/UIBarButtonItem.class v8
@@ -962,6 +963,7 @@ crossmobile/ios/uikit/UIAppearanceContainer.java
 crossmobile/ios/uikit/UIApplication.java
 crossmobile/ios/uikit/UIApplicationDelegate.java
 crossmobile/ios/uikit/UIApplicationLaunchOptionsKey.java
+crossmobile/ios/uikit/UIApplicationOpenExternalURLOptionsKey.java
 crossmobile/ios/uikit/UIApplicationState.java
 crossmobile/ios/uikit/UIBackgroundFetchResult.java
 crossmobile/ios/uikit/UIBarButtonItem.java
@@ -1937,6 +1939,7 @@ crossmobile/ios/uikit/UIAppearanceContainer.class v8
 crossmobile/ios/uikit/UIApplication.class v8
 crossmobile/ios/uikit/UIApplicationDelegate.class v8
 crossmobile/ios/uikit/UIApplicationLaunchOptionsKey.class v8
+crossmobile/ios/uikit/UIApplicationOpenExternalURLOptionsKey.class v8
 crossmobile/ios/uikit/UIApplicationState.class v8
 crossmobile/ios/uikit/UIBackgroundFetchResult.class v8
 crossmobile/ios/uikit/UIBarButtonItem.class v8
@@ -2819,6 +2822,7 @@ crossmobile/ios/uikit/UIAppearanceContainer.class v8
 crossmobile/ios/uikit/UIApplication.class v8
 crossmobile/ios/uikit/UIApplicationDelegate.class v8
 crossmobile/ios/uikit/UIApplicationLaunchOptionsKey.class v8
+crossmobile/ios/uikit/UIApplicationOpenExternalURLOptionsKey.class v8
 crossmobile/ios/uikit/UIApplicationState.class v8
 crossmobile/ios/uikit/UIBackgroundFetchResult.class v8
 crossmobile/ios/uikit/UIBarButtonItem.class v8

@@ -291,15 +291,7 @@ public class NSUserDefaults extends NSObject {
     @CMSelector("- (BOOL)boolForKey:(NSString *)defaultName;\n"
             + "")
     public boolean boolForKey(String key) {
-        Object result = objectForKey(key);
-        if (result == null)
-            return false;
-        if (result instanceof Boolean)
-            return (Boolean) result;
-        String s = result.toString().toLowerCase();
-        if (s.equals("true") || s.equals("yes"))
-            return true;
-        return new BigDecimal(s).intValue() == 1;
+        return BaseUtils.objectToBoolean(objectForKey(key));
     }
 
     /**

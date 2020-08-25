@@ -42,7 +42,7 @@ public abstract class AbstractNetworkBridge implements NetworkBridge {
         if (uri == null)
             return cookies.getCookieStore().getCookies();
 
-        List<HttpCookie> result = new ArrayList<HttpCookie>();
+        List<HttpCookie> result = new ArrayList<>();
         String domain = uri.getHost();
         for (HttpCookie cookie : cookies.getCookieStore().getCookies())
             if (cookie.getDomain().equals(domain))

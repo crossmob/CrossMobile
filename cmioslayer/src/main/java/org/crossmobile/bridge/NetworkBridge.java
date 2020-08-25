@@ -13,7 +13,15 @@ import java.util.Collection;
 
 public interface NetworkBridge {
 
-    boolean openURL(String URLWithString);
+    default boolean canOpenURL(String url) {
+        return true;    // Should check if this URL can be opened
+    }
+
+    default boolean isUniversalLink(String url) {
+        return url.startsWith("https://");  // Should properly handle universal links
+    }
+
+    boolean openURL(String url);
 
     void initCookies();
 
@@ -24,5 +32,4 @@ public interface NetworkBridge {
     Collection<HttpCookie> getCookies(URI uri);
 
     void setCookiePolicy(CookiePolicy cookiePolicy);
-
 }

@@ -10,8 +10,11 @@
 @protocol crossmobile_ios_uikit_UIApplicationDelegate;
 @class crossmobile_ios_uikit_UIUserNotificationSettings;
 @class crossmobile_ios_uikit_UIWindow;
+@class java_lang_Boolean;
 @class java_lang_Class;
 @protocol java_util_List;
+@protocol java_util_Map;
+@protocol org_robovm_objc_block_VoidBlock1;
 
 CM_EXPORT_CLASS
 @interface crossmobile_ios_uikit_UIApplication$Ext : UIApplication
@@ -38,8 +41,10 @@ CM_EXPORT_CLASS
 - (int) statusBarStyle__;
 - (int) userInterfaceLayoutDirection__;
 - (NSArray*) windows__;
+- (BOOL) canOpenURL___crossmobile_ios_foundation_NSURL:(NSURL*) url ;
 - (int) enabledRemoteNotificationTypes__;
 - (BOOL) openURL___crossmobile_ios_foundation_NSURL:(NSURL*) url ;
+- (void) openURL___crossmobile_ios_foundation_NSURL_java_util_Map_org_robovm_objc_block_VoidBlock1:(NSURL*) url :(NSDictionary*) options :(id<org_robovm_objc_block_VoidBlock1>) completion ;
 - (void) registerForRemoteNotificationTypes___int:(int) types ;
 - (void) registerForRemoteNotifications__;
 - (void) registerUserNotificationSettings___crossmobile_ios_uikit_UIUserNotificationSettings:(UIUserNotificationSettings*) notificationSettings ;
