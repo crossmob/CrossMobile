@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.crossmobile</groupId>
         <artifactId>env</artifactId>
-        <version>3.1.0</version>
+        <version>3.2.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
