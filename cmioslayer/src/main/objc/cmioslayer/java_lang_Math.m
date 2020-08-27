@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
 #import "java_lang_Math.h"
-
+#import "java_util_Random.h"
 
 
 // java.lang.Math
@@ -15,7 +15,10 @@
 
 + (double) random__
 {
-    return (double)random()/2147483647.0;
+    static java_util_Random* random = nil;
+    if (random == nil)
+        random = [[java_util_Random alloc] __init_java_util_Random__];
+    return [random nextDouble__];
 }
 
 + (float) pow___float_float: (float) x : (float) y
@@ -88,7 +91,7 @@
 	return x < y ? y : x;
 }
 
-+ (int) max___long_long :(JAVA_LONG) x :(JAVA_LONG) y
++ (JAVA_LONG) max___long_long :(JAVA_LONG) x :(JAVA_LONG) y
 {
 	return x < y ? y : x;
 }
@@ -108,7 +111,7 @@
 	return x >  y ? y : x;
 }
 
-+ (int) min___long_long :(JAVA_LONG) x :(JAVA_LONG) y
++ (JAVA_LONG) min___long_long :(JAVA_LONG) x :(JAVA_LONG) y
 {
 	return x >  y ? y : x;
 }
