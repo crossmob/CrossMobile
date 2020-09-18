@@ -2,10 +2,31 @@
 
 Click on the version header to go to the actual commits for each release.
 
+## [v3.2.0]
+###### 2020-09-18
+
+### Added
+- Custom iOS deployment target
+- Support ViewController-based status bar visibility properties
+- Support of non-deprecated version of UIApplication.openURL
+
+### Fixed
+- Update Android target to 30
+- Optimizations on UIImageView animations
+- Support UIActivityIndicatorView animation in Interface Builder XML file
+- Soft navigation bar color follows status bar color
+- Math.random() under iOS is really random
+
+### Changed
+- Using native methods for animation synchronization & event scheduling
+- Parse XIB files only if required
+- Improved Android installing logging
+- Update minimum Java version to 15
+
 ## [v3.1.0]
 ###### 2020-08-01
 
-## Added
+### Added
 - Create transferable plugin packages
 - Installing plugin packages
 - Allow deployment of cmioslayer artifact, to make it easier to create custom plugins with full potentiality.
@@ -229,6 +250,7 @@ Click on the version header to go to the actual commits for each release.
 ### Added
 - First public source release
 
+[v3.2.0]: https://github.com/crossmob/CrossMobile/compare/v3.1.0...v3.2.0
 [v3.1.0]: https://github.com/crossmob/CrossMobile/compare/v3.0.0...v3.1.0
 [v3.0.0]: https://github.com/crossmob/CrossMobile/compare/v2.9.0...v3.0.0
 [v2.9.0]: https://github.com/crossmob/CrossMobile/compare/v2.8.2...v2.9.0

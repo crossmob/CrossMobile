@@ -2,6 +2,13 @@
 
 Click on the version header to go to the detailed ChangeLog.
 
+## [v3.2.0]
+
+- Using native methods for animation synchronization & event scheduling, making more smooth and fluid animations
+- Update Android SDK version to 30
+- Support ViewController-based status bar visibility properties
+- Various updates and bug fixes
+
 ## [v3.1.0]
 
 - Create transferable and installable plugin packages
@@ -59,6 +66,7 @@ Click on the version header to go to the detailed ChangeLog.
 ## [v2.5]
 - First public binary stable release
 
+[v3.2.0]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v320
 [v3.1.0]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v310
 [v3.0.0]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v300
 [v2.9.0]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v290
