@@ -16,7 +16,9 @@ import org.crossmobile.bridge.ann.CMClass;
 import org.crossmobile.bridge.ann.CMConstructor;
 import org.crossmobile.bridge.ann.CMGetter;
 import org.crossmobile.bridge.ann.CMSetter;
+import org.crossmobile.bridge.system.BaseUtils;
 
+import java.util.Objects;
 import java.util.Set;
 
 import static crossmobile.ios.coregraphics.GraphicsDrill.*;
@@ -174,10 +176,11 @@ public class UITextField extends UIControl implements UITextInputTraits {
      */
     @CMSetter("@property(nonatomic, copy) NSString *text;")
     public void setText(String text) {
-        Native.lifecycle().runOnEventThread(() -> {
-            widget().setText(text);
-            setNeedsDisplay();
-        });
+        if (!BaseUtils.equals(text, widget().getText()))
+            Native.lifecycle().runOnEventThread(() -> {
+                widget().setText(text);
+                setNeedsDisplay();
+            });
     }
 
     /**
@@ -302,7 +305,8 @@ public class UITextField extends UIControl implements UITextInputTraits {
      */
     @CMSetter("@property(nonatomic, copy) NSString *placeholder;")
     public void setPlaceholder(String placeholder) {
-        widget().setPlaceholder(placeholder);
+        if (!BaseUtils.equals(placeholder, widget().getPlaceholder()))
+            widget().setPlaceholder(placeholder);
     }
 
     /**

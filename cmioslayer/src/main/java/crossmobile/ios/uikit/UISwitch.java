@@ -151,6 +151,8 @@ public class UISwitch extends UIControl {
     @CMSelector("- (void)setOn:(BOOL)on \n"
             + "     animated:(BOOL)animated;")
     public void setOn(boolean on, boolean animated) {
+        if (this.on == on)
+            return;
         this.on = on;
         sliderLoc = on ? 1 : 0;
         setNeedsDisplay();

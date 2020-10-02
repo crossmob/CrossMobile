@@ -9,7 +9,6 @@ package org.crossmobile.bridge.system;
 import org.robovm.objc.block.Block0;
 
 import java.io.*;
-import java.lang.annotation.Native;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -90,5 +89,10 @@ public class BaseUtils {
         if (s.equals("true") || s.equals("yes"))
             return true;
         return new BigDecimal(s).intValue() == 1;
+    }
+
+    @SuppressWarnings("EqualsReplaceableByObjectsCall")
+    public static boolean equals(Object a, Object b) {
+        return (a == b) || (a != null && a.equals(b));
     }
 }
