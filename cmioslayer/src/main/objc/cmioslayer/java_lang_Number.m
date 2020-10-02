@@ -18,6 +18,10 @@ self = [super init]; if (self) { self.cmnumber = @(value); } return self;
     return self;
 }
 
+- (instancetype) __init_java_lang_Number__
+{
+    return [self initWithNumber:0];
+}
 
 - (const char*) objCType
 {
@@ -225,6 +229,13 @@ self = [super init]; if (self) { self.cmnumber = @(value); } return self;
 - (java_lang_String*) toString__
 {
     return [[self stringValue] retain];
+}
+
+- (int) equals___java_lang_Object: (java_lang_Object*) o
+{
+    if ([self class] != [o class])
+        return false;
+    return [self unbox] == [o unbox];
 }
 
 @end

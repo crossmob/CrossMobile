@@ -51,7 +51,7 @@ static char memberKey; // key for associative reference for member variables
 
 - (int) equals___java_lang_Object: (java_lang_Object*) o
 {
-	return [self e]== o;
+	return self == o;
 }
 
 - (int) hashCode__

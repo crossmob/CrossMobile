@@ -16,6 +16,7 @@ __declspec(dllexport)
 @end
 
 @interface NSNumber (cm_number)
+- (instancetype) __init_java_lang_Number__;
 - (char) byteValue__;
 - (short) shortValue__;
 - (int) intValue__;
