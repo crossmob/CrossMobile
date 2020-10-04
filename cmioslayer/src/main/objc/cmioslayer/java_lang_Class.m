@@ -177,4 +177,14 @@
     return c;
 }
 
+- (int) equals___java_lang_Object:(java_lang_Object*) o {
+    if (self == 0)
+        return true;
+    if (o == JAVA_NULL || o == nil)
+        return false;
+    if ([self class] != [o class])
+        return false;
+    return self->clazz == ((java_lang_Class*)o)->clazz;
+}
+
 @end
