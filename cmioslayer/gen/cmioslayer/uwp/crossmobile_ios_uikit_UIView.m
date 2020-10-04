@@ -400,6 +400,19 @@
     return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 
+// @property(nullable, nonatomic, strong) UIView *maskView;
+- (void) setMaskView___crossmobile_ios_uikit_UIView:(UIView*) maskView 
+{
+    [self setMaskView:(maskView == JAVA_NULL ? nil : maskView)];
+}
+
+// @property(nullable, nonatomic, strong) UIView *maskView;
+- (UIView*) maskView__
+{
+    UIView* re$ult = [self maskView];
+    return [(re$ult ? re$ult : JAVA_NULL) retain];
+}
+
 // @property(nonatomic, getter=isMultipleTouchEnabled) BOOL multipleTouchEnabled;
 - (void) setMultipleTouchEnabled___boolean:(BOOL) multipleTouchEnabled 
 {

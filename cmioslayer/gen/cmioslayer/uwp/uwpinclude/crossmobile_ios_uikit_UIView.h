@@ -91,6 +91,8 @@ CM_EXPORT_CLASS
 - (UILayoutGuide*) layoutMarginsGuide__;
 - (NSLayoutXAxisAnchor*) leadingAnchor__;
 - (NSLayoutXAxisAnchor*) leftAnchor__;
+- (void) setMaskView___crossmobile_ios_uikit_UIView:(UIView*) maskView ;
+- (UIView*) maskView__;
 - (void) setMultipleTouchEnabled___boolean:(BOOL) multipleTouchEnabled ;
 - (BOOL) isMultipleTouchEnabled__;
 - (void) setOpaque___boolean:(BOOL) opaque ;

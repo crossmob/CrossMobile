@@ -608,6 +608,7 @@
         "crossmobile_ios_uikit_UIView"
       ]
     },
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
@@ -721,6 +722,7 @@
         "crossmobile_ios_uikit_UIView"
       ]
     },
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMultipleTouchEnabled(boolean)": null,
     "setNeedsDisplay()": null,
     "setNeedsLayout()": null,
@@ -1005,6 +1007,7 @@
       "reverse": "- (MKMapType) mapType\n{\n    return [self mapType__];\n}\n\n",
       "super": "- (int) mapType__\n{\n    return [super mapType];\n}\n\n"
     },
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
@@ -1129,6 +1132,7 @@
       "reverse": "- (void) setMapType:(MKMapType) mapType\n{\n    [self setMapType___int:mapType];\n}\n\n",
       "super": "- (void) setMapType___int:(int) mapType \n{\n    [super setMapType:mapType];\n}\n\n"
     },
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMultipleTouchEnabled(boolean)": null,
     "setNeedsDisplay()": null,
     "setNeedsLayout()": null,
@@ -1530,6 +1534,7 @@
         "crossmobile_ios_mapkit_MKMapRect"
       ]
     },
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
@@ -1589,6 +1594,7 @@
     "setHidden(boolean)": null,
     "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMultipleTouchEnabled(boolean)": null,
     "setNeedsDisplay()": null,
     "setNeedsDisplayInMapRect(crossmobile.ios.mapkit.MKMapRect)": {
@@ -1716,6 +1722,7 @@
     "leadingAnchor()": null,
     "leftAnchor()": null,
     "leftCalloutAccessoryView()": null,
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
@@ -1774,6 +1781,7 @@
     "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
     "setLeftCalloutAccessoryView(crossmobile.ios.uikit.UIView)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMultipleTouchEnabled(boolean)": null,
     "setNeedsDisplay()": null,
     "setNeedsLayout()": null,

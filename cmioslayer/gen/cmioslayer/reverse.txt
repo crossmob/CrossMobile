@@ -2792,6 +2792,7 @@
     "layoutSubviews()": null,
     "leadingAnchor()": null,
     "leftAnchor()": null,
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "numberOfButtons()": {
@@ -2839,6 +2840,7 @@
     "setHidden(boolean)": null,
     "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMultipleTouchEnabled(boolean)": null,
     "setNeedsDisplay()": null,
     "setNeedsLayout()": null,
@@ -3095,6 +3097,7 @@
     "layoutSubviews()": null,
     "leadingAnchor()": null,
     "leftAnchor()": null,
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
@@ -3146,6 +3149,7 @@
     },
     "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMultipleTouchEnabled(boolean)": null,
     "setNeedsDisplay()": null,
     "setNeedsLayout()": null,
@@ -3576,6 +3580,7 @@
     "layoutSubviews()": null,
     "leadingAnchor()": null,
     "leftAnchor()": null,
+    "maskView()": null,
     "message()": {
       "reverse": "- (NSString *) message\n{\n    NSString * re$ult = [self message__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
       "super": "- (NSString*) message__\n{\n    NSString* re$ult = [super message];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
@@ -3630,6 +3635,7 @@
     "setHidden(boolean)": null,
     "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMessage(java.lang.String)": {
       "reverse": "- (void) setMessage:(NSString *) message\n{\n    [self setMessage___java_lang_String:(message ? message : JAVA_NULL)];\n}\n\n",
       "super": "- (void) setMessage___java_lang_String:(NSString*) message \n{\n    [super setMessage:(message == JAVA_NULL ? nil : message)];\n}\n\n",
@@ -4355,6 +4361,7 @@
     "layoutSubviews()": null,
     "leadingAnchor()": null,
     "leftAnchor()": null,
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
@@ -4433,6 +4440,7 @@
     },
     "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMultipleTouchEnabled(boolean)": null,
     "setNeedsDisplay()": null,
     "setNeedsLayout()": null,
@@ -4660,6 +4668,7 @@
     "layoutSubviews()": null,
     "leadingAnchor()": null,
     "leftAnchor()": null,
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
@@ -4724,6 +4733,7 @@
     },
     "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMultipleTouchEnabled(boolean)": null,
     "setNeedsDisplay()": null,
     "setNeedsLayout()": null,
@@ -4866,6 +4876,7 @@
         "crossmobile_ios_foundation_NSLocale"
       ]
     },
+    "maskView()": null,
     "maximumDate()": {
       "reverse": "- (NSDate *) maximumDate\n{\n    NSDate * re$ult = [self maximumDate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
       "super": "- (NSDate*) maximumDate__\n{\n    NSDate* re$ult = [super maximumDate];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
@@ -4962,6 +4973,7 @@
         "crossmobile_ios_foundation_NSLocale"
       ]
     },
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMaximumDate(crossmobile.ios.foundation.NSDate)": {
       "reverse": "- (void) setMaximumDate:(NSDate *) maximumDate\n{\n    [self setMaximumDate___crossmobile_ios_foundation_NSDate:(maximumDate ? maximumDate : JAVA_NULL)];\n}\n\n",
       "super": "- (void) setMaximumDate___crossmobile_ios_foundation_NSDate:(NSDate*) maximumDate \n{\n    [super setMaximumDate:(maximumDate == JAVA_NULL ? nil : maximumDate)];\n}\n\n",
@@ -5577,6 +5589,7 @@
     "layoutSubviews()": null,
     "leadingAnchor()": null,
     "leftAnchor()": null,
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
@@ -5645,6 +5658,7 @@
     },
     "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMultipleTouchEnabled(boolean)": null,
     "setNeedsDisplay()": null,
     "setNeedsLayout()": null,
@@ -5781,6 +5795,7 @@
       "reverse": "- (NSLineBreakMode) lineBreakMode\n{\n    return [self lineBreakMode__];\n}\n\n",
       "super": "- (int) lineBreakMode__\n{\n    return [super lineBreakMode];\n}\n\n"
     },
+    "maskView()": null,
     "minimumScaleFactor()": {
       "reverse": "- (CGFloat) minimumScaleFactor\n{\n    return [self minimumScaleFactor__];\n}\n\n",
       "super": "- (double) minimumScaleFactor__\n{\n    return [super minimumScaleFactor];\n}\n\n"
@@ -5859,6 +5874,7 @@
       "reverse": "- (void) setLineBreakMode:(NSLineBreakMode) lineBreakMode\n{\n    [self setLineBreakMode___int:lineBreakMode];\n}\n\n",
       "super": "- (void) setLineBreakMode___int:(int) lineBreakMode \n{\n    [super setLineBreakMode:lineBreakMode];\n}\n\n"
     },
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMinimumScaleFactor(double)": {
       "reverse": "- (void) setMinimumScaleFactor:(CGFloat) minimumScaleFactor\n{\n    [self setMinimumScaleFactor___double:minimumScaleFactor];\n}\n\n",
       "super": "- (void) setMinimumScaleFactor___double:(double) minimumScaleFactor \n{\n    [super setMinimumScaleFactor:minimumScaleFactor];\n}\n\n"
@@ -6424,6 +6440,7 @@
     "layoutSubviews()": null,
     "leadingAnchor()": null,
     "leftAnchor()": null,
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
@@ -6506,6 +6523,7 @@
       ]
     },
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMultipleTouchEnabled(boolean)": null,
     "setNeedsDisplay()": null,
     "setNeedsLayout()": null,
@@ -7074,6 +7092,7 @@
     "layoutSubviews()": null,
     "leadingAnchor()": null,
     "leftAnchor()": null,
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "numberOfPages()": {
@@ -7146,6 +7165,7 @@
     "setHighlighted(boolean)": null,
     "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMultipleTouchEnabled(boolean)": null,
     "setNeedsDisplay()": null,
     "setNeedsLayout()": null,
@@ -7357,6 +7377,7 @@
     "layoutSubviews()": null,
     "leadingAnchor()": null,
     "leftAnchor()": null,
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "numberOfComponents()": {
@@ -7438,6 +7459,7 @@
     "setHidden(boolean)": null,
     "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMultipleTouchEnabled(boolean)": null,
     "setNeedsDisplay()": null,
     "setNeedsLayout()": null,
@@ -7818,6 +7840,7 @@
     "layoutSubviews()": null,
     "leadingAnchor()": null,
     "leftAnchor()": null,
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
@@ -7869,6 +7892,7 @@
     "setHidden(boolean)": null,
     "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMultipleTouchEnabled(boolean)": null,
     "setNeedsDisplay()": null,
     "setNeedsLayout()": null,
@@ -8216,6 +8240,7 @@
     "layoutSubviews()": null,
     "leadingAnchor()": null,
     "leftAnchor()": null,
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
@@ -8337,6 +8362,7 @@
     },
     "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMultipleTouchEnabled(boolean)": null,
     "setNeedsDisplay()": null,
     "setNeedsLayout()": null,
@@ -8594,6 +8620,7 @@
     "layoutSubviews()": null,
     "leadingAnchor()": null,
     "leftAnchor()": null,
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
@@ -8696,6 +8723,7 @@
       "super": "- (void) setKeyboardType___int:(int) keyboardType \n{\n    [super setKeyboardType:keyboardType];\n}\n\n"
     },
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMultipleTouchEnabled(boolean)": null,
     "setNeedsDisplay()": null,
     "setNeedsLayout()": null,
@@ -8963,6 +8991,7 @@
     "layoutSubviews()": null,
     "leadingAnchor()": null,
     "leftAnchor()": null,
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "numberOfSegments()": {
@@ -9032,6 +9061,7 @@
     },
     "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMomentary(boolean)": {
       "reverse": "- (void) setMomentary:(BOOL) momentary\n{\n    [self setMomentary___boolean:momentary];\n}\n\n",
       "super": "- (void) setMomentary___boolean:(BOOL) momentary \n{\n    [super setMomentary:momentary];\n}\n\n"
@@ -9190,6 +9220,7 @@
     "layoutSubviews()": null,
     "leadingAnchor()": null,
     "leftAnchor()": null,
+    "maskView()": null,
     "maximumTrackImageForState(int)": {
       "reverse": "- (UIImage *) maximumTrackImageForState:(UIControlState) state\n{\n    UIImage * re$ult = [self maximumTrackImageForState___int:state];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
       "super": "- (UIImage*) maximumTrackImageForState___int:(int) state \n{\n    UIImage* re$ult = [super maximumTrackImageForState:state];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
@@ -9286,6 +9317,7 @@
     "setHighlighted(boolean)": null,
     "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMaximumTrackImage(crossmobile.ios.uikit.UIImage,int)": {
       "reverse": "- (void) setMaximumTrackImage:(UIImage *) image forState:(UIControlState) state\n{\n    [self setMaximumTrackImage___crossmobile_ios_uikit_UIImage_int:(image ? image : JAVA_NULL) :state];\n}\n\n",
       "super": "- (void) setMaximumTrackImage___crossmobile_ios_uikit_UIImage_int:(UIImage*) image :(int) state \n{\n    [super setMaximumTrackImage:(image == JAVA_NULL ? nil : image) forState:state];\n}\n\n",
@@ -9832,6 +9864,7 @@
     "layoutSubviews()": null,
     "leadingAnchor()": null,
     "leftAnchor()": null,
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
@@ -9895,6 +9928,7 @@
       "reverse": "- (void) setLayoutMarginsRelativeArrangement:(BOOL) layoutMarginsRelativeArrangement\n{\n    [self setLayoutMarginsRelativeArrangement___boolean:layoutMarginsRelativeArrangement];\n}\n\n",
       "super": "- (void) setLayoutMarginsRelativeArrangement___boolean:(BOOL) layoutMarginsRelativeArrangement \n{\n    [super setLayoutMarginsRelativeArrangement:layoutMarginsRelativeArrangement];\n}\n\n"
     },
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMultipleTouchEnabled(boolean)": null,
     "setNeedsDisplay()": null,
     "setNeedsLayout()": null,
@@ -10044,6 +10078,7 @@
     "layoutSubviews()": null,
     "leadingAnchor()": null,
     "leftAnchor()": null,
+    "maskView()": null,
     "maximumValue()": {
       "reverse": "- (double) maximumValue\n{\n    return [self maximumValue__];\n}\n\n",
       "super": "- (double) maximumValue__\n{\n    return [super maximumValue];\n}\n\n"
@@ -10130,6 +10165,7 @@
     },
     "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMaximumValue(double)": {
       "reverse": "- (void) setMaximumValue:(double) maximumValue\n{\n    [self setMaximumValue___double:maximumValue];\n}\n\n",
       "super": "- (void) setMaximumValue___double:(double) maximumValue \n{\n    [super setMaximumValue:maximumValue];\n}\n\n"
@@ -10415,6 +10451,7 @@
     "layoutSubviews()": null,
     "leadingAnchor()": null,
     "leftAnchor()": null,
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
@@ -10464,6 +10501,7 @@
     "setHighlighted(boolean)": null,
     "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMultipleTouchEnabled(boolean)": null,
     "setNeedsDisplay()": null,
     "setNeedsLayout()": null,
@@ -10656,6 +10694,7 @@
     "layoutSubviews()": null,
     "leadingAnchor()": null,
     "leftAnchor()": null,
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
@@ -10764,6 +10803,7 @@
       ]
     },
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMultipleTouchEnabled(boolean)": null,
     "setNeedsDisplay()": null,
     "setNeedsLayout()": null,
@@ -11315,6 +11355,7 @@
     "layoutSubviews()": null,
     "leadingAnchor()": null,
     "leftAnchor()": null,
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
@@ -11469,6 +11510,7 @@
     "setIndicatorStyle(int)": null,
     "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMultipleTouchEnabled(boolean)": null,
     "setNeedsDisplay()": null,
     "setNeedsLayout()": null,
@@ -11658,6 +11700,7 @@
     "layoutSubviews()": null,
     "leadingAnchor()": null,
     "leftAnchor()": null,
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
@@ -11738,6 +11781,7 @@
     },
     "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMultipleTouchEnabled(boolean)": null,
     "setNeedsDisplay()": null,
     "setNeedsLayout()": null,
@@ -12458,6 +12502,7 @@
     "layoutSubviews()": null,
     "leadingAnchor()": null,
     "leftAnchor()": null,
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
@@ -12553,6 +12598,7 @@
       "super": "- (void) setKeyboardType___int:(int) keyboardType \n{\n    [super setKeyboardType:keyboardType];\n}\n\n"
     },
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMultipleTouchEnabled(boolean)": null,
     "setNeedsDisplay()": null,
     "setNeedsLayout()": null,
@@ -12953,6 +12999,7 @@
     "layoutSubviews()": null,
     "leadingAnchor()": null,
     "leftAnchor()": null,
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
@@ -13035,6 +13082,7 @@
       "super": "- (void) setKeyboardType___int:(int) keyboardType \n{\n    [super setKeyboardType:keyboardType];\n}\n\n"
     },
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMultipleTouchEnabled(boolean)": null,
     "setNeedsDisplay()": null,
     "setNeedsLayout()": null,
@@ -13266,6 +13314,7 @@
     "layoutSubviews()": null,
     "leadingAnchor()": null,
     "leftAnchor()": null,
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
@@ -13327,6 +13376,7 @@
       ]
     },
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMultipleTouchEnabled(boolean)": null,
     "setNeedsDisplay()": null,
     "setNeedsLayout()": null,
@@ -13740,6 +13790,13 @@
         "crossmobile_ios_uikit_NSLayoutXAxisAnchor"
       ]
     },
+    "maskView()": {
+      "reverse": "- (UIView *) maskView\n{\n    UIView * re$ult = [self maskView__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (UIView*) maskView__\n{\n    UIView* re$ult = [super maskView];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIView"
+      ]
+    },
     "needsUpdateConstraints()": {
       "reverse": "- (BOOL) needsUpdateConstraints\n{\n    return [self needsUpdateConstraints__];\n}\n\n",
       "super": "- (BOOL) needsUpdateConstraints__\n{\n    return [super needsUpdateConstraints];\n}\n\n"
@@ -13919,6 +13976,13 @@
       "super": "- (void) setLayoutMargins___crossmobile_ios_uikit_UIEdgeInsets:(crossmobile_ios_uikit_UIEdgeInsets*) layoutMargins \n{\n    [super setLayoutMargins:[layoutMargins getUIEdgeInsets]];\n}\n\n",
       "supimport": [
         "crossmobile_ios_uikit_UIEdgeInsets"
+      ]
+    },
+    "setMaskView(crossmobile.ios.uikit.UIView)": {
+      "reverse": "- (void) setMaskView:(UIView *) maskView\n{\n    [self setMaskView___crossmobile_ios_uikit_UIView:(maskView ? maskView : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setMaskView___crossmobile_ios_uikit_UIView:(UIView*) maskView \n{\n    [super setMaskView:(maskView == JAVA_NULL ? nil : maskView)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIView"
       ]
     },
     "setMultipleTouchEnabled(boolean)": {
@@ -14763,6 +14827,7 @@
         "crossmobile_ios_foundation_NSURLRequest"
       ]
     },
+    "maskView()": null,
     "mediaPlaybackRequiresUserAction()": {
       "reverse": "- (BOOL) mediaPlaybackRequiresUserAction\n{\n    return [self mediaPlaybackRequiresUserAction__];\n}\n\n",
       "super": "- (BOOL) mediaPlaybackRequiresUserAction__\n{\n    return [super mediaPlaybackRequiresUserAction];\n}\n\n"
@@ -14829,6 +14894,7 @@
     "setHidden(boolean)": null,
     "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMediaPlaybackRequiresUserAction(boolean)": {
       "reverse": "- (void) setMediaPlaybackRequiresUserAction:(BOOL) mediaPlaybackRequiresUserAction\n{\n    [self setMediaPlaybackRequiresUserAction___boolean:mediaPlaybackRequiresUserAction];\n}\n\n",
       "super": "- (void) setMediaPlaybackRequiresUserAction___boolean:(BOOL) mediaPlaybackRequiresUserAction \n{\n    [super setMediaPlaybackRequiresUserAction:mediaPlaybackRequiresUserAction];\n}\n\n"
@@ -15010,6 +15076,7 @@
       "reverse": "- (void) makeKeyAndVisible\n{\n    [self makeKeyAndVisible__];\n}\n\n",
       "super": "- (void) makeKeyAndVisible__\n{\n    [super makeKeyAndVisible];\n}\n\n"
     },
+    "maskView()": null,
     "needsUpdateConstraints()": null,
     "nextResponder()": null,
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
@@ -15060,6 +15127,7 @@
     "setHidden(boolean)": null,
     "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
     "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
     "setMultipleTouchEnabled(boolean)": null,
     "setNeedsDisplay()": null,
     "setNeedsLayout()": null,

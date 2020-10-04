@@ -103,6 +103,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
     private int contentMode;
     private boolean multipleTouchEnabled = false;
     private CALayer layer;
+    private UIView maskView;
     private cmConstraints ARMconstraints;
     private WidgetWrapper<UIView, NativeWrapper<? extends GraphicsContext<?, ?>>, GraphicsContext<?, ?>> widget;
     // Debug variables
@@ -404,6 +405,30 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
                 setFrameImpl(frame);
                 layoutIfNeeded();
             }
+    }
+
+    /**
+     * Get the current mask view of this view.
+     *
+     * @return The mask view, could be null
+     * @see #setMaskView(UIView)
+     */
+    @CMGetter("@property(nullable, nonatomic, strong) UIView *maskView;")
+    public UIView maskView() {
+        return maskView;
+    }
+
+    /**
+     * Set the mask of the current view. Use another view, not belonging to
+     * any view hierarchy to define the mask of this view. From the mask view,
+     * only the alpha channel would be taken into account.
+     *
+     * @param maskView The new mask view, could be null
+     */
+    @CMSetter("@property(nullable, nonatomic, strong) UIView *maskView;")
+    public void setMaskView(UIView maskView) {
+        this.maskView = maskView;
+        setNeedsDisplay();
     }
 
     /**
