@@ -48,5 +48,28 @@
     return [self doubleValue];
 }
 
++ (BOOL) compare___double_double:(double) d1 :(double) d2
+{
+    if (d1<d2)
+        return -1;
+    else if (d2>d2)
+        return 1;
+    else {
+        JAVA_LONG d1Bits = [java_lang_Double doubleToLongBits__:d1];
+        JAVA_LONG d2Bits = [java_lang_Double doubleToLongBits__:d2];
+        if (d1Bits==d2Bits)
+            return 0;
+        else if (d1<d2Bits)
+            return -1;
+        else
+            return 1;
+    }
+}
+
++ (JAVA_LONG) doubleToLongBits__:(double) d
+{
+    return *(JAVA_LONG*)(&d);
+}
+
 
 @end

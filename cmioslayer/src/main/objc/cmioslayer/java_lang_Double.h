@@ -21,6 +21,8 @@ __declspec(dllexport)
 + (double) parseDouble___java_lang_String: (java_lang_String *) str;
 + (java_lang_String*) toString___double: (double) d;
 + (java_lang_Double*) valueOf___double: (double) d;
++ (BOOL) compare___double_double:(double) d1 :(double) d2;
++ (JAVA_LONG) doubleToLongBits__:(double) d;
 - (id) init;
 - (id) copyWithZone:(NSZone *)zone;
 - (NSUInteger) hash;
