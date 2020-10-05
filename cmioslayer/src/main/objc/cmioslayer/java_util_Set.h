@@ -41,7 +41,6 @@
 - (int) retainAll___java_util_Collection :(java_util_Collection*)n1;
 - (int) removeAll___java_util_Collection :(java_util_Collection*)n1;
 - (void) clear__;
-- (int) equals___java_lang_Object :(java_lang_Object*)n1;
 - (int) hashCode__;
 - (BOOL) isEqual:(id)o;
 

@@ -44,6 +44,13 @@
     return [[java_lang_Float alloc] __init_java_lang_Float___float:f];
 }
 
+- (int) equals___java_lang_Object: (java_lang_Object*) o
+{
+    if ([self class] != [o class])
+        return false;
+    return [self unbox] == [o unbox];
+}
+
 - (float) unbox
 {
     return [self floatValue];

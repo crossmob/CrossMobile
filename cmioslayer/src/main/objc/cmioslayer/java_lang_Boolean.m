@@ -72,6 +72,13 @@ static java_lang_Class* primitiveBooleanClass;
     return [java_lang_Boolean toString___boolean:[self boolValue]];
 }
 
+- (int) equals___java_lang_Object: (java_lang_Object*) o
+{
+    if ([self class] != [o class])
+        return false;
+    return [self unbox] == [o unbox];
+}
+
 - (BOOL) unbox
 {
     return [self boolValue];

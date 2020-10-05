@@ -101,6 +101,13 @@ static BOOL instanceof(id obj, const char *className) {
 	return (thisVal < anotherVal ? -1 : (thisVal == anotherVal ? 0 : 1));
 }
 
+- (int) equals___java_lang_Object: (java_lang_Object*) o
+{
+    if ([self class] != [o class])
+        return false;
+    return [self unbox] == [o unbox];
+}
+
 - (JAVA_LONG) unbox
 {
     return [self longLongValue];

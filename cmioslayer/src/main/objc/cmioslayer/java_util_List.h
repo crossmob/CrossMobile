@@ -31,8 +31,6 @@ __declspec(dllexport)
 - (int) removeAll___java_util_Collection :(java_util_Collection*)n1;
 - (int) retainAll___java_util_Collection :(java_util_Collection*)n1;
 - (void) clear__;
-- (int) equals___java_lang_Object :(java_lang_Object*)n1;
-- (int) hashCode__;
 - (java_lang_Object*) get___int :(int)n1;
 - (java_lang_Object*) set___int_java_lang_Object :(int)n1 :(java_lang_Object*)n2;
 - (void) add___int_java_lang_Object :(int)n1 :(java_lang_Object*)n2;

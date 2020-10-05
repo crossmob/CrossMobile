@@ -231,11 +231,4 @@ self = [super init]; if (self) { self.cmnumber = @(value); } return self;
     return [[self stringValue] retain];
 }
 
-- (int) equals___java_lang_Object: (java_lang_Object*) o
-{
-    if ([self class] != [o class])
-        return false;
-    return [self unbox] == [o unbox];
-}
-
 @end

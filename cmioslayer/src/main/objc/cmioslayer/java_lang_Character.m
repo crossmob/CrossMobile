@@ -85,4 +85,11 @@
     return [[NSString alloc] initWithFormat:@"%C", [self unsignedShortValue]];
 }
 
+- (int) equals___java_lang_Object: (java_lang_Object*) o
+{
+    if ([self class] != [o class])
+        return false;
+    return [self unbox] == [o unbox];
+}
+
 @end

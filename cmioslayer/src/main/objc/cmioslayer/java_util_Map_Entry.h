@@ -12,7 +12,6 @@
 __declspec(dllexport)
 #endif
 @protocol java_util_Map_Entry <NSObject>
-- (int) equals___java_lang_Object:(java_lang_Object*)o;
 - (java_lang_Object*) getKey__;
 - (java_lang_Object*) getValue__;
 - (int) hashCode__;

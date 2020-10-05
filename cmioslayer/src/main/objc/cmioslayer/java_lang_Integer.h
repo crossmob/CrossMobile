@@ -24,7 +24,6 @@ __declspec(dllexport)
 + (java_lang_Integer*) valueOf___int: (int) i;
 + (int) parseInt___java_lang_String_int:(java_lang_String *) str : (int) radix;
 - (instancetype) __init_java_lang_Integer___int :(int) i;
-- (BOOL)equals___java_lang_Object:(java_lang_Object*)anObject;
 - (int) compareTo___java_lang_Object: (java_lang_Object*) obj;
 - (int) compareTo___java_lang_Integer: (java_lang_Integer*) i;
 - (int) unbox;

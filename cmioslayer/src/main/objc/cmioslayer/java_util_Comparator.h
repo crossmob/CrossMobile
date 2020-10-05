@@ -14,7 +14,6 @@ __declspec(dllexport)
 @protocol java_util_Comparator <NSObject>
 
 - (int) compare___java_lang_Object_java_lang_Object:(java_lang_Object*)o1:(java_lang_Object*)o2;
-- (BOOL) equals___java_lang_Object:(java_lang_Object*)obj;
 
 @end
 

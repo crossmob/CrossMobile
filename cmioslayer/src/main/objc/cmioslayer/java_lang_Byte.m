@@ -34,6 +34,13 @@
     return [[java_lang_Byte alloc] initWithChar:c];
 }
 
+- (int) equals___java_lang_Object: (java_lang_Object*) o
+{
+    if ([self class] != [o class])
+        return false;
+    return [self unbox] == [o unbox];
+}
+
 - (char) unbox
 {
     return [self charValue];

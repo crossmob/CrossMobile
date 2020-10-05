@@ -58,6 +58,13 @@ static java_lang_Class* primitiveShortClass;
     return [[java_lang_Short alloc] __init_java_lang_Short___short:s];
 }
 
+- (int) equals___java_lang_Object: (java_lang_Object*) o
+{
+    if ([self class] != [o class])
+        return false;
+    return [self unbox] == [o unbox];
+}
+
 - (short) unbox
 {
     return [self shortValue];
