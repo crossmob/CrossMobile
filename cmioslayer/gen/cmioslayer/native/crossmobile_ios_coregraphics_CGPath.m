@@ -22,6 +22,15 @@
     CGPathAddArc(self->$reference, (m == JAVA_NULL ? NULL : &m$conv), x, y, radius, startAngle, endAngle, clockwise);
 }
 
+// void CGPathAddArcToPoint(CGMutablePathRef path, const CGAffineTransform *m, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat y2, CGFloat radius);
+- (void) addArcToPoint___crossmobile_ios_coregraphics_CGAffineTransform_double_double_double_double_double:(crossmobile_ios_coregraphics_CGAffineTransform*) m :(double) x1 :(double) y1 :(double) x2 :(double) y2 :(double) radius 
+{
+    CGAffineTransform m$conv;
+    if (m != JAVA_NULL)
+        m$conv = [m getCGAffineTransform];
+    CGPathAddArcToPoint(self->$reference, (m == JAVA_NULL ? NULL : &m$conv), x1, y1, x2, y2, radius);
+}
+
 // void CGPathAddCurveToPoint ( CGMutablePathRef path, const CGAffineTransform *m, CGFloat cp1x, CGFloat cp1y, CGFloat cp2x, CGFloat cp2y, CGFloat x, CGFloat y );
 - (void) addCurveToPoint___crossmobile_ios_coregraphics_CGAffineTransform_double_double_double_double_double_double:(crossmobile_ios_coregraphics_CGAffineTransform*) m :(double) cp1x :(double) cp1y :(double) cp2x :(double) cp2y :(double) x :(double) y 
 {

@@ -68,7 +68,7 @@ public class CGPath {
     }
 
     /**
-     * Applies an arc to this path.
+     * Add an arc to this path.
      *
      * @param transf     The affine transformation.
      * @param x          The x value of the end point of the curve.
@@ -101,6 +101,30 @@ public class CGPath {
             diff -= GraphicsContext._2_PI;
 
         path.arcTo(x, y, radius, startAngle, diff);
+    }
+
+    /**
+     * Add an arc with specific radius and given tangent lines
+     *
+     * @param transf The affine transformation
+     * @param x1     The x value of the point of the 1st tangent line
+     * @param y1     The y value of the point of the 1st tangent line
+     * @param x2     The x value of the point of the 2nd tangent line
+     * @param y2     The y value of the point of the 2nd tangent line
+     * @param radius The radius of the arc
+     */
+    @CMFunction("void CGPathAddArcToPoint(CGMutablePathRef path, const CGAffineTransform *m, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat y2, CGFloat radius);")
+    public void addArcToPoint(@CMParamMod(byRef = true) CGAffineTransform transf, double x1, double y1, double x2, double y2, double radius) {
+        if (transf != null) {
+            CGPoint buf = apply(transf, new CGPoint(x1, y1));
+            x1 = buf.getX();
+            y1 = buf.getY();
+            buf.set(x2, y2);
+            buf.applyAffineTransform(transf);
+            x2 = buf.getX();
+            y2 = buf.getY();
+        }
+        Native.system().notImplemented();
     }
 
     /**

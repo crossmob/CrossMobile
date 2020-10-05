@@ -518,15 +518,15 @@ public class CGContext extends CFType {
      *
      * @param x1     The x-value of the first tangent line.
      * @param y1     The y-value of the first tangent line.
-     * @param x2     The x-value of the second tangent line.
-     * @param y2     The y-value of the first tangent line.
+     * @param x2     The y-value of the first tangent line.
+     * @param y2     The x-value of the second tangent line.
      * @param radius The radius of the arc.
      */
     @CMFunction(" void CGContextAddArcToPoint ( CGContextRef c, CGFloat x1, CGFloat y1, CGFloat x2, CGFloat y2, CGFloat radius ); ")
     public void addArcToPoint(double x1, double y1, double x2, double y2, double radius) {
         if (path == null)
             beginPath();
-        Native.system().notImplemented();
+        path.addArcToPoint(null, x1, y1, x2, y2, radius);
     }
 
     /**
