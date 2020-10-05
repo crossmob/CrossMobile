@@ -71,7 +71,7 @@ public abstract class DesktopGraphicsBridge<CANVAS, NTVP, TRANSF> extends Abstra
         return backChar;
     }
 
-    public abstract void draw(CDrawable drawable, GraphicsContext<?, ?> cxt, int orientation);
+    public abstract void draw(CDrawable drawable, GraphicsContext<?> cxt, int orientation);
 
     @SuppressWarnings("UseSpecificCatch")
     public static void loadFonts() {

@@ -13,13 +13,14 @@ import crossmobile.ios.coregraphics.CGSize;
 import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.graphics.NativeBitmap;
 import org.crossmobile.bind.graphics.NativeFont;
+import org.crossmobile.bind.graphics.NativePath;
 import org.crossmobile.bridge.Native;
 
 import java.awt.*;
 import java.awt.geom.*;
 import java.util.Stack;
 
-public class SwingGraphicsContext implements GraphicsContext<SwingNativePath, AffineTransform> {
+public class SwingGraphicsContext implements GraphicsContext<AffineTransform> {
 
     private static final int UNKNOWN = -1;
     private static final int FILL = 1;
@@ -93,9 +94,9 @@ public class SwingGraphicsContext implements GraphicsContext<SwingNativePath, Af
     }
 
     @Override
-    public void drawPath(SwingNativePath path) {
+    public void drawPath(NativePath path) {
         updateColor(DRAW);
-        g2.draw(path);
+        g2.draw((SwingNativePath) path);
     }
 
     @Override
@@ -117,9 +118,9 @@ public class SwingGraphicsContext implements GraphicsContext<SwingNativePath, Af
     }
 
     @Override
-    public void fillPath(SwingNativePath path) {
+    public void fillPath(NativePath path) {
         updateColor(FILL);
-        g2.fill(path);
+        g2.fill((SwingNativePath) path);
     }
 
     @Override
@@ -171,6 +172,11 @@ public class SwingGraphicsContext implements GraphicsContext<SwingNativePath, Af
     @Override
     public void clipToRect(CGRect frame) {
         g2.clip(new Rectangle2D.Double(frame.getOrigin().getX(), frame.getOrigin().getY(), frame.getSize().getWidth(), frame.getSize().getHeight()));
+    }
+
+    @Override
+    public void clip(NativePath path) {
+        g2.clip((SwingNativePath) path);
     }
 
     @Override

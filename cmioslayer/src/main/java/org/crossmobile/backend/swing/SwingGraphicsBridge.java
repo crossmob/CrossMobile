@@ -111,7 +111,7 @@ public class SwingGraphicsBridge extends DesktopGraphicsBridge<Graphics2D, Swing
     }
 
     @Override
-    public void draw(CDrawable drawable, GraphicsContext<?, ?> cxt, int orientation) {
+    public void draw(CDrawable drawable, GraphicsContext<?> cxt, int orientation) {
         Graphics2D g = ((SwingGraphicsContext) cxt).g2;
         if ((drawable.orientation & orientation) != 0) {
             AffineTransform t = null;

@@ -9,14 +9,16 @@ package org.crossmobile.backend.android;
 import android.graphics.*;
 import android.graphics.Paint.Style;
 import crossmobile.ios.coregraphics.*;
+import org.crossmobile.backend.swing.SwingNativePath;
 import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.graphics.NativeBitmap;
 import org.crossmobile.bind.graphics.NativeFont;
+import org.crossmobile.bind.graphics.NativePath;
 import org.crossmobile.bridge.Native;
 
 import java.util.Stack;
 
-public class AndroidGraphicsContext implements GraphicsContext<AndroidNativePath, Matrix> {
+public class AndroidGraphicsContext implements GraphicsContext<Matrix> {
 
     Canvas cv;
     private final boolean isLive;
@@ -76,8 +78,8 @@ public class AndroidGraphicsContext implements GraphicsContext<AndroidNativePath
     }
 
     @Override
-    public void drawPath(AndroidNativePath path) {
-        cv.drawPath(path, draw_paint);
+    public void drawPath(NativePath path) {
+        cv.drawPath((AndroidNativePath)path, draw_paint);
     }
 
     @Override
@@ -96,8 +98,8 @@ public class AndroidGraphicsContext implements GraphicsContext<AndroidNativePath
     }
 
     @Override
-    public void fillPath(AndroidNativePath path) {
-        cv.drawPath(path, fill_paint);
+    public void fillPath(NativePath path) {
+        cv.drawPath((AndroidNativePath)path, fill_paint);
     }
 
     @Override
@@ -146,6 +148,11 @@ public class AndroidGraphicsContext implements GraphicsContext<AndroidNativePath
     @Override
     public void clipToRect(CGRect frame) {
         cv.clipRect((float) frame.getOrigin().getX(), (float) frame.getOrigin().getY(), (float) (frame.getOrigin().getX() + frame.getSize().getWidth()), (float) (frame.getOrigin().getY() + frame.getSize().getHeight()));
+    }
+
+    @Override
+    public void clip(NativePath path) {
+        cv.clipPath((AndroidNativePath)path);
     }
 
     @Override

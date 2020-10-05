@@ -19,7 +19,7 @@ import org.crossmobile.bridge.Native;
 
 public class AndroidNativeDispatcher extends NativeDispatcher<UIView, AndroidNativeWidget, MotionEvent, AndroidGraphicsContext> {
 
-    public AndroidNativeDispatcher(WidgetWrapper<UIView, AndroidNativeWidget, GraphicsContext<?, ?>> holder) {
+    public AndroidNativeDispatcher(WidgetWrapper<UIView, AndroidNativeWidget, GraphicsContext<?>> holder) {
         super(holder);
     }
 

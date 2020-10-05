@@ -2196,6 +2196,13 @@
         "java_lang_Object"
       ]
     },
+    "mask()": {
+      "reverse": "- (CALayer *) mask\n{\n    CALayer * re$ult = [self mask__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (CALayer*) mask__\n{\n    CALayer* re$ult = [super mask];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_quartzcore_CALayer"
+      ]
+    },
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
     "removeAllAnimations()": {
       "reverse": "- (void) removeAllAnimations\n{\n    [self removeAllAnimations__];\n}\n\n",
@@ -2229,6 +2236,13 @@
       "super": "- (void) setDelegate___crossmobile_ios_uikit_UIView:(UIView*) delegate \n{\n    objc_setAssociatedObject(self, @selector(setDelegate:), delegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);\n    [super setDelegate:(delegate == JAVA_NULL ? nil : delegate)];\n}\n\n",
       "supimport": [
         "java_lang_Object"
+      ]
+    },
+    "setMask(crossmobile.ios.quartzcore.CALayer)": {
+      "reverse": "- (void) setMask:(CALayer *) mask\n{\n    [self setMask___crossmobile_ios_quartzcore_CALayer:(mask ? mask : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setMask___crossmobile_ios_quartzcore_CALayer:(CALayer*) mask \n{\n    [super setMask:(mask == JAVA_NULL ? nil : mask)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_quartzcore_CALayer"
       ]
     },
     "setValueForKey(java.lang.Object,java.lang.String)": null,
@@ -2314,6 +2328,43 @@
       "reverse": "- (CFTimeInterval) timeOffset\n{\n    return [self timeOffset__];\n}\n\n",
       "super": "- (double) timeOffset__\n{\n    return [super timeOffset];\n}\n\n"
     }
+  },
+  "crossmobile.ios.quartzcore.CAShapeLayer": {
+    "addAnimation(crossmobile.ios.quartzcore.CAAnimation,java.lang.String)": null,
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "anchorPoint()": null,
+    "animationForKey(java.lang.String)": null,
+    "animationKeys()": null,
+    "delegate()": null,
+    "mask()": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "path()": {
+      "reverse": "- (CGPathRef) path\n{\n    crossmobile_ios_coregraphics_CGPath* re$ult = [self path__];\n    [re$ult autorelease];\n    return re$ult->$reference;\n}\n\n",
+      "super": "- (crossmobile_ios_coregraphics_CGPath*) path__\n{\n    return [[crossmobile_ios_coregraphics_CGPath alloc] initWithCGPath:[super path]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_coregraphics_CGPath"
+      ]
+    },
+    "removeAllAnimations()": null,
+    "removeAnimationForKey(java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "renderInContext(crossmobile.ios.coregraphics.CGContext)": null,
+    "setAnchorPoint(crossmobile.ios.coregraphics.CGPoint)": null,
+    "setDelegate(crossmobile.ios.uikit.UIView)": null,
+    "setMask(crossmobile.ios.quartzcore.CALayer)": null,
+    "setPath(crossmobile.ios.coregraphics.CGPath)": {
+      "reverse": "- (void) setPath:(CGPathRef) path\n{\n    crossmobile_ios_coregraphics_CGPath* path$conv = [[crossmobile_ios_coregraphics_CGPath alloc] initWithCGPath:path];\n    [self setPath___crossmobile_ios_coregraphics_CGPath:path$conv];\n    [path$conv release];\n}\n\n",
+      "super": "- (void) setPath___crossmobile_ios_coregraphics_CGPath:(crossmobile_ios_coregraphics_CGPath*) path \n{\n    [super setPath:path->$reference];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_coregraphics_CGPath"
+      ]
+    },
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "style()": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
   },
   "crossmobile.ios.quartzcore.CATransition": {
     "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,

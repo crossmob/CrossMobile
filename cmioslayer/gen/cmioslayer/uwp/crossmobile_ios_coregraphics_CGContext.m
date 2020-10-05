@@ -71,6 +71,12 @@
     CGContextBeginPath(self->$reference);
 }
 
+// void CGContextClip(CGContextRef c);
+- (void) clip__
+{
+    CGContextClip(self->$reference);
+}
+
 // void CGContextClipToRect ( CGContextRef c, CGRect rect );
 - (void) clipToRect___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) rect 
 {

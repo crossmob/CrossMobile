@@ -1,0 +1,19 @@
+// (c) 2020 under LGPL by CrossMobile plugin tools
+
+// crossmobile_ios_quartzcore_CAShapeLayer definition
+
+#import "xmlvm.h"
+#import <CoreGraphics/CoreGraphics.h>
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+@class crossmobile_ios_coregraphics_CGPath;
+
+@interface crossmobile_ios_quartzcore_CAShapeLayer$Ext : CAShapeLayer
+@end
+
+#define crossmobile_ios_quartzcore_CAShapeLayer CAShapeLayer
+@interface CAShapeLayer (cm_crossmobile_ios_quartzcore_CAShapeLayer)
+- (instancetype) __init_crossmobile_ios_quartzcore_CAShapeLayer__;
+- (void) setPath___crossmobile_ios_coregraphics_CGPath:(crossmobile_ios_coregraphics_CGPath*) path ;
+- (crossmobile_ios_coregraphics_CGPath*) path__;
+@end

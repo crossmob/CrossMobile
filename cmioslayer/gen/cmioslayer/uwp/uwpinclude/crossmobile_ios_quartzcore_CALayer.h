@@ -26,6 +26,8 @@ CM_EXPORT_CLASS
 - (crossmobile_ios_coregraphics_CGPoint*) anchorPoint__;
 - (void) setDelegate___crossmobile_ios_uikit_UIView:(UIView*) delegate ;
 - (id) delegate__;
+- (void) setMask___crossmobile_ios_quartzcore_CALayer:(CALayer*) mask ;
+- (CALayer*) mask__;
 - (NSDictionary*) style__;
 - (void) addAnimation___crossmobile_ios_quartzcore_CAAnimation_java_lang_String:(CAAnimation*) anim :(NSString*) key ;
 - (CAAnimation*) animationForKey___java_lang_String:(NSString*) key ;

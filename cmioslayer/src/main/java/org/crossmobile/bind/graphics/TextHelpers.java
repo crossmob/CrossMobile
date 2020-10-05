@@ -51,7 +51,7 @@ public class TextHelpers {
         String ctext;
         String lasttext;
         int idx = 0;
-        GraphicsContext<?, ?> cxt = context(UIGraphics.getCurrentContext());
+        GraphicsContext<?> cxt = context(UIGraphics.getCurrentContext());
         while (idx < words.size() && numlines > tb.lines.size()) {
             ctext = "";
             csize = null;

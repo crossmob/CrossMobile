@@ -10,7 +10,7 @@ import crossmobile.ios.coregraphics.CGAffineTransform;
 import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.coregraphics.CGSize;
 
-public interface GraphicsContext<NTVP, TRANSF> {
+public interface GraphicsContext<TRANSF> {
 
     void setAlpha(double alpha);
 
@@ -64,9 +64,11 @@ public interface GraphicsContext<NTVP, TRANSF> {
 
     void fillArc(double x, double y, double width, double height, double from, double extend);
 
-    void drawPath(NTVP path);
+    void drawPath(NativePath path);
 
-    void fillPath(NTVP path);
+    void fillPath(NativePath path);
+
+    void clip(NativePath path);
 
     void drawLinearGradient(int[] RGBcolors, double[] locations, double startPointX, double startPointY, double endPointX, double endPointY, int CGGradientDrawingOptions);
 

@@ -880,7 +880,7 @@ public class UIScrollView extends UIView {
             float c_alpha = dragging || tracking || decelerating ? 1 : flashAlpha;
             int fillColor = (int) (0xFF * c_alpha * 0.25f) << 24;
             int drawColor = ((int) (0xFF * c_alpha) << 24);
-            GraphicsContext<?, ?> ctx = context(cx);
+            GraphicsContext<?> ctx = context(cx);
             if (willShowHorizontal) {
                 double offsetCorrection = contentOffset.getX() < 0 ? -contentOffset.getX() : 0; // too small offset
                 double sizeCorrection = Math.max((contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()), contentOffset.getX() + getWidth());  // too big offset

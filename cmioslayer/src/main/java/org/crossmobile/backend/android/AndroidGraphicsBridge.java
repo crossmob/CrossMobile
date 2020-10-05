@@ -25,7 +25,7 @@ public class AndroidGraphicsBridge extends AbstractGraphicsBridge<Canvas, Androi
             SCREEN_ORIENTATION_REVERSE_PORTRAIT, SCREEN_ORIENTATION_REVERSE_LANDSCAPE, SCREEN_ORIENTATION_LANDSCAPE};
 
     @Override
-    public GraphicsContext<AndroidNativePath, Matrix> newGraphicsContext(Canvas canvas, boolean isLive) {
+    public GraphicsContext<Matrix> newGraphicsContext(Canvas canvas, boolean isLive) {
         return new AndroidGraphicsContext(canvas == null ? new Canvas() : canvas, isLive);
     }
 

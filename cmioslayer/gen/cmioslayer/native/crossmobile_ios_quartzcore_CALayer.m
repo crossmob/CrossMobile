@@ -56,6 +56,19 @@
     return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 
+// @property(strong) __kindof CALayer *mask;
+- (void) setMask___crossmobile_ios_quartzcore_CALayer:(CALayer*) mask 
+{
+    [self setMask:(mask == JAVA_NULL ? nil : mask)];
+}
+
+// @property(strong) __kindof CALayer *mask;
+- (CALayer*) mask__
+{
+    CALayer* re$ult = [self mask];
+    return [(re$ult ? re$ult : JAVA_NULL) retain];
+}
+
 // @property(copy) NSDictionary *style;
 - (NSDictionary*) style__
 {

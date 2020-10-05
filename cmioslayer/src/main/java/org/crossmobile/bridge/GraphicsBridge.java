@@ -15,7 +15,7 @@ public interface GraphicsBridge<CANVAS, NTVP, TRANSF> {
 
     void refreshDisplay();
 
-    GraphicsContext<NTVP, TRANSF> newGraphicsContext(CANVAS canvas, boolean isLive);
+    GraphicsContext<TRANSF> newGraphicsContext(CANVAS canvas, boolean isLive);
 
     CANVAS createCanvas(NativeBitmap bitmap);
 

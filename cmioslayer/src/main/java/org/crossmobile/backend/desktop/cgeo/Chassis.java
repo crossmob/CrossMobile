@@ -138,7 +138,7 @@ public class Chassis extends CSizable implements Comparable<Chassis> {
         return simulator;
     }
 
-    public void draw(GraphicsContext<?, ?> context, boolean above, int orientation) {
+    public void draw(GraphicsContext<?> context, boolean above, int orientation) {
         boolean canDraw = !above;
         for (CArea area : areas) {
             if (area == screen)

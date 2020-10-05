@@ -34,6 +34,7 @@ public class CALayer extends NSObject {
 
     private final Map<String, CAAnimation> animation;
     private WeakReference<UIView> delegateref;
+    private CALayer mask;
     CGPoint anchorPoint;
     Map<String, Object> style;
 
@@ -174,6 +175,16 @@ public class CALayer extends NSObject {
         if (style == null)
             style = new HashMap<>();
         return style;
+    }
+
+    @CMGetter("@property(strong) __kindof CALayer *mask;")
+    public CALayer mask() {
+        return mask;
+    }
+
+    @CMSetter("@property(strong) __kindof CALayer *mask;")
+    public void setMask(CALayer mask) {
+        this.mask = mask;
     }
 
     @Override

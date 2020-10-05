@@ -10,6 +10,7 @@ import crossmobile.ios.coregraphics.*;
 import crossmobile.ios.foundation.NSDate;
 import crossmobile.ios.foundation.NSTimer;
 import crossmobile.ios.quartzcore.CALayer;
+import crossmobile.ios.quartzcore.CAShapeLayer;
 import org.crossmobile.bind.graphics.*;
 import org.crossmobile.bind.system.Core;
 import org.crossmobile.bind.system.SystemUtilities;
@@ -105,7 +106,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
     private CALayer layer;
     private UIView maskView;
     private cmConstraints ARMconstraints;
-    private WidgetWrapper<UIView, NativeWrapper<? extends GraphicsContext<?, ?>>, GraphicsContext<?, ?>> widget;
+    private WidgetWrapper<UIView, NativeWrapper<? extends GraphicsContext<?>>, GraphicsContext<?>> widget;
     // Debug variables
     private boolean translatesAutoresizingMaskIntoConstraints = true;
     private boolean needsUpdateConstraints = false;
@@ -1575,6 +1576,14 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
 
         if (clipsToBounds)
             cx.clipToRect(vframe);
+        if (layer != null && layer.mask() != null) {
+            CALayer mask = layer.mask();
+            if (mask instanceof CAShapeLayer) {
+                CGPath path = ((CAShapeLayer) mask).path();
+                if (path != null)
+                    gcx.clip(GraphicsDrill.path(path));
+            }
+        }
 
         if (clearcontext && !opaque) {
             gcx.setFillColorWithColor(0xFF000000);
@@ -2488,12 +2497,12 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
     }
 
     protected final void registerWidget(WidgetWrapper<UIView, NativeWrapper<? extends
-            GraphicsContext<?, ?>>, GraphicsContext<?, ?>> peer) {
+            GraphicsContext<?>>, GraphicsContext<?>> peer) {
         this.widget = peer;
         layoutNativeFromRoot();
     }
 
-    protected final WidgetWrapper<UIView, NativeWrapper<? extends GraphicsContext<?, ?>>, GraphicsContext<?, ?>> getWidget() {
+    protected final WidgetWrapper<UIView, NativeWrapper<? extends GraphicsContext<?>>, GraphicsContext<?>> getWidget() {
         return widget;
     }
 

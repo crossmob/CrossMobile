@@ -29,6 +29,7 @@
 - (void) addRect___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) rect ;
 - (void) addRects___crossmobile_ios_coregraphics_CGRect_ARRAYTYPE:(XMLVMArray*) rects ;
 - (void) beginPath__;
+- (void) clip__;
 - (void) clipToRect___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) rect ;
 - (void) closePath__;
 - (void) concatCTM___crossmobile_ios_coregraphics_CGAffineTransform:(crossmobile_ios_coregraphics_CGAffineTransform*) transform ;

@@ -338,6 +338,19 @@ public class CGContext extends CFType {
     }
 
     /**
+     * Clip graphics context using current path. The path will be closed if it is still open.
+     */
+    @SuppressWarnings("unchecked")
+    @CMFunction("void CGContextClip(CGContextRef c);")
+    public void clip() {
+        if (path == null)
+            return;
+        closePath();
+        context.clip(path.path);
+        path = null;
+    }
+
+    /**
      * Returns the bounding box that encloses all the points of the current
      * clipping path of this graphics context.
      *

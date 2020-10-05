@@ -193,7 +193,7 @@ public class UIWindow extends UIView {
 
     final void drawWindow() {
         CGContext cgx = UIGraphics.getCurrentContext();
-        GraphicsContext<?, ?> cx = context(cgx);
+        GraphicsContext<?> cx = context(cgx);
         Native.graphics().metrics().preDraw(cx);
         AbstractGraphicsBridge.DrawingDepth = 0;
 

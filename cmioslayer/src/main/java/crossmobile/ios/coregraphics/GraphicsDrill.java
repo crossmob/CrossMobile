@@ -10,6 +10,7 @@ import crossmobile.ios.uikit.UIImage;
 import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.graphics.NativeBitmap;
 import org.crossmobile.bind.graphics.NativeFont;
+import org.crossmobile.bind.graphics.NativePath;
 import org.crossmobile.bridge.ann.CMLib;
 import org.crossmobile.bridge.ann.CMLibTarget;
 
@@ -20,7 +21,7 @@ public class GraphicsDrill {
         return c.color;
     }
 
-    public static GraphicsContext<?, ?> context(CGContext c) {
+    public static GraphicsContext<?> context(CGContext c) {
         return c.context;
     }
 
@@ -52,6 +53,10 @@ public class GraphicsDrill {
         return i.bitmap();
     }
 
+    public static NativePath path(CGPath p) {
+        return p.path;
+    }
+
     public static CGAffineTransform selfRotateScaleTranslate(CGAffineTransform self, double alpha, double sx, double sy, double dx, double dy) {
         return self.identitySelf().
                 rotateSelf(alpha).
@@ -68,7 +73,7 @@ public class GraphicsDrill {
             ((CGBitmapContext) ctx).destroy();
     }
 
-    public static CGContext convertBaseContextToCGContext(GraphicsContext<?, ?> context) {
+    public static CGContext convertBaseContextToCGContext(GraphicsContext<?> context) {
         context.setAntialias(true);
         return new CGContext(context);
     }

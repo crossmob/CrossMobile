@@ -138,11 +138,11 @@ public abstract class DrawableMetrics {
 
     public abstract int getInsetLeft();
 
-    public void preDraw(GraphicsContext<?, ?> ctx) {
+    public void preDraw(GraphicsContext<?> ctx) {
         ctx.scale(scaleOnX, scaleOnY);
     }
 
-    public void postDraw(GraphicsContext<?, ?> ctx) {
+    public void postDraw(GraphicsContext<?> ctx) {
     }
 
     protected void update() {

@@ -553,6 +553,7 @@ crossmobile/ios/quartzcore/CAAction.class v8
 crossmobile/ios/quartzcore/CAAnimation.class v8
 crossmobile/ios/quartzcore/CALayer.class v8
 crossmobile/ios/quartzcore/CAMediaTiming.class v8
+crossmobile/ios/quartzcore/CAShapeLayer.class v8
 crossmobile/ios/quartzcore/CATransition.class v8
 crossmobile/ios/quartzcore/package-info.class v8
 crossmobile/ios/uikit/NSLayoutAnchor.class v8
@@ -926,6 +927,7 @@ crossmobile/ios/quartzcore/CAAction.java
 crossmobile/ios/quartzcore/CAAnimation.java
 crossmobile/ios/quartzcore/CALayer.java
 crossmobile/ios/quartzcore/CAMediaTiming.java
+crossmobile/ios/quartzcore/CAShapeLayer.java
 crossmobile/ios/quartzcore/CATransition.java
 crossmobile/ios/quartzcore/package-info.java
 crossmobile/ios/uikit/NSLayoutAnchor.java
@@ -1432,6 +1434,7 @@ native/crossmobile_ios_quartzcore_CAAction.h
 native/crossmobile_ios_quartzcore_CAAnimation.h
 native/crossmobile_ios_quartzcore_CALayer.h
 native/crossmobile_ios_quartzcore_CAMediaTiming.h
+native/crossmobile_ios_quartzcore_CAShapeLayer.h
 native/crossmobile_ios_quartzcore_CATransition.h
 native/crossmobile_ios_uikit_NSLayoutAnchor.h
 native/crossmobile_ios_uikit_NSLayoutConstraint.h
@@ -1900,6 +1903,7 @@ crossmobile/ios/quartzcore/CAAction.class v8
 crossmobile/ios/quartzcore/CAAnimation.class v8
 crossmobile/ios/quartzcore/CALayer.class v8
 crossmobile/ios/quartzcore/CAMediaTiming.class v8
+crossmobile/ios/quartzcore/CAShapeLayer.class v8
 crossmobile/ios/quartzcore/CATransition.class v8
 crossmobile/ios/quartzcore/package-info.class v8
 crossmobile/ios/uikit/NSLayoutAnchor.class v8
@@ -2783,6 +2787,7 @@ crossmobile/ios/quartzcore/CAAction.class v8
 crossmobile/ios/quartzcore/CAAnimation.class v8
 crossmobile/ios/quartzcore/CALayer.class v8
 crossmobile/ios/quartzcore/CAMediaTiming.class v8
+crossmobile/ios/quartzcore/CAShapeLayer.class v8
 crossmobile/ios/quartzcore/CATransition.class v8
 crossmobile/ios/quartzcore/package-info.class v8
 crossmobile/ios/uikit/NSLayoutAnchor.class v8
