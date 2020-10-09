@@ -6,15 +6,12 @@
 
 package crossmobile.ios.coregraphics;
 
-import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.graphics.NativePath;
 import org.crossmobile.bridge.Native;
-import org.crossmobile.bridge.ann.CMConstructor;
-import org.crossmobile.bridge.ann.CMFunction;
-import org.crossmobile.bridge.ann.CMParamMod;
-import org.crossmobile.bridge.ann.CMReference;
+import org.crossmobile.bridge.ann.*;
 
 import static org.crossmobile.bind.graphics.Geometry.apply;
+import static org.crossmobile.bind.graphics.GraphicsContext.*;
 
 /**
  * CGPath class defines an object that represents a graphic path.
@@ -23,12 +20,27 @@ import static org.crossmobile.bind.graphics.Geometry.apply;
 public class CGPath {
 
     final NativePath path = Native.graphics().newNativePath();
+    private double lastX = 0;
+    private double lastY = 0;
+    private boolean pathStarted = false;
+    private double firstX = 0;
+    private double firstY = 0;
 
     /**
      * The default constructor of the CGPath.
      */
     @CMConstructor(" CGMutablePathRef CGPathCreateMutable ( void ); ")
     public CGPath() {
+    }
+
+    /**
+     * Return the last point of this path
+     *
+     * @return The last point
+     */
+    @CMFunction("CGPoint CGPathGetCurrentPoint(CGPathRef path);")
+    public CGPoint getCurrentPoint() {
+        return new CGPoint(lastX, lastY);
     }
 
     /**
@@ -46,15 +58,15 @@ public class CGPath {
             x = buf.getX();
             y = buf.getY();
         }
-        path.moveTo(x, y);
+        path.moveTo(lastX = x, lastY = y);
     }
 
     /**
      * Add a line segment to this path.
      *
-     * @param transf The affine transformation.
-     * @param x      The x value of the end point of the line segment.
-     * @param y      The y value of the end point of the line segment.
+     * @param transf The affine transformation
+     * @param x      The x value of the end point of the line segment
+     * @param y      The y value of the end point of the line segment
      * @see crossmobile.ios.coregraphics.CGAffineTransform
      */
     @CMFunction(" void CGPathAddLineToPoint ( CGMutablePathRef path, const CGAffineTransform *m, CGFloat x, CGFloat y ); ")
@@ -64,7 +76,49 @@ public class CGPath {
             x = buf.getX();
             y = buf.getY();
         }
-        path.lineTo(x, y);
+        if (!pathStarted) {
+            pathStarted = true;
+            firstX = lastX;
+            firstY = lastY;
+        }
+        path.lineTo(lastX = x, lastY = y);
+    }
+
+    /**
+     * Add a list of lines to the path. This is equal to add the lines one by one with {@link #addLineToPoint(CGAffineTransform, double, double)}
+     *
+     * @param transf The affine transformation
+     * @param points The list of the lines to add to this path
+     */
+    @CMFunction("void CGPathAddLines(CGMutablePathRef path, const CGAffineTransform *m, const CGPoint *points, size_t count);")
+    public void addLines(@CMParamMod(byRef = true) CGAffineTransform transf, @CMJoinMEM(memory = "points", size = "count") CGPoint... points) {
+        if (points != null && points.length > 0)
+            for (CGPoint p : points)
+                if (p != null)
+                    addLineToPoint(transf, p.getX(), p.getY());
+    }
+
+    private void addArc(NativePath path, double x, double y, double radiusX, double radiusY, double startAngle, double endAngle, boolean clockwise) {
+        if (clockwise) {
+            double swap = startAngle;
+            startAngle = endAngle;
+            endAngle = swap;
+        }
+        double diff = endAngle - startAngle;
+        if (diff < 0) {
+            diff %= _2_PI;
+            if (diff < 0)
+                diff += _2_PI;
+        }
+
+        if (!pathStarted) {
+            pathStarted = true;
+            firstX = lastX;
+            firstY = lastY;
+        }
+        lastX = x + radiusX * Math.cos(endAngle);
+        lastY = y + radiusY * Math.sin(endAngle);
+        path.arcTo(x, y, radiusX, radiusY, endAngle, -diff);
     }
 
     /**
@@ -85,23 +139,19 @@ public class CGPath {
             CGPoint buf = apply(transf, new CGPoint(x, y));
             x = buf.getX();
             y = buf.getY();
-        }
-        startAngle = -startAngle;
-        endAngle = -endAngle;
-        startAngle %= GraphicsContext._2_PI;
-        if (startAngle < 0)
-            startAngle += GraphicsContext._2_PI;
-        endAngle %= GraphicsContext._2_PI;
-        if (endAngle < 0)
-            endAngle += GraphicsContext._2_PI;
-        double diff = endAngle - startAngle;
-        if (diff < 0)
-            diff += GraphicsContext._2_PI;
-        if (!clockwise)
-            diff -= GraphicsContext._2_PI;
 
-        path.arcTo(x, y, radius, startAngle, diff);
+        }
+        addArc(path, x, y, radius, radius, startAngle, endAngle, clockwise);
     }
+
+//    @CMFunction("void CGPathAddRelativeArc(CGMutablePathRef path, const CGAffineTransform *matrix, CGFloat x, CGFloat y, CGFloat radius, CGFloat startAngle, CGFloat delta);")
+//    public void addRelativeArc(@CMParamMod(byRef = true) CGAffineTransform transf, double x, double y, double radius, double startAngle, double delta) {
+//        double s = startAngle;
+//        startAngle %= _2_PI;
+//        if (startAngle < 0)
+//            startAngle += _2_PI;
+//        addArc(transf, x, y, radius, startAngle, startAngle + (delta > 0 ? delta : -delta), delta < 0);
+//    }
 
     /**
      * Add an arc with specific radius and given tangent lines
@@ -124,7 +174,33 @@ public class CGPath {
             x2 = buf.getX();
             y2 = buf.getY();
         }
+        if (!pathStarted) {
+            lastX = x2;
+            lastY = y2;
+            return;
+        }
+
+        double thStart = Math.atan2(lastY - y1, lastX - x1);
+        double thEnd = Math.atan2(y2 - y1, x2 - x1);
+        double th = thEnd - thStart;
+        double cot = 1d / Math.tan(th / 2);
+        double fEnd = radius * cot / Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+        double fStart = radius * cot / Math.sqrt((lastX - x1) * (lastX - x1) + (lastY - y1) * (lastY - y1));
+        double ax = x1 + fStart * (lastX - x1);
+        double ay = y1 + fStart * (lastY - y1);
+        double bx = x1 + fEnd * (x2 - x1);
+        double by = y1 + fEnd * (y2 - y1);
+
+        double D = Math.sqrt((ax - x1) * (ax - x1) + (ay - y1) * (ay - y1)) / Math.cos(th / 2);
+        double oX = D * Math.cos((thStart + thEnd) / 2);
+        double oY = D * Math.sin((thStart + thEnd) / 2);
+
+
+        addLineToPoint(null, ax, ay);
+        addArc(null, oX, oY, radius, thStart, thEnd, th < 0);
+        addLineToPoint(null, x2, y2);
         Native.system().notImplemented();
+
     }
 
     /**
@@ -136,7 +212,7 @@ public class CGPath {
      * @param cp2x   The x value of the 2nd control point.
      * @param cp2y   The y value of the 2nd control point.
      * @param x      The x value of the end point of the curve.
-     * @param y      The x value of the end point of the curve.
+     * @param y      The y value of the end point of the curve.
      * @see crossmobile.ios.coregraphics.CGAffineTransform
      */
     @CMFunction(" void CGPathAddCurveToPoint ( CGMutablePathRef path, const CGAffineTransform *m, CGFloat cp1x, CGFloat cp1y, CGFloat cp2x, CGFloat cp2y, CGFloat x, CGFloat y );")
@@ -152,7 +228,12 @@ public class CGPath {
             x = p.getX();
             y = p.getY();
         }
-        path.cubicTo(cp1x, cp1y, cp2x, cp2y, x, y);
+        if (!pathStarted) {
+            pathStarted = true;
+            firstX = lastX;
+            firstY = lastY;
+        }
+        path.cubicTo(cp1x, cp1y, cp2x, cp2y, lastX = x, lastY = y);
     }
 
     /**
@@ -175,14 +256,145 @@ public class CGPath {
             x = p.getX();
             y = p.getY();
         }
-        path.quadTo(cpx, cpy, x, y);
+        if (!pathStarted) {
+            pathStarted = true;
+            firstX = lastX;
+            firstY = lastY;
+        }
+        path.quadTo(cpx, cpy, lastX = x, lastY = y);
     }
+
+    /**
+     * Add a rectangular area to this path
+     *
+     * @param transf The affine transformation
+     * @param rect   the rectangle to add to this path
+     */
+    @CMFunction("void CGPathAddRect(CGMutablePathRef path, const CGAffineTransform *m, CGRect rect);")
+    public void addRect(@CMParamMod(byRef = true) CGAffineTransform transf, CGRect rect) {
+        double x1 = rect.getOrigin().getX();
+        double y1 = rect.getOrigin().getY();
+        double x3 = x1 + rect.getSize().getWidth();
+        double y3 = y1 + rect.getSize().getHeight();
+        double x2 = x3;
+        double y2 = y1;
+        double x4 = x1;
+        double y4 = y3;
+        if (transf != null) {
+            CGPoint b = apply(transf, new CGPoint(x1, y1));
+            x1 = b.getX();
+            y1 = b.getY();
+
+            b.set(x2, y2);
+            apply(transf, b);
+            x2 = b.getX();
+            y2 = b.getY();
+
+            b.set(x3, y3);
+            apply(transf, b);
+            x3 = b.getX();
+            y3 = b.getY();
+
+            b.set(x4, y4);
+            apply(transf, b);
+            x4 = b.getX();
+            y4 = b.getY();
+        }
+        moveToPoint(null, x1, y1);
+        addLineToPoint(null, x2, y2);
+        addLineToPoint(null, x3, y3);
+        addLineToPoint(null, x4, y4);
+        closeSubpath();
+    }
+
+    /**
+     * Add a list of rectangles to this path. This is equal to add the rectangles one by one with
+     * {@link #addRect(CGAffineTransform, CGRect)}
+     *
+     * @param transf The affine transformation
+     * @param rects  The list of rectangles
+     */
+    @CMFunction("void CGPathAddRects(CGMutablePathRef path, const CGAffineTransform *m, const CGRect *rects, size_t count);")
+    public void addRects(@CMParamMod(byRef = true) CGAffineTransform transf, @CMJoinMEM(memory = "rects", size = "count") CGRect... rects) {
+        if (rects != null)
+            for (CGRect rect : rects)
+                if (rect != null)
+                    addRect(transf, rect);
+    }
+
+    /**
+     * @param transf       The affine transformation
+     * @param rect         The rectangle to add to this path
+     * @param cornerWidth  The width of the rounded corner
+     * @param cornerHeight The hight of the rounded corner
+     */
+    @CMFunction("void CGPathAddRoundedRect(CGMutablePathRef path, const CGAffineTransform *transform, CGRect rect, CGFloat cornerWidth, CGFloat cornerHeight);")
+    public void addRoundedRect(@CMParamMod(byRef = true) CGAffineTransform transf, CGRect rect, double cornerWidth, double cornerHeight) {
+        double xLeft = rect.getOrigin().getX();
+        double yTop = rect.getOrigin().getY();
+        double xRight = xLeft + rect.getSize().getWidth();
+        double yBottom = yTop + rect.getSize().getHeight();
+        lastX = xLeft;
+        lastY = yTop;
+        NativePath c = transf == null ? this.path : Native.graphics().newNativePath();
+        c.moveTo(xRight - cornerWidth, yTop);
+        c.lineTo(xLeft + cornerWidth, yTop);
+        addArc(c, xLeft + cornerWidth, yTop + cornerHeight, cornerWidth, cornerHeight, _3_PI_2, _PI, true);
+        c.lineTo(xLeft, yBottom - cornerHeight);
+        addArc(c, xLeft + cornerWidth, yBottom - cornerHeight, cornerWidth, cornerHeight, _PI, _PI_2, true);
+        c.lineTo(xRight - cornerWidth, yBottom);
+        addArc(c, xRight - cornerWidth, yBottom - cornerHeight, cornerWidth, cornerHeight, _PI_2, 0d, true);
+        c.lineTo(xRight, yTop + cornerHeight);
+        addArc(c, xRight - cornerWidth, yTop + cornerHeight, cornerWidth, cornerHeight, 0d, -_PI_2, true);
+        c.close();
+        if (c != this.path) path.addPath(c, transf);
+    }
+
+    /**
+     * Add an ellipse to this path
+     *
+     * @param transf The affine transformation
+     * @param rect   The bounding box which defines this ellipse
+     */
+    @CMFunction("void CGPathAddEllipseInRect(CGMutablePathRef path, const CGAffineTransform *m, CGRect rect);")
+    public void addEllipseInRect(@CMParamMod(byRef = true) CGAffineTransform transf, CGRect rect) {
+        CGPoint p = new CGPoint(rect.getOrigin().getX(), rect.getOrigin().getY() + rect.getSize().getHeight() / 2);
+        if (transf != null)
+            p.applyAffineTransform(transf);
+        lastX = p.getX();
+        lastY = p.getY();
+
+        NativePath c = transf == null ? this.path : Native.graphics().newNativePath();
+        c.addEllipse(rect.getOrigin().getX(), rect.getOrigin().getY(), rect.getSize().getWidth(), rect.getSize().getHeight());
+        if (c != this.path) path.addPath(c, transf);
+    }
+
+    /**
+     * Add another path to this path
+     *
+     * @param transf The affine transformation
+     * @param path2  The new path to add to this path
+     */
+    @CMFunction("void CGPathAddPath(CGMutablePathRef path1, const CGAffineTransform *m, CGPathRef path2);")
+    public void addPath(@CMParamMod(byRef = true) CGAffineTransform transf, CGPath path2) {
+        if (path2 != null) {
+            path.addPath(path2.path, transf);
+            lastX = path2.lastX;
+            lastY = path2.lastY;
+        }
+    }
+
 
     /**
      * Closes a subpath.
      */
     @CMFunction(" void CGPathCloseSubpath ( CGMutablePathRef path ); ")
     public void closeSubpath() {
+        if (pathStarted) {
+            lastX = firstX;
+            lastY = firstY;
+            pathStarted = false;
+        }
         path.close();
     }
 }

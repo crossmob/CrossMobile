@@ -9,6 +9,7 @@
 #import "crossmobile_ios_coregraphics_CGFont.h"
 #import "crossmobile_ios_coregraphics_CGGradient.h"
 #import "crossmobile_ios_coregraphics_CGImage.h"
+#import "crossmobile_ios_coregraphics_CGPath.h"
 #import "crossmobile_ios_coregraphics_CGPoint.h"
 #import "crossmobile_ios_coregraphics_CGRect.h"
 #import "crossmobile_ios_coregraphics_CGSize.h"
@@ -45,6 +46,12 @@
 - (void) addLines___crossmobile_ios_coregraphics_CGPoint_ARRAYTYPE:(XMLVMArray*) points 
 {
     CGContextAddLines(self->$reference, (points == JAVA_NULL ? NULL : points->array.data), (points == JAVA_NULL ? 0 : points->length));
+}
+
+// void CGContextAddPath(CGContextRef c, CGPathRef path);
+- (void) addPath___crossmobile_ios_coregraphics_CGPath:(crossmobile_ios_coregraphics_CGPath*) path 
+{
+    CGContextAddPath(self->$reference, path->$reference);
 }
 
 // void CGContextAddQuadCurveToPoint ( CGContextRef c, CGFloat cpx, CGFloat cpy, CGFloat x, CGFloat y );

@@ -6,7 +6,11 @@
 
 package org.crossmobile.bind.graphics;
 
+import crossmobile.ios.coregraphics.CGAffineTransform;
+
 public interface NativePath {
+
+    void addPath(NativePath path, CGAffineTransform transform);
 
     void moveTo(double x, double y);
 
@@ -18,5 +22,8 @@ public interface NativePath {
 
     void cubicTo(double cp1x, double cp1y, double cp2x, double cp2y, double x, double y);
 
-    void arcTo(double x, double y, double radius, double startAngle, double extend);
+    void arcTo(double x, double y, double xRadius, double yRadius, double startAngle, double extend);
+
+    void addEllipse(double x, double y, double width, double height);
+
 }

@@ -138,7 +138,7 @@ public class SwingGraphicsContext implements GraphicsContext<AffineTransform> {
     @Override
     public void fillArc(double x, double y, double width, double height, double from, double extend) {
         updateColor(FILL);
-        g2.fill(new Arc2D.Double(x, y, width, height, from * PI_TO_DEG, extend * PI_TO_DEG, Arc2D.Double.PIE));
+        g2.fill(new Arc2D.Double(x, y, width, height, from * PI_TO_DEG, extend * PI_TO_DEG, Arc2D.CHORD));
     }
 
     @Override

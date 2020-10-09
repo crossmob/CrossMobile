@@ -13,6 +13,7 @@
 @class crossmobile_ios_coregraphics_CGFont;
 @class crossmobile_ios_coregraphics_CGGradient;
 @class crossmobile_ios_coregraphics_CGImage;
+@class crossmobile_ios_coregraphics_CGPath;
 @class crossmobile_ios_coregraphics_CGPoint;
 @class crossmobile_ios_coregraphics_CGRect;
 @class crossmobile_ios_coregraphics_CGSize;
@@ -26,6 +27,7 @@ CM_EXPORT_CLASS
 - (void) addCurveToPoint___double_double_double_double_double_double:(double) cp1x :(double) cp1y :(double) cp2x :(double) cp2y :(double) x :(double) y ;
 - (void) addLineToPoint___double_double:(double) x :(double) y ;
 - (void) addLines___crossmobile_ios_coregraphics_CGPoint_ARRAYTYPE:(XMLVMArray*) points ;
+- (void) addPath___crossmobile_ios_coregraphics_CGPath:(crossmobile_ios_coregraphics_CGPath*) path ;
 - (void) addQuadCurveToPoint___double_double_double_double:(double) cpx :(double) cpy :(double) x :(double) y ;
 - (void) addRect___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) rect ;
 - (void) addRects___crossmobile_ios_coregraphics_CGRect_ARRAYTYPE:(XMLVMArray*) rects ;

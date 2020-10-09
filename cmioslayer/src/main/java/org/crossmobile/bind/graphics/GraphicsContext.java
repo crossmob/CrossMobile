@@ -153,10 +153,10 @@ public interface GraphicsContext<TRANSF> {
     /**
      * Math constants
      */
-    double _PI_2 = (Math.PI / 2);
+    double _PI_2 = Math.PI / 2d;
     double _PI = Math.PI;
-    double _3_PI_2 = (3 * Math.PI / 2);
-    double _2_PI = (2 * Math.PI);
-    double PI_TO_DEG = (180 / Math.PI);
+    double _3_PI_2 = 3d * Math.PI / 2d;
+    double _2_PI = 2d * Math.PI;
+    double PI_TO_DEG = 180d / Math.PI;
 
 }

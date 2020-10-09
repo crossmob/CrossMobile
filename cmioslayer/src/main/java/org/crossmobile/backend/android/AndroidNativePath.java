@@ -8,11 +8,22 @@ package org.crossmobile.backend.android;
 
 import android.graphics.Path;
 import android.graphics.RectF;
+import crossmobile.ios.coregraphics.CGAffineTransform;
 import org.crossmobile.bind.graphics.NativePath;
+import org.crossmobile.bridge.Native;
 
 import static org.crossmobile.bind.graphics.GraphicsContext.PI_TO_DEG;
+import static org.crossmobile.bind.graphics.GraphicsContext._2_PI;
 
-public class AndroidNativePath extends Path implements NativePath {
+public final class AndroidNativePath extends Path implements NativePath {
+
+    @Override
+    public void addPath(NativePath path, CGAffineTransform transform) {
+        if (transform == null)
+            addPath((Path) path);
+        else
+            addPath((Path) path, ((AndroidGraphicsBridge) Native.graphics()).targetToNative(transform, null));
+    }
 
     @Override
     public void moveTo(double x, double y) {
@@ -35,7 +46,15 @@ public class AndroidNativePath extends Path implements NativePath {
     }
 
     @Override
-    public void arcTo(double x, double y, double radius, double startAngle, double extend) {
-        arcTo(new RectF((float) (x - radius), (float) (y - radius), (float) (x + radius), (float) (y + radius)), (float) (-startAngle * PI_TO_DEG), (float) (-extend * PI_TO_DEG));
+    public void arcTo(double x, double y, double xRadius, double yRadius, double startAngle, double extend) {
+        if ((float) extend >= (float) _2_PI) // have to do this since there's a bug in Android code
+            addEllipse(x - xRadius, y - yRadius, xRadius * 2, yRadius * 2);
+        else
+            arcTo(new RectF((float) (x - xRadius), (float) (y - yRadius), (float) (x + xRadius), (float) (y + yRadius)), (float) (startAngle * PI_TO_DEG), (float) (extend * PI_TO_DEG));
+    }
+
+    @Override
+    public void addEllipse(double x, double y, double width, double height) {
+        addOval((float) x, (float) y, (float) (x + width), (float) (y + height), Direction.CW);
     }
 }

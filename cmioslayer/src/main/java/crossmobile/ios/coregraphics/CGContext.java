@@ -659,7 +659,6 @@ public class CGContext extends CFType {
     /**
      * Fills with color the current path using non-zero winding rule.
      */
-    @SuppressWarnings("unchecked")
     @CMFunction(" void CGContextFillPath ( CGContextRef c ); ")
     public void fillPath() {
         if (path == null)
@@ -672,7 +671,6 @@ public class CGContext extends CFType {
     /**
      * Paints a line within the current path.
      */
-    @SuppressWarnings("unchecked")
     @CMFunction(" void CGContextStrokePath ( CGContextRef c ); ")
     public void strokePath() {
         if (path == null)
@@ -680,6 +678,17 @@ public class CGContext extends CFType {
 //        closePath();
         context.drawPath(path.path);
         path = null;
+    }
+
+    /**
+     * Add a new path to current path
+     * @param path The path to add
+     */
+    @CMFunction("void CGContextAddPath(CGContextRef c, CGPathRef path);")
+    public void addPath(CGPath path) {
+        if (this.path == null)
+            beginPath();
+        this.path.addPath(null, path);
     }
 
     /**
