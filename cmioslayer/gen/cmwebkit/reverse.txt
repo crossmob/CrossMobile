@@ -1,0 +1,773 @@
+{
+  "crossmobile.ios.webkit.WKBackForwardList": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "backItem()": {
+      "reverse": "- (WKBackForwardListItem *) backItem\n{\n    WKBackForwardListItem * re$ult = [self backItem__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (WKBackForwardListItem*) backItem__\n{\n    WKBackForwardListItem* re$ult = [super backItem];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKBackForwardListItem"
+      ]
+    },
+    "backList()": {
+      "reverse": "- (NSArray<WKBackForwardListItem *> *) backList\n{\n    NSArray<WKBackForwardListItem *> * re$ult = [self backList__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSArray*) backList__\n{\n    NSArray* re$ult = [super backList];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
+    },
+    "currentItem()": {
+      "reverse": "- (WKBackForwardListItem *) currentItem\n{\n    WKBackForwardListItem * re$ult = [self currentItem__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (WKBackForwardListItem*) currentItem__\n{\n    WKBackForwardListItem* re$ult = [super currentItem];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKBackForwardListItem"
+      ]
+    },
+    "forwardItem()": {
+      "reverse": "- (WKBackForwardListItem *) forwardItem\n{\n    WKBackForwardListItem * re$ult = [self forwardItem__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (WKBackForwardListItem*) forwardItem__\n{\n    WKBackForwardListItem* re$ult = [super forwardItem];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKBackForwardListItem"
+      ]
+    },
+    "forwardList()": {
+      "reverse": "- (NSArray<WKBackForwardListItem *> *) forwardList\n{\n    NSArray<WKBackForwardListItem *> * re$ult = [self forwardList__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSArray*) forwardList__\n{\n    NSArray* re$ult = [super forwardList];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_util_List"
+      ]
+    },
+    "itemAtIndex(int)": {
+      "reverse": "- (WKBackForwardListItem *) itemAtIndex:(NSInteger) index\n{\n    WKBackForwardListItem * re$ult = [self itemAtIndex___int:index];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (WKBackForwardListItem*) itemAtIndex___int:(int) index \n{\n    WKBackForwardListItem* re$ult = [super itemAtIndex:index];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKBackForwardListItem"
+      ]
+    },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
+  },
+  "crossmobile.ios.webkit.WKBackForwardListItem": {
+    "URL()": {
+      "reverse": "- (NSURL *) URL\n{\n    NSURL * re$ult = [self URL__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSURL*) URL__\n{\n    NSURL* re$ult = [super URL];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSURL"
+      ]
+    },
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "initialURL()": {
+      "reverse": "- (NSURL *) initialURL\n{\n    NSURL * re$ult = [self initialURL__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSURL*) initialURL__\n{\n    NSURL* re$ult = [super initialURL];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSURL"
+      ]
+    },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "title()": {
+      "reverse": "- (NSString *) title\n{\n    NSString * re$ult = [self title__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) title__\n{\n    NSString* re$ult = [super title];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
+  },
+  "crossmobile.ios.webkit.WKFrameInfo": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "isMainFrame()": {
+      "reverse": "- (BOOL) isMainFrame\n{\n    return [self isMainFrame__];\n}\n\n",
+      "super": "- (BOOL) isMainFrame__\n{\n    return [super isMainFrame];\n}\n\n"
+    },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "request()": {
+      "reverse": "- (NSURLRequest *) request\n{\n    NSURLRequest * re$ult = [self request__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSURLRequest*) request__\n{\n    NSURLRequest* re$ult = [super request];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSURLRequest"
+      ]
+    },
+    "securityOrigin()": {
+      "reverse": "- (WKSecurityOrigin *) securityOrigin\n{\n    WKSecurityOrigin * re$ult = [self securityOrigin__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (WKSecurityOrigin*) securityOrigin__\n{\n    WKSecurityOrigin* re$ult = [super securityOrigin];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKSecurityOrigin"
+      ]
+    },
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null,
+    "webView()": {
+      "reverse": "- (WKWebView *) webView\n{\n    WKWebView * re$ult = [self webView__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (WKWebView*) webView__\n{\n    WKWebView* re$ult = [super webView];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKWebView"
+      ]
+    }
+  },
+  "crossmobile.ios.webkit.WKNavigation": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
+  },
+  "crossmobile.ios.webkit.WKNavigationAction": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "request()": {
+      "reverse": "- (NSURLRequest *) request\n{\n    NSURLRequest * re$ult = [self request__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSURLRequest*) request__\n{\n    NSURLRequest* re$ult = [super request];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSURLRequest"
+      ]
+    },
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "sourceFrame()": {
+      "reverse": "- (WKFrameInfo *) sourceFrame\n{\n    WKFrameInfo * re$ult = [self sourceFrame__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (WKFrameInfo*) sourceFrame__\n{\n    WKFrameInfo* re$ult = [super sourceFrame];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKFrameInfo"
+      ]
+    },
+    "targetFrame()": {
+      "reverse": "- (WKFrameInfo *) targetFrame\n{\n    WKFrameInfo * re$ult = [self targetFrame__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (WKFrameInfo*) targetFrame__\n{\n    WKFrameInfo* re$ult = [super targetFrame];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKFrameInfo"
+      ]
+    },
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
+  },
+  "crossmobile.ios.webkit.WKNavigationDelegate": {
+    "decidePolicyForNavigationAction(crossmobile.ios.webkit.WKWebView,crossmobile.ios.webkit.WKNavigationAction,org.robovm.objc.block.VoidBlock1)": {
+      "reverse": "- (void) webView:(WKWebView *) webView decidePolicyForNavigationAction:(WKNavigationAction *) navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy)) decisionHandler\n{\n    CM_Block_Reverse_cmwebkit_0* decisionHandler$conv = [[CM_Block_Reverse_cmwebkit_0 alloc] initWithCMBlock:decisionHandler];\n    [self decidePolicyForNavigationAction___crossmobile_ios_webkit_WKWebView_crossmobile_ios_webkit_WKNavigationAction_org_robovm_objc_block_VoidBlock1:(webView ? webView : JAVA_NULL) :(navigationAction ? navigationAction : JAVA_NULL) :decisionHandler$conv];\n    [decisionHandler$conv release];\n}\n\n",
+      "revimport": [
+        "CM_Block_Reverse_cmwebkit_0"
+      ],
+      "super": "- (void) decidePolicyForNavigationAction___crossmobile_ios_webkit_WKWebView_crossmobile_ios_webkit_WKNavigationAction_org_robovm_objc_block_VoidBlock1:(WKWebView*) webView :(WKNavigationAction*) navigationAction :(id<org_robovm_objc_block_VoidBlock1>) decisionHandler \n{\n    [super webView:(webView == JAVA_NULL ? nil : webView) decidePolicyForNavigationAction:(navigationAction == JAVA_NULL ? nil : navigationAction) decisionHandler:(decisionHandler == JAVA_NULL ? nil : ^(WKNavigationActionPolicy _unnamed_parameter_0) {\n        java_lang_Integer* _unnamed_parameter_0$conv = [[java_lang_Integer alloc] initWithInt:_unnamed_parameter_0];\n        [decisionHandler invoke___java_lang_Object:_unnamed_parameter_0$conv];\n        [_unnamed_parameter_0$conv release];\n    })];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKNavigationAction",
+        "crossmobile_ios_webkit_WKWebView",
+        "org_robovm_objc_block_VoidBlock1"
+      ]
+    },
+    "decidePolicyForNavigationResponse(crossmobile.ios.webkit.WKWebView,crossmobile.ios.webkit.WKNavigationResponse,org.robovm.objc.block.VoidBlock1)": {
+      "reverse": "- (void) webView:(WKWebView *) webView decidePolicyForNavigationResponse:(WKNavigationResponse *) navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy)) decisionHandler\n{\n    CM_Block_Reverse_cmwebkit_1* decisionHandler$conv = [[CM_Block_Reverse_cmwebkit_1 alloc] initWithCMBlock:decisionHandler];\n    [self decidePolicyForNavigationResponse___crossmobile_ios_webkit_WKWebView_crossmobile_ios_webkit_WKNavigationResponse_org_robovm_objc_block_VoidBlock1:(webView ? webView : JAVA_NULL) :(navigationResponse ? navigationResponse : JAVA_NULL) :decisionHandler$conv];\n    [decisionHandler$conv release];\n}\n\n",
+      "revimport": [
+        "CM_Block_Reverse_cmwebkit_1"
+      ],
+      "super": "- (void) decidePolicyForNavigationResponse___crossmobile_ios_webkit_WKWebView_crossmobile_ios_webkit_WKNavigationResponse_org_robovm_objc_block_VoidBlock1:(WKWebView*) webView :(WKNavigationResponse*) navigationResponse :(id<org_robovm_objc_block_VoidBlock1>) decisionHandler \n{\n    [super webView:(webView == JAVA_NULL ? nil : webView) decidePolicyForNavigationResponse:(navigationResponse == JAVA_NULL ? nil : navigationResponse) decisionHandler:(decisionHandler == JAVA_NULL ? nil : ^(WKNavigationResponsePolicy _unnamed_parameter_0) {\n        java_lang_Integer* _unnamed_parameter_0$conv = [[java_lang_Integer alloc] initWithInt:_unnamed_parameter_0];\n        [decisionHandler invoke___java_lang_Object:_unnamed_parameter_0$conv];\n        [_unnamed_parameter_0$conv release];\n    })];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKNavigationResponse",
+        "crossmobile_ios_webkit_WKWebView",
+        "org_robovm_objc_block_VoidBlock1"
+      ]
+    },
+    "didCommitNavigation(crossmobile.ios.webkit.WKWebView,crossmobile.ios.webkit.WKNavigation)": {
+      "reverse": "- (void) webView:(WKWebView *) webView didCommitNavigation:(WKNavigation *) navigation\n{\n    [self didCommitNavigation___crossmobile_ios_webkit_WKWebView_crossmobile_ios_webkit_WKNavigation:(webView ? webView : JAVA_NULL) :(navigation ? navigation : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didCommitNavigation___crossmobile_ios_webkit_WKWebView_crossmobile_ios_webkit_WKNavigation:(WKWebView*) webView :(WKNavigation*) navigation \n{\n    [super webView:(webView == JAVA_NULL ? nil : webView) didCommitNavigation:(navigation == JAVA_NULL ? nil : navigation)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKNavigation",
+        "crossmobile_ios_webkit_WKWebView"
+      ]
+    },
+    "didFailNavigation(crossmobile.ios.webkit.WKWebView,crossmobile.ios.webkit.WKNavigation,crossmobile.ios.foundation.NSError)": {
+      "reverse": "- (void) webView:(WKWebView *) webView didFailNavigation:(WKNavigation *) navigation withError:(NSError *) error\n{\n    [self didFailNavigation___crossmobile_ios_webkit_WKWebView_crossmobile_ios_webkit_WKNavigation_crossmobile_ios_foundation_NSError:(webView ? webView : JAVA_NULL) :(navigation ? navigation : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didFailNavigation___crossmobile_ios_webkit_WKWebView_crossmobile_ios_webkit_WKNavigation_crossmobile_ios_foundation_NSError:(WKWebView*) webView :(WKNavigation*) navigation :(NSError*) error \n{\n    [super webView:(webView == JAVA_NULL ? nil : webView) didFailNavigation:(navigation == JAVA_NULL ? nil : navigation) withError:(error == JAVA_NULL ? nil : error)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSError",
+        "crossmobile_ios_webkit_WKNavigation",
+        "crossmobile_ios_webkit_WKWebView"
+      ]
+    },
+    "didFailProvisionalNavigation(crossmobile.ios.webkit.WKWebView,crossmobile.ios.webkit.WKNavigation,crossmobile.ios.foundation.NSError)": {
+      "reverse": "- (void) webView:(WKWebView *) webView didFailProvisionalNavigation:(WKNavigation *) navigation withError:(NSError *) error\n{\n    [self didFailProvisionalNavigation___crossmobile_ios_webkit_WKWebView_crossmobile_ios_webkit_WKNavigation_crossmobile_ios_foundation_NSError:(webView ? webView : JAVA_NULL) :(navigation ? navigation : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didFailProvisionalNavigation___crossmobile_ios_webkit_WKWebView_crossmobile_ios_webkit_WKNavigation_crossmobile_ios_foundation_NSError:(WKWebView*) webView :(WKNavigation*) navigation :(NSError*) error \n{\n    [super webView:(webView == JAVA_NULL ? nil : webView) didFailProvisionalNavigation:(navigation == JAVA_NULL ? nil : navigation) withError:(error == JAVA_NULL ? nil : error)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSError",
+        "crossmobile_ios_webkit_WKNavigation",
+        "crossmobile_ios_webkit_WKWebView"
+      ]
+    },
+    "didFinishNavigation(crossmobile.ios.webkit.WKWebView,crossmobile.ios.webkit.WKNavigation)": {
+      "reverse": "- (void) webView:(WKWebView *) webView didFinishNavigation:(WKNavigation *) navigation\n{\n    [self didFinishNavigation___crossmobile_ios_webkit_WKWebView_crossmobile_ios_webkit_WKNavigation:(webView ? webView : JAVA_NULL) :(navigation ? navigation : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didFinishNavigation___crossmobile_ios_webkit_WKWebView_crossmobile_ios_webkit_WKNavigation:(WKWebView*) webView :(WKNavigation*) navigation \n{\n    [super webView:(webView == JAVA_NULL ? nil : webView) didFinishNavigation:(navigation == JAVA_NULL ? nil : navigation)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKNavigation",
+        "crossmobile_ios_webkit_WKWebView"
+      ]
+    },
+    "didReceiveServerRedirectForProvisionalNavigation(crossmobile.ios.webkit.WKWebView,crossmobile.ios.webkit.WKNavigation)": {
+      "reverse": "- (void) webView:(WKWebView *) webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *) navigation\n{\n    [self didReceiveServerRedirectForProvisionalNavigation___crossmobile_ios_webkit_WKWebView_crossmobile_ios_webkit_WKNavigation:(webView ? webView : JAVA_NULL) :(navigation ? navigation : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didReceiveServerRedirectForProvisionalNavigation___crossmobile_ios_webkit_WKWebView_crossmobile_ios_webkit_WKNavigation:(WKWebView*) webView :(WKNavigation*) navigation \n{\n    [super webView:(webView == JAVA_NULL ? nil : webView) didReceiveServerRedirectForProvisionalNavigation:(navigation == JAVA_NULL ? nil : navigation)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKNavigation",
+        "crossmobile_ios_webkit_WKWebView"
+      ]
+    },
+    "didStartProvisionalNavigation(crossmobile.ios.webkit.WKWebView,crossmobile.ios.webkit.WKNavigation)": {
+      "reverse": "- (void) webView:(WKWebView *) webView didStartProvisionalNavigation:(WKNavigation *) navigation\n{\n    [self didStartProvisionalNavigation___crossmobile_ios_webkit_WKWebView_crossmobile_ios_webkit_WKNavigation:(webView ? webView : JAVA_NULL) :(navigation ? navigation : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didStartProvisionalNavigation___crossmobile_ios_webkit_WKWebView_crossmobile_ios_webkit_WKNavigation:(WKWebView*) webView :(WKNavigation*) navigation \n{\n    [super webView:(webView == JAVA_NULL ? nil : webView) didStartProvisionalNavigation:(navigation == JAVA_NULL ? nil : navigation)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKNavigation",
+        "crossmobile_ios_webkit_WKWebView"
+      ]
+    },
+    "webContentProcessDidTerminate(crossmobile.ios.webkit.WKWebView)": {
+      "reverse": "- (void) webViewWebContentProcessDidTerminate:(WKWebView *) webView\n{\n    [self webContentProcessDidTerminate___crossmobile_ios_webkit_WKWebView:(webView ? webView : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) webContentProcessDidTerminate___crossmobile_ios_webkit_WKWebView:(WKWebView*) webView \n{\n    [super webViewWebContentProcessDidTerminate:(webView == JAVA_NULL ? nil : webView)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKWebView"
+      ]
+    }
+  },
+  "crossmobile.ios.webkit.WKNavigationResponse": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "canShowMIMEType()": {
+      "reverse": "- (BOOL) canShowMIMEType\n{\n    return [self canShowMIMEType__];\n}\n\n",
+      "super": "- (BOOL) canShowMIMEType__\n{\n    return [super canShowMIMEType];\n}\n\n"
+    },
+    "isForMainFrame()": {
+      "reverse": "- (BOOL) isForMainFrame\n{\n    return [self isForMainFrame__];\n}\n\n",
+      "super": "- (BOOL) isForMainFrame__\n{\n    return [super isForMainFrame];\n}\n\n"
+    },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "response()": {
+      "reverse": "- (NSURLResponse *) response\n{\n    NSURLResponse * re$ult = [self response__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSURLResponse*) response__\n{\n    NSURLResponse* re$ult = [super response];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSURLResponse"
+      ]
+    },
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
+  },
+  "crossmobile.ios.webkit.WKPreferences": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "isFraudulentWebsiteWarningEnabled()": {
+      "reverse": "- (BOOL) isFraudulentWebsiteWarningEnabled\n{\n    return [self isFraudulentWebsiteWarningEnabled__];\n}\n\n",
+      "super": "- (BOOL) isFraudulentWebsiteWarningEnabled__\n{\n    return [super isFraudulentWebsiteWarningEnabled];\n}\n\n"
+    },
+    "javaScriptCanOpenWindowsAutomatically()": {
+      "reverse": "- (BOOL) javaScriptCanOpenWindowsAutomatically\n{\n    return [self javaScriptCanOpenWindowsAutomatically__];\n}\n\n",
+      "super": "- (BOOL) javaScriptCanOpenWindowsAutomatically__\n{\n    return [super javaScriptCanOpenWindowsAutomatically];\n}\n\n"
+    },
+    "minimumFontSize()": {
+      "reverse": "- (CGFloat) minimumFontSize\n{\n    return [self minimumFontSize__];\n}\n\n",
+      "super": "- (double) minimumFontSize__\n{\n    return [super minimumFontSize];\n}\n\n"
+    },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setFraudulentWebsiteWarningEnabled(boolean)": {
+      "reverse": "- (void) setFraudulentWebsiteWarningEnabled:(BOOL) fraudulentWebsiteWarningEnabled\n{\n    [self setFraudulentWebsiteWarningEnabled___boolean:fraudulentWebsiteWarningEnabled];\n}\n\n",
+      "super": "- (void) setFraudulentWebsiteWarningEnabled___boolean:(BOOL) fraudulentWebsiteWarningEnabled \n{\n    [super setFraudulentWebsiteWarningEnabled:fraudulentWebsiteWarningEnabled];\n}\n\n"
+    },
+    "setJavaScriptCanOpenWindowsAutomatically(boolean)": {
+      "reverse": "- (void) setJavaScriptCanOpenWindowsAutomatically:(BOOL) javaScriptCanOpenWindowsAutomatically\n{\n    [self setJavaScriptCanOpenWindowsAutomatically___boolean:javaScriptCanOpenWindowsAutomatically];\n}\n\n",
+      "super": "- (void) setJavaScriptCanOpenWindowsAutomatically___boolean:(BOOL) javaScriptCanOpenWindowsAutomatically \n{\n    [super setJavaScriptCanOpenWindowsAutomatically:javaScriptCanOpenWindowsAutomatically];\n}\n\n"
+    },
+    "setMinimumFontSize(double)": {
+      "reverse": "- (void) setMinimumFontSize:(CGFloat) minimumFontSize\n{\n    [self setMinimumFontSize___double:minimumFontSize];\n}\n\n",
+      "super": "- (void) setMinimumFontSize___double:(double) minimumFontSize \n{\n    [super setMinimumFontSize:minimumFontSize];\n}\n\n"
+    },
+    "setTabFocusesLinks(boolean)": {
+      "reverse": "- (void) setTabFocusesLinks:(BOOL) tabFocusesLinks\n{\n    [self setTabFocusesLinks___boolean:tabFocusesLinks];\n}\n\n",
+      "super": "- (void) setTabFocusesLinks___boolean:(BOOL) tabFocusesLinks \n{\n    [super setTabFocusesLinks:tabFocusesLinks];\n}\n\n"
+    },
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "tabFocusesLinks()": {
+      "reverse": "- (BOOL) tabFocusesLinks\n{\n    return [self tabFocusesLinks__];\n}\n\n",
+      "super": "- (BOOL) tabFocusesLinks__\n{\n    return [super tabFocusesLinks];\n}\n\n"
+    },
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
+  },
+  "crossmobile.ios.webkit.WKScriptMessage": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "body()": {
+      "reverse": "- (id) body\n{\n    id re$ult = [self body__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (id) body__\n{\n    id re$ult = [super body];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_Object"
+      ]
+    },
+    "frameInfo()": {
+      "reverse": "- (WKFrameInfo *) frameInfo\n{\n    WKFrameInfo * re$ult = [self frameInfo__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (WKFrameInfo*) frameInfo__\n{\n    WKFrameInfo* re$ult = [super frameInfo];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKFrameInfo"
+      ]
+    },
+    "name()": {
+      "reverse": "- (NSString *) name\n{\n    NSString * re$ult = [self name__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) name__\n{\n    NSString* re$ult = [super name];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null,
+    "webView()": {
+      "reverse": "- (WKWebView *) webView\n{\n    WKWebView * re$ult = [self webView__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (WKWebView*) webView__\n{\n    WKWebView* re$ult = [super webView];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKWebView"
+      ]
+    }
+  },
+  "crossmobile.ios.webkit.WKScriptMessageHandler": {
+    "didReceiveScriptMessage(crossmobile.ios.webkit.WKUserContentController,crossmobile.ios.webkit.WKScriptMessage)": {
+      "reverse": "- (void) userContentController:(WKUserContentController *) userContentController didReceiveScriptMessage:(WKScriptMessage *) message\n{\n    [self didReceiveScriptMessage___crossmobile_ios_webkit_WKUserContentController_crossmobile_ios_webkit_WKScriptMessage:(userContentController ? userContentController : JAVA_NULL) :(message ? message : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didReceiveScriptMessage___crossmobile_ios_webkit_WKUserContentController_crossmobile_ios_webkit_WKScriptMessage:(WKUserContentController*) userContentController :(WKScriptMessage*) message \n{\n    [super userContentController:(userContentController == JAVA_NULL ? nil : userContentController) didReceiveScriptMessage:(message == JAVA_NULL ? nil : message)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKScriptMessage",
+        "crossmobile_ios_webkit_WKUserContentController"
+      ]
+    }
+  },
+  "crossmobile.ios.webkit.WKSecurityOrigin": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "host()": {
+      "reverse": "- (NSString *) host\n{\n    NSString * re$ult = [self host__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) host__\n{\n    NSString* re$ult = [super host];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "port()": {
+      "reverse": "- (NSInteger) port\n{\n    return [self port__];\n}\n\n",
+      "super": "- (int) port__\n{\n    return [super port];\n}\n\n"
+    },
+    "protocol()": {
+      "reverse": "- (NSString *) protocol\n{\n    NSString * re$ult = [self protocol__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) protocol__\n{\n    NSString* re$ult = [super protocol];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
+  },
+  "crossmobile.ios.webkit.WKUserContentController": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "addScriptMessageHandler(crossmobile.ios.webkit.WKScriptMessageHandler,java.lang.String)": {
+      "reverse": "- (void) addScriptMessageHandler:(id<WKScriptMessageHandler>) scriptMessageHandler name:(NSString *) name\n{\n    [self addScriptMessageHandler___crossmobile_ios_webkit_WKScriptMessageHandler_java_lang_String:(scriptMessageHandler ? scriptMessageHandler : JAVA_NULL) :(name ? name : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) addScriptMessageHandler___crossmobile_ios_webkit_WKScriptMessageHandler_java_lang_String:(id<WKScriptMessageHandler>) scriptMessageHandler :(NSString*) name \n{\n    [super addScriptMessageHandler:(scriptMessageHandler == JAVA_NULL ? nil : scriptMessageHandler) name:(name == JAVA_NULL ? nil : name)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKScriptMessageHandler",
+        "java_lang_String"
+      ]
+    },
+    "addUserScript(crossmobile.ios.webkit.WKUserScript)": {
+      "reverse": "- (void) addUserScript:(WKUserScript *) userScript\n{\n    [self addUserScript___crossmobile_ios_webkit_WKUserScript:(userScript ? userScript : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) addUserScript___crossmobile_ios_webkit_WKUserScript:(WKUserScript*) userScript \n{\n    [super addUserScript:(userScript == JAVA_NULL ? nil : userScript)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKUserScript"
+      ]
+    },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeAllScriptMessageHandlers()": {
+      "reverse": "- (void) removeAllScriptMessageHandlers\n{\n    [self removeAllScriptMessageHandlers__];\n}\n\n",
+      "super": "- (void) removeAllScriptMessageHandlers__\n{\n    [super removeAllScriptMessageHandlers];\n}\n\n"
+    },
+    "removeAllUserScripts()": {
+      "reverse": "- (void) removeAllUserScripts\n{\n    [self removeAllUserScripts__];\n}\n\n",
+      "super": "- (void) removeAllUserScripts__\n{\n    [super removeAllUserScripts];\n}\n\n"
+    },
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "removeScriptMessageHandlerForName(java.lang.String)": {
+      "reverse": "- (void) removeScriptMessageHandlerForName:(NSString *) name\n{\n    [self removeScriptMessageHandlerForName___java_lang_String:(name ? name : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) removeScriptMessageHandlerForName___java_lang_String:(NSString*) name \n{\n    [super removeScriptMessageHandlerForName:(name == JAVA_NULL ? nil : name)];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
+  },
+  "crossmobile.ios.webkit.WKUserScript": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "injectionTime()": {
+      "reverse": "- (WKUserScriptInjectionTime) injectionTime\n{\n    return [self injectionTime__];\n}\n\n",
+      "super": "- (int) injectionTime__\n{\n    return [super injectionTime];\n}\n\n"
+    },
+    "isForMainFrameOnly()": {
+      "reverse": "- (BOOL) isForMainFrameOnly\n{\n    return [self isForMainFrameOnly__];\n}\n\n",
+      "super": "- (BOOL) isForMainFrameOnly__\n{\n    return [super isForMainFrameOnly];\n}\n\n"
+    },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "source()": {
+      "reverse": "- (NSString *) source\n{\n    NSString * re$ult = [self source__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) source__\n{\n    NSString* re$ult = [super source];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
+  },
+  "crossmobile.ios.webkit.WKWebView": {
+    "URL()": {
+      "reverse": "- (NSURL *) URL\n{\n    NSURL * re$ult = [self URL__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSURL*) URL__\n{\n    NSURL* re$ult = [super URL];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSURL"
+      ]
+    },
+    "accessibilityIdentifier()": null,
+    "addConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
+    "addConstraints(java.util.List)": null,
+    "addGestureRecognizer(crossmobile.ios.uikit.UIGestureRecognizer)": null,
+    "addLayoutGuide(crossmobile.ios.uikit.UILayoutGuide)": null,
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "addSubview(crossmobile.ios.uikit.UIView)": null,
+    "allowsBackForwardNavigationGestures()": {
+      "reverse": "- (BOOL) allowsBackForwardNavigationGestures\n{\n    return [self allowsBackForwardNavigationGestures__];\n}\n\n",
+      "super": "- (BOOL) allowsBackForwardNavigationGestures__\n{\n    return [super allowsBackForwardNavigationGestures];\n}\n\n"
+    },
+    "allowsLinkPreview()": {
+      "reverse": "- (BOOL) allowsLinkPreview\n{\n    return [self allowsLinkPreview__];\n}\n\n",
+      "super": "- (BOOL) allowsLinkPreview__\n{\n    return [super allowsLinkPreview];\n}\n\n"
+    },
+    "alpha()": null,
+    "autoresizesSubviews()": null,
+    "autoresizingMask()": null,
+    "backgroundColor()": null,
+    "becomeFirstResponder()": null,
+    "bottomAnchor()": null,
+    "bounds()": null,
+    "bringSubviewToFront(crossmobile.ios.uikit.UIView)": null,
+    "canGoBack()": {
+      "reverse": "- (BOOL) canGoBack\n{\n    return [self canGoBack__];\n}\n\n",
+      "super": "- (BOOL) canGoBack__\n{\n    return [super canGoBack];\n}\n\n"
+    },
+    "canGoForward()": {
+      "reverse": "- (BOOL) canGoForward\n{\n    return [self canGoForward__];\n}\n\n",
+      "super": "- (BOOL) canGoForward__\n{\n    return [super canGoForward];\n}\n\n"
+    },
+    "center()": null,
+    "centerXAnchor()": null,
+    "centerYAnchor()": null,
+    "clipsToBounds()": null,
+    "configuration()": {
+      "reverse": "- (WKWebViewConfiguration *) configuration\n{\n    WKWebViewConfiguration * re$ult = [self configuration__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (WKWebViewConfiguration*) configuration__\n{\n    WKWebViewConfiguration* re$ult = [super configuration];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKWebViewConfiguration"
+      ]
+    },
+    "constraints()": null,
+    "contentCompressionResistancePriorityForAxis(int)": null,
+    "contentHuggingPriorityForAxis(int)": null,
+    "contentMode()": null,
+    "convertPointFromView(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIView)": null,
+    "convertPointToView(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIView)": null,
+    "convertRectFromView(crossmobile.ios.coregraphics.CGRect,crossmobile.ios.uikit.UIView)": null,
+    "convertRectToView(crossmobile.ios.coregraphics.CGRect,crossmobile.ios.uikit.UIView)": null,
+    "customUserAgent()": {
+      "reverse": "- (NSString *) customUserAgent\n{\n    NSString * re$ult = [self customUserAgent__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) customUserAgent__\n{\n    NSString* re$ult = [super customUserAgent];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
+    "didAddSubview(crossmobile.ios.uikit.UIView)": null,
+    "didMoveToSuperview()": null,
+    "didMoveToWindow()": null,
+    "drawRect(crossmobile.ios.coregraphics.CGRect)": null,
+    "estimatedProgress()": {
+      "reverse": "- (double) estimatedProgress\n{\n    return [self estimatedProgress__];\n}\n\n",
+      "super": "- (double) estimatedProgress__\n{\n    return [super estimatedProgress];\n}\n\n"
+    },
+    "frame()": null,
+    "gestureRecognizers()": null,
+    "goBack()": {
+      "reverse": "- (WKNavigation *) goBack\n{\n    WKNavigation * re$ult = [self goBack__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (WKNavigation*) goBack__\n{\n    WKNavigation* re$ult = [super goBack];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKNavigation"
+      ]
+    },
+    "goForward()": {
+      "reverse": "- (WKNavigation *) goForward\n{\n    WKNavigation * re$ult = [self goForward__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (WKNavigation*) goForward__\n{\n    WKNavigation* re$ult = [super goForward];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKNavigation"
+      ]
+    },
+    "hasOnlySecureContent()": {
+      "reverse": "- (BOOL) hasOnlySecureContent\n{\n    return [self hasOnlySecureContent__];\n}\n\n",
+      "super": "- (BOOL) hasOnlySecureContent__\n{\n    return [super hasOnlySecureContent];\n}\n\n"
+    },
+    "heightAnchor()": null,
+    "hitTest(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
+    "insertSubview(crossmobile.ios.uikit.UIView,int)": null,
+    "insetsLayoutMarginsFromSafeArea()": null,
+    "intrinsicContentSize()": null,
+    "invalidateIntrinsicContentSize()": null,
+    "isFirstResponder()": null,
+    "isHidden()": null,
+    "isLoading()": {
+      "reverse": "- (BOOL) isLoading\n{\n    return [self isLoading__];\n}\n\n",
+      "super": "- (BOOL) isLoading__\n{\n    return [super isLoading];\n}\n\n"
+    },
+    "isMultipleTouchEnabled()": null,
+    "isOpaque()": null,
+    "isUserInteractionEnabled()": null,
+    "layer()": null,
+    "layoutIfNeeded()": null,
+    "layoutMargins()": null,
+    "layoutMarginsDidChange()": null,
+    "layoutMarginsGuide()": null,
+    "layoutSubviews()": null,
+    "leadingAnchor()": null,
+    "leftAnchor()": null,
+    "loadData(crossmobile.ios.foundation.NSData,java.lang.String,java.lang.String,crossmobile.ios.foundation.NSURL)": {
+      "reverse": "- (WKNavigation *) loadData:(NSData *) data MIMEType:(NSString *) MIMEType characterEncodingName:(NSString *) characterEncodingName baseURL:(NSURL *) baseURL\n{\n    WKNavigation * re$ult = [self loadData___crossmobile_ios_foundation_NSData_java_lang_String_java_lang_String_crossmobile_ios_foundation_NSURL:(data ? data : JAVA_NULL) :(MIMEType ? MIMEType : JAVA_NULL) :(characterEncodingName ? characterEncodingName : JAVA_NULL) :(baseURL ? baseURL : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (WKNavigation*) loadData___crossmobile_ios_foundation_NSData_java_lang_String_java_lang_String_crossmobile_ios_foundation_NSURL:(NSData*) data :(NSString*) MIMEType :(NSString*) characterEncodingName :(NSURL*) baseURL \n{\n    WKNavigation* re$ult = [super loadData:(data == JAVA_NULL ? nil : data) MIMEType:(MIMEType == JAVA_NULL ? nil : MIMEType) characterEncodingName:(characterEncodingName == JAVA_NULL ? nil : characterEncodingName) baseURL:(baseURL == JAVA_NULL ? nil : baseURL)];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSData",
+        "crossmobile_ios_foundation_NSURL",
+        "crossmobile_ios_webkit_WKNavigation",
+        "java_lang_String"
+      ]
+    },
+    "loadFileURL(crossmobile.ios.foundation.NSURL,crossmobile.ios.foundation.NSURL)": {
+      "reverse": "- (WKNavigation *) loadFileURL:(NSURL *) URL allowingReadAccessToURL:(NSURL *) readAccessURL\n{\n    WKNavigation * re$ult = [self loadFileURL___crossmobile_ios_foundation_NSURL_crossmobile_ios_foundation_NSURL:(URL ? URL : JAVA_NULL) :(readAccessURL ? readAccessURL : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (WKNavigation*) loadFileURL___crossmobile_ios_foundation_NSURL_crossmobile_ios_foundation_NSURL:(NSURL*) URL :(NSURL*) readAccessURL \n{\n    WKNavigation* re$ult = [super loadFileURL:(URL == JAVA_NULL ? nil : URL) allowingReadAccessToURL:(readAccessURL == JAVA_NULL ? nil : readAccessURL)];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSURL",
+        "crossmobile_ios_webkit_WKNavigation"
+      ]
+    },
+    "loadHTMLString(java.lang.String,crossmobile.ios.foundation.NSURL)": {
+      "reverse": "- (WKNavigation *) loadHTMLString:(NSString *) string baseURL:(NSURL *) baseURL\n{\n    WKNavigation * re$ult = [self loadHTMLString___java_lang_String_crossmobile_ios_foundation_NSURL:(string ? string : JAVA_NULL) :(baseURL ? baseURL : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (WKNavigation*) loadHTMLString___java_lang_String_crossmobile_ios_foundation_NSURL:(NSString*) string :(NSURL*) baseURL \n{\n    WKNavigation* re$ult = [super loadHTMLString:(string == JAVA_NULL ? nil : string) baseURL:(baseURL == JAVA_NULL ? nil : baseURL)];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSURL",
+        "crossmobile_ios_webkit_WKNavigation",
+        "java_lang_String"
+      ]
+    },
+    "loadRequest(crossmobile.ios.foundation.NSURLRequest)": {
+      "reverse": "- (WKNavigation *) loadRequest:(NSURLRequest *) request\n{\n    WKNavigation * re$ult = [self loadRequest___crossmobile_ios_foundation_NSURLRequest:(request ? request : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (WKNavigation*) loadRequest___crossmobile_ios_foundation_NSURLRequest:(NSURLRequest*) request \n{\n    WKNavigation* re$ult = [super loadRequest:(request == JAVA_NULL ? nil : request)];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSURLRequest",
+        "crossmobile_ios_webkit_WKNavigation"
+      ]
+    },
+    "maskView()": null,
+    "navigationDelegate()": {
+      "reverse": "- (id<WKNavigationDelegate>) navigationDelegate\n{\n    id<WKNavigationDelegate> re$ult = [self navigationDelegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (id<WKNavigationDelegate>) navigationDelegate__\n{\n    id<WKNavigationDelegate> re$ult = [super navigationDelegate];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKNavigationDelegate"
+      ]
+    },
+    "needsUpdateConstraints()": null,
+    "nextResponder()": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
+    "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
+    "preservesSuperviewLayoutMargins()": null,
+    "reload()": {
+      "reverse": "- (WKNavigation *) reload\n{\n    WKNavigation * re$ult = [self reload__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (WKNavigation*) reload__\n{\n    WKNavigation* re$ult = [super reload];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKNavigation"
+      ]
+    },
+    "removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
+    "removeConstraints(java.util.List)": null,
+    "removeFromSuperview()": null,
+    "removeGestureRecognizer(crossmobile.ios.uikit.UIGestureRecognizer)": null,
+    "removeLayoutGuide(crossmobile.ios.uikit.UILayoutGuide)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "resignFirstResponder()": null,
+    "restorationIdentifier()": null,
+    "rightAnchor()": null,
+    "safeAreaInsets()": null,
+    "safeAreaLayoutGuide()": null,
+    "scrollView()": {
+      "reverse": "- (UIScrollView *) scrollView\n{\n    UIScrollView * re$ult = [self scrollView__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (UIScrollView*) scrollView__\n{\n    UIScrollView* re$ult = [super scrollView];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIScrollView"
+      ]
+    },
+    "sendSubviewToBack(crossmobile.ios.uikit.UIView)": null,
+    "setAccessibilityIdentifier(java.lang.String)": null,
+    "setAlpha(double)": null,
+    "setAutoresizesSubviews(boolean)": null,
+    "setAutoresizingMask(int)": null,
+    "setBackgroundColor(crossmobile.ios.uikit.UIColor)": null,
+    "setBounds(crossmobile.ios.coregraphics.CGRect)": null,
+    "setCenter(crossmobile.ios.coregraphics.CGPoint)": null,
+    "setClearsContextBeforeDrawing(boolean)": null,
+    "setClipsToBounds(boolean)": null,
+    "setContentCompressionResistancePriority(float,int)": null,
+    "setContentHuggingPriority(float,int)": null,
+    "setContentMode(int)": null,
+    "setFrame(crossmobile.ios.coregraphics.CGRect)": null,
+    "setGestureRecognizers(java.util.List)": null,
+    "setHidden(boolean)": null,
+    "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
+    "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
+    "setMultipleTouchEnabled(boolean)": null,
+    "setNavigationDelegate(crossmobile.ios.webkit.WKNavigationDelegate)": {
+      "reverse": "- (void) setNavigationDelegate:(id<WKNavigationDelegate>) navigationDelegate\n{\n    [self setNavigationDelegate___crossmobile_ios_webkit_WKNavigationDelegate:(navigationDelegate ? navigationDelegate : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setNavigationDelegate___crossmobile_ios_webkit_WKNavigationDelegate:(id<WKNavigationDelegate>) navigationDelegate \n{\n    objc_setAssociatedObject(self, @selector(setNavigationDelegate:), navigationDelegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);\n    [super setNavigationDelegate:(navigationDelegate == JAVA_NULL ? nil : navigationDelegate)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKNavigationDelegate"
+      ]
+    },
+    "setNeedsDisplay()": null,
+    "setNeedsLayout()": null,
+    "setNeedsUpdateConstraints()": null,
+    "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
+    "setPreservesSuperviewLayoutMargins(boolean)": null,
+    "setRestorationIdentifier(java.lang.String)": null,
+    "setTag(int)": null,
+    "setTintAdjustmentMode(int)": null,
+    "setTintColor(crossmobile.ios.uikit.UIColor)": null,
+    "setTransform(crossmobile.ios.coregraphics.CGAffineTransform)": null,
+    "setTranslatesAutoresizingMaskIntoConstraints(boolean)": null,
+    "setUserInteractionEnabled(boolean)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "sizeThatFits(crossmobile.ios.coregraphics.CGSize)": null,
+    "sizeToFit()": null,
+    "subviews()": null,
+    "superview()": null,
+    "tag()": null,
+    "tintAdjustmentMode()": null,
+    "tintColor()": null,
+    "tintColorDidChange()": null,
+    "title()": {
+      "reverse": "- (NSString *) title\n{\n    NSString * re$ult = [self title__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) title__\n{\n    NSString* re$ult = [super title];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
+    "topAnchor()": null,
+    "touchesBegan(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesCancelled(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesEnded(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesMoved(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "trailingAnchor()": null,
+    "transform()": null,
+    "translatesAutoresizingMaskIntoConstraints()": null,
+    "updateConstraints()": null,
+    "updateConstraintsIfNeeded()": null,
+    "userInterfaceLayoutDirection()": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null,
+    "viewForFirstBaselineLayout()": null,
+    "viewForLastBaselineLayout()": null,
+    "widthAnchor()": null,
+    "willMoveToSuperview(crossmobile.ios.uikit.UIView)": null,
+    "willMoveToWindow(crossmobile.ios.uikit.UIWindow)": null,
+    "willRemoveSubview(crossmobile.ios.uikit.UIView)": null,
+    "window()": null
+  },
+  "crossmobile.ios.webkit.WKWebViewConfiguration": {
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "applicationNameForUserAgent()": {
+      "reverse": "- (NSString *) applicationNameForUserAgent\n{\n    NSString * re$ult = [self applicationNameForUserAgent__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) applicationNameForUserAgent__\n{\n    NSString* re$ult = [super applicationNameForUserAgent];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "preferences()": {
+      "reverse": "- (WKPreferences *) preferences\n{\n    WKPreferences * re$ult = [self preferences__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (WKPreferences*) preferences__\n{\n    WKPreferences* re$ult = [super preferences];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKPreferences"
+      ]
+    },
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "setApplicationNameForUserAgent(java.lang.String)": {
+      "reverse": "- (void) setApplicationNameForUserAgent:(NSString *) applicationNameForUserAgent\n{\n    [self setApplicationNameForUserAgent___java_lang_String:(applicationNameForUserAgent ? applicationNameForUserAgent : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setApplicationNameForUserAgent___java_lang_String:(NSString*) applicationNameForUserAgent \n{\n    [super setApplicationNameForUserAgent:(applicationNameForUserAgent == JAVA_NULL ? nil : applicationNameForUserAgent)];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
+    "setPreferences(crossmobile.ios.webkit.WKPreferences)": {
+      "reverse": "- (void) setPreferences:(WKPreferences *) preferences\n{\n    [self setPreferences___crossmobile_ios_webkit_WKPreferences:(preferences ? preferences : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setPreferences___crossmobile_ios_webkit_WKPreferences:(WKPreferences*) preferences \n{\n    [super setPreferences:(preferences == JAVA_NULL ? nil : preferences)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKPreferences"
+      ]
+    },
+    "setUserContentController(crossmobile.ios.webkit.WKUserContentController)": {
+      "reverse": "- (void) setUserContentController:(WKUserContentController *) userContentController\n{\n    [self setUserContentController___crossmobile_ios_webkit_WKUserContentController:(userContentController ? userContentController : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setUserContentController___crossmobile_ios_webkit_WKUserContentController:(WKUserContentController*) userContentController \n{\n    [super setUserContentController:(userContentController == JAVA_NULL ? nil : userContentController)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKUserContentController"
+      ]
+    },
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "userContentController()": {
+      "reverse": "- (WKUserContentController *) userContentController\n{\n    WKUserContentController * re$ult = [self userContentController__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (WKUserContentController*) userContentController__\n{\n    WKUserContentController* re$ult = [super userContentController];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_webkit_WKUserContentController"
+      ]
+    },
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null
+  }
+}

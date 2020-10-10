@@ -11,7 +11,6 @@ import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 import org.crossmobile.backend.android.MainActivity;
 
 /**
@@ -58,6 +57,11 @@ public class VideoEnabledWebChromeClient extends WebChromeClient implements Medi
         this.parentView = parentView;
         this.webView = webView;
         this.isVideoFullscreen = false;
+    }
+
+    @Override
+    public void onProgressChanged(WebView view, int newProgress) {
+        this.webView.setProgress(newProgress);
     }
 
     /**
@@ -216,7 +220,6 @@ public class VideoEnabledWebChromeClient extends WebChromeClient implements Medi
      *
      * @return Returns true if the event was handled, and false if was not (video view is not visible)
      */
-    @SuppressWarnings("unused")
     public boolean onBackPressed() {
         if (isVideoFullscreen) {
             onHideCustomView();

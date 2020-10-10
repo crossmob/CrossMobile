@@ -459,4 +459,19 @@ public class SystemUtilities {
             }
         return uri.toString();
     }
+
+    @SuppressWarnings("CharsetObjectCanBeUsed")
+    public static String toString(byte[] bytes, String encodingName, String defaultValue) {
+        if (bytes == null)
+            return defaultValue;
+        try {
+            return new String(bytes, encodingName);
+        } catch (UnsupportedEncodingException ignored) {
+        }
+        try {
+            return new String(bytes, "UTF-8");
+        } catch (UnsupportedEncodingException ignored) {
+        }
+        return defaultValue;
+    }
 }

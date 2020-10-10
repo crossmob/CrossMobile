@@ -8,7 +8,9 @@ package org.crossmobile.bridge;
 
 import crossmobile.ios.uikit.UITextField;
 import crossmobile.ios.uikit.UITextView;
+import crossmobile.ios.uikit.UIView;
 import crossmobile.ios.uikit.UIWebView;
+import crossmobile.ios.webkit.WKWebView;
 import org.crossmobile.bind.wrapper.NativeDispatcher;
 import org.crossmobile.bind.wrapper.TextWrapper;
 import org.crossmobile.bind.wrapper.WebWrapper;
@@ -16,7 +18,8 @@ import org.crossmobile.bind.wrapper.WidgetWrapper;
 
 public interface WrapperUIBridge<NW> {
 
-    WebWrapper webView(UIWebView parent);
+    // Note: it should either be UIWebView or WKWebView
+    WebWrapper webView(UIView parent);
 
     TextWrapper textField(UITextField parent);
 

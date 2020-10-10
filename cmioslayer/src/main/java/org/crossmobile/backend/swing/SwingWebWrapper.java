@@ -6,17 +6,21 @@
 
 package org.crossmobile.backend.swing;
 
-import crossmobile.ios.foundation.NSError;
-import crossmobile.ios.foundation.NSMutableURLRequest;
-import crossmobile.ios.foundation.NSURL;
-import crossmobile.ios.foundation.NSURLRequest;
+import crossmobile.ios.foundation.*;
+import crossmobile.ios.uikit.UIView;
 import crossmobile.ios.uikit.UIWebView;
 import crossmobile.ios.uikit.UIWebViewDelegate;
 import crossmobile.ios.uikit.UIWebViewNavigationType;
+import crossmobile.ios.webkit.WKBackForwardList;
+import crossmobile.ios.webkit.WKNavigation;
+import crossmobile.ios.webkit.WKNavigationDelegate;
+import crossmobile.ios.webkit.WKWebView;
 import org.crossmobile.bind.system.SystemUtilities;
 import org.crossmobile.bind.wrapper.WebWrapper;
 import org.crossmobile.bind.wrapper.WidgetWrapper;
 import org.crossmobile.bridge.Native;
+import org.robovm.objc.block.VoidBlock1;
+import org.robovm.objc.block.VoidBlock2;
 
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
@@ -41,86 +45,104 @@ public class SwingWebWrapper extends WebWrapper<SwingWebWrapper.NativeW, SwingGr
     }
 
     @Override
-    public void loadRequest(NSURLRequest req) {
+    public WKNavigation loadRequest(NSURLRequest req) {
+        WKNavigation nav = getNavigation(req.URL().absoluteString());
         new Thread(() -> {
             try {
                 isLoading = true;
-                UIWebView wv = getIOSWidget();
-                if (wv == null)
-                    return;
-                UIWebViewDelegate del = wv.delegate();
-                if (del != null)
-                    del.didStartLoad(wv);
+                if (getNewDelegate() != null)
+                    getNewDelegate().didCommitNavigation(getNewWebView(), nav);
+                else if (getOldDelegate() != null)
+                    getOldDelegate().didStartLoad(getOldWebView());
+
                 if ((req instanceof NSMutableURLRequest) && ((NSMutableURLRequest) req).HTTPBody() != null && ((NSMutableURLRequest) req).HTTPBody().length() > 0)
                     getNativeWidget().getDocument().putProperty("javax.desktop.JEditorPane.postdata", SystemUtilities.bytesToString(((NSMutableURLRequest) req).HTTPBody().bytes()));
                 getNativeWidget().setPage(req.URL().absoluteString());
             } catch (IOException ex) {
                 isLoading = false;
-                UIWebView wv = getIOSWidget();
-                if (wv == null)
-                    return;
-                UIWebViewDelegate del = wv.delegate();
-                if (del != null)
-                    del.didFailLoadWithError(wv, new NSError(NSError.Domain.NSURL, NSError.ErrorCode.Unknown, null));
+                if (getNewDelegate() != null)
+                    getNewDelegate().didFailNavigation((WKWebView) getIOSWidget(), nav, new NSError(NSError.Domain.NSURL, NSError.ErrorCode.Unknown, null));
+                else if (getOldDelegate() != null)
+                    getOldDelegate().didFailLoadWithError((UIWebView) getIOSWidget(), new NSError(NSError.Domain.NSURL, NSError.ErrorCode.Unknown, null));
             }
         }).start();
+        return nav;
     }
 
     @Override
-    public void loadHTMLString(String data, String baseURL) {
+    public WKNavigation loadData(String data, String MIMEType, String baseURL) {
         JEditorPane ntv = getNativeWidget();
         ntv.setDocument(ntv.getEditorKit().createDefaultDocument());
-        ntv.setContentType("text/html");
+        ntv.setContentType(MIMEType);
         ntv.setText(data);
+        return null;
     }
 
     @Override
-    public void reload() {
-        Native.system().notImplemented();
-    }
-
-    @Override
-    public void goBack() {
-        Native.system().notImplemented();
-    }
-
-    @Override
-    public void goForward() {
-        Native.system().notImplemented();
-    }
-
-    @Override
-    public boolean canGoBack() {
-        Native.system().notImplemented();
-        return false;
-    }
-
-    @Override
-    public boolean canGoForward() {
-        Native.system().notImplemented();
-        return false;
-    }
-
-    @Override
-    public String stringByEvaluatingJavaScriptFromString(String script) {
+    public WKNavigation reload() {
         Native.system().notImplemented();
         return null;
     }
 
     @Override
-    public void hyperlinkUpdate(HyperlinkEvent e) {
-        UIWebView wv = getIOSWidget();
-        if (wv == null)
-            return;
+    public void stopLoading() {
+        Native.system().notImplemented();
+    }
 
-        UIWebViewDelegate del = wv.delegate();
-        if (del != null && e.getURL() != null && del.shouldStartLoadWithRequest(wv, NSURLRequest.requestWithURL(NSURL.URLWithString(e.getURL().toString())), UIWebViewNavigationType.LinkClicked))
-            Native.system().debug("Will move to URL " + e.getURL(), null);
+    @Override
+    public String getTitle() {
+        Native.system().notImplemented();
+        return null;
+    }
+
+    @Override
+    public String getUrl() {
+        Native.system().notImplemented();
+        return null;
+    }
+
+    @Override
+    public double getProgress() {
+        Native.system().notImplemented();
+        return 0;
+    }
+
+    @Override
+    public double getMagnification() {
+        Native.system().notImplemented();
+        return 0;
+    }
+
+    @Override
+    public WKNavigation goBack() {
+        Native.system().notImplemented();
+        return null;
+    }
+
+    @Override
+    public WKNavigation goForward() {
+        Native.system().notImplemented();
+        return null;
+    }
+
+    @Override
+    public void evaluateJavaScript(String script, VoidBlock2<Object, NSError> callback) {
+        Native.system().notImplemented();
+    }
+
+    @Override
+    public void hyperlinkUpdate(HyperlinkEvent e) {
+        Native.system().error("Should ask delegate to update page", null);
     }
 
     @Override
     public boolean isLoading() {
         return isLoading;
+    }
+
+    @Override
+    public WKBackForwardList getBackForwardList() {
+        return null;
     }
 
     public class NativeW extends JEditorPane implements SwingNativeDispatcher.DesktopNativeWidget {
@@ -135,15 +157,11 @@ public class SwingWebWrapper extends WebWrapper<SwingWebWrapper.NativeW, SwingGr
             });
             addPropertyChangeListener("page", (PropertyChangeEvent evt) -> {
                 isLoading = false;
-                // Take care of event that the page  has loaded
-                UIWebView wv = getIOSWidget();
-                if (wv == null)
-                    return;
                 getIOSWidget().setNeedsDisplay();
-
-                UIWebViewDelegate del = wv.delegate();
-                if (del != null)
-                    del.didFinishLoad(wv);
+                if (getNewDelegate() != null)
+                    getNewDelegate().didFinishNavigation(getNewWebView(), null);
+                else if (getOldDelegate() != null)
+                    getOldDelegate().didFinishLoad((UIWebView) getIOSWidget());
             });
             setEditable(false);
             addHyperlinkListener(SwingWebWrapper.this);
@@ -152,7 +170,7 @@ public class SwingWebWrapper extends WebWrapper<SwingWebWrapper.NativeW, SwingGr
         @Override
         public void repaint(long tm, int x, int y, int width, int height) {
             super.repaint(tm, x, y, width, height);
-            UIWebView wv = getIOSWidget();
+            UIView wv = getIOSWidget();
             if (wv != null)
                 wv.setNeedsDisplay();
         }

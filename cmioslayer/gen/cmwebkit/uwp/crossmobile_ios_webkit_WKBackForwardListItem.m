@@ -1,0 +1,36 @@
+// (c) 2020 under LGPL by CrossMobile plugin tools
+
+// crossmobile_ios_webkit_WKBackForwardListItem implementation
+
+#import "crossmobile_ios_foundation_NSURL.h"
+#import "crossmobile_ios_webkit_WKBackForwardListItem.h"
+#import "java_lang_String.h"
+
+@implementation crossmobile_ios_webkit_WKBackForwardListItem$Ext
+
+@end
+
+@implementation WKBackForwardListItem (cm_crossmobile_ios_webkit_WKBackForwardListItem)
+
+// @property(readonly, copy) NSURL *URL;
+- (NSURL*) URL__
+{
+    NSURL* re$ult = [self URL];
+    return [(re$ult ? re$ult : JAVA_NULL) retain];
+}
+
+// @property(readonly, copy) NSURL *initialURL;
+- (NSURL*) initialURL__
+{
+    NSURL* re$ult = [self initialURL];
+    return [(re$ult ? re$ult : JAVA_NULL) retain];
+}
+
+// @property(nullable, readonly, copy) NSString *title;
+- (NSString*) title__
+{
+    NSString* re$ult = [self title];
+    return [(re$ult ? re$ult : JAVA_NULL) retain];
+}
+
+@end

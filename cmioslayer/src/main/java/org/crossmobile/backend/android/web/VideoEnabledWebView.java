@@ -121,4 +121,6 @@ public class VideoEnabledWebView extends WebView {
         }
     }
 
+    public void setProgress(int progressPercentage) {
+    }
 }

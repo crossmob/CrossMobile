@@ -10,6 +10,8 @@ import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.foundation.NSData;
 import crossmobile.ios.foundation.NSURL;
 import crossmobile.ios.foundation.NSURLRequest;
+import crossmobile.ios.webkit.WKBackForwardListItem;
+import org.crossmobile.bind.system.SystemUtilities;
 import org.crossmobile.bind.wrapper.WebWrapper;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.*;
@@ -34,7 +36,7 @@ public class UIWebView extends UIView {
      * 0 height.
      */
     public UIWebView() {
-        this(new CGRect(0, 0, 0, 0));
+        this(CGRect.zero());
     }
 
     /**
@@ -44,7 +46,6 @@ public class UIWebView extends UIView {
      * @param rect The frame rectangle for the view
      */
     @SuppressWarnings({"LeakingThisInConstructor", "OverridableMethodCallInConstructor"})
-    @CMConstructor("- (instancetype)initWithFrame:(CGRect)frame;")
     public UIWebView(CGRect rect) {
         super(rect, UIColor.whiteColor);
         setClipsToBounds(true);
@@ -63,11 +64,8 @@ public class UIWebView extends UIView {
      */
     @CMSelector("- (void)loadRequest:(NSURLRequest *)request;")
     public void loadRequest(final NSURLRequest request) {
-        if (request != null && request.URL() != null && request.URL().absoluteString() != null)
-            Native.lifecycle().postOnEventThread(() -> {
-                if (delegate == null || delegate.shouldStartLoadWithRequest(UIWebView.this, request, UIWebViewNavigationType.LinkClicked))
-                    widget().loadRequest(request);
-            });
+        if (widget().acceptsRequest(request, UIWebViewNavigationType.LinkClicked))
+            widget().loadRequest(request);
     }
 
     /**
@@ -80,14 +78,14 @@ public class UIWebView extends UIView {
     @CMSelector("- (void)loadHTMLString:(NSString *)string \n"
             + "               baseURL:(NSURL *)baseURL;")
     public void loadHTMLString(String data, NSURL baseURL) {
-        widget().loadHTMLString(data, baseURL == null ? null : baseURL.absoluteString());
+        widget().loadData(data, "text/html", baseURL == null ? null : baseURL.absoluteString());
     }
 
     /**
      * Loads the content of the main page as defined by the parameters.
      *
      * @param data         The content of the main page.
-     * @param mimetype     The MIME type of the content.
+     * @param MIMEType     The MIME type of the content.
      * @param encodingName The encoding type.
      * @param baseURL      The base URL of the content.
      */
@@ -95,8 +93,10 @@ public class UIWebView extends UIView {
             + "        MIMEType:(NSString *)MIMEType \n"
             + "textEncodingName:(NSString *)textEncodingName \n"
             + "         baseURL:(NSURL *)baseURL;")
-    public void loadData(NSData data, String mimetype, String encodingName, NSURL baseURL) {
-        Native.system().notImplemented();
+    public void loadData(NSData data, String MIMEType, String encodingName, NSURL baseURL) {
+        widget().loadData(data == null ? "" : SystemUtilities.toString(data.bytes(), encodingName, ""),
+                MIMEType == null ? "text/html" : MIMEType,
+                baseURL == null ? null : baseURL.absoluteString());
     }
 
     /**
@@ -107,7 +107,8 @@ public class UIWebView extends UIView {
      */
     @CMSelector("- (NSString *)stringByEvaluatingJavaScriptFromString:(NSString *)script;")
     public String stringByEvaluatingJavaScriptFromString(String script) {
-        return widget().stringByEvaluatingJavaScriptFromString(script);
+        widget().evaluateJavaScript(script, null);
+        return null;
     }
 
     /**
@@ -147,7 +148,7 @@ public class UIWebView extends UIView {
      */
     @CMGetter("@property(nonatomic, readonly, getter=canGoBack) BOOL canGoBack;")
     public boolean canGoBack() {
-        return widget().canGoBack();
+        return widget().getBackForwardList().backItem() != null;
     }
 
     /**
@@ -156,7 +157,9 @@ public class UIWebView extends UIView {
      */
     @CMSelector("- (void)goBack;")
     public void goBack() {
-        widget().goBack();
+        WKBackForwardListItem item = widget().getBackForwardList().backItem();
+        if (item != null && widget().acceptsRequest(NSURLRequest.requestWithURL(item.URL()), UIWebViewNavigationType.BackForward))
+            widget().goBack();
     }
 
     /**
@@ -166,7 +169,7 @@ public class UIWebView extends UIView {
      */
     @CMGetter("@property(nonatomic, readonly, getter=canGoForward) BOOL canGoForward;")
     public boolean canGoForward() {
-        return widget().canGoForward();
+        return widget().getBackForwardList().forwardItem() != null;
     }
 
     /**
@@ -175,7 +178,9 @@ public class UIWebView extends UIView {
      */
     @CMSelector("- (void)goForward;")
     public void goForward() {
-        widget().goForward();
+        WKBackForwardListItem item = widget().getBackForwardList().forwardItem();
+        if (item != null && widget().acceptsRequest(NSURLRequest.requestWithURL(item.URL()), UIWebViewNavigationType.BackForward))
+            widget().goForward();
     }
 
     /**

@@ -17,23 +17,28 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.webkit.*;
 import android.widget.Toast;
-import crossmobile.ios.foundation.NSError;
-import crossmobile.ios.foundation.NSMutableURLRequest;
-import crossmobile.ios.foundation.NSURLRequest;
-import crossmobile.ios.uikit.UIWebView;
+import crossmobile.ios.foundation.*;
+import crossmobile.ios.uikit.UIView;
 import crossmobile.ios.uikit.UIWebViewNavigationType;
+import crossmobile.ios.webkit.WKBackForwardList;
+import crossmobile.ios.webkit.WKBackForwardListItem;
+import crossmobile.ios.webkit.WKNavigation;
+import crossmobile.ios.webkit.WebKitDrill;
 import org.crossmobile.backend.android.AndroidNativeDispatcher.AndroidNativeWidget;
 import org.crossmobile.backend.android.web.VideoEnabledWebChromeClient;
 import org.crossmobile.backend.android.web.VideoEnabledWebView;
 import org.crossmobile.bind.io.AbstractFileBridge;
 import org.crossmobile.bind.system.SystemUtilities;
+import org.crossmobile.bind.wrapper.HistoryItem;
 import org.crossmobile.bind.wrapper.WebWrapper;
 import org.crossmobile.bridge.Native;
+import org.robovm.objc.block.VoidBlock2;
 
 import java.io.File;
 import java.util.Iterator;
@@ -51,8 +56,10 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
     private static final String JSTAG = "javascript:";
 
     private boolean isLoading = false;
+    private double scale = 1d;
+    private double progress;
 
-    public AndroidWebWrapper(UIWebView parent) {
+    public AndroidWebWrapper(UIView parent) {
         super(parent);
     }
 
@@ -62,63 +69,99 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
     }
 
     @Override
-    public void loadRequest(NSURLRequest req) {
+    public WKNavigation loadRequest(NSURLRequest req) {
         NSMutableURLRequest mreq = (NSMutableURLRequest) ((req instanceof NSMutableURLRequest) ? req : null);
         if (mreq != null)
             getNativeWidget().postUrl(mreq.URL().absoluteString(), mreq.HTTPBody() == null ? null : mreq.HTTPBody().bytes());
-        else
+        else if (req != null)
             getNativeWidget().loadUrl(req.URL().absoluteString());
-    }
-
-    @Override
-    public void loadHTMLString(String data, String baseURL) {
-        if (baseURL != null)
-            getNativeWidget().loadDataWithBaseURL(baseURL, data, "text/html", "utf-8", null);
         else
-            getNativeWidget().loadData(data, "text/html", "utf-8");
+            return null;
+        return getNavigation(req.URL().absoluteString());
     }
 
     @Override
-    public boolean canGoBack() {
-        return getHistoryList().canGoBack();
+    public WKNavigation loadData(String data, String MIMEType, String baseURL) {
+        getNativeWidget().loadDataWithBaseURL(baseURL, data, MIMEType, null, null);
+        return getNavigation(baseURL);
     }
 
     @Override
-    public void goBack() {
-        HistorySanitizer history = getHistoryList();
-        if (history.canGoBack() && acceptsURL(history.previousURL(), UIWebViewNavigationType.BackForward))
-            getNativeWidget().goBack();
+    public WKNavigation goBack() {
+        getNativeWidget().goBack();
+        WKBackForwardListItem item = getBackForwardList().backItem();
+        return item == null ? null : getNavigation(item.URL().absoluteString());
     }
 
     @Override
-    public boolean canGoForward() {
-        return getHistoryList().canGoForth();
+    public WKNavigation goForward() {
+        getNativeWidget().goForward();
+        WKBackForwardListItem item = getBackForwardList().forwardItem();
+        return item == null ? null : getNavigation(item.URL().absoluteString());
     }
 
     @Override
-    public void goForward() {
-        HistorySanitizer history = getHistoryList();
-        if (history.canGoForth() && acceptsURL(history.nextURL(), UIWebViewNavigationType.BackForward))
-            getNativeWidget().goForward();
+    public void evaluateJavaScript(String script, VoidBlock2<Object, NSError> callback) {
+        getNativeWidget().evaluateJavascript(script, v -> {
+            if (callback != null)
+                callback.invoke(v, null);
+        });
     }
 
     @Override
-    public String stringByEvaluatingJavaScriptFromString(String script) {
-        if (!script.startsWith(JSTAG))
-            script = JSTAG + script;
-        getNativeWidget().loadUrl(script);
-        //    System.err.println("Call back string not implemented yet with Android backend. Probably a addJavascriptInterface should be activated.");
-        return null;
-    }
-
-    @Override
-    public void reload() {
+    public WKNavigation reload() {
         getNativeWidget().reload();
+        return getNavigation(getUrl());
+    }
+
+    @Override
+    public void stopLoading() {
+        getNativeWidget().stopLoading();
+    }
+
+    @Override
+    public double getMagnification() {
+        return scale;
+    }
+
+    @Override
+    public double getProgress() {
+        return progress;
+    }
+
+    @Override
+    public String getTitle() {
+        return getNativeWidget().getTitle();
+    }
+
+    @Override
+    public String getUrl() {
+        return getNativeWidget().getUrl();
     }
 
     @Override
     public boolean isLoading() {
         return isLoading;
+    }
+
+    @Override
+    public WKBackForwardList getBackForwardList() {
+        WebBackForwardList list = getNativeWidget().copyBackForwardList();
+        return WebKitDrill.backForwardList(() -> new Iterator<HistoryItem>() {
+            private int current = 0;
+
+            @Override
+            public boolean hasNext() {
+                return list.getSize() > current;
+            }
+
+            @Override
+            public HistoryItem next() {
+                WebHistoryItem item = list.getItemAtIndex(current);
+                current++;
+                return new HistoryItem(item.getUrl(), item.getOriginalUrl(), item.getTitle());
+            }
+        }, list.getCurrentIndex());
     }
 
     public class NativeW extends VideoEnabledWebView implements AndroidNativeWidget {
@@ -127,49 +170,122 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
             super(MainActivity.current);
             updateSettings(getSettings());
             setWebChromeClient(new VideoEnabledWebChromeClient(MainView.current, this));
-            setDownloadListener((String url, String userAgent, String contentDisposition, String mimetype, long contentLength) -> {
-                downloadFile(url, mimetype);
-            });
+            setDownloadListener((String url, String userAgent, String contentDisposition, String mimetype, long contentLength) -> downloadFile(url, mimetype));
             setWebViewClient(new WebViewClient() {
+
                 @Override
-                public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                    isLoading = true;
-                    UIWebView source = getIOSWidget();
-                    if (source != null && source.delegate() != null && (url == null || !url.startsWith(JSTAG)))
-                        source.delegate().didStartLoad(source);
+                public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+                    return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && request.isForMainFrame()
+                            ? shouldInterceptRequest(request.getUrl().toString())
+                            : super.shouldInterceptRequest(view, request);
                 }
 
                 @Override
-                public void onPageFinished(WebView view, String url) {
-                    isLoading = false;
-                    UIWebView source = getIOSWidget();
-                    if (source != null && source.delegate() != null && (url == null || !url.startsWith(JSTAG))) {
-                        source.delegate().didFinishLoad(source);
-                        zoomOut();
+                public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
+                    return Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP
+                            ? shouldInterceptRequest(url)
+                            : super.shouldInterceptRequest(view, url);
+                }
+
+                private WebResourceResponse shouldInterceptRequest(String url) {
+                    isLoading = true;
+                    if (getNewDelegate() != null)
+                        getNewDelegate().didStartProvisionalNavigation(getNewWebView(), getNavigation(url));
+                    return null;
+                }
+
+                @Override
+                public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                    if (isLoading) {
+                        if (url == null || !url.startsWith(JSTAG)) {
+                            if (getNewDelegate() != null)
+                                getNewDelegate().didCommitNavigation(getNewWebView(), getNavigation(url));
+                            else if (getOldDelegate() != null)
+                                getOldDelegate().didStartLoad(getOldWebView());
+                        }
                     }
                 }
 
                 @Override
-                public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                public void onPageFinished(WebView view, String url) {
+                    if (isLoading && (url == null || !url.startsWith(JSTAG))) {
+                        if (getNewDelegate() != null)
+                            getNewDelegate().didFinishNavigation(getNewWebView(), getNavigation(url));
+                        else if (getOldDelegate() != null)
+                            getOldDelegate().didFinishLoad(getOldWebView());
+                        zoomOut();
+                    }
                     isLoading = false;
-                    UIWebView source = getIOSWidget();
-                    if (source != null)
-                        if (source.delegate() != null)
-                            source.delegate().didFailLoadWithError(source, new NSError("NSURLErrorDomain", errorCode, null));
+                }
+
+                @Override
+                public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
+                    if (request.isForMainFrame() && isLoading) {
+                        NSHTTPURLResponse response = new NSHTTPURLResponse(NSURL.URLWithString(request.getUrl().toString()), errorResponse.getStatusCode(), "", errorResponse.getResponseHeaders());
+                        if (!acceptsResponse(response)) {
+                            Native.lifecycle().postOnEventThread(() -> getNativeWidget().stopLoading());
+                            onReceivedError(errorResponse.getStatusCode(), request.getUrl().toString());
+                        }
+                    }
+                }
+
+                @Override
+                public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                    onReceivedError(error.getPrimaryError(), error.getUrl());
+                }
+
+                @Override
+                public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
+                        onReceivedError(errorCode, failingUrl);
+                }
+
+                @Override
+                public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && request.isForMainFrame())
+                        onReceivedError(error.getErrorCode(), request.getUrl().toString());
+                }
+
+                private void onReceivedError(int errorCode, String failingUrl) {
+                    NSError error = new NSError("NSURLErrorDomain", errorCode, null);
+                    if (getNewDelegate() != null)
+                        getNewDelegate().didFailProvisionalNavigation(getNewWebView(), getNavigation(failingUrl), error);
+                    else if (getOldDelegate() != null)
+                        getOldDelegate().didFailLoadWithError(getOldWebView(), error);
+                    isLoading = false;
                 }
 
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                    return shouldOverrideUrlLoading(request.getUrl().toString());
+                    return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && request.isForMainFrame()
+                            ? shouldOverrideUrlLoading(request.getUrl().toString())
+                            : super.shouldOverrideUrlLoading(view, request);
                 }
 
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                    return shouldOverrideUrlLoading(url);
+                    return Build.VERSION.SDK_INT < Build.VERSION_CODES.N
+                            ? shouldOverrideUrlLoading(url)
+                            : super.shouldOverrideUrlLoading(view, url);
                 }
 
                 private boolean shouldOverrideUrlLoading(String url) {
-                    return !acceptsURL(SystemUtilities.fixURI(url), UIWebViewNavigationType.LinkClicked);
+                    boolean accepted = acceptsRequest(NSURLRequest.requestWithURL(NSURL.URLWithString(SystemUtilities.fixURI(url))), UIWebViewNavigationType.LinkClicked);
+                    if (accepted && getNewDelegate() != null && isLoading)
+                        getNewDelegate().didReceiveServerRedirectForProvisionalNavigation(getNewWebView(), getNavigation(url));
+                    return !accepted;
+                }
+
+                @Override
+                public void onScaleChanged(WebView view, float oldScale, float newScale) {
+                    AndroidWebWrapper.this.scale = newScale;
+                }
+
+                @Override
+                public boolean onRenderProcessGone(WebView view, RenderProcessGoneDetail detail) {
+                    if (getNewDelegate() != null)
+                        getNewDelegate().webContentProcessDidTerminate(getNewWebView());
+                    return super.onRenderProcessGone(view, detail);
                 }
             });
         }
@@ -276,6 +392,11 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
         public void setUserInteraction(final boolean status) {
             setEnabled(status);
         }
+
+        @Override
+        public void setProgress(int progressPercentage) {
+            AndroidWebWrapper.this.progress = progress / 100d;
+        }
     }
 
     private void updateSettings(WebSettings settings) {
@@ -285,23 +406,5 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
         settings.setBuiltInZoomControls(true);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
             settings.setDisplayZoomControls(false);
-    }
-
-    private HistorySanitizer getHistoryList() {
-        WebView widget = getNativeWidget();
-        WebBackForwardList urls = widget.copyBackForwardList();
-        return new HistorySanitizer(urls.getCurrentIndex(), new Iterator<String>() {
-            int idx = 0;
-
-            @Override
-            public boolean hasNext() {
-                return idx < urls.getSize();
-            }
-
-            @Override
-            public String next() {
-                return urls.getItemAtIndex(idx++).getUrl();
-            }
-        });
     }
 }

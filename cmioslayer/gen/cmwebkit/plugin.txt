@@ -1,0 +1,7 @@
+# Plugin cmwebkit
+objc.libs=WebKit.framework
+java.initializer=
+objc.pods=
+android.permissions=
+android.injections=
+android.extra.dependencies=

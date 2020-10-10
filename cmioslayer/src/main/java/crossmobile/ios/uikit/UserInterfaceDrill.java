@@ -11,6 +11,7 @@ import crossmobile.ios.coregraphics.CGContext;
 import crossmobile.ios.coregraphics.CGFont;
 import crossmobile.ios.coregraphics.CGPoint;
 import org.crossmobile.bind.graphics.GraphicsContext;
+import org.crossmobile.bind.wrapper.NativeTouch;
 import org.crossmobile.bind.wrapper.TextWrapper;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.CMLib;
@@ -108,5 +109,13 @@ public class UserInterfaceDrill {
 
     public static void setCellRowHeight(UITableViewCell cell, float rowHeight) {
         cell.setRowHeight(rowHeight);
+    }
+
+    public static Object getOriginalEvent(UIEvent event) {
+        return event.originalEvent;
+    }
+
+    public static NativeTouch[] getTouches(UIEvent event, UIView referenceView) {
+        return event.getTouches(referenceView);
     }
 }

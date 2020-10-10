@@ -1286,6 +1286,7 @@ org/crossmobile/bind/system/VelocityFilter.java
 org/crossmobile/bind/system/i18n/I18NBridge.java
 org/crossmobile/bind/system/i18n/I18NSelf.java
 org/crossmobile/bind/system/i18n/I18NTest.java
+org/crossmobile/bind/wrapper/HistoryItem.java
 org/crossmobile/bind/wrapper/MapViewWrapper.java
 org/crossmobile/bind/wrapper/NativeDispatcher.java
 org/crossmobile/bind/wrapper/NativeTouch.java
@@ -2488,12 +2489,12 @@ org/crossmobile/bind/system/i18n/I18NBridge.class v8
 org/crossmobile/bind/system/i18n/I18NSelf$NumberTest.class v8
 org/crossmobile/bind/system/i18n/I18NSelf.class v8
 org/crossmobile/bind/system/i18n/I18NTest.class v8
+org/crossmobile/bind/wrapper/HistoryItem.class v8
 org/crossmobile/bind/wrapper/MapViewWrapper.class v8
 org/crossmobile/bind/wrapper/NativeDispatcher.class v8
 org/crossmobile/bind/wrapper/NativeTouch.class v8
 org/crossmobile/bind/wrapper/NativeWrapper.class v8
 org/crossmobile/bind/wrapper/TextWrapper.class v8
-org/crossmobile/bind/wrapper/WebWrapper$HistorySanitizer.class v8
 org/crossmobile/bind/wrapper/WebWrapper.class v8
 org/crossmobile/bind/wrapper/WidgetWrapper.class v8
 org/crossmobile/bridge/CrossMobilePlugin.class v8
@@ -3234,12 +3235,12 @@ org/crossmobile/bind/system/i18n/I18NBridge.class v8
 org/crossmobile/bind/system/i18n/I18NSelf$NumberTest.class v8
 org/crossmobile/bind/system/i18n/I18NSelf.class v8
 org/crossmobile/bind/system/i18n/I18NTest.class v8
+org/crossmobile/bind/wrapper/HistoryItem.class v8
 org/crossmobile/bind/wrapper/MapViewWrapper.class v8
 org/crossmobile/bind/wrapper/NativeDispatcher.class v8
 org/crossmobile/bind/wrapper/NativeTouch.class v8
 org/crossmobile/bind/wrapper/NativeWrapper.class v8
 org/crossmobile/bind/wrapper/TextWrapper.class v8
-org/crossmobile/bind/wrapper/WebWrapper$HistorySanitizer.class v8
 org/crossmobile/bind/wrapper/WebWrapper.class v8
 org/crossmobile/bind/wrapper/WidgetWrapper.class v8
 org/crossmobile/bridge/CrossMobilePlugin.class v8
@@ -4162,5 +4163,121 @@ org/crossmobile/backend/android/AndroidSecurityBridge$FingerprintException.class
 org/crossmobile/backend/android/AndroidSecurityBridge.class v8
 
 Creating file cmplugin-rvm-cmtouchid-<VERSION>.jar
+
+
+Creating file cmplugin-cmwebkit-<VERSION>.jar
+META-INF/PLUGIN.INF
+META-INF/REVERSE.INF
+crossmobile/ios/webkit/WKBackForwardList.class v8
+crossmobile/ios/webkit/WKBackForwardListItem.class v8
+crossmobile/ios/webkit/WKContentMode.class v8
+crossmobile/ios/webkit/WKFrameInfo.class v8
+crossmobile/ios/webkit/WKNavigation.class v8
+crossmobile/ios/webkit/WKNavigationAction.class v8
+crossmobile/ios/webkit/WKNavigationActionPolicy.class v8
+crossmobile/ios/webkit/WKNavigationDelegate.class v8
+crossmobile/ios/webkit/WKNavigationResponse.class v8
+crossmobile/ios/webkit/WKNavigationResponsePolicy.class v8
+crossmobile/ios/webkit/WKPreferences.class v8
+crossmobile/ios/webkit/WKScriptMessage.class v8
+crossmobile/ios/webkit/WKScriptMessageHandler.class v8
+crossmobile/ios/webkit/WKSecurityOrigin.class v8
+crossmobile/ios/webkit/WKUserContentController.class v8
+crossmobile/ios/webkit/WKUserScript.class v8
+crossmobile/ios/webkit/WKUserScriptInjectionTime.class v8
+crossmobile/ios/webkit/WKWebView.class v8
+crossmobile/ios/webkit/WKWebViewConfiguration.class v8
+crossmobile/ios/webkit/package-info.class v8
+
+Creating file cmplugin-cmwebkit-<VERSION>-sources.jar
+crossmobile/ios/webkit/WKBackForwardList.java
+crossmobile/ios/webkit/WKBackForwardListItem.java
+crossmobile/ios/webkit/WKContentMode.java
+crossmobile/ios/webkit/WKFrameInfo.java
+crossmobile/ios/webkit/WKNavigation.java
+crossmobile/ios/webkit/WKNavigationAction.java
+crossmobile/ios/webkit/WKNavigationActionPolicy.java
+crossmobile/ios/webkit/WKNavigationDelegate.java
+crossmobile/ios/webkit/WKNavigationResponse.java
+crossmobile/ios/webkit/WKNavigationResponsePolicy.java
+crossmobile/ios/webkit/WKPreferences.java
+crossmobile/ios/webkit/WKScriptMessage.java
+crossmobile/ios/webkit/WKScriptMessageHandler.java
+crossmobile/ios/webkit/WKSecurityOrigin.java
+crossmobile/ios/webkit/WKUserContentController.java
+crossmobile/ios/webkit/WKUserScript.java
+crossmobile/ios/webkit/WKUserScriptInjectionTime.java
+crossmobile/ios/webkit/WKWebView.java
+crossmobile/ios/webkit/WKWebViewConfiguration.java
+crossmobile/ios/webkit/WebKitDrill.java
+crossmobile/ios/webkit/package-info.java
+
+Creating file cmplugin-ios-cmwebkit-<VERSION>.jar
+native/CM_Block_Reverse_cmwebkit_0.h
+native/CM_Block_Reverse_cmwebkit_1.h
+native/cmwebkit.a
+native/crossmobile_ios_webkit_WKBackForwardList.h
+native/crossmobile_ios_webkit_WKBackForwardListItem.h
+native/crossmobile_ios_webkit_WKFrameInfo.h
+native/crossmobile_ios_webkit_WKNavigation.h
+native/crossmobile_ios_webkit_WKNavigationAction.h
+native/crossmobile_ios_webkit_WKNavigationDelegate.h
+native/crossmobile_ios_webkit_WKNavigationResponse.h
+native/crossmobile_ios_webkit_WKPreferences.h
+native/crossmobile_ios_webkit_WKScriptMessage.h
+native/crossmobile_ios_webkit_WKScriptMessageHandler.h
+native/crossmobile_ios_webkit_WKSecurityOrigin.h
+native/crossmobile_ios_webkit_WKUserContentController.h
+native/crossmobile_ios_webkit_WKUserScript.h
+native/crossmobile_ios_webkit_WKWebView.h
+native/crossmobile_ios_webkit_WKWebViewConfiguration.h
+
+Creating file cmplugin-desktop-cmwebkit-<VERSION>.jar
+crossmobile/ios/webkit/WKBackForwardList.class v8
+crossmobile/ios/webkit/WKBackForwardListItem.class v8
+crossmobile/ios/webkit/WKContentMode.class v8
+crossmobile/ios/webkit/WKFrameInfo.class v8
+crossmobile/ios/webkit/WKNavigation.class v8
+crossmobile/ios/webkit/WKNavigationAction.class v8
+crossmobile/ios/webkit/WKNavigationActionPolicy.class v8
+crossmobile/ios/webkit/WKNavigationDelegate.class v8
+crossmobile/ios/webkit/WKNavigationResponse.class v8
+crossmobile/ios/webkit/WKNavigationResponsePolicy.class v8
+crossmobile/ios/webkit/WKPreferences.class v8
+crossmobile/ios/webkit/WKScriptMessage.class v8
+crossmobile/ios/webkit/WKScriptMessageHandler.class v8
+crossmobile/ios/webkit/WKSecurityOrigin.class v8
+crossmobile/ios/webkit/WKUserContentController.class v8
+crossmobile/ios/webkit/WKUserScript.class v8
+crossmobile/ios/webkit/WKUserScriptInjectionTime.class v8
+crossmobile/ios/webkit/WKWebView.class v8
+crossmobile/ios/webkit/WKWebViewConfiguration.class v8
+crossmobile/ios/webkit/WebKitDrill.class v8
+crossmobile/ios/webkit/package-info.class v8
+
+Creating file cmplugin-android-cmwebkit-<VERSION>.jar
+crossmobile/ios/webkit/WKBackForwardList.class v8
+crossmobile/ios/webkit/WKBackForwardListItem.class v8
+crossmobile/ios/webkit/WKContentMode.class v8
+crossmobile/ios/webkit/WKFrameInfo.class v8
+crossmobile/ios/webkit/WKNavigation.class v8
+crossmobile/ios/webkit/WKNavigationAction.class v8
+crossmobile/ios/webkit/WKNavigationActionPolicy.class v8
+crossmobile/ios/webkit/WKNavigationDelegate.class v8
+crossmobile/ios/webkit/WKNavigationResponse.class v8
+crossmobile/ios/webkit/WKNavigationResponsePolicy.class v8
+crossmobile/ios/webkit/WKPreferences.class v8
+crossmobile/ios/webkit/WKScriptMessage.class v8
+crossmobile/ios/webkit/WKScriptMessageHandler.class v8
+crossmobile/ios/webkit/WKSecurityOrigin.class v8
+crossmobile/ios/webkit/WKUserContentController.class v8
+crossmobile/ios/webkit/WKUserScript.class v8
+crossmobile/ios/webkit/WKUserScriptInjectionTime.class v8
+crossmobile/ios/webkit/WKWebView.class v8
+crossmobile/ios/webkit/WKWebViewConfiguration.class v8
+crossmobile/ios/webkit/WebKitDrill.class v8
+crossmobile/ios/webkit/package-info.class v8
+
+Creating file cmplugin-rvm-cmwebkit-<VERSION>.jar
 
 

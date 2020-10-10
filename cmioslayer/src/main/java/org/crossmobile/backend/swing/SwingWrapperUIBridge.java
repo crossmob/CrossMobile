@@ -8,6 +8,7 @@ package org.crossmobile.backend.swing;
 
 import crossmobile.ios.uikit.UITextField;
 import crossmobile.ios.uikit.UITextView;
+import crossmobile.ios.uikit.UIView;
 import crossmobile.ios.uikit.UIWebView;
 import org.crossmobile.bind.wrapper.NativeDispatcher;
 import org.crossmobile.bind.wrapper.WebWrapper;
@@ -57,7 +58,7 @@ public class SwingWrapperUIBridge implements WrapperUIBridge<JComponent> {
     }
 
     @Override
-    public WebWrapper<?, SwingGraphicsContext> webView(UIWebView parent) {
+    public WebWrapper<?, SwingGraphicsContext> webView(UIView parent) {
         try {
             return webViewConstructor.newInstance(parent);
         } catch (Exception e) {

@@ -16,6 +16,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import crossmobile.ios.uikit.UITextField;
 import crossmobile.ios.uikit.UITextView;
+import crossmobile.ios.uikit.UIView;
 import crossmobile.ios.uikit.UIWebView;
 import org.crossmobile.backend.android.AndroidNativeDispatcher.AndroidNativeWidget;
 import org.crossmobile.bind.wrapper.NativeDispatcher;
@@ -34,7 +35,7 @@ public class AndroidWrapperUIBridge implements WrapperUIBridge<View> {
     };
 
     @Override
-    public WebWrapper webView(UIWebView parent) {
+    public WebWrapper webView(UIView parent) {
         return new AndroidWebWrapper(parent);
     }
 
