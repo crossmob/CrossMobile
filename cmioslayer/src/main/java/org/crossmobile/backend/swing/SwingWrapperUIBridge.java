@@ -24,7 +24,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
-import java.util.Collection;
 import java.util.Objects;
 
 public class SwingWrapperUIBridge implements WrapperUIBridge<JComponent> {

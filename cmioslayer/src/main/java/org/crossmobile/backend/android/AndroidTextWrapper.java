@@ -61,7 +61,7 @@ public class AndroidTextWrapper extends TextWrapper<UIView, AndroidTextWidget, A
 
     @Override
     public String getPlaceholder() {
-        return getNativeWidget().getHint().toString();
+        return getNativeWidget().getHint() == null ? null : getNativeWidget().getHint().toString();
     }
 
     @Override
