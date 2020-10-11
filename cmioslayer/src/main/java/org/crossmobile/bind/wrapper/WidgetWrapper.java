@@ -6,6 +6,7 @@
 
 package org.crossmobile.bind.wrapper;
 
+import crossmobile.ios.coregraphics.CGPoint;
 import crossmobile.ios.uikit.UIView;
 import org.crossmobile.bind.graphics.DrawableMetrics;
 import org.crossmobile.bind.graphics.GraphicsContext;
@@ -43,9 +44,10 @@ public abstract class WidgetWrapper<IOSWIDG extends UIView, NWIDG extends Native
 
     public void setFrame(double x, double y, double width, double height) {
         DrawableMetrics metrics = Native.graphics().metrics();
+        CGPoint virtualToHardware = metrics.getVirtualToHardware(x, y);
         dispatcher.setMetrics(
-                (int) (x * metrics.getOrientedScaleWidth() + metrics.getOutsetLeft() + 0.5),
-                (int) (y * metrics.getOrientedScaleHeight() + metrics.getOutsetTop() + 0.5),
+                (int) (virtualToHardware.getX() + 0.5),
+                (int) (virtualToHardware.getY() + 0.5),
                 (int) (width * metrics.getOrientedScaleWidth() + 0.5),
                 (int) (height * metrics.getOrientedScaleHeight() + 0.5));
     }

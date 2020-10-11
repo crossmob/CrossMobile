@@ -529,10 +529,10 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
      */
     @CMSelector("- (void)layoutSubviews;")
     public void layoutSubviews() {
-        layoutNativeFromRoot();
         safeAreaInsets();
         if (autoresizesSubviews)
             applyLayout();
+        layoutNativeFromRoot();
         setNeedsDisplay();
     }
 
@@ -540,15 +540,13 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
      *
      */
     void layoutNativeFromRoot() {
-        CGPoint root = locationRelativeToRoot(CGPoint.zero());
-        layoutNative(root.getX(), root.getY());
-    }
-
-    void layoutNative(double dx, double dy) {
-        if (widget != null)
-            widget.setFrame(dx, dy, getWidth(), getHeight());
+        if (widget != null) {
+            CGPoint loc = CGPoint.zero();
+            locationRelativeToRoot(loc);
+            widget.setFrame(loc.getX(), loc.getY(), getWidth(), getHeight());
+        }
         for (UIView child : children)
-            child.layoutNative(dx + child.getX(), dy + child.getY());
+            child.layoutNativeFromRoot();
     }
 
     /**
@@ -665,11 +663,25 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
     /**
      * We could not support transformations yet (how?) ; just try to calculate the offset from the root window
      */
-    CGPoint locationRelativeToRoot(CGPoint rloc) {
-        rloc.setX(rloc.getX() + getX());
-        rloc.setY(rloc.getY() + getY());
+    void locationRelativeToRoot(CGPoint res) {
         UIView superview = superview();
-        return superview == null ? rloc : superview.locationRelativeToRoot(rloc);
+        /*
+         * Don't take into account UIWindow and its child is a dirty hack to get rid of transformations
+         * of the view below UIWindow. By definition this view should be aligned at top left.
+         * This view has affine transformations that rotate and translate it, and on top of this it is translated
+         * with frame() to put it into real location.
+         *
+         * Since native widgets don't support affine transformations (yet?), in most cases the native widgets
+         * location could be estimated by not taking into account the UIWindow and its parent (UIViewController's)
+         * view.
+         *
+         *  Maybe the whole method is too complex and it should be simplified now.
+         */
+        if (superview != null && !(superview instanceof UIWindow)) {
+            res.setX(res.getX() + getX());
+            res.setY(res.getY() + getY());
+            superview.locationRelativeToRoot(res);
+        }
     }
 
     /**

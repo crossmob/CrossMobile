@@ -253,9 +253,4 @@ public class UIWindow extends UIView {
             if (Live_Touch_Debug)
                 setNeedsDisplay();
     }
-
-    @Override
-    CGPoint locationRelativeToRoot(CGPoint rloc) {
-        return rloc;
-    }
 }

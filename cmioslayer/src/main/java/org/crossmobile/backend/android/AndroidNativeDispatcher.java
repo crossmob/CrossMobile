@@ -18,6 +18,10 @@ import org.crossmobile.bind.wrapper.WidgetWrapper;
 import org.crossmobile.bridge.Native;
 
 public class AndroidNativeDispatcher extends NativeDispatcher<UIView, AndroidNativeWidget, MotionEvent, AndroidGraphicsContext> {
+    private int oldX = Integer.MIN_VALUE;
+    private int oldY = Integer.MIN_VALUE;
+    private int oldWidth = Integer.MIN_VALUE;
+    private int oldHeight = Integer.MIN_VALUE;
 
     public AndroidNativeDispatcher(WidgetWrapper<UIView, AndroidNativeWidget, GraphicsContext<?>> holder) {
         super(holder);
@@ -25,10 +29,13 @@ public class AndroidNativeDispatcher extends NativeDispatcher<UIView, AndroidNat
 
     @Override
     public void setMetrics(final int x, final int y, final int width, final int height) {
-        Native.lifecycle().runOnEventThread(() -> {
-            AndroidNativeWidget view = getWidgetWrapper().getNativeWidget();
-            view.setLayoutParams(new android.widget.AbsoluteLayout.LayoutParams(width, height, x, y));
-        });
+        if (x == oldX && y == oldY && width == oldWidth && height == oldHeight)
+            return;
+        oldX = x;
+        oldY = y;
+        oldWidth = width;
+        oldHeight = height;
+        Native.lifecycle().postOnEventThread(() -> getWidgetWrapper().getNativeWidget().setLayoutParams(new android.widget.AbsoluteLayout.LayoutParams(width, height, x, y)));
     }
 
     @Override

@@ -840,10 +840,10 @@ public class UIScrollView extends UIView {
     }
 
     @Override
-    CGPoint locationRelativeToRoot(CGPoint rloc) {
+    void locationRelativeToRoot(CGPoint rloc) {
         rloc.setX(rloc.getX() - contentOffset.getX() + contentInset.getLeft());
         rloc.setY(rloc.getY() - contentOffset.getY() + contentInset.getTop());
-        return super.locationRelativeToRoot(rloc);
+        super.locationRelativeToRoot(rloc);
     }
 
     @Override
