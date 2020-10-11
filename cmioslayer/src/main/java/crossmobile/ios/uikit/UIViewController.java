@@ -966,7 +966,7 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
     UIScrollView getFirstScroll() {
         if (!scrollWasAlreadySearched && view != null) {
             scrollWasAlreadySearched = true;
-            UIView fs = view.subview(UIScrollView.class, UIWebView.class);
+            UIView fs = view.subview(Native.system().getScrollables());
             firstScroll = (fs instanceof UIWebView) ? ((UIWebView) fs).scrollView() : (UIScrollView) fs;
         }
         return firstScroll;

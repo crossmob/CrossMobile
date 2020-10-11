@@ -7,6 +7,7 @@
 package org.crossmobile.backend.desktop;
 
 import crossmobile.ios.uikit.UIAlertView;
+import org.crossmobile.bind.system.AbstractSystemBridge;
 import org.crossmobile.bridge.SystemBridge;
 
 import java.io.OutputStreamWriter;
@@ -16,7 +17,7 @@ import java.nio.charset.StandardCharsets;
 import static org.crossmobile.bind.system.i18n.I18NSelf.ℑ;
 
 
-public abstract class DesktopSystemBridge implements SystemBridge {
+public abstract class DesktopSystemBridge extends AbstractSystemBridge {
 
     private static final PrintWriter error = new PrintWriter(new OutputStreamWriter(System.err, StandardCharsets.UTF_8));
 

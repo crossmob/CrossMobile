@@ -12,12 +12,12 @@ import crossmobile.ios.foundation.NSTimer;
 import crossmobile.ios.quartzcore.CALayer;
 import crossmobile.ios.quartzcore.CAShapeLayer;
 import org.crossmobile.bind.graphics.*;
-import org.crossmobile.bind.system.Core;
 import org.crossmobile.bind.system.SystemUtilities;
 import org.crossmobile.bind.wrapper.NativeWrapper;
 import org.crossmobile.bind.wrapper.WidgetWrapper;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.*;
+import org.crossmobile.bridge.system.BaseUtils;
 import org.crossmobile.support.cassowary.ClSimplexSolver;
 import org.crossmobile.support.cassowary.ClVariable;
 import org.robovm.objc.annotation.UIAppearanceSelector;
@@ -852,15 +852,15 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
         return new ArrayList<>(children);
     }
 
-    UIView subview(Class<? extends UIView>... viewclasses) {
+    UIView subview(Iterable<Class<? extends UIView>> viewclasses) {
         Class<?> viewClass = getClass();
-        for (int i = 0; i < viewclasses.length; i++)
-            if (viewclasses[i].isAssignableFrom(viewClass))
+        for (Class<? extends UIView> cls : viewclasses)
+            if (cls.isAssignableFrom(viewClass))
                 return this;
         for (UIView view : children) {
             viewClass = view.getClass();
-            for (int i = 0; i < viewclasses.length; i++)
-                if (viewclasses[i].isAssignableFrom(viewClass))
+            for (Class<? extends UIView> cls : viewclasses)
+                if (cls.isAssignableFrom(viewClass))
                     return view;
         }
         for (UIView view : children)
@@ -955,7 +955,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
     @UIAppearanceSelector
     @CMSetter("@property(nonatomic, copy) UIColor *backgroundColor;")
     public void setBackgroundColor(UIColor background) {
-        if (Core.equals(this.background, background))
+        if (BaseUtils.equals(this.background, background))
             return;
         if (pendingAnim != null) {
             if (background != null)

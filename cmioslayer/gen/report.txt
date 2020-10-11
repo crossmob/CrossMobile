@@ -1265,9 +1265,9 @@ org/crossmobile/bind/io/SoundPlayer.java
 org/crossmobile/bind/package-info.java
 org/crossmobile/bind/system/AbstractLifecycleBridge.java
 org/crossmobile/bind/system/AbstractLocationBridge.java
+org/crossmobile/bind/system/AbstractSystemBridge.java
 org/crossmobile/bind/system/AppConstants.java
 org/crossmobile/bind/system/BitField.java
-org/crossmobile/bind/system/Core.java
 org/crossmobile/bind/system/Debug.java
 org/crossmobile/bind/system/GenericSystemTimerHandler.java
 org/crossmobile/bind/system/Predicate.java
@@ -2459,9 +2459,9 @@ org/crossmobile/bind/system/AbstractLifecycleBridge$1.class v8
 org/crossmobile/bind/system/AbstractLifecycleBridge$SyncRunnable.class v8
 org/crossmobile/bind/system/AbstractLifecycleBridge.class v8
 org/crossmobile/bind/system/AbstractLocationBridge.class v8
+org/crossmobile/bind/system/AbstractSystemBridge.class v8
 org/crossmobile/bind/system/AppConstants.class v8
 org/crossmobile/bind/system/BitField.class v8
-org/crossmobile/bind/system/Core.class v8
 org/crossmobile/bind/system/Debug.class v8
 org/crossmobile/bind/system/GenericSystemTimerHandler.class v8
 org/crossmobile/bind/system/Predicate.class v8
@@ -3197,9 +3197,9 @@ org/crossmobile/bind/system/AbstractLifecycleBridge$1.class v8
 org/crossmobile/bind/system/AbstractLifecycleBridge$SyncRunnable.class v8
 org/crossmobile/bind/system/AbstractLifecycleBridge.class v8
 org/crossmobile/bind/system/AbstractLocationBridge.class v8
+org/crossmobile/bind/system/AbstractSystemBridge.class v8
 org/crossmobile/bind/system/AppConstants.class v8
 org/crossmobile/bind/system/BitField.class v8
-org/crossmobile/bind/system/Core.class v8
 org/crossmobile/bind/system/Debug.class v8
 org/crossmobile/bind/system/GenericSystemTimerHandler.class v8
 org/crossmobile/bind/system/Predicate.class v8
@@ -4197,6 +4197,7 @@ org/crossmobile/backend/android/AndroidWebViewBridge.java
 org/crossmobile/backend/android/AndroidWebWrapper.java
 org/crossmobile/backend/swing/SwingWebViewBridge.java
 org/crossmobile/backend/swing/SwingWebWrapper.java
+org/crossmobile/bind/wrapper/WebViewInitializer.java
 org/crossmobile/bind/wrapper/WebWrapper.java
 
 Creating file cmplugin-ios-cmwebkit-<VERSION>.jar
@@ -4250,6 +4251,7 @@ org/crossmobile/backend/swing/SwingWebViewBridge.class v8
 org/crossmobile/backend/swing/SwingWebWrapper$NativeW$1.class v8
 org/crossmobile/backend/swing/SwingWebWrapper$NativeW.class v8
 org/crossmobile/backend/swing/SwingWebWrapper.class v8
+org/crossmobile/bind/wrapper/WebViewInitializer.class v8
 org/crossmobile/bind/wrapper/WebWrapper.class v8
 
 Creating file cmplugin-android-cmwebkit-<VERSION>.jar
@@ -4283,6 +4285,7 @@ org/crossmobile/backend/android/AndroidWebWrapper$NativeW$1.class v8
 org/crossmobile/backend/android/AndroidWebWrapper$NativeW$2.class v8
 org/crossmobile/backend/android/AndroidWebWrapper$NativeW.class v8
 org/crossmobile/backend/android/AndroidWebWrapper.class v8
+org/crossmobile/bind/wrapper/WebViewInitializer.class v8
 org/crossmobile/bind/wrapper/WebWrapper.class v8
 
 Creating file cmplugin-rvm-cmwebkit-<VERSION>.jar

@@ -9,6 +9,7 @@ package org.crossmobile.bridge;
 import crossmobile.ios.foundation.NSSelector;
 import crossmobile.ios.uikit.UIAlertView;
 import crossmobile.ios.uikit.UIAlertViewDelegate;
+import crossmobile.ios.uikit.UIView;
 import org.crossmobile.backend.android.AndroidPermissions;
 
 import java.text.SimpleDateFormat;
@@ -56,6 +57,10 @@ public interface SystemBridge {
     boolean launchPhoneCall(String phone);
 
     boolean isRTL();
+
+    void registerScrollable(Class<? extends UIView> scrollableClass);
+
+    Iterable<Class<? extends UIView>> getScrollables();
 
     default void notImplemented() {
         notImplemented(null);

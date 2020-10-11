@@ -21,6 +21,7 @@ import crossmobile.ios.foundation.NSSelector;
 import crossmobile.ios.uikit.UIAlertView;
 import crossmobile.ios.uikit.UIAlertViewDelegate;
 import crossmobile.ios.uikit.UITextField;
+import org.crossmobile.bind.system.AbstractSystemBridge;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.SystemBridge;
 import org.crossmobile.bridge.ann.CMLib;
@@ -35,7 +36,7 @@ import static org.crossmobile.bridge.ann.CMLibTarget.ANDROID;
 
 
 @CMLib(target = ANDROID, name = "cmioslayer")
-public class AndroidSystemBridge implements SystemBridge {
+public class AndroidSystemBridge extends AbstractSystemBridge {
     private AndroidPermissions permissions;
 
     public static void printError(Object message, Throwable th) {
