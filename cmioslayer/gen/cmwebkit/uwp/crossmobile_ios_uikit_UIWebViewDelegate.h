@@ -3,9 +3,7 @@
 // crossmobile_ios_uikit_UIWebViewDelegate definition
 
 #import "xmlvm.h"
-#import <CoreGraphics/CoreGraphics.h>
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 @class crossmobile_ios_foundation_NSError;
 @class crossmobile_ios_foundation_NSURLRequest;
 @class crossmobile_ios_uikit_UIWebView;

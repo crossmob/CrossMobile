@@ -1,4 +1,272 @@
 {
+  "crossmobile.ios.uikit.UIWebView": {
+    "accessibilityIdentifier()": null,
+    "addConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
+    "addConstraints(java.util.List)": null,
+    "addGestureRecognizer(crossmobile.ios.uikit.UIGestureRecognizer)": null,
+    "addLayoutGuide(crossmobile.ios.uikit.UILayoutGuide)": null,
+    "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "addSubview(crossmobile.ios.uikit.UIView)": null,
+    "alpha()": null,
+    "autoresizesSubviews()": null,
+    "autoresizingMask()": null,
+    "backgroundColor()": null,
+    "becomeFirstResponder()": null,
+    "bottomAnchor()": null,
+    "bounds()": null,
+    "bringSubviewToFront(crossmobile.ios.uikit.UIView)": null,
+    "canGoBack()": {
+      "reverse": "- (BOOL) canGoBack\n{\n    return [self canGoBack__];\n}\n\n",
+      "super": "- (BOOL) canGoBack__\n{\n    return [super canGoBack];\n}\n\n"
+    },
+    "canGoForward()": {
+      "reverse": "- (BOOL) canGoForward\n{\n    return [self canGoForward__];\n}\n\n",
+      "super": "- (BOOL) canGoForward__\n{\n    return [super canGoForward];\n}\n\n"
+    },
+    "center()": null,
+    "centerXAnchor()": null,
+    "centerYAnchor()": null,
+    "clipsToBounds()": null,
+    "constraints()": null,
+    "contentCompressionResistancePriorityForAxis(int)": null,
+    "contentHuggingPriorityForAxis(int)": null,
+    "contentMode()": null,
+    "convertPointFromView(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIView)": null,
+    "convertPointToView(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIView)": null,
+    "convertRectFromView(crossmobile.ios.coregraphics.CGRect,crossmobile.ios.uikit.UIView)": null,
+    "convertRectToView(crossmobile.ios.coregraphics.CGRect,crossmobile.ios.uikit.UIView)": null,
+    "dataDetectorTypes()": {
+      "reverse": "- (UIDataDetectorTypes) dataDetectorTypes\n{\n    return [self dataDetectorTypes__];\n}\n\n",
+      "super": "- (JAVA_LONG) dataDetectorTypes__\n{\n    return [super dataDetectorTypes];\n}\n\n"
+    },
+    "delegate()": {
+      "reverse": "- (id<UIWebViewDelegate>) delegate\n{\n    id<UIWebViewDelegate> re$ult = [self delegate__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (id<UIWebViewDelegate>) delegate__\n{\n    id<UIWebViewDelegate> re$ult = [super delegate];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIWebViewDelegate"
+      ]
+    },
+    "didAddSubview(crossmobile.ios.uikit.UIView)": null,
+    "didMoveToSuperview()": null,
+    "didMoveToWindow()": null,
+    "drawRect(crossmobile.ios.coregraphics.CGRect)": null,
+    "frame()": null,
+    "gestureRecognizers()": null,
+    "goBack()": {
+      "reverse": "- (void) goBack\n{\n    [self goBack__];\n}\n\n",
+      "super": "- (void) goBack__\n{\n    [super goBack];\n}\n\n"
+    },
+    "goForward()": {
+      "reverse": "- (void) goForward\n{\n    [self goForward__];\n}\n\n",
+      "super": "- (void) goForward__\n{\n    [super goForward];\n}\n\n"
+    },
+    "heightAnchor()": null,
+    "hitTest(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
+    "insertSubview(crossmobile.ios.uikit.UIView,int)": null,
+    "insetsLayoutMarginsFromSafeArea()": null,
+    "intrinsicContentSize()": null,
+    "invalidateIntrinsicContentSize()": null,
+    "isFirstResponder()": null,
+    "isHidden()": null,
+    "isLoading()": {
+      "reverse": "- (BOOL) isLoading\n{\n    return [self isLoading__];\n}\n\n",
+      "super": "- (BOOL) isLoading__\n{\n    return [super isLoading];\n}\n\n"
+    },
+    "isMultipleTouchEnabled()": null,
+    "isOpaque()": null,
+    "isUserInteractionEnabled()": null,
+    "layer()": null,
+    "layoutIfNeeded()": null,
+    "layoutMargins()": null,
+    "layoutMarginsDidChange()": null,
+    "layoutMarginsGuide()": null,
+    "layoutSubviews()": null,
+    "leadingAnchor()": null,
+    "leftAnchor()": null,
+    "loadData(crossmobile.ios.foundation.NSData,java.lang.String,java.lang.String,crossmobile.ios.foundation.NSURL)": {
+      "reverse": "- (void) loadData:(NSData *) data MIMEType:(NSString *) MIMEType textEncodingName:(NSString *) textEncodingName baseURL:(NSURL *) baseURL\n{\n    [self loadData___crossmobile_ios_foundation_NSData_java_lang_String_java_lang_String_crossmobile_ios_foundation_NSURL:(data ? data : JAVA_NULL) :(MIMEType ? MIMEType : JAVA_NULL) :(textEncodingName ? textEncodingName : JAVA_NULL) :(baseURL ? baseURL : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) loadData___crossmobile_ios_foundation_NSData_java_lang_String_java_lang_String_crossmobile_ios_foundation_NSURL:(NSData*) data :(NSString*) MIMEType :(NSString*) textEncodingName :(NSURL*) baseURL \n{\n    [super loadData:(data == JAVA_NULL ? nil : data) MIMEType:(MIMEType == JAVA_NULL ? nil : MIMEType) textEncodingName:(textEncodingName == JAVA_NULL ? nil : textEncodingName) baseURL:(baseURL == JAVA_NULL ? nil : baseURL)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSData",
+        "crossmobile_ios_foundation_NSURL",
+        "java_lang_String"
+      ]
+    },
+    "loadHTMLString(java.lang.String,crossmobile.ios.foundation.NSURL)": {
+      "reverse": "- (void) loadHTMLString:(NSString *) string baseURL:(NSURL *) baseURL\n{\n    [self loadHTMLString___java_lang_String_crossmobile_ios_foundation_NSURL:(string ? string : JAVA_NULL) :(baseURL ? baseURL : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) loadHTMLString___java_lang_String_crossmobile_ios_foundation_NSURL:(NSString*) string :(NSURL*) baseURL \n{\n    [super loadHTMLString:(string == JAVA_NULL ? nil : string) baseURL:(baseURL == JAVA_NULL ? nil : baseURL)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSURL",
+        "java_lang_String"
+      ]
+    },
+    "loadRequest(crossmobile.ios.foundation.NSURLRequest)": {
+      "reverse": "- (void) loadRequest:(NSURLRequest *) request\n{\n    [self loadRequest___crossmobile_ios_foundation_NSURLRequest:(request ? request : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) loadRequest___crossmobile_ios_foundation_NSURLRequest:(NSURLRequest*) request \n{\n    [super loadRequest:(request == JAVA_NULL ? nil : request)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSURLRequest"
+      ]
+    },
+    "maskView()": null,
+    "mediaPlaybackRequiresUserAction()": {
+      "reverse": "- (BOOL) mediaPlaybackRequiresUserAction\n{\n    return [self mediaPlaybackRequiresUserAction__];\n}\n\n",
+      "super": "- (BOOL) mediaPlaybackRequiresUserAction__\n{\n    return [super mediaPlaybackRequiresUserAction];\n}\n\n"
+    },
+    "needsUpdateConstraints()": null,
+    "nextResponder()": null,
+    "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
+    "overrideUserInterfaceStyle()": null,
+    "pointInside(crossmobile.ios.coregraphics.CGPoint,crossmobile.ios.uikit.UIEvent)": null,
+    "preservesSuperviewLayoutMargins()": null,
+    "reload()": {
+      "reverse": "- (void) reload\n{\n    [self reload__];\n}\n\n",
+      "super": "- (void) reload__\n{\n    [super reload];\n}\n\n"
+    },
+    "removeConstraint(crossmobile.ios.uikit.NSLayoutConstraint)": null,
+    "removeConstraints(java.util.List)": null,
+    "removeFromSuperview()": null,
+    "removeGestureRecognizer(crossmobile.ios.uikit.UIGestureRecognizer)": null,
+    "removeLayoutGuide(crossmobile.ios.uikit.UILayoutGuide)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String)": null,
+    "removeObserver(crossmobile.ios.foundation.NSObject,java.lang.String,java.lang.Object)": null,
+    "resignFirstResponder()": null,
+    "restorationIdentifier()": null,
+    "rightAnchor()": null,
+    "safeAreaInsets()": null,
+    "safeAreaLayoutGuide()": null,
+    "scalesPageToFit()": {
+      "reverse": "- (BOOL) scalesPageToFit\n{\n    return [self scalesPageToFit__];\n}\n\n",
+      "super": "- (BOOL) scalesPageToFit__\n{\n    return [super scalesPageToFit];\n}\n\n"
+    },
+    "scrollView()": {
+      "reverse": "- (UIScrollView *) scrollView\n{\n    UIScrollView * re$ult = [self scrollView__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (UIScrollView*) scrollView__\n{\n    UIScrollView* re$ult = [super scrollView];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIScrollView"
+      ]
+    },
+    "sendSubviewToBack(crossmobile.ios.uikit.UIView)": null,
+    "setAccessibilityIdentifier(java.lang.String)": null,
+    "setAlpha(double)": null,
+    "setAutoresizesSubviews(boolean)": null,
+    "setAutoresizingMask(int)": null,
+    "setBackgroundColor(crossmobile.ios.uikit.UIColor)": null,
+    "setBounds(crossmobile.ios.coregraphics.CGRect)": null,
+    "setCenter(crossmobile.ios.coregraphics.CGPoint)": null,
+    "setClearsContextBeforeDrawing(boolean)": null,
+    "setClipsToBounds(boolean)": null,
+    "setContentCompressionResistancePriority(float,int)": null,
+    "setContentHuggingPriority(float,int)": null,
+    "setContentMode(int)": null,
+    "setDataDetectorTypes(long)": {
+      "reverse": "- (void) setDataDetectorTypes:(UIDataDetectorTypes) dataDetectorTypes\n{\n    [self setDataDetectorTypes___long:dataDetectorTypes];\n}\n\n",
+      "super": "- (void) setDataDetectorTypes___long:(JAVA_LONG) dataDetectorTypes \n{\n    [super setDataDetectorTypes:dataDetectorTypes];\n}\n\n"
+    },
+    "setDelegate(crossmobile.ios.uikit.UIWebViewDelegate)": {
+      "reverse": "- (void) setDelegate:(id<UIWebViewDelegate>) delegate\n{\n    [self setDelegate___crossmobile_ios_uikit_UIWebViewDelegate:(delegate ? delegate : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) setDelegate___crossmobile_ios_uikit_UIWebViewDelegate:(id<UIWebViewDelegate>) delegate \n{\n    objc_setAssociatedObject(self, @selector(setDelegate:), delegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);\n    [super setDelegate:(delegate == JAVA_NULL ? nil : delegate)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIWebViewDelegate"
+      ]
+    },
+    "setFrame(crossmobile.ios.coregraphics.CGRect)": null,
+    "setGestureRecognizers(java.util.List)": null,
+    "setHidden(boolean)": null,
+    "setInsetsLayoutMarginsFromSafeArea(boolean)": null,
+    "setLayoutMargins(crossmobile.ios.uikit.UIEdgeInsets)": null,
+    "setMaskView(crossmobile.ios.uikit.UIView)": null,
+    "setMediaPlaybackRequiresUserAction(boolean)": {
+      "reverse": "- (void) setMediaPlaybackRequiresUserAction:(BOOL) mediaPlaybackRequiresUserAction\n{\n    [self setMediaPlaybackRequiresUserAction___boolean:mediaPlaybackRequiresUserAction];\n}\n\n",
+      "super": "- (void) setMediaPlaybackRequiresUserAction___boolean:(BOOL) mediaPlaybackRequiresUserAction \n{\n    [super setMediaPlaybackRequiresUserAction:mediaPlaybackRequiresUserAction];\n}\n\n"
+    },
+    "setMultipleTouchEnabled(boolean)": null,
+    "setNeedsDisplay()": null,
+    "setNeedsLayout()": null,
+    "setNeedsUpdateConstraints()": null,
+    "setOpaque(boolean)": null,
+    "setOverrideUserInterfaceStyle(int)": null,
+    "setPreservesSuperviewLayoutMargins(boolean)": null,
+    "setRestorationIdentifier(java.lang.String)": null,
+    "setScalesPageToFit(boolean)": {
+      "reverse": "- (void) setScalesPageToFit:(BOOL) scalesPageToFit\n{\n    [self setScalesPageToFit___boolean:scalesPageToFit];\n}\n\n",
+      "super": "- (void) setScalesPageToFit___boolean:(BOOL) scalesPageToFit \n{\n    [super setScalesPageToFit:scalesPageToFit];\n}\n\n"
+    },
+    "setTag(int)": null,
+    "setTintAdjustmentMode(int)": null,
+    "setTintColor(crossmobile.ios.uikit.UIColor)": null,
+    "setTransform(crossmobile.ios.coregraphics.CGAffineTransform)": null,
+    "setTranslatesAutoresizingMaskIntoConstraints(boolean)": null,
+    "setUserInteractionEnabled(boolean)": null,
+    "setValueForKey(java.lang.Object,java.lang.String)": null,
+    "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
+    "sizeThatFits(crossmobile.ios.coregraphics.CGSize)": null,
+    "sizeToFit()": null,
+    "stringByEvaluatingJavaScriptFromString(java.lang.String)": {
+      "reverse": "- (NSString *) stringByEvaluatingJavaScriptFromString:(NSString *) script\n{\n    NSString * re$ult = [self stringByEvaluatingJavaScriptFromString___java_lang_String:(script ? script : JAVA_NULL)];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
+      "super": "- (NSString*) stringByEvaluatingJavaScriptFromString___java_lang_String:(NSString*) script \n{\n    NSString* re$ult = [super stringByEvaluatingJavaScriptFromString:(script == JAVA_NULL ? nil : script)];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
+      "supimport": [
+        "java_lang_String"
+      ]
+    },
+    "subviews()": null,
+    "superview()": null,
+    "tag()": null,
+    "tintAdjustmentMode()": null,
+    "tintColor()": null,
+    "tintColorDidChange()": null,
+    "topAnchor()": null,
+    "touchesBegan(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesCancelled(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesEnded(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "touchesMoved(java.util.Set,crossmobile.ios.uikit.UIEvent)": null,
+    "trailingAnchor()": null,
+    "transform()": null,
+    "translatesAutoresizingMaskIntoConstraints()": null,
+    "updateConstraints()": null,
+    "updateConstraintsIfNeeded()": null,
+    "userInterfaceLayoutDirection()": null,
+    "valueForKey(java.lang.String)": null,
+    "valueForUndefinedKey(java.lang.String)": null,
+    "viewForFirstBaselineLayout()": null,
+    "viewForLastBaselineLayout()": null,
+    "widthAnchor()": null,
+    "willMoveToSuperview(crossmobile.ios.uikit.UIView)": null,
+    "willMoveToWindow(crossmobile.ios.uikit.UIWindow)": null,
+    "willRemoveSubview(crossmobile.ios.uikit.UIView)": null,
+    "window()": null
+  },
+  "crossmobile.ios.uikit.UIWebViewDelegate": {
+    "didFailLoadWithError(crossmobile.ios.uikit.UIWebView,crossmobile.ios.foundation.NSError)": {
+      "reverse": "- (void) webView:(UIWebView *) webView didFailLoadWithError:(NSError *) error\n{\n    [self didFailLoadWithError___crossmobile_ios_uikit_UIWebView_crossmobile_ios_foundation_NSError:(webView ? webView : JAVA_NULL) :(error ? error : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didFailLoadWithError___crossmobile_ios_uikit_UIWebView_crossmobile_ios_foundation_NSError:(UIWebView*) webView :(NSError*) error \n{\n    [super webView:(webView == JAVA_NULL ? nil : webView) didFailLoadWithError:(error == JAVA_NULL ? nil : error)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSError",
+        "crossmobile_ios_uikit_UIWebView"
+      ]
+    },
+    "didFinishLoad(crossmobile.ios.uikit.UIWebView)": {
+      "reverse": "- (void) webViewDidFinishLoad:(UIWebView *) webView\n{\n    [self didFinishLoad___crossmobile_ios_uikit_UIWebView:(webView ? webView : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didFinishLoad___crossmobile_ios_uikit_UIWebView:(UIWebView*) webView \n{\n    [super webViewDidFinishLoad:(webView == JAVA_NULL ? nil : webView)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIWebView"
+      ]
+    },
+    "didStartLoad(crossmobile.ios.uikit.UIWebView)": {
+      "reverse": "- (void) webViewDidStartLoad:(UIWebView *) webView\n{\n    [self didStartLoad___crossmobile_ios_uikit_UIWebView:(webView ? webView : JAVA_NULL)];\n}\n\n",
+      "super": "- (void) didStartLoad___crossmobile_ios_uikit_UIWebView:(UIWebView*) webView \n{\n    [super webViewDidStartLoad:(webView == JAVA_NULL ? nil : webView)];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_uikit_UIWebView"
+      ]
+    },
+    "shouldStartLoadWithRequest(crossmobile.ios.uikit.UIWebView,crossmobile.ios.foundation.NSURLRequest,int)": {
+      "reverse": "- (BOOL) webView:(UIWebView *) webView shouldStartLoadWithRequest:(NSURLRequest *) request navigationType:(UIWebViewNavigationType) navigationType\n{\n    return [self shouldStartLoadWithRequest___crossmobile_ios_uikit_UIWebView_crossmobile_ios_foundation_NSURLRequest_int:(webView ? webView : JAVA_NULL) :(request ? request : JAVA_NULL) :navigationType];\n}\n\n",
+      "super": "- (BOOL) shouldStartLoadWithRequest___crossmobile_ios_uikit_UIWebView_crossmobile_ios_foundation_NSURLRequest_int:(UIWebView*) webView :(NSURLRequest*) request :(int) navigationType \n{\n    return [super webView:(webView == JAVA_NULL ? nil : webView) shouldStartLoadWithRequest:(request == JAVA_NULL ? nil : request) navigationType:navigationType];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_foundation_NSURLRequest",
+        "crossmobile_ios_uikit_UIWebView"
+      ]
+    }
+  },
   "crossmobile.ios.webkit.WKBackForwardList": {
     "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
     "backItem()": {

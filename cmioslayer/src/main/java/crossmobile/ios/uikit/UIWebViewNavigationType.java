@@ -7,12 +7,14 @@
 package crossmobile.ios.uikit;
 
 import org.crossmobile.bridge.ann.CMEnum;
+import org.crossmobile.bridge.ann.CMLib;
 
 /**
  * UIWebViewNavigationType class contains all the information related to the
  * current user’s action.
  */
 @CMEnum
+@CMLib(name = "cmwebkit")
 public final class UIWebViewNavigationType {
 
     /**

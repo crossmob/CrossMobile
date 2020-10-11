@@ -42,6 +42,7 @@ public class WKWebView extends UIView {
         return (WebWrapper) getWidget();
     }
 
+    @SuppressWarnings("unchecked")
     @CMConstructor("- (instancetype)initWithFrame:(CGRect)frame \n" +
             "                configuration:(WKWebViewConfiguration *)configuration;\n")
     public WKWebView(CGRect frame, WKWebViewConfiguration configuration) {
@@ -50,7 +51,7 @@ public class WKWebView extends UIView {
         setBackgroundColor(UIColor.whiteColor());
         setClipsToBounds(true);
         setMultipleTouchEnabled(true);
-        registerWidget(Native.widget().webView(this));
+        registerWidget(Native.webview().webView(this));
     }
 
     @CMGetter("@property(nonatomic, readonly, copy) WKWebViewConfiguration *configuration;")

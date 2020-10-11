@@ -24,6 +24,7 @@ import static crossmobile.ios.coregraphics.GraphicsDrill.context;
  * UIWebView class defines an object that is attached to a window in order to
  * insert web content in an application.
  */
+@CMLib(name = "cmwebkit")
 @CMClass
 public class UIWebView extends UIView {
 
@@ -45,12 +46,12 @@ public class UIWebView extends UIView {
      *
      * @param rect The frame rectangle for the view
      */
-    @SuppressWarnings({"LeakingThisInConstructor", "OverridableMethodCallInConstructor"})
+    @SuppressWarnings({"LeakingThisInConstructor", "OverridableMethodCallInConstructor", "unchecked"})
     public UIWebView(CGRect rect) {
         super(rect, UIColor.whiteColor);
         setClipsToBounds(true);
         setMultipleTouchEnabled(true);
-        registerWidget(Native.widget().webView(this));
+        registerWidget(Native.webview().webView(this));
     }
 
     private WebWrapper widget() {

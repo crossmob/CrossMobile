@@ -38,6 +38,7 @@ import org.crossmobile.bind.system.SystemUtilities;
 import org.crossmobile.bind.wrapper.HistoryItem;
 import org.crossmobile.bind.wrapper.WebWrapper;
 import org.crossmobile.bridge.Native;
+import org.crossmobile.bridge.ann.CMLib;
 import org.robovm.objc.block.VoidBlock2;
 
 import java.io.File;
@@ -46,6 +47,7 @@ import java.util.Iterator;
 import static android.content.Context.DOWNLOAD_SERVICE;
 import static org.crossmobile.bridge.system.BaseUtils.listFiles;
 
+@CMLib(name = "cmwebkit")
 public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, AndroidGraphicsContext> {
 
     static {

@@ -19,6 +19,7 @@ import org.crossmobile.bind.system.SystemUtilities;
 import org.crossmobile.bind.wrapper.WebWrapper;
 import org.crossmobile.bind.wrapper.WidgetWrapper;
 import org.crossmobile.bridge.Native;
+import org.crossmobile.bridge.ann.CMLib;
 import org.robovm.objc.block.VoidBlock1;
 import org.robovm.objc.block.VoidBlock2;
 
@@ -31,6 +32,7 @@ import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.io.IOException;
 
+@CMLib(name = "cmwebkit")
 public class SwingWebWrapper extends WebWrapper<SwingWebWrapper.NativeW, SwingGraphicsContext> implements HyperlinkListener {
 
     private boolean isLoading = false;

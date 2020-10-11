@@ -535,7 +535,5 @@ EXPORTS
 	__objc_class_name_crossmobile_ios_uikit_UIView$Ext CONSTANT
 	_OBJC_CLASS_crossmobile_ios_uikit_UIViewController$Ext DATA
 	__objc_class_name_crossmobile_ios_uikit_UIViewController$Ext CONSTANT
-	_OBJC_CLASS_crossmobile_ios_uikit_UIWebView$Ext DATA
-	__objc_class_name_crossmobile_ios_uikit_UIWebView$Ext CONSTANT
 	_OBJC_CLASS_crossmobile_ios_uikit_UIWindow$Ext DATA
 	__objc_class_name_crossmobile_ios_uikit_UIWindow$Ext CONSTANT

@@ -46,6 +46,11 @@ public class NativeAndroid extends Native {
     }
 
     @Override
+    protected WebViewBridge initWebView() {
+        return new AndroidWebViewBridge();
+    }
+
+    @Override
     protected FileBridge initFile() {
         return new AndroidFileBridge();
     }

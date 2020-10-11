@@ -3,9 +3,7 @@
 // crossmobile_ios_uikit_UIWebView definition
 
 #import "xmlvm.h"
-#import <CoreGraphics/CoreGraphics.h>
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 @class crossmobile_ios_coregraphics_CGRect;
 @class crossmobile_ios_foundation_NSData;
 @class crossmobile_ios_foundation_NSURL;
@@ -16,7 +14,6 @@
 @class java_lang_String;
 @protocol java_util_List;
 
-CM_EXPORT_CLASS
 @interface crossmobile_ios_uikit_UIWebView$Ext : UIWebView
 @end
 

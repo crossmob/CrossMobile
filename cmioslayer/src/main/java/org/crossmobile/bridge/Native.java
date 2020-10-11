@@ -26,6 +26,7 @@ public abstract class Native {
     private GraphicsBridge graphics;
     private SoundBridge sound;
     private WrapperUIBridge widget;
+    private WebViewBridge webview;
     private WrapperMapBridge map;
     private InAppBridge inapp;
     private LocationBridge location;
@@ -119,6 +120,12 @@ public abstract class Native {
         return bridge.widget;
     }
 
+    public static WebViewBridge webview() {
+        if (bridge().webview == null)
+            bridge.webview = bridge.initWebView();
+        return bridge.webview;
+    }
+
     public static WrapperMapBridge mapWidget() {
         if (bridge().map == null)
             bridge.map = bridge().initMapWidget();
@@ -196,6 +203,8 @@ public abstract class Native {
     protected abstract SoundBridge initSound();
 
     protected abstract WrapperUIBridge initWidget();
+
+    protected abstract WebViewBridge initWebView();
 
     protected abstract FileBridge initFile();
 

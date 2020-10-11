@@ -746,9 +746,6 @@ crossmobile/ios/uikit/UIViewAutoresizing.class v8
 crossmobile/ios/uikit/UIViewContentMode.class v8
 crossmobile/ios/uikit/UIViewController.class v8
 crossmobile/ios/uikit/UIViewTintAdjustmentMode.class v8
-crossmobile/ios/uikit/UIWebView.class v8
-crossmobile/ios/uikit/UIWebViewDelegate.class v8
-crossmobile/ios/uikit/UIWebViewNavigationType.class v8
 crossmobile/ios/uikit/UIWindow.class v8
 crossmobile/ios/uikit/package-info.class v8
 crossmobile/package-info.class v8
@@ -1118,9 +1115,6 @@ crossmobile/ios/uikit/UIViewAutoresizing.java
 crossmobile/ios/uikit/UIViewContentMode.java
 crossmobile/ios/uikit/UIViewController.java
 crossmobile/ios/uikit/UIViewTintAdjustmentMode.java
-crossmobile/ios/uikit/UIWebView.java
-crossmobile/ios/uikit/UIWebViewDelegate.java
-crossmobile/ios/uikit/UIWebViewNavigationType.java
 crossmobile/ios/uikit/UIWindow.java
 crossmobile/ios/uikit/UserInterfaceDrill.java
 crossmobile/ios/uikit/cmButtonStates.java
@@ -1161,7 +1155,6 @@ org/crossmobile/backend/android/AndroidSystemBridge.java
 org/crossmobile/backend/android/AndroidTextWidget.java
 org/crossmobile/backend/android/AndroidTextWrapper.java
 org/crossmobile/backend/android/AndroidUIGuidelinesBridge.java
-org/crossmobile/backend/android/AndroidWebWrapper.java
 org/crossmobile/backend/android/AndroidWrapperUIBridge.java
 org/crossmobile/backend/android/ApplicationStateListener.java
 org/crossmobile/backend/android/CMFileProvider.java
@@ -1229,7 +1222,6 @@ org/crossmobile/backend/swing/SwingNativePath.java
 org/crossmobile/backend/swing/SwingSystemBridge.java
 org/crossmobile/backend/swing/SwingTextFieldWrapper.java
 org/crossmobile/backend/swing/SwingTextViewWrapper.java
-org/crossmobile/backend/swing/SwingWebWrapper.java
 org/crossmobile/backend/swing/SwingWrapperClickConsumer.java
 org/crossmobile/backend/swing/SwingWrapperUIBridge.java
 org/crossmobile/backend/swing/package-info.java
@@ -1292,7 +1284,6 @@ org/crossmobile/bind/wrapper/NativeDispatcher.java
 org/crossmobile/bind/wrapper/NativeTouch.java
 org/crossmobile/bind/wrapper/NativeWrapper.java
 org/crossmobile/bind/wrapper/TextWrapper.java
-org/crossmobile/bind/wrapper/WebWrapper.java
 org/crossmobile/bind/wrapper/WidgetWrapper.java
 org/crossmobile/bridge/FileBridge.java
 org/crossmobile/bridge/GraphicsBridge.java
@@ -1311,6 +1302,7 @@ org/crossmobile/bridge/SocialBridge.java
 org/crossmobile/bridge/SoundBridge.java
 org/crossmobile/bridge/SystemBridge.java
 org/crossmobile/bridge/UIGuidelinesBridge.java
+org/crossmobile/bridge/WebViewBridge.java
 org/crossmobile/bridge/WrapperMapBridge.java
 org/crossmobile/bridge/WrapperUIBridge.java
 org/crossmobile/bridge/package-info.java
@@ -1542,8 +1534,6 @@ native/crossmobile_ios_uikit_UIUserNotificationSettings.h
 native/crossmobile_ios_uikit_UIView.h
 native/crossmobile_ios_uikit_UIViewAppearance.h
 native/crossmobile_ios_uikit_UIViewController.h
-native/crossmobile_ios_uikit_UIWebView.h
-native/crossmobile_ios_uikit_UIWebViewDelegate.h
 native/crossmobile_ios_uikit_UIWindow.h
 native/crossmobile_rt_StrongReference.h
 native/java_io_BufferedInputStream.h
@@ -2133,9 +2123,6 @@ crossmobile/ios/uikit/UIViewContentMode.class v8
 crossmobile/ios/uikit/UIViewController$LayoutSupport.class v8
 crossmobile/ios/uikit/UIViewController.class v8
 crossmobile/ios/uikit/UIViewTintAdjustmentMode.class v8
-crossmobile/ios/uikit/UIWebView.class v8
-crossmobile/ios/uikit/UIWebViewDelegate.class v8
-crossmobile/ios/uikit/UIWebViewNavigationType.class v8
 crossmobile/ios/uikit/UIWindow.class v8
 crossmobile/ios/uikit/UserInterfaceDrill$1.class v8
 crossmobile/ios/uikit/UserInterfaceDrill.class v8
@@ -2397,9 +2384,6 @@ org/crossmobile/backend/swing/SwingTextViewWrapper$NativeW$1$2.class v8
 org/crossmobile/backend/swing/SwingTextViewWrapper$NativeW$1.class v8
 org/crossmobile/backend/swing/SwingTextViewWrapper$NativeW.class v8
 org/crossmobile/backend/swing/SwingTextViewWrapper.class v8
-org/crossmobile/backend/swing/SwingWebWrapper$NativeW$1.class v8
-org/crossmobile/backend/swing/SwingWebWrapper$NativeW.class v8
-org/crossmobile/backend/swing/SwingWebWrapper.class v8
 org/crossmobile/backend/swing/SwingWrapperClickConsumer.class v8
 org/crossmobile/backend/swing/SwingWrapperUIBridge.class v8
 org/crossmobile/backend/swing/package-info.class v8
@@ -2495,7 +2479,6 @@ org/crossmobile/bind/wrapper/NativeDispatcher.class v8
 org/crossmobile/bind/wrapper/NativeTouch.class v8
 org/crossmobile/bind/wrapper/NativeWrapper.class v8
 org/crossmobile/bind/wrapper/TextWrapper.class v8
-org/crossmobile/bind/wrapper/WebWrapper.class v8
 org/crossmobile/bind/wrapper/WidgetWrapper.class v8
 org/crossmobile/bridge/CrossMobilePlugin.class v8
 org/crossmobile/bridge/FileBridge.class v8
@@ -2518,6 +2501,7 @@ org/crossmobile/bridge/SocialBridge.class v8
 org/crossmobile/bridge/SoundBridge.class v8
 org/crossmobile/bridge/SystemBridge.class v8
 org/crossmobile/bridge/UIGuidelinesBridge.class v8
+org/crossmobile/bridge/WebViewBridge.class v8
 org/crossmobile/bridge/WrapperMapBridge.class v8
 org/crossmobile/bridge/WrapperUIBridge.class v8
 org/crossmobile/bridge/ann/AssociationType.class v8
@@ -3017,9 +3001,6 @@ crossmobile/ios/uikit/UIViewContentMode.class v8
 crossmobile/ios/uikit/UIViewController$LayoutSupport.class v8
 crossmobile/ios/uikit/UIViewController.class v8
 crossmobile/ios/uikit/UIViewTintAdjustmentMode.class v8
-crossmobile/ios/uikit/UIWebView.class v8
-crossmobile/ios/uikit/UIWebViewDelegate.class v8
-crossmobile/ios/uikit/UIWebViewNavigationType.class v8
 crossmobile/ios/uikit/UIWindow.class v8
 crossmobile/ios/uikit/UserInterfaceDrill$1.class v8
 crossmobile/ios/uikit/UserInterfaceDrill.class v8
@@ -3123,11 +3104,6 @@ org/crossmobile/backend/android/AndroidTextWidget.class v8
 org/crossmobile/backend/android/AndroidTextWrapper$OldState.class v8
 org/crossmobile/backend/android/AndroidTextWrapper.class v8
 org/crossmobile/backend/android/AndroidUIGuidelinesBridge.class v8
-org/crossmobile/backend/android/AndroidWebWrapper$1.class v8
-org/crossmobile/backend/android/AndroidWebWrapper$NativeW$1.class v8
-org/crossmobile/backend/android/AndroidWebWrapper$NativeW$2.class v8
-org/crossmobile/backend/android/AndroidWebWrapper$NativeW.class v8
-org/crossmobile/backend/android/AndroidWebWrapper.class v8
 org/crossmobile/backend/android/AndroidWrapperUIBridge.class v8
 org/crossmobile/backend/android/ApplicationStateListener.class v8
 org/crossmobile/backend/android/CMFileProvider.class v8
@@ -3241,7 +3217,6 @@ org/crossmobile/bind/wrapper/NativeDispatcher.class v8
 org/crossmobile/bind/wrapper/NativeTouch.class v8
 org/crossmobile/bind/wrapper/NativeWrapper.class v8
 org/crossmobile/bind/wrapper/TextWrapper.class v8
-org/crossmobile/bind/wrapper/WebWrapper.class v8
 org/crossmobile/bind/wrapper/WidgetWrapper.class v8
 org/crossmobile/bridge/CrossMobilePlugin.class v8
 org/crossmobile/bridge/FileBridge.class v8
@@ -3264,6 +3239,7 @@ org/crossmobile/bridge/SocialBridge.class v8
 org/crossmobile/bridge/SoundBridge.class v8
 org/crossmobile/bridge/SystemBridge.class v8
 org/crossmobile/bridge/UIGuidelinesBridge.class v8
+org/crossmobile/bridge/WebViewBridge.class v8
 org/crossmobile/bridge/WrapperMapBridge.class v8
 org/crossmobile/bridge/WrapperUIBridge.class v8
 org/crossmobile/bridge/ann/AssociationType.class v8
@@ -4168,6 +4144,9 @@ Creating file cmplugin-rvm-cmtouchid-<VERSION>.jar
 Creating file cmplugin-cmwebkit-<VERSION>.jar
 META-INF/PLUGIN.INF
 META-INF/REVERSE.INF
+crossmobile/ios/uikit/UIWebView.class v8
+crossmobile/ios/uikit/UIWebViewDelegate.class v8
+crossmobile/ios/uikit/UIWebViewNavigationType.class v8
 crossmobile/ios/webkit/WKBackForwardList.class v8
 crossmobile/ios/webkit/WKBackForwardListItem.class v8
 crossmobile/ios/webkit/WKContentMode.class v8
@@ -4190,6 +4169,9 @@ crossmobile/ios/webkit/WKWebViewConfiguration.class v8
 crossmobile/ios/webkit/package-info.class v8
 
 Creating file cmplugin-cmwebkit-<VERSION>-sources.jar
+crossmobile/ios/uikit/UIWebView.java
+crossmobile/ios/uikit/UIWebViewDelegate.java
+crossmobile/ios/uikit/UIWebViewNavigationType.java
 crossmobile/ios/webkit/WKBackForwardList.java
 crossmobile/ios/webkit/WKBackForwardListItem.java
 crossmobile/ios/webkit/WKContentMode.java
@@ -4211,11 +4193,18 @@ crossmobile/ios/webkit/WKWebView.java
 crossmobile/ios/webkit/WKWebViewConfiguration.java
 crossmobile/ios/webkit/WebKitDrill.java
 crossmobile/ios/webkit/package-info.java
+org/crossmobile/backend/android/AndroidWebViewBridge.java
+org/crossmobile/backend/android/AndroidWebWrapper.java
+org/crossmobile/backend/swing/SwingWebViewBridge.java
+org/crossmobile/backend/swing/SwingWebWrapper.java
+org/crossmobile/bind/wrapper/WebWrapper.java
 
 Creating file cmplugin-ios-cmwebkit-<VERSION>.jar
 native/CM_Block_Reverse_cmwebkit_0.h
 native/CM_Block_Reverse_cmwebkit_1.h
 native/cmwebkit.a
+native/crossmobile_ios_uikit_UIWebView.h
+native/crossmobile_ios_uikit_UIWebViewDelegate.h
 native/crossmobile_ios_webkit_WKBackForwardList.h
 native/crossmobile_ios_webkit_WKBackForwardListItem.h
 native/crossmobile_ios_webkit_WKFrameInfo.h
@@ -4233,6 +4222,9 @@ native/crossmobile_ios_webkit_WKWebView.h
 native/crossmobile_ios_webkit_WKWebViewConfiguration.h
 
 Creating file cmplugin-desktop-cmwebkit-<VERSION>.jar
+crossmobile/ios/uikit/UIWebView.class v8
+crossmobile/ios/uikit/UIWebViewDelegate.class v8
+crossmobile/ios/uikit/UIWebViewNavigationType.class v8
 crossmobile/ios/webkit/WKBackForwardList.class v8
 crossmobile/ios/webkit/WKBackForwardListItem.class v8
 crossmobile/ios/webkit/WKContentMode.class v8
@@ -4254,8 +4246,16 @@ crossmobile/ios/webkit/WKWebView.class v8
 crossmobile/ios/webkit/WKWebViewConfiguration.class v8
 crossmobile/ios/webkit/WebKitDrill.class v8
 crossmobile/ios/webkit/package-info.class v8
+org/crossmobile/backend/swing/SwingWebViewBridge.class v8
+org/crossmobile/backend/swing/SwingWebWrapper$NativeW$1.class v8
+org/crossmobile/backend/swing/SwingWebWrapper$NativeW.class v8
+org/crossmobile/backend/swing/SwingWebWrapper.class v8
+org/crossmobile/bind/wrapper/WebWrapper.class v8
 
 Creating file cmplugin-android-cmwebkit-<VERSION>.jar
+crossmobile/ios/uikit/UIWebView.class v8
+crossmobile/ios/uikit/UIWebViewDelegate.class v8
+crossmobile/ios/uikit/UIWebViewNavigationType.class v8
 crossmobile/ios/webkit/WKBackForwardList.class v8
 crossmobile/ios/webkit/WKBackForwardListItem.class v8
 crossmobile/ios/webkit/WKContentMode.class v8
@@ -4277,6 +4277,13 @@ crossmobile/ios/webkit/WKWebView.class v8
 crossmobile/ios/webkit/WKWebViewConfiguration.class v8
 crossmobile/ios/webkit/WebKitDrill.class v8
 crossmobile/ios/webkit/package-info.class v8
+org/crossmobile/backend/android/AndroidWebViewBridge.class v8
+org/crossmobile/backend/android/AndroidWebWrapper$1.class v8
+org/crossmobile/backend/android/AndroidWebWrapper$NativeW$1.class v8
+org/crossmobile/backend/android/AndroidWebWrapper$NativeW$2.class v8
+org/crossmobile/backend/android/AndroidWebWrapper$NativeW.class v8
+org/crossmobile/backend/android/AndroidWebWrapper.class v8
+org/crossmobile/bind/wrapper/WebWrapper.class v8
 
 Creating file cmplugin-rvm-cmwebkit-<VERSION>.jar
 

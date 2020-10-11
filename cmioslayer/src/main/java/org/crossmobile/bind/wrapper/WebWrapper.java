@@ -14,12 +14,14 @@ import crossmobile.ios.uikit.UIWebView;
 import crossmobile.ios.uikit.UIWebViewDelegate;
 import crossmobile.ios.webkit.*;
 import org.crossmobile.bind.graphics.GraphicsContext;
+import org.crossmobile.bridge.ann.CMLib;
 import org.robovm.objc.block.VoidBlock2;
 
 import java.util.Map;
 import java.util.WeakHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+@CMLib(name = "cmwebkit")
 public abstract class WebWrapper<NWIDG extends NativeWrapper<GCX>, GCX extends GraphicsContext<?>> extends WidgetWrapper<UIView, NWIDG, GCX> {
 
     private final Map<WKNavigation, String> navigation = new WeakHashMap<>();

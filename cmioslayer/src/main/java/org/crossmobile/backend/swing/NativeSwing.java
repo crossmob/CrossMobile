@@ -40,4 +40,9 @@ public class NativeSwing extends NativeDesktop {
     protected WrapperUIBridge initWidget() {
         return new SwingWrapperUIBridge();
     }
+
+    @Override
+    protected WebViewBridge initWebView() {
+        return new SwingWebViewBridge();
+    }
 }

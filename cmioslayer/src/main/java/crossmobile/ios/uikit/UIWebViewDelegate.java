@@ -9,6 +9,7 @@ package crossmobile.ios.uikit;
 import crossmobile.ios.foundation.NSError;
 import crossmobile.ios.foundation.NSURLRequest;
 import org.crossmobile.bridge.ann.CMClass;
+import org.crossmobile.bridge.ann.CMLib;
 import org.crossmobile.bridge.ann.CMSelector;
 
 /**
@@ -16,6 +17,7 @@ import org.crossmobile.bridge.ann.CMSelector;
  * operations related to web views.
  */
 @CMClass
+@CMLib(name = "cmwebkit")
 public interface UIWebViewDelegate {
 
     /**

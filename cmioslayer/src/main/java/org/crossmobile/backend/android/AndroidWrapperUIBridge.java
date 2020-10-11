@@ -16,11 +16,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import crossmobile.ios.uikit.UITextField;
 import crossmobile.ios.uikit.UITextView;
-import crossmobile.ios.uikit.UIView;
-import crossmobile.ios.uikit.UIWebView;
 import org.crossmobile.backend.android.AndroidNativeDispatcher.AndroidNativeWidget;
 import org.crossmobile.bind.wrapper.NativeDispatcher;
-import org.crossmobile.bind.wrapper.WebWrapper;
 import org.crossmobile.bind.wrapper.WidgetWrapper;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.WrapperUIBridge;
@@ -33,11 +30,6 @@ public class AndroidWrapperUIBridge implements WrapperUIBridge<View> {
     private final Runnable resignFocus = () -> {
         MainView.current.requestFocus();
     };
-
-    @Override
-    public WebWrapper webView(UIView parent) {
-        return new AndroidWebWrapper(parent);
-    }
 
     @Override
     public AndroidTextWrapper textField(UITextField parent) {
