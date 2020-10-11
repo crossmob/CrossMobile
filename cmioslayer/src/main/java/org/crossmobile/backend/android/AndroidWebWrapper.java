@@ -79,6 +79,7 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
             getNativeWidget().loadUrl(req.URL().absoluteString());
         else
             return null;
+        isLoading = true;
         return getNavigation(req.URL().absoluteString());
     }
 
@@ -259,6 +260,7 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
 
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                    isLoading = true;
                     return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && request.isForMainFrame()
                             ? shouldOverrideUrlLoading(request.getUrl().toString())
                             : super.shouldOverrideUrlLoading(view, request);
