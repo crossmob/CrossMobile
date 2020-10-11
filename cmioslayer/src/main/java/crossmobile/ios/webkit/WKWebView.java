@@ -77,7 +77,8 @@ public class WKWebView extends UIView {
 
     @CMGetter("@property(nullable, nonatomic, readonly, copy) NSURL *URL;")
     public NSURL URL() {
-        return NSURL.URLWithString(widget().getUrl());
+        String url = widget().getUrl();
+        return url == null ? null : NSURL.URLWithString(url);
     }
 
     @CMGetter("@property(nullable, nonatomic, readonly, copy) NSString *title;")

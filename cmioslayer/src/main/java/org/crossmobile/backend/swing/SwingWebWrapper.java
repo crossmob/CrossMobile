@@ -6,21 +6,19 @@
 
 package org.crossmobile.backend.swing;
 
-import crossmobile.ios.foundation.*;
+import crossmobile.ios.foundation.NSError;
+import crossmobile.ios.foundation.NSMutableURLRequest;
+import crossmobile.ios.foundation.NSURLRequest;
 import crossmobile.ios.uikit.UIView;
 import crossmobile.ios.uikit.UIWebView;
-import crossmobile.ios.uikit.UIWebViewDelegate;
-import crossmobile.ios.uikit.UIWebViewNavigationType;
 import crossmobile.ios.webkit.WKBackForwardList;
 import crossmobile.ios.webkit.WKNavigation;
-import crossmobile.ios.webkit.WKNavigationDelegate;
 import crossmobile.ios.webkit.WKWebView;
 import org.crossmobile.bind.system.SystemUtilities;
 import org.crossmobile.bind.wrapper.WebWrapper;
 import org.crossmobile.bind.wrapper.WidgetWrapper;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.CMLib;
-import org.robovm.objc.block.VoidBlock1;
 import org.robovm.objc.block.VoidBlock2;
 
 import javax.swing.*;
@@ -37,7 +35,7 @@ public class SwingWebWrapper extends WebWrapper<SwingWebWrapper.NativeW, SwingGr
 
     private boolean isLoading = false;
 
-    public SwingWebWrapper(UIWebView wv) {
+    public SwingWebWrapper(UIView wv) {
         super(wv);
     }
 
