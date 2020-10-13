@@ -92,11 +92,16 @@ public class TextHelpers {
     }
 
     public static class TextBlock {
+        public static final TextBlock EMPTY = new TextBlock();
 
         public List<TextLine> lines = new ArrayList<>();
         public CGSize size = new CGSize(0, 0);
 
         private TextBlock() {
+        }
+
+        public boolean isEmpty() {
+            return lines.isEmpty();
         }
 
         private void add(String text, CGSize size) {

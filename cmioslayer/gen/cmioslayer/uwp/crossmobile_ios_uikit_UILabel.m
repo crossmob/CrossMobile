@@ -214,4 +214,16 @@
     return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 
+// - (void)drawTextInRect:(CGRect)rect;
+- (void) drawTextInRect___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) rect 
+{
+    [self drawTextInRect:[rect getCGRect]];
+}
+
+// - (CGRect)textRectForBounds:(CGRect)bounds limitedToNumberOfLines:(NSInteger)numberOfLines;
+- (crossmobile_ios_coregraphics_CGRect*) textRectForBounds___crossmobile_ios_coregraphics_CGRect_int:(crossmobile_ios_coregraphics_CGRect*) bounds :(int) numberOfLines 
+{
+    return [[crossmobile_ios_coregraphics_CGRect alloc] initWithCGRect:[self textRectForBounds:[bounds getCGRect] limitedToNumberOfLines:numberOfLines]];
+}
+
 @end

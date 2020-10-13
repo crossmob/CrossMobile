@@ -51,4 +51,6 @@
 - (int) textAlignment__;
 - (void) setTextColor___crossmobile_ios_uikit_UIColor:(UIColor*) textColor ;
 - (UIColor*) textColor__;
+- (void) drawTextInRect___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) rect ;
+- (crossmobile_ios_coregraphics_CGRect*) textRectForBounds___crossmobile_ios_coregraphics_CGRect_int:(crossmobile_ios_coregraphics_CGRect*) bounds :(int) numberOfLines ;
 @end

@@ -5803,6 +5803,13 @@
     "didMoveToSuperview()": null,
     "didMoveToWindow()": null,
     "drawRect(crossmobile.ios.coregraphics.CGRect)": null,
+    "drawTextInRect(crossmobile.ios.coregraphics.CGRect)": {
+      "reverse": "- (void) drawTextInRect:(CGRect) rect\n{\n    crossmobile_ios_coregraphics_CGRect* rect$conv = [[crossmobile_ios_coregraphics_CGRect alloc] initWithCGRect:rect];\n    [self drawTextInRect___crossmobile_ios_coregraphics_CGRect:rect$conv];\n    [rect$conv release];\n}\n\n",
+      "super": "- (void) drawTextInRect___crossmobile_ios_coregraphics_CGRect:(crossmobile_ios_coregraphics_CGRect*) rect \n{\n    [super drawTextInRect:[rect getCGRect]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_coregraphics_CGRect"
+      ]
+    },
     "font()": {
       "reverse": "- (UIFont *) font\n{\n    UIFont * re$ult = [self font__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
       "super": "- (UIFont*) font__\n{\n    UIFont* re$ult = [super font];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
@@ -6021,6 +6028,13 @@
       "super": "- (UIColor*) textColor__\n{\n    UIColor* re$ult = [super textColor];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
       "supimport": [
         "crossmobile_ios_uikit_UIColor"
+      ]
+    },
+    "textRectForBounds(crossmobile.ios.coregraphics.CGRect,int)": {
+      "reverse": "- (CGRect) textRectForBounds:(CGRect) bounds limitedToNumberOfLines:(NSInteger) numberOfLines\n{\n    crossmobile_ios_coregraphics_CGRect* bounds$conv = [[crossmobile_ios_coregraphics_CGRect alloc] initWithCGRect:bounds];\n    crossmobile_ios_coregraphics_CGRect* re$ult = [self textRectForBounds___crossmobile_ios_coregraphics_CGRect_int:bounds$conv :numberOfLines];\n    CGRect re$ult$conv = [re$ult getCGRect];\n    [re$ult release];\n    [bounds$conv release];\n    return re$ult$conv;\n}\n\n",
+      "super": "- (crossmobile_ios_coregraphics_CGRect*) textRectForBounds___crossmobile_ios_coregraphics_CGRect_int:(crossmobile_ios_coregraphics_CGRect*) bounds :(int) numberOfLines \n{\n    return [[crossmobile_ios_coregraphics_CGRect alloc] initWithCGRect:[super textRectForBounds:[bounds getCGRect] limitedToNumberOfLines:numberOfLines]];\n}\n\n",
+      "supimport": [
+        "crossmobile_ios_coregraphics_CGRect"
       ]
     },
     "tintAdjustmentMode()": null,

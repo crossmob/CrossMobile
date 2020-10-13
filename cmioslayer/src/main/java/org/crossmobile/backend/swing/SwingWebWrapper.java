@@ -157,11 +157,14 @@ public class SwingWebWrapper extends WebWrapper<SwingWebWrapper.NativeW, SwingGr
             });
             addPropertyChangeListener("page", (PropertyChangeEvent evt) -> {
                 isLoading = false;
-                getIOSWidget().setNeedsDisplay();
-                if (getNewDelegate() != null)
-                    getNewDelegate().didFinishNavigation(getNewWebView(), null);
-                else if (getOldDelegate() != null)
-                    getOldDelegate().didFinishLoad((UIWebView) getIOSWidget());
+                UIView widget = getIOSWidget();
+                if (widget != null) {
+                    widget.setNeedsDisplay();
+                    if (getNewDelegate() != null)
+                        getNewDelegate().didFinishNavigation(getNewWebView(), null);
+                    else if (getOldDelegate() != null)
+                        getOldDelegate().didFinishLoad((UIWebView) widget);
+                }
             });
             setEditable(false);
             addHyperlinkListener(SwingWebWrapper.this);

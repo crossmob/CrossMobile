@@ -14,10 +14,7 @@ import org.crossmobile.bind.graphics.TextHelpers.TextLine;
 import org.crossmobile.bind.graphics.Theme;
 import org.crossmobile.bind.system.SystemUtilities;
 import org.crossmobile.bridge.Native;
-import org.crossmobile.bridge.ann.CMClass;
-import org.crossmobile.bridge.ann.CMConstructor;
-import org.crossmobile.bridge.ann.CMGetter;
-import org.crossmobile.bridge.ann.CMSetter;
+import org.crossmobile.bridge.ann.*;
 import org.robovm.objc.annotation.UIAppearanceSelector;
 
 import static crossmobile.ios.coregraphics.GraphicsDrill.color;
@@ -41,7 +38,7 @@ public class UILabel extends UIView {
      * Regular private properties
      */
     private String text = null;
-    private TextBlock blocks = null;
+    private TextBlock blocks = TextBlock.EMPTY;
     private UIFont fontOrig = Theme.Label.FONT;
     private UIFont fontDraw = fontOrig;
     private CGSize shadowOffset = null;
@@ -54,11 +51,6 @@ public class UILabel extends UIView {
     private double minimumScaleFactor = 0;
     private double preferredMaxLayoutWidth = 0;
     private int baselineAdjustment = UIBaselineAdjustment.AlignBaselines;
-    private double firstbaseline;
-    private double lastbaseline;
-
-    private UIView viewForFirstBaselineLayout;
-    private UIView viewForLastBaselineLayout;
 
     /**
      * Constructs a default UILabel object located at (0,0) with 0 weight and 0
@@ -78,7 +70,7 @@ public class UILabel extends UIView {
     public UILabel(CGRect frame) {
         super(frame, UIColor.clearColor);
         setUserInteractionEnabled(false);
-        setContentMode(UIViewContentMode.Left);
+        setTextAlignment(NSTextAlignment.Left);
         setClipsToBounds(true);
     }
 
@@ -87,7 +79,8 @@ public class UILabel extends UIView {
         if (SystemUtilities.equals(frame, this.frame()))
             return;
         super.setFrame(frame);
-        recalculateIntrinsicSize();
+        CGRect textRect = textRectForBounds(frame, numberOfLines);
+        setIntrinsicContentSize(textRect.getSize().getWidth(), textRect.getSize().getHeight());
     }
 
     /**
@@ -100,7 +93,8 @@ public class UILabel extends UIView {
         if (SystemUtilities.equals(text, this.text))
             return;
         this.text = text;
-        recalculateIntrinsicSize();
+        CGRect textRect = textRectForBounds(frame(), numberOfLines);
+        setIntrinsicContentSize(textRect.getSize().getWidth(), textRect.getSize().getHeight());
     }
 
     /**
@@ -124,7 +118,8 @@ public class UILabel extends UIView {
         if (SystemUtilities.equals(font, this.fontOrig))
             return;
         this.fontOrig = font == null ? Theme.Label.FONT : font;
-        recalculateIntrinsicSize();
+        CGRect textRect = textRectForBounds(frame(), numberOfLines);
+        setIntrinsicContentSize(textRect.getSize().getWidth(), textRect.getSize().getHeight());
     }
 
     /**
@@ -241,7 +236,8 @@ public class UILabel extends UIView {
     public void setLineBreakMode(int NSLineBreakMode) {
         if (this.lineBreakMode != NSLineBreakMode) {
             this.lineBreakMode = NSLineBreakMode;
-            recalculateIntrinsicSize();
+            CGRect textRect = textRectForBounds(frame(), numberOfLines);
+            setIntrinsicContentSize(textRect.getSize().getWidth(), textRect.getSize().getHeight());
         }
     }
 
@@ -266,7 +262,8 @@ public class UILabel extends UIView {
     public void setNumberOfLines(int numberOfLines) {
         if (this.numberOfLines != numberOfLines) {
             this.numberOfLines = numberOfLines;
-            recalculateIntrinsicSize();
+            CGRect textRect = textRectForBounds(frame(), numberOfLines);
+            setIntrinsicContentSize(textRect.getSize().getWidth(), textRect.getSize().getHeight());
         }
     }
 
@@ -417,59 +414,78 @@ public class UILabel extends UIView {
 
     @Override
     public final void drawRect(CGRect rect) {
-        if (blocks == null)
+        drawTextInRect(rect);
+    }
+
+    /**
+     * Actual procedur of drawing text in this label
+     *
+     * @param rect the rectangle of the drawing area
+     */
+    @CMSelector("- (void)drawTextInRect:(CGRect)rect;")
+    public void drawTextInRect(CGRect rect) {
+        if (blocks.isEmpty())
             return;
+        double x = rect.getOrigin().getX();
+        double y = rect.getOrigin().getY();
+        double width = rect.getSize().getWidth();
+        double height = rect.getSize().getHeight();
 
         CGContext cx = UIGraphics.getCurrentContext();
-        GraphicsContext gcx = context(cx);
+        GraphicsContext<?> gcx = context(cx);
         gcx.setFont(GraphicsDrill.font(fontDraw.cgfont));
 
         int actualTextAlignment = textAlignment;
         if (textAlignment == NSTextAlignment.Natural)
             actualTextAlignment = Native.system().isRTL() ? NSTextAlignment.Right : NSTextAlignment.Left;
 
-        double y = rect.getOrigin().getY() + (rect.getSize().getHeight() - blocks.size.getHeight()) / 2;
+        double cY = y + (height - blocks.size.getHeight()) / 2;
         for (TextLine tl : blocks.lines) {
-            double x = rect.getOrigin().getX()
+            double cX = x
                     + (actualTextAlignment == UITextAlignment.Left ? 0
-                    : (actualTextAlignment == UITextAlignment.Center ? (getWidth() - tl.size.getWidth()) / 2
-                    : getWidth() - tl.size.getWidth()));
+                    : (actualTextAlignment == UITextAlignment.Center ? (width - tl.size.getWidth()) / 2
+                    : width - tl.size.getWidth()));
 
             if (shadowOffset != null && (shadowOffset.getWidth() != 0 || shadowOffset.getHeight() != 0)) {
                 gcx.setFillColorWithColor(color(shadowColor == null ? Theme.Color.SHADOW.cgcolor : shadowColor.cgcolor));
-                cx.showTextAtPoint(x + shadowOffset.getWidth(), y + shadowOffset.getHeight(), tl.text);
+                cx.showTextAtPoint(cX + shadowOffset.getWidth(), cY + shadowOffset.getHeight(), tl.text);
             }
             int c = color((highlighted && highlightedTextColor != null)
                     ? highlightedTextColor.cgcolor
                     : (textColor == null ? Theme.Color.FORE.cgcolor : textColor.cgcolor));
             gcx.setFillColorWithColor(c);
-            cx.showTextAtPoint(x, y, tl.text);
+            cx.showTextAtPoint(cX, cY, tl.text);
 
-            y += tl.size.getHeight();
+            cY += tl.size.getHeight();
         }
     }
 
-    private void recalculateIntrinsicSize() {
+    /**
+     * Calculate the required dimension for this UILabel, that the desired text could be drawn in
+     *
+     * @param bounds        the given size the area to draw into
+     * @param numberOfLines the number of lines allowed
+     * @return the rectangle which perfectly fits UILabel's text
+     */
+    @CMSelector("- (CGRect)textRectForBounds:(CGRect)bounds \n" +
+            "     limitedToNumberOfLines:(NSInteger)numberOfLines;")
+    public CGRect textRectForBounds(CGRect bounds, int numberOfLines) {
         UIFont font = fontOrig;
-        CGSize size;
-        if (text == null || text.isEmpty()) {
-            blocks = null;
-            size = new CGSize(0, 0);
-        } else {
+        if (text == null || text.isEmpty())
+            blocks = TextBlock.EMPTY;
+        else {
             if (numberOfLines == 1) {
                 blocks = splitStringWithFontAndSize(text, fontOrig.cgfont, Double.MAX_VALUE, 1, lineBreakMode);
                 if (adjustsFontSizeToFitWidth && blocks.size.getWidth() > getWidth()) {
                     blocks = splitStringWithFontAndSize(text, font.cgfont, Double.MAX_VALUE, 1, lineBreakMode);
                     font = fontOrig.fontWithSize(fontOrig.pointSize() * (getWidth() / intrinsicContentSize.getWidth()));
                 }
-                size = blocks.size;
-            } else {
+            } else
                 blocks = splitStringWithFontAndSize(text, fontDraw.cgfont, getWidth(), numberOfLines, lineBreakMode);
-                size = blocks.size;
-            }
         }
-        setIntrinsicContentSize(Math.ceil(size.getWidth()), Math.ceil(size.getHeight()));
+//        setIntrinsicContentSize(Math.ceil(size.getWidth()), Math.ceil(size.getHeight()));
         fontDraw = font;
         Native.graphics().refreshDisplay();
+        return new CGRect(0, 0, blocks.size.getWidth(), blocks.size.getHeight());
     }
 }
