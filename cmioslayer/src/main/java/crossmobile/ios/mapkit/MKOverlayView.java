@@ -154,10 +154,4 @@ public class MKOverlayView extends UIView {
     public void setNeedsDisplayInMapRect(MKMapRect mapRect, double zoomScale) {
         Native.system().notImplemented();
     }
-
-    @Override
-    public final void drawRect(CGRect rect) {
-        super.drawRect(rect);
-    }
-
 }

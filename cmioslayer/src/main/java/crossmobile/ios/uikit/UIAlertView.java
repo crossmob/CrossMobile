@@ -232,10 +232,4 @@ public class UIAlertView extends UIView {
             t.setSecureTextEntry(true);
         return t;
     }
-
-    @Override
-    public final void drawRect(CGRect rect) {
-        super.drawRect(rect);
-    }
-
 }

@@ -575,11 +575,6 @@ public class UITableViewCell extends UIView {
         return metrics;
     }
 
-    @Override
-    public final void drawRect(CGRect rect) {
-        super.drawRect(rect);
-    }
-
     void addSegue(String trigger, UIStoryboardSegue segue) {
         if (trigger.equals("action"))
             _selectionSegue = segue;

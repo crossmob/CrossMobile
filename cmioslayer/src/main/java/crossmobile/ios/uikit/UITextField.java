@@ -393,10 +393,9 @@ public class UITextField extends UIControl implements UITextInputTraits {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public final void drawRect(CGRect rect) {
         if (getWidget() != null) {
-            GraphicsContext cxt = context(UIGraphics.getCurrentContext());
+            GraphicsContext<?> cxt = context(UIGraphics.getCurrentContext());
             if (borderStyle == UITextBorderStyle.Line || borderStyle == UITextBorderStyle.Bezel) {
                 cxt.setFillColorWithColor(0xFF000000);
                 cxt.drawRect(rect.getOrigin().getX(), rect.getOrigin().getY(), rect.getSize().getWidth(), rect.getSize().getHeight());
@@ -404,5 +403,4 @@ public class UITextField extends UIControl implements UITextInputTraits {
             getWidget().draw(cxt);
         }
     }
-
 }

@@ -323,12 +323,6 @@ public class UIStepper extends UIControl {
         super.setTintColor(tintColor);
     }
 
-    @Override
-    public final void drawRect(CGRect rect) {
-        super.drawRect(rect);
-
-    }
-
     /**
      * Returns the background image of the specified control state.
      *

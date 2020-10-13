@@ -208,14 +208,11 @@ public class UIPageControl extends UIControl {
     }
 
     @Override
-    public final void drawRect(CGRect rect) {
+    public final void drawRect(CGRect rect3) {
         CGSize size = sizeForNumberOfPages(numberOfPages);
-        CGSize recrForDraw = rect.getSize();
-        if (superview() != null && superview().controller != null)
-            recrForDraw.setWidth(superview().getWidth());
-        double xDelta = (recrForDraw.getWidth() - size.getWidth()) / 2 + CYCLE_DISTANCE / 2;
-        double yDelta = (recrForDraw.getHeight() - size.getHeight()) / 2;
-        GraphicsContext cx = context(UIGraphics.getCurrentContext());
+        double xDelta = (rect3.getSize().getWidth() - size.getWidth()) / 2d + CYCLE_DISTANCE / 2d;
+        double yDelta = (rect3.getSize().getHeight() - size.getHeight()) / 2d;
+        GraphicsContext<?> cx = context(UIGraphics.getCurrentContext());
         for (int i = 0; i < numberOfPages; i++) {
             if (i == currentPage)
                 cx.setFillColorWithColor(color(currentPageIndicatorTintColor.cgcolor));

@@ -224,19 +224,21 @@ public class UISwitch extends UIControl {
 
     @Override
     public final void drawRect(CGRect rect) {
+        double x = rect.getOrigin().getX();
+        double y = rect.getOrigin().getY();
         int onColor = color(onTintColor().cgcolor);
         int thumbColor = color(isDown ? thumbDownTintColor().cgcolor : thumbTintColor().cgcolor);
-        GraphicsContext gcx = context(UIGraphics.getCurrentContext());
+        GraphicsContext<?> gcx = context(UIGraphics.getCurrentContext());
         int sliderArea = (int) (TRACK_MOVING_AREA * sliderLoc);
 
-        gcx.fillRoundRodBar(rect.getOrigin().getX(), rect.getOrigin().getY(), WIDTH, HEIGHT, onColor);
-        gcx.fillHalfRoundRodBar(sliderArea + INSET + THUMB_SIZE / 2, rect.getOrigin().getY() + INSET, TRACK_MOVING_AREA - sliderArea + THUMB_SIZE / 2, THUMB_SIZE, color(offColor.cgcolor), true, false);
+        gcx.fillRoundRodBar(x, y, WIDTH, HEIGHT, onColor);
+        gcx.fillHalfRoundRodBar(sliderArea + INSET + THUMB_SIZE / 2d, y + INSET, TRACK_MOVING_AREA - sliderArea + THUMB_SIZE / 2d, THUMB_SIZE, color(offColor.cgcolor), true, false);
 //        gcx.fillHalfRoundRodBar(rect.getOrigin().getX(), rect.getOrigin().getY(), sliderArea + INSET + THUMB_SIZE / 2, HEIGHT, (color?)), true, true);
         if (ISBORDERED)
-            gcx.drawRoundRodBar(rect.getOrigin().getX(), rect.getOrigin().getY(), WIDTH, HEIGHT, color(Theme.Color.SHADOW.cgcolor));
+            gcx.drawRoundRodBar(x, y, WIDTH, HEIGHT, color(Theme.Color.SHADOW.cgcolor));
 
         // draw thumb
-        int buttonLocation = (int) (rect.getOrigin().getX() + INSET + sliderArea);
+        int buttonLocation = (int) (x + INSET + sliderArea);
 
         if (USE_THUMB_IMAGE)
             cmButtonStates.thumb().drawInRect(new CGRect(buttonLocation, INSET, THUMB_SIZE, THUMB_SIZE));

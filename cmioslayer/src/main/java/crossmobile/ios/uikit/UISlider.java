@@ -446,35 +446,38 @@ public class UISlider extends UIControl {
     @Override
     public final void drawRect(CGRect rect) {
         CGContext cx = UIGraphics.getCurrentContext();
-        GraphicsContext gcx = context(cx);
+        GraphicsContext<?> gcx = context(cx);
         double percent = value / (maximumValue - minimumValue);
+        double x = rect.getOrigin().getX();
+        double y = rect.getOrigin().getY();
+        double width = rect.getSize().getWidth();
 
         int offset = Theme.Slider.ISBORDERED ? 1 : 0;
-        double track_moving_area = rect.getSize().getWidth() - THUMB_SIZE;
-        double track_minimum = THUMB_SIZE / 2 + track_moving_area * percent;
-        float dy = (Theme.Slider.THUMB_SIZE - Theme.Slider.HEIGHT) / 2;
+        double track_moving_area = width - THUMB_SIZE;
+        double track_minimum = THUMB_SIZE / 2d + track_moving_area * percent;
+        double dy = (Theme.Slider.THUMB_SIZE - Theme.Slider.HEIGHT) / 2d;
         if (Theme.Slider.ISSQUARED) {
             gcx.setFillColorWithColor(color(maximumTrackTintColor.cgcolor));
             if (Theme.Slider.ISBORDERED)
-                gcx.fillRect(rect.getOrigin().getX(), rect.getOrigin().getY() + dy, rect.getSize().getWidth(), Theme.Slider.HEIGHT);
+                gcx.fillRect(x, y + dy, width, Theme.Slider.HEIGHT);
             else
-                gcx.fillRect(rect.getOrigin().getX() + offset + track_minimum, rect.getOrigin().getY() + dy, rect.getSize().getWidth() - offset - track_minimum, Theme.Slider.HEIGHT);
+                gcx.fillRect(x + offset + track_minimum, y + dy, width - offset - track_minimum, Theme.Slider.HEIGHT);
             gcx.setFillColorWithColor(color(minimumTrackTintColor().cgcolor));
-            gcx.fillRect(rect.getOrigin().getX() + offset, rect.getOrigin().getY() + dy + offset, track_minimum, Theme.Slider.HEIGHT - offset * 2);
+            gcx.fillRect(x + offset, y + dy + offset, track_minimum, Theme.Slider.HEIGHT - offset * 2);
         } else {
             if (Theme.Slider.ISBORDERED)
-                gcx.fillRoundRodBar(rect.getOrigin().getX(), rect.getOrigin().getY() + dy, rect.getSize().getWidth(), Theme.Slider.HEIGHT, color(maximumTrackTintColor.cgcolor));
+                gcx.fillRoundRodBar(x, y + dy, width, Theme.Slider.HEIGHT, color(maximumTrackTintColor.cgcolor));
             else
-                gcx.fillHalfRoundRodBar(rect.getOrigin().getX() + offset + track_minimum, rect.getOrigin().getY() + dy, rect.getSize().getWidth() - offset - track_minimum, Theme.Slider.HEIGHT, color(maximumTrackTintColor.cgcolor), true, false);
-            gcx.fillHalfRoundRodBar(rect.getOrigin().getX() + offset, rect.getOrigin().getY() + dy + offset, track_minimum, Theme.Slider.HEIGHT - offset * 2, color(minimumTrackTintColor().cgcolor), true, true);
+                gcx.fillHalfRoundRodBar(x + offset + track_minimum, y + dy, width - offset - track_minimum, Theme.Slider.HEIGHT, color(maximumTrackTintColor.cgcolor), true, false);
+            gcx.fillHalfRoundRodBar(x + offset, y + dy + offset, track_minimum, Theme.Slider.HEIGHT - offset * 2, color(minimumTrackTintColor().cgcolor), true, true);
         }
 
         gcx.setFillColorWithColor(color(isDown ? thumbDownTintColor.cgcolor : thumbTintColor.cgcolor));
-        gcx.fillEllipse(rect.getOrigin().getX() + track_minimum - Theme.Slider.THUMB_SIZE / 2, rect.getOrigin().getY(), Theme.Slider.THUMB_SIZE, Theme.Slider.THUMB_SIZE);
+        gcx.fillEllipse(x + track_minimum - Theme.Slider.THUMB_SIZE / 2d, y, Theme.Slider.THUMB_SIZE, Theme.Slider.THUMB_SIZE);
         gcx.setFillColorWithColor(color(Theme.Color.SHADOW.cgcolor));
-        gcx.drawEllipse(rect.getOrigin().getX() + track_minimum - Theme.Slider.THUMB_SIZE / 2, rect.getOrigin().getY(), Theme.Slider.THUMB_SIZE, Theme.Slider.THUMB_SIZE);
+        gcx.drawEllipse(x + track_minimum - Theme.Slider.THUMB_SIZE / 2d, y, Theme.Slider.THUMB_SIZE, Theme.Slider.THUMB_SIZE);
 
-        cmButtonStates.thumb().drawInRect(new CGRect(rect.getOrigin().getX() + track_minimum - Theme.Slider.THUMB_SIZE / 2, rect.getOrigin().getY(), Theme.Slider.THUMB_SIZE, Theme.Slider.THUMB_SIZE));
+        cmButtonStates.thumb().drawInRect(new CGRect(x + track_minimum - Theme.Slider.THUMB_SIZE / 2d, y, Theme.Slider.THUMB_SIZE, Theme.Slider.THUMB_SIZE));
     }
 
 }

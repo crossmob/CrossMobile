@@ -73,10 +73,4 @@ public class MPVolumeView extends UIView {
     public void setShowsVolumeSlider(boolean showsVolumeSlider) {
         this.showsVolumeSlider = showsVolumeSlider;
     }
-
-    @Override
-    public final void drawRect(CGRect rect) {
-        super.drawRect(rect);
-    }
-
 }

@@ -273,10 +273,4 @@ public class UIDatePicker extends UIControl {
         picker.setDate(date, animated);
         setNeedsDisplay();
     }
-
-    @Override
-    public final void drawRect(CGRect rect) {
-        super.drawRect(rect);
-    }
-
 }

@@ -730,11 +730,6 @@ public class MKMapView extends UIView {
         //       annotations.doPopulate();
     }
 
-    @Override
-    public final void drawRect(CGRect rect) {
-        super.drawRect(rect);
-    }
-
     void updateUserLocation(CLLocation newLocation) {
         // TODO : implement
         userLocation.setLocation(newLocation);

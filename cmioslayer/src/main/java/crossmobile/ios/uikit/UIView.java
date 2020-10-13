@@ -1243,8 +1243,10 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
      */
     @CMSetter("@property(nonatomic) UIViewContentMode contentMode;")
     public void setContentMode(int UIViewContentMode) {
-        contentMode = UIViewContentMode;
-        Native.graphics().refreshDisplay();
+        if (this.contentMode != UIViewContentMode) {
+            contentMode = UIViewContentMode;
+            Native.graphics().refreshDisplay();
+        }
     }
 
     /**
@@ -1581,13 +1583,13 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
     final void drawingSelf(CGContext cx) {
         if (!shouldBeDrawn())
             return;
-        GraphicsContext gcx = context(cx);
+        GraphicsContext<?> gcx = context(cx);
 
         // update viewport
-        CGRect vframe = new CGRect(0, 0, getWidth(), getHeight());
+        CGRect vFrame = new CGRect(0, 0, getWidth(), getHeight());
 
         if (clipsToBounds)
-            cx.clipToRect(vframe);
+            cx.clipToRect(vFrame);
         if (layer != null && layer.mask() != null) {
             CALayer mask = layer.mask();
             if (mask instanceof CAShapeLayer) {
@@ -1599,18 +1601,21 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
 
         if (clearcontext && !opaque) {
             gcx.setFillColorWithColor(0xFF000000);
-            cx.fillRect(vframe);
+            cx.fillRect(vFrame);
         }
 
         if (background != null && color(background.cgcolor) != 0) {
             cx.setFillColorWithColor(background.cgcolor);
-            cx.fillRect(vframe);
+            cx.fillRect(vFrame);
         }
 
-        drawRect(getDrawFrame());
+        drawRect(vFrame);
+        if (ENABLE_DEBUG || shouldDrawOnTop())
+            // to be sure that subclasses of this method didn't change the metrics
+            Geometry.set(vFrame, 0d, 0d, getWidth(), getHeight());
         if (ENABLE_DEBUG)
             if ((Live_Graphics_Debug || debugSelf) && !shouldDrawOnTop())
-                debugGraphicsFrame(cx, vframe);
+                debugGraphicsFrame(cx, vFrame);
 
         DrawingDepth++;
         // probably create a matrix of some sort and store it, so that prepareToDraw could be executed only once?
@@ -1619,10 +1624,10 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
 
         if (shouldDrawOnTop()) {
             cx.setAlpha(parentAlpha * alpha);
-            drawOnTop(cx, vframe);
+            drawOnTop(cx, vFrame);
             if (ENABLE_DEBUG)
                 if (Live_Graphics_Debug || debugSelf)
-                    debugGraphicsFrame(cx, vframe);
+                    debugGraphicsFrame(cx, vFrame);
         }
     }
 
@@ -1642,7 +1647,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
             border = (CGColor) layer.style().get(Theme.Debug.StyleTags.STRIKE_COLOR_TAG);
         }
         boolean isWindow = this instanceof UIWindow;
-        GraphicsContext gcx = context(cx);
+        GraphicsContext<?> gcx = context(cx);
         gcx.setLineWidth(1);
         gcx.setFillColorWithColor(color(body == null ? (isWindow ? Theme.Debug.WINDOW_FILL_COLOR.cgcolor : Theme.Debug.FILL_COLOR.cgcolor) : body));
         cx.fillRect(givenViewport);
@@ -1700,21 +1705,16 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
         return false;
     }
 
-    ///NEW CODE FOR CASSOWARY
-
-    /*
-     * all variables are known to this object
-     */
-    private CGRect getDrawFrame() {
-        CGSize has = frame.getSize();
+    CGRect contentModeRect(CGRect rect) {
+        CGSize has = rect.getSize();
         CGSize wants = sizeThatFits(has);
-        CGRect dframe = CGRect.zero();
+        CGRect result = CGRect.zero();
 
         switch (contentMode) {
             case ScaleToFill:
-                dframe.getOrigin().setX(0);
-                dframe.getOrigin().setY(0);
-                Geometry.set(dframe.getSize(), has);
+                result.getOrigin().setX(0);
+                result.getOrigin().setY(0);
+                Geometry.set(result.getSize(), has);
                 break;
             case ScaleAspectFit:
             case ScaleAspectFill:
@@ -1723,58 +1723,60 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
                 double scale = hasAspect > wantsAspect
                         ? (contentMode == ScaleAspectFill ? has.getWidth() / wants.getWidth() : has.getHeight() / wants.getHeight()) // width is bigger than required
                         : (contentMode == ScaleAspectFill ? has.getHeight() / wants.getHeight() : has.getWidth() / wants.getWidth()); // height is bigger than required
-                dframe.getSize().setWidth(wants.getWidth() * scale);
-                dframe.getSize().setHeight(wants.getHeight() * scale);
-                dframe.getOrigin().setX((has.getWidth() - dframe.getSize().getWidth()) / 2);
-                dframe.getOrigin().setY((has.getHeight() - dframe.getSize().getHeight()) / 2);
+                result.getSize().setWidth(wants.getWidth() * scale);
+                result.getSize().setHeight(wants.getHeight() * scale);
+                result.getOrigin().setX((has.getWidth() - result.getSize().getWidth()) / 2);
+                result.getOrigin().setY((has.getHeight() - result.getSize().getHeight()) / 2);
                 break;
             case Top:
-                dframe.getOrigin().setX((has.getWidth() - wants.getWidth()) / 2);
-                dframe.getOrigin().setY(0);
-                Geometry.set(dframe.getSize(), wants);
+                result.getOrigin().setX((has.getWidth() - wants.getWidth()) / 2);
+                result.getOrigin().setY(0);
+                Geometry.set(result.getSize(), wants);
                 break;
             case Bottom:
-                dframe.getOrigin().setX((has.getWidth() - wants.getWidth()) / 2);
-                dframe.getOrigin().setY(has.getHeight() - wants.getHeight());
-                Geometry.set(dframe.getSize(), wants);
+                result.getOrigin().setX((has.getWidth() - wants.getWidth()) / 2);
+                result.getOrigin().setY(has.getHeight() - wants.getHeight());
+                Geometry.set(result.getSize(), wants);
                 break;
             case Left:
-                dframe.getOrigin().setX(0);
-                dframe.getOrigin().setY((has.getHeight() - wants.getHeight()) / 2);
-                Geometry.set(dframe.getSize(), wants);
+                result.getOrigin().setX(0);
+                result.getOrigin().setY((has.getHeight() - wants.getHeight()) / 2);
+                Geometry.set(result.getSize(), wants);
                 break;
             case Right:
-                dframe.getOrigin().setX(has.getWidth() - wants.getWidth());
-                dframe.getOrigin().setY((has.getHeight() - wants.getHeight()) / 2);
-                Geometry.set(dframe.getSize(), wants);
+                result.getOrigin().setX(has.getWidth() - wants.getWidth());
+                result.getOrigin().setY((has.getHeight() - wants.getHeight()) / 2);
+                Geometry.set(result.getSize(), wants);
                 break;
             case TopLeft:
-                dframe.getOrigin().setX(0);
-                dframe.getOrigin().setY(0);
-                Geometry.set(dframe.getSize(), wants);
+                result.getOrigin().setX(0);
+                result.getOrigin().setY(0);
+                Geometry.set(result.getSize(), wants);
                 break;
             case TopRight:
-                dframe.getOrigin().setX(has.getWidth() - wants.getWidth());
-                dframe.getOrigin().setY(0);
-                Geometry.set(dframe.getSize(), wants);
+                result.getOrigin().setX(has.getWidth() - wants.getWidth());
+                result.getOrigin().setY(0);
+                Geometry.set(result.getSize(), wants);
                 break;
             case BottomLeft:
-                dframe.getOrigin().setX(0);
-                dframe.getOrigin().setY(has.getHeight() - wants.getHeight());
-                Geometry.set(dframe.getSize(), wants);
+                result.getOrigin().setX(0);
+                result.getOrigin().setY(has.getHeight() - wants.getHeight());
+                Geometry.set(result.getSize(), wants);
                 break;
             case BottomRight:
-                dframe.getOrigin().setX(has.getWidth() - wants.getWidth());
-                dframe.getOrigin().setY(has.getHeight() - wants.getHeight());
-                Geometry.set(dframe.getSize(), wants);
+                result.getOrigin().setX(has.getWidth() - wants.getWidth());
+                result.getOrigin().setY(has.getHeight() - wants.getHeight());
+                Geometry.set(result.getSize(), wants);
                 break;
             case Center:
             default:
-                dframe.getOrigin().setY((has.getHeight() - wants.getHeight()) / 2);
-                dframe.getOrigin().setX((has.getWidth() - wants.getWidth()) / 2);
-                Geometry.set(dframe.getSize(), wants);
+                result.getOrigin().setY((has.getHeight() - wants.getHeight()) / 2);
+                result.getOrigin().setX((has.getWidth() - wants.getWidth()) / 2);
+                Geometry.set(result.getSize(), wants);
         }
-        return dframe;
+        if (this instanceof UILabel)
+            System.out.println(has + " -> " + result);
+        return result;
     }
 
     /*

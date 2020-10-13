@@ -503,11 +503,6 @@ public class UISearchBar extends UIView {
     }
 
     @Override
-    public final void drawRect(CGRect rect) {
-        super.drawRect(rect);
-    }
-
-    @Override
     boolean shouldDrawOnTop() {
         return text().isEmpty();
     }

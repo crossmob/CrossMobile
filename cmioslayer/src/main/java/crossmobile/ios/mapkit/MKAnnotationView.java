@@ -393,11 +393,6 @@ public class MKAnnotationView extends UIView {
         this.draggable = draggable;
     }
 
-    @Override
-    public final void drawRect(CGRect rect) {
-        super.drawRect(rect);
-    }
-
     // TODO : implement
 //    final OverlayItem createOverlayItem(MKMapView.AnnotationsOverlay aover) {
 //        OverlayItem overlay = annotation == null

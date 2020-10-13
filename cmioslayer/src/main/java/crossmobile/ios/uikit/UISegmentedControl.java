@@ -352,29 +352,33 @@ public class UISegmentedControl extends UIControl {
             CGColor tintColor = tintColor().cgcolor;
             CGContext cx = UIGraphics.getCurrentContext();
             cx.beginPath();
+            double x = rect.getOrigin().getX();
+            double y = rect.getOrigin().getY();
+            double width = rect.getSize().getWidth();
+            double height = rect.getSize().getHeight();
             if (this.equals(items.get(0))) {
                 // Left
-                cx.moveToPoint(rect.getOrigin().getX() + 4, rect.getOrigin().getY());
-                cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY());
-                cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY() + rect.getSize().getHeight());
-                cx.addLineToPoint(rect.getOrigin().getX() + 4, rect.getOrigin().getY() + rect.getSize().getHeight());
-                cx.addCurveToPoint(rect.getOrigin().getX() + 3, rect.getOrigin().getY() + rect.getSize().getHeight() - 1, rect.getOrigin().getX() + 1, rect.getOrigin().getY() + rect.getSize().getHeight() - 3, rect.getOrigin().getX(), rect.getOrigin().getY() + rect.getSize().getHeight() - 4);
-                cx.addLineToPoint(rect.getOrigin().getX(), rect.getOrigin().getY() + 4);
-                cx.addCurveToPoint(rect.getOrigin().getX() + 1, rect.getOrigin().getY() + 3, rect.getOrigin().getX() + 3, rect.getOrigin().getY() + 1, rect.getOrigin().getX() + 4, rect.getOrigin().getY());
+                cx.moveToPoint(x + 4, y);
+                cx.addLineToPoint(x + width, y);
+                cx.addLineToPoint(x + width, y + height);
+                cx.addLineToPoint(x + 4, y + height);
+                cx.addCurveToPoint(x + 3, y + height - 1, x + 1, y + height - 3, x, y + height - 4);
+                cx.addLineToPoint(x, y + 4);
+                cx.addCurveToPoint(x + 1, y + 3, x + 3, y + 1, x + 4, y);
             } else if (this.equals(items.get(items.size() - 1))) {
                 // Right
-                cx.moveToPoint(rect.getOrigin().getX(), rect.getOrigin().getY());
-                cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth() - 4, rect.getOrigin().getY());
-                cx.addCurveToPoint(rect.getOrigin().getX() + rect.getSize().getWidth() - 3, rect.getOrigin().getY() + 1, rect.getOrigin().getX() + rect.getSize().getWidth() - 1, rect.getOrigin().getY() + 3, rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY() + 4);
-                cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY() + rect.getSize().getHeight() - 4);
-                cx.addCurveToPoint(rect.getOrigin().getX() + rect.getSize().getWidth() - 1, rect.getOrigin().getY() + rect.getSize().getHeight() - 3, rect.getOrigin().getX() + rect.getSize().getWidth() - 3, rect.getOrigin().getY() + rect.getSize().getHeight() - 1, rect.getOrigin().getX() + rect.getSize().getWidth() - 4, rect.getOrigin().getY() + rect.getSize().getHeight());
-                cx.addLineToPoint(rect.getOrigin().getX(), rect.getOrigin().getY() + rect.getSize().getHeight());
+                cx.moveToPoint(x, y);
+                cx.addLineToPoint(x + width - 4, y);
+                cx.addCurveToPoint(x + width - 3, y + 1, x + width - 1, y + 3, x + width, y + 4);
+                cx.addLineToPoint(x + width, y + height - 4);
+                cx.addCurveToPoint(x + width - 1, y + height - 3, x + width - 3, y + height - 1, x + width - 4, y + height);
+                cx.addLineToPoint(x, y + height);
             } else {
                 // Central
-                cx.moveToPoint(rect.getOrigin().getX(), rect.getOrigin().getY());
-                cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY());
-                cx.addLineToPoint(rect.getOrigin().getX() + rect.getSize().getWidth(), rect.getOrigin().getY() + rect.getSize().getHeight());
-                cx.addLineToPoint(rect.getOrigin().getX(), rect.getOrigin().getY() + rect.getSize().getHeight());
+                cx.moveToPoint(x, y);
+                cx.addLineToPoint(x + width, y);
+                cx.addLineToPoint(x + width, y + height);
+                cx.addLineToPoint(x, y + height);
             }
             cx.closePath();
             cx.setLineWidth(1);

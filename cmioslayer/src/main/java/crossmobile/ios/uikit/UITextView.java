@@ -37,7 +37,6 @@ public class UITextView extends UIView {
     private int keyboardAppearance = UIKeyboardAppearance.Default;
     private int keyboardType = UIKeyboardType.Default;
     private int returnKeyType = UIReturnKeyType.Default;
-    private final int borderStyle = UITextBorderStyle.RoundedRect;
     private UIEdgeInsets textContainerInset;
     private long dataDetectorTypes;
 
@@ -474,16 +473,9 @@ public class UITextView extends UIView {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public final void drawRect(CGRect rect) {
-        if (getWidget() != null) {
-            GraphicsContext cxt = context(UIGraphics.getCurrentContext());
-            if (borderStyle == UITextBorderStyle.Line || borderStyle == UITextBorderStyle.Bezel) {
-                cxt.setFillColorWithColor(0xFF000000);
-                cxt.drawRect(rect.getOrigin().getX(), rect.getOrigin().getY(), rect.getSize().getWidth(), rect.getSize().getHeight());
-            }
-            getWidget().draw(cxt);
-        }
+        if (getWidget() != null)
+            getWidget().draw(context(UIGraphics.getCurrentContext()));
     }
 
 }

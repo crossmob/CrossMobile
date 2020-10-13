@@ -264,7 +264,7 @@ public class UIImageView extends UIView {
     @Override
     public final void drawRect(CGRect rect) {
         if (getCurrent() != null)
-            getCurrent().drawInRect(rect);
+            getCurrent().drawInRect(contentModeRect(rect));
     }
 
     @Override

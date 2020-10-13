@@ -914,11 +914,6 @@ public class UIScrollView extends UIView {
         }
     }
 
-    @Override
-    public void drawRect(CGRect rect) {
-        super.drawRect(rect);
-    }
-
     private class ScrollContent implements AnimationAction {
 
         final double xFrom, yFrom, xTo, yTo;

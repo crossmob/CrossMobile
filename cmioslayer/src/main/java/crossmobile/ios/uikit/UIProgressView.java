@@ -170,19 +170,19 @@ public class UIProgressView extends UIView {
 
     @Override
     public final void drawRect(CGRect rect) {
-        GraphicsContext cx = context(UIGraphics.getCurrentContext());
+        GraphicsContext<?> cx = context(UIGraphics.getCurrentContext());
         int offset = Theme.Progress.ISSQUARED ? 0 : 1;
 
+        double x = rect.getOrigin().getX();
+        double y = rect.getOrigin().getY();
         double width = rect.getSize().getWidth();
         if (width < height)
+            //noinspection SuspiciousNameCombination
             width = height;
 
         double progr = (width - offset * 2) * progress;
         if (progr < (height - offset * 2))
             progr = height - offset * 2;
-
-        double x = rect.getOrigin().getX();
-        double y = rect.getOrigin().getY();
 
         if (drawBack)
             if (Theme.Progress.ISSQUARED) {

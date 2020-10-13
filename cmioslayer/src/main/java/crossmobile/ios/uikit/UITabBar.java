@@ -450,10 +450,4 @@ public class UITabBar extends UIView {
             Native.graphics().refreshDisplay();
         }
     }
-
-    @Override
-    public final void drawRect(CGRect rect) {
-        super.drawRect(rect);
-    }
-
 }

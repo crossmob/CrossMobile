@@ -99,6 +99,14 @@ public class Geometry {
         return self;
     }
 
+    public static CGRect set(CGRect self, double x, double y, double width, double height) {
+        self.getOrigin().setX(x);
+        self.getOrigin().setY(y);
+        self.getSize().setWidth(width);
+        self.getSize().setHeight(height);
+        return self;
+    }
+
     public static CGAffineTransform set(CGAffineTransform self, CGAffineTransform other) {
         self.setA(other.getA());
         self.setB(other.getB());

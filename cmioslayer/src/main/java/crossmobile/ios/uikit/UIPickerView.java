@@ -255,10 +255,4 @@ public class UIPickerView extends UIView {
     public void selectRow(int row, int component, boolean animated) {
         picker.selectRowinComponentanimated(row, component, animated);
     }
-
-    @Override
-    public final void drawRect(CGRect rect) {
-        super.drawRect(rect);
-    }
-
 }
