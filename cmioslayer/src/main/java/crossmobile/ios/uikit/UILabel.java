@@ -8,6 +8,7 @@ package crossmobile.ios.uikit;
 
 import crossmobile.ios.coregraphics.*;
 import crossmobile.ios.foundation.NSLineBreakMode;
+import org.crossmobile.bind.graphics.Geometry;
 import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.graphics.TextHelpers.TextBlock;
 import org.crossmobile.bind.graphics.TextHelpers.TextLine;
@@ -51,6 +52,7 @@ public class UILabel extends UIView {
     private double minimumScaleFactor = 0;
     private double preferredMaxLayoutWidth = 0;
     private int baselineAdjustment = UIBaselineAdjustment.AlignBaselines;
+    private CGRect boundedTextRect = CGRect.zero();
 
     /**
      * Constructs a default UILabel object located at (0,0) with 0 weight and 0
@@ -79,8 +81,7 @@ public class UILabel extends UIView {
         if (SystemUtilities.equals(frame, this.frame()))
             return;
         super.setFrame(frame);
-        CGRect textRect = textRectForBounds(frame, numberOfLines);
-        setIntrinsicContentSize(textRect.getSize().getWidth(), textRect.getSize().getHeight());
+        refreshTextMetrics();
     }
 
     /**
@@ -93,8 +94,7 @@ public class UILabel extends UIView {
         if (SystemUtilities.equals(text, this.text))
             return;
         this.text = text;
-        CGRect textRect = textRectForBounds(frame(), numberOfLines);
-        setIntrinsicContentSize(textRect.getSize().getWidth(), textRect.getSize().getHeight());
+        refreshTextMetrics();
     }
 
     /**
@@ -118,8 +118,7 @@ public class UILabel extends UIView {
         if (SystemUtilities.equals(font, this.fontOrig))
             return;
         this.fontOrig = font == null ? Theme.Label.FONT : font;
-        CGRect textRect = textRectForBounds(frame(), numberOfLines);
-        setIntrinsicContentSize(textRect.getSize().getWidth(), textRect.getSize().getHeight());
+        refreshTextMetrics();
     }
 
     /**
@@ -236,8 +235,7 @@ public class UILabel extends UIView {
     public void setLineBreakMode(int NSLineBreakMode) {
         if (this.lineBreakMode != NSLineBreakMode) {
             this.lineBreakMode = NSLineBreakMode;
-            CGRect textRect = textRectForBounds(frame(), numberOfLines);
-            setIntrinsicContentSize(textRect.getSize().getWidth(), textRect.getSize().getHeight());
+            refreshTextMetrics();
         }
     }
 
@@ -262,8 +260,7 @@ public class UILabel extends UIView {
     public void setNumberOfLines(int numberOfLines) {
         if (this.numberOfLines != numberOfLines) {
             this.numberOfLines = numberOfLines;
-            CGRect textRect = textRectForBounds(frame(), numberOfLines);
-            setIntrinsicContentSize(textRect.getSize().getWidth(), textRect.getSize().getHeight());
+            refreshTextMetrics();
         }
     }
 
@@ -470,6 +467,11 @@ public class UILabel extends UIView {
     @CMSelector("- (CGRect)textRectForBounds:(CGRect)bounds \n" +
             "     limitedToNumberOfLines:(NSInteger)numberOfLines;")
     public CGRect textRectForBounds(CGRect bounds, int numberOfLines) {
+        return Geometry.copy(boundedTextRect);
+    }
+
+    // Keep the bounding box cached instead of calculating every time
+    private void refreshTextMetrics() {
         UIFont font = fontOrig;
         if (text == null || text.isEmpty())
             blocks = TextBlock.EMPTY;
@@ -483,9 +485,9 @@ public class UILabel extends UIView {
             } else
                 blocks = splitStringWithFontAndSize(text, fontDraw.cgfont, getWidth(), numberOfLines, lineBreakMode);
         }
-//        setIntrinsicContentSize(Math.ceil(size.getWidth()), Math.ceil(size.getHeight()));
         fontDraw = font;
-        Native.graphics().refreshDisplay();
-        return new CGRect(0, 0, blocks.size.getWidth(), blocks.size.getHeight());
+        boundedTextRect = new CGRect(0, 0, blocks.size.getWidth(), blocks.size.getHeight());
+        setIntrinsicContentSize(boundedTextRect.getSize().getWidth(), boundedTextRect.getSize().getHeight());
+        setNeedsDisplay();
     }
 }
