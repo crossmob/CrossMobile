@@ -11,6 +11,7 @@ import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.coregraphics.CGSize;
 import crossmobile.ios.foundation.NSBundle;
 import crossmobile.ios.foundation.NSExtensionContext;
+import crossmobile.ios.webkit.WKWebView;
 import org.crossmobile.bind.graphics.DrawableMetrics;
 import org.crossmobile.bind.graphics.Geometry;
 import org.crossmobile.bind.graphics.GraphicsBridgeConstants;
@@ -967,7 +968,11 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
         if (!scrollWasAlreadySearched && view != null) {
             scrollWasAlreadySearched = true;
             UIView fs = view.subview(Native.system().getScrollables());
-            firstScroll = (fs instanceof UIWebView) ? ((UIWebView) fs).scrollView() : (UIScrollView) fs;
+            firstScroll = (fs instanceof UIWebView)
+                    ? ((UIWebView) fs).scrollView()
+                    : ((fs instanceof WKWebView)
+                    ? null// WKWebKit does not inherit scrollview
+                    : (UIScrollView) fs);
         }
         return firstScroll;
     }
