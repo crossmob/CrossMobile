@@ -32,7 +32,7 @@ public class MvnVersions {
 
         public static final String GROUP = "com.panayotis";
         public static final String ARTIFACT = "xmlvm";
-        public final static String VERSION = "1.0.4";
+        public final static String VERSION = "1.0.5";
 
         private XMLVM() {
         }
