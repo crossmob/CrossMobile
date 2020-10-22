@@ -13,16 +13,14 @@ import org.crossmobile.bind.wrapper.WidgetWrapper;
 import org.crossmobile.bridge.Native;
 
 import javax.swing.*;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
+import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class SwingTextViewWrapper extends TextWrapper<UITextView, SwingTextViewWrapper.NativeW, SwingGraphicsContext> {
+public class SwingTextViewWrapper extends SwingTextWrapper<UITextView, SwingTextViewWrapper.NativeW> {
 
     private int alignment;
     private static final Color clearColor = new Color(0, 0, 0, 0);
@@ -130,63 +128,22 @@ public class SwingTextViewWrapper extends TextWrapper<UITextView, SwingTextViewW
     }
 
     public class NativeW extends JScrollPane implements SwingNativeDispatcher.DesktopNativeWidget {
-
         private final JTextPane txt;
 
-        @SuppressWarnings("OverridableMethodCallInConstructor")
         public NativeW() {
             txt = new JTextPane() {
-                {
-                    setOpaque(false);
-                    setBackground(clearColor);
-                    setBorder(null);
-                    addKeyListener(new KeyAdapter() {
-                        @Override
-                        public void keyTyped(KeyEvent e) {
-                            int caret = txt.getCaretPosition();
-                            final String text = txt.getText();
-                            switch (e.getKeyChar()) {
-                                case KeyEvent.VK_DELETE:
-                                    if (caret > 0 && !shouldReplace(caret - 1, 1, ""))
-                                        e.consume();
-                                    else
-                                        didChange();
-                                    break;
-                                case KeyEvent.VK_BACK_SPACE:
-                                    if (caret < (text.length() - 1) && !shouldReplace(caret - 1, 1, ""))
-                                        e.consume();
-                                    else
-                                        didChange();
-                                    break;
-                                default:
-                                    if (!shouldReplace(caret, 0, String.valueOf(e.getKeyChar())))
-                                        e.consume();
-                                    else
-                                        didChange();
-                            }
-                        }
-                    });
-                    addFocusListener(new FocusListener() {
-                        @Override
-                        public void focusGained(FocusEvent e) {
-                            didBeginEditing();
-                        }
-
-                        @Override
-                        public void focusLost(FocusEvent e) {
-                            didEndEditing();
-                        }
-                    });
-                }
-
                 @Override
                 public void repaint(long tm, int x, int y, int width, int height) {
                     super.repaint(tm, x, y, width, height);
                     getIOSWidget().setNeedsDisplay();
                 }
             };
-
+            setListeners(txt);
             setViewportView(txt);
+            txt.setOpaque(false);
+            txt.setBackground(clearColor);
+            txt.setBorder(null);
+
             setBorder(BorderFactory.createEmptyBorder());
             setOpaque(false);
             setBackground(clearColor);

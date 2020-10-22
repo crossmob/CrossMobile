@@ -1222,6 +1222,7 @@ org/crossmobile/backend/swing/SwingNativePath.java
 org/crossmobile/backend/swing/SwingSystemBridge.java
 org/crossmobile/backend/swing/SwingTextFieldWrapper.java
 org/crossmobile/backend/swing/SwingTextViewWrapper.java
+org/crossmobile/backend/swing/SwingTextWrapper.java
 org/crossmobile/backend/swing/SwingWrapperClickConsumer.java
 org/crossmobile/backend/swing/SwingWrapperUIBridge.java
 org/crossmobile/backend/swing/package-info.java
@@ -2376,14 +2377,14 @@ org/crossmobile/backend/swing/SwingNativePath.class v8
 org/crossmobile/backend/swing/SwingSystemBridge.class v8
 org/crossmobile/backend/swing/SwingTextFieldWrapper$NativeW$1.class v8
 org/crossmobile/backend/swing/SwingTextFieldWrapper$NativeW$2.class v8
-org/crossmobile/backend/swing/SwingTextFieldWrapper$NativeW$3.class v8
 org/crossmobile/backend/swing/SwingTextFieldWrapper$NativeW.class v8
 org/crossmobile/backend/swing/SwingTextFieldWrapper.class v8
-org/crossmobile/backend/swing/SwingTextViewWrapper$NativeW$1$1.class v8
-org/crossmobile/backend/swing/SwingTextViewWrapper$NativeW$1$2.class v8
 org/crossmobile/backend/swing/SwingTextViewWrapper$NativeW$1.class v8
 org/crossmobile/backend/swing/SwingTextViewWrapper$NativeW.class v8
 org/crossmobile/backend/swing/SwingTextViewWrapper.class v8
+org/crossmobile/backend/swing/SwingTextWrapper$1.class v8
+org/crossmobile/backend/swing/SwingTextWrapper$2.class v8
+org/crossmobile/backend/swing/SwingTextWrapper.class v8
 org/crossmobile/backend/swing/SwingWrapperClickConsumer.class v8
 org/crossmobile/backend/swing/SwingWrapperUIBridge.class v8
 org/crossmobile/backend/swing/package-info.class v8

@@ -20,6 +20,9 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -27,7 +30,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.font.TextLayout;
 
-public class SwingTextFieldWrapper extends TextWrapper<UITextField, SwingTextFieldWrapper.NativeW, SwingGraphicsContext> {
+public class SwingTextFieldWrapper extends SwingTextWrapper<UITextField, SwingTextFieldWrapper.NativeW> {
 
     private String placeholder;
     private CGSize placeholderMetrics;
@@ -154,42 +157,15 @@ public class SwingTextFieldWrapper extends TextWrapper<UITextField, SwingTextFie
         public NativeW() {
             nativeborder = getBorder();
             emptyBorder = new EmptyBorder(nativeborder.getBorderInsets(this));
-
+            setListeners(this);
             addKeyListener(new KeyAdapter() {
                 @Override
                 public void keyTyped(KeyEvent e) {
-                    final JTextField widget = getNativeWidget();
-                    int caret = widget.getCaretPosition();
-                    final String text = widget.getText();
-                    switch (e.getKeyChar()) {
-                        case KeyEvent.VK_ENTER:
-                            e.consume();
-                            if (shouldEndEditing())
-                                Native.widget().resignFocus();
-                            break;
-                        case KeyEvent.VK_DELETE:
-                            if (caret > 0 && !shouldReplace(caret - 1, 1, ""))
-                                e.consume();
-                            break;
-                        case KeyEvent.VK_BACK_SPACE:
-                            if (caret < (text.length() - 1) && !shouldReplace(caret - 1, 1, ""))
-                                e.consume();
-                            break;
-                        default:
-                            if (!shouldReplace(caret, 0, String.valueOf(e.getKeyChar())))
-                                e.consume();
+                    if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+                        e.consume();
+                        if (shouldEndEditing())
+                            Native.widget().resignFocus();
                     }
-                }
-            });
-            addFocusListener(new FocusListener() {
-                @Override
-                public void focusGained(FocusEvent e) {
-                    didBeginEditing();
-                }
-
-                @Override
-                public void focusLost(FocusEvent e) {
-                    didEndEditing();
                 }
             });
             getDocument().addDocumentListener(new DocumentListener() {
