@@ -210,6 +210,23 @@ public class NSString extends NSObject implements NSSecureCoding {
     }
 
     /**
+     * Return a new string, where the content inside range is replaced with replacement
+     *
+     * @param self        The string to act on
+     * @param range       The range which will be replaced
+     * @param replacement The replacement string
+     * @return The result string
+     */
+    @CMSelector(value = "- (NSString *)stringByReplacingCharactersInRange:(NSRange)range \n" +
+            "                                      withString:(NSString *)replacement;\n", staticMapping = true)
+    public static String stringByReplacingCharactersInRange(String self, NSRange range, String replacement) {
+        return range.getLocation() == 0
+                ? replacement + self.substring(range.getLength())
+                : self.substring(0, range.getLocation()) + replacement
+                + self.substring(range.getLocation() + range.getLength());
+    }
+
+    /**
      * Creates and returns a new NSString object from the interpretation of the
      * specified URL replacing all percent escapes with the matching characters
      * using the specified encoding.
@@ -284,7 +301,7 @@ public class NSString extends NSObject implements NSSecureCoding {
     private static double stringToRelaxedDouble(String dirtyDouble) {
         try {
             return Double.parseDouble(dirtyDouble);
-        } catch (NumberFormatException ex) {
+        } catch (NumberFormatException ignored) {
         }
 
         StringBuilder out = new StringBuilder();

@@ -10,6 +10,7 @@
 @class crossmobile_ios_coregraphics_CGSize;
 @class crossmobile_ios_foundation_NSData;
 @class crossmobile_ios_foundation_NSLocale;
+@class crossmobile_ios_foundation_NSRange;
 @class crossmobile_ios_foundation_NSURL;
 @class crossmobile_ios_uikit_UIFont;
 @class crossmobile_rt_StrongReference;
@@ -34,6 +35,7 @@ CM_EXPORT_CLASS
 + (crossmobile_ios_coregraphics_CGSize*) sizeWithFont___java_lang_String_crossmobile_ios_uikit_UIFont:(NSString*) this :(UIFont*) font ;
 + (crossmobile_ios_coregraphics_CGSize*) sizeWithFont___java_lang_String_crossmobile_ios_uikit_UIFont_crossmobile_ios_coregraphics_CGSize_int:(NSString*) this :(UIFont*) font :(crossmobile_ios_coregraphics_CGSize*) size :(int) lineBreakMode ;
 + (NSString*) stringByAddingPercentEscapesUsingEncoding___java_lang_String_int:(NSString*) this :(int) encoding ;
++ (NSString*) stringByReplacingCharactersInRange___java_lang_String_crossmobile_ios_foundation_NSRange_java_lang_String:(NSString*) this :(crossmobile_ios_foundation_NSRange*) range :(NSString*) replacement ;
 + (NSString*) stringByReplacingPercentEscapesUsingEncoding___java_lang_String_int:(NSString*) this :(int) encoding ;
 + (id) stringWithContentsOfFile___java_lang_String:(NSString*) path ;
 + (instancetype) stringWithContentsOfFile___java_lang_String_int_crossmobile_rt_StrongReference:(NSString*) path :(int) enc :(crossmobile_rt_StrongReference*) error ;

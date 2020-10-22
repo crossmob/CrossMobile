@@ -6,6 +6,7 @@
 #import "crossmobile_ios_coregraphics_CGSize.h"
 #import "crossmobile_ios_foundation_NSData.h"
 #import "crossmobile_ios_foundation_NSLocale.h"
+#import "crossmobile_ios_foundation_NSRange.h"
 #import "crossmobile_ios_foundation_NSString.h"
 #import "crossmobile_ios_foundation_NSURL.h"
 #import "crossmobile_ios_uikit_UIFont.h"
@@ -139,6 +140,13 @@
 + (NSString*) stringByAddingPercentEscapesUsingEncoding___java_lang_String_int:(NSString*) this :(int) encoding 
 {
     NSString* re$ult = [(this == JAVA_NULL ? nil : this) stringByAddingPercentEscapesUsingEncoding:encoding];
+    return [(re$ult ? re$ult : JAVA_NULL) retain];
+}
+
+// - (NSString *)stringByReplacingCharactersInRange:(NSRange)range withString:(NSString *)replacement;
++ (NSString*) stringByReplacingCharactersInRange___java_lang_String_crossmobile_ios_foundation_NSRange_java_lang_String:(NSString*) this :(crossmobile_ios_foundation_NSRange*) range :(NSString*) replacement 
+{
+    NSString* re$ult = [(this == JAVA_NULL ? nil : this) stringByReplacingCharactersInRange:[range getNSRange] withString:(replacement == JAVA_NULL ? nil : replacement)];
     return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 
