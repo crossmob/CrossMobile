@@ -8,19 +8,10 @@
 #import "java_util_Map.h"
 #import "java_util_HashMap_EntrySet.h"
 
-// java.util.Map
+// java.util.Map & friends
 //----------------------------------------------------------------------------
+
 @implementation NSDictionary (cat_java_util_Map)
-
-- (void) clear__
-{
-    [self removeAllObjects];
-}
-
-- (java_util_Collection*) values__
-{
-    return [self retain];
-}
 
 - (java_util_Iterator*) iterator__
 {
@@ -29,7 +20,7 @@
 
 - (int) size__
 {
-    return [self count];
+    return (int)[self count];
 }
 
 - (java_util_Set*) keySet__ {
@@ -49,13 +40,6 @@
     java_util_HashMap_EntrySet* es = [[java_util_HashMap_EntrySet alloc] init];
     [es __init_java_util_HashMap_EntrySet___java_util_HashMap:self];
     return es;
-}
-
-- (java_lang_Object*) put___java_lang_Object_java_lang_Object:(java_lang_Object*) key: (java_lang_Object*) value {
-    java_lang_Object* oldObj = [self get___java_lang_Object:key];
-    id k = [key conformsToProtocol: @protocol(NSCopying)] ? key : [NSValue valueWithPointer: key];
-    [self setObject:value forKey:k];
-    return oldObj;
 }
 
 - (java_lang_Object*) get___java_lang_Object:(java_lang_Object*) key {
@@ -78,6 +62,49 @@
         }
     }
     return NO;
+}
+
+- (java_util_Collection*) values__
+{
+    return [[self allValues] retain];
+}
+
+
+- (void) clear__
+{
+    @throw [NSException exceptionWithName:@"ImmutableCollectionException" reason:@"Accessing Map.clear from an immutable map" userInfo:nil];
+}
+
+- (java_lang_Object*) put___java_lang_Object_java_lang_Object:(java_lang_Object*) key : (java_lang_Object*) value {
+    @throw [NSException exceptionWithName:@"ImmutableCollectionException" reason:@"Accessing Map.put from an immutable map" userInfo:nil];
+}
+
+
+- (java_lang_Object*) remove___java_lang_Object:(java_lang_Object*) key
+{
+   @throw [NSException exceptionWithName:@"ImmutableCollectionException" reason:@"Accessing Map.remove from an immutable map" userInfo:nil];
+}
+
+- (void) putAll___java_util_Map:(java_util_Map*) other
+{
+  @throw [NSException exceptionWithName:@"ImmutableCollectionException" reason:@"Accessing Map.putAll from an immutable map" userInfo:nil];
+}
+
+
+@end
+
+@implementation NSMutableDictionary (cat_java_util_Map)
+
+- (void) clear__
+{
+    [self removeAllObjects];
+}
+
+- (java_lang_Object*) put___java_lang_Object_java_lang_Object:(java_lang_Object*) key : (java_lang_Object*) value {
+    java_lang_Object* oldObj = [self get___java_lang_Object:key];
+    id k = [key conformsToProtocol: @protocol(NSCopying)] ? key : [NSValue valueWithPointer: key];
+    [self setObject:value forKey:k];
+    return oldObj;
 }
 
 

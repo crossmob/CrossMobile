@@ -13,14 +13,24 @@
 
 // java.util.Map
 //----------------------------------------------------------------------------
-#define java_util_Map NSDictionary
-@interface NSDictionary (cat_java_util_Map)
+// For circular include:
+@class java_util_Map;
 
-- (java_lang_Object*) put___java_lang_Object_java_lang_Object :(java_lang_Object*) key
-                                                              :(java_lang_Object*) value;
-- (java_lang_Object*) get___java_lang_Object :(java_lang_Object*) key;
-- (java_util_Set*) keySet__;
+@protocol java_util_Map
+- (void) clear__;
+- (java_util_Collection*) values__;
+- (java_util_Iterator*) iterator__;
 - (int) size__;
-- (void) putAll___java_util_Map:(java_util_Map*) other;
+- (java_util_Set*) keySet__;
+- (java_util_Set*) entrySet__;
+- (java_lang_Object*) put___java_lang_Object_java_lang_Object:(java_lang_Object*) key : (java_lang_Object*) value;
+- (java_lang_Object*) get___java_lang_Object:(java_lang_Object*) key;
+- (BOOL) containsKey___java_lang_Object: (java_lang_Object*) key;
+- (BOOL) containsValue___java_lang_Object: (java_lang_Object*) value;
+- (java_lang_Object*) remove___java_lang_Object:(java_lang_Object*) key;
+- (void) putAll___java_util_Map:(java_util_Map *) other;
+@end
+    
 
+@interface java_util_Map : java_lang_Object <java_util_Map>
 @end
