@@ -56,7 +56,7 @@ public class SwingNativeDispatcher extends NativeDispatcher<UIView, DesktopNativ
 
     public interface DesktopNativeWidget extends NativeWrapper<SwingGraphicsContext>, SizableComponent {
 
-        WidgetWrapper getWrapper();
+        WidgetWrapper<?, ?, ?> getWrapper();
 
         void dispatchEvent(AWTEvent originalEvent);
 

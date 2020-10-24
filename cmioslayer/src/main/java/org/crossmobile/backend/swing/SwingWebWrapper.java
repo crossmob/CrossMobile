@@ -75,13 +75,13 @@ public class SwingWebWrapper extends WebWrapper<SwingWebWrapper.NativeW, SwingGr
         ntv.setDocument(ntv.getEditorKit().createDefaultDocument());
         ntv.setContentType(MIMEType);
         ntv.setText(data);
-        return null;
+        return getNavigation(baseURL);
     }
 
     @Override
     public WKNavigation reload() {
         Native.system().notImplemented();
-        return null;
+        return getNavigation(getUrl());
     }
 
     @Override
@@ -91,14 +91,12 @@ public class SwingWebWrapper extends WebWrapper<SwingWebWrapper.NativeW, SwingGr
 
     @Override
     public String getTitle() {
-        Native.system().notImplemented();
-        return null;
+        return "";
     }
 
     @Override
     public String getUrl() {
-        Native.system().notImplemented();
-        return null;
+        return getNativeWidget().getPage().toString();
     }
 
     @Override
