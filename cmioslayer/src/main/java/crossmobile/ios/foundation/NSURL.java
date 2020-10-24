@@ -53,13 +53,15 @@ public class NSURL extends NSObject implements NSSecureCoding {
      * Constructs and returns a NSURL object using the specified path.
      *
      * @param path The path that is used for the creation of the url object.
-     * @return The NSURL object or NULL if the path has zero length.
+     * @return The NSURL object or NULL if the path does not exist.
      */
     @CMSelector("+ (NSURL *)fileURLWithPath:(NSString *)path;")
     public static NSURL fileURLWithPath(String path) {
+        if (path == null)
+            return null;
         if (!(path.startsWith("jar:") || path.startsWith("file:")))
             path = "file://" + path;
-        return new NSURL(path);
+        return Native.file().fileExists(path) ? new NSURL(path) : null;
     }
 
     /**
