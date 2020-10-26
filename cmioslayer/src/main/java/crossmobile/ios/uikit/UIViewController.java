@@ -848,7 +848,7 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
     }
 
     /**
-     * Called when the controller will layout its subviews.
+     * Called after the controller  layout its subviews.
      */
     @CMSelector("- (void)viewDidLayoutSubviews;")
     public void viewDidLayoutSubviews() {

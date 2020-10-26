@@ -23,7 +23,7 @@ import java.util.Set;
 import static crossmobile.ios.coregraphics.GraphicsDrill.context;
 
 /**
- * Present HTML & Web content inside the application
+ * Present HTML and Web content inside the application
  */
 @CMClass
 public class WKWebView extends UIView {
