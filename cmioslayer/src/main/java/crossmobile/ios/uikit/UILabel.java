@@ -52,7 +52,8 @@ public class UILabel extends UIView {
     private double minimumScaleFactor = 0;
     private double preferredMaxLayoutWidth = 0;
     private int baselineAdjustment = UIBaselineAdjustment.AlignBaselines;
-    private CGRect boundedTextRect = CGRect.zero();
+    private CGRect preCalculatedTextRect = CGRect.zero();
+    private CGRect requestedTextRect = CGRect.zero();
 
     /**
      * Constructs a default UILabel object located at (0,0) with 0 weight and 0
@@ -81,7 +82,7 @@ public class UILabel extends UIView {
         if (SystemUtilities.equals(frame, this.frame()))
             return;
         super.setFrame(frame);
-        refreshTextMetrics();
+        refreshTextMetrics(true);
     }
 
     /**
@@ -94,7 +95,7 @@ public class UILabel extends UIView {
         if (SystemUtilities.equals(text, this.text))
             return;
         this.text = text;
-        refreshTextMetrics();
+        refreshTextMetrics(true);
     }
 
     /**
@@ -118,7 +119,7 @@ public class UILabel extends UIView {
         if (SystemUtilities.equals(font, this.fontOrig))
             return;
         this.fontOrig = font == null ? Theme.Label.FONT : font;
-        refreshTextMetrics();
+        refreshTextMetrics(true);
     }
 
     /**
@@ -235,7 +236,7 @@ public class UILabel extends UIView {
     public void setLineBreakMode(int NSLineBreakMode) {
         if (this.lineBreakMode != NSLineBreakMode) {
             this.lineBreakMode = NSLineBreakMode;
-            refreshTextMetrics();
+            refreshTextMetrics(true);
         }
     }
 
@@ -260,7 +261,7 @@ public class UILabel extends UIView {
     public void setNumberOfLines(int numberOfLines) {
         if (this.numberOfLines != numberOfLines) {
             this.numberOfLines = numberOfLines;
-            refreshTextMetrics();
+            refreshTextMetrics(true);
         }
     }
 
@@ -415,7 +416,7 @@ public class UILabel extends UIView {
     }
 
     /**
-     * Actual procedur of drawing text in this label
+     * Actual procedure of drawing text in this label
      *
      * @param rect the rectangle of the drawing area
      */
@@ -467,11 +468,13 @@ public class UILabel extends UIView {
     @CMSelector("- (CGRect)textRectForBounds:(CGRect)bounds \n" +
             "     limitedToNumberOfLines:(NSInteger)numberOfLines;")
     public CGRect textRectForBounds(CGRect bounds, int numberOfLines) {
-        return Geometry.copy(boundedTextRect);
+        if (!bounds.equals(requestedTextRect))
+            refreshTextMetrics(false);
+        return Geometry.copy(requestedTextRect);
     }
 
     // Keep the bounding box cached instead of calculating every time
-    private void refreshTextMetrics() {
+    private void refreshTextMetrics(boolean updateProperties) {
         UIFont font = fontOrig;
         if (text == null || text.isEmpty())
             blocks = TextBlock.EMPTY;
@@ -486,8 +489,14 @@ public class UILabel extends UIView {
                 blocks = splitStringWithFontAndSize(text, fontDraw.cgfont, getWidth(), numberOfLines, lineBreakMode);
         }
         fontDraw = font;
-        boundedTextRect = new CGRect(0, 0, blocks.size.getWidth(), blocks.size.getHeight());
-        setIntrinsicContentSize(boundedTextRect.getSize().getWidth(), boundedTextRect.getSize().getHeight());
-        setNeedsDisplay();
+        if (updateProperties) {
+            requestedTextRect.getSize().setWidth(blocks.size.getWidth());
+            requestedTextRect.getSize().setHeight(blocks.size.getHeight());
+            preCalculatedTextRect.getSize().setWidth(blocks.size.getWidth());
+            preCalculatedTextRect.getSize().setHeight(blocks.size.getHeight());
+            setIntrinsicContentSize(preCalculatedTextRect.getSize().getWidth(), preCalculatedTextRect.getSize().getHeight());
+            setNeedsDisplay();
+        } else
+            requestedTextRect = new CGRect(0, 0, blocks.size.getWidth(), blocks.size.getHeight());
     }
 }
