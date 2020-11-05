@@ -2,6 +2,15 @@
 
 Click on the version header to go to the detailed ChangeLog.
 
+## [v3.3.0]
+
+- Introduce WebKit support; **it is required to add WebKit plugin now to present any web view (including UIWebView)**
+- Improved nullability checks in native code
+- Locations of native widgets are correctly placed
+- Update CGContext functions and clipping shapes
+- Remove obsolete OpenGL framework for iOS
+- Various updates and bug fixes, in Java and iOS code
+
 ## [v3.2.0]
 
 - Using native methods for animation synchronization & event scheduling, making more smooth and fluid animations
@@ -66,6 +75,7 @@ Click on the version header to go to the detailed ChangeLog.
 ## [v2.5]
 - First public binary stable release
 
+[v3.3.0]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v330
 [v3.2.0]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v320
 [v3.1.0]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v310
 [v3.0.0]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v300

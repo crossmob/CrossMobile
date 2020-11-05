@@ -2,6 +2,36 @@
 
 Click on the version header to go to the actual commits for each release.
 
+## [v3.3.0]
+###### 2020-10-26
+
+### Added
+- Introduce WebKit support
+- iOS target support maskView
+- Added more methods to CGContext and CGPath
+- Support clipping shapes
+- In UILabel, support textRectForBounds and drawTextInRect
+- In NSString, support support stringByReplacingCharactersInRange
+
+### Fixed
+- Nullability in native code is tested for nil objects, not only for JAVA_NULL
+- Locations of native widgets are correctly placed when the device is not portrait mode
+- Text delegates under Swing properly fire events
+- iOS mapping of Map object is now an interface, not a protocol
+- Equality method for Class object
+- Equality methods for Number object
+- Updates in Double object
+- Fix Android text widget null pointer exception
+- UIViewContentMode affects only UIImageView, not every widget
+- Interface Builder can now define aspect ratio and support separatorStyle
+- Fix fileURLWithPath to return null when no file exists or if null is provided
+
+### Changed
+- UIWebView now is in WebKit package and needs to be imported as a plugin
+
+### Removed
+- Obsolete OpenGL framework for iOS
+
 ## [v3.2.0]
 ###### 2020-09-18
 
@@ -250,6 +280,7 @@ Click on the version header to go to the actual commits for each release.
 ### Added
 - First public source release
 
+[v3.3.0]: https://github.com/crossmob/CrossMobile/compare/v3.2.0...v3.3.0
 [v3.2.0]: https://github.com/crossmob/CrossMobile/compare/v3.1.0...v3.2.0
 [v3.1.0]: https://github.com/crossmob/CrossMobile/compare/v3.0.0...v3.1.0
 [v3.0.0]: https://github.com/crossmob/CrossMobile/compare/v2.9.0...v3.0.0
