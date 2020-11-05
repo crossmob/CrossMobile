@@ -6,7 +6,7 @@
     <parent>
         <artifactId>cmplugins</artifactId>
         <groupId>org.crossmobile</groupId>
-        <version>3.3.0</version>
+        <version>3.4.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>cmtheme-styled</artifactId>
