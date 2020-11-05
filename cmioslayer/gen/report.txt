@@ -2402,7 +2402,6 @@ org/crossmobile/bind/graphics/ImageBridgeConstants$ImageType.class v8
 org/crossmobile/bind/graphics/ImageBridgeConstants.class v8
 org/crossmobile/bind/graphics/Insets.class v8
 org/crossmobile/bind/graphics/NativeBitmap.class v8
-org/crossmobile/bind/graphics/NativeFont$Helper.class v8
 org/crossmobile/bind/graphics/NativeFont.class v8
 org/crossmobile/bind/graphics/NativePath.class v8
 org/crossmobile/bind/graphics/RelayoutRegistry.class v8
@@ -2483,6 +2482,7 @@ org/crossmobile/bind/wrapper/TextWrapper.class v8
 org/crossmobile/bind/wrapper/WidgetWrapper.class v8
 org/crossmobile/bridge/CrossMobilePlugin.class v8
 org/crossmobile/bridge/FileBridge.class v8
+org/crossmobile/bridge/GraphicsBridge$FontInfo.class v8
 org/crossmobile/bridge/GraphicsBridge.class v8
 org/crossmobile/bridge/ImageBridge$ImageSource.class v8
 org/crossmobile/bridge/ImageBridge.class v8
@@ -3076,7 +3076,7 @@ org/crossmobile/backend/android/AndroidBitmap.class v8
 org/crossmobile/backend/android/AndroidDrawableMetrics.class v8
 org/crossmobile/backend/android/AndroidFileBridge.class v8
 org/crossmobile/backend/android/AndroidFont$1.class v8
-org/crossmobile/backend/android/AndroidFont$FontInfo.class v8
+org/crossmobile/backend/android/AndroidFont$AndroidFontInfo.class v8
 org/crossmobile/backend/android/AndroidFont.class v8
 org/crossmobile/backend/android/AndroidGraphicsBridge.class v8
 org/crossmobile/backend/android/AndroidGraphicsContext$GState.class v8
@@ -3140,7 +3140,6 @@ org/crossmobile/bind/graphics/ImageBridgeConstants$ImageType.class v8
 org/crossmobile/bind/graphics/ImageBridgeConstants.class v8
 org/crossmobile/bind/graphics/Insets.class v8
 org/crossmobile/bind/graphics/NativeBitmap.class v8
-org/crossmobile/bind/graphics/NativeFont$Helper.class v8
 org/crossmobile/bind/graphics/NativeFont.class v8
 org/crossmobile/bind/graphics/NativePath.class v8
 org/crossmobile/bind/graphics/RelayoutRegistry.class v8
@@ -3221,6 +3220,7 @@ org/crossmobile/bind/wrapper/TextWrapper.class v8
 org/crossmobile/bind/wrapper/WidgetWrapper.class v8
 org/crossmobile/bridge/CrossMobilePlugin.class v8
 org/crossmobile/bridge/FileBridge.class v8
+org/crossmobile/bridge/GraphicsBridge$FontInfo.class v8
 org/crossmobile/bridge/GraphicsBridge.class v8
 org/crossmobile/bridge/ImageBridge$ImageSource.class v8
 org/crossmobile/bridge/ImageBridge.class v8

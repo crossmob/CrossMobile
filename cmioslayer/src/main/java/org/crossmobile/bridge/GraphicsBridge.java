@@ -91,10 +91,10 @@ public interface GraphicsBridge<CANVAS, NTVP, TRANSF> {
         return (Math.round(cols[0] * 100) / 100d) + " " + (Math.round(cols[1] * 100) / 100d) + " " + (Math.round(cols[2] * 100) / 100d) + " " + (Math.round(cols[3] * 100) / 100d);
     }
 
-    default NativeFont getFont(String name, double fontsize) {
+    default FontInfo constructFontInfo(String name) {
         boolean bold = false;
         boolean italic = false;
-        name = name == null ? "" : name;
+        name = name == null ? "" : name.trim();
         String lower = name.toLowerCase();
 
         /*
@@ -119,11 +119,10 @@ public interface GraphicsBridge<CANVAS, NTVP, TRANSF> {
             }
         }
         name = name.substring(0, lower.length()).trim();
-
-        return getFont(name, fontsize, bold, italic);
+        return new FontInfo(name, bold, italic);
     }
 
-    NativeFont getFont(String family, double size, boolean bold, boolean italic);
+    NativeFont getFont(String fontName, double size);
 
     NativePath newNativePath();
 
@@ -135,4 +134,15 @@ public interface GraphicsBridge<CANVAS, NTVP, TRANSF> {
 
     void setOrientation(int iosOrientation);
 
+    class FontInfo {
+        public final String family;
+        public final boolean bold;
+        public final boolean italic;
+
+        public FontInfo(String family, boolean bold, boolean italic) {
+            this.family = family;
+            this.bold = bold;
+            this.italic = italic;
+        }
+    }
 }

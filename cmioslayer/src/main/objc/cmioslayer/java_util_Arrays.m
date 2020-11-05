@@ -9,6 +9,7 @@
 #import "java_lang_Comparable.h"
 #import "java_lang_System.h"
 #import "java_util_ArrayList.h"
+#import "java_lang_NullPointerException.h"
 
 static void swap(int *x,int *y)
 {
@@ -174,21 +175,235 @@ static void quicksort(int list[], int m, int n)
 	return newArray;
 }
 
-+ (void) fill___char_ARRAYTYPE_char:(XMLVMArray*) arr :(int) ch
++ (void) fill___boolean_ARRAYTYPE_boolean:(XMLVMArray*) a :(BOOL) v
 {
-	for (int i = 0; i < arr->length; i++) {
-		arr->array.c[i] = (unsigned short) ch;
-	}
+    if (a==JAVA_NULL||a==nil) @throw [[java_lang_NullPointerException alloc] init];
+    char charV = v;
+    char* array = a->array.b;
+    int length = a->length;
+    for (int i = 0; i < length; i++) {
+        array[i] = charV;
+    }
 }
 
-+ (java_lang_String*) toString___int_ARRAYTYPE:(XMLVMArray*) array
++ (void) fill___byte_ARRAYTYPE_byte:(XMLVMArray*) a :(char) v
+{
+    if (a==JAVA_NULL||a==nil) @throw [[java_lang_NullPointerException alloc] init];
+    char* array = a->array.b;
+    int length = a->length;
+    for (int i = 0; i < length; i++) {
+        array[i] = v;
+    }
+}
+
++ (void) fill___short_ARRAYTYPE_short:(XMLVMArray*) a :(short) v
+{
+    if (a==JAVA_NULL||a==nil) @throw [[java_lang_NullPointerException alloc] init];
+    short* array = a->array.s;
+    int length = a->length;
+    for (int i = 0; i < length; i++) {
+        array[i] = v;
+    }
+}
+
++ (void) fill___int_ARRAYTYPE_int:(XMLVMArray*) a :(int) v
+{
+    if (a==JAVA_NULL||a==nil) @throw [[java_lang_NullPointerException alloc] init];
+    int* array = a->array.i;
+    int length = a->length;
+    for (int i = 0; i < length; i++) {
+        array[i] = v;
+    }
+}
+
++ (void) fill___long_ARRAYTYPE_long:(XMLVMArray*) a :(JAVA_LONG) v
+{
+    if (a==JAVA_NULL||a==nil) @throw [[java_lang_NullPointerException alloc] init];
+    JAVA_LONG* array = a->array.l;
+    int length = a->length;
+    for (int i = 0; i < length; i++) {
+        array[i] = v;
+    }
+}
+
++ (void) fill___float_ARRAYTYPE_float:(XMLVMArray*) a :(float) v
+{
+    if (a==JAVA_NULL||a==nil) @throw [[java_lang_NullPointerException alloc] init];
+    float* array = a->array.f;
+    int length = a->length;
+    for (int i = 0; i < length; i++) {
+        array[i] = v;
+    }
+}
+
++ (void) fill___double_ARRAYTYPE_double:(XMLVMArray*) a :(double) v
+{
+    if (a==JAVA_NULL||a==nil) @throw [[java_lang_NullPointerException alloc] init];
+    double* array = a->array.d;
+    int length = a->length;
+    for (int i = 0; i < length; i++) {
+        array[i] = v;
+    }
+}
+
++ (void) fill___char_ARRAYTYPE_char:(XMLVMArray*) a :(unichar) v
+{
+    if (a==JAVA_NULL||a==nil) @throw [[java_lang_NullPointerException alloc] init];
+    unichar* array = a->array.c;
+    int length = a->length;
+    for (int i = 0; i < length; i++) {
+        array[i] = v;
+    }
+}
+
++ (void) fill___java_lang_Object_ARRAYTYPE_java_lang_Object:(XMLVMArray*) a :(java_lang_Object*) v
+{
+    if (a==JAVA_NULL||a==nil) @throw [[java_lang_NullPointerException alloc] init];
+    for (int i = 0; i < a->length; i++) {
+        [a replaceObjectAtIndex:i withObject:v];
+    }
+}
+
++ (java_lang_String*) toString___boolean_ARRAYTYPE:(XMLVMArray*) a
 {
     NSMutableString *result = [[NSMutableString alloc] init];
-    for (int i = 0 ; i < array->length; i++) {
-        if (i==0)
-            [result appendString:@"["];
-        [result appendString:[[NSNumber numberWithInt:array->array.i[i]] stringValue]];
-        [result appendString:(i==(array->length-1) ? @"]" : @", ")];
+    if (a==JAVA_NULL||a==nil) {
+        [result appendString:@"null"];
+    } else {
+        [result appendString:@"["];
+        for (int i = 0 ; i < a->length; i++) {
+            if (i!=0) [result appendString:@", "];
+            [result appendString:a->array.b[i] ? @"true" : @"false"];
+        }
+        [result appendString:@"]"];
+    }
+    return result;
+}
+
++ (java_lang_String*) toString___byte_ARRAYTYPE:(XMLVMArray*) a
+{
+    NSMutableString *result = [[NSMutableString alloc] init];
+    if (a==JAVA_NULL||a==nil) {
+        [result appendString:@"null"];
+    } else {
+        [result appendString:@"["];
+        for (int i = 0 ; i < a->length; i++) {
+            if (i!=0) [result appendString:@", "];
+            [result appendString:[[NSNumber numberWithChar:a->array.b[i]] stringValue]];
+        }
+        [result appendString:@"]"];
+    }
+    return result;
+}
+
++ (java_lang_String*) toString___short_ARRAYTYPE:(XMLVMArray*) a
+{
+    NSMutableString *result = [[NSMutableString alloc] init];
+    if (a==JAVA_NULL||a==nil) {
+        [result appendString:@"null"];
+    } else {
+        [result appendString:@"["];
+        for (int i = 0 ; i < a->length; i++) {
+            if (i!=0) [result appendString:@", "];
+            [result appendString:[[NSNumber numberWithShort:a->array.s[i]] stringValue]];
+        }
+        [result appendString:@"]"];
+    }
+    return result;
+}
+
++ (java_lang_String*) toString___int_ARRAYTYPE:(XMLVMArray*) a
+{
+    NSMutableString *result = [[NSMutableString alloc] init];
+    if (a==JAVA_NULL||a==nil) {
+        [result appendString:@"null"];
+    } else {
+        [result appendString:@"["];
+        for (int i = 0 ; i < a->length; i++) {
+            if (i!=0) [result appendString:@", "];
+            [result appendString:[[NSNumber numberWithInt:a->array.i[i]] stringValue]];
+        }
+        [result appendString:@"]"];
+    }
+    return result;
+}
+
++ (java_lang_String*) toString___long_ARRAYTYPE:(XMLVMArray*) a
+{
+    NSMutableString *result = [[NSMutableString alloc] init];
+    if (a==JAVA_NULL||a==nil) {
+        [result appendString:@"null"];
+    } else {
+        [result appendString:@"["];
+        for (int i = 0 ; i < a->length; i++) {
+            if (i!=0) [result appendString:@", "];
+            [result appendString:[[NSNumber numberWithLongLong:a->array.l[i]] stringValue]];
+        }
+        [result appendString:@"]"];
+    }
+    return result;
+}
+
++ (java_lang_String*) toString___float_ARRAYTYPE:(XMLVMArray*) a
+{
+    NSMutableString *result = [[NSMutableString alloc] init];
+    if (a==JAVA_NULL||a==nil) {
+        [result appendString:@"null"];
+    } else {
+        [result appendString:@"["];
+        for (int i = 0 ; i < a->length; i++) {
+            if (i!=0) [result appendString:@", "];
+            [result appendString:[[NSNumber numberWithFloat:a->array.f[i]] stringValue]];
+        }
+        [result appendString:@"]"];
+    }
+    return result;
+}
+
++ (java_lang_String*) toString___double_ARRAYTYPE:(XMLVMArray*) a
+{
+    NSMutableString *result = [[NSMutableString alloc] init];
+    if (a==JAVA_NULL||a==nil) {
+        [result appendString:@"null"];
+    } else {
+        [result appendString:@"["];
+        for (int i = 0 ; i < a->length; i++) {
+            if (i!=0) [result appendString:@", "];
+            [result appendString:[[NSNumber numberWithDouble:a->array.d[i]] stringValue]];
+        }
+        [result appendString:@"]"];
+    }
+    return result;
+}
+
++ (java_lang_String*) toString___char_ARRAYTYPE:(XMLVMArray*) a
+{
+    NSMutableString *result = [[NSMutableString alloc] init];
+    if (a==JAVA_NULL||a==nil) {
+        [result appendString:@"null"];
+    } else {
+        [result appendString:@"["];
+        for (int i = 0 ; i < a->length; i++) {
+            if (i!=0) [result appendString:@", "];
+            [result appendString:[NSString stringWithCharacters:&(a->array.c[i]) length:1]];
+        }
+        [result appendString:@"]"];
+    }
+    return result;
+}
+
++ (java_lang_String*) toString___java_lang_Object_ARRAYTYPE:(XMLVMArray*) a
+{
+    NSMutableString *result = [[NSMutableString alloc] init];
+    if (a==JAVA_NULL||a==nil) {
+        [result appendString:@"null"];
+    } else {
+        [result appendString:@"["];
+        for (int i = 0 ; i < a->length; i++) {
+            if (i!=0) [result appendString:@", "];
+            [result appendString:(NSString*)[a->array.o[i] toString__]];
+        }
+        [result appendString:@"]"];
     }
     return result;
 }

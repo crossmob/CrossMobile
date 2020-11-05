@@ -41,7 +41,7 @@ public class UIFont extends NSObject {
      */
     @CMSelector("+ (UIFont *)systemFontOfSize:(CGFloat)fontSize;")
     public static UIFont systemFontOfSize(double fontSize) {
-        return new UIFont(cgfont(Native.graphics().getFont(Theme.Font.FONTNAME, fontSize, false, false)));
+        return new UIFont(cgfont(Native.graphics().getFont(Theme.Font.FONTNAME, fontSize)));
     }
 
     /**
@@ -53,7 +53,7 @@ public class UIFont extends NSObject {
      */
     @CMSelector("+ (UIFont *)boldSystemFontOfSize:(CGFloat)fontSize;")
     public static UIFont boldSystemFontOfSize(double fontSize) {
-        return new UIFont(cgfont(Native.graphics().getFont(Theme.Font.FONTNAME, fontSize, true, false)));
+        return new UIFont(cgfont(Native.graphics().getFont(Theme.Font.FONTNAME + " Bold", fontSize)));
     }
 
     /**
@@ -65,20 +65,20 @@ public class UIFont extends NSObject {
      */
     @CMSelector("+ (UIFont *)italicSystemFontOfSize:(CGFloat)fontSize;")
     public static UIFont italicSystemFontOfSize(double fontSize) {
-        return new UIFont(cgfont(Native.graphics().getFont(Theme.Font.FONTNAME, fontSize, false, true)));
+        return new UIFont(cgfont(Native.graphics().getFont(Theme.Font.FONTNAME + " Italic", fontSize)));
     }
 
     /**
      * Returns a font object with the defined font and size.
      *
-     * @param familyname The familyname of the font.
-     * @param fontsize   The size of the font.
+     * @param fontName The familyname of the font.
+     * @param fontSize The size of the font.
      * @return A font object with the defined font and size.
      */
     @CMSelector("+ (UIFont *)fontWithName:(NSString *)fontName \n"
             + "                    size:(CGFloat)fontSize;")
-    public static UIFont fontWithName(String familyname, double fontsize) {
-        return new UIFont(cgfont(Native.graphics().getFont(familyname, fontsize)));
+    public static UIFont fontWithName(String fontName, double fontSize) {
+        return new UIFont(cgfont(Native.graphics().getFont(fontName, fontSize)));
     }
 
     /**
@@ -135,7 +135,7 @@ public class UIFont extends NSObject {
     @CMSelector("- (UIFont *)fontWithSize:(CGFloat)fontSize;")
     public UIFont fontWithSize(double fontSize) {
         NativeFont font = font(cgfont);
-        return new UIFont(cgfont(Native.graphics().getFont(font.getFamily(), fontSize, font.isBold(), font.isItalic())));
+        return new UIFont(cgfont(Native.graphics().getFont(font.getName(), fontSize)));
     }
 
     @CMSelector("+ (NSArray<NSString *>*) familyNames;")
@@ -165,9 +165,7 @@ public class UIFont extends NSObject {
      */
     @CMGetter("@property(nonatomic, readonly, strong) NSString *fontName;")
     public String fontName() {
-        boolean b = font(cgfont).isBold();
-        boolean i = font(cgfont).isItalic();
-        return font(cgfont).getFamily() + ((b | i) ? (" " + (b ? "Bold" : "") + (i ? "Italic" : "")) : "");
+        return font(cgfont).getName();
     }
 
     /**
@@ -182,6 +180,6 @@ public class UIFont extends NSObject {
 
     @Override
     public String toString() {
-        return "UIFont " + NativeFont.Helper.toString(font(cgfont));
+        return "UIFont " + font(cgfont).getName();
     }
 }

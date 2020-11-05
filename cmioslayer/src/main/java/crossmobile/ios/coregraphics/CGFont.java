@@ -20,11 +20,11 @@ import org.crossmobile.bridge.ann.CMReference;
 @CMReference
 public class CGFont extends CFType {
 
-    final NativeFont nfont;
+    final NativeFont nativeFont;
 
 
     CGFont(NativeFont font) {
-        this.nfont = font;
+        this.nativeFont = font;
     }
 
     /**
@@ -43,12 +43,12 @@ public class CGFont extends CFType {
     /**
      * Constructs a font object according to the specified font name.
      *
-     * @param fontname The name of the font object.
+     * @param name The name of the font object.
      * @return The new font object.
      */
     @CMFunction(" CGFontRef CGFontCreateWithFontName ( CFStringRef name ); ")
-    public static CGFont createWithFontName(String fontname) {
-        return new CGFont(Native.graphics().getFont(fontname, UIFont.labelFontSize()));
+    public static CGFont createWithFontName(String name) {
+        return new CGFont(Native.graphics().getFont(name, UIFont.labelFontSize()));
     }
 
     /**
@@ -58,7 +58,7 @@ public class CGFont extends CFType {
      */
     @CMFunction(" int CGFontGetAscent ( CGFontRef font ); ")
     public int getAscent() {
-        return nfont.getAscent();
+        return nativeFont.getAscent();
     }
 
     /**
@@ -68,7 +68,7 @@ public class CGFont extends CFType {
      */
     @CMFunction(" int CGFontGetDescent ( CGFontRef font ); ")
     public int getDescent() {
-        return nfont.getDescent();
+        return nativeFont.getDescent();
     }
 
     /**
@@ -78,12 +78,12 @@ public class CGFont extends CFType {
      */
     @CMFunction(" int CGFontGetUnitsPerEm ( CGFontRef font ); ")
     public int getUnitsPerEm() {
-        return nfont.getUnitsPerEm();
+        return nativeFont.getUnitsPerEm();
     }
 
 
     @Override
     public String toString() {
-        return "CGFont " + NativeFont.Helper.toString(nfont);
+        return "CGFont " + nativeFont.getName();
     }
 }
