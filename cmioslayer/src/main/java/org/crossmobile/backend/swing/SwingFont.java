@@ -8,13 +8,11 @@ package org.crossmobile.backend.swing;
 
 import crossmobile.ios.coregraphics.CGSize;
 import org.crossmobile.backend.desktop.DesktopGraphicsBridge;
-import org.crossmobile.backend.desktop.ResourceResolver;
 import org.crossmobile.bind.graphics.NativeFont;
-import org.crossmobile.bind.graphics.Theme;
+import org.crossmobile.bridge.GraphicsBridge.FontInfo;
 import org.crossmobile.bridge.Native;
 
 import java.awt.*;
-import java.awt.font.TextLayout;
 import java.awt.geom.Rectangle2D;
 import java.text.AttributedCharacterIterator;
 import java.util.HashMap;
@@ -25,23 +23,30 @@ import static java.awt.font.TextAttribute.*;
 public class SwingFont implements NativeFont {
 
     final Font font;
+    private final String name;
     private final int ascent;
     private final int descent;
 
     @SuppressWarnings("UseSpecificCatch")
-    static SwingFont getFont(String name, float size, boolean bold, boolean italic) {
-        if (!Theme.Font.FONTNAME.equals(name))
-            DesktopGraphicsBridge.loadFonts();
+    static SwingFont getFont(String fontName, float size) {
+        DesktopGraphicsBridge<?, ?, ?> graphicsBridge = (DesktopGraphicsBridge<?, ?, ?>) Native.graphics();
+        graphicsBridge.loadFonts();
+        FontInfo fontInfo = graphicsBridge.getFontInfo(fontName);
         Map<AttributedCharacterIterator.Attribute, Object> attributes = new HashMap<>();
-        attributes.put(FAMILY, name);
-        attributes.put(WEIGHT, bold ? WEIGHT_BOLD : WEIGHT_REGULAR);
-        attributes.put(POSTURE, italic ? POSTURE_OBLIQUE : POSTURE_REGULAR);
+        attributes.put(FAMILY, fontInfo.family);
+        attributes.put(WEIGHT, fontInfo.bold ? WEIGHT_BOLD : WEIGHT_REGULAR);
+        attributes.put(POSTURE, fontInfo.italic ? POSTURE_OBLIQUE : POSTURE_REGULAR);
         attributes.put(SIZE, size);
-        return new SwingFont(new Font(attributes));
+        return new SwingFont(new Font(attributes), fontName);
     }
 
     SwingFont(Font font) {
+        this(font, font.getPSName());
+    }
+
+    SwingFont(Font font, String postscriptName) {
         this.font = font;
+        this.name = postscriptName;
         FontMetrics metrics = SwingGraphicsBridge.component.getFontMetrics(font);
         this.ascent = metrics.getAscent();
         this.descent = metrics.getDescent();
@@ -58,6 +63,11 @@ public class SwingFont implements NativeFont {
     }
 
     @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
     public String getFamily() {
         return font.getFamily();
     }
@@ -65,16 +75,6 @@ public class SwingFont implements NativeFont {
     @Override
     public float getSize() {
         return font.getSize2D();
-    }
-
-    @Override
-    public boolean isBold() {
-        return font.isBold();
-    }
-
-    @Override
-    public boolean isItalic() {
-        return font.isItalic();
     }
 
     @Override
@@ -91,10 +91,5 @@ public class SwingFont implements NativeFont {
     public int getUnitsPerEm() {
         Native.system().notImplemented();
         return 0;
-    }
-
-    @Override
-    public Object getFont() {
-        return font;
     }
 }

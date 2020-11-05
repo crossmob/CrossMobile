@@ -46,7 +46,7 @@ public class GraphicsDrill {
     }
 
     public static NativeFont font(CGFont f) {
-        return f.nfont;
+        return f.nativeFont;
     }
 
     public static NativeBitmap bitmap(CGImage i) {

@@ -10,81 +10,51 @@ import android.content.res.XmlResourceParser;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import org.crossmobile.bind.graphics.NativeFont;
-import org.crossmobile.bind.graphics.Theme;
+import org.crossmobile.bridge.GraphicsBridge.FontInfo;
 import org.crossmobile.bridge.Native;
+import org.robovm.objc.block.Block0;
 import org.xmlpull.v1.XmlPullParser;
 
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class AndroidFont implements NativeFont {
 
-    private static final Paint fill = new Paint();
-    private static Map<String, Map<String, FontInfo>> font_map;
+    private static final Paint ascentCalculator = new Paint();
+    private static Map<String, AndroidFontInfo> font_map;
 
-    private final String family;
-    public final Typeface typeface;
-    public final float size;
+    private final AndroidFontInfo info;
+    private final String name;
+    final Typeface typeface;
+    final float size;
     private final int ascent;
     private final int descent;
 
-    AndroidFont(String family, float size, boolean bold, boolean italic) {
-        Map<String, FontInfo> fontfamily = null;
-        Typeface tf = null;
-        FontInfo maybe = null;
-        if (!Theme.Font.FONTNAME.equals(family) && (fontfamily = fonts().get(family)) != null) {
-            tf = null;
-            for (FontInfo font : fontfamily.values())
-                if (font.bold == bold && font.italic == italic) {
-                    tf = font.getTypeface();
-                    break;
-                } else if (italic && font.italic)
-                    // at least italic
-                    maybe = font;
-                else if (bold && font.bold && maybe == null)
-                    // at least bold, if no font found up to now
-                    maybe = font;
-            if (tf == null)
-                if (maybe != null)
-                    tf = maybe.getTypeface();
-                else
-                    tf = fontfamily.get(fontfamily.keySet().iterator().next()).getTypeface();
-        }
-        if (tf == null)
-            tf = Typeface.create(family, (bold ? Typeface.BOLD : 0) | (italic ? Typeface.ITALIC : 0));
-
-        typeface = tf;
-        this.family = family;
+    AndroidFont(String name, float size) {
+        info = getFont(name);
         this.size = size;
-        synchronized (fill) {
-            fill.setTypeface(typeface);
-            fill.setTextSize(size);
-            ascent = Math.round(fill.ascent());
-            descent = Math.round(fill.descent());
+        this.name = name;
+        this.typeface = info.typefaceRef.invoke();
+        synchronized (ascentCalculator) {
+            ascentCalculator.setTypeface(typeface);
+            ascentCalculator.setTextSize(size);
+            ascent = Math.round(ascentCalculator.ascent());
+            descent = Math.round(ascentCalculator.descent());
         }
     }
 
     @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
     public String getFamily() {
-        return family;
+        return info.family;
     }
 
     @Override
     public float getSize() {
         return size;
-    }
-
-    @Override
-    public boolean isBold() {
-        return typeface.isBold();
-    }
-
-    @Override
-    public boolean isItalic() {
-        return typeface.isItalic();
     }
 
     @Override
@@ -103,115 +73,95 @@ public class AndroidFont implements NativeFont {
         return 0;
     }
 
-    @Override
-    public Object getFont() {
-        return typeface;
-    }
-
     @SuppressWarnings("UseSpecificCatch")
-    private static Map<String, Map<String, FontInfo>> fonts() {
+    private static Map<String, AndroidFontInfo> fonts() {
         if (font_map != null)
             return font_map;
-
         font_map = new LinkedHashMap<>();
-
-        Map<String, FontInfo> family = new LinkedHashMap<>();
-        family.put("Sans Serif Regular", new FontInfo(false, false, Typeface.SANS_SERIF));
-        family.put("Sans Serif Italic", new FontInfo(false, true, Typeface.SANS_SERIF));
-        family.put("Sans Serif Bold", new FontInfo(true, false, Typeface.SANS_SERIF));
-        family.put("Sans Serif Bold Italic", new FontInfo(true, true, Typeface.SANS_SERIF));
-        font_map.put("Sans Serif", family);
-
-        family = new LinkedHashMap<>();
-        family.put("Serif", new FontInfo(false, false, Typeface.SERIF));
-        font_map.put("Serif", family);
-
-        family = new LinkedHashMap<>();
-        family.put("Monospace", new FontInfo(false, false, Typeface.MONOSPACE));
-        font_map.put("Monospace", family);
+        font_map.put("SansSerifRegular", new AndroidFontInfo("Sans Serif", false, false, Typeface.SANS_SERIF));
+        font_map.put("SansSerifItalic", new AndroidFontInfo("Sans Serif", false, true, Typeface.SANS_SERIF));
+        font_map.put("SansSerifBold", new AndroidFontInfo("Sans Serif", true, false, Typeface.SANS_SERIF));
+        font_map.put("SansSerifBoldItalic", new AndroidFontInfo("Sans Serif", true, true, Typeface.SANS_SERIF));
+        font_map.put("Serif", new AndroidFontInfo("Serif", false, false, Typeface.SERIF));
+        font_map.put("Monospace", new AndroidFontInfo("Monospace", false, false, Typeface.MONOSPACE));
 
         XmlResourceParser parser = MainActivity.current.getResources().getXml(AndroidFileBridge.getResourceID("xml", "fontlist"));
         try {
             int eventType = parser.getEventType();
             while (eventType != XmlPullParser.END_DOCUMENT) {
-                switch (eventType) {
-                    case XmlPullParser.START_TAG:
-                        if (parser.getName().equals("font")) {
-                            String file = parser.getAttributeValue(null, "file");
-                            String familyname = parser.getAttributeValue(null, "family");
-                            String name = parser.getAttributeValue(null, "name");
-                            boolean bold = parser.getAttributeBooleanValue(null, "bold", false);
-                            boolean italic = parser.getAttributeBooleanValue(null, "italic", false);
-                            family = font_map.get(familyname);
-                            if (family == null) {
-                                family = new LinkedHashMap<>();
-                                font_map.put(familyname, family);
-                            }
-                            family.put(name, new FontInfo(bold, italic, file));
-                        }
-                        break;
-                    default:
-                        break;
+                if (eventType == XmlPullParser.START_TAG) {
+                    if (parser.getName().equals("font")) {
+                        String psname = parser.getAttributeValue(null, "psname");
+                        String family = parser.getAttributeValue(null, "family");
+                        String file = parser.getAttributeValue(null, "file");
+                        boolean bold = parser.getAttributeBooleanValue(null, "bold", false);
+                        boolean italic = parser.getAttributeBooleanValue(null, "italic", false);
+                        font_map.put(psname, new AndroidFontInfo(family, bold, italic, file));
+                    }
                 }
                 eventType = parser.next();
             }
             parser.close();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return font_map;
     }
 
+    private static AndroidFontInfo getFont(String name) {
+        Map<String, AndroidFontInfo> fonts = fonts();
+        AndroidFontInfo androidInfo = fonts.get(name);
+        if (androidInfo != null)
+            return androidInfo;
+        FontInfo genericInfo = Native.graphics().constructFontInfo(name);
+        for (String fontName : fonts.keySet()) {
+            androidInfo = fonts.get(fontName);
+            if (androidInfo.equals(genericInfo))
+                return androidInfo;
+        }
+        return new AndroidFontInfo(genericInfo);
+    }
+
     static List<String> families() {
-        return new ArrayList<>(fonts().keySet());
+        TreeSet<String> families = new TreeSet<>();
+        for (AndroidFontInfo info : fonts().values())
+            families.add(info.family);
+        return new ArrayList<>(families);
     }
 
     static List<String> fontsOfFamily(String family) {
-        Map<String, FontInfo> fontfamily = fonts().get(family);
-        return fontfamily == null ? null : new ArrayList<>(fontfamily.keySet());
+        List<String> result = new ArrayList<>();
+        Map<String, AndroidFontInfo> fonts = fonts();
+        for (String fontName : fonts.keySet()) {
+            AndroidFontInfo info = fonts.get(fontName);
+            if (family.equals(info.family))
+                result.add(fontName);
+        }
+        return result;
     }
 
-    private static class FontInfo {
+    private static class AndroidFontInfo extends FontInfo {
 
-        private final boolean bold;
-        private final boolean italic;
-        private final Typeface tf;
-        private final String path;
-        private WeakReference<Typeface> cache;
+        private final Block0<Typeface> typefaceRef;
 
-        private FontInfo(boolean bold, boolean italic, Typeface typeface) {
-            this(bold, italic, typeface, null);
+        private AndroidFontInfo(String family, boolean bold, boolean italic, Typeface typeface) {
+            super(family, bold, italic);
+            typefaceRef = () -> Typeface.create(typeface, (bold ? Typeface.BOLD : 0) | (italic ? Typeface.ITALIC : 0));
         }
 
-        private FontInfo(boolean bold, boolean italic, String path) {
-            this(bold, italic, null, path);
+        private AndroidFontInfo(String family, boolean bold, boolean italic, String path) {
+            super(family, bold, italic);
+            typefaceRef = () -> Typeface.createFromAsset(MainActivity.current.getAssets(), path);
         }
 
-        private FontInfo(boolean bold, boolean italic, Typeface typeface, String path) {
-            this.bold = bold;
-            this.italic = italic;
-            this.tf = typeface;
-            this.path = path;
+        private AndroidFontInfo(FontInfo info) {
+            super(info.family, info.bold, info.italic);
+            typefaceRef = () -> Typeface.create(family, (bold ? Typeface.BOLD : 0) | (italic ? Typeface.ITALIC : 0));
         }
 
-        Typeface getTypeface() {
-            if (tf != null) {
-                if (!bold && !italic)
-                    return tf;
-                Typeface ctf = cache == null ? null : cache.get();
-                if (ctf != null)
-                    return ctf;
-                ctf = Typeface.create(tf, (bold ? Typeface.BOLD : 0) | (italic ? Typeface.ITALIC : 0));
-                cache = new WeakReference<>(ctf);
-                return ctf;
-            } else if (path != null) {
-                Typeface ctf = cache == null ? null : cache.get();
-                if (ctf != null)
-                    return ctf;
-                ctf = Typeface.createFromAsset(MainActivity.current.getAssets(), path);
-                cache = new WeakReference<>(ctf);
-                return ctf;
-            } else
-                return null;
+        private boolean equals(FontInfo info) {
+            if (info == null)
+                return false;
+            return this.family.equals(info.family) && this.bold == info.bold && this.italic == info.italic;
         }
     }
 }

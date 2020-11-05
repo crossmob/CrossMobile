@@ -56,7 +56,7 @@ public class AndroidGraphicsBridge extends AbstractGraphicsBridge<Canvas, Androi
 
     @Override
     public int colorHSBAtoRGBA(double h, double s, double b, double a) {
-        float hsv[] = {(float) (h * 360), (float) s, (float) b};
+        float[] hsv = {(float) (h * 360), (float) s, (float) b};
         return (Color.HSVToColor(hsv) & 0xFFFFFF) | ((int) (a * 0xFF) << 24);
     }
 
@@ -73,8 +73,8 @@ public class AndroidGraphicsBridge extends AbstractGraphicsBridge<Canvas, Androi
     }
 
     @Override
-    public NativeFont getFont(String family, double size, boolean bold, boolean italic) {
-        return new AndroidFont(family, (float) size, bold, italic);
+    public NativeFont getFont(String fontName, double size) {
+        return new AndroidFont(fontName, (float) size);
     }
 
     @Override

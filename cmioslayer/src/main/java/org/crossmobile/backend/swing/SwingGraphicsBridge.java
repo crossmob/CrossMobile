@@ -70,8 +70,8 @@ public class SwingGraphicsBridge extends DesktopGraphicsBridge<Graphics2D, Swing
     }
 
     @Override
-    public NativeFont getFont(String family, double size, boolean bold, boolean italic) {
-        return SwingFont.getFont(family, (float) size, bold, italic);
+    public NativeFont getFont(String fontName, double size) {
+        return SwingFont.getFont(fontName, (float) size);
     }
 
     @Override

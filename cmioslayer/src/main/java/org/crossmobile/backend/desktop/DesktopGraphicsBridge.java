@@ -15,13 +15,12 @@ import org.crossmobile.bind.io.AbstractFileBridge;
 import org.crossmobile.bridge.Native;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 import java.util.List;
 
 public abstract class DesktopGraphicsBridge<CANVAS, NTVP, TRANSF> extends AbstractGraphicsBridge<CANVAS, NTVP, TRANSF> {
 
-    private static boolean fontsLoaded = false;
+    private Map<String, FontInfo> psFontNames;
 
     private String backChar;
 
@@ -74,18 +73,25 @@ public abstract class DesktopGraphicsBridge<CANVAS, NTVP, TRANSF> extends Abstra
     public abstract void draw(CDrawable drawable, GraphicsContext<?> cxt, int orientation);
 
     @SuppressWarnings("UseSpecificCatch")
-    public static void loadFonts() {
-        if (fontsLoaded)
+    public void loadFonts() {
+        if (psFontNames != null)
             return;
+        psFontNames = new HashMap<>();
         for (String fontName : ResourceResolver.getFontNames())
             try {
-                GraphicsEnvironment.getLocalGraphicsEnvironment().
-                        registerFont(Font.createFont(Font.TRUETYPE_FONT,
-                                ((AbstractFileBridge) Native.file()).getApplicationFileStream(fontName)));
+                Font font = Font.createFont(Font.TRUETYPE_FONT, ((AbstractFileBridge) Native.file()).getApplicationFileStream(fontName));
+                GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
+                psFontNames.put(font.getPSName(), new FontInfo(font.getFamily(), font.isBold(), font.isItalic()));
             } catch (Exception ex) {
                 Native.system().error("Unable to load font " + fontName + ", reason: " + ex.toString(), null);
             }
-        fontsLoaded = true;
+    }
+
+    public FontInfo getFontInfo(String name) {
+        FontInfo info = psFontNames.get(name);
+        if (info == null)
+            psFontNames.put(name, info = constructFontInfo(name));
+        return info;
     }
 
     @Override
@@ -100,7 +106,7 @@ public abstract class DesktopGraphicsBridge<CANVAS, NTVP, TRANSF> extends Abstra
         List<String> fonts = new ArrayList<>();
         for (Font f : GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts())
             if (f.getFamily().equals(familyName))
-                fonts.add(f.getFontName());
+                fonts.add(f.getPSName());
         return fonts;
     }
 }

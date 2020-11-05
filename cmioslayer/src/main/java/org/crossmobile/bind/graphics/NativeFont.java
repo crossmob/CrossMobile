@@ -12,26 +12,15 @@ import org.crossmobile.bridge.ann.CMLibTarget;
 @CMLib(target = CMLibTarget.RUNTIME)
 public interface NativeFont {
 
+    String getName();
+
     String getFamily();
 
     float getSize();
-
-    boolean isBold();
-
-    boolean isItalic();
 
     int getAscent();
 
     int getDescent();
 
     int getUnitsPerEm();
-
-    Object getFont();
-
-    final class Helper {
-
-        public static String toString(NativeFont font) {
-            return font.getFamily() + (font.isBold() ? " Bold" : "") + (font.isItalic() ? " Italic" : "") + " " + font.getSize();
-        }
-    }
 }
