@@ -433,6 +433,7 @@ public class CGContext extends CFType {
     public void showTextAtPoint(double x, double y, @CMJoinMEM(memory = "string", size = "length") String text) {
         if (text == null || text.isEmpty())
             return;
+        Native.system().notImplemented("Please use NSString.drawAtPoint instead");
         context.showTextAtPoint(x, y, text);
     }
 
@@ -682,6 +683,7 @@ public class CGContext extends CFType {
 
     /**
      * Add a new path to current path
+     *
      * @param path The path to add
      */
     @CMFunction("void CGContextAddPath(CGContextRef c, CGPathRef path);")

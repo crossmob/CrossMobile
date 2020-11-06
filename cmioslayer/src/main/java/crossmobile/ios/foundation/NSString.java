@@ -11,6 +11,7 @@ import crossmobile.ios.coregraphics.CGSize;
 import crossmobile.ios.uikit.UIFont;
 import crossmobile.ios.uikit.UIGraphics;
 import crossmobile.rt.StrongReference;
+import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.graphics.TextHelpers;
 import org.crossmobile.bind.system.AbstractLifecycleBridge;
 import org.crossmobile.bind.system.i18n.I18NBridge;
@@ -448,8 +449,11 @@ public class NSString extends NSObject implements NSSecureCoding {
     @Deprecated
     @CMSelector(value = "- (CGSize)drawAtPoint:(CGPoint)point withFont:(UIFont *)font;", staticMapping = true)
     public static CGSize drawAtPoint(String self, CGPoint point, UIFont font) {
-        context(UIGraphics.getCurrentContext()).setFont(font(cgfont(font)));
-        UIGraphics.getCurrentContext().showTextAtPoint(point.getX(), point.getY(), self);
+        if (self == null || self.isEmpty())
+            return new CGSize(0, 0);
+        GraphicsContext<?> gcx = context(UIGraphics.getCurrentContext());
+        gcx.setFont(font(cgfont(font)));
+        gcx.showTextAtPoint(point.getX(), point.getY(), self);
         return sizeWithFont(self, font);
     }
 

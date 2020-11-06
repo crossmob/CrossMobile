@@ -446,13 +446,13 @@ public class UILabel extends UIView {
 
             if (shadowOffset != null && (shadowOffset.getWidth() != 0 || shadowOffset.getHeight() != 0)) {
                 gcx.setFillColorWithColor(color(shadowColor == null ? Theme.Color.SHADOW.cgcolor : shadowColor.cgcolor));
-                cx.showTextAtPoint(cX + shadowOffset.getWidth(), cY + shadowOffset.getHeight(), tl.text);
+                gcx.showTextAtPoint(cX + shadowOffset.getWidth(), cY + shadowOffset.getHeight(), tl.text);
             }
             int c = color((highlighted && highlightedTextColor != null)
                     ? highlightedTextColor.cgcolor
                     : (textColor == null ? Theme.Color.FORE.cgcolor : textColor.cgcolor));
             gcx.setFillColorWithColor(c);
-            cx.showTextAtPoint(cX, cY, tl.text);
+            gcx.showTextAtPoint(cX, cY, tl.text);
 
             cY += tl.size.getHeight();
         }
