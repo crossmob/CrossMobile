@@ -8,6 +8,8 @@ package org.crossmobile.backend.android;
 
 import android.content.res.XmlResourceParser;
 import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.Typeface;
 import org.crossmobile.bind.graphics.NativeFont;
 import org.crossmobile.bridge.GraphicsBridge.FontInfo;
@@ -26,8 +28,11 @@ public class AndroidFont implements NativeFont {
     private final String name;
     final Typeface typeface;
     final float size;
-    private final int ascent;
-    private final int descent;
+    private final float ascent;
+    private final float descent;
+    private final float leading;
+    private final float capHeight;
+    private final float xHeight;
 
     AndroidFont(String name, float size) {
         info = getFont(name);
@@ -37,8 +42,15 @@ public class AndroidFont implements NativeFont {
         synchronized (ascentCalculator) {
             ascentCalculator.setTypeface(typeface);
             ascentCalculator.setTextSize(size);
-            ascent = Math.round(ascentCalculator.ascent());
-            descent = Math.round(ascentCalculator.descent());
+            Paint.FontMetrics fontMetrics = ascentCalculator.getFontMetrics();
+            ascent = -fontMetrics.ascent;
+            descent = -fontMetrics.descent;
+            leading = fontMetrics.leading; // maybe should be negative?
+            Rect rect = new Rect();
+            ascentCalculator.getTextBounds("M", 0, 1, rect);
+            capHeight = -rect.top;
+            ascentCalculator.getTextBounds("x", 0, 1, rect);
+            xHeight = -rect.top;
         }
     }
 
@@ -53,24 +65,33 @@ public class AndroidFont implements NativeFont {
     }
 
     @Override
-    public float getSize() {
+    public double getSize() {
         return size;
     }
 
     @Override
-    public int getAscent() {
+    public double getAscent() {
         return ascent;
     }
 
     @Override
-    public int getDescent() {
+    public double getDescent() {
         return descent;
     }
 
     @Override
-    public int getUnitsPerEm() {
-        Native.system().notImplemented();
-        return 0;
+    public double getLeading() {
+        return leading;
+    }
+
+    @Override
+    public double getCapHeight() {
+        return capHeight;
+    }
+
+    @Override
+    public double getXHeight() {
+        return xHeight;
     }
 
     @SuppressWarnings("UseSpecificCatch")

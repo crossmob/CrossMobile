@@ -15,7 +15,9 @@
 + (crossmobile_ios_coregraphics_CGFont*) createWithDataProvider___crossmobile_ios_coregraphics_CGDataProvider:(crossmobile_ios_coregraphics_CGDataProvider*) provider ;
 + (crossmobile_ios_coregraphics_CGFont*) createWithFontName___java_lang_String:(NSString*) name ;
 - (int) getAscent__;
+- (int) getCapHeight__;
 - (int) getDescent__;
-- (int) getUnitsPerEm__;
+- (int) getLeading__;
+- (int) getXHeight__;
 - (instancetype) initWithCGFont:(CGFontRef) reference;
 @end

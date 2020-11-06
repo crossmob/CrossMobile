@@ -78,6 +78,24 @@
     return [UIFont systemFontSize];
 }
 
+// @property(nonatomic, readonly) CGFloat ascender;
+- (double) ascender__
+{
+    return [self ascender];
+}
+
+// @property(nonatomic, readonly) CGFloat capHeight;
+- (double) capHeight__
+{
+    return [self capHeight];
+}
+
+// @property(nonatomic, readonly) CGFloat descender;
+- (double) descender__
+{
+    return [self descender];
+}
+
 // @property(nonatomic, readonly, strong) NSString *familyName;
 - (NSString*) familyName__
 {
@@ -92,10 +110,28 @@
     return [(re$ult ? re$ult : JAVA_NULL) retain];
 }
 
+// @property(nonatomic, readonly) CGFloat leading;
+- (double) leading__
+{
+    return [self leading];
+}
+
+// @property(nonatomic, readonly) CGFloat lineHeight;
+- (double) lineHeight__
+{
+    return [self lineHeight];
+}
+
 // @property(nonatomic, readonly) CGFloat pointSize;
 - (double) pointSize__
 {
     return [self pointSize];
+}
+
+// @property(nonatomic, readonly) CGFloat xHeight;
+- (double) xHeight__
+{
+    return [self xHeight];
 }
 
 // - (UIFont *)fontWithSize:(CGFloat)fontSize;

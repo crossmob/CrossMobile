@@ -16,11 +16,15 @@ public interface NativeFont {
 
     String getFamily();
 
-    float getSize();
+    double getSize();
 
-    int getAscent();
+    double getAscent();
 
-    int getDescent();
+    double getDescent();
 
-    int getUnitsPerEm();
+    double getLeading();
+
+    double getCapHeight();
+
+    double getXHeight();
 }

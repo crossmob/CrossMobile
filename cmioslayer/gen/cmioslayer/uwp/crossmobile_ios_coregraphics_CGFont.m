@@ -27,16 +27,28 @@
     return CGFontGetAscent(self->$reference);
 }
 
+// int CGFontGetCapHeight(CGFontRef font);
+- (int) getCapHeight__
+{
+    return CGFontGetCapHeight(self->$reference);
+}
+
 // int CGFontGetDescent ( CGFontRef font );
 - (int) getDescent__
 {
     return CGFontGetDescent(self->$reference);
 }
 
-// int CGFontGetUnitsPerEm ( CGFontRef font );
-- (int) getUnitsPerEm__
+// int CGFontGetLeading(CGFontRef font);
+- (int) getLeading__
 {
-    return CGFontGetUnitsPerEm(self->$reference);
+    return CGFontGetLeading(self->$reference);
+}
+
+// int CGFontGetXHeight(CGFontRef font);
+- (int) getXHeight__
+{
+    return CGFontGetXHeight(self->$reference);
 }
 
 - (instancetype) initWithCGFont:(CGFontRef) reference

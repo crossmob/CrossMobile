@@ -25,8 +25,14 @@ CM_EXPORT_CLASS
 + (double) smallSystemFontSize__;
 + (UIFont*) systemFontOfSize___double:(double) fontSize ;
 + (double) systemFontSize__;
+- (double) ascender__;
+- (double) capHeight__;
+- (double) descender__;
 - (NSString*) familyName__;
 - (NSString*) fontName__;
+- (double) leading__;
+- (double) lineHeight__;
 - (double) pointSize__;
+- (double) xHeight__;
 - (UIFont*) fontWithSize___double:(double) fontSize ;
 @end

@@ -178,6 +178,61 @@ public class UIFont extends NSObject {
         return font(cgfont).getSize();
     }
 
+    /**
+     * Returns the ascent of this font.
+     *
+     * @return The ascent of this font.
+     */
+    @CMGetter("@property(nonatomic, readonly) CGFloat ascender;")
+    public double ascender() {
+        return font(cgfont).getAscent();
+    }
+
+    /**
+     * Returns the decent of this font.
+     *
+     * @return The decent of this font.
+     */
+    @CMGetter("@property(nonatomic, readonly) CGFloat descender;")
+    public double descender() {
+        return font(cgfont).getDescent();
+    }
+
+    /**
+     * Returns the leading space of the font.
+     *
+     * @return The leading space of the font
+     */
+    @CMGetter("@property(nonatomic, readonly) CGFloat leading;")
+    public double leading() {
+        return font(cgfont).getLeading();
+    }
+
+    /**
+     * Returns the cap height of the font.
+     *
+     * @return The cap height of the font
+     */
+    @CMGetter("@property(nonatomic, readonly) CGFloat capHeight;")
+    public double capHeight() {
+        return font(cgfont).getCapHeight();
+    }
+
+    /**
+     * Returns the height of the x character of the font.
+     *
+     * @return The height of the x character of the font
+     */
+    @CMGetter("@property(nonatomic, readonly) CGFloat xHeight;")
+    public double xHeight() {
+        return font(cgfont).getXHeight();
+    }
+
+    @CMGetter("@property(nonatomic, readonly) CGFloat lineHeight;")
+    public double lineHeight() {
+        return ascender() - descender() + leading();
+    }
+
     @Override
     public String toString() {
         return "UIFont " + font(cgfont).getName();

@@ -5239,6 +5239,18 @@
   },
   "crossmobile.ios.uikit.UIFont": {
     "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,
+    "ascender()": {
+      "reverse": "- (CGFloat) ascender\n{\n    return [self ascender__];\n}\n\n",
+      "super": "- (double) ascender__\n{\n    return [super ascender];\n}\n\n"
+    },
+    "capHeight()": {
+      "reverse": "- (CGFloat) capHeight\n{\n    return [self capHeight__];\n}\n\n",
+      "super": "- (double) capHeight__\n{\n    return [super capHeight];\n}\n\n"
+    },
+    "descender()": {
+      "reverse": "- (CGFloat) descender\n{\n    return [self descender__];\n}\n\n",
+      "super": "- (double) descender__\n{\n    return [super descender];\n}\n\n"
+    },
     "familyName()": {
       "reverse": "- (NSString *) familyName\n{\n    NSString * re$ult = [self familyName__];\n    return [(re$ult == JAVA_NULL ? nil : re$ult) autorelease];\n}\n\n",
       "super": "- (NSString*) familyName__\n{\n    NSString* re$ult = [super familyName];\n    return [(re$ult ? re$ult : JAVA_NULL) retain];\n}\n\n",
@@ -5260,6 +5272,14 @@
         "crossmobile_ios_uikit_UIFont"
       ]
     },
+    "leading()": {
+      "reverse": "- (CGFloat) leading\n{\n    return [self leading__];\n}\n\n",
+      "super": "- (double) leading__\n{\n    return [super leading];\n}\n\n"
+    },
+    "lineHeight()": {
+      "reverse": "- (CGFloat) lineHeight\n{\n    return [self lineHeight__];\n}\n\n",
+      "super": "- (double) lineHeight__\n{\n    return [super lineHeight];\n}\n\n"
+    },
     "observeValueForKeyPath(java.lang.String,java.lang.Object,java.util.Map,java.lang.Object)": null,
     "pointSize()": {
       "reverse": "- (CGFloat) pointSize\n{\n    return [self pointSize__];\n}\n\n",
@@ -5270,7 +5290,11 @@
     "setValueForKey(java.lang.Object,java.lang.String)": null,
     "setValueForUndefinedKey(java.lang.Object,java.lang.String)": null,
     "valueForKey(java.lang.String)": null,
-    "valueForUndefinedKey(java.lang.String)": null
+    "valueForUndefinedKey(java.lang.String)": null,
+    "xHeight()": {
+      "reverse": "- (CGFloat) xHeight\n{\n    return [self xHeight__];\n}\n\n",
+      "super": "- (double) xHeight__\n{\n    return [super xHeight];\n}\n\n"
+    }
   },
   "crossmobile.ios.uikit.UIGestureRecognizer": {
     "addObserver(crossmobile.ios.foundation.NSObject,java.lang.String,int,java.lang.Object)": null,

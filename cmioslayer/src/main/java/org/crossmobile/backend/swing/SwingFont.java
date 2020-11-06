@@ -13,6 +13,8 @@ import org.crossmobile.bridge.GraphicsBridge.FontInfo;
 import org.crossmobile.bridge.Native;
 
 import java.awt.*;
+import java.awt.font.FontRenderContext;
+import java.awt.font.TextLayout;
 import java.awt.geom.Rectangle2D;
 import java.text.AttributedCharacterIterator;
 import java.util.HashMap;
@@ -24,8 +26,11 @@ public class SwingFont implements NativeFont {
 
     final Font font;
     private final String name;
-    private final int ascent;
-    private final int descent;
+    private final float ascent;
+    private final float descent;
+    private final float leading;
+    private final double capHeight;
+    private final double xHeight;
 
     @SuppressWarnings("UseSpecificCatch")
     static SwingFont getFont(String fontName, float size) {
@@ -47,9 +52,14 @@ public class SwingFont implements NativeFont {
     SwingFont(Font font, String postscriptName) {
         this.font = font;
         this.name = postscriptName;
-        FontMetrics metrics = SwingGraphicsBridge.component.getFontMetrics(font);
-        this.ascent = metrics.getAscent();
-        this.descent = metrics.getDescent();
+        FontRenderContext fc = SwingGraphicsBridge.getDefaultGraphics().getFontRenderContext();
+        TextLayout layout = new TextLayout("M", font, fc);
+        ascent = layout.getAscent();
+        descent = -layout.getDescent();
+        leading = layout.getBaseline();
+        capHeight = -layout.getBounds().getY();
+        layout = new TextLayout("x", font, fc);
+        xHeight = -layout.getBounds().getY();
     }
 
     CGSize stringSize(String text) {
@@ -73,23 +83,32 @@ public class SwingFont implements NativeFont {
     }
 
     @Override
-    public float getSize() {
+    public double getSize() {
         return font.getSize2D();
     }
 
     @Override
-    public int getAscent() {
+    public double getAscent() {
         return ascent;
     }
 
     @Override
-    public int getDescent() {
+    public double getDescent() {
         return descent;
     }
 
     @Override
-    public int getUnitsPerEm() {
-        Native.system().notImplemented();
-        return 0;
+    public double getLeading() {
+        return leading;
+    }
+
+    @Override
+    public double getCapHeight() {
+        return capHeight;
+    }
+
+    @Override
+    public double getXHeight() {
+        return xHeight;
     }
 }

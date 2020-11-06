@@ -58,7 +58,7 @@ public class CGFont extends CFType {
      */
     @CMFunction(" int CGFontGetAscent ( CGFontRef font ); ")
     public int getAscent() {
-        return nativeFont.getAscent();
+        return (int) Math.round(nativeFont.getAscent());
     }
 
     /**
@@ -68,19 +68,38 @@ public class CGFont extends CFType {
      */
     @CMFunction(" int CGFontGetDescent ( CGFontRef font ); ")
     public int getDescent() {
-        return nativeFont.getDescent();
+        return (int) Math.round(nativeFont.getDescent());
     }
 
     /**
-     * Returns the number of glyph space units per em for the provided font.
+     * Returns the leading space of the font.
      *
-     * @return The number of glyph space units per em for the provided font.
+     * @return The leading space of the font
      */
-    @CMFunction(" int CGFontGetUnitsPerEm ( CGFontRef font ); ")
-    public int getUnitsPerEm() {
-        return nativeFont.getUnitsPerEm();
+    @CMFunction("int CGFontGetLeading(CGFontRef font); ")
+    public int getLeading() {
+        return (int) Math.round(nativeFont.getLeading());
     }
 
+    /**
+     * Returns the cap height of the font.
+     *
+     * @return The cap height of the font
+     */
+    @CMFunction("int CGFontGetCapHeight(CGFontRef font);")
+    public int getCapHeight() {
+        return (int) Math.round(nativeFont.getCapHeight());
+    }
+
+    /**
+     * Returns the height of the x character of the font.
+     *
+     * @return The height of the x character of the font
+     */
+    @CMFunction("int CGFontGetXHeight(CGFontRef font);")
+    public int getXHeight() {
+        return (int) Math.round(nativeFont.getXHeight());
+    }
 
     @Override
     public String toString() {
