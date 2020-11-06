@@ -70,6 +70,6 @@ public class UIScreen extends NSObject {
      */
     @CMGetter("@property(nonatomic, readonly) CGFloat scale;")
     public double scale() {
-        return Native.graphics().metrics().getScaleAverage();
+        return Math.ceil(Native.graphics().metrics().getVirtualScale());
     }
 }

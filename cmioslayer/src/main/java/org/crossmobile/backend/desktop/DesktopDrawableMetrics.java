@@ -41,6 +41,11 @@ public abstract class DesktopDrawableMetrics extends DrawableMetrics {
     private int proposedInterfaceIdiom;
 
     @Override
+    public double getVirtualScale() {
+        return Math.max(super.getVirtualScale(), java.awt.Toolkit.getDefaultToolkit().getScreenResolution() / 96d);
+    }
+
+    @Override
     public void setVirtualDimension(int width, int height) {
         super.setVirtualDimension(width, height);
         clipping = new CGRect(0, 0, virtualWidth, virtualHeight);
