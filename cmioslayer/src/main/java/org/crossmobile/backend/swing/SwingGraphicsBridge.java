@@ -23,7 +23,6 @@ public class SwingGraphicsBridge extends DesktopGraphicsBridge<Graphics2D, Swing
     public static JEmulatorFrame frame;
     public static JEmulatorPanel component;
     public static Graphics2D defaultGraphics;
-    private String backChar;
 
     @Override
     public DrawableMetrics newMetrics() {

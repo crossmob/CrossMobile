@@ -44,6 +44,7 @@ public class CGBitmapContext extends CGContext {
 
     private CGBitmapContext(NativeBitmap bitmap, Object canvas) {
         super(Native.graphics().newGraphicsContext(canvas, false));
+        setShouldAntialias(true);
         this.bitmap = bitmap;
         this.canvas = canvas;
     }
