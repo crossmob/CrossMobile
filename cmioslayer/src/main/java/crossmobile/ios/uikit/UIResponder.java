@@ -20,7 +20,7 @@ import java.util.Set;
  * and handling events.
  */
 @CMClass
-public abstract class UIResponder extends NSObject {
+public class UIResponder extends NSObject {
 
     private static final Map<Class, boolean[]> responderMap = new HashMap<>();
     private static final Class[] UR_PARAM = new Class[]{Set.class, UIEvent.class};
