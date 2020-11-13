@@ -10,6 +10,7 @@ public class ExtPath {
 
     private final String path;
     private final int recursive;
+    private final boolean retrieveCanonical;
     public static final int FILE_ONLY = 0;
     public static final int BUNDLE_ONLY = 50;
 
@@ -17,8 +18,13 @@ public class ExtPath {
      * Creates a new instance of ExtPath
      */
     public ExtPath(String path, int rec) {
+        this(path, rec, true);
+    }
+
+    public ExtPath(String path, int rec, boolean retrieveCanonical) {
         this.path = path;
         recursive = rec;
+        this.retrieveCanonical = retrieveCanonical;
     }
 
     @Override
@@ -36,5 +42,9 @@ public class ExtPath {
 
     public int getRecursive() {
         return recursive;
+    }
+
+    public boolean getRetrieveCanonical() {
+        return retrieveCanonical;
     }
 }

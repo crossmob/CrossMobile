@@ -94,7 +94,7 @@ public class SystemDependent {
         res.add(new ExtPath(HOME + "/Downloads", 3));
         res.add(new ExtPath(HOME + "/Desktop", 3));
         res.add(new ExtPath(HOME + "/Android", 3));
-        res.add(new ExtPath(HOME + "/.local/share/JetBrains/Toolbox/apps", 3));
+        res.add(new ExtPath(HOME + "/.local/share/JetBrains/Toolbox/apps", 4));
         res.add(new ExtPath(HOME + "/.sdkman/candidates/java", 2));
 
         res.add(new ExtPath("/usr/local/Cellar", 3));
@@ -107,6 +107,7 @@ public class SystemDependent {
         res.add(new ExtPath("/System/Library/Java/JavaVirtualMachines", 4));
         res.add(new ExtPath("/usr/lib/jvm", 3));
         res.add(new ExtPath("/usr/lib64/jvm", 3));
+        res.add(new ExtPath("/snap/bin", 1, false));
         String javaHome = System.getenv("JAVA_HOME");
         if (javaHome != null)
             res.add(new ExtPath(javaHome, 3));
@@ -120,7 +121,7 @@ public class SystemDependent {
     }
 
     public static String getDefaultTheme() {
-        return IS_MACOSX ? "auto" : "light";
+        return IS_WINDOWS ? "light" : "auto";
     }
 
     public static String getHome() {

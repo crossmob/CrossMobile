@@ -45,7 +45,7 @@ public class TreeWalker {
                 File f = new File(path.getPath());
                 if (path.searchForFile() && (!f.isFile()))
                     continue;   // If we want a file and this is not, ignore this entry
-                walkPath(f, requests, path.getRecursive(), active);
+                walkPath(f, requests, path.getRecursive(), path.getRetrieveCanonical(), active);
             }
         } catch (Exception ex) {
             Log.debug("Error while searching executables: " + ex.toString());
@@ -54,7 +54,7 @@ public class TreeWalker {
 
     /* filename is already in lower case */
     @SuppressWarnings("UseSpecificCatch")
-    private static void walkPath(File root, Collection<LocationRequest> requests, int recursive, Active active) {
+    private static void walkPath(File root, Collection<LocationRequest> requests, int recursive, boolean retrieveCanonical, Active active) {
         if (!root.exists() || !root.canRead() || !active.isActive())
             return;
         try {
@@ -65,9 +65,10 @@ public class TreeWalker {
                 if (active.isActive() && recursive >= ExtPath.FILE_ONLY) {// More recursive could be done
                     recursive--;
                     for (File child : listFiles(root)) {
-                        child = child.getCanonicalFile();
+                        if (retrieveCanonical)
+                            child = child.getCanonicalFile();
                         if (BLACKLIST == null || !BLACKLIST.contains(child))
-                            walkPath(child, requests, recursive, active);
+                            walkPath(child, requests, recursive, retrieveCanonical, active);
                     }
                 }
         } catch (Exception ex) {
