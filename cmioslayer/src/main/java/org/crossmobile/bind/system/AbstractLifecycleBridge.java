@@ -41,7 +41,6 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
         if (applicationIsInitialized)
             return;
         applicationIsInitialized = true;    // Enter only once
-
         systemHandler = Thread.getDefaultUncaughtExceptionHandler();
         Thread.setDefaultUncaughtExceptionHandler(this);
 

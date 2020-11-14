@@ -6,6 +6,7 @@
 
 package org.crossmobile.backend.swing;
 
+import com.panayotis.appenh.Enhancer;
 import com.panayotis.appenh.EnhancerManager;
 import crossmobile.ios.foundation.NSDate;
 import crossmobile.ios.foundation.NSRunLoop;
@@ -32,14 +33,13 @@ public class SwingLifecycleBridge extends DesktopLifecycleBridge {
 
     @Override
     public void init(String[] args) {
-        // This should be called before ANY visuals are being initialized. System properties first.
-        String appname = System.getProperty("cm.display.name", "CrossMobileApp");
-        System.setProperty("apple.laf.useScreenMenuBar", "true");
-        System.setProperty("com.apple.mrj.application.apple.menu.about.name", appname);
-        System.setProperty("apple.awt.application.name", appname);
-        EnhancerManager.getDefault().fixDPI();
-
         Native.lifecycle().loadSystemProperties(); // Load system properties before any actual initialization
+
+        // This should be called before ANY visuals are being initialized.
+        Enhancer enhancer = EnhancerManager.getDefault();
+        enhancer.setApplicationName(System.getProperty("cm.display.name", "CrossMobileApp"));
+        enhancer.fixDPI();
+        enhancer.setSafeLookAndFeel();
 
         /*
          * Initialization of JFrame is required early by CGContext.
@@ -56,7 +56,7 @@ public class SwingLifecycleBridge extends DesktopLifecycleBridge {
             SwingGraphicsBridge.frame.add(SwingGraphicsBridge.component = new JEmulatorPanel());
         }
 
-        super.init(args);
+        super.init(args, enhancer);
 
         DesktopDrawableMetrics metrics = (DesktopDrawableMetrics) Native.graphics().metrics();
         SwingGraphicsBridge.frame = new JEmulatorFrame(metrics.isFullScreen());

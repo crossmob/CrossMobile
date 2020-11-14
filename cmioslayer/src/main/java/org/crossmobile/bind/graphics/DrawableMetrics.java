@@ -9,7 +9,6 @@ package org.crossmobile.bind.graphics;
 import crossmobile.ios.coregraphics.CGPoint;
 import crossmobile.ios.uikit.UIUserInterfaceIdiom;
 
-import static crossmobile.ios.foundation.Foundation.NSLog;
 import static crossmobile.ios.uikit.UIDeviceOrientation.LandscapeLeft;
 import static crossmobile.ios.uikit.UIDeviceOrientation.LandscapeRight;
 

@@ -8,11 +8,12 @@ package org.crossmobile.backend.desktop;
 
 import crossmobile.ios.coregraphics.CGPoint;
 import crossmobile.ios.coregraphics.CGRect;
-import crossmobile.ios.uikit.*;
+import crossmobile.ios.uikit.UIApplication;
+import crossmobile.ios.uikit.UIInterfaceOrientation;
+import crossmobile.ios.uikit.UIWindow;
 import org.crossmobile.backend.desktop.cgeo.CArea;
 import org.crossmobile.backend.desktop.cgeo.CEvent;
 import org.crossmobile.backend.desktop.cgeo.Chassis;
-import org.crossmobile.backend.desktop.cgeo.ChassisLoader;
 import org.crossmobile.bind.graphics.DrawableMetrics;
 import org.crossmobile.bind.graphics.Size;
 import org.crossmobile.bridge.Native;
@@ -38,11 +39,15 @@ public abstract class DesktopDrawableMetrics extends DrawableMetrics {
     protected int skinTranslateY = 0;
     protected double skinRotate = 0;
 
-    private int proposedInterfaceIdiom;
+    private int dpi;
+
+    public void updateDPI(int dpi) {
+        this.dpi = dpi;
+    }
 
     @Override
     public double getVirtualScale() {
-        return Math.max(super.getVirtualScale(), java.awt.Toolkit.getDefaultToolkit().getScreenResolution() / 96d);
+        return Math.max(super.getVirtualScale(), Math.ceil(dpi / 96d));
     }
 
     @Override
@@ -78,7 +83,6 @@ public abstract class DesktopDrawableMetrics extends DrawableMetrics {
 
     @Override
     protected int finalizeScale(int proposedInterfaceIdiom, Size size) {
-        this.proposedInterfaceIdiom = proposedInterfaceIdiom;
         outsetLeft = scr.hardwareX();
         outsetTop = scr.hardwareY();
         outsetRight = ch.hardwareWidth() - scr.hardwareRightEdge();

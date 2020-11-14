@@ -26,13 +26,11 @@ public abstract class DesktopLifecycleBridge extends AbstractLifecycleBridge {
      *
      * @param args
      */
-    @Override
-    public void init(String[] args) {
+    public void init(String[] args, Enhancer enhancer) {
         if (!applicationIsInitialized) {
             applicationIsInitialized = true;    // Enter only once
             super.init(args);
-            Enhancer enhancer = EnhancerManager.getDefault();
-            enhancer.setSafeLookAndFeel();
+            ((DesktopDrawableMetrics)Native.graphics().metrics()).updateDPI(enhancer.getDPI());
             enhancer.setApplicationIcons(getAppIcons());
             // ApplicationCatalogue.store();
         }

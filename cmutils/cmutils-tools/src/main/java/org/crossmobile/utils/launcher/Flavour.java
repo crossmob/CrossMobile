@@ -7,7 +7,6 @@
 package org.crossmobile.utils.launcher;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 import static org.crossmobile.utils.CollectionUtils.asList;
 import static org.crossmobile.utils.TextUtils.iteratorToString;
@@ -36,13 +35,12 @@ public enum Flavour {
             try {
                 if (prof.equals(prof.toLowerCase())) {
                     Flavour next = Flavour.valueOf(prof.toUpperCase());
-                    if (next != null)
-                        if (flavour == null)
-                            flavour = next;
-                        else
-                            throw new RuntimeException("Only one profile should be specified");
+                    if (flavour == null)
+                        flavour = next;
+                    else
+                        throw new RuntimeException("Only one profile should be specified");
                 }
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException ignored) {
             }
         if (flavour == null)
             throw new RuntimeException(
