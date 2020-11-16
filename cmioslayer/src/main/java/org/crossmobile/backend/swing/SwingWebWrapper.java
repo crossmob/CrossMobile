@@ -14,7 +14,9 @@ import crossmobile.ios.uikit.UIWebView;
 import crossmobile.ios.webkit.WKBackForwardList;
 import crossmobile.ios.webkit.WKNavigation;
 import crossmobile.ios.webkit.WKWebView;
+import crossmobile.ios.webkit.WebKitDrill;
 import org.crossmobile.bind.system.SystemUtilities;
+import org.crossmobile.bind.wrapper.HistoryItem;
 import org.crossmobile.bind.wrapper.WebWrapper;
 import org.crossmobile.bind.wrapper.WidgetWrapper;
 import org.crossmobile.bridge.Native;
@@ -29,6 +31,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.io.IOException;
+import java.util.Iterator;
 
 @CMLib(name = "cmwebkit")
 public class SwingWebWrapper extends WebWrapper<SwingWebWrapper.NativeW, SwingGraphicsContext> implements HyperlinkListener {
@@ -140,7 +143,17 @@ public class SwingWebWrapper extends WebWrapper<SwingWebWrapper.NativeW, SwingGr
 
     @Override
     public WKBackForwardList getBackForwardList() {
-        return null;
+        return WebKitDrill.backForwardList(() -> new Iterator<HistoryItem>() {
+            @Override
+            public boolean hasNext() {
+                return false;
+            }
+
+            @Override
+            public HistoryItem next() {
+                return null;
+            }
+        }, 0);
     }
 
     public class NativeW extends JEditorPane implements SwingNativeDispatcher.DesktopNativeWidget {
