@@ -25,6 +25,7 @@ public class Prefs {
     private static final String PROJECT_DIR = "project.dir";
     private static final String NETBEANS_LOCATION = "location.netbeans";
     private static final String INTELLIJ_LOCATION = "location.intellij";
+    private static final String VSCODE_LOCATION = "location.vscode";
     private static final String STUDIO_LOCATION = "location.studio";
     private static final String VISUALSTUDIO_LOCATION = "location.visualstudio";
     private static final String JDK_LOCATION = "location.jdk";
@@ -45,6 +46,7 @@ public class Prefs {
     public static final String LAUNCH_ACTION_BUILD = "build";
     public static final String OPEN_NETBEANS = "Netbeans";
     public static final String OPEN_INTELLIJ = "IntelliJ IDEA";
+    public static final String OPEN_VSCODE = "VS Code";
     public static final String OPEN_STUDIO = "Android Studio";
     public static final String OPEN_XCODE = "Xcode";
     public static final String OPEN_VSTUDIO = "VStudio";
@@ -110,6 +112,14 @@ public class Prefs {
 
     public static String getIntelliJLocation() {
         return getTagLocation(INTELLIJ_LOCATION);
+    }
+
+    public static void setVSCodeLocation(String fname) {
+        setTagLocation(VSCODE_LOCATION, fname);
+    }
+
+    public static String getVSCodeLocation() {
+        return getTagLocation(VSCODE_LOCATION);
     }
 
     public static void setJDKLocation(String fname) {

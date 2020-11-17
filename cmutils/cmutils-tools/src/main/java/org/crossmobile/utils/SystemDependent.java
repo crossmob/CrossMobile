@@ -101,7 +101,6 @@ public class SystemDependent {
         //linux default paths
         res.add(new ExtPath("/usr/bin", 1));
         res.add(new ExtPath("/usr/local", 3));
-        res.add(new ExtPath("/usr/share", 4));
         res.add(new ExtPath("/opt", 3));
         res.add(new ExtPath("/Library/Java/JavaVirtualMachines", 4));
         res.add(new ExtPath("/System/Library/Java/JavaVirtualMachines", 4));
@@ -181,11 +180,7 @@ public class SystemDependent {
         return given.get(3) >= req.get(2);  // we have already removed the first 1. part
     }
 
-    public static boolean canMakeIos() {
-        return IS_MACOSX;
-    }
-
-    public static boolean canMakeMacos() {
+    public static boolean hasXcode() {
         return IS_MACOSX;
     }
 
@@ -353,6 +348,8 @@ public class SystemDependent {
         EMULATOR("exe"),
         NETBEANS("exe"),
         IDEA("exe", "sh"),
+        CODE("exe"),
+        CODIUM("exe"),
         STUDIO("exe", "sh"),
         STUDIO64("exe", "sh"),
         BASH("exe"),
