@@ -1746,6 +1746,7 @@ com/panayotis/appenh/EnhancerManager.class v1.6
 com/panayotis/appenh/FileChooserFactory.class v1.6
 com/panayotis/appenh/LinuxEnhancer$1.class v1.6
 com/panayotis/appenh/LinuxEnhancer.class v1.6
+com/panayotis/appenh/LinuxThemeListenerThread.class v1.6
 com/panayotis/appenh/MacEnhancer$1.class v1.6
 com/panayotis/appenh/MacEnhancer$2.class v1.6
 com/panayotis/appenh/MacEnhancer$3.class v1.6
@@ -4249,6 +4250,7 @@ crossmobile/ios/webkit/WKWebViewConfiguration.class v8
 crossmobile/ios/webkit/WebKitDrill.class v8
 crossmobile/ios/webkit/package-info.class v8
 org/crossmobile/backend/swing/SwingWebViewBridge.class v8
+org/crossmobile/backend/swing/SwingWebWrapper$1.class v8
 org/crossmobile/backend/swing/SwingWebWrapper$NativeW$1.class v8
 org/crossmobile/backend/swing/SwingWebWrapper$NativeW.class v8
 org/crossmobile/backend/swing/SwingWebWrapper.class v8

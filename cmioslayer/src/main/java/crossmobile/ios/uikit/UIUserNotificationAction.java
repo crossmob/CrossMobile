@@ -30,7 +30,7 @@ public class UIUserNotificationAction extends NSObject implements NSSecureCoding
     boolean authenticationRequired;
     boolean destructive;
     int behavior;
-    Map parameters;
+    Map<?,?> parameters;
 
     public static final String ResponseTypedTextKey = "UIUserNotificationActionResponseTypedTextKey";
 
@@ -105,8 +105,8 @@ public class UIUserNotificationAction extends NSObject implements NSSecureCoding
      * @return A a dictionary with additional parameters for the action.
      */
     @CMGetter("@property(nonatomic, copy, readonly) NSDictionary *parameters;")
-    public Map parameters() {
-        return new HashMap(parameters == null ? Collections.EMPTY_MAP : parameters);
+    public Map<?,?> parameters() {
+        return new HashMap<>(parameters == null ? Collections.emptyMap() : parameters);
     }
 
 }
