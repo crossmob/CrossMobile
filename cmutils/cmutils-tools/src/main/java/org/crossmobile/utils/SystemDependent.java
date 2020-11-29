@@ -344,20 +344,19 @@ public class SystemDependent {
     public static void setUiFont(String resource) {
         try {
             Font droidFont = Font.createFont(Font.TRUETYPE_FONT, SystemDependent.class.getResourceAsStream(resource)).deriveFont(12f);
-            UIDefaults defaults = UIManager.getLookAndFeel().getDefaults();
             if (IS_LINUX) {
                 // Force AA under Linux
                 // Java 9+ API
-                defaults.put(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+                UIManager.getLookAndFeelDefaults().put(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
                 try {
                     // Java 8 API
                     Object key = SystemDependent.class.getClassLoader().loadClass("sun.swing.SwingUtilities2").getField("AA_TEXT_PROPERTY_KEY").get(null);
                     Object value = SystemDependent.class.getClassLoader().loadClass("sun.swing.SwingUtilities2$AATextInfo").getConstructor(Object.class, Integer.class).newInstance(RenderingHints.VALUE_TEXT_ANTIALIAS_ON, 200);
-                    defaults.put(key, value);
+                    UIManager.getLookAndFeelDefaults().put(key, value);
                 } catch (Exception ignored2) {
                 }
             }
-            defaults.put("defaultFont", droidFont);
+            UIManager.getLookAndFeelDefaults().put("defaultFont", droidFont);
         } catch (Exception ignored) {
         }
     }
