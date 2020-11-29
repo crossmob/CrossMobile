@@ -1737,6 +1737,7 @@ com/eclipsesource/json/WriterConfig.class v1.5
 com/eclipsesource/json/WritingBuffer.class v1.5
 com/panayotis/appenh/AFileChooser$1.class v1.6
 com/panayotis/appenh/AFileChooser$FileSelectionMode.class v1.6
+com/panayotis/appenh/AFileChooser$InjectedVisuals.class v1.6
 com/panayotis/appenh/AFileChooser.class v1.6
 com/panayotis/appenh/DefaultEnhancer.class v1.6
 com/panayotis/appenh/Enhancer$FileOpenRunnable.class v1.6
@@ -1760,6 +1761,7 @@ com/panayotis/appenh/MacEnhancer$9.class v1.6
 com/panayotis/appenh/MacEnhancer$FileDialogCallback.class v1.6
 com/panayotis/appenh/MacEnhancer$OpenDialogLambda.class v1.6
 com/panayotis/appenh/MacEnhancer.class v1.6
+com/panayotis/appenh/WindowsEnhancer.class v1.6
 com/panayotis/appenh/libmacenh.dylib
 com/panayotis/ce/CEventCommons.class v8
 com/panayotis/ce/CEventData.class v8

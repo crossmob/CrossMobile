@@ -9,11 +9,14 @@ package org.crossmobile.utils;
 import org.crossmobile.prefs.Config;
 import org.crossmobile.utils.func.Opt;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.attribute.PosixFilePermissions;
+import java.util.List;
 import java.util.*;
 
 import static java.io.File.pathSeparator;
@@ -336,6 +339,27 @@ public class SystemDependent {
             }
         }
         return "13.0";
+    }
+
+    public static void setUiFont(String resource) {
+        try {
+            Font droidFont = Font.createFont(Font.TRUETYPE_FONT, SystemDependent.class.getResourceAsStream(resource)).deriveFont(12f);
+            UIDefaults defaults = UIManager.getLookAndFeel().getDefaults();
+            if (IS_LINUX) {
+                // Force AA under Linux
+                // Java 9+ API
+                defaults.put(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+                try {
+                    // Java 8 API
+                    Object key = SystemDependent.class.getClassLoader().loadClass("sun.swing.SwingUtilities2").getField("AA_TEXT_PROPERTY_KEY").get(null);
+                    Object value = SystemDependent.class.getClassLoader().loadClass("sun.swing.SwingUtilities2$AATextInfo").getConstructor(Object.class, Integer.class).newInstance(RenderingHints.VALUE_TEXT_ANTIALIAS_ON, 200);
+                    defaults.put(key, value);
+                } catch (Exception ignored2) {
+                }
+            }
+            defaults.put("defaultFont", droidFont);
+        } catch (Exception ignored) {
+        }
     }
 
     public enum Execs {

@@ -38,7 +38,6 @@ public class SwingLifecycleBridge extends DesktopLifecycleBridge {
         // This should be called before ANY visuals are being initialized.
         Enhancer enhancer = EnhancerManager.getDefault();
         enhancer.setApplicationName(System.getProperty("cm.display.name", "CrossMobileApp"));
-        enhancer.fixDPI();
         enhancer.setSafeLookAndFeel();
 
         /*
