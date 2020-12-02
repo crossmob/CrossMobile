@@ -48,7 +48,7 @@ public enum Flavour {
                             + "\nFor example, if build is performed from command line, this could be done with the "
                             + iteratorToString(asList(Flavour.values()).iterator(), " or ", f -> "-P" + f.name().toLowerCase()) + " option.\n"
                             + "If an IDE has been used, then the correct profile should be selected.\n"
-                            + "For more info, please refer to https://crossmobile.tech/run/\n");
+                            + "For more info, please refer to https://crossmobile.org/blog/running/\n");
         return flavour;
     }
 }

@@ -11,6 +11,7 @@ import crossmobile.ios.foundation.NSBundle;
 import crossmobile.ios.foundation.NSLocale;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.CMPure;
+import org.crossmobile.bridge.system.BaseUtils;
 
 import java.io.*;
 import java.lang.reflect.Constructor;
@@ -25,7 +26,7 @@ public class SystemUtilities {
     private static final Pattern ESC_T = Pattern.compile("\\\\t");
 
     public static boolean propertyToBoolean(String key, boolean default_value) {
-        return stringToBoolean(System.getProperty(key), default_value);
+        return BaseUtils.objectToBoolean(System.getProperty(key, Boolean.toString(default_value)));
     }
 
     public static double propertyToDouble(String key, double default_value) {
@@ -58,13 +59,6 @@ public class SystemUtilities {
         } catch (NumberFormatException ex) {
             return default_value;
         }
-    }
-
-    public static boolean stringToBoolean(String value, boolean default_value) {
-        if (value == null)
-            return default_value;
-        value = value.toLowerCase().trim();
-        return value.equals("1") || value.equals("true") || value.equals("yes") || value.equals("on");
     }
 
     public static int stringToInt(String value, int default_value) {

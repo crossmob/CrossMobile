@@ -7,7 +7,7 @@
 
 @CMLib(name = "cmnotifications", libs = "UserNotifications.framework", includes = {"<UserNotifications/UserNotifications.h>", "<UIKit/UIKit.h>"},
         displayName = "Notifications Framework", description = "CrossMobile© Compatibility library for UserNotifications Framework",
-        url = "https://crossmobile.tech/usernotifications/",
+        url = "https://crossmobile.org/developer/plugins/notifications/",
         androidInjections = @CMAndroidInjections(appSection = "<meta-data android:name=\"com.google.firebase.messaging.default_notification_icon\"\n"
                 + "            android:resource=\"@drawable/masked_icon\"/>\n"
                 + "        <service android:name=\"org.crossmobile.backend.android.notifications." + NAME + "\">\n"

@@ -20,7 +20,7 @@ public class BaseUtils {
     }
 
     public static void throwException(Throwable th) {  // should return "something", to make happy methods that need to return "something"
-        //noinspection RedundantTypeArguments,unchecked
+        //noinspection RedundantTypeArguments
         BaseUtils.<RuntimeException>throwExceptionImpl(th);
     }
 
@@ -54,6 +54,7 @@ public class BaseUtils {
         return files == null || files.length == 0 ? Collections.emptyList() : Arrays.asList(files);
     }
 
+    @SuppressWarnings({"CharsetObjectCanBeUsed", "ResultOfMethodCallIgnored"})
     public static boolean writeFile(File file, String data) {
         file.getParentFile().mkdirs();
         try (Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"))) {
@@ -65,6 +66,7 @@ public class BaseUtils {
         }
     }
 
+    @SuppressWarnings("CharsetObjectCanBeUsed")
     public static String readFile(File file) {
         try (BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"))) {
             StringBuilder out = new StringBuilder();
@@ -86,9 +88,15 @@ public class BaseUtils {
         if (o instanceof Number)
             return ((Number) o).intValue() == 1;
         String s = o.toString().toLowerCase();
-        if (s.equals("true") || s.equals("yes"))
+        if (s.equals("true") || s.equals("yes") || s.equals("on") || s.startsWith("enable"))
             return true;
-        return new BigDecimal(s).intValue() == 1;
+        if (s.equals("false") || s.equals("no") || s.equals("off") || s.startsWith("disable"))
+            return false;
+        try {
+            return new BigDecimal(s).intValue() == 1;
+        } catch (Exception ignored) {
+            return false;
+        }
     }
 
     @SuppressWarnings("EqualsReplaceableByObjectsCall")

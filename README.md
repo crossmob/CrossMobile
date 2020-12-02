@@ -45,4 +45,4 @@ or a detailed ChangeLog [here](https://github.com/crossmob/CrossMobile/blob/mast
 | Recommended | macOS 10.14+ <br/> Xcode 11.+ <br/> Android Studio 3.5+ | Windows 10 64 bit<br/> Android Studio 3.5+ | x64 distribution <br/> Android Studio 3.5+
 
 ### More information
-For more information about CrossMobile, please visit its dedicated site [crossmobile.tech](https://crossmobile.tech).
+For more information about CrossMobile, please visit its dedicated site [crossmobile.org](https://crossmobile.org).

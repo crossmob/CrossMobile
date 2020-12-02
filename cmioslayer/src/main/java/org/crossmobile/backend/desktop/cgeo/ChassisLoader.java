@@ -21,7 +21,7 @@ import java.net.URISyntaxException;
 import java.util.Collection;
 
 import static crossmobile.ios.uikit.UIInterfaceOrientationMask.*;
-import static org.crossmobile.bind.system.SystemUtilities.stringToBoolean;
+import static org.crossmobile.bridge.system.BaseUtils.objectToBoolean;
 import static org.crossmobile.bridge.system.BaseUtils.throwException;
 
 public class ChassisLoader extends DefaultHandler {
@@ -52,7 +52,7 @@ public class ChassisLoader extends DefaultHandler {
         switch (qName) {
             case "skin":
                 skins.add(current = new Chassis(attributes.getValue("name"),
-                        toIdiom(attributes, "idiom"),
+                        toIdiom(attributes),
                         toInt(attributes, "width"),
                         toInt(attributes, "height"),
                         attributes.getValue("device")
@@ -63,79 +63,80 @@ public class ChassisLoader extends DefaultHandler {
                         attributes.getValue("descr"), toInt(attributes, "priority", 50));
                 break;
             case "screen":
+                String statusBarValue = attributes.getValue("statusbar");
                 current.setScreen(new CScreen(toInt(attributes, "x"),
                         toInt(attributes, "y"),
                         toInt(attributes, "width"),
                         toInt(attributes, "height"),
-                        stringToBoolean(attributes.getValue("stretch"), false),
-                        stringToBoolean(attributes.getValue("statusbar"), true)));
+                        objectToBoolean(attributes.getValue("stretch")),
+                        objectToBoolean(statusBarValue == null ? "true" : statusBarValue)));
                 break;
             case "led":
                 current.setLed(new CDrawable(toInt(attributes, "x"),
                         toInt(attributes, "y"),
                         toInt(attributes, "width"),
                         toInt(attributes, "height"),
-                        toOrientation(attributes, "orientation"),
+                        toOrientation(attributes),
                         getImage(attributes, "imageon"),
                         getImage(attributes, "imageoff"),
-                        stringToBoolean(attributes.getValue("autorotate"), false)));
+                        objectToBoolean(attributes.getValue("autorotate"))));
                 break;
             case "power":
                 current.addArea(new CButton(toInt(attributes, "x"),
                         toInt(attributes, "y"),
                         toInt(attributes, "width"),
                         toInt(attributes, "height"),
-                        toOrientation(attributes, "orientation"),
+                        toOrientation(attributes),
                         CEvent.power(),
                         getImage(attributes, "imagedown"),
                         getImage(attributes, "imageup"),
-                        stringToBoolean(attributes.getValue("autorotate"), false)));
+                        objectToBoolean(attributes.getValue("autorotate"))));
                 break;
             case "back":
                 current.addArea(new CButton(toInt(attributes, "x"),
                         toInt(attributes, "y"),
                         toInt(attributes, "width"),
                         toInt(attributes, "height"),
-                        toOrientation(attributes, "orientation"),
+                        toOrientation(attributes),
                         CEvent.back(),
                         getImage(attributes, "imagedown"),
                         getImage(attributes, "imageup"),
-                        stringToBoolean(attributes.getValue("autorotate"), false)));
+                        objectToBoolean(attributes.getValue("autorotate"))));
                 break;
             case "home":
                 current.addArea(new CButton(toInt(attributes, "x"),
                         toInt(attributes, "y"),
                         toInt(attributes, "width"),
                         toInt(attributes, "height"),
-                        toOrientation(attributes, "orientation"),
+                        toOrientation(attributes),
                         CEvent.home(),
                         getImage(attributes, "imagedown"),
                         getImage(attributes, "imageup"),
-                        stringToBoolean(attributes.getValue("autorotate"), false)));
+                        objectToBoolean(attributes.getValue("autorotate"))));
                 break;
             case "action":
                 current.addArea(new CButton(toInt(attributes, "x"),
                         toInt(attributes, "y"),
                         toInt(attributes, "width"),
                         toInt(attributes, "height"),
-                        toOrientation(attributes, "orientation"),
+                        toOrientation(attributes),
                         CEvent.action(),
                         getImage(attributes, "imagedown"),
                         getImage(attributes, "imageup"),
-                        stringToBoolean(attributes.getValue("autorotate"), false)));
+                        objectToBoolean(attributes.getValue("autorotate"))));
                 break;
             case "image":
                 current.addArea(new CDrawable(toInt(attributes, "x"),
                         toInt(attributes, "y"),
                         toInt(attributes, "width"),
                         toInt(attributes, "height"),
-                        toOrientation(attributes, "orientation"),
+                        toOrientation(attributes),
                         getImage(attributes, "file"),
                         null,
-                        stringToBoolean(attributes.getValue("autorotate"), false)));
+                        objectToBoolean(attributes.getValue("autorotate"))));
                 break;
             case "insets":
-                current.setInset(toOrientation(attributes, "orientation"),
+                current.setInset(toOrientation(attributes),
                         toInt(attributes, "top"),
                         toInt(attributes, "left"),
                         toInt(attributes, "bottom"),
@@ -152,6 +153,7 @@ public class ChassisLoader extends DefaultHandler {
         return chassisInfo + "->" + attrName + "->" + tag + " : " + reason;
     }
 
+    @SuppressWarnings("SameParameterValue")
     private int toInt(Attributes attributes, String tag, int deflt) {
         try {
             return toInt(attributes, tag);
@@ -171,8 +173,8 @@ public class ChassisLoader extends DefaultHandler {
         }
     }
 
-    private int toOrientation(Attributes attributes, String tag) {
-        String orientation = attributes.getValue(tag);
+    private int toOrientation(Attributes attributes) {
+        String orientation = attributes.getValue("orientation");
         orientation = orientation == null ? "" : orientation.trim().toLowerCase();
         int result = 0;
         for (String part : orientation.split(":"))
@@ -201,7 +203,7 @@ public class ChassisLoader extends DefaultHandler {
                 case "":
                     break;
                 default:
-                    throw new RuntimeException(error(tag, "Unknown orientation: " + part));
+                    throw new RuntimeException(error("orientation", "Unknown orientation: " + part));
             }
         if (result == 0)
             result = All;
@@ -222,16 +224,16 @@ public class ChassisLoader extends DefaultHandler {
         });
     }
 
-    private int toIdiom(Attributes attributes, String tag) {
-        String idiom = attributes.getValue(tag);
+    private int toIdiom(Attributes attributes) {
+        String idiom = attributes.getValue("idiom");
         idiom = idiom == null ? null : idiom.trim().toLowerCase();
         if (idiom == null || idiom.isEmpty())
-            throw new NullPointerException(error(tag, "Missing device information"));
+            throw new NullPointerException(error("idiom", "Missing device information"));
         idiom = idiom.trim().toLowerCase();
         if (idiom.equals("phone"))
             return UIUserInterfaceIdiom.Phone;
         if (idiom.equals("pad"))
             return UIUserInterfaceIdiom.Pad;
-        throw new IllegalArgumentException(error(tag, "Unknown device information '" + idiom + "'"));
+        throw new IllegalArgumentException(error("idiom", "Unknown device information '" + idiom + "'"));
     }
 }

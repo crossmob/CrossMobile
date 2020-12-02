@@ -1,6 +1,6 @@
 /*
  * This project was created with CrossMobile Framework.
- * More info at https://crossmobile.tech
+ * More info at https://crossmobile.org
  */
 
 package ${groupId}.${artifactId};
