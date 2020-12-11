@@ -12,6 +12,7 @@ import crossmobile.ios.foundation.NSTimer;
 import crossmobile.ios.quartzcore.CALayer;
 import crossmobile.ios.quartzcore.CAShapeLayer;
 import org.crossmobile.bind.graphics.*;
+import org.crossmobile.bind.graphics.theme.ThemePainter;
 import org.crossmobile.bind.system.SystemUtilities;
 import org.crossmobile.bind.wrapper.NativeWrapper;
 import org.crossmobile.bind.wrapper.WidgetWrapper;
@@ -56,6 +57,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
     //    private boolean initSolverFlag = true;
     private final Map<Integer, ClVariable> variableMap = new HashMap<>();
     final CGSize intrinsicContentSize = new CGSize(0, 0);
+    final ThemePainter<?, ?> painter;
     /*
      * These properties need to be addressed form the animations, so they
      * shouldn't be private
@@ -148,6 +150,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
     }
 
     UIView(CGRect frame, UIColor backgroundColor) {
+        painter = Native.graphics().themeManager().getPainter(this);    // Should be done early, since some widgets require frame manipulation
         setFrameImpl(frame);
         this.background = backgroundColor;
     }
@@ -2593,10 +2596,12 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
     }
 
     void setFrameImpl(double x, double y, double width, double height) {
+        int pWidth = painter == null ? -1 : painter.getFixedWidth();
+        int pHeight = painter == null ? -1 : painter.getFixedHeight();
         frame.getOrigin().setX(x);
         frame.getOrigin().setY(y);
-        frame.getSize().setWidth(width);
-        frame.getSize().setHeight(height);
+        frame.getSize().setWidth(pWidth >= 0 ? pWidth : width);
+        frame.getSize().setHeight(pHeight >= 0 ? pHeight : height);
     }
 
     private void setFrameImpl(CGRect otherFrame) {

@@ -9,6 +9,8 @@ package org.crossmobile.bind.graphics;
 import crossmobile.ios.coregraphics.CGSize;
 import crossmobile.ios.uikit.UIColor;
 import crossmobile.ios.uikit.UIFont;
+import org.crossmobile.bind.graphics.theme.ThemeManager;
+import org.crossmobile.bind.graphics.theme.ThemeUtilities;
 import org.crossmobile.bridge.Native;
 
 import static crossmobile.ios.coregraphics.GraphicsDrill.color;
@@ -19,26 +21,8 @@ import static org.crossmobile.bind.system.SystemUtilities.*;
 
 public class Theme {
 
-    private static int getDuller(int base) {
-        double[] hsv = Native.graphics().colorRGBAtoHSVA(base);
-        hsv[1] *= 0.6;
-        hsv[2] *= 0.8;
-        return Native.graphics().colorHSBAtoRGBA(hsv[0], hsv[1], hsv[2], hsv[3]);
-    }
 
-    private static int getBrighter(int base) {
-        double[] hsv = Native.graphics().colorRGBAtoHSVA(base);
-        hsv[1] *= 0.6;
-        hsv[2] *= 2;
-        return Native.graphics().colorHSBAtoRGBA(hsv[0], hsv[1], hsv[2], hsv[3]);
-    }
 
-    public static boolean isDark(int base) {
-        double red = ((base >> 16) & 0xff) / 255.0;
-        double green = ((base >> 8) & 0xff) / 255.0;
-        double blue = (base & 0xff) / 255.0;
-        return Math.sqrt(red * red * 0.299 + green * green * 0.587 + blue * blue * 0.114) < 0.5;
-    }
 
     public final static class Images {
 
@@ -81,7 +65,7 @@ public class Theme {
         public final static UIColor FORE = uicolor((int) ((long) getLong("cm.theme.color.fore", 0xFF000000)));
         public final static UIColor SHADOW = uicolor((int) ((long) getLong("cm.theme.color.shadow", 0xFFA0A0A0)));
         public final static UIColor TOOLBACK = uicolor((int) ((long) getLong("cm.theme.color.toolback", 0xFFB7B7B7)));
-        public final static UIColor BARBACK = uicolor((int) ((long) getLong("cm.theme.color.barback", getDuller(color(Theme.Color.TINT.CGColor())))));
+        public final static UIColor BARBACK = uicolor((int) ((long) getLong("cm.theme.color.barback", ThemeUtilities.getDuller(color(Theme.Color.TINT.CGColor())))));
         public final static UIColor THUMB = uicolor((int) ((long) getLong("cm.theme.color.thumb", 0xFFF0F0F0)));
         public final static UIColor SEPARATOR = uicolor((int) ((long) getLong("cm.theme.color.separator", 0xFFAAAAAA)));
 
@@ -90,11 +74,12 @@ public class Theme {
         public static int[] getBarGradientColors(UIColor baseColor) {
             if (Bar.FLAT)
                 return null;
+            ThemeManager themeManager = Native.graphics().themeManager();
             int base = color(baseColor.CGColor());
             int[] result = new int[3];
-            result[0] = getBrighter(base);
+            result[0] = ThemeUtilities.getBrighter(base);
             result[1] = base;
-            result[2] = getDuller(base);
+            result[2] = ThemeUtilities.getDuller(base);
             return result;
         }
 
@@ -229,27 +214,13 @@ public class Theme {
         }
     }
 
-    public final static class Switch {
-
-        public final static int WIDTH = getInteger("cm.theme.switch.width", 78);
-        public final static int HEIGHT = getInteger("cm.theme.switch.height", 28);
-        public final static int INSET = getInteger("cm.theme.switch.inset", 3);
-        public final static boolean ISBORDERED = propertyToBoolean("cm.theme.switch.bordered", true);
-        public final static boolean USE_THUMB_IMAGE = propertyToBoolean("cm.theme.switch.thumb", true);
-        public final static int TRACK_WIDTH = WIDTH - INSET - INSET;
-        public final static int THUMB_SIZE = HEIGHT - INSET - INSET;
-        public final static int TRACK_MOVING_AREA = TRACK_WIDTH - THUMB_SIZE;
-
-        private Switch() {
-        }
-    }
-
     public final static class Slider {
 
         public final static boolean ISSQUARED = propertyToBoolean("cm.theme.slider.squared", false);
         public final static boolean ISBORDERED = propertyToBoolean("cm.theme.slider.bordered", true);
         public final static int HEIGHT = getInteger("cm.theme.slider.height", 10);
-        public final static int THUMB_SIZE = Switch.THUMB_SIZE;
+        public final static int INSET = getInteger("cm.theme.switch.inset", 3);
+        public final static int THUMB_SIZE = HEIGHT - INSET - INSET;
 
         private Slider() {
         }

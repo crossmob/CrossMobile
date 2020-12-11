@@ -9,6 +9,8 @@ package org.crossmobile.bind.graphics;
 import crossmobile.ios.coregraphics.CGAffineTransform;
 import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.uikit.*;
+import org.crossmobile.bind.graphics.theme.ThemeFactory;
+import org.crossmobile.bind.graphics.theme.ThemeManager;
 import org.crossmobile.bridge.GraphicsBridge;
 import org.crossmobile.bridge.Native;
 
@@ -16,14 +18,28 @@ import static crossmobile.ios.uikit.UIDeviceOrientation.*;
 
 public abstract class AbstractGraphicsBridge<CANVAS, NTVP, TRANSF> implements GraphicsBridge<CANVAS, NTVP, TRANSF> {
 
-    public static int DrawingDepth;    // Use this variable for debuggin, to check the depth of UIView we are currently drawing
+    public static int DrawingDepth;    // Use this variable for debugging, to check the depth of UIView we are currently drawing
 
     private final RefreshRunnable refresh = new RefreshRunnable();
     private final DrawableMetrics metrics = newMetrics();
+    private final ThemeManager themeManager;
+
+    {
+        try {
+            themeManager = ThemeFactory.createManager();
+        } catch (Throwable e) {
+            throw new RuntimeException("Unable to initialize theme manager");
+        }
+    }
 
     @Override
     public DrawableMetrics metrics() {
         return metrics;
+    }
+
+    @Override
+    public ThemeManager themeManager() {
+        return themeManager;
     }
 
     @Override

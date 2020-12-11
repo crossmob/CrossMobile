@@ -10,7 +10,7 @@ import crossmobile.ios.coregraphics.CGColor;
 import crossmobile.ios.coregraphics.CGContext;
 import crossmobile.ios.coregraphics.CGPathDrawingMode;
 import crossmobile.ios.coregraphics.CGRect;
-import org.crossmobile.bind.graphics.Theme;
+import org.crossmobile.bind.graphics.theme.ThemeUtilities;
 import org.crossmobile.bind.system.Promise;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.*;
@@ -340,7 +340,7 @@ public class UISegmentedControl extends UIControl {
                 deselectedImage.destroy();
 
             UIColor normal = tintColor();
-            UIColor selected = Theme.isDark(color(normal.cgcolor)) ? UIColor.whiteColor() : UIColor.blackColor();
+            UIColor selected = ThemeUtilities.isDark(color(normal.cgcolor)) ? UIColor.whiteColor() : UIColor.blackColor();
             setTitleColor(normal, UIControlState.Normal);
             setTitleColor(selected, UIControlState.Selected);
             setTitleColor(selected, UIControlState.Highlighted);

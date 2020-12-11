@@ -8,6 +8,7 @@ package org.crossmobile.bridge;
 
 import crossmobile.ios.coregraphics.CGAffineTransform;
 import org.crossmobile.bind.graphics.*;
+import org.crossmobile.bind.graphics.theme.ThemeManager;
 
 import java.util.List;
 
@@ -121,6 +122,8 @@ public interface GraphicsBridge<CANVAS, NTVP, TRANSF> {
         name = name.substring(0, lower.length()).trim();
         return new FontInfo(name, bold, italic);
     }
+
+    ThemeManager themeManager();
 
     NativeFont getFont(String fontName, double size);
 

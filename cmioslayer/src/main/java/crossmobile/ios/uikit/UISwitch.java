@@ -9,16 +9,15 @@ package crossmobile.ios.uikit;
 import crossmobile.ios.coregraphics.CGPoint;
 import crossmobile.ios.coregraphics.CGRect;
 import org.crossmobile.bind.graphics.Geometry;
-import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.graphics.Theme;
-import org.crossmobile.bridge.Native;
+import org.crossmobile.bind.graphics.theme.SwitchPainter;
+import org.crossmobile.bind.graphics.theme.SwitchPainter.SwitchExtraData;
 import org.crossmobile.bridge.ann.*;
 
 import java.util.Set;
 
 import static crossmobile.ios.coregraphics.GraphicsDrill.color;
 import static crossmobile.ios.coregraphics.GraphicsDrill.context;
-import static org.crossmobile.bind.graphics.Theme.Switch.*;
 
 /**
  * UISwitch class defines an object that is a button which acts as a switch of
@@ -28,17 +27,13 @@ import static org.crossmobile.bind.graphics.Theme.Switch.*;
 @CMClass
 public class UISwitch extends UIControl {
 
-    private static final UIColor offColor = UIColor.colorWithWhiteAlpha(1, 0.85);
-
     private boolean on;
     private UIColor tintColor = Theme.Color.TOOLBACK;
-    private UIColor onTintColor = null;
-    private UIColor thumbTintColor = Theme.Color.THUMB;
-    private UIColor thumbDownTintColor = null;
-    private double sliderLoc;
-    private boolean isDown;
+    private UIColor onTintColor;
+    private UIColor thumbTintColor;
     private CGPoint originalTouchPoint;
     private boolean dealAsClick;
+    private final SwitchExtraData extraData = new SwitchExtraData();
 
     /**
      * Constructs a default UISwitch object located at (0,0) with 0 weight and 0
@@ -57,35 +52,17 @@ public class UISwitch extends UIControl {
     @SuppressWarnings("OverridableMethodCallInConstructor")
     @CMConstructor("- (instancetype)initWithFrame:(CGRect)frame;")
     public UISwitch(CGRect rect) {
-        super(fixRect(rect));
+        super(rect);
         setOn(false, false);
+        updateThemeThumbTintColor(null);
     }
 
-    private static CGRect fixRect(CGRect frame) {
-        return new CGRect(frame.getOrigin().getX(), frame.getOrigin().getY(), WIDTH, HEIGHT);
-    }
-
-    @Override
-    public void setFrame(CGRect frame) {
-        super.setFrame(fixRect(frame));
-    }
-
-    @Override
-    void setSize(double width, double height) {
-    }
-
-    @Override
-    void setFrameImpl(double x, double y, double width, double height) {
-        super.setFrameImpl(x, y, WIDTH, HEIGHT);
+    private SwitchPainter painter() {
+        return (SwitchPainter) painter;
     }
 
     private void setVisualsFromTouch(UITouch touch) {
-        double where = touch.locationInView(this).getX() - INSET - THUMB_SIZE / 2f;
-        if (where < 0)
-            where = 0;
-        if (where > TRACK_MOVING_AREA)
-            where = TRACK_MOVING_AREA;
-        sliderLoc = where / TRACK_MOVING_AREA;
+        extraData.sliderLoc = painter().getSliderLocation(touch.locationInView(this).getX());
         setNeedsDisplay();
     }
 
@@ -93,7 +70,7 @@ public class UISwitch extends UIControl {
     public void touchesBegan(Set<UITouch> touches, UIEvent event) {
         UITouch core = touches.iterator().next();
         setVisualsFromTouch(core);
-        isDown = true;
+        extraData.isDown = true;
         originalTouchPoint = core.locationInView(this);
         dealAsClick = true;
     }
@@ -108,9 +85,9 @@ public class UISwitch extends UIControl {
 
     @Override
     public void touchesEnded(Set<UITouch> touches, UIEvent event) {
-        isDown = false;
+        extraData.isDown = false;
         setVisualsFromTouch(touches.iterator().next());
-        boolean newValue = dealAsClick ? !on : sliderLoc > 0.5;
+        boolean newValue = dealAsClick ? !on : extraData.sliderLoc > 0.5;
         boolean shouldSendEvent = newValue != on;
         setOn(newValue);
         if (shouldSendEvent)
@@ -151,10 +128,8 @@ public class UISwitch extends UIControl {
     @CMSelector("- (void)setOn:(BOOL)on \n"
             + "     animated:(BOOL)animated;")
     public void setOn(boolean on, boolean animated) {
-        if (this.on == on)
-            return;
         this.on = on;
-        sliderLoc = on ? 1 : 0;
+        extraData.sliderLoc = on ? 1 : 0;
         setNeedsDisplay();
     }
 
@@ -168,12 +143,6 @@ public class UISwitch extends UIControl {
         return thumbTintColor;
     }
 
-    private UIColor thumbDownTintColor() {
-        if (thumbDownTintColor == null)
-            thumbDownTintColor = pressedColor(thumbTintColor);
-        return thumbDownTintColor;
-    }
-
     /**
      * Sets the color of the thumb.
      *
@@ -182,8 +151,13 @@ public class UISwitch extends UIControl {
     @CMSetter("@property(nonatomic, strong) UIColor *thumbTintColor;")
     public void setThumbTintColor(UIColor thumbTintColor) {
         this.thumbTintColor = thumbTintColor;
-        thumbDownTintColor = null;
+        updateThemeThumbTintColor(thumbTintColor);
         setNeedsDisplay();
+    }
+
+    private void updateThemeThumbTintColor(UIColor thumbTintColor) {
+        extraData.thumbColorUp = thumbTintColor == null ? painter().getThumbColorUp() : color(thumbTintColor.cgcolor);
+        extraData.thumbColorDown = painter().getThumbColorDown(extraData.thumbColorUp);
     }
 
     @Override
@@ -197,10 +171,6 @@ public class UISwitch extends UIControl {
         setNeedsDisplay();
     }
 
-    private UIColor superTintColor() {
-        return super.tintColor();
-    }
-
     /**
      * Returns the color of the switch used when it is turned on.
      *
@@ -208,7 +178,7 @@ public class UISwitch extends UIControl {
      */
     @CMGetter("@property(nonatomic, strong) UIColor *onTintColor;")
     public UIColor onTintColor() {
-        return onTintColor == null ? superTintColor() : onTintColor;
+        return onTintColor == null ? super.tintColor() : onTintColor;
     }
 
     /**
@@ -224,30 +194,6 @@ public class UISwitch extends UIControl {
 
     @Override
     public final void drawRect(CGRect rect) {
-        double x = rect.getOrigin().getX();
-        double y = rect.getOrigin().getY();
-        int onColor = color(onTintColor().cgcolor);
-        int thumbColor = color(isDown ? thumbDownTintColor().cgcolor : thumbTintColor().cgcolor);
-        GraphicsContext<?> gcx = context(UIGraphics.getCurrentContext());
-        int sliderArea = (int) (TRACK_MOVING_AREA * sliderLoc);
-
-        gcx.fillRoundRodBar(x, y, WIDTH, HEIGHT, onColor);
-        gcx.fillHalfRoundRodBar(sliderArea + INSET + THUMB_SIZE / 2d, y + INSET, TRACK_MOVING_AREA - sliderArea + THUMB_SIZE / 2d, THUMB_SIZE, color(offColor.cgcolor), true, false);
-//        gcx.fillHalfRoundRodBar(rect.getOrigin().getX(), rect.getOrigin().getY(), sliderArea + INSET + THUMB_SIZE / 2, HEIGHT, (color?)), true, true);
-        if (ISBORDERED)
-            gcx.drawRoundRodBar(x, y, WIDTH, HEIGHT, color(Theme.Color.SHADOW.cgcolor));
-
-        // draw thumb
-        int buttonLocation = (int) (x + INSET + sliderArea);
-
-        if (USE_THUMB_IMAGE)
-            cmButtonStates.thumb().drawInRect(new CGRect(buttonLocation, INSET, THUMB_SIZE, THUMB_SIZE));
-        else {
-            gcx.setFillColorWithColor(thumbColor);
-            gcx.fillEllipse(buttonLocation, INSET, THUMB_SIZE, THUMB_SIZE);
-            gcx.setLineWidth(2);
-            gcx.setDrawColorWithColor(onColor);
-            gcx.drawEllipse(buttonLocation, INSET + 0.5, THUMB_SIZE, THUMB_SIZE);
-        }
+        painter().draw(this, rect, context(UIGraphics.getCurrentContext()), extraData);
     }
 }

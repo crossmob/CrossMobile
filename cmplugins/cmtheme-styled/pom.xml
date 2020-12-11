@@ -11,6 +11,15 @@
     </parent>
     <artifactId>cmtheme-styled</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.crossmobile</groupId>
+            <artifactId>cmioslayer</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
     <profiles>
         <profile>
             <id>desktop</id>
