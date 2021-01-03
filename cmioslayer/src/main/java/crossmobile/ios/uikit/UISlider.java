@@ -7,10 +7,9 @@
 package crossmobile.ios.uikit;
 
 
-import crossmobile.ios.coregraphics.CGContext;
 import crossmobile.ios.coregraphics.CGRect;
-import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.graphics.Theme;
+import org.crossmobile.bind.graphics.theme.SliderPainter;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.*;
 
@@ -18,7 +17,6 @@ import java.util.Set;
 
 import static crossmobile.ios.coregraphics.GraphicsDrill.color;
 import static crossmobile.ios.coregraphics.GraphicsDrill.context;
-import static org.crossmobile.bind.graphics.Theme.Slider.THUMB_SIZE;
 
 /**
  * UISlider class defines an object that is used when there is a need to select
@@ -38,14 +36,12 @@ public class UISlider extends UIControl {
     private UIImage currentMinimumTrackImage = null;
     private UIImage currentMaximumTrackImage = null;
     private UIImage currentThumbImage = null;
-    //
+
     private UIColor minimumTrackTintColor = null;
     private UIColor maximumTrackTintColor = Theme.Color.TOOLBACK;
-    private UIColor thumbTintColor = Theme.Color.THUMB;
-    private UIColor thumbDownTintColor = pressedColor(thumbTintColor);
-    //
-    //
-    private boolean isDown = false;
+    private UIColor thumbTintColor;
+
+    private final SliderPainter.SliderExtraData extraData = new SliderPainter.SliderExtraData();
 
     /**
      * Constructs a default slider object located at (0,0) with 0 weight and 0
@@ -64,22 +60,33 @@ public class UISlider extends UIControl {
     @CMConstructor("- (instancetype)initWithFrame:(CGRect)frame;")
     public UISlider(CGRect rect) {
         super(rect);
+        updateThemeThumbTintColor(null);
+    }
+
+    private SliderPainter painter() {
+        return (SliderPainter) painter;
+    }
+
+    private void updateThemeThumbTintColor(UIColor thumbTintColor) {
+        extraData.thumbColorUp = thumbTintColor == null ? painter().getThumbColorUp() : color(thumbTintColor.cgcolor);
+        extraData.thumbColorDown = painter().getThumbColorDown(extraData.thumbColorUp);
     }
 
     private void setValueFromTouch(UITouch touch) {
-        double where = touch.locationInView(this).getX() - THUMB_SIZE / 2f;
-        double track_moving_area = getWidth() - THUMB_SIZE;
+        int thumbSize = painter().getThumbSize();
+        double where = touch.locationInView(this).getX() - thumbSize / 2f;
+        double trackMovingArea = getWidth() - thumbSize;
         if (where < 0)
             where = 0;
-        if (where > track_moving_area)
-            where = track_moving_area;
-        setValue((float) (minimumValue + (maximumValue - minimumValue) * where / track_moving_area));
+        if (where > trackMovingArea)
+            where = trackMovingArea;
+        setValue((float) (minimumValue + (maximumValue - minimumValue) * where / trackMovingArea));
         setNeedsDisplay();
     }
 
     @Override
     public void touchesBegan(Set<UITouch> touches, UIEvent event) {
-        isDown = true;
+        extraData.isDown = true;
         setValueFromTouch(touches.iterator().next());
         if (continuous)
             sendActionsForControlEvents(UIControlEvents.ValueChanged, event);
@@ -92,7 +99,7 @@ public class UISlider extends UIControl {
 
     @Override
     public void touchesEnded(Set<UITouch> touches, UIEvent event) {
-        isDown = false;
+        extraData.isDown = false;
         setValueFromTouch(touches.iterator().next());
         if (!continuous)
             sendActionsForControlEvents(UIControlEvents.ValueChanged, event);
@@ -439,45 +446,12 @@ public class UISlider extends UIControl {
     @CMSetter("@property(nonatomic, strong) UIColor *thumbTintColor;")
     public void setThumbTintColor(UIColor thumbTintColor) {
         this.thumbTintColor = thumbTintColor;
-        thumbDownTintColor = pressedColor(thumbTintColor);
+        updateThemeThumbTintColor(thumbTintColor);
         setNeedsDisplay();
     }
 
     @Override
     public final void drawRect(CGRect rect) {
-        CGContext cx = UIGraphics.getCurrentContext();
-        GraphicsContext<?> gcx = context(cx);
-        double percent = value / (maximumValue - minimumValue);
-        double x = rect.getOrigin().getX();
-        double y = rect.getOrigin().getY();
-        double width = rect.getSize().getWidth();
-
-        int offset = Theme.Slider.ISBORDERED ? 1 : 0;
-        double track_moving_area = width - THUMB_SIZE;
-        double track_minimum = THUMB_SIZE / 2d + track_moving_area * percent;
-        double dy = (Theme.Slider.THUMB_SIZE - Theme.Slider.HEIGHT) / 2d;
-        if (Theme.Slider.ISSQUARED) {
-            gcx.setFillColorWithColor(color(maximumTrackTintColor.cgcolor));
-            if (Theme.Slider.ISBORDERED)
-                gcx.fillRect(x, y + dy, width, Theme.Slider.HEIGHT);
-            else
-                gcx.fillRect(x + offset + track_minimum, y + dy, width - offset - track_minimum, Theme.Slider.HEIGHT);
-            gcx.setFillColorWithColor(color(minimumTrackTintColor().cgcolor));
-            gcx.fillRect(x + offset, y + dy + offset, track_minimum, Theme.Slider.HEIGHT - offset * 2);
-        } else {
-            if (Theme.Slider.ISBORDERED)
-                gcx.fillRoundRodBar(x, y + dy, width, Theme.Slider.HEIGHT, color(maximumTrackTintColor.cgcolor));
-            else
-                gcx.fillHalfRoundRodBar(x + offset + track_minimum, y + dy, width - offset - track_minimum, Theme.Slider.HEIGHT, color(maximumTrackTintColor.cgcolor), true, false);
-            gcx.fillHalfRoundRodBar(x + offset, y + dy + offset, track_minimum, Theme.Slider.HEIGHT - offset * 2, color(minimumTrackTintColor().cgcolor), true, true);
-        }
-
-        gcx.setFillColorWithColor(color(isDown ? thumbDownTintColor.cgcolor : thumbTintColor.cgcolor));
-        gcx.fillEllipse(x + track_minimum - Theme.Slider.THUMB_SIZE / 2d, y, Theme.Slider.THUMB_SIZE, Theme.Slider.THUMB_SIZE);
-        gcx.setFillColorWithColor(color(Theme.Color.SHADOW.cgcolor));
-        gcx.drawEllipse(x + track_minimum - Theme.Slider.THUMB_SIZE / 2d, y, Theme.Slider.THUMB_SIZE, Theme.Slider.THUMB_SIZE);
-
-        cmButtonStates.thumb().drawInRect(new CGRect(x + track_minimum - Theme.Slider.THUMB_SIZE / 2d, y, Theme.Slider.THUMB_SIZE, Theme.Slider.THUMB_SIZE));
+        painter().draw(this, rect, context(UIGraphics.getCurrentContext()), extraData);
     }
-
 }

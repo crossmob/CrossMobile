@@ -11,11 +11,11 @@ public class BrightButtonPainter implements ButtonPainter {
 
     @Override
     public int getFixedWidth() {
-        return -1;
+        return 0;
     }
 
     @Override
     public int getFixedHeight() {
-        return -1;
+        return 0;
     }
 }

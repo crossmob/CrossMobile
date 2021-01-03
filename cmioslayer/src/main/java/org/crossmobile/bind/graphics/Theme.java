@@ -66,7 +66,6 @@ public class Theme {
         public final static UIColor SHADOW = uicolor((int) ((long) getLong("cm.theme.color.shadow", 0xFFA0A0A0)));
         public final static UIColor TOOLBACK = uicolor((int) ((long) getLong("cm.theme.color.toolback", 0xFFB7B7B7)));
         public final static UIColor BARBACK = uicolor((int) ((long) getLong("cm.theme.color.barback", ThemeUtilities.getDuller(color(Theme.Color.TINT.CGColor())))));
-        public final static UIColor THUMB = uicolor((int) ((long) getLong("cm.theme.color.thumb", 0xFFF0F0F0)));
         public final static UIColor SEPARATOR = uicolor((int) ((long) getLong("cm.theme.color.separator", 0xFFAAAAAA)));
 
         public final static double[] BARGRADIENTSTOPS = new double[]{0.0, 0.3, 1.0};
@@ -211,18 +210,6 @@ public class Theme {
         public final static boolean IS_BACK_DISABLED = propertyToBoolean("cm.theme.progress.back.disabled", false);
 
         private Progress() {
-        }
-    }
-
-    public final static class Slider {
-
-        public final static boolean ISSQUARED = propertyToBoolean("cm.theme.slider.squared", false);
-        public final static boolean ISBORDERED = propertyToBoolean("cm.theme.slider.bordered", true);
-        public final static int HEIGHT = getInteger("cm.theme.slider.height", 10);
-        public final static int INSET = getInteger("cm.theme.switch.inset", 3);
-        public final static int THUMB_SIZE = HEIGHT - INSET - INSET;
-
-        private Slider() {
         }
     }
 

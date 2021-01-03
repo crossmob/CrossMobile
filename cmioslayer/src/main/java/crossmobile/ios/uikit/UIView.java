@@ -2600,8 +2600,8 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
         int pHeight = painter == null ? -1 : painter.getFixedHeight();
         frame.getOrigin().setX(x);
         frame.getOrigin().setY(y);
-        frame.getSize().setWidth(pWidth >= 0 ? pWidth : width);
-        frame.getSize().setHeight(pHeight >= 0 ? pHeight : height);
+        frame.getSize().setWidth(pWidth > 0 ? pWidth : width);
+        frame.getSize().setHeight(pHeight > 0 ? pHeight : height);
     }
 
     private void setFrameImpl(CGRect otherFrame) {

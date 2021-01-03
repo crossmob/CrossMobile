@@ -23,7 +23,7 @@ import org.crossmobile.bridge.Native;
 class StatusBarListener {
     private PhoneStateListener phoneStateListener;
     private BroadcastReceiver wifiReceiver;
-    private BroadcastReceiver batteryReceiver;
+    private final BroadcastReceiver batteryReceiver;
     private final MainActivity activity;
 
     static StatusBarListener init(MainActivity activity) {
