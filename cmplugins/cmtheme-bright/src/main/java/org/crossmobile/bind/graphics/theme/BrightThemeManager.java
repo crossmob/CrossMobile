@@ -6,9 +6,9 @@ import crossmobile.ios.uikit.UISwitch;
 import crossmobile.ios.uikit.UIView;
 
 public class BrightThemeManager implements ThemeManager {
-    private SwitchPainter switchPainter;
-    private SliderPainter sliderPainter;
-    private ButtonPainter buttonPainter;
+    private BrightSwitchPainter switchPainter;
+    private BrightSliderPainter sliderPainter;
+    private BrightButtonPainter buttonPainter;
 
     @Override
     public ThemePainter<?, ?> getPainter(UIView view) {

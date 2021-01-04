@@ -10,13 +10,12 @@ import crossmobile.ios.coregraphics.CGPoint;
 import crossmobile.ios.coregraphics.CGRect;
 import org.crossmobile.bind.graphics.Geometry;
 import org.crossmobile.bind.graphics.Theme;
+import org.crossmobile.bind.graphics.theme.PainterExtraData;
 import org.crossmobile.bind.graphics.theme.SwitchPainter;
-import org.crossmobile.bind.graphics.theme.SwitchPainter.SwitchExtraData;
 import org.crossmobile.bridge.ann.*;
 
 import java.util.Set;
 
-import static crossmobile.ios.coregraphics.GraphicsDrill.color;
 import static crossmobile.ios.coregraphics.GraphicsDrill.context;
 
 /**
@@ -33,7 +32,7 @@ public class UISwitch extends UIControl {
     private UIColor thumbTintColor;
     private CGPoint originalTouchPoint;
     private boolean dealAsClick;
-    private final SwitchExtraData extraData = new SwitchExtraData();
+    private final PainterExtraData extraData;
 
     /**
      * Constructs a default UISwitch object located at (0,0) with 0 weight and 0
@@ -53,41 +52,41 @@ public class UISwitch extends UIControl {
     @CMConstructor("- (instancetype)initWithFrame:(CGRect)frame;")
     public UISwitch(CGRect rect) {
         super(rect);
+        extraData = painter().initExtraData();
         setOn(false, false);
-        updateThemeThumbTintColor(null);
+        painter().setThumbColor(null, extraData);
     }
 
-    private SwitchPainter painter() {
-        return (SwitchPainter) painter;
-    }
-
-    private void setVisualsFromTouch(UITouch touch) {
-        extraData.sliderLoc = painter().getSliderLocation(touch.locationInView(this).getX());
-        setNeedsDisplay();
+    @SuppressWarnings("unchecked")
+    private SwitchPainter<PainterExtraData> painter() {
+        return (SwitchPainter<PainterExtraData>) painter;
     }
 
     @Override
     public void touchesBegan(Set<UITouch> touches, UIEvent event) {
         UITouch core = touches.iterator().next();
-        setVisualsFromTouch(core);
-        extraData.isDown = true;
         originalTouchPoint = core.locationInView(this);
+        painter().setPressed(true, extraData);
+        painter().setSliderLocation(originalTouchPoint.getX(), extraData);
         dealAsClick = true;
+        setNeedsDisplay();
     }
 
     @Override
     public void touchesMoved(Set<UITouch> touches, UIEvent event) {
         UITouch core = touches.iterator().next();
-        setVisualsFromTouch(core);
-        if (dealAsClick && !Geometry.similarTo(originalTouchPoint, core.locationInView(this), 3))
+        CGPoint location = core.locationInView(this);
+        painter().setSliderLocation(location.getX(), extraData);
+        if (dealAsClick && !Geometry.similarTo(originalTouchPoint, location, 3))
             dealAsClick = false;
+        setNeedsDisplay();
     }
 
     @Override
     public void touchesEnded(Set<UITouch> touches, UIEvent event) {
-        extraData.isDown = false;
-        setVisualsFromTouch(touches.iterator().next());
-        boolean newValue = dealAsClick ? !on : extraData.sliderLoc > 0.5;
+        painter().setPressed(false, extraData);
+        boolean valueBasedOnLocation = painter().setSliderLocation(touches.iterator().next().locationInView(this).getX(), extraData);
+        boolean newValue = dealAsClick ? !on : valueBasedOnLocation;
         boolean shouldSendEvent = newValue != on;
         setOn(newValue);
         if (shouldSendEvent)
@@ -129,7 +128,7 @@ public class UISwitch extends UIControl {
             + "     animated:(BOOL)animated;")
     public void setOn(boolean on, boolean animated) {
         this.on = on;
-        extraData.sliderLoc = on ? 1 : 0;
+        painter().setValue(on, extraData);
         setNeedsDisplay();
     }
 
@@ -151,13 +150,8 @@ public class UISwitch extends UIControl {
     @CMSetter("@property(nonatomic, strong) UIColor *thumbTintColor;")
     public void setThumbTintColor(UIColor thumbTintColor) {
         this.thumbTintColor = thumbTintColor;
-        updateThemeThumbTintColor(thumbTintColor);
+        painter().setThumbColor(thumbTintColor, extraData);
         setNeedsDisplay();
-    }
-
-    private void updateThemeThumbTintColor(UIColor thumbTintColor) {
-        extraData.thumbColorUp = thumbTintColor == null ? painter().getThumbColorUp() : color(thumbTintColor.cgcolor);
-        extraData.thumbColorDown = painter().getThumbColorDown(extraData.thumbColorUp);
     }
 
     @Override

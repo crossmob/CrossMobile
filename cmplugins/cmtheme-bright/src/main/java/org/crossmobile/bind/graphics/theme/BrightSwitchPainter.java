@@ -13,41 +13,30 @@ import org.crossmobile.bind.graphics.GraphicsContext;
 
 import static crossmobile.ios.coregraphics.GraphicsDrill.color;
 import static crossmobile.ios.uikit.UserInterfaceDrill.cgcolor;
+import static org.crossmobile.bind.graphics.theme.ThumbExtraData.THUMB_SIZE;
 
-public class BrightSwitchPainter implements SwitchPainter {
+public class BrightSwitchPainter extends GenericBrightPainter implements SwitchPainter<ThumbExtraData> {
 
     private final static int WIDTH = 52;
     private final static int HEIGHT = 30;
-    private final static int INSET = 3;
+    private final static int INSET = (HEIGHT - THUMB_SIZE) / 2;
     private final static int TRACK_WIDTH = WIDTH - INSET - INSET;
-    private final static int THUMB_SIZE = HEIGHT - INSET - INSET;
     private final static int TRACK_MOVING_AREA = TRACK_WIDTH - THUMB_SIZE;
-    private final static int THUMB_COLOR = 0xFFFFFFFF;
     private final int offColor = color(cgcolor(UIColor.colorWithWhiteAlpha(1, 0.85)));
 
     @Override
-    public double getSliderLocation(double x) {
-        double where = x - INSET - THUMB_SIZE / 2d;
-        if (where < 0)
-            where = 0;
-        if (where > TRACK_MOVING_AREA)
-            where = TRACK_MOVING_AREA;
-        return where / TRACK_MOVING_AREA;
-    }
-
-    @Override
-    public void draw(UISwitch entity, CGRect rect, GraphicsContext<?> gcx, SwitchExtraData extraData) {
+    public void draw(UISwitch entity, CGRect rect, GraphicsContext<?> gcx, ThumbExtraData extraData) {
         double x = rect.getOrigin().getX();
         double y = rect.getOrigin().getY();
         int onColor = color(cgcolor(entity.onTintColor()));
-        int sliderArea = (int) (TRACK_MOVING_AREA * extraData.sliderLoc);
+        int sliderArea = (int) (TRACK_MOVING_AREA * extraData.location);
 
         gcx.fillRoundRodBar(x, y, WIDTH, HEIGHT, onColor);
         gcx.fillHalfRoundRodBar(sliderArea + INSET + THUMB_SIZE / 2d, y + INSET, TRACK_MOVING_AREA - sliderArea + THUMB_SIZE / 2d, THUMB_SIZE, offColor, true, false);
 
         // draw thumb
         int buttonLocation = (int) (x + INSET + sliderArea);
-        gcx.setFillColorWithColor(extraData.isDown ? extraData.thumbColorDown : extraData.thumbColorUp);
+        gcx.setFillColorWithColor(extraData.pressed ? extraData.thumbColorDown : extraData.thumbColorUp);
         gcx.fillEllipse(buttonLocation, INSET, THUMB_SIZE, THUMB_SIZE);
         gcx.setLineWidth(2);
         gcx.setDrawColorWithColor(onColor);
@@ -65,12 +54,33 @@ public class BrightSwitchPainter implements SwitchPainter {
     }
 
     @Override
-    public int getThumbColorUp() {
-        return THUMB_COLOR;
+    public void setThumbColor(UIColor thumpColor, ThumbExtraData extraData) {
+        extraData.updateThumbColor(thumpColor);
     }
 
     @Override
-    public int getThumbColorDown(int colorUp) {
-        return ThemeUtilities.pressedColor(colorUp);
+    public void setPressed(boolean pressed, ThumbExtraData extraData) {
+        extraData.pressed = pressed;
+    }
+
+    @Override
+    public boolean setSliderLocation(double x, ThumbExtraData extraData) {
+        double where = x - INSET - THUMB_SIZE / 2d;
+        if (where < 0)
+            where = 0;
+        if (where > TRACK_MOVING_AREA)
+            where = TRACK_MOVING_AREA;
+        extraData.location = where / TRACK_MOVING_AREA;
+        return extraData.location > 0.5;
+    }
+
+    @Override
+    public void setValue(boolean status, ThumbExtraData extraData) {
+        extraData.location = status ? 1 : 0;
+    }
+
+    @Override
+    public ThumbExtraData initExtraData() {
+        return new ThumbExtraData();
     }
 }

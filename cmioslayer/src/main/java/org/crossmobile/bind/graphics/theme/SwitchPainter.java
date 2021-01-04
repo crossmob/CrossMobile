@@ -6,19 +6,16 @@
 
 package org.crossmobile.bind.graphics.theme;
 
+import crossmobile.ios.uikit.UIColor;
 import crossmobile.ios.uikit.UISwitch;
 
-public interface SwitchPainter extends ThemePainter<UISwitch, SwitchPainter.SwitchExtraData> {
-    double getSliderLocation(double x);
+public interface SwitchPainter<P extends PainterExtraData> extends ThemePainter<UISwitch, P> {
+    void setThumbColor(UIColor thumpColor, P extraData);
 
-    int getThumbColorUp();
+    void setPressed(boolean pressed, P extraData);
 
-    int getThumbColorDown(int colorUp);
+    void setValue(boolean status, P extraData);
 
-    final class SwitchExtraData {
-        public double sliderLoc;
-        public boolean isDown;
-        public int thumbColorUp;
-        public int thumbColorDown;
-    }
+    boolean setSliderLocation(double x, P extraData);
+
 }

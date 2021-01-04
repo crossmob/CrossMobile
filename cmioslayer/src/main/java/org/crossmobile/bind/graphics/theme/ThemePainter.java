@@ -10,10 +10,12 @@ import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.uikit.UIView;
 import org.crossmobile.bind.graphics.GraphicsContext;
 
-public interface ThemePainter<T extends UIView, E> {
-    void draw(T entity, CGRect rect, GraphicsContext<?> gcx, E extraData);
+public interface ThemePainter<T extends UIView, P extends PainterExtraData> {
+    void draw(T entity, CGRect rect, GraphicsContext<?> gcx, P extraData);
 
     int getFixedWidth();
 
     int getFixedHeight();
+
+    P initExtraData();
 }

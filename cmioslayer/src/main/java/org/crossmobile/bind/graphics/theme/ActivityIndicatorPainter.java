@@ -8,5 +8,5 @@ package org.crossmobile.bind.graphics.theme;
 
 import crossmobile.ios.uikit.UIActivityIndicatorView;
 
-public interface ActivityIndicatorPainter extends ThemePainter<UIActivityIndicatorView, Object> {
+public interface ActivityIndicatorPainter<P extends PainterExtraData> extends ThemePainter<UIActivityIndicatorView, P> {
 }

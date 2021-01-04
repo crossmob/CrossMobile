@@ -7,15 +7,16 @@
 package crossmobile.ios.uikit;
 
 
+import crossmobile.ios.coregraphics.CGPoint;
 import crossmobile.ios.coregraphics.CGRect;
 import org.crossmobile.bind.graphics.Theme;
+import org.crossmobile.bind.graphics.theme.PainterExtraData;
 import org.crossmobile.bind.graphics.theme.SliderPainter;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.*;
 
 import java.util.Set;
 
-import static crossmobile.ios.coregraphics.GraphicsDrill.color;
 import static crossmobile.ios.coregraphics.GraphicsDrill.context;
 
 /**
@@ -41,7 +42,7 @@ public class UISlider extends UIControl {
     private UIColor maximumTrackTintColor = Theme.Color.TOOLBACK;
     private UIColor thumbTintColor;
 
-    private final SliderPainter.SliderExtraData extraData = new SliderPainter.SliderExtraData();
+    private final PainterExtraData extraData;
 
     /**
      * Constructs a default slider object located at (0,0) with 0 weight and 0
@@ -60,34 +61,25 @@ public class UISlider extends UIControl {
     @CMConstructor("- (instancetype)initWithFrame:(CGRect)frame;")
     public UISlider(CGRect rect) {
         super(rect);
-        updateThemeThumbTintColor(null);
+        extraData = painter().initExtraData();
+        painter().setThumbColor(null, extraData);
     }
 
-    private SliderPainter painter() {
-        return (SliderPainter) painter;
+    @SuppressWarnings("unchecked")
+    private SliderPainter<PainterExtraData> painter() {
+        return (SliderPainter<PainterExtraData>) painter;
     }
 
-    private void updateThemeThumbTintColor(UIColor thumbTintColor) {
-        extraData.thumbColorUp = thumbTintColor == null ? painter().getThumbColorUp() : color(thumbTintColor.cgcolor);
-        extraData.thumbColorDown = painter().getThumbColorDown(extraData.thumbColorUp);
-    }
-
-    private void setValueFromTouch(UITouch touch) {
-        int thumbSize = painter().getThumbSize();
-        double where = touch.locationInView(this).getX() - thumbSize / 2f;
-        double trackMovingArea = getWidth() - thumbSize;
-        if (where < 0)
-            where = 0;
-        if (where > trackMovingArea)
-            where = trackMovingArea;
-        setValue((float) (minimumValue + (maximumValue - minimumValue) * where / trackMovingArea));
+    private void setValueFromTouch(Set<UITouch> touches) {
+        double cValue = painter().setSliderLocation(touches.iterator().next().locationInView(this).getX(), getWidth(), extraData);
+        setValue((float) (minimumValue + (maximumValue - minimumValue) * cValue));
         setNeedsDisplay();
     }
 
     @Override
     public void touchesBegan(Set<UITouch> touches, UIEvent event) {
-        extraData.isDown = true;
-        setValueFromTouch(touches.iterator().next());
+        painter().setPressed(true, extraData);
+        setValueFromTouch(touches);
         if (continuous)
             sendActionsForControlEvents(UIControlEvents.ValueChanged, event);
     }
@@ -99,8 +91,8 @@ public class UISlider extends UIControl {
 
     @Override
     public void touchesEnded(Set<UITouch> touches, UIEvent event) {
-        extraData.isDown = false;
-        setValueFromTouch(touches.iterator().next());
+        painter().setPressed(false, extraData);
+        setValueFromTouch(touches);
         if (!continuous)
             sendActionsForControlEvents(UIControlEvents.ValueChanged, event);
     }
@@ -446,7 +438,7 @@ public class UISlider extends UIControl {
     @CMSetter("@property(nonatomic, strong) UIColor *thumbTintColor;")
     public void setThumbTintColor(UIColor thumbTintColor) {
         this.thumbTintColor = thumbTintColor;
-        updateThemeThumbTintColor(thumbTintColor);
+        painter().setThumbColor(thumbTintColor, extraData);
         setNeedsDisplay();
     }
 
