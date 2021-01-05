@@ -6,10 +6,8 @@
 
 package crossmobile.ios.uikit;
 
-import crossmobile.ios.coregraphics.GraphicsDrill;
 import crossmobile.ios.coregraphics.CGRect;
-import org.crossmobile.bind.graphics.GraphicsContext;
-import org.crossmobile.bind.graphics.Theme;
+import crossmobile.ios.coregraphics.GraphicsDrill;
 import org.crossmobile.bind.wrapper.TextWrapper;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.CMClass;
@@ -21,6 +19,7 @@ import java.util.Set;
 
 import static crossmobile.ios.coregraphics.GraphicsDrill.color;
 import static crossmobile.ios.coregraphics.GraphicsDrill.context;
+import static crossmobile.ios.uikit.cmCommonFonts.getSmallSystemFont;
 
 /**
  * UITextView class defines an object that represents a visible, rectangular
@@ -60,7 +59,7 @@ public class UITextView extends UIView {
         super(rect, UIColor.whiteColor);
         registerWidget(Native.widget().textView(this));
         synchronizeNativeBackgroundColor();
-        widget().setFont(GraphicsDrill.font(Theme.TextView.FONT.cgfont));
+        widget().setFont(GraphicsDrill.font(getSmallSystemFont().cgfont));
     }
 
     private TextWrapper widget() {

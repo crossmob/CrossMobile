@@ -10,17 +10,21 @@ import crossmobile.ios.coregraphics.CGContext;
 import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.coregraphics.CGSize;
 import org.crossmobile.bind.graphics.Theme;
-import org.crossmobile.bridge.ann.*;
-import org.crossmobile.bridge.system.Pair;
 import org.crossmobile.bind.system.Promise;
 import org.crossmobile.bridge.Native;
+import org.crossmobile.bridge.ann.CMClass;
+import org.crossmobile.bridge.ann.CMGetter;
+import org.crossmobile.bridge.ann.CMSelector;
+import org.crossmobile.bridge.ann.CMSetter;
+import org.crossmobile.bridge.system.Pair;
 
 import java.io.File;
-import java.util.List;
 
 import static crossmobile.ios.uikit.UIButtonType.System;
 import static crossmobile.ios.uikit.UIButtonType.*;
 import static crossmobile.ios.uikit.UIControlState.*;
+import static crossmobile.ios.uikit.cmCommonFonts.getButtonFont;
+import static crossmobile.ios.uikit.cmCommonFonts.getSystemFont;
 
 /**
  * UIButton class defines a button element that is displayed on screen and
@@ -68,13 +72,13 @@ public class UIButton extends UIControl {
 
         label = new UILabel();
         label.setHidden(true);
-        label.setFont(Theme.Button.FONT);
+        label.setFont(getButtonFont());
         label.setBackgroundColor(null); // Need to do this to bypass UIAppearance settings
         addSubview(label);
 
         switch (UIButtonType) {
             case System:
-                label.setFont(Theme.Button.SYSTEMTFONT);
+                label.setFont(getSystemFont());
                 if (Theme.Button.IS_SYSTEM) {
                     String location = Native.file().getSystemCacheLocation() + File.separator;
                     setBackgroundImage(UIImage.getMidStretchedImage(location + Theme.Images.ROUNDRECT_RELEASED), UIControlState.Normal);

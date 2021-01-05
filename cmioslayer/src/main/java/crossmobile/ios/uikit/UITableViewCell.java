@@ -17,6 +17,7 @@ import org.crossmobile.bridge.ann.*;
 import java.util.Set;
 
 import static crossmobile.ios.coregraphics.GraphicsDrill.context;
+import static crossmobile.ios.uikit.cmCommonFonts.getSmallSystemFont;
 
 /**
  * UITableViewCell class defines objects that represent cell elements used in
@@ -344,7 +345,7 @@ public class UITableViewCell extends UIView {
                 }
             };
             detailedtextlabel.setHighlightedTextColor(selectionStyle == UITableViewCellSelectionStyle.None ? null : UIColor.whiteColor());
-            detailedtextlabel.setFont(UIFont.systemFontOfSize(Theme.Font.SMALLSYSTEMSIZE));
+            detailedtextlabel.setFont(getSmallSystemFont());
             contentV.addSubview(detailedtextlabel);
         }
         return detailedtextlabel;

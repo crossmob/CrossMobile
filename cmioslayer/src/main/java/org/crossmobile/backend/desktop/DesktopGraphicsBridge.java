@@ -63,7 +63,7 @@ public abstract class DesktopGraphicsBridge<CANVAS, NTVP, TRANSF> extends Abstra
     @Override
     public String getBackChar() {
         if (backChar == null)
-            if (new Font(Theme.Font.FONTNAME, Font.PLAIN, Theme.Font.LABELSIZE).canDisplay(Theme.Font.BACKCHAR.charAt(0)))
+            if (new Font(Native.graphics().themeManager().fonts().fontName(), Font.PLAIN, Native.graphics().themeManager().fonts().labelSize()).canDisplay(Theme.Font.BACKCHAR.charAt(0)))
                 backChar = Theme.Font.BACKCHAR;
             else
                 backChar = "<";

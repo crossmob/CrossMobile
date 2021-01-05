@@ -1,3 +1,9 @@
+/*
+ * (c) 2020 by Panayotis Katsaloulis
+ *
+ * SPDX-License-Identifier: LGPL-3.0-only
+ */
+
 package org.crossmobile.bind.graphics.theme;
 
 import crossmobile.ios.uikit.UIButton;
@@ -9,6 +15,7 @@ public class BrightThemeManager implements ThemeManager {
     private BrightSwitchPainter switchPainter;
     private BrightSliderPainter sliderPainter;
     private BrightButtonPainter buttonPainter;
+    private final ThemeFont themeFont = new BrightThemeFont();
 
     @Override
     public ThemePainter<?, ?> getPainter(UIView view) {
@@ -29,5 +36,10 @@ public class BrightThemeManager implements ThemeManager {
         } else
             painter = null;
         return painter;
+    }
+
+    @Override
+    public ThemeFont fonts() {
+        return themeFont;
     }
 }

@@ -47,12 +47,6 @@ public class Theme {
 
     public final static class Font {
 
-        public static final int BUTTONSIZE = getInteger("cm.theme.font.button.size", 18);
-        public static final int SYSTEMBUTTONSIZE = getInteger("cm.theme.font.systembutton.size", 15);
-        public static final int LABELSIZE = getInteger("cm.theme.font.label.size", 17);
-        public static final int SYSTEMSIZE = getInteger("cm.theme.font.system.size", 14);
-        public static final int SMALLSYSTEMSIZE = getInteger("cm.theme.font.smallsystem.size", 12);
-        public static final String FONTNAME = System.getProperty("cm.theme.font.name", "Arial");
         public static final String BACKCHAR = System.getProperty("cm.theme.font.backchar", "\u276E");
 
         private Font() {
@@ -134,34 +128,10 @@ public class Theme {
         }
     }
 
-    public final static class Label {
 
-        public final static UIFont FONT = UIFont.systemFontOfSize(Font.LABELSIZE);
-
-        private Label() {
-        }
-    }
-
-    public final static class TextField {
-
-        public final static UIFont FONT = UIFont.systemFontOfSize(Font.LABELSIZE);
-
-        private TextField() {
-        }
-    }
-
-    public final static class TextView {
-
-        public final static UIFont FONT = UIFont.systemFontOfSize(Font.SMALLSYSTEMSIZE);
-
-        private TextView() {
-        }
-    }
 
     public final static class Button {
 
-        public final static UIFont SYSTEMTFONT = UIFont.systemFontOfSize(Font.SYSTEMBUTTONSIZE);
-        public final static UIFont FONT = UIFont.systemFontOfSize(Font.BUTTONSIZE);
         public final static boolean IS_BACKGROUND_ADJUSTED = propertyToBoolean("cm.theme.button.background.adjusted", true);
         public final static boolean IS_TINT_INHERITED = propertyToBoolean("cm.theme.button.tint.inherited", true);
         public final static boolean IS_SYSTEM = propertyToBoolean("cm.theme.button.system", true);

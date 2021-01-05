@@ -12,4 +12,6 @@ public interface ThemeManager {
 
     ThemePainter<?, ?> getPainter(UIView view);
 
+    ThemeFont fonts();
+
 }

@@ -6,7 +6,10 @@
 
 package crossmobile.ios.uikit;
 
-import crossmobile.ios.coregraphics.*;
+import crossmobile.ios.coregraphics.CGContext;
+import crossmobile.ios.coregraphics.CGRect;
+import crossmobile.ios.coregraphics.CGSize;
+import crossmobile.ios.coregraphics.GraphicsDrill;
 import crossmobile.ios.foundation.NSLineBreakMode;
 import org.crossmobile.bind.graphics.Geometry;
 import org.crossmobile.bind.graphics.GraphicsContext;
@@ -20,6 +23,7 @@ import org.robovm.objc.annotation.UIAppearanceSelector;
 
 import static crossmobile.ios.coregraphics.GraphicsDrill.color;
 import static crossmobile.ios.coregraphics.GraphicsDrill.context;
+import static crossmobile.ios.uikit.cmCommonFonts.getLabelFont;
 import static org.crossmobile.bind.graphics.TextHelpers.splitStringWithFontAndSize;
 
 /**
@@ -28,19 +32,19 @@ import static org.crossmobile.bind.graphics.TextHelpers.splitStringWithFontAndSi
  */
 @CMClass
 public class UILabel extends UIView {
-
     /*
      * Due to a shortcut for various labels, these properties are marked
      * "friendly"
      */
     private UIColor textColor = null;
     private UIColor shadowColor = null;
+
     /*
      * Regular private properties
      */
     private String text = null;
     private TextBlock blocks = TextBlock.EMPTY;
-    private UIFont fontOrig = Theme.Label.FONT;
+    private UIFont fontOrig = getLabelFont();
     private UIFont fontDraw = fontOrig;
     private CGSize shadowOffset = null;
     private int textAlignment = UITextAlignment.Left;
@@ -118,7 +122,7 @@ public class UILabel extends UIView {
     public void setFont(UIFont font) {
         if (SystemUtilities.equals(font, this.fontOrig))
             return;
-        this.fontOrig = font == null ? Theme.Label.FONT : font;
+        this.fontOrig = font == null ? getLabelFont() : font;
         refreshTextMetrics(true);
     }
 

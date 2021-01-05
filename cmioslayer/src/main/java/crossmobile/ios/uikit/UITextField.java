@@ -9,7 +9,6 @@ package crossmobile.ios.uikit;
 import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.coregraphics.GraphicsDrill;
 import org.crossmobile.bind.graphics.GraphicsContext;
-import org.crossmobile.bind.graphics.Theme;
 import org.crossmobile.bind.wrapper.TextWrapper;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.CMClass;
@@ -18,10 +17,10 @@ import org.crossmobile.bridge.ann.CMGetter;
 import org.crossmobile.bridge.ann.CMSetter;
 import org.crossmobile.bridge.system.BaseUtils;
 
-import java.util.Objects;
 import java.util.Set;
 
 import static crossmobile.ios.coregraphics.GraphicsDrill.*;
+import static crossmobile.ios.uikit.cmCommonFonts.getLabelFont;
 
 /**
  * UITextField class defines an object that represents a visible text area that
@@ -70,7 +69,7 @@ public class UITextField extends UIControl implements UITextInputTraits {
     public UITextField(CGRect rect) {
         super(rect);
         registerWidget(Native.widget().textField(this));
-        widget().setFont(GraphicsDrill.font(Theme.TextField.FONT.cgfont));
+        widget().setFont(GraphicsDrill.font(getLabelFont().cgfont));
         setBorderStyle(UITextBorderStyle.None);
     }
 

@@ -26,6 +26,7 @@ import static crossmobile.ios.coregraphics.GraphicsDrill.font;
  */
 @CMClass
 public class UIFont extends NSObject {
+    private static final String FONT_NAME = Native.graphics().themeManager().fonts().fontName();
 
     final CGFont cgfont;
 
@@ -41,7 +42,7 @@ public class UIFont extends NSObject {
      */
     @CMSelector("+ (UIFont *)systemFontOfSize:(CGFloat)fontSize;")
     public static UIFont systemFontOfSize(double fontSize) {
-        return new UIFont(cgfont(Native.graphics().getFont(Theme.Font.FONTNAME, fontSize)));
+        return new UIFont(cgfont(Native.graphics().getFont(FONT_NAME, fontSize)));
     }
 
     /**
@@ -53,7 +54,7 @@ public class UIFont extends NSObject {
      */
     @CMSelector("+ (UIFont *)boldSystemFontOfSize:(CGFloat)fontSize;")
     public static UIFont boldSystemFontOfSize(double fontSize) {
-        return new UIFont(cgfont(Native.graphics().getFont(Theme.Font.FONTNAME + " Bold", fontSize)));
+        return new UIFont(cgfont(Native.graphics().getFont(FONT_NAME + " Bold", fontSize)));
     }
 
     /**
@@ -65,7 +66,7 @@ public class UIFont extends NSObject {
      */
     @CMSelector("+ (UIFont *)italicSystemFontOfSize:(CGFloat)fontSize;")
     public static UIFont italicSystemFontOfSize(double fontSize) {
-        return new UIFont(cgfont(Native.graphics().getFont(Theme.Font.FONTNAME + " Italic", fontSize)));
+        return new UIFont(cgfont(Native.graphics().getFont(FONT_NAME + " Italic", fontSize)));
     }
 
     /**
@@ -88,7 +89,7 @@ public class UIFont extends NSObject {
      */
     @CMSelector("+ (CGFloat)buttonFontSize;")
     public static double buttonFontSize() {
-        return Theme.Font.BUTTONSIZE;
+        return Native.graphics().themeManager().fonts().buttonSize();
     }
 
     /**
@@ -98,7 +99,7 @@ public class UIFont extends NSObject {
      */
     @CMSelector("+ (CGFloat)labelFontSize;")
     public static double labelFontSize() {
-        return Theme.Font.LABELSIZE;
+        return Native.graphics().themeManager().fonts().labelSize();
     }
 
     /**
@@ -110,7 +111,7 @@ public class UIFont extends NSObject {
      */
     @CMSelector("+ (CGFloat)smallSystemFontSize;")
     public static double smallSystemFontSize() {
-        return Theme.Font.SMALLSYSTEMSIZE;
+        return Native.graphics().themeManager().fonts().smallSystemSize();
     }
 
     /**
@@ -122,7 +123,7 @@ public class UIFont extends NSObject {
      */
     @CMSelector("+ (CGFloat)systemFontSize;")
     public static double systemFontSize() {
-        return Theme.Font.SYSTEMSIZE;
+        return Native.graphics().themeManager().fonts().systemSize();
     }
 
     /**
