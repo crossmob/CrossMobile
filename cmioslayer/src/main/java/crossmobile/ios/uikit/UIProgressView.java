@@ -7,15 +7,12 @@
 package crossmobile.ios.uikit;
 
 import crossmobile.ios.coregraphics.CGRect;
-import org.crossmobile.bind.graphics.GraphicsContext;
-import org.crossmobile.bind.graphics.Theme;
-import org.crossmobile.bridge.Native;
+import org.crossmobile.bind.graphics.theme.ProgressPainter;
 import org.crossmobile.bridge.ann.CMClass;
 import org.crossmobile.bridge.ann.CMConstructor;
 import org.crossmobile.bridge.ann.CMGetter;
 import org.crossmobile.bridge.ann.CMSetter;
 
-import static crossmobile.ios.coregraphics.GraphicsDrill.color;
 import static crossmobile.ios.coregraphics.GraphicsDrill.context;
 
 /**
@@ -28,11 +25,7 @@ public class UIProgressView extends UIView {
     private float progress;
     private int progressViewStyle;
     private UIColor progressTintColor = null;
-    private UIColor trackTintColorA = null;
-    //
-    private int height;
-    private boolean drawBack;
-    private boolean isInverse;
+    private UIColor trackTintColor = null;
 
     /**
      * Initializes and returns an progress-view object.
@@ -96,15 +89,6 @@ public class UIProgressView extends UIView {
     @CMSetter("@property(nonatomic) UIProgressViewStyle progressViewStyle;")
     public void setProgressViewStyle(int UIProgressViewStyle) {
         progressViewStyle = UIProgressViewStyle;
-        if (progressViewStyle == crossmobile.ios.uikit.UIProgressViewStyle.Default) {
-            height = Theme.Progress.DEFAULT_HEIGHT;
-            drawBack = true;
-            isInverse = false;
-        } else {
-            height = Theme.Progress.BAR_HEIGHT;
-            drawBack = !Theme.Progress.IS_BACK_DISABLED;
-            isInverse = Theme.Progress.ISINVERSE;
-        }
     }
 
     /**
@@ -115,7 +99,7 @@ public class UIProgressView extends UIView {
      */
     @CMSetter("@property(nonatomic, strong) UIColor *trackTintColor;")
     public void setTrackTintColor(UIColor trackTintColor) {
-        this.trackTintColorA = trackTintColor == null ? null : trackTintColor;
+        this.trackTintColor = trackTintColor;
     }
 
     /**
@@ -127,16 +111,7 @@ public class UIProgressView extends UIView {
      */
     @CMGetter("@property(nonatomic, strong) UIColor *trackTintColor;")
     public UIColor trackTintColor() {
-        return new UIColor(trackColor());
-    }
-
-    private int trackColor() {
-        if (trackTintColorA != null)
-            return color(trackTintColorA.cgcolor);
-        if (isInverse)
-            return color(tintColor().cgcolor);
-        else
-            return color(Theme.Color.TOOLBACK.cgcolor);
+        return trackTintColor;
     }
 
     /**
@@ -146,7 +121,7 @@ public class UIProgressView extends UIView {
      */
     @CMSetter("@property(nonatomic, strong) UIColor *progressTintColor;")
     public void setProgressTintColor(UIColor progressTintColor) {
-        this.progressTintColor = progressTintColor == null ? null : progressTintColor;
+        this.progressTintColor = progressTintColor;
     }
 
     /**
@@ -156,46 +131,11 @@ public class UIProgressView extends UIView {
      */
     @CMGetter("@property(nonatomic, strong) UIColor *progressTintColor;")
     public UIColor progressTintColor() {
-        return new UIColor(progressColor());
-    }
-
-    private int progressColor() {
-        if (progressTintColor != null)
-            return color(progressTintColor.cgcolor);
-        if (isInverse)
-            return color(Theme.Color.TOOLBACK.cgcolor);
-        else
-            return color(tintColor().cgcolor);
+        return progressTintColor;
     }
 
     @Override
     public final void drawRect(CGRect rect) {
-        GraphicsContext<?> cx = context(UIGraphics.getCurrentContext());
-        int offset = Theme.Progress.ISSQUARED ? 0 : 1;
-
-        double x = rect.getOrigin().getX();
-        double y = rect.getOrigin().getY();
-        double width = rect.getSize().getWidth();
-        if (width < height)
-            //noinspection SuspiciousNameCombination
-            width = height;
-
-        double progr = (width - offset * 2) * progress;
-        if (progr < (height - offset * 2))
-            progr = height - offset * 2;
-
-        if (drawBack)
-            if (Theme.Progress.ISSQUARED) {
-                cx.setFillColorWithColor(trackColor());
-                cx.fillRect(x, y, width, height);
-            } else
-                cx.fillRoundRodBar(x, y, width, height, trackColor());
-
-        if (progress > 0.001f)
-            if (Theme.Progress.ISSQUARED) {
-                cx.setFillColorWithColor(progressColor());
-                cx.fillRect(x, y, progr, height);
-            } else
-                cx.fillRoundRodBar(x + offset, y + offset, progr, height - offset * 2, progressColor());
+        ((ProgressPainter<?>) painter).draw(this, rect, context(UIGraphics.getCurrentContext()), null);
     }
 }

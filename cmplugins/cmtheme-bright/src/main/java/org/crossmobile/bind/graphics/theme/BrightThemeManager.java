@@ -6,15 +6,13 @@
 
 package org.crossmobile.bind.graphics.theme;
 
-import crossmobile.ios.uikit.UIButton;
-import crossmobile.ios.uikit.UISlider;
-import crossmobile.ios.uikit.UISwitch;
-import crossmobile.ios.uikit.UIView;
+import crossmobile.ios.uikit.*;
 
 public class BrightThemeManager implements ThemeManager {
-    private BrightSwitchPainter switchPainter;
-    private BrightSliderPainter sliderPainter;
     private BrightButtonPainter buttonPainter;
+    private BrightProgressPainter progressPainter;
+    private BrightSliderPainter sliderPainter;
+    private BrightSwitchPainter switchPainter;
     private final ThemeFont themeFont = new BrightThemeFont();
 
     @Override
@@ -33,6 +31,10 @@ public class BrightThemeManager implements ThemeManager {
             if (sliderPainter == null)
                 sliderPainter = new BrightSliderPainter();
             painter = sliderPainter;
+        } else if (UIProgressView.class.isAssignableFrom(cls)) {
+            if (progressPainter == null)
+                progressPainter = new BrightProgressPainter();
+            painter = progressPainter;
         } else
             painter = null;
         return painter;

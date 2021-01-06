@@ -26,17 +26,4 @@ public final class UIProgressViewStyle {
 
     private UIProgressViewStyle() {
     }
-
-    static class Colors {
-
-        final int borderColor;
-        final int fillColor;
-        final int progressColor;
-
-        public Colors(int borderColor, int fillColor, int progressColor) {
-            this.borderColor = borderColor;
-            this.fillColor = fillColor;
-            this.progressColor = progressColor;
-        }
-    }
 }

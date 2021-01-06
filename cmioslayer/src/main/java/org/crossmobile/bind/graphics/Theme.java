@@ -171,18 +171,6 @@ public class Theme {
         }
     }
 
-    public final static class Progress {
-
-        public final static boolean ISSQUARED = propertyToBoolean("cm.theme.progress.squared", false);
-        public final static int BAR_HEIGHT = getInteger("cm.theme.progress.bar.height", 10);
-        public final static int DEFAULT_HEIGHT = getInteger("cm.theme.progress.height.default", 10);
-        public final static boolean ISINVERSE = propertyToBoolean("cm.theme.progress.inverse", true);
-        public final static boolean IS_BACK_DISABLED = propertyToBoolean("cm.theme.progress.back.disabled", false);
-
-        private Progress() {
-        }
-    }
-
     public final static class Scroll {
 
         public final static int INDICATOR_THICKNESS = getInteger("cm.theme.scroll.indicator.thickness", 8);

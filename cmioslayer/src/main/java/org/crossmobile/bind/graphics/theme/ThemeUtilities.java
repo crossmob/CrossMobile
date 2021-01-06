@@ -35,4 +35,8 @@ public class ThemeUtilities {
         hsv[2] *= 2;
         return Native.graphics().colorHSBAtoRGBA(hsv[0], hsv[1], hsv[2], hsv[3]);
     }
+
+    public static int getControlColor() {
+        return 0xFFB7B7B7;
+    }
 }
