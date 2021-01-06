@@ -19,7 +19,7 @@ import java.util.List;
 import static android.content.pm.ActivityInfo.*;
 import static org.crossmobile.bind.graphics.GraphicsBridgeConstants.DefaultInitialOrientation;
 
-public class AndroidGraphicsBridge extends AbstractGraphicsBridge<Canvas, AndroidNativePath, Matrix> {
+public class AndroidGraphicsBridge extends AbstractGraphicsBridge<Canvas, Matrix> {
 
     private static final int[] AndroidOrientations = {SCREEN_ORIENTATION_UNSPECIFIED, SCREEN_ORIENTATION_PORTRAIT,
             SCREEN_ORIENTATION_REVERSE_PORTRAIT, SCREEN_ORIENTATION_REVERSE_LANDSCAPE, SCREEN_ORIENTATION_LANDSCAPE};

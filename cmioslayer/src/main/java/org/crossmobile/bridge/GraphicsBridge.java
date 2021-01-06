@@ -12,7 +12,7 @@ import org.crossmobile.bind.graphics.theme.ThemeManager;
 
 import java.util.List;
 
-public interface GraphicsBridge<CANVAS, NTVP, TRANSF> {
+public interface GraphicsBridge<CANVAS, TRANSF> {
 
     void refreshDisplay();
 

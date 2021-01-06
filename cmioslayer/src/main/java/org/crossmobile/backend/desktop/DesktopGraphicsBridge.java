@@ -18,7 +18,7 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 
-public abstract class DesktopGraphicsBridge<CANVAS, NTVP, TRANSF> extends AbstractGraphicsBridge<CANVAS, NTVP, TRANSF> {
+public abstract class DesktopGraphicsBridge<CANVAS, TRANSF> extends AbstractGraphicsBridge<CANVAS, TRANSF> {
 
     private Map<String, FontInfo> psFontNames;
 

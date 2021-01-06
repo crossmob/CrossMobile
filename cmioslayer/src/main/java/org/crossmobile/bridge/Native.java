@@ -23,9 +23,9 @@ public abstract class Native {
     private SystemBridge system;
     private FileBridge file;
     private LifecycleBridge lifecycle;
-    private GraphicsBridge graphics;
+    private GraphicsBridge<?, ?> graphics;
     private SoundBridge sound;
-    private WrapperUIBridge widget;
+    private WrapperUIBridge<?> widget;
     private WebViewBridge webview;
     private WrapperMapBridge map;
     private InAppBridge inapp;
@@ -102,6 +102,7 @@ public abstract class Native {
         return bridge.file;
     }
 
+    @SuppressWarnings("rawtypes")
     public static GraphicsBridge graphics() {
         if (bridge().graphics == null)
             bridge.graphics = bridge.initGraphics();
@@ -114,6 +115,7 @@ public abstract class Native {
         return bridge.sound;
     }
 
+    @SuppressWarnings("rawtypes")
     public static WrapperUIBridge widget() {
         if (bridge().widget == null)
             bridge.widget = bridge.initWidget();
@@ -198,11 +200,11 @@ public abstract class Native {
 
     protected abstract LifecycleBridge initLifecycle();
 
-    protected abstract GraphicsBridge initGraphics();
+    protected abstract GraphicsBridge<?, ?> initGraphics();
 
     protected abstract SoundBridge initSound();
 
-    protected abstract WrapperUIBridge initWidget();
+    protected abstract WrapperUIBridge<?> initWidget();
 
     protected abstract WebViewBridge initWebView();
 

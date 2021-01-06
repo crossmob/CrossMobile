@@ -34,7 +34,7 @@ public class SwingFont implements NativeFont {
 
     @SuppressWarnings("UseSpecificCatch")
     static SwingFont getFont(String fontName, float size) {
-        DesktopGraphicsBridge<?, ?, ?> graphicsBridge = (DesktopGraphicsBridge<?, ?, ?>) Native.graphics();
+        DesktopGraphicsBridge<?, ?> graphicsBridge = (DesktopGraphicsBridge<?, ?>) Native.graphics();
         graphicsBridge.loadFonts();
         FontInfo fontInfo = graphicsBridge.getFontInfo(fontName);
         Map<AttributedCharacterIterator.Attribute, Object> attributes = new HashMap<>();

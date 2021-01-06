@@ -281,7 +281,6 @@ public class JEmulatorPanel extends JComponent implements MouseListener, MouseMo
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public void paint(Graphics gfx) {
         Native.lifecycle().encapsulateContext(() -> {
             drawWindow(Native.graphics().newGraphicsContext(gfx, true));

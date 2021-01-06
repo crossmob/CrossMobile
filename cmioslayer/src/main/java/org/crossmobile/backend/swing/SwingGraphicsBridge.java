@@ -18,7 +18,7 @@ import java.awt.geom.AffineTransform;
 
 import static crossmobile.ios.uikit.UIDeviceOrientation.*;
 
-public class SwingGraphicsBridge extends DesktopGraphicsBridge<Graphics2D, SwingNativePath, AffineTransform> {
+public class SwingGraphicsBridge extends DesktopGraphicsBridge<Graphics2D, AffineTransform> {
 
     public static JEmulatorFrame frame;
     public static JEmulatorPanel component;
@@ -30,7 +30,7 @@ public class SwingGraphicsBridge extends DesktopGraphicsBridge<Graphics2D, Swing
     }
 
     @Override
-    public GraphicsContext newGraphicsContext(Graphics2D graphics, boolean isLive) {
+    public SwingGraphicsContext newGraphicsContext(Graphics2D graphics, boolean isLive) {
         return new SwingGraphicsContext(graphics == null ? getDefaultGraphics() : graphics, isLive);
     }
 

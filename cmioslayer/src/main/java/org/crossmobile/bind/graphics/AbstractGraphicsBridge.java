@@ -16,7 +16,7 @@ import org.crossmobile.bridge.Native;
 
 import static crossmobile.ios.uikit.UIDeviceOrientation.*;
 
-public abstract class AbstractGraphicsBridge<CANVAS, NTVP, TRANSF> implements GraphicsBridge<CANVAS, NTVP, TRANSF> {
+public abstract class AbstractGraphicsBridge<CANVAS, TRANSF> implements GraphicsBridge<CANVAS, TRANSF> {
 
     public static int DrawingDepth;    // Use this variable for debugging, to check the depth of UIView we are currently drawing
 
