@@ -1119,6 +1119,7 @@ crossmobile/ios/uikit/UIWindow.java
 crossmobile/ios/uikit/UserInterfaceDrill.java
 crossmobile/ios/uikit/cmButtonStates.java
 crossmobile/ios/uikit/cmCells.java
+crossmobile/ios/uikit/cmCommonFonts.java
 crossmobile/ios/uikit/cmConstraintWithVisualFormat.java
 crossmobile/ios/uikit/cmConstraints.java
 crossmobile/ios/uikit/cmDatePickers.java
@@ -1252,6 +1253,17 @@ org/crossmobile/bind/graphics/anim/curve/EaseInOutCurve.java
 org/crossmobile/bind/graphics/anim/curve/EaseOutCurve.java
 org/crossmobile/bind/graphics/anim/curve/InterpolationCurve.java
 org/crossmobile/bind/graphics/anim/curve/LinearCurve.java
+org/crossmobile/bind/graphics/theme/ActivityIndicatorPainter.java
+org/crossmobile/bind/graphics/theme/ButtonPainter.java
+org/crossmobile/bind/graphics/theme/PainterExtraData.java
+org/crossmobile/bind/graphics/theme/ProgressPainter.java
+org/crossmobile/bind/graphics/theme/SliderPainter.java
+org/crossmobile/bind/graphics/theme/SwitchPainter.java
+org/crossmobile/bind/graphics/theme/ThemeFactory.java
+org/crossmobile/bind/graphics/theme/ThemeFont.java
+org/crossmobile/bind/graphics/theme/ThemeManager.java
+org/crossmobile/bind/graphics/theme/ThemePainter.java
+org/crossmobile/bind/graphics/theme/ThemeUtilities.java
 org/crossmobile/bind/io/AbstractFileBridge.java
 org/crossmobile/bind/io/AbstractNetworkBridge.java
 org/crossmobile/bind/io/AdsBridge.java
@@ -2021,7 +2033,6 @@ crossmobile/ios/uikit/UIPopoverControllerDelegate.class v8
 crossmobile/ios/uikit/UIPrintInteractionCompletionHandler.class v8
 crossmobile/ios/uikit/UIPrintInteractionController.class v8
 crossmobile/ios/uikit/UIProgressView.class v8
-crossmobile/ios/uikit/UIProgressViewStyle$Colors.class v8
 crossmobile/ios/uikit/UIProgressViewStyle.class v8
 crossmobile/ios/uikit/UIRectEdge.class v8
 crossmobile/ios/uikit/UIRemoteNotificationType.class v8
@@ -2145,6 +2156,7 @@ crossmobile/ios/uikit/cmCells$MinuteCell.class v8
 crossmobile/ios/uikit/cmCells$MonthCell.class v8
 crossmobile/ios/uikit/cmCells$YearCell.class v8
 crossmobile/ios/uikit/cmCells.class v8
+crossmobile/ios/uikit/cmCommonFonts.class v8
 crossmobile/ios/uikit/cmConstraintWithVisualFormat$Constraint.class v8
 crossmobile/ios/uikit/cmConstraintWithVisualFormat$Predicate.class v8
 crossmobile/ios/uikit/cmConstraintWithVisualFormat.class v8
@@ -2425,13 +2437,7 @@ org/crossmobile/bind/graphics/Theme$Debug$StyleTags.class v8
 org/crossmobile/bind/graphics/Theme$Debug.class v8
 org/crossmobile/bind/graphics/Theme$Font.class v8
 org/crossmobile/bind/graphics/Theme$Images.class v8
-org/crossmobile/bind/graphics/Theme$Label.class v8
-org/crossmobile/bind/graphics/Theme$Progress.class v8
 org/crossmobile/bind/graphics/Theme$Scroll.class v8
-org/crossmobile/bind/graphics/Theme$Slider.class v8
-org/crossmobile/bind/graphics/Theme$Switch.class v8
-org/crossmobile/bind/graphics/Theme$TextField.class v8
-org/crossmobile/bind/graphics/Theme$TextView.class v8
 org/crossmobile/bind/graphics/Theme.class v8
 org/crossmobile/bind/graphics/UIStatusBar$UIBattery.class v8
 org/crossmobile/bind/graphics/UIStatusBar.class v8
@@ -2444,6 +2450,16 @@ org/crossmobile/bind/graphics/anim/curve/EaseInOutCurve.class v8
 org/crossmobile/bind/graphics/anim/curve/EaseOutCurve.class v8
 org/crossmobile/bind/graphics/anim/curve/InterpolationCurve.class v8
 org/crossmobile/bind/graphics/anim/curve/LinearCurve.class v8
+org/crossmobile/bind/graphics/theme/ActivityIndicatorPainter.class v8
+org/crossmobile/bind/graphics/theme/ButtonPainter.class v8
+org/crossmobile/bind/graphics/theme/PainterExtraData.class v8
+org/crossmobile/bind/graphics/theme/ProgressPainter.class v8
+org/crossmobile/bind/graphics/theme/SliderPainter.class v8
+org/crossmobile/bind/graphics/theme/SwitchPainter.class v8
+org/crossmobile/bind/graphics/theme/ThemeFont.class v8
+org/crossmobile/bind/graphics/theme/ThemeManager.class v8
+org/crossmobile/bind/graphics/theme/ThemePainter.class v8
+org/crossmobile/bind/graphics/theme/ThemeUtilities.class v8
 org/crossmobile/bind/io/AbstractFileBridge.class v8
 org/crossmobile/bind/io/AbstractNetworkBridge.class v8
 org/crossmobile/bind/io/AdsBridge.class v8
@@ -2899,7 +2915,6 @@ crossmobile/ios/uikit/UIPopoverControllerDelegate.class v8
 crossmobile/ios/uikit/UIPrintInteractionCompletionHandler.class v8
 crossmobile/ios/uikit/UIPrintInteractionController.class v8
 crossmobile/ios/uikit/UIProgressView.class v8
-crossmobile/ios/uikit/UIProgressViewStyle$Colors.class v8
 crossmobile/ios/uikit/UIProgressViewStyle.class v8
 crossmobile/ios/uikit/UIRectEdge.class v8
 crossmobile/ios/uikit/UIRemoteNotificationType.class v8
@@ -3023,6 +3038,7 @@ crossmobile/ios/uikit/cmCells$MinuteCell.class v8
 crossmobile/ios/uikit/cmCells$MonthCell.class v8
 crossmobile/ios/uikit/cmCells$YearCell.class v8
 crossmobile/ios/uikit/cmCells.class v8
+crossmobile/ios/uikit/cmCommonFonts.class v8
 crossmobile/ios/uikit/cmConstraintWithVisualFormat$Constraint.class v8
 crossmobile/ios/uikit/cmConstraintWithVisualFormat$Predicate.class v8
 crossmobile/ios/uikit/cmConstraintWithVisualFormat.class v8
@@ -3163,13 +3179,7 @@ org/crossmobile/bind/graphics/Theme$Debug$StyleTags.class v8
 org/crossmobile/bind/graphics/Theme$Debug.class v8
 org/crossmobile/bind/graphics/Theme$Font.class v8
 org/crossmobile/bind/graphics/Theme$Images.class v8
-org/crossmobile/bind/graphics/Theme$Label.class v8
-org/crossmobile/bind/graphics/Theme$Progress.class v8
 org/crossmobile/bind/graphics/Theme$Scroll.class v8
-org/crossmobile/bind/graphics/Theme$Slider.class v8
-org/crossmobile/bind/graphics/Theme$Switch.class v8
-org/crossmobile/bind/graphics/Theme$TextField.class v8
-org/crossmobile/bind/graphics/Theme$TextView.class v8
 org/crossmobile/bind/graphics/Theme.class v8
 org/crossmobile/bind/graphics/UIStatusBar$UIBattery.class v8
 org/crossmobile/bind/graphics/UIStatusBar.class v8
@@ -3182,6 +3192,16 @@ org/crossmobile/bind/graphics/anim/curve/EaseInOutCurve.class v8
 org/crossmobile/bind/graphics/anim/curve/EaseOutCurve.class v8
 org/crossmobile/bind/graphics/anim/curve/InterpolationCurve.class v8
 org/crossmobile/bind/graphics/anim/curve/LinearCurve.class v8
+org/crossmobile/bind/graphics/theme/ActivityIndicatorPainter.class v8
+org/crossmobile/bind/graphics/theme/ButtonPainter.class v8
+org/crossmobile/bind/graphics/theme/PainterExtraData.class v8
+org/crossmobile/bind/graphics/theme/ProgressPainter.class v8
+org/crossmobile/bind/graphics/theme/SliderPainter.class v8
+org/crossmobile/bind/graphics/theme/SwitchPainter.class v8
+org/crossmobile/bind/graphics/theme/ThemeFont.class v8
+org/crossmobile/bind/graphics/theme/ThemeManager.class v8
+org/crossmobile/bind/graphics/theme/ThemePainter.class v8
+org/crossmobile/bind/graphics/theme/ThemeUtilities.class v8
 org/crossmobile/bind/io/AbstractFileBridge.class v8
 org/crossmobile/bind/io/AbstractNetworkBridge.class v8
 org/crossmobile/bind/io/AdsBridge.class v8

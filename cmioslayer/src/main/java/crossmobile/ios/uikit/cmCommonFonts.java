@@ -8,31 +8,31 @@ package crossmobile.ios.uikit;
 
 import org.crossmobile.bridge.Native;
 
-public class cmCommonFonts {
+class cmCommonFonts {
     private static UIFont LABEL_FONT;
     private static UIFont SYSTEM_FONT;
     private static UIFont SMALL_SYSTEM_FONT;
     private static UIFont BUTTON_FONT;
 
-    public static UIFont getLabelFont() {
+    static UIFont getLabelFont() {
         if (LABEL_FONT == null)
             LABEL_FONT = UIFont.systemFontOfSize(Native.graphics().themeManager().fonts().labelSize());
         return LABEL_FONT;
     }
 
-    public static UIFont getSystemFont() {
+    static UIFont getSystemFont() {
         if (SYSTEM_FONT == null)
             SYSTEM_FONT = UIFont.systemFontOfSize(Native.graphics().themeManager().fonts().systemSize());
         return SYSTEM_FONT;
     }
 
-    public static UIFont getSmallSystemFont() {
+    static UIFont getSmallSystemFont() {
         if (SMALL_SYSTEM_FONT == null)
             SMALL_SYSTEM_FONT = UIFont.systemFontOfSize(Native.graphics().themeManager().fonts().smallSystemSize());
         return SMALL_SYSTEM_FONT;
     }
 
-    public static UIFont getButtonFont() {
+    static UIFont getButtonFont() {
         if (BUTTON_FONT == null)
             BUTTON_FONT = UIFont.systemFontOfSize(Native.graphics().themeManager().fonts().buttonSize());
         return BUTTON_FONT;
