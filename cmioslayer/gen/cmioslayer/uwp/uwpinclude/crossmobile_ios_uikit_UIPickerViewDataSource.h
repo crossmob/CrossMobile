@@ -1,4 +1,5 @@
-// (c) 2021 under LGPL by CrossMobile plugin tools
+// (c) 2021 by CrossMobile plugin tools
+// SPDX-License-Identifier: LGPL-3.0-only
 
 // crossmobile_ios_uikit_UIPickerViewDataSource definition
 
