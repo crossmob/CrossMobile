@@ -1,4 +1,4 @@
-// (c) 2020 under LGPL by CrossMobile plugin tools
+// (c) 2021 under LGPL by CrossMobile plugin tools
 
 // crossmobile_ios_foundation_NSURLRequest definition
 
