@@ -80,8 +80,8 @@ public class UserInterfaceDrill {
         }
     }
 
-    public static TextWrapper getTextFieldWrapper(UITextField tf) {
-        return (TextWrapper) tf.getWidget();
+    public static TextWrapper<?, ?, ?> getTextFieldWrapper(UITextField tf) {
+        return (TextWrapper<?, ?, ?>) tf.getWidget();
     }
 
     public static void drawSelf(UIView view, CGContext cx) {

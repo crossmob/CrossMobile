@@ -129,14 +129,14 @@ public class UIScrollView extends UIView {
                     double y = calculateNewPosition(-transl.getY(), contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom() - cframe().getSize().getHeight(), shouldSpring);
                     if (pan.state() != UIGestureRecognizerState.Ended) { // UIGestureRecognizerState.Changed
                         if (dragging)
-                            setContentOffset(x, y); // no special animation
+                            setContentOffset(x, y, false); // no special animation
                         else if (Math.sqrt(Math.pow(contentOffset.getX() - x, 2) + Math.pow(contentOffset.getY() - y, 2)) > SELECTION_THRESHOLD) {
                             // Set dragging mode, disable component click mode
                             invalidateTimers();
                             touchesCancelled(arg.touchList, arg.touchEvent);
                             dragging = true;
                             tracking = true;
-                            setContentOffset(x, y); // no special animation
+                            setContentOffset(x, y, false); // no special animation
                         }
                     } else {
                         // Ended
@@ -156,13 +156,17 @@ public class UIScrollView extends UIView {
                                         : Math.min(x, (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - cframe().getSize().getWidth()));
                                 float newY = (float) (y < 0 ? 0
                                         : Math.min(y, (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) - cframe().getSize().getHeight()));
-                                setContentOffset(new CGPoint(newX, newY), true);
+                                startDecelerating();
+                                setContentOffset(newX, newY, true);
                             } else if (meter(scrollVelocity) > 1) {
+                                startDecelerating();
                                 if (scroller != null)
                                     scroller.invalidate();
                                 scroller = Animator.add(new SwipeContent(scrollVelocity), CommonInterpolations.EaseOut, 0.5F);
-                            } else if (pagingEnabled)
-                                setContentOffset(new CGPoint(x + 0.5, y + 0.5), true);
+                            } else if (pagingEnabled) {
+                                startDecelerating();
+                                setContentOffset(x + 0.5, y + 0.5, true);
+                            }
                         }
                     }
                     break;
@@ -365,24 +369,42 @@ public class UIScrollView extends UIView {
             + "                animated:(BOOL)animated;")
     public void setContentOffset(CGPoint offset, boolean animated) {
         if (!contentOffset.equals(offset))
-            if (animated) {
-                invalidateTimers();
-                animatedScroll = Animator.add(new ScrollContent(offset.getX(), offset.getY()), CommonInterpolations.EaseInOut, 0.3);
-            } else
-                setContentOffset(offset.getX(), offset.getY());
+            setContentOffset(offset.getX(), offset.getY(), animated);
     }
 
-    private void setContentOffset(double x, double y) {
-        if ((contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) <= cframe().getSize().getWidth())
-            x = contentOffset.getX();
-        if ((contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) <= cframe().getSize().getHeight())
-            y = contentOffset.getY();
-        contentOffset.setX((int) (x + 0.5));
-        contentOffset.setY((int) (y + 0.5));
-        if (delegate != null)
-            delegate.didScroll(UIScrollView.this);
-        layoutNativeFromRoot();
-        setNeedsDisplay();
+    private void setContentOffset(double x, double y, boolean animated) {
+        if (animated) {
+            invalidateTimers();
+            animatedScroll = Animator.add(new ScrollContent(x, y), CommonInterpolations.EaseInOut, 0.3);
+        } else {
+            if ((contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) <= cframe().getSize().getWidth())
+                x = contentOffset.getX();
+            if ((contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) <= cframe().getSize().getHeight())
+                y = contentOffset.getY();
+            contentOffset.setX((int) (x + 0.5));
+            contentOffset.setY((int) (y + 0.5));
+            if (delegate != null)
+                delegate.didScroll(UIScrollView.this);
+            layoutNativeFromRoot();
+            setNeedsDisplay();
+        }
+    }
+
+    private void startDecelerating() {
+        if (!decelerating) {
+            decelerating = true;
+            if (delegate != null)
+                delegate.willBeginDecelerating(this);
+        }
+    }
+
+    private void endDecelerating() {
+        if (decelerating) {
+            decelerating = false;
+            if (delegate != null)
+                delegate.didEndDecelerating(this);
+            flashScrollIndicators();
+        }
     }
 
     /**
@@ -832,7 +854,6 @@ public class UIScrollView extends UIView {
             double dx2 = rect.getOrigin().getY() + rect.getSize().getHeight() - contentOffset.getY() - cframe().getSize().getHeight();
             dy = Math.abs(dx1) < Math.abs(dx2) ? dx1 : dx2;
         }
-
         setContentOffset(new CGPoint(contentOffset.getX() + dx, contentOffset.getY() + dy), animated);
     }
 
@@ -859,7 +880,7 @@ public class UIScrollView extends UIView {
             public void end() {
                 painter().endFlashing(extraData);
             }
-        }, CommonInterpolations.Linear, 0.6);
+        }, CommonInterpolations.Linear, 0.4);
     }
 
     @Override
@@ -886,53 +907,6 @@ public class UIScrollView extends UIView {
     @Override
     void drawOnTop(CGContext cx, CGRect rect) {
         painter().draw(this, rect, extraData);
-    }
-
-    private class ScrollContent implements AnimationAction {
-
-        final double xFrom, yFrom, xTo, yTo;
-
-        ScrollContent(double xTo, double yTo) {
-            this.xFrom = contentOffset.getX();
-            this.yFrom = contentOffset.getY();
-
-            xTo = xTo < 0
-                    ? 0
-                    : (xTo > (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - cframe().getSize().getWidth()
-                    ? (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - cframe().getSize().getWidth()
-                    : pagingEnabled
-                    ? ((int) (Math.min(xTo, xFrom + cframe().getSize().getWidth()) / cframe().getSize().getWidth() + 0.5)) * cframe().getSize().getWidth() + contentInset.getLeft() + contentInset.getRight()
-                    : xTo);
-            yTo = yTo < 0
-                    ? 0
-                    : (yTo > (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) - cframe().getSize().getHeight()
-                    ? (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) - cframe().getSize().getHeight()
-                    : pagingEnabled
-                    ? ((int) (Math.min(yTo, yFrom + cframe().getSize().getHeight()) / cframe().getSize().getHeight() + 0.5)) * cframe().getSize().getHeight() + contentInset.getTop() + contentInset.getBottom()
-                    : yTo);
-            this.xTo = xTo;
-            this.yTo = yTo;
-        }
-
-        @Override
-        public void start() {
-            flashScrollIndicators();
-        }
-
-        @Override
-        public void apply(double progress) {
-            setContentOffset(xFrom + (xTo - xFrom) * progress, (yFrom + (yTo - yFrom) * progress));
-        }
-
-        @Override
-        public void end() {
-            if (delegate != null)
-                delegate.didEndDecelerating(UIScrollView.this);
-
-            if (delegate != null)
-                delegate.didEndScrollingAnimation(UIScrollView.this);
-            invalidateTimers();
-        }
     }
 
     private class SwipeContent implements AnimationAction {
@@ -972,16 +946,13 @@ public class UIScrollView extends UIView {
 
         @Override
         public void start() {
-            decelerating = true;
-            if (delegate != null)
-                delegate.willBeginDecelerating(UIScrollView.this);
         }
 
         @Override
         public void apply(double progress) {
             if (Math.abs(dx) > 50 || Math.abs(dy) > 50)
                 if (bounces)
-                    setContentOffset(x + dx * progress, y + dy * progress);
+                    setContentOffset(x + dx * progress, y + dy * progress, false);
                 else {
                     double width = cframe().getSize().getWidth();
                     double height = cframe().getSize().getHeight();
@@ -989,23 +960,63 @@ public class UIScrollView extends UIView {
                             : Math.min(x + dx * progress, contentSize.getWidth() - width));
                     double newY = (y + dy * progress < 0 ? 0
                             : Math.min(y + dy * progress, contentSize.getHeight() - height));
-                    setContentOffset(newX, newY);
-                    if ((newX == 0 || newX == contentSize.getWidth() - width) && (newY == 0 || newY == contentSize.getHeight() - height))
-                        if (scroller != null)
-                            scroller.invalidate();
+                    setContentOffset(newX, newY, false);
+//                    if ((newX == 0 || newX == contentSize.getWidth() - width) && (newY == 0 || newY == contentSize.getHeight() - height))
+//                        if (scroller != null)
+//                            scroller.invalidate();
                 }
         }
 
         @Override
         public void end() {
-            decelerating = false;
-            if (delegate != null)
-                delegate.didEndDecelerating(UIScrollView.this);
-            scroller = null;
             invalidateTimers();
-            swipe = Animator.add(new UIScrollView.ScrollContent(contentOffset.getX(), contentOffset.getY()), CommonInterpolations.EaseOut);
+            swipe = Animator.add(new ScrollContent(contentOffset.getX(), contentOffset.getY()), CommonInterpolations.EaseOut);
         }
     }
+
+    private class ScrollContent implements AnimationAction {
+
+        final double xFrom, yFrom, xTo, yTo;
+
+        ScrollContent(double xTo, double yTo) {
+            this.xFrom = contentOffset.getX();
+            this.yFrom = contentOffset.getY();
+            xTo = xTo < 0
+                    ? 0
+                    : (xTo > (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - cframe().getSize().getWidth()
+                    ? (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - cframe().getSize().getWidth()
+                    : pagingEnabled
+                    ? ((int) (Math.min(xTo, xFrom + cframe().getSize().getWidth()) / cframe().getSize().getWidth() + 0.5)) * cframe().getSize().getWidth() + contentInset.getLeft() + contentInset.getRight()
+                    : xTo);
+            yTo = yTo < 0
+                    ? 0
+                    : (yTo > (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) - cframe().getSize().getHeight()
+                    ? (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) - cframe().getSize().getHeight()
+                    : pagingEnabled
+                    ? ((int) (Math.min(yTo, yFrom + cframe().getSize().getHeight()) / cframe().getSize().getHeight() + 0.5)) * cframe().getSize().getHeight() + contentInset.getTop() + contentInset.getBottom()
+                    : yTo);
+            this.xTo = xTo;
+            this.yTo = yTo;
+        }
+
+        @Override
+        public void start() {
+        }
+
+        @Override
+        public void apply(double progress) {
+            setContentOffset(xFrom + (xTo - xFrom) * progress, (yFrom + (yTo - yFrom) * progress), false);
+        }
+
+        @Override
+        public void end() {
+            invalidateTimers();
+            endDecelerating();
+            if (delegate != null)
+                delegate.didEndScrollingAnimation(UIScrollView.this);
+        }
+    }
+
 
     @Override
     void applyLayout() {

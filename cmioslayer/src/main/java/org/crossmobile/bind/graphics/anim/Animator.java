@@ -54,7 +54,7 @@ public class Animator {
     }
 
     public static Animation add(final AnimationAction consumer, final InterpolationCurve curve, final double duration, final double repeats, final boolean pingpong) {
-        if (consumer == null)
+        if (consumer == null || duration <= 0)
             return null;
         Animation anim = new Animation(consumer, curve, pingpong, duration, repeats);
         Native.lifecycle().runAndWaitOnEventThread(() -> {

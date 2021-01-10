@@ -26,8 +26,6 @@ public class Theme {
 
     public final static class Images {
 
-        public final static String ACTIVITY_BLACK = "activity";
-        public final static String ACTIVITY_WHITE = "activityw";
         public final static String DELETE_PRESSED = "delete_pressed";
         public final static String DELETE_RELEASED = "delete_released";
         public final static String INSERT_PRESSED = "insert_pressed";
@@ -90,8 +88,6 @@ public class Theme {
         public final static UIColor FORE = uicolor((int) ((long) getLong("cm.theme.bar.fore", 0xFFFFFFFF)));
         public final static UIColor SHADOW = uicolor((int) ((long) getLong("cm.theme.bar.shadow", 0xFF808080)));
         public static final int FONTSIZE = getInteger("cm.theme.bar.fontsize", 17);
-        public static final int FONTSMALLSIZE = getInteger("cm.theme.bar.fontsmallsize", 13);
-        public static final boolean ISTINTED = propertyToBoolean("cm.theme.bar.tinted", true);
         public static final boolean ISTRANSLUCENT = propertyToDouble("cm.theme.bar.translucency", -1) >= 0;
         public static final double TRANSLUCENCY = propertyToDouble("cm.theme.bar.translucency", 0.88);
 

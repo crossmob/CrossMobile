@@ -9,56 +9,49 @@ package org.crossmobile.bind.graphics.anim;
 import org.crossmobile.bind.graphics.anim.curve.InterpolationCurve;
 
 public class Animation {
-    private static final double REPEATS_THRESHOLD = 0.0001;
-
-    private final double loop;
-    private final double repeats;
+    // All time is stored in milliseconds
+    private final long loop;
+    private final long duration;
+    private final long totalTime;
     private final double lastValue;
-    private final AnimationAction consumer;
-    private final double duration;
-    private final InterpolationCurve curve;
-
-    private long creationMillis = -1;
-    private long finishMillis = -1;
+    private long createdAt = -1;
+    private long finishedAt = -1;
     private boolean valid = true;
+
+    private final AnimationAction consumer;
+    private final InterpolationCurve curve;
 
     Animation(AnimationAction consumer, InterpolationCurve curve, boolean pingpong, double duration, double repeats) {
         this.consumer = consumer;
         this.curve = curve;
-        this.duration = duration;
-        this.loop = pingpong ? duration * 2 : duration;
-        this.repeats = repeats < REPEATS_THRESHOLD ? 1 : repeats;            // Make sure repeats is not too small to be accounted
-
-        double last = this.repeats % 1;                                      // Take care of last item, if we have repeats
-        if (last < REPEATS_THRESHOLD && this.repeats >= REPEATS_THRESHOLD)   // If repeats are practically integers, and we have at least one full cycle
-            last = 1;                                                   //   perform a full cycle instead of zeroing
-        if (pingpong) {                                                 // Take care of ping pong
-            last *= 2;
-            if (last > 1)
-                last = 2 - last;
+        this.duration = (long) (duration * 1000 + 0.5);
+        this.loop = pingpong ? 2 * this.duration : this.duration;
+        if (repeats < 0.001) {
+            this.totalTime = loop;
+            this.lastValue = 1;
+        } else {
+            this.totalTime = (long) (loop * repeats + 0.5);
+            this.lastValue = repeats % 1 < 0.001 ? 1 : repeats % 1;
         }
-        this.lastValue = last;
     }
 
     public void frame(long frameMillis) {
         if (valid) {
-            if (creationMillis < 0) {
-                creationMillis = frameMillis;
-                finishMillis = creationMillis + Math.round(1000 * repeats * loop);
+            if (createdAt < 0) {
+                createdAt = frameMillis;
+                finishedAt = frameMillis + totalTime;
                 consumer.start();
+                consumer.apply(0);
             } else {
-                boolean lastTick = false;
-                if (frameMillis >= finishMillis) {
-                    frameMillis = finishMillis;
-                    lastTick = true;
-                }
-                double elapsed = ((frameMillis - creationMillis) / 1000d) % loop;
-                if (elapsed > duration)
-                    elapsed = loop - elapsed;
-                consumer.apply(lastTick ? lastValue : curve.interpolate(elapsed / duration));
-                if (lastTick) {
+                if (frameMillis >= finishedAt) {
                     invalidate();
+                    consumer.apply(lastValue);
                     consumer.end();
+                } else {
+                    long value = (frameMillis - createdAt) % loop;
+                    if (loop > duration && value > duration)    // if pingpong is enabled and value is on the "pong" part
+                        value = loop - value;
+                    consumer.apply(curve.interpolate(((double) value) / duration));
                 }
             }
         }

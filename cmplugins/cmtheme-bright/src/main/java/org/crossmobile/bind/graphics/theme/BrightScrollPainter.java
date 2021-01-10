@@ -22,7 +22,8 @@ public class BrightScrollPainter implements ScrollPainter<BrightScrollExtraData>
 
     @Override
     public void draw(UIScrollView entity, CGRect rect, BrightScrollExtraData extraData) {
-        if (!(entity.isDragging() || entity.isTracking() || entity.isDecelerating() || extraData.flashing))
+        boolean isFullyDrawn = entity.isDragging() || entity.isTracking() || entity.isDecelerating();
+        if (!(isFullyDrawn || extraData.flashing))
             return;
 
         // Access to private & original (for optimization reasons) data
@@ -49,7 +50,7 @@ public class BrightScrollPainter implements ScrollPainter<BrightScrollExtraData>
                 - INDICATOR_INSET - INDICATOR_INSET
                 - (willShowHorizontal ? INDICATOR_THICKNESS : 0);
         if (guiWidth >= INDICATOR_THICKNESS && guiHeight >= INDICATOR_THICKNESS) {
-            double c_alpha = entity.isDragging() || entity.isTracking() || entity.isDecelerating() ? 1 : extraData.flashAlpha;
+            double c_alpha = isFullyDrawn ? 1 : extraData.flashAlpha;
             int fillColor = (int) (0xFF * c_alpha * 0.25) << 24;
             int drawColor = ((int) (0xFF * c_alpha) << 24);
             if (willShowHorizontal) {
@@ -93,6 +94,7 @@ public class BrightScrollPainter implements ScrollPainter<BrightScrollExtraData>
     @Override
     public void startFlashing(BrightScrollExtraData extraData) {
         extraData.flashing = true;
+        extraData.flashAlpha = 1;
     }
 
     @Override
