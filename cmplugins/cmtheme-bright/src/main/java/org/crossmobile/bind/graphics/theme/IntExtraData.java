@@ -6,7 +6,6 @@
 
 package org.crossmobile.bind.graphics.theme;
 
-import crossmobile.ios.uikit.UIProgressView;
-
-public interface ProgressPainter extends ThemePainter<UIProgressView> {
+class IntExtraData implements PainterExtraData{
+    int value;
 }

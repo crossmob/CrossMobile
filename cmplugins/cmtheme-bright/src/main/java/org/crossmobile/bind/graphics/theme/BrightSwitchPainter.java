@@ -13,9 +13,10 @@ import org.crossmobile.bind.graphics.GraphicsContext;
 
 import static crossmobile.ios.coregraphics.GraphicsDrill.color;
 import static crossmobile.ios.uikit.UserInterfaceDrill.cgcolor;
+import static org.crossmobile.bind.graphics.theme.BrightUtilities.defaultContext;
 import static org.crossmobile.bind.graphics.theme.ThumbExtraData.THUMB_SIZE;
 
-public class BrightSwitchPainter extends GenericBrightPainter implements SwitchPainter<ThumbExtraData> {
+public class BrightSwitchPainter implements SwitchPainter<ThumbExtraData> {
 
     private final static int WIDTH = 52;
     private final static int HEIGHT = 30;
@@ -25,7 +26,8 @@ public class BrightSwitchPainter extends GenericBrightPainter implements SwitchP
     private final int offColor = color(cgcolor(UIColor.colorWithWhiteAlpha(1, 0.85)));
 
     @Override
-    public void draw(UISwitch entity, CGRect rect, GraphicsContext<?> gcx, ThumbExtraData extraData) {
+    public void draw(UISwitch entity, CGRect rect, ThumbExtraData extraData) {
+        GraphicsContext<?> gcx = defaultContext();
         double x = rect.getOrigin().getX();
         double y = rect.getOrigin().getY();
         int onColor = color(cgcolor(entity.onTintColor()));
@@ -44,12 +46,12 @@ public class BrightSwitchPainter extends GenericBrightPainter implements SwitchP
     }
 
     @Override
-    public int getFixedWidth() {
+    public int getFixedWidth(UISwitch entity) {
         return WIDTH;
     }
 
     @Override
-    public int getFixedHeight() {
+    public int getFixedHeight(UISwitch entity) {
         return HEIGHT;
     }
 

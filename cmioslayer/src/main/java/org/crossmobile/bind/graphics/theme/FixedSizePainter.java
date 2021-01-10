@@ -8,10 +8,5 @@ package org.crossmobile.bind.graphics.theme;
 
 import crossmobile.ios.uikit.UIView;
 
-public interface ThemeManager {
-
-    ThemePainter<?> getPainter(UIView view);
-
-    ThemeFont fonts();
-
+public interface FixedSizePainter<T extends UIView> extends ThemePainter<T>, FixedSizeRequirement<T> {
 }

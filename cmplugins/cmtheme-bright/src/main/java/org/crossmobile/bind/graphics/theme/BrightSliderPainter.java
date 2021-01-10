@@ -13,15 +13,17 @@ import org.crossmobile.bind.graphics.GraphicsContext;
 
 import static crossmobile.ios.coregraphics.GraphicsDrill.color;
 import static crossmobile.ios.uikit.UserInterfaceDrill.cgcolor;
+import static org.crossmobile.bind.graphics.theme.BrightUtilities.defaultContext;
 import static org.crossmobile.bind.graphics.theme.ThumbExtraData.THUMB_SIZE;
 
-public class BrightSliderPainter extends GenericBrightPainter implements SliderPainter<ThumbExtraData> {
+public class BrightSliderPainter implements SliderPainter<ThumbExtraData> {
 
     private final static int YSIZE = 2;
     private final static int DY = (THUMB_SIZE - YSIZE) / 2;
 
     @Override
-    public void draw(UISlider slider, CGRect rect, GraphicsContext<?> gcx, ThumbExtraData extraData) {
+    public void draw(UISlider slider, CGRect rect, ThumbExtraData extraData) {
+        GraphicsContext<?> gcx = defaultContext();
         double x = rect.getOrigin().getX();
         double y = rect.getOrigin().getY();
         double width = rect.getSize().getWidth();
@@ -39,7 +41,12 @@ public class BrightSliderPainter extends GenericBrightPainter implements SliderP
     }
 
     @Override
-    public int getFixedHeight() {
+    public int getFixedWidth(UISlider entity) {
+        return 0;
+    }
+
+    @Override
+    public int getFixedHeight(UISlider entity) {
         return THUMB_SIZE;
     }
 

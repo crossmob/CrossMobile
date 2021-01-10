@@ -136,6 +136,6 @@ public class UIProgressView extends UIView {
 
     @Override
     public final void drawRect(CGRect rect) {
-        ((ProgressPainter<?>) painter).draw(this, rect, context(UIGraphics.getCurrentContext()), null);
+        ((ProgressPainter) painter).draw(this, rect);
     }
 }

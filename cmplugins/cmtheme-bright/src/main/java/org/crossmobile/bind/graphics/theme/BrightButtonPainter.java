@@ -10,8 +10,8 @@ import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.uikit.UIButton;
 import org.crossmobile.bind.graphics.GraphicsContext;
 
-public class BrightButtonPainter extends GenericBrightPainter implements ButtonPainter<PainterExtraData> {
+public class BrightButtonPainter implements ButtonPainter {
     @Override
-    public void draw(UIButton entity, CGRect rect, GraphicsContext<?> gcx, PainterExtraData metaData) {
+    public void draw(UIButton entity, CGRect rect) {
     }
 }

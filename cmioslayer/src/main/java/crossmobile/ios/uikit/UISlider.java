@@ -444,6 +444,6 @@ public class UISlider extends UIControl {
 
     @Override
     public final void drawRect(CGRect rect) {
-        painter().draw(this, rect, context(UIGraphics.getCurrentContext()), extraData);
+        painter().draw(this, rect, extraData);
     }
 }

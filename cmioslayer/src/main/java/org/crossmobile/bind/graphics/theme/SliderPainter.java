@@ -9,7 +9,7 @@ package org.crossmobile.bind.graphics.theme;
 import crossmobile.ios.uikit.UIColor;
 import crossmobile.ios.uikit.UISlider;
 
-public interface SliderPainter<P extends PainterExtraData> extends ThemePainter<UISlider, P> {
+public interface SliderPainter<P extends PainterExtraData> extends FixedSizePainterExtra<UISlider, P> {
     double setSliderLocation(double x, double width, P extraData);
 
     void setThumbColor(UIColor thumpColor, P extraData);

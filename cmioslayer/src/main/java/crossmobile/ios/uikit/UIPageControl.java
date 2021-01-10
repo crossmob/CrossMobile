@@ -8,12 +8,8 @@ package crossmobile.ios.uikit;
 
 import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.coregraphics.CGSize;
-import org.crossmobile.bind.graphics.GraphicsContext;
-import org.crossmobile.bridge.Native;
+import org.crossmobile.bind.graphics.theme.PageControlPainter;
 import org.crossmobile.bridge.ann.*;
-
-import static crossmobile.ios.coregraphics.GraphicsDrill.color;
-import static crossmobile.ios.coregraphics.GraphicsDrill.context;
 
 /**
  * UIPageControl class defines an object that is used for custom control of
@@ -23,9 +19,6 @@ import static crossmobile.ios.coregraphics.GraphicsDrill.context;
 @CMClass
 public class UIPageControl extends UIControl {
 
-    private static final int CYCLE_DIAMETER = 6;
-    private static final int CYCLE_DISTANCE = 10;
-    //
     private int currentPage;
     private int numberOfPages;
     private boolean hidesForSinglePage;
@@ -52,6 +45,10 @@ public class UIPageControl extends UIControl {
         super(rect);
     }
 
+    private PageControlPainter painter() {
+        return (PageControlPainter) painter;
+    }
+
     /**
      * Returns the size of this page control's bounds in order to accomodate the
      * specified number of pages.
@@ -62,7 +59,7 @@ public class UIPageControl extends UIControl {
      */
     @CMSelector("- (CGSize)sizeForNumberOfPages:(NSInteger)pageCount;")
     public CGSize sizeForNumberOfPages(int pageCount) {
-        return new CGSize(pageCount * (CYCLE_DIAMETER + CYCLE_DISTANCE), 6);
+        return painter().sizeForNumberOfPages(pageCount);
     }
 
     /**
@@ -208,17 +205,7 @@ public class UIPageControl extends UIControl {
     }
 
     @Override
-    public final void drawRect(CGRect rect3) {
-        CGSize size = sizeForNumberOfPages(numberOfPages);
-        double xDelta = (rect3.getSize().getWidth() - size.getWidth()) / 2d + CYCLE_DISTANCE / 2d;
-        double yDelta = (rect3.getSize().getHeight() - size.getHeight()) / 2d;
-        GraphicsContext<?> cx = context(UIGraphics.getCurrentContext());
-        for (int i = 0; i < numberOfPages; i++) {
-            if (i == currentPage)
-                cx.setFillColorWithColor(color(currentPageIndicatorTintColor.cgcolor));
-            else
-                cx.setFillColorWithColor(color(pageIndicatorTintColor.cgcolor));
-            cx.fillEllipse(xDelta + i * (CYCLE_DIAMETER + CYCLE_DISTANCE), yDelta, CYCLE_DIAMETER, CYCLE_DIAMETER);
-        }
+    public final void drawRect(CGRect rect) {
+        painter().draw(this, rect);
     }
 }

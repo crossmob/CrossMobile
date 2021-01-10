@@ -14,14 +14,14 @@ import org.crossmobile.bind.graphics.GraphicsContext;
 
 import static crossmobile.ios.coregraphics.GraphicsDrill.color;
 import static crossmobile.ios.uikit.UserInterfaceDrill.cgcolor;
+import static org.crossmobile.bind.graphics.theme.BrightUtilities.defaultContext;
 
-public class BrightProgressPainter extends GenericBrightPainter implements ProgressPainter<PainterExtraData> {
+public class BrightProgressPainter implements ProgressPainter {
 
     @Override
-    public void draw(UIProgressView progressView, CGRect rect, GraphicsContext<?> gcx, PainterExtraData extraData) {
-
+    public void draw(UIProgressView progressView, CGRect rect) {
+        GraphicsContext<?> gcx = defaultContext();
         boolean shouldDrawTrack = progressView.progressViewStyle() == crossmobile.ios.uikit.UIProgressViewStyle.Default;
-
         double x = rect.getOrigin().getX();
         double y = rect.getOrigin().getY();
         double width = rect.getSize().getWidth();

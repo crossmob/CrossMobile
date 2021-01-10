@@ -9,7 +9,7 @@ package org.crossmobile.bind.graphics.theme;
 import crossmobile.ios.uikit.UIColor;
 import crossmobile.ios.uikit.UISwitch;
 
-public interface SwitchPainter<P extends PainterExtraData> extends ThemePainter<UISwitch, P> {
+public interface SwitchPainter<P extends PainterExtraData> extends FixedSizePainterExtra<UISwitch, P> {
     void setThumbColor(UIColor thumpColor, P extraData);
 
     void setPressed(boolean pressed, P extraData);

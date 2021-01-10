@@ -8,14 +8,7 @@ package org.crossmobile.bind.graphics.theme;
 
 import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.uikit.UIView;
-import org.crossmobile.bind.graphics.GraphicsContext;
 
-public interface ThemePainter<T extends UIView, P extends PainterExtraData> {
-    void draw(T entity, CGRect rect, GraphicsContext<?> gcx, P extraData);
-
-    int getFixedWidth();
-
-    int getFixedHeight();
-
-    P initExtraData();
+public interface ThemePainter<T extends UIView> {
+    void draw(T entity, CGRect rect);
 }

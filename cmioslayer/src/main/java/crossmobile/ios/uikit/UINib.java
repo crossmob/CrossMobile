@@ -18,7 +18,7 @@ import java.util.Map;
 
 @CMClass
 public class UINib extends NSObject {
-    //TODO method implmentations
+    //TODO method implementations
     public static final String ExternalObjects = "UINibExternalObjects";
 
     @CMSelector("+ (UINib *)nibWithNibName:(NSString *)name bundle:(NSBundle *)bundleOrNil;")
@@ -34,7 +34,7 @@ public class UINib extends NSObject {
     }
 
     @CMSelector("- (NSArray *)instantiateWithOwner:(id)ownerOrNil options:(NSDictionary *)optionsOrNil;")
-    public List instantiateWithOwner(NSObject ownerOrNil, Map optionsOrNil) {
-        return new ArrayList();
+    public List<?> instantiateWithOwner(NSObject ownerOrNil, Map<String, Object> optionsOrNil) {
+        return new ArrayList<>();
     }
 }

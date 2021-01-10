@@ -159,18 +159,6 @@ public class Theme {
         }
     }
 
-    public final static class ActivityIndicator {
-
-        public final static int SLICES = getInteger("cm.theme.activityindicator.slices", 9);
-        public final static int ALPHA_SAFE = getInteger("cm.theme.activityindicator.alpha.safe", 4);
-        public final static double ANGLE = propertyToDouble("cm.theme.activityindicator.angle", 0.1);
-        public final static double THICK = propertyToDouble("cm.theme.activityindicator.thick", 5);
-        public final static double THIN = propertyToDouble("cm.theme.activityindicator.thin", 2);
-
-        private ActivityIndicator() {
-        }
-    }
-
     public final static class Scroll {
 
         public final static int INDICATOR_THICKNESS = getInteger("cm.theme.scroll.indicator.thickness", 8);

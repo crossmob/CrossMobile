@@ -1255,6 +1255,10 @@ org/crossmobile/bind/graphics/anim/curve/InterpolationCurve.java
 org/crossmobile/bind/graphics/anim/curve/LinearCurve.java
 org/crossmobile/bind/graphics/theme/ActivityIndicatorPainter.java
 org/crossmobile/bind/graphics/theme/ButtonPainter.java
+org/crossmobile/bind/graphics/theme/FixedSizePainter.java
+org/crossmobile/bind/graphics/theme/FixedSizePainterExtra.java
+org/crossmobile/bind/graphics/theme/FixedSizeRequirement.java
+org/crossmobile/bind/graphics/theme/PageControlPainter.java
 org/crossmobile/bind/graphics/theme/PainterExtraData.java
 org/crossmobile/bind/graphics/theme/ProgressPainter.java
 org/crossmobile/bind/graphics/theme/SliderPainter.java
@@ -1263,6 +1267,7 @@ org/crossmobile/bind/graphics/theme/ThemeFactory.java
 org/crossmobile/bind/graphics/theme/ThemeFont.java
 org/crossmobile/bind/graphics/theme/ThemeManager.java
 org/crossmobile/bind/graphics/theme/ThemePainter.java
+org/crossmobile/bind/graphics/theme/ThemePainterExtra.java
 org/crossmobile/bind/graphics/theme/ThemeUtilities.java
 org/crossmobile/bind/io/AbstractFileBridge.java
 org/crossmobile/bind/io/AbstractNetworkBridge.java
@@ -2425,7 +2430,6 @@ org/crossmobile/bind/graphics/TextHelpers$1.class v8
 org/crossmobile/bind/graphics/TextHelpers$TextBlock.class v8
 org/crossmobile/bind/graphics/TextHelpers$TextLine.class v8
 org/crossmobile/bind/graphics/TextHelpers.class v8
-org/crossmobile/bind/graphics/Theme$ActivityIndicator.class v8
 org/crossmobile/bind/graphics/Theme$Bar$Nav.class v8
 org/crossmobile/bind/graphics/Theme$Bar$Tab.class v8
 org/crossmobile/bind/graphics/Theme$Bar$Tool.class v8
@@ -2452,6 +2456,10 @@ org/crossmobile/bind/graphics/anim/curve/InterpolationCurve.class v8
 org/crossmobile/bind/graphics/anim/curve/LinearCurve.class v8
 org/crossmobile/bind/graphics/theme/ActivityIndicatorPainter.class v8
 org/crossmobile/bind/graphics/theme/ButtonPainter.class v8
+org/crossmobile/bind/graphics/theme/FixedSizePainter.class v8
+org/crossmobile/bind/graphics/theme/FixedSizePainterExtra.class v8
+org/crossmobile/bind/graphics/theme/FixedSizeRequirement.class v8
+org/crossmobile/bind/graphics/theme/PageControlPainter.class v8
 org/crossmobile/bind/graphics/theme/PainterExtraData.class v8
 org/crossmobile/bind/graphics/theme/ProgressPainter.class v8
 org/crossmobile/bind/graphics/theme/SliderPainter.class v8
@@ -2459,6 +2467,7 @@ org/crossmobile/bind/graphics/theme/SwitchPainter.class v8
 org/crossmobile/bind/graphics/theme/ThemeFont.class v8
 org/crossmobile/bind/graphics/theme/ThemeManager.class v8
 org/crossmobile/bind/graphics/theme/ThemePainter.class v8
+org/crossmobile/bind/graphics/theme/ThemePainterExtra.class v8
 org/crossmobile/bind/graphics/theme/ThemeUtilities.class v8
 org/crossmobile/bind/io/AbstractFileBridge.class v8
 org/crossmobile/bind/io/AbstractNetworkBridge.class v8
@@ -3167,7 +3176,6 @@ org/crossmobile/bind/graphics/TextHelpers$1.class v8
 org/crossmobile/bind/graphics/TextHelpers$TextBlock.class v8
 org/crossmobile/bind/graphics/TextHelpers$TextLine.class v8
 org/crossmobile/bind/graphics/TextHelpers.class v8
-org/crossmobile/bind/graphics/Theme$ActivityIndicator.class v8
 org/crossmobile/bind/graphics/Theme$Bar$Nav.class v8
 org/crossmobile/bind/graphics/Theme$Bar$Tab.class v8
 org/crossmobile/bind/graphics/Theme$Bar$Tool.class v8
@@ -3194,6 +3202,10 @@ org/crossmobile/bind/graphics/anim/curve/InterpolationCurve.class v8
 org/crossmobile/bind/graphics/anim/curve/LinearCurve.class v8
 org/crossmobile/bind/graphics/theme/ActivityIndicatorPainter.class v8
 org/crossmobile/bind/graphics/theme/ButtonPainter.class v8
+org/crossmobile/bind/graphics/theme/FixedSizePainter.class v8
+org/crossmobile/bind/graphics/theme/FixedSizePainterExtra.class v8
+org/crossmobile/bind/graphics/theme/FixedSizeRequirement.class v8
+org/crossmobile/bind/graphics/theme/PageControlPainter.class v8
 org/crossmobile/bind/graphics/theme/PainterExtraData.class v8
 org/crossmobile/bind/graphics/theme/ProgressPainter.class v8
 org/crossmobile/bind/graphics/theme/SliderPainter.class v8
@@ -3201,6 +3213,7 @@ org/crossmobile/bind/graphics/theme/SwitchPainter.class v8
 org/crossmobile/bind/graphics/theme/ThemeFont.class v8
 org/crossmobile/bind/graphics/theme/ThemeManager.class v8
 org/crossmobile/bind/graphics/theme/ThemePainter.class v8
+org/crossmobile/bind/graphics/theme/ThemePainterExtra.class v8
 org/crossmobile/bind/graphics/theme/ThemeUtilities.class v8
 org/crossmobile/bind/io/AbstractFileBridge.class v8
 org/crossmobile/bind/io/AbstractNetworkBridge.class v8

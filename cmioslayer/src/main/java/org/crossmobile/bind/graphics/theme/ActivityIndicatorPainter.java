@@ -8,5 +8,10 @@ package org.crossmobile.bind.graphics.theme;
 
 import crossmobile.ios.uikit.UIActivityIndicatorView;
 
-public interface ActivityIndicatorPainter<P extends PainterExtraData> extends ThemePainter<UIActivityIndicatorView, P> {
+public interface ActivityIndicatorPainter<P extends PainterExtraData> extends FixedSizePainterExtra<UIActivityIndicatorView, P> {
+    void setAnimationFrame(int percent, P extraData);
+
+    double getAnimationFrameDuration();
+
+    int getMaximumFrame();
 }

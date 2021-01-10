@@ -8,5 +8,5 @@ package org.crossmobile.bind.graphics.theme;
 
 import crossmobile.ios.uikit.UIButton;
 
-public interface ButtonPainter<P extends PainterExtraData> extends ThemePainter<UIButton, P> {
+public interface ButtonPainter extends ThemePainter<UIButton> {
 }
