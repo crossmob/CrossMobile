@@ -394,6 +394,11 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
         return Geometry.copy(frame);
     }
 
+    @SuppressWarnings("SpellCheckingInspection")
+    CGRect cframe() {
+        return frame;
+    }
+
     /**
      * Sets view's dimensions and position according to the structure specified
      * as frame parameter.
@@ -547,7 +552,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
         if (widget != null) {
             CGPoint loc = CGPoint.zero();
             locationRelativeToRoot(loc);
-            widget.setFrame(loc.getX(), loc.getY(), getWidth(), getHeight());
+            widget.setFrame(loc.getX(), loc.getY(), frame.getSize().getWidth(), frame.getSize().getHeight());
         }
         for (UIView child : children)
             child.layoutNativeFromRoot();
@@ -621,7 +626,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
      */
     @CMSetter("@property(nonatomic) CGRect bounds;")
     public void setBounds(CGRect rect) {
-        setFrame(new CGRect(getX(), getY(), rect.getSize().getWidth(), rect.getSize().getHeight()));
+        setFrame(new CGRect(frame.getOrigin().getX(), frame.getOrigin().getY(), rect.getSize().getWidth(), rect.getSize().getHeight()));
     }
 
     /**
@@ -631,7 +636,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
      */
     @CMGetter("@property(nonatomic) CGPoint center;")
     public CGPoint center() {
-        return new CGPoint((getX() + getWidth()) / 2, (getY() + getWidth()) / 2);
+        return new CGPoint((frame.getOrigin().getX() + frame.getSize().getWidth()) / 2, (frame.getOrigin().getY() + frame.getSize().getWidth()) / 2);
     }
 
     /**
@@ -641,7 +646,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
      */
     @CMSetter("@property(nonatomic) CGPoint center;")
     public void setCenter(CGPoint center) {
-        setFrame(new CGRect(center.getX() - getWidth() / 2, center.getY() - getHeight() / 2, getWidth(), getHeight()));
+        setFrame(new CGRect(center.getX() - frame.getSize().getWidth() / 2, center.getY() - frame.getSize().getHeight() / 2, frame.getSize().getWidth(), frame.getSize().getHeight()));
     }
 
     /**
@@ -651,7 +656,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
      * @param y The y coordinate.
      */
     void setLocation(double x, double y) {
-        setFrame(new CGRect(x, y, getWidth(), getHeight()));
+        setFrame(new CGRect(x, y, frame.getSize().getWidth(), frame.getSize().getHeight()));
     }
 
     /**
@@ -661,7 +666,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
      * @param height The height of this view.
      */
     void setSize(double width, double height) {
-        setFrame(new CGRect(getX(), getY(), width, height));
+        setFrame(new CGRect(frame.getOrigin().getX(), frame.getOrigin().getY(), width, height));
     }
 
     /**
@@ -682,8 +687,8 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
          *  Maybe the whole method is too complex and it should be simplified now.
          */
         if (superview != null && !(superview instanceof UIWindow)) {
-            res.setX(res.getX() + getX());
-            res.setY(res.getY() + getY());
+            res.setX(res.getX() + frame.getOrigin().getX());
+            res.setY(res.getY() + frame.getOrigin().getY());
             superview.locationRelativeToRoot(res);
         }
     }
@@ -1124,8 +1129,8 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
                 anchorX = 0.5;
                 anchorY = 0.5;
             }
-            double dx = getWidth() * anchorX;
-            double dy = getHeight() * anchorY;
+            double dx = frame.getSize().getWidth() * anchorX;
+            double dy = frame.getSize().getHeight() * anchorY;
             fullTransform = translateConcatTranslate(CGAffineTransform.identity(), dx, dy, transform, -dx, -dy);
         }
         return fullTransform;
@@ -1388,7 +1393,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
     @CMSelector("- (BOOL)pointInside:(CGPoint)point \n"
             + "          withEvent:(UIEvent *)event;")
     public boolean pointInside(CGPoint point, UIEvent event) {
-        return !(point.getX() < 0 || point.getY() < 0 || point.getX() > getWidth() - 1 || point.getY() > getHeight() - 1);
+        return !(point.getX() < 0 || point.getY() < 0 || point.getX() > frame.getSize().getWidth() - 1 || point.getY() > frame.getSize().getHeight() - 1);
     }
 
     /**
@@ -1424,11 +1429,11 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
 
     final CGPoint selfPointTransformations(CGPoint p, boolean isInverse) {
         if (isInverse) {
-            p.setX(p.getX() - getX());
-            p.setY(p.getY() - getY());
+            p.setX(p.getX() - frame.getOrigin().getX());
+            p.setY(p.getY() - frame.getOrigin().getY());
             if (layer != null && layer.anchorPoint() != null) {
-                p.setX(p.getX() - (getWidth() * (0.5 - layer.anchorPoint().getX())));
-                p.setY(p.getY() - (getHeight() * (0.5 - layer.anchorPoint().getY())));
+                p.setX(p.getX() - (frame.getSize().getWidth() * (0.5 - layer.anchorPoint().getX())));
+                p.setY(p.getY() - (frame.getSize().getHeight() * (0.5 - layer.anchorPoint().getY())));
             }
 
             if (transform != null)
@@ -1440,11 +1445,11 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
             UIView parent = superview();
             if (parent != null)
                 parent.parentPointTransformations(p, isInverse);
-            p.setX(p.getX() + getX());
-            p.setY(p.getY() + getY());
+            p.setX(p.getX() + frame.getOrigin().getX());
+            p.setY(p.getY() + frame.getOrigin().getY());
             if (layer != null && layer.anchorPoint() != null) {
-                p.setX(p.getX() + getWidth() * (0.5 - layer.anchorPoint().getX()));
-                p.setY(p.getY() + getHeight() * (0.5 - layer.anchorPoint().getY()));
+                p.setX(p.getX() + frame.getSize().getWidth() * (0.5 - layer.anchorPoint().getX()));
+                p.setY(p.getY() + frame.getSize().getHeight() * (0.5 - layer.anchorPoint().getY()));
             }
 
             if (transform != null)
@@ -1590,7 +1595,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
         GraphicsContext<?> gcx = context(cx);
 
         // update viewport
-        CGRect vFrame = new CGRect(0, 0, getWidth(), getHeight());
+        CGRect vFrame = new CGRect(0, 0, frame.getSize().getWidth(), frame.getSize().getHeight());
 
         if (clipsToBounds)
             cx.clipToRect(vFrame);
@@ -1616,7 +1621,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
         drawRect(vFrame);
         if (ENABLE_DEBUG || shouldDrawOnTop())
             // to be sure that subclasses of this method didn't change the metrics
-            Geometry.set(vFrame, 0d, 0d, getWidth(), getHeight());
+            Geometry.set(vFrame, 0d, 0d, frame.getSize().getWidth(), frame.getSize().getHeight());
         if (ENABLE_DEBUG)
             if ((Live_Graphics_Debug || debugSelf) && !shouldDrawOnTop())
                 debugGraphicsFrame(cx, vFrame);
@@ -1674,10 +1679,10 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
         if (child.shouldBeDrawn()) {    // double check here to save the "save/restore" of context
             cx.saveGState();
             if (child.layer != null && child.layer.anchorPoint() != null)
-                gcx.translate(child.getWidth() * (0.5 - child.layer.anchorPoint().getX()) + child.getX(),
-                        child.getHeight() * (0.5 - child.layer.anchorPoint().getY()) + child.getY());
+                gcx.translate(child.frame.getSize().getWidth() * (0.5 - child.layer.anchorPoint().getX()) + child.frame.getOrigin().getX(),
+                        child.frame.getSize().getHeight() * (0.5 - child.layer.anchorPoint().getY()) + child.frame.getOrigin().getY());
             else
-                gcx.translate(child.getX(), child.getY());
+                gcx.translate(child.frame.getOrigin().getX(), child.frame.getOrigin().getY());
 
             if (child.transform != null)
                 gcx.concatCTM(child.nativeTransformation());
@@ -2133,8 +2138,8 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
                                 constraint.addToSolver(solver());
                     solver().resolve();
                 }
-                double cWidth = getWidth();
-                double cHeight = getHeight();
+                double cWidth = frame.getSize().getWidth();
+                double cHeight = frame.getSize().getHeight();
                 for (UIView child : children) {
                     if (child.ARMconstraints != null)
                         child.setFrameImpl(child.ARMconstraints.getFrame(cWidth, cHeight));
@@ -2535,14 +2540,24 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
                 safeAreaInsets = controller.getTotalSafeAreaInsets();
         } else if (superview != null) {
             UIEdgeInsets superInsets = superview.safeAreaInsets();
-            double top = getY() > superInsets.getTop() ? 0 : superInsets.getTop() - getY();
-            double left = getX() > superInsets.getLeft() ? 0 : superInsets.getLeft() - getX();
-            double bottom = getHeight() < superview.getHeight() -
-                    (getY() > superInsets.getTop() ? getY() : top) - superInsets.getBottom() ?
-                    0 : superInsets.getBottom() - superview.getHeight() - (getY() > superInsets.getTop() ? getY() : top) - getHeight();
-            double right = getWidth() < superview.getWidth() -
-                    (getX() > superInsets.getLeft() ? getX() : left) - superInsets.getRight() ?
-                    0 : superInsets.getRight() - superview.getWidth() - (getX() > superInsets.getLeft() ? getX() : left) - getWidth();
+            double top = frame.getOrigin().getY() > superInsets.getTop()
+                    ? 0
+                    : superInsets.getTop() - frame.getOrigin().getY();
+            double left = frame.getOrigin().getX() > superInsets.getLeft()
+                    ? 0
+                    : superInsets.getLeft() - frame.getOrigin().getX();
+            double bottom = frame.getSize().getHeight() < superview.frame.getSize().getHeight() -
+                    (frame.getOrigin().getY() > superInsets.getTop()
+                            ? frame.getOrigin().getY()
+                            : top) - superInsets.getBottom()
+                    ? 0
+                    : superInsets.getBottom() - superview.frame.getSize().getHeight() - (frame.getOrigin().getY() > superInsets.getTop() ? frame.getOrigin().getY() : top) - frame.getSize().getHeight();
+            double right = frame.getSize().getWidth() < superview.frame.getSize().getWidth() -
+                    (frame.getOrigin().getX() > superInsets.getLeft()
+                            ? frame.getOrigin().getX()
+                            : left) - superInsets.getRight()
+                    ? 0
+                    : superInsets.getRight() - superview.frame.getSize().getWidth() - (frame.getOrigin().getX() > superInsets.getLeft() ? frame.getOrigin().getX() : left) - frame.getSize().getWidth();
             safeAreaInsets = new UIEdgeInsets(top, left, bottom, right);
         } else
             safeAreaInsets = UIEdgeInsets.zero();
@@ -2578,22 +2593,6 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
             solver().resolve();
         }
         return safeAreaLayoutGuide;
-    }
-
-    double getX() {
-        return frame.getOrigin().getX();
-    }
-
-    double getY() {
-        return frame.getOrigin().getY();
-    }
-
-    double getWidth() {
-        return frame.getSize().getWidth();
-    }
-
-    double getHeight() {
-        return frame.getSize().getHeight();
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})

@@ -197,7 +197,7 @@ public class UIWindow extends UIView {
         Native.graphics().metrics().preDraw(cx);
         AbstractGraphicsBridge.DrawingDepth = 0;
 
-        cx.translate(getX(), getY());
+        cx.translate(cframe().getOrigin().getX(), cframe().getOrigin().getY());
         cx.setAlpha(alpha);
         try {
             drawingSelf(cgx);
@@ -205,7 +205,7 @@ public class UIWindow extends UIView {
             Native.system().error(null, e);
         }
 
-        cx.translate(-getX(), -getY());
+        cx.translate(-cframe().getOrigin().getX(), -cframe().getOrigin().getY());
         cx.setAlpha(1);
         if (UIStatusBar.required)
             drawingChild(cgx, UIStatusBar.getStatusBar(), false);
@@ -219,9 +219,9 @@ public class UIWindow extends UIView {
                     cx.setLineWidth(2);
                     for (CGPoint point : points) {
                         cgx.moveToPoint(0, point.getY());
-                        cgx.addLineToPoint(getWidth(), point.getY());
+                        cgx.addLineToPoint(cframe().getSize().getWidth(), point.getY());
                         cgx.moveToPoint(point.getX(), 0);
-                        cgx.addLineToPoint(point.getX(), getHeight());
+                        cgx.addLineToPoint(point.getX(), cframe().getSize().getHeight());
                         cgx.moveToPoint(point.getX(), point.getY());
                         cgx.addArc(point.getX(), point.getY(), 30, 0, GraphicsContext._2_PI - 0.00001f, 0);
                         cgx.strokePath();

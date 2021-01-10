@@ -614,7 +614,7 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
             Native.lifecycle().postOnEventThread(() -> {
                 modalViewController = viewControllerToPresent;
                 viewControllerToPresent.presentingViewController = this;
-                viewControllerToPresent.view().setTransform(CGAffineTransform.makeTranslation(0, viewControllerToPresent.view().getHeight()));
+                viewControllerToPresent.view().setTransform(CGAffineTransform.makeTranslation(0, viewControllerToPresent.view().cframe().getSize().getHeight()));
                 viewControllerToPresent.execViewWillAppear(flag);
                 UIView.transitionWithView(viewControllerToPresent.view(), GraphicsBridgeConstants.DefaultAnimationDuration, UIViewAnimationOptions.TransitionNone, () -> {
                     UIApplication.sharedApplication().keyWindow().rootViewController().view().addSubview(viewControllerToPresent.view());
@@ -652,7 +652,7 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
         if (modalViewController != null) {
             modalViewController.view().setTransform(CGAffineTransform.identity());
             Runnable animation = () -> {
-                modalViewController.view().setTransform(CGAffineTransform.makeTranslation(0, modalViewController.view().getHeight()));
+                modalViewController.view().setTransform(CGAffineTransform.makeTranslation(0, modalViewController.view().cframe().getSize().getHeight()));
                 modalViewController.view().removeFromSuperview();
             };
             modalViewController.viewWillDisappear(flag);
@@ -1365,8 +1365,8 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
         void applyResult() {
             layoutFrame.getSize().setWidth((float) getVariable(NSLayoutAttribute.Width).getValue());
             layoutFrame.getSize().setHeight((float) getVariable(NSLayoutAttribute.Height).getValue());
-            layoutFrame.getOrigin().setX((float) getVariable(NSLayoutAttribute.Left).getValue() - owningView().getX());
-            layoutFrame.getOrigin().setY((float) getVariable(NSLayoutAttribute.Top).getValue() - owningView().getY());
+            layoutFrame.getOrigin().setX((float) getVariable(NSLayoutAttribute.Left).getValue() - owningView().cframe().getOrigin().getX());
+            layoutFrame.getOrigin().setY((float) getVariable(NSLayoutAttribute.Top).getValue() - owningView().cframe().getOrigin().getY());
         }
     }
 }

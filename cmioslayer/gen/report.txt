@@ -1261,6 +1261,7 @@ org/crossmobile/bind/graphics/theme/FixedSizeRequirement.java
 org/crossmobile/bind/graphics/theme/PageControlPainter.java
 org/crossmobile/bind/graphics/theme/PainterExtraData.java
 org/crossmobile/bind/graphics/theme/ProgressPainter.java
+org/crossmobile/bind/graphics/theme/ScrollPainter.java
 org/crossmobile/bind/graphics/theme/SliderPainter.java
 org/crossmobile/bind/graphics/theme/SwitchPainter.java
 org/crossmobile/bind/graphics/theme/ThemeFactory.java
@@ -2046,7 +2047,7 @@ crossmobile/ios/uikit/UIReturnKeyType.class v8
 crossmobile/ios/uikit/UIRotationGestureRecognizer.class v8
 crossmobile/ios/uikit/UIScreen.class v8
 crossmobile/ios/uikit/UIScrollView$1.class v8
-crossmobile/ios/uikit/UIScrollView$FlashIndicator.class v8
+crossmobile/ios/uikit/UIScrollView$2.class v8
 crossmobile/ios/uikit/UIScrollView$ScrollContent.class v8
 crossmobile/ios/uikit/UIScrollView$SwipeContent.class v8
 crossmobile/ios/uikit/UIScrollView.class v8
@@ -2441,7 +2442,6 @@ org/crossmobile/bind/graphics/Theme$Debug$StyleTags.class v8
 org/crossmobile/bind/graphics/Theme$Debug.class v8
 org/crossmobile/bind/graphics/Theme$Font.class v8
 org/crossmobile/bind/graphics/Theme$Images.class v8
-org/crossmobile/bind/graphics/Theme$Scroll.class v8
 org/crossmobile/bind/graphics/Theme.class v8
 org/crossmobile/bind/graphics/UIStatusBar$UIBattery.class v8
 org/crossmobile/bind/graphics/UIStatusBar.class v8
@@ -2462,6 +2462,7 @@ org/crossmobile/bind/graphics/theme/FixedSizeRequirement.class v8
 org/crossmobile/bind/graphics/theme/PageControlPainter.class v8
 org/crossmobile/bind/graphics/theme/PainterExtraData.class v8
 org/crossmobile/bind/graphics/theme/ProgressPainter.class v8
+org/crossmobile/bind/graphics/theme/ScrollPainter.class v8
 org/crossmobile/bind/graphics/theme/SliderPainter.class v8
 org/crossmobile/bind/graphics/theme/SwitchPainter.class v8
 org/crossmobile/bind/graphics/theme/ThemeFont.class v8
@@ -2932,7 +2933,7 @@ crossmobile/ios/uikit/UIReturnKeyType.class v8
 crossmobile/ios/uikit/UIRotationGestureRecognizer.class v8
 crossmobile/ios/uikit/UIScreen.class v8
 crossmobile/ios/uikit/UIScrollView$1.class v8
-crossmobile/ios/uikit/UIScrollView$FlashIndicator.class v8
+crossmobile/ios/uikit/UIScrollView$2.class v8
 crossmobile/ios/uikit/UIScrollView$ScrollContent.class v8
 crossmobile/ios/uikit/UIScrollView$SwipeContent.class v8
 crossmobile/ios/uikit/UIScrollView.class v8
@@ -3187,7 +3188,6 @@ org/crossmobile/bind/graphics/Theme$Debug$StyleTags.class v8
 org/crossmobile/bind/graphics/Theme$Debug.class v8
 org/crossmobile/bind/graphics/Theme$Font.class v8
 org/crossmobile/bind/graphics/Theme$Images.class v8
-org/crossmobile/bind/graphics/Theme$Scroll.class v8
 org/crossmobile/bind/graphics/Theme.class v8
 org/crossmobile/bind/graphics/UIStatusBar$UIBattery.class v8
 org/crossmobile/bind/graphics/UIStatusBar.class v8
@@ -3208,6 +3208,7 @@ org/crossmobile/bind/graphics/theme/FixedSizeRequirement.class v8
 org/crossmobile/bind/graphics/theme/PageControlPainter.class v8
 org/crossmobile/bind/graphics/theme/PainterExtraData.class v8
 org/crossmobile/bind/graphics/theme/ProgressPainter.class v8
+org/crossmobile/bind/graphics/theme/ScrollPainter.class v8
 org/crossmobile/bind/graphics/theme/SliderPainter.class v8
 org/crossmobile/bind/graphics/theme/SwitchPainter.class v8
 org/crossmobile/bind/graphics/theme/ThemeFont.class v8

@@ -204,7 +204,7 @@ public class UINavigationBar extends UIView {
             double leftOffset = initLeftItem(item, statusBarOffset);
             double rightOffset = initRightItem(item, statusBarOffset);
             double topOffset = Theme.Bar.Nav.HEIGHTOFFSET + statusBarOffset;
-            double widheight = getHeight() - topOffset - Theme.Bar.Nav.HEIGHTOFFSET;
+            double widheight = cframe().getSize().getHeight() - topOffset - Theme.Bar.Nav.HEIGHTOFFSET;
 
             {   // Create title
                 UIView title = item.effectiveTitleView();
@@ -217,7 +217,7 @@ public class UINavigationBar extends UIView {
                     else if (title instanceof UIImageView)
                         newSize = ((UIImageView) title).image() == null ? new CGSize(0, 0) : ((UIImageView) title).image().size();
                     else
-                        newSize = new CGSize(title.getWidth(), title.getHeight());
+                        newSize = new CGSize(title.cframe().getSize().getWidth(), title.cframe().getSize().getHeight());
                     CGRect newFrame;
                     int titleOffset = Theme.Bar.Nav.TITLEOFFSET;
                     if (!item.leftSetByUser && items.size() > 1 && (items.get(items.size() - 2).effectiveTitleView() instanceof UILabel)) {
@@ -234,27 +234,27 @@ public class UINavigationBar extends UIView {
                         item.setLeftBarButtonItem(new UIBarButtonItem(Native.graphics().getBackChar(), UIBarButtonItemStyle.Plain, this::backClicked), false, false);
                         item.backBarButtonItem().customView().removeFromSuperview();
                     }
-                    if (!item.leftSetByUser && items.size() > 1 && getWidth() - leftOffset - rightOffset - newSize.getWidth() - titleOffset * 2 < 0 && item.leftBarButtonItem() != null) {
+                    if (!item.leftSetByUser && items.size() > 1 && cframe().getSize().getWidth() - leftOffset - rightOffset - newSize.getWidth() - titleOffset * 2 < 0 && item.leftBarButtonItem() != null) {
                         item.leftBarButtonItem().customView().removeFromSuperview();
                         item.setLeftBarButtonItem(null, false, false);
                         leftOffset = initLeftItem(item, statusBarOffset);
                     }
-                    if (!item.leftSetByUser && items.size() > 1 && getWidth() - leftOffset - rightOffset - newSize.getWidth() - titleOffset * 2 < 0 && item.leftBarButtonItem() == null) {
+                    if (!item.leftSetByUser && items.size() > 1 && cframe().getSize().getWidth() - leftOffset - rightOffset - newSize.getWidth() - titleOffset * 2 < 0 && item.leftBarButtonItem() == null) {
                         item.setLeftBarButtonItem(new UIBarButtonItem(Native.graphics().getBackChar(), UIBarButtonItemStyle.Plain, this::backClicked), false, false);
                         item.backBarButtonItem().customView().removeFromSuperview();
                         leftOffset = initLeftItem(item, statusBarOffset);
                     }
-                    if (getWidth() - leftOffset - rightOffset - newSize.getWidth() - titleOffset * 2 < 0)
+                    if (cframe().getSize().getWidth() - leftOffset - rightOffset - newSize.getWidth() - titleOffset * 2 < 0)
                         if (title instanceof UIImageView)
                             newFrame = new CGRect(leftOffset + titleOffset, topOffset, ((UIImageView) title).image().size().getWidth(), ((UIImageView) title).image().size().getHeight());
                         else
-                            newFrame = new CGRect(leftOffset + titleOffset, topOffset, getWidth() - leftOffset - rightOffset - titleOffset * 2, widheight);
-                    else if (getWidth() / 2 - newSize.getWidth() / 2 - leftOffset - titleOffset < 0)
+                            newFrame = new CGRect(leftOffset + titleOffset, topOffset, cframe().getSize().getWidth() - leftOffset - rightOffset - titleOffset * 2, widheight);
+                    else if (cframe().getSize().getWidth() / 2 - newSize.getWidth() / 2 - leftOffset - titleOffset < 0)
                         newFrame = new CGRect(leftOffset + titleOffset, topOffset, newSize.getWidth(), widheight);
-                    else if (getWidth() / 2 - newSize.getWidth() / 2 - rightOffset - titleOffset < 0)
-                        newFrame = new CGRect(getWidth() - rightOffset - titleOffset - newSize.getWidth(), topOffset, newSize.getWidth(), widheight);
+                    else if (cframe().getSize().getWidth() / 2 - newSize.getWidth() / 2 - rightOffset - titleOffset < 0)
+                        newFrame = new CGRect(cframe().getSize().getWidth() - rightOffset - titleOffset - newSize.getWidth(), topOffset, newSize.getWidth(), widheight);
                     else
-                        newFrame = new CGRect(getWidth() / 2 - newSize.getWidth() / 2, topOffset, newSize.getWidth(), widheight);
+                        newFrame = new CGRect(cframe().getSize().getWidth() / 2 - newSize.getWidth() / 2, topOffset, newSize.getWidth(), widheight);
                     title.setFrame(newFrame);
                 }
             }
@@ -262,7 +262,7 @@ public class UINavigationBar extends UIView {
                 UILabel prompt = item.promptView();
                 if (prompt != null) {
                     // this is wrong, should be below title
-                    prompt.setFrame(new CGRect(leftOffset, topOffset, getWidth() - rightOffset - leftOffset, widheight));
+                    prompt.setFrame(new CGRect(leftOffset, topOffset, cframe().getSize().getWidth() - rightOffset - leftOffset, widheight));
                     addSubview(prompt);
                 }
             }
@@ -278,7 +278,7 @@ public class UINavigationBar extends UIView {
             addSubview(c);
             c.setFrame(new CGRect(0, statusOffset,
                     c.intrinsicContentSize.getWidth() + 2 * Theme.Bar.Nav.EDGEOFFSET,
-                    getHeight() - statusOffset));
+                    cframe().getSize().getHeight() - statusOffset));
             return left.width();
         }
         return 0;
@@ -290,8 +290,8 @@ public class UINavigationBar extends UIView {
             UIView c = right.view();
             addSubview(c);
             double width = c.intrinsicContentSize.getWidth() + 2 * Theme.Bar.Nav.EDGEOFFSET;
-            c.setFrame(new CGRect(getWidth() - width, statusOffset,
-                    width, getHeight() - statusOffset));
+            c.setFrame(new CGRect(cframe().getSize().getWidth() - width, statusOffset,
+                    width, cframe().getSize().getHeight() - statusOffset));
             return width;
         }
         return 0;
@@ -423,7 +423,7 @@ public class UINavigationBar extends UIView {
         UIEdgeInsets insets = container.getActiveInsets();
         setFrameImpl(insets.getLeft(),
                 insets.getTop(),
-                parent.getWidth(),
+                parent.cframe().getSize().getWidth(),
                 Theme.Bar.Nav.HEIGHTNORMAL + (!UIApplication.sharedApplication().isStatusBarHidden() ? UIStatusBar.HEIGHT : 0));
         layoutSubviews();
     }

@@ -26,7 +26,7 @@ class cmConstraints {
         if (rootController != null && rootController.isView(parent))
             size = rootController.getActiveFrame().getSize();
         else
-            size = new CGSize(parent.getWidth(), parent.getHeight());
+            size = new CGSize(parent.cframe().getSize().getWidth(), parent.cframe().getSize().getHeight());
         cmConstraints constr = new cmConstraints(child.frame(), size,
                 (mask & UIViewAutoresizing.FlexibleLeftMargin) != 0, (mask & UIViewAutoresizing.FlexibleWidth) != 0, (mask & UIViewAutoresizing.FlexibleRightMargin) != 0,
                 (mask & UIViewAutoresizing.FlexibleTopMargin) != 0, (mask & UIViewAutoresizing.FlexibleHeight) != 0, (mask & UIViewAutoresizing.FlexibleBottomMargin) != 0);

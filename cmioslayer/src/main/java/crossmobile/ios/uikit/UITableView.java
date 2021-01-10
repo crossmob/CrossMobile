@@ -95,7 +95,7 @@ public class UITableView extends UIScrollView {
         pending = swap;
         newpaths.clear();
         boolean needsRelayout = false;
-        double width = getWidth() - contentInset.getLeft() - contentInset.getRight();
+        double width = cframe().getSize().getWidth() - contentInset.getLeft() - contentInset.getRight();
 
         // Keep already placed cells
         if (paths != null)
@@ -693,7 +693,7 @@ public class UITableView extends UIScrollView {
      */
     @CMGetter("@property(nonatomic, readonly) NSArray<NSIndexPath *> *indexPathsForVisibleRows;")
     public List<NSIndexPath> indexPathsForVisibleRows() {
-        return metrics().indexPathsForRowsBetween(contentOffset.getY(), contentOffset.getY() + getHeight());
+        return metrics().indexPathsForRowsBetween(contentOffset.getY(), contentOffset.getY() + cframe().getSize().getHeight());
     }
 
     @Override
@@ -957,7 +957,7 @@ class cmTableViewMetrics {
 
     void relayoutLabels(boolean asHeaders) {
         UIView[] views = asHeaders ? headerViews : footerViews;
-        double width = tv.getWidth();
+        double width = tv.cframe().getSize().getWidth();
         if (views != null)
             for (int section = 0; section < views.length; section++)
                 if (views[section] != null)

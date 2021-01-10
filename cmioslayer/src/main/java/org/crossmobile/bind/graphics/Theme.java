@@ -159,16 +159,6 @@ public class Theme {
         }
     }
 
-    public final static class Scroll {
-
-        public final static int INDICATOR_THICKNESS = getInteger("cm.theme.scroll.indicator.thickness", 8);
-        public final static int INDICATOR_INSET = getInteger("cm.theme.scroll.indicator.inset", 2);
-        public final static double SPRING_FACTOR = propertyToDouble("cm.theme.scroll.spring.factor", 0.5);
-
-        private Scroll() {
-        }
-    }
-
     public final static class Debug {
 
         public final static UIColor STRIKE_COLOR = uicolor((int) ((long) getLong("cm.theme.debug.strike_color", 0xFFFF0000)));

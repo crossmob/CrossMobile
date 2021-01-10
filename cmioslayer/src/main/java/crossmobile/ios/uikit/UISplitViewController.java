@@ -192,7 +192,7 @@ public class UISplitViewController extends UIViewController {
      */
     @CMGetter("@property(nonatomic, readonly) CGFloat primaryColumnWidth;")
     public double primaryColumnWidth() {
-        return master.getWidth();
+        return master.cframe().getSize().getWidth();
     }
 
     /**
@@ -294,9 +294,9 @@ public class UISplitViewController extends UIViewController {
                 return;
             if (vc instanceof UINavigationController)
                 ((UINavigationController) vc).updateView(null, UIViewAnimationOptions.TransitionNone);
-            vc.view().setFrame(new CGRect(splitView.getWidth(), detail.getY(), detail.getWidth(), detail.getHeight()));   // do this before animations!
+            vc.view().setFrame(new CGRect(splitView.cframe().getSize().getWidth(), detail.cframe().getOrigin().getY(), detail.cframe().getSize().getWidth(), detail.cframe().getSize().getHeight()));   // do this before animations!
             splitView.addSubview(vc.view());
-            UIView.animateWithDuration(GraphicsBridgeConstants.DefaultAnimationDuration, 0, UIViewAnimationOptions.CurveEaseInOut, () -> vc.view().setLocation(detail.getX(), detail.getY()), result -> {
+            UIView.animateWithDuration(GraphicsBridgeConstants.DefaultAnimationDuration, 0, UIViewAnimationOptions.CurveEaseInOut, () -> vc.view().setLocation(detail.cframe().getOrigin().getX(), detail.cframe().getOrigin().getY()), result -> {
                 UIView detailOld = detail;
                 renewDetail(vc);
                 updateView(true);
@@ -334,9 +334,9 @@ public class UISplitViewController extends UIViewController {
         } else {
             if (vc.view() == master)
                 return;
-            vc.view().setFrame(new CGRect(-master.getWidth(), master.getY(), master.getWidth(), master.getHeight()));   // do this before animations!
+            vc.view().setFrame(new CGRect(-master.cframe().getSize().getWidth(), master.cframe().getOrigin().getY(), master.cframe().getSize().getWidth(), master.cframe().getSize().getHeight()));   // do this before animations!
             splitView.addSubview(vc.view());
-            UIView.animateWithDuration(GraphicsBridgeConstants.DefaultAnimationDuration, 0, UIViewAnimationOptions.CurveEaseInOut, () -> vc.view().setLocation(master.getX(), master.getY()), completion -> {
+            UIView.animateWithDuration(GraphicsBridgeConstants.DefaultAnimationDuration, 0, UIViewAnimationOptions.CurveEaseInOut, () -> vc.view().setLocation(master.cframe().getOrigin().getX(), master.cframe().getOrigin().getY()), completion -> {
                 UIView masterOld = master;
                 renewMaster(vc, false);
                 masterOld.removeFromSuperview();
@@ -395,7 +395,7 @@ public class UISplitViewController extends UIViewController {
     }
 
     private boolean checkCompact() {
-        return splitView.getWidth() < splitView.getHeight();
+        return splitView.cframe().getSize().getWidth() < splitView.cframe().getSize().getHeight();
     }
 
     synchronized void allVisible() {
@@ -573,7 +573,7 @@ public class UISplitViewController extends UIViewController {
                 CGPoint click = touches.iterator().next().locationInView(this);
                 if (click.getX() < 20 && !showsOverlay)
                     startpoint = touches.iterator().next().locationInView(this);
-                if (showsOverlay && click.getX() > master.getWidth())
+                if (showsOverlay && click.getX() > master.cframe().getSize().getWidth())
                     hideOverlay();
             }
         }
@@ -581,7 +581,7 @@ public class UISplitViewController extends UIViewController {
         void showOverlay() {
             master.setHidden(false);
             splitView.bringSubviewToFront(master);
-            UIView.animateWithDuration(GraphicsBridgeConstants.DefaultAnimationDuration, () -> master.setTransform(CGAffineTransform.makeTranslation((float) (getWidth() * preferredPrimaryColumnWidthFraction()), 0)));
+            UIView.animateWithDuration(GraphicsBridgeConstants.DefaultAnimationDuration, () -> master.setTransform(CGAffineTransform.makeTranslation((float) (cframe().getSize().getWidth() * preferredPrimaryColumnWidthFraction()), 0)));
             showsOverlay = true;
         }
 

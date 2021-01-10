@@ -386,12 +386,12 @@ public class UISegmentedControl extends UIControl {
                 cx.setFillColorWithColor(tintColor);
                 cx.drawPath(CGPathDrawingMode.FillStroke);
                 if (deselectedImage != null)
-                    deselectedImage.get().drawInRect(new CGRect(0, 0, getWidth(), getHeight()));
+                    deselectedImage.get().drawInRect(new CGRect(0, 0, cframe().getSize().getWidth(), cframe().getSize().getHeight()));
             } else {
                 cx.setStrokeColorWithColor(tintColor);
                 cx.drawPath(CGPathDrawingMode.Stroke);
                 if (selectedImage != null)
-                    selectedImage.get().drawInRect(new CGRect(0, 0, getWidth(), getHeight()));
+                    selectedImage.get().drawInRect(new CGRect(0, 0, cframe().getSize().getWidth(), cframe().getSize().getHeight()));
             }
             super.drawRect(rect);
         }

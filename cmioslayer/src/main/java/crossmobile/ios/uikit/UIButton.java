@@ -589,8 +589,8 @@ public class UIButton extends UIControl {
             label.setTextColor(isEnabled() ? states.getTitleColor(tintColor()) : UIColor.grayColor());
         }
 
-        double hasWidth = getWidth();
-        double hasHeight = getHeight();
+        double hasWidth = cframe().getSize().getWidth();
+        double hasHeight = cframe().getSize().getHeight();
         if (labelSize != null && imageSize != null && hasWidth <= imageSize.getWidth()) {
             // when both text & image exists, and the width is not big enough, hide the label
             labelSize = null;

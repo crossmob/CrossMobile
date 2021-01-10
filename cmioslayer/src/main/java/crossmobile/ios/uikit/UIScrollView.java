@@ -13,11 +13,12 @@ import crossmobile.ios.coregraphics.CGSize;
 import crossmobile.ios.foundation.NSSelector;
 import crossmobile.ios.foundation.NSTimer;
 import crossmobile.rt.StrongReference;
-import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.graphics.anim.Animation;
-import org.crossmobile.bind.graphics.anim.curve.CommonInterpolations;
-import org.crossmobile.bind.graphics.anim.Animator;
 import org.crossmobile.bind.graphics.anim.AnimationAction;
+import org.crossmobile.bind.graphics.anim.Animator;
+import org.crossmobile.bind.graphics.anim.curve.CommonInterpolations;
+import org.crossmobile.bind.graphics.theme.PainterExtraData;
+import org.crossmobile.bind.graphics.theme.ScrollPainter;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.*;
 import org.crossmobile.support.cassowary.*;
@@ -27,9 +28,7 @@ import org.crossmobile.support.cassowary.clconstraint.ClStayConstraint;
 
 import java.util.*;
 
-import static crossmobile.ios.coregraphics.GraphicsDrill.context;
 import static org.crossmobile.bind.graphics.Geometry.meter;
-import static org.crossmobile.bind.graphics.Theme.Scroll.*;
 
 /**
  * UIScrollView class extends UIView and defines an object of a customized view
@@ -41,8 +40,10 @@ import static org.crossmobile.bind.graphics.Theme.Scroll.*;
 public class UIScrollView extends UIView {
 
     private static final double SELECTION_THRESHOLD = 5;
-    private final UIEdgeInsets scrollIndicatorInsets = UIEdgeInsets.zero();
-    // Used in UITable view: for optimization reasons this is friendly
+    private static final double SPRING_FACTOR = 0.5;
+
+    // Used in Theme and UITable view: for optimization reasons this is friendly
+    final UIEdgeInsets scrollIndicatorInsets = UIEdgeInsets.zero();
     final CGPoint contentOffset = new CGPoint(0, 0);
     final CGSize contentSize = new CGSize(0, 0);
     final UIEdgeInsets contentInset = UIEdgeInsets.zero();
@@ -59,13 +60,12 @@ public class UIScrollView extends UIView {
     private boolean dragging = false;
     private boolean tracking = false;
     private boolean decelerating = false;
+
     private int rawState;
 
     private int indicatorStyle = UIScrollViewIndicatorStyle.Default;
     private boolean showsHorizontalScrollIndicator = true;
     private boolean showsVerticalScrollIndicator = true;
-    private float flashAlpha = 1;
-    private boolean flashing = false;
     private UIView lastHit;
 
     private UIScrollViewDelegate delegate = null;
@@ -75,6 +75,7 @@ public class UIScrollView extends UIView {
     private Animation flasher = null;
     private Animation swipe = null;
     private Animation animatedScroll = null;
+    private final PainterExtraData extraData;
 
     private final Map<Integer, ClVariable> contentVariableMap = new HashMap<>();
     private final List<NSLayoutConstraint> contentConstraints = new ArrayList<>();
@@ -124,8 +125,8 @@ public class UIScrollView extends UIView {
                     CGPoint transl = pan.translationInView(UIScrollView.this);
                     CGPoint scrollVelocity = pan.velocityInView(UIScrollView.this);
                     StrongReference<Boolean> shouldSpring = new StrongReference<>(false);
-                    double x = calculateNewPosition(-transl.getX(), contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight() - getWidth(), shouldSpring);
-                    double y = calculateNewPosition(-transl.getY(), contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom() - getHeight(), shouldSpring);
+                    double x = calculateNewPosition(-transl.getX(), contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight() - cframe().getSize().getWidth(), shouldSpring);
+                    double y = calculateNewPosition(-transl.getY(), contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom() - cframe().getSize().getHeight(), shouldSpring);
                     if (pan.state() != UIGestureRecognizerState.Ended) { // UIGestureRecognizerState.Changed
                         if (dragging)
                             setContentOffset(x, y); // no special animation
@@ -150,11 +151,11 @@ public class UIScrollView extends UIView {
                                 scroller.invalidate();
                             if (delegate != null)
                                 delegate.didEndDragging(UIScrollView.this, false);
-                            if (shouldSpring.get() && (x < 0 || x > (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - getWidth() || y < 0 || y > (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) - getHeight())) {
+                            if (shouldSpring.get() && (x < 0 || x > (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - cframe().getSize().getWidth() || y < 0 || y > (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) - cframe().getSize().getHeight())) {
                                 float newX = (float) (x < 0 ? 0
-                                        : Math.min(x, (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - getWidth()));
+                                        : Math.min(x, (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - cframe().getSize().getWidth()));
                                 float newY = (float) (y < 0 ? 0
-                                        : Math.min(y, (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) - getHeight()));
+                                        : Math.min(y, (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) - cframe().getSize().getHeight()));
                                 setContentOffset(new CGPoint(newX, newY), true);
                             } else if (meter(scrollVelocity) > 1) {
                                 if (scroller != null)
@@ -192,9 +193,15 @@ public class UIScrollView extends UIView {
 
     UIScrollView(CGRect frame, UIColor backgroundColor) {
         super(frame, backgroundColor);
+        extraData = painter().initExtraData();
         setClipsToBounds(true);
         pan.setCancelsTouchesInView(true);
         addGestureRecognizer(pan);
+    }
+
+    @SuppressWarnings("unchecked")
+    private ScrollPainter<PainterExtraData> painter() {
+        return (ScrollPainter<PainterExtraData>) painter;
     }
 
     private void invalidateTimers() {
@@ -366,9 +373,9 @@ public class UIScrollView extends UIView {
     }
 
     private void setContentOffset(double x, double y) {
-        if ((contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) <= getWidth())
+        if ((contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) <= cframe().getSize().getWidth())
             x = contentOffset.getX();
-        if ((contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) <= getHeight())
+        if ((contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) <= cframe().getSize().getHeight())
             y = contentOffset.getY();
         contentOffset.setX((int) (x + 0.5));
         contentOffset.setY((int) (y + 0.5));
@@ -807,22 +814,22 @@ public class UIScrollView extends UIView {
             + "                   animated:(BOOL)animated;")
     public void scrollRectToVisible(CGRect rect, boolean animated) {
         double dx;
-        if ((contentOffset.getX() >= rect.getOrigin().getX() && (contentOffset.getX() + getWidth()) <= (rect.getOrigin().getX() + rect.getSize().getWidth()))
-                || (contentOffset.getX() <= rect.getOrigin().getX() && (contentOffset.getX() + getWidth()) >= (rect.getOrigin().getX() + rect.getSize().getWidth())))
+        if ((contentOffset.getX() >= rect.getOrigin().getX() && (contentOffset.getX() + cframe().getSize().getWidth()) <= (rect.getOrigin().getX() + rect.getSize().getWidth()))
+                || (contentOffset.getX() <= rect.getOrigin().getX() && (contentOffset.getX() + cframe().getSize().getWidth()) >= (rect.getOrigin().getX() + rect.getSize().getWidth())))
             dx = 0;
         else {
             double dx1 = rect.getOrigin().getX() - contentOffset.getX();
-            double dx2 = rect.getOrigin().getX() + rect.getSize().getWidth() - contentOffset.getX() - getWidth();
+            double dx2 = rect.getOrigin().getX() + rect.getSize().getWidth() - contentOffset.getX() - cframe().getSize().getWidth();
             dx = Math.abs(dx1) < Math.abs(dx2) ? dx1 : dx2;
         }
 
         double dy;
-        if ((contentOffset.getY() >= rect.getOrigin().getY() && (contentOffset.getY() + getHeight()) <= (rect.getOrigin().getY() + rect.getSize().getHeight()))
-                || (contentOffset.getY() <= rect.getOrigin().getY() && (contentOffset.getY() + getHeight()) >= (rect.getOrigin().getY() + rect.getSize().getHeight())))
+        if ((contentOffset.getY() >= rect.getOrigin().getY() && (contentOffset.getY() + cframe().getSize().getHeight()) <= (rect.getOrigin().getY() + rect.getSize().getHeight()))
+                || (contentOffset.getY() <= rect.getOrigin().getY() && (contentOffset.getY() + cframe().getSize().getHeight()) >= (rect.getOrigin().getY() + rect.getSize().getHeight())))
             dy = 0;
         else {
             double dx1 = rect.getOrigin().getY() - contentOffset.getY();
-            double dx2 = rect.getOrigin().getY() + rect.getSize().getHeight() - contentOffset.getY() - getHeight();
+            double dx2 = rect.getOrigin().getY() + rect.getSize().getHeight() - contentOffset.getY() - cframe().getSize().getHeight();
             dy = Math.abs(dx1) < Math.abs(dx2) ? dx1 : dx2;
         }
 
@@ -836,7 +843,23 @@ public class UIScrollView extends UIView {
     public void flashScrollIndicators() {
         if (flasher != null)
             flasher.invalidate();
-        flasher = Animator.add(new FlashIndicator(), CommonInterpolations.Linear, 0.6);
+        flasher = Animator.add(new AnimationAction() {
+            @Override
+            public void start() {
+                painter().startFlashing(extraData);
+            }
+
+            @Override
+            public void apply(double progress) {
+                painter().setFlashPercent(progress, extraData);
+                Native.graphics().refreshDisplay();
+            }
+
+            @Override
+            public void end() {
+                painter().endFlashing(extraData);
+            }
+        }, CommonInterpolations.Linear, 0.6);
     }
 
     @Override
@@ -862,56 +885,7 @@ public class UIScrollView extends UIView {
 
     @Override
     void drawOnTop(CGContext cx, CGRect rect) {
-        if (!(dragging || tracking || decelerating || flashing))
-            return;
-        boolean willShowHorizontal = showsHorizontalScrollIndicator && (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) > getWidth();
-        boolean willShowVertical = showsVerticalScrollIndicator && (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) > getHeight();
-        double guiWidth = rect.getSize().getWidth()
-                - scrollIndicatorInsets.getLeft()
-                - scrollIndicatorInsets.getRight()
-                - INDICATOR_INSET - INDICATOR_INSET
-                - (willShowVertical ? INDICATOR_THICKNESS : 0);
-        double guiHeight = rect.getSize().getHeight()
-                - scrollIndicatorInsets.getTop()
-                - scrollIndicatorInsets.getBottom()
-                - INDICATOR_INSET - INDICATOR_INSET
-                - (willShowHorizontal ? INDICATOR_THICKNESS : 0);
-        if (guiWidth >= INDICATOR_THICKNESS && guiHeight >= INDICATOR_THICKNESS) {
-            float c_alpha = dragging || tracking || decelerating ? 1 : flashAlpha;
-            int fillColor = (int) (0xFF * c_alpha * 0.25f) << 24;
-            int drawColor = ((int) (0xFF * c_alpha) << 24);
-            GraphicsContext<?> ctx = context(cx);
-            if (willShowHorizontal) {
-                double offsetCorrection = contentOffset.getX() < 0 ? -contentOffset.getX() : 0; // too small offset
-                double sizeCorrection = Math.max((contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()), contentOffset.getX() + getWidth());  // too big offset
-                double size = guiWidth * getWidth() / (sizeCorrection + offsetCorrection);
-                double offset = guiWidth * (contentOffset.getX() + offsetCorrection) / (sizeCorrection + offsetCorrection);
-                if (size < INDICATOR_THICKNESS)
-                    size = INDICATOR_THICKNESS;
-                if (offset + size > guiWidth)
-                    offset = guiWidth - size;
-
-                double x = rect.getOrigin().getX() + scrollIndicatorInsets.getLeft() + INDICATOR_INSET + offset;
-                double y = rect.getOrigin().getY() + rect.getSize().getHeight() - scrollIndicatorInsets.getBottom() - INDICATOR_THICKNESS - INDICATOR_INSET;
-                ctx.fillRoundRodBar(x, y, size, INDICATOR_THICKNESS, fillColor);
-                ctx.drawRoundRodBar(x, y, size, INDICATOR_THICKNESS, drawColor);
-            }
-            if (willShowVertical) {
-                double offsetCorrection = contentOffset.getY() < 0 ? -contentOffset.getY() : 0;
-                double sizeCorrection = Math.max((contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()), contentOffset.getY() + getHeight());
-                double size = guiHeight * getHeight() / (sizeCorrection + offsetCorrection);
-                double offset = guiHeight * (contentOffset.getY() + offsetCorrection) / (sizeCorrection + offsetCorrection);
-                if (size < INDICATOR_THICKNESS)
-                    size = INDICATOR_THICKNESS;
-                if (offset + size > guiHeight)
-                    offset = guiHeight - size;
-
-                double x = rect.getOrigin().getX() + rect.getSize().getWidth() - scrollIndicatorInsets.getRight() - INDICATOR_THICKNESS - INDICATOR_INSET;
-                double y = rect.getOrigin().getY() + scrollIndicatorInsets.getTop() + INDICATOR_INSET + offset;
-                ctx.fillRoundRodBar(x, y, INDICATOR_THICKNESS, size, fillColor);
-                ctx.drawRoundRodBar(x, y, INDICATOR_THICKNESS, size, drawColor);
-            }
-        }
+        painter().draw(this, rect, extraData);
     }
 
     private class ScrollContent implements AnimationAction {
@@ -924,17 +898,17 @@ public class UIScrollView extends UIView {
 
             xTo = xTo < 0
                     ? 0
-                    : (xTo > (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - getWidth()
-                    ? (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - getWidth()
+                    : (xTo > (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - cframe().getSize().getWidth()
+                    ? (contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight()) - cframe().getSize().getWidth()
                     : pagingEnabled
-                    ? ((int) (Math.min(xTo, xFrom + getWidth()) / getWidth() + 0.5)) * getWidth() + contentInset.getLeft() + contentInset.getRight()
+                    ? ((int) (Math.min(xTo, xFrom + cframe().getSize().getWidth()) / cframe().getSize().getWidth() + 0.5)) * cframe().getSize().getWidth() + contentInset.getLeft() + contentInset.getRight()
                     : xTo);
             yTo = yTo < 0
                     ? 0
-                    : (yTo > (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) - getHeight()
-                    ? (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) - getHeight()
+                    : (yTo > (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) - cframe().getSize().getHeight()
+                    ? (contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom()) - cframe().getSize().getHeight()
                     : pagingEnabled
-                    ? ((int) (Math.min(yTo, yFrom + getHeight()) / getHeight() + 0.5)) * getHeight() + contentInset.getTop() + contentInset.getBottom()
+                    ? ((int) (Math.min(yTo, yFrom + cframe().getSize().getHeight()) / cframe().getSize().getHeight() + 0.5)) * cframe().getSize().getHeight() + contentInset.getTop() + contentInset.getBottom()
                     : yTo);
             this.xTo = xTo;
             this.yTo = yTo;
@@ -947,7 +921,7 @@ public class UIScrollView extends UIView {
 
         @Override
         public void apply(double progress) {
-            setContentOffset((float) (xFrom + (xTo - xFrom) * progress), (float) (yFrom + (yTo - yFrom) * progress));
+            setContentOffset(xFrom + (xTo - xFrom) * progress, (yFrom + (yTo - yFrom) * progress));
         }
 
         @Override
@@ -969,28 +943,30 @@ public class UIScrollView extends UIView {
         private SwipeContent(CGPoint scrollVelocity) {
             x = contentOffset.getX();
             y = contentOffset.getY();
+            double width = cframe().getSize().getWidth();
+            double height = cframe().getSize().getHeight();
             dx = (float) (scrollVelocity.getX() > 0 ? -Math.pow(scrollVelocity.getX(), 1f / 1.2f) : Math.pow(-scrollVelocity.getX(), 1 / 1.2f));
             dx = pagingEnabled
-                    ? -dx / 2 > getWidth() / 2
-                    ? -(int) x % getWidth() - 20f
-                    : dx / 2 > getWidth() / 2
-                    ? (int) x % getWidth() + 20f
+                    ? -dx / 2 > width / 2
+                    ? -(int) x % width - 20f
+                    : dx / 2 > width / 2
+                    ? (int) x % width + 20f
                     : 0
-                    : x + dx < 0 - getWidth() / 4
-                    ? contentInset.getLeft() + contentInset.getRight() - getWidth() / 4 - x
-                    : x + dx > contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight() - getWidth() / 4
-                    ? contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight() - 3 * getWidth() / 4 - x
+                    : x + dx < 0 - width / 4
+                    ? contentInset.getLeft() + contentInset.getRight() - width / 4 - x
+                    : x + dx > contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight() - width / 4
+                    ? contentSize.getWidth() + contentInset.getLeft() + contentInset.getRight() - 3 * width / 4 - x
                     : dx;
             dy = (float) (scrollVelocity.getY() > 0 ? -Math.pow(scrollVelocity.getY(), 1f / 1.2f) : Math.pow(-scrollVelocity.getY(), 1f / 1.2f));
             dy = pagingEnabled
-                    ? -dy / 2 > getHeight() / 2
-                    ? -(int) y % getHeight() - 20f
-                    : dy / 2 > getHeight() / 2 ? (int) y % getHeight() + 20f
+                    ? -dy / 2 > height / 2
+                    ? -(int) y % height - 20f
+                    : dy / 2 > height / 2 ? (int) y % height + 20f
                     : 0
-                    : y + dy < -getHeight() / 4
-                    ? contentInset.getTop() + contentInset.getBottom() - getHeight() / 4 - y
-                    : y + dy > contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom() - getHeight() / 4
-                    ? contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom() - 3 * getHeight() / 4 - y
+                    : y + dy < -height / 4
+                    ? contentInset.getTop() + contentInset.getBottom() - height / 4 - y
+                    : y + dy > contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom() - height / 4
+                    ? contentSize.getHeight() + contentInset.getTop() + contentInset.getBottom() - 3 * height / 4 - y
                     : dy;
         }
 
@@ -1005,14 +981,16 @@ public class UIScrollView extends UIView {
         public void apply(double progress) {
             if (Math.abs(dx) > 50 || Math.abs(dy) > 50)
                 if (bounces)
-                    setContentOffset((float) (x + dx * progress), (float) (y + dy * progress));
+                    setContentOffset(x + dx * progress, y + dy * progress);
                 else {
-                    float newX = (float) (x + dx * progress < 0 ? 0
-                            : Math.min(x + dx * progress, contentSize.getWidth() - getWidth()));
-                    float newY = (float) (y + dy * progress < 0 ? 0
-                            : Math.min(y + dy * progress, contentSize.getHeight() - getHeight()));
+                    double width = cframe().getSize().getWidth();
+                    double height = cframe().getSize().getHeight();
+                    double newX = (x + dx * progress < 0 ? 0
+                            : Math.min(x + dx * progress, contentSize.getWidth() - width));
+                    double newY = (y + dy * progress < 0 ? 0
+                            : Math.min(y + dy * progress, contentSize.getHeight() - height));
                     setContentOffset(newX, newY);
-                    if ((newX == 0 || newX == contentSize.getWidth() - getWidth()) && (newY == 0 || newY == contentSize.getHeight() - getHeight()))
+                    if ((newX == 0 || newX == contentSize.getWidth() - width) && (newY == 0 || newY == contentSize.getHeight() - height))
                         if (scroller != null)
                             scroller.invalidate();
                 }
@@ -1026,26 +1004,6 @@ public class UIScrollView extends UIView {
             scroller = null;
             invalidateTimers();
             swipe = Animator.add(new UIScrollView.ScrollContent(contentOffset.getX(), contentOffset.getY()), CommonInterpolations.EaseOut);
-        }
-    }
-
-    private class FlashIndicator implements AnimationAction {
-
-        @Override
-        public void start() {
-            flashing = true;
-        }
-
-        @Override
-        public void apply(double progress) {
-            flashAlpha = (float) (1 - progress);
-            Native.graphics().refreshDisplay();
-        }
-
-        @Override
-        public void end() {
-            flashing = false;
-            flashAlpha = 1;
         }
     }
 

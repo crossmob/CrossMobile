@@ -350,7 +350,7 @@ public class UISearchBar extends UIView {
 
         if (showsCancelButton) {
             cancel = UIButton.buttonWithType(UIButtonType.System);
-            cancel.setFrame(new CGRect(getWidth() - cancelSize, 0, cancelSize, getHeight()));
+            cancel.setFrame(new CGRect(cframe().getSize().getWidth() - cancelSize, 0, cancelSize, cframe().getSize().getHeight()));
             cancel.setTitle("Cancel", UIControlState.Normal);
             cancel.addTarget((UIControl sender, UIEvent event) -> {
                 if (delegate != null)
@@ -359,11 +359,11 @@ public class UISearchBar extends UIView {
             cancel.setAutoresizingMask(UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleHeight);
             addSubview(cancel);
 
-            field.setFrame(new CGRect(0, 0, getWidth() - cancelSize, getHeight()));
+            field.setFrame(new CGRect(0, 0, cframe().getSize().getWidth() - cancelSize, cframe().getSize().getHeight()));
         } else {
             cancel.removeFromSuperview();
             cancel = null;
-            field.setFrame(new CGRect(0, 0, getWidth(), getHeight()));
+            field.setFrame(new CGRect(0, 0, cframe().getSize().getWidth(), cframe().getSize().getHeight()));
         }
     }
 

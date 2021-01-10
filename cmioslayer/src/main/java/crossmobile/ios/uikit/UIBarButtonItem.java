@@ -205,7 +205,7 @@ public class UIBarButtonItem extends UIBarItem {
         UIView view = view();
         if (view == null)
             return 0;
-        return view.getWidth();
+        return view.cframe().getSize().getWidth();
     }
 
     /**
@@ -218,7 +218,7 @@ public class UIBarButtonItem extends UIBarItem {
         UIView view = view();
         if (view == null)
             return;
-        view.setFrame(new CGRect(view.getX(), view.getY(), width, view.getHeight()));
+        view.setFrame(new CGRect(view.cframe().getOrigin().getX(), view.cframe().getOrigin().getY(), width, view.cframe().getSize().getHeight()));
         callbackParent();
     }
 

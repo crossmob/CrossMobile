@@ -483,14 +483,15 @@ public class UILabel extends UIView {
         if (text == null || text.isEmpty())
             blocks = TextBlock.EMPTY;
         else {
+            double width = cframe().getSize().getWidth();
             if (numberOfLines == 1) {
                 blocks = splitStringWithFontAndSize(text, fontOrig.cgfont, Double.MAX_VALUE, 1, lineBreakMode);
-                if (adjustsFontSizeToFitWidth && blocks.size.getWidth() > getWidth()) {
+                if (adjustsFontSizeToFitWidth && blocks.size.getWidth() > width) {
                     blocks = splitStringWithFontAndSize(text, font.cgfont, Double.MAX_VALUE, 1, lineBreakMode);
-                    font = fontOrig.fontWithSize(fontOrig.pointSize() * (getWidth() / intrinsicContentSize.getWidth()));
+                    font = fontOrig.fontWithSize(fontOrig.pointSize() * (width / intrinsicContentSize.getWidth()));
                 }
             } else
-                blocks = splitStringWithFontAndSize(text, fontDraw.cgfont, getWidth(), numberOfLines, lineBreakMode);
+                blocks = splitStringWithFontAndSize(text, fontDraw.cgfont, width, numberOfLines, lineBreakMode);
         }
         fontDraw = font;
         if (updateProperties) {

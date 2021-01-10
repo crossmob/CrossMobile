@@ -342,14 +342,14 @@ class cmViewAnimation implements AnimationAction {
 
         private FrameTuple(UIView view, CGRect to) {
             this.view = view;
-            fromX = view.getX();
-            fromY = view.getY();
-            fromWidth = view.getWidth();
-            fromHeight = view.getHeight();
-            deltaX = to.getOrigin().getX() - view.getX();
-            deltaY = to.getOrigin().getY() - view.getY();
-            deltaWidth = to.getSize().getWidth() - view.getWidth();
-            deltaHeight = to.getSize().getHeight() - view.getHeight();
+            fromX = view.cframe().getOrigin().getX();
+            fromY = view.cframe().getOrigin().getY();
+            fromWidth = view.cframe().getSize().getWidth();
+            fromHeight = view.cframe().getSize().getHeight();
+            deltaX = to.getOrigin().getX() - view.cframe().getOrigin().getX();
+            deltaY = to.getOrigin().getY() - view.cframe().getOrigin().getY();
+            deltaWidth = to.getSize().getWidth() - view.cframe().getSize().getWidth();
+            deltaHeight = to.getSize().getHeight() - view.cframe().getSize().getHeight();
         }
 
         @Override
@@ -484,14 +484,14 @@ class cmViewAnimation implements AnimationAction {
         @Override
         public CGRect enterView(UIView view, UIView parent) {
             CGRect last = view.frame();
-            view.setFrameImpl(view.getX() - parent.getWidth(), view.getY(), view.getWidth(), view.getHeight());
+            view.setFrameImpl(view.cframe().getOrigin().getX() - parent.cframe().getSize().getWidth(), view.cframe().getOrigin().getY(), view.cframe().getSize().getWidth(), view.cframe().getSize().getHeight());
             return last;
         }
 
         @Override
         public CGRect exitView(UIView view, UIView parent) {
             CGRect last = view.frame();
-            last.getOrigin().setX(last.getOrigin().getX() + parent.getWidth() / 2);
+            last.getOrigin().setX(last.getOrigin().getX() + parent.cframe().getSize().getWidth() / 2);
             return last;
         }
     }
@@ -501,14 +501,14 @@ class cmViewAnimation implements AnimationAction {
         @Override
         public CGRect enterView(UIView view, UIView parent) {
             CGRect last = view.frame();
-            view.setFrameImpl(view.getX() + parent.getWidth(), view.getY(), view.getWidth(), view.getHeight());
+            view.setFrameImpl(view.cframe().getOrigin().getX() + parent.cframe().getSize().getWidth(), view.cframe().getOrigin().getY(), view.cframe().getSize().getWidth(), view.cframe().getSize().getHeight());
             return last;
         }
 
         @Override
         public CGRect exitView(UIView view, UIView parent) {
             CGRect last = view.frame();
-            last.getOrigin().setX(last.getOrigin().getX() - (parent.getWidth() / 2));
+            last.getOrigin().setX(last.getOrigin().getX() - (parent.cframe().getSize().getWidth() / 2));
             return last;
         }
     }
@@ -518,14 +518,14 @@ class cmViewAnimation implements AnimationAction {
         @Override
         public CGRect enterView(UIView view, UIView parent) {
             CGRect last = view.frame();
-            view.setFrameImpl(view.getX() + parent.getWidth(), view.getY(), view.getWidth(), view.getHeight());
+            view.setFrameImpl(view.cframe().getOrigin().getX() + parent.cframe().getSize().getWidth(), view.cframe().getOrigin().getY(), view.cframe().getSize().getWidth(), view.cframe().getSize().getHeight());
             return last;
         }
 
         @Override
         public CGRect exitView(UIView view, UIView parent) {
             CGRect last = view.frame();
-            last.getOrigin().setX(last.getOrigin().getX() - parent.getWidth());
+            last.getOrigin().setX(last.getOrigin().getX() - parent.cframe().getSize().getWidth());
             return last;
         }
     }
@@ -535,14 +535,14 @@ class cmViewAnimation implements AnimationAction {
         @Override
         public CGRect enterView(UIView view, UIView parent) {
             CGRect last = view.frame();
-            view.setFrameImpl(view.getX() - parent.getWidth(), view.getY(), view.getWidth(), view.getHeight());
+            view.setFrameImpl(view.cframe().getOrigin().getX() - parent.cframe().getSize().getWidth(), view.cframe().getOrigin().getY(), view.cframe().getSize().getWidth(), view.cframe().getSize().getHeight());
             return last;
         }
 
         @Override
         public CGRect exitView(UIView view, UIView parent) {
             CGRect lastpos = view.frame();
-            lastpos.getOrigin().setX(lastpos.getOrigin().getX() + parent.getWidth());
+            lastpos.getOrigin().setX(lastpos.getOrigin().getX() + parent.cframe().getSize().getWidth());
             return lastpos;
         }
     }

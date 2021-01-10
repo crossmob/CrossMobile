@@ -422,7 +422,7 @@ public class UITabBar extends UIView {
         if (items == null || items.size() < 1)
             return;
 
-        CGRect newFrame = new CGRect(getX(), getY(), getWidth(), getHeight());
+        CGRect newFrame = new CGRect(cframe().getOrigin().getX(), cframe().getOrigin().getY(), cframe().getSize().getWidth(), cframe().getSize().getHeight());
         double width = newFrame.getSize().getWidth() / items.size();
         newFrame.getSize().setWidth(width - 1);
         newFrame.getOrigin().setY(0);

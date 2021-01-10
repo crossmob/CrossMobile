@@ -11,7 +11,6 @@ import crossmobile.ios.foundation.NSCalendar;
 import crossmobile.ios.foundation.NSDate;
 import crossmobile.ios.foundation.NSLocale;
 import crossmobile.ios.foundation.NSTimeZone;
-import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.*;
 
 /**
@@ -51,7 +50,7 @@ public class UIDatePicker extends UIControl {
     @CMConstructor("- (instancetype)initWithFrame:(CGRect)frame;")
     public UIDatePicker(CGRect rect) {
         super(rect);
-        picker = new cmPickers.DatePickerView(new CGRect(0, 0, getWidth(), getHeight()), this);
+        picker = new cmPickers.DatePickerView(new CGRect(0, 0, cframe().getSize().getWidth(), cframe().getSize().getHeight()), this);
         addSubview(picker);
     }
 

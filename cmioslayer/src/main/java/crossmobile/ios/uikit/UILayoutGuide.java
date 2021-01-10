@@ -213,8 +213,8 @@ public class UILayoutGuide extends NSObject {
     void applyResult() {
         layoutFrame.getSize().setWidth((float) getVariable(NSLayoutAttribute.Width).getValue());
         layoutFrame.getSize().setHeight((float) getVariable(NSLayoutAttribute.Height).getValue());
-        layoutFrame.getOrigin().setX((float) getVariable(NSLayoutAttribute.Left).getValue() - owningView().getX());
-        layoutFrame.getOrigin().setY((float) getVariable(NSLayoutAttribute.Top).getValue() - owningView().getY());
+        layoutFrame.getOrigin().setX((float) getVariable(NSLayoutAttribute.Left).getValue() - owningView().cframe().getOrigin().getX());
+        layoutFrame.getOrigin().setY((float) getVariable(NSLayoutAttribute.Top).getValue() - owningView().cframe().getOrigin().getY());
     }
 
     @Override

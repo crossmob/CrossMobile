@@ -13,7 +13,7 @@ public interface ThemePainterExtra<T extends UIView, P extends PainterExtraData>
     void draw(T entity, CGRect rect, P extraData);
 
     default void draw(T entity, CGRect rect) {
-        draw(entity, rect, null);
+        throw new NullPointerException("This method should not be called with " + getClass().getName() + "; use \"draw(T entity, CGRect rect, P extraData)\" instead");
     }
 
     P initExtraData();

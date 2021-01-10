@@ -6,10 +6,7 @@
 
 package crossmobile.ios.uikit;
 
-import crossmobile.ios.coregraphics.CGColor;
-import crossmobile.ios.coregraphics.CGContext;
-import crossmobile.ios.coregraphics.CGFont;
-import crossmobile.ios.coregraphics.CGPoint;
+import crossmobile.ios.coregraphics.*;
 import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.wrapper.NativeTouch;
 import org.crossmobile.bind.wrapper.TextWrapper;
@@ -76,8 +73,8 @@ public class UserInterfaceDrill {
             offset.setY(offset.getY() + scrollAmount * 10);
             if (offset.getY() < 0)
                 offset.setY(0);
-            if (offset.getY() > (scrollView.contentSize.getHeight() + scrollView.contentInset.getTop() + scrollView.contentInset.getBottom()) - scrollView.getHeight())
-                offset.setY((scrollView.contentSize.getHeight() + scrollView.contentInset.getTop() + scrollView.contentInset.getBottom()) - scrollView.getHeight());
+            if (offset.getY() > (scrollView.contentSize.getHeight() + scrollView.contentInset.getTop() + scrollView.contentInset.getBottom()) - scrollView.cframe().getSize().getHeight())
+                offset.setY((scrollView.contentSize.getHeight() + scrollView.contentInset.getTop() + scrollView.contentInset.getBottom()) - scrollView.cframe().getSize().getHeight());
             scrollView.setContentOffset(offset, false);
             scrollView.flashScrollIndicators();
         }
@@ -118,4 +115,33 @@ public class UserInterfaceDrill {
     public static NativeTouch[] getTouches(UIEvent event, UIView referenceView) {
         return event.getTouches(referenceView);
     }
+
+    /* The following methods are for optimization reasons; by default the getter methods
+     * return a copy of the original object, to be data safe since the original data can't
+     * be immutable.
+     *
+     * These methods have access to the original object with the promise not to alter them.
+     */
+
+    // BEGIN OPTIMIZED STRUCT METHODS
+    public static CGRect frame(UIView view) {
+        return view.cframe();
+    }
+
+    public static UIEdgeInsets scrollIndicatorInsets(UIScrollView view) {
+        return view.scrollIndicatorInsets;
+    }
+
+    public static CGPoint contentOffset(UIScrollView view) {
+        return view.contentOffset;
+    }
+
+    public static CGSize contentSize(UIScrollView view) {
+        return view.contentSize;
+    }
+
+    public static UIEdgeInsets contentInset(UIScrollView view) {
+        return view.contentInset;
+    }
+    // END OPTIMIZED STRUCT METHODS
 }

@@ -340,7 +340,7 @@ public class UIStackView extends UIView {
                         });
                         for (UIView sortedSubview : sortedViews) {
                             sum += sortedSubview.intrinsicContentSize().getWidth() + spacing;
-                            if (sum > this.getWidth()) {
+                            if (sum > this.cframe().getSize().getWidth()) {
                                 sum = sum - (sortedSubview.intrinsicContentSize().getWidth() + spacing);
                                 break;
                             }
@@ -349,18 +349,18 @@ public class UIStackView extends UIView {
                         if (counter < sortedViews.size()) {
                             for (int i = 0; i < sortedViews.size() - 1; i++)
                                 constraints.add(sortedViews.get(i).trailingAnchor().constraintGreaterThanOrEqualToAnchor(sortedViews.get(i + 1).leadingAnchor(), -spacing));
-                            constraints.add(sortedViews.get(counter).widthAnchor().constraintEqualToConstant(this.getWidth() - sum));
+                            constraints.add(sortedViews.get(counter).widthAnchor().constraintEqualToConstant(this.cframe().getSize().getWidth() - sum));
                             for (int i = counter + 1; i < sortedViews.size(); i++)
                                 constraints.add(sortedViews.get(i).widthAnchor().constraintEqualToConstant(0));
                         } else {
                             for (UIView sortedSubview : sortedViews)
                                 sortedSubview.widthAnchor().constraintEqualToConstant(sortedSubview.intrinsicContentSize().getWidth());
                             for (int i = 0; i < sortedViews.size() - 1; i++)
-                                constraints.add(sortedViews.get(i).trailingAnchor().constraintGreaterThanOrEqualToAnchor(sortedViews.get(i + 1).leadingAnchor(), -(this.getHeight() - (sum - sortedViews.size() * spacing)) / (sortedViews.size() - 1)));
+                                constraints.add(sortedViews.get(i).trailingAnchor().constraintGreaterThanOrEqualToAnchor(sortedViews.get(i + 1).leadingAnchor(), -(this.cframe().getSize().getHeight() - (sum - sortedViews.size() * spacing)) / (sortedViews.size() - 1)));
                         }
                         break;
                     case UIStackViewDistribution.EqualCentering:
-                        double centerspacing = (this.getWidth() - (arrangedSubviews.get(1).getWidth() / 2 + arrangedSubviews.get(arrangedSubviews.size() - 1).getWidth() / 2)) / (arrangedSubviews.size() - 1);
+                        double centerspacing = (this.cframe().getSize().getWidth() - (arrangedSubviews.get(1).cframe().getSize().getWidth() / 2 + arrangedSubviews.get(arrangedSubviews.size() - 1).cframe().getSize().getWidth() / 2)) / (arrangedSubviews.size() - 1);
                         for (int i = 0; i < arrangedSubviews.size() - 1; i++)
                             constraints.add(arrangedSubviews.get(i).trailingAnchor().constraintGreaterThanOrEqualToAnchor(arrangedSubviews.get(i + 1).leadingAnchor(), -spacing));
                         for (int i = 0; i < arrangedSubviews.size() - 1; i++)
@@ -422,7 +422,7 @@ public class UIStackView extends UIView {
                         });
                         for (UIView sortedSubview : sortedViews) {
                             sum += sortedSubview.intrinsicContentSize().getHeight() + spacing;
-                            if (sum > this.getHeight()) {
+                            if (sum > this.cframe().getSize().getHeight()) {
                                 sum = sum - (sortedSubview.intrinsicContentSize().getHeight());
                                 break;
                             }
@@ -431,18 +431,18 @@ public class UIStackView extends UIView {
                         if (counter < sortedViews.size()) {
                             for (int i = 0; i < arrangedSubviews.size() - 1; i++)
                                 constraints.add(arrangedSubviews.get(i).bottomAnchor().constraintGreaterThanOrEqualToAnchor(arrangedSubviews.get(i + 1).topAnchor(), -spacing));
-                            constraints.add(sortedViews.get(counter).heightAnchor().constraintEqualToConstant(this.getHeight() - sum));
+                            constraints.add(sortedViews.get(counter).heightAnchor().constraintEqualToConstant(this.cframe().getSize().getHeight() - sum));
                             for (int i = counter + 1; i < sortedViews.size(); i++)
                                 constraints.add(sortedViews.get(i).heightAnchor().constraintEqualToConstant(0));
                         } else {
                             for (UIView sortedSubview : sortedViews)
                                 sortedSubview.heightAnchor().constraintEqualToConstant(sortedSubview.intrinsicContentSize().getHeight());
                             for (int i = 0; i < sortedViews.size() - 1; i++)
-                                constraints.add(arrangedSubviews.get(i).bottomAnchor().constraintGreaterThanOrEqualToAnchor(arrangedSubviews.get(i + 1).topAnchor(), -(this.getHeight() - (sum - sortedViews.size() * spacing)) / (sortedViews.size() - 1)));
+                                constraints.add(arrangedSubviews.get(i).bottomAnchor().constraintGreaterThanOrEqualToAnchor(arrangedSubviews.get(i + 1).topAnchor(), -(this.cframe().getSize().getHeight() - (sum - sortedViews.size() * spacing)) / (sortedViews.size() - 1)));
                         }
                         break;
                     case UIStackViewDistribution.EqualCentering:
-                        double centerspacing = (this.getHeight() - (arrangedSubviews.get(1).getHeight() / 2 + arrangedSubviews.get(arrangedSubviews.size() - 1).getHeight() / 2)) / (arrangedSubviews.size() - 1);
+                        double centerspacing = (this.cframe().getSize().getHeight() - (arrangedSubviews.get(1).cframe().getSize().getHeight() / 2 + arrangedSubviews.get(arrangedSubviews.size() - 1).cframe().getSize().getHeight() / 2)) / (arrangedSubviews.size() - 1);
                         for (int i = 0; i < arrangedSubviews.size() - 1; i++)
                             constraints.add(arrangedSubviews.get(i).bottomAnchor().constraintGreaterThanOrEqualToAnchor(arrangedSubviews.get(i + 1).topAnchor(), -spacing));
                         for (int i = 0; i < arrangedSubviews.size() - 1; i++)

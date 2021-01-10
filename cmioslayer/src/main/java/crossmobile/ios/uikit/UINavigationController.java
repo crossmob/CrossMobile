@@ -362,9 +362,9 @@ public class UINavigationController extends UIViewController {
         if (topController != null)
             scroll = topController.getFirstScroll();
         if (scroll != null && topController.automaticallyAdjustsScrollViewInsets()) {
-            double top = navigationBar.isHidden() || !navigationBar.isTranslucent() || scroll.frame().getOrigin().getY() > navigationBar.getHeight()
-                    ? 0 : navigationBar.getHeight() - scroll.frame().getOrigin().getY();
-            double bottom = toolBar.isHidden() || !toolBar.isTranslucent() ? 0 : toolBar.getHeight();
+            double top = navigationBar.isHidden() || !navigationBar.isTranslucent() || scroll.frame().getOrigin().getY() > navigationBar.cframe().getSize().getHeight()
+                    ? 0 : navigationBar.cframe().getSize().getHeight() - scroll.frame().getOrigin().getY();
+            double bottom = toolBar.isHidden() || !toolBar.isTranslucent() ? 0 : toolBar.cframe().getSize().getHeight();
             UIEdgeInsets edge = new UIEdgeInsets(sign * top,
                     scroll.contentInset.getLeft(),
                     scroll.contentInset.getBottom() + sign * bottom,
@@ -592,10 +592,10 @@ public class UINavigationController extends UIViewController {
     }
 
     private double navBarHeight() {
-        return navigationBar.isHidden() ? 0 : navigationBar.getHeight();
+        return navigationBar.isHidden() ? 0 : navigationBar.cframe().getSize().getHeight();
     }
 
     private double toolBarHeight() {
-        return toolBar.isHidden() ? 0 : toolBar.getHeight();
+        return toolBar.isHidden() ? 0 : toolBar.cframe().getSize().getHeight();
     }
 }

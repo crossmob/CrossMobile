@@ -281,7 +281,7 @@ public class UITabBarController extends UIViewController {
         void layoutViewAsCore(UIView view) {
             if (view != null) {
                 float tabBarHeight = tabBar.isHidden() ? 0 : Theme.Bar.Tab.DEFAULTHEIGHT;
-                view.setFrame(new CGRect(0, 0, getWidth(), getHeight() - tabBarHeight));
+                view.setFrame(new CGRect(0, 0, cframe().getSize().getWidth(), cframe().getSize().getHeight() - tabBarHeight));
             }
         }
     }

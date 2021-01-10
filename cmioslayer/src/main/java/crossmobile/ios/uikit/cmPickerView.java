@@ -53,13 +53,13 @@ class cmPickerView extends UIView {
 
     void loadWheels() {
         numberofWheels = datasource.numberOfComponentsInPickerView(pickerview);
-        widthperwheel = (getWidth() / numberofWheels);
+        widthperwheel = (cframe().getSize().getWidth() / numberofWheels);
         double originx = 0;
         double width;
         boolean widthInDelegate = delegate != null && isOverriddenDouble(() -> delegate.widthForComponent(pickerview, 0));
         for (int i = 0; i < numberofWheels; i++) {
             width = widthInDelegate ? delegate.widthForComponent(pickerview, i) : widthperwheel;
-            wheels.add(new Wheel(new CGRect(originx, 0, width, getHeight()), i));
+            wheels.add(new Wheel(new CGRect(originx, 0, width, cframe().getSize().getHeight()), i));
             originx += width;
         }
         for (Wheel wheel : wheels)

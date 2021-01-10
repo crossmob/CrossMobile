@@ -91,8 +91,8 @@ public class UITableViewCell extends UIView {
         if (contentV != null) { // Only when the object is fully initialized
             double leftInset = 0;
             double rightInset = 0;
-            double width = getWidth();
-            double height = getHeight();
+            double width = cframe().getSize().getWidth();
+            double height = cframe().getSize().getHeight();
 
             if (imageView != null && imageView.image() != null) {
                 leftInset = Theme.Cell.INSET_LEFT + Theme.Cell.IMAGE_SIZE;
@@ -516,7 +516,7 @@ public class UITableViewCell extends UIView {
         UITableView tv = (UITableView) superview();
         if (tv != null && tv.separatorStyle == UITableViewCellSeparatorStyle.SingleLine) {
             cx.setStrokeColorWithColor(tv.separatorColor.cgcolor);
-            context(cx).drawLine(15, getHeight() - 1, getWidth() - 16, getHeight() - 1);
+            context(cx).drawLine(15, cframe().getSize().getHeight() - 1, cframe().getSize().getWidth() - 16, cframe().getSize().getHeight() - 1);
         }
     }
 
@@ -570,9 +570,9 @@ public class UITableViewCell extends UIView {
 
     private CGSize editButtonSize() {
         CGSize metrics = new CGSize(Theme.Cell.EDIT_SIZE, 0);
-        if (metrics.getWidth() > (getHeight() - 2))
-            metrics.setWidth(getHeight() - 2);
-        metrics.setHeight((getHeight() - metrics.getWidth()) / 2);
+        if (metrics.getWidth() > (cframe().getSize().getHeight() - 2))
+            metrics.setWidth(cframe().getSize().getHeight() - 2);
+        metrics.setHeight((cframe().getSize().getHeight() - metrics.getWidth()) / 2);
         return metrics;
     }
 

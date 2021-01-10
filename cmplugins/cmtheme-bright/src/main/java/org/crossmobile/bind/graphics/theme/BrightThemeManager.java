@@ -13,6 +13,7 @@ public class BrightThemeManager implements ThemeManager {
     private BrightButtonPainter buttonPainter;
     private BrightPageControlPainter pageControlPainter;
     private BrightProgressPainter progressPainter;
+    private BrightScrollPainter scrollPainter;
     private BrightSliderPainter sliderPainter;
     private BrightSwitchPainter switchPainter;
     private final ThemeFont themeFont = new BrightThemeFont();
@@ -47,6 +48,10 @@ public class BrightThemeManager implements ThemeManager {
             if (activityIndicatorPainter == null)
                 activityIndicatorPainter = new BrightActivityIndicatorPainter();
             painter = activityIndicatorPainter;
+        } else if (UIScrollView.class.isAssignableFrom(cls)) {
+            if (scrollPainter == null)
+                scrollPainter = new BrightScrollPainter();
+            painter = scrollPainter;
         } else
             painter = null;
         return painter;

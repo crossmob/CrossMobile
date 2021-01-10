@@ -7,7 +7,6 @@
 package crossmobile.ios.uikit;
 
 
-import crossmobile.ios.coregraphics.CGPoint;
 import crossmobile.ios.coregraphics.CGRect;
 import org.crossmobile.bind.graphics.Theme;
 import org.crossmobile.bind.graphics.theme.PainterExtraData;
@@ -16,8 +15,6 @@ import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.*;
 
 import java.util.Set;
-
-import static crossmobile.ios.coregraphics.GraphicsDrill.context;
 
 /**
  * UISlider class defines an object that is used when there is a need to select
@@ -71,7 +68,7 @@ public class UISlider extends UIControl {
     }
 
     private void setValueFromTouch(Set<UITouch> touches) {
-        double cValue = painter().setSliderLocation(touches.iterator().next().locationInView(this).getX(), getWidth(), extraData);
+        double cValue = painter().setSliderLocation(touches.iterator().next().locationInView(this).getX(), cframe().getSize().getWidth(), extraData);
         setValue((float) (minimumValue + (maximumValue - minimumValue) * cValue));
         setNeedsDisplay();
     }
