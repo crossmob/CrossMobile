@@ -14,6 +14,7 @@ public class BrightThemeManager implements ThemeManager {
     private BrightPageControlPainter pageControlPainter;
     private BrightProgressPainter progressPainter;
     private BrightScrollPainter scrollPainter;
+    private BrightSegmentedPainter segmentedPainter;
     private BrightSliderPainter sliderPainter;
     private BrightSwitchPainter switchPainter;
     private final ThemeFont themeFont = new BrightThemeFont();
@@ -52,6 +53,10 @@ public class BrightThemeManager implements ThemeManager {
             if (scrollPainter == null)
                 scrollPainter = new BrightScrollPainter();
             painter = scrollPainter;
+        } else if (UISegmentedControl.class.isAssignableFrom(cls)) {
+            if (segmentedPainter == null)
+                segmentedPainter = new BrightSegmentedPainter();
+            painter = segmentedPainter;
         } else
             painter = null;
         return painter;

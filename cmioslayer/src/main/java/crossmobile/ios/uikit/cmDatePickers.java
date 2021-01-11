@@ -14,7 +14,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
-//import org.crossmobile.support.pickers.cmCells;
 
 @SuppressWarnings("OverridableMethodCallInConstructor")
 class cmDatePickers {

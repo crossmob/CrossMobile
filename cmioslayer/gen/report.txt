@@ -1262,6 +1262,7 @@ org/crossmobile/bind/graphics/theme/PageControlPainter.java
 org/crossmobile/bind/graphics/theme/PainterExtraData.java
 org/crossmobile/bind/graphics/theme/ProgressPainter.java
 org/crossmobile/bind/graphics/theme/ScrollPainter.java
+org/crossmobile/bind/graphics/theme/SegmentedPainter.java
 org/crossmobile/bind/graphics/theme/SliderPainter.java
 org/crossmobile/bind/graphics/theme/SwitchPainter.java
 org/crossmobile/bind/graphics/theme/ThemeFactory.java
@@ -2463,6 +2464,7 @@ org/crossmobile/bind/graphics/theme/PageControlPainter.class v8
 org/crossmobile/bind/graphics/theme/PainterExtraData.class v8
 org/crossmobile/bind/graphics/theme/ProgressPainter.class v8
 org/crossmobile/bind/graphics/theme/ScrollPainter.class v8
+org/crossmobile/bind/graphics/theme/SegmentedPainter.class v8
 org/crossmobile/bind/graphics/theme/SliderPainter.class v8
 org/crossmobile/bind/graphics/theme/SwitchPainter.class v8
 org/crossmobile/bind/graphics/theme/ThemeFont.class v8
@@ -3209,6 +3211,7 @@ org/crossmobile/bind/graphics/theme/PageControlPainter.class v8
 org/crossmobile/bind/graphics/theme/PainterExtraData.class v8
 org/crossmobile/bind/graphics/theme/ProgressPainter.class v8
 org/crossmobile/bind/graphics/theme/ScrollPainter.class v8
+org/crossmobile/bind/graphics/theme/SegmentedPainter.class v8
 org/crossmobile/bind/graphics/theme/SliderPainter.class v8
 org/crossmobile/bind/graphics/theme/SwitchPainter.class v8
 org/crossmobile/bind/graphics/theme/ThemeFont.class v8

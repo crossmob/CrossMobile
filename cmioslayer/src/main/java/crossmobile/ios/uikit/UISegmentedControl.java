@@ -6,10 +6,9 @@
 
 package crossmobile.ios.uikit;
 
-import crossmobile.ios.coregraphics.CGColor;
-import crossmobile.ios.coregraphics.CGContext;
-import crossmobile.ios.coregraphics.CGPathDrawingMode;
 import crossmobile.ios.coregraphics.CGRect;
+import org.crossmobile.bind.graphics.theme.PainterExtraData;
+import org.crossmobile.bind.graphics.theme.SegmentedPainter;
 import org.crossmobile.bind.graphics.theme.ThemeUtilities;
 import org.crossmobile.bind.system.Promise;
 import org.crossmobile.bridge.Native;
@@ -41,6 +40,7 @@ public class UISegmentedControl extends UIControl {
             selection = -1;
         }
     };
+    private final PainterExtraData extraData;
 
     /**
      * Constructs a default UISegmentedControl object located at (0,0) with 0
@@ -49,6 +49,7 @@ public class UISegmentedControl extends UIControl {
     public UISegmentedControl() {
         this(CGRect.zero());
     }
+
 
     /**
      * Constructs a UIWindow object initialized with the dimensions and position
@@ -60,6 +61,7 @@ public class UISegmentedControl extends UIControl {
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public UISegmentedControl(CGRect rect) {
         super(rect);
+        extraData = painter().initExtraData();
     }
 
     /**
@@ -74,13 +76,17 @@ public class UISegmentedControl extends UIControl {
     public UISegmentedControl(List<?> items) {
         if (items != null && !items.isEmpty()) {
             for (int i = 0; i < items.size(); i++)
-                //noinspection DuplicateCondition
                 if (items.get(i) instanceof String)
                     insertSegmentWithTitle((String) items.get(i), i, false);
-                else //noinspection DuplicateCondition
-                    if (items.get(i) instanceof UIImage)
-                        insertSegmentWithImage((UIImage) items.get(i), i, false);
+                else if (items.get(i) instanceof UIImage)
+                    insertSegmentWithImage((UIImage) items.get(i), i, false);
         }
+        extraData = painter().initExtraData();
+    }
+
+    @SuppressWarnings("unchecked")
+    private SegmentedPainter<PainterExtraData> painter() {
+        return (SegmentedPainter<PainterExtraData>) painter;
     }
 
     /**
@@ -344,55 +350,19 @@ public class UISegmentedControl extends UIControl {
             setTitleColor(normal, UIControlState.Normal);
             setTitleColor(selected, UIControlState.Selected);
             setTitleColor(selected, UIControlState.Highlighted);
-//            setTitleColor(selected, UIControlState.Selected | UIControlState.Highlighted);
         }
 
         @Override
         public void drawRect(CGRect rect) {
-            CGColor tintColor = tintColor().cgcolor;
-            CGContext cx = UIGraphics.getCurrentContext();
-            cx.beginPath();
-            double x = rect.getOrigin().getX();
-            double y = rect.getOrigin().getY();
-            double width = rect.getSize().getWidth();
-            double height = rect.getSize().getHeight();
-            if (this.equals(items.get(0))) {
-                // Left
-                cx.moveToPoint(x + 4, y);
-                cx.addLineToPoint(x + width, y);
-                cx.addLineToPoint(x + width, y + height);
-                cx.addLineToPoint(x + 4, y + height);
-                cx.addCurveToPoint(x + 3, y + height - 1, x + 1, y + height - 3, x, y + height - 4);
-                cx.addLineToPoint(x, y + 4);
-                cx.addCurveToPoint(x + 1, y + 3, x + 3, y + 1, x + 4, y);
-            } else if (this.equals(items.get(items.size() - 1))) {
-                // Right
-                cx.moveToPoint(x, y);
-                cx.addLineToPoint(x + width - 4, y);
-                cx.addCurveToPoint(x + width - 3, y + 1, x + width - 1, y + 3, x + width, y + 4);
-                cx.addLineToPoint(x + width, y + height - 4);
-                cx.addCurveToPoint(x + width - 1, y + height - 3, x + width - 3, y + height - 1, x + width - 4, y + height);
-                cx.addLineToPoint(x, y + height);
-            } else {
-                // Central
-                cx.moveToPoint(x, y);
-                cx.addLineToPoint(x + width, y);
-                cx.addLineToPoint(x + width, y + height);
-                cx.addLineToPoint(x, y + height);
-            }
-            cx.closePath();
-            cx.setLineWidth(1);
-            if (isSelected() || isHighlighted()) {
-                cx.setFillColorWithColor(tintColor);
-                cx.drawPath(CGPathDrawingMode.FillStroke);
-                if (deselectedImage != null)
-                    deselectedImage.get().drawInRect(new CGRect(0, 0, cframe().getSize().getWidth(), cframe().getSize().getHeight()));
-            } else {
-                cx.setStrokeColorWithColor(tintColor);
-                cx.drawPath(CGPathDrawingMode.Stroke);
-                if (selectedImage != null)
-                    selectedImage.get().drawInRect(new CGRect(0, 0, cframe().getSize().getWidth(), cframe().getSize().getHeight()));
-            }
+            if (this.equals(items.get(0)))
+                painter().setAsFirstSegment(extraData);
+            else if (this.equals(items.get(items.size() - 1)))
+                painter().setAsLastSegment(extraData);
+            else
+                painter().setAsMiddleSegment(extraData);
+            Promise<UIImage> current = isSelected() ? selectedImage : deselectedImage;
+            painter().setSegmentImage(current == null ? null : current.get(), extraData);
+            painter().draw(this, rect, extraData);
             super.drawRect(rect);
         }
 
