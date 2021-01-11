@@ -48,7 +48,7 @@ public class ActivityStateListener {
      * @return the automatically provided request code
      */
     public int registerGlobally(ActivityResultListener listener) {
-        int newId = 0;
+        int newId = -1;
         if (listener != null)
             launch.put(listener, newId = getNextId());
         return newId;
@@ -60,17 +60,18 @@ public class ActivityStateListener {
      * @param listener Callback
      * @param intent   The intent to launch
      */
-    public void launch(ActivityResultListener listener, Intent intent) {
-        if (listener != null) {
+    public boolean launch(ActivityResultListener listener, Intent intent) {
+        if (listener != null)
             autoResultListener.add(listener);
-            if (intent != null)
-                try {
-                    MainActivity.current.startActivityForResult(intent, registerGlobally(listener));
-                } catch (ActivityNotFoundException exception) {
-                    Native.system().error("Unable to launch Intent", exception);
-                    Toast.makeText(MainActivity.current(), exception.getMessage(), 3);
-                }
-        }
+        if (intent != null)
+            try {
+                MainActivity.current.startActivityForResult(intent, registerGlobally(listener));
+            } catch (ActivityNotFoundException exception) {
+                Native.system().error("Unable to launch Intent", exception);
+                Toast.makeText(MainActivity.current, exception.getMessage(), 3);
+                return false;
+            }
+        return true;
     }
 
     /**
@@ -83,11 +84,12 @@ public class ActivityStateListener {
      */
     public void launch(ActivityExtendedResultListener listener, Runnable launcher) {
         if (listener != null) {
-            MainActivity.current().startSpying();
-            launcher.run();
+            MainActivity.current.startSpying();
+            if (launcher != null)
+                launcher.run();
             Collection<Integer> requests = MainActivity.current.stopSpying();
             if (requests.isEmpty())
-                Toast.makeText(MainActivity.current(), "Unable to register Activity callback", 2);
+                Toast.makeText(MainActivity.current, "Unable to register Activity callback", 2);
             else
                 for (Integer request : requests)
                     extlaunch.put(listener, request);

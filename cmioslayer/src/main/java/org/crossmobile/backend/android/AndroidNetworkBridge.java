@@ -13,7 +13,6 @@ import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import org.crossmobile.bind.io.AbstractNetworkBridge;
 import org.crossmobile.bind.io.NativeCookieManager;
-import org.crossmobile.bridge.Native;
 
 public class AndroidNetworkBridge extends AbstractNetworkBridge {
 
@@ -22,14 +21,7 @@ public class AndroidNetworkBridge extends AbstractNetworkBridge {
 
     @Override
     public boolean openURL(String url) {
-        Intent urlIntent = new Intent("android.intent.action.VIEW", Uri.parse(url));
-        try {
-            MainActivity.current.startActivity(urlIntent);
-            return true;
-        } catch (Exception ex) {
-            Native.system().error("Unable to open URL " + url, ex);
-            return false;
-        }
+        return MainActivity.current.getStateListener().launch(null, new Intent("android.intent.action.VIEW", Uri.parse(url)));
     }
 
     @Override

@@ -184,42 +184,35 @@ public class AndroidImageBridge extends AbstractImageBridge {
                 File photoFile = new File(rawPhotoPath);
                 Uri photoURI = AndroidFileBridge.getExternalUri(photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                ActivityResultListener activityResult = new ActivityResultListener() {
-                    @Override
-                    public void result(int resultCode, Intent data) {
-                        CGImage cgimage = resultCode == RESULT_OK
-                                ? cgimage(rawPhotoPath, null)
-                                : null;
-                        if (cgimage == null && photoFile.isFile())
-                            photoFile.delete();
-                        filepathResult.invoke(cgimage);
-                    }
-                };
-                MainActivity.current.getStateListener().launch(activityResult, takePictureIntent);
+                MainActivity.current.getStateListener().launch((resultCode, data) -> {
+                    CGImage cgimage = resultCode == RESULT_OK
+                            ? cgimage(rawPhotoPath, null)
+                            : null;
+                    if (cgimage == null && photoFile.isFile())
+                        photoFile.delete();
+                    filepathResult.invoke(cgimage);
+                }, takePictureIntent);
             } else filepathResult.invoke(null);
         }, AndroidPermission.CAMERA);
     }
 
     @Override
     public void requestPhotoAlbum(VoidBlock1<CGImage> result) {
-        ActivityResultListener activityResult = new ActivityResultListener() {
-            @Override
-            public void result(int resultCode, Intent data) {
-                CGImage cgimage = null;
-                if (resultCode == RESULT_OK && data != null && data.getData() != null) {
-                    Uri uri = data.getData();
-                    String photoPath = Native.file().getRandomLocation();
-                    File photoFile = new File(photoPath);
-                    try {
-                        Native.file().copyStreamAndClose(MainActivity.current.getContentResolver().openInputStream(uri), new FileOutputStream(photoFile), IMAGE_STREAM_BUFFER_SIZE);
-                        cgimage = cgimage(photoPath, null);
-                    } catch (IOException ex) {
-                        if (photoFile.exists())
-                            photoFile.delete();
-                    }
+        ActivityResultListener activityResult = (resultCode, data) -> {
+            CGImage cgimage = null;
+            if (resultCode == RESULT_OK && data != null && data.getData() != null) {
+                Uri uri = data.getData();
+                String photoPath = Native.file().getRandomLocation();
+                File photoFile = new File(photoPath);
+                try {
+                    Native.file().copyStreamAndClose(MainActivity.current.getContentResolver().openInputStream(uri), new FileOutputStream(photoFile), IMAGE_STREAM_BUFFER_SIZE);
+                    cgimage = cgimage(photoPath, null);
+                } catch (IOException ex) {
+                    if (photoFile.exists())
+                        photoFile.delete();
                 }
-                result.invoke(cgimage);
             }
+            result.invoke(cgimage);
         };
 
         Intent photoChooserIntent = new Intent();
@@ -227,9 +220,6 @@ public class AndroidImageBridge extends AbstractImageBridge {
         photoChooserIntent.setType("image/*");
         photoChooserIntent.setAction(Intent.ACTION_GET_CONTENT);
 // Always show the chooser (if there are multiple options available)
-        // MainActivity.current.startActivityForResult(Intent.createChooser(photoChooserIntent, "Select Picture"), PICK_IMAGE_REQUEST);
-
-        //MainActivity.current.startActivityForResult(takePictureIntent, );
         if (photoChooserIntent.resolveActivity(MainActivity.current.getPackageManager()) != null)
             MainActivity.current.getStateListener().launch(activityResult, photoChooserIntent);
     }

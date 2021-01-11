@@ -3113,8 +3113,6 @@ org/crossmobile/backend/android/AndroidGraphicsBridge.class v8
 org/crossmobile/backend/android/AndroidGraphicsContext$GState.class v8
 org/crossmobile/backend/android/AndroidGraphicsContext.class v8
 org/crossmobile/backend/android/AndroidImageBridge$1.class v8
-org/crossmobile/backend/android/AndroidImageBridge$2.class v8
-org/crossmobile/backend/android/AndroidImageBridge$3.class v8
 org/crossmobile/backend/android/AndroidImageBridge.class v8
 org/crossmobile/backend/android/AndroidInputConnection.class v8
 org/crossmobile/backend/android/AndroidLifecycleBridge$1$1.class v8

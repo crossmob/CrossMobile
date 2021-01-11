@@ -57,6 +57,6 @@ public class AndroidPermissions {
     }
 
     public String getAuthority() {
-        return System.getProperty("cm.group.id") + "." + System.getProperty("cm.artifact.id") + ".provider";
+        return System.getProperty("cm.group.id") + "." + System.getProperty("cm.artifact.id") + ".fileprovider";
     }
 }

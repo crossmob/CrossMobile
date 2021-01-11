@@ -327,8 +327,9 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
                         if (status == DownloadManager.STATUS_SUCCESSFUL) {
                             try {
                                 Uri uri = AndroidFileBridge.getExternalUri(Uri.parse(c.getString(c.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI))));
-                                MainActivity.current.startActivity(new Intent().setAction(android.content.Intent.ACTION_VIEW)
-                                        .setDataAndType(uri, mime).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION));
+                                MainActivity.current.getStateListener().launch(null, new Intent().setAction(android.content.Intent.ACTION_VIEW)
+                                        .setDataAndType(uri, mime)
+                                        .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION));
                             } catch (Exception ex) {
                                 Toast.makeText(MainActivity.current, "Unable to display external file. It can still be found as Downloaded content", 2).show();
                             }

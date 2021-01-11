@@ -38,9 +38,7 @@ public class AndroidShareBridge implements ShareBridge {
         }
         System.out.println(type + "/" + subtype);
         intent.setType(type + "/" + subtype);
-
-        MainActivity.current().startActivity(Intent.createChooser(intent, "Share" + (type.equals("image") ? "Image" : "...")));
-        System.out.println("reached here");
+        MainActivity.current.getStateListener().launch(null, Intent.createChooser(intent, "Share" + (type.equals("image") ? "Image" : "...")));
     }
 
     private void addItem(Object item, Intent intent) {
