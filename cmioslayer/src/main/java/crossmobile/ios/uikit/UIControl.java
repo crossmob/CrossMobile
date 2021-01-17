@@ -70,6 +70,8 @@ public class UIControl extends UIView {
      */
     @CMSetter("@property(nonatomic, getter=isSelected) BOOL selected;")
     public void setSelected(boolean selected) {
+        if (this.selected == selected)
+            return;
         this.selected = selected;
         setNeedsDisplay();
     }
@@ -148,6 +150,8 @@ public class UIControl extends UIView {
      */
     @CMSetter("@property(nonatomic, getter=isEnabled) BOOL enabled;")
     public void setEnabled(boolean enabled) {
+        if (this.enabled == enabled)
+            return;
         this.enabled = enabled;
         setNeedsDisplay();
     }
@@ -177,6 +181,8 @@ public class UIControl extends UIView {
      */
     @CMSetter("@property(nonatomic, getter=isHighlighted) BOOL highlighted;")
     public void setHighlighted(boolean highlighted) {
+        if (this.highlighted == highlighted)
+            return;
         this.highlighted = highlighted;
         setNeedsDisplay();
     }
