@@ -22,25 +22,25 @@ import java.util.Set;
 @CMClass
 public class UIResponder extends NSObject {
 
-    private static final Map<Class, boolean[]> responderMap = new HashMap<>();
-    private static final Class[] UR_PARAM = new Class[]{Set.class, UIEvent.class};
+    private static final Map<Class<?>, boolean[]> responderMap = new HashMap<>();
+    private static final Class<?>[] UR_PARAM = new Class[]{Set.class, UIEvent.class};
     private static UIResponder currentResponder = null;
 
-    static UIResponder reqeuestResponderBeforeInit;
+    static UIResponder requestResponderBeforeInit;
 
-    final boolean usesTouches[] = supports(getClass());
+    final boolean[] usesTouches = supports(getClass());
 
-    private static boolean[] supports(Class pclass) {
-        boolean[] values = responderMap.get(pclass);
+    private static boolean[] supports(Class<?> cls) {
+        boolean[] values = responderMap.get(cls);
         if (values == null) {
             values = new boolean[]{
-                    overridesMethod(pclass, "touchesBegan"),
-                    overridesMethod(pclass, "touchesMoved"),
+                    overridesMethod(cls, "touchesBegan"),
+                    overridesMethod(cls, "touchesMoved"),
                     false,
-                    overridesMethod(pclass, "touchesEnded"),
-                    overridesMethod(pclass, "touchesCancelled")
+                    overridesMethod(cls, "touchesEnded"),
+                    overridesMethod(cls, "touchesCancelled")
             };
-            responderMap.put(pclass, values);
+            responderMap.put(cls, values);
         }
         return values;
     }
@@ -120,7 +120,7 @@ public class UIResponder extends NSObject {
         if (currentResponder != this)
             return false;
         currentResponder = null;
-        reqeuestResponderBeforeInit = null;
+        requestResponderBeforeInit = null;
         return true;
     }
 
@@ -133,7 +133,7 @@ public class UIResponder extends NSObject {
     @CMSelector("- (BOOL)becomeFirstResponder;")
     public boolean becomeFirstResponder() {
         if (UIApplication.splashWindow != null) {
-            reqeuestResponderBeforeInit = this;
+            requestResponderBeforeInit = this;
             return false;
         }
         if (currentResponder == this)

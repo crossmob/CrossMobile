@@ -83,10 +83,10 @@ public class UIApplication extends UIResponder {
                     instance.setKeyWindow(null);
                 Native.lifecycle().splashTerminated();
                 Native.graphics().refreshDisplay();
-                if (UIResponder.reqeuestResponderBeforeInit != null)
+                if (UIResponder.requestResponderBeforeInit != null)
                     Native.lifecycle().postOnEventThread(() -> {
-                        UIResponder.reqeuestResponderBeforeInit.becomeFirstResponder();
-                        UIResponder.reqeuestResponderBeforeInit = null;
+                        UIResponder.requestResponderBeforeInit.becomeFirstResponder();
+                        UIResponder.requestResponderBeforeInit = null;
                     });
             };
             Native.lifecycle().postOnEventThread(() -> {
