@@ -521,4 +521,9 @@ public class UIApplication extends UIResponder {
     public int applicationState() {
         return Native.lifecycle().getApplicationState();
     }
+
+    @Override
+    public UIResponder nextResponder() {
+        return delegate instanceof UIResponder ? (UIResponder) delegate : null;
+    }
 }

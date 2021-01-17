@@ -144,8 +144,11 @@ class cmEventDispatcher {
         } else {
             // Find target based on which which UIResponder overrides the specific touch event
             UIResponder responder = view;
-            while (responder != null && !responder.usesTouches[event.phase])
+            while (responder != null && !responder.usesTouches[event.phase]) {
                 responder = responder.nextResponder();
+                if (responder instanceof UIViewController)
+                    responder = responder.nextResponder();
+            }
             if (ENABLE_DEBUG && Live_Touch_Debug)
                 CEventManager.fireEvent(DEBUG_TOUCH, event);
             if (responder != null)

@@ -379,7 +379,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
 
     @Override
     public UIResponder nextResponder() {
-        return controller == null ? superview() : controller.nextResponder();
+        return controller == null ? superview() : controller;
     }
 
     /**
