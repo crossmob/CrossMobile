@@ -4183,8 +4183,6 @@ Creating file cmplugin-rvm-cmtouchid-<VERSION>.jar
 Creating file cmplugin-cmwebkit-<VERSION>.jar
 META-INF/PLUGIN.INF
 META-INF/REVERSE.INF
-crossmobile/ios/uikit/UIWebView.class v8
-crossmobile/ios/uikit/UIWebViewDelegate.class v8
 crossmobile/ios/uikit/UIWebViewNavigationType.class v8
 crossmobile/ios/webkit/WKBackForwardList.class v8
 crossmobile/ios/webkit/WKBackForwardListItem.class v8
@@ -4208,8 +4206,6 @@ crossmobile/ios/webkit/WKWebViewConfiguration.class v8
 crossmobile/ios/webkit/package-info.class v8
 
 Creating file cmplugin-cmwebkit-<VERSION>-sources.jar
-crossmobile/ios/uikit/UIWebView.java
-crossmobile/ios/uikit/UIWebViewDelegate.java
 crossmobile/ios/uikit/UIWebViewNavigationType.java
 crossmobile/ios/webkit/WKBackForwardList.java
 crossmobile/ios/webkit/WKBackForwardListItem.java
@@ -4243,8 +4239,6 @@ Creating file cmplugin-ios-cmwebkit-<VERSION>.jar
 native/CM_Block_Reverse_cmwebkit_0.h
 native/CM_Block_Reverse_cmwebkit_1.h
 native/cmwebkit.a
-native/crossmobile_ios_uikit_UIWebView.h
-native/crossmobile_ios_uikit_UIWebViewDelegate.h
 native/crossmobile_ios_webkit_WKBackForwardList.h
 native/crossmobile_ios_webkit_WKBackForwardListItem.h
 native/crossmobile_ios_webkit_WKFrameInfo.h
@@ -4262,8 +4256,6 @@ native/crossmobile_ios_webkit_WKWebView.h
 native/crossmobile_ios_webkit_WKWebViewConfiguration.h
 
 Creating file cmplugin-desktop-cmwebkit-<VERSION>.jar
-crossmobile/ios/uikit/UIWebView.class v8
-crossmobile/ios/uikit/UIWebViewDelegate.class v8
 crossmobile/ios/uikit/UIWebViewNavigationType.class v8
 crossmobile/ios/webkit/WKBackForwardList.class v8
 crossmobile/ios/webkit/WKBackForwardListItem.class v8
@@ -4295,8 +4287,6 @@ org/crossmobile/bind/wrapper/WebViewInitializer.class v8
 org/crossmobile/bind/wrapper/WebWrapper.class v8
 
 Creating file cmplugin-android-cmwebkit-<VERSION>.jar
-crossmobile/ios/uikit/UIWebView.class v8
-crossmobile/ios/uikit/UIWebViewDelegate.class v8
 crossmobile/ios/uikit/UIWebViewNavigationType.class v8
 crossmobile/ios/webkit/WKBackForwardList.class v8
 crossmobile/ios/webkit/WKBackForwardListItem.class v8

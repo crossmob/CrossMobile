@@ -6,7 +6,6 @@
 
 package org.crossmobile.bind.wrapper;
 
-import crossmobile.ios.uikit.UIWebView;
 import crossmobile.ios.webkit.WKWebView;
 import org.crossmobile.bridge.CrossMobilePlugin;
 import org.crossmobile.bridge.Native;
@@ -16,7 +15,6 @@ import org.crossmobile.bridge.ann.CMLib;
 public class WebViewInitializer implements CrossMobilePlugin {
     @Override
     public void initialize() {
-        Native.system().registerScrollable(UIWebView.class);
         Native.system().registerScrollable(WKWebView.class);
     }
 }

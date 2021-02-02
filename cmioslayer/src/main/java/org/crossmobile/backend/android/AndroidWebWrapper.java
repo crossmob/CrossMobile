@@ -192,8 +192,8 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
 
                 private WebResourceResponse shouldInterceptRequest(String url) {
                     isLoading = true;
-                    if (getNewDelegate() != null)
-                        getNewDelegate().didStartProvisionalNavigation(getNewWebView(), getNavigation(url));
+                    if (getDelegate() != null)
+                        getDelegate().didStartProvisionalNavigation(getWebView(), getNavigation(url));
                     return null;
                 }
 
@@ -201,10 +201,8 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
                 public void onPageStarted(WebView view, String url, Bitmap favicon) {
                     if (isLoading) {
                         if (url == null || !url.startsWith(JSTAG)) {
-                            if (getNewDelegate() != null)
-                                getNewDelegate().didCommitNavigation(getNewWebView(), getNavigation(url));
-                            else if (getOldDelegate() != null)
-                                getOldDelegate().didStartLoad(getOldWebView());
+                            if (getDelegate() != null)
+                                getDelegate().didCommitNavigation(getWebView(), getNavigation(url));
                         }
                     }
                 }
@@ -212,10 +210,8 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
                 @Override
                 public void onPageFinished(WebView view, String url) {
                     if (isLoading && (url == null || !url.startsWith(JSTAG))) {
-                        if (getNewDelegate() != null)
-                            getNewDelegate().didFinishNavigation(getNewWebView(), getNavigation(url));
-                        else if (getOldDelegate() != null)
-                            getOldDelegate().didFinishLoad(getOldWebView());
+                        if (getDelegate() != null)
+                            getDelegate().didFinishNavigation(getWebView(), getNavigation(url));
                         zoomOut();
                     }
                     isLoading = false;
@@ -251,10 +247,8 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
 
                 private void onReceivedError(int errorCode, String failingUrl) {
                     NSError error = new NSError("NSURLErrorDomain", errorCode, null);
-                    if (getNewDelegate() != null)
-                        getNewDelegate().didFailProvisionalNavigation(getNewWebView(), getNavigation(failingUrl), error);
-                    else if (getOldDelegate() != null)
-                        getOldDelegate().didFailLoadWithError(getOldWebView(), error);
+                    if (getDelegate() != null)
+                        getDelegate().didFailProvisionalNavigation(getWebView(), getNavigation(failingUrl), error);
                     isLoading = false;
                 }
 
@@ -275,8 +269,8 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
 
                 private boolean shouldOverrideUrlLoading(String url) {
                     boolean accepted = acceptsRequest(NSURLRequest.requestWithURL(NSURL.URLWithString(SystemUtilities.fixURI(url))), UIWebViewNavigationType.LinkClicked);
-                    if (accepted && getNewDelegate() != null && isLoading)
-                        getNewDelegate().didReceiveServerRedirectForProvisionalNavigation(getNewWebView(), getNavigation(url));
+                    if (accepted && getDelegate() != null && isLoading)
+                        getDelegate().didReceiveServerRedirectForProvisionalNavigation(getWebView(), getNavigation(url));
                     return !accepted;
                 }
 
@@ -287,8 +281,8 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
 
                 @Override
                 public boolean onRenderProcessGone(WebView view, RenderProcessGoneDetail detail) {
-                    if (getNewDelegate() != null)
-                        getNewDelegate().webContentProcessDidTerminate(getNewWebView());
+                    if (getDelegate() != null)
+                        getDelegate().webContentProcessDidTerminate(getWebView());
                     return super.onRenderProcessGone(view, detail);
                 }
             });

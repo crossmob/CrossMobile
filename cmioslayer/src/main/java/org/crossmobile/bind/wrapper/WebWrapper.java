@@ -10,8 +10,6 @@ import crossmobile.ios.foundation.NSError;
 import crossmobile.ios.foundation.NSURLRequest;
 import crossmobile.ios.foundation.NSURLResponse;
 import crossmobile.ios.uikit.UIView;
-import crossmobile.ios.uikit.UIWebView;
-import crossmobile.ios.uikit.UIWebViewDelegate;
 import crossmobile.ios.webkit.*;
 import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bridge.ann.CMLib;
@@ -71,51 +69,34 @@ public abstract class WebWrapper<NWIDG extends NativeWrapper<GCX>, GCX extends G
         }
     }
 
-    protected WKWebView getNewWebView() {
+    protected WKWebView getWebView() {
         UIView view = getIOSWidget();
         return view instanceof WKWebView ? (WKWebView) view : null;
     }
 
-    protected UIWebView getOldWebView() {
-        UIView view = getIOSWidget();
-        return view instanceof UIWebView ? (UIWebView) view : null;
-    }
-
-    protected WKNavigationDelegate getNewDelegate() {
-        return getNewWebView() != null ? getNewWebView().navigationDelegate() : null;
-    }
-
-    protected UIWebViewDelegate getOldDelegate() {
-        return getOldWebView() != null ? getOldWebView().delegate() : null;
+    protected WKNavigationDelegate getDelegate() {
+        return getWebView() != null ? getWebView().navigationDelegate() : null;
     }
 
     public boolean acceptsRequest(NSURLRequest urlRequest, int srcType) {
         if (urlRequest == null || urlRequest.URL() == null || urlRequest.URL().absoluteString() == null)
             return false;
-        else if (getOldWebView() != null) {
-            UIWebViewDelegate delegate = getOldDelegate();
-            if (delegate == null)
-                return true;
-            return delegate.shouldStartLoadWithRequest(getOldWebView(), urlRequest, srcType);
-        } else if (getNewWebView() != null) {
-            WKNavigationDelegate delegate = getNewDelegate();
-            if (delegate == null)
-                return true;
-            AtomicBoolean shouldStart = new AtomicBoolean(true);
-            delegate.decidePolicyForNavigationAction(getNewWebView(), WebKitDrill.navigationAction(urlRequest, null, null),
-                    v -> shouldStart.set(v == WKNavigationActionPolicy.Allow));
-            return shouldStart.get();
-        } else
-            return false;
+        WKNavigationDelegate delegate = getDelegate();
+        if (delegate == null)
+            return true;
+        AtomicBoolean shouldStart = new AtomicBoolean(true);
+        delegate.decidePolicyForNavigationAction(getWebView(), WebKitDrill.navigationAction(urlRequest, null, null),
+                v -> shouldStart.set(v == WKNavigationActionPolicy.Allow));
+        return shouldStart.get();
     }
 
     public boolean acceptsResponse(NSURLResponse urlResponse) {
         if (urlResponse == null || urlResponse.URL() == null || urlResponse.URL().absoluteString() == null)
             return false;
-        if (getNewDelegate() != null) {
-            WKNavigationDelegate delegate = getNewDelegate();
+        if (getDelegate() != null) {
+            WKNavigationDelegate delegate = getDelegate();
             AtomicBoolean shouldStart = new AtomicBoolean(true);
-            delegate.decidePolicyForNavigationResponse(getNewWebView(), WebKitDrill.navigationResponse(true, true, urlResponse),
+            delegate.decidePolicyForNavigationResponse(getWebView(), WebKitDrill.navigationResponse(true, true, urlResponse),
                     v -> shouldStart.set(v == WKNavigationActionPolicy.Allow));
             return shouldStart.get();
         } else

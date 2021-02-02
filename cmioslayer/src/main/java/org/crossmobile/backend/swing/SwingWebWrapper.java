@@ -10,7 +10,6 @@ import crossmobile.ios.foundation.NSError;
 import crossmobile.ios.foundation.NSMutableURLRequest;
 import crossmobile.ios.foundation.NSURLRequest;
 import crossmobile.ios.uikit.UIView;
-import crossmobile.ios.uikit.UIWebView;
 import crossmobile.ios.webkit.WKBackForwardList;
 import crossmobile.ios.webkit.WKNavigation;
 import crossmobile.ios.webkit.WKWebView;
@@ -53,20 +52,16 @@ public class SwingWebWrapper extends WebWrapper<SwingWebWrapper.NativeW, SwingGr
         new Thread(() -> {
             try {
                 isLoading = true;
-                if (getNewDelegate() != null)
-                    getNewDelegate().didCommitNavigation(getNewWebView(), nav);
-                else if (getOldDelegate() != null)
-                    getOldDelegate().didStartLoad(getOldWebView());
+                if (getDelegate() != null)
+                    getDelegate().didCommitNavigation(getWebView(), nav);
 
                 if ((req instanceof NSMutableURLRequest) && ((NSMutableURLRequest) req).HTTPBody() != null && ((NSMutableURLRequest) req).HTTPBody().length() > 0)
                     getNativeWidget().getDocument().putProperty("javax.desktop.JEditorPane.postdata", SystemUtilities.bytesToString(((NSMutableURLRequest) req).HTTPBody().bytes()));
                 getNativeWidget().setPage(req.URL().absoluteString());
             } catch (IOException ex) {
                 isLoading = false;
-                if (getNewDelegate() != null)
-                    getNewDelegate().didFailNavigation((WKWebView) getIOSWidget(), nav, new NSError(NSError.Domain.NSURL, NSError.ErrorCode.Unknown, null));
-                else if (getOldDelegate() != null)
-                    getOldDelegate().didFailLoadWithError((UIWebView) getIOSWidget(), new NSError(NSError.Domain.NSURL, NSError.ErrorCode.Unknown, null));
+                if (getDelegate() != null)
+                    getDelegate().didFailNavigation((WKWebView) getIOSWidget(), nav, new NSError(NSError.Domain.NSURL, NSError.ErrorCode.Unknown, null));
             }
         }).start();
         return nav;
@@ -171,10 +166,8 @@ public class SwingWebWrapper extends WebWrapper<SwingWebWrapper.NativeW, SwingGr
                 UIView widget = getIOSWidget();
                 if (widget != null) {
                     widget.setNeedsDisplay();
-                    if (getNewDelegate() != null)
-                        getNewDelegate().didFinishNavigation(getNewWebView(), null);
-                    else if (getOldDelegate() != null)
-                        getOldDelegate().didFinishLoad((UIWebView) widget);
+                    if (getDelegate() != null)
+                        getDelegate().didFinishNavigation(getWebView(), null);
                 }
             });
             setEditable(false);

@@ -7,7 +7,6 @@
 package org.crossmobile.backend.swing;
 
 import crossmobile.ios.uikit.UIView;
-import crossmobile.ios.uikit.UIWebView;
 import crossmobile.ios.webkit.WKWebView;
 import org.crossmobile.bind.wrapper.WebWrapper;
 import org.crossmobile.bridge.Native;
@@ -46,15 +45,6 @@ public class SwingWebViewBridge implements WebViewBridge {
             } catch (NoSuchMethodException e) {
                 Native.system().error("Unable to register " + webViewClass.getName(), e);
             }
-        }
-    }
-
-    @Override
-    public WebWrapper<?, SwingGraphicsContext> webView(UIWebView parent) {
-        try {
-            return webViewConstructor.newInstance(parent);
-        } catch (Exception e) {
-            return BaseUtils.throwExceptionAndReturn(e);
         }
     }
 

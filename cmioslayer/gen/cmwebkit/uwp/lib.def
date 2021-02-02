@@ -1,8 +1,6 @@
 LIBRARY cmwebkit
 EXPORTS
 
-	_OBJC_CLASS_crossmobile_ios_uikit_UIWebView$Ext DATA
-	__objc_class_name_crossmobile_ios_uikit_UIWebView$Ext CONSTANT
 	_OBJC_CLASS_crossmobile_ios_webkit_WKBackForwardList$Ext DATA
 	__objc_class_name_crossmobile_ios_webkit_WKBackForwardList$Ext CONSTANT
 	_OBJC_CLASS_crossmobile_ios_webkit_WKBackForwardListItem$Ext DATA

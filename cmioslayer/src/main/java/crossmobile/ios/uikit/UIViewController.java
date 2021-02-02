@@ -968,11 +968,9 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
         if (!scrollWasAlreadySearched && view != null) {
             scrollWasAlreadySearched = true;
             UIView fs = view.subview(Native.system().getScrollables());
-            firstScroll = (fs instanceof UIWebView)
-                    ? ((UIWebView) fs).scrollView()
-                    : ((fs instanceof WKWebView)
+            firstScroll = (fs instanceof WKWebView)
                     ? null// WKWebKit does not inherit scrollview
-                    : (UIScrollView) fs);
+                    : (UIScrollView) fs;
         }
         return firstScroll;
     }
