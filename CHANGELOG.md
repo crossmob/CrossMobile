@@ -2,6 +2,34 @@
 
 Click on the version header to go to the actual commits for each release.
 
+## [v3.4.0]
+###### 2021-2-2
+
+### Added
+- Algorithmic theme support
+- Support VS Code/Codium as an IDE target, including a plugin
+- Support for Arrays methods in iOS
+- Create iOS bindings even on non-macOS platforms
+- Create packages of all targets on all supported operating systems
+
+### Fixed
+- Fix packaging of ARM32 and ARM64 targets
+- Wrong caching of metrics for UILabel
+- Improve support of font metrics
+- Font is now handled properly by its PS name
+- Various graphics bugfixes
+- Support snap executables and IntelliJ deep nesting toolkits
+- Interface Builder parser updates
+- Fix HiDPI on Linux, even when called from the command line
+- Inform user for SDK Manager issue when JDK != 8
+- Fix ADB launcher on Linux. 
+- Improve debug info when crashing
+- Fix UIResponder.nextResponder
+
+### Removed
+- Deprecated class UIWebView removed to be compatible with AppStore 
+- Obsolete styled theme
+
 ## [v3.3.0]
 ###### 2020-10-26
 
@@ -280,6 +308,7 @@ Click on the version header to go to the actual commits for each release.
 ### Added
 - First public source release
 
+[v3.4.0]: https://github.com/crossmob/CrossMobile/compare/v3.3.0...v3.4.0
 [v3.3.0]: https://github.com/crossmob/CrossMobile/compare/v3.2.0...v3.3.0
 [v3.2.0]: https://github.com/crossmob/CrossMobile/compare/v3.1.0...v3.2.0
 [v3.1.0]: https://github.com/crossmob/CrossMobile/compare/v3.0.0...v3.1.0

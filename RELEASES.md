@@ -2,6 +2,14 @@
 
 Click on the version header to go to the detailed ChangeLog.
 
+## [v3.4.0]
+
+- The UIWebView is removed completely from the API, to be compatible with Apple's guidelines. Please use WebKit instead.
+- Algorithmic theme support
+- Support VS Code/Codium as an IDE target, including a plugin
+- Create packages of all targets on all supported operating systems
+- Various bug fixes and improvements
+
 ## [v3.3.0]
 
 - Introduce WebKit support; **it is required to add WebKit plugin now to present any web view (including UIWebView)**
@@ -75,6 +83,7 @@ Click on the version header to go to the detailed ChangeLog.
 ## [v2.5]
 - First public binary stable release
 
+[v3.4.0]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v340
 [v3.3.0]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v330
 [v3.2.0]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v320
 [v3.1.0]: https://github.com/crossmob/CrossMobile/blob/master/CHANGELOG.md#v310
