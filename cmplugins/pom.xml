@@ -5,7 +5,7 @@
     <parent>
         <artifactId>env</artifactId>
         <groupId>org.crossmobile</groupId>
-        <version>3.4.0</version>
+        <version>4.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>cmplugins</artifactId>
