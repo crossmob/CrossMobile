@@ -4,9 +4,9 @@
  * SPDX-License-Identifier: LGPL-3.0-only
  */
 
-@CMLib(target = SWING)
-package org.crossmobile.backend.swing;
+@CMLib(target = AVIAN)
+package org.crossmobile.backend.avian;
 
 import org.crossmobile.bridge.ann.CMLib;
 
-import static org.crossmobile.bridge.ann.CMLibTarget.SWING;
+import static org.crossmobile.bridge.ann.CMLibTarget.AVIAN;

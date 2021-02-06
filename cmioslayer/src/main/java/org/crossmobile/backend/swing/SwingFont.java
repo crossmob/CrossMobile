@@ -7,7 +7,6 @@
 package org.crossmobile.backend.swing;
 
 import crossmobile.ios.coregraphics.CGSize;
-import org.crossmobile.backend.desktop.DesktopGraphicsBridge;
 import org.crossmobile.bind.graphics.NativeFont;
 import org.crossmobile.bridge.GraphicsBridge.FontInfo;
 import org.crossmobile.bridge.Native;
@@ -34,7 +33,7 @@ public class SwingFont implements NativeFont {
 
     @SuppressWarnings("UseSpecificCatch")
     static SwingFont getFont(String fontName, float size) {
-        DesktopGraphicsBridge<?, ?> graphicsBridge = (DesktopGraphicsBridge<?, ?>) Native.graphics();
+        SwingGraphicsBridge graphicsBridge = (SwingGraphicsBridge) Native.graphics();
         graphicsBridge.loadFonts();
         FontInfo fontInfo = graphicsBridge.getFontInfo(fontName);
         Map<AttributedCharacterIterator.Attribute, Object> attributes = new HashMap<>();

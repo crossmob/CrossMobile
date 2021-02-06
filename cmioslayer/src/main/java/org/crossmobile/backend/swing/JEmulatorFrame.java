@@ -8,7 +8,6 @@ package org.crossmobile.backend.swing;
 
 import com.panayotis.appenh.EnhancerManager;
 import org.crossmobile.backend.desktop.DesktopDrawableMetrics;
-import org.crossmobile.backend.desktop.KeyboardSupport;
 import org.crossmobile.bind.system.AppConstants;
 import org.crossmobile.bridge.Native;
 

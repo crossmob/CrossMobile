@@ -17,6 +17,4 @@ public interface NativeBitmap {
     int getHeight();
 
     int getOrientation();
-
-    Object getBitmap();
 }

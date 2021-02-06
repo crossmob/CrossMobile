@@ -9,9 +9,9 @@ package org.crossmobile.backend.android;
 import android.util.DisplayMetrics;
 import crossmobile.ios.coregraphics.CGPoint;
 import crossmobile.ios.uikit.UIUserInterfaceIdiom;
-import org.crossmobile.bind.graphics.Size;
 import org.crossmobile.bind.graphics.DrawableMetrics;
 import org.crossmobile.bind.graphics.GraphicsContext;
+import org.crossmobile.bind.graphics.Size;
 
 import static crossmobile.ios.uikit.UIDeviceOrientation.*;
 
@@ -74,7 +74,7 @@ public class AndroidDrawableMetrics extends DrawableMetrics {
     }
 
     @Override
-    public void preDraw(GraphicsContext ctx) {
+    public void preDraw(GraphicsContext<?> ctx) {
 //        ctx.saveState();
         ctx.translate(orientationTranslateX, orientationTranslateY);
         ctx.rotate(orientationRotate);

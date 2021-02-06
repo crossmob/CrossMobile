@@ -14,22 +14,8 @@ import java.awt.*;
 public class SwingDrawableMetrics extends DesktopDrawableMetrics {
 
     @Override
-    public void preDraw(GraphicsContext ctx) {
-        Graphics2D g = ((SwingGraphicsContext) ctx).g2;
-        g.setComposite(AlphaComposite.SrcOver);
-        g.rotate(skinRotate);
-        g.translate(skinTranslateX, skinTranslateY);
-        chassis().draw(ctx, false, 1 << orientation);
-        ctx.saveState();    // will restore in postDraw
-        g.translate(outsetLeft, outsetTop);
+    public void preDraw(GraphicsContext<?> ctx) {
+        ((SwingGraphicsContext) ctx).g2.setComposite(AlphaComposite.SrcOver);
         super.preDraw(ctx);
-        ctx.clipToRect(clipping);
     }
-
-    @Override
-    public void postDraw(GraphicsContext ctx) {
-        ctx.restoreState(); // did save in preDraw
-        chassis().draw(ctx, true, 1 << orientation);
-    }
-
 }

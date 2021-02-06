@@ -36,8 +36,6 @@ public class AndroidBitmap implements NativeBitmap {
         return UIImageOrientation.Up;
     }
 
-
-    @Override
     public Bitmap getBitmap() {
         return bitmap;
     }

@@ -34,9 +34,4 @@ public class SwingBitmap implements NativeBitmap {
         return UIImageOrientation.Up;
     }
 
-    @Override
-    public BufferedImage getBitmap() {
-        return img;
-    }
-
 }

@@ -12,10 +12,10 @@ import static org.crossmobile.utils.CollectionUtils.asList;
 import static org.crossmobile.utils.TextUtils.iteratorToString;
 
 public enum Flavour {
-    DESKTOP("Swing"),
+    SWING("Swing"),
     IOS("IOS"),
     ANDROID("Android"),
-    UWP("UWP");
+    AVIAN("Avian");
 
     private static final String packg_pre = "org.crossmobile.backend.";
     private static final String packg_mid = ".Native";

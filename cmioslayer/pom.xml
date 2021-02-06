@@ -146,7 +146,8 @@
                     <skip>${skip.all}</skip>
                     <skipIos>${skip.ios}</skipIos>
                     <skipUwp>${skip.uwp}</skipUwp>
-                    <skipDesktop>${skip.desktop}</skipDesktop>
+                    <skipSwing>${skip.swing}</skipSwing>
+                    <skipAvian>${skip.avian}</skipAvian>
                     <skipAndroid>${skip.android}</skipAndroid>
                     <skipCore>${skip.core}</skipCore>
                     <skipRvm>${skip.robovm}</skipRvm>
@@ -175,7 +176,7 @@
                         <package>
                             <name>javazoom</name>
                             <plugin>cmioslayer</plugin>
-                            <target>DESKTOP</target>
+                            <target>SWING</target>
                         </package>
                     </packages>
                 </configuration>
@@ -224,32 +225,44 @@
             <properties>
                 <skip.ios>true</skip.ios>
                 <skip.robovm>true</skip.robovm>
-                <skip.desktop>true</skip.desktop>
+                <skip.swing>true</skip.swing>
+                <skip.avian>true</skip.avian>
                 <skip.android>true</skip.android>
                 <skip.core>true</skip.core>
                 <skip.uwp>false</skip.uwp>
             </properties>
         </profile>
         <profile>
-            <id>superfast-desktop-build</id>
+            <id>superfast-build</id>
             <properties>
                 <skip.all>true</skip.all>
             </properties>
         </profile>
         <profile>
-            <id>fast-desktop-build</id>
+            <id>fast-swing-build</id>
             <properties>
                 <skip.ios>true</skip.ios>
-                <skip.robovm>true</skip.robovm>
+                <skip.avian>true</skip.avian>
                 <skip.android>true</skip.android>
+                <skip.robovm>true</skip.robovm>
+            </properties>
+        </profile>
+        <profile>
+            <id>fast-avian-build</id>
+            <properties>
+                <skip.ios>true</skip.ios>
+                <skip.swing>true</skip.swing>
+                <skip.android>true</skip.android>
+                <skip.robovm>true</skip.robovm>
             </properties>
         </profile>
         <profile>
             <id>fast-android-build</id>
             <properties>
                 <skip.ios>true</skip.ios>
+                <skip.swing>true</skip.swing>
+                <skip.avian>true</skip.avian>
                 <skip.robovm>true</skip.robovm>
-                <skip.desktop>true</skip.desktop>
             </properties>
         </profile>
     </profiles>
@@ -258,8 +271,9 @@
         <skip.java.targets>false</skip.java.targets>
         <skip.all>false</skip.all>
         <skip.ios>false</skip.ios>
-        <skip.robovm>false</skip.robovm>
-        <skip.desktop>false</skip.desktop>
+        <skip.robovm>true</skip.robovm>
+        <skip.swing>false</skip.swing>
+        <skip.avian>false</skip.avian>
         <skip.android>false</skip.android>
         <skip.core>false</skip.core>
         <skip.uwp>true</skip.uwp>

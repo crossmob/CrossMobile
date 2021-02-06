@@ -21,7 +21,7 @@ public class SocialRegister implements CrossMobilePlugin {
     public void initialize() {
         if (Native.isAndroid())
             new AndroidSocial().initialize();
-        else if (Native.isDesktop())
+        else
             new DesktopSocial().initialize();
     }
 }

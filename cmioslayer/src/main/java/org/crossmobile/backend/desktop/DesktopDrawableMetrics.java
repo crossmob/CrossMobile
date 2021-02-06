@@ -15,13 +15,14 @@ import org.crossmobile.backend.desktop.cgeo.CArea;
 import org.crossmobile.backend.desktop.cgeo.CEvent;
 import org.crossmobile.backend.desktop.cgeo.Chassis;
 import org.crossmobile.bind.graphics.DrawableMetrics;
+import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.graphics.Size;
 import org.crossmobile.bridge.Native;
 
 import static crossmobile.ios.uikit.UIDeviceOrientation.*;
 import static crossmobile.ios.uikit.UserInterfaceDrill.splashWindow;
 
-public abstract class DesktopDrawableMetrics extends DrawableMetrics {
+public class DesktopDrawableMetrics extends DrawableMetrics {
 
     private Chassis ch;
     private CArea scr;
@@ -131,6 +132,26 @@ public abstract class DesktopDrawableMetrics extends DrawableMetrics {
 
     public Chassis chassis() {
         return ch;
+    }
+
+    @Override
+    public void preDraw(GraphicsContext<?> ctx) {
+        if (skinRotate != 0)
+            ctx.rotate(skinRotate);
+        if (skinTranslateX != 0 || skinTranslateY != 0)
+            ctx.translate(skinTranslateX, skinTranslateY);
+        chassis().draw(ctx, false, 1 << orientation);
+        ctx.saveState();    // will restore in postDraw
+        if (outsetLeft != 0 || outsetRight != 0)
+            ctx.translate(outsetLeft, outsetTop);
+        super.preDraw(ctx);
+        ctx.clipToRect(clipping);
+    }
+
+    @Override
+    public void postDraw(GraphicsContext<?> ctx) {
+        ctx.restoreState(); // did save in preDraw
+        chassis().draw(ctx, true, 1 << orientation);
     }
 
     @Override

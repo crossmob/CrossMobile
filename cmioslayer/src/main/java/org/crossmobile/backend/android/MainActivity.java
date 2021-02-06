@@ -53,7 +53,6 @@ public class MainActivity extends Activity {
         MainView.current = findViewById(AndroidFileBridge.getResourceID("id", "mainview"));
 
         Native.destroy();  // Needs a fresh start
-        Native.lifecycle().loadSystemProperties();  // Make sure they are loaded before initialization.
         Native.lifecycle().init(args);
         AndroidUIGuidelinesBridge.setTranslucentStatusBar();
         SystemUtilities.launchClass(System.getProperty("cm.main.class"), MainActivity.args);

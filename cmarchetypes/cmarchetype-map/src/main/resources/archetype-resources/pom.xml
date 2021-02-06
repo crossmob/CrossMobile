@@ -33,11 +33,22 @@
     </dependencies>
     <profiles>
         <profile>
-            <id>desktop</id>
+            <id>swing</id>
             <dependencies>
                 <dependency>
                     <groupId>org.crossmobile</groupId>
-                    <artifactId>cmplugin-desktop-cmlocation</artifactId>
+                    <artifactId>cmplugin-swing-cmlocation</artifactId>
+                    <version>${crossmobile.version}</version>
+                    <scope>runtime</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>avian</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.crossmobile</groupId>
+                    <artifactId>cmplugin-avian-cmlocation</artifactId>
                     <version>${crossmobile.version}</version>
                     <scope>runtime</scope>
                 </dependency>
@@ -60,17 +71,6 @@
                 <dependency>
                     <groupId>org.crossmobile</groupId>
                     <artifactId>cmplugin-android-cmlocation</artifactId>
-                    <version>${crossmobile.version}</version>
-                    <scope>runtime</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>uwp</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.crossmobile</groupId>
-                    <artifactId>cmplugin-uwp-cmlocation</artifactId>
                     <version>${crossmobile.version}</version>
                     <scope>runtime</scope>
                 </dependency>

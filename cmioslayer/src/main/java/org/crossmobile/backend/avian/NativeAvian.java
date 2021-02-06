@@ -4,50 +4,51 @@
  * SPDX-License-Identifier: LGPL-3.0-only
  */
 
-package org.crossmobile.backend.swing;
+package org.crossmobile.backend.avian;
 
 import org.crossmobile.backend.desktop.NativeDesktop;
 import org.crossmobile.bridge.*;
 
-public class NativeSwing extends NativeDesktop {
-
-    @Override
-    protected WrapperMapBridge initMapWidget() {
-        return new SwingWrapperMapBridge();
-    }
+public class NativeAvian extends NativeDesktop {
 
     @Override
     protected ImageBridge initImage() {
-        return new SwingImageBridge();
+        return new AvianImageBridge();
     }
 
     @Override
     protected SystemBridge initSystem() {
-        return new SwingSystemBridge();
+        return new AvianSystemBridge();
     }
 
     @Override
     protected LifecycleBridge initLifecycle() {
-        return new SwingLifecycleBridge();
+        return new AvianLifecycleBridge();
     }
 
     @Override
     protected GraphicsBridge initGraphics() {
-        return new SwingGraphicsBridge();
+        return new AvianGraphicsBridge();
     }
 
     @Override
     protected WrapperUIBridge initWidget() {
-        return new SwingWrapperUIBridge();
+        return new AvianWrapperUIBridge();
+    }
+
+    @Override
+    protected WrapperMapBridge initMapWidget() {
+        return parent -> null;
     }
 
     @Override
     protected WebViewBridge initWebView() {
-        return new SwingWebViewBridge();
+        return parent -> null;
     }
 
     @Override
     protected NetworkBridge initNetwork() {
-        return new SwingNetworkBridge();
+        return new AvianNetworkBridge();
     }
+
 }

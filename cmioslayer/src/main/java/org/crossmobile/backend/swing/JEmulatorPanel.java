@@ -12,7 +12,7 @@ import crossmobile.ios.uikit.UITouch;
 import crossmobile.ios.uikit.UIView;
 import crossmobile.ios.uikit.UIWindow;
 import org.crossmobile.backend.desktop.*;
-import org.crossmobile.backend.desktop.cat.MobileApp;
+import org.crossmobile.backend.cat.MobileApp;
 import org.crossmobile.backend.desktop.cgeo.CEvent;
 import org.crossmobile.backend.desktop.cgeo.CEventCallback;
 import org.crossmobile.backend.swing.SwingGraphicsBridge.SizableComponent;

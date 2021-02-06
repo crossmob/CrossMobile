@@ -5,7 +5,7 @@
  */
 
 @CMLib(target = SWING)
-package org.crossmobile.backend.swing;
+package org.crossmobile.backend.cat;
 
 import org.crossmobile.bridge.ann.CMLib;
 

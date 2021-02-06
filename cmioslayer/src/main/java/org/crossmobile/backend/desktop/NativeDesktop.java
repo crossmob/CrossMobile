@@ -32,11 +32,6 @@ public abstract class NativeDesktop extends Native {
     }
 
     @Override
-    protected NetworkBridge initNetwork() {
-        return new DesktopNetworkBridge();
-    }
-
-    @Override
     protected SocialBridge initSocial() {
         return new GenericSocialBridge();
     }

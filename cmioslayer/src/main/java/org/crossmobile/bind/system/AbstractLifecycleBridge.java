@@ -38,9 +38,11 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
 
     @Override
     public void init(String[] args) {
-        if (applicationIsInitialized)
+        if (applicationIsInitialized)   // needed since Android is initialized twice, once through main and once through onCreate
             return;
         applicationIsInitialized = true;    // Enter only once
+
+        Native.lifecycle().loadSystemProperties(); // Might have been loaded already by through inherited children
         systemHandler = Thread.getDefaultUncaughtExceptionHandler();
         Thread.setDefaultUncaughtExceptionHandler(this);
 

@@ -16,7 +16,6 @@ import java.util.Map;
 
 public abstract class DesktopLifecycleBridge extends AbstractLifecycleBridge {
 
-    private static boolean applicationIsInitialized = false;
     private static boolean initial_activation_performed = false;
 
     /**
@@ -26,14 +25,13 @@ public abstract class DesktopLifecycleBridge extends AbstractLifecycleBridge {
      *
      * @param args
      */
-    public void init(String[] args, Enhancer enhancer) {
-        if (!applicationIsInitialized) {
-            applicationIsInitialized = true;    // Enter only once
-            super.init(args);
-            ((DesktopDrawableMetrics)Native.graphics().metrics()).updateDPI(enhancer.getDPI());
-            enhancer.setApplicationIcons(getAppIcons());
-            // ApplicationCatalogue.store();
-        }
+    public void init(String[] args) {
+        super.init(args);
+        Enhancer enhancer = EnhancerManager.getDefault();
+        enhancer.setApplicationName(System.getProperty("cm.display.name", "CrossMobileApp"));
+        enhancer.setSafeLookAndFeel();
+        ((DesktopDrawableMetrics) Native.graphics().metrics()).updateDPI(enhancer.getDPI());
+        enhancer.setApplicationIcons(getAppIcons());
     }
 
     @Override

@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: LGPL-3.0-only
  */
 
-package org.crossmobile.backend.desktop.cat;
+package org.crossmobile.backend.cat;
 
 import crossmobile.ios.foundation.NSData;
 import crossmobile.ios.foundation.NSJSONSerialization;

@@ -11,7 +11,7 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 public class CMLibTargetTest {
 
@@ -21,16 +21,18 @@ public class CMLibTargetTest {
             res += 1;
         if (target.compile)
             res += 2;
-        if (target.desktop)
+        if (target.swing)
             res += 4;
-        if (target.iosjava)
+        if (target.avian)
             res += 8;
-        if (target.iosnative)
+        if (target.iosjava)
             res += 16;
-        if (target.uwpjava)
+        if (target.iosnative)
             res += 32;
-        if (target.uwpnative)
+        if (target.uwpjava)
             res += 64;
+        if (target.uwpnative)
+            res += 128;
         return res;
     }
 
@@ -38,7 +40,7 @@ public class CMLibTargetTest {
     public void checkDoubleOccurrences() {
         Map<Integer, CMLibTarget> available = new HashMap<>();
         for (CMLibTarget target : CMLibTarget.values()) {
-            if (target==CMLibTarget.UNKNOWN)    // don't check this target
+            if (target == CMLibTarget.UNKNOWN)    // don't check this target
                 continue;
             int hash = targetToHash(target);
             CMLibTarget found = available.get(hash);
