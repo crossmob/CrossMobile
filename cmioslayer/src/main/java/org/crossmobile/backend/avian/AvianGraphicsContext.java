@@ -15,6 +15,7 @@ import org.crossmobile.bind.graphics.NativeFont;
 import org.crossmobile.bind.graphics.NativePath;
 
 public class AvianGraphicsContext implements GraphicsContext<AvianTransformation> {
+
     @Override
     public void setAlpha(double alpha) {
     }
@@ -25,7 +26,7 @@ public class AvianGraphicsContext implements GraphicsContext<AvianTransformation
 
     @Override
     public CGAffineTransform getCTM() {
-        return null;
+        return CGAffineTransform.identity();
     }
 
     @Override
@@ -70,7 +71,7 @@ public class AvianGraphicsContext implements GraphicsContext<AvianTransformation
 
     @Override
     public CGSize stringSizeWithFont(String text, NativeFont font) {
-        return null;
+        return new CGSize(0, 0);
     }
 
     @Override
@@ -145,4 +146,6 @@ public class AvianGraphicsContext implements GraphicsContext<AvianTransformation
     public boolean isLiveContext() {
         return false;
     }
+
+    private static native void test();
 }

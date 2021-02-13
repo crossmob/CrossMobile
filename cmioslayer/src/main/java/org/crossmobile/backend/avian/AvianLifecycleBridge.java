@@ -9,19 +9,23 @@ package org.crossmobile.backend.avian;
 import org.crossmobile.backend.desktop.DesktopLifecycleBridge;
 
 public class AvianLifecycleBridge extends DesktopLifecycleBridge {
+
+    @Override
+    public void init(String[] args) {
+        super.init(args);
+        // Add Skia & SDK initialization here
+    }
+
     @Override
     public void splashTerminated() {
-
     }
 
     @Override
     public void runOnEventThread(Runnable runnable) {
-
     }
 
     @Override
     public void postOnEventThread(Runnable runnable) {
-
     }
 
     @Override

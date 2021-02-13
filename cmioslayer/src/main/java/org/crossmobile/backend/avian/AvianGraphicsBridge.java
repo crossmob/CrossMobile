@@ -12,6 +12,7 @@ import org.crossmobile.backend.desktop.DesktopGraphicsBridge;
 import org.crossmobile.backend.desktop.cgeo.CDrawable;
 import org.crossmobile.bind.graphics.*;
 
+import java.util.Collections;
 import java.util.List;
 
 public class AvianGraphicsBridge extends DesktopGraphicsBridge<AvianGraphicsContext, AvianTransformation> {
@@ -49,12 +50,12 @@ public class AvianGraphicsBridge extends DesktopGraphicsBridge<AvianGraphicsCont
 
     @Override
     public CGAffineTransform nativeToTarget(AvianTransformation from, CGAffineTransform to) {
-        return null;
+        return CGAffineTransform.identity();
     }
 
     @Override
     public AvianTransformation targetToNative(CGAffineTransform from, AvianTransformation to) {
-        return null;
+        return new AvianTransformation();
     }
 
     @Override
@@ -84,11 +85,11 @@ public class AvianGraphicsBridge extends DesktopGraphicsBridge<AvianGraphicsCont
 
     @Override
     public List<String> listFontFamilies() {
-        return null;
+        return Collections.emptyList();
     }
 
     @Override
     public List<String> listFont(String familyName) {
-        return null;
+        return Collections.emptyList();
     }
 }

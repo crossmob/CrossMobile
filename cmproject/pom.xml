@@ -106,7 +106,7 @@
                         <version>3.2.0</version>
                         <executions>
                             <execution>
-                                <id>swing-assembly</id>
+                                <id>avian-assembly</id>
                                 <phase>package</phase>
                                 <goals>
                                     <goal>shade</goal>

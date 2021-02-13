@@ -16,17 +16,17 @@ import org.crossmobile.bridge.WrapperUIBridge;
 public class AvianWrapperUIBridge implements WrapperUIBridge<Object> {
 
     @Override
-    public TextWrapper textField(UITextField parent) {
+    public TextWrapper<?, ?, ?> textField(UITextField parent) {
         return null;
     }
 
     @Override
-    public TextWrapper textView(UITextView parent) {
+    public TextWrapper<?, ?, ?> textView(UITextView parent) {
         return null;
     }
 
     @Override
-    public NativeDispatcher newNativeDispatcher(WidgetWrapper nw) {
+    public NativeDispatcher<?, ?, ?, ?> newNativeDispatcher(WidgetWrapper nw) {
         return null;
     }
 

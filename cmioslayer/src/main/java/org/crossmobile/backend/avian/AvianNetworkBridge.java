@@ -12,6 +12,7 @@ import java.net.CookiePolicy;
 import java.net.HttpCookie;
 import java.net.URI;
 import java.util.Collection;
+import java.util.Collections;
 
 class AvianNetworkBridge implements NetworkBridge {
     @Override
@@ -33,7 +34,7 @@ class AvianNetworkBridge implements NetworkBridge {
 
     @Override
     public Collection<HttpCookie> getCookies(URI uri) {
-        return null;
+        return Collections.emptyList();
     }
 
     @Override

@@ -1248,6 +1248,7 @@ org/crossmobile/backend/android/StatusBarListener.java
 org/crossmobile/backend/android/package-info.java
 org/crossmobile/backend/android/web/VideoEnabledWebChromeClient.java
 org/crossmobile/backend/android/web/VideoEnabledWebView.java
+org/crossmobile/backend/avian/AvianBitmap.java
 org/crossmobile/backend/avian/AvianFont.java
 org/crossmobile/backend/avian/AvianGraphicsBridge.java
 org/crossmobile/backend/avian/AvianGraphicsContext.java
@@ -3222,6 +3223,7 @@ crossmobile/ios/uikit/package-info.class v8
 crossmobile/package-info.class v8
 crossmobile/rt/StrongReference.class v8
 crossmobile/rt/package-info.class v8
+org/crossmobile/backend/avian/AvianBitmap.class v8
 org/crossmobile/backend/avian/AvianFont.class v8
 org/crossmobile/backend/avian/AvianGraphicsBridge.class v8
 org/crossmobile/backend/avian/AvianGraphicsContext.class v8
