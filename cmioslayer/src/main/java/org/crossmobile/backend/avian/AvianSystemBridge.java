@@ -15,14 +15,13 @@ import java.util.List;
 
 public class AvianSystemBridge extends DesktopSystemBridge {
 
+    @SuppressWarnings("deprecation")
     @Override
     public void showAlert(UIAlertView view, String title, String message, List<String> buttons, UIAlertViewDelegate delegate) {
-
     }
 
     @Override
     public void showActionSheet(String title, String cancelTitle, String destructiveTitle, List<String> otherTitles, NSSelector<Integer> callback) {
-
     }
 
     @Override
