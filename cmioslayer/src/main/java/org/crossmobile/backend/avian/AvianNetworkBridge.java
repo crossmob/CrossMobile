@@ -14,7 +14,7 @@ import java.net.URI;
 import java.util.Collection;
 import java.util.Collections;
 
-class AvianNetworkBridge implements NetworkBridge {
+public class AvianNetworkBridge implements NetworkBridge {
     @Override
     public boolean openURL(String url) {
         return false;

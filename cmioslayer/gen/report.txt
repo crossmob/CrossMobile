@@ -1248,18 +1248,23 @@ org/crossmobile/backend/android/StatusBarListener.java
 org/crossmobile/backend/android/package-info.java
 org/crossmobile/backend/android/web/VideoEnabledWebChromeClient.java
 org/crossmobile/backend/android/web/VideoEnabledWebView.java
-org/crossmobile/backend/avian/AvianBitmap.java
-org/crossmobile/backend/avian/AvianFont.java
+org/crossmobile/backend/avian/Aroma.java
 org/crossmobile/backend/avian/AvianGraphicsBridge.java
-org/crossmobile/backend/avian/AvianGraphicsContext.java
 org/crossmobile/backend/avian/AvianImageBridge.java
 org/crossmobile/backend/avian/AvianLifecycleBridge.java
 org/crossmobile/backend/avian/AvianNetworkBridge.java
-org/crossmobile/backend/avian/AvianPath.java
 org/crossmobile/backend/avian/AvianSystemBridge.java
-org/crossmobile/backend/avian/AvianTransformation.java
 org/crossmobile/backend/avian/AvianWrapperUIBridge.java
+org/crossmobile/backend/avian/MouseEvent.java
 org/crossmobile/backend/avian/NativeAvian.java
+org/crossmobile/backend/avian/NativeElement.java
+org/crossmobile/backend/avian/SDLEvent.java
+org/crossmobile/backend/avian/SDLWindow.java
+org/crossmobile/backend/avian/SkBitmap.java
+org/crossmobile/backend/avian/SkCanvas.java
+org/crossmobile/backend/avian/SkFont.java
+org/crossmobile/backend/avian/SkMatrix.java
+org/crossmobile/backend/avian/SkPath.java
 org/crossmobile/backend/avian/package-info.java
 org/crossmobile/backend/cat/ApplicationCatalogue.java
 org/crossmobile/backend/cat/ApplicationPresentation.form
@@ -3223,18 +3228,23 @@ crossmobile/ios/uikit/package-info.class v8
 crossmobile/package-info.class v8
 crossmobile/rt/StrongReference.class v8
 crossmobile/rt/package-info.class v8
-org/crossmobile/backend/avian/AvianBitmap.class v8
-org/crossmobile/backend/avian/AvianFont.class v8
+org/crossmobile/backend/avian/Aroma.class v8
 org/crossmobile/backend/avian/AvianGraphicsBridge.class v8
-org/crossmobile/backend/avian/AvianGraphicsContext.class v8
 org/crossmobile/backend/avian/AvianImageBridge.class v8
 org/crossmobile/backend/avian/AvianLifecycleBridge.class v8
 org/crossmobile/backend/avian/AvianNetworkBridge.class v8
-org/crossmobile/backend/avian/AvianPath.class v8
 org/crossmobile/backend/avian/AvianSystemBridge.class v8
-org/crossmobile/backend/avian/AvianTransformation.class v8
 org/crossmobile/backend/avian/AvianWrapperUIBridge.class v8
+org/crossmobile/backend/avian/MouseEvent.class v8
 org/crossmobile/backend/avian/NativeAvian.class v8
+org/crossmobile/backend/avian/NativeElement.class v8
+org/crossmobile/backend/avian/SDLEvent.class v8
+org/crossmobile/backend/avian/SDLWindow.class v8
+org/crossmobile/backend/avian/SkBitmap.class v8
+org/crossmobile/backend/avian/SkCanvas.class v8
+org/crossmobile/backend/avian/SkFont.class v8
+org/crossmobile/backend/avian/SkMatrix.class v8
+org/crossmobile/backend/avian/SkPath.class v8
 org/crossmobile/backend/avian/package-info.class v8
 org/crossmobile/backend/desktop/DesktopArguments.class v8
 org/crossmobile/backend/desktop/DesktopDrawableMetrics.class v8

@@ -20,7 +20,7 @@ public class AvianImageBridge extends DesktopImageBridge {
 
     @Override
     protected NativeBitmap loadFromStreamAndClose(InputStream in) {
-        return new AvianBitmap();
+        return new SkBitmap(null);
     }
 
     @Override
@@ -29,22 +29,22 @@ public class AvianImageBridge extends DesktopImageBridge {
 
     @Override
     public NativeBitmap stretch(NativeBitmap bitmap, int top, int right, int bottom, int left, int reqX, int reqY) {
-        return new AvianBitmap();
+        return new SkBitmap(null);
     }
 
     @Override
     public NativeBitmap adjustColor(NativeBitmap bitmap, double saturation, double brightness) {
-        return new AvianBitmap();
+        return new SkBitmap(null);
     }
 
     @Override
     public NativeBitmap masked(NativeBitmap bitmap, int color) {
-        return new AvianBitmap();
+        return new SkBitmap(null);
     }
 
     @Override
     public NativeBitmap create(int width, int height) {
-        return new AvianBitmap();
+        return new SkBitmap(null);
     }
 
     @Override

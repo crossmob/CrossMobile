@@ -151,6 +151,19 @@
                     <skipAndroid>${skip.android}</skipAndroid>
                     <skipCore>${skip.core}</skipCore>
                     <skipRvm>${skip.robovm}</skipRvm>
+                    <targets>
+                        <target>
+                            <os>linux</os>
+                            <arch>x86_64</arch>
+                            <ccflags>
+                                <ccflag>-I${user.home}/Sources/Aroma/third_party/SDL/include</ccflag>
+                                <ccflag>-I${user.home}/Sources/Aroma/third_party/skia</ccflag>
+                            </ccflags>
+                            <lflags>
+                                <lflag>-lfontconfig</lflag>
+                            </lflags>
+                        </target>
+                    </targets>
                     <embedlibs>
                         <embedlib>com\.panayotis:appenh.*</embedlib>
                         <embedlib>org\.crossmobile:cmutils-common.*</embedlib>

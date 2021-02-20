@@ -6,14 +6,19 @@
 
 package org.crossmobile.backend.avian;
 
+import org.crossmobile.backend.desktop.DesktopDrawableMetrics;
 import org.crossmobile.backend.desktop.DesktopLifecycleBridge;
+import org.crossmobile.bridge.Native;
+
+import static org.crossmobile.bind.graphics.GraphicsBridgeConstants.DefaultInitialOrientation;
 
 public class AvianLifecycleBridge extends DesktopLifecycleBridge {
 
     @Override
     public void init(String[] args) {
         super.init(args);
-        // Add Skia & SDK initialization here
+        AvianGraphicsBridge.window = new SDLWindow("Aroma");
+        Native.graphics().setOrientation(DefaultInitialOrientation);
     }
 
     @Override

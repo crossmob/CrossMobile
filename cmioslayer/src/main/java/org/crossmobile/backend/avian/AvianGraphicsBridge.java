@@ -15,13 +15,20 @@ import org.crossmobile.bind.graphics.*;
 import java.util.Collections;
 import java.util.List;
 
-public class AvianGraphicsBridge extends DesktopGraphicsBridge<AvianGraphicsContext, AvianTransformation> {
+public class AvianGraphicsBridge extends DesktopGraphicsBridge<SkCanvas, SkMatrix> {
+    public static SDLWindow window;
 
-    @Override
-    protected void resizeWindow(int width, int height) {
+    static {
+        initSDL();
     }
 
     @Override
+    protected void resizeWindow(int width, int height) {
+        window.setSize(width, height);
+    }
+
+    @Override
+    // TODO: rethink if this is a Swing-only feature
     public void draw(CDrawable drawable, GraphicsContext<?> cxt, int orientation) {
     }
 
@@ -35,27 +42,27 @@ public class AvianGraphicsBridge extends DesktopGraphicsBridge<AvianGraphicsCont
     }
 
     @Override
-    public GraphicsContext<AvianTransformation> newGraphicsContext(AvianGraphicsContext avianGraphicsContext, boolean isLive) {
-        return new AvianGraphicsContext();
+    public GraphicsContext<SkMatrix> newGraphicsContext(SkCanvas avianGraphicsContext, boolean isLive) {
+        return null;
     }
 
     @Override
-    public AvianGraphicsContext createCanvas(NativeBitmap bitmap) {
-        return new AvianGraphicsContext();
+    public SkCanvas createCanvas(NativeBitmap bitmap) {
+        return new SkCanvas(null);
     }
 
     @Override
-    public void destroyCanvas(AvianGraphicsContext avianGraphicsContext) {
+    public void destroyCanvas(SkCanvas avianGraphicsContext) {
     }
 
     @Override
-    public CGAffineTransform nativeToTarget(AvianTransformation from, CGAffineTransform to) {
+    public CGAffineTransform nativeToTarget(SkMatrix from, CGAffineTransform to) {
         return CGAffineTransform.identity();
     }
 
     @Override
-    public AvianTransformation targetToNative(CGAffineTransform from, AvianTransformation to) {
-        return new AvianTransformation();
+    public SkMatrix targetToNative(CGAffineTransform from, SkMatrix to) {
+        return new SkMatrix();
     }
 
     @Override
@@ -70,12 +77,12 @@ public class AvianGraphicsBridge extends DesktopGraphicsBridge<AvianGraphicsCont
 
     @Override
     public NativeFont getFont(String fontName, double size) {
-        return new AvianFont(fontName, size);
+        return new SkFont(fontName, size);
     }
 
     @Override
     public NativePath newNativePath() {
-        return new AvianPath();
+        return new SkPath();
     }
 
     @Override
@@ -92,4 +99,11 @@ public class AvianGraphicsBridge extends DesktopGraphicsBridge<AvianGraphicsCont
     public List<String> listFont(String familyName) {
         return Collections.emptyList();
     }
+
+    private static native boolean initSDL();
+
+    static native void quitSDL();
+
+    static native SDLEvent pollSDLEvents();
+
 }
