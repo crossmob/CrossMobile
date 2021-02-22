@@ -1,6 +1,6 @@
 [submodule "cmmanager"]
 	path = cmmanager
-	url = https://github.com/crossmob/cmmanager
+	url = https://github.com/Aroma-UI/cmmanager
 [submodule "cmbuild"]
 	path = cmbuild
-	url = https://github.com/crossmob/cmbuild
+	url = https://github.com/Aroma-UI/cmbuild
