@@ -3228,6 +3228,12 @@ crossmobile/ios/uikit/package-info.class v8
 crossmobile/package-info.class v8
 crossmobile/rt/StrongReference.class v8
 crossmobile/rt/package-info.class v8
+native/linux-x86_64/org_crossmobile_backend_avian_AvianGraphicsBridge.o
+native/linux-x86_64/org_crossmobile_backend_avian_SDLWindow.o
+native/linux-x86_64/org_crossmobile_backend_avian_SkBitmap.o
+native/linux-x86_64/org_crossmobile_backend_avian_SkCanvas.o
+native/linux-x86_64/org_crossmobile_backend_avian_SkFont.o
+native/linux-x86_64/org_crossmobile_backend_avian_SkPath.o
 org/crossmobile/backend/avian/Aroma.class v8
 org/crossmobile/backend/avian/AvianGraphicsBridge.class v8
 org/crossmobile/backend/avian/AvianImageBridge.class v8
