@@ -69,6 +69,7 @@ public class SwingGraphicsContext implements GraphicsContext<AffineTransform> {
         g2.transform(transform);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public CGAffineTransform getCTM() {
         return Native.graphics().nativeToTarget(g2.getTransform(), null);

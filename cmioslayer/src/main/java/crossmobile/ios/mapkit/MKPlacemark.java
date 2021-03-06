@@ -33,6 +33,7 @@ public class MKPlacemark extends CLPlacemark implements MKAnnotation {
      * @param addressDictionary A dictionary containing keys and values from the
      *                          address book.
      */
+    @SuppressWarnings({"unchecked", "rawtypes"})
     @CMConstructor("- (instancetype)initWithCoordinate:(CLLocationCoordinate2D)coordinate \n"
             + "                 addressDictionary:(NSDictionary<NSString *,id> *)addressDictionary;")
     public MKPlacemark(CLLocationCoordinate2D coordinate, Map addressDictionary) {

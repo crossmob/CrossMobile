@@ -13,6 +13,7 @@ import org.crossmobile.bridge.Native;
 import static crossmobile.ios.coregraphics.GraphicsDrill.*;
 import static crossmobile.ios.uikit.UIControlState.*;
 
+@SuppressWarnings("unchecked")
 class cmButtonStates {
 
     private static UIImage thumb;

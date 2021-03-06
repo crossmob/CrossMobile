@@ -8,7 +8,7 @@ package org.crossmobile.bind.io;
 
 public interface NativeCookieManager {
 
-    public void setCookie(String url, String headerValue);
+    void setCookie(String url, String headerValue);
 
-    public String getCookie(String url);
+    String getCookie(String url);
 }

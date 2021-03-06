@@ -27,6 +27,7 @@ public class AndroidNativeDispatcher extends NativeDispatcher<UIView, AndroidNat
         super(holder);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void setMetrics(final int x, final int y, final int width, final int height) {
         if (x == oldX && y == oldY && width == oldWidth && height == oldHeight)

@@ -226,6 +226,7 @@ public class WKWebView extends UIView {
      */
     @CMSelector("- (void)evaluateJavaScript:(NSString *)javaScriptString \n" +
             "         completionHandler:(void (^)(id, NSError *error))completionHandler;\n")
+    @SuppressWarnings("unchecked")
     public void evaluateJavaScript(String javaScriptString, VoidBlock2<Object, NSError> completionHandler) {
         widget().evaluateJavaScript(javaScriptString, completionHandler);
     }

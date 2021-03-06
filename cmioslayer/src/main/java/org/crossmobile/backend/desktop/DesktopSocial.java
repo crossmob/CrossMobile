@@ -19,6 +19,7 @@ import org.crossmobile.bridge.ann.CMLibTarget;
 @CMLib(name = "cmsocial", target = CMLibTarget.DESKTOP)
 public class DesktopSocial {
 
+    @SuppressWarnings("deprecation")
     public void initialize() {
         Native.social().registerSocial(SLServiceType.Twitter, (text, images, urls, handler) -> {
             if (text != null)

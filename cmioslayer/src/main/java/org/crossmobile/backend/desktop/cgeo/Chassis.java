@@ -138,6 +138,7 @@ public class Chassis extends CSizable implements Comparable<Chassis> {
         return simulator;
     }
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public void draw(GraphicsContext<?> context, boolean above, int orientation) {
         boolean canDraw = !above;
         for (CArea area : areas) {
@@ -147,7 +148,6 @@ public class Chassis extends CSizable implements Comparable<Chassis> {
                 else
                     break;
             if (canDraw && area instanceof CDrawable)
-                //noinspection unchecked,rawtypes
                 ((DesktopGraphicsBridge) Native.graphics()).draw((CDrawable) area, context, orientation);
         }
     }

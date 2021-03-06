@@ -7,8 +7,6 @@
 package org.crossmobile.backend.swing;
 
 import crossmobile.ios.foundation.NSSelector;
-import crossmobile.ios.uikit.UIAlertView;
-import crossmobile.ios.uikit.UIAlertViewDelegate;
 import crossmobile.ios.uikit.UITextField;
 import org.crossmobile.backend.desktop.DesktopSystemBridge;
 
@@ -21,8 +19,9 @@ import static crossmobile.ios.uikit.UserInterfaceDrill.getTextFieldWrapper;
 
 public class SwingSystemBridge extends DesktopSystemBridge {
 
+    @SuppressWarnings("deprecation")
     @Override
-    public void showAlert(UIAlertView view, String title, String message, List<String> buttons, UIAlertViewDelegate delegate) {
+    public void showAlert(crossmobile.ios.uikit.UIAlertView view, String title, String message, List<String> buttons, crossmobile.ios.uikit.UIAlertViewDelegate delegate) {
         JPanel visuals = null;
         final Map<JTextField, JTextField> joints = new HashMap<>();
         visuals = appendTextFieldOnAlert(view, 0, visuals, message, joints);
@@ -44,7 +43,8 @@ public class SwingSystemBridge extends DesktopSystemBridge {
         delegate.clickedButtonAtIndex(view, what);
     }
 
-    private JPanel appendTextFieldOnAlert(UIAlertView alert, int i, JPanel visuals, String message, Map<JTextField, JTextField> joints) {
+    @SuppressWarnings("deprecation")
+    private JPanel appendTextFieldOnAlert(crossmobile.ios.uikit.UIAlertView alert, int i, JPanel visuals, String message, Map<JTextField, JTextField> joints) {
         if (alert == null)
             return visuals;
         UITextField tf = alert.textFieldAtIndex(i);

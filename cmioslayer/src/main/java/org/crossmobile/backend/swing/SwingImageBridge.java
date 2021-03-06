@@ -38,6 +38,7 @@ public class SwingImageBridge extends DesktopImageBridge {
         return new SwingBitmap(GFXCONF.createCompatibleImage(width, height, Transparency.TRANSLUCENT));
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public NativeBitmap masked(NativeBitmap in, int color) {
         BufferedImage bi = nativeToBuffered(in);

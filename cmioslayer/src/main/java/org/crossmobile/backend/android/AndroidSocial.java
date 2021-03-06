@@ -98,6 +98,7 @@ public class AndroidSocial {
         return null;
     }
 
+    @SuppressWarnings("deprecation")
     private void initializeFacebook() {
         try {
             FacebookSdk.setApplicationId(System.getProperty("org.crossmobile.cmplugin-cmsocial.facebookappid"));

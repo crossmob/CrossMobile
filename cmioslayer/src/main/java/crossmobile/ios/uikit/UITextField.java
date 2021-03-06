@@ -26,6 +26,7 @@ import static crossmobile.ios.uikit.cmCommonFonts.getLabelFont;
  * UITextField class defines an object that represents a visible text area that
  * is editable.
  */
+@SuppressWarnings({"FieldMayBeFinal", "unchecked"})
 @CMClass
 public class UITextField extends UIControl implements UITextInputTraits {
 

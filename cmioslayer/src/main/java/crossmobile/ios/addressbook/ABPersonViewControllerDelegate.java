@@ -29,6 +29,7 @@ public interface ABPersonViewControllerDelegate {
      * @return TRUE if the ABPersonViewController should perform the predefined
      * action.
      */
+    @SuppressWarnings("deprecation")
     @CMSelector("- (BOOL)personViewController:(ABPersonViewController *)personViewController \n"
             + "shouldPerformDefaultActionForPerson:(ABRecordRef)person \n"
             + "                    property:(ABPropertyID)property \n"

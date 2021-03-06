@@ -13,6 +13,7 @@ import org.crossmobile.bridge.ann.CMSelector;
  * GKPeerPickerControllerDelegate interface is the delegate that cooperates with
  * GKPeerPickerController objects.
  */
+@SuppressWarnings("deprecation")
 @CMClass
 public interface GKPeerPickerControllerDelegate {
 

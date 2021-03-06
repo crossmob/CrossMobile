@@ -48,6 +48,7 @@ import static android.content.Context.DOWNLOAD_SERVICE;
 import static org.crossmobile.bridge.system.BaseUtils.listFiles;
 
 @CMLib(name = "cmwebkit")
+@SuppressWarnings("deprecation")
 public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, AndroidGraphicsContext> {
 
     static {

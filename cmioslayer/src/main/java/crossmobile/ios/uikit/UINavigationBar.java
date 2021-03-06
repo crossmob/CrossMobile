@@ -190,6 +190,7 @@ public class UINavigationBar extends UIView {
             popNavigationItemAnimated(true);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void layoutSubviews() {
         synchronized (this) {
@@ -419,6 +420,7 @@ public class UINavigationBar extends UIView {
         fillBackground(barTintColor, barGradient, rect.getOrigin().getX(), rect.getOrigin().getY(), rect.getSize().getWidth(), rect.getSize().getHeight());
     }
 
+    @SuppressWarnings("deprecation")
     void fixMetricsForStatusBar(UIViewController container, UIView parent) {
         UIEdgeInsets insets = container.getActiveInsets();
         setFrameImpl(insets.getLeft(),

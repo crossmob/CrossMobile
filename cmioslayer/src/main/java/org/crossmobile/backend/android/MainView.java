@@ -13,7 +13,6 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.WindowInsets;
-import android.widget.AbsoluteLayout;
 import crossmobile.ios.coregraphics.CGPoint;
 import crossmobile.ios.uikit.UIApplication;
 import crossmobile.ios.uikit.UITouch;
@@ -26,7 +25,8 @@ import static android.view.MotionEvent.*;
 import static crossmobile.ios.uikit.UserInterfaceDrill.*;
 import static crossmobile.ios.uikit.UITouchPhase.*;
 
-public class MainView extends AbsoluteLayout {
+@SuppressWarnings("deprecation")
+public class MainView extends android.widget.AbsoluteLayout {
 
     static MainView current;
     private final boolean newAPI = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
@@ -94,11 +94,11 @@ public class MainView extends AbsoluteLayout {
         return result.get();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void draw(Canvas canvas) {
         Native.lifecycle().encapsulateContext(() -> {
             canvas.save();
-            //noinspection unchecked
             drawWindow(Native.graphics().newGraphicsContext(canvas, true));
             canvas.restore();
             super.draw(canvas);     // Needed!!!!! or else native widgets will not function properly... It seems that "draw" method does more than what it says

@@ -67,7 +67,7 @@ public class MKMapView extends UIView {
      *
      * @param frame CGRect that defines dimension and position of the MKMapView.
      */
-    @SuppressWarnings({"OverridableMethodCallInConstructor", "LeakingThisInConstructor"})
+    @SuppressWarnings({"OverridableMethodCallInConstructor", "LeakingThisInConstructor", "unchecked"})
     public MKMapView(CGRect frame) {
         super(frame);
         registerWidget(Native.mapWidget().mapView(this));
@@ -75,6 +75,7 @@ public class MKMapView extends UIView {
         setZoomEnabled(true);
     }
 
+    @SuppressWarnings("rawtypes")
     private MapViewWrapper widget() {
         return (MapViewWrapper) getWidget();
     }
@@ -429,6 +430,7 @@ public class MKMapView extends UIView {
      *
      * @return The list of annotations for this map.
      */
+    @SuppressWarnings("unchecked")
     @CMGetter("@property(nonatomic, readonly) NSArray<id<MKAnnotation>> *annotations;\n"
             + "")
     public List<MKAnnotation> annotations() {

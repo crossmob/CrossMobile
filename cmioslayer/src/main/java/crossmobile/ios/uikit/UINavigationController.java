@@ -20,6 +20,7 @@ import java.util.List;
  * UINavigationController class defines an object that handles view controllers
  * related to views organized in a hierarchy.
  */
+@SuppressWarnings("deprecation")
 @CMClass
 public class UINavigationController extends UIViewController {
 

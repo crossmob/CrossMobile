@@ -150,6 +150,7 @@ public class MFMailComposeViewController extends UINavigationController {
         this.toRecipients = toRecipients;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void viewWillAppear(boolean animated) {
         super.viewWillAppear(animated);
@@ -159,7 +160,8 @@ public class MFMailComposeViewController extends UINavigationController {
                 + "&bcc=" + recipientsFromList(bccRecipients)
                 + "&subject=" + NSString.stringByAddingPercentEscapesUsingEncoding(subject, NSStringEncoding.UTF8)
                 + "&body=" + NSString.stringByAddingPercentEscapesUsingEncoding(body, NSStringEncoding.UTF8));
-        UIApplication.sharedApplication().openURL(url);
+        if (url != null)
+            UIApplication.sharedApplication().openURL(url);
         if (delegate != null)
             delegate.didFinishWithResult(this, MFMailComposeResult.Sent, null);
     }

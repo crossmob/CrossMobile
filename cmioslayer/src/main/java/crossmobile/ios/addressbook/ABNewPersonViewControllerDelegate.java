@@ -13,6 +13,7 @@ import org.crossmobile.bridge.ann.CMSelector;
  * ABNewPersonViewControllerDelegate is the delegate that cooperates with the
  * ABNewPersonViewController.
  */
+@SuppressWarnings("deprecation")
 @CMClass
 public interface ABNewPersonViewControllerDelegate {
 
@@ -25,5 +26,5 @@ public interface ABNewPersonViewControllerDelegate {
      */
     @CMSelector("- (void)newPersonViewController:(ABNewPersonViewController *)newPersonViewController\n"
             + "       didCompleteWithNewPerson:(ABRecordRef)person")
-    public void didCompleteWithNewPerson(ABNewPersonViewController newPersonView, ABRecord person);
+    void didCompleteWithNewPerson(ABNewPersonViewController newPersonView, ABRecord person);
 }

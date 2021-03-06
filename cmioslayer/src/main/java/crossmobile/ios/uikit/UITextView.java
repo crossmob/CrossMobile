@@ -53,7 +53,7 @@ public class UITextView extends UIView {
      *
      * @param rect CGRect that defines dimension and position of the UITextView.
      */
-    @SuppressWarnings("LeakingThisInConstructor")
+    @SuppressWarnings({"LeakingThisInConstructor", "unchecked"})
     @CMConstructor("- (instancetype)initWithFrame:(CGRect)frame;")
     public UITextView(CGRect rect) {
         super(rect, UIColor.whiteColor);
@@ -434,6 +434,7 @@ public class UITextView extends UIView {
         return false;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public boolean becomeFirstResponder() {
         if (isFirstResponder()

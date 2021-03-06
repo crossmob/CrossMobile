@@ -32,7 +32,7 @@ public class UITabBarController extends UIViewController {
     /**
      * The default UITabBarController constructor.
      */
-    @SuppressWarnings("LeakingThisInConstructor")
+    @SuppressWarnings({"LeakingThisInConstructor", "deprecation"})
     public UITabBarController() {
         delegate = null;
         tabBar = new UITabBar(new CGRect(0, 0, UIScreen.mainScreen().applicationFrame().getSize().getWidth(), 49));

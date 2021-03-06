@@ -500,12 +500,14 @@ public class UISplitViewController extends UIViewController {
         splitView.layoutSubviews();
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void willRotateToInterfaceOrientation(int UIInterfaceOrientation, double duration) {
         if (splitView.showsOverlay)
             splitView.hideOverlay(false);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void didRotateFromInterfaceOrientation(int UIInterfaceOrientation) {
 //        if (splitView.showsOverlay)

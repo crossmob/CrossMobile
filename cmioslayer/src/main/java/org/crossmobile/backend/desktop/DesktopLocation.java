@@ -60,7 +60,7 @@ class DesktopLocation extends AbstractLocationBridge {
         double latitude = 0;
         double longitude = 0;
         try {
-            Map<String, Object> res = (Map<String, Object>) NSJSONSerialization.JSONObjectWithData(NSData.dataWithContentsOfURL(NSURL.URLWithString("http://freegeoip.net/json")), 0, null);
+            @SuppressWarnings("unchecked") Map<String, Object> res = (Map<String, Object>) NSJSONSerialization.JSONObjectWithData(NSData.dataWithContentsOfURL(NSURL.URLWithString("http://freegeoip.net/json")), 0, null);
             if (res != null) {
                 latitude = Double.parseDouble(res.get("latitude").toString());
                 longitude = Double.parseDouble(res.get("longitude").toString());
