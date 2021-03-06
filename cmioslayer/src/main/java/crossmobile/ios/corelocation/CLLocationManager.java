@@ -349,6 +349,7 @@ public class CLLocationManager extends NSObject {
 
     private class LocationListenerImpl implements LocationChangeDelegate {
 
+        @SuppressWarnings("deprecation")
         @Override
         public void updateLocation(double latitude, double longitude) {
             if (delegate != null) {

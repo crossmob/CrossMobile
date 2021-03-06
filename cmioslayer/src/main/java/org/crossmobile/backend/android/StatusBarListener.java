@@ -60,7 +60,7 @@ class StatusBarListener {
         statusBar.setReception(-2);
         gsm.listen(phoneStateListener = new PhoneStateListener() {
             @Override
-            @SuppressWarnings({"UseSpecificCatch"})
+            @SuppressWarnings({"UseSpecificCatch", "deprecation"})
             public void onSignalStrengthsChanged(SignalStrength signalStrength) {
                 boolean isAirport = false;
                 if (Build.VERSION.SDK_INT < 17)

@@ -7,17 +7,13 @@
 package org.crossmobile.bridge;
 
 import crossmobile.ios.foundation.NSSelector;
-import crossmobile.ios.uikit.UIAlertView;
-import crossmobile.ios.uikit.UIAlertViewDelegate;
 import crossmobile.ios.uikit.UIView;
-import org.crossmobile.backend.android.AndroidPermissions;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicLong;
 
 public interface SystemBridge {
     SimpleDateFormat GMT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
@@ -47,7 +43,8 @@ public interface SystemBridge {
 
     void setKeyboardVisibility(boolean status);
 
-    void showAlert(UIAlertView view, String title, String message, List<String> buttons, UIAlertViewDelegate delegate);
+    @SuppressWarnings("deprecation")
+    void showAlert(crossmobile.ios.uikit.UIAlertView view, String title, String message, List<String> buttons, crossmobile.ios.uikit.UIAlertViewDelegate delegate);
 
     /**
      * @param callback CANCEL_ID the cancel button, DESTROY_ID the destructive button, >=0 the other titles buttons

@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: LGPL-3.0-only
  */
 
-package org.crossmobile.backend.desktop;
+package org.crossmobile.backend.swing;
 
 import org.crossmobile.bind.io.AbstractNetworkBridge;
 import org.crossmobile.bind.io.NativeCookieManager;
@@ -14,9 +14,9 @@ import java.awt.Desktop;
 import java.io.File;
 import java.net.URI;
 
-public class DesktopNetworkBridge extends AbstractNetworkBridge {
+public class SwingNetworkBridge extends AbstractNetworkBridge {
 
-    public DesktopNetworkBridge() {
+    public SwingNetworkBridge() {
     }
 
     @Override

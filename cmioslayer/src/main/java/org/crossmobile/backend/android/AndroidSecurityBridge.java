@@ -9,7 +9,6 @@ package org.crossmobile.backend.android;
 import android.app.AlertDialog;
 import android.app.KeyguardManager;
 import android.content.DialogInterface;
-import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.CancellationSignal;
 import android.security.keystore.KeyGenParameterSpec;
@@ -43,12 +42,14 @@ import static android.content.Context.KEYGUARD_SERVICE;
 import static crossmobile.ios.foundation.NSError.Domain.LAErrorDomain;
 import static org.crossmobile.bridge.ann.CMLibTarget.ANDROID;
 
+@SuppressWarnings("deprecation")
 @CMLib(target = ANDROID, name = "cmtouchid")
 public class AndroidSecurityBridge implements SecurityBridge {
 
     private static final String KEY_NAME = "TOUCHKEY";
     private Cipher cipher;
-    private FingerprintManager fingerprintManager;
+    @SuppressWarnings("deprecation")
+    private android.hardware.fingerprint.FingerprintManager fingerprintManager;
     private KeyStore keyStore;
     private AlertDialog dialog;
 
@@ -64,7 +65,7 @@ public class AndroidSecurityBridge implements SecurityBridge {
             KeyguardManager keyguardManager
                     = (KeyguardManager) MainActivity.current().getSystemService(KEYGUARD_SERVICE);
             fingerprintManager
-                    = (FingerprintManager) MainActivity.current().getSystemService(FINGERPRINT_SERVICE);
+                    = (android.hardware.fingerprint.FingerprintManager) MainActivity.current().getSystemService(FINGERPRINT_SERVICE);
 
             if (!fingerprintManager.isHardwareDetected()) {
                 error.set(new NSError(LAErrorDomain, LAError.TouchIDNotAvailable, getUserInfo("Device has no fingerprint sensor")));
@@ -88,7 +89,7 @@ public class AndroidSecurityBridge implements SecurityBridge {
     @Override
     public void requestFingerprint(VoidBlock2<Boolean, NSError> callback, final LAContext context) {
         if (initCipher()) {
-            FingerprintManager.CryptoObject cryptoObject = new FingerprintManager.CryptoObject(cipher);
+            android.hardware.fingerprint.FingerprintManager.CryptoObject cryptoObject = new android.hardware.fingerprint.FingerprintManager.CryptoObject(cipher);
             fingerprintManager.authenticate(cryptoObject, new CancellationSignal(), 0, new FingerPrintCallback(callback), null);
             Native.lifecycle().runAndWaitOnEventThread(() -> {
                 dialog = new AlertDialog.Builder(MainActivity.current).create();
@@ -193,7 +194,8 @@ public class AndroidSecurityBridge implements SecurityBridge {
         }
     }
 
-    private class FingerPrintCallback extends FingerprintManager.AuthenticationCallback {
+    @SuppressWarnings("deprecation")
+    private class FingerPrintCallback extends android.hardware.fingerprint.FingerprintManager.AuthenticationCallback {
 
         VoidBlock2<Boolean, NSError> callback;
 
@@ -206,19 +208,17 @@ public class AndroidSecurityBridge implements SecurityBridge {
             System.out.println("Error " + errorCode + " : " + errString);
             NSError error;
             switch (errorCode) {
-                case FingerprintManager.FINGERPRINT_ERROR_HW_UNAVAILABLE:
+                case android.hardware.fingerprint.FingerprintManager.FINGERPRINT_ERROR_HW_UNAVAILABLE:
                     error = new NSError(LAErrorDomain, LAError.TouchIDNotAvailable, getUserInfo(errString.toString()));
                     break;
-                case FingerprintManager.FINGERPRINT_ERROR_UNABLE_TO_PROCESS:
+                case android.hardware.fingerprint.FingerprintManager.FINGERPRINT_ERROR_UNABLE_TO_PROCESS:
                     error = new NSError(LAErrorDomain, LAError.AuthenticationFailed, getUserInfo(errString.toString()));
                     break;
-                case FingerprintManager.FINGERPRINT_ERROR_TIMEOUT:
+                case android.hardware.fingerprint.FingerprintManager.FINGERPRINT_ERROR_TIMEOUT:
+                case android.hardware.fingerprint.FingerprintManager.FINGERPRINT_ERROR_CANCELED:
                     error = new NSError(LAErrorDomain, LAError.SystemCancel, getUserInfo(errString.toString()));
                     break;
-                case FingerprintManager.FINGERPRINT_ERROR_CANCELED:
-                    error = new NSError(LAErrorDomain, LAError.SystemCancel, getUserInfo(errString.toString()));
-                    break;
-                case FingerprintManager.FINGERPRINT_ERROR_LOCKOUT:
+                case android.hardware.fingerprint.FingerprintManager.FINGERPRINT_ERROR_LOCKOUT:
                     error = new NSError(LAErrorDomain, LAError.TouchIDLockout, getUserInfo(errString.toString()));
             }
         }
@@ -229,7 +229,7 @@ public class AndroidSecurityBridge implements SecurityBridge {
         }
 
         @Override
-        public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
+        public void onAuthenticationSucceeded(android.hardware.fingerprint.FingerprintManager.AuthenticationResult result) {
             dialog.cancel();
             callback.invoke(true, null);
         }

@@ -74,6 +74,20 @@ public class Commander {
         return add(arg);
     }
 
+    public Commander addArguments(String... arguments) {
+        if (arguments != null)
+            for (String arg : arguments)
+                add(arg);
+        return this;
+    }
+
+    public Commander addArguments(Collection<String> arguments) {
+        if (arguments != null)
+            for (String arg : arguments)
+                add(arg);
+        return this;
+    }
+
     public Commander setOutListener(Consumer<String> out) {
         this.outS = out;
         this.outC = null;

@@ -20,18 +20,20 @@ import static crossmobile.ios.coregraphics.CGColorSpace.createDeviceRGB;
  * application. It contains related parameters and methods for drawing objects
  * of the application such as color filling, adding shadows and stroke lines.
  */
+@SuppressWarnings("unused")
 @CMReference
 public class CGContext extends CFType {
 
+    @SuppressWarnings("rawtypes")
     final GraphicsContext context;
     private CGPath path;
     private final CGPoint textPosition = CGPoint.zero();
     private double alpha = 1;
+    @SuppressWarnings("FieldCanBeLocal")
     private CGColorSpace strokeColorSpace = null;
     private CGColorSpace fillColorSpace = null;
-    private CGAffineTransform textMatrix;
 
-    @SuppressWarnings("OverridableMethodCallInConstructor")
+    @SuppressWarnings({"OverridableMethodCallInConstructor", "rawtypes"})
     CGContext(GraphicsContext context) {
         this.context = context;
     }
@@ -43,6 +45,7 @@ public class CGContext extends CFType {
      * @param transform The transformation matrix.
      * @see crossmobile.ios.coregraphics.CGAffineTransform
      */
+    @SuppressWarnings("unchecked")
     @CMFunction(" void CGContextConcatCTM ( CGContextRef c, CGAffineTransform transform ); ")
     public void concatCTM(CGAffineTransform transform) {
         if (transform != null)
@@ -144,9 +147,9 @@ public class CGContext extends CFType {
      */
     @CMFunction(" void CGContextSetStrokeColor ( CGContextRef c, const CGFloat *components ); ")
     public void setStrokeColor(double[] components) {
-        CGColorSpace space = strokeColorSpace;
-        if (space == null)
-            space = createDeviceRGB();
+//        CGColorSpace space = strokeColorSpace;
+//        if (space == null)
+//            space = createDeviceRGB();
         context.setDrawColorWithColor(CGColorSpace.RGB.pack(components, 0));
     }
 
@@ -340,7 +343,6 @@ public class CGContext extends CFType {
     /**
      * Clip graphics context using current path. The path will be closed if it is still open.
      */
-    @SuppressWarnings("unchecked")
     @CMFunction("void CGContextClip(CGContextRef c);")
     public void clip() {
         if (path == null)
@@ -404,7 +406,6 @@ public class CGContext extends CFType {
      */
     @CMFunction("void CGContextSetTextMatrix(CGContextRef c, CGAffineTransform t);")
     public void setTextMatrix(CGAffineTransform t) {
-        this.textMatrix = t;
         Native.system().notImplemented("Please use NSString.drawAtPoint instead");
     }
 
@@ -640,7 +641,6 @@ public class CGContext extends CFType {
      * @param CGPathDrawingMode A path drawing mode for the path.
      * @see crossmobile.ios.coregraphics.CGPathDrawingMode
      */
-    @SuppressWarnings("unchecked")
     @CMFunction(" void CGContextDrawPath ( CGContextRef c, CGPathDrawingMode mode ); ")
     public void drawPath(int CGPathDrawingMode) {
         switch (CGPathDrawingMode) {

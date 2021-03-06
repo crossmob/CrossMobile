@@ -10,7 +10,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import com.facebook.CallbackManager;
@@ -99,6 +98,7 @@ public class AndroidSocial {
         return null;
     }
 
+    @SuppressWarnings("deprecation")
     private void initializeFacebook() {
         try {
             FacebookSdk.setApplicationId(System.getProperty("org.crossmobile.cmplugin-cmsocial.facebookappid"));
@@ -140,7 +140,7 @@ public class AndroidSocial {
                     Iterator<NSURL> uit = urls.iterator();
                     for (UIImage image : images) {
                         SharePhoto.Builder photoContentBuilder = new SharePhoto.Builder();
-                        photoContentBuilder.setBitmap((Bitmap) GraphicsDrill.bitmap(image.CGImage()).getBitmap());
+                        photoContentBuilder.setBitmap(((AndroidBitmap) GraphicsDrill.bitmap(image.CGImage())).getBitmap());
                         if (uit.hasNext())
                             photoContentBuilder.setImageUrl(Uri.parse(uit.next().absoluteString()));
                         contentBuilder.addPhoto(photoContentBuilder.build());

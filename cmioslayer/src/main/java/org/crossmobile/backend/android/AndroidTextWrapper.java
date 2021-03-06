@@ -196,6 +196,7 @@ public class AndroidTextWrapper extends TextWrapper<UIView, AndroidTextWidget, A
         }
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void drawNativeBorder(boolean status) {
         if (nativeborder == null)

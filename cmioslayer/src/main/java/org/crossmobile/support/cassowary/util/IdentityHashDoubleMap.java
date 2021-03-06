@@ -190,8 +190,8 @@ public class IdentityHashDoubleMap<K> implements Map<K, Double>, java.io.Seriali
      * possible that the map explicitly maps the key to {@code null}. The {@link #containsKey containsKey} operation may be used
      * to distinguish these two cases.
      *
-     * @see #put(Object, Object)
      */
+    @SuppressWarnings("unchecked")
     @Override
     public Double get(Object key) {
         K k = maskNull((K) key);
@@ -255,6 +255,7 @@ public class IdentityHashDoubleMap<K> implements Map<K, Double>, java.io.Seriali
      * @return <tt>true</tt> if this map maps one or more keys to the specified object reference
      * @see #containsKey(Object)
      */
+    @SuppressWarnings("UnnecessaryUnboxing")
     @Override
     public boolean containsValue(Object value) {
         if (!(value instanceof Double))

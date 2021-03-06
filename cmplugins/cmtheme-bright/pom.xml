@@ -22,11 +22,21 @@
 
     <profiles>
         <profile>
-            <id>desktop</id>
+            <id>swing</id>
             <dependencies>
                 <dependency>
                     <groupId>org.crossmobile</groupId>
-                    <artifactId>cmplugin-desktop-cmioslayer</artifactId>
+                    <artifactId>cmplugin-swing-cmioslayer</artifactId>
+                    <version>${project.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>avian</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.crossmobile</groupId>
+                    <artifactId>cmplugin-avian-cmioslayer</artifactId>
                     <version>${project.version}</version>
                 </dependency>
             </dependencies>

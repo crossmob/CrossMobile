@@ -52,6 +52,7 @@ public class NSUserDefaults extends NSObject {
         return standard;
     }
 
+    @SuppressWarnings("unchecked")
     @CMConstructor("- (instancetype)initWithSuiteName:(NSString *)suitename;")
     public NSUserDefaults(String suitename) {
         this.suitename = suitename;
@@ -65,7 +66,6 @@ public class NSUserDefaults extends NSObject {
         Object jsonRaw = JsonHelper.decode(data);
         if (jsonRaw == null) return;
 
-        //noinspection unchecked
         Map<?, Object> json = (Map<?, Object>) jsonRaw;
         for (Object key : json.keySet())
             if (key instanceof String)

@@ -61,6 +61,7 @@ public abstract class AbstractGraphicsBridge<CANVAS, TRANSF> implements Graphics
         }
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public synchronized void relayoutMainView() {
         UIApplication app = UIApplication.sharedApplication();

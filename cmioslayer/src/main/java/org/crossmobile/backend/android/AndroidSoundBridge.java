@@ -19,6 +19,7 @@ public class AndroidSoundBridge implements SoundBridge {
         return new AndroidSoundPlayer(url, delegate);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void vibrate() {
         Vibrator v = (Vibrator) MainActivity.current.getSystemService(Context.VIBRATOR_SERVICE);

@@ -39,18 +39,8 @@ public class Prefs {
     private static final String USER_THEME = "user.theme";
     private static final String SYSTEM_THEME = "system.theme";
 
-    public static final String LAUNCH_TARGET_IOS = "ios";
-    public static final String LAUNCH_TARGET_ANDROID = "android";
-    public static final String LAUNCH_TARGET_DESKTOP = "desktop";
-    public static final String LAUNCH_TARGET_UWP = "uwp";
     public static final String LAUNCH_ACTION_RUN = "run";
     public static final String LAUNCH_ACTION_BUILD = "build";
-    public static final String OPEN_NETBEANS = "Netbeans";
-    public static final String OPEN_INTELLIJ = "IntelliJ IDEA";
-    public static final String OPEN_VSCODE = "VS Code";
-    public static final String OPEN_STUDIO = "Android Studio";
-    public static final String OPEN_XCODE = "Xcode";
-    public static final String OPEN_VSTUDIO = "VStudio";
 
     private static final Preferences prefs = Preferences.userRoot().node("org").node("crossmobile").node("prefs");
     private static final Preferences prefsOld = Preferences.userRoot().node("tech").node("crossmobile").node("prefs");
@@ -261,8 +251,8 @@ public class Prefs {
             setPreference(LAUNCH_TARGET + hash(path), target);
     }
 
-    public static String getSelectedLaunchTarget(String path) {
-        return getPreference(LAUNCH_TARGET + hash(path), LAUNCH_TARGET_DESKTOP);
+    public static LaunchTarget getSelectedLaunchTarget(String path) {
+        return LaunchTarget.find(getPreference(LAUNCH_TARGET + hash(path), null));
     }
 
     public static void setLaunchType(String path, String launchType) {

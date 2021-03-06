@@ -365,6 +365,7 @@ public class SystemDependent {
 
         JAVA("exe"),
         JAVAC("exe"),
+        JAVAH("exe"),
         ANDROID("bat"),
         SDKMANAGER("bat"),
         ADB("exe"),

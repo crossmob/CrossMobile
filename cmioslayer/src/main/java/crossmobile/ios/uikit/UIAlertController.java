@@ -20,6 +20,7 @@ import java.util.List;
  * UIAlertController class defines an object that displays an alert message to
  * the user.
  */
+@SuppressWarnings("deprecation")
 @CMClass
 public class UIAlertController extends UIViewController {
 

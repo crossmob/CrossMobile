@@ -12,61 +12,70 @@ public enum CMLibTarget {
      * Elements only to appear in source code. Will disappear from all
      * libraries, compile and runtime.
      */
-    SOURCEONLY(false, false, false, false, false, false, false),
+    SOURCEONLY(false, false, false, false, false, false, false, false),
     /**
      * Elements used only at compile time. Will disappear in all runtime
      * libraries.
      */
-    BUILDONLY(true, false, false, false, false, false, false),
+    BUILDONLY(true, false, false, false, false, false, false, false),
     /**
-     * Runtime elements specific for Desktop
+     * Runtime elements used only under Desktop targets, like Swing and Avian
      */
-    DESKTOP(false, true, false, false, false, false, false),
+    DESKTOP(false, true, true, false, false, false, false, false),
+    /**
+     * Runtime elements specific for Swing
+     */
+    SWING(false, true, false, false, false, false, false, false),
+    /**
+     * Runtime elements specific for Avian
+     */
+    AVIAN(false, false, true, false, false, false, false, false),
     /**
      * Runtime elements specific for Android
      */
-    ANDROID(false, false, true, false, false, false, false),
+    ANDROID(false, false, false, true, false, false, false, false),
     /**
      * Java runtime elements, specific for iOS. Does not define native bindings.
      * Not present at compile time.
      */
-    IOS(false, false, false, true, false, false, false),
+    IOS(false, false, false, false, true, false, false, false),
     /**
      * Runtime elements specific for UWL
      */
-    UWP(false, false, false, false, false, true, false),
+    UWP(false, false, false, false, false, false, true, false),
     /**
      * Runtime elements specific for Desktop
      */
-    API_NOUWP(true, true, true, true, true, true, false),
+    API_NOUWP(true, true, true, true, true, true, true, false),
     /**
      * Used in Java based targets only.
      */
-    JAVA(false, true, true, false, false, false, false),
+    JAVA(false, true, true, true, false, false, false, false),
     /**
      * Defines the CrossMobile API. Is used for native bindings.
      */
-    API(true, true, true, true, true, true, true),
+    API(true, true, true, true, true, true, true, true),
     /**
      * Part of the CrossMobile API. Is not used for native elements and do not
      * create plugins.
      */
-    APIJAVA(true, true, true, true, false, true, false),
+    APIJAVA(true, true, true, true, true, false, true, false),
     /**
      * Elements appear in all runtime environments, but not part of the API.
      */
-    RUNTIME(false, true, true, true, false, true, false),
+    RUNTIME(false, true, true, true, true, false, true, false),
     /**
      * Unknown target, default target for elements. Will launch a warning if an
      * element with this target is found.
      */
-    UNKNOWN(false, false, false, false, false, false, false);
+    UNKNOWN(false, false, false, false, false, false, false, false);
 
-    public final boolean compile, desktop, android, iosjava, iosnative, uwpjava, uwpnative;
+    public final boolean compile, swing, android, iosjava, iosnative, uwpjava, uwpnative, avian;
 
-    CMLibTarget(boolean compile, boolean desktop, boolean android, boolean iosjava, boolean iosnative, boolean uwpjava, boolean uwpnative) {
+    CMLibTarget(boolean compile, boolean swing, boolean avian, boolean android, boolean iosjava, boolean iosnative, boolean uwpjava, boolean uwpnative) {
         this.compile = compile;
-        this.desktop = desktop;
+        this.swing = swing;
+        this.avian = avian;
         this.android = android;
         this.iosjava = iosjava;
         this.iosnative = iosnative;
@@ -78,8 +87,10 @@ public enum CMLibTarget {
         switch (filter) {
             case ALL:
                 return true;
-            case DESKTOP:
-                return desktop;
+            case SWING:
+                return swing;
+            case AVIAN:
+                return avian;
             case ANDROID:
                 return android;
             case IOS:
@@ -93,15 +104,17 @@ public enum CMLibTarget {
     }
 
     public enum BaseTarget {
-        DESKTOP, ANDROID, IOS, UWP, COMPILE, ALL
+        SWING, AVIAN, ANDROID, IOS, UWP, COMPILE, ALL
     }
 
     public String listTargets() {
         StringBuilder targets = new StringBuilder();
         if (compile)
             targets.append(",compile");
-        if (desktop)
-            targets.append(",desktop");
+        if (swing)
+            targets.append(",swing");
+        if (avian)
+            targets.append(",avian");
         if (android)
             targets.append(",android");
         if (iosjava)

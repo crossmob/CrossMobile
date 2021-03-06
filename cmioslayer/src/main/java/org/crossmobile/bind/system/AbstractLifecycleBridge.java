@@ -36,18 +36,20 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
 
     private NSRunLoop mainRunLoop;
 
+    @SuppressWarnings("unchecked")
     @Override
     public void init(String[] args) {
-        if (applicationIsInitialized)
+        if (applicationIsInitialized)   // needed since Android is initialized twice, once through main and once through onCreate
             return;
         applicationIsInitialized = true;    // Enter only once
+
+        Native.lifecycle().loadSystemProperties(); // Might have been loaded already by through inherited children
         systemHandler = Thread.getDefaultUncaughtExceptionHandler();
         Thread.setDefaultUncaughtExceptionHandler(this);
 
         cleanTemporaryLocation();
         parseArguments(args);
         Native.graphics().metrics().initIdiom();
-        //noinspection unchecked
         UIGraphics.pushContext(convertBaseContextToCGContext(Native.graphics().newGraphicsContext(null, true)));
 
         String cache = Native.file().getSystemCacheLocation();

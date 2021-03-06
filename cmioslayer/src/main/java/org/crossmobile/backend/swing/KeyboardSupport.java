@@ -4,8 +4,9 @@
  * SPDX-License-Identifier: LGPL-3.0-only
  */
 
-package org.crossmobile.backend.desktop;
+package org.crossmobile.backend.swing;
 
+import org.crossmobile.backend.desktop.DesktopLifecycleBridge;
 import org.crossmobile.backend.desktop.cgeo.CEventCallback;
 import org.crossmobile.bridge.Native;
 
@@ -13,7 +14,7 @@ import java.awt.event.KeyEvent;
 import java.util.StringTokenizer;
 
 import static java.awt.event.KeyEvent.VK_CONTROL;
-import static org.crossmobile.backend.desktop.KeyboardSupport.Action.*;
+import static org.crossmobile.backend.swing.KeyboardSupport.Action.*;
 import static org.crossmobile.bind.system.AbstractLifecycleBridge.memoryWarning;
 
 public class KeyboardSupport {

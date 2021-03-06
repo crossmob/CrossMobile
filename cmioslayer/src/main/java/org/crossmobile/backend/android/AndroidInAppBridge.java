@@ -15,7 +15,6 @@ import crossmobile.ios.storekit.SKPayment;
 import crossmobile.ios.storekit.SKPaymentTransaction;
 import crossmobile.ios.storekit.SKPaymentTransactionState;
 import crossmobile.ios.storekit.SKProduct;
-import crossmobile.ios.uikit.UIAlertView;
 import org.crossmobile.backend.android.billing.*;
 import org.crossmobile.backend.android.billing.IabHelper.OnIabSetupFinishedListener;
 import org.crossmobile.bind.io.InAppBridgeExt.ProductList;
@@ -31,6 +30,7 @@ import static crossmobile.ios.storekit.StoreDrill.newSKProduct;
 import static org.crossmobile.bind.system.i18n.I18NSelf.ℑ;
 import static org.crossmobile.bridge.ann.CMLibTarget.ANDROID;
 
+@SuppressWarnings("deprecation")
 @CMLib(target = ANDROID, name = "cmpayment")
 public class AndroidInAppBridge implements InAppBridge, OnIabSetupFinishedListener, ActivityResultListener {
 
@@ -72,7 +72,7 @@ public class AndroidInAppBridge implements InAppBridge, OnIabSetupFinishedListen
     @Override
     public void requestValidProducts(final Set<String> requestedProducts, final NSSelector<ProductList> resultCallback) {
         if (!initialized) {
-            new UIAlertView(ℑ("In App"), ℑ("In App for Android not initialized yet") + "\n" + ℑ("Please try later"), (UIAlertView alertView, int buttonIndex) -> {
+            new crossmobile.ios.uikit.UIAlertView(ℑ("In App"), ℑ("In App for Android not initialized yet") + "\n" + ℑ("Please try later"), (crossmobile.ios.uikit.UIAlertView alertView, int buttonIndex) -> {
                 resultCallback.exec(new ProductList(null, null, ℑ("In App for Android not initialized yet")));
             }, ℑ("Acknowledge")).show();
             return;
@@ -102,7 +102,7 @@ public class AndroidInAppBridge implements InAppBridge, OnIabSetupFinishedListen
     @Override
     public void requestPayment(final SKPayment payment, final NSSelector<SKPaymentTransaction> resultCallback) {
         if (!initialized) {
-            new UIAlertView(ℑ("In App"), ℑ("In App for Android not initialized yet") + "\n" + ℑ("Please try later"), (UIAlertView alertView, int buttonIndex) -> {
+            new crossmobile.ios.uikit.UIAlertView(ℑ("In App"), ℑ("In App for Android not initialized yet") + "\n" + ℑ("Please try later"), (crossmobile.ios.uikit.UIAlertView alertView, int buttonIndex) -> {
                 result(resultCallback, null, payment, SKPaymentTransactionState.Failed, "In App for Android not initialized yet");
             }, ℑ("Acknowledge")).show();
             return;
@@ -136,7 +136,7 @@ public class AndroidInAppBridge implements InAppBridge, OnIabSetupFinishedListen
     @Override
     public void restoreTransactions(final NSSelector<SKPaymentTransaction> singleTransaction, final Runnable successCallback, final NSSelector<String> errorCallback) {
         if (!initialized) {
-            new UIAlertView(ℑ("In App"), ℑ("In App for Android not initialized yet") + "\n" + ℑ("Please try later"), (UIAlertView alertView, int buttonIndex) -> {
+            new crossmobile.ios.uikit.UIAlertView(ℑ("In App"), ℑ("In App for Android not initialized yet") + "\n" + ℑ("Please try later"), (crossmobile.ios.uikit.UIAlertView alertView, int buttonIndex) -> {
                 errorCallback.exec(ℑ("In App for Android not initialized yet"));
             }, ℑ("Acknowledge")).show();
             return;

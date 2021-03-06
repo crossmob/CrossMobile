@@ -6,7 +6,6 @@
 
 package org.crossmobile.backend.swing;
 
-import com.panayotis.appenh.Enhancer;
 import com.panayotis.appenh.EnhancerManager;
 import crossmobile.ios.foundation.NSDate;
 import crossmobile.ios.foundation.NSRunLoop;
@@ -33,30 +32,7 @@ public class SwingLifecycleBridge extends DesktopLifecycleBridge {
 
     @Override
     public void init(String[] args) {
-        Native.lifecycle().loadSystemProperties(); // Load system properties before any actual initialization
-
-        // This should be called before ANY visuals are being initialized.
-        Enhancer enhancer = EnhancerManager.getDefault();
-        enhancer.setApplicationName(System.getProperty("cm.display.name", "CrossMobileApp"));
-        enhancer.setSafeLookAndFeel();
-
-        /*
-         * Initialization of JFrame is required early by CGContext.
-         * Decoration though is set later on, after JFrame initialization.
-         * As a result,  we perform a bogus JFrame initialization to make
-         * CGContext happy, and initialize the actual JFrame later on.
-         *
-         * In the preArgInit() method, might destroy frame (i.e. when images native
-         * items are grabbed). Thus it is important to re-create the frame
-         * in the postInit() method.
-         */
-        if (SwingGraphicsBridge.frame == null) {
-            SwingGraphicsBridge.frame = new JEmulatorFrame();
-            SwingGraphicsBridge.frame.add(SwingGraphicsBridge.component = new JEmulatorPanel());
-        }
-
-        super.init(args, enhancer);
-
+        super.init(args);
         DesktopDrawableMetrics metrics = (DesktopDrawableMetrics) Native.graphics().metrics();
         SwingGraphicsBridge.frame = new JEmulatorFrame(metrics.isFullScreen());
         SwingGraphicsBridge.frame.add(SwingGraphicsBridge.component = new JEmulatorPanel(metrics.isSimulator()), BorderLayout.CENTER);

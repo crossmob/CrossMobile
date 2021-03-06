@@ -25,6 +25,7 @@ public interface GKDataReceiveHandler {
      * @param session The current session.
      * @param context The session context.
      */
+    @SuppressWarnings("deprecation")
     @CMSelector("- (void) receiveData:(NSData *) data fromPeer:(NSString *) peer inSession: (GKSession *) session context:(void *) context ;")
-    public abstract void receiveData(NSData data, String peer, GKSession session, Object context);
+    void receiveData(NSData data, String peer, GKSession session, Object context);
 }

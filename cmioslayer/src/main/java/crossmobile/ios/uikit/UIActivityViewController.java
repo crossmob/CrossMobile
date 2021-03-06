@@ -18,10 +18,13 @@ import java.util.List;
 public class UIActivityViewController extends UIViewController {
 
     private UIActivityViewControllerCompletionWithItemsHandler completionWithItemsHandler;
+    @SuppressWarnings({"FieldCanBeLocal", "deprecation"})
     private UIActivityViewControllerCompletionHandler completionHandler;
     private List<String> excludedActivityTypes;
+    @SuppressWarnings("rawtypes")
     List activityItems;
 
+    @SuppressWarnings("rawtypes")
     @CMConstructor("- (instancetype)initWithActivityItems:(NSArray *)activityItems\n"
             + "    applicationActivities:(NSArray<__kindof UIActivity *> *)applicationActivities;")
     public UIActivityViewController(List activityItems, List<UIActivity> applicationActivities) {
@@ -55,6 +58,7 @@ public class UIActivityViewController extends UIViewController {
 //        return completionHandler;
 //    }
 //
+    @SuppressWarnings("deprecation")
     @CMSetter("@property(nonatomic, copy) UIActivityViewControllerCompletionHandler completionHandler;")
     public void setCompletionHandler(UIActivityViewControllerCompletionHandler completionHandler) {
         this.completionHandler = completionHandler;

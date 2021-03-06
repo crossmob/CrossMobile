@@ -32,6 +32,7 @@ import java.util.Map;
  * other controllers since it is the base class of the view controller
  * hierarchy.
  */
+@SuppressWarnings({"unused", "DeprecatedIsStillUsed"})
 @CMClass
 public class UIViewController extends UIResponder implements UIAppearanceContainer {
 
@@ -57,12 +58,13 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
     private UIViewController modalViewController;
     private boolean scrollWasAlreadySearched = false;
     private UIScrollView firstScroll = null;
-    private UIEdgeInsets additionalSafeAreaInsets = UIEdgeInsets.zero();
+    private final UIEdgeInsets additionalSafeAreaInsets = UIEdgeInsets.zero();
     private UILayoutSupport bottomLayoutGuide;
     private UILayoutSupport topLayoutGuide;
     private List<NSLayoutConstraint> layoutSupportConstraints;
     private boolean definesPresentationContext;
     private boolean providesPresentationContextTransitionStyle = false;
+    @SuppressWarnings({"FieldCanBeLocal", "FieldMayBeFinal"})
     private boolean disablesAutomaticKeyboardDismissal = true;
     private Map<String, UIStoryboardSegue> segueMap;
     private UIStoryboard storyboard;
@@ -291,6 +293,7 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
     /**
      * Loads the controller's view, if it is not loaded yet
      */
+    @SuppressWarnings("deprecation")
     @CMSelector("- (void)loadViewIfNeeded;")
     public void loadViewIfNeeded() {
         if (view == null) {
@@ -1000,9 +1003,10 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
     }
 
     boolean isView(UIView parent) {
-        return (view != null && parent != null && view.equals(parent));
+        return (view != null && view.equals(parent));
     }
 
+    @SuppressWarnings("ConstantConditions")
     @CMGetter("@property(nonatomic, readonly, strong) NSExtensionContext *extensionContext;")
     public NSExtensionContext extensionContext() {
         return extensionContext;
@@ -1110,6 +1114,7 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
         pcontroller.childViewControllers.remove(this);
     }
 
+    @SuppressWarnings("ConstantConditions")
     @CMSelector("- (void)transitionFromViewController:(UIViewController *)fromViewController \n" +
             "                    toViewController:(UIViewController *)toViewController \n" +
             "                            duration:(NSTimeInterval)duration \n" +
@@ -1127,7 +1132,7 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
             fromViewController.view.removeFromSuperview();
             completion.invoke(true);
         } else
-            UIView.animateWithDuration(duration, 0, options, animations::run, input -> {
+            UIView.animateWithDuration(duration, 0, options, animations, input -> {
                 if (input) {
                     fromViewController.view.removeFromSuperview();
                     completion.invoke(input);
@@ -1177,7 +1182,7 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
 
     void setParentController(UIViewController parentController) {
         pcontroller = parentController;
-        if (parentController != null && parentController instanceof UINavigationController)
+        if (parentController instanceof UINavigationController)
             navigationItem(); // Initialize navigation item
     }
 
@@ -1282,11 +1287,11 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
         }
     }
 
+    @SuppressWarnings("unchecked")
     private <T extends UIViewController> T getAncestorOf(Class<T> clazz) {
         UIViewController p = pcontroller;
         while (p != null) {
             if (clazz.isInstance(p))
-                //noinspection unchecked
                 return (T) p;
             p = p.pcontroller;
         }
@@ -1317,7 +1322,7 @@ public class UIViewController extends UIResponder implements UIAppearanceContain
         private final boolean top;
 
         Map<Integer, ClVariable> variableMap = new HashMap<>();
-        private CGRect layoutFrame = CGRect.zero();
+        private final CGRect layoutFrame = CGRect.zero();
 
         LayoutSupport(UIView owningView, boolean top) {
             this.top = top;

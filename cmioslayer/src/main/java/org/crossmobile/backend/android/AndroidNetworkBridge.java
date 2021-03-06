@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
 import org.crossmobile.bind.io.AbstractNetworkBridge;
 import org.crossmobile.bind.io.NativeCookieManager;
 
@@ -24,10 +23,11 @@ public class AndroidNetworkBridge extends AbstractNetworkBridge {
         return MainActivity.current.getStateListener().launch(null, new Intent("android.intent.action.VIEW", Uri.parse(url)));
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public NativeCookieManager initNativeManager() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
-            CookieSyncManager.createInstance(MainActivity.current).sync();
+            android.webkit.CookieSyncManager.createInstance(MainActivity.current).sync();
         final CookieManager manager = CookieManager.getInstance();
         manager.setAcceptCookie(true);
         return new NativeCookieManager() {

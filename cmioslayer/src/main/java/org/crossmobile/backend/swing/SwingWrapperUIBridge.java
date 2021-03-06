@@ -33,6 +33,7 @@ public class SwingWrapperUIBridge implements WrapperUIBridge<JComponent> {
     }
 
 
+    @SuppressWarnings({"rawtypes", "unchecked"})
     @Override
     public NativeDispatcher newNativeDispatcher(WidgetWrapper nw) {
         return new SwingNativeDispatcher(nw);

@@ -8,6 +8,7 @@ package org.crossmobile.backend.android;
 
 import android.Manifest;
 
+@SuppressWarnings({"deprecated", "deprecation"})
 public class AndroidPermission {
     //CALENDAR
     public final static String READ_CALENDAR = Manifest.permission.READ_CALENDAR;

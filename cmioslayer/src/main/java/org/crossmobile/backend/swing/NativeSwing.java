@@ -45,4 +45,9 @@ public class NativeSwing extends NativeDesktop {
     protected WebViewBridge initWebView() {
         return new SwingWebViewBridge();
     }
+
+    @Override
+    protected NetworkBridge initNetwork() {
+        return new SwingNetworkBridge();
+    }
 }

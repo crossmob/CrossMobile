@@ -37,10 +37,9 @@ public interface LifecycleBridge extends Thread.UncaughtExceptionHandler {
     /**
      * Initialize bridge. This method should guarantee to call the parseArguments method.
      *
-     * @param args user provided arguments which sould be passed to parseArguments
+     * @param args user provided arguments which should be passed to parseArguments
      */
     void init(String[] args);
-
 
     /**
      * Parse command line arguments. This method is called from inside init method

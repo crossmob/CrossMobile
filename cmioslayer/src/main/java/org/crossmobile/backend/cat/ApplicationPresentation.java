@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: LGPL-3.0-only
  */
 
-package org.crossmobile.backend.desktop.cat;
+package org.crossmobile.backend.cat;
 
 import com.panayotis.appenh.Enhancer;
 import com.panayotis.appenh.EnhancerManager;

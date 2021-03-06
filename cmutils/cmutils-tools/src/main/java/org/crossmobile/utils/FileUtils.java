@@ -664,10 +664,21 @@ public final class FileUtils {
     }
 
     public static boolean unzip(File zipFilePath, File destDir) {
-        if (zipFilePath == null || destDir == null)
+        if (zipFilePath == null)
             return false;
-        destDir.mkdir();
-        try (ZipInputStream zipIn = new ZipInputStream(new FileInputStream(zipFilePath))) {
+        try {
+            return unzip(new FileInputStream(zipFilePath), destDir);
+        } catch (FileNotFoundException e) {
+            Log.error(e);
+            return false;
+        }
+    }
+
+    public static boolean unzip(InputStream inputStream, File destDir) {
+        if (inputStream == null || destDir == null)
+            return false;
+        destDir.mkdirs();
+        try (ZipInputStream zipIn = new ZipInputStream(inputStream)) {
             ZipEntry entry = zipIn.getNextEntry();
             // iterates over entries in the zip file
             while (entry != null) {

@@ -25,7 +25,7 @@ public abstract class WidgetWrapper<IOSWIDG extends UIView, NWIDG extends Native
      */
     private NativeDispatcher<UIView, ? extends NWIDG, Object, CXT> dispatcher;
 
-    @SuppressWarnings({"LeakingThisInConstructor", "OverridableMethodCallInConstructor"})
+    @SuppressWarnings({"LeakingThisInConstructor", "OverridableMethodCallInConstructor", "unchecked"})
     public WidgetWrapper(IOSWIDG widg) {
         this.ioswidget = new WeakReference<>(widg);
         Native.lifecycle().runAndWaitOnEventThread(() -> {

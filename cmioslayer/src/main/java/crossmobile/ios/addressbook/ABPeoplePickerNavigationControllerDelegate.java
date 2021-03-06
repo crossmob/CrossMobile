@@ -14,6 +14,7 @@ import org.crossmobile.bridge.ann.CMSelector;
  * cooperates with the ABPeoplePickerNavigationController and handles
  * people-picker user events.
  */
+@SuppressWarnings("deprecation")
 @CMClass
 public interface ABPeoplePickerNavigationControllerDelegate {
 

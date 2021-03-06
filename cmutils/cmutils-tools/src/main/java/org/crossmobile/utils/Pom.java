@@ -265,6 +265,15 @@ public final class Pom {
         Predicate<XMLWalker> deletePredicate = w -> w.node("artifactId").text().startsWith("cmplugin-");
         Predicate<Dependency> insertPredicate = dependency -> dependency.cmplugin && !dependency.theme;
 
+        /* Remove obsolete desktop profile, if (obsolete) uwp profile exists */
+        AtomicBoolean foundUWP = new AtomicBoolean(false);
+        pomWalker.path("/project/profiles").nodes("profile", prof -> foundUWP.set(foundUWP.get() || prof.nodeWithTextExists("id", "uwp")));
+        if (foundUWP.get())
+            pomWalker.path("/project/profiles").nodes("profile", prof -> {
+                if (prof.nodeWithTextExists("id", "uwp") || prof.nodeWithTextExists("id", "desktop"))
+                    prof.remove();
+            });
+
         updateDependencies(pomWalker.path("/project/dependencies"), dependencies.stream().filter(insertPredicate),
                 null, false, deletePredicate);
         for (Flavour flavour : Flavour.values())

@@ -21,9 +21,9 @@ import java.awt.*;
 import java.util.List;
 import java.util.Set;
 
-import static org.crossmobile.bridge.ann.CMLibTarget.DESKTOP;
+import static org.crossmobile.bridge.ann.CMLibTarget.*;
 
-@CMLib(target = DESKTOP, name = "cmlocation")
+@CMLib(target = SWING, name = "cmlocation")
 public class SwingMapViewWrapper extends MapViewWrapper<SwingMapViewWrapper.NativeW, SwingGraphicsContext> {
 
     public SwingMapViewWrapper(MKMapView widg) {

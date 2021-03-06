@@ -84,6 +84,7 @@ public interface UIActionSheetDelegate {
      *
      * @param actionSheet The action sheet that corresponds to this delegate.
      */
+    @SuppressWarnings("deprecation")
     @CMSelector("- (void)actionSheetCancel:(UIActionSheet *)actionSheet;")
     default void cancel(UIActionSheet actionSheet) {
     }

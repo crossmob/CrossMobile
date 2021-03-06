@@ -27,9 +27,7 @@ import java.io.FileOutputStream;
 
 public class AndroidWrapperUIBridge implements WrapperUIBridge<View> {
 
-    private final Runnable resignFocus = () -> {
-        MainView.current.requestFocus();
-    };
+    private final Runnable resignFocus = () -> MainView.current.requestFocus();
 
     @Override
     public AndroidTextWrapper textField(UITextField parent) {
@@ -41,6 +39,7 @@ public class AndroidWrapperUIBridge implements WrapperUIBridge<View> {
         return new AndroidTextWrapper(parent);
     }
 
+    @SuppressWarnings({"rawtypes", "unchecked"})
     @Override
     public NativeDispatcher newNativeDispatcher(WidgetWrapper nw) {
         return new AndroidNativeDispatcher(nw);

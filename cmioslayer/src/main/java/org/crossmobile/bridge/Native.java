@@ -7,6 +7,7 @@
 package org.crossmobile.bridge;
 
 import org.crossmobile.bridge.resolver.AndroidBridgeResolver;
+import org.crossmobile.bridge.resolver.AvianBridgeResolver;
 import org.crossmobile.bridge.resolver.SwingBridgeResolver;
 
 /**
@@ -15,7 +16,8 @@ import org.crossmobile.bridge.resolver.SwingBridgeResolver;
 @SuppressWarnings({"UseSpecificCatch"})
 public abstract class Native {
 
-    private static final boolean runsUnderAndroid;
+    private static boolean runsUnderAndroid = false;
+    private static boolean runsUnderAvian = false;
     private static boolean alreadyEarlyInitialized = false;
     private static Native bridge;
 
@@ -38,22 +40,27 @@ public abstract class Native {
     private SecurityBridge security;
     private MessageBridge message;
 
-
     static {
-        runsUnderAndroid = System.getProperty("java.vm.specification.vendor", "").toLowerCase().contains("android")
-                || System.getProperty("java.vm.vendor.url", "").toLowerCase().contains("android")
-                || System.getProperty("java.vendor.url", "").toLowerCase().contains("android")
-                || System.getProperty("java.vm.name", "").toLowerCase().contains("dalvik")
-                || System.getProperty("java.specification.name", "").toLowerCase().contains("dalvik")
-                || System.getProperty("java.vm.specification.name", "").toLowerCase().contains("dalvik");
+        try {
+            runsUnderAndroid = AndroidBridgeResolver.isActive();
+        } catch (Throwable e) {
+            try {
+                runsUnderAvian = AvianBridgeResolver.isActive();
+            } catch (Throwable ignored) {
+            }
+        }
     }
 
     public static boolean isAndroid() {
         return runsUnderAndroid;
     }
 
-    public static boolean isDesktop() {
-        return !runsUnderAndroid;
+    public static boolean isSwing() {
+        return !runsUnderAndroid && !runsUnderAvian;
+    }
+
+    public static boolean isAvian() {
+        return runsUnderAvian;
     }
 
     public static void prepare(Object context) {
@@ -74,7 +81,7 @@ public abstract class Native {
         if (bridge == null)
             bridge = runsUnderAndroid
                     ? AndroidBridgeResolver.resolve()
-                    : SwingBridgeResolver.resolve();
+                    : (runsUnderAvian ? AvianBridgeResolver.resolve() : SwingBridgeResolver.resolve());
         return bridge;
     }
 

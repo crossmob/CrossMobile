@@ -403,12 +403,14 @@ public class AndroidMapViewWrapper extends MapViewWrapper<AndroidMapViewWrapper.
             getIOSWidget().setNeedsDisplay();
         }
 
+        @SuppressWarnings("deprecation")
         @Override
         public void invalidate(Rect dirty) {
             super.invalidate(dirty);
             getIOSWidget().setNeedsDisplay();
         }
 
+        @SuppressWarnings("deprecation")
         @Override
         public void invalidate(final int l, final int t, final int r, final int b) {
             super.invalidate(l, t, r, b);
