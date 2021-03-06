@@ -12,9 +12,6 @@ import org.crossmobile.bridge.ann.CMClass;
 import org.crossmobile.bridge.ann.CMGetter;
 import org.crossmobile.bridge.ann.CMSelector;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-
 import static org.crossmobile.bind.system.i18n.I18NTest.I18N_SUPPORT;
 
 /**
@@ -27,18 +24,18 @@ public class NSBundle extends NSObject {
     private final String path;
 
     private NSBundle(String path) {
-        this.path = path;
+        this.path = path.length() > 1 && path.endsWith("/") ? path.substring(0, path.length() - 1) : path;
     }
 
     /**
      * Returns the bundle that corresponds to the specified path.
      *
-     * @param fullpath The path for which the bundle is requested.
-     * @return The bundle that corresponds to the specified path.
+     * @param fullPath The path for which the bundle is requested.
+     * @return The bundle that corresponds to the specified path or null if the path is invalid
      */
     @CMSelector("+ (instancetype)bundleWithPath:(NSString *)path;")
-    public static NSBundle bundleWithPath(String fullpath) {
-        return new NSBundle(fullpath);
+    public static NSBundle bundleWithPath(String fullPath) {
+        return NSFileManager.defaultManager().fileExistsAtPath(fullPath) ? new NSBundle(fullPath) : null;
     }
 
     /**
@@ -65,25 +62,21 @@ public class NSBundle extends NSObject {
             + "                       ofType:(NSString *)ext \n"
             + "                  inDirectory:(NSString *)subpath;")
     public String pathForResource(String resource, String type, String directory) {
-        if (directory == null || directory.length() == 0)
-            directory = "";
-        else if (!directory.endsWith("/"))
-            directory += "/";
-        if (type != null)
-            resource += "." + type;
-        String currentpath = directory.startsWith("/")
-                ? directory + resource
-                : Native.file().getApplicationPrefix() + "/" + directory + resource;
-        if (currentpath.startsWith("file:///android_asset")) {
-        } else if (currentpath.startsWith("file:/"))
-            try {
-                currentpath = new URI(currentpath).getPath();
-            } catch (URISyntaxException ex) {
-                currentpath = currentpath.substring(6);
-            }
-        else if (currentpath.startsWith("file:"))
-            currentpath = currentpath.substring(5);
-        return NSFileManager.defaultManager().fileExistsAtPath(currentpath) ? currentpath : null;
+        if (resource == null || resource.isEmpty())
+            return null;
+        resource = type == null ? resource : resource + "." + type;
+        resource = directory == null ? resource : directory + "/" + resource;
+
+        String resourcePath = path + "/" + resource;
+        if (NSFileManager.defaultManager().fileExistsAtPath(resourcePath))
+            return resourcePath;
+        resourcePath = path + "/" + NSLocale.currentLocale().languageCode() + ".lproj/" + resource;
+        if (NSFileManager.defaultManager().fileExistsAtPath(resourcePath))
+            return resourcePath;
+        resourcePath = path + "/Base.lproj/" + resource;
+        if (NSFileManager.defaultManager().fileExistsAtPath(resourcePath))
+            return resourcePath;
+        return null;
     }
 
     /**
@@ -130,7 +123,7 @@ public class NSBundle extends NSObject {
     /**
      * The full path of this bundle.
      *
-     * @return he full path of this bundle.
+     * @return the full path of this bundle.
      */
     @CMGetter("@property(readonly, copy) NSString *bundlePath;")
     public String bundlePath() {

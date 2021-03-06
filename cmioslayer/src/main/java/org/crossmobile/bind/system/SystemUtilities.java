@@ -7,8 +7,6 @@
 package org.crossmobile.bind.system;
 
 import crossmobile.ios.coregraphics.CGSize;
-import crossmobile.ios.foundation.NSBundle;
-import crossmobile.ios.foundation.NSLocale;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.CMPure;
 import org.crossmobile.bridge.system.BaseUtils;
@@ -113,26 +111,6 @@ public class SystemUtilities {
         input = ESC_R.matcher(input).replaceAll("\r");
         input = ESC_T.matcher(input).replaceAll("\t");
         return input;
-    }
-
-    /**
-     * Find a localized resource
-     *
-     * @param resource The resource name
-     * @param type     The resource type
-     * @param locale   The selected locale, could be null for default locale
-     * @return The path of the localized resource, if it exists, or null if it doesn't
-     */
-    public static String findLocalizedPath(NSBundle bundle, String resource, String type, NSLocale locale) {
-        if (locale == null)
-            locale = NSLocale.currentLocale();
-        String path = bundle.pathForResource(resource, type, locale.languageCode() + ".lproj");
-        if (path != null)
-            return path;
-        path = bundle.pathForResource(resource, type, "Base.lproj");
-        if (path != null)
-            return path;
-        return bundle.pathForResource(resource, type);
     }
 
     /*

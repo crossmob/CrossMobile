@@ -20,7 +20,6 @@ import java.io.InputStream;
 import java.net.URI;
 
 import static org.crossmobile.bind.system.SystemUtilities.URIEncode;
-import static org.crossmobile.bind.system.SystemUtilities.closeR;
 
 @CMLib(depends = @CMLibDepends(groupId = "androidx.core", pluginName = "core", version = "1.3.0"))
 public class AndroidFileBridge extends AbstractFileBridge {
@@ -88,28 +87,29 @@ public class AndroidFileBridge extends AbstractFileBridge {
     public boolean fileExists(String path) {
         if (path == null)
             return false;
-
+        // Full file path
         if (new File(path).exists())
             return true;
-
-        if (path.startsWith(getApplicationPrefix())) {
-            InputStream is = null;
-            try {
-                is = getApplicationFileStream(path.substring(getApplicationPrefix().length() + 1)); // remove '/' character
-                return true;
-            } catch (IOException ignore) {
-            } finally {
-                closeR(is);
-            }
-        }
-
+        // Not under assets folder -- we don't support this
+        if (!path.startsWith(APPLICATION_PREFIX))
+            return false;
+        // File is the root of the assets folder
+        if (path.equals(APPLICATION_PREFIX))
+            return true;
+        // Clean path from assets folder
+        path = path.substring(APPLICATION_PREFIX.length() + 1);
+        // File is still the root of the assets folder
+        if (path.isEmpty())
+            return true;
+        // File is a folder with content
         try {
-            // URIEncode is needed here not before
-            if (path.startsWith(getApplicationPrefix()))
-                path = Native.file().getApplicationPrefix() + "/" + URIEncode(path.substring(getApplicationPrefix().length() + 1));
-            else
-                path = URIEncode(path);
-            return new File(new URI(path)).exists();
+            if (MainActivity.current.getAssets().list(path).length > 0)
+                return true;
+        } catch (Exception ignored) {
+        }
+        // Last resort: try the URIEncode method
+        try {
+            return new File(new URI(APPLICATION_PREFIX + "/" + URIEncode(path))).exists();
         } catch (Exception ex) {
         }
         return false;

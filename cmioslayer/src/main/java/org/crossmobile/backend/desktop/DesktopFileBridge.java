@@ -91,10 +91,13 @@ public class DesktopFileBridge extends AbstractFileBridge {
 
     @Override
     public boolean fileExists(String path) {
-        if (path.startsWith(File.separator))
+        if (path == null)
+            return false;
+        else if (path.startsWith(File.separator))
             return new File(path).exists();
         else if (path.startsWith(getApplicationPrefix()))
-            return getClass().getResource(APPRESOURCE + path.substring(apref.length() + 1)) != null;
+            return path.equals(getApplicationPrefix()) ||
+                    getClass().getResource(APPRESOURCE + path.substring(apref.length() + 1)) != null;
         else if (path.startsWith(getSystemPrefix()))
             return getClass().getResource(SYSRESOURCE + path.substring(spref.length() + 1)) != null;
         return new File(path).exists();
