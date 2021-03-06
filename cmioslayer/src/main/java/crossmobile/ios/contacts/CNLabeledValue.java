@@ -12,6 +12,7 @@ import org.crossmobile.bridge.ann.CMConstructor;
 import org.crossmobile.bridge.ann.CMGetter;
 import org.crossmobile.bridge.ann.CMSelector;
 
+@SuppressWarnings("rawtypes")
 @CMClass
 public class CNLabeledValue<ValueType> extends NSObject implements Cloneable {
 
@@ -48,6 +49,7 @@ public class CNLabeledValue<ValueType> extends NSObject implements Cloneable {
         return label;
     }
 
+    @SuppressWarnings("unchecked")
     @CMSelector("- (instancetype)labeledValueBySettingLabel:(NSString *)label;")
     public CNLabeledValue labeledValueBySettingLabel(String label) {
         CNLabeledValue xs = new CNLabeledValue(this.label, value);

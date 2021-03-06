@@ -21,6 +21,7 @@ public class AndroidTextWidget extends EditText implements AndroidNativeWidget {
 
     private AndroidTextWrapper textWrapper;
 
+    @SuppressWarnings("deprecation")
     public AndroidTextWidget(AndroidTextWrapper textWrapper, boolean asTextField) {
         super(MainActivity.current);
         this.textWrapper = textWrapper;
@@ -59,6 +60,7 @@ public class AndroidTextWidget extends EditText implements AndroidNativeWidget {
             textWrapper.getIOSWidget().setNeedsDisplay();
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void invalidate(Rect dirty) {
         super.invalidate(dirty);
@@ -67,6 +69,7 @@ public class AndroidTextWidget extends EditText implements AndroidNativeWidget {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void invalidate(int l, int t, int r, int b) {
         super.invalidate(l, t, r, b);
         if (textWrapper != null)    // Due to early initialization

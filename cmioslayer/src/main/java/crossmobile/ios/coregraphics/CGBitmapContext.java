@@ -42,6 +42,7 @@ public class CGBitmapContext extends CGContext {
         return new CGBitmapContext(bitmap, canvas);
     }
 
+    @SuppressWarnings("unchecked")
     private CGBitmapContext(NativeBitmap bitmap, Object canvas) {
         super(Native.graphics().newGraphicsContext(canvas, false));
         setShouldAntialias(true);
@@ -64,6 +65,7 @@ public class CGBitmapContext extends CGContext {
         return bitmap == null ? null : UIImage.imageWithCGImage(new CGImage(null, bitmap));
     }
 
+    @SuppressWarnings("unchecked")
     void destroy() {
         Native.graphics().destroyCanvas(canvas);
         canvas = null;

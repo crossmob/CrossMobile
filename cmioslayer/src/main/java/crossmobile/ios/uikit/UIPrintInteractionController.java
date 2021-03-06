@@ -175,6 +175,7 @@ public class UIPrintInteractionController extends NSObject {
      *
      * @return The list with items ready to print.
      */
+    @SuppressWarnings({"rawtypes", "unchecked"})
     @CMGetter("@property(nonatomic, copy) NSArray *printingItems;")
     public List printingItems() {
         return new ArrayList(printingItems);
@@ -185,6 +186,7 @@ public class UIPrintInteractionController extends NSObject {
      *
      * @param printingItems The list with items ready to print.
      */
+    @SuppressWarnings({"rawtypes", "unchecked"})
     @CMSetter("@property(nonatomic, copy) NSArray *printingItems;")
     public void setPrintingItems(List printingItems) {
         this.printingItem = null;

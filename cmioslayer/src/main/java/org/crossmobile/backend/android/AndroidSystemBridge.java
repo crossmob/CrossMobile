@@ -6,24 +6,19 @@
 
 package org.crossmobile.backend.android;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
-import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import crossmobile.ios.foundation.NSSelector;
-import crossmobile.ios.uikit.UIAlertView;
-import crossmobile.ios.uikit.UIAlertViewDelegate;
 import crossmobile.ios.uikit.UITextField;
 import org.crossmobile.bind.system.AbstractSystemBridge;
 import org.crossmobile.bridge.Native;
-import org.crossmobile.bridge.SystemBridge;
 import org.crossmobile.bridge.ann.CMLib;
 
 import java.io.PrintWriter;
@@ -73,8 +68,9 @@ public class AndroidSystemBridge extends AbstractSystemBridge {
         return Build.MODEL;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
-    public void showAlert(final UIAlertView view, final String title, final String message, final List<String> buttons, final UIAlertViewDelegate delegate) {
+    public void showAlert(final crossmobile.ios.uikit.UIAlertView view, final String title, final String message, final List<String> buttons, final crossmobile.ios.uikit.UIAlertViewDelegate delegate) {
         Native.lifecycle().runAndWaitOnEventThread(new Runnable() {
             final Map<EditText, EditText> joints = new HashMap<>();
 
@@ -83,17 +79,11 @@ public class AndroidSystemBridge extends AbstractSystemBridge {
                 AlertDialog dialog = new AlertDialog.Builder(MainActivity.current).create();
                 dialog.setTitle(title);
                 dialog.setMessage(message);
-                dialog.setButton(AlertDialog.BUTTON_NEGATIVE, buttons.get(0), (DialogInterface di, int i) -> {
-                    actionClick(0);
-                });
+                dialog.setButton(AlertDialog.BUTTON_NEGATIVE, buttons.get(0), (DialogInterface di, int i) -> actionClick(0));
                 if (buttons.size() > 1) {
-                    dialog.setButton(AlertDialog.BUTTON_POSITIVE, buttons.get(1), (DialogInterface di, int i) -> {
-                        actionClick(1);
-                    });
+                    dialog.setButton(AlertDialog.BUTTON_POSITIVE, buttons.get(1), (DialogInterface di, int i) -> actionClick(1));
                     if (buttons.size() > 2)
-                        dialog.setButton(AlertDialog.BUTTON_NEUTRAL, buttons.get(2), (DialogInterface di, int i) -> {
-                            actionClick(2);
-                        });
+                        dialog.setButton(AlertDialog.BUTTON_NEUTRAL, buttons.get(2), (DialogInterface di, int i) -> actionClick(2));
                 }
                 LinearLayout linear = new LinearLayout(MainActivity.current);
                 linear.setOrientation(LinearLayout.VERTICAL);

@@ -7,8 +7,6 @@
 package org.crossmobile.backend.avian;
 
 import crossmobile.ios.foundation.NSSelector;
-import crossmobile.ios.uikit.UIAlertView;
-import crossmobile.ios.uikit.UIAlertViewDelegate;
 import org.crossmobile.backend.desktop.DesktopSystemBridge;
 
 import java.util.List;
@@ -17,7 +15,7 @@ public class AvianSystemBridge extends DesktopSystemBridge {
 
     @SuppressWarnings("deprecation")
     @Override
-    public void showAlert(UIAlertView view, String title, String message, List<String> buttons, UIAlertViewDelegate delegate) {
+    public void showAlert(crossmobile.ios.uikit.UIAlertView view, String title, String message, List<String> buttons, crossmobile.ios.uikit.UIAlertViewDelegate delegate) {
     }
 
     @Override

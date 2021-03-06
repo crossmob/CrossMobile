@@ -15,6 +15,7 @@ import org.crossmobile.bridge.ann.CMSelector;
  * GKSessionDelegate interface is the delegate that cooperates with the
  * GKSession objects.
  */
+@SuppressWarnings("deprecation")
 @CMClass
 public interface GKSessionDelegate {
 

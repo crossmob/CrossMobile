@@ -30,6 +30,7 @@ class MKUserLocationView extends MKAnnotationView {
 
         user_callback = new CLLocationManager();
         user_callback.setDelegate(new CLLocationManagerDelegate() {
+            @SuppressWarnings("deprecation")
             @Override
             public void didUpdateToLocation(CLLocationManager manager, CLLocation newLocation, CLLocation oldLocation) {
                 List<WeakReference<MKMapView>> dead = new ArrayList<>();

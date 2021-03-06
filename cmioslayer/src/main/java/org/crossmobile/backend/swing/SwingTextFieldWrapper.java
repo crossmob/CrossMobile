@@ -46,6 +46,7 @@ public class SwingTextFieldWrapper extends SwingTextWrapper<UITextField, SwingTe
         return new NativeW();
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void setPlaceholder(String placeholder) {
         if (placeholder == null) {
@@ -130,6 +131,7 @@ public class SwingTextFieldWrapper extends SwingTextWrapper<UITextField, SwingTe
         getNativeWidget().setText(text);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public String getText() {
         return getNativeWidget().getText();
@@ -186,6 +188,7 @@ public class SwingTextFieldWrapper extends SwingTextWrapper<UITextField, SwingTe
             setEchoChar('\0');
         }
 
+        @SuppressWarnings("deprecation")
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);

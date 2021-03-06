@@ -9,7 +9,6 @@ package crossmobile.ios.uikit;
 import crossmobile.ios.coregraphics.CGFont;
 import crossmobile.ios.foundation.NSObject;
 import org.crossmobile.bind.graphics.NativeFont;
-import org.crossmobile.bind.graphics.Theme;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.CMClass;
 import org.crossmobile.bridge.ann.CMGetter;
@@ -139,11 +138,13 @@ public class UIFont extends NSObject {
         return new UIFont(cgfont(Native.graphics().getFont(font.getName(), fontSize)));
     }
 
+    @SuppressWarnings("unchecked")
     @CMSelector("+ (NSArray<NSString *>*) familyNames;")
     public static List<String> familyNames() {
         return Native.graphics().listFontFamilies();
     }
 
+    @SuppressWarnings("unchecked")
     @CMSelector("+ (NSArray<NSString *> *)fontNamesForFamilyName:(NSString *)familyName;")
     public static List<String> fontNamesForFamilyName(String familyName) {
         return Native.graphics().listFont(familyName);

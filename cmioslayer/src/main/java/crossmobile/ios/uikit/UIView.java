@@ -40,10 +40,12 @@ import static org.crossmobile.bind.system.Debug.Live_Graphics_Debug;
  * modifications and controls over that area triggered by events such as user
  * interaction with that area.
  */
+@SuppressWarnings({"ConstantConditions", "unchecked"})
 @CMClass
 public class UIView extends UIResponder implements UIAccessibilityIdentification, UIAppearance, UIAppearanceContainer {
 
     /* Constants */
+    @SuppressWarnings("unused")
     public static final double NoIntrinsicMetric = 0;
 
     // Use this universal Runnable whenever we want to refresh display
@@ -348,6 +350,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
      * @param fromCurrentState A Boolean value that defines whether the
      *                         animation should start playing from its current state.
      */
+    @SuppressWarnings("unused")
     @CMSelector("+ (void)setAnimationBeginsFromCurrentState:(BOOL)fromCurrentState;")
     public static void setAnimationBeginsFromCurrentState(boolean fromCurrentState) {
         Native.system().notImplemented();
@@ -1390,6 +1393,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
      * @return A Boolean value that shows whether this point belongs to this
      * view's coordinate system.
      */
+    @SuppressWarnings("unused")
     @CMSelector("- (BOOL)pointInside:(CGPoint)point \n"
             + "          withEvent:(UIEvent *)event;")
     public boolean pointInside(CGPoint point, UIEvent event) {
@@ -1471,6 +1475,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
      *             place.
      * @return The final converted rectangle.
      */
+    @SuppressWarnings("unused")
     @CMSelector("- (CGRect)convertRect:(CGRect)rect \n"
             + "               toView:(UIView *)view;")
     public CGRect convertRectToView(CGRect rect, UIView view) {
@@ -1488,6 +1493,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
      *             expressed. If NULL then window's base coordinates are used.
      * @return The final converted rectangle.
      */
+    @SuppressWarnings("unused")
     @CMSelector("- (CGRect)convertRect:(CGRect)rect \n"
             + "             fromView:(UIView *)view;")
     public CGRect convertRectFromView(CGRect rect, UIView view) {
@@ -1640,6 +1646,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
         }
     }
 
+    @SuppressWarnings("unused") // used by Xray
     private void setDebugSelf(boolean status) {
         this.debugSelf = status;
         NSTimer.scheduledTimerWithTimeInterval(1, timer -> {
@@ -1674,6 +1681,7 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
         }
     }
 
+    @SuppressWarnings("rawtypes")
     final void drawingChild(CGContext cx, UIView child, boolean setAlpha) {
         GraphicsContext gcx = context(cx);
         if (child.shouldBeDrawn()) {    // double check here to save the "save/restore" of context
@@ -2169,14 +2177,12 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
 
     double lookup(int attr, double rwidth, double rheight) {
         switch (attr) {
-            case NSLayoutAttribute.Left:
-                return 0;
-            case NSLayoutAttribute.Top:
-                return 0;
             case NSLayoutAttribute.Width:
                 return rwidth;
             case NSLayoutAttribute.Height:
                 return rheight;
+            case NSLayoutAttribute.Top:
+            case NSLayoutAttribute.Left:
             default:
                 return 0;
         }
@@ -2642,8 +2648,10 @@ public class UIView extends UIResponder implements UIAccessibilityIdentification
         private NSLayoutYAxisAnchor bottomAnchor;
         private NSLayoutXAxisAnchor centerXAnchor;
         private NSLayoutYAxisAnchor centerYAnchor;
+        @SuppressWarnings("unused")
         private NSLayoutYAxisAnchor firstBaselineAnchor;
         private NSLayoutDimension heightAnchor;
+        @SuppressWarnings("unused")
         private NSLayoutYAxisAnchor lastBaselineAnchor;
         private NSLayoutXAxisAnchor leadingAnchor;
         private NSLayoutXAxisAnchor leftAnchor;

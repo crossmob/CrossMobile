@@ -36,6 +36,7 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
 
     private NSRunLoop mainRunLoop;
 
+    @SuppressWarnings("unchecked")
     @Override
     public void init(String[] args) {
         if (applicationIsInitialized)   // needed since Android is initialized twice, once through main and once through onCreate
@@ -49,7 +50,6 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
         cleanTemporaryLocation();
         parseArguments(args);
         Native.graphics().metrics().initIdiom();
-        //noinspection unchecked
         UIGraphics.pushContext(convertBaseContextToCGContext(Native.graphics().newGraphicsContext(null, true)));
 
         String cache = Native.file().getSystemCacheLocation();

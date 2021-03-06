@@ -64,6 +64,7 @@ public class NSURLConnection extends NSObject {
                 isOk.set(Boolean.FALSE);
             }
 
+            @SuppressWarnings("unchecked")
             @Override
             public void didReceiveResponse(NSURLConnection connection, NSURLResponse resp) {
                 if (response != null)

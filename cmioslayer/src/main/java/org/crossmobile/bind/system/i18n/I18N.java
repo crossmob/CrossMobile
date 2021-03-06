@@ -19,7 +19,6 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static org.crossmobile.bind.system.SystemUtilities.findLocalizedPath;
 import static org.crossmobile.bridge.ann.CMLibTarget.JAVA;
 import static org.crossmobile.bridge.system.I18Nparser.*;
 
@@ -59,7 +58,7 @@ public class I18N {
      */
     private static Map<String, StringsDict> populateFromJson(NSBundle bundle, String table) {
         Map<String, StringsDict> dictMap = new HashMap<>();
-        for (String path : new String[]{findLocalizedPath(bundle, table, "strings", null), findLocalizedPath(bundle, table, "stringsdict", null)}) {
+        for (String path : new String[]{bundle.pathForResource(table, "strings"), bundle.pathForResource(table, "stringsdict")}) {
             if (path == null)
                 continue;
             String data = NSString.stringWithContentsOfFile(path, NSStringEncoding.UTF8, null);

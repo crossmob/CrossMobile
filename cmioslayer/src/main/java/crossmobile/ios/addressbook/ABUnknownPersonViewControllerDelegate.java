@@ -14,6 +14,7 @@ import org.crossmobile.bridge.ann.CMSelector;
  * cooperates with the ABUnknownPersonViewController in order to handle unknown
  * person view user events.
  */
+@SuppressWarnings("deprecation")
 @CMClass
 public interface ABUnknownPersonViewControllerDelegate {
 

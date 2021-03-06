@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.media.SoundPool;
 import crossmobile.ios.foundation.NSURL;
 import org.crossmobile.bind.io.SoundPlayer;
 import org.crossmobile.bridge.Native;
@@ -24,13 +23,15 @@ public class AndroidSoundPlayer implements SoundPlayer {
 
     private static final int MAXSTREAMS = 10;
     private static final AudioManager manager = (AudioManager) MainActivity.current.getSystemService(Context.AUDIO_SERVICE);
-    private static final SoundPool soundPool = new SoundPool(MAXSTREAMS, AudioManager.STREAM_MUSIC, 0);
+    @SuppressWarnings("deprecation")
+    private static final android.media.SoundPool soundPool = new android.media.SoundPool(MAXSTREAMS, AudioManager.STREAM_MUSIC, 0);
     private static final HashMap<String, Integer> poolindex = new HashMap<>();
     private static MediaPlayer player;
     private float volume = 1;
     private final SoundPlayer.Delegate delegate;
     private boolean prepared = false;
 
+    @SuppressWarnings({"deprecation", "ConstantConditions"})
     public AndroidSoundPlayer(NSURL url, SoundPlayer.Delegate delegate) {
         player = new MediaPlayer();
         player.setAudioStreamType(AudioManager.STREAM_MUSIC);

@@ -11,7 +11,6 @@ import crossmobile.ios.storekit.SKPayment;
 import crossmobile.ios.storekit.SKPaymentTransaction;
 import crossmobile.ios.storekit.SKPaymentTransactionState;
 import crossmobile.ios.storekit.SKProduct;
-import crossmobile.ios.uikit.UIAlertView;
 import org.crossmobile.bind.io.InAppBridgeExt.ProductList;
 import org.crossmobile.bridge.InAppBridge;
 
@@ -32,21 +31,18 @@ public class DesktopInAppBridge implements InAppBridge {
 
     @Override
     public void requestValidProducts(final Set<String> requestedProducts, final NSSelector<ProductList> resultCallback) {
-        new Thread() {
-            @Override
-            public void run() {
-                List<String> invalid = new ArrayList<>();
-                List<SKProduct> valid = new ArrayList<>();
-                Set<String> consumable = ProductList.getProducts(true);
-                Set<String> nonconsumable = ProductList.getProducts(true);
-                for (String item : requestedProducts)
-                    if (consumable.contains(item) || nonconsumable.contains(item))
-                        valid.add(newSKProduct(ℑ("This is a full description of product") + " " + item, item, 1, null, item));
-                    else
-                        invalid.add(item);
-                resultCallback.exec(new ProductList(invalid, valid, null));
-            }
-        }.start();
+        new Thread(() -> {
+            List<String> invalid = new ArrayList<>();
+            List<SKProduct> valid = new ArrayList<>();
+            Set<String> consumable = ProductList.getProducts(true);
+            Set<String> nonConsumable = ProductList.getProducts(true);
+            for (String item : requestedProducts)
+                if (consumable.contains(item) || nonConsumable.contains(item))
+                    valid.add(newSKProduct(ℑ("This is a full description of product") + " " + item, item, 1, null, item));
+                else
+                    invalid.add(item);
+            resultCallback.exec(new ProductList(invalid, valid, null));
+        }).start();
     }
 
     @Override
@@ -54,9 +50,10 @@ public class DesktopInAppBridge implements InAppBridge {
         errorCallback.exec(ℑ("No history of transactions is monitored in this backend"));
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void requestPayment(final SKPayment payment, final NSSelector<SKPaymentTransaction> resultCallback) {
-        new UIAlertView(ℑ("Payment request"), ℑ("Payment request for product:") + " " + payment.productIdentifier(), (UIAlertView alertView, int buttonIndex) -> {
+        new crossmobile.ios.uikit.UIAlertView(ℑ("Payment request"), ℑ("Payment request for product:") + " " + payment.productIdentifier(), (crossmobile.ios.uikit.UIAlertView alertView, int buttonIndex) -> {
             if (buttonIndex == 1)
                 resultCallback.exec(newSKPaymentTransaction(SKPaymentTransactionState.Purchased, payment.productIdentifier(), null, null, null, null, null));
         }, ℑ("Cancel"), ℑ("Accept")).show();

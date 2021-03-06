@@ -92,6 +92,7 @@ public class NSData extends NSObject implements NSSecureCoding {
      * @param url The URL of the requested data.
      * @return The NSData object of the URL.
      */
+    @SuppressWarnings("deprecation")
     @CMSelector("+ (instancetype)dataWithContentsOfURL:(NSURL *)url;")
     public static NSData dataWithContentsOfURL(NSURL url) {
         return url == null

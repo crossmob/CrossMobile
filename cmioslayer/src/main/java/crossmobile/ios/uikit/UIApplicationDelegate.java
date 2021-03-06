@@ -22,6 +22,7 @@ import java.util.Map;
  * UIApplicationDelegate interface is the delegate responsible for handling
  * events related to UIApplication singleton object of the application.
  */
+@SuppressWarnings("unused")
 @CMClass
 public interface UIApplicationDelegate {
 
@@ -179,6 +180,7 @@ public interface UIApplicationDelegate {
      * @param app          The application that received the local notification.
      * @param notification The local notification.
      */
+    @SuppressWarnings("deprecation")
     @CMSelector("- (void)application:(UIApplication *)application \n"
             + "didReceiveLocalNotification:(UILocalNotification *)notification;")
     default void didReceiveLocalNotification(UIApplication app, UILocalNotification notification) {
@@ -279,6 +281,7 @@ public interface UIApplicationDelegate {
     default void didRegisterUserNotificationSettings(UIApplication application, UIUserNotificationSettings notificationSettings) {
     }
 
+    @SuppressWarnings("rawtypes")
     @CMSelector("- (void)application:(UIApplication *)application \n"
             + "handleActionWithIdentifier:(NSString *)identifier \n"
             + "forRemoteNotification:(NSDictionary *)userInfo \n"
@@ -286,6 +289,7 @@ public interface UIApplicationDelegate {
     default void handleActionWithIdentifierForRemoteNotification(UIApplication application, String identifier, Map userInfo, Runnable completionHandler) {
     }
 
+    @SuppressWarnings("deprecation")
     @CMSelector("- (void)application:(UIApplication *)application \n"
             + "handleActionWithIdentifier:(NSString *)identifier \n"
             + "forLocalNotification:(UILocalNotification *)notification \n"

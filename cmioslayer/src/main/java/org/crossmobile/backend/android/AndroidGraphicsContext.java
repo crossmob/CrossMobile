@@ -61,6 +61,7 @@ public class AndroidGraphicsContext implements GraphicsContext<Matrix> {
         cv.concat(transform);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public CGAffineTransform getCTM() {
         return Native.graphics().nativeToTarget(MainView.current.getMatrix(), null);
