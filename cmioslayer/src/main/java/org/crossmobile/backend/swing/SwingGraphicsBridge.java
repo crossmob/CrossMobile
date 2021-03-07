@@ -16,7 +16,6 @@ import org.crossmobile.bridge.Native;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.*;
 
@@ -135,9 +134,7 @@ public class SwingGraphicsBridge extends DesktopGraphicsBridge<Graphics2D, Affin
 
     public static Graphics2D getDefaultGraphics() {
         if (defaultGraphics == null)
-            return component == null
-                    ? GraphicsEnvironment.getLocalGraphicsEnvironment().createGraphics(new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB))
-                    : (Graphics2D) component.getGraphics();
+            return (Graphics2D) component.getGraphics();
         return defaultGraphics;
     }
 

@@ -11,6 +11,7 @@ import crossmobile.ios.foundation.NSDate;
 import crossmobile.ios.foundation.NSRunLoop;
 import crossmobile.ios.foundation.NSRunLoopMode;
 import crossmobile.ios.foundation.NSTimer;
+import crossmobile.ios.uikit.UIGraphics;
 import org.crossmobile.backend.desktop.DesktopDrawableMetrics;
 import org.crossmobile.backend.desktop.DesktopLifecycleBridge;
 import org.crossmobile.bind.graphics.anim.Animator;
@@ -21,6 +22,7 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
+import static crossmobile.ios.coregraphics.GraphicsDrill.convertBaseContextToCGContext;
 import static crossmobile.ios.foundation.FoundationDrill.fireMillis;
 import static crossmobile.ios.foundation.FoundationDrill.repeats;
 import static org.crossmobile.bind.graphics.GraphicsBridgeConstants.DefaultInitialOrientation;
@@ -30,6 +32,7 @@ public class SwingLifecycleBridge extends DesktopLifecycleBridge {
     private boolean isQuitting;
     private NSTimer animationTimer;
 
+    @SuppressWarnings("unchecked")
     @Override
     public void init(String[] args) {
         super.init(args);
@@ -41,6 +44,7 @@ public class SwingLifecycleBridge extends DesktopLifecycleBridge {
         SwingGraphicsBridge.frame.setVisible(true);
         SwingGraphicsBridge.frame.postInitialize(metrics.isFullScreen());
         EnhancerManager.getDefault().registerAbout(() -> new AboutDialog(getAppIcons()).setVisible(true));
+        UIGraphics.pushContext(convertBaseContextToCGContext(Native.graphics().newGraphicsContext(null, true)));
     }
 
     @Override

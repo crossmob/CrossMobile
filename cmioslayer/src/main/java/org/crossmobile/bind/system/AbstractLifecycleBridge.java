@@ -50,7 +50,6 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
         cleanTemporaryLocation();
         parseArguments(args);
         Native.graphics().metrics().initIdiom();
-        UIGraphics.pushContext(convertBaseContextToCGContext(Native.graphics().newGraphicsContext(null, true)));
 
         String cache = Native.file().getSystemCacheLocation();
         String button_up = cache + File.separator + Theme.Images.ROUNDRECT_RELEASED + ".png";

@@ -16,6 +16,7 @@ import android.view.Surface;
 import android.view.WindowManager;
 import android.widget.Toast;
 import crossmobile.ios.uikit.UIDeviceOrientation;
+import crossmobile.ios.uikit.UIGraphics;
 import org.crossmobile.bind.system.AbstractLifecycleBridge;
 import org.crossmobile.bind.system.SystemUtilities;
 import org.crossmobile.bridge.Native;
@@ -24,6 +25,7 @@ import org.crossmobile.bridge.ann.CMLibTarget;
 
 import java.util.*;
 
+import static crossmobile.ios.coregraphics.GraphicsDrill.convertBaseContextToCGContext;
 import static org.crossmobile.bind.graphics.GraphicsBridgeConstants.DefaultInitialOrientation;
 import static org.crossmobile.bind.system.AbstractLifecycleBridge.memoryWarning;
 
@@ -43,7 +45,7 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    @SuppressWarnings({"UseSpecificCatch"})
+    @SuppressWarnings("unchecked")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         launchDebug = (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
@@ -54,6 +56,8 @@ public class MainActivity extends Activity {
 
         Native.destroy();  // Needs a fresh start
         Native.lifecycle().init(args);
+        UIGraphics.pushContext(convertBaseContextToCGContext(Native.graphics().newGraphicsContext(null, true)));
+
         AndroidUIGuidelinesBridge.setTranslucentStatusBar();
         SystemUtilities.launchClass(System.getProperty("cm.main.class"), MainActivity.args);
         OrientationManager.register(this);

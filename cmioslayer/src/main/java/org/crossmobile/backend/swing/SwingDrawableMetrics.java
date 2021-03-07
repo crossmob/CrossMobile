@@ -15,7 +15,8 @@ public class SwingDrawableMetrics extends DesktopDrawableMetrics {
 
     @Override
     public void preDraw(GraphicsContext<?> ctx) {
-        ((SwingGraphicsContext) ctx).g2.setComposite(AlphaComposite.SrcOver);
+        SwingGraphicsBridge.defaultGraphics = ((SwingGraphicsContext) ctx).g2;
+        SwingGraphicsBridge.defaultGraphics.setComposite(AlphaComposite.SrcOver);
         super.preDraw(ctx);
     }
 }
