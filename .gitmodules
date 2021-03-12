@@ -4,3 +4,16 @@
 [submodule "cmbuild"]
 	path = cmbuild
 	url = https://github.com/Aroma-UI/cmbuild
+[submodule "avian-dependencies/SDL"]
+	path = avian-dependencies/SDL
+	url = https://github.com/Aroma-UI/SDL.git
+[submodule "avian-dependencies/skia"]
+	path = avian-dependencies/skia
+	url = https://github.com/Aroma-UI/skia.git
+        branch = chrome/m87
+[submodule "avian-dependencies/avian"]
+	path = avian-dependencies/avian
+	url = https://github.com/Aroma-UI/avian.git
+[submodule "avian-dependencies/depot_tools"]
+	path = avian-dependencies/depot_tools
+	url = https://chromium.googlesource.com/chromium/tools/depot_tools.git

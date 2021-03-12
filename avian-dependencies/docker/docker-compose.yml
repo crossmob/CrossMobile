@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+    aromadepbuilder:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: aroma/dep-builder
+

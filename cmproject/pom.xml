@@ -131,6 +131,7 @@
                             <execution>
                                 <goals>
                                     <goal>obfuscate</goal>
+                                    <goal>linkavian</goal>
                                     <goal>execavian</goal>
                                 </goals>
                                 <configuration>
