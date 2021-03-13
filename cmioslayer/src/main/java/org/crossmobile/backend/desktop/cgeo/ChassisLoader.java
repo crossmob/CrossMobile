@@ -170,7 +170,7 @@ public class ChassisLoader {
     }
 
     private static int toInt(IXMLElement element, String attribute) {
-        Object value = element.getAttribute(attribute);
+        Object value = element.getAttribute(attribute, null);
         if (value == null)
             throw new NullPointerException(error(attribute, "Unable to find attribute"));
         try {
@@ -181,12 +181,12 @@ public class ChassisLoader {
     }
 
     private static String toString(IXMLElement element, String attribute) {
-        Object value = element.getAttribute(attribute);
+        Object value = element.getAttribute(attribute, null);
         return value == null ? null : value.toString();
     }
 
     private static int toOrientation(IXMLElement element) {
-        Object orientationO = element.getAttribute("orientation");
+        Object orientationO = element.getAttribute("orientation", null);
         String orientation = orientationO == null ? "" : orientationO.toString().trim().toLowerCase();
         int result = 0;
         for (String part : orientation.split(":"))
@@ -223,7 +223,7 @@ public class ChassisLoader {
     }
 
     private static LazyProperty<NativeBitmap> getImage(IXMLElement element, String attribute) {
-        Object imageName = element.getAttribute(attribute);
+        Object imageName = element.getAttribute(attribute, null);
         if (imageName == null)
             throw new NullPointerException("Unable to retrieve image name");
         return new LazyProperty<>(new Block0<NativeBitmap>() {
@@ -235,7 +235,7 @@ public class ChassisLoader {
     }
 
     private static int toIdiom(IXMLElement element) {
-        Object idiomO = element.getAttribute("idiom");
+        Object idiomO = element.getAttribute("idiom", null);
         String idiom = idiomO == null ? null : idiomO.toString().trim().toLowerCase();
         if (idiom == null || idiom.isEmpty())
             throw new NullPointerException(error("idiom", "Missing device information"));
@@ -249,5 +249,4 @@ public class ChassisLoader {
 
     private static String error(String attributeName, String reason) {
         return "Wrong attribute " + attributeName + ": " + reason;
-    }
-}
+    }}

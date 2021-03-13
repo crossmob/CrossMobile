@@ -43,7 +43,7 @@ public class AvianGraphicsBridge extends DesktopGraphicsBridge<SkCanvas, SkMatri
 
     @Override
     public GraphicsContext<SkMatrix> newGraphicsContext(SkCanvas avianGraphicsContext, boolean isLive) {
-        return null;
+        return avianGraphicsContext == null ? new SkCanvas(AvianGraphicsBridge.window) : avianGraphicsContext;
     }
 
     @Override
@@ -52,7 +52,9 @@ public class AvianGraphicsBridge extends DesktopGraphicsBridge<SkCanvas, SkMatri
     }
 
     @Override
+    @SuppressWarnings("FinalizeCalledExplicitly")
     public void destroyCanvas(SkCanvas avianGraphicsContext) {
+        avianGraphicsContext.finalize();
     }
 
     @Override

@@ -27,8 +27,8 @@ public class Aroma {
         skia.setDrawColorWithColor(0xFF00FF00);
         skia.showTextAtPoint(200, 50, "Hi Skia!");
 
-        SkBitmap bitmap = new SkBitmap("../resources/test.png");
-        skia.drawBitmap(bitmap, 350, 50, 200, 200);
+//        SkBitmap bitmap = new SkBitmap("../resources/test.png");
+//        skia.drawBitmap(bitmap, 350, 50, 200, 200);
 
         SDLEvent event;
         while (true) {

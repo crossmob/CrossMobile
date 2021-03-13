@@ -250,6 +250,8 @@ public class SkCanvas extends NativeElement implements GraphicsContext<SkMatrix>
 
     private static native void scale(long canvasPeer, double sx, double sy);
 
+    private static native void clipRect(long canvasPeer, double x, double y, double w, double h);
+
     // SkPaint methods
     private static native void setPaintStyle(long paintPeer, byte style);
 

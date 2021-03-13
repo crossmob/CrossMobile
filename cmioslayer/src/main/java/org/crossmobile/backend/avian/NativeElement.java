@@ -4,6 +4,8 @@ public abstract class NativeElement {
     final long peer;
 
     NativeElement(long peer) {
+        if (peer == 0)
+            throw new NullPointerException("Unable to initialize " + getClass().getName());
         this.peer = peer;
     }
 
@@ -12,7 +14,7 @@ public abstract class NativeElement {
     }
 
     @Override
-    protected final void finalize() throws Throwable {
+    public final void finalize() {
         destroy(peer);
     }
 

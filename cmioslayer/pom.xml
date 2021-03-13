@@ -161,8 +161,10 @@
                             <os>linux</os>
                             <arch>x86_64</arch>
                             <ccflags>
-                                <ccflag>-I${user.home}/Sources/Aroma/third_party/SDL/include</ccflag>
-                                <ccflag>-I${user.home}/Sources/Aroma/third_party/skia</ccflag>
+                                <ccflag>-I../avian-dependencies/SDL/include/</ccflag>
+                                <ccflag>-I../avian-dependencies/skia</ccflag>
+                                <ccflag>-I../avian-dependencies/avian/include</ccflag>
+                                <ccflag>-I../avian-dependencies/avian/src</ccflag>
                             </ccflags>
                             <lflags>
                                 <lflag>-lfontconfig</lflag>

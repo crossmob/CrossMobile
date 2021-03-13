@@ -179,6 +179,14 @@ JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_scale
 
 /*
  * Class:     org_crossmobile_backend_avian_SkCanvas
+ * Method:    clipRect
+ * Signature: (JDDDD)V
+ */
+JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_clipRect
+  (JNIEnv *, jclass, jlong, jdouble, jdouble, jdouble, jdouble);
+
+/*
+ * Class:     org_crossmobile_backend_avian_SkCanvas
  * Method:    setPaintStyle
  * Signature: (JB)V
  */
