@@ -28,7 +28,7 @@ public interface NSXMLParserDelegate {
     @CMSelector("- (void)parser:(NSXMLParser *)parser \n"
             + "didStartMappingPrefix:(NSString *)prefix \n"
             + "         toURI:(NSString *)namespaceURI;")
-    default public void didStartMappingPrefix(NSXMLParser parser, String prefix, String namespaceURI) {
+    default void didStartMappingPrefix(NSXMLParser parser, String prefix, String namespaceURI) {
     }
 
     /**
@@ -43,7 +43,7 @@ public interface NSXMLParserDelegate {
      */
     @CMSelector("- (void)parser:(NSXMLParser *)parser \n"
             + "didEndMappingPrefix:(NSString *)prefix;")
-    default public void didEndMappingPrefix(NSXMLParser parser, String prefix) {
+    default void didEndMappingPrefix(NSXMLParser parser, String prefix) {
     }
 
     /**
@@ -60,7 +60,7 @@ public interface NSXMLParserDelegate {
             + "  namespaceURI:(NSString *)namespaceURI \n"
             + " qualifiedName:(NSString *)qName \n"
             + "    attributes:(NSDictionary<NSString *,NSString *> *)attributeDict;")
-    default public void didStartElement(NSXMLParser parser, String elementName, String namespaceURI, String qualifiedName, Map<String, String> attributes) {
+    default void didStartElement(NSXMLParser parser, String elementName, String namespaceURI, String qualifiedName, Map<String, String> attributes) {
     }
 
     /**
@@ -75,7 +75,7 @@ public interface NSXMLParserDelegate {
             + " didEndElement:(NSString *)elementName \n"
             + "  namespaceURI:(NSString *)namespaceURI \n"
             + " qualifiedName:(NSString *)qName;")
-    default public void didEndElement(NSXMLParser parser, String elementName, String namespaceURI, String qualifiedName) {
+    default void didEndElement(NSXMLParser parser, String elementName, String namespaceURI, String qualifiedName) {
     }
 
     /**
@@ -87,7 +87,7 @@ public interface NSXMLParserDelegate {
      */
     @CMSelector("- (void)parser:(NSXMLParser *)parser \n"
             + "foundCharacters:(NSString *)string;")
-    default public void foundCharacters(NSXMLParser parser, String characters) {
+    default void foundCharacters(NSXMLParser parser, String characters) {
     }
 
     /**
@@ -98,7 +98,7 @@ public interface NSXMLParserDelegate {
      */
     @CMSelector("- (void)parser:(NSXMLParser *)parser \n"
             + "    foundCDATA:(NSData *)CDATABlock;")
-    default public void foundCDATA(NSXMLParser parser, NSData CDATABlock) {
+    default void foundCDATA(NSXMLParser parser, NSData CDATABlock) {
         // TODO : call me from DefaultHandler
     }
 

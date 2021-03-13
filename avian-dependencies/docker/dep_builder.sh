@@ -65,12 +65,14 @@ if [[ ! -f $DIR_AVIAN_ZIP || ! -f $DIR_AVIAN_JAR ]]; then
         arch=$BUILD_ARCH
     fi
 
-    cd $DIR_AVIAN_BUILD
-    rm -rf extracted_files
-    mkdir extracted_files
-    cd extracted_files
-    ar x $AVIAN_BUILD_ARC
-    zip -9 $DIR_AVIAN_ZIP *.o
+    if [[ ! -f $DIR_AVIAN_ZIP ]] ; then
+        cd $DIR_AVIAN_BUILD
+        rm -rf extracted_files
+        mkdir extracted_files
+        cd extracted_files
+        ar x $AVIAN_BUILD_ARC
+        zip -9 $DIR_AVIAN_ZIP *.o
+    fi
 fi
 
 if [[ ! -f $AVIAN_DESTINATION_JAR ]]; then

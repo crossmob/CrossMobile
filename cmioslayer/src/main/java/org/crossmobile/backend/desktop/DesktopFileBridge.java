@@ -12,8 +12,6 @@ import org.crossmobile.bridge.Native;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 import static org.crossmobile.bridge.system.RuntimeCommons.CROSSMOBILE_PROPERTIES;
 import static org.crossmobile.bridge.system.RuntimeCommons.MATERIALS_TAG;
@@ -47,15 +45,6 @@ public class DesktopFileBridge extends AbstractFileBridge {
         return homepath;
     }
 
-    public URI getURI(String file) throws URISyntaxException {
-        if (!file.startsWith("/"))
-            return getClass().getResource(APPRESOURCE + file).toURI();
-        else if (file.startsWith(SYSRESOURCE))
-            return getClass().getResource(file).toURI();
-        else
-            return new File(file).toURI();
-    }
-
     @Override
     public InputStream getApplicationFileStream(String file) throws IOException {
         return getClass().getResourceAsStream(APPRESOURCE + file);
@@ -69,9 +58,9 @@ public class DesktopFileBridge extends AbstractFileBridge {
     public String getApplicationPrefix() {
         if (apref == null)
             try {
-                apref = getClass().getResource(APPRESOURCE + APP_SIG).toURI().toString();
+                apref = getClass().getResource(APPRESOURCE + APP_SIG).toString();
                 apref = apref.substring(0, apref.length() - APP_SIG.length() - 1);
-            } catch (URISyntaxException ex) {
+            } catch (Exception ex) {
                 apref = "crossmobile.app://";
             }
         return apref;
@@ -81,9 +70,9 @@ public class DesktopFileBridge extends AbstractFileBridge {
     public String getSystemPrefix() {
         if (spref == null)
             try {
-                spref = getClass().getResource(SYSRESOURCE + SYS_SIG).toURI().toString();
+                spref = getClass().getResource(SYSRESOURCE + SYS_SIG).toString();
                 spref = spref.substring(0, spref.length() - SYS_SIG.length());
-            } catch (URISyntaxException ex) {
+            } catch (Exception ex) {
                 spref = "crossmobile.sys://";
             }
         return spref;

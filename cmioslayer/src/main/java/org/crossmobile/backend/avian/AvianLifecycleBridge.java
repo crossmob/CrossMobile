@@ -25,6 +25,11 @@ public class AvianLifecycleBridge extends DesktopLifecycleBridge {
     }
 
     @Override
+    protected boolean supportsExtendedVisuals() {
+        return false;
+    }
+
+    @Override
     public void splashTerminated() {
     }
 

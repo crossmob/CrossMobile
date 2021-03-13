@@ -23,15 +23,17 @@ public abstract class DesktopLifecycleBridge extends AbstractLifecycleBridge {
      * we need to override the default method and provide our own with the
      * required initialization code.
      *
-     * @param args
+     * @param args initialization arguments
      */
     public void init(String[] args) {
         super.init(args);
         Enhancer enhancer = EnhancerManager.getDefault();
         enhancer.setApplicationName(System.getProperty("cm.display.name", "CrossMobileApp"));
-        enhancer.setSafeLookAndFeel();
         ((DesktopDrawableMetrics) Native.graphics().metrics()).updateDPI(enhancer.getDPI());
-        enhancer.setApplicationIcons(getAppIcons());
+        if (supportsExtendedVisuals()) {
+            enhancer.setSafeLookAndFeel();
+            enhancer.setApplicationIcons(getAppIcons());
+        }
     }
 
     @Override
@@ -86,4 +88,6 @@ public abstract class DesktopLifecycleBridge extends AbstractLifecycleBridge {
     public Map<String, Object> consumeLaunchOptions() {
         return null;
     }
+
+    abstract protected boolean supportsExtendedVisuals();
 }

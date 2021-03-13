@@ -18,7 +18,7 @@ public class AvianBridgeResolver {
      * @throws Exception if it isn't run under Avian
      */
     public static boolean isActive() throws Exception {
-        return true;
+        return !System.getProperty("avian.version", "").isEmpty();
     }
 
     public static Native resolve() {

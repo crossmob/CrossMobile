@@ -48,6 +48,11 @@ public class SwingLifecycleBridge extends DesktopLifecycleBridge {
     }
 
     @Override
+    protected boolean supportsExtendedVisuals() {
+        return true;
+    }
+
+    @Override
     public void quit(String error, Throwable throwable) {
         if (isQuitting)
             return;

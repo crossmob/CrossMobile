@@ -43,7 +43,9 @@ public abstract class Native {
     static {
         try {
             runsUnderAndroid = AndroidBridgeResolver.isActive();
-        } catch (Throwable e) {
+        } catch (Throwable ignored) {
+        }
+        if (!runsUnderAndroid) {
             try {
                 runsUnderAvian = AvianBridgeResolver.isActive();
             } catch (Throwable ignored) {

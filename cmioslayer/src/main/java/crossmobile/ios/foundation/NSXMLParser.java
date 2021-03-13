@@ -6,15 +6,13 @@
 
 package crossmobile.ios.foundation;
 
+import net.n3.nanoxml.IXMLElement;
+import net.n3.nanoxml.IXMLParser;
+import net.n3.nanoxml.StdXMLReader;
+import net.n3.nanoxml.XMLParserFactory;
 import org.crossmobile.bridge.ann.*;
-import org.xml.sax.*;
-import org.xml.sax.helpers.DefaultHandler;
 
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-import java.io.IOException;
-import java.io.StringReader;
-import java.lang.ref.WeakReference;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,8 +24,6 @@ import static org.crossmobile.bind.system.AbstractLifecycleBridge.errorFromThrow
  */
 @CMClass
 public class NSXMLParser extends NSObject {
-
-    private static SAXParserFactory FACTORY;
 
     NSXMLParserDelegate delegate;
     private final NSData data;
@@ -56,7 +52,7 @@ public class NSXMLParser extends NSObject {
     }
 
     /**
-     * Sets a Boolean that defines whether the parser should report the
+     * Sets a Boolean that defines whether the parser should process the
      * namespaces.
      *
      * @param flag TRUE the parser should report the namespaces.
@@ -67,7 +63,7 @@ public class NSXMLParser extends NSObject {
     }
 
     /**
-     * Returns a Boolean that shows whether the parser reports the namespaces.
+     * Returns a Boolean that shows whether the parser process the namespaces.
      *
      * @return TRUE the parser reports the namespaces.
      */
@@ -109,12 +105,37 @@ public class NSXMLParser extends NSObject {
         if (data == null)
             return false;
         try {
-            parse(this, new String(data.data, "UTF-8"));
+            IXMLParser parser = XMLParserFactory.createDefaultXMLParser();
+            //noinspection CharsetObjectCanBeUsed
+            parser.setReader(StdXMLReader.stringReader(new String(data.data, "UTF-8")));
+            if (delegate != null)
+                fire((IXMLElement) parser.parse());
             return true;
         } catch (Exception ex) {
             error = NSError.errorWithDomain(NSError.Domain.NSPOSIX, 0, errorFromThrowable(ex));
             return false;
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    private void fire(IXMLElement element) {
+        Map<String, String> attributes = new HashMap<>();
+        Enumeration<String> names = element.enumerateAttributeNames();
+        while (names.hasMoreElements()) {
+            String name = names.nextElement();
+            attributes.put(name, element.getAttribute(name, null));
+        }
+        delegate.didStartElement(this, element.getName(), element.getNamespace(), element.getFullName(), attributes);
+
+        Enumeration<IXMLElement> children = element.enumerateChildren();
+        while (children.hasMoreElements())
+            fire(children.nextElement());
+
+        String content = element.getContent();
+        if (content != null && !content.isEmpty())
+            delegate.foundCharacters(this, content);
+
+        delegate.didEndElement(this, element.getName(), element.getNamespace(), element.getFullName());
     }
 
     /**
@@ -127,67 +148,6 @@ public class NSXMLParser extends NSObject {
     @CMGetter("@property(readonly, copy) NSError *parserError;")
     public NSError parserError() {
         return error;
-    }
-
-    private WeakReference<NSXMLParser> parser;
-    DefaultHandler handler = new DefaultHandler() {
-        @Override
-        public InputSource resolveEntity(String publicID, String systemID) throws IOException, SAXException {
-            return new InputSource(new StringReader(""));
-        }
-
-        @Override
-        public void startPrefixMapping(String prefix, String uri) {
-            if (delegate != null)
-                delegate.didStartMappingPrefix(parser.get(), prefix, uri);
-        }
-
-        @Override
-        public void endPrefixMapping(String prefix) {
-            if (delegate != null)
-                delegate.didEndMappingPrefix(parser.get(), prefix);
-        }
-
-        @Override
-        public void startElement(String uri, String localName, String qName, Attributes attributes) {
-            Map<String, String> attribs = new HashMap<>();
-            for (int i = 0; i < attributes.getLength(); i++)
-                attribs.put(attributes.getQName(i), attributes.getValue(i));
-            if (delegate != null)
-                delegate.didStartElement(parser.get(), qName, uri, qName, attribs);
-        }
-
-        @Override
-        public void endElement(String uri, String localName, String qName) {
-            if (delegate != null)
-                delegate.didEndElement(parser.get(), qName, uri, qName);
-        }
-
-        @Override
-        public void characters(char[] ch, int start, int length) {
-            String characters = String.copyValueOf(ch, start, length);
-            if (delegate != null)
-                delegate.foundCharacters(parser.get(), characters);
-        }
-    };
-
-    void parse(NSXMLParser parser, String data) throws Exception {
-        if (FACTORY == null) {
-            FACTORY = SAXParserFactory.newInstance();
-            FACTORY.setValidating(false);
-        }
-
-        this.parser = new WeakReference<>(parser);
-        SAXParser saxParser = FACTORY.newSAXParser();
-        try {
-            saxParser.setProperty("namespaces", parser.shouldProcessNamespaces());
-        } catch (SAXNotRecognizedException | SAXNotSupportedException e) {
-        }
-        try {
-            saxParser.setProperty("namespace-prefixes", parser.shouldReportNamespacePrefixes());
-        } catch (SAXNotRecognizedException | SAXNotSupportedException e) {
-        }
-        saxParser.parse(new InputSource(new StringReader(data)), handler);
     }
 
 }

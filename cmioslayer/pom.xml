@@ -38,6 +38,11 @@
             <version>1.0.1</version>
         </dependency>
         <dependency>
+            <groupId>be.cyberelf.nanoxml</groupId>
+            <artifactId>nanoxml</artifactId>
+            <version>2.2.3</version>
+        </dependency>
+        <dependency>
             <groupId>org.crossmobile.ca.com.google.android</groupId>
             <artifactId>android</artifactId>
             <version>29</version>
@@ -169,6 +174,7 @@
                         <embedlib>org\.crossmobile:cmutils-common.*</embedlib>
                         <embedlib>javazoom.*</embedlib>
                         <embedlib>com\.panayotis:commonevents.*</embedlib>
+                        <embedlib>be\.cyberelf\.nanoxml:nanoxml.*</embedlib>
                     </embedlibs>
                     <packages>
                         <package>
@@ -190,6 +196,11 @@
                             <name>javazoom</name>
                             <plugin>cmioslayer</plugin>
                             <target>SWING</target>
+                        </package>
+                        <package>
+                            <name>net.n3.nanoxml</name>
+                            <plugin>cmioslayer</plugin>
+                            <target>JAVA</target>
                         </package>
                     </packages>
                 </configuration>

@@ -71,14 +71,15 @@ public class SwingWrapperUIBridge implements WrapperUIBridge<JComponent> {
     public void updateNativeGraphics(String button_up, String button_down) {
         JToggleButton selected = new JToggleButton();
         JToggleButton normal = new JToggleButton();
-        SwingGraphicsBridge.frame.getContentPane().removeAll();
-        SwingGraphicsBridge.frame.getContentPane().setLayout(new FlowLayout());
+        JFrame frame = new JFrame();
+        frame.getContentPane().removeAll();
+        frame.getContentPane().setLayout(new FlowLayout());
         selected.setSelected(true);
         selected.setText(" ");
-        SwingGraphicsBridge.frame.getContentPane().add(selected);
+        frame.getContentPane().add(selected);
         normal.setText(" ");
-        SwingGraphicsBridge.frame.getContentPane().add(normal);
-        SwingGraphicsBridge.frame.pack();
+        frame.getContentPane().add(normal);
+        frame.pack();
         grabButtons(normal, button_up);
         grabButtons(selected, button_down);
     }
