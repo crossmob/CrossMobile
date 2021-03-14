@@ -165,6 +165,7 @@
                                 <ccflag>-I../avian-dependencies/skia</ccflag>
                                 <ccflag>-I../avian-dependencies/avian/include</ccflag>
                                 <ccflag>-I../avian-dependencies/avian/src</ccflag>
+                                <ccflag>-DDEBUG_AROMA</ccflag>
                             </ccflags>
                             <lflags>
                                 <lflag>-lfontconfig</lflag>
