@@ -20,7 +20,7 @@ public class AvianImageBridge extends DesktopImageBridge {
 
     @Override
     protected NativeBitmap loadFromStreamAndClose(InputStream in) {
-        return new SkBitmap(null);
+        return new SkBitmap(in);
     }
 
     @Override

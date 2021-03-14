@@ -69,6 +69,14 @@ public abstract class DesktopLifecycleBridge extends AbstractLifecycleBridge {
         }
     }
 
+    @Override
+    public void runOnEventThread(Runnable r) {
+        if (isEventThread())
+            r.run();
+        else
+            postOnEventThread(r);
+    }
+
     public void toggleActivation() {
         if (((DesktopDrawableMetrics) Native.graphics().metrics()).isActive())
             deactivate();
@@ -89,5 +97,10 @@ public abstract class DesktopLifecycleBridge extends AbstractLifecycleBridge {
         return null;
     }
 
+    /**
+     * Mark if extended visuals through Enhancer are supported, i.e. application icon and theming.
+     *
+     * @return false if run under Avian, false otherwise
+     */
     abstract protected boolean supportsExtendedVisuals();
 }

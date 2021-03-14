@@ -128,7 +128,9 @@ public class UIApplication extends UIResponder {
             });
         });
         final Object sleepForever = new Object();
-        if (!Native.lifecycle().isEventThread())
+        if (Native.lifecycle().isEventThread())
+            Native.lifecycle().handleEventLoop();
+        else
             try {
                 //noinspection SynchronizationOnLocalVariableOrMethodParameter
                 synchronized (sleepForever) {

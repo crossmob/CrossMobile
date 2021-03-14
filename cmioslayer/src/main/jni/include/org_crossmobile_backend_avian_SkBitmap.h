@@ -9,11 +9,11 @@ extern "C" {
 #endif
 /*
  * Class:     org_crossmobile_backend_avian_SkBitmap
- * Method:    initFromFileName
- * Signature: (Ljava/lang/String;)J
+ * Method:    initFromByteArray
+ * Signature: ([B)J
  */
-JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkBitmap_initFromFileName
-  (JNIEnv *, jclass, jstring);
+JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkBitmap_initFromByteArray
+  (JNIEnv *, jclass, jbyteArray);
 
 /*
  * Class:     org_crossmobile_backend_avian_SkBitmap

@@ -8,15 +8,28 @@ package org.crossmobile.backend.avian;
 
 import crossmobile.ios.uikit.UIImageOrientation;
 import org.crossmobile.bind.graphics.NativeBitmap;
+import org.crossmobile.bind.system.StreamConverter;
 import org.crossmobile.bridge.system.BaseUtils;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 
 public class SkBitmap extends NativeElement implements NativeBitmap {
-    SkBitmap(String path) {
-        super(init(path));
+
+    private static Class<?> resourceInputStreamClass = null;
+    private static Field peerField = null;
+
+    static {
+        try {
+            resourceInputStreamClass = Class.forName("avian/avianvmresource/Handler$ResourceInputStream");
+            peerField = resourceInputStreamClass.getField("peer");
+            peerField.setAccessible(true);
+        } catch (Exception ignored) {
+        }
+    }
+
+    SkBitmap(InputStream is) {
+        super(init(is));
     }
 
     @Override
@@ -34,21 +47,19 @@ public class SkBitmap extends NativeElement implements NativeBitmap {
         return UIImageOrientation.Up;
     }
 
-    private static long init(String path) {
-        try {
-            InputStream inputStream = SkBitmap.class.getClass().getClassLoader().getResourceAsStream(path);
-            if (inputStream == null)
-                BaseUtils.throwException(new IOException("Resource not found: " + path));
-            Field field = inputStream.getClass().getField("peer");
-            field.setAccessible(true);
-            Long peer = (Long) field.get(inputStream);
-            return initFromBlob(peer);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            return initFromFileName(path);
-        }
+    private static long init(InputStream inputStream) {
+        if (inputStream == null)
+            return 0;
+        if (resourceInputStreamClass.isAssignableFrom(inputStream.getClass()))
+            try {
+                return initFromBlob((long) peerField.get(inputStream));
+            } catch (Exception ex) {
+                BaseUtils.throwException(ex);
+            }
+        return initFromByteArray(StreamConverter.toBytes(inputStream));
     }
 
-    private static native long initFromFileName(String path);
+    private static native long initFromByteArray(byte[] data);
 
     private static native long initFromBlob(long blobPeer);
 

@@ -8,7 +8,6 @@ package org.crossmobile.bind.graphics;
 
 import crossmobile.ios.coregraphics.CGSize;
 import crossmobile.ios.uikit.UIColor;
-import crossmobile.ios.uikit.UIFont;
 import org.crossmobile.bind.graphics.theme.ThemeManager;
 import org.crossmobile.bind.graphics.theme.ThemeUtilities;
 import org.crossmobile.bridge.Native;
@@ -20,9 +19,6 @@ import static java.lang.Long.getLong;
 import static org.crossmobile.bind.system.SystemUtilities.*;
 
 public class Theme {
-
-
-
 
     public final static class Images {
 
@@ -123,7 +119,6 @@ public class Theme {
             }
         }
     }
-
 
 
     public final static class Button {

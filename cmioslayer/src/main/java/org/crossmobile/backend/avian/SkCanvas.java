@@ -92,7 +92,7 @@ public class SkCanvas extends NativeElement implements GraphicsContext<SkMatrix>
 
     @Override
     public CGSize stringSizeWithFont(String text, NativeFont font) {
-        return null;
+        return new CGSize(80,20);
     }
 
     @Override

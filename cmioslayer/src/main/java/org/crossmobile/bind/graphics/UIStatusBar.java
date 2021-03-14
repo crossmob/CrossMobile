@@ -16,7 +16,6 @@ import org.crossmobile.bridge.Native;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 import static crossmobile.ios.uikit.UIDeviceOrientation.*;
 
@@ -26,7 +25,7 @@ public final class UIStatusBar extends UIView {
     public static final boolean required = Native.uiguidelines().shouldDisplayStatusBar();
     private static UIStatusBar statusBar = new UIStatusBar();
 
-    private final GregorianCalendar cal = new GregorianCalendar();
+    private final Calendar cal = Calendar.getInstance();
     private UILabel time, appName;
     private UIImageView receiptImg, wifiImg;
     private UIBattery battery;

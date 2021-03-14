@@ -71,7 +71,7 @@ if [[ ! -f $DIR_AVIAN_ZIP || ! -f $DIR_AVIAN_JAR ]]; then
         mkdir extracted_files
         cd extracted_files
         ar x $AVIAN_BUILD_ARC
-        zip -9 $DIR_AVIAN_ZIP *.o
+        zip $DIR_AVIAN_ZIP *.o
     fi
 fi
 

@@ -6,6 +6,7 @@
 
 package crossmobile.ios.foundation;
 
+import org.crossmobile.bind.system.StreamConverter;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.CMClass;
 import org.crossmobile.bridge.ann.CMConstructor;
@@ -61,7 +62,7 @@ public class NSMutableData extends NSData {
     @CMSelector("+ (instancetype)dataWithBytesNoCopy:(void *)bytes\n"
             + "                             length:(NSUInteger)length")
     public static NSMutableData dataWithBytesNoCopy(@CMJoinMEM(memory = "bytes", size = "length") byte[] data) {
-        return new NSMutableData(checkDataSize(data, data==null?0:data.length));
+        return new NSMutableData(checkDataSize(data, data == null ? 0 : data.length));
     }
 
     /**
@@ -76,7 +77,7 @@ public class NSMutableData extends NSData {
     public static NSMutableData dataWithContentsOfFile(String path) {
         try {
             if (path != null)
-                return new NSMutableData(contentsOfStream(Native.file().getFileStream(path)));
+                return new NSMutableData(StreamConverter.toBytes(Native.file().getFileStream(path)));
         } catch (IOException ex) {
         }
         return null;
@@ -94,7 +95,7 @@ public class NSMutableData extends NSData {
     public static NSMutableData dataWithContentsOfURL(NSURL url) {
         try {
             if (url != null)
-                return new NSMutableData(contentsOfStream(new URL(url.absoluteString()).openStream()));
+                return new NSMutableData(StreamConverter.toBytes(new URL(url.absoluteString()).openStream()));
         } catch (IOException ex) {
         }
         return null;
