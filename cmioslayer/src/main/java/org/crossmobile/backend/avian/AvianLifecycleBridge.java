@@ -32,8 +32,24 @@ public class AvianLifecycleBridge extends DesktopLifecycleBridge {
             Aroma.main(args);
         eventThread = Thread.currentThread();
         AvianGraphicsBridge.window = new SDLWindow("Aroma");
+
         Native.graphics().setOrientation(DefaultInitialOrientation);
         UIGraphics.pushContext(convertBaseContextToCGContext(Native.graphics().newGraphicsContext(null, true)));
+
+        new Thread(() -> {
+            SDLEvent event;
+            while (true) {
+                while ((event = AvianGraphicsBridge.pollSDLEvents()) != null) {
+                    SDLEvent cEvent = event;
+                    if (event instanceof MouseEvent)
+                        postOnEventThread(() -> fireMouseEvent((MouseEvent) cEvent));
+                    if (event instanceof KeyEvent)
+                        postOnEventThread(() -> fireKeyEvent((KeyEvent) cEvent));
+                    if (event instanceof WindowEvent)
+                        postOnEventThread(() -> fireWindowEvent((WindowEvent) cEvent));
+                }
+            }
+        }, "SDL event thread").start();
     }
 
     @Override
@@ -84,9 +100,22 @@ public class AvianLifecycleBridge extends DesktopLifecycleBridge {
 
             // This method is wrong. We should implement a better way to handle parallel events
             try {
+                //noinspection BusyWait
                 Thread.sleep(10);
             } catch (InterruptedException ignored) {
             }
         }
+    }
+
+    private void fireMouseEvent(MouseEvent event) {
+        System.out.println("Mouse event! " + event.getX() + "," + event.getY());
+    }
+
+    private void fireKeyEvent(KeyEvent event) {
+        System.out.println("Key event!");
+    }
+
+    private void fireWindowEvent(WindowEvent event) {
+        System.out.println("Window event!");
     }
 }
