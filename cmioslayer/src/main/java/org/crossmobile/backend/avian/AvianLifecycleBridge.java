@@ -66,6 +66,7 @@ public class AvianLifecycleBridge extends DesktopLifecycleBridge {
     public void hasAnimationFrames(boolean enabled) {
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void handleEventLoop() {
         Collection<Runnable> currentList = new ArrayList<>();
@@ -77,15 +78,16 @@ public class AvianLifecycleBridge extends DesktopLifecycleBridge {
             }
             for (Runnable current : currentList)
                 current.run();
-            synchronized (runnableQueue) {
-                if (runnableQueue.isEmpty()) {
-                    try {
-                        runnableQueue.wait();
-                    } catch (InterruptedException ignored) {
-                    }
-                }
-            }
+
             drawWindow(Native.graphics().newGraphicsContext(null, true));
+            AvianGraphicsBridge.window.update();
+
+            // This method is wrong. We should implement a better way to handle parallel events
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException ignored) {
+            }
+            System.out.println("TICK");
         }
     }
 }

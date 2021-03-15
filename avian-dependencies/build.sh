@@ -16,7 +16,7 @@ _build () {
     cd docker
     docker-compose build
     cd ..
-    docker run --rm -it -v ${PWD}:/src aroma/dep-builder bash /src/docker/dep_builder.sh
+    sudo docker run --rm -it -v ${PWD}:/src aroma/dep-builder bash /src/docker/dep_builder.sh
     sudo chown -R $USER .
     _install
 }
