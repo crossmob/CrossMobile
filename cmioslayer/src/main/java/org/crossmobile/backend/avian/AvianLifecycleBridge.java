@@ -87,7 +87,6 @@ public class AvianLifecycleBridge extends DesktopLifecycleBridge {
                 Thread.sleep(10);
             } catch (InterruptedException ignored) {
             }
-            System.out.println("TICK");
         }
     }
 }
