@@ -9,36 +9,61 @@
 
 #include "avian/system/system.h"
 
-JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkBitmap_initFromFileName
-  (JNIEnv *env, jclass clazz, jstring jpath) {
+//JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkBitmap_initFromFileName
+//  (JNIEnv *env, jclass clazz, jstring jpath) {
+//
+//  const char *path = env->GetStringUTFChars(jpath, 0);
+//
+//  sk_sp<SkData> data = SkData::MakeFromFileName(path);
+//
+//  SkBitmap* bitmap;
+//  std::unique_ptr<SkImageGenerator> generator(SkImageGenerator::MakeFromEncoded(std::move(data)));
+//  if(bitmap->tryAllocPixels(generator->getInfo())) {
+//    generator->getPixels(generator->getInfo().makeColorSpace(NULL), bitmap->getPixels(), bitmap->rowBytes());
+//  }
 
-  const char *path = env->GetStringUTFChars(jpath, 0);
-
-  sk_sp<SkData> data = SkData::MakeFromFileName(path);
-
-  SkBitmap* bitmap;
-  std::unique_ptr<SkImageGenerator> generator(SkImageGenerator::MakeFromEncoded(std::move(data)));
-  if(bitmap->tryAllocPixels(generator->getInfo())) {
-    generator->getPixels(generator->getInfo().makeColorSpace(NULL), bitmap->getPixels(), bitmap->rowBytes());
-  }
   // Memory management step
   // Keep in mind:
   // No new — no delete. In the same way, no malloc (or calloc or realloc) — no free
-  env->ReleaseStringUTFChars(jpath, path);
-  return (jlong)bitmap;
-}
+//  env->ReleaseStringUTFChars(jpath, path);
+//  return (jlong)bitmap;
+//}
 
 JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkBitmap_initFromBlob
   (JNIEnv *env, jclass clazz, jlong blobPeer) {
 
-  
-  vm::System::Region* region = reinterpret_cast<vm::System::Region*>(blobPeer);
-  sk_sp<SkData> data = SkData::MakeWithCopy(region->start(), region->length());
+  printf("Call!\n");
+//  vm::System::Region* region = reinterpret_cast<vm::System::Region*>(blobPeer);
+//  sk_sp<SkData> data = SkData::MakeWithCopy(region->start(), region->length());
 
+  sk_sp<SkData> data = SkData::MakeFromFileName("/home/allan/Documents/TotalCross/Aroma/resources/test.png");
   SkBitmap* bitmap;
   std::unique_ptr<SkImageGenerator> generator(SkImageGenerator::MakeFromEncoded(std::move(data)));
   if(bitmap->tryAllocPixels(generator->getInfo())) {
     generator->getPixels(generator->getInfo().makeColorSpace(NULL), bitmap->getPixels(), bitmap->rowBytes());
   }
+  printf("Called!\n");
   return (jlong)bitmap;
 }
+
+JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkBitmap_initFromFileName
+  (JNIEnv *env, jclass clazz, jstring jpath) {
+    printf("Call!\n");
+  //  vm::System::Region* region = reinterpret_cast<vm::System::Region*>(blobPeer);
+  //  sk_sp<SkData> data = SkData::MakeWithCopy(region->start(), region->length());
+
+    sk_sp<SkData> data = SkData::MakeFromFileName("/home/allan/Documents/TotalCross/Aroma/resources/test.png");
+    printf("PNG\n");
+    SkBitmap* bitmap;
+    std::unique_ptr<SkImageGenerator> generator(SkImageGenerator::MakeFromEncoded(std::move(data)));
+    printf("After read data\n");
+    printf("%d, %d\n", generator->getInfo().width(), generator->getInfo().height());
+    printf("Testing generator");
+    if(bitmap->tryAllocPixels(generator->getInfo())) {
+      printf("Allocation\n");
+      generator->getPixels(generator->getInfo().makeColorSpace(NULL), bitmap->getPixels(), bitmap->rowBytes());
+      printf("Generator is ok\n");
+    }
+    printf("Called!\n");
+    return (jlong)bitmap;
+  }

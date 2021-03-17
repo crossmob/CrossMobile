@@ -1,12 +1,22 @@
 package org.crossmobile.backend.avian;
 
-import org.crossmobile.backend.avian.event.AvianEvent;
-import org.crossmobile.backend.avian.event.MouseEvent;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class Aroma {
 
-    static void fireMouseEvent(MouseEvent event) {
-        System.out.println("Mouse event! " + event.getX() + "," + event.getY());
+    static void fireMouseEvent(SDLMouseEvent event) {
+        if (event.type == SDLMouseEvent.MOUSEMOTION)
+            System.out.println("Mouse motion: " + event.getX() + "," + event.getY());
+        if (event.type == SDLMouseEvent.MOUSEBUTTON)
+            System.out.println("Mouse button down: " + event.getX() + "," + event.getY());
+    }
+
+    static void fireWindowEvent(SDLWindowEvent event) {
+        if (event.type == SDLWindowEvent.WINDOWEVENT) {
+            if (event.mask == SDLWindowEvent.CLOSE)
+                System.out.println("Window close");
+        }
     }
 
     public static void main(String[] args) {
@@ -30,23 +40,23 @@ public class Aroma {
         skia.setDrawColorWithColor(0xFF00FF00);
         skia.showTextAtPoint(200, 50, "Hi Skia!");
 
-//        SkBitmap bitmap = new SkBitmap("../resources/test.png");
+//        SkBitmap bitmap = new SkBitmap(new InputStream() {
+//            @Override
+//            public int read() throws IOException {
+//                return 0;
+//            }
+//        });
 //        skia.drawBitmap(bitmap, 350, 50, 200, 200);
 
-        AvianEvent event;
+        SDLEvent event;
         while (true) {
-            while ((event = AvianGraphicsBridge.pollSDLEvents()) != null) {
-                if (event instanceof MouseEvent)
-                    fireMouseEvent((MouseEvent) event);
-                // if (event instanceof KeyEvent)
-                //   System.out.println("Key event!");
-                //   // fireKeyEvent(event);
-                // if (event instanceof WindowEvent)
-                //   System.out.println("Window event!");
-                // fireWindowEvent(event);
+            while ((event = (SDLEvent) AvianGraphicsBridge.pollSDLEvents()) != null) {
+                if (event instanceof SDLMouseEvent)
+                    fireMouseEvent((SDLMouseEvent) event);
+                if (event instanceof SDLWindowEvent)
+                    fireWindowEvent((SDLWindowEvent) event);
             }
             window.update();
         }
-
     }
 }
