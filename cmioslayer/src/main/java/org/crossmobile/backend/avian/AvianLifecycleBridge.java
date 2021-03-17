@@ -34,10 +34,12 @@ public class AvianLifecycleBridge extends DesktopLifecycleBridge {
         Native.graphics().setOrientation(DefaultInitialOrientation);
         UIGraphics.pushContext(convertBaseContextToCGContext(Native.graphics().newGraphicsContext(null, true)));
 
-        new Thread(() -> {
-            while (true)
+        Thread sdlEventThread = new Thread(() -> {
+            while (!Thread.currentThread().isInterrupted())
                 addEvent(AvianGraphicsBridge.pollSDLEvents());
-        }, "SDL event thread").start();
+        }, "SDL event thread");
+        sdlEventThread.setDaemon(true);
+        sdlEventThread.start();
 
         new Thread(() -> {
             while (true) {
@@ -98,8 +100,10 @@ public class AvianLifecycleBridge extends DesktopLifecycleBridge {
                 AvianEvent event = eventQueue.take();
                 if (event instanceof RunnableEvent)
                     ((RunnableEvent) event).run();
-                else if (event instanceof MouseEvent)
-                    fireMouseEvent((MouseEvent) event);
+                else if (event instanceof MouseMotionEvent)
+                    fireMouseMotionEvent((MouseMotionEvent) event);
+                else if (event instanceof MouseButtonEvent)
+                    fireMouseButtonEvent((MouseButtonEvent) event);
                 else if (event instanceof KeyEvent)
                     fireKeyEvent((KeyEvent) event);
                 else if (event instanceof WindowEvent)
@@ -112,8 +116,12 @@ public class AvianLifecycleBridge extends DesktopLifecycleBridge {
         }
     }
 
-    private void fireMouseEvent(MouseEvent event) {
-        System.out.println("Mouse event! " + event.getX() + "," + event.getY());
+    private void fireMouseMotionEvent(MouseMotionEvent event) {
+        System.out.println("Mouse motion event! " + event.getX() + "," + event.getY());
+    }
+
+    private void fireMouseButtonEvent(MouseButtonEvent event) {
+        System.out.println("Mouse button event! " + event.getX() + "," + event.getY());
     }
 
     private void fireKeyEvent(KeyEvent event) {
