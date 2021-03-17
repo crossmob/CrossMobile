@@ -1,5 +1,8 @@
 package org.crossmobile.backend.avian;
 
+import org.crossmobile.backend.avian.event.AvianEvent;
+import org.crossmobile.backend.avian.event.MouseEvent;
+
 public class Aroma {
 
     static void fireMouseEvent(MouseEvent event) {
@@ -30,7 +33,7 @@ public class Aroma {
 //        SkBitmap bitmap = new SkBitmap("../resources/test.png");
 //        skia.drawBitmap(bitmap, 350, 50, 200, 200);
 
-        SDLEvent event;
+        AvianEvent event;
         while (true) {
             while ((event = AvianGraphicsBridge.pollSDLEvents()) != null) {
                 if (event instanceof MouseEvent)

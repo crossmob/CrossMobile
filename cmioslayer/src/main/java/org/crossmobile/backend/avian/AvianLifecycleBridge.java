@@ -7,22 +7,21 @@
 package org.crossmobile.backend.avian;
 
 import crossmobile.ios.uikit.UIGraphics;
+import org.crossmobile.backend.avian.event.*;
 import org.crossmobile.backend.desktop.DesktopLifecycleBridge;
 import org.crossmobile.bind.system.GenericSystemTimerHandler;
 import org.crossmobile.bridge.Native;
+import org.crossmobile.bridge.system.BaseUtils;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import static crossmobile.ios.coregraphics.GraphicsDrill.convertBaseContextToCGContext;
-import static crossmobile.ios.uikit.UserInterfaceDrill.drawWindow;
 import static org.crossmobile.bind.graphics.GraphicsBridgeConstants.DefaultInitialOrientation;
 
 public class AvianLifecycleBridge extends DesktopLifecycleBridge {
     private Thread eventThread;
-    private final Collection<Runnable> runnableQueue = new ArrayList<>();
-    //    private final Queue<SDLEvent> eventQueue = new LinkedList<>();
-    private final Object[] lock = new Object[]{};
+    private final BlockingQueue<AvianEvent> eventQueue = new LinkedBlockingQueue<>();
 
     @SuppressWarnings("unchecked")
     @Override
@@ -31,25 +30,26 @@ public class AvianLifecycleBridge extends DesktopLifecycleBridge {
         if (false)
             Aroma.main(args);
         eventThread = Thread.currentThread();
-        AvianGraphicsBridge.window = new SDLWindow("Aroma");
-
+        ((AvianGraphicsBridge) Native.graphics()).initWindow("Aroma");
         Native.graphics().setOrientation(DefaultInitialOrientation);
         UIGraphics.pushContext(convertBaseContextToCGContext(Native.graphics().newGraphicsContext(null, true)));
 
         new Thread(() -> {
-            SDLEvent event;
+            while (true)
+                addEvent(AvianGraphicsBridge.pollSDLEvents());
+        }, "SDL event thread").start();
+
+        new Thread(() -> {
             while (true) {
-                while ((event = AvianGraphicsBridge.pollSDLEvents()) != null) {
-                    SDLEvent cEvent = event;
-                    if (event instanceof MouseEvent)
-                        postOnEventThread(() -> fireMouseEvent((MouseEvent) cEvent));
-                    if (event instanceof KeyEvent)
-                        postOnEventThread(() -> fireKeyEvent((KeyEvent) cEvent));
-                    if (event instanceof WindowEvent)
-                        postOnEventThread(() -> fireWindowEvent((WindowEvent) cEvent));
+                addEvent(new AvianEvent() {
+                });
+                try {
+                    Thread.sleep(1000);
+                    Native.graphics().refreshDisplay();
+                } catch (InterruptedException ignored) {
                 }
             }
-        }, "SDL event thread").start();
+        }, "Ticker").start();
     }
 
     @Override
@@ -63,9 +63,17 @@ public class AvianLifecycleBridge extends DesktopLifecycleBridge {
 
     @Override
     public void postOnEventThread(Runnable runnable) {
-        synchronized (runnableQueue) {
-            runnableQueue.add(runnable);
-        }
+        if (runnable != null)
+            addEvent(new RunnableEvent(runnable));
+    }
+
+    private void addEvent(AvianEvent event) {
+        if (event != null)
+            try {
+                eventQueue.put(event);
+            } catch (InterruptedException e) {
+                BaseUtils.throwException(e);
+            }
     }
 
     @Override
@@ -82,27 +90,24 @@ public class AvianLifecycleBridge extends DesktopLifecycleBridge {
     public void hasAnimationFrames(boolean enabled) {
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public void handleEventLoop() {
-        Collection<Runnable> currentList = new ArrayList<>();
+        AvianGraphicsBridge graphics = (AvianGraphicsBridge) Native.graphics();
         while (!eventThread.isInterrupted()) {
-            currentList.clear();
-            synchronized (runnableQueue) {
-                currentList.addAll(runnableQueue);
-                runnableQueue.clear();
-            }
-            for (Runnable current : currentList)
-                current.run();
-
-            drawWindow(Native.graphics().newGraphicsContext(null, true));
-            AvianGraphicsBridge.window.update();
-
-            // This method is wrong. We should implement a better way to handle parallel events
             try {
-                //noinspection BusyWait
-                Thread.sleep(10);
-            } catch (InterruptedException ignored) {
+                AvianEvent event = eventQueue.take();
+                if (event instanceof RunnableEvent)
+                    ((RunnableEvent) event).run();
+                else if (event instanceof MouseEvent)
+                    fireMouseEvent((MouseEvent) event);
+                else if (event instanceof KeyEvent)
+                    fireKeyEvent((KeyEvent) event);
+                else if (event instanceof WindowEvent)
+                    fireWindowEvent((WindowEvent) event);
+                graphics.repaintIfRequired();
+                graphics.windowUpdateIfRequired();
+            } catch (Throwable th) {
+                th.printStackTrace();
             }
         }
     }

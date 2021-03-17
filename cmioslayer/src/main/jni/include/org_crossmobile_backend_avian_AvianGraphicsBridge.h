@@ -26,7 +26,7 @@ JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_AvianGraphicsBridge_qu
 /*
  * Class:     org_crossmobile_backend_avian_AvianGraphicsBridge
  * Method:    pollSDLEvents
- * Signature: ()Lorg/crossmobile/backend/avian/SDLEvent;
+ * Signature: ()Lorg/crossmobile/backend/avian/event/AvianEvent;
  */
 JNIEXPORT jobject JNICALL Java_org_crossmobile_backend_avian_AvianGraphicsBridge_pollSDLEvents
   (JNIEnv *, jclass);

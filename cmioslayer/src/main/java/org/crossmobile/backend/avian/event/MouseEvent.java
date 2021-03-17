@@ -1,6 +1,6 @@
-package org.crossmobile.backend.avian;
+package org.crossmobile.backend.avian.event;
 
-public class MouseEvent extends SDLEvent {
+public class MouseEvent implements AvianEvent {
     public final int x;
     public final int y;
 

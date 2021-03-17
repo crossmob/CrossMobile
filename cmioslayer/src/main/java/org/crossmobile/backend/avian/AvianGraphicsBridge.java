@@ -7,6 +7,7 @@
 package org.crossmobile.backend.avian;
 
 import crossmobile.ios.coregraphics.CGAffineTransform;
+import org.crossmobile.backend.avian.event.AvianEvent;
 import org.crossmobile.backend.desktop.DesktopDrawableMetrics;
 import org.crossmobile.backend.desktop.DesktopGraphicsBridge;
 import org.crossmobile.backend.desktop.cgeo.CDrawable;
@@ -15,8 +16,12 @@ import org.crossmobile.bind.graphics.*;
 import java.util.Collections;
 import java.util.List;
 
+import static crossmobile.ios.uikit.UserInterfaceDrill.drawWindow;
+
 public class AvianGraphicsBridge extends DesktopGraphicsBridge<SkCanvas, SkMatrix> {
-    public static SDLWindow window;
+    private SDLWindow window;
+    private boolean requestRepaint;
+    private boolean requestWindowUpdate;
 
     static {
         initSDL();
@@ -34,6 +39,31 @@ public class AvianGraphicsBridge extends DesktopGraphicsBridge<SkCanvas, SkMatri
 
     @Override
     protected void requestRepaint() {
+        requestRepaint = true;
+    }
+
+    void initWindow(String title) {
+        if (window == null)
+            window = new SDLWindow(title);
+    }
+
+    void requestWindowUpdate() {
+        requestWindowUpdate = true;
+    }
+
+    void repaintIfRequired() {
+        if (requestRepaint) {
+            requestRepaint = false;
+            drawWindow(newGraphicsContext(null, true));
+            requestWindowUpdate();
+        }
+    }
+
+    void windowUpdateIfRequired() {
+        if (requestWindowUpdate) {
+            requestWindowUpdate = false;
+            window.update();
+        }
     }
 
     @Override
@@ -43,7 +73,7 @@ public class AvianGraphicsBridge extends DesktopGraphicsBridge<SkCanvas, SkMatri
 
     @Override
     public GraphicsContext<SkMatrix> newGraphicsContext(SkCanvas avianGraphicsContext, boolean isLive) {
-        return avianGraphicsContext == null ? new SkCanvas(AvianGraphicsBridge.window) : avianGraphicsContext;
+        return avianGraphicsContext == null ? new SkCanvas(window) : avianGraphicsContext;
     }
 
     @Override
@@ -106,6 +136,5 @@ public class AvianGraphicsBridge extends DesktopGraphicsBridge<SkCanvas, SkMatri
 
     static native void quitSDL();
 
-    static native SDLEvent pollSDLEvents();
-
+    static native AvianEvent pollSDLEvents();
 }
