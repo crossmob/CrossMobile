@@ -1,28 +1,32 @@
 FROM debian:buster
 
-ARG DEBIAN_FRONTEND=noninteractive
+ARG ARCH
 
-RUN apt-get update && \
+RUN [ "$(uname -m)" != "$ARCH" ] && \
+    g++-$ARCH-linux-gnu \
+    binutils-$ARCH-linux-gnu
+
+RUN dpkg --add-architecture $ARCH && \
+    apt-get update && \
     apt-get install -y \
-        libfontconfig1-dev \
-        libx11-dev \
-        libxext-dev \
-        libxrandr-dev \
-        libxcursor-dev \
-        libxi-dev \
-        libxinerama-dev \
-        libxxf86vm-dev \
-        #libxss-dev \
-        libgl1-mesa-dev \
-        libdbus-1-dev \
-        libudev-dev \
-        libgles2-mesa-dev \
-        libegl1-mesa-dev \
-        libibus-1.0-dev \
-        fcitx-libs-dev \
-        libwayland-dev \
-        libxkbcommon-dev \
-        wayland-protocols \
+        libfontconfig1-dev:$ARCH \
+        libx11-dev:$ARCH \
+        libxext-dev:$ARCH \
+        libxrandr-dev:$ARCH \
+        libxcursor-dev:$ARCH \
+        libxi-dev:$ARCH \
+        libxinerama-dev:$ARCH \
+        libxxf86vm-dev:$ARCH \
+        libgl1-mesa-dev:$ARCH \
+        libdbus-1-dev:$ARCH \
+        libudev-dev:$ARCH \
+        libgles2-mesa-dev:$ARCH \
+        libegl1-mesa-dev:$ARCH \
+        libibus-1.0-dev:$ARCH \
+        fcitx-libs-dev:$ARCH \
+        libwayland-dev:$ARCH \
+        libxkbcommon-dev:$ARCH \
+        wayland-protocols:$ARCH \
         git \
         cmake \
         ninja-build \
@@ -30,8 +34,8 @@ RUN apt-get update && \
         clang \
         python2.7 \
         zip \
+        zlib1g-dev \
         software-properties-common && \
-        \
         apt-add-repository -yu 'deb http://security.debian.org/debian-security stretch/updates main' && \
         apt-get install -y openjdk-8-jdk && \
         ln -sf /usr/bin/python2.7 /usr/bin/python && \

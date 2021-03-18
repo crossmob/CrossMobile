@@ -1,24 +1,46 @@
 #!/bin/bash
 set -e
 
+USAGE="./build $SRC_ROOT $BUILD_OS $BUILD_ARCH $BUILD_MODE"
+
 if [ ! -f "$JAVA_HOME/include/jni.h" ] ; then
     echo "Unable to locate JDK under ${JAVA_HOME}"
     exit 1
 fi
 
 
-BUILD_OS="linux"
-BUILD_ARCH=${2:-$(uname -m)}
-BUILD_MODE=${3:-release}
+BUILD_OS=${2:-$(uname -s | tr '[:upper:]' '[:lower:]')}
+BUILD_ARCH=${3:-$(uname -m)}
+BUILD_MODE=${4:-release}
 AVIAN_BUILD_MODE=${3:-fast}
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 BUILD_EXP="$BUILD_OS-$BUILD_ARCH"
+CXX=g++
 
 if [ $BUILD_MODE == "debug" ]; then
     AVIAN_BUILD_MODE="debug"
     BUILD_EXP=$BUILD_EXP#-"debug"
+    BUILD_IS_DEBUG=true
+fi
+
+if [ $BUILD_ARCH != "$(uname -m)" ]; then
+    echo "Cross compiling for $BUILD_ARCH"
+    BUILD_AARCH=$BUILD_ARCH
+    if [ $BUILD_ARCH == "arm64" ]; then
+        BUILD_AARCH="aarch64"
+    fi
+    DIR_CROSS_LIBS="/usr/lib/$BUILD_AARCH-linux-gnu"
+    CC="$BUILD_AARCH-$BUILD_OS-gnu-gcc"
+    CXX="$BUILD_AARCH-$BUILD_OS-gnu-g++"
+    LD_LIBRARY_PATH=$DIR_CROSS_LIBS
+    LDFLAGS="-L$DIR_CROSS_LIBS -Wl,-rpath=$DIR_CROSS_LIBS"
+    CXXFLAGS="-Wl,-rpath=$DIR_CROSS_LIBS"
+    CFLAGS="-Wl,-rpath=$DIR_CROSS_LIBS"
+    LIBPATH=$DIR_CROSS_LIBS
+    BUILD_CROSS_LIBS="$DIR_CROSS_LIBS/*"
+    echo "DIR_CROSS_LIBS: $DIR_CROSS_LIBS"
 fi
 
 DIR_SRC_ROOT=${1:-$(pwd)}
@@ -28,13 +50,6 @@ DIR_SRC_ROOT=${1:-$(pwd)}
 DIR_LIBS="$DIR_SRC_ROOT/target/$BUILD_EXP"
 DIR_3RD="$DIR_SRC_ROOT"
 DIR_COMMON="$DIR_SRC_ROOT/target/common"
-# DIR_SRC_SRC="$DIR_SRC_ROOT/src"
-# DIR_SRC_CP_AROMA="$DIR_SRC_SRC/classpath/aroma"
-# DIR_SRC_CP_AROMA_WM="$DIR_SRC_CP_AROMA/wm"
-# DIR_SRC_CP_AROMA_RENDER="$DIR_SRC_CP_AROMA/render"
-# DIR_SRC_JNI="$DIR_SRC_CP/jni"
-# DIR_SRC_JNI_SKIA="$DIR_SRC_JNI/skia"
-# DIR_SRC_JNI_SDL2="$DIR_SRC_JNI/sdl2"
 NUM_PROC=$(nproc)
 
 echo -e "Start building: $GREEN$BUILD_EXP$NC"
@@ -59,6 +74,7 @@ if [[ ! -f $DIR_AVIAN_ZIP || ! -f $DIR_AVIAN_JAR ]]; then
         echo -e "${GREEN}Building Avian ...${NC}"
         cd $DIR_AVIAN_SRC
         make clean
+
         make\
         -j ${NUM_PROC} \
         platform=$BUILD_OS \
@@ -96,6 +112,12 @@ if [ ! -f $SDL_ARC ] ; then
         cd $DIR_SDL_BUILD
         cmake $DIR_SDL_SRC \
             -GNinja \
+            -DCMAKE_C_COMPILER="$CC" \
+            -DCMAKE_CXX_COMPILER="$CXX" \
+            -DCMAKE_C_FLAGS="$CFLAGS" \
+            -DCMAKE_CXX_FLAGS="$CXXFLAGS" \
+            -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS" \
+            -DCMAKE_BUILD_TYPE="$BUILD_MODE" \
             -DSDL_SHARED=0 \
             -DSDL_AUDIO=0 \
             -DVIDEO_WAYLAND=ON \
@@ -114,16 +136,26 @@ DIR_SKIA_BUILD="$DIR_SKIA_SRC/$DIR_SKIA_OUT"
 DIR_DEPTOOL_BIN="$DIR_SKIA_SRC/depot_tools"
 SKIA_ARC="$DIR_LIBS/libskia.a"
 SKIA_VER="chrome/m87"
-SKIA_ARCH="x64"
-SKIA_CPU="x64"
-SKIA_PLAT="x86_64-linux-gnu"
+if [[ $BUILD_ARCH == "x86_64" ]]; then
+    SKIA_ARCH="x64"
+    SKIA_CPU="x64"
+    SKIA_PLAT="x86_64-linux-gnu"
+elif [[ $BUILD_ARCH == "arm64" ]]; then
+    SKIA_ARCH="arm64"
+    SKIA_CPU="arm64"
+    SKIA_PLAT="aarch64-linux-gnu"
+elif [[ $BUILD_ARCH == "arm" ]]; then
+    SKIA_ARCH="arm"
+    SKIA_CPU="arm"
+    SKIA_PLAT="arm-linux-gnu"
+fi
 
 
 if [ ! -f $SKIA_ARC ] ; then
     if [ ! -f "$DIR_SKIA_BUILD/libskia.a" ]; then
         echo -e "${GREEN}Building SKIA ...${NC}"
         cd $DIR_SKIA_SRC
-        python tools/git-sync-deps
+        #python tools/git-sync-deps
         rm -rf $DIR_SKIA_BUILD
 
         SKIA_OPTIONS_ENABLED="
@@ -191,21 +223,22 @@ if [ ! -f $SKIA_ARC ] ; then
                 "'"--target=${SKIA_PLAT}"'",
                 "'"--sysroot=${DIR_SYSROOT}"'",
                 "'"-B${DIR_SYSROOT}/bin"'",
-                "'"-L${DIR_SYSROOT}/lib"'",
+                "'"-L${DIR_SYSROOT}/lib -L$DIR_CROSS_LIBS"'",
                 "'"-L${LIBEGL_BIN}"'",
             ]
-            is_official_build = true
+            is_official_build=true
             is_debug=false
-            is_component_build = false
+            is_component_build=false
             '"${SKIA_OPTIONS_ENABLED}"'
             '"${SKIA_OPTIONS_DISABLED}"'
             '
 
         ninja -C $DIR_SKIA_BUILD -j $NUM_PROC
+        bin/gn args $DIR_SKIA_OUT --list --short > $DIR_LIBS/"skia_${BUILD_EXP}_build_manifest.txt"
     fi
     cp $DIR_SKIA_BUILD/libskia.a $DIR_LIBS
 fi
 
 DIR_SRC_DRIVER="$DIR_SRC_ROOT/avian-driver/embedded-jar-main.cpp"
 
-g++ -I$JAVA_HOME/include -I$JAVA_HOME/include/$BUILD_OS -c $DIR_SRC_DRIVER -o $DIR_LIBS/driver.o
+$CXX -I$JAVA_HOME/include -I$JAVA_HOME/include/$BUILD_OS -c $DIR_SRC_DRIVER -o $DIR_LIBS/driver.o
