@@ -33,8 +33,6 @@ public class AvianLifecycleBridge extends DesktopLifecycleBridge {
     @Override
     public void init(String[] args) {
         super.init(args);
-        if (false)
-            Aroma.main(args);
         eventThread = Thread.currentThread();
         ((AvianGraphicsBridge) Native.graphics()).initWindow("Aroma");
         Native.graphics().setOrientation(DefaultInitialOrientation);

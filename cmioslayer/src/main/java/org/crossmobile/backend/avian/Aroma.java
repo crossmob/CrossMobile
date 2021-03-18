@@ -2,6 +2,7 @@ package org.crossmobile.backend.avian;
 
 public class Aroma {
     public static void main(String[] args) {
+        AvianGraphicsBridge.init();
         SDLWindow window = new SDLWindow("Aroma");
         window.setSize(600, 400);
         // SDLEvent event = new SDLEvent();
@@ -30,6 +31,7 @@ public class Aroma {
 //        });
 //        skia.drawBitmap(bitmap, 350, 50, 200, 200);
 
+        System.out.println("Entering event loop");
         while (true) {
             AvianGraphicsBridge.pollSDLEvents();
             window.update();
