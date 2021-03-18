@@ -53,12 +53,12 @@ public class Aroma {
 //        });
 //        skia.drawBitmap(bitmap, 350, 50, 200, 200);
 
-        AvianEvent event;
-        while (true) {
-            while ((event = (AvianEvent) AvianGraphicsBridge.pollSDLEvents()) != null) {
-
-            }
-            window.update();
-        }
+//        AvianEvent event;
+//        while (true) {
+//            while ((event = (AvianEvent) AvianGraphicsBridge.pollSDLEvents()) != null) {
+//
+//            }
+//            window.update();
+//        }
     }
 }
