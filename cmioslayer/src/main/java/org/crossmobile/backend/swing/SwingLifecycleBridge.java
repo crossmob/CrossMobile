@@ -29,7 +29,6 @@ import static org.crossmobile.bind.graphics.GraphicsBridgeConstants.DefaultIniti
 
 public class SwingLifecycleBridge extends DesktopLifecycleBridge {
 
-    private boolean isQuitting;
     private NSTimer animationTimer;
 
     @SuppressWarnings("unchecked")
@@ -50,25 +49,6 @@ public class SwingLifecycleBridge extends DesktopLifecycleBridge {
     @Override
     protected boolean supportsExtendedVisuals() {
         return true;
-    }
-
-    @Override
-    public void quit(String error, Throwable throwable) {
-        if (isQuitting)
-            return;
-        isQuitting = true;
-        if (error != null && !error.isEmpty()) {
-            if (throwable != null)
-                throwable.printStackTrace();
-            if (JOptionPane.showConfirmDialog(null, "Error while executing " + System.getProperty("cm.display.name") + ":\n  " + error + "\n\nDo you want to continue running the application?"
-                    , "Error while executing", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE) == JOptionPane.NO_OPTION) {
-                super.quit(error, throwable);
-                System.exit(-1);
-            } else isQuitting = false;
-        } else {
-            super.quit(error, throwable);
-            System.exit(0);
-        }
     }
 
     @Override

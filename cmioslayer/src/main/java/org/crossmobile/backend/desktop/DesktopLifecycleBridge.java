@@ -14,9 +14,12 @@ import org.crossmobile.bridge.Native;
 import java.io.File;
 import java.util.Map;
 
+import static java.util.Collections.singletonList;
+
 public abstract class DesktopLifecycleBridge extends AbstractLifecycleBridge {
 
     private static boolean initial_activation_performed = false;
+    private boolean isQuitting;
 
     /**
      * Desktop backend directly starts this method from the wrapper launcher, so
@@ -53,6 +56,24 @@ public abstract class DesktopLifecycleBridge extends AbstractLifecycleBridge {
     public void deactivate() {
         super.deactivate();
         ((DesktopDrawableMetrics) Native.graphics().metrics()).setActive(false);
+    }
+
+    @Override
+    public void quit(String error, Throwable throwable) {
+        if (isQuitting)
+            return;
+        isQuitting = true;
+        super.quit(error, throwable);
+        if (error != null && !error.isEmpty()) {
+            if (throwable != null)
+                throwable.printStackTrace(System.err);
+            Native.system().showAlert(null, System.getProperty("cm.display.name"),
+                    "Error while executing " + System.getProperty("cm.display.name") + ":\n  " + error,
+                    singletonList("Close"),
+                    (alertView, buttonIndex) -> System.exit(-1)
+            );
+        } else
+            System.exit(0);
     }
 
     @Override

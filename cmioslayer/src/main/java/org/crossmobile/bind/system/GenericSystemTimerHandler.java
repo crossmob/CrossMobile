@@ -86,7 +86,13 @@ public class GenericSystemTimerHandler extends Thread implements SystemTimerHand
     public void terminate() {
         for (NSTimer timer : registry)
             timer.invalidate();
-        interrupt();
-        notifyAll();
+        try {
+            interrupt();
+        } catch (Exception ignored) {
+        }
+        try {
+            interrupt();
+        } catch (Exception ignored) {
+        }
     }
 }

@@ -46,18 +46,6 @@ public class AvianLifecycleBridge extends DesktopLifecycleBridge {
         }, "SDL event thread");
         sdlEventThread.setDaemon(true);
         sdlEventThread.start();
-
-        new Thread(() -> {
-            while (true) {
-                addEvent(new AvianEvent() {
-                });
-                try {
-                    Thread.sleep(1000);
-                    Native.graphics().refreshDisplay();
-                } catch (InterruptedException ignored) {
-                }
-            }
-        }, "Ticker").start();
     }
 
     @Override
@@ -134,8 +122,18 @@ public class AvianLifecycleBridge extends DesktopLifecycleBridge {
 
     private void fireWindowEvent(WindowEvent event) {
         switch (event.getEventType()) {
+            case WindowEvent.SIZE_CHANGED:
+                Native.graphics().refreshDisplay();
+                break;
             case WindowEvent.CLOSE:
-                System.exit(0);
+                Native.lifecycle().quit(null, null);
+                break;
+            case WindowEvent.FOCUS_GAINED:
+                Native.lifecycle().activate();
+                break;
+            case WindowEvent.FOCUS_LOST:
+                Native.lifecycle().deactivate();
+                break;
             default:
                 ((AvianGraphicsBridge) Native.graphics()).requestWindowUpdate();
         }

@@ -50,5 +50,4 @@ public abstract class DesktopImageBridge extends AbstractImageBridge {
         requestPhotoAlbum(resultImg);
     }
 
-
 }
