@@ -1,19 +1,14 @@
 package org.crossmobile.backend.avian.event;
 
-public class MouseMotionEvent implements AvianEvent {
-    public final int x;
-    public final int y;
+public class MouseMotionEvent extends MouseEvent {
+    private final int buttonMask;
 
-    public MouseMotionEvent(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public MouseMotionEvent(int x, int y, int buttonMask) {
+        super(x, y);
+        this.buttonMask = buttonMask;
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
+    public int getButtonMask() {
+        return buttonMask;
     }
 }

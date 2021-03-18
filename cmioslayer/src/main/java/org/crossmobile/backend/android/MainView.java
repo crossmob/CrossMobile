@@ -13,17 +13,14 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.WindowInsets;
-import crossmobile.ios.coregraphics.CGPoint;
-import crossmobile.ios.uikit.UIApplication;
-import crossmobile.ios.uikit.UITouch;
-import crossmobile.ios.uikit.UIWindow;
 import org.crossmobile.bridge.Native;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static android.view.MotionEvent.*;
-import static crossmobile.ios.uikit.UserInterfaceDrill.*;
 import static crossmobile.ios.uikit.UITouchPhase.*;
+import static crossmobile.ios.uikit.UserInterfaceDrill.drawWindow;
+import static crossmobile.ios.uikit.UserInterfaceDrill.fireUIEvent;
 
 @SuppressWarnings("deprecation")
 public class MainView extends android.widget.AbsoluteLayout {
@@ -44,7 +41,6 @@ public class MainView extends android.widget.AbsoluteLayout {
     }
 
     @Override
-    @SuppressWarnings("null")
     public boolean dispatchTouchEvent(MotionEvent ev) {
         AtomicBoolean result = new AtomicBoolean(false);
         Native.lifecycle().encapsulateContext(() -> {
@@ -76,20 +72,14 @@ public class MainView extends android.widget.AbsoluteLayout {
                     phase = Stationary;
                     break;
             }
-            UIWindow window;
-            if (UIApplication.sharedApplication() != null && (window = UIApplication.sharedApplication().keyWindow()) != null) {
-                int pcount = ev.getPointerCount();
-                UITouch[] touches = new UITouch[pcount];
-                CGPoint[] touchLocations = phase == Began || phase == Moved ? new CGPoint[pcount] : null;
-                for (int p = 0; p < pcount; p++) {
-                    touches[p] = newUITouch(ev.getX(p), ev.getY(p), p, window, pointer >= 0 && pointer != p ? Stationary : phase);
-                    if (touchLocations != null)
-                        touchLocations[p] = touches[p].locationInView(null);
-                }
-                Native.graphics().metrics().setActiveTouchLocations(touchLocations);
-                window.sendEvent(newUIEvent(touches, ev, phase));
-                result.set(true);
+            double[] x = new double[ev.getPointerCount()];
+            double[] y = new double[x.length];
+            for (int p = 0; p < x.length; p++) {
+                x[p] = ev.getX(p);
+                y[p] = ev.getY(p);
             }
+            fireUIEvent(ev, x, y, pointer, phase);
+            result.set(true);
         });
         return result.get();
     }

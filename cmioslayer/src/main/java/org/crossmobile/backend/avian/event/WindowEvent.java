@@ -8,4 +8,8 @@ public class WindowEvent implements AvianEvent {
     public WindowEvent(int type) {
         this.type = type;
     }
+
+    public int getEventType() {
+        return type;
+    }
 }
