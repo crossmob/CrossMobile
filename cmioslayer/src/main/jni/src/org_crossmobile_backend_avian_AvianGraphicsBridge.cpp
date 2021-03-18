@@ -51,6 +51,12 @@ JNIEXPORT jobject JNICALL Java_org_crossmobile_backend_avian_AvianGraphicsBridge
         return env->NewObject(eventClass,
                               eventMethod,
                               SDL_BUTTON(event.button.button), event.button.x, event.button.y, event.button.state);
+      case SDL_WINDOWEVENT:
+        eventClass = env->FindClass("org/crossmobile/backend/avian/event/WindowEvent");
+        eventMethod = env->GetMethodID(eventClass, "<init>", "(I)V");
+        return env->NewObject(eventClass,
+                              eventMethod,
+                              event.window.event);
       default:
           return 0; // Means NULL
     }
