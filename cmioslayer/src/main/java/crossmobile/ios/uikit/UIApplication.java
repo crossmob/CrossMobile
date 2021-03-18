@@ -8,6 +8,7 @@ package crossmobile.ios.uikit;
 
 import crossmobile.ios.foundation.*;
 import crossmobile.ios.usernotifications.UNUserNotificationCenter;
+import org.crossmobile.backend.avian.Aroma;
 import org.crossmobile.bind.graphics.UIStatusBar;
 import org.crossmobile.bind.system.SystemUtilities;
 import org.crossmobile.bridge.Native;
@@ -66,6 +67,11 @@ public class UIApplication extends UIResponder {
     public static int main(@CMJoinMEM(memory = "argv", size = "argc") String[] args,
                            @CMParamMod(convertWith = "jclass_to_string", type = String.class) Class<? extends UIApplication> UIApplication,
                            @CMParamMod(convertWith = "jclass_to_string", type = String.class) Class<? extends UIApplicationDelegate> UIApplicationDelegate) {
+        if (args.length > 0 && args[0].equals("--test")) {
+            Aroma.main(args);
+            System.exit(-1);
+        }
+
         Native.prepare(null);
         Native.lifecycle().init(args);
         Native.lifecycle().runOnEventThread(() -> {
