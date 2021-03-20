@@ -32,21 +32,17 @@ public class AvianWrapperUIBridge implements WrapperUIBridge<Object> {
 
     @Override
     public void resignFocus() {
-
     }
 
     @Override
     public void requestFocus(Object nativeWidget) {
-
     }
 
     @Override
     public void setAttached(Object nativeWidget, boolean isAttached) {
-
     }
 
     @Override
     public void updateNativeGraphics(String button_up, String button_down) {
-
     }
 }

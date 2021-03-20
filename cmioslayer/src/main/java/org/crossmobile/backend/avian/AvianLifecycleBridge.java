@@ -104,10 +104,9 @@ public class AvianLifecycleBridge extends DesktopLifecycleBridge {
                     else if (event instanceof KeyEvent)
                         fireKeyEvent((KeyEvent) event);
                     else if (event instanceof WindowEvent)
-                        fireWindowEvent((WindowEvent) event);
-                    graphics.repaintIfRequired();
+                        fireWindowEvent((WindowEvent) event, graphics);
                 });
-                graphics.windowUpdateIfRequired();
+                graphics.repaint(); // Should be last performed action after all events have been processed
             } catch (Throwable th) {
                 th.printStackTrace();
             }
@@ -118,10 +117,10 @@ public class AvianLifecycleBridge extends DesktopLifecycleBridge {
         System.out.println("Key event!");
     }
 
-    private void fireWindowEvent(WindowEvent event) {
+    private void fireWindowEvent(WindowEvent event, AvianGraphicsBridge graphics) {
         switch (event.getEventType()) {
             case WindowEvent.SIZE_CHANGED:
-                Native.graphics().refreshDisplay();
+                ((DesktopDrawableMetrics) graphics.metrics()).windowResized(graphics.getWindowWidth(), graphics.getWindowHeight());
                 break;
             case WindowEvent.CLOSE:
                 Native.lifecycle().quit(null, null);

@@ -45,24 +45,34 @@ public class AvianGraphicsBridge extends DesktopGraphicsBridge<SkCanvas, SkMatri
         requestRepaint = true;
     }
 
+    void requestWindowUpdate() {
+        requestWindowUpdate = true;
+    }
+
     void initWindow(String title) {
         if (window == null)
             window = new SDLWindow(title);
     }
 
-    void requestWindowUpdate() {
-        requestWindowUpdate = true;
+    int getWindowWidth() {
+        return window.getWidth();
     }
 
-    void repaintIfRequired() {
-        if (requestRepaint) {
+    int getWindowHeight() {
+        return window.getHeight();
+    }
+
+    void repaint() {
+        while (requestRepaint) {    // We need a loop, since drawWindow might trigger new repaint request
             requestRepaint = false;
+            requestWindowUpdate = true;
             drawWindow(newGraphicsContext(null, true));
-            requestWindowUpdate();
+            windowUpdate();
         }
+        windowUpdate();
     }
 
-    void windowUpdateIfRequired() {
+    void windowUpdate() {
         if (requestWindowUpdate) {
             requestWindowUpdate = false;
             window.update();
