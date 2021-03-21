@@ -46,27 +46,20 @@ public class MainView extends android.widget.AbsoluteLayout {
         Native.lifecycle().encapsulateContext(() -> {
             super.dispatchTouchEvent(ev);
             int phase;
-            int pointer = -1;
             switch (ev.getAction() & MotionEvent.ACTION_MASK) {
                 case ACTION_DOWN:
+                case ACTION_POINTER_DOWN:
                     phase = Began;
                     break;
                 case ACTION_MOVE:
                     phase = Moved;
                     break;
                 case ACTION_UP:
+                case ACTION_POINTER_UP:
                     phase = Ended;
                     break;
                 case ACTION_CANCEL:
                     phase = Cancelled;
-                    break;
-                case ACTION_POINTER_DOWN:
-                    phase = Began;
-                    pointer = (ev.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) >>> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
-                    break;
-                case ACTION_POINTER_UP:
-                    phase = Ended;
-                    pointer = (ev.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) >>> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
                     break;
                 default:
                     phase = Stationary;
@@ -78,6 +71,7 @@ public class MainView extends android.widget.AbsoluteLayout {
                 x[p] = ev.getX(p);
                 y[p] = ev.getY(p);
             }
+            int pointer = (ev.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) >>> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
             fireUIEvent(ev, x, y, pointer, phase);
             result.set(true);
         });
