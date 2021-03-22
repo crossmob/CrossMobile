@@ -180,10 +180,18 @@ public class SkCanvas extends NativeElement implements GraphicsContext<SkMatrix>
     public void drawRadialGradient(int[] RGBcolors, double[] locations, double startCenterX, double startCenterY, double startRadius, double endCenterX, double endCenterY, double endRadius, int CGGradientDrawingOptions) {
     }
 
+    /**
+     * Concat given matrix with the current transformation matrix of this Canvas
+     * @param transform the offered transformation matrix to concat with the current one
+     */
     @Override
     public void concatCTM(SkMatrix transform) {
     }
 
+    /**
+     * Get the current transformation matrix of this canvas
+     * @return the transformation matrix
+     */
     @Override
     public CGAffineTransform getCTM() {
         return null;

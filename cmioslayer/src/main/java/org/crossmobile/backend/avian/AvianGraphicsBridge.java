@@ -89,6 +89,12 @@ public class AvianGraphicsBridge extends DesktopGraphicsBridge<SkCanvas, SkMatri
         return avianGraphicsContext == null ? new SkCanvas(window) : avianGraphicsContext;
     }
 
+    /**
+     * Create a SkCanvas for a giver bitmap. Note that this canvas will be used to draw
+     * primitives on this bitmap and will be desroyed when no needed any more.
+     * @param bitmap the bitmap to draw on
+     * @return the SkCanvas wrapper
+     */
     @Override
     public SkCanvas createCanvas(NativeBitmap bitmap) {
         return new SkCanvas(null);
