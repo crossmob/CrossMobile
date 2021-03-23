@@ -90,6 +90,7 @@ JNIEXPORT jobject JNICALL Java_org_crossmobile_backend_avian_SkFont_measureText
     SkFont* font = (SkFont*)peer;
     const char *text = env->GetStringUTFChars(jtext, 0);
     SkRect bounds;
+    // NOTE: maybe strlen stops the char count at first 0 char
     (void)font->measureText(text, strlen(text), SkTextEncoding::kUTF8, &bounds);
 
     jclass eventClass = env->FindClass("crossmobile/ios/coregraphics/CGSize");
