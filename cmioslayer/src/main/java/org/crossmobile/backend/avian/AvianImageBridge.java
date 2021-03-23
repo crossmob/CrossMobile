@@ -33,7 +33,7 @@ public class AvianImageBridge extends DesktopImageBridge {
     @Override
     public void fillStreamAndClose(NativeBitmap bitmap, ImageBridgeConstants.ImageType type, double quality, OutputStream out) throws IOException {
         try {
-            byte[] dataBytes = getBytesFromImage((SkBitmap) bitmap, type == ImageBridgeConstants.ImageType.PNG, quality);
+            byte[] dataBytes = ((SkBitmap) bitmap).getBytesFromImage(type, quality);
             if (dataBytes == null || dataBytes.length == 0)
                 throw new IOException("Invalid image data");
             out.write(dataBytes);
@@ -68,6 +68,4 @@ public class AvianImageBridge extends DesktopImageBridge {
     @Override
     public void requestPhotoAlbum(VoidBlock1<CGImage> imageFilenameCallback) {
     }
-
-    private static native byte[] getBytesFromImage(SkBitmap bitmap, boolean asPNG, double quality);
 }

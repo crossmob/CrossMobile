@@ -33,6 +33,14 @@ JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkBitmap_initFromBlob
 
 /*
  * Class:     org_crossmobile_backend_avian_SkBitmap
+ * Method:    getBytesFromImage
+ * Signature: (JZD)[B
+ */
+JNIEXPORT jbyteArray JNICALL Java_org_crossmobile_backend_avian_SkBitmap_getBytesFromImage
+  (JNIEnv *, jclass, jlong, jboolean, jdouble);
+
+/*
+ * Class:     org_crossmobile_backend_avian_SkBitmap
  * Method:    destroy
  * Signature: (J)V
  */

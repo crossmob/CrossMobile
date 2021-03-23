@@ -7,6 +7,7 @@
 package org.crossmobile.backend.avian;
 
 import crossmobile.ios.uikit.UIImageOrientation;
+import org.crossmobile.bind.graphics.ImageBridgeConstants;
 import org.crossmobile.bind.graphics.NativeBitmap;
 import org.crossmobile.bind.system.StreamConverter;
 import org.crossmobile.bridge.system.BaseUtils;
@@ -59,11 +60,17 @@ public class SkBitmap extends NativeElement implements NativeBitmap {
         return initFromByteArray(StreamConverter.toBytes(inputStream));
     }
 
+    byte[] getBytesFromImage(ImageBridgeConstants.ImageType imageType, double quality) {
+        return getBytesFromImage(peer, imageType == ImageBridgeConstants.ImageType.PNG, quality);
+    }
+
     private static native long initFromFileName(String path);
 
     private static native long initFromByteArray(byte[] data);
 
     private static native long initFromBlob(long blobPeer);
+
+    private static native byte[] getBytesFromImage(long peer, boolean asPNG, double quality);
 
     protected native void destroy(long peer);
 }
