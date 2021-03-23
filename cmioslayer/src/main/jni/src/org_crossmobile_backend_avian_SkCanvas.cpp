@@ -11,7 +11,7 @@
 #include "include/core/SkClipOp.h"
 
 
-JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkCanvas_initCanvas
+JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkCanvas_initCanvas__IIJI
   (JNIEnv *env, jclass clazz, jint jwidth, jint jheight, jlong jpixels, jint jpitch) {
   INIT();
   int width = (int)jwidth;
@@ -31,6 +31,12 @@ JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkCanvas_initCanvas
   return (jlong)canvas;
 }
 
+JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkCanvas_initCanvas__J
+  (JNIEnv *env, jclass clazz, jlong bitmapPeer) {
+  SkBitmap* bitmap = (SkBitmap*) bitmapPeer;
+  SkCanvas* canvas = new SkCanvas(*bitmap);
+  return (jlong)canvas;
+}
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_destroyCanvas
   (JNIEnv *env, jclass clazz, jlong canvasPeer) {

@@ -38,8 +38,16 @@ extern "C" {
  * Method:    initCanvas
  * Signature: (IIJI)J
  */
-JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkCanvas_initCanvas
+JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkCanvas_initCanvas__IIJI
   (JNIEnv *, jclass, jint, jint, jlong, jint);
+
+/*
+ * Class:     org_crossmobile_backend_avian_SkCanvas
+ * Method:    initCanvas
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkCanvas_initCanvas__J
+  (JNIEnv *, jclass, jlong);
 
 /*
  * Class:     org_crossmobile_backend_avian_SkCanvas

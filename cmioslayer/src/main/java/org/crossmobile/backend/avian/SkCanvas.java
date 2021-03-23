@@ -39,6 +39,15 @@ public class SkCanvas extends NativeElement implements GraphicsContext<SkMatrix>
         setPaintStyle(drawPaintPeer, STROKE);
     }
 
+    SkCanvas(SkBitmap bitmap) {
+        super(initCanvas(bitmap.peer));
+        fillPaintPeer = initPaint();
+        drawPaintPeer = initPaint();
+
+        setPaintStyle(fillPaintPeer, FILL);
+        setPaintStyle(drawPaintPeer, STROKE);
+    }
+
     public void setAlpha(double alpha) {
         setPaintAlpha(drawPaintPeer, alpha);
     }
@@ -222,6 +231,7 @@ public class SkCanvas extends NativeElement implements GraphicsContext<SkMatrix>
 
     // SkCanvas object
     private static native long initCanvas(int width, int height, long pixels, int pitch);
+    private static native long initCanvas(long bitmapPeer);
 
     private static native void destroyCanvas(long canvasPeer);
 

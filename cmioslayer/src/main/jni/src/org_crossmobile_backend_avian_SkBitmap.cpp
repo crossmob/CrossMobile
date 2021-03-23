@@ -6,6 +6,7 @@
 #include "include/core/SkBitmap.h"
 #include "include/core/SkTextBlob.h"
 #include "include/core/SkImageGenerator.h"
+#include "include/core/SkImageEncoder.h"
 #include "include/core/SkRRect.h"
 
 #include "avian/system/system.h"
@@ -57,4 +58,18 @@ JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkBitmap_initFromByte
 
   env->ReleaseByteArrayElements(array, bufferPtr, 0);
   RETURN_V(bitmap, jlong);
+}
+
+JNIEXPORT jbyteArray JNICALL Java_org_crossmobile_backend_avian_SkBitmap_getBytesFromImage
+  (JNIEnv *env, jclass clazz, jlong bitmapPeer, jboolean jasPNG, jdouble jquality) {
+  SkBitmap* bitmap = (SkBitmap*) bitmapPeer;
+  bool asPNG = (bool) jasPNG;
+  double quality = (double) jquality;
+  sk_sp<SkData> data = SkData::MakeEmpty();
+  if (asPNG)
+    data = SkEncodeBitmap(*bitmap, SkEncodedImageFormat::kPNG, quality);
+  else
+    data = SkEncodeBitmap(*bitmap, SkEncodedImageFormat::kJPEG, quality);
+
+  return (jbyteArray)(uint8_t (*)[data->size()]) data->bytes();;
 }
