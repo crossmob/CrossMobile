@@ -1,5 +1,6 @@
 package org.crossmobile.backend.avian;
 
+import crossmobile.ios.coregraphics.CGSize;
 import org.crossmobile.bind.graphics.NativeFont;
 
 public class SkFont extends NativeElement implements NativeFont {
@@ -55,6 +56,10 @@ public class SkFont extends NativeElement implements NativeFont {
         return getXHeight(peer);
     }
 
+    public CGSize measureText(String text) {
+        return measureText(peer, text);
+    }
+
     @Override
     protected native void destroy(long peer);
 
@@ -71,4 +76,6 @@ public class SkFont extends NativeElement implements NativeFont {
     private static native double getCapHeight(long peer);
 
     private static native double getXHeight(long peer);
+
+    private static native CGSize measureText(long peer, String text);
 }

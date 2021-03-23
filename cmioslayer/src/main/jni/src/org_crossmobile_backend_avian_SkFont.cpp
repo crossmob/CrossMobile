@@ -84,3 +84,18 @@ JNIEXPORT jdouble JNICALL Java_org_crossmobile_backend_avian_SkFont_getXHeight
   font->getMetrics(&metrics);
   return (jdouble)metrics.fXHeight;
 }
+
+JNIEXPORT jobject JNICALL Java_org_crossmobile_backend_avian_SkFont_measureText
+  (JNIEnv *env, jclass clazz, jlong peer, jstring jtext) {
+    SkFont* font = (SkFont*)peer;
+    const char *text = env->GetStringUTFChars(jtext, 0);
+    SkRect bounds;
+    (void)font->measureText(text, strlen(text), SkTextEncoding::kUTF8, &bounds);
+
+    jclass eventClass = env->FindClass("crossmobile/ios/coregraphics/CGSize");
+    jmethodID eventMethod = env->GetMethodID(eventClass, "<init>", "(II)V");
+
+    env->ReleaseStringUTFChars(jtext, text);
+
+    return env->NewObject(eventClass, eventMethod, bounds.width(), bounds.height());
+  }

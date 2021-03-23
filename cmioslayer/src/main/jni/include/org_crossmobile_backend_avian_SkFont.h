@@ -71,6 +71,14 @@ JNIEXPORT jdouble JNICALL Java_org_crossmobile_backend_avian_SkFont_getCapHeight
 JNIEXPORT jdouble JNICALL Java_org_crossmobile_backend_avian_SkFont_getXHeight
   (JNIEnv *, jclass, jlong);
 
+/*
+ * Class:     org_crossmobile_backend_avian_SkFont
+ * Method:    measureText
+ * Signature: (JLjava/lang/String;)Lcrossmobile/ios/coregraphics/CGSize;
+ */
+JNIEXPORT jobject JNICALL Java_org_crossmobile_backend_avian_SkFont_measureText
+  (JNIEnv *, jclass, jlong, jstring);
+
 #ifdef __cplusplus
 }
 #endif
