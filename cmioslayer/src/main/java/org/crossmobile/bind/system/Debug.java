@@ -19,6 +19,8 @@ public class Debug {
     public static boolean Live_Touch_Debug = false;
     public static boolean Ignore_Touches = false;
 
+    public static boolean Full_Debug = false;
+
     public static void init() {
         if (ENABLE_DEBUG) {
             CEventManager.addListener(meta -> {

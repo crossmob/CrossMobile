@@ -30,10 +30,13 @@ extern "C" {
     return SYMBOL(start);
   }
 
+  int DEBUG_LEVEL;
 
-} // extern "C"
+  void __cxa_pure_virtual(void) { abort(); }
+  jclass findClass(JNIEnv *env, char* classname);
+  jmethodID findMethod(JNIEnv *env, jclass clazz, char* methodName, char* signature);
+}
 
-extern "C" void __cxa_pure_virtual(void) { abort(); }
 
 int main(int ac, const char** av)
 {
@@ -87,3 +90,28 @@ int main(int ac, const char** av)
 
   return exitCode;
 }
+
+
+jclass findClass(JNIEnv *env, char* classname) {
+    jclass localClass = env->FindClass(classname);
+    if (localClass==0) {
+        fprintf(stderr, "FATAL: unable to find class %s\n", classname);
+        return 0;
+    }
+//    jclass globalClass = reinterpret_cast<jclass>(env->NewGlobalRef(localClass));
+//        if (localClass==0) {
+//            DEBUG("FATAL: unable to create global class from local class %s", classname);
+//            return 0;
+//        }
+    return localClass;
+}
+
+jmethodID findMethod(JNIEnv *env, jclass clazz, char* methodName, char* signature) {
+    jmethodID methodID = env->GetMethodID(clazz, methodName, signature);
+    if (methodID==0) {
+        fprintf(stderr, "FATAL: unable to find method %s with signature %s\n", methodName, signature);
+        return 0;
+    }
+    return methodID;
+}
+

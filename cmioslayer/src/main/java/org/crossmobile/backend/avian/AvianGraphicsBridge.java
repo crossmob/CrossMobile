@@ -12,6 +12,7 @@ import org.crossmobile.backend.desktop.DesktopDrawableMetrics;
 import org.crossmobile.backend.desktop.DesktopGraphicsBridge;
 import org.crossmobile.backend.desktop.cgeo.CDrawable;
 import org.crossmobile.bind.graphics.*;
+import org.crossmobile.bind.system.Debug;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,6 +25,7 @@ public class AvianGraphicsBridge extends DesktopGraphicsBridge<SkCanvas, SkMatri
     private boolean requestWindowUpdate;
 
     static {
+        setDebugLevel(Debug.Full_Debug ? 1 : 0);
         initSDL();
     }
 
@@ -92,6 +94,7 @@ public class AvianGraphicsBridge extends DesktopGraphicsBridge<SkCanvas, SkMatri
     /**
      * Create a SkCanvas for a giver bitmap. Note that this canvas will be used to draw
      * primitives on this bitmap and will be desroyed when no needed any more.
+     *
      * @param bitmap the bitmap to draw on
      * @return the SkCanvas wrapper
      */
@@ -156,4 +159,6 @@ public class AvianGraphicsBridge extends DesktopGraphicsBridge<SkCanvas, SkMatri
     static native void quitSDL();
 
     static native AvianEvent pollSDLEvents();
+
+    static native void setDebugLevel(int level);
 }

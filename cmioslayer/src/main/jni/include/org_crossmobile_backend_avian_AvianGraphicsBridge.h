@@ -31,6 +31,14 @@ JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_AvianGraphicsBridge_qu
 JNIEXPORT jobject JNICALL Java_org_crossmobile_backend_avian_AvianGraphicsBridge_pollSDLEvents
   (JNIEnv *, jclass);
 
+/*
+ * Class:     org_crossmobile_backend_avian_AvianGraphicsBridge
+ * Method:    setDebugLevel
+ * Signature: (I)V
+ */
+JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_AvianGraphicsBridge_setDebugLevel
+  (JNIEnv *, jclass, jint);
+
 #ifdef __cplusplus
 }
 #endif

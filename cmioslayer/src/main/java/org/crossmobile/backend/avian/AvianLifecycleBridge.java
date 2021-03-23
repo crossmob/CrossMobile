@@ -105,12 +105,18 @@ public class AvianLifecycleBridge extends DesktopLifecycleBridge {
                         fireKeyEvent((KeyEvent) event);
                     else if (event instanceof WindowEvent)
                         fireWindowEvent((WindowEvent) event, graphics);
+                    else if (event instanceof QuitEvent)
+                        quit();
                 });
                 graphics.repaint(); // Should be last performed action after all events have been processed
             } catch (Throwable th) {
                 th.printStackTrace();
             }
         }
+    }
+
+    private void quit() {
+        Native.lifecycle().quit(null, null);
     }
 
     private void fireKeyEvent(KeyEvent event) {
@@ -123,7 +129,7 @@ public class AvianLifecycleBridge extends DesktopLifecycleBridge {
                 ((DesktopDrawableMetrics) graphics.metrics()).windowResized(graphics.getWindowWidth(), graphics.getWindowHeight());
                 break;
             case WindowEvent.CLOSE:
-                Native.lifecycle().quit(null, null);
+                quit();
                 break;
             case WindowEvent.FOCUS_GAINED:
                 Native.lifecycle().activate();
