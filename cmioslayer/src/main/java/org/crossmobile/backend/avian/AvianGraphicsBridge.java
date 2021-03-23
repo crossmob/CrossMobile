@@ -97,7 +97,7 @@ public class AvianGraphicsBridge extends DesktopGraphicsBridge<SkCanvas, SkMatri
      */
     @Override
     public SkCanvas createCanvas(NativeBitmap bitmap) {
-        return new SkCanvas(null);
+        return new SkCanvas((SkBitmap) bitmap);
     }
 
     @Override
