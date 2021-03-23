@@ -1,6 +1,7 @@
 // JNI file org_crossmobile_backend_avian_SkFont.c
 
 #include"org_crossmobile_backend_avian_SkFont.h"
+#include "aroma_debug.h"
 
 #include "include/core/SkFont.h"
 #include "include/core/SkFontMgr.h"

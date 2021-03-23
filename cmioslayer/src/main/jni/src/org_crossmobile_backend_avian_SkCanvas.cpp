@@ -1,6 +1,7 @@
 // JNI file org_crossmobile_backend_avian_SkCanvas.c
 
 #include"org_crossmobile_backend_avian_SkCanvas.h"
+#include "aroma_debug.h"
 
 #include "include/core/SkCanvas.h"
 #include "include/core/SkBitmap.h"

@@ -1,6 +1,7 @@
 // JNI file org_crossmobile_backend_avian_SkBitmap.c
 
 #include"org_crossmobile_backend_avian_SkBitmap.h"
+#include "aroma_debug.h"
 
 #include "include/core/SkBitmap.h"
 #include "include/core/SkTextBlob.h"

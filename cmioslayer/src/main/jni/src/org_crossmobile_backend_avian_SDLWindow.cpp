@@ -1,6 +1,7 @@
 // JNI file org_crossmobile_backend_avian_SDLWindow.c
 
 #include"org_crossmobile_backend_avian_SDLWindow.h"
+#include "aroma_debug.h"
 
 #include "SDL.h"
 

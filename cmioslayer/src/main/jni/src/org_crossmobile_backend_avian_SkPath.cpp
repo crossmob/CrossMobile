@@ -1,6 +1,7 @@
 // JNI file org_crossmobile_backend_avian_SkPath.c
 
 #include"org_crossmobile_backend_avian_SkPath.h"
+#include "aroma_debug.h"
 
 #include "include/core/SkPath.h"
 
