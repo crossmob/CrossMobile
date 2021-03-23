@@ -48,16 +48,15 @@ public class SkBitmap extends NativeElement implements NativeBitmap {
     }
 
     private static long init(InputStream inputStream) {
-//        if (inputStream == null)
-//            return 0;
-//        if (resourceInputStreamClass.isAssignableFrom(inputStream.getClass()))
-//            try {
-//                return initFromBlob((long) peerField.get(inputStream));
-//            } catch (Exception ex) {
-//                BaseUtils.throwException(ex);
-//            }
-//        return initFromByteArray(StreamConverter.toBytes(inputStream));
-        return initFromFileName("/home/allan/Documents/TotalCross/Aroma/resources/test.png");
+        if (inputStream == null)
+            return 0;
+        if (resourceInputStreamClass.isAssignableFrom(inputStream.getClass()))
+            try {
+                return initFromBlob((long) peerField.get(inputStream));
+            } catch (Exception ex) {
+                BaseUtils.throwException(ex);
+            }
+        return initFromByteArray(StreamConverter.toBytes(inputStream));
     }
 
     private static native long initFromFileName(String path);

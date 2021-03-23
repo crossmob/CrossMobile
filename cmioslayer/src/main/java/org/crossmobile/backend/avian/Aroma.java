@@ -1,5 +1,7 @@
 package org.crossmobile.backend.avian;
 
+import java.io.*;
+
 public class Aroma {
     public static void main(String[] args) {
         AvianGraphicsBridge.init();
@@ -23,13 +25,15 @@ public class Aroma {
         skia.setDrawColorWithColor(0xFF00FF00);
         skia.showTextAtPoint(200, 50, "Hi Skia!");
 
-//        SkBitmap bitmap = new SkBitmap(new InputStream() {
-//            @Override
-//            public int read() throws IOException {
-//                return 0;
-//            }
-//        });
-//        skia.drawBitmap(bitmap, 350, 50, 200, 200);
+        File file = new File("/home/allan/Documents/TotalCross/Aroma/resources/test.png");
+
+        SkBitmap bitmap = null;
+        try {
+            bitmap = new SkBitmap(new FileInputStream(file));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        skia.drawBitmap(bitmap, 350, 50, 200, 200);
 
         System.out.println("Entering event loop");
         while (true) {
