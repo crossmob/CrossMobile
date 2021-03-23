@@ -216,11 +216,12 @@ JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_scale
 }
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_clipRect
-  (JNIEnv *env, jclass clazz, jlong canvasPeer, jdouble jwidth, jdouble jheight) {
+  (JNIEnv *env, jclass clazz, jlong canvasPeer, jdouble jwidth, jdouble jheight, jlong paintPeer) {
   SkCanvas* canvas = (SkCanvas*)canvasPeer;
+  SkPaint* paint = (SkPaint*)paintPeer;
   double width = (double)jwidth;
   double height = (double)jheight;
-  canvas->clipRect(SkRect::MakeWH(width, height), SkClipOp::kIntersect, false);
+  canvas->clipRect(SkRect::MakeWH(width, height), SkClipOp::kIntersect, paint->isAntiAlias());
 }
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_setPaintStyle

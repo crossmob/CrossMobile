@@ -68,7 +68,7 @@ public class SkCanvas extends NativeElement implements GraphicsContext<SkMatrix>
 
     @Override
     public void clipToRect(CGRect frame) {
-        clipRect(peer, frame.getMaxX() - frame.getMinX(), frame.getMaxY() - frame.getMinY());
+        clipRect(peer, frame.getMaxX() - frame.getMinX(), frame.getMaxY() - frame.getMinY(), fillPaintPeer);
     }
 
     @Override
@@ -259,7 +259,7 @@ public class SkCanvas extends NativeElement implements GraphicsContext<SkMatrix>
 
     private static native void scale(long canvasPeer, double sx, double sy);
 
-    private static native void clipRect(long canvasPeer, double w, double h);
+    private static native void clipRect(long canvasPeer, double w, double h, long paintPeer);
 
     // SkPaint methods
     private static native void setPaintStyle(long paintPeer, byte style);
