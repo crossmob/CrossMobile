@@ -9,8 +9,7 @@ JNIEXPORT jboolean JNICALL Java_org_crossmobile_backend_avian_AvianGraphicsBridg
   (JNIEnv *env, jclass clazz) {
   INIT();
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-    ERROR("Could not initialize SDL: %s\n", SDL_GetError());
-    return 0;
+    RETURN_ERROR("Could not initialize SDL: %s\n", SDL_GetError());
   }
   RETURN_V(1,int);
 }
@@ -32,6 +31,7 @@ JNIEXPORT jobject JNICALL Java_org_crossmobile_backend_avian_AvianGraphicsBridge
   SDL_Event event;
 
   jobject result = 0;
+  //NOTE: This is not performed on the same thread that we redraw our screen
   if (SDL_WaitEvent(&event)) {
     switch (event.type) {
       case SDL_MOUSEMOTION:
@@ -77,7 +77,7 @@ JNIEXPORT jobject JNICALL Java_org_crossmobile_backend_avian_AvianGraphicsBridge
         break;
       }
     } else {
-        ERROR("Unable to retrieve event: %s\n", SDL_GetError());
+        RETURN_ERROR("Unable to retrieve event: %s\n", SDL_GetError());
     }
     RETURN_V(result,jobject);
 }

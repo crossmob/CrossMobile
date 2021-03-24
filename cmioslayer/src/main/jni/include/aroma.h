@@ -18,7 +18,7 @@ extern int DEBUG_LEVEL;
 # define RETURN_V(VAL,TYPE) return (TYPE)(VAL)
 #endif
 
-#define ERROR(fmt, args...) fprintf(stderr, fmt " [%s]\n", ## args, __func__)
+#define RETURN_ERROR(fmt, args...) fprintf(stderr, "ERROR: " fmt " [%s]\n", ## args, __func__) ; return NULL
 
 #ifdef __cplusplus
 extern "C" {
