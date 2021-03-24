@@ -9,7 +9,7 @@ JNIEXPORT jboolean JNICALL Java_org_crossmobile_backend_avian_AvianGraphicsBridg
   (JNIEnv *env, jclass clazz) {
   INIT();
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-    RETURN_ERROR("Could not initialize SDL: %s\n", SDL_GetError());
+    RETURN_ERROR_V("Could not initialize SDL: %s\n", SDL_GetError());
   }
   RETURN_V(1,int);
 }
@@ -77,7 +77,7 @@ JNIEXPORT jobject JNICALL Java_org_crossmobile_backend_avian_AvianGraphicsBridge
         break;
       }
     } else {
-        RETURN_ERROR("Unable to retrieve event: %s\n", SDL_GetError());
+        RETURN_ERROR_V("Unable to retrieve event: %s\n", SDL_GetError());
     }
     RETURN_V(result,jobject);
 }
