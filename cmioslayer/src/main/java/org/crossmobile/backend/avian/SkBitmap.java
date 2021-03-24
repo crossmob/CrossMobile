@@ -64,8 +64,6 @@ public class SkBitmap extends NativeElement implements NativeBitmap {
         return getBytesFromImage(peer, imageType == ImageBridgeConstants.ImageType.PNG, quality);
     }
 
-    private static native long initFromFileName(String path);
-
     private static native long initFromByteArray(byte[] data);
 
     private static native long initFromBlob(long blobPeer);

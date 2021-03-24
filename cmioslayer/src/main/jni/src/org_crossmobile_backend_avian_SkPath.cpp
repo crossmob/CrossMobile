@@ -8,40 +8,34 @@
 JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkPath_init
   (JNIEnv *env, jclass clazz) {
   INIT();
-  SkPath* path = new SkPath();
-  RETURN();
-  return (jlong)path;
+  DEBUG("  New SkPath in %s in line %d\n", __FILE__, __LINE__);
+  RETURN_V(new SkPath(), jlong);
 }
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkPath_destroy
-  (JNIEnv *env, jobject thiz, jlong peer) {
+  (JNIEnv *env, jobject thiz, jlong path) {
   INIT();
-  delete (SkPath*)peer;
+    DEBUG("  Delete SkPath pointer in %s in line %d\n", __FILE__, __LINE__);
+    delete (SkPath*)path;
   RETURN();
 }
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkPath_moveTo
-  (JNIEnv *env, jclass clazz, jlong peer, jdouble jx, jdouble jy) {
+  (JNIEnv *env, jclass clazz, jlong path, jdouble x, jdouble y) {
   INIT();
-    SkPath* path = (SkPath*)peer;
-    double x = (double)jx;
-    double y = (double)jy;
-    path->moveTo(x, y);
+    DEBUG("  SkPath::moveTo in %s in line %d\n", __FILE__, __LINE__);
+    ((SkPath*)path)->moveTo(x, y);
   RETURN();
 }
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkPath_quadTo
-  (JNIEnv *env, jclass clazz, jlong peer, jdouble jx1, jdouble jy1, jdouble jx2, jdouble jy2) {
+  (JNIEnv *env, jclass clazz, jlong path, jdouble x1, jdouble y1, jdouble x2, jdouble y2) {
   INIT();
-  SkPath* path = (SkPath*)peer;
-  double x1 = (double)jx1;
-  double y1 = (double)jy1;
-  double x2 = (double)jx2;
-  double y2 = (double)jy2;
-  path->quadTo(x1, y1, x2, y2);
+    DEBUG("  SkPath::quadTo in %s in line %d\n", __FILE__, __LINE__);
+    ((SkPath*)path)->quadTo(x1, y1, x2, y2);
   RETURN();
 }
 
@@ -49,15 +43,16 @@ JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkPath_quadTo
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkPath_close
   (JNIEnv *env, jclass clazz, jlong path) {
   INIT();
-  ((SkPath*)path)->close();
+    DEBUG("  SkPath::close in %s in line %d\n", __FILE__, __LINE__);
+    ((SkPath*)path)->close();
   RETURN();
 }
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkPath_reset
-  (JNIEnv *env, jclass clazz, jlong peer) {
+  (JNIEnv *env, jclass clazz, jlong path) {
   INIT();
-  SkPath* path = (SkPath*)peer;
-  path->reset();
+    DEBUG("  SkPath::reset in %s in line %d\n", __FILE__, __LINE__);
+    ((SkPath*)path)->reset();
   RETURN();
 }

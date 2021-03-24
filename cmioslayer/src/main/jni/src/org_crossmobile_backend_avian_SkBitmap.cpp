@@ -11,65 +11,68 @@
 
 #include "avian/system/system.h"
 
-JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkBitmap_initFromFileName
-  (JNIEnv *env, jclass clazz, jstring jpath) {
-  INIT();
-  const char *path = env->GetStringUTFChars(jpath, 0);
-  sk_sp<SkData> data = SkData::MakeFromFileName(path);
-  SkBitmap* bitmap = new SkBitmap();
-  std::unique_ptr<SkImageGenerator> generator(SkImageGenerator::MakeFromEncoded(std::move(data)));
-  if(bitmap->tryAllocPixels(generator->getInfo())) {
-    generator->getPixels(generator->getInfo().makeColorSpace(NULL), bitmap->getPixels(), bitmap->rowBytes());
-  }
-  // Memory management step
-  // Keep in mind:
-  // No new — no delete. In the same way, no malloc (or calloc or realloc) — no free
-  env->ReleaseStringUTFChars(jpath, path);
-  RETURN_V(bitmap, jlong);
-}
-
 JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkBitmap_initFromBlob
   (JNIEnv *env, jclass clazz, jlong blobPeer) {
   INIT();
-  vm::System::Region* region = reinterpret_cast<vm::System::Region*>(blobPeer);
-  sk_sp<SkData> data = SkData::MakeWithCopy(region->start(), region->length());
-  SkBitmap* bitmap = new SkBitmap();
-  std::unique_ptr<SkImageGenerator> generator(SkImageGenerator::MakeFromEncoded(std::move(data)));
-  if(bitmap->tryAllocPixels(generator->getInfo())) {
-    generator->getPixels(generator->getInfo().makeColorSpace(NULL), bitmap->getPixels(), bitmap->rowBytes());
-  }
+    DEBUG("  vm::System::Region reinterpret_cast in %s in line %d\n", __FILE__, __LINE__);
+    vm::System::Region* region = reinterpret_cast<vm::System::Region*>(blobPeer);
+    DEBUG("  SkData::MakeWithCopy in %s in line %d\n", __FILE__, __LINE__);
+    sk_sp<SkData> data = SkData::MakeWithCopy(region->start(), region->length());
+
+    if (data->isEmpty())
+      RETURN_ERROR_V("Bitmap has no data.\n");
+
+    DEBUG("  SkImageGenerator::MakeFromEncoded in %s in line %d\n", __FILE__, __LINE__);
+    std::unique_ptr<SkImageGenerator> generator(SkImageGenerator::MakeFromEncoded(std::move(data)));
+    SkBitmap* bitmap = new SkBitmap();
+    if (bitmap->tryAllocPixels(generator->getInfo())) {
+      DEBUG("  SkImageGenerator::getPixels in %s in line %d\n", __FILE__, __LINE__);
+      generator->getPixels(generator->getInfo().makeColorSpace(NULL), bitmap->getPixels(), bitmap->rowBytes());
+    } else {
+      RETURN_ERROR_V("Cannot alloc bitmap pixels.\n");
+    }
   RETURN_V(bitmap, jlong);
 }
 
 JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkBitmap_initFromByteArray
   (JNIEnv *env, jclass clazz, jbyteArray array) {
   INIT();
+    jbyte* bufferPtr = env->GetByteArrayElements(array, NULL);
+    jsize lengthOfArray = env->GetArrayLength(array);
+    DEBUG("  SkData::MakeWithCopy in %s in line %d\n", __FILE__, __LINE__);
+    sk_sp<SkData> data = SkData::MakeWithCopy(bufferPtr, lengthOfArray);
+    env->ReleaseByteArrayElements(array, bufferPtr, 0);
 
-  jbyte* bufferPtr = env->GetByteArrayElements(array, NULL);
-  jsize lengthOfArray = env->GetArrayLength(array);
+    if (data->isEmpty())
+      RETURN_ERROR_V("Bitmap has no data.\n");
 
-  sk_sp<SkData> data = SkData::MakeWithCopy(bufferPtr, lengthOfArray);
-
-  SkBitmap* bitmap = new SkBitmap();
-  std::unique_ptr<SkImageGenerator> generator(SkImageGenerator::MakeFromEncoded(std::move(data)));
-  if(bitmap->tryAllocPixels(generator->getInfo())) {
-    generator->getPixels(generator->getInfo().makeColorSpace(NULL), bitmap->getPixels(), bitmap->rowBytes());
-  }
-
-  env->ReleaseByteArrayElements(array, bufferPtr, 0);
+    DEBUG("  SkImageGenerator::MakeFromEncoded in %s in line %d\n", __FILE__, __LINE__);
+    std::unique_ptr<SkImageGenerator> generator(SkImageGenerator::MakeFromEncoded(std::move(data)));
+    SkBitmap* bitmap = new SkBitmap();
+    if (bitmap->tryAllocPixels(generator->getInfo())) {
+      DEBUG("  SkImageGenerator::getPixels in %s in line %d\n", __FILE__, __LINE__);
+      generator->getPixels(generator->getInfo().makeColorSpace(NULL), bitmap->getPixels(), bitmap->rowBytes());
+    } else {
+      RETURN_ERROR_V("Cannot alloc bitmap pixels.\n");
+    }
   RETURN_V(bitmap, jlong);
 }
 
 JNIEXPORT jbyteArray JNICALL Java_org_crossmobile_backend_avian_SkBitmap_getBytesFromImage
-  (JNIEnv *env, jclass clazz, jlong bitmapPeer, jboolean jasPNG, jdouble jquality) {
-  SkBitmap* bitmap = (SkBitmap*) bitmapPeer;
-  bool asPNG = (bool) jasPNG;
-  double quality = (double) jquality;
-  sk_sp<SkData> data = SkData::MakeEmpty();
-  if (asPNG)
-    data = SkEncodeBitmap(*bitmap, SkEncodedImageFormat::kPNG, quality);
-  else
-    data = SkEncodeBitmap(*bitmap, SkEncodedImageFormat::kJPEG, quality);
+  (JNIEnv *env, jclass clazz, jlong bitmap, jboolean asPNG, jdouble quality) {
+  INIT();
+    sk_sp<SkData> data = SkData::MakeEmpty();
 
-  return (jbyteArray)(uint8_t (*)[data->size()]) data->bytes();;
+    if (asPNG) {
+      DEBUG("  SkEncodeBitmap to PNG in %s in line %d\n", __FILE__, __LINE__);
+      data = SkEncodeBitmap(*((SkBitmap*)bitmap), SkEncodedImageFormat::kPNG, quality);
+    } else {
+      DEBUG("  SkEncodeBitmap to JPEG in %s in line %d\n", __FILE__, __LINE__);
+      data = SkEncodeBitmap(*((SkBitmap*)bitmap), SkEncodedImageFormat::kJPEG, quality);
+    }
+
+    if (data->isEmpty())
+      RETURN_ERROR_V("Bitmap has no data.\n");
+
+  RETURN_V((uint8_t (*)[data->size()]) data->bytes(), jbyteArray);
 }

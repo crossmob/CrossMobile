@@ -12,36 +12,33 @@
 
 
 JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkCanvas_initCanvas__IIJI
-  (JNIEnv *env, jclass clazz, jint jwidth, jint jheight, jlong jpixels, jint jpitch) {
+  (JNIEnv *env, jclass clazz, jint width, jint height, jlong pixels, jint pitch) {
   INIT();
-  int width = (int)jwidth;
-  int height = (int)jheight;
-  void* pixels = (void*)jpixels;
-  int pitch = (int)jpitch;
-  SkBitmap bitmap;
-  bitmap.installPixels(SkImageInfo::Make(
-        width, 
-        height, 
-        kBGRA_8888_SkColorType, kPremul_SkAlphaType),
-        pixels, 
-        pitch
-      );
-  SkCanvas* canvas = new SkCanvas(bitmap);
-  RETURN();
-  return (jlong)canvas;
+    SkBitmap bitmap;
+    DEBUG("  SkBitmap::installPixels in %s in line %d\n", __FILE__, __LINE__);
+    bitmap.installPixels(SkImageInfo::Make(
+          width,
+          height,
+          kBGRA_8888_SkColorType, kPremul_SkAlphaType),
+          (void*)pixels,
+          pitch
+        );
+  DEBUG("  New SkCanvas from bitmap from surface in %s in line %d\n", __FILE__, __LINE__);
+  RETURN_V(new SkCanvas(bitmap), jlong);
 }
 
 JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkCanvas_initCanvas__J
-  (JNIEnv *env, jclass clazz, jlong bitmapPeer) {
-  SkBitmap* bitmap = (SkBitmap*) bitmapPeer;
-  SkCanvas* canvas = new SkCanvas(*bitmap);
-  return (jlong)canvas;
+  (JNIEnv *env, jclass clazz, jlong bitmap) {
+  INIT();
+  DEBUG("  New SkCanvas from bitmap in %s in line %d\n", __FILE__, __LINE__);
+  RETURN_V(new SkCanvas(*((SkBitmap*) bitmap)), jlong);
 }
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_destroyCanvas
-  (JNIEnv *env, jclass clazz, jlong canvasPeer) {
+  (JNIEnv *env, jclass clazz, jlong canvas) {
   INIT();
-  delete (SkCanvas*)canvasPeer;
+    DEBUG("  Delete SkCanvas pointer in %s in line %d\n", __FILE__, __LINE__);
+    delete (SkCanvas*)canvas;
   RETURN();
 }
 
@@ -49,180 +46,129 @@ JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_destroyCanvas
 JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkCanvas_initPaint
   (JNIEnv *env, jclass clazz) {
   INIT();
-  SkPaint* paint = new SkPaint();
-  return (jlong)paint;
-  RETURN();
+  DEBUG("  New SkPaint in %s in line %d\n", __FILE__, __LINE__);
+  RETURN_V(new SkPaint(), jlong);
 }
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_destroyPaint
-  (JNIEnv *env, jclass clazz, jlong paintPeer) {
+  (JNIEnv *env, jclass clazz, jlong paint) {
   INIT();
-  delete (SkPaint*)paintPeer;
+    DEBUG("  Delete SkPaint pointer in %s in line %d\n", __FILE__, __LINE__);
+    delete (SkPaint*)paint;
   RETURN();
 }
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_clear
-  (JNIEnv *env, jclass clazz, jlong canvasPeer, jint jcolor) {
+  (JNIEnv *env, jclass clazz, jlong canvas, jint color) {
   INIT();
-  SkCanvas* canvas = (SkCanvas*)canvasPeer;
-  SkColor color = (unsigned int)jcolor;
-  canvas->clear(color);
+    DEBUG("  SkCanvas::clear in %s in line %d\n", __FILE__, __LINE__);
+    ((SkCanvas*)canvas)->clear((unsigned int)color);
   RETURN();
 }
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_flush
-  (JNIEnv *env, jclass clazz, jlong canvasPeer) {
+  (JNIEnv *env, jclass clazz, jlong canvas) {
   INIT();
-  SkCanvas* canvas = (SkCanvas*)canvasPeer;
-  canvas->flush();
+      DEBUG("  SkCanvas::flush in %s in line %d\n", __FILE__, __LINE__);
+    ((SkCanvas*)canvas)->flush();
   RETURN();
 }
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_drawText
-  (JNIEnv *env, jclass clazz, jlong canvasPeer, jdouble jx, jdouble jy, jstring jtext, jlong paintPeer, jlong fontPeer) {
+  (JNIEnv *env, jclass clazz, jlong canvas, jdouble x, jdouble y, jstring text, jlong paint, jlong font) {
     INIT();
-    // Get canvas pointer from SkiaContext
-    SkCanvas* canvas = (SkCanvas*)canvasPeer;
-    // Get paint pointer from SkiaPaint
-    SkPaint* paint = (SkPaint*)paintPeer;
-    // Get font pointer from SkiaFont
-    SkFont* font = (SkFont*)fontPeer;
-
-    // Turn java types into native types
-    double x = (double)jx;
-    double y = (double)jy;
-    const char *text = env->GetStringUTFChars(jtext, 0);
-
-    // Draw text
-    sk_sp<SkTextBlob> blob = SkTextBlob::MakeFromString(text, *font);
-    canvas->drawTextBlob(blob.get(), x, y, *paint);
-
-    // Memory management step
-    // Keep in mind:
-    // No new — no delete. In the same way, no malloc (or calloc or realloc) — no free
-    env->ReleaseStringUTFChars(jtext, text);
+      const char *ctext = env->GetStringUTFChars(text, 0);
+      DEBUG("  SkTextBlob::MakeFromString in %s in line %d\n", __FILE__, __LINE__);
+      sk_sp<SkTextBlob> blob = SkTextBlob::MakeFromString(ctext, *((SkFont*)font));
+      env->ReleaseStringUTFChars(text, ctext);
+      DEBUG("  SkCanvas::drawTextBlob in %s in line %d\n", __FILE__, __LINE__);
+      ((SkCanvas*)canvas)->drawTextBlob(blob.get(), x, y, *((SkPaint*)paint));
     RETURN();
 }
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_drawRect
-  (JNIEnv *env, jclass clazz, jlong canvasPeer, jdouble jx, jdouble jy, jdouble jwidth, jdouble jheight, jlong paintPeer) {
+  (JNIEnv *env, jclass clazz, jlong canvas, jdouble x, jdouble y, jdouble width, jdouble height, jlong paint) {
   INIT();
-  SkCanvas* canvas = (SkCanvas*)canvasPeer;
-  SkPaint* paint = (SkPaint*)paintPeer;
-
-  // Turn java types into native types
-  double x = (double)jx;
-  double y = (double)jy;
-  double width = (double)jwidth;
-  double height = (double)jheight;
-
-  SkRect rect = SkRect::MakeXYWH(x, y, width, height);
-  canvas->drawRect(rect, *paint);
+    DEBUG("  SkRect:MakeXYWH in %s in line %d\n", __FILE__, __LINE__);
+    SkRect rect = SkRect::MakeXYWH(x, y, width, height);
+    DEBUG("  SkCanvas::drawRect in %s in line %d\n", __FILE__, __LINE__);
+    ((SkCanvas*)canvas)->drawRect(rect, *((SkPaint*)paint));
   RETURN();
 }
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_drawImage
-  (JNIEnv *env, jclass clazz, jlong canvasPeer, jlong imagePeer, jdouble jx, jdouble jy, jdouble jwidth, jdouble jheight, jlong paintPeer) {
+  (JNIEnv *env, jclass clazz, jlong canvas, jlong bitmap, jdouble x, jdouble y, jdouble width, jdouble height, jlong paint) {
   INIT();
-  SkCanvas* canvas = (SkCanvas*)canvasPeer;
-  SkPaint* paint = (SkPaint*)paintPeer;
-
-  // Turn String into native text
-  double x = (double)jx;
-  double y = (double)jy;
-  double width = (double)jwidth;
-  double height = (double)jheight;
-
-  // Code :)
-  SkBitmap* bitmap = (SkBitmap*)imagePeer;
-  canvas->translate(x, y);
-  canvas->drawBitmapRect(*bitmap, SkRect::MakeWH(width, height), paint);
+    DEBUG("  SkCanvas::translate in %s in line %d\n", __FILE__, __LINE__);
+    ((SkCanvas*)canvas)->translate(x, y);
+    DEBUG("  SkCanvas::drawBitmapRect in %s in line %d\n", __FILE__, __LINE__);
+    ((SkCanvas*)canvas)->drawBitmapRect(*((SkBitmap*)bitmap), SkRect::MakeWH(width, height), (SkPaint*)paint);
   RETURN();
 }
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_drawLine
-  (JNIEnv *env, jclass clazz, jlong canvasPeer, jdouble jx1, jdouble jy1, jdouble jx2, jdouble jy2, jlong paintPeer) {
+  (JNIEnv *env, jclass clazz, jlong canvas, jdouble x1, jdouble y1, jdouble x2, jdouble y2, jlong paint) {
   INIT();
-  SkCanvas* canvas = (SkCanvas*)canvasPeer;
-  SkPaint* paint = (SkPaint*)paintPeer;
-  double x1 = (double)jx1;
-  double y1 = (double)jy1;
-  double x2 = (double)jx2;
-  double y2 = (double)jy2;
-  canvas->drawLine(x1, y1, x2, y2, *paint);
+    DEBUG("  SkCanvas::drawLine in %s in line %d\n", __FILE__, __LINE__);
+    ((SkCanvas*)canvas)->drawLine(x1, y1, x2, y2, *((SkPaint*)paint));
   RETURN();
 }
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_drawRRect
-  (JNIEnv *env, jclass clazz, jlong canvasPeer, jdouble jx, jdouble jy, jdouble jwidth, jdouble jheight, jlong paintPeer) {
+  (JNIEnv *env, jclass clazz, jlong canvas, jdouble x, jdouble y, jdouble width, jdouble height, jlong paint) {
   INIT();
-  SkCanvas* canvas = (SkCanvas*)canvasPeer;
-  SkPaint* paint = (SkPaint*)paintPeer;
-  double x = (double)jx;
-  double y = (double)jy;
-  double width = (double)jwidth;
-  double height = (double)jheight;
-
-  SkRect rect = SkRect::MakeXYWH(x, y, width, height);
-  SkRRect oval;
-  oval.setOval(rect);
-  canvas->drawRRect(oval, *paint);
+    DEBUG("  SkRect::MakeXYWH in %s in line %d\n", __FILE__, __LINE__);
+    SkRect rect = SkRect::MakeXYWH(x, y, width,  height);
+    DEBUG("  SkRRect::MakeOval in %s in line %d\n", __FILE__, __LINE__);
+    SkRRect oval = SkRRect::MakeOval(rect);
+    DEBUG("  SkCanvas::drawRRect in %s in line %d\n", __FILE__, __LINE__);
+    ((SkCanvas*)canvas)->drawRRect(oval, *((SkPaint*)paint));
   RETURN();
 }
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_drawArc
-  (JNIEnv *env, jclass clazz, jlong canvasPeer, jdouble jx, jdouble jy, jdouble jwidth, jdouble jheight, jdouble jfrom, jdouble jextend, jlong paintPeer) {
+  (JNIEnv *env, jclass clazz, jlong canvas, jdouble x, jdouble y, jdouble width, jdouble height, jdouble from, jdouble extend, jlong paint) {
   INIT();
-  SkCanvas* canvas = (SkCanvas*)canvasPeer;
-  SkPaint* paint = (SkPaint*)paintPeer;
-  double x = (double)jx;
-  double y = (double)jy;
-  double width = (double)jwidth;
-  double height = (double)jheight;
-  double from = (double)jfrom;
-  double extend = (double)jextend;
-
-  SkRect rect = SkRect::MakeXYWH(x, y, width, height);
-
-  canvas->drawArc(rect, from, extend, true, *paint);
+    DEBUG("  SkRect::MakeXYWH in %s in line %d\n", __FILE__, __LINE__);
+    SkRect rect = SkRect::MakeXYWH(x, y, width, height);
+    DEBUG("  SkCanvas::drawArc in %s in line %d\n", __FILE__, __LINE__);
+    ((SkCanvas*)canvas)->drawArc(rect, from, extend, true, *((SkPaint*)paint));
   RETURN();
 }
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_drawPath
-  (JNIEnv *env, jclass clazz, jlong canvasPeer, jlong paintPeer, jlong pathPeer) {
+  (JNIEnv *env, jclass clazz, jlong canvas, jlong paint, jlong path) {
   INIT();
-  SkCanvas* canvas = (SkCanvas*)canvasPeer;
-  SkPaint* paint = (SkPaint*)paintPeer;
-  SkPath* path = (SkPath*)pathPeer;
-  canvas->drawPath(*path, *paint);
+    DEBUG("  SkCanvas::drawPath in %s in line %d\n", __FILE__, __LINE__);
+    ((SkCanvas*)canvas)->drawPath(*((SkPath*)path), *((SkPaint*)paint));
   RETURN();
 }
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_save
-  (JNIEnv *env, jclass clazz, jlong canvasPeer) {
+  (JNIEnv *env, jclass clazz, jlong canvas) {
   INIT();
-  SkCanvas* canvas = (SkCanvas*)canvasPeer;
-  canvas->save();
+    DEBUG("  SkCanvas::save in %s in line %d\n", __FILE__, __LINE__);
+    ((SkCanvas*)canvas)->save();
   RETURN();
 }
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_restore
-  (JNIEnv *env, jclass clazz, jlong canvasPeer) {
+  (JNIEnv *env, jclass clazz, jlong canvas) {
   INIT();
-  SkCanvas* canvas = (SkCanvas*)canvasPeer;
-  canvas->restore();
+    DEBUG("  SkCanvas::restore in %s in line %d\n", __FILE__, __LINE__);
+    ((SkCanvas*)canvas)->restore();
   RETURN();
 }
 
@@ -230,105 +176,97 @@ JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_restore
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_translate
   (JNIEnv *env, jclass clazz, jlong canvas, jdouble tx, jdouble ty) {
   INIT();
-  ((SkCanvas*)canvas)->translate(tx, ty);
+    DEBUG("  SkCanvas::translate in %s in line %d\n", __FILE__, __LINE__);
+    ((SkCanvas*)canvas)->translate(tx, ty);
   RETURN();
 }
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_rotate
-  (JNIEnv *env, jclass clazz, jlong canvasPeer, jdouble jtheta) {
+  (JNIEnv *env, jclass clazz, jlong canvas, jdouble theta) {
   INIT();
-  SkCanvas* canvas = (SkCanvas*)canvasPeer;
-  double theta = (double)jtheta;
-  canvas->rotate(theta);
+    DEBUG("  SkCanvas::rotate in %s in line %d\n", __FILE__, __LINE__);
+    ((SkCanvas*)canvas)->rotate(theta);
   RETURN();
 }
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_scale
-  (JNIEnv *env, jclass clazz, jlong canvasPeer, jdouble jsx, jdouble jsy) {
+  (JNIEnv *env, jclass clazz, jlong canvas, jdouble sx, jdouble sy) {
   INIT();
-  SkCanvas* canvas = (SkCanvas*)canvasPeer;
-  double sx = (double)jsx;
-  double sy = (double)jsy;
-  canvas->scale(sx, sy);
+    DEBUG("  SkCanvas::scale in %s in line %d\n", __FILE__, __LINE__);
+    ((SkCanvas*)canvas)->scale(sx, sy);
   RETURN();
 }
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_clipRect
-  (JNIEnv *env, jclass clazz, jlong canvasPeer, jdouble width, jdouble height, jlong paintPeer) {
+  (JNIEnv *env, jclass clazz, jlong canvas, jdouble width, jdouble height, jlong paint) {
   INIT();
-  SkCanvas* canvas = (SkCanvas*)canvasPeer;
-  SkPaint* paint = (SkPaint*)paintPeer;
-  canvas->clipRect(SkRect::MakeWH(width, height), SkClipOp::kIntersect, paint->isAntiAlias());
+    DEBUG("  SkRect::MakeWH in %s in line %d\n", __FILE__, __LINE__);
+    SkRect rect = SkRect::MakeWH(width, height);
+    DEBUG("  SkCanvas::clipRect in %s in line %d\n", __FILE__, __LINE__);
+    ((SkCanvas*)canvas)->clipRect(rect, SkClipOp::kIntersect, ((SkPaint*)paint)->isAntiAlias());
   RETURN();
 }
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_setPaintStyle
-  (JNIEnv *env, jclass clazz, jlong paintPeer, jbyte jstyle)  {
+  (JNIEnv *env, jclass clazz, jlong paint, jbyte style)  {
   INIT();
-  SkPaint* paint = (SkPaint*)paintPeer;
-  SkPaint::Style style = (SkPaint::Style)jstyle; 
-  paint->setStyle(style);
+    DEBUG("  SkPaint::setStyle in %s in line %d\n", __FILE__, __LINE__);
+    ((SkPaint*)paint)->setStyle((SkPaint::Style)style);
   RETURN();
 }
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_setPaintStrokeWidth
-  (JNIEnv *env, jclass clazz, jlong paintPeer, jdouble jwidth) {
+  (JNIEnv *env, jclass clazz, jlong paint, jdouble width) {
   INIT();
-  SkPaint* paint = (SkPaint*)paintPeer;
-  double width = (double)jwidth;
-  paint->setStrokeWidth(width);
+    DEBUG("  SkPaint::setStrokeWidth in %s in line %d\n", __FILE__, __LINE__);
+    ((SkPaint*)paint)->setStrokeWidth(width);
   RETURN();
 }
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_setPaintColor
-  (JNIEnv *env, jclass clazz, jlong paintPeer, jint jcolor) {
+  (JNIEnv *env, jclass clazz, jlong paint, jint color) {
   INIT();
-  SkPaint* paint = (SkPaint*)paintPeer;
-  unsigned int color = (unsigned int)jcolor;
-  paint->setColor(color);
+    DEBUG("  SkPaint::setColor in %s in line %d\n", __FILE__, __LINE__);
+    ((SkPaint*)paint)->setColor((unsigned int)color);
   RETURN();
 }
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_setPaintAntialias
-  (JNIEnv *env, jclass clazz, jlong paintPeer, jboolean jshouldAntiAlias) {
+  (JNIEnv *env, jclass clazz, jlong paint, jboolean shouldAntiAlias) {
   INIT();
-    SkPaint* paint = (SkPaint*)paintPeer;
-    bool shouldAntiAlias = (bool)jshouldAntiAlias;
-    paint->setAntiAlias(shouldAntiAlias);
+    DEBUG("  SkPaint::setAntiAlias in %s in line %d\n", __FILE__, __LINE__);
+    ((SkPaint*)paint)->setAntiAlias(shouldAntiAlias);
   RETURN();
 }
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_setPaintAlpha
-  (JNIEnv *env, jclass clazz, jlong paintPeer, jdouble jalpha) {
+  (JNIEnv *env, jclass clazz, jlong paint, jdouble alpha) {
   INIT();
-  SkPaint* paint = (SkPaint*)paintPeer;
-  double alpha = (double)jalpha;
-  paint->setAlpha(alpha);
+    DEBUG("  SkPaint::setAlpha in %s in line %d\n", __FILE__, __LINE__);
+    ((SkPaint*)paint)->setAlpha(alpha);
   RETURN();
 }
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_setPaintStrokeJoin
-  (JNIEnv *env, jclass clazz, jlong paintPeer, jbyte jstrokeJoin)  {
+  (JNIEnv *env, jclass clazz, jlong paint, jbyte strokeJoin)  {
   INIT();
-  SkPaint* paint = (SkPaint*)paintPeer;
-  SkPaint::Join strokeJoin = (SkPaint::Join)jstrokeJoin;
-  paint->setStrokeJoin(strokeJoin); 
+    DEBUG("  SkPaint::setStrokeJoin in %s in line %d\n", __FILE__, __LINE__);
+    ((SkPaint*)paint)->setStrokeJoin((SkPaint::Join)strokeJoin);
   RETURN();
 }
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_setPaintStrokeCap
-  (JNIEnv *env, jclass clazz, jlong paintPeer, jbyte jstrokeCap)  {
+  (JNIEnv *env, jclass clazz, jlong paint, jbyte strokeCap)  {
   INIT();
-  SkPaint* paint = (SkPaint*)paintPeer;
-  SkPaint::Cap strokeCap = (SkPaint::Cap)jstrokeCap;
-  paint->setStrokeCap(strokeCap); 
+    DEBUG("  SkPaint::setStrokeCap in %s in line %d\n", __FILE__, __LINE__);
+    ((SkPaint*)paint)->setStrokeCap((SkPaint::Cap)strokeCap);
   RETURN();
 }
