@@ -25,31 +25,26 @@ public class SkCanvas extends NativeElement implements GraphicsContext<SkMatrix>
     static final byte LAST_CAP = SQUARE_CAP;
     static final byte DEFAULT_CAP = ROUND_CAP;
 
-    private final long fillPaintPeer;
-    private final long drawPaintPeer;
-
     private SkFont font = new SkFont();
+    private SkPaint fill = new SkPaint();
+    private SkPaint draw = new SkPaint();
 
     SkCanvas(SDLWindow surface) {
         super(initCanvas(surface.getWidth(), surface.getHeight(), surface.getPixels(), surface.getPitch()));
-        fillPaintPeer = initPaint();
-        drawPaintPeer = initPaint();
 
-        setPaintStyle(fillPaintPeer, FILL);
-        setPaintStyle(drawPaintPeer, STROKE);
+        fill.setStyle(FILL);
+        draw.setStyle(STROKE);
     }
 
     SkCanvas(SkBitmap bitmap) {
         super(initCanvas(bitmap.peer));
-        fillPaintPeer = initPaint();
-        drawPaintPeer = initPaint();
 
-        setPaintStyle(fillPaintPeer, FILL);
-        setPaintStyle(drawPaintPeer, STROKE);
+        fill.setStyle(FILL);
+        draw.setStyle(STROKE);
     }
 
     public void setAlpha(double alpha) {
-        setPaintAlpha(drawPaintPeer, alpha);
+        draw.setAlpha(alpha);
     }
 
     public void saveState() {
@@ -62,22 +57,22 @@ public class SkCanvas extends NativeElement implements GraphicsContext<SkMatrix>
 
     @Override
     public void drawBitmap(NativeBitmap image, int x, int y, int width, int height) {
-        drawImage(peer, ((SkBitmap) image).peer, x, y, width, height, drawPaintPeer);
+        drawImage(peer, ((SkBitmap) image).peer, x, y, width, height, draw.peer);
     }
 
     @Override
     public void setFillColorWithColor(int color) {
-        setPaintColor(fillPaintPeer, color);
+        fill.setColor(color);
     }
 
     @Override
     public void setDrawColorWithColor(int color) {
-        setPaintColor(drawPaintPeer, color);
+        draw.setColor(color);
     }
 
     @Override
     public void clipToRect(CGRect frame) {
-        clipRect(peer, frame.getMaxX() - frame.getMinX(), frame.getMaxY() - frame.getMinY(), fillPaintPeer);
+        clipRect(peer, frame.getMaxX() - frame.getMinX(), frame.getMaxY() - frame.getMinY(), fill.peer);
     }
 
     @Override
@@ -107,75 +102,75 @@ public class SkCanvas extends NativeElement implements GraphicsContext<SkMatrix>
 
     @Override
     public void showTextAtPoint(double x, double y, String text) {
-        drawText(peer, x, y, text, fillPaintPeer, font.peer);
+        drawText(peer, x, y, text, fill.peer, font.peer);
     }
 
     @Override
     public void setLineWidth(double width) {
-        setPaintStrokeWidth(drawPaintPeer, width);
+        draw.setStrokeWidth(width);
     }
 
     @Override
     // public void setLineJoin(int CGLineJoin) {
     public void setLineJoin(int lineJoin) {
-        setPaintStrokeJoin(drawPaintPeer, (byte) lineJoin);
+        draw.setStrokeJoin((byte) lineJoin);
     }
 
     @Override
     // public void setLineCap(int CGLineCap) {
     public void setLineCap(int lineCap) {
-        setPaintStrokeCap(drawPaintPeer, (byte) lineCap);
+        draw.setStrokeCap((byte) lineCap);
     }
 
     @Override
     public void setAntialias(boolean shouldAntialias) {
-        setPaintAntialias(fillPaintPeer, shouldAntialias);
-        setPaintAntialias(drawPaintPeer, shouldAntialias);
+        fill.setAntiAlias(shouldAntialias);
+        draw.setAntiAlias(shouldAntialias);
     }
 
     @Override
     public void drawLine(double x1, double y1, double x2, double y2) {
-        drawLine(peer, x1, y1, x2, y2, drawPaintPeer);
+        drawLine(peer, x1, y1, x2, y2, draw.peer);
     }
 
     @Override
     public void drawRect(double x, double y, double width, double height) {
-        drawRect(peer, x, y, width, height, drawPaintPeer);
+        drawRect(peer, x, y, width, height, draw.peer);
     }
 
     @Override
     public void fillRect(double x, double y, double width, double height) {
-        drawRect(peer, x, y, width, height, fillPaintPeer);
+        drawRect(peer, x, y, width, height, fill.peer);
     }
 
     @Override
     public void drawEllipse(double x, double y, double width, double height) {
-        drawRRect(peer, x, y, width, height, drawPaintPeer);
+        drawRRect(peer, x, y, width, height, draw.peer);
     }
 
     @Override
     public void fillEllipse(double x, double y, double width, double height) {
-        drawRRect(peer, x, y, width, height, fillPaintPeer);
+        drawRRect(peer, x, y, width, height, fill.peer);
     }
 
     @Override
     public void drawArc(double x, double y, double width, double height, double from, double extend) {
-        drawArc(peer, x, y, width, height, from, extend, drawPaintPeer);
+        drawArc(peer, x, y, width, height, from, extend, draw.peer);
     }
 
     @Override
     public void fillArc(double x, double y, double width, double height, double from, double extend) {
-        drawArc(peer, x, y, width, height, from, extend, fillPaintPeer);
+        drawArc(peer, x, y, width, height, from, extend, fill.peer);
     }
 
     @Override
     public void drawPath(NativePath path) {
-        drawPath(peer, drawPaintPeer, ((SkPath) path).getPeer());
+        drawPath(peer, draw.peer, ((SkPath) path).getPeer());
     }
 
     @Override
     public void fillPath(NativePath path) {
-        drawPath(peer, fillPaintPeer, ((SkPath) path).getPeer());
+        drawPath(peer, fill.peer, ((SkPath) path).getPeer());
     }
 
     @Override
@@ -225,22 +220,14 @@ public class SkCanvas extends NativeElement implements GraphicsContext<SkMatrix>
     @Override
     protected void destroy(long peer) {
         destroyCanvas(peer);
-        destroyPaint(fillPaintPeer);
-        destroyPaint(drawPaintPeer);
     }
 
-    // SkCanvas object
     private static native long initCanvas(int width, int height, long pixels, int pitch);
+
     private static native long initCanvas(long bitmapPeer);
 
     private static native void destroyCanvas(long canvasPeer);
 
-    // SkPaint object
-    private static native long initPaint();
-
-    private static native void destroyPaint(long paintPeer);
-
-    // SkCanvas methods
     private static native void clear(long canvasPeer, int color);
 
     private static native void flush(long canvasPeer);
@@ -270,19 +257,4 @@ public class SkCanvas extends NativeElement implements GraphicsContext<SkMatrix>
     private static native void scale(long canvasPeer, double sx, double sy);
 
     private static native void clipRect(long canvasPeer, double w, double h, long paintPeer);
-
-    // SkPaint methods
-    private static native void setPaintStyle(long paintPeer, byte style);
-
-    private static native void setPaintStrokeWidth(long paintPeer, double width);
-
-    private static native void setPaintColor(long paintPeer, int color);
-
-    private static native void setPaintAntialias(long paintPeer, boolean shouldAntiAlias);
-
-    private static native void setPaintAlpha(long paintPeer, double alpha);
-
-    private static native void setPaintStrokeJoin(long paintPeer, byte strokeJoin);
-
-    private static native void setPaintStrokeCap(long paintPeer, byte strokeCap);
 }

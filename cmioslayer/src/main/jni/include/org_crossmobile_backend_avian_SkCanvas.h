@@ -59,22 +59,6 @@ JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_destroyCanvas
 
 /*
  * Class:     org_crossmobile_backend_avian_SkCanvas
- * Method:    initPaint
- * Signature: ()J
- */
-JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkCanvas_initPaint
-  (JNIEnv *, jclass);
-
-/*
- * Class:     org_crossmobile_backend_avian_SkCanvas
- * Method:    destroyPaint
- * Signature: (J)V
- */
-JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_destroyPaint
-  (JNIEnv *, jclass, jlong);
-
-/*
- * Class:     org_crossmobile_backend_avian_SkCanvas
  * Method:    clear
  * Signature: (JI)V
  */
@@ -192,62 +176,6 @@ JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_scale
  */
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_clipRect
   (JNIEnv *, jclass, jlong, jdouble, jdouble, jlong);
-
-/*
- * Class:     org_crossmobile_backend_avian_SkCanvas
- * Method:    setPaintStyle
- * Signature: (JB)V
- */
-JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_setPaintStyle
-  (JNIEnv *, jclass, jlong, jbyte);
-
-/*
- * Class:     org_crossmobile_backend_avian_SkCanvas
- * Method:    setPaintStrokeWidth
- * Signature: (JD)V
- */
-JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_setPaintStrokeWidth
-  (JNIEnv *, jclass, jlong, jdouble);
-
-/*
- * Class:     org_crossmobile_backend_avian_SkCanvas
- * Method:    setPaintColor
- * Signature: (JI)V
- */
-JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_setPaintColor
-  (JNIEnv *, jclass, jlong, jint);
-
-/*
- * Class:     org_crossmobile_backend_avian_SkCanvas
- * Method:    setPaintAntialias
- * Signature: (JZ)V
- */
-JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_setPaintAntialias
-  (JNIEnv *, jclass, jlong, jboolean);
-
-/*
- * Class:     org_crossmobile_backend_avian_SkCanvas
- * Method:    setPaintAlpha
- * Signature: (JD)V
- */
-JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_setPaintAlpha
-  (JNIEnv *, jclass, jlong, jdouble);
-
-/*
- * Class:     org_crossmobile_backend_avian_SkCanvas
- * Method:    setPaintStrokeJoin
- * Signature: (JB)V
- */
-JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_setPaintStrokeJoin
-  (JNIEnv *, jclass, jlong, jbyte);
-
-/*
- * Class:     org_crossmobile_backend_avian_SkCanvas
- * Method:    setPaintStrokeCap
- * Signature: (JB)V
- */
-JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_setPaintStrokeCap
-  (JNIEnv *, jclass, jlong, jbyte);
 
 #ifdef __cplusplus
 }

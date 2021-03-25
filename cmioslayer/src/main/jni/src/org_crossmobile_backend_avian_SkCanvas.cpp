@@ -25,31 +25,18 @@ JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkCanvas_initCanvas__
   RETURN_V(new SkCanvas(bitmap), jlong);
 }
 
+
 JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkCanvas_initCanvas__J
   (JNIEnv *env, jclass clazz, jlong bitmap) {
   INIT();
   RETURN_V(new SkCanvas(*((SkBitmap*) bitmap)), jlong);
 }
 
+
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_destroyCanvas
   (JNIEnv *env, jclass clazz, jlong canvas) {
   INIT();
     delete (SkCanvas*)canvas;
-  RETURN();
-}
-
-
-JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkCanvas_initPaint
-  (JNIEnv *env, jclass clazz) {
-  INIT();
-  RETURN_V(new SkPaint(), jlong);
-}
-
-
-JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_destroyPaint
-  (JNIEnv *env, jclass clazz, jlong paint) {
-  INIT();
-    delete (SkPaint*)paint;
   RETURN();
 }
 
@@ -180,60 +167,5 @@ JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_clipRect
   INIT();
     SkRect rect = SkRect::MakeWH(width, height);
     ((SkCanvas*)canvas)->clipRect(rect, SkClipOp::kIntersect, ((SkPaint*)paint)->isAntiAlias());
-  RETURN();
-}
-
-JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_setPaintStyle
-  (JNIEnv *env, jclass clazz, jlong paint, jbyte style)  {
-  INIT();
-    ((SkPaint*)paint)->setStyle((SkPaint::Style)style);
-  RETURN();
-}
-
-
-JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_setPaintStrokeWidth
-  (JNIEnv *env, jclass clazz, jlong paint, jdouble width) {
-  INIT();
-    ((SkPaint*)paint)->setStrokeWidth(width);
-  RETURN();
-}
-
-
-JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_setPaintColor
-  (JNIEnv *env, jclass clazz, jlong paint, jint color) {
-  INIT();
-    ((SkPaint*)paint)->setColor((unsigned int)color);
-  RETURN();
-}
-
-
-JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_setPaintAntialias
-  (JNIEnv *env, jclass clazz, jlong paint, jboolean shouldAntiAlias) {
-  INIT();
-    ((SkPaint*)paint)->setAntiAlias(shouldAntiAlias);
-  RETURN();
-}
-
-
-JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_setPaintAlpha
-  (JNIEnv *env, jclass clazz, jlong paint, jdouble alpha) {
-  INIT();
-    ((SkPaint*)paint)->setAlpha(alpha);
-  RETURN();
-}
-
-
-JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_setPaintStrokeJoin
-  (JNIEnv *env, jclass clazz, jlong paint, jbyte strokeJoin)  {
-  INIT();
-    ((SkPaint*)paint)->setStrokeJoin((SkPaint::Join)strokeJoin);
-  RETURN();
-}
-
-
-JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_setPaintStrokeCap
-  (JNIEnv *env, jclass clazz, jlong paint, jbyte strokeCap)  {
-  INIT();
-    ((SkPaint*)paint)->setStrokeCap((SkPaint::Cap)strokeCap);
   RETURN();
 }
