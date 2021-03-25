@@ -8,7 +8,6 @@
 JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkPath_init
   (JNIEnv *env, jclass clazz) {
   INIT();
-  DEBUG("  New SkPath in %s in line %d\n", __FILE__, __LINE__);
   RETURN_V(new SkPath(), jlong);
 }
 
@@ -16,7 +15,6 @@ JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkPath_init
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkPath_destroy
   (JNIEnv *env, jobject thiz, jlong path) {
   INIT();
-    DEBUG("  Delete SkPath pointer in %s in line %d\n", __FILE__, __LINE__);
     delete (SkPath*)path;
   RETURN();
 }
@@ -25,7 +23,6 @@ JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkPath_destroy
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkPath_moveTo
   (JNIEnv *env, jclass clazz, jlong path, jdouble x, jdouble y) {
   INIT();
-    DEBUG("  SkPath::moveTo in %s in line %d\n", __FILE__, __LINE__);
     ((SkPath*)path)->moveTo(x, y);
   RETURN();
 }
@@ -34,7 +31,6 @@ JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkPath_moveTo
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkPath_quadTo
   (JNIEnv *env, jclass clazz, jlong path, jdouble x1, jdouble y1, jdouble x2, jdouble y2) {
   INIT();
-    DEBUG("  SkPath::quadTo in %s in line %d\n", __FILE__, __LINE__);
     ((SkPath*)path)->quadTo(x1, y1, x2, y2);
   RETURN();
 }
@@ -43,7 +39,6 @@ JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkPath_quadTo
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkPath_close
   (JNIEnv *env, jclass clazz, jlong path) {
   INIT();
-    DEBUG("  SkPath::close in %s in line %d\n", __FILE__, __LINE__);
     ((SkPath*)path)->close();
   RETURN();
 }
@@ -52,7 +47,6 @@ JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkPath_close
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkPath_reset
   (JNIEnv *env, jclass clazz, jlong path) {
   INIT();
-    DEBUG("  SkPath::reset in %s in line %d\n", __FILE__, __LINE__);
     ((SkPath*)path)->reset();
   RETURN();
 }

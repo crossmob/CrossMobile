@@ -84,7 +84,7 @@ public class AvianLifecycleBridge extends DesktopLifecycleBridge {
     public void hasAnimationFrames(boolean enabled) {
     }
 
-    void stopSDLThread() {
+    void interruptSDLThread() {
         sdlEventThread.interrupt();
     }
 

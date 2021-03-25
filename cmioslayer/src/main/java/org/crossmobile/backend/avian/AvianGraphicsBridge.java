@@ -29,9 +29,6 @@ public class AvianGraphicsBridge extends DesktopGraphicsBridge<SkCanvas, SkMatri
         initSDL();
     }
 
-    static void init() {
-    }
-
     @Override
     protected void resizeWindow(int width, int height) {
         window.setSize(width, height);
