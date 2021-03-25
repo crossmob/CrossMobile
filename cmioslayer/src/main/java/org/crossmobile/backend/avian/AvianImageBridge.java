@@ -62,7 +62,7 @@ public class AvianImageBridge extends DesktopImageBridge {
 
     @Override
     public NativeBitmap create(int width, int height) {
-        return new SkBitmap(null);
+        return new SkBitmap(width, height);
     }
 
     @Override

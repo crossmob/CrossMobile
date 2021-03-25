@@ -11,6 +11,16 @@
 
 #include "avian/system/system.h"
 
+JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkBitmap_initFromSizes
+  (JNIEnv *env, jclass clazz, jint width, jint height) {
+  INIT();
+    SkBitmap* bitmap = new SkBitmap();
+    if(!bitmap->tryAllocPixels(SkImageInfo::Make(width, height, kBGRA_8888_SkColorType, kPremul_SkAlphaType)))
+      RETURN_ERROR_V("  Cannot allocate pixels in bitmap.\n");
+  RETURN_V(bitmap, jlong);
+}
+
+
 JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkBitmap_initFromBlob
   (JNIEnv *env, jclass clazz, jlong blobPeer) {
   INIT();

@@ -33,6 +33,10 @@ public class SkBitmap extends NativeElement implements NativeBitmap {
         super(init(is));
     }
 
+    SkBitmap(int width, int height) {
+        super(init(width, height));
+    }
+
     @Override
     public int getWidth() {
         return 0;
@@ -60,9 +64,15 @@ public class SkBitmap extends NativeElement implements NativeBitmap {
         return initFromByteArray(StreamConverter.toBytes(inputStream));
     }
 
+    private static long init(int width, int height) {
+        return initFromSizes(width, height);
+    }
+
     byte[] getBytesFromImage(ImageBridgeConstants.ImageType imageType, double quality) {
         return getBytesFromImage(peer, imageType == ImageBridgeConstants.ImageType.PNG, quality);
     }
+
+    private static native long initFromSizes(int width, int height);
 
     private static native long initFromByteArray(byte[] data);
 
