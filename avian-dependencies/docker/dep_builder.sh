@@ -1,64 +1,119 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 set -e
 
-USAGE="./build $SRC_ROOT $BUILD_OS $BUILD_ARCH $BUILD_MODE"
-
-if [ ! -f "$JAVA_HOME/include/jni.h" ] ; then
-    echo "Unable to locate JDK under ${JAVA_HOME}"
-    exit 1
-fi
-
+USAGE="./dep_builder.sh $SRC_ROOT $BUILD_OS $BUILD_ARCH $BUILD_MODE"
 
 BUILD_OS=${2:-$(uname -s | tr '[:upper:]' '[:lower:]')}
 BUILD_ARCH=${3:-$(uname -m)}
 BUILD_MODE=${4:-release}
-AVIAN_BUILD_MODE=${3:-fast}
+NUM_PROC=$(nproc)
+
+DIR_SYSROOT=/
+CXX=g++
+CC=gcc
+IS_ARMV7=false
+
 RED='\033[0;31m'
 GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
 NC='\033[0m'
-BUILD_EXP="$BUILD_OS-$BUILD_ARCH"
-CXX=g++
+
+__msg_error() {
+    echo -e "${RED}$1${NC}"
+    exit 1
+}
+
+__msg_warn() {
+    echo -e "${YELLOW}$1${NC}"
+}
+
+__msg_info() {
+    echo -e "${GREEN}$1${NC}"
+}
+
+case $BUILD_ARCH in
+
+arm|armhf)
+    BUILD_AARCH="armhf"
+    BUILD_ARCH="arm"
+    CROSS_PREFIX="arm-linux-gnueabihf"
+    SKIA_ARCH="armv7-a"
+    SKIA_CPU="arm"
+    SKIA_PLAT="armv7a-linux-gnueabihf"
+    IS_ARMV7=true
+;;
+arm64|aarch64)
+    BUILD_AARCH="aarch64"
+    CROSS_PREFIX="aarch64-linux-gnu"
+    SKIA_ARCH="armv8-a"
+    SKIA_CPU="arm64"
+    SKIA_PLAT="aarch64-linux-gnu"
+;;
+x86_64|amd64|x64)
+    BUILD_ARCH="x86_64"
+    BUILD_AARCH="x64"
+    CROSS_PREFIX="x86_64-linux-gnu"
+    SKIA_ARCH="x64"
+    SKIA_CPU="x64"
+    SKIA_PLAT="x86_64-linux-gnu"
+;;
+*)
+    __msg_error "The '${BUILD_ARCH}' architecture is not supported!"
+esac
+
+DIR_CROSS_LIBS="/usr/lib"
+
+if [[ $BUILD_ARCH != "$(uname -m)" ]]; then
+    __msg_info "Cross compiling for $BUILD_ARCH"
+
+    export ARCH=$BUILD_ARCH
+    export CROSS_COMPILE="$CROSS_PREFIX-"
+    export CC="$CROSS_PREFIX-gcc"
+    export NM="$CROSS_PREFIX-nm"
+    export LD="$CROSS_PREFIX-ld"
+    export CXX="$CROSS_PREFIX-g++"
+    export RANLIB="$CROSS_PREFIX-ranlib"
+    export AR="$CROSS_PREFIX-ar"
+    DIR_CROSS_INC="/usr/include/$CROSS_PREFIX"
+    DIR_CROSS_INC_STD="$DIR_CROSS_INC/c++/8"
+    DIR_CROSS_LIBS="/usr/lib/$CROSS_PREFIX"
+    export LD_LIBRARY_PATH=$DIR_CROSS_LIBS
+    export LDFLAGS="-L$DIR_CROSS_LIBS -pie"
+    export PKG_CONFIG_PATH="$PKG_CONFIG_PATH $DIR_CROSS_LIBS/pkgconfig"
+fi
+
+SKIA_DEBUG="is_debug=false"
 
 if [ $BUILD_MODE == "debug" ]; then
     AVIAN_BUILD_MODE="debug"
     BUILD_EXP=$BUILD_EXP#-"debug"
     BUILD_IS_DEBUG=true
+    SKIA_DEBUG="is_debug=true"
+    export CFLAGS="$CFLAGS -ggdb"
+    export CXXFLAGS="$CXXFLAGS -ggdb"
+else
+    AVIAN_BUILD_MODE="fast"
 fi
-
-if [ $BUILD_ARCH != "$(uname -m)" ]; then
-    echo "Cross compiling for $BUILD_ARCH"
-    BUILD_AARCH=$BUILD_ARCH
-    if [ $BUILD_ARCH == "arm64" ]; then
-        BUILD_AARCH="aarch64"
-    fi
-    DIR_CROSS_LIBS="/usr/lib/$BUILD_AARCH-linux-gnu"
-    CC="$BUILD_AARCH-$BUILD_OS-gnu-gcc"
-    CXX="$BUILD_AARCH-$BUILD_OS-gnu-g++"
-    LD_LIBRARY_PATH=$DIR_CROSS_LIBS
-    LDFLAGS="-L$DIR_CROSS_LIBS -Wl,-rpath=$DIR_CROSS_LIBS"
-    CXXFLAGS="-Wl,-rpath=$DIR_CROSS_LIBS"
-    CFLAGS="-Wl,-rpath=$DIR_CROSS_LIBS"
-    LIBPATH=$DIR_CROSS_LIBS
-    BUILD_CROSS_LIBS="$DIR_CROSS_LIBS/*"
-    echo "DIR_CROSS_LIBS: $DIR_CROSS_LIBS"
-fi
-
-DIR_SRC_ROOT=${1:-$(pwd)}
 
 #TODO: Check src root if it is valid dir
-
+DIR_SRC_ROOT=${1:-"$(dirname "$(realpath "$0")")/.."}
+BUILD_EXP="$BUILD_OS-$BUILD_ARCH"
 DIR_LIBS="$DIR_SRC_ROOT/target/$BUILD_EXP"
 DIR_3RD="$DIR_SRC_ROOT"
 DIR_COMMON="$DIR_SRC_ROOT/target/common"
-NUM_PROC=$(nproc)
 
-echo -e "Start building: $GREEN$BUILD_EXP$NC"
+
+echo -e "Start building dependencies for: $GREEN$BUILD_EXP$NC"
 mkdir -p $DIR_LIBS
 mkdir -p $DIR_COMMON
 
+
+
+
+
 #-----------------Avian build---------------------
 DIR_AVIAN_SRC="$DIR_3RD/avian"
-#DIR_AVIAN_INC="$DIR_AVIAN_SRC/include"
 AVIAN_ZIP="libavian.zip"
 AVIAN_JAR="boot.jar"
 DIR_AVIAN_ZIP="$DIR_LIBS/$AVIAN_ZIP"
@@ -69,13 +124,13 @@ AVIAN_BUILD_ARC="$DIR_AVIAN_BUILD/libavian.a"
 AVIAN_BUILD_JAR="$DIR_AVIAN_BUILD/classpath.jar"
 AVIAN_DESTINATION_JAR="$DIR_COMMON/classpath.jar"
 
+
 if [[ ! -f $DIR_AVIAN_ZIP || ! -f $DIR_AVIAN_JAR ]]; then
     if [[ ! -f $AVIAN_BUILD_ARC || ! -f $AVIAN_BUILD_JAR ]]; then
-        echo -e "${GREEN}Building Avian ...${NC}"
+        __msg_info "Building Avian ..."
         cd $DIR_AVIAN_SRC
         make clean
-
-        make\
+        make \
         -j ${NUM_PROC} \
         platform=$BUILD_OS \
         arch=$BUILD_ARCH
@@ -97,70 +152,64 @@ if [[ ! -f $AVIAN_DESTINATION_JAR ]]; then
     cp $DIR_AVIAN_BUILD/binaryToObject/binaryToObject $DIR_COMMON/bin/linux-x86_64/
 fi
 
-
-
 #------------------SDL2 build---------------------
 DIR_SDL_SRC="$DIR_3RD/SDL"
-#DIR_SDL_INC="$DIR_SDL_SRC/include"
 DIR_SDL_BUILD="$DIR_SDL_SRC/build/$BUILD_EXP"
 SDL_ARC="$DIR_LIBS/libSDL2.a"
 
 if [ ! -f $SDL_ARC ] ; then
     if [ ! -f $DIR_SDL_BUILD/libSDL2.a ]; then
-        echo -e "${GREEN}Building SDL2 ...${NC}"
-        mkdir -p $DIR_SDL_BUILD
+        __msg_info "Building SDL2 ..."
+
+        if [ -d $DIR_SDL_BUILD ]; then
+            rm -rf $DIR_SDL_BUILD/*
+        else
+            mkdir -p $DIR_SDL_BUILD
+        fi
+
+        if [ -n "$CROSS_COMPILE" ]; then
+            AVIAN_CROSS_FLAGS="--host=${CROSS_PREFIX} --target=${CROSS_PREFIX}"
+            if [[ "$BUILD_ARCH" == "arm64" || "$BUILD_ARCH" == "arm" ]]; then
+                AVIAN_CROSS_FLAGS="$AVIAN_CROSS_FLAGS --enable-arm-neon"
+            fi
+        fi
+
         cd $DIR_SDL_BUILD
-        cmake $DIR_SDL_SRC \
-            -GNinja \
-            -DCMAKE_C_COMPILER="$CC" \
-            -DCMAKE_CXX_COMPILER="$CXX" \
-            -DCMAKE_C_FLAGS="$CFLAGS" \
-            -DCMAKE_CXX_FLAGS="$CXXFLAGS" \
-            -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS" \
-            -DCMAKE_BUILD_TYPE="$BUILD_MODE" \
-            -DSDL_SHARED=0 \
-            -DSDL_AUDIO=0 \
-            -DVIDEO_WAYLAND=ON \
-            -DWAYLAND_SHARED=ON
-        ninja -C $DIR_SDL_BUILD -j $NUM_PROC
+        CC="$CC -I/usr/include -I$DIR_CROSS_INC -L$DIR_CROSS_LIBS" \
+        $DIR_SDL_SRC/configure \
+        --disable-audio \
+        --enable-video-wayland=yes \
+        --enable-wayland-shared=yes \
+        --enable-video-vivante \
+        --disable-shared \
+        --enable-static \
+        $AVIAN_CROSS_FLAGS
+
+        make -j $NUM_PROC
+        mkdir -p $DIR_SDL_BUILD/install
+        DESTDIR=$DIR_SDL_BUILD/install make install
+        cd $SRC_ROOT
     fi
-    cp $DIR_SDL_BUILD/libSDL2.a $DIR_LIBS
+    cp $DIR_SDL_BUILD/install/usr/local/lib/libSDL2.a $DIR_LIBS
 fi
 
 #------------------Skia build---------------------
-
 DIR_SKIA_SRC="$DIR_3RD/skia"
-#DIR_SKIA_INC="$DIR_SKIA_SRC"
 DIR_SKIA_OUT="out/$BUILD_EXP"
 DIR_SKIA_BUILD="$DIR_SKIA_SRC/$DIR_SKIA_OUT"
 DIR_DEPTOOL_BIN="$DIR_SKIA_SRC/depot_tools"
 SKIA_ARC="$DIR_LIBS/libskia.a"
 SKIA_VER="chrome/m87"
-if [[ $BUILD_ARCH == "x86_64" ]]; then
-    SKIA_ARCH="x64"
-    SKIA_CPU="x64"
-    SKIA_PLAT="x86_64-linux-gnu"
-elif [[ $BUILD_ARCH == "arm64" ]]; then
-    SKIA_ARCH="arm64"
-    SKIA_CPU="arm64"
-    SKIA_PLAT="aarch64-linux-gnu"
-elif [[ $BUILD_ARCH == "arm" ]]; then
-    SKIA_ARCH="arm"
-    SKIA_CPU="arm"
-    SKIA_PLAT="arm-linux-gnu"
-fi
-
 
 if [ ! -f $SKIA_ARC ] ; then
     if [ ! -f "$DIR_SKIA_BUILD/libskia.a" ]; then
-        echo -e "${GREEN}Building SKIA ...${NC}"
+        __msg_info "Building SKIA ..."
         cd $DIR_SKIA_SRC
-        #python tools/git-sync-deps
+        python tools/git-sync-deps
         rm -rf $DIR_SKIA_BUILD
 
         SKIA_OPTIONS_ENABLED="
             skia_use_gl = true
-            skia_gl_standard = \"gl\"
             skia_use_egl = true
             skia_use_zlib = true
             skia_use_system_zlib = false
@@ -172,21 +221,21 @@ if [ ! -f $SKIA_ARC ] ; then
             skia_enable_nvpr = true
             skia_use_opencl = true
             skia_use_libjpeg_turbo_decode = true
+            skia_use_libjpeg_turbo_encode = true
             skia_use_libpng_decode = true
-            skia_use_system_libpng = false
-            skia_use_system_libjpeg_turbo = false
+            skia_use_libpng_encode = true
+            skia_use_system_libpng = $IS_ARMV7
+            skia_use_system_libjpeg_turbo = $IS_ARMV7
         "
 
         SKIA_OPTIONS_DISABLED="
             skia_build_fuzzers = false
             skia_use_libgifcodec = false
-            skia_use_libjpeg_turbo_encode = false
-            skia_use_libpng_encode = false
             skia_use_libwebp_decode = false
             skia_use_libwebp_encode = false
             skia_use_expat = false
             skia_use_harfbuzz = false
-            skia_use_x11 = true
+            skia_use_x11 = false
             skia_use_piex = false
             skia_use_icu = false
             skia_use_xps = false
@@ -204,31 +253,27 @@ if [ ! -f $SKIA_ARC ] ; then
         "
 
         bin/gn gen $DIR_SKIA_OUT  --args='
-            target_os="'"$BUILD_OS"'"
+            target_os="'"${BUILD_OS}"'"
             target_cpu="'"${SKIA_CPU}"'"
             cc = "clang"
             cxx = "clang++"
             extra_asmflags=[
                 "'"--target=${SKIA_PLAT}"'",
-                "'"--sysroot=${DIR_SYSROOT}"'",
                 "'"-march=${SKIA_ARCH}"'"
             ]
             extra_cflags=[
                 "'"--target=${SKIA_PLAT}"'",
-                "'"--sysroot=${DIR_SYSROOT}"'",
-                "'"-I${LIBEGL_INC}"'",
-                "'"-I${DIR_SYSROOT}/include/**"'"
+                "'"-I${DIR_CROSS_INC}"'",
+                "'"-I${DIR_CROSS_INC_STD}"'",
+                "-DMESA_EGL_NO_X11_HEADERS"
             ]
             extra_ldflags=[
                 "'"--target=${SKIA_PLAT}"'",
-                "'"--sysroot=${DIR_SYSROOT}"'",
-                "'"-B${DIR_SYSROOT}/bin"'",
-                "'"-L${DIR_SYSROOT}/lib -L$DIR_CROSS_LIBS"'",
-                "'"-L${LIBEGL_BIN}"'",
+                "'"-L${DIR_CROSS_LIBS}"'"
             ]
             is_official_build=true
-            is_debug=false
             is_component_build=false
+            '"${SKIA_DEBUG}"'
             '"${SKIA_OPTIONS_ENABLED}"'
             '"${SKIA_OPTIONS_DISABLED}"'
             '
