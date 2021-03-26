@@ -156,7 +156,7 @@ _clean_avian () {
 }
 
 _clean_sdl () {
-    [ -d $USER $SRC_ROOT/SDL/build ] && \
+    [ -d "$USER $SRC_ROOT/SDL/build" ] && \
         chown -R $USER $SRC_ROOT/SDL/build
 
     if [ "$TARGET_SUBDIR" = "all" ]; then
@@ -173,7 +173,7 @@ _clean_sdl () {
 }
 
 _clean_skia () {
-    [ -d $USER $SRC_ROOT/skia/out ] && \
+    [ -d "$USER $SRC_ROOT/skia/out" ] && \
         chown -R $USER $SRC_ROOT/skia/out
 
     if [[ "$TARGET_SUBDIR" == "all" ]]; then
