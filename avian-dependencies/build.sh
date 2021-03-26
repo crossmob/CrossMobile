@@ -45,6 +45,7 @@ _install () {
 }
 
 _build () {
+
     if [[ $TARGET_ARCH == "arm" ]]; then
         TARGET_ARCH="armhf"
     elif [[ $TARGET_ARCH == "x86_64" ]]; then
@@ -59,13 +60,53 @@ _build () {
         # TARGET_OS=$TARGET_OS \
         # TARGET_ARCH=$TARGET_ARCH \
         #sudo docker-compose -f docker/docker-compose.yml build --build-args SRC_DIR=$SRC_ROOT TARGET_OS=$TARGET_OS TARGET_ARCH=$TARGET_ARCH aromadepbuilder
-        docker build -t $IMAGE_NAME docker/ --build-arg ARCH=$TARGET_ARCH
+        docker build -t $IMAGE_NAME docker/ --build-arg ARCH=$TARGET_ARCH --build-arg OS=linux
     fi
 
-    echo "Run image: \"$IMAGE_NAME\""
+    # if [[ "$(_check_docker_image "aroma/dep-builder-win-i386")"]]; then
+    #     docker build -t aroma/dep-builder-win-i386 docker/ --build-arg ARCH=i386 OS=win
+    # fi
 
+    echo "Run image: \"$IMAGE_NAME\""
     sudo docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
-        bash "/src/docker/dep_builder.sh" /src $TARGET_OS $TARGET_ARCH release
+        bash "/src/scripts/linker_builder.sh" -b \
+        -h x86_64-w64-mingw32 \
+        -t aarch64-linux-gnu \
+        -s /src \
+        -o /src/target/common/bin
+    sudo docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
+        bash "/src/scripts/linker_builder.sh" -b \
+        -h x86_64-w64-mingw32 \
+        -t arm-linux-gnueabihf \
+        -s /src \
+        -o /src/target/common/bin
+    sudo docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
+        bash "/src/scripts/linker_builder.sh" -b \
+        -h x86_64-w64-mingw32 \
+        -t x86_64-linux-gnu \
+        -s /src \
+        -o /src/target/common/bin
+    sudo docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
+        bash "/src/scripts/linker_builder.sh" -b \
+        -h x86_64-linux-gnu \
+        -t x86_64-linux-gnu \
+        -s /src \
+        -o /src/target/common/bin
+    sudo docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
+        bash "/src/scripts/linker_builder.sh" -b \
+        -h x86_64-linux-gnu \
+        -t aarch64-linux-gnu \
+        -s /src \
+        -o /src/target/common/bin
+    sudo docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
+        bash /src/scripts/linker_builder.sh -b \
+        -h x86_64-linux-gnu \
+        -t arm-linux-gnueabihf \
+        -s /src \
+        -o /src/target/common/bin
+    sudo docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
+        bash /src/docker/dep_builder.sh \
+        /src $TARGET_OS $TARGET_ARCH release
 
     sudo chown -R $USER:$USER .
     _install
