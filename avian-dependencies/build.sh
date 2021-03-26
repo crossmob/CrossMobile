@@ -15,13 +15,15 @@ TARGET_DIR="all"
 TARGET_SUBDIR="all"
 
 USAGE='\n\r
-TARGET=avian,sdl,skia,all(default)\n\r
-SUB_TARGET=arm,arm64,x86_64,all(default)\n\r
+# TARGET=avian,sdl,skia,all(default)\n\r
+# SUB_TARGET=arm,arm64,x86_64,all(default)\n\r
+OS=linux
+MACHINE=arm,arm64,amd64
 \n\r
 Parameters:\n\r
     \t-h|--help\n\r
-    \t-c|--clean [OS][MACHINE]\n\r
-    \t-b|--build [OS][MACHINE]\n\r
+    \t-c|--clean [OS] [MACHINE]\n\r
+    \t-b|--build [OS] [MACHINE]\n\r
     \t-o|--os\n\r
     \t-m|--machine\n\r
 '
