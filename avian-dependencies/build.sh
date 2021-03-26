@@ -66,6 +66,7 @@ _build () {
     # if [[ "$(_check_docker_image "aroma/dep-builder-win-i386")"]]; then
     #     docker build -t aroma/dep-builder-win-i386 docker/ --build-arg ARCH=i386 OS=win
     # fi
+    git submodule update --recursive --init --remote
 
     echo "Run image: \"$IMAGE_NAME\""
     # sudo docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
