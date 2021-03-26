@@ -132,7 +132,7 @@ __git_clean() {
 }
 
 _clean_avian () {
-    [ -d $SRC_ROOT/avian/build ] && \
+    [ -d "$SRC_ROOT/avian/build" ] && \
         chown -R $USER $SRC_ROOT/avian/build
 
     if [[ "$TARGET_SUBDIR" == "all" ]]; then
@@ -156,7 +156,7 @@ _clean_avian () {
 }
 
 _clean_sdl () {
-    [ -d "$USER $SRC_ROOT/SDL/build" ] && \
+    [ -d "$SRC_ROOT/SDL/build" ] && \
         chown -R $USER $SRC_ROOT/SDL/build
 
     if [ "$TARGET_SUBDIR" = "all" ]; then
@@ -173,7 +173,7 @@ _clean_sdl () {
 }
 
 _clean_skia () {
-    [ -d "$USER $SRC_ROOT/skia/out" ] && \
+    [ -d "$SRC_ROOT/skia/out" ] && \
         chown -R $USER $SRC_ROOT/skia/out
 
     if [[ "$TARGET_SUBDIR" == "all" ]]; then
@@ -194,7 +194,7 @@ _clean_skia () {
 }
 
 _clean () {
-    [ -d "$USER $SRC_ROOT/target" ] && \
+    [ -d "$SRC_ROOT/target" ] && \
         chown -R $USER $SRC_ROOT/target
     __msg_warn "Cleaning TARGET:[$TARGET_DIR] SUB_TARGET:[$TARGET_SUBDIR]"
     case $TARGET_DIR in
