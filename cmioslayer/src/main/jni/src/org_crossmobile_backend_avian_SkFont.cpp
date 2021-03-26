@@ -35,62 +35,25 @@ JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkFont_init
 }
 
 JNIEXPORT jboolean JNICALL Java_org_crossmobile_backend_avian_SkFont_postInit
-  (JNIEnv * env, jobject thiz) {
-    // apply variables here
-}
-
-
-JNIEXPORT jstring JNICALL Java_org_crossmobile_backend_avian_SkFont_getFamily
-  (JNIEnv *env, jclass clazz, jlong font) {
+  (JNIEnv * env, jobject thiz, jlong font) {
   INIT();
+    jclass fontClass = findObjectClass(env, thiz);
+
+    SkFontMetrics metrics;
+    ((SkFont*)font)->getMetrics(&metrics);
+
+    setDoubleField(env, thiz, findField(env, fontClass, "ascent", "D"), metrics.fAscent);
+    setDoubleField(env, thiz, findField(env, fontClass, "descent", "D"), metrics.fDescent);
+    setDoubleField(env, thiz, findField(env, fontClass, "leading", "D"), metrics.fLeading);
+    setDoubleField(env, thiz, findField(env, fontClass, "capHeight", "D"), metrics.fCapHeight);
+    setDoubleField(env, thiz, findField(env, fontClass, "xHeight", "D"), metrics.fXHeight);
+
     SkString family;
     ((SkFont*)font)->getTypeface()->getFamilyName(&family);
-  RETURN_V(env->NewStringUTF(family.c_str()), jstring);
-}
 
+    setStringField(env, thiz, findField(env, fontClass, "family", "Ljava/lang/String;"), env->NewStringUTF(family.c_str()));
 
-JNIEXPORT jdouble JNICALL Java_org_crossmobile_backend_avian_SkFont_getAscent
-  (JNIEnv *env, jclass clazz, jlong font) {
-  INIT();
-    SkFontMetrics metrics;
-    ((SkFont*)font)->getMetrics(&metrics);
-  RETURN_V(metrics.fAscent, jdouble);
-}
-
-
-JNIEXPORT jdouble JNICALL Java_org_crossmobile_backend_avian_SkFont_getDescent
-  (JNIEnv *env, jclass clazz, jlong font) {
-  INIT();
-    SkFontMetrics metrics;
-    ((SkFont*)font)->getMetrics(&metrics);
-  RETURN_V(metrics.fDescent, jdouble);
-}
-
-
-JNIEXPORT jdouble JNICALL Java_org_crossmobile_backend_avian_SkFont_getLeading
-  (JNIEnv *env, jclass clazz, jlong font) {
-  INIT();
-    SkFontMetrics metrics;
-    ((SkFont*)font)->getMetrics(&metrics);
-  RETURN_V(metrics.fLeading, jdouble);
-}
-
-
-JNIEXPORT jdouble JNICALL Java_org_crossmobile_backend_avian_SkFont_getCapHeight
-  (JNIEnv *env, jclass clazz, jlong font) {
-  INIT();
-    SkFontMetrics metrics;
-    ((SkFont*)font)->getMetrics(&metrics);
-  RETURN_V(metrics.fCapHeight, jdouble);
-}
-
-
-JNIEXPORT jdouble JNICALL Java_org_crossmobile_backend_avian_SkFont_getXHeight
-  (JNIEnv *env, jclass clazz, jlong font) {
-  INIT();
-    SkFontMetrics metrics;
-    ((SkFont*)font)->getMetrics(&metrics);
-  RETURN_V(metrics.fXHeight, jdouble);
+  RETURN_V(1, jboolean);
 }
 
 JNIEXPORT jobject JNICALL Java_org_crossmobile_backend_avian_SkFont_measureText

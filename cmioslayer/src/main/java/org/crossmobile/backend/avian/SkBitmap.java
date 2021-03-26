@@ -20,6 +20,9 @@ public class SkBitmap extends NativeElement implements NativeBitmap {
     private static Class<?> resourceInputStreamClass = null;
     private static Field peerField = null;
 
+    private int width;
+    private int height;
+
     static {
         try {
             resourceInputStreamClass = Class.forName("avian/avianvmresource/Handler$ResourceInputStream");
@@ -31,20 +34,24 @@ public class SkBitmap extends NativeElement implements NativeBitmap {
 
     SkBitmap(InputStream is) {
         super(init(is));
+        if (!postInit(this.peer))
+            throw new IllegalArgumentException("Unable to initialize bitmap from input stream");
     }
 
     SkBitmap(int width, int height) {
         super(init(width, height));
+        if (!postInit(this.peer))
+            throw new IllegalArgumentException("Unable to initialize bitmap from sizes");
     }
 
     @Override
     public int getWidth() {
-        return 0;
+        return width;
     }
 
     @Override
     public int getHeight() {
-        return 0;
+        return height;
     }
 
     @Override
@@ -77,6 +84,8 @@ public class SkBitmap extends NativeElement implements NativeBitmap {
     private static native long initFromByteArray(byte[] data);
 
     private static native long initFromBlob(long blobPeer);
+
+    private native boolean postInit(long peer);
 
     private static native byte[] getBytesFromImage(long peer, boolean asPNG, double quality);
 

@@ -34,7 +34,12 @@ extern "C" {
 
   void __cxa_pure_virtual(void) { abort(); }
   jclass findClass(JNIEnv *env, char* classname);
+  jclass findObjectClass(JNIEnv *env, jobject object);
   jmethodID findMethod(JNIEnv *env, jclass clazz, char* methodName, char* signature);
+  jfieldID findField(JNIEnv *env, jclass clazz, char* fieldName, char* signature);
+  void setIntField(JNIEnv *env, jobject object, jfieldID field, jint value);
+  void setDoubleField(JNIEnv *env, jobject object, jfieldID field, jdouble value);
+  void setStringField(JNIEnv *env, jobject object, jfieldID field, jstring value);
 }
 
 
@@ -106,6 +111,15 @@ jclass findClass(JNIEnv *env, char* classname) {
     return localClass;
 }
 
+jclass findObjectClass(JNIEnv *env, jobject object) {
+    jclass localClass = env->GetObjectClass(object);
+    if (localClass==0) {
+        fprintf(stderr, "FATAL: unable to find object %s\n", object);
+        return 0;
+    }
+    return localClass;
+}
+
 jmethodID findMethod(JNIEnv *env, jclass clazz, char* methodName, char* signature) {
     jmethodID methodID = env->GetMethodID(clazz, methodName, signature);
     if (methodID==0) {
@@ -115,3 +129,23 @@ jmethodID findMethod(JNIEnv *env, jclass clazz, char* methodName, char* signatur
     return methodID;
 }
 
+jfieldID findField(JNIEnv *env, jclass clazz, char* fieldName, char* signature) {
+    jfieldID fieldID = env->GetFieldID(clazz, fieldName, signature);
+    if (fieldID==0) {
+        fprintf(stderr, "FATAL: unable to find method %s with signature %s\n", fieldName, signature);
+        return 0;
+    }
+    return fieldID;
+}
+
+void setIntField(JNIEnv *env, jobject object, jfieldID field, jint value) {
+    env->SetDoubleField(object, field, value);
+}
+
+void setDoubleField(JNIEnv *env, jobject object, jfieldID field, jdouble value) {
+    env->SetDoubleField(object, field, value);
+}
+
+void setStringField(JNIEnv *env, jobject object, jfieldID field, jstring value) {
+    env->SetObjectField(object, field, value);
+}

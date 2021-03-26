@@ -20,7 +20,7 @@ public class SkFont extends NativeElement implements NativeFont {
 
     public SkFont(String name, double size) {
         super(init(name, size));
-        if (!postInit())
+        if (!postInit(this.peer))
             throw new IllegalArgumentException("Unable to initialize font " + name + " with size " + size);
         this.name = name;
         this.size = size;
@@ -81,7 +81,7 @@ public class SkFont extends NativeElement implements NativeFont {
 
     private static native long init(String name, double size);
 
-    private native boolean postInit();
+    private native boolean postInit(long peer);
 
     private static native CGSize measureText(long peer, String text);
 }

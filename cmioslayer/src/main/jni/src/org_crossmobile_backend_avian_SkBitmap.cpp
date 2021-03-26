@@ -67,6 +67,16 @@ JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkBitmap_initFromByte
   RETURN_V(bitmap, jlong);
 }
 
+JNIEXPORT jboolean JNICALL Java_org_crossmobile_backend_avian_SkBitmap_postInit
+  (JNIEnv * env, jobject thiz, jlong bitmap) {
+  INIT();
+    jclass bitmapClass = findObjectClass(env, thiz);
+
+    setIntField(env, thiz, findField(env, bitmapClass, "width", "I"), ((SkBitmap*)bitmap)->width());
+    setIntField(env, thiz, findField(env, bitmapClass, "height", "I"), ((SkBitmap*)bitmap)->height());
+  RETURN_V(1, jboolean);
+}
+
 JNIEXPORT jbyteArray JNICALL Java_org_crossmobile_backend_avian_SkBitmap_getBytesFromImage
   (JNIEnv *env, jclass clazz, jlong bitmap, jboolean asPNG, jdouble quality) {
   INIT();

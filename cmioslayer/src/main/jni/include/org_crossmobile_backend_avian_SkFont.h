@@ -26,10 +26,10 @@ JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkFont_init
 /*
  * Class:     org_crossmobile_backend_avian_SkFont
  * Method:    postInit
- * Signature: ()Z
+ * Signature: (J)Z
  */
 JNIEXPORT jboolean JNICALL Java_org_crossmobile_backend_avian_SkFont_postInit
-  (JNIEnv *, jobject);
+  (JNIEnv *, jobject, jlong);
 
 /*
  * Class:     org_crossmobile_backend_avian_SkFont
