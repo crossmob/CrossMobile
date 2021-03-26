@@ -242,7 +242,7 @@ while [[ $# -gt 0 ]] ; do
     -c|--clean)
         TARGET_CMD=_clean
         shift
-        [ $# -ge 2 ] && TARGET_DIR=$1 && shift && \
+        [ $# -ge 1 ] && TARGET_DIR=$1 && shift
         [ $# -eq 1 ] && TARGET_SUBDIR=$1 && shift
         ;;
     -o|--os)
