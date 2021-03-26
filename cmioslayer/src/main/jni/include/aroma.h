@@ -27,8 +27,8 @@ extern "C" {
 
 jclass findClass(JNIEnv *env, char* classname);
 jclass findObjectClass(JNIEnv *env, jobject object);
-jmethodID findMethod(JNIEnv *env, jclass clazz, char* methodName, char* signature);
-jfieldID findField(JNIEnv *env, jclass clazz, char* fieldName, char* signature);
+jmethodID findMethod(JNIEnv *env, jclass clazz, const char* methodName, const char* signature);
+jfieldID findField(JNIEnv *env, jclass clazz, const char* fieldName, const char* signature);
 void setIntField(JNIEnv *env, jobject object, jfieldID field, jint value);
 void setDoubleField(JNIEnv *env, jobject object, jfieldID field, jdouble value);
 void setStringField(JNIEnv *env, jobject object, jfieldID field, jstring value);
