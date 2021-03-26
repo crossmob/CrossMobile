@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 set -e
-set -x
 
 USAGE='\n\r
 Usage: linker_builder.sh [CMD] [TARGET_TRIPLE]|[HOST_TRIPLE]\n
