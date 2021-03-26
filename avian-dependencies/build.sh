@@ -131,12 +131,15 @@ __git_clean() {
 }
 
 _clean_avian () {
-    chown -R $USER $SRC_ROOT/avian/build
+    [ -d $SRC_ROOT/avian/build ] && \
+        chown -R $USER $SRC_ROOT/avian/build
 
     if [[ "$TARGET_SUBDIR" == "all" ]]; then
-        find $SRC_ROOT/target -maxdepth 2 -name 'libavian.zip' -delete
-        find $SRC_ROOT/target -maxdepth 2 -name 'driver.o' -delete
-        find $SRC_ROOT/target -maxdepth 2 -name 'binaryToObject' -delete
+        if [ -d $SRC_ROOT/target ]; then
+            find $SRC_ROOT/target -maxdepth 2 -name 'libavian.zip' -delete
+            find $SRC_ROOT/target -maxdepth 2 -name 'driver.o' -delete
+            find $SRC_ROOT/target -maxdepth 2 -name 'binaryToObject' -delete
+        fi
         [ -f "$SRC_ROOT/target/common/classpath.jar" ] && \
             rm $SRC_ROOT/target/common/classpath.jar
         rm -rf $SRC_ROOT/avian/build/*
@@ -152,10 +155,12 @@ _clean_avian () {
 }
 
 _clean_sdl () {
-    chown -R $USER $SRC_ROOT/SDL/build
+    [ -d $USER $SRC_ROOT/SDL/build ] && \
+        chown -R $USER $SRC_ROOT/SDL/build
 
     if [ "$TARGET_SUBDIR" = "all" ]; then
-        find $SRC_ROOT/target -maxdepth 2 -name 'libSDL2.a' -delete
+        [ -d $SRC_ROOT/target ] && \
+            find $SRC_ROOT/target -maxdepth 2 -name 'libSDL2.a' -delete
         rm -rf $SRC_ROOT/SDL/build/*
         __git_clean $SRC_ROOT/SDL
     else
@@ -167,11 +172,14 @@ _clean_sdl () {
 }
 
 _clean_skia () {
-    chown -R $USER $SRC_ROOT/skia/out
+    [ -d $USER $SRC_ROOT/skia/out ] && \
+        chown -R $USER $SRC_ROOT/skia/out
 
     if [[ "$TARGET_SUBDIR" == "all" ]]; then
-        find $SRC_ROOT/target -maxdepth 2 -name 'libskia.a' -delete
-        find $SRC_ROOT/target -maxdepth 2 -name skia_*_build_manifest.txt -delete
+        if [ -d $SRC_ROOT/target ]; then
+            find $SRC_ROOT/target -maxdepth 2 -name 'libskia.a' -delete
+            find $SRC_ROOT/target -maxdepth 2 -name skia_*_build_manifest.txt -delete
+        fi
         rm -rf $SRC_ROOT/skia/out/*
         __git_clean $SRC_ROOT/skia
     else
@@ -185,7 +193,8 @@ _clean_skia () {
 }
 
 _clean () {
-    chown -R $USER $SRC_ROOT/target
+    [ -d $USER $SRC_ROOT/target ] && \
+        chown -R $USER $SRC_ROOT/target
     __msg_warn "Cleaning TARGET:[$TARGET_DIR] SUB_TARGET:[$TARGET_SUBDIR]"
     case $TARGET_DIR in
 
