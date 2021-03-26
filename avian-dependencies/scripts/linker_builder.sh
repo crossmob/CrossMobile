@@ -46,7 +46,9 @@ CMD=""
 
 _source_cygwin_check() {
     if [ ! -d $CYGWIN_LINKER_SRC ]; then
-        git clone --depth 1 -b cygwin-3_1_7-release https://github.com/cygwin/cygwin.git $CYGWIN_LINKER_SRC
+        cd $SRC_ROOT
+        git clone --depth 1 https://github.com/cygwin/cygwin.git -b cygwin-3_1_7-release
+        mv cygwin $CYGWIN_LINKER_SRC
     fi
 }
 
@@ -96,9 +98,11 @@ _build() {
         if [ ! -f $LINKER_BIN_TEMP ]; then
             if [ "$IS_GNU" = true ]; then
                 _source_ld_check
+                [ -d $LINKER_BUILD_DIR ] && \
+                    rm -rf $LINKER_BUILD_DIR
                 mkdir -p $LINKER_BUILD_DIR
                 cd $LINKER_BUILD_DIR
-                $LD_LINKER_SRC/configure \
+                $LINKER_SRC/configure \
                 --host=$AROMA_LINKER_HOST_TRIPLE \
                 --target=$AROMA_LINKER_TARGET_TRIPLE \
                 --program-prefix=$PREFIX_BIN \
@@ -107,9 +111,11 @@ _build() {
                 --with-static-standard-libraries
             else
                 _source_cygwin_check
+                [ -d $LINKER_BUILD_DIR ] && \
+                    rm -rf $LINKER_BUILD_DIR
                 mkdir -p $LINKER_BUILD_DIR
                 cd $LINKER_BUILD_DIR
-                $LD_LINKER_SRC/configure \
+                $LINKER_SRC/configure \
                 --host=$AROMA_LINKER_HOST_TRIPLE \
                 --target=$AROMA_LINKER_TARGET_TRIPLE \
                 --program-prefix=$PREFIX_BIN \
