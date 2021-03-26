@@ -143,6 +143,8 @@ _clean_avian () {
         fi
         [ -f "$SRC_ROOT/target/common/classpath.jar" ] && \
             rm $SRC_ROOT/target/common/classpath.jar
+        [ -f "$SRC_ROOT/target/common/bin/linux-x86_64/binaryToObject" ] && \
+            rm "$SRC_ROOT/target/common/bin/linux-x86_64/binaryToObject"
         rm -rf $SRC_ROOT/avian/build/*
         __git_clean $SRC_ROOT/avian
     else
