@@ -40,8 +40,8 @@ public class SkBitmap extends NativeElement implements NativeBitmap {
 
     SkBitmap(int width, int height) {
         super(init(width, height));
-        if (!postInit(this.peer))
-            throw new IllegalArgumentException("Unable to initialize bitmap from sizes");
+        this.width = width;
+        this.height = height;
     }
 
     @Override

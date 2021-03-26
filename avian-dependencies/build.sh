@@ -194,7 +194,7 @@ _clean_skia () {
 }
 
 _clean () {
-    [ -d $USER $SRC_ROOT/target ] && \
+    [ -d "$USER $SRC_ROOT/target" ] && \
         chown -R $USER $SRC_ROOT/target
     __msg_warn "Cleaning TARGET:[$TARGET_DIR] SUB_TARGET:[$TARGET_SUBDIR]"
     case $TARGET_DIR in
