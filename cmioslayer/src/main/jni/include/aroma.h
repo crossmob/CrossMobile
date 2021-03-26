@@ -7,10 +7,10 @@
 extern int DEBUG_LEVEL;
 
 #ifdef DEBUG_AROMA
-# define DEBUG(fmt, args...) if (DEBUG_LEVEL>0) fprintf(stderr, fmt " [%s]\n", ## args, __func__)
+# define DEBUG(fmt, args...) {if (DEBUG_LEVEL>0) fprintf(stderr, fmt " [%s]\n", ## args, __func__);}
 # define INIT() DEBUG("<init>")
 # define RETURN() DEBUG("<end> ")
-# define RETURN_V(VAL,TYPE) TYPE __result = (TYPE)(VAL); RETURN(); return __result
+# define RETURN_V(VAL,TYPE) {TYPE __result = (TYPE)(VAL); RETURN(); return __result;}
 #else
 # define DEBUG(fmt, args...)
 # define INIT();
@@ -18,8 +18,8 @@ extern int DEBUG_LEVEL;
 # define RETURN_V(VAL,TYPE) return (TYPE)(VAL)
 #endif
 
-#define RETURN_ERROR(fmt, args...) fprintf(stderr, "ERROR: " fmt " [%s]\n", ## args, __func__) ; return
-#define RETURN_ERROR_V(fmt, args...) fprintf(stderr, "ERROR: " fmt " [%s]\n", ## args, __func__) ; return NULL
+#define RETURN_ERROR(fmt, args...) {fprintf(stderr, "ERROR: " fmt " [%s]\n", ## args, __func__) ; return ;}
+#define RETURN_ERROR_V(fmt, args...) {fprintf(stderr, "ERROR: " fmt " [%s]\n", ## args, __func__) ; return NULL;}
 
 #ifdef __cplusplus
 extern "C" {
