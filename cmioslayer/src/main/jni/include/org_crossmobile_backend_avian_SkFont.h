@@ -25,51 +25,11 @@ JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkFont_init
 
 /*
  * Class:     org_crossmobile_backend_avian_SkFont
- * Method:    getFamily
- * Signature: (J)Ljava/lang/String;
+ * Method:    postInit
+ * Signature: ()Z
  */
-JNIEXPORT jstring JNICALL Java_org_crossmobile_backend_avian_SkFont_getFamily
-  (JNIEnv *, jclass, jlong);
-
-/*
- * Class:     org_crossmobile_backend_avian_SkFont
- * Method:    getAscent
- * Signature: (J)D
- */
-JNIEXPORT jdouble JNICALL Java_org_crossmobile_backend_avian_SkFont_getAscent
-  (JNIEnv *, jclass, jlong);
-
-/*
- * Class:     org_crossmobile_backend_avian_SkFont
- * Method:    getDescent
- * Signature: (J)D
- */
-JNIEXPORT jdouble JNICALL Java_org_crossmobile_backend_avian_SkFont_getDescent
-  (JNIEnv *, jclass, jlong);
-
-/*
- * Class:     org_crossmobile_backend_avian_SkFont
- * Method:    getLeading
- * Signature: (J)D
- */
-JNIEXPORT jdouble JNICALL Java_org_crossmobile_backend_avian_SkFont_getLeading
-  (JNIEnv *, jclass, jlong);
-
-/*
- * Class:     org_crossmobile_backend_avian_SkFont
- * Method:    getCapHeight
- * Signature: (J)D
- */
-JNIEXPORT jdouble JNICALL Java_org_crossmobile_backend_avian_SkFont_getCapHeight
-  (JNIEnv *, jclass, jlong);
-
-/*
- * Class:     org_crossmobile_backend_avian_SkFont
- * Method:    getXHeight
- * Signature: (J)D
- */
-JNIEXPORT jdouble JNICALL Java_org_crossmobile_backend_avian_SkFont_getXHeight
-  (JNIEnv *, jclass, jlong);
+JNIEXPORT jboolean JNICALL Java_org_crossmobile_backend_avian_SkFont_postInit
+  (JNIEnv *, jobject);
 
 /*
  * Class:     org_crossmobile_backend_avian_SkFont

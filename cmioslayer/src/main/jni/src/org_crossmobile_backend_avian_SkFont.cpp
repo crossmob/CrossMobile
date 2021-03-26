@@ -34,6 +34,11 @@ JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkFont_init
   RETURN_V(font, jlong);
 }
 
+JNIEXPORT jboolean JNICALL Java_org_crossmobile_backend_avian_SkFont_postInit
+  (JNIEnv * env, jobject thiz) {
+    // apply variables here
+}
+
 
 JNIEXPORT jstring JNICALL Java_org_crossmobile_backend_avian_SkFont_getFamily
   (JNIEnv *env, jclass clazz, jlong font) {

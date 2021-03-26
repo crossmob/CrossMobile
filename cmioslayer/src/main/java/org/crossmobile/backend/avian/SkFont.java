@@ -20,6 +20,8 @@ public class SkFont extends NativeElement implements NativeFont {
 
     public SkFont(String name, double size) {
         super(init(name, size));
+        if (!postInit())
+            throw new IllegalArgumentException("Unable to initialize font " + name + " with size " + size);
         this.name = name;
         this.size = size;
     }
@@ -33,27 +35,27 @@ public class SkFont extends NativeElement implements NativeFont {
     }
 
     public String getFamily() {
-        return getFamily(peer);
+        return family;
     }
 
     public double getAscent() {
-        return getAscent(peer);
+        return ascent;
     }
 
     public double getDescent() {
-        return getDescent(peer);
+        return descent;
     }
 
     public double getLeading() {
-        return getLeading(peer);
+        return leading;
     }
 
     public double getCapHeight() {
-        return getCapHeight(peer);
+        return capHeight;
     }
 
     public double getXHeight() {
-        return getXHeight(peer);
+        return xHeight;
     }
 
     public CGSize measureText(String text) {
@@ -61,21 +63,25 @@ public class SkFont extends NativeElement implements NativeFont {
     }
 
     @Override
+    public String toString() {
+        return "SkFont{" +
+                "name='" + name + '\'' +
+                ", size=" + size +
+                ", family='" + family + '\'' +
+                ", ascent=" + ascent +
+                ", descent=" + descent +
+                ", leading=" + leading +
+                ", capHeight=" + capHeight +
+                ", xHeight=" + xHeight +
+                '}';
+    }
+
+    @Override
     protected native void destroy(long peer);
 
     private static native long init(String name, double size);
 
-    private static native String getFamily(long peer);
-
-    private static native double getAscent(long peer);
-
-    private static native double getDescent(long peer);
-
-    private static native double getLeading(long peer);
-
-    private static native double getCapHeight(long peer);
-
-    private static native double getXHeight(long peer);
+    private native boolean postInit();
 
     private static native CGSize measureText(long peer, String text);
 }
