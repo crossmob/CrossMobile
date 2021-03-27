@@ -53,7 +53,7 @@ public class SkCanvas extends NativeElement implements GraphicsContext<SkMatrix>
 
     @Override
     public void drawBitmap(NativeBitmap image, int x, int y, int width, int height) {
-        drawImage(peer, ((SkBitmap) image).peer, x, y, width, height, draw.peer);
+        drawImage(peer, ((SkBitmap) image).peer, x, y, width, height);
     }
 
     @Override
@@ -98,7 +98,7 @@ public class SkCanvas extends NativeElement implements GraphicsContext<SkMatrix>
 
     @Override
     public void showTextAtPoint(double x, double y, String text) {
-        drawText(peer, x, y, text, fill.peer, font.peer);
+        drawText(peer, x, y - font.getAscent(), text, fill.peer, font.peer);
     }
 
     @Override
@@ -234,7 +234,7 @@ public class SkCanvas extends NativeElement implements GraphicsContext<SkMatrix>
 
     private static native void drawRect(long canvasPeer, double x, double y, double width, double height, long paintPeer);
 
-    private static native void drawImage(long canvasPeer, long imagePeer, double x, double y, double width, double height, long paintPeer);
+    private static native void drawImage(long canvasPeer, long imagePeer, double x, double y, double width, double height);
 
     private static native void drawLine(long canvasPeer, double x1, double y1, double x2, double y2, long paintPeer);
 

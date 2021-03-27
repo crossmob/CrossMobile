@@ -7,6 +7,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+#undef org_crossmobile_backend_avian_SkPaint_FILL
+#define org_crossmobile_backend_avian_SkPaint_FILL 0L
+#undef org_crossmobile_backend_avian_SkPaint_STROKE
+#define org_crossmobile_backend_avian_SkPaint_STROKE 1L
+#undef org_crossmobile_backend_avian_SkPaint_FILL_AND_STROKE
+#define org_crossmobile_backend_avian_SkPaint_FILL_AND_STROKE 2L
 /*
  * Class:     org_crossmobile_backend_avian_SkPaint
  * Method:    initPaint

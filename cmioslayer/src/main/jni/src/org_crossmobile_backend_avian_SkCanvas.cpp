@@ -80,10 +80,9 @@ JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_drawRect
 
 
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_drawImage
-  (JNIEnv *env, jclass clazz, jlong canvas, jlong bitmap, jdouble x, jdouble y, jdouble width, jdouble height, jlong paint) {
+  (JNIEnv *env, jclass clazz, jlong canvas, jlong bitmap, jdouble x, jdouble y, jdouble width, jdouble height) {
   INIT();
-    ((SkCanvas*)canvas)->translate(x, y);
-    ((SkCanvas*)canvas)->drawBitmapRect(*((SkBitmap*)bitmap), SkRect::MakeWH(width, height), (SkPaint*)paint);
+    ((SkCanvas*)canvas)->drawBitmapRect(*((SkBitmap*)bitmap), SkRect::MakeXYWH(x, y, width, height), NULL);
   RETURN();
 }
 

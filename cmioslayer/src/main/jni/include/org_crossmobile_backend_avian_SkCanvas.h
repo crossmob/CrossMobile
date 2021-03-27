@@ -7,12 +7,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#undef org_crossmobile_backend_avian_SkCanvas_FILL
-#define org_crossmobile_backend_avian_SkCanvas_FILL 0L
-#undef org_crossmobile_backend_avian_SkCanvas_STROKE
-#define org_crossmobile_backend_avian_SkCanvas_STROKE 1L
-#undef org_crossmobile_backend_avian_SkCanvas_FILL_AND_STROKE
-#define org_crossmobile_backend_avian_SkCanvas_FILL_AND_STROKE 2L
 #undef org_crossmobile_backend_avian_SkCanvas_MITER_JOIN
 #define org_crossmobile_backend_avian_SkCanvas_MITER_JOIN 0L
 #undef org_crossmobile_backend_avian_SkCanvas_ROUND_JOIN
@@ -92,10 +86,10 @@ JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_drawRect
 /*
  * Class:     org_crossmobile_backend_avian_SkCanvas
  * Method:    drawImage
- * Signature: (JJDDDDJ)V
+ * Signature: (JJDDDD)V
  */
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_drawImage
-  (JNIEnv *, jclass, jlong, jlong, jdouble, jdouble, jdouble, jdouble, jlong);
+  (JNIEnv *, jclass, jlong, jlong, jdouble, jdouble, jdouble, jdouble);
 
 /*
  * Class:     org_crossmobile_backend_avian_SkCanvas
