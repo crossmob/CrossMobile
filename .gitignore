@@ -9,3 +9,7 @@ cmioslayer/gen/lib
 .idea/
 *.iml
 /.project
+
+avian-dependencies/aroma-cygwin-linker/
+avian-dependencies/aroma-ld-linker.tar.bz2
+avian-dependencies/aroma-ld-linker/
