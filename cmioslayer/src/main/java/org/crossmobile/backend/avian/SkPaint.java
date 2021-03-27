@@ -1,6 +1,11 @@
 package org.crossmobile.backend.avian;
 
 public class SkPaint  extends NativeElement {
+
+  static final byte FILL = 0;
+  static final byte STROKE = 1;
+  static final byte FILL_AND_STROKE = 2;
+
   SkPaint() {
     super(initPaint());
   }

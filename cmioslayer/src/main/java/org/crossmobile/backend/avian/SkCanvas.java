@@ -9,10 +9,6 @@ import org.crossmobile.bind.graphics.NativeFont;
 import org.crossmobile.bind.graphics.NativePath;
 
 public class SkCanvas extends NativeElement implements GraphicsContext<SkMatrix> {
-    static final byte FILL = 0;
-    static final byte STROKE = 1;
-    static final byte FILL_AND_STROKE = 2;
-
     static final byte MITER_JOIN = 0;
     static final byte ROUND_JOIN = 1;
     static final byte BEVEL_JOIN = 2;
@@ -26,21 +22,21 @@ public class SkCanvas extends NativeElement implements GraphicsContext<SkMatrix>
     static final byte DEFAULT_CAP = ROUND_CAP;
 
     private SkFont font = new SkFont();
-    private SkPaint fill = new SkPaint();
-    private SkPaint draw = new SkPaint();
+    private final SkPaint fill = new SkPaint();
+    private final SkPaint draw = new SkPaint();
+
+    private SkCanvas(long peer) {
+        super(peer);
+        fill.setStyle(SkPaint.FILL);
+        draw.setStyle(SkPaint.STROKE);
+    }
 
     SkCanvas(SDLWindow surface) {
-        super(initCanvas(surface.getWidth(), surface.getHeight(), surface.getPixels(), surface.getPitch()));
-
-        fill.setStyle(FILL);
-        draw.setStyle(STROKE);
+        this(initCanvas(surface.getWidth(), surface.getHeight(), surface.getPixels(), surface.getPitch()));
     }
 
     SkCanvas(SkBitmap bitmap) {
-        super(initCanvas(bitmap.peer));
-
-        fill.setStyle(FILL);
-        draw.setStyle(STROKE);
+        this(initCanvas(bitmap.peer));
     }
 
     public void setAlpha(double alpha) {
@@ -187,6 +183,7 @@ public class SkCanvas extends NativeElement implements GraphicsContext<SkMatrix>
 
     /**
      * Concat given matrix with the current transformation matrix of this Canvas
+     *
      * @param transform the offered transformation matrix to concat with the current one
      */
     @Override
@@ -195,6 +192,7 @@ public class SkCanvas extends NativeElement implements GraphicsContext<SkMatrix>
 
     /**
      * Get the current transformation matrix of this canvas
+     *
      * @return the transformation matrix
      */
     @Override
