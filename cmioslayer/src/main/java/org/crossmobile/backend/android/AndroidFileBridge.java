@@ -43,7 +43,7 @@ public class AndroidFileBridge extends AbstractFileBridge {
 
     @SuppressWarnings("UseSpecificCatch")
     public static int getResourceID(String type, String item) {
-        Class clazz;
+        Class<?> clazz;
         Context cxt = MainActivity.current;
         if (cxt == null)
             return errorIfFatal("Resource can not be loaded, because context is not yet initialized");
@@ -102,7 +102,7 @@ public class AndroidFileBridge extends AbstractFileBridge {
         if (path.isEmpty())
             return true;
         // Path refers to a file
-        try (InputStream is = getApplicationFileStream(path)) {
+        try (InputStream ignored = getApplicationFileStream(path)) {
             return true;
         } catch (IOException ignored) {
         }

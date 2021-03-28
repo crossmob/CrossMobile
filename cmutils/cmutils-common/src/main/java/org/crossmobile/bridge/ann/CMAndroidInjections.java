@@ -14,8 +14,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Retention(RUNTIME)
 @Target(TYPE)
-/**
- * Single Android Injection
+/*
+  Single Android Injection
  */
 public @interface CMAndroidInjections {
     /**

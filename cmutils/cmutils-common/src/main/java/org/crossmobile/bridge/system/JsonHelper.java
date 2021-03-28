@@ -179,7 +179,7 @@ public class JsonHelper {
                 json.add(key, fromCollection(map.get(key)));
             return json;
         } else if (value instanceof Collection) {
-            Collection collection = (Collection) value;
+            Collection<?> collection = (Collection<?>) value;
             JsonArray json = new JsonArray();
             for (Object item : collection)
                 json.add(fromCollection(item));

@@ -14,7 +14,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Retention(RUNTIME)
 @Target(METHOD)
-@CMLib(target = CMLibTarget.APIJAVA)
 public @interface CMGetter {
 
     String value();

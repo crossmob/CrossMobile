@@ -6,7 +6,6 @@
 
 package org.crossmobile.bridge.ann;
 
-@CMLib(target = CMLibTarget.APIJAVA)
 public enum CMLibTarget {
     /**
      * Elements only to appear in source code. Will disappear from all

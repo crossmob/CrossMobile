@@ -17,8 +17,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Retention(RUNTIME)
 @Target({PACKAGE, TYPE})
-/**
- * Definition of a CrossMobile Library
+/*
+  Definition of a CrossMobile Library
  */
 public @interface CMLib {
 
