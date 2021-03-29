@@ -62,6 +62,10 @@ public class SkFont extends NativeElement implements NativeFont {
         return measureText(peer, text);
     }
 
+    public double ascentText(String text) {
+        return ascentText(peer, text);
+    }
+
     @Override
     public String toString() {
         return "SkFont{" +
@@ -84,4 +88,6 @@ public class SkFont extends NativeElement implements NativeFont {
     private native boolean postInit(long peer);
 
     private static native CGSize measureText(long peer, String text);
+
+    private static native double ascentText(long peer, String text);
 }

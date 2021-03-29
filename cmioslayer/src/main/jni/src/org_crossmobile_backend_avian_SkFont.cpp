@@ -71,3 +71,13 @@ JNIEXPORT jobject JNICALL Java_org_crossmobile_backend_avian_SkFont_measureText
     jobject result = env->NewObject(cgsize, cgsize_init, bounds.width(), bounds.height());
   RETURN_V(result, jobject);
 }
+
+JNIEXPORT jdouble JNICALL Java_org_crossmobile_backend_avian_SkFont_ascentText
+  (JNIEnv * env, jclass clazz, jlong font, jstring text) {
+  INIT();
+  SkRect bounds;
+  const char *ctext = env->GetStringUTFChars(text, 0);
+  (void)((SkFont*)font)->measureText(ctext, strlen(ctext), SkTextEncoding::kUTF8, &bounds);
+  env->ReleaseStringUTFChars(text, ctext);
+  RETURN_V(bounds.top(), jdouble);
+}

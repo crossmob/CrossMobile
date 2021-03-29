@@ -98,7 +98,7 @@ public class SkCanvas extends NativeElement implements GraphicsContext<SkMatrix>
 
     @Override
     public void showTextAtPoint(double x, double y, String text) {
-        drawText(peer, x, y + font.measureText(text).getHeight(), text, fill.peer, font.peer);
+        drawText(peer, x, y - font.ascentText(text), text, fill.peer, font.peer);
     }
 
     @Override

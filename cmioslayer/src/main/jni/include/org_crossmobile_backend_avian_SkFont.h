@@ -39,6 +39,14 @@ JNIEXPORT jboolean JNICALL Java_org_crossmobile_backend_avian_SkFont_postInit
 JNIEXPORT jobject JNICALL Java_org_crossmobile_backend_avian_SkFont_measureText
   (JNIEnv *, jclass, jlong, jstring);
 
+/*
+ * Class:     org_crossmobile_backend_avian_SkFont
+ * Method:    ascentText
+ * Signature: (JLjava/lang/String;)D
+ */
+JNIEXPORT jdouble JNICALL Java_org_crossmobile_backend_avian_SkFont_ascentText
+  (JNIEnv *, jclass, jlong, jstring);
+
 #ifdef __cplusplus
 }
 #endif

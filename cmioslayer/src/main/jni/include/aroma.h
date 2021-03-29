@@ -25,7 +25,7 @@ extern int DEBUG_LEVEL;
 extern "C" {
 #endif
 
-jclass findClass(JNIEnv *env, char* classname);
+jclass findClass(JNIEnv *env, const char* classname);
 jclass findObjectClass(JNIEnv *env, jobject object);
 jmethodID findMethod(JNIEnv *env, jclass clazz, const char* methodName, const char* signature);
 jfieldID findField(JNIEnv *env, jclass clazz, const char* fieldName, const char* signature);
