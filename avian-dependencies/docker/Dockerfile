@@ -34,10 +34,10 @@ else \
                                 exit 1\
                         ;;\
                 esac ;\
-        # elif [[ $OS == 'win' && $ARCH == 'i386' ]] ; then \
-        #         export ARCH='i386' && \
-        #         CROSS_PKG='\
-        #                 mingw-w64'; \
+        elif [[ $OS == 'win' && $ARCH == 'i386' ]] ; then \
+                export ARCH='i386' && \
+                CROSS_PKG='\
+                        mingw-w64'; \
         else echo 'Unsupported operating system: ${OS}'; fi && \
         dpkg --add-architecture $ARCH && \
         apt-get update && \
@@ -94,7 +94,6 @@ RUN     apt-get update && \
         ninja-build \
         clang \
         python2.7 \
-        mingw-w64 \
         zip \
         zlib1g-dev \
         software-properties-common && \

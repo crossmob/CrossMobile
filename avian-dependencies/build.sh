@@ -40,7 +40,7 @@ if [[ $EUID -eq 0 ]]; then
 fi
 
 _check_docker_image() {
-    echo "Check image: \"$1\""
+    __msg_info "Check for image: \"$1\""
     if [[ "$($DOCKERSUDO docker images -q $1 2> /dev/null)" == "" ]]; then
         return -1 #image doesn't exits
     fi
@@ -55,6 +55,16 @@ _install () {
     cp -r target/* $DEST
 }
 
+__devsys_util_builder () {
+    __msg_info "Building host utils for '$1' host & '$2' target"
+    $DOCKERSUDO docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
+        bash "/src/scripts/linker_builder.sh" -b \
+        -h $1 \
+        -t $2 \
+        -s /src \
+        -o /src/target/common/bin
+}
+
 _build () {
 
     if [[ $TARGET_ARCH == "arm" ]]; then
@@ -64,9 +74,12 @@ _build () {
     fi
 
     local IMAGE_NAME="aroma/dep-builder-$TARGET_OS-$TARGET_ARCH"
+    local IMAGE_WIN="aroma/dep-builder-win-i386"
+
+    git submodule update --recursive --init --remote
 
     if [[ "$(_check_docker_image $IMAGE_NAME)" != "0" ]]; then
-        echo "Building image: \"$IMAGE_NAME\""
+        __msg_info "Building \"$IMAGE_NAME\" builder image"
         # SRC_DIR=$SRC_ROOT \
         # TARGET_OS=$TARGET_OS \
         # TARGET_ARCH=$TARGET_ARCH \
@@ -74,48 +87,22 @@ _build () {
         $DOCKERSUDO docker build -t $IMAGE_NAME docker/ --build-arg ARCH=$TARGET_ARCH --build-arg OS=linux
     fi
 
-    # if [[ "$(_check_docker_image "aroma/dep-builder-win-i386")"]]; then
-    #     $DOCKERSUDO docker build -t aroma/dep-builder-win-i386 docker/ --build-arg ARCH=i386 OS=win
-    # fi
-    # git submodule update --recursive --init --remote
+    if [[ "$(_check_docker_image $IMAGE_WIN)" != "0" ]]; then
+        __msg_info "Building windows host utils builder"
+        $DOCKERSUDO docker build -t $IMAGE_WIN docker/ --build-arg ARCH=i386 OS=win
+    fi
 
-    echo "Run image: \"$IMAGE_NAME\""
-    # sudo docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
-    #     bash "/src/scripts/linker_builder.sh" -b \
-    #     -h x86_64-w64-mingw32 \
-    #     -t aarch64-linux-gnu \
-    #     -s /src \
-    #     -o /src/target/common/bin
-    # sudo docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
-    #     bash "/src/scripts/linker_builder.sh" -b \
-    #     -h x86_64-w64-mingw32 \
-    #     -t arm-linux-gnueabihf \
-    #     -s /src \
-    #     -o /src/target/common/bin
-    # sudo docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
-    #     bash "/src/scripts/linker_builder.sh" -b \
-    #     -h x86_64-w64-mingw32 \
-    #     -t x86_64-linux-gnu \
-    #     -s /src \
-    #     -o /src/target/common/bin
-    $DOCKERSUDO docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
-        bash "/src/scripts/linker_builder.sh" -b \
-        -h x86_64-linux-gnu \
-        -t x86_64-linux-gnu \
-        -s /src \
-        -o /src/target/common/bin
-    $DOCKERSUDO docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
-        bash "/src/scripts/linker_builder.sh" -b \
-        -h x86_64-linux-gnu \
-        -t aarch64-linux-gnu \
-        -s /src \
-        -o /src/target/common/bin
-    $DOCKERSUDO docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
-        bash /src/scripts/linker_builder.sh -b \
-        -h x86_64-linux-gnu \
-        -t arm-linux-gnueabihf \
-        -s /src \
-        -o /src/target/common/bin
+    #Binutils for Linux desktop host systems
+    __devsys_util_builder x86_64-w64-mingw32 arm-linux-gnueabihf
+    __devsys_util_builder x86_64-w64-mingw32 aarch64-linux-gnu 
+    __devsys_util_builder x86_64-w64-mingw32 x86_64-linux-gnu 
+
+    #Binutils for Window desktop host systems
+    __devsys_util_builder x86_64-linux-gnu arm-linux-gnueabihf
+    __devsys_util_builder x86_64-linux-gnu aarch64-linux-gnu 
+    __devsys_util_builder x86_64-linux-gnu x86_64-linux-gnu 
+
+    __msg_info "Running \"$IMAGE_NAME\" to build dependencies for OS: $TARGET_OS ARCH: $TARGET_ARCH target"
     $DOCKERSUDO docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
         bash /src/docker/dep_builder.sh \
         /src $TARGET_OS $TARGET_ARCH release
