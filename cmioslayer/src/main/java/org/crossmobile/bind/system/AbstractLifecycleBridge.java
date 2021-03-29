@@ -9,6 +9,7 @@ package org.crossmobile.bind.system;
 import crossmobile.ios.foundation.*;
 import crossmobile.ios.uikit.*;
 import org.crossmobile.bind.graphics.Theme;
+import org.crossmobile.bind.system.init.PluginsLauncherList;
 import org.crossmobile.bridge.LifecycleBridge;
 import org.crossmobile.bridge.Native;
 
@@ -67,7 +68,7 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
     @SuppressWarnings({"UseSpecificCatch"})
     private void initPlugins() {
         try {
-            Class.forName("org.crossmobile.sys.PluginsLauncherList").getMethod("initialize").invoke(null);
+            PluginsLauncherList.initialize();
         } catch (Exception ex) {
             Native.system().error("Unable to initialize plugins", ex);
         }

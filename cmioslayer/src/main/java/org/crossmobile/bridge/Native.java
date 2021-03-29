@@ -9,6 +9,7 @@ package org.crossmobile.bridge;
 import org.crossmobile.bridge.resolver.AndroidBridgeResolver;
 import org.crossmobile.bridge.resolver.AvianBridgeResolver;
 import org.crossmobile.bridge.resolver.SwingBridgeResolver;
+import org.crossmobile.bind.system.init.PluginsLauncherList;
 
 /**
  * Native bridge and method factory
@@ -69,8 +70,8 @@ public abstract class Native {
         if (!alreadyEarlyInitialized)
             try {
                 alreadyEarlyInitialized = true;
-                Class.forName("org.crossmobile.sys.PluginsLauncherList").getMethod("earlyInitialize", Object.class).invoke(null, context);
-            } catch (Exception ex) {
+                PluginsLauncherList.earlyInitialize(context);
+            } catch (Throwable ex) {
                 Native.system().error("Unable to early initialize plugins", ex);
             }
     }
