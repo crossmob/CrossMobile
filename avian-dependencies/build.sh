@@ -1,6 +1,5 @@
 #!/bin/bash
 set -e
-set -x
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -13,6 +12,10 @@ TARGET_ARCH=$(uname -m)
 TARGET_CMD=""
 TARGET_DIR="all"
 TARGET_SUBDIR="all"
+
+DOCKERSUDO=sudo
+
+
 
 USAGE='\n\r
 # TARGET=avian,sdl,skia,all(default)\n\r
@@ -30,9 +33,15 @@ Parameters:\n\r
 
 cd $SRC_ROOT
 
+
+if [[ $EUID -eq 0 ]]; then
+   echo "This script must not be run as root"
+   exit 1
+fi
+
 _check_docker_image() {
     echo "Check image: \"$1\""
-    if [[ "$(docker images -q $1 2> /dev/null)" == "" ]]; then
+    if [[ "$($DOCKERSUDO docker images -q $1 2> /dev/null)" == "" ]]; then
         return -1 #image doesn't exits
     fi
         return 0 #image exist
@@ -62,11 +71,11 @@ _build () {
         # TARGET_OS=$TARGET_OS \
         # TARGET_ARCH=$TARGET_ARCH \
         #sudo docker-compose -f docker/docker-compose.yml build --build-args SRC_DIR=$SRC_ROOT TARGET_OS=$TARGET_OS TARGET_ARCH=$TARGET_ARCH aromadepbuilder
-        docker build -t $IMAGE_NAME docker/ --build-arg ARCH=$TARGET_ARCH --build-arg OS=linux
+        $DOCKERSUDO docker build -t $IMAGE_NAME docker/ --build-arg ARCH=$TARGET_ARCH --build-arg OS=linux
     fi
 
     # if [[ "$(_check_docker_image "aroma/dep-builder-win-i386")"]]; then
-    #     docker build -t aroma/dep-builder-win-i386 docker/ --build-arg ARCH=i386 OS=win
+    #     $DOCKERSUDO docker build -t aroma/dep-builder-win-i386 docker/ --build-arg ARCH=i386 OS=win
     # fi
     # git submodule update --recursive --init --remote
 
@@ -89,25 +98,25 @@ _build () {
     #     -t x86_64-linux-gnu \
     #     -s /src \
     #     -o /src/target/common/bin
-    sudo docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
+    $DOCKERSUDO docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
         bash "/src/scripts/linker_builder.sh" -b \
         -h x86_64-linux-gnu \
         -t x86_64-linux-gnu \
         -s /src \
         -o /src/target/common/bin
-    sudo docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
+    $DOCKERSUDO docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
         bash "/src/scripts/linker_builder.sh" -b \
         -h x86_64-linux-gnu \
         -t aarch64-linux-gnu \
         -s /src \
         -o /src/target/common/bin
-    sudo docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
+    $DOCKERSUDO docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
         bash /src/scripts/linker_builder.sh -b \
         -h x86_64-linux-gnu \
         -t arm-linux-gnueabihf \
         -s /src \
         -o /src/target/common/bin
-    sudo docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
+    $DOCKERSUDO docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
         bash /src/docker/dep_builder.sh \
         /src $TARGET_OS $TARGET_ARCH release
 
