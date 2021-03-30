@@ -215,6 +215,14 @@ public class SkCanvas extends NativeElement implements GraphicsContext<SkMatrix>
         flush(peer);
     }
 
+    public void fill() {
+        fill(this.peer, fill.peer);
+    }
+
+    public void drawNinePatch(SkBitmap sourceBitmap, int top, int right, int bottom, int left, int reqX, int reqY) {
+        drawNinePatch(this.peer, sourceBitmap.peer, top, right, bottom, left, reqX, reqY);
+    }
+
     @Override
     protected void destroy(long peer) {
         destroyCanvas(peer);
@@ -255,4 +263,8 @@ public class SkCanvas extends NativeElement implements GraphicsContext<SkMatrix>
     private static native void scale(long canvasPeer, double sx, double sy);
 
     private static native void clipRect(long canvasPeer, double w, double h, long paintPeer);
+
+    private static native void fill(long canvasPeer, long paintPeer);
+
+    private static native void drawNinePatch(long peer, long sourceBitmapPeer, int top, int right, int bottom, int left, int reqX, int reqY);
 }

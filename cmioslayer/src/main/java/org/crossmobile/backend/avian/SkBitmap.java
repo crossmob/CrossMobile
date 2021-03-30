@@ -71,6 +71,10 @@ public class SkBitmap extends NativeElement implements NativeBitmap {
         return initFromByteArray(StreamConverter.toBytes(inputStream));
     }
 
+    public void extractAlpha(SkBitmap targetBitmap) {
+        extractAlpha(this.peer, targetBitmap.peer);
+    }
+
     private static long init(int width, int height) {
         return initFromSizes(width, height);
     }
@@ -90,4 +94,6 @@ public class SkBitmap extends NativeElement implements NativeBitmap {
     private static native byte[] getBytesFromImage(long peer, boolean asPNG, double quality);
 
     protected native void destroy(long peer);
+
+    private static native void extractAlpha(long sourceBitmapPeer, long targetBitmapPeer);
 }

@@ -168,3 +168,19 @@ JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_clipRect
     ((SkCanvas*)canvas)->clipRect(rect, SkClipOp::kIntersect, ((SkPaint*)paint)->isAntiAlias());
   RETURN();
 }
+
+JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_drawPaint
+  (JNIEnv *env, jclass clazz, jlong canvas, jlong paint) {
+  INIT();
+    ((SkCanvas*)canvas)->drawPaint(*((SkPaint*)paint));
+  RETURN();
+}
+
+JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_drawNinePatch
+  (JNIEnv *env, jclass clazz, jlong canvas, jlong sourceBitmap, jint top, jint right, jint bottom, jint left, jint reqX, jint reqY) {
+  INIT();
+//    SkRect rect = SkRect::MakeLTRB(left, top, right, bottom);
+//    SkIRect irect = SkIRect::MakeLTRB(left, top, right, bottom);
+//    ((SkCanvas*)canvas)->drawBitmapNine(*((SkBitmap*)sourceBitmap), irect, rect);
+  RETURN();
+}
