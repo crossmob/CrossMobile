@@ -35,6 +35,18 @@
             <id>run</id>
         </profile>
         <profile>
+            <id>linux</id>
+        </profile>
+        <profile>
+            <id>x86_64</id>
+        </profile>
+        <profile>
+            <id>arm</id>
+        </profile>
+        <profile>
+            <id>arm32</id>
+        </profile>
+        <profile>
             <id>swing</id>
             <dependencies>
                 <dependency>
