@@ -80,9 +80,6 @@ _build () {
     fi
 
 
-
-    git submodule update --recursive --init --remote
-
     if [[ "$(_check_docker_image $IMAGE_NAME)" != "0" ]]; then
         __msg_info "Building \"$IMAGE_NAME\" builder image"
         # SRC_DIR=$SRC_ROOT \
