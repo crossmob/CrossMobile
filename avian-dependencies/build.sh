@@ -56,19 +56,38 @@ _install () {
     cp -r target/* $DEST
 }
 
+
 __devsys_util_builder () {
-    __msg_info "Building host utils for '$1' host & '$2' target"
+    local HOST_ARCH=$1
+    local HOST_OS=$2
+    local HOST_OSTYPE=$3
+
+    local TARGET_ARCH=$4
+    local TARGET_OS=$5
+    local TARGET_OSTYPE=$6
+
+    local HOST_FULL=${HOST_ARCH}-${HOST_OS}-${HOST_OSTYPE}
+    local TARGET_FULL=${TARGET_ARCH}-${TARGET_OS}-${TARGET_OSTYPE}
+
+    __msg_info "Building host utils for '$HOST_FULL' host & '$TARGET_FULL' target"
     local IMAGE=$IMAGE_NAME
-    if [[ "$1" == "x86_64-w64-mingw32" ]]; then
+    if [[ "$HOST_FULL" == "x86_64-w64-mingw32" ]]; then
         IMAGE=$IMAGE_WIN
     fi
 
     $DOCKERSUDO docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE \
         bash "/src/scripts/linker_builder.sh" -b \
-        -h $1 \
-        -t $2 \
+        -h $HOST_FULL \
+        -t $TARGET_FULL \
         -s /src \
-        -o /src/target/common/bin
+        -o /src/out
+
+    if [ "$TARGET_ARCH" = "aarch64" ] ; then TARGET_ARCH=arm64 ; fi
+    local BINTARGET=${SRC_ROOT}/target/${TARGET_OS}-${TARGET_ARCH}
+    local BINSRC=${SRC_ROOT}/out/${HOST_FULL}__${TARGET_FULL}
+    sudo chown -R $USER:$USER ${SRC_ROOT}/out
+    mv ${BINSRC}/aroma-gnu-ld ${BINTARGET}/ld.${HOST_OS}-${HOST_ARCH}
+    rm -rf {SRC_ROOT}/out
 }
 
 _build () {
@@ -100,9 +119,9 @@ _build () {
     # __devsys_util_builder x86_64-w64-mingw32 x86_64-linux-gnu 
 
     #Binutils for Window desktop host systems
-    __devsys_util_builder x86_64-linux-gnu arm-linux-gnueabihf
-    __devsys_util_builder x86_64-linux-gnu aarch64-linux-gnu 
-    __devsys_util_builder x86_64-linux-gnu x86_64-linux-gnu 
+    __devsys_util_builder x86_64 linux gnu arm linux gnueabihf
+    __devsys_util_builder x86_64 linux gnu aarch64 linux gnu 
+    __devsys_util_builder x86_64 linux gnu x86_64 linux gnu 
 
     __msg_info "Running \"$IMAGE_NAME\" to build dependencies for OS: $TARGET_OS ARCH: $TARGET_ARCH target"
     $DOCKERSUDO docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
