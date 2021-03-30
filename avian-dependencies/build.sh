@@ -12,7 +12,8 @@ TARGET_ARCH=$(uname -m)
 TARGET_CMD=""
 TARGET_DIR="all"
 TARGET_SUBDIR="all"
-
+IMAGE_NAME="aroma/dep-builder-$TARGET_OS-$TARGET_ARCH"
+IMAGE_WIN="aroma/dep-builder-win-i386"
 DOCKERSUDO=sudo
 
 
@@ -34,10 +35,10 @@ Parameters:\n\r
 cd $SRC_ROOT
 
 
-if [[ $EUID -eq 0 ]]; then
-   echo "This script must not be run as root"
-   exit 1
-fi
+# if [[ $EUID -eq 0 ]]; then
+#    echo "This script must not be run as root"
+#    exit 1
+# fi
 
 _check_docker_image() {
     __msg_info "Check for image: \"$1\""
@@ -57,7 +58,12 @@ _install () {
 
 __devsys_util_builder () {
     __msg_info "Building host utils for '$1' host & '$2' target"
-    $DOCKERSUDO docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
+    local IMAGE=$IMAGE_NAME
+    if [[ "$1" == "x86_64-w64-mingw32" ]]; then
+        IMAGE=$IMAGE_WIN
+    fi
+
+    $DOCKERSUDO docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE \
         bash "/src/scripts/linker_builder.sh" -b \
         -h $1 \
         -t $2 \
@@ -73,8 +79,7 @@ _build () {
         TARGET_ARCH="amd64"
     fi
 
-    local IMAGE_NAME="aroma/dep-builder-$TARGET_OS-$TARGET_ARCH"
-    local IMAGE_WIN="aroma/dep-builder-win-i386"
+
 
     git submodule update --recursive --init --remote
 
@@ -87,15 +92,15 @@ _build () {
         $DOCKERSUDO docker build -t $IMAGE_NAME docker/ --build-arg ARCH=$TARGET_ARCH --build-arg OS=linux
     fi
 
-    if [[ "$(_check_docker_image $IMAGE_WIN)" != "0" ]]; then
-        __msg_info "Building windows host utils builder"
-        $DOCKERSUDO docker build -t $IMAGE_WIN docker/ --build-arg ARCH=i386 OS=win
-    fi
+    # if [[ "$(_check_docker_image $IMAGE_WIN)" != "0" ]]; then
+    #     __msg_info "Building windows host utils builder"
+    #     $DOCKERSUDO docker build -t $IMAGE_WIN docker/ --build-arg ARCH=i386 --build-arg OS=win
+    # fi
 
     #Binutils for Linux desktop host systems
-    __devsys_util_builder x86_64-w64-mingw32 arm-linux-gnueabihf
-    __devsys_util_builder x86_64-w64-mingw32 aarch64-linux-gnu 
-    __devsys_util_builder x86_64-w64-mingw32 x86_64-linux-gnu 
+    # __devsys_util_builder x86_64-w64-mingw32 arm-linux-gnueabihf
+    # __devsys_util_builder x86_64-w64-mingw32 aarch64-linux-gnu 
+    # __devsys_util_builder x86_64-w64-mingw32 x86_64-linux-gnu 
 
     #Binutils for Window desktop host systems
     __devsys_util_builder x86_64-linux-gnu arm-linux-gnueabihf
