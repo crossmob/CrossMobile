@@ -8,6 +8,11 @@ package org.crossmobile.backend.desktop;
 
 import com.panayotis.appenh.Enhancer;
 import com.panayotis.appenh.EnhancerManager;
+import crossmobile.ios.foundation.NSDate;
+import crossmobile.ios.foundation.NSRunLoop;
+import crossmobile.ios.foundation.NSRunLoopMode;
+import crossmobile.ios.foundation.NSTimer;
+import org.crossmobile.bind.graphics.anim.Animator;
 import org.crossmobile.bind.system.AbstractLifecycleBridge;
 import org.crossmobile.bridge.Native;
 
@@ -20,6 +25,7 @@ public abstract class DesktopLifecycleBridge extends AbstractLifecycleBridge {
 
     private static boolean initial_activation_performed = false;
     private boolean isQuitting;
+    private NSTimer animationTimer;
 
     /**
      * Desktop backend directly starts this method from the wrapper launcher, so
@@ -124,4 +130,17 @@ public abstract class DesktopLifecycleBridge extends AbstractLifecycleBridge {
      * @return false if run under Avian, false otherwise
      */
     abstract protected boolean supportsExtendedVisuals();
+
+    @Override
+    public final void hasAnimationFrames(boolean enabled) {
+        if (enabled) {
+            if (animationTimer == null)
+                NSRunLoop.mainRunLoop().addTimer(animationTimer = new NSTimer(NSDate.date(), 1d / 120d, timer -> Animator.animate(System.currentTimeMillis()), null, true), NSRunLoopMode.Default);
+        } else {
+            if (animationTimer != null) {
+                animationTimer.invalidate();
+                animationTimer = null;
+            }
+        }
+    }
 }

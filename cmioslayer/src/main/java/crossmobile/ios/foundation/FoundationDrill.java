@@ -23,7 +23,7 @@ public class FoundationDrill {
     }
 
     public static void quitTimers() {
-        NSRunLoop.mainRunLoop().terminate();
+        NSRunLoop.mainRunLoop().quitTimers();
     }
 
     public static long fireMillis(NSTimer timer) {
