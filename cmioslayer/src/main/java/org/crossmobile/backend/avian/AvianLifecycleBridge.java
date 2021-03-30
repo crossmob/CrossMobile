@@ -6,6 +6,7 @@
 
 package org.crossmobile.backend.avian;
 
+import crossmobile.ios.foundation.NSTimer;
 import crossmobile.ios.uikit.UIGraphics;
 import crossmobile.ios.uikit.UserInterfaceDrill;
 import org.crossmobile.backend.avian.event.*;
@@ -13,6 +14,7 @@ import org.crossmobile.backend.desktop.DesktopDrawableMetrics;
 import org.crossmobile.backend.desktop.DesktopLifecycleBridge;
 import org.crossmobile.backend.desktop.cgeo.CEvent;
 import org.crossmobile.bind.system.GenericSystemTimerHandler;
+import org.crossmobile.bridge.LifecycleBridge;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.system.BaseUtils;
 
@@ -23,10 +25,12 @@ import static crossmobile.ios.coregraphics.GraphicsDrill.convertBaseContextToCGC
 import static crossmobile.ios.uikit.UITouchPhase.*;
 import static org.crossmobile.bind.graphics.GraphicsBridgeConstants.DefaultInitialOrientation;
 
-public class AvianLifecycleBridge extends DesktopLifecycleBridge {
+public class AvianLifecycleBridge extends DesktopLifecycleBridge implements LifecycleBridge.SystemTimerHandler {
+    private final BlockingQueue<AvianEvent> eventQueue = new LinkedBlockingQueue<>();
+
     private Thread eventThread;
     private Thread sdlEventThread;
-    private final BlockingQueue<AvianEvent> eventQueue = new LinkedBlockingQueue<>();
+    private GenericSystemTimerHandler timerScheduler;
     private CEvent clicked = CEvent.unset();
 
     @SuppressWarnings("unchecked")
@@ -44,6 +48,9 @@ public class AvianLifecycleBridge extends DesktopLifecycleBridge {
         }, "SDL event thread");
         sdlEventThread.setDaemon(true);
         sdlEventThread.start();
+
+        timerScheduler = new GenericSystemTimerHandler();
+        timerScheduler.start();
     }
 
     @Override
@@ -77,14 +84,10 @@ public class AvianLifecycleBridge extends DesktopLifecycleBridge {
 
     @Override
     public SystemTimerHandler createSystemTimer() {
-        return new GenericSystemTimerHandler();
+        return this;
     }
 
-    @Override
-    public void hasAnimationFrames(boolean enabled) {
-    }
-
-    void interruptSDLThread() {
+    public void interruptSDLThread() {
         sdlEventThread.interrupt();
     }
 
@@ -161,5 +164,16 @@ public class AvianLifecycleBridge extends DesktopLifecycleBridge {
 
     private void fireMouseEvent(MouseEvent me, int phase) {
         UserInterfaceDrill.fireUIEvent(me, new double[]{me.getX()}, new double[]{me.getY()}, 0, phase);
+    }
+
+    @Override
+    public void addTimer(NSTimer timer) {
+        timerScheduler.addTimer(timer);
+    }
+
+    @Override
+    public void quitTimers() {
+        timerScheduler.quitTimers();
+        interruptSDLThread();
     }
 }

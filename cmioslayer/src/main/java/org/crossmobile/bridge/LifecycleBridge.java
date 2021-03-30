@@ -189,6 +189,6 @@ public interface LifecycleBridge extends Thread.UncaughtExceptionHandler {
 
         void addTimer(NSTimer timer);
 
-        void terminate();
+        void quitTimers();
     }
 }

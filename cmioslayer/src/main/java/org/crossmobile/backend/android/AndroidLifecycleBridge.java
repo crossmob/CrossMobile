@@ -138,7 +138,7 @@ public class AndroidLifecycleBridge extends AbstractLifecycleBridge {
             }
 
             @Override
-            public synchronized void terminate() {
+            public synchronized void quitTimers() {
                 active = false;
                 timers.clear();
             }
