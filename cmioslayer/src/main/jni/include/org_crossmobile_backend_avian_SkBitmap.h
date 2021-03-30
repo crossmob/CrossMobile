@@ -55,6 +55,14 @@ JNIEXPORT jbyteArray JNICALL Java_org_crossmobile_backend_avian_SkBitmap_getByte
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkBitmap_destroy
   (JNIEnv *, jobject, jlong);
 
+/*
+ * Class:     org_crossmobile_backend_avian_SkBitmap
+ * Method:    extractAlpha
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkBitmap_extractAlpha
+  (JNIEnv *, jclass, jlong, jlong);
+
 #ifdef __cplusplus
 }
 #endif

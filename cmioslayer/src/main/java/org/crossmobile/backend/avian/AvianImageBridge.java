@@ -6,6 +6,7 @@
 
 package org.crossmobile.backend.avian;
 
+import android.graphics.Rect;
 import crossmobile.ios.coregraphics.CGImage;
 import org.crossmobile.backend.desktop.DesktopImageBridge;
 import org.crossmobile.bind.graphics.ImageBridgeConstants;
@@ -46,8 +47,11 @@ public class AvianImageBridge extends DesktopImageBridge {
     }
 
     @Override
-    public NativeBitmap stretch(NativeBitmap bitmap, int top, int right, int bottom, int left, int reqX, int reqY) {
-        return new SkBitmap(null);
+    public NativeBitmap stretch(NativeBitmap sourceBitmap, int top, int right, int bottom, int left, int reqX, int reqY) {
+        SkBitmap targetBitmap = new SkBitmap(sourceBitmap.getWidth(), sourceBitmap.getHeight());
+        SkCanvas canvas = new SkCanvas(targetBitmap);
+        canvas.drawNinePatch((SkBitmap) sourceBitmap, top, right, bottom, left, reqX, reqY);
+        return targetBitmap;
     }
 
     @Override
@@ -56,8 +60,15 @@ public class AvianImageBridge extends DesktopImageBridge {
     }
 
     @Override
-    public NativeBitmap masked(NativeBitmap bitmap, int color) {
-        return new SkBitmap(null);
+    public NativeBitmap masked(NativeBitmap sourceBitmap, int color) {
+        SkBitmap targetBitmap = new SkBitmap(sourceBitmap.getWidth(), sourceBitmap.getHeight());
+        ((SkBitmap) sourceBitmap).extractAlpha(targetBitmap);
+        SkCanvas canvas = new SkCanvas(targetBitmap);
+
+        canvas.setFillColorWithColor(color);
+        canvas.fill();
+
+        return targetBitmap;
     }
 
     @Override

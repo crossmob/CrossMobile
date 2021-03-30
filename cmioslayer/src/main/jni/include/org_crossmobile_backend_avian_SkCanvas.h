@@ -171,6 +171,22 @@ JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_scale
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_clipRect
   (JNIEnv *, jclass, jlong, jdouble, jdouble, jlong);
 
+/*
+ * Class:     org_crossmobile_backend_avian_SkCanvas
+ * Method:    fill
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_fill
+  (JNIEnv *, jclass, jlong, jlong);
+
+/*
+ * Class:     org_crossmobile_backend_avian_SkCanvas
+ * Method:    drawNinePatch
+ * Signature: (JJIIIIII)V
+ */
+JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkCanvas_drawNinePatch
+  (JNIEnv *, jclass, jlong, jlong, jint, jint, jint, jint, jint, jint);
+
 #ifdef __cplusplus
 }
 #endif

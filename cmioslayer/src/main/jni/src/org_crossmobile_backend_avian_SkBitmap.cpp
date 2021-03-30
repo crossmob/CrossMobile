@@ -94,3 +94,10 @@ JNIEXPORT jbyteArray JNICALL Java_org_crossmobile_backend_avian_SkBitmap_getByte
 
   RETURN_V((uint8_t (*)[data->size()]) data->bytes(), jbyteArray);
 }
+
+JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkBitmap_extractAlpha
+  (JNIEnv *env, jclass clazz, jlong sourceBitmap, jlong targetBitmap) {
+  INIT();
+    ((SkBitmap*) sourceBitmap)->extractAlpha((SkBitmap*) targetBitmap);
+  RETURN();
+  }
