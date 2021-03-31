@@ -44,6 +44,12 @@ public class SkBitmap extends NativeElement implements NativeBitmap {
         this.height = height;
     }
 
+    SkBitmap(SkBitmap bitmap) {
+        super(init(bitmap.peer));
+        this.width = bitmap.width;
+        this.height = bitmap.height;
+    }
+
     @Override
     public int getWidth() {
         return width;
@@ -79,15 +85,23 @@ public class SkBitmap extends NativeElement implements NativeBitmap {
         return initFromSizes(width, height);
     }
 
+    private static long init(long sourceBitmapPeer) {
+        return initFromBitmap(sourceBitmapPeer);
+    }
+
     byte[] getBytesFromImage(ImageBridgeConstants.ImageType imageType, double quality) {
         return getBytesFromImage(peer, imageType == ImageBridgeConstants.ImageType.PNG, quality);
     }
+
+    public void adjustColor(double saturation, double brightness) { adjustColor(this.peer, saturation, brightness); }
 
     private static native long initFromSizes(int width, int height);
 
     private static native long initFromByteArray(byte[] data);
 
     private static native long initFromBlob(long blobPeer);
+
+    private static native long initFromBitmap(long sourceBitmapPeer);
 
     private native boolean postInit(long peer);
 
@@ -96,4 +110,6 @@ public class SkBitmap extends NativeElement implements NativeBitmap {
     protected native void destroy(long peer);
 
     private static native void extractAlpha(long sourceBitmapPeer, long targetBitmapPeer);
+
+    private static native void adjustColor(long bitmap, double saturation, double brightness);
 }

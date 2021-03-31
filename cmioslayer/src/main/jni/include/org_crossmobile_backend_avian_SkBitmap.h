@@ -33,6 +33,14 @@ JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkBitmap_initFromBlob
 
 /*
  * Class:     org_crossmobile_backend_avian_SkBitmap
+ * Method:    initFromBitmap
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkBitmap_initFromBitmap
+  (JNIEnv *, jclass, jlong);
+
+/*
+ * Class:     org_crossmobile_backend_avian_SkBitmap
  * Method:    postInit
  * Signature: (J)Z
  */
@@ -62,6 +70,14 @@ JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkBitmap_destroy
  */
 JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkBitmap_extractAlpha
   (JNIEnv *, jclass, jlong, jlong);
+
+/*
+ * Class:     org_crossmobile_backend_avian_SkBitmap
+ * Method:    adjustColor
+ * Signature: (JDD)V
+ */
+JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkBitmap_adjustColor
+  (JNIEnv *, jclass, jlong, jdouble, jdouble);
 
 #ifdef __cplusplus
 }

@@ -55,8 +55,10 @@ public class AvianImageBridge extends DesktopImageBridge {
     }
 
     @Override
-    public NativeBitmap adjustColor(NativeBitmap bitmap, double saturation, double brightness) {
-        return new SkBitmap(null);
+    public NativeBitmap adjustColor(NativeBitmap sourceBitmap, double saturation, double brightness) {
+        SkBitmap targetBitmap = new SkBitmap((SkBitmap) sourceBitmap);
+        targetBitmap.adjustColor(saturation, brightness);
+        return targetBitmap;
     }
 
     @Override
