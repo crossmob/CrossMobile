@@ -6,6 +6,8 @@
 
 package org.crossmobile.utils;
 
+import org.crossmobile.bridge.system.BaseUtils;
+
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -295,6 +297,19 @@ public final class FileUtils {
         while ((current = new File(dir, "NewProject" + counter)).exists())
             counter++;
         return new File(current.getParentFile(), current.getName());
+    }
+
+    public static String getAbs(File file) {
+        try {
+            return file.getCanonicalFile().getAbsolutePath();
+        } catch (IOException e) {
+            BaseUtils.throwException(e);
+            return null;
+        }
+    }
+
+    public static String getAbs(File base, String filename) {
+        return getAbsFile(base, filename).getPath();
     }
 
     public static File getAbsFile(File base, String filename) {
