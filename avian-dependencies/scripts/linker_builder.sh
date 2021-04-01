@@ -35,15 +35,15 @@ NUM_PROC=$(nproc)
 
 #----------------linker--------------------
 SRC_ROOT="$(dirname $(realpath "$0"))/.."
-TOOLS_DIR="$SRC_ROOT/target/common/bin"
+INSTALL_HOST_UTIL_DIR="$SRC_ROOT/target/host-utils"
 UTIL_GNU_SRC="${SRC_ROOT}/aroma-ld-linker"
 UTIL_GNU_ZIP="${UTIL_GNU_SRC}.tar.bz2"
 #UTIL_WIN_SRC="${SRC_ROOT}/aroma-cygwin-linker"
 UTIL_WIN_SRC="${SRC_ROOT}/mingw-w64"
 UTIL_WIN_BRANCH="master"
 
-AROMA_LINKER_HOST_TRIPLE=""
-AROMA_LINKER_TARGET_TRIPLE=""
+AROMA_LINKER_HOST_TRIPLE="all"
+AROMA_LINKER_TARGET_TRIPLE="all"
 CMD=""
 GCC_VER="8"
 
@@ -68,13 +68,29 @@ _source_ld_check() {
 }
 
 _clean() {
-    local BUILD_DIR="$UTIL_GNU_SRC/build/${1}__${2}"
-    local TOOLS_INSTALL_DIR="$TOOLS_DIR/${1}__${2}"
+    HOST_TRIPLE=$1
+    TARGET_TRIPLE=$2
+
+    if [ "$HOST_TRIPLE" == "all" ]; then
+        HOST_TRIPLE=*
+    fi
+
+    if [ "$TARGET_TRIPLE" == "all" ]; then
+        TARGET_TRIPLE=*
+    fi
+
+    local SUB_DIR=${HOST_TRIPLE}__${TARGET_TRIPLE}
+    if [ "$SUB_DIR" == "*__*" ]; then
+        SUB_DIR=""
+    fi
+
+    local BUILD_DIR="$UTIL_GNU_SRC/build/$SUB_DIR"
+    local INSTALL_UTIL_BIN_DIR="$INSTALL_HOST_UTIL_DIR/$SUB_DIR"
 
     __msg_warn "Deleting $BUILD_DIR"
     rm -rf $BUILD_DIR
-    __msg_warn "Deleting $TOOLS_INSTALL_DIR"
-    rm -rf $TOOLS_INSTALL_DIR
+    __msg_warn "Deleting $INSTALL_UTIL_BIN_DIR"
+    rm -rf $INSTALL_UTIL_BIN_DIR
 }
 
 _build() {
@@ -109,12 +125,12 @@ _build() {
     local TEMP_INSTALL_DIR="$BUILD_DIR/install"
     local TEMP_LD_BIN="${TEMP_INSTALL_DIR}${TEMP_INSTALL_PREFIX}/bin/${PREFIX_BIN}ld${SUFFIX_BIN}"
     local TEMP_AR_BIN="${TEMP_INSTALL_DIR}${TEMP_INSTALL_PREFIX}/bin/${PREFIX_BIN}ar${SUFFIX_BIN}"
-    local TOOLS_INSTALL_DIR="$TOOLS_DIR/${1}__${2}"
-    local TOOLS_INSTALL_LIB_DIR=$TOOLS_INSTALL_DIR/lib
-    local LD_INSTALL_BIN="$TOOLS_INSTALL_DIR/${PREFIX_BIN}ld${SUFFIX_BIN}"
-    local AR_BIN_INSTALL="$TOOLS_INSTALL_DIR/${PREFIX_BIN}ar${SUFFIX_BIN}"
+    local INSTALL_UTIL_BIN_DIR="$INSTALL_HOST_UTIL_DIR/${1}__${2}/bin"
+    local INSTALL_UTIL_LIB_DIR="$INSTALL_HOST_UTIL_DIR/${1}__${2}/lib"
+    local INSTALL_LD_BIN="$INSTALL_UTIL_BIN_DIR/${PREFIX_BIN}ld${SUFFIX_BIN}"
+    local INSTALL_AR_BIN="$INSTALL_UTIL_BIN_DIR/${PREFIX_BIN}ar${SUFFIX_BIN}"
 
-    if [ ! -f $LD_INSTALL_BIN ]; then
+    if [ ! -f $INSTALL_LD_BIN ]; then
         if [ ! -f $TEMP_LD_BIN ]; then
             if [ "$IS_GNU" = true ]; then
                 __msg_info "Building GNU Binutils ..."
@@ -131,14 +147,14 @@ _build() {
                 --enable-ld=yes \
                 --with-static-standard-libraries
 
-                mkdir -p $TOOLS_INSTALL_LIB_DIR
-                cp $LIB_USR_TARGET/Scrt1.o $TOOLS_INSTALL_LIB_DIR 
-                cp $LIB_USR_TARGET/crti.o  $TOOLS_INSTALL_LIB_DIR
-                cp $LIB_USR_TARGET/crtn.o  $TOOLS_INSTALL_LIB_DIR
-                cp $LIB_GCC_TARGET/crtbeginS.o  $TOOLS_INSTALL_LIB_DIR
-                cp $LIB_GCC_TARGET/crtendS.o    $TOOLS_INSTALL_LIB_DIR
-                cp $LIB_GCC_TARGET/libgcc_s.so  $TOOLS_INSTALL_LIB_DIR
-                cp $LIB_GCC_TARGET/libstdc++.so $TOOLS_INSTALL_LIB_DIR
+                mkdir -p $INSTALL_UTIL_LIB_DIR
+                cp $LIB_USR_TARGET/Scrt1.o $INSTALL_UTIL_LIB_DIR 
+                cp $LIB_USR_TARGET/crti.o  $INSTALL_UTIL_LIB_DIR
+                cp $LIB_USR_TARGET/crtn.o  $INSTALL_UTIL_LIB_DIR
+                cp $LIB_GCC_TARGET/crtbeginS.o  $INSTALL_UTIL_LIB_DIR
+                cp $LIB_GCC_TARGET/crtendS.o    $INSTALL_UTIL_LIB_DIR
+                cp $LIB_GCC_TARGET/libgcc_s.so  $INSTALL_UTIL_LIB_DIR
+                cp $LIB_GCC_TARGET/libstdc++.so $INSTALL_UTIL_LIB_DIR
             else
                 __msg_info "building Windows Bintuils ..."
                 _source_cygwin_check
@@ -177,9 +193,9 @@ _build() {
             mkdir -p $TEMP_INSTALL_DIR
             DESTDIR=$TEMP_INSTALL_DIR make install
         fi
-        mkdir -p $TOOLS_INSTALL_DIR
-        cp $TEMP_LD_BIN $TOOLS_INSTALL_DIR
-        cp $TEMP_AR_BIN $TOOLS_INSTALL_DIR
+        mkdir -p $INSTALL_UTIL_BIN_DIR
+        cp $TEMP_LD_BIN $INSTALL_UTIL_BIN_DIR
+        cp $TEMP_AR_BIN $INSTALL_UTIL_BIN_DIR
     fi
 }
 
@@ -201,7 +217,7 @@ while [[ $# -gt 0 ]] ; do
     ;;
     -o|--output)
         if [ -n $2 ]; then
-            TOOLS_DIR="$2"
+            INSTALL_HOST_UTIL_DIR="$2"
             shift
             shift
         else
