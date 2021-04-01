@@ -76,7 +76,7 @@ __devsys_util_builder () {
     fi
 
     $DOCKERSUDO docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE \
-        bash "/src/scripts/linker_builder.sh" -b \
+        bash "/src/scripts/host_utils_builder.sh" -b \
         -h $HOST_FULL \
         -t $TARGET_FULL \
         -s /src \
