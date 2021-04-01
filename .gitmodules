@@ -1,6 +1,7 @@
 [submodule "cmmanager"]
 	path = cmmanager
 	url = https://github.com/Aroma-UI/cmmanager
+	branch = aroma
 [submodule "cmbuild"]
 	path = cmbuild
 	url = https://github.com/Aroma-UI/cmbuild
@@ -8,10 +9,11 @@
 [submodule "SDL"]
 	path = avian-dependencies/SDL
 	url = https://github.com/Aroma-UI/SDL.git
+	branch = master
 [submodule "skia"]
 	path = avian-dependencies/skia
 	url = https://github.com/Aroma-UI/skia.git
-    branch = chrome/m87
+	branch = chrome/m87
 [submodule "avian"]
 	path = avian-dependencies/avian
 	url = https://github.com/Aroma-UI/avian.git
@@ -19,4 +21,5 @@
 [submodule "depot_tools"]
 	path = avian-dependencies/depot_tools
 	url = https://chromium.googlesource.com/chromium/tools/depot_tools.git
+	branch = master
 

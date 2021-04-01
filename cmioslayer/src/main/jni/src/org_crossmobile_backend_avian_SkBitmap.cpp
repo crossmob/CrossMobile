@@ -3,11 +3,14 @@
 #include"org_crossmobile_backend_avian_SkBitmap.h"
 #include "aroma.h"
 
+#include "include/core/SkCanvas.h"
 #include "include/core/SkBitmap.h"
 #include "include/core/SkTextBlob.h"
 #include "include/core/SkImageGenerator.h"
 #include "include/core/SkImageEncoder.h"
 #include "include/core/SkRRect.h"
+#include "include/core/SkColorFilter.h"
+#include "include/effects/SkColorMatrix.h"
 
 #include "avian/system/system.h"
 
@@ -100,4 +103,30 @@ JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkBitmap_extractAlpha
   INIT();
     ((SkBitmap*) sourceBitmap)->extractAlpha((SkBitmap*) targetBitmap);
   RETURN();
-  }
+}
+
+
+JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkBitmap_initFromBitmap
+  (JNIEnv *env, jclass clazz, jlong sourceBitmap) {
+  INIT();
+    SkBitmap* targetBitmap = std::move((SkBitmap*)sourceBitmap);
+  RETURN_V(targetBitmap, jlong);
+}
+
+JNIEXPORT void JNICALL Java_org_crossmobile_backend_avian_SkBitmap_adjustColor
+  (JNIEnv *env, jclass clazz, jlong sourceBitmap, jdouble saturation, jdouble brightness) {
+  INIT();
+    SkColorMatrix colorMatrix;
+    colorMatrix.setSaturation(saturation);
+    colorMatrix.setScale(brightness,brightness,brightness,1);
+
+    SkPaint paint;
+    paint.setColorFilter(SkColorFilters::Matrix(colorMatrix));
+
+    SkBitmap targetBitmap;
+    targetBitmap.installPixels(((SkBitmap*)sourceBitmap)->pixmap());
+
+    SkCanvas* canvas = new SkCanvas(targetBitmap);
+    canvas->drawBitmap(targetBitmap, 0, 0, &paint);
+  RETURN();
+}

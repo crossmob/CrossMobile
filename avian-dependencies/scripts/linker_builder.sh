@@ -137,7 +137,6 @@ _build() {
                 cp $LIB_USR_TARGET/crtn.o  $TOOLS_INSTALL_LIB_DIR
                 cp $LIB_GCC_TARGET/crtbeginS.o  $TOOLS_INSTALL_LIB_DIR
                 cp $LIB_GCC_TARGET/crtendS.o    $TOOLS_INSTALL_LIB_DIR
-                cp $LIB_GCC_TARGET/libgcc.so    $TOOLS_INSTALL_LIB_DIR
                 cp $LIB_GCC_TARGET/libgcc_s.so  $TOOLS_INSTALL_LIB_DIR
                 cp $LIB_GCC_TARGET/libstdc++.so $TOOLS_INSTALL_LIB_DIR
             else

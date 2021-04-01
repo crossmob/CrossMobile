@@ -160,11 +160,45 @@
                         <target>
                             <os>linux</os>
                             <arch>x86_64</arch>
+                            <includes>
+                                <include>../avian-dependencies/SDL/include</include>
+                                <include>../avian-dependencies/skia</include>
+                                <include>../avian-dependencies/avian/include</include>
+                                <include>../avian-dependencies/avian/src</include>
+                            </includes>
                             <ccflags>
-                                <ccflag>-I../avian-dependencies/SDL/include/</ccflag>
-                                <ccflag>-I../avian-dependencies/skia</ccflag>
-                                <ccflag>-I../avian-dependencies/avian/include</ccflag>
-                                <ccflag>-I../avian-dependencies/avian/src</ccflag>
+                                <ccflag>-DDEBUG_AROMA</ccflag>
+                            </ccflags>
+                            <lflags>
+                                <lflag>-lfontconfig</lflag>
+                            </lflags>
+                        </target>
+                        <target>
+                            <os>linux</os>
+                            <arch>arm</arch>
+                            <includes>
+                                <include>../avian-dependencies/SDL/include</include>
+                                <include>../avian-dependencies/skia</include>
+                                <include>../avian-dependencies/avian/include</include>
+                                <include>../avian-dependencies/avian/src</include>
+                            </includes>
+                            <ccflags>
+                                <ccflag>-DDEBUG_AROMA</ccflag>
+                            </ccflags>
+                            <lflags>
+                                <lflag>-lfontconfig</lflag>
+                            </lflags>
+                        </target>
+                        <target>
+                            <os>linux</os>
+                            <arch>arm64</arch>
+                            <includes>
+                                <include>../avian-dependencies/SDL/include</include>
+                                <include>../avian-dependencies/skia</include>
+                                <include>../avian-dependencies/avian/include</include>
+                                <include>../avian-dependencies/avian/src</include>
+                            </includes>
+                            <ccflags>
                                 <ccflag>-DDEBUG_AROMA</ccflag>
                             </ccflags>
                             <lflags>
