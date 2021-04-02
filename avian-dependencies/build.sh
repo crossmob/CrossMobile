@@ -14,7 +14,7 @@ TARGET_CMD=""
 # TARGET_SUBDIR="all"
 IMAGE_NAME="aroma/dep-builder-$TARGET_OS-$TARGET_ARCH"
 IMAGE_WIN="aroma/dep-builder-win-i386"
-DOCKERSUDO=sudo
+DOCKERSUDO=""
 LBL_HOST_UTILS_DIR="host_utils"
 
 #Host OS: linux - win, all
@@ -49,6 +49,14 @@ _check_docker_image() {
         return -1 #image doesn't exits
     fi
         return 0 #image exist
+}
+
+_check_build_args () {
+    if [[ $TARGET_ARCH == "arm" ]]; then
+        TARGET_ARCH="armhf"
+    elif [[ $TARGET_ARCH == "x86_64" ]]; then
+        TARGET_ARCH="amd64"
+    fi
 }
 
 # temporary hack to install avian dependencies user-wide
@@ -94,14 +102,6 @@ __devsys_util_builder () {
 }
 
 _build () {
-
-    if [[ $TARGET_ARCH == "arm" ]]; then
-        TARGET_ARCH="armhf"
-    elif [[ $TARGET_ARCH == "x86_64" ]]; then
-        TARGET_ARCH="amd64"
-    fi
-
-
     if [[ "$(_check_docker_image $IMAGE_NAME)" != "0" ]]; then
         __msg_info "Building \"$IMAGE_NAME\" builder image"
         # SRC_DIR=$SRC_ROOT \
@@ -122,16 +122,22 @@ _build () {
     # __devsys_util_builder x86_64-w64-mingw32 x86_64-linux-gnu 
 
     #Binutils for Window desktop host systems
-    __devsys_util_builder x86_64 linux gnu arm linux gnueabihf
-    __devsys_util_builder x86_64 linux gnu aarch64 linux gnu 
-    __devsys_util_builder x86_64 linux gnu x86_64 linux gnu 
+    if [ "$TARGET_ARCH" = "armhf" ] ; then
+        __devsys_util_builder x86_64 linux gnu arm linux gnueabihf
+    fi
+    if [ "$TARGET_ARCH" = "arm" ] ; then
+        __devsys_util_builder x86_64 linux gnu aarch64 linux gnu 
+    fi
+    if [ "$TARGET_ARCH" = "amd64" ] ; then
+        __devsys_util_builder x86_64 linux gnu x86_64 linux gnu 
+    fi
 
     __msg_info "Running \"$IMAGE_NAME\" to build dependencies for OS: $TARGET_OS ARCH: $TARGET_ARCH target"
     $DOCKERSUDO docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
         bash /src/docker/dep_builder.sh \
         /src $TARGET_OS $TARGET_ARCH release
 
-    sudo chown -R $USER:$USER .
+    #sudo chown -R $USER:$USER .
     _install
 }
 
@@ -154,8 +160,8 @@ __git_clean() {
 }
 
 _clean_avian () {
-    [ -d "$SRC_ROOT/avian/build" ] && \
-        chown -R $USER $SRC_ROOT/avian/build
+    # [ -d "$SRC_ROOT/avian/build" ] && \
+    #     chown -R $USER $SRC_ROOT/avian/build
 
     if [[ "$TARGET_SUBDIR" == "all" ]]; then
         if [ -d $SRC_ROOT/target ]; then
@@ -180,8 +186,8 @@ _clean_avian () {
 }
 
 _clean_sdl () {
-    [ -d "$SRC_ROOT/SDL/build" ] && \
-        chown -R $USER $SRC_ROOT/SDL/build
+    # [ -d "$SRC_ROOT/SDL/build" ] && \
+    #     chown -R $USER $SRC_ROOT/SDL/build
 
     if [ "$TARGET_SUBDIR" = "all" ]; then
         [ -d $SRC_ROOT/target ] && \
@@ -197,8 +203,8 @@ _clean_sdl () {
 }
 
 _clean_skia () {
-    [ -d "$SRC_ROOT/skia/out" ] && \
-        chown -R $USER $SRC_ROOT/skia/out
+    # [ -d "$SRC_ROOT/skia/out" ] && \
+    #     chown -R $USER $SRC_ROOT/skia/out
 
     if [[ "$TARGET_SUBDIR" == "all" ]]; then
         if [ -d $SRC_ROOT/target ]; then
@@ -218,8 +224,8 @@ _clean_skia () {
 }
 
 _clean () {
-    [ -d "$SRC_ROOT/target" ] && \
-        chown -R $USER $SRC_ROOT/target
+    # [ -d "$SRC_ROOT/target" ] && \
+    #     chown -R $USER $SRC_ROOT/target
     __msg_warn "Cleaning target OS:[$TARGET_OS] machine:[$TARGET_ARCH]"
     case $TARGET_DIR in
 
@@ -288,6 +294,8 @@ while [[ $# -gt 0 ]] ; do
         ;;
     esac
 done
+
+_check_build_args
 
 
 if [[ $TARGET_CMD == "" ]]; then

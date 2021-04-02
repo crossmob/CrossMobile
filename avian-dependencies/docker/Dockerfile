@@ -87,6 +87,12 @@ RUN     apt-get update && \
         libjpeg62-turbo-dev:$ARCH \
         libpng16-16:$ARCH \
         libpng-dev:$ARCH \
+        libgmp3-dev:$ARCH \
+        libmpc-dev:$ARCH \
+        libmpfr-dev:$ARCH \
+        bison \
+        flex \
+        texinfo \
         python-libxml2 \
         git \
         wget \
@@ -107,3 +113,6 @@ ENV JAVA_HOME "/usr/lib/jvm/java-1.8.0-openjdk-amd64"
 ENV PATH "$JAVA_HOME/bin:/src/depot_tools:$PATH"
 
 WORKDIR /src
+
+RUN useradd builduser && chown -R builduser /src
+USER builduser
