@@ -188,7 +188,7 @@ if [ ! -f $SDL_ARC ] ; then
         make -j $NUM_PROC
         mkdir -p $DIR_SDL_BUILD/install
         DESTDIR=$DIR_SDL_BUILD/install make install
-        cd $SRC_ROOT
+        cd $DIR_SRC_ROOT
     fi
     cp $DIR_SDL_BUILD/install/usr/local/lib/libSDL2.a $DIR_LIBS
 fi
