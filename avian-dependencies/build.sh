@@ -10,16 +10,19 @@ SRC_ROOT=$(dirname "$(realpath "$0")")
 TARGET_OS=$(uname -s | tr '[:upper:]' '[:lower:]')
 TARGET_ARCH=$(uname -m)
 TARGET_CMD=""
-TARGET_DIR="all"
-TARGET_SUBDIR="all"
+# TARGET_DIR="all"
+# TARGET_SUBDIR="all"
 IMAGE_NAME="aroma/dep-builder-$TARGET_OS-$TARGET_ARCH"
 IMAGE_WIN="aroma/dep-builder-win-i386"
 DOCKERSUDO=sudo
+LBL_HOST_UTILS_DIR="host_utils"
 
-
-
+#Host OS: linux - win, all
+#Target OS: linux
+#Target Machine: arm|armhf|aarch32|armv7*, arm64|aarch64|armv8*, x86_64|x86|x64|amd64, all
+#Target build: avian, sdl, skia, utils, all [machine=all] [host_os (utils): all ]
 USAGE='\n\r
-# TARGET=avian,sdl,skia,all(default)\n\r
+# TARGET=avian,sdl,skia,utils,all(default)\n\r
 # SUB_TARGET=arm,arm64,x86_64,all(default)\n\r
 OS=linux
 MACHINE=arm,arm64,amd64
@@ -80,14 +83,14 @@ __devsys_util_builder () {
         -h $HOST_FULL \
         -t $TARGET_FULL \
         -s /src \
-        -o /src/out
+        -o /src/target
 
-    if [ "$TARGET_ARCH" = "aarch64" ] ; then TARGET_ARCH=arm64 ; fi
-    local BINTARGET=${SRC_ROOT}/target/${TARGET_OS}-${TARGET_ARCH}
-    local BINSRC=${SRC_ROOT}/out/${HOST_FULL}__${TARGET_FULL}
-    sudo chown -R $USER:$USER ${SRC_ROOT}/out
-    mv ${BINSRC}/aroma-gnu-ld ${BINTARGET}/ld.${HOST_OS}-${HOST_ARCH}
-    rm -rf {SRC_ROOT}/out
+    # if [ "$TARGET_ARCH" = "aarch64" ] ; then TARGET_ARCH=arm64 ; fi
+    # local BINTARGET=${SRC_ROOT}/target/${TARGET_OS}-${TARGET_ARCH}
+    # local BINSRC=${SRC_ROOT}/out/${HOST_FULL}__${TARGET_FULL}
+    # sudo chown -R $USER:$USER ${SRC_ROOT}/out
+    # mv ${BINSRC}/aroma-gnu-ld ${BINTARGET}/ld.${HOST_OS}-${HOST_ARCH}
+    # rm -rf {SRC_ROOT}/out
 }
 
 _build () {
@@ -217,7 +220,7 @@ _clean_skia () {
 _clean () {
     [ -d "$SRC_ROOT/target" ] && \
         chown -R $USER $SRC_ROOT/target
-    __msg_warn "Cleaning TARGET:[$TARGET_DIR] SUB_TARGET:[$TARGET_SUBDIR]"
+    __msg_warn "Cleaning target OS:[$TARGET_OS] machine:[$TARGET_ARCH]"
     case $TARGET_DIR in
 
     avian)
@@ -252,11 +255,11 @@ while [[ $# -gt 0 ]] ; do
         __msg_info "$USAGE"
         exit 0
         ;;
-    -b|--build)
+    -b|build)
         TARGET_CMD=_build
         shift
         ;;
-    -c|--clean)
+    -c|clean)
         TARGET_CMD=_clean
         shift
         [ $# -ge 1 ] && TARGET_DIR=$1 && shift

@@ -33,9 +33,10 @@ __msg_info() {
 
 NUM_PROC=$(nproc)
 
-#----------------linker--------------------
+LBL_HOST_UTILS_DIR="host_utils"
+LBL_OUT_DIR="out"
 SRC_ROOT="$(dirname $(realpath "$0"))/.."
-INSTALL_HOST_UTIL_DIR="$SRC_ROOT/target/host-utils"
+INSTALL_HOST_UTIL_DIR="$SRC_ROOT/$LBLOUT_DIR/$LBL_HOST_UTILS_DIR"
 UTIL_GNU_SRC="${SRC_ROOT}/aroma-ld-linker"
 UTIL_GNU_ZIP="${UTIL_GNU_SRC}.tar.bz2"
 #UTIL_WIN_SRC="${SRC_ROOT}/aroma-cygwin-linker"
@@ -85,21 +86,26 @@ _clean() {
     fi
 
     local BUILD_DIR="$UTIL_GNU_SRC/build/$SUB_DIR"
-    local INSTALL_UTIL_BIN_DIR="$INSTALL_HOST_UTIL_DIR/$SUB_DIR"
+    local UTIL_BIN_DIR="$INSTALL_HOST_UTIL_DIR/$SUB_DIR"
 
     __msg_warn "Deleting $BUILD_DIR"
     rm -rf $BUILD_DIR
-    __msg_warn "Deleting $INSTALL_UTIL_BIN_DIR"
-    rm -rf $INSTALL_UTIL_BIN_DIR
+    __msg_warn "Deleting $UTIL_BIN_DIR"
+    rm -rf $UTIL_BIN_DIR
 }
 
 _build() {
+
+    if [ ! $# -eq 2 ]; then
+        __msg_error "The build script needs 2 args as host & target triple!"
+    fi
 
     local PREFIX_BIN="aroma-"
     local IS_GNU=true
     local HOST_TRIPLE=$1
     local TARGET_TRIPLE=$2
     local HOST_TRIPLE_LIB=$1
+    local SUB_DIR="$1__$2"
 
     if [[ "$1" == *"linux"* ]]; then
         PREFIX_BIN="${PREFIX_BIN}gnu-"
@@ -120,15 +126,15 @@ _build() {
     local LIB_USR_TARGET="/usr/lib/$HOST_TRIPLE_LIB"
     local LIB_GCC_TARGET="/usr/lib/gcc/$HOST_TRIPLE_LIB/$GCC_VER"
     local LIB_GCC_CROSS="/usr/lib/gcc-cross/$HOST_TRIPLE_LIB/$GCC_VER"
-    local BUILD_DIR="$LINKER_SRC/build/${1}__${2}"
+    local BUILD_DIR="$LINKER_SRC/build/$SUB_DIR"
     local TEMP_INSTALL_PREFIX="/user"
     local TEMP_INSTALL_DIR="$BUILD_DIR/install"
     local TEMP_LD_BIN="${TEMP_INSTALL_DIR}${TEMP_INSTALL_PREFIX}/bin/${PREFIX_BIN}ld${SUFFIX_BIN}"
-    local TEMP_AR_BIN="${TEMP_INSTALL_DIR}${TEMP_INSTALL_PREFIX}/bin/${PREFIX_BIN}ar${SUFFIX_BIN}"
-    local INSTALL_UTIL_BIN_DIR="$INSTALL_HOST_UTIL_DIR/${1}__${2}/bin"
-    local INSTALL_UTIL_LIB_DIR="$INSTALL_HOST_UTIL_DIR/${1}__${2}/lib"
+    # local TEMP_AR_BIN="${TEMP_INSTALL_DIR}${TEMP_INSTALL_PREFIX}/bin/${PREFIX_BIN}ar${SUFFIX_BIN}"
+    local INSTALL_UTIL_BIN_DIR="$INSTALL_HOST_UTIL_DIR/${SUB_DIR}/bin"
+    local INSTALL_UTIL_LIB_DIR="$INSTALL_HOST_UTIL_DIR/${SUB_DIR}/lib"
     local INSTALL_LD_BIN="$INSTALL_UTIL_BIN_DIR/${PREFIX_BIN}ld${SUFFIX_BIN}"
-    local INSTALL_AR_BIN="$INSTALL_UTIL_BIN_DIR/${PREFIX_BIN}ar${SUFFIX_BIN}"
+    # local INSTALL_AR_BIN="$INSTALL_UTIL_BIN_DIR/${PREFIX_BIN}ar${SUFFIX_BIN}"
 
     if [ ! -f $INSTALL_LD_BIN ]; then
         if [ ! -f $TEMP_LD_BIN ]; then
@@ -146,15 +152,6 @@ _build() {
                 --prefix=$TEMP_INSTALL_PREFIX \
                 --enable-ld=yes \
                 --with-static-standard-libraries
-
-                mkdir -p $INSTALL_UTIL_LIB_DIR
-                cp $LIB_USR_TARGET/Scrt1.o $INSTALL_UTIL_LIB_DIR 
-                cp $LIB_USR_TARGET/crti.o  $INSTALL_UTIL_LIB_DIR
-                cp $LIB_USR_TARGET/crtn.o  $INSTALL_UTIL_LIB_DIR
-                cp $LIB_GCC_TARGET/crtbeginS.o  $INSTALL_UTIL_LIB_DIR
-                cp $LIB_GCC_TARGET/crtendS.o    $INSTALL_UTIL_LIB_DIR
-                cp $LIB_GCC_TARGET/libgcc_s.so  $INSTALL_UTIL_LIB_DIR
-                cp $LIB_GCC_TARGET/libstdc++.so $INSTALL_UTIL_LIB_DIR
             else
                 __msg_info "building Windows Bintuils ..."
                 _source_cygwin_check
@@ -192,10 +189,23 @@ _build() {
             make -j $NUM_PROC
             mkdir -p $TEMP_INSTALL_DIR
             DESTDIR=$TEMP_INSTALL_DIR make install
+
+
         fi
         mkdir -p $INSTALL_UTIL_BIN_DIR
         cp $TEMP_LD_BIN $INSTALL_UTIL_BIN_DIR
-        cp $TEMP_AR_BIN $INSTALL_UTIL_BIN_DIR
+        #cp $TEMP_AR_BIN $INSTALL_UTIL_BIN_DIR
+    fi
+
+    if [[ ! -d ${INSTALL_UTIL_LIB_DIR} ]]; then
+        mkdir -p $INSTALL_UTIL_LIB_DIR
+        cp $LIB_USR_TARGET/Scrt1.o $INSTALL_UTIL_LIB_DIR 
+        cp $LIB_USR_TARGET/crti.o  $INSTALL_UTIL_LIB_DIR
+        cp $LIB_USR_TARGET/crtn.o  $INSTALL_UTIL_LIB_DIR
+        cp $LIB_GCC_TARGET/crtbeginS.o  $INSTALL_UTIL_LIB_DIR
+        cp $LIB_GCC_TARGET/crtendS.o    $INSTALL_UTIL_LIB_DIR
+        cp $LIB_GCC_TARGET/libgcc_s.so  $INSTALL_UTIL_LIB_DIR
+        cp $LIB_GCC_TARGET/libstdc++.so $INSTALL_UTIL_LIB_DIR
     fi
 }
 
@@ -217,7 +227,7 @@ while [[ $# -gt 0 ]] ; do
     ;;
     -o|--output)
         if [ -n $2 ]; then
-            INSTALL_HOST_UTIL_DIR="$2"
+            INSTALL_HOST_UTIL_DIR="$2/$LBL_HOST_UTILS_DIR"
             shift
             shift
         else
