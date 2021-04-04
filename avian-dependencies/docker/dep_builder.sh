@@ -101,7 +101,7 @@ DIR_SRC_ROOT=${1:-"$(dirname "$(realpath "$0")")/.."}
 BUILD_EXP="$BUILD_OS-$BUILD_ARCH"
 DIR_LIBS="$DIR_SRC_ROOT/target/$BUILD_EXP"
 DIR_3RD="$DIR_SRC_ROOT"
-DIR_COMMON="$DIR_SRC_ROOT/target/common"
+DIR_COMMON="$DIR_SRC_ROOT/target/all"
 
 
 echo -e "Start building dependencies for: $GREEN$BUILD_EXP$NC"
@@ -121,9 +121,7 @@ DIR_AVIAN_JAR="$DIR_LIBS/$AVIAN_JAR"
 
 DIR_AVIAN_BUILD="$DIR_AVIAN_SRC/build/$BUILD_OS-$BUILD_ARCH"
 AVIAN_BUILD_ARC="$DIR_AVIAN_BUILD/libavian.a"
-AVIAN_BUILD_JAR="$DIR_AVIAN_BUILD/classpath.jar"
-AVIAN_DESTINATION_JAR="$DIR_COMMON/classpath.jar"
-
+AVIAN_BUILD_JAR="$DIR_COMMON/classpath.jar"
 
 if [[ ! -f $DIR_AVIAN_ZIP || ! -f $DIR_AVIAN_JAR ]]; then
     if [[ ! -f $AVIAN_BUILD_ARC || ! -f $AVIAN_BUILD_JAR ]]; then
@@ -147,9 +145,9 @@ if [[ ! -f $DIR_AVIAN_ZIP || ! -f $DIR_AVIAN_JAR ]]; then
 fi
 
 if [[ ! -f $AVIAN_DESTINATION_JAR ]]; then
-    mkdir -p $DIR_COMMON/bin/linux-x86_64
-    cp $AVIAN_BUILD_JAR $AVIAN_DESTINATION_JAR
-    cp $DIR_AVIAN_BUILD/binaryToObject/binaryToObject $DIR_COMMON/bin/linux-x86_64/
+    cp $DIR_AVIAN_BUILD/classpath.jar $AVIAN_BUILD_JAR
+    mkdir -p $DIR_COMMON/linux-x86_64
+    cp $DIR_AVIAN_BUILD/binaryToObject/binaryToObject $DIR_COMMON/linux-x86_64/binaryToObject
 fi
 
 #------------------SDL2 build---------------------

@@ -2,17 +2,6 @@
 
 set -e
 
-USAGE='\n\r
-Usage: linker_builder.sh [CMD] [TARGET_TRIPLE]|[HOST_TRIPLE]\n
-    Parameters:\n
-    \t-b | --build\t\tBuild command\n
-    \t-c | --clean\t\tClean command\n
-    \t-h | --host\t\tLinker host system triple {CPU}-{OS}-{ABI}\n
-    \t-t | --target\t\tLinker target system triple {CPU}-{OS}-{ABI}\n
-    \t-s | --source\t\tLinker parent directory (third-party)\n
-    \t-o | --ouput\t\tLinker install directory\n\r
-'
-
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
@@ -33,10 +22,8 @@ __msg_info() {
 
 NUM_PROC=$(nproc)
 
-LBL_HOST_UTILS_DIR="host_utils"
-LBL_OUT_DIR="out"
-SRC_ROOT="$(dirname $(realpath "$0"))/.."
-INSTALL_HOST_UTIL_DIR="$SRC_ROOT/$LBLOUT_DIR/$LBL_HOST_UTILS_DIR"
+SRC_ROOT=$(dirname $(dirname $(realpath "$0")))
+INSTALL_HOST_UTIL_DIR="$SRC_ROOT/target"
 UTIL_GNU_SRC="${SRC_ROOT}/aroma-ld-linker"
 UTIL_GNU_ZIP="${UTIL_GNU_SRC}.tar.bz2"
 #UTIL_WIN_SRC="${SRC_ROOT}/aroma-cygwin-linker"
@@ -68,39 +55,12 @@ _source_ld_check() {
     fi
 }
 
-_clean() {
-    HOST_TRIPLE=$1
-    TARGET_TRIPLE=$2
-
-    if [ "$HOST_TRIPLE" == "all" ]; then
-        HOST_TRIPLE=*
-    fi
-
-    if [ "$TARGET_TRIPLE" == "all" ]; then
-        TARGET_TRIPLE=*
-    fi
-
-    local SUB_DIR=${HOST_TRIPLE}__${TARGET_TRIPLE}
-    if [ "$SUB_DIR" == "*__*" ]; then
-        SUB_DIR=""
-    fi
-
-    local BUILD_DIR="$UTIL_GNU_SRC/build/$SUB_DIR"
-    local UTIL_BIN_DIR="$INSTALL_HOST_UTIL_DIR/$SUB_DIR"
-
-    __msg_warn "Deleting $BUILD_DIR"
-    rm -rf $BUILD_DIR
-    __msg_warn "Deleting $UTIL_BIN_DIR"
-    rm -rf $UTIL_BIN_DIR
-}
-
 _build() {
 
     if [ ! $# -eq 2 ]; then
         __msg_error "The build script needs 2 args as host & target triple!"
     fi
 
-    local PREFIX_BIN="aroma-"
     local IS_GNU=true
     local HOST_TRIPLE=$1
     local TARGET_TRIPLE=$2
@@ -108,11 +68,9 @@ _build() {
     local SUB_DIR="$1__$2"
 
     if [[ "$1" == *"linux"* ]]; then
-        PREFIX_BIN="${PREFIX_BIN}gnu-"
         LINKER_SRC=$UTIL_GNU_SRC
     elif [[ "$1" == *"w64"* || "$1" == *"w32"* ]]; then
         SUFFIX_BIN=".exe"
-        PREFIX_BIN="${PREFIX_BIN}cygwin-"
         LINKER_SRC=$UTIL_WIN_SRC
         IS_GNU=false
 	    HOST_TRIPLE_LIB=i386-linux-gnu
@@ -129,12 +87,10 @@ _build() {
     local BUILD_DIR="$LINKER_SRC/build/$SUB_DIR"
     local TEMP_INSTALL_PREFIX="/user"
     local TEMP_INSTALL_DIR="$BUILD_DIR/install"
-    local TEMP_LD_BIN="${TEMP_INSTALL_DIR}${TEMP_INSTALL_PREFIX}/bin/${PREFIX_BIN}ld${SUFFIX_BIN}"
-    # local TEMP_AR_BIN="${TEMP_INSTALL_DIR}${TEMP_INSTALL_PREFIX}/bin/${PREFIX_BIN}ar${SUFFIX_BIN}"
-    local INSTALL_UTIL_BIN_DIR="$INSTALL_HOST_UTIL_DIR/${SUB_DIR}/bin"
-    local INSTALL_UTIL_LIB_DIR="$INSTALL_HOST_UTIL_DIR/${SUB_DIR}/lib"
-    local INSTALL_LD_BIN="$INSTALL_UTIL_BIN_DIR/${PREFIX_BIN}ld${SUFFIX_BIN}"
-    # local INSTALL_AR_BIN="$INSTALL_UTIL_BIN_DIR/${PREFIX_BIN}ar${SUFFIX_BIN}"
+    local TEMP_LD_BIN="${TEMP_INSTALL_DIR}${TEMP_INSTALL_PREFIX}/bin/ld${SUFFIX_BIN}"
+    local INSTALL_UTIL_BIN_DIR="$INSTALL_HOST_UTIL_DIR/$INSTALL_TARGET_DIR/$INSTALL_HOST_DIR"
+    local INSTALL_UTIL_LIB_DIR="$INSTALL_HOST_UTIL_DIR/$INSTALL_TARGET_DIR"
+    local INSTALL_LD_BIN="$INSTALL_UTIL_BIN_DIR/ld${SUFFIX_BIN}"
 
     if [ ! -f $INSTALL_LD_BIN ]; then
         if [ ! -f $TEMP_LD_BIN ]; then
@@ -148,7 +104,7 @@ _build() {
                 $LINKER_SRC/configure \
                 --host=$AROMA_LINKER_HOST_TRIPLE \
                 --target=$AROMA_LINKER_TARGET_TRIPLE \
-                --program-prefix=$PREFIX_BIN \
+                --program-prefix= \
                 --prefix=$TEMP_INSTALL_PREFIX \
                 --enable-ld=yes \
                 --with-static-standard-libraries
@@ -182,7 +138,7 @@ _build() {
                 $LINKER_SRC/configure \
                 --host=$AROMA_LINKER_HOST_TRIPLE \
                 --target=$AROMA_LINKER_TARGET_TRIPLE \
-                --program-prefix=$PREFIX_BIN \
+                --program-prefix= \
                 --prefix=$TEMP_INSTALL_PREFIX \
                 --enable-ld=yes
             fi
@@ -194,10 +150,9 @@ _build() {
         fi
         mkdir -p $INSTALL_UTIL_BIN_DIR
         cp $TEMP_LD_BIN $INSTALL_UTIL_BIN_DIR
-        #cp $TEMP_AR_BIN $INSTALL_UTIL_BIN_DIR
     fi
 
-    if [[ ! -d ${INSTALL_UTIL_LIB_DIR} ]]; then
+    if [[ ! -f ${INSTALL_UTIL_LIB_DIR}/crti.o ]]; then
         mkdir -p $INSTALL_UTIL_LIB_DIR
         cp $LIB_USR_TARGET/Scrt1.o $INSTALL_UTIL_LIB_DIR 
         cp $LIB_USR_TARGET/crti.o  $INSTALL_UTIL_LIB_DIR
@@ -211,39 +166,8 @@ _build() {
 
 while [[ $# -gt 0 ]] ; do
     case $1 in
-
-    --help)
-        __msg_info "$USAGE"
-        exit 0
-    ;;
-    -s|--source)
-        if [ -n $2 ]; then
-            SRC_DIR="$2"
-            shift
-            shift
-        else
-            __msg_error "Please provide third-parthy source directory."
-        fi
-    ;;
-    -o|--output)
-        if [ -n $2 ]; then
-            INSTALL_HOST_UTIL_DIR="$2/$LBL_HOST_UTILS_DIR"
-            shift
-            shift
-        else
-            __msg_error "Please provide output directory."
-        fi
-    ;;
-    -c|--clean)
-        CMD=_clean
-        shift
-    ;;
-    -b|--build)
-        CMD=_build
-        shift
-    ;;
     -h|--host)
-        if [ -n $2 ]; then
+        if [ $# -ge 2 ] ; then
             AROMA_LINKER_HOST_TRIPLE="$2"
             shift
             shift
@@ -252,7 +176,7 @@ while [[ $# -gt 0 ]] ; do
         fi
     ;;
     -t|--target)
-        if [ -n $2 ]; then
+        if [ $# -ge 2 ]; then
             AROMA_LINKER_TARGET_TRIPLE="$2"
             shift
             shift
@@ -260,10 +184,28 @@ while [[ $# -gt 0 ]] ; do
             __msg_error "Please provide target system triple with '{CPU}-{OS}-{ABI}' template"
         fi
     ;;
+    -hd)
+         if [ $# -ge 2 ]; then
+            INSTALL_HOST_DIR="$2"
+            shift
+            shift
+        else
+            __msg_error "Please provide target system triple with '{CPU}-{OS}-{ABI}' template"
+        fi
+    ;;
+    -td)
+        if [ $# -ge 2 ]; then
+            INSTALL_TARGET_DIR="$2"
+            shift
+            shift
+        else
+            __msg_error "Please provide target system triple with '{CPU}-{OS}-{ABI}' template"
+        fi
+    ;;  
     *)
         __msg_error "Unsupported parameter: $1"
     ;;
     esac
 done
 
-$CMD $AROMA_LINKER_HOST_TRIPLE $AROMA_LINKER_TARGET_TRIPLE
+_build $AROMA_LINKER_HOST_TRIPLE $AROMA_LINKER_TARGET_TRIPLE

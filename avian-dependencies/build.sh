@@ -1,144 +1,19 @@
 #!/bin/bash
 set -e
 
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-NC='\033[0m'
+_init_variables () {
+    RED='\033[0;31m'
+    GREEN='\033[0;32m'
+    YELLOW='\033[0;33m'
+    NC='\033[0m'
 
-SRC_ROOT=$(dirname "$(realpath "$0")")
-TARGET_OS=$(uname -s | tr '[:upper:]' '[:lower:]')
-TARGET_ARCH=$(uname -m)
-TARGET_CMD=""
-# TARGET_DIR="all"
-# TARGET_SUBDIR="all"
-IMAGE_NAME="aroma/dep-builder-$TARGET_OS-$TARGET_ARCH"
-IMAGE_WIN="aroma/dep-builder-win-i386"
-DOCKERSUDO=""
-LBL_HOST_UTILS_DIR="host_utils"
+    # Default parameters
+    TARGET_OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+    TARGET_ARCH=$(uname -m)
+    TARGET_DIR=all
 
-#Host OS: linux - win, all
-#Target OS: linux
-#Target Machine: arm|armhf|aarch32|armv7*, arm64|aarch64|armv8*, x86_64|x86|x64|amd64, all
-#Target build: avian, sdl, skia, utils, all [machine=all] [host_os (utils): all ]
-USAGE='\n\r
-# TARGET=avian,sdl,skia,utils,all(default)\n\r
-# SUB_TARGET=arm,arm64,x86_64,all(default)\n\r
-OS=linux
-MACHINE=arm,arm64,amd64
-\n\r
-Parameters:\n\r
-    \t-h|--help\n\r
-    \t-c|--clean [OS] [MACHINE]\n\r
-    \t-b|--build [OS] [MACHINE]\n\r
-    \t-o|--os\n\r
-    \t-m|--machine\n\r
-'
-
-cd $SRC_ROOT
-
-
-# if [[ $EUID -eq 0 ]]; then
-#    echo "This script must not be run as root"
-#    exit 1
-# fi
-
-_check_docker_image() {
-    __msg_info "Check for image: \"$1\""
-    if [[ "$($DOCKERSUDO docker images -q $1 2> /dev/null)" == "" ]]; then
-        return -1 #image doesn't exits
-    fi
-        return 0 #image exist
-}
-
-_check_build_args () {
-    if [[ $TARGET_ARCH == "arm" ]]; then
-        TARGET_ARCH="armhf"
-    elif [[ $TARGET_ARCH == "x86_64" ]]; then
-        TARGET_ARCH="amd64"
-    fi
-}
-
-# temporary hack to install avian dependencies user-wide
-_install () {
-    DEST=~/.cache/crossmobile/avian/0.1
-    rm -rf $DEST
-    mkdir -p $DEST
-    cp -r target/* $DEST
-}
-
-
-__devsys_util_builder () {
-    local HOST_ARCH=$1
-    local HOST_OS=$2
-    local HOST_OSTYPE=$3
-
-    local TARGET_ARCH=$4
-    local TARGET_OS=$5
-    local TARGET_OSTYPE=$6
-
-    local HOST_FULL=${HOST_ARCH}-${HOST_OS}-${HOST_OSTYPE}
-    local TARGET_FULL=${TARGET_ARCH}-${TARGET_OS}-${TARGET_OSTYPE}
-
-    __msg_info "Building host utils for '$HOST_FULL' host & '$TARGET_FULL' target"
-    local IMAGE=$IMAGE_NAME
-    if [[ "$HOST_FULL" == "x86_64-w64-mingw32" ]]; then
-        IMAGE=$IMAGE_WIN
-    fi
-
-    $DOCKERSUDO docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE \
-        bash "/src/scripts/host_utils_builder.sh" -b \
-        -h $HOST_FULL \
-        -t $TARGET_FULL \
-        -s /src \
-        -o /src/target
-
-    # if [ "$TARGET_ARCH" = "aarch64" ] ; then TARGET_ARCH=arm64 ; fi
-    # local BINTARGET=${SRC_ROOT}/target/${TARGET_OS}-${TARGET_ARCH}
-    # local BINSRC=${SRC_ROOT}/out/${HOST_FULL}__${TARGET_FULL}
-    # sudo chown -R $USER:$USER ${SRC_ROOT}/out
-    # mv ${BINSRC}/aroma-gnu-ld ${BINTARGET}/ld.${HOST_OS}-${HOST_ARCH}
-    # rm -rf {SRC_ROOT}/out
-}
-
-_build () {
-    if [[ "$(_check_docker_image $IMAGE_NAME)" != "0" ]]; then
-        __msg_info "Building \"$IMAGE_NAME\" builder image"
-        # SRC_DIR=$SRC_ROOT \
-        # TARGET_OS=$TARGET_OS \
-        # TARGET_ARCH=$TARGET_ARCH \
-        #sudo docker-compose -f docker/docker-compose.yml build --build-args SRC_DIR=$SRC_ROOT TARGET_OS=$TARGET_OS TARGET_ARCH=$TARGET_ARCH aromadepbuilder
-        $DOCKERSUDO docker build -t $IMAGE_NAME docker/ --build-arg ARCH=$TARGET_ARCH --build-arg OS=linux
-    fi
-
-    # if [[ "$(_check_docker_image $IMAGE_WIN)" != "0" ]]; then
-    #     __msg_info "Building windows host utils builder"
-    #     $DOCKERSUDO docker build -t $IMAGE_WIN docker/ --build-arg ARCH=i386 --build-arg OS=win
-    # fi
-
-    #Binutils for Linux desktop host systems
-    # __devsys_util_builder x86_64-w64-mingw32 arm-linux-gnueabihf
-    # __devsys_util_builder x86_64-w64-mingw32 aarch64-linux-gnu 
-    # __devsys_util_builder x86_64-w64-mingw32 x86_64-linux-gnu 
-
-    #Binutils for Window desktop host systems
-    if [ "$TARGET_ARCH" = "armhf" ] ; then
-        __devsys_util_builder x86_64 linux gnu arm linux gnueabihf
-    fi
-    if [ "$TARGET_ARCH" = "arm" ] ; then
-        __devsys_util_builder x86_64 linux gnu aarch64 linux gnu 
-    fi
-    if [ "$TARGET_ARCH" = "amd64" ] ; then
-        __devsys_util_builder x86_64 linux gnu x86_64 linux gnu 
-    fi
-
-    __msg_info "Running \"$IMAGE_NAME\" to build dependencies for OS: $TARGET_OS ARCH: $TARGET_ARCH target"
-    $DOCKERSUDO docker run --rm -it -v ${SRC_ROOT}:/src $IMAGE_NAME \
-        bash /src/docker/dep_builder.sh \
-        /src $TARGET_OS $TARGET_ARCH release
-
-    #sudo chown -R $USER:$USER .
-    _install
+    SRC_ROOT=$(dirname "$(realpath "$0")")
+    cd $SRC_ROOT
 }
 
 __msg_error() {
@@ -154,87 +29,132 @@ __msg_info() {
     echo -e ${GREEN}${1}${NC}
 }
 
-__git_clean() {
-    git clean $1 -dxf
-    git restore $1
+_check_root () {
+    if [[ $EUID -eq 0 ]]; then
+        __msg_error "This script must not be run as root"
+    fi
+}
+
+_usage () {
+    __msg_info '\n\r
+# MODULE=avian,sdl,skia,binutils  (all if no module provided)\n\r
+# ARCH=x86_64,arm,arm64\n\r
+# OS=linux\n\r
+\n\r
+Parameters:\n\r
+    \t-h|--help\n\r
+    \t-c|--clean [MODULE]\n\r
+    \t-b|--build [-a ..] [-o ..]\n\r
+    \t-a|--arch\n\r
+    \t-o|--os OS\n\r
+'
+}
+
+_check_docker_image() {
+    __msg_info "Check for image: \"$1\""
+    if [[ "$(docker images -q $1 2> /dev/null)" == "" ]]; then
+        return -1 #image doesn't exits
+    fi
+        return 0 #image exist
+}
+
+_check_args () {
+    if [[ $TARGET_OS != "linux" ]] ; then __msg_error "OS not recognised: $TARGET_OS" ; fi
+    if [[ $TARGET_ARCH != "arm" && $TARGET_ARCH != "arm64" && $TARGET_ARCH != "x86_64" ]] ; then __msg_error "ARCH not recognised: $TARGET_ARCH" ; fi
+
+    if [ "$TARGET_OS" = "linux" ] ; then HOST_TRIPLET=x86_64-linux-gnu   ; HOST_DIRNAME=linux-x86_64 ; DOCKER_IMAGE=aroma/dep-builder-$TARGET_OS-$TARGET_ARCH ; fi
+    if [ "$TARGET_OS" = "win" ] ; then HOST_TRIPLET=x86_64-w64-mingw32   ; HOST_DIRNAME=win64-x386   ; DOCKER_IMAGE=aroma/dep-builder-win-i386 ; fi
+
+    if [ "$TARGET_ARCH" = "arm" ] ; then TARGET_TRIPLET=arm-linux-gnueabihf ; TARGET_DIRNAME=linux-arm    ; DEBIAN_ARCH=armhf ; fi
+    if [ "$TARGET_ARCH" = "arm64" ] ; then TARGET_TRIPLET=aarch64-linux-gnu ; TARGET_DIRNAME=linux-arm64  ; DEBIAN_ARCH=aarch64 ; fi
+    if [ "$TARGET_ARCH" = "x86_64" ] ; then TARGET_TRIPLET=x86_64-linux-gnu ; TARGET_DIRNAME=linux-x86_64 ; DEBIAN_ARCH=x86_64 ; fi
+}
+
+# temporary hack to install avian dependencies user-wide
+_install () {
+    DEST=~/.cache/crossmobile/avian/0.1
+    rm -rf $DEST
+    mkdir -p $DEST
+    cp -r target/* $DEST
+}
+
+
+_build () {
+    if [[ "$(_check_docker_image $DOCKER_IMAGE)" != "0" ]]; then
+        __msg_info "Building \"$DOCKER_IMAGE\" builder image"
+        docker build -t $DOCKER_IMAGE docker/ --build-arg ARCH=$TARGET_ARCH --build-arg OS=$TARGET_OS
+    fi
+
+    # if [[ "$(_check_docker_image $IMAGE_WIN)" != "0" ]]; then
+    #     __msg_info "Building windows host utils builder"
+    #     docker build -t $IMAGE_WIN docker/ --build-arg ARCH=i386 --build-arg OS=win
+    # fi
+
+    # Build binutils
+    __msg_info "Building host utils for '$HOST_TRIPLET' host and '$TARGET_TRIPLET' target"
+    docker run --rm -it -v ${SRC_ROOT}:/src $DOCKER_IMAGE \
+        bash "/src/scripts/host_utils_builder.sh" \
+        -h $HOST_TRIPLET \
+        -t $TARGET_TRIPLET \
+        -hd $HOST_DIRNAME \
+        -td $TARGET_DIRNAME
+
+    __msg_info "Running \"$DOCKER_IMAGE\" to build dependencies for OS: $TARGET_OS ARCH: $TARGET_ARCH target"
+    docker run --rm -it -v ${SRC_ROOT}:/src $DOCKER_IMAGE \
+        bash /src/docker/dep_builder.sh \
+        /src $TARGET_OS $TARGET_ARCH release
+
+    #sudo chown -R $USER:$USER .
+    _install
 }
 
 _clean_avian () {
-    # [ -d "$SRC_ROOT/avian/build" ] && \
-    #     chown -R $USER $SRC_ROOT/avian/build
-
-    if [[ "$TARGET_SUBDIR" == "all" ]]; then
-        if [ -d $SRC_ROOT/target ]; then
-            find $SRC_ROOT/target -maxdepth 2 -name 'libavian.zip' -delete
-            find $SRC_ROOT/target -maxdepth 2 -name 'driver.o' -delete
-            find $SRC_ROOT/target -maxdepth 2 -name 'binaryToObject' -delete
-        fi
-        [ -f "$SRC_ROOT/target/common/classpath.jar" ] && \
-            rm $SRC_ROOT/target/common/classpath.jar
-        [ -f "$SRC_ROOT/target/common/bin/linux-x86_64/binaryToObject" ] && \
-            rm "$SRC_ROOT/target/common/bin/linux-x86_64/binaryToObject"
-        rm -rf $SRC_ROOT/avian/build/*
-        __git_clean $SRC_ROOT/avian
-    else
-        [ -f "$SRC_ROOT/target/$TARGET_SUBDIR/driver.o" ] && \
-            rm $SRC_ROOT/target/$TARGET_SUBDIR/driver.o
-        [ -f $SRC_ROOT/target/$TARGET_SUBDIR/libavian.zip ] && \
-            rm $SRC_ROOT/target/$TARGET_SUBDIR/libavian.zip
-        [ -f $SRC_ROOT/avian/build/$TARGET_SUBDIR ] && \
-            rm -rf $SRC_ROOT/avian/build/$TARGET_SUBDIR
-    fi
+    __msg_warn "Cleaning avian"
+    (cd $SRC_ROOT/avian ; make clean)
+    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name libavian.zip -delete
+    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name driver.o -delete
+    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 3 -name binaryToObject -delete
+    rm -f $SRC_ROOT/target/all/classpath.jar
 }
 
 _clean_sdl () {
-    # [ -d "$SRC_ROOT/SDL/build" ] && \
-    #     chown -R $USER $SRC_ROOT/SDL/build
+    __msg_warn "Cleaning SDL"
+    rm -rf $SRC_ROOT/SDL/build
+    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name 'libSDL2.a' -delete
+}
 
-    if [ "$TARGET_SUBDIR" = "all" ]; then
-        [ -d $SRC_ROOT/target ] && \
-            find $SRC_ROOT/target -maxdepth 2 -name 'libSDL2.a' -delete
-        rm -rf $SRC_ROOT/SDL/build/*
-        __git_clean $SRC_ROOT/SDL
-    else
-        [ -f $SRC_ROOT/target/$TARGET_SUBDIR/libSDL2.a ] && \
-            rm $SRC_ROOT/target/$TARGET_SUBDIR/libSDL2.a
-        [ -d $SRC_ROOT/SDL/build/$TARGET_SUBDIR ] && \
-            rm -rf $SRC_ROOT/SDL/build/$TARGET_SUBDIR
-    fi
+_clean_binutils () {
+    __msg_warn "Cleaning binutils"
+    rm -rf $SRC_ROOT/aroma-ld-linker/build
+    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name crtbeginS.o -delete
+    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name crtendS.o -delete
+    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name crti.o -delete
+    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name crtn.o -delete
+    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name Scrt1.o -delete
+    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name libgcc_s.so -delete
+    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name libstdc++.so -delete
+    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 3 -name 'ld' -delete
 }
 
 _clean_skia () {
-    # [ -d "$SRC_ROOT/skia/out" ] && \
-    #     chown -R $USER $SRC_ROOT/skia/out
-
-    if [[ "$TARGET_SUBDIR" == "all" ]]; then
-        if [ -d $SRC_ROOT/target ]; then
-            find $SRC_ROOT/target -maxdepth 2 -name 'libskia.a' -delete
-            find $SRC_ROOT/target -maxdepth 2 -name skia_*_build_manifest.txt -delete
-        fi
-        rm -rf $SRC_ROOT/skia/out/*
-        __git_clean $SRC_ROOT/skia
-    else
-        [ -f $SRC_ROOT/target/$TARGET_SUBDIR/libskia.a ] && \
-            rm  $SRC_ROOT/target/$TARGET_SUBDIR/libskia.a
-        [ -f $SRC_ROOT/target/$TARGET_SUBDIR/skia_*_build_manifest.txt ] && \
-            rm  $SRC_ROOT/target/$TARGET_SUBDIR/skia_*_build_manifest.txt
-        [ -d $SRC_ROOT/skia/out/$TARGET_SUBDIR ] && \
-            rm -rf $SRC_ROOT/skia/out/$TARGET_SUBDIR
-    fi
+    __msg_warn "Cleaning Skia"
+    rm -rf $SRC_ROOT/skia/out
+    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name 'libskia.a' -delete
+    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name skia_*_build_manifest.txt -delete
 }
 
 _clean () {
-    # [ -d "$SRC_ROOT/target" ] && \
-    #     chown -R $USER $SRC_ROOT/target
-    __msg_warn "Cleaning target OS:[$TARGET_OS] machine:[$TARGET_ARCH]"
     case $TARGET_DIR in
-
     avian)
         _clean_avian
     ;;
 
     sdl)
         _clean_sdl
+    ;;
+
+    binutils)
+        _clean_binutils
     ;;
 
     skia)
@@ -245,48 +165,57 @@ _clean () {
         _clean_avian
         _clean_sdl
         _clean_skia
+        _clean_binutils
+
     ;;
 
-    *)
-        echo "Unsupported target for 'clean' operation."
-        exit 1
+    *) 
+        __msg_error "Unsupported target for clean operation"
     ;;
     esac
-
+    [ -d $SRC_ROOT ] && find $SRC_ROOT -type d -empty -delete
 }
+
+
+
+#############################
+#  Main script starts here  #
+#############################
+
+_init_variables
+_check_root
 
 while [[ $# -gt 0 ]] ; do
     case $1 in
     -h|--help)
-        __msg_info "$USAGE"
+        _usage
         exit 0
         ;;
     -b|build)
-        TARGET_CMD=_build
+        TARGET_CMD=build
         shift
         ;;
     -c|clean)
-        TARGET_CMD=_clean
+        TARGET_CMD=clean
         shift
         [ $# -ge 1 ] && TARGET_DIR=$1 && shift
-        [ $# -eq 1 ] && TARGET_SUBDIR=$1 && shift
         ;;
     -o|--os)
-        if [ -n $2 ]; then
-         TARGET_OS=$2
-         shift
-         shift
+        if [ $# -ge 2 ]; then
+            TARGET_OS=$2
+            shift
+            shift
         else
             __msg_error "Please provide parameter for '-o|--os"
         fi
         ;;
-    -m|--machine)
-        if [ -n $2 ]; then
-         TARGET_ARCH=$2
-         shift
-         shift
+    -a|--arch)
+        if [ $# -ge 2 ]; then
+            TARGET_ARCH=$2
+            shift
+            shift
         else
-            __msg_error "Please provide parameter for '-m|--machine"
+            __msg_error "Please provide parameter for '-a|--arch"
         fi
         ;;
     *)
@@ -295,13 +224,13 @@ while [[ $# -gt 0 ]] ; do
     esac
 done
 
-_check_build_args
+_check_args
 
 
 if [[ $TARGET_CMD == "" ]]; then
-    __msg_warn "$USAGE"
+    _usage
     __msg_error "No command provided!"
 else
     __msg_info "Executing $TARGET_CMD"
-    $TARGET_CMD
+    _$TARGET_CMD
 fi

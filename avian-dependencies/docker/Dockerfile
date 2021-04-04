@@ -3,50 +3,15 @@ FROM debian:buster
 ARG ARCH=amd64
 ARG OS=linux
 
-RUN ["/bin/bash", "-c", "\
-if [[ $(uname -m) == $ARCH || 'amd64' == $ARCH ]] ; then \
-        export ARCH='amd64' && \
-        echo 'Build native docker ${ARCH} image'; \
-else \
-        if [[ $OS == 'linux' ]] ; then \
-        echo 'Build cross-compiler docker image for target:' $ARCH && \
-                case $ARCH in \
-                        arm64|aarch64)\
-                                export ARCH='arm64' && \
-                                CROSS_PKG='\
-                                        gcc-aarch64-linux-gnu \
-                                        g++-aarch64-linux-gnu' \
-                        ;;\
-                        arm|armhf)\
-                                export ARCH='armhf' && \
-                                CROSS_PKG='\
-                                        gcc-arm-linux-gnueabihf \
-                                        g++-arm-linux-gnueabihf' \
-                        ;;\
-                        amd64|x86_64|x64)\
-                                export ARCH='x86_64' && \
-                                CROSS_PKG='\
-                                        gcc \
-                                        g++' \
-                        ;;\
-                        *)\
-                                echo 'Unsupported system architecture: $ARCH'\
-                                exit 1\
-                        ;;\
-                esac ;\
-        elif [[ $OS == 'win' && $ARCH == 'i386' ]] ; then \
-                export ARCH='i386' && \
-                CROSS_PKG='\
-                        mingw-w64'; \
-        else echo 'Unsupported operating system: ${OS}'; fi && \
+RUN     if [ "$ARCH" = "arm"    ] ; then ARCH=armhf ; CROSS_PKG='gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf' ; fi ;\
+        if [ "$ARCH" = "arm64"  ] ; then ARCH=arm64 ; CROSS_PKG='gcc-aarch64-linux-gnu g++-aarch64-linux-gnu'    ; fi ;\
+        if [ "$ARCH" = "x86_64" ] ; then ARCH=amd64 ; CROSS_PKG='gcc g++'; fi ;\
         dpkg --add-architecture $ARCH && \
         apt-get update && \
-        apt-get install -y \
-        $CROSS_PKG; fi\
-"]
-
-RUN     apt-get update && \
-        apt-get install -y \
+        apt-get install -y software-properties-common && \
+        apt-add-repository -yu 'deb http://security.debian.org/debian-security stretch/updates main' && \
+        apt-get update && \
+        apt-get install -y $CROSS_PKG \
         libfontconfig1-dev:$ARCH \
         libx11-dev:$ARCH \
         libxext-dev:$ARCH \
@@ -102,9 +67,7 @@ RUN     apt-get update && \
         python2.7 \
         zip \
         zlib1g-dev \
-        software-properties-common && \
-        apt-add-repository -yu 'deb http://security.debian.org/debian-security stretch/updates main' && \
-        apt-get install -y openjdk-8-jdk && \
+        openjdk-8-jdk && \
         ln -sf /usr/bin/python2.7 /usr/bin/python && \
         ln -sf /usr/bin/python2.7 /usr/bin/python2
 
