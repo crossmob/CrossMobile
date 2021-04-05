@@ -150,6 +150,7 @@ _build() {
         fi
         mkdir -p $INSTALL_UTIL_BIN_DIR
         cp $TEMP_LD_BIN $INSTALL_UTIL_BIN_DIR
+        cp /lib64/ld-linux-x86-64.so.2 $INSTALL_UTIL_BIN_DIR
     fi
 
     if [[ ! -f ${INSTALL_UTIL_LIB_DIR}/crti.o ]]; then
@@ -159,7 +160,7 @@ _build() {
         cp $LIB_USR_TARGET/crtn.o  $INSTALL_UTIL_LIB_DIR
         cp $LIB_GCC_TARGET/crtbeginS.o   $INSTALL_UTIL_LIB_DIR
         cp $LIB_GCC_TARGET/crtendS.o     $INSTALL_UTIL_LIB_DIR
-        cp $LIB_GCC_TARGET/libgcc_s.so.1 $INSTALL_UTIL_LIB_DIR
+        cp $LIB_GCC_TARGET/libgcc.a      $INSTALL_UTIL_LIB_DIR
         cp $LIB_GCC_TARGET/libgcc_s.so   $INSTALL_UTIL_LIB_DIR
         cp $LIB_GCC_TARGET/libstdc++.so  $INSTALL_UTIL_LIB_DIR
     fi
