@@ -157,10 +157,11 @@ _build() {
         cp $LIB_USR_TARGET/Scrt1.o $INSTALL_UTIL_LIB_DIR 
         cp $LIB_USR_TARGET/crti.o  $INSTALL_UTIL_LIB_DIR
         cp $LIB_USR_TARGET/crtn.o  $INSTALL_UTIL_LIB_DIR
-        cp $LIB_GCC_TARGET/crtbeginS.o  $INSTALL_UTIL_LIB_DIR
-        cp $LIB_GCC_TARGET/crtendS.o    $INSTALL_UTIL_LIB_DIR
-        cp $LIB_GCC_TARGET/libgcc_s.so  $INSTALL_UTIL_LIB_DIR
-        cp $LIB_GCC_TARGET/libstdc++.so $INSTALL_UTIL_LIB_DIR
+        cp $LIB_GCC_TARGET/crtbeginS.o   $INSTALL_UTIL_LIB_DIR
+        cp $LIB_GCC_TARGET/crtendS.o     $INSTALL_UTIL_LIB_DIR
+        cp $LIB_GCC_TARGET/libgcc_s.so.1 $INSTALL_UTIL_LIB_DIR
+        cp $LIB_GCC_TARGET/libgcc_s.so   $INSTALL_UTIL_LIB_DIR
+        cp $LIB_GCC_TARGET/libstdc++.so  $INSTALL_UTIL_LIB_DIR
     fi
 }
 
