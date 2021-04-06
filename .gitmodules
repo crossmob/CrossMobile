@@ -1,7 +1,6 @@
 [submodule "cmmanager"]
 	path = cmmanager
 	url = https://github.com/Aroma-UI/cmmanager
-	branch = aroma
 [submodule "cmbuild"]
 	path = cmbuild
 	url = https://github.com/Aroma-UI/cmbuild
@@ -22,4 +21,7 @@
 	path = avian-dependencies/depot_tools
 	url = https://chromium.googlesource.com/chromium/tools/depot_tools.git
 	branch = master
-
+[submodule "binutils"]
+	path = avian-dependencies/binutils
+	url = https://github.com/Aroma-UI/binutils.git
+	branch = binutils-2.28

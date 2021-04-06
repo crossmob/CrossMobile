@@ -24,7 +24,7 @@ NUM_PROC=$(nproc)
 
 SRC_ROOT=$(dirname $(dirname $(realpath "$0")))
 INSTALL_HOST_UTIL_DIR="$SRC_ROOT/target"
-UTIL_GNU_SRC="${SRC_ROOT}/aroma-ld-linker"
+UTIL_GNU_SRC="${SRC_ROOT}/binutils"
 UTIL_GNU_ZIP="${UTIL_GNU_SRC}.tar.bz2"
 #UTIL_WIN_SRC="${SRC_ROOT}/aroma-cygwin-linker"
 UTIL_WIN_SRC="${SRC_ROOT}/mingw-w64"
@@ -46,14 +46,14 @@ _source_cygwin_check() {
     cd $SRC_ROOT
 }
 
-_source_ld_check() {
-    if [ ! -d $UTIL_GNU_SRC ]; then
-        if [ ! -f $UTIL_GNU_ZIP ]; then
-            wget -O $UTIL_GNU_ZIP https://ftp.gnu.org/gnu/binutils/binutils-2.36.1.tar.bz2
-        fi
-        tar -xvf $UTIL_GNU_ZIP --one-top-level=$UTIL_GNU_SRC --strip-components 1
-    fi
-}
+# _source_ld_check() {
+#     if [ ! -d $UTIL_GNU_SRC ]; then
+#         if [ ! -f $UTIL_GNU_ZIP ]; then
+#             wget -O $UTIL_GNU_ZIP https://ftp.gnu.org/gnu/binutils/binutils-2.36.1.tar.bz2
+#         fi
+#         tar -xvf $UTIL_GNU_ZIP --one-top-level=$UTIL_GNU_SRC --strip-components 1
+#     fi
+# }
 
 _build() {
 
@@ -96,7 +96,7 @@ _build() {
         if [[ ! -f $TEMP_LD_BIN ]]; then
             if [ "$IS_GNU" = true ]; then
                 __msg_info "Building GNU Binutils ..."
-                _source_ld_check
+                # _source_ld_check
                 [ -d $BUILD_DIR ] && \
                     rm -rf $BUILD_DIR
                 mkdir -p $BUILD_DIR
