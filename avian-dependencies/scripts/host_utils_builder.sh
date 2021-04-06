@@ -150,19 +150,7 @@ _build() {
         fi
         mkdir -p $INSTALL_UTIL_BIN_DIR
         cp $TEMP_LD_BIN $INSTALL_UTIL_BIN_DIR
-        cp /lib64/ld-linux-x86-64.so.2 $INSTALL_UTIL_BIN_DIR
     fi
-
-    mkdir -p $INSTALL_UTIL_LIB_DIR
-    local OBJ_USR_TARGET=("Scrt1.o" "crti.o" "crtn.o")
-    for obj in ${OBJ_USR_TARGET[@]}; do
-            [[ -f "$INSTALL_UTIL_LIB_DIR/$obj" ]] || cp "$LIB_USR_TARGET/$obj" "$INSTALL_UTIL_LIB_DIR"
-    done
-
-    local OBJ_GCC_TARGET=("crtbeginS.o" "crtendS.o" "libgcc.a" "libgcc_s.so" "libstdc++.so")
-    for obj in ${OBJ_GCC_TARGET[@]}; do
-            [[ -f "$INSTALL_UTIL_LIB_DIR/$obj" ]] || cp "$LIB_GCC_TARGET/$obj" "$INSTALL_UTIL_LIB_DIR"
-    done
 }
 
 while [[ $# -gt 0 ]] ; do

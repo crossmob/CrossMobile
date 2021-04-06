@@ -62,7 +62,7 @@ x86_64|amd64|x64)
     __msg_error "The '${BUILD_ARCH}' architecture is not supported!"
 esac
 
-DIR_CROSS_LIBS="/usr/lib"
+DIR_CROSS_LIBS="/usr/lib/$CROSS_PREFIX"
 
 if [[ $BUILD_ARCH != "$(uname -m)" ]]; then
     __msg_info "Cross compiling for $BUILD_ARCH"
@@ -285,3 +285,16 @@ fi
 DIR_SRC_DRIVER="$DIR_SRC_ROOT/avian-driver/embedded-jar-main.cpp"
 
 $CXX -I$JAVA_HOME/include -I$JAVA_HOME/include/$BUILD_OS -c $DIR_SRC_DRIVER -o $DIR_LIBS/driver.o
+
+cp /lib/$CROSS_PREFIX/ld-2.28.so $DIR_LIBS
+
+OBJ_USR_TARGET=("Scrt1.o" "crti.o" "crtn.o")
+for obj in ${OBJ_USR_TARGET[@]}; do
+        [[ -f "$DIR_LIBS/$obj" ]] || cp "$DIR_CROSS_LIBS/$obj" "$DIR_LIBS"
+done
+
+DIR_LIB_GCC_TARGET="/usr/lib/gcc/$CROSS_PREFIX/8"
+OBJ_GCC_TARGET=("crtbeginS.o" "crtendS.o" "libgcc.a" "libgcc_s.so" "libstdc++.so")
+for obj in ${OBJ_GCC_TARGET[@]}; do
+        [[ -f "$DIR_LIBS/$obj" ]] || cp "$DIR_LIB_GCC_TARGET/$obj" "$DIR_LIBS"
+done
