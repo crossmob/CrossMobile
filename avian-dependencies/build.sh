@@ -126,15 +126,24 @@ _clean_sdl () {
 _clean_binutils () {
     __msg_warn "Cleaning binutils"
     rm -rf $SRC_ROOT/aroma-ld-linker/build
-    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name crtbeginS.o -delete
-    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name crtendS.o -delete
-    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name crti.o -delete
-    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name crtn.o -delete
-    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name Scrt1.o -delete
-    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name libgcc_s.so -delete
-    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name libstdc++.so -delete
-    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name libgcc.a -delete
-    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 3 -name 'ld' -delete
+    if [ -d $SRC_ROOT/target ]; then
+        find $SRC_ROOT/target -maxdepth 2 -name crtbeginS.o -delete
+        find $SRC_ROOT/target -maxdepth 2 -name crtendS.o -delete
+        find $SRC_ROOT/target -maxdepth 2 -name crti.o -delete
+        find $SRC_ROOT/target -maxdepth 2 -name crtn.o -delete
+        find $SRC_ROOT/target -maxdepth 2 -name Scrt1.o -delete
+        find $SRC_ROOT/target -maxdepth 2 -name libgcc_s.so -delete
+        find $SRC_ROOT/target -maxdepth 2 -name libstdc++.so -delete
+        find $SRC_ROOT/target -maxdepth 2 -name libgcc.a -delete
+        find $SRC_ROOT/target -maxdepth 3 -name 'ld' -delete
+        find $SRC_ROOT/target -maxdepth 2 -name libld.so -delete
+        find $SRC_ROOT/target -maxdepth 2 -name libdl.so -delete
+        find $SRC_ROOT/target -maxdepth 2 -name libc.so -delete
+        find $SRC_ROOT/target -maxdepth 2 -name libz.so  -delete
+        find $SRC_ROOT/target -maxdepth 2 -name libm.so  -delete
+        find $SRC_ROOT/target -maxdepth 2 -name libpthread.so -delete
+        find $SRC_ROOT/target -maxdepth 2 -name libc_nonshared.a -delete
+    fi 
 }
 
 _clean_skia () {
@@ -167,7 +176,7 @@ _clean () {
         _clean_sdl
         _clean_skia
         _clean_binutils
-
+        rm -rf "$SRC_ROOT/target"
     ;;
 
     *) 
