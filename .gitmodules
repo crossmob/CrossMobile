@@ -22,4 +22,7 @@
 	path = avian-dependencies/depot_tools
 	url = https://chromium.googlesource.com/chromium/tools/depot_tools.git
 	branch = master
-
+[submodule "binutils"]
+	path = avian-dependencies/aroma-gnu-utils
+	url = https://github.com/Aroma-UI/binutils.git
+	branch = binutils-2.28
