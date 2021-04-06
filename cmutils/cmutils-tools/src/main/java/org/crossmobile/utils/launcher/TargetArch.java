@@ -7,9 +7,9 @@ import java.util.HashSet;
 import java.util.List;
 
 public enum TargetArch {
-    LINUX_X86_64("linux", "x86_64"),
-    LINUX_ARM("linux", "arm"),
-    LINUX_ARM64("linux", "arm64");
+    LINUX_X86_64("linux", "x86_64", "elf_x86_64", "/lib64/ld-linux-x86-64.so.2"),
+    LINUX_ARM("linux", "arm", "armelf_linux_eabi", "/lib/ld-linux-armhf.so.3"),
+    LINUX_ARM64("linux", "arm64", "aarch64linux", "/lib/ld-linux-aarch64.so.1");
 
     private static final String DEFAULT_OS;
     private static final String DEFAULT_ARCH;
@@ -34,10 +34,14 @@ public enum TargetArch {
 
     private final String os;
     private final String arch;
+    private final String emulationMode;
+    private final String linker;
 
-    TargetArch(String os, String arch) {
+    TargetArch(String os, String arch, String emulationMode, String linker) {
         this.os = os;
         this.arch = arch;
+        this.emulationMode = emulationMode;
+        this.linker = linker;
     }
 
     public String getOs() {
@@ -46,6 +50,14 @@ public enum TargetArch {
 
     public String getArch() {
         return arch;
+    }
+
+    public String getEmulation() {
+        return emulationMode;
+    }
+
+    public String getLinker() {
+        return linker;
     }
 
     public static TargetArch getFromOsArch(String os, String arch) {

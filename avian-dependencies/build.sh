@@ -133,6 +133,7 @@ _clean_binutils () {
     [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name Scrt1.o -delete
     [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name libgcc_s.so -delete
     [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name libstdc++.so -delete
+    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name libgcc.a -delete
     [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 3 -name 'ld' -delete
 }
 
