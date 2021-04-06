@@ -92,8 +92,8 @@ _build() {
     local INSTALL_UTIL_LIB_DIR="$INSTALL_HOST_UTIL_DIR/$INSTALL_TARGET_DIR"
     local INSTALL_LD_BIN="$INSTALL_UTIL_BIN_DIR/ld${SUFFIX_BIN}"
 
-    if [ ! -f $INSTALL_LD_BIN ]; then
-        if [ ! -f $TEMP_LD_BIN ]; then
+    if [[ ! -f $INSTALL_LD_BIN ]]; then
+        if [[ ! -f $TEMP_LD_BIN ]]; then
             if [ "$IS_GNU" = true ]; then
                 __msg_info "Building GNU Binutils ..."
                 _source_ld_check
@@ -153,17 +153,16 @@ _build() {
         cp /lib64/ld-linux-x86-64.so.2 $INSTALL_UTIL_BIN_DIR
     fi
 
-    if [[ ! -f ${INSTALL_UTIL_LIB_DIR}/crti.o ]]; then
-        mkdir -p $INSTALL_UTIL_LIB_DIR
-        cp $LIB_USR_TARGET/Scrt1.o $INSTALL_UTIL_LIB_DIR 
-        cp $LIB_USR_TARGET/crti.o  $INSTALL_UTIL_LIB_DIR
-        cp $LIB_USR_TARGET/crtn.o  $INSTALL_UTIL_LIB_DIR
-        cp $LIB_GCC_TARGET/crtbeginS.o   $INSTALL_UTIL_LIB_DIR
-        cp $LIB_GCC_TARGET/crtendS.o     $INSTALL_UTIL_LIB_DIR
-        cp $LIB_GCC_TARGET/libgcc.a      $INSTALL_UTIL_LIB_DIR
-        cp $LIB_GCC_TARGET/libgcc_s.so   $INSTALL_UTIL_LIB_DIR
-        cp $LIB_GCC_TARGET/libstdc++.so  $INSTALL_UTIL_LIB_DIR
-    fi
+    mkdir -p $INSTALL_UTIL_LIB_DIR
+    local OBJ_USR_TARGET=("Scrt1.o" "crti.o" "crtn.o")
+    for obj in ${OBJ_USR_TARGET[@]}; do
+            [[ -f "$INSTALL_UTIL_LIB_DIR/$obj" ]] || cp "$LIB_USR_TARGET/$obj" "$INSTALL_UTIL_LIB_DIR"
+    done
+
+    local OBJ_GCC_TARGET=("crtbeginS.o" "crtendS.o" "libgcc.a" "libgcc_s.so" "libstdc++.so")
+    for obj in ${OBJ_GCC_TARGET[@]}; do
+            [[ -f "$INSTALL_UTIL_LIB_DIR/$obj" ]] || cp "$LIB_GCC_TARGET/$obj" "$INSTALL_UTIL_LIB_DIR"
+    done
 }
 
 while [[ $# -gt 0 ]] ; do
