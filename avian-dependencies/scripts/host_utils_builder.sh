@@ -24,7 +24,11 @@ NUM_PROC=$(nproc)
 
 SRC_ROOT=$(dirname $(dirname $(realpath "$0")))
 INSTALL_HOST_UTIL_DIR="$SRC_ROOT/target"
+<<<<<<< HEAD
 UTIL_GNU_SRC="${SRC_ROOT}/binutils"
+=======
+UTIL_GNU_SRC="${SRC_ROOT}/aroma-gnu-utils"
+>>>>>>> 9c9222ec4e2f5c9730270b9d6f682feb77c98e92
 UTIL_GNU_ZIP="${UTIL_GNU_SRC}.tar.bz2"
 #UTIL_WIN_SRC="${SRC_ROOT}/aroma-cygwin-linker"
 UTIL_WIN_SRC="${SRC_ROOT}/mingw-w64"
