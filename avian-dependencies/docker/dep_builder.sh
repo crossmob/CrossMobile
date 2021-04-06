@@ -63,6 +63,7 @@ x86_64|amd64|x64)
 esac
 
 DIR_CROSS_LIBS="/usr/lib/$CROSS_PREFIX"
+DIR_ROOT_CROSS_LIBS="/lib/$CROSS_PREFIX"
 
 if [[ $BUILD_ARCH != "$(uname -m)" ]]; then
     __msg_info "Cross compiling for $BUILD_ARCH"
@@ -77,7 +78,6 @@ if [[ $BUILD_ARCH != "$(uname -m)" ]]; then
     export AR="$CROSS_PREFIX-ar"
     DIR_CROSS_INC="/usr/include/$CROSS_PREFIX"
     DIR_CROSS_INC_STD="$DIR_CROSS_INC/c++/8"
-    DIR_CROSS_LIBS="/usr/lib/$CROSS_PREFIX"
     export LD_LIBRARY_PATH=$DIR_CROSS_LIBS
     export LDFLAGS="-L$DIR_CROSS_LIBS -pie"
     export PKG_CONFIG_PATH="$PKG_CONFIG_PATH $DIR_CROSS_LIBS/pkgconfig"
@@ -286,15 +286,28 @@ DIR_SRC_DRIVER="$DIR_SRC_ROOT/avian-driver/embedded-jar-main.cpp"
 
 $CXX -I$JAVA_HOME/include -I$JAVA_HOME/include/$BUILD_OS -c $DIR_SRC_DRIVER -o $DIR_LIBS/driver.o
 
-cp /lib/$CROSS_PREFIX/ld-2.28.so $DIR_LIBS
 
-OBJ_USR_TARGET=("Scrt1.o" "crti.o" "crtn.o")
+OBJ_USR_TARGET=("Scrt1.o" "crti.o" "crtn.o" "libc_nonshared.a")
 for obj in ${OBJ_USR_TARGET[@]}; do
-        [[ -f "$DIR_LIBS/$obj" ]] || cp "$DIR_CROSS_LIBS/$obj" "$DIR_LIBS"
+    cp "$DIR_CROSS_LIBS/$obj" "$DIR_LIBS"
 done
 
 DIR_LIB_GCC_TARGET="/usr/lib/gcc/$CROSS_PREFIX/8"
 OBJ_GCC_TARGET=("crtbeginS.o" "crtendS.o" "libgcc.a" "libgcc_s.so" "libstdc++.so")
 for obj in ${OBJ_GCC_TARGET[@]}; do
-        [[ -f "$DIR_LIBS/$obj" ]] || cp "$DIR_LIB_GCC_TARGET/$obj" "$DIR_LIBS"
+    cp "$DIR_LIB_GCC_TARGET/$obj" "$DIR_LIBS"
 done
+
+declare -Ar SYS_LIBS=( \
+    [libld.so]=ld-2.28.so \
+    [libdl.so]=libdl-2.28.so \
+    [libz.so]=libz.so.1.2.11 \
+    [libm.so]=libm-2.28.so \
+    [libc.so]=libc-2.28.so \
+    [libpthread.so]=libpthread-2.28.so \
+)
+
+for slib in ${!SYS_LIBS[@]}; do
+    cp $DIR_ROOT_CROSS_LIBS/${SYS_LIBS[$slib]} $DIR_LIBS/$slib
+done
+
