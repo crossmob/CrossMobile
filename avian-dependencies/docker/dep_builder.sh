@@ -127,7 +127,7 @@ if [[ ! -f $AVIAN_INSTALL_ZIP || ! -f $AVIAN_INSTALL_JAR ]]; then
     if [[ ! -f $AVIAN_BUILD_ARC || ! -f $AVIAN_BUILD_JAR ]]; then
         __msg_info "Building Avian ..."
         cd $DIR_AVIAN_SRC
-        make clean
+        rm -rf $DIR_AVIAN_BUILD
         make \
         -j ${NUM_PROC} \
         platform=$BUILD_OS \
