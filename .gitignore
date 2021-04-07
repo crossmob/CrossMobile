@@ -10,9 +10,3 @@ cmioslayer/gen/lib
 .vscode/
 *.iml
 /.project
-avian-dependencies/out
-
-
-avian-dependencies/aroma-cygwin-linker/
-avian-dependencies/aroma-ld-linker.tar.bz2
-avian-dependencies/aroma-ld-linker/

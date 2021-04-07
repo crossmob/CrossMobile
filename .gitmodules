@@ -24,4 +24,4 @@
 [submodule "binutils"]
 	path = avian-dependencies/binutils
 	url = https://github.com/Aroma-UI/binutils.git
-	branch = binutils-2.28
+	branch = master
