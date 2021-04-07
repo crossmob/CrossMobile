@@ -115,15 +115,15 @@ mkdir -p $DIR_COMMON
 #-----------------Avian build---------------------
 DIR_AVIAN_SRC="$DIR_3RD/avian"
 AVIAN_ZIP="libavian.zip"
-AVIAN_JAR="boot.jar"
-DIR_AVIAN_ZIP="$DIR_LIBS/$AVIAN_ZIP"
-DIR_AVIAN_JAR="$DIR_LIBS/$AVIAN_JAR"
+AVIAN_JAR="classpath.jar"
+AVIAN_INSTALL_ZIP="$DIR_LIBS/$AVIAN_ZIP"
+AVIAN_INSTALL_JAR="$DIR_COMMON/$AVIAN_JAR"
 
 DIR_AVIAN_BUILD="$DIR_AVIAN_SRC/build/$BUILD_OS-$BUILD_ARCH"
 AVIAN_BUILD_ARC="$DIR_AVIAN_BUILD/libavian.a"
-AVIAN_BUILD_JAR="$DIR_COMMON/classpath.jar"
+AVIAN_BUILD_JAR="$DIR_AVIAN_BUILD/$AVIAN_JAR"
 
-if [[ ! -f $DIR_AVIAN_ZIP || ! -f $DIR_AVIAN_JAR ]]; then
+if [[ ! -f $AVIAN_INSTALL_ZIP || ! -f $AVIAN_INSTALL_JAR ]]; then
     if [[ ! -f $AVIAN_BUILD_ARC || ! -f $AVIAN_BUILD_JAR ]]; then
         __msg_info "Building Avian ..."
         cd $DIR_AVIAN_SRC
@@ -134,18 +134,18 @@ if [[ ! -f $DIR_AVIAN_ZIP || ! -f $DIR_AVIAN_JAR ]]; then
         arch=$BUILD_ARCH
     fi
 
-    if [[ ! -f $DIR_AVIAN_ZIP ]] ; then
+    if [[ ! -f $AVIAN_INSTALL_ZIP ]] ; then
         cd $DIR_AVIAN_BUILD
         rm -rf extracted_files
         mkdir extracted_files
         cd extracted_files
         ar x $AVIAN_BUILD_ARC
-        zip $DIR_AVIAN_ZIP *.o
+        zip $AVIAN_INSTALL_ZIP *.o
     fi
 fi
 
 if [[ ! -f $AVIAN_DESTINATION_JAR ]]; then
-    cp $DIR_AVIAN_BUILD/classpath.jar $AVIAN_BUILD_JAR
+    cp $AVIAN_BUILD_JAR $DIR_COMMON
     mkdir -p $DIR_COMMON/linux-x86_64
     cp $DIR_AVIAN_BUILD/binaryToObject/binaryToObject $DIR_COMMON/linux-x86_64/binaryToObject
 fi
