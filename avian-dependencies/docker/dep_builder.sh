@@ -132,22 +132,22 @@ if [[ ! -f $AVIAN_INSTALL_ZIP || ! -f $AVIAN_INSTALL_JAR ]]; then
         -j ${NUM_PROC} \
         platform=$BUILD_OS \
         arch=$BUILD_ARCH
-    fi
 
-    if [[ ! -f $AVIAN_INSTALL_ZIP ]] ; then
-        cd $DIR_AVIAN_BUILD
-        rm -rf extracted_files
-        mkdir extracted_files
-        cd extracted_files
-        ar x $AVIAN_BUILD_ARC
-        zip $AVIAN_INSTALL_ZIP *.o
-    fi
-fi
+        if [ -f $AVIAN_BUILD_ARC ]; then
+            cd $DIR_AVIAN_BUILD
+            rm -rf extracted_files
+            mkdir extracted_files
+            cd extracted_files
+            ar x $AVIAN_BUILD_ARC
+            zip $AVIAN_INSTALL_ZIP *.o
 
-if [[ ! -f $AVIAN_DESTINATION_JAR ]]; then
-    cp $AVIAN_BUILD_JAR $DIR_COMMON
-    mkdir -p $DIR_COMMON/linux-x86_64
-    cp $DIR_AVIAN_BUILD/binaryToObject/binaryToObject $DIR_COMMON/linux-x86_64/binaryToObject
+            cp $AVIAN_BUILD_JAR $DIR_COMMON
+            mkdir -p $DIR_COMMON/linux-x86_64
+            cp $DIR_AVIAN_BUILD/binaryToObject/binaryToObject $DIR_COMMON/linux-x86_64/binaryToObject
+        else
+            __msg_error "libavian.a is not available!"
+        fi
+    fi
 fi
 
 #------------------SDL2 build---------------------
