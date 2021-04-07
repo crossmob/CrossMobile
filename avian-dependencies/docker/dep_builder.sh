@@ -293,7 +293,7 @@ for obj in ${OBJ_USR_TARGET[@]}; do
 done
 
 DIR_LIB_GCC_TARGET="/usr/lib/gcc/$CROSS_PREFIX/8"
-OBJ_GCC_TARGET=("crtbeginS.o" "crtendS.o" "libgcc.a" "libgcc_s.so" "libstdc++.so")
+OBJ_GCC_TARGET=("crtbeginS.o" "crtendS.o" "libgcc.a" "libstdc++.so")
 for obj in ${OBJ_GCC_TARGET[@]}; do
     cp "$DIR_LIB_GCC_TARGET/$obj" "$DIR_LIBS"
 done
@@ -305,6 +305,7 @@ declare -Ar SYS_LIBS=( \
     [libm.so]=libm-2.28.so \
     [libc.so]=libc-2.28.so \
     [libpthread.so]=libpthread-2.28.so \
+    [libgcc_s.so]=libgcc_s.so.1 \
 )
 
 for slib in ${!SYS_LIBS[@]}; do
