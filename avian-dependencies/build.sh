@@ -125,7 +125,7 @@ _clean_sdl () {
 
 _clean_binutils () {
     __msg_warn "Cleaning binutils"
-    rm -rf $SRC_ROOT/aroma-ld-linker/build
+    rm -rf $SRC_ROOT/binutils/build
     if [ -d $SRC_ROOT/target ]; then
         find $SRC_ROOT/target -maxdepth 2 -name crtbeginS.o -delete
         find $SRC_ROOT/target -maxdepth 2 -name crtendS.o -delete
