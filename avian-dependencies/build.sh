@@ -51,11 +51,14 @@ Parameters:\n\r
 }
 
 _check_docker_image() {
-    __msg_info "Check for image: \"$1\""
+    __msg_info "Check for docker image: \"$1\""
     if [[ "$(docker images -q $1 2> /dev/null)" == "" ]]; then
-        return -1 #image doesn't exits
+        __msg_warn "The dcoker image doesn't exits."
+        return 1
+    else
+        __msg_info "The docker image exist."
+        return 0
     fi
-        return 0 #image exist
 }
 
 _check_args () {
@@ -80,7 +83,7 @@ _install () {
 
 
 _build () {
-    if [[ "$(_check_docker_image $DOCKER_IMAGE)" != "0" ]]; then
+    if ! _check_docker_image $DOCKER_IMAGE; then
         __msg_info "Building \"$DOCKER_IMAGE\" builder image"
         docker build -t $DOCKER_IMAGE docker/ --build-arg ARCH=$TARGET_ARCH --build-arg OS=$TARGET_OS
     fi
