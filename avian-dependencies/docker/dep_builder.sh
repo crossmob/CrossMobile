@@ -311,3 +311,4 @@ for slib in ${!SYS_LIBS[@]}; do
     cp $DIR_ROOT_CROSS_LIBS/${SYS_LIBS[$slib]} $DIR_LIBS/$slib
 done
 
+cp $DIR_CROSS_LIBS/libfontconfig.so.1.12.0 $DIR_LIBS/libfontconfig.so
