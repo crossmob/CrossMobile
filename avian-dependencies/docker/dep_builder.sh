@@ -129,28 +129,28 @@ AVIAN_BUILD_JAR="$DIR_AVIAN_BUILD/$AVIAN_JAR"
 
 if [[ ! -f $AVIAN_INSTALL_ZIP || ! -f $AVIAN_INSTALL_JAR ]]; then
     if [[ ! -f $AVIAN_BUILD_ARC || ! -f $AVIAN_BUILD_JAR ]]; then
-        __msg_info "Building Avian ..."
+        __msg_info "Building 'Avian' ..."
         cd $DIR_AVIAN_SRC
         rm -rf $DIR_AVIAN_BUILD
         make \
         -j ${NUM_PROC} \
         platform=$BUILD_OS \
-        arch=$BUILD_ARCH
+        arch=$BUILD_ARCH &> /dev/null
 
         if [ -f $AVIAN_BUILD_ARC ]; then
-            __msg_ok "Building Avian\t\t[ OK ]"
+            __msg_ok "Building 'Avian'\t\t\t[ OK ]"
             cd $DIR_AVIAN_BUILD
             rm -rf extracted_files
             mkdir extracted_files
             cd extracted_files
             ar x $AVIAN_BUILD_ARC
-            zip $AVIAN_INSTALL_ZIP *.o
+            zip $AVIAN_INSTALL_ZIP *.o &> /dev/null
 
             cp $AVIAN_BUILD_JAR $DIR_COMMON
             mkdir -p $DIR_COMMON/linux-x86_64
             cp $DIR_AVIAN_BUILD/binaryToObject/binaryToObject $DIR_COMMON/linux-x86_64/binaryToObject
         else
-            __msg_error "Building Avian\t\t[FAIL]"
+            __msg_error "Building 'Avian'\t\t\t[FAIL]"
         fi
     fi
 fi
@@ -163,7 +163,7 @@ SDL_ARC="$DIR_LIBS/libSDL2.a"
 
 if [ ! -f $SDL_ARC ] ; then
     if [ ! -f $DIR_SDL_BUILD/libSDL2.a ]; then
-        __msg_info "Building SDL2 ..."
+        __msg_info "Building 'SDL2' ..."
 
         if [ -d $DIR_SDL_BUILD ]; then
             rm -rf $DIR_SDL_BUILD/*
@@ -187,18 +187,18 @@ if [ ! -f $SDL_ARC ] ; then
         --enable-video-vivante \
         --disable-shared \
         --enable-static \
-        $AVIAN_CROSS_FLAGS
+        $AVIAN_CROSS_FLAGS &> /dev/null
 
-        make -j $NUM_PROC
+        make -j $NUM_PROC &> /dev/null
         mkdir -p $DIR_SDL_BUILD/install
-        DESTDIR=$DIR_SDL_BUILD/install make install
+        DESTDIR=$DIR_SDL_BUILD/install make install &> /dev/null
         cd $DIR_SRC_ROOT
         
         [ -f $SDL_INSTAL_LIB ] && \
-            __msg_ok    "Building SDL2\t\t[ OK ]" || \
-            __msg_error "Building SDL2\t\t[FAIL]"
+            __msg_ok    "Building 'SDL2'\t\t[ OK ]" || \
+            __msg_error "Building 'SDL2'\t\t[FAIL]"
     fi
-    cp $SDL_INSTAL_LIB $DIR_LIBS
+    cp $SDL_INSTAL_LIB $DIR_LIBS/
 fi
 
 #------------------Skia build---------------------
@@ -213,7 +213,7 @@ if [ ! -f $SKIA_ARC ] ; then
     if [ ! -f "$DIR_SKIA_BUILD/libskia.a" ]; then
         __msg_info "Building Skia ..."
         cd $DIR_SKIA_SRC
-        python tools/git-sync-deps
+        python tools/git-sync-deps &> /dev/null
         rm -rf $DIR_SKIA_BUILD
 
         SKIA_OPTIONS_ENABLED="
@@ -284,14 +284,15 @@ if [ ! -f $SKIA_ARC ] ; then
             '"${SKIA_DEBUG}"'
             '"${SKIA_OPTIONS_ENABLED}"'
             '"${SKIA_OPTIONS_DISABLED}"'
-            '
+            ' &> /dev/null
 
-        ninja -C $DIR_SKIA_BUILD -j $NUM_PROC
+        ninja -C $DIR_SKIA_BUILD -j $NUM_PROC &> /dev/null
         if [[ $? && -f $DIR_SKIA_BUILD/libskia.a ]]; then
-            __msg_ok    "Building Skia\t\t[ OK ]"
-            bin/gn args $DIR_SKIA_OUT --list --short > $DIR_LIBS/"skia_${BUILD_EXP}_build_manifest.txt"
+            __msg_ok    "Building 'Skia'\t\t\t[ OK ]"
+            bin/gn args $DIR_SKIA_OUT --list --short > \
+                $DIR_LIBS/"skia_${BUILD_EXP}_build_manifest.txt"
         else
-            __msg_error "Building Skia\t\t[FAIL]"
+            __msg_error "Building 'Skia'\t\t\t[FAIL]"
         fi
     fi
     cp $DIR_SKIA_BUILD/libskia.a $DIR_LIBS
@@ -299,7 +300,8 @@ fi
 
 DIR_SRC_DRIVER="$DIR_SRC_ROOT/avian-driver/embedded-jar-main.cpp"
 
-$CXX -I$JAVA_HOME/include -I$JAVA_HOME/include/$BUILD_OS -c $DIR_SRC_DRIVER -o $DIR_LIBS/driver.o
+$CXX -I$JAVA_HOME/include -I$JAVA_HOME/include/$BUILD_OS \
+    -c $DIR_SRC_DRIVER -o $DIR_LIBS/driver.o &> /dev/null
 
 
 OBJ_USR_TARGET=("Scrt1.o" "crti.o" "crtn.o" "libc_nonshared.a")

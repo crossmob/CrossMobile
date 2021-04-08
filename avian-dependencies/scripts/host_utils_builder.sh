@@ -81,6 +81,7 @@ _build() {
     else
         __msg_error "host system is not supported: $1"
     fi
+    __msg_info "Start building host utils for: ${GREEN}$HOST_TRIPLE -> $TARGET_TRIPLE${NC}"
 
     local LIB_ROOT="/lib"
     local LIB_ROOT_TARGET="/lib/$HOST_TRIPLE_LIB"
@@ -99,7 +100,7 @@ _build() {
     if [[ ! -f $INSTALL_LD_BIN ]]; then
         if [[ ! -f $TEMP_LD_BIN ]]; then
             if [ "$IS_GNU" = true ]; then
-                __msg_info "Building GNU Binutils ..."
+                __msg_ok "Building GNU 'Binutils' ..."
                 # _source_ld_check
                 [ -d $BUILD_DIR ] && \
                     rm -rf $BUILD_DIR
@@ -111,9 +112,9 @@ _build() {
                 --program-prefix= \
                 --prefix=$TEMP_INSTALL_PREFIX \
                 --enable-ld=yes \
-                --with-static-standard-libraries
+                --with-static-standard-libraries &> /dev/null
             else
-                __msg_info "building Windows Bintuils ..."
+                __msg_info "building Windows 'Bintuils' ..."
                 _source_cygwin_check
                 [ -d $BUILD_DIR ] && \
                     rm -rf $BUILD_DIR
@@ -146,12 +147,12 @@ _build() {
                 --prefix=$TEMP_INSTALL_PREFIX \
                 --enable-ld=yes
             fi
-            make -j $NUM_PROC
+            make -j $NUM_PROC &> /dev/null
             mkdir -p $TEMP_INSTALL_DIR
-            DESTDIR=$TEMP_INSTALL_DIR make install
+            DESTDIR=$TEMP_INSTALL_DIR make install &> /dev/null
         [ -f $TEMP_LD_BIN ] && \
-            __msg_ok    "Building Binutils\t\t[ OK ]" || \
-            __msg_error "Building Binutils\t\t[FAIL]"
+            __msg_ok    "Building 'Binutils'\t\t\t[ OK ]" || \
+            __msg_error "Building 'Binutils'\t\t\t[FAIL]"
 
         fi
         mkdir -p $INSTALL_UTIL_BIN_DIR
