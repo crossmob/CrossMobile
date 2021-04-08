@@ -44,7 +44,7 @@
             <id>arm</id>
         </profile>
         <profile>
-            <id>arm32</id>
+            <id>arm64</id>
         </profile>
         <profile>
             <id>swing</id>
