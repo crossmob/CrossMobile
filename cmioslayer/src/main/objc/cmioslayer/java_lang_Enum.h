@@ -19,6 +19,7 @@ __declspec(dllexport)
 	int ordinal;
 }
 
++ (java_lang_Enum*) valueOf___java_lang_Class_java_lang_String:(java_lang_Class*) clazz :(NSString*) value;
 - (instancetype) __init_java_lang_Enum___java_lang_String_int
                   :(java_lang_String*) name
                   :(int) ordinal;
