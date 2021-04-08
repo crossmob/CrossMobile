@@ -8,7 +8,8 @@ _init_variables () {
     NC='\033[0m'
 
     # Default parameters
-    TARGET_OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+    TARGET_OS=linux
+#    TARGET_OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     TARGET_ARCH=$(uname -m)
     TARGET_DIR=all
 
@@ -142,7 +143,7 @@ _clean_binutils () {
         find $SRC_ROOT/target -maxdepth 2 -name libgcc_s.so -delete
         find $SRC_ROOT/target -maxdepth 2 -name libstdc++.so -delete
         find $SRC_ROOT/target -maxdepth 2 -name libgcc.a -delete
-        find $SRC_ROOT/target -maxdepth 3 -name 'ld' -delete
+        find $SRC_ROOT/target -maxdepth 3 -name ld -delete
         find $SRC_ROOT/target -maxdepth 2 -name libld.so -delete
         find $SRC_ROOT/target -maxdepth 2 -name libdl.so -delete
         find $SRC_ROOT/target -maxdepth 2 -name libc.so -delete
