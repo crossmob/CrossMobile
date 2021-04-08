@@ -31,6 +31,12 @@ int isObjectInstanceOf(id obj, char* className)
 {
     if (obj==JAVA_NULL)
         return FALSE;
+    if (strncmp("crossmobile_ios_", className, 16)==0) {
+        className+=16;
+        char* underscore = strchr(className, '_');
+        if (underscore!=NULL)
+            className = underscore+1;
+    }
     if ([obj isKindOfClass:objc_getClass(className)] || [obj conformsToProtocol:objc_getProtocol(className)])
         return TRUE;
     return FALSE;
