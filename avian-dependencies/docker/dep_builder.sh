@@ -29,7 +29,11 @@ __msg_warn() {
 }
 
 __msg_info() {
-    echo -e "${GREEN}$1${NC}"
+    echo ${1}
+}
+
+__msg_ok() {
+    echo -e ${GREEN}${1}${NC}
 }
 
 case $BUILD_ARCH in
@@ -134,6 +138,7 @@ if [[ ! -f $AVIAN_INSTALL_ZIP || ! -f $AVIAN_INSTALL_JAR ]]; then
         arch=$BUILD_ARCH
 
         if [ -f $AVIAN_BUILD_ARC ]; then
+            __msg_ok "Building Avian\t\t[ OK ]"
             cd $DIR_AVIAN_BUILD
             rm -rf extracted_files
             mkdir extracted_files
@@ -145,7 +150,7 @@ if [[ ! -f $AVIAN_INSTALL_ZIP || ! -f $AVIAN_INSTALL_JAR ]]; then
             mkdir -p $DIR_COMMON/linux-x86_64
             cp $DIR_AVIAN_BUILD/binaryToObject/binaryToObject $DIR_COMMON/linux-x86_64/binaryToObject
         else
-            __msg_error "libavian.a is not available!"
+            __msg_error "Building Avian\t\t[FAIL]"
         fi
     fi
 fi
@@ -153,6 +158,7 @@ fi
 #------------------SDL2 build---------------------
 DIR_SDL_SRC="$DIR_3RD/SDL"
 DIR_SDL_BUILD="$DIR_SDL_SRC/build/$BUILD_EXP"
+SDL_INSTAL_LIB="$DIR_SDL_BUILD/install/usr/local/lib/libSDL2.a"
 SDL_ARC="$DIR_LIBS/libSDL2.a"
 
 if [ ! -f $SDL_ARC ] ; then
@@ -187,8 +193,12 @@ if [ ! -f $SDL_ARC ] ; then
         mkdir -p $DIR_SDL_BUILD/install
         DESTDIR=$DIR_SDL_BUILD/install make install
         cd $DIR_SRC_ROOT
+        
+        [ -f $SDL_INSTAL_LIB ] && \
+            __msg_ok    "Building SDL2\t\t[ OK ]" || \
+            __msg_error "Building SDL2\t\t[FAIL]"
     fi
-    cp $DIR_SDL_BUILD/install/usr/local/lib/libSDL2.a $DIR_LIBS
+    cp $SDL_INSTAL_LIB $DIR_LIBS
 fi
 
 #------------------Skia build---------------------
@@ -201,7 +211,7 @@ SKIA_VER="chrome/m87"
 
 if [ ! -f $SKIA_ARC ] ; then
     if [ ! -f "$DIR_SKIA_BUILD/libskia.a" ]; then
-        __msg_info "Building SKIA ..."
+        __msg_info "Building Skia ..."
         cd $DIR_SKIA_SRC
         python tools/git-sync-deps
         rm -rf $DIR_SKIA_BUILD
@@ -277,7 +287,12 @@ if [ ! -f $SKIA_ARC ] ; then
             '
 
         ninja -C $DIR_SKIA_BUILD -j $NUM_PROC
-        bin/gn args $DIR_SKIA_OUT --list --short > $DIR_LIBS/"skia_${BUILD_EXP}_build_manifest.txt"
+        if [[ $? && -f $DIR_SKIA_BUILD/libskia.a ]]; then
+            __msg_ok    "Building Skia\t\t[ OK ]"
+            bin/gn args $DIR_SKIA_OUT --list --short > $DIR_LIBS/"skia_${BUILD_EXP}_build_manifest.txt"
+        else
+            __msg_error "Building Skia\t\t[FAIL]"
+        fi
     fi
     cp $DIR_SKIA_BUILD/libskia.a $DIR_LIBS
 fi

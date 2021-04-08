@@ -17,6 +17,10 @@ __msg_warn() {
 }
 
 __msg_info() {
+    echo ${1}
+}
+
+__msg_ok() {
     echo -e ${GREEN}${1}${NC}
 }
 
@@ -145,7 +149,9 @@ _build() {
             make -j $NUM_PROC
             mkdir -p $TEMP_INSTALL_DIR
             DESTDIR=$TEMP_INSTALL_DIR make install
-
+        [ -f $TEMP_LD_BIN ] && \
+            __msg_ok    "Building Binutils\t\t[ OK ]" || \
+            __msg_error "Building Binutils\t\t[FAIL]"
 
         fi
         mkdir -p $INSTALL_UTIL_BIN_DIR

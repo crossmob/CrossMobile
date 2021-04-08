@@ -26,6 +26,10 @@ __msg_warn() {
 }
 
 __msg_info() {
+    echo ${1}
+}
+
+__msg_ok() {
     echo -e ${GREEN}${1}${NC}
 }
 
@@ -56,7 +60,7 @@ _check_docker_image() {
         __msg_warn "The dcoker image doesn't exits."
         return 1
     else
-        __msg_info "The docker image exist."
+        __msg_ok "The docker image exist."
         return 0
     fi
 }
@@ -113,7 +117,7 @@ _build () {
 
 _clean_avian () {
     __msg_warn "Cleaning avian"
-    (cd $SRC_ROOT/avian ; make clean)
+    rm -rf $SRC_ROOT/avian/build
     [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name libavian.zip -delete
     [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name driver.o -delete
     [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 3 -name binaryToObject -delete
