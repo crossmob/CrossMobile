@@ -32,11 +32,11 @@ public class SkCanvas extends NativeElement implements GraphicsContext<SkMatrix>
     }
 
     SkCanvas(SDLWindow surface) {
-        this(initCanvas(surface.getWidth(), surface.getHeight(), surface.getPixels(), surface.getPitch()));
+        this(initSDLWindowCanvas(surface.peer));
     }
 
     SkCanvas(SkBitmap bitmap) {
-        this(initCanvas(bitmap.peer));
+        this(initBitmapCanvas(bitmap.peer));
     }
 
     public void setAlpha(double alpha) {
@@ -228,9 +228,9 @@ public class SkCanvas extends NativeElement implements GraphicsContext<SkMatrix>
         destroyCanvas(peer);
     }
 
-    private static native long initCanvas(int width, int height, long pixels, int pitch);
+    private static native long initSDLWindowCanvas(long windowPeer);
 
-    private static native long initCanvas(long bitmapPeer);
+    private static native long initBitmapCanvas(long bitmapPeer);
 
     private static native void destroyCanvas(long canvasPeer);
 

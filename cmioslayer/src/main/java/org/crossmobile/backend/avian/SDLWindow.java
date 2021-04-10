@@ -18,14 +18,6 @@ public class SDLWindow extends NativeElement {
         return getHeight(peer);
     }
 
-    public long getPixels() {
-        return getPixels(peer);
-    }
-
-    public int getPitch() {
-        return getPitch(peer);
-    }
-
     public void update() {
         update(peer);
     }
@@ -39,10 +31,6 @@ public class SDLWindow extends NativeElement {
     private static native int getWidth(long peer);
 
     private static native int getHeight(long peer);
-
-    private static native long getPixels(long peer);
-
-    private static native int getPitch(long peer);
 
     private static native void update(long peer);
 }

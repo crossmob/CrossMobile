@@ -17,10 +17,6 @@ JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SDLWindow_init
       SDL_WINDOW_RESIZABLE
     );
     env->ReleaseStringUTFChars(title, ctitle);
-
-    if (window != NULL) {
-      SDL_AllocFormat(SDL_GetWindowPixelFormat(window));
-    }
   RETURN_V(window, jlong);
 }
 
@@ -54,22 +50,6 @@ JNIEXPORT jint JNICALL Java_org_crossmobile_backend_avian_SDLWindow_getHeight
   INIT();
     SDL_Surface* surface = SDL_GetWindowSurface((SDL_Window*)window);
   RETURN_V(surface->h, jint);
-}
-
-
-JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SDLWindow_getPixels
-  (JNIEnv *env, jclass clazz, jlong window) {
-  INIT();
-    SDL_Surface* surface = SDL_GetWindowSurface((SDL_Window*)window);
-  RETURN_V(surface->pixels, jlong);
-}
-
-
-JNIEXPORT jint JNICALL Java_org_crossmobile_backend_avian_SDLWindow_getPitch
-  (JNIEnv *env, jclass clazz, jlong window) {
-  INIT();
-    SDL_Surface* surface = SDL_GetWindowSurface((SDL_Window*)window);
-  RETURN_V(surface->pitch, jint);
 }
 
 

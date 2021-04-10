@@ -29,18 +29,18 @@ extern "C" {
 #define org_crossmobile_backend_avian_SkCanvas_DEFAULT_CAP 1L
 /*
  * Class:     org_crossmobile_backend_avian_SkCanvas
- * Method:    initCanvas
- * Signature: (IIJI)J
+ * Method:    initSDLWindowCanvas
+ * Signature: (J)J
  */
-JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkCanvas_initCanvas__IIJI
-  (JNIEnv *, jclass, jint, jint, jlong, jint);
+JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkCanvas_initSDLWindowCanvas
+  (JNIEnv *, jclass, jlong);
 
 /*
  * Class:     org_crossmobile_backend_avian_SkCanvas
- * Method:    initCanvas
+ * Method:    initBitmapCanvas
  * Signature: (J)J
  */
-JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkCanvas_initCanvas__J
+JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkCanvas_initBitmapCanvas
   (JNIEnv *, jclass, jlong);
 
 /*

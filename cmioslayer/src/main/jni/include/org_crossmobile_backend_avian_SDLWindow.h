@@ -49,22 +49,6 @@ JNIEXPORT jint JNICALL Java_org_crossmobile_backend_avian_SDLWindow_getHeight
 
 /*
  * Class:     org_crossmobile_backend_avian_SDLWindow
- * Method:    getPixels
- * Signature: (J)J
- */
-JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SDLWindow_getPixels
-  (JNIEnv *, jclass, jlong);
-
-/*
- * Class:     org_crossmobile_backend_avian_SDLWindow
- * Method:    getPitch
- * Signature: (J)I
- */
-JNIEXPORT jint JNICALL Java_org_crossmobile_backend_avian_SDLWindow_getPitch
-  (JNIEnv *, jclass, jlong);
-
-/*
- * Class:     org_crossmobile_backend_avian_SDLWindow
  * Method:    update
  * Signature: (J)V
  */

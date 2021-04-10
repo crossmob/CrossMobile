@@ -3,30 +3,47 @@
 #include"org_crossmobile_backend_avian_SkCanvas.h"
 #include "aroma.h"
 
+#include "SDL.h"
 #include "include/core/SkCanvas.h"
 #include "include/core/SkBitmap.h"
 #include "include/core/SkTextBlob.h"
 #include "include/core/SkImageGenerator.h"
 #include "include/core/SkRRect.h"
 #include "include/core/SkClipOp.h"
+#include "include/core/SkImageInfo.h"
 
 
-JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkCanvas_initCanvas__IIJI
-  (JNIEnv *env, jclass clazz, jint width, jint height, jlong pixels, jint pitch) {
+SkColorType getColorType(Uint32 sdlPixelFormat) {
+  switch(sdlPixelFormat) {
+    case SDL_PIXELFORMAT_RGB565:
+      return kRGB_565_SkColorType;
+    case SDL_PIXELFORMAT_RGB888:
+      return kBGRA_8888_SkColorType;
+    default:
+      FATAL_ERROR("Unsupported SDL pixel format, please report back to the Aroma Team: %s", SDL_GetPixelFormatName(sdlPixelFormat));
+  }
+}
+
+JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkCanvas_initSDLWindowCanvas
+  (JNIEnv *env, jclass clazz, jlong window) {
   INIT();
     SkBitmap bitmap;
+    SDL_Surface* surface = SDL_GetWindowSurface((SDL_Window*)window);
+    Uint32 sdlPixelFormat = SDL_GetWindowPixelFormat((SDL_Window*)window);
+    DEBUG("  Using window pixel format %s", SDL_GetPixelFormatName(sdlPixelFormat));
     bitmap.installPixels(SkImageInfo::Make(
-          width,
-          height,
-          kBGRA_8888_SkColorType, kPremul_SkAlphaType),
-          (void*)pixels,
-          pitch
+          surface->w,
+          surface->h,
+          getColorType(sdlPixelFormat),
+          kPremul_SkAlphaType),
+          (void*)surface->pixels,
+          surface->pitch
         );
   RETURN_V(new SkCanvas(bitmap), jlong);
 }
 
 
-JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkCanvas_initCanvas__J
+JNIEXPORT jlong JNICALL Java_org_crossmobile_backend_avian_SkCanvas_initBitmapCanvas
   (JNIEnv *env, jclass clazz, jlong bitmap) {
   INIT();
   RETURN_V(new SkCanvas(*((SkBitmap*) bitmap)), jlong);

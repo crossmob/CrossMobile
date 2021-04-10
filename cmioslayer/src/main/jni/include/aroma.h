@@ -18,6 +18,7 @@ extern int DEBUG_LEVEL;
 # define RETURN_V(VAL,TYPE) return (TYPE)(VAL)
 #endif
 
+#define FATAL_ERROR(fmt, args...) {fprintf(stderr, "ERROR: " fmt " [%s]\n", ## args, __func__) ; exit(-1) ;}
 #define RETURN_ERROR(fmt, args...) {fprintf(stderr, "ERROR: " fmt " [%s]\n", ## args, __func__) ; return ;}
 #define RETURN_ERROR_V(fmt, args...) {fprintf(stderr, "ERROR: " fmt " [%s]\n", ## args, __func__) ; return NULL;}
 
