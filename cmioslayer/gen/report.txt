@@ -544,6 +544,7 @@ crossmobile/ios/coregraphics/CGTextEncoding.class v8
 crossmobile/ios/coregraphics/package-info.class v8
 crossmobile/ios/foundation/CFNumberFormatterStyle.class v8
 crossmobile/ios/foundation/CFType.class v8
+crossmobile/ios/foundation/Dispatch.class v8
 crossmobile/ios/foundation/Foundation.class v8
 crossmobile/ios/foundation/NSAttributedStringKey.class v8
 crossmobile/ios/foundation/NSBundle.class v8
@@ -917,6 +918,7 @@ crossmobile/ios/coregraphics/GraphicsDrill.java
 crossmobile/ios/coregraphics/package-info.java
 crossmobile/ios/foundation/CFNumberFormatterStyle.java
 crossmobile/ios/foundation/CFType.java
+crossmobile/ios/foundation/Dispatch.java
 crossmobile/ios/foundation/Foundation.java
 crossmobile/ios/foundation/FoundationDrill.java
 crossmobile/ios/foundation/NSAttributedStringKey.java
@@ -1393,6 +1395,7 @@ org/crossmobile/bind/system/AbstractSystemBridge.java
 org/crossmobile/bind/system/AppConstants.java
 org/crossmobile/bind/system/BitField.java
 org/crossmobile/bind/system/Debug.java
+org/crossmobile/bind/system/DispatchQueue.java
 org/crossmobile/bind/system/GenericSystemTimerHandler.java
 org/crossmobile/bind/system/Predicate.java
 org/crossmobile/bind/system/Promise.java
@@ -1493,6 +1496,7 @@ native/crossmobile_ios_coregraphics_CGPoint.h
 native/crossmobile_ios_coregraphics_CGRect.h
 native/crossmobile_ios_coregraphics_CGSize.h
 native/crossmobile_ios_foundation_CFType.h
+native/crossmobile_ios_foundation_Dispatch.h
 native/crossmobile_ios_foundation_Foundation.h
 native/crossmobile_ios_foundation_NSBundle.h
 native/crossmobile_ios_foundation_NSCalendar.h
@@ -1925,6 +1929,7 @@ crossmobile/ios/coregraphics/GraphicsDrill.class v8
 crossmobile/ios/coregraphics/package-info.class v8
 crossmobile/ios/foundation/CFNumberFormatterStyle.class v8
 crossmobile/ios/foundation/CFType.class v8
+crossmobile/ios/foundation/Dispatch.class v8
 crossmobile/ios/foundation/Foundation.class v8
 crossmobile/ios/foundation/FoundationDrill.class v8
 crossmobile/ios/foundation/NSAttributedStringKey.class v8
@@ -2624,6 +2629,8 @@ org/crossmobile/bind/system/AbstractSystemBridge.class v8
 org/crossmobile/bind/system/AppConstants.class v8
 org/crossmobile/bind/system/BitField.class v8
 org/crossmobile/bind/system/Debug.class v8
+org/crossmobile/bind/system/DispatchQueue$1.class v8
+org/crossmobile/bind/system/DispatchQueue.class v8
 org/crossmobile/bind/system/GenericSystemTimerHandler.class v8
 org/crossmobile/bind/system/Predicate.class v8
 org/crossmobile/bind/system/Promise.class v8
@@ -2866,6 +2873,7 @@ crossmobile/ios/coregraphics/GraphicsDrill.class v8
 crossmobile/ios/coregraphics/package-info.class v8
 crossmobile/ios/foundation/CFNumberFormatterStyle.class v8
 crossmobile/ios/foundation/CFType.class v8
+crossmobile/ios/foundation/Dispatch.class v8
 crossmobile/ios/foundation/Foundation.class v8
 crossmobile/ios/foundation/FoundationDrill.class v8
 crossmobile/ios/foundation/NSAttributedStringKey.class v8
@@ -3485,6 +3493,8 @@ org/crossmobile/bind/system/AbstractSystemBridge.class v8
 org/crossmobile/bind/system/AppConstants.class v8
 org/crossmobile/bind/system/BitField.class v8
 org/crossmobile/bind/system/Debug.class v8
+org/crossmobile/bind/system/DispatchQueue$1.class v8
+org/crossmobile/bind/system/DispatchQueue.class v8
 org/crossmobile/bind/system/GenericSystemTimerHandler.class v8
 org/crossmobile/bind/system/Predicate.class v8
 org/crossmobile/bind/system/Promise.class v8
@@ -3698,6 +3708,7 @@ crossmobile/ios/coregraphics/GraphicsDrill.class v8
 crossmobile/ios/coregraphics/package-info.class v8
 crossmobile/ios/foundation/CFNumberFormatterStyle.class v8
 crossmobile/ios/foundation/CFType.class v8
+crossmobile/ios/foundation/Dispatch.class v8
 crossmobile/ios/foundation/Foundation.class v8
 crossmobile/ios/foundation/FoundationDrill.class v8
 crossmobile/ios/foundation/NSAttributedStringKey.class v8
@@ -4254,6 +4265,8 @@ org/crossmobile/bind/system/AbstractSystemBridge.class v8
 org/crossmobile/bind/system/AppConstants.class v8
 org/crossmobile/bind/system/BitField.class v8
 org/crossmobile/bind/system/Debug.class v8
+org/crossmobile/bind/system/DispatchQueue$1.class v8
+org/crossmobile/bind/system/DispatchQueue.class v8
 org/crossmobile/bind/system/GenericSystemTimerHandler.class v8
 org/crossmobile/bind/system/Predicate.class v8
 org/crossmobile/bind/system/Promise.class v8

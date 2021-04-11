@@ -1,0 +1,16 @@
+// (c) 2021 by CrossMobile plugin tools
+// SPDX-License-Identifier: LGPL-3.0-only
+
+// crossmobile_ios_foundation_Dispatch definition
+
+#import "xmlvm.h"
+#import <CoreGraphics/CoreGraphics.h>
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+@protocol java_lang_Runnable;
+
+#define crossmobile_ios_foundation_Dispatch Dispatch
+@interface Dispatch (cm_crossmobile_ios_foundation_Dispatch)
++ (id) dispatch_get_main_queue__;
+- (void) dispatch_async___java_lang_Runnable:(id<java_lang_Runnable>) block ;
+@end
