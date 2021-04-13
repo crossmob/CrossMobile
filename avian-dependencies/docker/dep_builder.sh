@@ -108,7 +108,7 @@ DIR_3RD="$DIR_SRC_ROOT"
 DIR_COMMON="$DIR_SRC_ROOT/target/all"
 
 
-echo -e "Start building dependencies for: $GREEN$BUILD_EXP$NC"
+echo -e 'Start building dependencies for: '$GREEN$BUILD_EXP$NC
 mkdir -p $DIR_LIBS
 mkdir -p $DIR_COMMON
 

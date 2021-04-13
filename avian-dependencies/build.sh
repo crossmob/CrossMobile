@@ -27,7 +27,7 @@ __msg_warn() {
 }
 
 __msg_info() {
-    echo ${1}
+    echo -e ${1}
 }
 
 __msg_ok() {
@@ -47,11 +47,12 @@ _usage () {
 # OS=linux\n\r
 \n\r
 Parameters:\n\r
-    \t-h|--help\n\r
-    \t-c|--clean [MODULE]\n\r
-    \t-b|--build [-a ..] [-o ..]\n\r
-    \t-a|--arch\n\r
-    \t-o|--os OS\n\r
+\t-h|--help\n\r
+\t-c|--clean [MODULE]\n\r
+\t-b|--build [-a ..] [-o ..]\n\r
+\t-a|--arch\n\r
+\t-o|--os OS\n\r
+\t-t|--clean-target \t# Clean also target files
 '
 }
 
@@ -119,22 +120,26 @@ _build () {
 _clean_avian () {
     __msg_warn "Cleaning avian"
     rm -rf $SRC_ROOT/avian/build
-    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name libavian.zip -delete
-    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name driver.o -delete
-    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 3 -name binaryToObject -delete
-    rm -f $SRC_ROOT/target/all/classpath.jar
+    if [ -n "$CLEAN_ALSO_TARGET" -a -d $SRC_ROOT/target ]; then
+        find $SRC_ROOT/target -maxdepth 2 -name libavian.zip -delete
+        find $SRC_ROOT/target -maxdepth 2 -name driver.o -delete
+        find $SRC_ROOT/target -maxdepth 3 -name binaryToObject -delete
+        rm -f $SRC_ROOT/target/all/classpath.jar
+    fi
 }
 
 _clean_sdl () {
     __msg_warn "Cleaning SDL"
     rm -rf $SRC_ROOT/SDL/build
-    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name 'libSDL2.a' -delete
+    if [ -n "$CLEAN_ALSO_TARGET" -a -d $SRC_ROOT/target ]; then
+        find $SRC_ROOT/target -maxdepth 2 -name 'libSDL2.a' -delete
+    fi
 }
 
 _clean_binutils () {
     __msg_warn "Cleaning binutils"
     rm -rf $SRC_ROOT/binutils/build
-    if [ -d $SRC_ROOT/target ]; then
+    if [ -n "$CLEAN_ALSO_TARGET" -a -d $SRC_ROOT/target ]; then
         find $SRC_ROOT/target -maxdepth 2 -name crtbeginS.o -delete
         find $SRC_ROOT/target -maxdepth 2 -name crtendS.o -delete
         find $SRC_ROOT/target -maxdepth 2 -name crti.o -delete
@@ -151,14 +156,24 @@ _clean_binutils () {
         find $SRC_ROOT/target -maxdepth 2 -name libm.so  -delete
         find $SRC_ROOT/target -maxdepth 2 -name libpthread.so -delete
         find $SRC_ROOT/target -maxdepth 2 -name libc_nonshared.a -delete
+        find $SRC_ROOT/target -maxdepth 2 -name libfontconfig.so -delete
     fi 
 }
 
 _clean_skia () {
     __msg_warn "Cleaning Skia"
     rm -rf $SRC_ROOT/skia/out
-    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name 'libskia.a' -delete
-    [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name skia_*_build_manifest.txt -delete
+    if [ -n "$CLEAN_ALSO_TARGET" -a -d $SRC_ROOT/target ]; then
+        [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name 'libskia.a' -delete
+        [ -d $SRC_ROOT/target ] && find $SRC_ROOT/target -maxdepth 2 -name skia_*_build_manifest.txt -delete
+    fi
+}
+
+_clean_all () {
+    _clean_avian
+    _clean_sdl
+    _clean_skia
+    _clean_binutils
 }
 
 _clean () {
@@ -180,11 +195,7 @@ _clean () {
     ;;
 
     all)
-        _clean_avian
-        _clean_sdl
-        _clean_skia
-        _clean_binutils
-        rm -rf "$SRC_ROOT/target"
+        _clean_all
     ;;
 
     *) 
@@ -235,6 +246,10 @@ while [[ $# -gt 0 ]] ; do
         else
             __msg_error "Please provide parameter for '-a|--arch"
         fi
+        ;;
+    -t|--clean-target)
+        CLEAN_ALSO_TARGET=1
+        shift
         ;;
     *)
         __msg_error "Unknown parameter: $1"
