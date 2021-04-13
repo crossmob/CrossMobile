@@ -7,11 +7,11 @@
 package org.crossmobile.utils;
 
 import org.crossmobile.bridge.system.Pair;
-import org.crossmobile.utils.func.ScopeUtils;
 
 import java.util.*;
 import java.util.function.Function;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import static org.crossmobile.utils.func.ScopeUtils.with;
 
@@ -418,4 +418,12 @@ public class TextUtils {
             throw new NullPointerException(reason == null ? "Item should not be null or empty" : reason);
     }
 
+    public static String snakeToCamel(String snakeCase) {
+        if (snakeCase.indexOf('_') < 0)
+            return snakeCase;
+        return decapitalize(Arrays.stream(snakeCase.split("_"))
+                .filter(t -> !t.isEmpty())
+                .map(TextUtils::capitalize)
+                .collect(Collectors.joining()));
+    }
 }

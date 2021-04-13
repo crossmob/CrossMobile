@@ -15,12 +15,12 @@ public final class Dispatch extends NSObject {
     }
 
     @CMFunction("id dispatch_get_main_queue(void);")
-    public static Dispatch dispatch_get_main_queue() {
+    public static Dispatch getMainQueue() {
         return mainQueue;
     }
 
     @CMFunction("void dispatch_async(id queue, void (^)(void) block);")
-    public void dispatch_async(Runnable block) {
+    public void async(Runnable block) {
         dispatchQueue.async(block);
     }
 }
