@@ -152,7 +152,7 @@
                     <skipIos>${skip.ios}</skipIos>
                     <skipUwp>${skip.uwp}</skipUwp>
                     <skipSwing>${skip.swing}</skipSwing>
-                    <skipAvian>${skip.avian}</skipAvian>
+                    <skipAroma>${skip.aroma}</skipAroma>
                     <skipAndroid>${skip.android}</skipAndroid>
                     <skipCore>${skip.core}</skipCore>
                     <skipRvm>${skip.robovm}</skipRvm>
@@ -161,10 +161,10 @@
                             <os>linux</os>
                             <arch>x86_64</arch>
                             <includes>
-                                <include>../avian-dependencies/SDL/include</include>
-                                <include>../avian-dependencies/skia</include>
-                                <include>../avian-dependencies/avian/include</include>
-                                <include>../avian-dependencies/avian/src</include>
+                                <include>../aroma-dependencies/SDL/include</include>
+                                <include>../aroma-dependencies/skia</include>
+                                <include>../aroma-dependencies/avian/include</include>
+                                <include>../aroma-dependencies/avian/src</include>
                             </includes>
                             <ccflags>
                                 <ccflag>-DDEBUG_AROMA</ccflag>
@@ -177,10 +177,10 @@
                             <os>linux</os>
                             <arch>arm</arch>
                             <includes>
-                                <include>../avian-dependencies/SDL/include</include>
-                                <include>../avian-dependencies/skia</include>
-                                <include>../avian-dependencies/avian/include</include>
-                                <include>../avian-dependencies/avian/src</include>
+                                <include>../aroma-dependencies/SDL/include</include>
+                                <include>../aroma-dependencies/skia</include>
+                                <include>../aroma-dependencies/avian/include</include>
+                                <include>../aroma-dependencies/avian/src</include>
                             </includes>
                             <ccflags>
                                 <ccflag>-DDEBUG_AROMA</ccflag>
@@ -193,10 +193,10 @@
                             <os>linux</os>
                             <arch>arm64</arch>
                             <includes>
-                                <include>../avian-dependencies/SDL/include</include>
-                                <include>../avian-dependencies/skia</include>
-                                <include>../avian-dependencies/avian/include</include>
-                                <include>../avian-dependencies/avian/src</include>
+                                <include>../aroma-dependencies/SDL/include</include>
+                                <include>../aroma-dependencies/skia</include>
+                                <include>../aroma-dependencies/avian/include</include>
+                                <include>../aroma-dependencies/avian/src</include>
                             </includes>
                             <ccflags>
                                 <ccflag>-DDEBUG_AROMA</ccflag>
@@ -287,7 +287,7 @@
                 <skip.ios>true</skip.ios>
                 <skip.robovm>true</skip.robovm>
                 <skip.swing>true</skip.swing>
-                <skip.avian>true</skip.avian>
+                <skip.aroma>true</skip.aroma>
                 <skip.android>true</skip.android>
                 <skip.core>true</skip.core>
                 <skip.uwp>false</skip.uwp>
@@ -303,13 +303,13 @@
             <id>fast-swing-build</id>
             <properties>
                 <skip.ios>true</skip.ios>
-                <skip.avian>true</skip.avian>
+                <skip.aroma>true</skip.aroma>
                 <skip.android>true</skip.android>
                 <skip.robovm>true</skip.robovm>
             </properties>
         </profile>
         <profile>
-            <id>fast-avian-build</id>
+            <id>fast-aroma-build</id>
             <properties>
                 <skip.ios>true</skip.ios>
                 <skip.swing>true</skip.swing>
@@ -322,7 +322,7 @@
             <properties>
                 <skip.ios>true</skip.ios>
                 <skip.swing>true</skip.swing>
-                <skip.avian>true</skip.avian>
+                <skip.aroma>true</skip.aroma>
                 <skip.robovm>true</skip.robovm>
             </properties>
         </profile>
@@ -334,7 +334,7 @@
         <skip.ios>false</skip.ios>
         <skip.robovm>true</skip.robovm>
         <skip.swing>false</skip.swing>
-        <skip.avian>false</skip.avian>
+        <skip.aroma>false</skip.aroma>
         <skip.android>false</skip.android>
         <skip.core>false</skip.core>
         <skip.uwp>true</skip.uwp>

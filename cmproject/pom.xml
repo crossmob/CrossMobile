@@ -12,7 +12,7 @@
 
     <properties>
         <cm.launch.swing>${project.build.directory}/${project.artifactId}-${project.version}-swing.jar</cm.launch.swing>
-        <cm.launch.avian>${project.build.directory}/${project.artifactId}-${project.version}-avian.jar</cm.launch.avian>
+        <cm.launch.aroma>${project.build.directory}/${project.artifactId}-${project.version}-aroma.jar</cm.launch.aroma>
         <cm.proguard.android>-Pdontuseproguard</cm.proguard.android>
     </properties>
     <profiles>
@@ -101,11 +101,11 @@
             </build>
         </profile>
         <profile>
-            <id>avian</id>
+            <id>aroma</id>
             <dependencies>
                 <dependency>
                     <groupId>org.crossmobile</groupId>
-                    <artifactId>cmplugin-avian-cmioslayer</artifactId>
+                    <artifactId>cmplugin-aroma-cmioslayer</artifactId>
                     <version>${crossmobile.version}</version>
                     <scope>runtime</scope>
                 </dependency>
@@ -118,14 +118,14 @@
                         <version>3.2.0</version>
                         <executions>
                             <execution>
-                                <id>avian-assembly</id>
+                                <id>aroma-assembly</id>
                                 <phase>package</phase>
                                 <goals>
                                     <goal>shade</goal>
                                 </goals>
                                 <configuration>
                                     <shadedArtifactAttached>true</shadedArtifactAttached>
-                                    <shadedClassifierName>avian</shadedClassifierName>
+                                    <shadedClassifierName>aroma</shadedClassifierName>
                                     <transformers>
                                         <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                             <mainClass>${main.class}</mainClass>
@@ -143,8 +143,8 @@
                             <execution>
                                 <goals>
                                     <goal>obfuscate</goal>
-                                    <goal>linkavian</goal>
-                                    <goal>execavian</goal>
+                                    <goal>linkaroma</goal>
+                                    <goal>execaroma</goal>
                                 </goals>
                                 <configuration>
                                     <obfuscate>${cm.obfuscate}</obfuscate>

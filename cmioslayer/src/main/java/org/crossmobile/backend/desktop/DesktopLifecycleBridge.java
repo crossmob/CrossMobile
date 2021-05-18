@@ -127,7 +127,7 @@ public abstract class DesktopLifecycleBridge extends AbstractLifecycleBridge {
     /**
      * Mark if extended visuals through Enhancer are supported, i.e. application icon and theming.
      *
-     * @return false if run under Avian, false otherwise
+     * @return true if run under Swing, false otherwise
      */
     abstract protected boolean supportsExtendedVisuals();
 

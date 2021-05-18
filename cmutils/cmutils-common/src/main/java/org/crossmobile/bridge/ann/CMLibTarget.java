@@ -18,7 +18,7 @@ public enum CMLibTarget {
      */
     BUILDONLY(true, false, false, false, false, false, false, false),
     /**
-     * Runtime elements used only under Desktop targets, like Swing and Avian
+     * Runtime elements used only under Desktop targets, like Swing and Aroma
      */
     DESKTOP(false, true, true, false, false, false, false, false),
     /**
@@ -26,9 +26,9 @@ public enum CMLibTarget {
      */
     SWING(false, true, false, false, false, false, false, false),
     /**
-     * Runtime elements specific for Avian
+     * Runtime elements specific for Aroma
      */
-    AVIAN(false, false, true, false, false, false, false, false),
+    AROMA(false, false, true, false, false, false, false, false),
     /**
      * Runtime elements specific for Android
      */
@@ -69,12 +69,12 @@ public enum CMLibTarget {
      */
     UNKNOWN(false, false, false, false, false, false, false, false);
 
-    public final boolean compile, swing, android, iosjava, iosnative, uwpjava, uwpnative, avian;
+    public final boolean compile, swing, android, iosjava, iosnative, uwpjava, uwpnative, aroma;
 
-    CMLibTarget(boolean compile, boolean swing, boolean avian, boolean android, boolean iosjava, boolean iosnative, boolean uwpjava, boolean uwpnative) {
+    CMLibTarget(boolean compile, boolean swing, boolean aroma, boolean android, boolean iosjava, boolean iosnative, boolean uwpjava, boolean uwpnative) {
         this.compile = compile;
         this.swing = swing;
-        this.avian = avian;
+        this.aroma = aroma;
         this.android = android;
         this.iosjava = iosjava;
         this.iosnative = iosnative;
@@ -88,8 +88,8 @@ public enum CMLibTarget {
                 return true;
             case SWING:
                 return swing;
-            case AVIAN:
-                return avian;
+            case AROMA:
+                return aroma;
             case ANDROID:
                 return android;
             case IOS:
@@ -103,7 +103,7 @@ public enum CMLibTarget {
     }
 
     public enum BaseTarget {
-        SWING, AVIAN, ANDROID, IOS, UWP, COMPILE, ALL
+        SWING, AROMA, ANDROID, IOS, UWP, COMPILE, ALL
     }
 
     public String listTargets() {
@@ -112,8 +112,8 @@ public enum CMLibTarget {
             targets.append(",compile");
         if (swing)
             targets.append(",swing");
-        if (avian)
-            targets.append(",avian");
+        if (aroma)
+            targets.append(",aroma");
         if (android)
             targets.append(",android");
         if (iosjava)

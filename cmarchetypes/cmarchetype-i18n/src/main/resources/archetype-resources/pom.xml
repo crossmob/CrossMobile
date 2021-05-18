@@ -42,11 +42,11 @@
             </dependencies>
         </profile>
         <profile>
-            <id>avian</id>
+            <id>aroma</id>
             <dependencies>
                 <dependency>
                     <groupId>org.crossmobile</groupId>
-                    <artifactId>cmplugin-avian-cmi18n</artifactId>
+                    <artifactId>cmplugin-aroma-cmi18n</artifactId>
                     <version>${crossmobile.version}</version>
                     <scope>runtime</scope>
                 </dependency>

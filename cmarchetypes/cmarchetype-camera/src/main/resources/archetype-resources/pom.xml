@@ -44,11 +44,11 @@
             </dependencies>
         </profile>
         <profile>
-            <id>avian</id>
+            <id>aroma</id>
             <dependencies>
                 <dependency>
                     <groupId>org.crossmobile</groupId>
-                    <artifactId>cmplugin-avian-cmimage</artifactId>
+                    <artifactId>cmplugin-aroma-cmimage</artifactId>
                     <version>${crossmobile.version}</version>
                     <scope>runtime</scope>
                 </dependency>

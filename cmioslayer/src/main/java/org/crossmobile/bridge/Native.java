@@ -7,7 +7,7 @@
 package org.crossmobile.bridge;
 
 import org.crossmobile.bridge.resolver.AndroidBridgeResolver;
-import org.crossmobile.bridge.resolver.AvianBridgeResolver;
+import org.crossmobile.bridge.resolver.AromaBridgeResolver;
 import org.crossmobile.bridge.resolver.SwingBridgeResolver;
 import org.crossmobile.bind.system.init.PluginsLauncherList;
 
@@ -18,7 +18,7 @@ import org.crossmobile.bind.system.init.PluginsLauncherList;
 public abstract class Native {
 
     private static boolean runsUnderAndroid = false;
-    private static boolean runsUnderAvian = false;
+    private static boolean runsUnderAroma = false;
     private static boolean alreadyEarlyInitialized = false;
     private static Native bridge;
 
@@ -48,7 +48,7 @@ public abstract class Native {
         }
         if (!runsUnderAndroid) {
             try {
-                runsUnderAvian = AvianBridgeResolver.isActive();
+                runsUnderAroma = AromaBridgeResolver.isActive();
             } catch (Throwable ignored) {
             }
         }
@@ -59,11 +59,11 @@ public abstract class Native {
     }
 
     public static boolean isSwing() {
-        return !runsUnderAndroid && !runsUnderAvian;
+        return !runsUnderAndroid && !runsUnderAroma;
     }
 
-    public static boolean isAvian() {
-        return runsUnderAvian;
+    public static boolean isAroma() {
+        return runsUnderAroma;
     }
 
     public static void prepare(Object context) {
@@ -84,7 +84,7 @@ public abstract class Native {
         if (bridge == null)
             bridge = runsUnderAndroid
                     ? AndroidBridgeResolver.resolve()
-                    : (runsUnderAvian ? AvianBridgeResolver.resolve() : SwingBridgeResolver.resolve());
+                    : (runsUnderAroma ? AromaBridgeResolver.resolve() : SwingBridgeResolver.resolve());
         return bridge;
     }
 
