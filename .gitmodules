@@ -4,7 +4,6 @@
 [submodule "cmbuild"]
 	path = cmbuild
 	url = https://github.com/Aroma-UI/cmbuild
-	branch = aroma
 [submodule "SDL"]
 	path = aroma-dependencies/SDL
 	url = https://github.com/Aroma-UI/SDL.git
