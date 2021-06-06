@@ -11,6 +11,7 @@ import crossmobile.ios.coregraphics.CGRect;
 import crossmobile.ios.coregraphics.CGSize;
 import crossmobile.ios.coregraphics.GraphicsDrill;
 import crossmobile.ios.foundation.NSLineBreakMode;
+import crossmobile.ios.foundation.NSString;
 import org.crossmobile.bind.graphics.Geometry;
 import org.crossmobile.bind.graphics.GraphicsContext;
 import org.crossmobile.bind.graphics.TextHelpers.TextBlock;
@@ -460,6 +461,12 @@ public class UILabel extends UIView {
 
             cY += tl.size.getHeight();
         }
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public CGSize sizeThatFits(CGSize size) {
+        return NSString.sizeWithFont(text, fontOrig, size, lineBreakMode);
     }
 
     /**

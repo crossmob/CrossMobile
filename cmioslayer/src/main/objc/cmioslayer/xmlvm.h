@@ -13,6 +13,7 @@
 @class java_util_List;
 
 #define CGBitmapContextRef CGContextRef
+#define Dispatch NSObject
 
 #if defined(_WIN32)
 typedef NSString *UIActivityType;

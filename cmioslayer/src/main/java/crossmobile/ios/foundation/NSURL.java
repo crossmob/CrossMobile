@@ -59,7 +59,7 @@ public class NSURL extends NSObject implements NSSecureCoding {
     public static NSURL fileURLWithPath(String path) {
         if (path == null)
             return null;
-        if (!(path.startsWith("jar:") || path.startsWith("file:")))
+        if (!(path.startsWith("jar:") || path.startsWith("file:") || path.startsWith("avianvmresource:")))
             path = "file://" + path;
         return Native.file().fileExists(path) ? new NSURL(path) : null;
     }

@@ -176,10 +176,19 @@ public interface LifecycleBridge extends Thread.UncaughtExceptionHandler {
             throw new RuntimeException("This method should be called on the event thread");
     }
 
+    /**
+     * Do whatever it takes to make current thread the main event loop thread.
+     * Usually this is done automatically by the system and this method should be empty.
+     * <p>
+     * In the rare case that current java implementation doesn't really have a main event loop,
+     * then this method should trigger the event loop mechanism (i.e. under Aroma).
+     */
+    void handleEventLoop();
+
     interface SystemTimerHandler {
 
         void addTimer(NSTimer timer);
 
-        void terminate();
+        void quitTimers();
     }
 }

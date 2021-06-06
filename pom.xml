@@ -48,7 +48,7 @@
     <repositories>
         <repository>
             <id>crossmobile</id>
-            <url>http://mvn.crossmobile.org/content/repositories/crossmobile/</url>
+            <url>https://mvn.crossmobile.org/content/repositories/crossmobile/</url>
         </repository>
     </repositories>
     <profiles>

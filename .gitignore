@@ -7,5 +7,6 @@
 cmdist/crossmobile-gradle-plugin/build
 cmioslayer/gen/lib
 .idea/
+.vscode/
 *.iml
 /.project

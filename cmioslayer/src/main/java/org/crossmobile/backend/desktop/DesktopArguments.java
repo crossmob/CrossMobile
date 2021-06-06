@@ -7,6 +7,7 @@
 package org.crossmobile.backend.desktop;
 
 import org.crossmobile.backend.desktop.cgeo.Chassis;
+import org.crossmobile.bind.system.Debug;
 
 import java.io.PrintStream;
 
@@ -69,6 +70,8 @@ public class DesktopArguments {
                     System.exit(0);
                 } else if (!skin.trim().isEmpty())
                     System.getProperties().put(USER_ARG_SKIN, skin);
+            } else if (s.equals("--debug")) {
+                Debug.Full_Debug = true;
             } else if (s.equals("--help")) {
                 System.out.println(""
                         + header
@@ -83,6 +86,7 @@ public class DesktopArguments {
                         + "              Values should be between 0.5 and 2 (Retina)\n"
                         + "\n"
                         + "  Other options:\n"
+                        + "  --debug : Full debug information\n"
                         + "  --help : This message\n");
                 System.exit(0);
             } else {

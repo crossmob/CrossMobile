@@ -217,7 +217,7 @@ crossmobile/ios/contacts/CNSocialProfile.class v8
 crossmobile/ios/contacts/CNValueType.class v8
 crossmobile/ios/contacts/package-info.class v8
 
-Creating file cmplugin-avian-cmaddressbook-<VERSION>.jar
+Creating file cmplugin-aroma-cmaddressbook-<VERSION>.jar
 crossmobile/ios/accounts/ACAccount.class v8
 crossmobile/ios/accounts/ACAccountCredential.class v8
 crossmobile/ios/accounts/ACAccountCredentialRenewResult.class v8
@@ -381,7 +381,7 @@ crossmobile/ios/gamekit/GKSessionDelegate.class v8
 crossmobile/ios/gamekit/GKSessionMode.class v8
 crossmobile/ios/gamekit/package-info.class v8
 
-Creating file cmplugin-avian-cmgamekit-<VERSION>.jar
+Creating file cmplugin-aroma-cmgamekit-<VERSION>.jar
 crossmobile/ios/gamekit/GKDataReceiveHandler.class v8
 crossmobile/ios/gamekit/GKPeerConnectionState.class v8
 crossmobile/ios/gamekit/GKPeerPickerConnectionType.class v8
@@ -423,7 +423,7 @@ org/crossmobile/bind/system/i18n/I18N$MatchGroup.class v8
 org/crossmobile/bind/system/i18n/I18N$StringsDict.class v8
 org/crossmobile/bind/system/i18n/I18N.class v8
 
-Creating file cmplugin-avian-cmi18n-<VERSION>.jar
+Creating file cmplugin-aroma-cmi18n-<VERSION>.jar
 org/crossmobile/bind/system/i18n/I18N$1.class v8
 org/crossmobile/bind/system/i18n/I18N$MatchFinder.class v8
 org/crossmobile/bind/system/i18n/I18N$MatchGroup$1.class v8
@@ -488,7 +488,7 @@ crossmobile/ios/uikit/UIImagePickerControllerDelegate.class v8
 crossmobile/ios/uikit/UIImagePickerControllerQualityType.class v8
 crossmobile/ios/uikit/UIImagePickerControllerSourceType.class v8
 
-Creating file cmplugin-avian-cmimage-<VERSION>.jar
+Creating file cmplugin-aroma-cmimage-<VERSION>.jar
 crossmobile/ios/coreimage/CIContext.class v8
 crossmobile/ios/coreimage/CIFilter.class v8
 crossmobile/ios/coreimage/CIImage.class v8
@@ -544,6 +544,7 @@ crossmobile/ios/coregraphics/CGTextEncoding.class v8
 crossmobile/ios/coregraphics/package-info.class v8
 crossmobile/ios/foundation/CFNumberFormatterStyle.class v8
 crossmobile/ios/foundation/CFType.class v8
+crossmobile/ios/foundation/Dispatch.class v8
 crossmobile/ios/foundation/Foundation.class v8
 crossmobile/ios/foundation/NSAttributedStringKey.class v8
 crossmobile/ios/foundation/NSBundle.class v8
@@ -917,6 +918,7 @@ crossmobile/ios/coregraphics/GraphicsDrill.java
 crossmobile/ios/coregraphics/package-info.java
 crossmobile/ios/foundation/CFNumberFormatterStyle.java
 crossmobile/ios/foundation/CFType.java
+crossmobile/ios/foundation/Dispatch.java
 crossmobile/ios/foundation/Foundation.java
 crossmobile/ios/foundation/FoundationDrill.java
 crossmobile/ios/foundation/NSAttributedStringKey.java
@@ -1248,24 +1250,30 @@ org/crossmobile/backend/android/StatusBarListener.java
 org/crossmobile/backend/android/package-info.java
 org/crossmobile/backend/android/web/VideoEnabledWebChromeClient.java
 org/crossmobile/backend/android/web/VideoEnabledWebView.java
-org/crossmobile/backend/avian/Aroma.java
-org/crossmobile/backend/avian/AvianGraphicsBridge.java
-org/crossmobile/backend/avian/AvianImageBridge.java
-org/crossmobile/backend/avian/AvianLifecycleBridge.java
-org/crossmobile/backend/avian/AvianNetworkBridge.java
-org/crossmobile/backend/avian/AvianSystemBridge.java
-org/crossmobile/backend/avian/AvianWrapperUIBridge.java
-org/crossmobile/backend/avian/MouseEvent.java
-org/crossmobile/backend/avian/NativeAvian.java
-org/crossmobile/backend/avian/NativeElement.java
-org/crossmobile/backend/avian/SDLEvent.java
-org/crossmobile/backend/avian/SDLWindow.java
-org/crossmobile/backend/avian/SkBitmap.java
-org/crossmobile/backend/avian/SkCanvas.java
-org/crossmobile/backend/avian/SkFont.java
-org/crossmobile/backend/avian/SkMatrix.java
-org/crossmobile/backend/avian/SkPath.java
-org/crossmobile/backend/avian/package-info.java
+org/crossmobile/backend/aroma/AromaGraphicsBridge.java
+org/crossmobile/backend/aroma/AromaImageBridge.java
+org/crossmobile/backend/aroma/AromaLifecycleBridge.java
+org/crossmobile/backend/aroma/AromaNetworkBridge.java
+org/crossmobile/backend/aroma/AromaSystemBridge.java
+org/crossmobile/backend/aroma/AromaWrapperUIBridge.java
+org/crossmobile/backend/aroma/NativeAroma.java
+org/crossmobile/backend/aroma/NativeElement.java
+org/crossmobile/backend/aroma/SDLWindow.java
+org/crossmobile/backend/aroma/SkBitmap.java
+org/crossmobile/backend/aroma/SkCanvas.java
+org/crossmobile/backend/aroma/SkFont.java
+org/crossmobile/backend/aroma/SkMatrix.java
+org/crossmobile/backend/aroma/SkPaint.java
+org/crossmobile/backend/aroma/SkPath.java
+org/crossmobile/backend/aroma/event/AromaEvent.java
+org/crossmobile/backend/aroma/event/KeyEvent.java
+org/crossmobile/backend/aroma/event/MouseButtonEvent.java
+org/crossmobile/backend/aroma/event/MouseEvent.java
+org/crossmobile/backend/aroma/event/MouseMotionEvent.java
+org/crossmobile/backend/aroma/event/QuitEvent.java
+org/crossmobile/backend/aroma/event/RunnableEvent.java
+org/crossmobile/backend/aroma/event/WindowEvent.java
+org/crossmobile/backend/aroma/package-info.java
 org/crossmobile/backend/cat/ApplicationCatalogue.java
 org/crossmobile/backend/cat/ApplicationPresentation.form
 org/crossmobile/backend/cat/ApplicationPresentation.java
@@ -1387,15 +1395,18 @@ org/crossmobile/bind/system/AbstractSystemBridge.java
 org/crossmobile/bind/system/AppConstants.java
 org/crossmobile/bind/system/BitField.java
 org/crossmobile/bind/system/Debug.java
+org/crossmobile/bind/system/DispatchQueue.java
 org/crossmobile/bind/system/GenericSystemTimerHandler.java
 org/crossmobile/bind/system/Predicate.java
 org/crossmobile/bind/system/Promise.java
 org/crossmobile/bind/system/Recycler.java
+org/crossmobile/bind/system/StreamConverter.java
 org/crossmobile/bind/system/SystemUtilities.java
 org/crossmobile/bind/system/VelocityFilter.java
 org/crossmobile/bind/system/i18n/I18NBridge.java
 org/crossmobile/bind/system/i18n/I18NSelf.java
 org/crossmobile/bind/system/i18n/I18NTest.java
+org/crossmobile/bind/system/init/PluginsLauncherList.java
 org/crossmobile/bind/wrapper/HistoryItem.java
 org/crossmobile/bind/wrapper/MapViewWrapper.java
 org/crossmobile/bind/wrapper/NativeDispatcher.java
@@ -1425,7 +1436,7 @@ org/crossmobile/bridge/WrapperMapBridge.java
 org/crossmobile/bridge/WrapperUIBridge.java
 org/crossmobile/bridge/package-info.java
 org/crossmobile/bridge/resolver/AndroidBridgeResolver.java
-org/crossmobile/bridge/resolver/AvianBridgeResolver.java
+org/crossmobile/bridge/resolver/AromaBridgeResolver.java
 org/crossmobile/bridge/resolver/SwingBridgeResolver.java
 org/crossmobile/bridge/resolver/package-info.java
 org/crossmobile/build/StoryBoardBinder.java
@@ -1485,6 +1496,7 @@ native/crossmobile_ios_coregraphics_CGPoint.h
 native/crossmobile_ios_coregraphics_CGRect.h
 native/crossmobile_ios_coregraphics_CGSize.h
 native/crossmobile_ios_foundation_CFType.h
+native/crossmobile_ios_foundation_Dispatch.h
 native/crossmobile_ios_foundation_Foundation.h
 native/crossmobile_ios_foundation_NSBundle.h
 native/crossmobile_ios_foundation_NSCalendar.h
@@ -1917,6 +1929,7 @@ crossmobile/ios/coregraphics/GraphicsDrill.class v8
 crossmobile/ios/coregraphics/package-info.class v8
 crossmobile/ios/foundation/CFNumberFormatterStyle.class v8
 crossmobile/ios/foundation/CFType.class v8
+crossmobile/ios/foundation/Dispatch.class v8
 crossmobile/ios/foundation/Foundation.class v8
 crossmobile/ios/foundation/FoundationDrill.class v8
 crossmobile/ios/foundation/NSAttributedStringKey.class v8
@@ -1925,8 +1938,6 @@ crossmobile/ios/foundation/NSCalendar.class v8
 crossmobile/ios/foundation/NSCalendarOptions.class v8
 crossmobile/ios/foundation/NSCalendarUnit.class v8
 crossmobile/ios/foundation/NSCoder.class v8
-crossmobile/ios/foundation/NSData$1.class v8
-crossmobile/ios/foundation/NSData$DataChunk.class v8
 crossmobile/ios/foundation/NSData.class v8
 crossmobile/ios/foundation/NSDataBase64DecodingOptions.class v8
 crossmobile/ios/foundation/NSDataBase64EncodingOptions.class v8
@@ -2007,7 +2018,6 @@ crossmobile/ios/foundation/NSURLSessionTaskState.class v8
 crossmobile/ios/foundation/NSURLSessionUploadTask.class v8
 crossmobile/ios/foundation/NSUUID.class v8
 crossmobile/ios/foundation/NSUserDefaults.class v8
-crossmobile/ios/foundation/NSXMLParser$1.class v8
 crossmobile/ios/foundation/NSXMLParser.class v8
 crossmobile/ios/foundation/NSXMLParserDelegate.class v8
 crossmobile/ios/foundation/package-info.class v8
@@ -2385,6 +2395,31 @@ javazoom/jl/player/advanced/jlap$1.class v1.6
 javazoom/jl/player/advanced/jlap$InfoListener.class v1.6
 javazoom/jl/player/advanced/jlap.class v1.6
 javazoom/jl/player/jlp.class v1.6
+net/n3/nanoxml/CDATAReader.class v1.0
+net/n3/nanoxml/ContentReader.class v1.0
+net/n3/nanoxml/IXMLBuilder.class v1.0
+net/n3/nanoxml/IXMLElement.class v1.0
+net/n3/nanoxml/IXMLEntityResolver.class v1.0
+net/n3/nanoxml/IXMLParser.class v1.0
+net/n3/nanoxml/IXMLReader.class v1.0
+net/n3/nanoxml/IXMLValidator.class v1.0
+net/n3/nanoxml/NonValidator.class v1.0
+net/n3/nanoxml/PIReader.class v1.0
+net/n3/nanoxml/StdXMLBuilder.class v1.0
+net/n3/nanoxml/StdXMLParser.class v1.0
+net/n3/nanoxml/StdXMLReader$1.class v1.0
+net/n3/nanoxml/StdXMLReader$StackedReader.class v1.0
+net/n3/nanoxml/StdXMLReader.class v1.0
+net/n3/nanoxml/ValidatorPlugin.class v1.0
+net/n3/nanoxml/XMLAttribute.class v1.0
+net/n3/nanoxml/XMLElement.class v1.0
+net/n3/nanoxml/XMLEntityResolver.class v1.0
+net/n3/nanoxml/XMLException.class v1.0
+net/n3/nanoxml/XMLParseException.class v1.0
+net/n3/nanoxml/XMLParserFactory.class v1.0
+net/n3/nanoxml/XMLUtil.class v1.0
+net/n3/nanoxml/XMLValidationException.class v1.0
+net/n3/nanoxml/XMLWriter.class v1.0
 org/crossmobile/backend/cat/ApplicationCatalogue.class v8
 org/crossmobile/backend/cat/ApplicationPresentation$1.class v8
 org/crossmobile/backend/cat/ApplicationPresentation$2.class v8
@@ -2404,7 +2439,6 @@ org/crossmobile/backend/desktop/DesktopFileBridge$1.class v8
 org/crossmobile/backend/desktop/DesktopFileBridge.class v8
 org/crossmobile/backend/desktop/DesktopGraphicsBridge.class v8
 org/crossmobile/backend/desktop/DesktopImageBridge.class v8
-org/crossmobile/backend/desktop/DesktopInAppBridge$1.class v8
 org/crossmobile/backend/desktop/DesktopInAppBridge.class v8
 org/crossmobile/backend/desktop/DesktopLifecycleBridge.class v8
 org/crossmobile/backend/desktop/DesktopLocation.class v8
@@ -2434,6 +2468,7 @@ org/crossmobile/backend/desktop/cgeo/CScalable.class v8
 org/crossmobile/backend/desktop/cgeo/CScreen.class v8
 org/crossmobile/backend/desktop/cgeo/CSizable.class v8
 org/crossmobile/backend/desktop/cgeo/Chassis.class v8
+org/crossmobile/backend/desktop/cgeo/ChassisLoader$1.class v8
 org/crossmobile/backend/desktop/cgeo/ChassisLoader.class v8
 org/crossmobile/backend/desktop/icons/delete.png
 org/crossmobile/backend/desktop/icons/double.png
@@ -2594,10 +2629,13 @@ org/crossmobile/bind/system/AbstractSystemBridge.class v8
 org/crossmobile/bind/system/AppConstants.class v8
 org/crossmobile/bind/system/BitField.class v8
 org/crossmobile/bind/system/Debug.class v8
+org/crossmobile/bind/system/DispatchQueue$1.class v8
+org/crossmobile/bind/system/DispatchQueue.class v8
 org/crossmobile/bind/system/GenericSystemTimerHandler.class v8
 org/crossmobile/bind/system/Predicate.class v8
 org/crossmobile/bind/system/Promise.class v8
 org/crossmobile/bind/system/Recycler.class v8
+org/crossmobile/bind/system/StreamConverter.class v8
 org/crossmobile/bind/system/SystemUtilities.class v8
 org/crossmobile/bind/system/VelocityFilter.class v8
 org/crossmobile/bind/system/i18n/I18NBridge.class v8
@@ -2670,7 +2708,7 @@ org/crossmobile/bridge/ann/SDKVersion.class v8
 org/crossmobile/bridge/ann/package-info.class v8
 org/crossmobile/bridge/package-info.class v8
 org/crossmobile/bridge/resolver/AndroidBridgeResolver.class v8
-org/crossmobile/bridge/resolver/AvianBridgeResolver.class v8
+org/crossmobile/bridge/resolver/AromaBridgeResolver.class v8
 org/crossmobile/bridge/resolver/SwingBridgeResolver.class v8
 org/crossmobile/bridge/resolver/package-info.class v8
 org/crossmobile/bridge/system/BaseUtils.class v8
@@ -2747,7 +2785,7 @@ org/robovm/objc/block/VoidBlock6.class v8
 org/robovm/objc/block/VoidBooleanBlock.class v8
 org/robovm/objc/block/package-info.class v8
 
-Creating file cmplugin-avian-cmioslayer-<VERSION>.jar
+Creating file cmplugin-aroma-cmioslayer-<VERSION>.jar
 com/eclipsesource/json/Json$DefaultHandler.class v1.5
 com/eclipsesource/json/Json.class v1.5
 com/eclipsesource/json/JsonArray$1.class v1.5
@@ -2835,6 +2873,7 @@ crossmobile/ios/coregraphics/GraphicsDrill.class v8
 crossmobile/ios/coregraphics/package-info.class v8
 crossmobile/ios/foundation/CFNumberFormatterStyle.class v8
 crossmobile/ios/foundation/CFType.class v8
+crossmobile/ios/foundation/Dispatch.class v8
 crossmobile/ios/foundation/Foundation.class v8
 crossmobile/ios/foundation/FoundationDrill.class v8
 crossmobile/ios/foundation/NSAttributedStringKey.class v8
@@ -2843,8 +2882,6 @@ crossmobile/ios/foundation/NSCalendar.class v8
 crossmobile/ios/foundation/NSCalendarOptions.class v8
 crossmobile/ios/foundation/NSCalendarUnit.class v8
 crossmobile/ios/foundation/NSCoder.class v8
-crossmobile/ios/foundation/NSData$1.class v8
-crossmobile/ios/foundation/NSData$DataChunk.class v8
 crossmobile/ios/foundation/NSData.class v8
 crossmobile/ios/foundation/NSDataBase64DecodingOptions.class v8
 crossmobile/ios/foundation/NSDataBase64EncodingOptions.class v8
@@ -2925,7 +2962,6 @@ crossmobile/ios/foundation/NSURLSessionTaskState.class v8
 crossmobile/ios/foundation/NSURLSessionUploadTask.class v8
 crossmobile/ios/foundation/NSUUID.class v8
 crossmobile/ios/foundation/NSUserDefaults.class v8
-crossmobile/ios/foundation/NSXMLParser$1.class v8
 crossmobile/ios/foundation/NSXMLParser.class v8
 crossmobile/ios/foundation/NSXMLParserDelegate.class v8
 crossmobile/ios/foundation/package-info.class v8
@@ -3228,37 +3264,82 @@ crossmobile/ios/uikit/package-info.class v8
 crossmobile/package-info.class v8
 crossmobile/rt/StrongReference.class v8
 crossmobile/rt/package-info.class v8
-native/linux-x86_64/org_crossmobile_backend_avian_AvianGraphicsBridge.o
-native/linux-x86_64/org_crossmobile_backend_avian_SDLWindow.o
-native/linux-x86_64/org_crossmobile_backend_avian_SkBitmap.o
-native/linux-x86_64/org_crossmobile_backend_avian_SkCanvas.o
-native/linux-x86_64/org_crossmobile_backend_avian_SkFont.o
-native/linux-x86_64/org_crossmobile_backend_avian_SkPath.o
-org/crossmobile/backend/avian/Aroma.class v8
-org/crossmobile/backend/avian/AvianGraphicsBridge.class v8
-org/crossmobile/backend/avian/AvianImageBridge.class v8
-org/crossmobile/backend/avian/AvianLifecycleBridge.class v8
-org/crossmobile/backend/avian/AvianNetworkBridge.class v8
-org/crossmobile/backend/avian/AvianSystemBridge.class v8
-org/crossmobile/backend/avian/AvianWrapperUIBridge.class v8
-org/crossmobile/backend/avian/MouseEvent.class v8
-org/crossmobile/backend/avian/NativeAvian.class v8
-org/crossmobile/backend/avian/NativeElement.class v8
-org/crossmobile/backend/avian/SDLEvent.class v8
-org/crossmobile/backend/avian/SDLWindow.class v8
-org/crossmobile/backend/avian/SkBitmap.class v8
-org/crossmobile/backend/avian/SkCanvas.class v8
-org/crossmobile/backend/avian/SkFont.class v8
-org/crossmobile/backend/avian/SkMatrix.class v8
-org/crossmobile/backend/avian/SkPath.class v8
-org/crossmobile/backend/avian/package-info.class v8
+native/linux-arm/org_crossmobile_backend_aroma_AromaGraphicsBridge.o
+native/linux-arm/org_crossmobile_backend_aroma_SDLWindow.o
+native/linux-arm/org_crossmobile_backend_aroma_SkBitmap.o
+native/linux-arm/org_crossmobile_backend_aroma_SkCanvas.o
+native/linux-arm/org_crossmobile_backend_aroma_SkFont.o
+native/linux-arm/org_crossmobile_backend_aroma_SkPaint.o
+native/linux-arm/org_crossmobile_backend_aroma_SkPath.o
+native/linux-arm64/org_crossmobile_backend_aroma_AromaGraphicsBridge.o
+native/linux-arm64/org_crossmobile_backend_aroma_SDLWindow.o
+native/linux-arm64/org_crossmobile_backend_aroma_SkBitmap.o
+native/linux-arm64/org_crossmobile_backend_aroma_SkCanvas.o
+native/linux-arm64/org_crossmobile_backend_aroma_SkFont.o
+native/linux-arm64/org_crossmobile_backend_aroma_SkPaint.o
+native/linux-arm64/org_crossmobile_backend_aroma_SkPath.o
+native/linux-x86_64/org_crossmobile_backend_aroma_AromaGraphicsBridge.o
+native/linux-x86_64/org_crossmobile_backend_aroma_SDLWindow.o
+native/linux-x86_64/org_crossmobile_backend_aroma_SkBitmap.o
+native/linux-x86_64/org_crossmobile_backend_aroma_SkCanvas.o
+native/linux-x86_64/org_crossmobile_backend_aroma_SkFont.o
+native/linux-x86_64/org_crossmobile_backend_aroma_SkPaint.o
+native/linux-x86_64/org_crossmobile_backend_aroma_SkPath.o
+net/n3/nanoxml/CDATAReader.class v1.0
+net/n3/nanoxml/ContentReader.class v1.0
+net/n3/nanoxml/IXMLBuilder.class v1.0
+net/n3/nanoxml/IXMLElement.class v1.0
+net/n3/nanoxml/IXMLEntityResolver.class v1.0
+net/n3/nanoxml/IXMLParser.class v1.0
+net/n3/nanoxml/IXMLReader.class v1.0
+net/n3/nanoxml/IXMLValidator.class v1.0
+net/n3/nanoxml/NonValidator.class v1.0
+net/n3/nanoxml/PIReader.class v1.0
+net/n3/nanoxml/StdXMLBuilder.class v1.0
+net/n3/nanoxml/StdXMLParser.class v1.0
+net/n3/nanoxml/StdXMLReader$1.class v1.0
+net/n3/nanoxml/StdXMLReader$StackedReader.class v1.0
+net/n3/nanoxml/StdXMLReader.class v1.0
+net/n3/nanoxml/ValidatorPlugin.class v1.0
+net/n3/nanoxml/XMLAttribute.class v1.0
+net/n3/nanoxml/XMLElement.class v1.0
+net/n3/nanoxml/XMLEntityResolver.class v1.0
+net/n3/nanoxml/XMLException.class v1.0
+net/n3/nanoxml/XMLParseException.class v1.0
+net/n3/nanoxml/XMLParserFactory.class v1.0
+net/n3/nanoxml/XMLUtil.class v1.0
+net/n3/nanoxml/XMLValidationException.class v1.0
+net/n3/nanoxml/XMLWriter.class v1.0
+org/crossmobile/backend/aroma/AromaGraphicsBridge.class v8
+org/crossmobile/backend/aroma/AromaImageBridge.class v8
+org/crossmobile/backend/aroma/AromaLifecycleBridge.class v8
+org/crossmobile/backend/aroma/AromaNetworkBridge.class v8
+org/crossmobile/backend/aroma/AromaSystemBridge.class v8
+org/crossmobile/backend/aroma/AromaWrapperUIBridge.class v8
+org/crossmobile/backend/aroma/NativeAroma.class v8
+org/crossmobile/backend/aroma/NativeElement.class v8
+org/crossmobile/backend/aroma/SDLWindow.class v8
+org/crossmobile/backend/aroma/SkBitmap.class v8
+org/crossmobile/backend/aroma/SkCanvas.class v8
+org/crossmobile/backend/aroma/SkFont.class v8
+org/crossmobile/backend/aroma/SkMatrix.class v8
+org/crossmobile/backend/aroma/SkPaint.class v8
+org/crossmobile/backend/aroma/SkPath.class v8
+org/crossmobile/backend/aroma/event/AromaEvent.class v8
+org/crossmobile/backend/aroma/event/KeyEvent.class v8
+org/crossmobile/backend/aroma/event/MouseButtonEvent.class v8
+org/crossmobile/backend/aroma/event/MouseEvent.class v8
+org/crossmobile/backend/aroma/event/MouseMotionEvent.class v8
+org/crossmobile/backend/aroma/event/QuitEvent.class v8
+org/crossmobile/backend/aroma/event/RunnableEvent.class v8
+org/crossmobile/backend/aroma/event/WindowEvent.class v8
+org/crossmobile/backend/aroma/package-info.class v8
 org/crossmobile/backend/desktop/DesktopArguments.class v8
 org/crossmobile/backend/desktop/DesktopDrawableMetrics.class v8
 org/crossmobile/backend/desktop/DesktopFileBridge$1.class v8
 org/crossmobile/backend/desktop/DesktopFileBridge.class v8
 org/crossmobile/backend/desktop/DesktopGraphicsBridge.class v8
 org/crossmobile/backend/desktop/DesktopImageBridge.class v8
-org/crossmobile/backend/desktop/DesktopInAppBridge$1.class v8
 org/crossmobile/backend/desktop/DesktopInAppBridge.class v8
 org/crossmobile/backend/desktop/DesktopLifecycleBridge.class v8
 org/crossmobile/backend/desktop/DesktopLocation.class v8
@@ -3288,6 +3369,7 @@ org/crossmobile/backend/desktop/cgeo/CScalable.class v8
 org/crossmobile/backend/desktop/cgeo/CScreen.class v8
 org/crossmobile/backend/desktop/cgeo/CSizable.class v8
 org/crossmobile/backend/desktop/cgeo/Chassis.class v8
+org/crossmobile/backend/desktop/cgeo/ChassisLoader$1.class v8
 org/crossmobile/backend/desktop/cgeo/ChassisLoader.class v8
 org/crossmobile/backend/desktop/icons/delete.png
 org/crossmobile/backend/desktop/icons/double.png
@@ -3411,10 +3493,13 @@ org/crossmobile/bind/system/AbstractSystemBridge.class v8
 org/crossmobile/bind/system/AppConstants.class v8
 org/crossmobile/bind/system/BitField.class v8
 org/crossmobile/bind/system/Debug.class v8
+org/crossmobile/bind/system/DispatchQueue$1.class v8
+org/crossmobile/bind/system/DispatchQueue.class v8
 org/crossmobile/bind/system/GenericSystemTimerHandler.class v8
 org/crossmobile/bind/system/Predicate.class v8
 org/crossmobile/bind/system/Promise.class v8
 org/crossmobile/bind/system/Recycler.class v8
+org/crossmobile/bind/system/StreamConverter.class v8
 org/crossmobile/bind/system/SystemUtilities.class v8
 org/crossmobile/bind/system/VelocityFilter.class v8
 org/crossmobile/bind/system/i18n/I18NBridge.class v8
@@ -3487,7 +3572,7 @@ org/crossmobile/bridge/ann/SDKVersion.class v8
 org/crossmobile/bridge/ann/package-info.class v8
 org/crossmobile/bridge/package-info.class v8
 org/crossmobile/bridge/resolver/AndroidBridgeResolver.class v8
-org/crossmobile/bridge/resolver/AvianBridgeResolver.class v8
+org/crossmobile/bridge/resolver/AromaBridgeResolver.class v8
 org/crossmobile/bridge/resolver/SwingBridgeResolver.class v8
 org/crossmobile/bridge/resolver/package-info.class v8
 org/crossmobile/bridge/system/BaseUtils.class v8
@@ -3623,6 +3708,7 @@ crossmobile/ios/coregraphics/GraphicsDrill.class v8
 crossmobile/ios/coregraphics/package-info.class v8
 crossmobile/ios/foundation/CFNumberFormatterStyle.class v8
 crossmobile/ios/foundation/CFType.class v8
+crossmobile/ios/foundation/Dispatch.class v8
 crossmobile/ios/foundation/Foundation.class v8
 crossmobile/ios/foundation/FoundationDrill.class v8
 crossmobile/ios/foundation/NSAttributedStringKey.class v8
@@ -3631,8 +3717,6 @@ crossmobile/ios/foundation/NSCalendar.class v8
 crossmobile/ios/foundation/NSCalendarOptions.class v8
 crossmobile/ios/foundation/NSCalendarUnit.class v8
 crossmobile/ios/foundation/NSCoder.class v8
-crossmobile/ios/foundation/NSData$1.class v8
-crossmobile/ios/foundation/NSData$DataChunk.class v8
 crossmobile/ios/foundation/NSData.class v8
 crossmobile/ios/foundation/NSDataBase64DecodingOptions.class v8
 crossmobile/ios/foundation/NSDataBase64EncodingOptions.class v8
@@ -3713,7 +3797,6 @@ crossmobile/ios/foundation/NSURLSessionTaskState.class v8
 crossmobile/ios/foundation/NSURLSessionUploadTask.class v8
 crossmobile/ios/foundation/NSUUID.class v8
 crossmobile/ios/foundation/NSUserDefaults.class v8
-crossmobile/ios/foundation/NSXMLParser$1.class v8
 crossmobile/ios/foundation/NSXMLParser.class v8
 crossmobile/ios/foundation/NSXMLParserDelegate.class v8
 crossmobile/ios/foundation/package-info.class v8
@@ -4016,6 +4099,31 @@ crossmobile/ios/uikit/package-info.class v8
 crossmobile/package-info.class v8
 crossmobile/rt/StrongReference.class v8
 crossmobile/rt/package-info.class v8
+net/n3/nanoxml/CDATAReader.class v1.0
+net/n3/nanoxml/ContentReader.class v1.0
+net/n3/nanoxml/IXMLBuilder.class v1.0
+net/n3/nanoxml/IXMLElement.class v1.0
+net/n3/nanoxml/IXMLEntityResolver.class v1.0
+net/n3/nanoxml/IXMLParser.class v1.0
+net/n3/nanoxml/IXMLReader.class v1.0
+net/n3/nanoxml/IXMLValidator.class v1.0
+net/n3/nanoxml/NonValidator.class v1.0
+net/n3/nanoxml/PIReader.class v1.0
+net/n3/nanoxml/StdXMLBuilder.class v1.0
+net/n3/nanoxml/StdXMLParser.class v1.0
+net/n3/nanoxml/StdXMLReader$1.class v1.0
+net/n3/nanoxml/StdXMLReader$StackedReader.class v1.0
+net/n3/nanoxml/StdXMLReader.class v1.0
+net/n3/nanoxml/ValidatorPlugin.class v1.0
+net/n3/nanoxml/XMLAttribute.class v1.0
+net/n3/nanoxml/XMLElement.class v1.0
+net/n3/nanoxml/XMLEntityResolver.class v1.0
+net/n3/nanoxml/XMLException.class v1.0
+net/n3/nanoxml/XMLParseException.class v1.0
+net/n3/nanoxml/XMLParserFactory.class v1.0
+net/n3/nanoxml/XMLUtil.class v1.0
+net/n3/nanoxml/XMLValidationException.class v1.0
+net/n3/nanoxml/XMLWriter.class v1.0
 org/crossmobile/backend/android/ActivityExtendedResultListener.class v8
 org/crossmobile/backend/android/ActivityLifecycleListener.class v8
 org/crossmobile/backend/android/ActivityPermissionListener.class v8
@@ -4157,10 +4265,13 @@ org/crossmobile/bind/system/AbstractSystemBridge.class v8
 org/crossmobile/bind/system/AppConstants.class v8
 org/crossmobile/bind/system/BitField.class v8
 org/crossmobile/bind/system/Debug.class v8
+org/crossmobile/bind/system/DispatchQueue$1.class v8
+org/crossmobile/bind/system/DispatchQueue.class v8
 org/crossmobile/bind/system/GenericSystemTimerHandler.class v8
 org/crossmobile/bind/system/Predicate.class v8
 org/crossmobile/bind/system/Promise.class v8
 org/crossmobile/bind/system/Recycler.class v8
+org/crossmobile/bind/system/StreamConverter.class v8
 org/crossmobile/bind/system/SystemUtilities.class v8
 org/crossmobile/bind/system/VelocityFilter.class v8
 org/crossmobile/bind/system/i18n/I18NBridge.class v8
@@ -4233,7 +4344,7 @@ org/crossmobile/bridge/ann/SDKVersion.class v8
 org/crossmobile/bridge/ann/package-info.class v8
 org/crossmobile/bridge/package-info.class v8
 org/crossmobile/bridge/resolver/AndroidBridgeResolver.class v8
-org/crossmobile/bridge/resolver/AvianBridgeResolver.class v8
+org/crossmobile/bridge/resolver/AromaBridgeResolver.class v8
 org/crossmobile/bridge/resolver/SwingBridgeResolver.class v8
 org/crossmobile/bridge/resolver/package-info.class v8
 org/crossmobile/bridge/system/BaseUtils.class v8
@@ -4453,7 +4564,7 @@ org/crossmobile/backend/swing/SwingMapViewWrapper$NativeW.class v8
 org/crossmobile/backend/swing/SwingMapViewWrapper.class v8
 org/crossmobile/backend/swing/SwingWrapperMapBridge.class v8
 
-Creating file cmplugin-avian-cmlocation-<VERSION>.jar
+Creating file cmplugin-aroma-cmlocation-<VERSION>.jar
 crossmobile/ios/corelocation/CLDeviceOrientation.class v8
 crossmobile/ios/corelocation/CLDistanceFilter.class v8
 crossmobile/ios/corelocation/CLHeading.class v8
@@ -4590,7 +4701,7 @@ crossmobile/ios/mediaplayer/MPMovieScalingMode.class v8
 crossmobile/ios/mediaplayer/MPVolumeView.class v8
 crossmobile/ios/mediaplayer/package-info.class v8
 
-Creating file cmplugin-avian-cmmedia-<VERSION>.jar
+Creating file cmplugin-aroma-cmmedia-<VERSION>.jar
 crossmobile/ios/audiotoolbox/AudioServices.class v8
 crossmobile/ios/audiotoolbox/SystemSoundID.class v8
 crossmobile/ios/audiotoolbox/package-info.class v8
@@ -4657,7 +4768,7 @@ crossmobile/ios/messageui/MFMessageComposeViewControllerDelegate.class v8
 crossmobile/ios/messageui/MessageComposeResult.class v8
 crossmobile/ios/messageui/package-info.class v8
 
-Creating file cmplugin-avian-cmmessages-<VERSION>.jar
+Creating file cmplugin-aroma-cmmessages-<VERSION>.jar
 crossmobile/ios/messageui/MFMailComposeResult.class v8
 crossmobile/ios/messageui/MFMailComposeViewController.class v8
 crossmobile/ios/messageui/MFMailComposeViewControllerDelegate.class v8
@@ -4823,7 +4934,7 @@ crossmobile/ios/usernotifications/UNUserNotificationCenter.class v8
 crossmobile/ios/usernotifications/UNUserNotificationCenterDelegate.class v8
 crossmobile/ios/usernotifications/package-info.class v8
 
-Creating file cmplugin-avian-cmnotifications-<VERSION>.jar
+Creating file cmplugin-aroma-cmnotifications-<VERSION>.jar
 crossmobile/ios/uikit/UIMutableUserNotificationAction.class v8
 crossmobile/ios/uikit/UIMutableUserNotificationCategory.class v8
 crossmobile/ios/uikit/UIUserNotificationAction.class v8
@@ -4981,7 +5092,7 @@ crossmobile/ios/storekit/SKRequestDelegate.class v8
 crossmobile/ios/storekit/StoreDrill.class v8
 crossmobile/ios/storekit/package-info.class v8
 
-Creating file cmplugin-avian-cmpayment-<VERSION>.jar
+Creating file cmplugin-aroma-cmpayment-<VERSION>.jar
 crossmobile/ios/storekit/SKError.class v8
 crossmobile/ios/storekit/SKMutablePayment.class v8
 crossmobile/ios/storekit/SKPayment.class v8
@@ -5069,7 +5180,7 @@ crossmobile/ios/quicklook/QLPreviewControllerDelegate.class v8
 crossmobile/ios/quicklook/QLPreviewItem.class v8
 crossmobile/ios/quicklook/package-info.class v8
 
-Creating file cmplugin-avian-cmquicklook-<VERSION>.jar
+Creating file cmplugin-aroma-cmquicklook-<VERSION>.jar
 crossmobile/ios/quicklook/QLPreviewController.class v8
 crossmobile/ios/quicklook/QLPreviewControllerDataSource.class v8
 crossmobile/ios/quicklook/QLPreviewControllerDelegate.class v8
@@ -5131,7 +5242,7 @@ crossmobile/ios/social/package-info.class v8
 org/crossmobile/backend/desktop/DesktopSocial.class v8
 org/crossmobile/bind/system/SocialRegister.class v8
 
-Creating file cmplugin-avian-cmsocial-<VERSION>.jar
+Creating file cmplugin-aroma-cmsocial-<VERSION>.jar
 crossmobile/ios/social/SLComposeServiceViewController.class v8
 crossmobile/ios/social/SLComposeViewController.class v8
 crossmobile/ios/social/SLComposeViewControllerCompletionHandler.class v8
@@ -5196,7 +5307,7 @@ crossmobile/ios/touchid/LAPolicy.class v8
 crossmobile/ios/touchid/LATouchIDAuthentication.class v8
 crossmobile/ios/touchid/package-info.class v8
 
-Creating file cmplugin-avian-cmtouchid-<VERSION>.jar
+Creating file cmplugin-aroma-cmtouchid-<VERSION>.jar
 crossmobile/ios/touchid/LAAccessControlOperation.class v8
 crossmobile/ios/touchid/LABiometryType.class v8
 crossmobile/ios/touchid/LAContext.class v8
@@ -5325,7 +5436,7 @@ org/crossmobile/backend/swing/SwingWebWrapper.class v8
 org/crossmobile/bind/wrapper/WebViewInitializer.class v8
 org/crossmobile/bind/wrapper/WebWrapper.class v8
 
-Creating file cmplugin-avian-cmwebkit-<VERSION>.jar
+Creating file cmplugin-aroma-cmwebkit-<VERSION>.jar
 crossmobile/ios/uikit/UIWebViewNavigationType.class v8
 crossmobile/ios/webkit/WKBackForwardList.class v8
 crossmobile/ios/webkit/WKBackForwardListItem.class v8

@@ -23,7 +23,7 @@ public class CMLibTargetTest {
             res += 2;
         if (target.swing)
             res += 4;
-        if (target.avian)
+        if (target.aroma)
             res += 8;
         if (target.iosjava)
             res += 16;

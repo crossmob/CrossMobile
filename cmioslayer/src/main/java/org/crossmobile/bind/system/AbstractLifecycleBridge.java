@@ -9,6 +9,7 @@ package org.crossmobile.bind.system;
 import crossmobile.ios.foundation.*;
 import crossmobile.ios.uikit.*;
 import org.crossmobile.bind.graphics.Theme;
+import org.crossmobile.bind.system.init.PluginsLauncherList;
 import org.crossmobile.bridge.LifecycleBridge;
 import org.crossmobile.bridge.Native;
 
@@ -19,7 +20,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static crossmobile.ios.coregraphics.GraphicsDrill.convertBaseContextToCGContext;
 import static crossmobile.ios.foundation.FoundationDrill.quitTimers;
 import static crossmobile.ios.uikit.UserInterfaceDrill.getViewControllerFromView;
 import static org.crossmobile.bridge.RuntimeKeys.AndroidBackButtonNotification;
@@ -36,7 +36,6 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
 
     private NSRunLoop mainRunLoop;
 
-    @SuppressWarnings("unchecked")
     @Override
     public void init(String[] args) {
         if (applicationIsInitialized)   // needed since Android is initialized twice, once through main and once through onCreate
@@ -69,7 +68,7 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
     @SuppressWarnings({"UseSpecificCatch"})
     private void initPlugins() {
         try {
-            Class.forName("org.crossmobile.sys.PluginsLauncherList").getMethod("initialize").invoke(null);
+            PluginsLauncherList.initialize();
         } catch (Exception ex) {
             Native.system().error("Unable to initialize plugins", ex);
         }
@@ -119,6 +118,7 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
         Native.file().deleteRecursive(new File(Native.file().getTemporaryLocation()));
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean backHandled() {
         UIApplication app = UIApplication.sharedApplication();
         if (app != null &&
@@ -250,5 +250,9 @@ public abstract class AbstractLifecycleBridge implements LifecycleBridge {
         // more waiting tasks have been produced, do the same procedure again
         while (waitingTasks != empty)
             drainWaitingTasks();
+    }
+
+    @Override
+    public void handleEventLoop() {
     }
 }

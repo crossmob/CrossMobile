@@ -6,7 +6,6 @@
 
 package org.crossmobile.bridge.ann;
 
-@CMLib(target = CMLibTarget.APIJAVA)
 public enum AssociationType {
     DEFAULT(false),
     ASSOCIATE(true),

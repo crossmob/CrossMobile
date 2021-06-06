@@ -7,7 +7,7 @@
 package org.crossmobile.prefs;
 
 public enum LaunchTarget {
-    iOS, Swing, Avian, Android,
+    iOS, Swing, Aroma, Android,
 
     PACKAGE,
 

@@ -4,7 +4,6 @@
  * SPDX-License-Identifier: LGPL-3.0-only
  */
 
-
 package org.crossmobile.bind.system;
 
 import com.panayotis.ce.CEventManager;
@@ -19,6 +18,8 @@ public class Debug {
     public static boolean Live_Graphics_Debug = false;
     public static boolean Live_Touch_Debug = false;
     public static boolean Ignore_Touches = false;
+
+    public static boolean Full_Debug = false;
 
     public static void init() {
         if (ENABLE_DEBUG) {

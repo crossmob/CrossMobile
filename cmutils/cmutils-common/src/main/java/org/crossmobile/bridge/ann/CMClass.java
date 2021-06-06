@@ -13,7 +13,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
-@CMLib(target = CMLibTarget.APIJAVA)
 public @interface CMClass {
     /**
      * Maybe this class is an alias of another type - it is only used by TypeDef

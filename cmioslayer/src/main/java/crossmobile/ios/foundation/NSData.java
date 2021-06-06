@@ -6,13 +6,13 @@
 
 package crossmobile.ios.foundation;
 
+import org.crossmobile.bind.system.StreamConverter;
 import org.crossmobile.bind.system.SystemUtilities;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.*;
 import org.crossmobile.support.MiGBase64;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * NSData class defines a data object that is created using data from a buffer
@@ -80,8 +80,8 @@ public class NSData extends NSObject implements NSSecureCoding {
     public static NSData dataWithContentsOfFile(String path) {
         try {
             if (path != null)
-                return new NSData(contentsOfStream(Native.file().getFileStream(path)));
-        } catch (IOException ex) {
+                return new NSData(StreamConverter.toBytes(Native.file().getFileStream(path)));
+        } catch (IOException ignored) {
         }
         return null;
     }
@@ -98,29 +98,6 @@ public class NSData extends NSObject implements NSSecureCoding {
         return url == null
                 ? null
                 : NSURLConnection.sendSynchronousRequest(NSURLRequest.requestWithURL(url), null, null);
-    }
-
-    static byte[] contentsOfStream(InputStream inputstream) {
-        DataChunk head = null;
-        DataChunk queue = null;
-        DataChunk current;
-        if (inputstream != null) {
-            do {
-                current = new DataChunk(inputstream);
-                if (current.isValid()) {
-                    if (queue != null)
-                        queue.next = current;
-                    else
-                        head = current;
-                    queue = current;
-                }
-            } while (current.isValid());
-            if (head != null)
-                return head.consumeBytes();
-            else
-                return null;
-        } else
-            return null;
     }
 
     static byte[] contentsOfCopyBytes(byte[] data, int length) {
@@ -206,52 +183,5 @@ public class NSData extends NSObject implements NSSecureCoding {
     @CMSelector("- (NSString *)base64EncodedStringWithOptions:(NSDataBase64EncodingOptions)options;")
     public String base64EncodedStringWithOptions(int NSDataBase64EncodingOptions) {
         return MiGBase64.encodeToString(data, true);
-    }
-
-    private static class DataChunk {
-
-        private byte[] chunk = new byte[1000];
-        private int size = -1;
-        private DataChunk next = null;
-
-        private DataChunk(InputStream in) {
-            try {
-                size = in.read(chunk);
-            } catch (IOException ex) {
-            }
-        }
-
-        private byte[] consumeBytes() {
-            DataChunk current = this;
-            int total = 0;
-            // Calculate data size
-            while (current != null) {
-                total += current.size;
-                current = current.next;
-            }
-            if (total < 1)
-                return null;
-
-            // reconstruct array
-            byte[] res = new byte[total];
-            int loc = 0;
-            current = this;
-            while (current != null) {
-                System.arraycopy(current.chunk, 0, res, loc, current.size);
-                current.chunk = null;
-
-                loc += current.size;
-                current.size = 0;
-
-                DataChunk cnext = current.next;
-                current.next = null;
-                current = cnext;
-            }
-            return res;
-        }
-
-        private boolean isValid() {
-            return size >= 0;
-        }
     }
 }

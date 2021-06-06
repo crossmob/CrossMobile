@@ -38,6 +38,11 @@
             <version>1.0.1</version>
         </dependency>
         <dependency>
+            <groupId>be.cyberelf.nanoxml</groupId>
+            <artifactId>nanoxml</artifactId>
+            <version>2.2.3</version>
+        </dependency>
+        <dependency>
             <groupId>org.crossmobile.ca.com.google.android</groupId>
             <artifactId>android</artifactId>
             <version>29</version>
@@ -147,7 +152,7 @@
                     <skipIos>${skip.ios}</skipIos>
                     <skipUwp>${skip.uwp}</skipUwp>
                     <skipSwing>${skip.swing}</skipSwing>
-                    <skipAvian>${skip.avian}</skipAvian>
+                    <skipAroma>${skip.aroma}</skipAroma>
                     <skipAndroid>${skip.android}</skipAndroid>
                     <skipCore>${skip.core}</skipCore>
                     <skipRvm>${skip.robovm}</skipRvm>
@@ -155,9 +160,46 @@
                         <target>
                             <os>linux</os>
                             <arch>x86_64</arch>
+                            <includes>
+                                <include>../aroma-dependencies/SDL/include</include>
+                                <include>../aroma-dependencies/skia</include>
+                                <include>../aroma-dependencies/avian/include</include>
+                                <include>../aroma-dependencies/avian/src</include>
+                            </includes>
                             <ccflags>
-                                <ccflag>-I${user.home}/Sources/Aroma/third_party/SDL/include</ccflag>
-                                <ccflag>-I${user.home}/Sources/Aroma/third_party/skia</ccflag>
+                                <ccflag>-DDEBUG_AROMA</ccflag>
+                            </ccflags>
+                            <lflags>
+                                <lflag>-lfontconfig</lflag>
+                            </lflags>
+                        </target>
+                        <target>
+                            <os>linux</os>
+                            <arch>arm</arch>
+                            <includes>
+                                <include>../aroma-dependencies/SDL/include</include>
+                                <include>../aroma-dependencies/skia</include>
+                                <include>../aroma-dependencies/avian/include</include>
+                                <include>../aroma-dependencies/avian/src</include>
+                            </includes>
+                            <ccflags>
+                                <ccflag>-DDEBUG_AROMA</ccflag>
+                            </ccflags>
+                            <lflags>
+                                <lflag>-lfontconfig</lflag>
+                            </lflags>
+                        </target>
+                        <target>
+                            <os>linux</os>
+                            <arch>arm64</arch>
+                            <includes>
+                                <include>../aroma-dependencies/SDL/include</include>
+                                <include>../aroma-dependencies/skia</include>
+                                <include>../aroma-dependencies/avian/include</include>
+                                <include>../aroma-dependencies/avian/src</include>
+                            </includes>
+                            <ccflags>
+                                <ccflag>-DDEBUG_AROMA</ccflag>
                             </ccflags>
                             <lflags>
                                 <lflag>-lfontconfig</lflag>
@@ -169,6 +211,7 @@
                         <embedlib>org\.crossmobile:cmutils-common.*</embedlib>
                         <embedlib>javazoom.*</embedlib>
                         <embedlib>com\.panayotis:commonevents.*</embedlib>
+                        <embedlib>be\.cyberelf\.nanoxml:nanoxml.*</embedlib>
                     </embedlibs>
                     <packages>
                         <package>
@@ -190,6 +233,11 @@
                             <name>javazoom</name>
                             <plugin>cmioslayer</plugin>
                             <target>SWING</target>
+                        </package>
+                        <package>
+                            <name>net.n3.nanoxml</name>
+                            <plugin>cmioslayer</plugin>
+                            <target>JAVA</target>
                         </package>
                     </packages>
                 </configuration>
@@ -239,7 +287,7 @@
                 <skip.ios>true</skip.ios>
                 <skip.robovm>true</skip.robovm>
                 <skip.swing>true</skip.swing>
-                <skip.avian>true</skip.avian>
+                <skip.aroma>true</skip.aroma>
                 <skip.android>true</skip.android>
                 <skip.core>true</skip.core>
                 <skip.uwp>false</skip.uwp>
@@ -255,13 +303,13 @@
             <id>fast-swing-build</id>
             <properties>
                 <skip.ios>true</skip.ios>
-                <skip.avian>true</skip.avian>
+                <skip.aroma>true</skip.aroma>
                 <skip.android>true</skip.android>
                 <skip.robovm>true</skip.robovm>
             </properties>
         </profile>
         <profile>
-            <id>fast-avian-build</id>
+            <id>fast-aroma-build</id>
             <properties>
                 <skip.ios>true</skip.ios>
                 <skip.swing>true</skip.swing>
@@ -274,7 +322,7 @@
             <properties>
                 <skip.ios>true</skip.ios>
                 <skip.swing>true</skip.swing>
-                <skip.avian>true</skip.avian>
+                <skip.aroma>true</skip.aroma>
                 <skip.robovm>true</skip.robovm>
             </properties>
         </profile>
@@ -286,7 +334,7 @@
         <skip.ios>false</skip.ios>
         <skip.robovm>true</skip.robovm>
         <skip.swing>false</skip.swing>
-        <skip.avian>false</skip.avian>
+        <skip.aroma>false</skip.aroma>
         <skip.android>false</skip.android>
         <skip.core>false</skip.core>
         <skip.uwp>true</skip.uwp>

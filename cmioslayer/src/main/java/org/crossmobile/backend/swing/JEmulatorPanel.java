@@ -8,11 +8,11 @@ package org.crossmobile.backend.swing;
 
 import crossmobile.ios.coregraphics.CGPoint;
 import crossmobile.ios.uikit.UIApplication;
-import crossmobile.ios.uikit.UITouch;
 import crossmobile.ios.uikit.UIView;
-import crossmobile.ios.uikit.UIWindow;
-import org.crossmobile.backend.desktop.*;
 import org.crossmobile.backend.cat.MobileApp;
+import org.crossmobile.backend.desktop.DesktopDrawableMetrics;
+import org.crossmobile.backend.desktop.DesktopGraphicsBridge;
+import org.crossmobile.backend.desktop.DesktopLocations;
 import org.crossmobile.backend.desktop.cgeo.CEvent;
 import org.crossmobile.backend.desktop.cgeo.CEventCallback;
 import org.crossmobile.backend.swing.SwingGraphicsBridge.SizableComponent;
@@ -29,8 +29,8 @@ import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-import static crossmobile.ios.uikit.UserInterfaceDrill.*;
 import static crossmobile.ios.uikit.UITouchPhase.*;
+import static crossmobile.ios.uikit.UserInterfaceDrill.*;
 
 public class JEmulatorPanel extends JComponent implements MouseListener, MouseMotionListener, MouseWheelListener, KeyListener, SizableComponent, CEventCallback {
 
@@ -82,9 +82,7 @@ public class JEmulatorPanel extends JComponent implements MouseListener, MouseMo
         Native.lifecycle().encapsulateContext(() -> {
             if (clicked.isUnset())
                 return;
-            if (multiTouch)
-                fireTouchEvent(e.getX(), e.getY(), e, Ended, true, true);
-            fireTouchEvent(e.getX(), e.getY(), e, Ended, false, false);
+            fireTouchEvent(e.getX(), e.getY(), e, Ended, false);
             clicked = CEvent.unset();
         });
     }
@@ -104,11 +102,8 @@ public class JEmulatorPanel extends JComponent implements MouseListener, MouseMo
                 repaint();
             else if (e.getSource() instanceof SwingNativeDispatcher.DesktopNativeWidget)
                 widgetTouchCorrection(e, Began);
-            else if (clicked.isArea()) {
-                fireTouchEvent(e.getX(), e.getY(), e, Began, false, false);
-                if (multiTouch)
-                    fireTouchEvent(e.getX(), e.getY(), e, Began, true, true);
-            }
+            else if (clicked.isArea())
+                fireTouchEvent(e.getX(), e.getY(), e, Began, false);
         });
     }
 
@@ -117,9 +112,7 @@ public class JEmulatorPanel extends JComponent implements MouseListener, MouseMo
         CGPoint origin;
         origin = UIApplication.sharedApplication().keyWindow().convertPointFromView(Native.graphics().metrics().getVirtualToHardware(0, 0), view);
         e.translatePoint((int) (origin.getX()), (int) (origin.getY()));
-        fireTouchEvent(e.getX(), e.getY(), e, state, false, false);
-        if (multiTouch)
-            fireTouchEvent(e.getX(), e.getY(), e, state, true, true);
+        fireTouchEvent(e.getX(), e.getY(), e, state, false);
     }
 
     @Override
@@ -135,7 +128,7 @@ public class JEmulatorPanel extends JComponent implements MouseListener, MouseMo
                 metrics.updateMouseMoving(e.getX(), e.getY(), clicked);
                 repaint();
             } else {
-                fireTouchEvent(e.getX(), e.getY(), e, Moved, false, multiTouch);
+                fireTouchEvent(e.getX(), e.getY(), e, Moved, false);
                 hardwareMouse = new Point2D.Double(e.getX(), e.getY());
             }
         });
@@ -151,11 +144,8 @@ public class JEmulatorPanel extends JComponent implements MouseListener, MouseMo
             else if (clicked.isButton()) {
                 clicked.performAction(this);
                 repaint();
-            } else {
-                if (multiTouch)
-                    fireTouchEvent(e.getX(), e.getY(), e, Ended, true, true);
-                fireTouchEvent(e.getX(), e.getY(), e, Ended, false, false);
-            }
+            } else
+                fireTouchEvent(e.getX(), e.getY(), e, Ended, false);
             clicked = CEvent.unset();
         });
     }
@@ -207,7 +197,7 @@ public class JEmulatorPanel extends JComponent implements MouseListener, MouseMo
     public void startMultiTouch() {
         multiTouch = true;
         if (clicked.isArea())
-            fireTouchEvent(hardwareMouse.x, hardwareMouse.y, new MouseEvent(this, 1, System.currentTimeMillis(), 0, (int) hardwareMouse.x, (int) hardwareMouse.y, 1, false), Began, true, true);
+            fireTouchEvent(hardwareMouse.x, hardwareMouse.y, new MouseEvent(this, 1, System.currentTimeMillis(), 0, (int) hardwareMouse.x, (int) hardwareMouse.y, 1, false), Began, true);
         else
             repaint();
         updateMouse();
@@ -216,7 +206,7 @@ public class JEmulatorPanel extends JComponent implements MouseListener, MouseMo
     @Override
     public void endMultiTouch() {
         if (clicked.isArea())
-            fireTouchEvent(hardwareMouse.x, hardwareMouse.y, new MouseEvent(this, 1, System.currentTimeMillis(), 0, (int) hardwareMouse.x, (int) hardwareMouse.y, 1, false), Ended, true, true);
+            fireTouchEvent(hardwareMouse.x, hardwareMouse.y, new MouseEvent(this, 1, System.currentTimeMillis(), 0, (int) hardwareMouse.x, (int) hardwareMouse.y, 1, false), Ended, true);
         else
             repaint();
         multiTouch = false;
@@ -254,30 +244,20 @@ public class JEmulatorPanel extends JComponent implements MouseListener, MouseMo
         DesktopGraphicsBridge.rotateDevice(false);
     }
 
-    private void fireTouchEvent(double x, double y, MouseEvent me, int phase, boolean coreIsStationary, boolean fireMultitouch) {
-        UIApplication app = UIApplication.sharedApplication();
-        if (app == null)
-            return;
-        UIWindow window = app.keyWindow();
-        if (window == null)
-            return;
-
-        UITouch[] touches = new UITouch[fireMultitouch ? 2 : 1];
-        touches[0] = newUITouch(x, y, 0, window, coreIsStationary ? Stationary : phase);
-        if (fireMultitouch) {
-            CGPoint mirror = Native.graphics().metrics().getMirrorVirtualFromHardwarePoint(x, y);
-            touches[1] = newUITouch(mirror.getX(), mirror.getY(), 1, window, phase);
+    private void fireTouchEvent(double xPos, double yPos, MouseEvent me, int phase, boolean multiTouchOrigin) {
+        double[] x = new double[multiTouch ? 2 : 1];
+        double[] y = new double[x.length];
+        x[0] = xPos;
+        y[0] = yPos;
+        if (multiTouch) {
+            CGPoint mirror = Native.graphics().metrics().getMirrorVirtualFromHardwarePoint(xPos, yPos);
+            x[1] = mirror.getX();
+            y[1] = mirror.getY();
         }
-        if (phase == Began || phase == Moved) {
-            CGPoint[] points = new CGPoint[touches.length];
-            for (int i = 0; i < touches.length; i++)
-                points[i] = touches[i].locationInView(null);
-            Native.graphics().metrics().setActiveTouchLocations(points);
-        } else
-            Native.graphics().metrics().setActiveTouchLocations(null);
-        window.sendEvent(newUIEvent(touches, me, phase));
-        if (fireMultitouch)
-            repaint();
+        if (multiTouch)
+            fireUIEvent(me, x, y, 1, phase);
+        if (!multiTouchOrigin)
+            fireUIEvent(me, x, y, 0, phase);
     }
 
     @SuppressWarnings("unchecked")

@@ -10,11 +10,11 @@ import crossmobile.ios.coregraphics.CGPoint;
 import crossmobile.ios.foundation.NSObject;
 import org.crossmobile.bind.graphics.Geometry;
 import org.crossmobile.bridge.Native;
+import org.crossmobile.bridge.SystemBridge;
 import org.crossmobile.bridge.ann.CMClass;
 import org.crossmobile.bridge.ann.CMGetter;
 import org.crossmobile.bridge.ann.CMSelector;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -29,8 +29,6 @@ public class UITouch extends NSObject {
     private static final UIView[] olderView = new UIView[SUPPORTED_TOUCHES];
     private static final double[] olderTime = new double[SUPPORTED_TOUCHES];
     private static final int[] olderTap = new int[SUPPORTED_TOUCHES];
-
-    private static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm:ss");
 
     final UIWindow window;
     final CGPoint locationInWindow;
@@ -164,7 +162,7 @@ public class UITouch extends NSObject {
 
     @Override
     public String toString() {
-        return "UITouch " + NAMES[phase] + " tap=" + tapcount + " loc=" + locationInWindow.toString() + " at=" + TIME_FORMAT.format(new Date())
+        return "UITouch " + NAMES[phase] + " tap=" + tapcount + " loc=" + locationInWindow.toString() + " at=" + SystemBridge.GMT.format(new Date())
                 + " in [" + view.toString() + " " + view.parentList() + "]";
     }
 }

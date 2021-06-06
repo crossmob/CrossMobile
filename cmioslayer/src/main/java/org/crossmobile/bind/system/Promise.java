@@ -6,7 +6,6 @@
 
 package org.crossmobile.bind.system;
 
-
 import org.robovm.objc.block.Block1;
 
 public final class Promise<T> {

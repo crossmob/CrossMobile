@@ -66,6 +66,7 @@ public class UIApplication extends UIResponder {
     public static int main(@CMJoinMEM(memory = "argv", size = "argc") String[] args,
                            @CMParamMod(convertWith = "jclass_to_string", type = String.class) Class<? extends UIApplication> UIApplication,
                            @CMParamMod(convertWith = "jclass_to_string", type = String.class) Class<? extends UIApplicationDelegate> UIApplicationDelegate) {
+
         Native.prepare(null);
         Native.lifecycle().init(args);
         Native.lifecycle().runOnEventThread(() -> {
@@ -128,7 +129,9 @@ public class UIApplication extends UIResponder {
             });
         });
         final Object sleepForever = new Object();
-        if (!Native.lifecycle().isEventThread())
+        if (Native.lifecycle().isEventThread())
+            Native.lifecycle().handleEventLoop();
+        else
             try {
                 //noinspection SynchronizationOnLocalVariableOrMethodParameter
                 synchronized (sleepForever) {

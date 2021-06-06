@@ -47,7 +47,7 @@ public class NSRunLoop extends NSObject {
         timerHandler.addTimer(timer);
     }
 
-    void terminate() {
-        timerHandler.terminate();
+    void quitTimers() {
+        timerHandler.quitTimers();
     }
 }

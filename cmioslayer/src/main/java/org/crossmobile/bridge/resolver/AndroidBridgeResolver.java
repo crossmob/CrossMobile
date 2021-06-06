@@ -16,21 +16,17 @@ public class AndroidBridgeResolver {
     }
 
     /**
-     * Test if runtime is on Android. When this class is loaded it will throw an exception if NativeAndroid is missing.
-     * <p>
-     * Maybe use this instead:
+     * Test if runtime is on Android. When this class is loaded it might throw an exception if NativeAndroid is missing.
      *
-     * <code>System.getProperty("java.vm.specification.vendor", "").toLowerCase().contains("android")
-     * || System.getProperty("java.vm.vendor.url", "").toLowerCase().contains("android")
-     * || System.getProperty("java.vendor.url", "").toLowerCase().contains("android")
-     * || System.getProperty("java.vm.name", "").toLowerCase().contains("dalvik")
-     * || System.getProperty("java.specification.name", "").toLowerCase().contains("dalvik")
-     * || System.getProperty("java.vm.specification.name", "").toLowerCase().contains("dalvik")</code>
-     *
-     * @return true if run under Android
-     * @throws Exception if it isn't run under Android
+     * @return true if run under Android, or false otherwise
+     * @throws Exception might be thrown if it isn't run under Android
      */
     public static boolean isActive() throws Exception {
-        return true;
+        return System.getProperty("java.vm.specification.vendor", "").toLowerCase().contains("android")
+                || System.getProperty("java.vm.vendor.url", "").toLowerCase().contains("android")
+                || System.getProperty("java.vendor.url", "").toLowerCase().contains("android")
+                || System.getProperty("java.vm.name", "").toLowerCase().contains("dalvik")
+                || System.getProperty("java.specification.name", "").toLowerCase().contains("dalvik")
+                || System.getProperty("java.vm.specification.name", "").toLowerCase().contains("dalvik");
     }
 }

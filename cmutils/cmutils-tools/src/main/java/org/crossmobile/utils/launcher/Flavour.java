@@ -15,7 +15,7 @@ public enum Flavour {
     SWING("Swing"),
     IOS("IOS"),
     ANDROID("Android"),
-    AVIAN("Avian");
+    AROMA("Aroma");
 
     private static final String packg_pre = "org.crossmobile.backend.";
     private static final String packg_mid = ".Native";

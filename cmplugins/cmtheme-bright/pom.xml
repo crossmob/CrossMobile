@@ -32,11 +32,11 @@
             </dependencies>
         </profile>
         <profile>
-            <id>avian</id>
+            <id>aroma</id>
             <dependencies>
                 <dependency>
                     <groupId>org.crossmobile</groupId>
-                    <artifactId>cmplugin-avian-cmioslayer</artifactId>
+                    <artifactId>cmplugin-aroma-cmioslayer</artifactId>
                     <version>${project.version}</version>
                 </dependency>
             </dependencies>

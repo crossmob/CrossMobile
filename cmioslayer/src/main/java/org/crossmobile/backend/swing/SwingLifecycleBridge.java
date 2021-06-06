@@ -7,14 +7,10 @@
 package org.crossmobile.backend.swing;
 
 import com.panayotis.appenh.EnhancerManager;
-import crossmobile.ios.foundation.NSDate;
-import crossmobile.ios.foundation.NSRunLoop;
-import crossmobile.ios.foundation.NSRunLoopMode;
 import crossmobile.ios.foundation.NSTimer;
 import crossmobile.ios.uikit.UIGraphics;
 import org.crossmobile.backend.desktop.DesktopDrawableMetrics;
 import org.crossmobile.backend.desktop.DesktopLifecycleBridge;
-import org.crossmobile.bind.graphics.anim.Animator;
 import org.crossmobile.bridge.Native;
 
 import javax.swing.*;
@@ -28,9 +24,6 @@ import static crossmobile.ios.foundation.FoundationDrill.repeats;
 import static org.crossmobile.bind.graphics.GraphicsBridgeConstants.DefaultInitialOrientation;
 
 public class SwingLifecycleBridge extends DesktopLifecycleBridge {
-
-    private boolean isQuitting;
-    private NSTimer animationTimer;
 
     @SuppressWarnings("unchecked")
     @Override
@@ -48,22 +41,8 @@ public class SwingLifecycleBridge extends DesktopLifecycleBridge {
     }
 
     @Override
-    public void quit(String error, Throwable throwable) {
-        if (isQuitting)
-            return;
-        isQuitting = true;
-        if (error != null && !error.isEmpty()) {
-            if (throwable != null)
-                throwable.printStackTrace();
-            if (JOptionPane.showConfirmDialog(null, "Error while executing " + System.getProperty("cm.display.name") + ":\n  " + error + "\n\nDo you want to continue running the application?"
-                    , "Error while executing", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE) == JOptionPane.NO_OPTION) {
-                super.quit(error, throwable);
-                System.exit(-1);
-            } else isQuitting = false;
-        } else {
-            super.quit(error, throwable);
-            System.exit(0);
-        }
+    protected boolean supportsExtendedVisuals() {
+        return true;
     }
 
     @Override
@@ -72,20 +51,6 @@ public class SwingLifecycleBridge extends DesktopLifecycleBridge {
         if (metrics.isFullScreen() || metrics.isSimulator())
             return;
         SwingGraphicsBridge.frame.setResizable(true);
-    }
-
-    /**
-     * MAKE SURE that this method will run & return IMMEDIATELY when run from
-     * the dispatch thread
-     *
-     * @param r
-     */
-    @Override
-    public void runOnEventThread(Runnable r) {
-        if (EventQueue.isDispatchThread())  // Important!! or else will lock
-            r.run();
-        else
-            EventQueue.invokeLater(r);
     }
 
     @Override
@@ -124,25 +89,12 @@ public class SwingLifecycleBridge extends DesktopLifecycleBridge {
             }
 
             @Override
-            public synchronized void terminate() {
+            public synchronized void quitTimers() {
                 active = false;
                 for (Timer timer : timers.values())
                     timer.stop();
                 timers.clear();
             }
         };
-    }
-
-    @Override
-    public void hasAnimationFrames(boolean enabled) {
-        if (enabled) {
-            if (animationTimer == null)
-                NSRunLoop.mainRunLoop().addTimer(animationTimer = new NSTimer(NSDate.date(), 1d / 120d, timer -> Animator.animate(System.currentTimeMillis()), null, true), NSRunLoopMode.Default);
-        } else {
-            if (animationTimer != null) {
-                animationTimer.invalidate();
-                animationTimer = null;
-            }
-        }
     }
 }

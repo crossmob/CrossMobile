@@ -9,6 +9,7 @@ package crossmobile.ios.uikit;
 import crossmobile.ios.foundation.NSBundle;
 import crossmobile.ios.foundation.NSLocale;
 import crossmobile.ios.foundation.NSObject;
+import org.crossmobile.bind.system.init.PluginsLauncherList;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.CMClass;
 import org.crossmobile.bridge.ann.CMSelector;
@@ -18,6 +19,7 @@ import static org.crossmobile.bind.system.SystemUtilities.safeInstantiation;
 
 @CMClass
 public class UIStoryboard extends NSObject {
+    private static final String IBObjectPackage = PluginsLauncherList.class.getPackage().getName();
 
     @CMSelector("+ (UIStoryboard *)storyboardWithName:(NSString *)name \n" +
             "                              bundle:(NSBundle *)storyboardBundleOrNil;")
@@ -28,11 +30,11 @@ public class UIStoryboard extends NSObject {
                 .replace(".", "_")
                 .replace(" ", "_");
         String lang = NSLocale.currentLocale().languageCode();
-        UIStoryboard storyBoard = safeInstantiation("org.crossmobile.sys.IBObjects$" + lang + "_lproj_" + canonicalName);
+        UIStoryboard storyBoard = safeInstantiation(IBObjectPackage + ".IBObjects$" + lang + "_lproj_" + canonicalName);
         if (storyBoard == null)
-            storyBoard = safeInstantiation("org.crossmobile.sys.IBObjects$Base_lproj_" + canonicalName);
+            storyBoard = safeInstantiation(IBObjectPackage + ".IBObjects$Base_lproj_" + canonicalName);
         if (storyBoard == null)
-            storyBoard = safeInstantiation("org.crossmobile.sys.IBObjects$" + canonicalName);
+            storyBoard = safeInstantiation(IBObjectPackage + ".IBObjects$" + canonicalName);
 
         if (storyBoard == null) {
             String bundleName = storyboardBundleOrNil == null ? "main bundle" : "bundle at " + storyboardBundleOrNil.bundlePath();

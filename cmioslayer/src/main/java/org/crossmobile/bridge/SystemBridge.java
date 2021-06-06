@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Set;
 
 public interface SystemBridge {
-    SimpleDateFormat GMT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+    SimpleDateFormat GMT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
     Set<String> NOT_IMPLEMENTED_ELEMENTS = new HashSet<>();
 
     boolean Debug = true;

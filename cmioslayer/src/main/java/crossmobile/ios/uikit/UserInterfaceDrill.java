@@ -15,6 +15,7 @@ import org.crossmobile.bridge.ann.CMLib;
 import org.crossmobile.bridge.ann.CMLibTarget;
 
 import static crossmobile.ios.coregraphics.GraphicsDrill.convertBaseContextToCGContext;
+import static crossmobile.ios.uikit.UITouchPhase.*;
 
 @CMLib(target = CMLibTarget.RUNTIME)
 public class UserInterfaceDrill {
@@ -49,8 +50,24 @@ public class UserInterfaceDrill {
         return new UITouch(Native.graphics().metrics().getHardwareToVirtual(hardwareX, hardwareY), pointerID, window, phase);
     }
 
-    public static UIEvent newUIEvent(UITouch[] active, Object originalEvent, int phase) {
-        return new UIEvent(active, originalEvent, phase);
+    public static void fireUIEvent(Object originalEvent, double[] x, double[] y, int activePointer, int phase) {
+        UIApplication app = UIApplication.sharedApplication();
+        if (app == null)
+            return;
+        UIWindow window = app.keyWindow();
+        if (window == null)
+            return;
+        UITouch[] touches = new UITouch[x.length];
+        for (int i = 0; i < touches.length; i++)
+            touches[i] = newUITouch(x[0], y[0], i, window, activePointer == i ? phase : Stationary);
+        if (phase == Began || phase == Moved) {
+            CGPoint[] points = new CGPoint[touches.length];
+            for (int i = 0; i < touches.length; i++)
+                points[i] = touches[i].locationInView(null);
+            Native.graphics().metrics().setActiveTouchLocations(points);
+        } else
+            Native.graphics().metrics().setActiveTouchLocations(null);
+        window.sendEvent(new UIEvent(touches, originalEvent, phase));
     }
 
     public static UIViewController getViewControllerFromView(UIView view) {

@@ -24,7 +24,8 @@ import static java.nio.file.attribute.PosixFilePermission.*;
 
 public class Commander {
 
-    private static final int INVALID_EXIT_VALUE = Integer.MIN_VALUE;
+    private static final int PROCESS_IS_NOT_RUNNING = Integer.MIN_VALUE;
+    private static final int PROCESS_STILL_RUNNING = Integer.MIN_VALUE + 1;
     private static final Charset ENCODING = StandardCharsets.UTF_8;
     private static final boolean AS_WINDOWS = System.getProperty("os.name", "unknown").toLowerCase().startsWith("windows");
 
@@ -41,7 +42,7 @@ public class Commander {
     private BufferedWriter bufferin = null;
     private OutputProxy procout = null;
     private OutputProxy procerr = null;
-    private int exit_value = INVALID_EXIT_VALUE;
+    private int exit_value = PROCESS_IS_NOT_RUNNING;
     private boolean out_is_terminated = true;
     private boolean err_is_terminated = true;
     private Thread waitThread;
@@ -191,8 +192,7 @@ public class Commander {
     public synchronized Commander exec() {
         if (proc != null)
             throw new RuntimeException("Command already running");
-        exit_value = INVALID_EXIT_VALUE;
-        proc = null;
+        exit_value = PROCESS_IS_NOT_RUNNING;
         waitThread = null;
         try {
             if (detachable)
@@ -210,11 +210,12 @@ public class Commander {
             err_is_terminated = false;
             procout.worker.start();
             procerr.worker.start();
+            exit_value = PROCESS_STILL_RUNNING;
             findPID();
         } catch (IOException ex) {
             sendLine("Process can not start: " + ex.getMessage(), errS, errC);
             if (finish != null)
-                finish.accept(INVALID_EXIT_VALUE);
+                finish.accept(PROCESS_IS_NOT_RUNNING);
             return null;
         }
         return this;
@@ -354,8 +355,8 @@ public class Commander {
     }
 
     public int exitValue() {
-        if (exit_value == INVALID_EXIT_VALUE)
-            throw new IllegalThreadStateException("Unable to retrieve exit value");
+        if (exit_value == PROCESS_STILL_RUNNING)
+            throw new IllegalThreadStateException("Process is still running, unable to retrieve exit value");
         return exit_value;
     }
 

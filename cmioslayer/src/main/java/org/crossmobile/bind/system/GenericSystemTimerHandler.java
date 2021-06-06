@@ -7,12 +7,13 @@
 package org.crossmobile.bind.system;
 
 import crossmobile.ios.foundation.NSTimer;
-import org.crossmobile.bridge.LifecycleBridge.SystemTimerHandler;
+import org.crossmobile.bridge.Native;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
 
 import static crossmobile.ios.foundation.FoundationDrill.fireMillis;
+import static org.crossmobile.bridge.LifecycleBridge.SystemTimerHandler;
 
 public class GenericSystemTimerHandler extends Thread implements SystemTimerHandler {
     private final Collection<NSTimer> registry = new LinkedHashSet<>();
@@ -20,9 +21,8 @@ public class GenericSystemTimerHandler extends Thread implements SystemTimerHand
     private final Collection<NSTimer> toRemove = new LinkedHashSet<>();
 
     public GenericSystemTimerHandler() {
-        super("NSRunLoopThread");
+        super("Timer Scheduler");
         setDaemon(true);
-        start();
     }
 
     @Override
@@ -46,7 +46,7 @@ public class GenericSystemTimerHandler extends Thread implements SystemTimerHand
                 long now = System.currentTimeMillis();
                 for (NSTimer timer : registry) {
                     if (fireMillis(timer) <= now)
-                        timer.fire();
+                        Native.lifecycle().runAndWaitOnEventThread(timer::fire);
                     if (!timer.isValid())
                         toRemove.add(timer);
                 }
@@ -79,14 +79,22 @@ public class GenericSystemTimerHandler extends Thread implements SystemTimerHand
         synchronized (toAdd) {
             toAdd.add(timer);
         }
-        notifyAll();
+        synchronized (this) {
+            notifyAll();
+        }
     }
 
     @Override
-    public void terminate() {
+    public void quitTimers() {
         for (NSTimer timer : registry)
             timer.invalidate();
-        interrupt();
-        notifyAll();
+        try {
+            interrupt();
+        } catch (Exception ignored) {
+        }
+        try {
+            interrupt();
+        } catch (Exception ignored) {
+        }
     }
 }
