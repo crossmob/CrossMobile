@@ -1,20 +1,20 @@
 [submodule "cmmanager"]
 	path = cmmanager
-	url = https://github.com/Aroma-UI/cmmanager
+	url = https://github.com/crossmob/cmmanager
 [submodule "cmbuild"]
 	path = cmbuild
-	url = https://github.com/Aroma-UI/cmbuild
+	url = https://github.com/crossmob/cmbuild
 [submodule "SDL"]
 	path = aroma-dependencies/SDL
-	url = https://github.com/Aroma-UI/SDL.git
+	url = https://github.com/crossmob/SDL.git
 	branch = master
 [submodule "skia"]
 	path = aroma-dependencies/skia
-	url = https://github.com/Aroma-UI/skia.git
+	url = https://github.com/crossmob/skia.git
 	branch = chrome/m87
 [submodule "avian"]
 	path = aroma-dependencies/avian
-	url = https://github.com/Aroma-UI/avian.git
+	url = https://github.com/crossmob/avian.git
 	branch = master
 [submodule "depot_tools"]
 	path = aroma-dependencies/depot_tools
@@ -22,5 +22,5 @@
 	branch = master
 [submodule "binutils"]
 	path = aroma-dependencies/binutils
-	url = https://github.com/Aroma-UI/binutils.git
+	url = https://github.com/crossmob/binutils.git
 	branch = master
