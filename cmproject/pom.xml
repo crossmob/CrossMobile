@@ -109,6 +109,12 @@
                     <version>${crossmobile.version}</version>
                     <scope>runtime</scope>
                 </dependency>
+                <dependency>
+                    <groupId>org.crossmobile</groupId>
+                    <artifactId>cmbuild-aroma</artifactId>
+                    <version>1.0</version>
+                    <scope>provided</scope>
+                </dependency>
             </dependencies>
             <build>
                 <plugins>
