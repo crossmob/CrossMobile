@@ -18,11 +18,11 @@ import java.nio.file.Files;
 import java.nio.file.attribute.PosixFilePermissions;
 import java.util.List;
 import java.util.*;
+import java.util.function.Function;
 
 import static java.io.File.pathSeparator;
 import static java.io.File.separator;
-import static org.crossmobile.utils.SystemDependent.Execs.BASH;
-import static org.crossmobile.utils.SystemDependent.Execs.JAVA;
+import static org.crossmobile.utils.SystemDependent.Execs.*;
 
 public class SystemDependent {
 
@@ -142,16 +142,40 @@ public class SystemDependent {
         return PLUGINS + separator + "plugins";
     }
 
-    public static String getJavaExec() {
-        String JAVA_HOME = System.getProperty("java.home");
-        String EXEC = JAVA.filename();
-        String file = JAVA_HOME + File.separator + "bin" + File.separator + EXEC;
+    private static String getJavaRelatedExec(String javaHome, Execs exec) {
+        String EXEC = exec.filename();
+        String file = javaHome + separator + "bin" + separator + EXEC;
         if (new File(file).isFile())
             return file;
-        file = JAVA_HOME + File.separator + "jre" + File.separator + "bin" + File.separator + EXEC;
+        file = javaHome + separator + "jre" + separator + "bin" + separator + EXEC;
         if (new File(file).isFile())
             return file;
         return null;
+    }
+
+    public static String getJavaExec() {
+        return getJavaRelatedExec(System.getProperty("java.home"), JAVA);
+    }
+
+    public static String getJavahExec(File given) {
+        Function<String, String> r = s -> {
+            Log.info("Found javah under " + s);
+            return s;
+        };
+        if (given != null && given.isFile())
+            return r.apply(given.getAbsolutePath());
+        String javah = getJavaRelatedExec(System.getProperty("java.home"), JAVAH);
+        if (javah != null)
+            return r.apply(javah);
+        File sdkman = new File(System.getProperty("user.home"), ".sdkman" + separator + "candidates" + separator + "java/");
+        if (sdkman.isDirectory()) {
+            for (File home : sdkman.listFiles()) {
+                javah = getJavaRelatedExec(home.getAbsolutePath(), JAVAH);
+                if (javah != null)
+                    return r.apply(javah);
+            }
+        }
+        throw new RuntimeException("Unable to locate javah");
     }
 
     public static String safeArg(String arg) {
@@ -266,7 +290,7 @@ public class SystemDependent {
 
     public static String canAccessPath(String appName, String location) {
         try {
-            if (IS_MACOSX && new File(location).getAbsoluteFile().getCanonicalPath().startsWith(HOME + File.separator + "Desktop"))
+            if (IS_MACOSX && new File(location).getAbsoluteFile().getCanonicalPath().startsWith(HOME + separator + "Desktop"))
                 return "Location of " + appName + " seems to be under user's Desktop.\nThis is not recommended under Apple's file policy.\nNote you might experience hangs when accessing it.\n\nPlease consider installing it to a different location.";
         } catch (Exception ignored) {
         }

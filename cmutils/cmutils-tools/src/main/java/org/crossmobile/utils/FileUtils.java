@@ -729,7 +729,8 @@ public final class FileUtils {
         try (DataInputStream in = new DataInputStream(new FileInputStream(file))) {
             if (in.readInt() == 0xcafebabe) {
                 in.readUnsignedShort(); // Minor version
-                switch (in.readUnsignedShort()) {
+                int major = in.readUnsignedShort();
+                switch (major) {
                     case 45:
                         return "1.0";
                     case 46:
@@ -750,9 +751,25 @@ public final class FileUtils {
                         return "9";
                     case 54:
                         return "10";
+                    case 55:
+                        return "11";
+                    case 56:
+                        return "12";
+                    case 57:
+                        return "13";
+                    case 58:
+                        return "14";
+                    case 59:
+                        return "15";
+                    case 60:
+                        return "16";
+                    case 61:
+                        return "17";
+                    default:
+                        throw new RuntimeException("Unknown java version with ID " + major);
                 }
             }
-        } catch (IOException ex) {
+        } catch (IOException ignored) {
         }
         return "<unknown>";
     }
