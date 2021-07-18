@@ -167,6 +167,7 @@ public class SystemDependent {
         String javah = getJavaRelatedExec(System.getProperty("java.home"), JAVAH);
         if (javah != null)
             return r.apply(javah);
+
         File sdkman = new File(System.getProperty("user.home"), ".sdkman" + separator + "candidates" + separator + "java/");
         if (sdkman.isDirectory()) {
             for (File home : sdkman.listFiles()) {
@@ -175,6 +176,19 @@ public class SystemDependent {
                     return r.apply(javah);
             }
         }
+
+        File macosjava = new File("/Library/Java/JavaVirtualMachines/");
+        if (macosjava.isDirectory()) {
+            for (File root : macosjava.listFiles()) {
+                File home = new File(root, "Contents/Home");
+                if (home.isDirectory()) {
+                    javah = getJavaRelatedExec(home.getAbsolutePath(), JAVAH);
+                    if (javah != null)
+                        return r.apply(javah);
+                }
+            }
+        }
+
         throw new RuntimeException("Unable to locate javah");
     }
 
