@@ -16,7 +16,10 @@ import java.io.File;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.*;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
 
 public class ReflectionUtils {
 
@@ -257,45 +260,6 @@ public class ReflectionUtils {
             cls = cls.getComponentType();
         }
         return counter;
-    }
-
-    public static Method createMethod(Class<?> declaringClass, String name, Class<?>[] paramTypes, Class<?> returnType) {
-        return createMethod(declaringClass, name, paramTypes, declaringClass, null, 0, 0, "", null, null, null);
-    }
-
-    public static Method createMethod(Class<?> declaringClass, String name, Class<?>[] parameterTypes, Class<?> returnType, Class<?>[] checkedExceptions, int modifiers, int slot, String signature, byte[] annotations, byte[] parameterAnnotations, byte[] annotationDefault) {
-        if (annotations == null)
-            annotations = new byte[]{};
-        if (parameterAnnotations == null)
-            parameterAnnotations = new byte[]{};
-        if (annotationDefault == null)
-            annotationDefault = new byte[]{};
-        try {
-            Constructor<Method> constr = Method.class.getDeclaredConstructor(Class.class, String.class, Class[].class, Class.class, Class[].class, int.class, int.class, String.class, byte[].class, byte[].class, byte[].class);
-            constr.setAccessible(true);
-            return constr.newInstance(declaringClass, name, parameterTypes, returnType, checkedExceptions, modifiers, slot, signature, annotations, parameterAnnotations, annotationDefault);
-        } catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
-            Log.error("Unable to create method");
-            return null;
-        }
-
-    }
-
-    public static Parameter createParam(Executable executable, int index) {
-        return createParam(null, 0, executable, index);
-    }
-
-    public static Parameter createParam(String name, int modifiers, Executable executable, int index) {
-        try {
-            if (name == null || name.isEmpty())
-                name = "arg" + index;
-            Constructor<Parameter> constr = Parameter.class.getDeclaredConstructor(String.class, int.class, Executable.class, int.class);
-            constr.setAccessible(true);
-            return constr.newInstance(name, modifiers, executable, index);
-        } catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
-            Log.error("Unable to create parameter", ex);
-            return null;
-        }
     }
 
     @SuppressWarnings("UseSpecificCatch")

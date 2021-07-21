@@ -115,7 +115,7 @@ public class CGImage extends CFType {
     }
 
     @Override
-    @SuppressWarnings("FinalizeDeclaration")
+    @SuppressWarnings({"FinalizeDeclaration", "deprecated"})
     protected void finalize() throws Throwable {
         super.finalize();
         if (Native.file().isTemporaryLocation(filename))

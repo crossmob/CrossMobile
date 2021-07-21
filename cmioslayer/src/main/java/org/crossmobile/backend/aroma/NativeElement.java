@@ -14,7 +14,7 @@ public abstract class NativeElement {
     }
 
     @Override
-    public final void finalize() {
+    protected final void finalize() {
         destroy(peer);
     }
 
