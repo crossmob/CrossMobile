@@ -32,6 +32,9 @@
             </properties>
         </profile>
         <profile>
+            <id>androidappbundle</id>
+        </profile>
+        <profile>
             <id>run</id>
         </profile>
         <profile>
