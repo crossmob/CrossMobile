@@ -19,7 +19,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Environment;
 import android.webkit.*;
 import android.widget.Toast;
@@ -41,11 +40,10 @@ import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.CMLib;
 import org.robovm.objc.block.VoidBlock2;
 
-import java.io.File;
 import java.util.Iterator;
+import java.util.concurrent.atomic.AtomicLong;
 
 import static android.content.Context.DOWNLOAD_SERVICE;
-import static org.crossmobile.bridge.system.BaseUtils.listFiles;
 
 @CMLib(name = "cmwebkit")
 @SuppressWarnings("deprecation")
@@ -306,6 +304,7 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
                 request.setVisibleInDownloadsUi(true);
                 request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, filename);
                 request.setTitle(filename);
+                final AtomicLong downloadId = new AtomicLong(0);
 
                 MainActivity.current.registerReceiver(new BroadcastReceiver() {
                     @Override
@@ -313,15 +312,13 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
                         if (!DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(intent.getAction()))
                             return;
                         MainActivity.current.unregisterReceiver(this);
-                        Bundle extras = intent.getExtras();
-                        long downloadId = extras.getLong(DownloadManager.EXTRA_DOWNLOAD_ID);
-                        Cursor c = dm.query(new DownloadManager.Query().setFilterById(downloadId));
+                        Cursor c = dm.query(new DownloadManager.Query().setFilterById(downloadId.get()));
                         if (!c.moveToFirst())
                             return;
                         int status = c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS));
                         if (status == DownloadManager.STATUS_SUCCESSFUL) {
                             try {
-                                Uri uri = AndroidFileBridge.getExternalUri(Uri.parse(c.getString(c.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI))));
+                                Uri uri = dm.getUriForDownloadedFile(downloadId.get());
                                 MainActivity.current.getStateListener().launch(null, new Intent().setAction(android.content.Intent.ACTION_VIEW)
                                         .setDataAndType(uri, mime)
                                         .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION));
@@ -329,18 +326,13 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
                                 Toast.makeText(MainActivity.current, "Unable to display external file. It can still be found as Downloaded content", 2).show();
                             }
                         } else if (status == DownloadManager.STATUS_FAILED) {
-                            for (File f : listFiles(new File(MainActivity.current.getCacheDir().getAbsolutePath())))
-                                if (f.getName().contains(String.valueOf(downloadId))) {
-                                    //noinspection ResultOfMethodCallIgnored
-                                    f.delete();
-                                    break;
-                                }
+                            dm.remove(downloadId.get());
                             Toast.makeText(MainActivity.current, "Unable to download external file", 2).show();
                         } else
                             Toast.makeText(MainActivity.current, "Unable to download external file (status " + status + ")", 2).show();
                     }
                 }, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
-                dm.enqueue(request);
+                downloadId.set(dm.enqueue(request));
             }, AndroidPermission.WRITE_EXTERNAL_STORAGE);
         }
 
