@@ -119,7 +119,6 @@ crossmobile/ios/contacts/CNValueType.java
 crossmobile/ios/contacts/package-info.java
 
 Creating file cmplugin-ios-cmaddressbook-<VERSION>.jar
-native/cmaddressbook.a
 native/crossmobile_ios_accounts_ACAccount.h
 native/crossmobile_ios_accounts_ACAccountCredential.h
 native/crossmobile_ios_accounts_ACAccountStore.h
@@ -362,7 +361,6 @@ crossmobile/ios/gamekit/GKSessionMode.java
 crossmobile/ios/gamekit/package-info.java
 
 Creating file cmplugin-ios-cmgamekit-<VERSION>.jar
-native/cmgamekit.a
 native/crossmobile_ios_gamekit_GKDataReceiveHandler.h
 native/crossmobile_ios_gamekit_GKPeerPickerController.h
 native/crossmobile_ios_gamekit_GKPeerPickerControllerDelegate.h
@@ -468,7 +466,6 @@ crossmobile/ios/uikit/UIImagePickerControllerQualityType.java
 crossmobile/ios/uikit/UIImagePickerControllerSourceType.java
 
 Creating file cmplugin-ios-cmimage-<VERSION>.jar
-native/cmimage.a
 native/crossmobile_ios_coreimage_CIContext.h
 native/crossmobile_ios_coreimage_CIFilter.h
 native/crossmobile_ios_coreimage_CIImage.h
@@ -1480,7 +1477,6 @@ Creating file cmplugin-ios-cmioslayer-<VERSION>.jar
 native/CM_Block_Reverse_cmioslayer_0.h
 native/CM_Block_Reverse_cmioslayer_1.h
 native/CM_Block_Reverse_cmioslayer_2.h
-native/cmioslayer.a
 native/crossmobile_ios_coregraphics_CGAffineTransform.h
 native/crossmobile_ios_coregraphics_CGBitmapContext.h
 native/crossmobile_ios_coregraphics_CGColor.h
@@ -4498,7 +4494,6 @@ org/crossmobile/backend/swing/SwingMapViewWrapper.java
 org/crossmobile/backend/swing/SwingWrapperMapBridge.java
 
 Creating file cmplugin-ios-cmlocation-<VERSION>.jar
-native/cmlocation.a
 native/crossmobile_ios_corelocation_CLHeading.h
 native/crossmobile_ios_corelocation_CLLocation.h
 native/crossmobile_ios_corelocation_CLLocationCoordinate2D.h
@@ -4678,7 +4673,6 @@ crossmobile/ios/mediaplayer/MPVolumeView.java
 crossmobile/ios/mediaplayer/package-info.java
 
 Creating file cmplugin-ios-cmmedia-<VERSION>.jar
-native/cmmedia.a
 native/crossmobile_ios_audiotoolbox_AudioServices.h
 native/crossmobile_ios_avfoundation_AVAudioPlayer.h
 native/crossmobile_ios_avfoundation_AVAudioPlayerDelegate.h
@@ -4753,7 +4747,6 @@ crossmobile/ios/messageui/package-info.java
 org/crossmobile/backend/android/AndroidMessageBridge.java
 
 Creating file cmplugin-ios-cmmessages-<VERSION>.jar
-native/cmmessages.a
 native/crossmobile_ios_messageui_MFMailComposeViewController.h
 native/crossmobile_ios_messageui_MFMailComposeViewControllerDelegate.h
 native/crossmobile_ios_messageui_MFMessageComposeViewController.h
@@ -4872,7 +4865,6 @@ org/crossmobile/backend/android/notifications/package-info.java
 Creating file cmplugin-ios-cmnotifications-<VERSION>.jar
 native/CM_Block_Reverse_cmnotifications_0.h
 native/CM_Block_Reverse_cmnotifications_1.h
-native/cmnotifications.a
 native/crossmobile_ios_uikit_UIMutableUserNotificationAction.h
 native/crossmobile_ios_uikit_UIMutableUserNotificationCategory.h
 native/crossmobile_ios_uikit_UIUserNotificationAction.h
@@ -5062,7 +5054,6 @@ org/crossmobile/backend/android/billing/SkuDetails.java
 org/crossmobile/backend/android/billing/package-info.java
 
 Creating file cmplugin-ios-cmpayment-<VERSION>.jar
-native/cmpayment.a
 native/crossmobile_ios_storekit_SKMutablePayment.h
 native/crossmobile_ios_storekit_SKPayment.h
 native/crossmobile_ios_storekit_SKPaymentQueue.h
@@ -5167,7 +5158,6 @@ crossmobile/ios/quicklook/QLPreviewItem.java
 crossmobile/ios/quicklook/package-info.java
 
 Creating file cmplugin-ios-cmquicklook-<VERSION>.jar
-native/cmquicklook.a
 native/crossmobile_ios_quicklook_QLPreviewController.h
 native/crossmobile_ios_quicklook_QLPreviewControllerDataSource.h
 native/crossmobile_ios_quicklook_QLPreviewControllerDelegate.h
@@ -5222,7 +5212,6 @@ org/crossmobile/backend/desktop/DesktopSocial.java
 org/crossmobile/bind/system/SocialRegister.java
 
 Creating file cmplugin-ios-cmsocial-<VERSION>.jar
-native/cmsocial.a
 native/crossmobile_ios_social_SLComposeServiceViewController.h
 native/crossmobile_ios_social_SLComposeViewController.h
 native/crossmobile_ios_social_SLComposeViewControllerCompletionHandler.h
@@ -5294,7 +5283,6 @@ crossmobile/ios/touchid/package-info.java
 org/crossmobile/backend/android/AndroidSecurityBridge.java
 
 Creating file cmplugin-ios-cmtouchid-<VERSION>.jar
-native/cmtouchid.a
 native/crossmobile_ios_touchid_LAContext.h
 
 Creating file cmplugin-swing-cmtouchid-<VERSION>.jar
@@ -5388,7 +5376,6 @@ org/crossmobile/bind/wrapper/WebWrapper.java
 Creating file cmplugin-ios-cmwebkit-<VERSION>.jar
 native/CM_Block_Reverse_cmwebkit_0.h
 native/CM_Block_Reverse_cmwebkit_1.h
-native/cmwebkit.a
 native/crossmobile_ios_webkit_WKBackForwardList.h
 native/crossmobile_ios_webkit_WKBackForwardListItem.h
 native/crossmobile_ios_webkit_WKFrameInfo.h
