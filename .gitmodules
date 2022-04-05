@@ -4,23 +4,3 @@
 [submodule "cmbuild"]
 	path = cmbuild
 	url = https://github.com/crossmob/cmbuild
-[submodule "SDL"]
-	path = aroma-dependencies/SDL
-	url = https://github.com/crossmob/SDL.git
-	branch = master
-[submodule "skia"]
-	path = aroma-dependencies/skia
-	url = https://github.com/crossmob/skia.git
-	branch = chrome/m87
-[submodule "avian"]
-	path = aroma-dependencies/avian
-	url = https://github.com/crossmob/avian.git
-	branch = master
-[submodule "depot_tools"]
-	path = aroma-dependencies/depot_tools
-	url = https://chromium.googlesource.com/chromium/tools/depot_tools.git
-	branch = master
-[submodule "binutils"]
-	path = aroma-dependencies/binutils
-	url = https://github.com/crossmob/binutils.git
-	branch = master

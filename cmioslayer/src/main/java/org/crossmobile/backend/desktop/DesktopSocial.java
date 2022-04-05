@@ -16,7 +16,7 @@ import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.ann.CMLib;
 import org.crossmobile.bridge.ann.CMLibTarget;
 
-@CMLib(name = "cmsocial", target = CMLibTarget.DESKTOP)
+@CMLib(name = "cmsocial", target = CMLibTarget.SWING)
 public class DesktopSocial {
 
     @SuppressWarnings("deprecation")

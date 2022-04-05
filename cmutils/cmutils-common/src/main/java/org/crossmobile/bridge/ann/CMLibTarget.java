@@ -11,70 +11,61 @@ public enum CMLibTarget {
      * Elements only to appear in source code. Will disappear from all
      * libraries, compile and runtime.
      */
-    SOURCEONLY(false, false, false, false, false, false, false, false),
+    SOURCEONLY(false, false, false, false, false, false, false),
     /**
      * Elements used only at compile time. Will disappear in all runtime
      * libraries.
      */
-    BUILDONLY(true, false, false, false, false, false, false, false),
-    /**
-     * Runtime elements used only under Desktop targets, like Swing and Aroma
-     */
-    DESKTOP(false, true, true, false, false, false, false, false),
+    BUILDONLY(true, false, false, false, false, false, false),
     /**
      * Runtime elements specific for Swing
      */
-    SWING(false, true, false, false, false, false, false, false),
-    /**
-     * Runtime elements specific for Aroma
-     */
-    AROMA(false, false, true, false, false, false, false, false),
+    SWING(false, true, false, false, false, false, false),
     /**
      * Runtime elements specific for Android
      */
-    ANDROID(false, false, false, true, false, false, false, false),
+    ANDROID(false, false, true, false, false, false, false),
     /**
      * Java runtime elements, specific for iOS. Does not define native bindings.
      * Not present at compile time.
      */
-    IOS(false, false, false, false, true, false, false, false),
+    IOS(false, false, false, true, false, false, false),
     /**
      * Runtime elements specific for UWL
      */
-    UWP(false, false, false, false, false, false, true, false),
+    UWP(false, false, false, false, false, true, false),
     /**
      * Runtime elements specific for Desktop
      */
-    API_NOUWP(true, true, true, true, true, true, true, false),
+    API_NOUWP(true, true, true, true, true, true, false),
     /**
      * Used in Java based targets only.
      */
-    JAVA(false, true, true, true, false, false, false, false),
+    JAVA(false, true, true, false, false, false, false),
     /**
      * Defines the CrossMobile API. Is used for native bindings.
      */
-    API(true, true, true, true, true, true, true, true),
+    API(true, true, true, true, true, true, true),
     /**
      * Part of the CrossMobile API. Is not used for native elements and do not
      * create plugins.
      */
-    APIJAVA(true, true, true, true, true, false, true, false),
+    APIJAVA(true, true, true, true, false, true, false),
     /**
      * Elements appear in all runtime environments, but not part of the API.
      */
-    RUNTIME(false, true, true, true, true, false, true, false),
+    RUNTIME(false, true, true, true, false, true, false),
     /**
      * Unknown target, default target for elements. Will launch a warning if an
      * element with this target is found.
      */
-    UNKNOWN(false, false, false, false, false, false, false, false);
+    UNKNOWN(false, false, false, false, false, false, false);
 
-    public final boolean compile, swing, android, iosjava, iosnative, uwpjava, uwpnative, aroma;
+    public final boolean compile, swing, android, iosjava, iosnative, uwpjava, uwpnative;
 
-    CMLibTarget(boolean compile, boolean swing, boolean aroma, boolean android, boolean iosjava, boolean iosnative, boolean uwpjava, boolean uwpnative) {
+    CMLibTarget(boolean compile, boolean swing, boolean android, boolean iosjava, boolean iosnative, boolean uwpjava, boolean uwpnative) {
         this.compile = compile;
         this.swing = swing;
-        this.aroma = aroma;
         this.android = android;
         this.iosjava = iosjava;
         this.iosnative = iosnative;
@@ -88,8 +79,6 @@ public enum CMLibTarget {
                 return true;
             case SWING:
                 return swing;
-            case AROMA:
-                return aroma;
             case ANDROID:
                 return android;
             case IOS:
@@ -103,7 +92,7 @@ public enum CMLibTarget {
     }
 
     public enum BaseTarget {
-        SWING, AROMA, ANDROID, IOS, UWP, COMPILE, ALL
+        SWING, ANDROID, IOS, UWP, COMPILE, ALL
     }
 
     public String listTargets() {
@@ -112,8 +101,6 @@ public enum CMLibTarget {
             targets.append(",compile");
         if (swing)
             targets.append(",swing");
-        if (aroma)
-            targets.append(",aroma");
         if (android)
             targets.append(",android");
         if (iosjava)

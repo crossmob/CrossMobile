@@ -22,6 +22,6 @@ public class PluginTest extends NSObject {
 
     @CMSelector("- (NSString*) systemVersion;")
     public String systemVersion() {
-        return Native.isAndroid() ? PluginTestAndroid.getAndroidVersion() : PluginTestDesktop.getVersion();
+        return Native.isAndroid() ? PluginTestAndroid.getAndroidVersion() : PluginTestSwing.getVersion();
     }
 }

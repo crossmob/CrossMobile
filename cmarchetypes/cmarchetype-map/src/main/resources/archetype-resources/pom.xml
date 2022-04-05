@@ -44,17 +44,6 @@
             </dependencies>
         </profile>
         <profile>
-            <id>aroma</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.crossmobile</groupId>
-                    <artifactId>cmplugin-aroma-cmlocation</artifactId>
-                    <version>${crossmobile.version}</version>
-                    <scope>runtime</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
             <id>ios</id>
             <dependencies>
                 <dependency>

@@ -32,16 +32,6 @@
             </dependencies>
         </profile>
         <profile>
-            <id>aroma</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.crossmobile</groupId>
-                    <artifactId>cmplugin-aroma-cmioslayer</artifactId>
-                    <version>${project.version}</version>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
             <id>android</id>
             <dependencies>
                 <dependency>

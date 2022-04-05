@@ -181,7 +181,7 @@ public interface LifecycleBridge extends Thread.UncaughtExceptionHandler {
      * Usually this is done automatically by the system and this method should be empty.
      * <p>
      * In the rare case that current java implementation doesn't really have a main event loop,
-     * then this method should trigger the event loop mechanism (i.e. under Aroma).
+     * then this method should trigger the event loop mechanism (i.e. under SDL and related technologies).
      */
     void handleEventLoop();
 

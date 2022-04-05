@@ -152,60 +152,9 @@
                     <skipIos>${skip.ios}</skipIos>
                     <skipUwp>${skip.uwp}</skipUwp>
                     <skipSwing>${skip.swing}</skipSwing>
-                    <skipAroma>${skip.aroma}</skipAroma>
                     <skipAndroid>${skip.android}</skipAndroid>
                     <skipCore>${skip.core}</skipCore>
                     <skipRvm>${skip.robovm}</skipRvm>
-                    <targets>
-                        <target>
-                            <os>linux</os>
-                            <arch>x86_64</arch>
-                            <includes>
-                                <include>../aroma-dependencies/SDL/include</include>
-                                <include>../aroma-dependencies/skia</include>
-                                <include>../aroma-dependencies/avian/include</include>
-                                <include>../aroma-dependencies/avian/src</include>
-                            </includes>
-                            <ccflags>
-                                <ccflag>-DDEBUG_AROMA</ccflag>
-                            </ccflags>
-                            <lflags>
-                                <lflag>-lfontconfig</lflag>
-                            </lflags>
-                        </target>
-                        <target>
-                            <os>linux</os>
-                            <arch>arm</arch>
-                            <includes>
-                                <include>../aroma-dependencies/SDL/include</include>
-                                <include>../aroma-dependencies/skia</include>
-                                <include>../aroma-dependencies/avian/include</include>
-                                <include>../aroma-dependencies/avian/src</include>
-                            </includes>
-                            <ccflags>
-                                <ccflag>-DDEBUG_AROMA</ccflag>
-                            </ccflags>
-                            <lflags>
-                                <lflag>-lfontconfig</lflag>
-                            </lflags>
-                        </target>
-                        <target>
-                            <os>linux</os>
-                            <arch>arm64</arch>
-                            <includes>
-                                <include>../aroma-dependencies/SDL/include</include>
-                                <include>../aroma-dependencies/skia</include>
-                                <include>../aroma-dependencies/avian/include</include>
-                                <include>../aroma-dependencies/avian/src</include>
-                            </includes>
-                            <ccflags>
-                                <ccflag>-DDEBUG_AROMA</ccflag>
-                            </ccflags>
-                            <lflags>
-                                <lflag>-lfontconfig</lflag>
-                            </lflags>
-                        </target>
-                    </targets>
                     <embedlibs>
                         <embedlib>com\.panayotis:appenh.*</embedlib>
                         <embedlib>org\.crossmobile:cmutils-common.*</embedlib>
@@ -222,7 +171,7 @@
                         <package>
                             <name>com.panayotis</name>
                             <plugin>cmioslayer</plugin>
-                            <target>DESKTOP</target>
+                            <target>SWING</target>
                         </package>
                         <package>
                             <name>com.eclipsesource</name>
@@ -287,7 +236,6 @@
                 <skip.ios>true</skip.ios>
                 <skip.robovm>true</skip.robovm>
                 <skip.swing>true</skip.swing>
-                <skip.aroma>true</skip.aroma>
                 <skip.android>true</skip.android>
                 <skip.core>true</skip.core>
                 <skip.uwp>false</skip.uwp>
@@ -303,16 +251,6 @@
             <id>fast-swing-build</id>
             <properties>
                 <skip.ios>true</skip.ios>
-                <skip.aroma>true</skip.aroma>
-                <skip.android>true</skip.android>
-                <skip.robovm>true</skip.robovm>
-            </properties>
-        </profile>
-        <profile>
-            <id>fast-aroma-build</id>
-            <properties>
-                <skip.ios>true</skip.ios>
-                <skip.swing>true</skip.swing>
                 <skip.android>true</skip.android>
                 <skip.robovm>true</skip.robovm>
             </properties>
@@ -322,7 +260,6 @@
             <properties>
                 <skip.ios>true</skip.ios>
                 <skip.swing>true</skip.swing>
-                <skip.aroma>true</skip.aroma>
                 <skip.robovm>true</skip.robovm>
             </properties>
         </profile>
@@ -334,7 +271,6 @@
         <skip.ios>false</skip.ios>
         <skip.robovm>true</skip.robovm>
         <skip.swing>false</skip.swing>
-        <skip.aroma>false</skip.aroma>
         <skip.android>false</skip.android>
         <skip.core>false</skip.core>
         <skip.uwp>true</skip.uwp>

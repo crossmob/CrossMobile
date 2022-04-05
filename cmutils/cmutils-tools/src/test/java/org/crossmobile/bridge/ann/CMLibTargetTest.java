@@ -23,16 +23,14 @@ public class CMLibTargetTest {
             res += 2;
         if (target.swing)
             res += 4;
-        if (target.aroma)
-            res += 8;
         if (target.iosjava)
-            res += 16;
+            res += 8;
         if (target.iosnative)
-            res += 32;
+            res += 16;
         if (target.uwpjava)
-            res += 64;
+            res += 32;
         if (target.uwpnative)
-            res += 128;
+            res += 64;
         return res;
     }
 

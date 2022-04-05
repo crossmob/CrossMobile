@@ -14,8 +14,7 @@ import static org.crossmobile.utils.TextUtils.iteratorToString;
 public enum Flavour {
     SWING("Swing"),
     IOS("IOS"),
-    ANDROID("Android"),
-    AROMA("Aroma");
+    ANDROID("Android");
 
     private static final String packg_pre = "org.crossmobile.backend.";
     private static final String packg_mid = ".Native";
