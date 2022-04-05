@@ -189,20 +189,20 @@ public final class Pom {
     private boolean profileExists(String profile) {
         AtomicBoolean exists = new AtomicBoolean(false);
         pomWalker.path("/project").execIf(w -> !w.nodeExists("profiles"),
-                w -> w.add("profiles").parent())
+                        w -> w.add("profiles").parent())
                 .node("profiles").execIf(w -> w.nodeExists("profile"),
-                w -> w.filterNodes("profile",
-                        p -> exists.set(true), p -> p.nodeWithTextExists("id", profile)));
+                        w -> w.filterNodes("profile",
+                                p -> exists.set(true), p -> p.nodeWithTextExists("id", profile)));
 
         return exists.get();
     }
 
     private void updateTheme(Dependency theme) {
         pomWalker.path("/project/dependencies").tag().nodes("dependency",
-                d -> d.execIf(n -> n.node("artifactId").text().contains("cmtheme"),
-                        XMLWalker::remove
-                )
-        ).toTag().add("dependency")
+                        d -> d.execIf(n -> n.node("artifactId").text().contains("cmtheme"),
+                                XMLWalker::remove
+                        )
+                ).toTag().add("dependency")
                 .add("groupId").setText(theme.groupId).parent()
                 .add("artifactId").setText(theme.artifactId).parent()
                 .add("version").setText(theme.version.equals(Version.VERSION) ? "${crossmobile.version}" : theme.version);
@@ -267,7 +267,8 @@ public final class Pom {
 
         /* Remove obsolete desktop profile, if (obsolete) uwp profile exists */
         AtomicBoolean foundUWP = new AtomicBoolean(false);
-        pomWalker.path("/project/profiles").nodes("profile", prof -> foundUWP.set(foundUWP.get() || prof.nodeWithTextExists("id", "uwp")));
+        if (pomWalker.pathExists("/project/profiles"))
+            pomWalker.path("/project/profiles").nodes("profile", prof -> foundUWP.set(foundUWP.get() || prof.nodeWithTextExists("id", "uwp")));
         if (foundUWP.get())
             pomWalker.path("/project/profiles").nodes("profile", prof -> {
                 if (prof.nodeWithTextExists("id", "uwp") || prof.nodeWithTextExists("id", "desktop"))
