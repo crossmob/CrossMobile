@@ -21,8 +21,6 @@ CrossMobile is **not** a hybrid solution. It doesn't run code under an invisible
 Android implementation details from the developer.
 * **Desktop** : with technologies similar to the Android backend, reuse as much Java code as possible, provide the same experience
 to the Desktop as a stand-alone Java (JAR based) application.
-* **UWP** : with the help of the [WinObjC](https://github.com/crossmob/WinObjC) tool, it is also possible to create native UWP applications, 
-transpiled to Objective C with the XMLVM tool.
 
 CrossMobile is a mature project, it is developed for more than 5 years up to now and proved its stability through various 
 commercially published applications.
@@ -39,10 +37,10 @@ or a detailed ChangeLog [here](https://github.com/crossmob/CrossMobile/blob/mast
 
 ### Requirements
 
-|   | macOS | Windows | Linux |
-|---|-------|---------|--------|
-| Required | macOS 10.12.6 <br/> Xcode 9.2 <br/> Android command line tools 3.5 | Windows 7 <br/> Android command line tools 3.5 | x64 distribution <br/> Android command line tools 3.5
-| Recommended | macOS 10.14+ <br/> Xcode 11.+ <br/> Android Studio 3.5+ | Windows 10 64 bit<br/> Android Studio 3.5+ | x64 distribution <br/> Android Studio 3.5+
+|             | macOS                                                              | Windows                                        | Linux                                                 |
+|-------------|--------------------------------------------------------------------|------------------------------------------------|-------------------------------------------------------|
+| Required    | macOS 10.12.6 <br/> Xcode 9.2 <br/> Android command line tools 3.5 | Windows 7 <br/> Android command line tools 3.5 | x64 distribution <br/> Android command line tools 3.5 |
+| Recommended | macOS 10.14+ <br/> Xcode 11.+ <br/> Android Studio 3.5+            | Windows 10 64 bit<br/> Android Studio 3.5+     | x64 distribution <br/> Android Studio 3.5+            |
 
 ### More information
 For more information about CrossMobile, please visit its dedicated site [crossmobile.org](https://crossmobile.org).
