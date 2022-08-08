@@ -41,7 +41,7 @@
 
         <version.appbundler>1.1.0</version.appbundler>
         <version.appenh>0.6.1</version.appenh>
-        <version.hrgui>0.2.5</version.hrgui>    <!-- note! hrgui depends on appenh; make sure that there's no version conflict here -->
+        <version.hrgui>0.3.0</version.hrgui>    <!-- note! hrgui depends on appenh; make sure that there's no version conflict here -->
         <version.jupidator>0.9.0.2</version.jupidator>
     </properties>
 
