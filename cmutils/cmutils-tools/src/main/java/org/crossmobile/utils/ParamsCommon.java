@@ -49,6 +49,7 @@ public enum ParamsCommon {
     MAIN_STORYBOARD(""),
     LAUNCH_STORYBOARD(""),
     CM_SCREEN_SCALE("DPI"),
+    CM_SCALE_FACTOR("1", true, LOCAL),
     CM_PROJECT("iphone"),
     CM_DESKTOP_SKIN("system"),
     CM_KEYBOARD_SUPPORT("quit:pause:back:menu:home:rotate:multitouch"),
