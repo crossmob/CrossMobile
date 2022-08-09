@@ -97,6 +97,7 @@ public class SystemDependent {
         res.add(new ExtPath(HOME + "/Downloads", 3));
         res.add(new ExtPath(HOME + "/Desktop", 3));
         res.add(new ExtPath(HOME + "/Android", 3));
+        res.add(new ExtPath(HOME + "/.sdk", 3));
         res.add(new ExtPath(HOME + "/.local/share/JetBrains/Toolbox/apps", 4));
         res.add(new ExtPath(HOME + "/.sdkman/candidates/java", 2));
 

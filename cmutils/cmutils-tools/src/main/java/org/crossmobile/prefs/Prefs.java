@@ -152,7 +152,10 @@ public class Prefs {
 
 
     private static String getAndroidSDKManagerLocation(String androidSDKLocation) {
-        return androidSDKLocation.isEmpty() ? "" : getSafeFile(androidSDKLocation + File.separator + "tools" + File.separator + "bin" + File.separator + SDKMANAGER.filename());
+        return androidSDKLocation.isEmpty() ? "" : getSafeFile(
+                androidSDKLocation + File.separator + "tools" + File.separator + "bin" + File.separator + SDKMANAGER.filename(),
+                androidSDKLocation + File.separator + "cmdline-tools" + File.separator + "bin" + File.separator + SDKMANAGER.filename()
+        );
     }
 
     private static String getAdbLocation(String androidSDKLocation) {
@@ -202,8 +205,11 @@ public class Prefs {
         setTagLocation(VISUALSTUDIO_LOCATION, fname);
     }
 
-    private static String getSafeFile(String path) {
-        return new File(path).exists() ? path : "";
+    private static String getSafeFile(String... paths) {
+        for (String path : paths)
+            if (new File(path).exists())
+                return path;
+        return "";
     }
 
     private static String getTagLocation(String TAG) {
