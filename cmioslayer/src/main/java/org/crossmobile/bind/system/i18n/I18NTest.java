@@ -8,7 +8,7 @@ package org.crossmobile.bind.system.i18n;
 
 public class I18NTest {
 
-    // It needs to be on it's own class, for obfuscating rasons
+    // It needs to be on its own class, for obfuscating rasons
     public static final boolean I18N_SUPPORT;
 
     static {
