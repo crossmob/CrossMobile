@@ -12,11 +12,15 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.function.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
 
 import static java.util.stream.Collectors.toList;
 import static org.crossmobile.bridge.system.BaseUtils.listFiles;
@@ -676,6 +680,31 @@ public final class FileUtils {
 
     public static boolean endsWithPathSeparator(String path) {
         return path.endsWith("/") || path.endsWith("\\");
+    }
+
+    public static boolean zip(File sourceDir, File destZip) {
+
+        try (ZipOutputStream zs = new ZipOutputStream(new FileOutputStream(destZip))) {
+            Path pp = Paths.get(sourceDir.getPath());
+            Files.walk(pp)
+                    .filter(path -> !Files.isDirectory(path))
+                    .forEach(path -> {
+                        ZipEntry zipEntry = new ZipEntry(pp.relativize(path).toString());
+                        try {
+                            zs.putNextEntry(zipEntry);
+                            Files.copy(path, zs);
+                            zs.closeEntry();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+        } catch (Throwable th) {
+            if (th instanceof RuntimeException && th.getMessage().isEmpty() && th.getCause() != null)
+                th = th.getCause();
+            Log.error(th);
+            return false;
+        }
+        return true;
     }
 
     public static boolean unzip(File zipFilePath, File destDir) {
