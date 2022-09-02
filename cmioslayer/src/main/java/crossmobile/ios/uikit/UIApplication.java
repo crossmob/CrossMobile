@@ -112,6 +112,7 @@ public class UIApplication extends UIResponder {
                         System.out.println("The app delegate must implement the window field and override window() and setWindow(UIWindow window) methods if it wants to use a main storyboard file.");
                     }
                 }
+                Native.lifecycle().postOnEventThread(() -> disableSplash(launchTime, splashWait, disableSplash));
                 instance.delegate.didFinishLaunchingWithOptions(instance, Native.lifecycle().consumeLaunchOptions());
                 NSNotificationCenter.defaultCenter().postNotificationName(NSNotificationName.UIApplicationDidFinishLaunching, instance);
 
@@ -122,10 +123,6 @@ public class UIApplication extends UIResponder {
                     throw new NullPointerException("Unable to locate main Window");
                 if (instance.keyWindow.rootViewController() == null)
                     throw new NullPointerException("Unable to locate main View Controller");
-                instance.keyWindow.addSubview(instance.keyWindow.rootViewController().view());
-                Native.graphics().relayoutMainView();
-                Native.lifecycle().postOnEventThread(instance.keyWindow::layoutSubviews);
-                disableSplash(launchTime, splashWait, disableSplash);
             });
         });
         final Object sleepForever = new Object();

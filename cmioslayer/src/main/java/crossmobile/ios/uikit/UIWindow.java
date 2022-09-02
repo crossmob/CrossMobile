@@ -56,13 +56,6 @@ public class UIWindow extends UIView {
     }
 
     @Override
-    public void addSubview(UIView subView) {
-        if (subView.controller != null)
-            setRootViewController(subView.controller);
-        super.addSubview(subView);
-    }
-
-    @Override
     public UIWindow window() {
         return this;
     }
@@ -77,6 +70,12 @@ public class UIWindow extends UIView {
         for (UIView child : subviews())
             child.removeFromSuperview();
         this.rootViewController = controller;
+        if (controller != null)
+            Native.lifecycle().postOnEventThread(() -> {
+                addSubview(controller.view());
+                Native.graphics().relayoutMainView();
+                layoutSubviews();
+            });
     }
 
     /**
