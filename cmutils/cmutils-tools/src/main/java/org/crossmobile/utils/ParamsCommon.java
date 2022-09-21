@@ -40,7 +40,7 @@ public enum ParamsCommon {
     KEY_ALIAS("androiddebugkey", true, LOCAL),
     KEY_STORE_PASSWORD("", true, LOCAL),
     KEY_ALIAS_PASSWORD("", true, LOCAL),
-    SDK_DIR(Prefs.getAndroidSDKLocation(), true, LOCAL),
+    SDK_DIR("", true, LOCAL),
 
     FILESHARINGENABLED("false"),
     CM_OBJC_SAFEMEMBERS("true"),

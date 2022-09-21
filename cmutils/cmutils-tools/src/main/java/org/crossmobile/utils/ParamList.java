@@ -6,6 +6,8 @@
 
 package org.crossmobile.utils;
 
+import org.crossmobile.prefs.Prefs;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -27,6 +29,10 @@ public class ParamList {
         if (file.isFile())
             try {
                 props.load(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
+                String sdkDir = Prefs.getAndroidSDKLocation();
+                String givenSdkDir = props.getProperty("sdk.dir", "");
+                if (!sdkDir.trim().isEmpty() && new File(sdkDir).isDirectory() && (givenSdkDir.trim().isEmpty() || !new File(givenSdkDir).isDirectory()))
+                    props.put("sdk.dir", Prefs.getAndroidSDKLocation());
             } catch (IOException ignored) {
             }
     }
