@@ -50,12 +50,12 @@ file("local.properties").withInputStream {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 32
 
     defaultConfig {
         applicationId appId
         minSdkVersion 16
-        targetSdkVersion 30
+        targetSdkVersion 32
         multiDexEnabled true
     }
     compileOptions {
