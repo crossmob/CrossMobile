@@ -154,11 +154,13 @@ public class SystemUtilities {
             Constructor<T> constructor = typeClass.getDeclaredConstructor();
             constructor.setAccessible(true);
             return constructor.newInstance();
-        } catch (InstantiationException | NoSuchMethodException | IllegalAccessException | InvocationTargetException ignored) {
+        } catch (InstantiationException | NoSuchMethodException | IllegalAccessException |
+                 InvocationTargetException ignored) {
         }
         try {
             return typeClass.getConstructor().newInstance();
-        } catch (InstantiationException | NoSuchMethodException | IllegalAccessException | InvocationTargetException ignored) {
+        } catch (InstantiationException | NoSuchMethodException | IllegalAccessException |
+                 InvocationTargetException ignored) {
         }
         return null;
     }
@@ -263,10 +265,23 @@ public class SystemUtilities {
     public static <T> T safeInstantiation(Class<? extends T> classType, Class<T> defaultClassType) {
         if (classType == null)
             classType = defaultClassType;
+        Constructor<? extends T> constructor;
         try {
-            return classType.newInstance();
-        } catch (Exception ex) {
-            Native.lifecycle().quit("Unable to initialize " + getClassName(classType), ex);
+            constructor = classType.getConstructor();
+        } catch (Exception e1) {
+            // Maybe it's a private constructor
+            try {
+                constructor = classType.getDeclaredConstructor();
+                constructor.setAccessible(true);
+            } catch (Exception e2) {
+                Native.lifecycle().quit("Unable to find constructor for " + getClassName(classType), e2);
+                return null;
+            }
+        }
+        try {
+            return constructor.newInstance();
+        } catch (Exception e) {
+            Native.lifecycle().quit("Unable to initialize " + getClassName(classType), e);
             return null;
         }
     }
