@@ -138,6 +138,11 @@
 	return fields;
 }
 
+- (java_lang_reflect_Constructor*) getDeclaredConstructor___java_lang_Class_ARRAYTYPE :(XMLVMArray*) signature
+{
+    return [self getConstructor___java_lang_Class_ARRAYTYPE:signature];
+}
+
 - (java_lang_reflect_Constructor*) getConstructor___java_lang_Class_ARRAYTYPE :(XMLVMArray*) signature
 {
 	unsigned int count, i;

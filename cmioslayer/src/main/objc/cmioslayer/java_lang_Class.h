@@ -32,6 +32,7 @@ __declspec(dllexport)
 - (XMLVMArray*) getDeclaredFields__;
 - (NSObject*) newInstance__;
 - (java_lang_reflect_Constructor*) getConstructor___java_lang_Class_ARRAYTYPE :(XMLVMArray*) signature;
+- (java_lang_reflect_Constructor*) getDeclaredConstructor___java_lang_Class_ARRAYTYPE :(XMLVMArray*) signature;
 - (BOOL) isAssignableFrom___java_lang_Class:(java_lang_Class*) child;
 
 @end

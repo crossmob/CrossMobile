@@ -29,5 +29,6 @@ __declspec(dllexport)
 - (id) initWithClass: (java_lang_Class*) c andSignature: (XMLVMArray*) s andMangledConstructorName: (NSMutableString*) n;
 - (void) dealloc;
 - (java_lang_Object*) newInstance___java_lang_Object_ARRAYTYPE: (XMLVMArray*) params;
+-(void) setAccessible___boolean:(int) accessible;
 
 @end

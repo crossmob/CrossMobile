@@ -56,4 +56,9 @@
 	return obj;
 }
 
+-(void) setAccessible___boolean:(int) accessible
+{
+    // not needed under iOS
+}
+
 @end
