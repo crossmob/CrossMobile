@@ -205,7 +205,7 @@ public class SystemDependent {
 
         if (given.isEmpty())
             return false;
-        if (given.get(0) > req.get(0) && given.get(0) <= Integer.parseInt(Config.MAX_JAVA_VERSION))
+        if (given.get(0) > req.get(0))
             return true;
         if (given.size() < 2)
             return false;

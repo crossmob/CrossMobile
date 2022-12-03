@@ -24,9 +24,6 @@ public class Config {
 
     public final static String MIN_JAVA_VERSION = "1.8";
     public final static String MIN_JAVA_VERSION_FULL = "1.8.0_111";
-    public final static String MAX_JAVA_VERSION = "15";
-    public final static String JAVA_RANGE = "(" + MIN_JAVA_VERSION + " up to " + MAX_JAVA_VERSION + ")";
-
     public final static String CMPLUGIN_MAVEN_PLUGIN_SIGNATURE = "cmplugin-maven-plugin";
 
 }

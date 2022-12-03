@@ -16,15 +16,7 @@ public class SystemDependentTest {
     @SuppressWarnings({"ResultOfMethodCallIgnored", "ConstantConditions"})
     @Test
     public void testIsJavaOld() {
-        // Future proof methods
-        Integer.parseInt(Config.MAX_JAVA_VERSION);    //make sure it's just a number;
-        if (Config.MAX_JAVA_VERSION.startsWith("1."))
-            Integer.parseInt(Config.MAX_JAVA_VERSION.substring(2));
-        else
-            Integer.parseInt(Config.MAX_JAVA_VERSION);
-        assertEquals(4, TextUtils.listOfInts(Config.MIN_JAVA_VERSION_FULL).size());
-
-        int current = Integer.parseInt(Config.MAX_JAVA_VERSION);
+        // Future-proof methods
 
         assertFalse(SystemDependent.isJavaValid("1.0"));
         assertFalse(SystemDependent.isJavaValid("1.1"));
@@ -40,9 +32,6 @@ public class SystemDependentTest {
         assertTrue(SystemDependent.isJavaValid("10.0"));
         assertTrue(SystemDependent.isJavaValid("11.0"));
         assertTrue(SystemDependent.isJavaValid(Config.MIN_JAVA_VERSION_FULL));
-        assertTrue(SystemDependent.isJavaValid(Config.MAX_JAVA_VERSION + ".0"));
         assertTrue(SystemDependent.isJavaValid(Config.MIN_JAVA_VERSION + ".1"));
-        assertTrue(SystemDependent.isJavaValid(current + ".0"));
-        assertFalse(SystemDependent.isJavaValid((current + 1) + ".0"));
     }
 }
