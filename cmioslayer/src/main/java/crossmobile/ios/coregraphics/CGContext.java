@@ -76,8 +76,8 @@ public class CGContext extends CFType {
      * Changes current scale of user's coordinate system of this graphics
      * context.
      *
-     * @param sx The scale factor of the x axis.
-     * @param sy The scale factor of the y axis.
+     * @param sx The scale factor of the x-axis.
+     * @param sy The scale factor of the y-axis.
      */
     @CMFunction(" void CGContextScaleCTM ( CGContextRef c, CGFloat sx, CGFloat sy ); ")
     public void scaleCTM(double sx, double sy) {
@@ -320,7 +320,7 @@ public class CGContext extends CFType {
     /**
      * Strokes the line specified by the given points of this graphics context.
      *
-     * @param points The points that specify the line that should be stroke.
+     * @param points The points that specify the line that should be stroked.
      */
     @CMFunction(" void CGContextStrokeLineSegments ( CGContextRef c, const CGPoint *points, size_t count ); ")
     public void strokeLineSegments(@CMJoinMEM(memory = "points", size = "count") CGPoint... points) {

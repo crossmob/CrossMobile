@@ -41,8 +41,8 @@ public class AndroidBitmap implements NativeBitmap {
     }
 
     /**
-     * Create NinePatch chunk under java based on:
-     * https://gist.github.com/briangriffey/4391807
+     * Create NinePatch chunk under java based on
+     * <a href="https://gist.github.com/briangriffey/4391807">this gist</a>
      */
     private byte[] createNinePatchChunk(int top, int right, int bottom, int left) {
         ByteBuffer buffer = ByteBuffer.allocate(56).order(ByteOrder.nativeOrder());

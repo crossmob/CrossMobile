@@ -16,7 +16,7 @@ import java.util.Iterator;
 
 /**
  * Core object which creates and fires animations.
- * All methods in this class should be called bu the event thread
+ * All methods in this class should be called by the event thread
  */
 public class Animator {
 

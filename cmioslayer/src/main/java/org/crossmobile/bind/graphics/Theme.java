@@ -41,7 +41,7 @@ public class Theme {
 
     public final static class Font {
 
-        public static final String BACKCHAR = System.getProperty("cm.theme.font.backchar", "\u276E");
+        public static final String BACKCHAR = System.getProperty("cm.theme.font.backchar", "❮");
 
         private Font() {
         }

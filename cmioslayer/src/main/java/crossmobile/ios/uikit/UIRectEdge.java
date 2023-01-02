@@ -22,7 +22,7 @@ public final class UIRectEdge {
     /**
      * A rectangle that has only the top edge.
      */
-    public static final int Top = 1 << 0;
+    public static final int Top = 1;
 
     /**
      * A rectangle that has only the left edge.

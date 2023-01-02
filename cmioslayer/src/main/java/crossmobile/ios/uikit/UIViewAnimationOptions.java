@@ -17,7 +17,7 @@ public final class UIViewAnimationOptions {
     /**
      * The subviews are animated along with their parent view.
      */
-    public static final int LayoutSubviews = 1 << 0;
+    public static final int LayoutSubviews = 1;
 
     /**
      * The user interacts with the view during the animation.
@@ -68,7 +68,7 @@ public final class UIViewAnimationOptions {
     /**
      * The animation of the view speeds up at the beginning and then slows down.
      */
-    public static final int CurveEaseInOut = 0 << 16;
+    public static final int CurveEaseInOut = 0;
 
     /**
      * The animation of the view speeds up.
@@ -88,7 +88,7 @@ public final class UIViewAnimationOptions {
     /**
      * There is no transition specified for the view.
      */
-    public static final int TransitionNone = 0 << 20;
+    public static final int TransitionNone = 0;
 
     /**
      * The view flips around the vertical axis from left to right. In particular
@@ -132,7 +132,7 @@ public final class UIViewAnimationOptions {
     /**
      * Animation with default frames per second
      */
-    public static final int PreferredFramesPerSecondDefault = 0 << 24;
+    public static final int PreferredFramesPerSecondDefault = 0;
 
     /**
      * Animation with 30 frames per second

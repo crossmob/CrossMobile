@@ -12,8 +12,8 @@ import org.crossmobile.bridge.ann.CMEnum;
 public final class UNNotificationCategoryOptions {
 
     public static final long None = (0);
-    public static final long CustomDismissAction = (1 << 0);
-    public static final long AllowInCarPlay = (2 << 0);
+    public static final long CustomDismissAction = 1;
+    public static final long AllowInCarPlay = 2;
 
     UNNotificationCategoryOptions() {
     }

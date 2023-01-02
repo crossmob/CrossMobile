@@ -700,6 +700,7 @@ public final class FileUtils {
                     });
         } catch (Throwable th) {
             if (th instanceof RuntimeException && th.getMessage().isEmpty() && th.getCause() != null)
+                //noinspection AssignmentToCatchBlockParameter
                 th = th.getCause();
             Log.error(th);
             return false;

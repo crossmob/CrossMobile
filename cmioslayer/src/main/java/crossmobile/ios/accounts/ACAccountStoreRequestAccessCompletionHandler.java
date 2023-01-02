@@ -21,7 +21,7 @@ public interface ACAccountStoreRequestAccessCompletionHandler extends VoidBlock2
     /**
      * It is called when access to account stored is requested.
      *
-     * @param input1 TRUE, if access if granted.
+     * @param input1 true, if access is granted.
      * @param input2 The error in case of failure.
      */
     @Override

@@ -18,7 +18,7 @@ public final class NSCalendarOptions {
     /**
      * Arithmetic addition.
      */
-    public static final int NSCalendarWrapComponents = 1 << 0;
+    public static final int NSCalendarWrapComponents = 1;
 
     /**
      * Searching for a given time instance forward and backward.

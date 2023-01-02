@@ -101,7 +101,7 @@ public final class NSLayoutFormatOptions {
      *
      * @see crossmobile.ios.uikit.NSLayoutAttribute
      */
-    public static final int DirectionLeadingToTrailing = 0 << 8;
+    public static final int DirectionLeadingToTrailing = 0;
 
     /**
      * Applies a left to right alignment to the objects.

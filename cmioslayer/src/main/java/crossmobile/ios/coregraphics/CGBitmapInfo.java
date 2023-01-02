@@ -33,7 +33,7 @@ public final class CGBitmapInfo {
     /**
      * The default byte order.
      */
-    public static final int ByteOrderDefault = (0 << 12);
+    public static final int ByteOrderDefault = 0;
 
     /**
      * 16-bit little endian.

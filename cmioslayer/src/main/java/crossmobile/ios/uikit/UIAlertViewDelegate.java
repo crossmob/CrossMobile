@@ -12,7 +12,7 @@ import org.crossmobile.bridge.ann.CMSelector;
 /**
  * UIAlertViewDelegate interface is the delegate responsible for handling events
  * related to alert views.
- *
+ aytay* <p>
  *  * This object is deprecated, please use UIAlertController and actions instead.
  *  @see UIAlertController#addAction(UIAlertAction)
  */

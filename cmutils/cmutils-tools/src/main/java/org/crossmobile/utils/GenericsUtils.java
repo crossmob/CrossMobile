@@ -14,8 +14,8 @@ import java.util.Map;
 
 /**
  * /*
- * Based on ideas found here:
- * http://stackoverflow.com/questions/3403909/get-generic-type-of-class-at-runtime
+ * Based on ideas found
+ * <a href="http://stackoverflow.com/questions/3403909/get-generic-type-of-class-at-runtime">here</a>
  */
 public class GenericsUtils {
 

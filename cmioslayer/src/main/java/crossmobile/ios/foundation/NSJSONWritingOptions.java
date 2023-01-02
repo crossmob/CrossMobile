@@ -17,7 +17,7 @@ public final class NSJSONWritingOptions {
     /**
      * The JSON data is whitespaced so that is more readable.
      */
-    public static final int PrettyPrinted = 1 << 0;
+    public static final int PrettyPrinted = 1;
 
     private NSJSONWritingOptions() {
     }

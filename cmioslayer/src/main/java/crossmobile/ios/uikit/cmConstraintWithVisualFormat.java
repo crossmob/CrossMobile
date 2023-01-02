@@ -309,7 +309,7 @@ class cmConstraintWithVisualFormat {
         return result;
     }
 
-    private class Predicate {
+    private static class Predicate {
 
         private String relation;
         private String target;

@@ -48,8 +48,8 @@ public class CGImage extends CFType {
      * Constructs and returns a CGImage from the specified PNG image.
      *
      * @param provider               The PNG image that is used for the CGImage.
-     * @param decode                 The decode array to use, usually null.
-     * @param shouldInterpolate      WHether interpolation is desired.
+     * @param decode                 The decoded array to use, usually null.
+     * @param shouldInterpolate      Whether interpolation is desired.
      * @param CGColorRenderingIntent The way color is handled.
      * @return The new CGImage object.
      */

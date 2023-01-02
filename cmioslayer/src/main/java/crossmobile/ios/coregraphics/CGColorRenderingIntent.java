@@ -10,7 +10,7 @@ import org.crossmobile.bridge.ann.CMEnum;
 
 /**
  * CGColorRenderingIntent class defines different options concerning handing
- * colors that are not included in the range of the color space of the a graphic
+ * colors that are not included in the range of the color space of the graphics
  * context.
  */
 @CMEnum

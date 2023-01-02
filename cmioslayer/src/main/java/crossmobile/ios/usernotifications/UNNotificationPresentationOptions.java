@@ -12,7 +12,7 @@ import org.crossmobile.bridge.ann.CMEnum;
 public final class UNNotificationPresentationOptions {
 
     public final static long None = (0);
-    public final static long Badge = (1 << 0);
+    public final static long Badge = (1);
     public final static long Sound = (1 << 1);
     public final static long Alert = (1 << 2);
 

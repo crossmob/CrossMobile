@@ -187,7 +187,7 @@ public class AndroidSecurityBridge implements SecurityBridge {
         }
     }
 
-    private class FingerprintException extends Exception {
+    private static class FingerprintException extends Exception {
 
         public FingerprintException(Exception e) {
             super(e);

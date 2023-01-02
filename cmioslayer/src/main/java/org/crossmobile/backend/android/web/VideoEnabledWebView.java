@@ -20,7 +20,7 @@ import java.util.Map;
  * - Javascript is enabled by default and must not be disabled with getSettings().setJavaScriptEnabled(false).
  * - setWebChromeClient() must be called before any loadData(), loadDataWithBaseURL() or loadUrl() method.
  *
- * @author Cristian Perez (http://cpr.name)
+ * @author <a href="http://cpr.name">Cristian Perez</a>
  */
 public class VideoEnabledWebView extends WebView {
     public class JavascriptInterface {

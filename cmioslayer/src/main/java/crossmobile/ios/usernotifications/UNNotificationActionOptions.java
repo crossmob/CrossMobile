@@ -15,7 +15,7 @@ public final class UNNotificationActionOptions {
     }
 
     public static final long None = 0;
-    public static final long AuthenticationRequired = (1 << 0);
+    public static final long AuthenticationRequired = (1);
     public static final long Destructive = (1 << 1);
     public static final long Foreground = (1 << 2);
 }

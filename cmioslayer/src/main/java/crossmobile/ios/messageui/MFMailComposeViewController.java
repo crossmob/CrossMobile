@@ -83,7 +83,7 @@ public class MFMailComposeViewController extends UINavigationController {
      *                   a file that you want to include. This parameter must not be nil.
      * @param mimeType   The MIME type of the specified data. (For example, the
      *                   MIME type for a JPEG image is image/jpeg.) For a list of valid MIME
-     *                   types, see http://www.iana.org/assignments/media-types/. This parameter
+     *                   types, see <a href="http://www.iana.org/assignments/media-types/">here</a>. This parameter
      *                   must not be nil.
      * @param filename   The preferred filename to associate with the data.
      */

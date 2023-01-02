@@ -37,14 +37,14 @@ public @interface CMLib {
     CMLibTarget target() default CMLibTarget.UNKNOWN;
 
     /**
-     * @return List of native libraries required by this plugin to work
+     * @return A string array of native libraries required by this plugin to work
      */
     String[] libs() default {};
 
     /**
      * Include Headers to be added in the generated objc class
      *
-     * @return List of native includes required by this plugin to work
+     * @return A string array of native includes required by this plugin to work
      */
     String[] includes() default {};
 
@@ -56,7 +56,7 @@ public @interface CMLib {
     /**
      * Description of the plugin as presented to the user
      *
-     * @return
+     * @return the optional description
      */
     String description() default "";
 
@@ -88,7 +88,7 @@ public @interface CMLib {
     /**
      * Extra android permissions needed by this plugin.
      *
-     * @return list of external permissions - names only. I.e. internet
+     * @return A string array of external permissions - names only. I.e. internet
      * permissions are requested as "INTEGER".
      */
     String[] permissions() default {};

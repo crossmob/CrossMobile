@@ -19,7 +19,7 @@ public final class UIDataDetectorTypes {
     /**
      * Automatically detected phone numbers.
      */
-    public static final long PhoneNumber = 1 << 0;
+    public static final long PhoneNumber = 1;
 
     /**
      * Automatically detected URLs.

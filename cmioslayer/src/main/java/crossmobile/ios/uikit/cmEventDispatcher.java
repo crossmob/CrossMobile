@@ -127,9 +127,9 @@ class cmEventDispatcher {
                 }
                 int newstate = rec.state();
 
-                /**
-                 * Send gesture events and calculate if low level touch events
-                 * should be generated
+                /*
+                  Send gesture events and calculate if low level touch events
+                  should be generated
                  */
                 if ((newstate == Began && oldState != Began) || (newstate == Ended && oldState != Ended) || newstate == Changed || newstate == Cancelled)
                     rec.performCallbacks();

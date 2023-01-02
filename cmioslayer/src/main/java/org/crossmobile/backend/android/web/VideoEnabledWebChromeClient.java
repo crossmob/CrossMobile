@@ -14,7 +14,7 @@ import android.widget.FrameLayout;
 import org.crossmobile.backend.android.MainActivity;
 
 /**
- * This Client is heavily inspired by an implementation of Cristian Perez (http://cpr.name)
+ * This Client is heavily inspired by an <a href="http://cpr.name">implementation</a> of Cristian Perez
  */
 
 /*

@@ -90,7 +90,7 @@ public class AndroidFileBridge extends AbstractFileBridge {
         // Full file path
         if (new File(path).exists())
             return true;
-        // Not under assets folder -- we don't support this
+        // Not under assets' folder -- we don't support this
         if (!path.startsWith(APPLICATION_PREFIX))
             return false;
         // File is the root of the assets folder

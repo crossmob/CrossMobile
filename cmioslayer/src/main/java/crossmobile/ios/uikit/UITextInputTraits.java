@@ -13,21 +13,21 @@ import org.crossmobile.bridge.ann.CMSetter;
 @CMClass
 public interface UITextInputTraits {
 
-    /**
-     * property fields easy access
-     * private int autocapitalizationType = UITextAutocapitalizationType.Sentences;
-     * private int autocorrectionType = UITextAutocorrectionType.Default;
-     * private int spellCheckingType = UITextSpellCheckingType.Default;
-     * private int smartQuotesType = UITextSmartQuotesType.Default;
-     * private int smartDashesType = UITextSmartDashesType.Default;
-     * private int smartInsertDeleteType = UITextSmartInsertDeleteType.Default;
-     * private int keyboardType = UIKeyboardType.Default;
-     * private int keyboardAppearance = UIKeyboardAppearance.Default;
-     * private int returnKeyType = UIReturnKeyType.Default;
-     * private boolean enablesReturnKeyAutomatically = false;
-     * private boolean isSecureTextEntry = false;
-     * private String textContentType = null;
-     **/
+    /*
+      property fields easy access
+      private int autocapitalizationType = UITextAutocapitalizationType.Sentences;
+      private int autocorrectionType = UITextAutocorrectionType.Default;
+      private int spellCheckingType = UITextSpellCheckingType.Default;
+      private int smartQuotesType = UITextSmartQuotesType.Default;
+      private int smartDashesType = UITextSmartDashesType.Default;
+      private int smartInsertDeleteType = UITextSmartInsertDeleteType.Default;
+      private int keyboardType = UIKeyboardType.Default;
+      private int keyboardAppearance = UIKeyboardAppearance.Default;
+      private int returnKeyType = UIReturnKeyType.Default;
+      private boolean enablesReturnKeyAutomatically = false;
+      private boolean isSecureTextEntry = false;
+      private String textContentType = null;
+     */
 
 
     /**
@@ -74,6 +74,7 @@ public interface UITextInputTraits {
 
     /**
      * The auto correction type for the text
+     *
      * @return The auto correction type for the text
      */
     @CMGetter("@property(nonatomic) UITextSpellCheckingType spellCheckingType;")
@@ -83,6 +84,7 @@ public interface UITextInputTraits {
 
     /**
      * Sets the auto spell checking type for the text
+     *
      * @param UITextSpellCheckingType The auto spell checking type for the text
      */
     @CMSetter("@property(nonatomic) UITextSpellCheckingType spellCheckingType;")
@@ -91,6 +93,7 @@ public interface UITextInputTraits {
 
     /**
      * The smart quotes type for the text
+     *
      * @return The smart quotes type for the text
      */
     @CMGetter("@property(nonatomic) UITextSmartQuotesType smartQuotesType;")
@@ -100,6 +103,7 @@ public interface UITextInputTraits {
 
     /**
      * Sets the smart quotes type for the text
+     *
      * @param UITextSmartQuotesType The smart quotes type for the text
      */
     @CMSetter("@property(nonatomic) UITextSmartQuotesType smartQuotesType;")
@@ -108,6 +112,7 @@ public interface UITextInputTraits {
 
     /**
      * The smart quotes type for the text
+     *
      * @return The smart quotes type for the text
      */
     @CMGetter("@property(nonatomic) UITextSmartDashesType smartDashesType;")
@@ -117,6 +122,7 @@ public interface UITextInputTraits {
 
     /**
      * Sets the smart dashes type for the text
+     *
      * @param UITextSmartDashesType The smart dashes type for the text
      */
     @CMSetter("@property(nonatomic) UITextSmartDashesType smartDashesType;")
@@ -125,6 +131,7 @@ public interface UITextInputTraits {
 
     /**
      * The smart insert - delete type for space characters
+     *
      * @return The smart insert - delete type for space characters
      */
     @CMGetter("@property(nonatomic) UITextSmartInsertDeleteType smartInsertDeleteType;")
@@ -134,6 +141,7 @@ public interface UITextInputTraits {
 
     /**
      * Sets the smart insert - delete type for space characters
+     *
      * @param UITextSmartInsertDeleteType The smart insert - delete type for space characters
      */
     @CMSetter("@property(nonatomic) UITextSmartInsertDeleteType smartInsertDeleteType;")
