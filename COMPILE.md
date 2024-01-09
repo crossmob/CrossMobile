@@ -37,7 +37,7 @@ brew cask install adoptopenjdk8
 - Make sure JDK 8 is the default environment.
 
 ## Bootstrapping (optional)
-Note that this step is **not required** if you want to compile CrossMobile yourself, since the bootstrap dependencies are already in the crossmobile repository.
+Note that this step is **not required** to compile CrossMobile yourself. The bootstrap dependencies are already in the CrossMobile repository.
 In the case you want to build them yourself, on the root folder of CrossMobile issue the following command:
 ```sh
 ./resources/bin/bootstrap.sh

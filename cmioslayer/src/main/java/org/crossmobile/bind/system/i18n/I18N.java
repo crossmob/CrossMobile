@@ -227,7 +227,7 @@ public class I18N {
         }
 
         /**
-         * Retrieve a parameter value and replace it with it's corespondent value. This method recurses
+         * Retrieve a parameter value and replace it with its corespondent value. This method recurses
          * with the getFormat, when a proper format was found.
          *
          * @param param The name of the parameter
