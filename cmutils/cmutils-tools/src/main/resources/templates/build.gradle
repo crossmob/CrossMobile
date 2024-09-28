@@ -27,7 +27,7 @@ buildscript {
         }
     }
     dependencies {
-__ANDROID_GRADLE_DEPS__        classpath 'com.android.tools.build:gradle:4.1.1'
+__ANDROID_GRADLE_DEPS__        classpath 'com.android.tools.build:gradle:8.2.0'
     }
 }
 
@@ -41,6 +41,16 @@ allprojects {
     buildDir = "target/app/build/"
 }
 
+afterEvaluate {
+    if (project.hasProperty('android')) {
+        project.android {
+            if (namespace == null) {
+                namespace project.group
+            }
+        }
+    }
+}
+
 apply plugin: 'com.android.application'
 apply from: 'target/app/crossmobile.gradle'
 
@@ -50,13 +60,12 @@ file("local.properties").withInputStream {
 }
 
 android {
-    compileSdkVersion 32
+    compileSdkVersion 34
 
     defaultConfig {
         applicationId appId
-        minSdkVersion 16
-        targetSdkVersion 32
-        multiDexEnabled true
+        minSdkVersion 21
+        targetSdkVersion 34
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -102,7 +111,4 @@ android {
     }
 }
 
-dependencies {
-    implementation 'androidx.multidex:multidex:2.0.1'
-}
 __ANDROID_GRADLE_ROOT__

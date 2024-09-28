@@ -7,7 +7,7 @@
 package org.crossmobile.backend.android;
 
 import android.content.pm.PackageManager;
-import androidx.core.app.ActivityCompat;
+import android.os.Build;
 import androidx.core.content.ContextCompat;
 import org.crossmobile.bridge.Native;
 import org.crossmobile.bridge.system.BaseUtils;
@@ -22,6 +22,10 @@ public class AndroidPermissions {
 
     public static AndroidPermissions current() {
         return ((AndroidSystemBridge) Native.system()).getPermissions();
+    }
+
+    static boolean shouldRequestForExternalStorage() {
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.R;
     }
 
     public void requestPermissions(VoidBlock1<Collection<String>> notGrantedPermissions, String... permissions) {

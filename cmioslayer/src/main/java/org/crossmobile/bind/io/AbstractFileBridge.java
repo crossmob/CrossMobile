@@ -8,8 +8,10 @@ package org.crossmobile.bind.io;
 
 import org.crossmobile.bridge.FileBridge;
 
-import java.io.*;
-import java.net.URLDecoder;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Random;
 
 import static org.crossmobile.bind.io.FileBridgeConstants.DEFAULTPATHS;
@@ -91,14 +93,4 @@ public abstract class AbstractFileBridge implements FileBridge {
      */
     public abstract InputStream getApplicationFileStream(String file) throws IOException;
 
-    public static String getFileFromURL(String url) {
-        int last = url.lastIndexOf('/');
-        if (last < 0 || last == url.length() - 1)
-            return "file";
-        try {
-            return URLDecoder.decode(url.substring(last + 1), "UTF-8");
-        } catch (Exception e) {
-            return "file";
-        }
-    }
 }

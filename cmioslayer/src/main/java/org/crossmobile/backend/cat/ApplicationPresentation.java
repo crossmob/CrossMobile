@@ -108,7 +108,7 @@ public class ApplicationPresentation extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         Enhancer enhancer = EnhancerManager.getDefault();
-        enhancer.setSafeLookAndFeel();
+        enhancer.setDefaultLookAndFeel();
         enhancer.registerAbout(() -> {
             System.out.println("about!");
         });

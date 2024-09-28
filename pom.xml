@@ -29,7 +29,7 @@
         <version.maven-artifact>2.2.1</version.maven-artifact>
 
         <version.dd-plist>1.16</version.dd-plist>
-        <version.javassist>3.27.0-GA</version.javassist>
+        <version.javassist>3.30.2-GA</version.javassist>
         <version.minimal-json>0.9.5</version.minimal-json>
         <version.proguard>6.0.3</version.proguard>
         <version.junidecode>0.4.1</version.junidecode>
@@ -40,8 +40,8 @@
         <version.roaster>2.21.2.Final</version.roaster>
 
         <version.appbundler>1.1.0</version.appbundler>
-        <version.appenh>0.6.1</version.appenh>
-        <version.hrgui>0.3.0</version.hrgui>    <!-- note! hrgui depends on appenh; make sure that there's no version conflict here -->
+        <version.appenh>0.7</version.appenh>    <!-- NOTE! See comment below -->
+        <version.hrgui>0.3.1</version.hrgui>    <!-- note! hrgui depends on appenh; make sure that there's no version conflict here -->
         <version.jupidator>0.9.0.2</version.jupidator>
     </properties>
 
@@ -62,31 +62,4 @@
             </distributionManagement>
         </profile>
     </profiles>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.1.0</version>
-                <executions>
-                    <execution>
-                        <id>enforce-os</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <requireOS>
-                                    <family>unix</family>
-                                    <message>CrossMobile can only be compiled in a Unix environment (i.e. Linux or macOS).</message>
-                                </requireOS>
-                            </rules>
-                            <fail>true</fail>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 </project>

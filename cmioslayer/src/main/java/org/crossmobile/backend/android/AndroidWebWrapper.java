@@ -288,52 +288,45 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
         }
 
         private void downloadFile(String url, String mime) {
-            AndroidPermissions.current().requestPermissions(notGranted -> {
-                if (!notGranted.isEmpty()) {
-                    Toast.makeText(MainActivity.current, "No permission given to write to external storage", 2).show();
-                    return;
+            DownloadManager dm = (DownloadManager) MainActivity.current.getSystemService(DOWNLOAD_SERVICE);
+            DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+            request.setDescription("Please wait while downloading");
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
+            request.addRequestHeader("Cookie", CookieManager.getInstance().getCookie(url));
+            request.setVisibleInDownloadsUi(true);
+            request.setDestinationInExternalFilesDir(MainActivity.current, Environment.DIRECTORY_DOCUMENTS, "web_download");
+            String filename = Uri.parse(url).getLastPathSegment();
+            Toast.makeText(MainActivity.current, "Background download started for external file " + filename, 2).show();
+            request.setTitle(filename);
+            final AtomicLong downloadId = new AtomicLong(0);
+
+            MainActivity.current.registerReceiver(new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    if (!DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(intent.getAction()))
+                        return;
+                    MainActivity.current.unregisterReceiver(this);
+                    Cursor c = dm.query(new DownloadManager.Query().setFilterById(downloadId.get()));
+                    if (!c.moveToFirst())
+                        return;
+                    int status = c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS));
+                    if (status == DownloadManager.STATUS_SUCCESSFUL) {
+                        try {
+                            Uri uri = dm.getUriForDownloadedFile(downloadId.get());
+                            MainActivity.current.getStateListener().launch(null, new Intent().setAction(android.content.Intent.ACTION_VIEW)
+                                    .setDataAndType(uri, mime)
+                                    .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION));
+                        } catch (Exception ex) {
+                            Toast.makeText(MainActivity.current, "Unable to display external file. It can still be found as Downloaded content", 2).show();
+                        }
+                    } else if (status == DownloadManager.STATUS_FAILED) {
+                        dm.remove(downloadId.get());
+                        Toast.makeText(MainActivity.current, "Unable to download external file", 2).show();
+                    } else
+                        Toast.makeText(MainActivity.current, "Unable to download external file (status " + status + ")", 2).show();
                 }
-
-                Toast.makeText(MainActivity.current, "Background download started for external file", 2).show();
-                String filename = AbstractFileBridge.getFileFromURL(url);
-
-                DownloadManager dm = (DownloadManager) MainActivity.current.getSystemService(DOWNLOAD_SERVICE);
-                DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
-                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
-                request.addRequestHeader("Cookie", CookieManager.getInstance().getCookie(url));
-                request.setVisibleInDownloadsUi(true);
-                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, filename);
-                request.setTitle(filename);
-                final AtomicLong downloadId = new AtomicLong(0);
-
-                MainActivity.current.registerReceiver(new BroadcastReceiver() {
-                    @Override
-                    public void onReceive(Context context, Intent intent) {
-                        if (!DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(intent.getAction()))
-                            return;
-                        MainActivity.current.unregisterReceiver(this);
-                        Cursor c = dm.query(new DownloadManager.Query().setFilterById(downloadId.get()));
-                        if (!c.moveToFirst())
-                            return;
-                        int status = c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS));
-                        if (status == DownloadManager.STATUS_SUCCESSFUL) {
-                            try {
-                                Uri uri = dm.getUriForDownloadedFile(downloadId.get());
-                                MainActivity.current.getStateListener().launch(null, new Intent().setAction(android.content.Intent.ACTION_VIEW)
-                                        .setDataAndType(uri, mime)
-                                        .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION));
-                            } catch (Exception ex) {
-                                Toast.makeText(MainActivity.current, "Unable to display external file. It can still be found as Downloaded content", 2).show();
-                            }
-                        } else if (status == DownloadManager.STATUS_FAILED) {
-                            dm.remove(downloadId.get());
-                            Toast.makeText(MainActivity.current, "Unable to download external file", 2).show();
-                        } else
-                            Toast.makeText(MainActivity.current, "Unable to download external file (status " + status + ")", 2).show();
-                    }
-                }, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
-                downloadId.set(dm.enqueue(request));
-            }, AndroidPermission.WRITE_EXTERNAL_STORAGE);
+            }, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+            downloadId.set(dm.enqueue(request));
         }
 
         @Override

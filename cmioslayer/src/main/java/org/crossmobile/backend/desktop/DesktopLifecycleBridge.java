@@ -40,7 +40,7 @@ public abstract class DesktopLifecycleBridge extends AbstractLifecycleBridge {
         enhancer.setApplicationName(System.getProperty("cm.display.name", "CrossMobileApp"));
         if (supportsExtendedVisuals()) {
             ((DesktopDrawableMetrics) Native.graphics().metrics()).updateDPI(enhancer.getDPI());
-            enhancer.setSafeLookAndFeel();
+            enhancer.setDefaultLookAndFeel();
             enhancer.setApplicationIcons(getAppIcons());
         }
     }
