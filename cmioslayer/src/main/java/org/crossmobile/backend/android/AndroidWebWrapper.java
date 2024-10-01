@@ -32,7 +32,6 @@ import crossmobile.ios.webkit.WebKitDrill;
 import org.crossmobile.backend.android.AndroidNativeDispatcher.AndroidNativeWidget;
 import org.crossmobile.backend.android.web.VideoEnabledWebChromeClient;
 import org.crossmobile.backend.android.web.VideoEnabledWebView;
-import org.crossmobile.bind.io.AbstractFileBridge;
 import org.crossmobile.bind.system.SystemUtilities;
 import org.crossmobile.bind.wrapper.HistoryItem;
 import org.crossmobile.bind.wrapper.WebWrapper;
@@ -325,7 +324,7 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
                     } else
                         Toast.makeText(MainActivity.current, "Unable to download external file (status " + status + ")", 2).show();
                 }
-            }, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+            }, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE), 2);  // RECEIVER_EXPORTED
             downloadId.set(dm.enqueue(request));
         }
 
