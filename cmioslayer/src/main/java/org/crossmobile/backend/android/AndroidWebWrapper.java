@@ -269,6 +269,23 @@ public class AndroidWebWrapper extends WebWrapper<AndroidWebWrapper.NativeW, And
                     boolean accepted = acceptsRequest(NSURLRequest.requestWithURL(NSURL.URLWithString(SystemUtilities.fixURI(url))), UIWebViewNavigationType.LinkClicked);
                     if (accepted && getDelegate() != null && isLoading)
                         getDelegate().didReceiveServerRedirectForProvisionalNavigation(getWebView(), getNavigation(url));
+                    if (accepted && url.startsWith("intent://")) {
+                        try {
+                            Intent intent = Intent.parseUri(url, Intent.URI_INTENT_SCHEME);
+                            if (intent != null) {
+                                if (MainActivity.current.getPackageManager().resolveActivity(intent, 0) == null) {
+                                    String fallbackUrl = intent.getStringExtra("browser_fallback_url");
+                                    if (fallbackUrl != null)
+                                        loadUrl(fallbackUrl);
+                                }
+                                MainActivity.current.startActivity(intent);
+                            }
+                        } catch (Exception e) {
+                            Native.system().error("Unable to handle intent", e);
+                            Toast.makeText(MainActivity.current, "Unable to handle URL " + url, 2).show();
+                        }
+                        return true;
+                    }
                     return !accepted;
                 }
 
